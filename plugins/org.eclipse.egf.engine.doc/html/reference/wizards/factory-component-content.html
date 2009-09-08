@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+	<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../../book.css" charset="ISO-8859-1" type="text/css">
+    <title>Factory Component Content</title>
+    <script language="JavaScript" src="PLUGINS_ROOT/org.eclipse.help/livehelp.js"> </script>
+  </head>
+  
+   <body>
+    <h2>Factory Component Content</h2>
+    <p>The <strong>Factory Component Content</strong> wizard page allows you to customize the plug-in data. </p>
+	<table border="1" cellspacing="0" cellpadding="5">
+      	<tr>
+        	<th>Option</th>
+        	<th>Description</th>
+        	<th>Default</th>
+      	</tr>
+    	<tr>
+        	<td align="left" valign="top">Plug-in ID</td>
+        	<td align="left" valign="top">It is mandatory and it must comply with the <a href="../../../../org.eclipse.platform.doc.isv/reference/misc/plugin_manifest.html">plugin.dtd</a>.<br><strong> It must match the factory component project name</strong>.</td>
+        	<td align="left" valign="top"><strong>Automatically set, not modifiable</strong></td>
+      	</tr>
+      	<tr>
+        	<td align="left" valign="top">Plug-in Version</td>
+        	<td align="left" valign="top">It is mandatory and must be of the form major.minor.micro.qualifier.</td>
+        	<td align="left" valign="top">Default value is set to <b>1.0.0</b></td>
+      	</tr>
+      	<tr>
+        	<td align="left" valign="top">Plug-in Name</td>
+        	<td align="left" valign="top">It is the translatable presentation name of the plug-in. This field is required.</td>
+        	<td align="left" valign="top">none</td>
+      	</tr>
+		<tr>
+        	<td align="left" valign="top">Plug-in Provider</td>
+        	<td align="left" valign="top">It is the translatable name of the plug-in provider. This field is optional.</td>
+        	<td align="left" valign="top"><p>none</p></td>
+      	</tr>
+      	<tr>
+        	<td align="left" valign="top">Classpath</td>
+        	<td align="left" valign="top">It refers to the location of the code once the plug-in is packaged. As of Eclipse 3.1, it is recommended to ship plug-ins as JARs with code at the root of the JAR and leave the classpath field empty.</td>
+        	<td align="left" valign="top"><p>none</p></td>
+      	</tr>
+      	<tr>
+        	<td align="left" valign="top">Generate an Activator</td>
+        	<td align="left" valign="top">An activator is a Java class that controls the plug-in's life cycle. It is only needed if you require to do work upon the startup or shutdown of your plug-in.</td>
+        	<td align="left" valign="top"><p>The choice of whether the plug-in will make contributions to the UI affects the code generated for the activator:</p>
+				<ul>
+				  <li>If the plug-in is a UI plug-in, the activator class extends the <em>org.eclipse.ui.plugin.AbstractUIPlugin</em> class. </li>
+				  <li>If the plug-in is headless (i.e. non-UI), the activator extends the <em>org.eclipse.core.runtime.Plugin </em>class. </li>
+				  <li>If the plug-in is targeted for an OSGi framework, the activator implements the <em>org.osgi.framework.BundleActivator</em> interface. </li>
+				</ul></p></td>
+      	</tr>
+      	<tr>
+        	<td align="left" valign="top">Factory Component Model</td>
+        	<td align="left" valign="top">By answering <strong>Yes</strong> to the question in the <strong>Factory Component Model</strong> section, you will be required to go to the <a href="factory-component-templates.html">Templates</a> page where you can choose a template that will generate all the required extensions.</td>
+        	<td align="left" valign="top"><p>none</p></td>
+      	</tr>
+     </table>
+    
+    <p>
+      <img border="0" src="../../images/ngrelc.png" alt="Related concepts" >
+    </p>
+    <p>
+      <a href="../../concepts/factory-component.html">Factory Component</a>
+    </p>
+    <p>
+      <img border="0" src="../../images/ngrelt.png" alt="Related tasks" >
+    </p>
+    <p>
+      TODO
+    </p>
+    <p>
+      <img border="0" src="../../images/ngrelr.png" alt="Related reference" >
+    </p>
+    <p>
+      TODO
+    </p>
+    <p>&nbsp;</p>
+  </body>
+</html>
+

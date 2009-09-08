@@ -1,0 +1,8 @@
+<%@ jet package="org.eclipse.egf.pattern.emf.editor" class="PluginProperties" imports="" %>
+
+<%
+// Start of pluginProperties (full id = EmfLibrary/patternLibrary.1203064024097.22/Pattern.1203066568693.15).
+%>
+<%
+// End of pluginProperties (full id = EmfLibrary/patternLibrary.1203064024097.22/Pattern.1203066568693.15).
+%>

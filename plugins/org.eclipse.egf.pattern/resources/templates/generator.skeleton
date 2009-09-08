@@ -1,0 +1,11 @@
+public class CLASS implements org.eclipse.egf.pattern.production.jet.IGenerator
+{
+  /**
+   * @see org.eclipse.egf.pattern.production.jet.IGenerator#generate(Object)
+   */
+  @SuppressWarnings({ "unchecked", "nls" })
+  public String generate(Object argument)
+  {
+    return "";
+  }
+}

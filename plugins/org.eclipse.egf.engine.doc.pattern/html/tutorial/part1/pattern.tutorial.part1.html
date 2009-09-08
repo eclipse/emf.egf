@@ -1,0 +1,664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+    <meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<title>
+		Pattern Tutorial Part 1 (Introduction to EGF patterns)
+	</title>
+<link rel="stylesheet" href="../default_style.css"/>
+</head>
+
+<body xml:lang="EN-US" lang="EN-US">
+<div align="right">
+  <table border="0" cellpadding="2" cellspacing="0" width="100%">
+    <tbody>
+      <tr>
+      	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+      	  <b><font face="Arial,Helvetica"><font color="#ffffff">
+      	  &nbsp;EGF Tutorial
+      	  </font></font></b>
+      	</td>
+      </tr>
+  	</tbody>
+  </table>
+</div>
+
+<h1 align="center">Pattern Tutorial Part 1 (Introduction to EGF patterns)</h1>
+
+<blockquote>
+  <b>Summary</b>
+  <br/>
+  <p>
+  	Generating content such as source code can save you time in your projects and can reduce the 
+  	amount of tedious redundant programming. Generating can be powerful, but the program that writes the code
+  	can quickly become very complex and hard to understand.
+  	One way to reduce complexity and increase readability is to use the Eclipse Generation Framework (EGF).
+  </p>
+  <p>
+  	EGF project contains two very powerful tools for generating outputs: The factory component (FC) task factory
+  	and the pattern. With the pattern you can use an enhanced template-based approach (current implementation uses JET)
+  	that makes it easy to express the output you want to generate.
+  </p>
+  <p>
+    In this tutorial you will learn how to :
+    <ul>
+  	 <li>create patterns</li>
+  	 <li>produce an executable form of the patterns</li>
+  	 <li>execute patterns</li>
+  	 <li>use pattern parameters</li>
+  	 <li>use pattern inheritance</li>
+    </ul>
+  </p>
+  <p>
+    Contributed by Guillaume Brocard, Thales EPM, guillaume.brocard at thalesgroup dot com, February 28, 2008.<br/>
+    Modified for EGF contribution, January 29, 2009.
+  </p>
+</blockquote>
+<hr width="100%"/>
+
+<h2>Requirements</h2>
+<p>
+  Before creating our first pattern, you will need the EGF Engine plug-ins version 1.0.0.<br/>
+  If you haven't installed it yet, you can get a fully package version <a href="http://wiki.corp.thales/display/sswb/SoFa+Product+-+SoFa+Tool">here</a>.<br/>
+  Install it before continuing with this tutorial.<br/>
+  <br/>
+  You must also be familiar with the handling of factory components.<br/>
+  If not, make sure you understand the <a href="../../../../org.eclipse.egf.engine.doc/html/tutorial/part1/fc-tutorial-part1.html">Factory Component Tutorial Part 1</a>.
+  <br/>
+  Finally, it is required that you have read and understood <a href="../../../../org.eclipse.egf.engine.doc/html/concepts/pattern.html">the pattern concepts</a>.
+</p>
+
+<h2>HelloWorld pattern</h2>
+<p>
+  Let's start with the famous example of displaying the message "Hello, world".
+  So as to create our first example, the following steps are required :<br/>
+  <ol>
+    <li>Create a new Factory Component (FC) project.</li>
+    <li>Add the new FC a pattern library.</li>
+    <li>Create a new pattern under this library.</li>
+    <li>Feed the pattern with the Hello World implementation.</li>
+    <li>Produce the pattern.</li>
+    <li>Tell the FC factory to execute our pattern, and what to do with the result.</li>
+    <li>Finally, launch a new workbench and execute it.</li>
+  </ol>
+
+  <h3><a name="pattern1_section1_step1">Step 1. Create a new Factory Component</a></h3>
+  <p>
+    From the workbench menu, select File > New > Factory Component Project to bring up the New Factory Component Project wizard.
+    <ul>
+      <li>Give it the <b>pattern.tests</b> name and click Next</li>
+      <li>It does need neither to get an activator, nor to contribute to the UI (unselect those options), click Finish</li>
+      <li>When the MANIFEST.MF editor displays, click the Activate this plug-in when one of its classes is loaded option, then save and close it</li>
+    </ul>
+    The Factory Component Explorer displays the newly created FC as shown in the image below.
+    <p align="left">
+      <img src="./images/NewFC.png" alt="New FC created"/>
+    </p>
+  </p>
+
+  <h3><a name="pattern1_section1_step2">Step 2. Add a pattern library</a></h3>
+  <p>
+    Deploy the Viewpoints node and select the Pattern Viewpoint one.
+    <p align="left">
+      <img src="./images/PatternViewpoint.png" alt="Select the Pattern Viewpoint"/>
+    </p>
+    <ul>
+      <li>Right click New > Pattern Library</li>
+      <li>Give it the <b>HelloWorldLibrary</b> name and click Finish</li>
+    </ul>
+    <p align="left">
+      <img src="./images/HelloWorldLibrary.png" alt="HelloWorldLibrary is created"/>
+    </p>
+    A library is a container for libraries and/or patterns.<br/>
+    The Pattern Viewpoint can only contain libraries.
+  </p>
+
+  <h3><a name="pattern1_section1_step3">Step 3. Create a new pattern</a></h3>
+  <p>
+    Now that we have an element that can contain a pattern, let us create it.
+    <ul>
+      <li>Right click the HelloWorldLibrary New > Pattern</li>
+      <li>Give the pattern the <b>HelloWorld</b> name and click Finish</li>
+    </ul>
+    <p align="left">
+      <img src="./images/NewPattern.png" alt="HelloWorld pattern is created"/>
+    </p>
+    The new pattern is displayed as a node of HelloWorldLibrary and its editor opens automatically.
+    This is the only place where we can change the properties of the pattern.<br/>
+    For now, we'll focus on the Overview and Implementation pages.<br/>
+    <p>
+      The Overview page is allowing the user to change both the name and the description of the pattern.
+      <ul>
+        <li>
+          The Name field is giving the pattern a logical name.<br/>
+          <img src="../common/images/tip.gif"/>
+          It does not have to be unique, although this is the name presented in every user display.
+          So this is a good idea to have a full name <tt class="code">[Parent Libraries names]+[Pattern name]</tt> exclusive enough to identify it.
+        </li>
+        <li>
+          The Description field is purely an informative one.<br/>
+          <img src="../common/images/tip.gif"/>
+          This is the only opportunity we've got to explain the purpose of the pattern.<br/>
+          It is highly recommanded to explain the parameters of this pattern, its hierarchy and the goal of its implementation.
+        </li>
+      </ul>
+    </p>
+  </p>
+
+  <h3><a name="pattern1_section1_step4">Step 4. Implement the HelloWorld message</a></h3>
+  <p>
+    Switch to the implementation page of HelloWorld editor.
+    This page is made of two main sections.
+    <ul>
+      <li>
+        The Pattern internal methods defines the templates that we want to write, as new pattern methods.<br/>
+        This is convenient when it will come to override those methods, or to choose to use them or not.
+      </li>
+      <li>
+        The Generate method is the main public method of the pattern.<br/>
+        This is the one that is called by the framework when the pattern is being applied, either by another FC or as a
+        pattern call from another pattern.
+      </li>
+    </ul>
+    Select the internal method <b>generateHeader</b>. A new section is spawn in the right part of the page.
+    <p align="left">
+      <img src="./images/PatternImplementationPage_internalMethods.png" alt="generateHeader method section is displayed"/>
+    </p>
+    Click the <b>Content</b> link of the Internal method properties section of generateHeader.
+    A new JET editor opens.
+    <p align="left">
+      <img src="./images/PatternImplementationPage_internalMethods_JETEditor.png" alt="New JET editor"/>
+    </p>
+    The generateHeader method is an important one.<br/>
+    Add it the following code :
+<pre class="code">
+&lt;%@ jet package="pattern.tests" class="HelloWorldGenerator" %&gt;
+
+</pre>
+    By doing so, we're telling JET compiler to compile our future template in a Java class form, called <b>HelloWorldGenerator</b>
+    and located in package <b>pattern.tests</b>
+    <p>
+      <img src="../common/images/tip.gif" align="left"/>All JET pattern must implement the generateHeader method.<br/>
+      So as to ease the user experience, a default header is generated by the framework at first generation time, if none is provided.<br/>
+      The generated content would very look like the one we have just entered.
+    </p>
+    Now close the generateHeader editor.<br/>
+    Back to the HelloWorld editor, click the Add button of the Pattern internal methods section.
+    A new internal method <b>newMethod0</b> is created. Select it and rename it <b>displayMessage</b> (to do so, change
+    the Name value in the Internal method properties section).<br/>
+    Click the <b>Content</b> link to edit its content.
+    Add it the following piece of code :
+<pre class="code">
+Hello world !
+
+</pre>
+    Make sure you're adding the extra new line at the end of the message (the one at the end of the first line is eaten at
+    compilation time). Close the displayMessage editor.<br/>
+    We are almost done with our first pattern.
+    <p>
+      There remains one important step. That is tell our pattern what to do with its methods.<br/>
+      This is handled by the <b>Generate method</b> section.
+      <ul>
+        <li>
+          Click the Add button of this section.
+          The following wizard is displaying :
+          <p align="left">
+            <img src="./images/PatternImplementationPage_newAction.png" alt="Pattern generate method action selection wizard"/>
+          </p>
+        </li>
+        <li>
+          Select the <b>Internal method call</b> action, and click Next &gt;
+          <p align="left">
+            <img src="./images/PatternImplementationPage_newActionParameter.png" alt="Pattern generate method action selection wizard"/>
+          </p>
+        </li>
+        <li>Select displayMessage, and click Finish</li>
+      </ul>
+      <p>
+        <img src="../common/images/tip.gif" align="left"/>You did not get the opportunity to select generateHeader or generateFooter methods.
+        There are handled automatically by the pattern framework, whether the pattern is an independent one or not.
+      </p>
+      <p align="left">
+        <img src="./images/PatternImplementationPage_newActionCreated.png" alt="Pattern generate method action created"/>
+      </p>
+      <p>
+        A new section has appeared (Selected action properties), this time to display the properties of the new call inserted in the generate method
+        of our pattern.<br/>
+        Save the pattern editor.
+      </p>
+    </p>
+  </p>
+
+  <h3><a name="pattern1_section1_step5">Step 5. Produce the pattern</a></h3>
+  <p>
+    So far, we have been editing the pattern model through a dedicated editor.<br/>
+    The pattern can not be executed in this form directly. Indeed JET is expecting just one template file as something to
+    eat. So there is a production phase for every pattern we want to use.<br/>
+    This production will create a lot of stuff in the plug-in structure hosting the FC.
+    Do not add those files to the configuration management yet (if you are asked to).<br/>
+    Now to the production.<br/>
+    <p>
+      There are two ways for producing a pattern.<br/>
+      By default, it is automatically produced at save time.<br/>
+      Save the pattern editor (Ctrl + S or File > Save).
+      Note that the list of internal methods is now sorted by name.
+	  <br/><br/>
+	  If this option has been disabled (Main menu Pattern > Produce automatically unchecked), then :
+      <ol>
+        <li>Select HelloWorld pattern in the FC explorer</li>
+        <li>Right click, Produce</li>
+      </ol>
+      A new progress monitor is invoked (bottom-right part of the workbench) so as to provide you with progress.
+      The Package Explorer content is being refreshed during the process.
+    </p>
+    <p>
+      You should end with new content in the generated source folder of your FC project.<br/>
+      We are expecting to find our <b>HelloWorldGenerator</b> class as specified by the generateHeader method of our pattern.
+      This class should compile ok.
+      <p align="left">
+        <img src="./images/PatternProduced.png" alt="Pattern generate method action created"/>
+      </p>
+    </p>
+    <p>
+      <img src="../common/images/TryIt.gif" align="left"/>You can open this class to figure out the content of the generated generator.<br/>
+      Nevertheless, you must keep in mind that this class is overwritten by the production phase each time it is invoked.<br/>
+      Make sure you're not modifying it directly. Use the pattern editor instead.
+    </p>
+  </p>
+
+  <h3><a name="pattern1_section1_step6">Step 6. Fill the FC factory</a></h3>
+  <p>
+    It is time to execute our pattern. The following steps are required :
+    <ol>
+      <li>Create a factory component invocation referencing Pattern Runner</li>
+      <li>Create a reporter</li>
+      <li>Fill the context of the invocation</li>
+    </ol>
+    <h4>First step, the factory component invocation</h4>
+    <p>
+      <ul>
+        <li>Create a factory component invocation pointing to Pattern Runner</li>
+        <li>Do not fill its context yet</li>
+      </ul>
+      FC pattern.tests should look like the following one :
+      <p align="left">
+        <img src="./images/EmptyPatternRunnerConfiguration.png" alt="Empty Pattern Runner asset configuration"/>
+      </p>
+    </p>
+    <h4>Second step, the reporter</h4>
+    <p>
+      The contract of Pattern Runner is asking for a reporter.<br/>
+      This is an important element of the execution of a pattern. The goal of the pattern is to generate an output. In our case
+      a textual output. Then raises the question of what to do with this output. This is the job of the reporter.<br/>
+      A reporter is a class that implements the <b>IPatternExecutionReporter</b> interface. In fact, this is a call-back 
+      that is triggered the result of a pattern execution, and its sub-parts that are likely to generate independent content.
+      This is the place where you decide what to do with the output content.<br/>
+      For now, we'll be using the default implementation <b>PatternExecutionRepoter</b> that sends the output to EGF loggers.
+    </p>
+    <h4>Third and last step, filling the context</h4>
+    <p>
+      Fill the context of the Pattern Runner invocation with the following values:
+      <ul>
+        <li>Set execution reporter to PatternExecutionReporter as seen earlier</li>
+        <li>Select HelloWorld pattern as the pattern element to run (contract element patternOrLibraryFullId)</li>
+        <li>Do not give any value to model path, as this is not required here</li>
+      </ul>
+    </p>
+    The FC is now ready for action.
+  </p>
+
+  <h3><a name="pattern1_section1_step7">Step 7. Run the pattern</a></h3>
+  <p>
+    Create a new launch configuration of the Eclipse SDK application enabling all your workspace plug-ins and the deployed ones.<br/>
+    In the newly launched workbench, go to EGF perspective, and to the Factory Components view.<br/>
+    Execute <b>pattern.tests</b> factory. The result (in launching console) should look like the following one :
+    <pre>
+2008-03-03 15:03:38,717  INFO [Worker-5] - PatternExecutionReporter.patternExecutionFinished(..) _ Start of patternLibrary.1204215413112.38/Pattern.1204215762681.39
+Hello world !
+End of patternLibrary.1204215413112.38/Pattern.1204215762681.39
+    </pre>
+    You can close this workbench now.
+  </p>
+</p>
+
+<h2>The pattern specification part</h2>
+<p>
+  We've been displaying a message with pattern, and that's a good start since the template-based approach is producing text.<br/>
+  Maybe a bit of model handling would be interesting too (EGF is supporting the model-driven paradigm).<br/>
+
+  <h3><a name="pattern1_section2_step1">Requirements</a></h3>
+  <p>
+    Well you're supposed not to have skipped the previous parts of this tutorial.<br/>
+    What's more, HelloWorld pattern will likely be changed, so a little backup at this point might sound interesting.
+    Even better, you could be repeating in 5-10 minutes the previous steps, so as to make sure you did acquire the required
+    dexterity with patterns (that will provide you with a copy of your HelloWorld pattern).
+  </p>
+
+  <h3><a name="pattern1_section2_step2">Enhancing the pattern with model-driven specifications</a></h3>
+  <p>
+    In this part, we'll be feeding our HelloWorld pattern with models.<br/>
+    This is achieved through the Specification page of the pattern editor.<br/>
+    So open HelloWorld editor (if needed) and go to Specification page.
+    <p align="left">
+      <img src="./images/PatternSpecificationPage.png" alt="Pattern specification page"/>
+    </p>
+
+    <h4>A word about pattern parameters</h4>
+    <p>
+      Adding a new parameter is telling the pattern that we would like it, at execution time, to execute its behavior for
+      every possible value of this parameter, considering the provided model.<br/>
+      Let's precise this assertion with several new ones :
+      <ol>
+        <li>A parameter is defined at the meta-model level</li>
+        <li>It is taken into account when the pattern is running, at the model level</li>
+        <li>A matching value is an element of the given model (at runtime) that is a sub-type of the defined parameter</li>
+        <li>For each matching value, the pattern applies a condition, and executes its Generate method (if the condition is fulfilled)</li>
+      </ol>
+    </p>
+
+    <h4>Adding a new parameter</h4>
+    <p>
+      This is a concept best experienced, so we'll add HelloWorld a pattern, and see what happens.
+      <ol>
+        <li>
+          Click the Add button of the All Parameters section.<br/>
+          A new parameter is created with a generic name (newParameter0 if you have not fooled with parameters yet).
+        </li>
+        <li>
+          Select it in the list viewer.<br/>
+          A new section appears with its properties.
+        </li>
+        <li>
+          Change its name to <b>anEclassifier</b>.<br/>
+          The name is changing on the left list viewer too.
+        </li>
+        <li>
+          Click the Browse button of its Type field.<br/>
+          <p align="left">
+            <img src="./images/PatternSpecificationPage_parameterTypeSelection.png" alt="Choose a new parameter type"/>
+          </p>
+          Select <b>EClassifier</b> in this new window.<br/>
+          By default, the Type selection tree is displaying ECore meta-model.<br/>
+          Click Finish.<br/>
+          The type name has changed in the left list viewer too.
+        </li>
+        <li>
+          Now save the editor.<br/>
+          Note that the bottom right section is now displaying a content.
+          <p align="left">
+            <img src="./images/PatternSpecificationPage_conditionClassPreview.png" alt="Condition class content preview"/>
+          </p>
+        </li>
+      </ol>
+      This new content is a default generated content for the condition class.<br/>
+      This widget helps you see the content of an already deployed pattern condition.<br/>
+      For pattern being developed, the best thing to do is to click the <b>Condition</b> link in the Edit condition class section.
+      <p align="left">
+        <img src="./images/PatternSpecificationPage_conditionClassEditor.png" alt="Condition class editor"/>
+      </p>
+      The condition class helps to choose if a value (the check method parameters) is acceptable or not.<br/>
+      You can see that we declared only one parameter, and its name is used to identify it as a method parameter.<br/>
+      You are asked to read the associated Java documentation of each method (and of the class).<br/>
+      Basically, you have to keep in mind the following rules to write such a condition class :
+      <ul>
+        <li>
+          The only place where you can check a parameter is between the <tt class="code">// begin-user-code</tt> and
+          <tt class="code">// end-user-code</tt> delimiters of the check() method.
+        </li>
+        <li>
+          You can add extra methods to the condition class, they will be merged automatically, as long as they are not
+          tagged as <tt class="code">@unmodifiable</tt>.<br/>
+          You must use them according to the previous rule.
+        </li>
+      </ul>
+      In our case, we'll accept every classifier of the runtime model, so we'll stick to the default implementation.<br/>
+      Returning true means accepting the value, whereas false means rejecting it.
+    </p>
+
+    <h4>Using this parameter</h4>
+    <p>
+      We've got a fresh new parameter, it's high time we did something with it.<br/>
+      <ul>
+        <li>
+          Go back to the HelloWorld pattern editor, and select its Implementation page.
+        </li>
+        <li>
+          Edit the content of the <b>displayMessage</b> method, and replace it with the following code :
+<pre class="code">
+Hello &lt;%= anEclassifier.getName() %&gt; !
+
+</pre>
+          Just as <b>anEclassifier</b> is accessible in the condition class, it is accessible in the methods of HelloWorld too.<br/>
+          In this particular implementation, we are relying on the fact that an EClassifier has a name to display.
+        </li>
+        <li>
+          Save the <b>displayMessage</b> editor.
+        </li>
+      </ul>
+      Finally, produce HelloWorld again.
+      <p align="left">
+        <img src="./images/PatternProduced_withParameterOnError.png" alt="Condition class editor"/>
+      </p>
+      It's not compiling anymore. That's right, our resulting generator class does not know anything about EClassifier as
+      a Java type. To help it do so, edit the HelloWorld <b>generateHeader</b> method and replace its content with the
+      following piece of code :
+      <pre class="code">
+&lt;%@ jet package="pattern.tests" class="HelloWorldGenerator" imports="org.eclipse.emf.ecore.EClassifier" %&gt;
+      </pre>
+      Then produce HelloWorld again. It's compiling now (if not, do not forget to save the generateHeader editor before
+      producing again).
+    </p>
+
+    <h4>Running HelloWorld</h4>
+    <p>
+      <ul>
+        <li>
+          First, choose a model for Pattern Runner that conforms to HelloWorld parameter.<br/>
+          That should be easy, since HelloWorld parameter is defined by the Ecore meta-model. So every Ecore model should
+          do the trick. Try giving the model path context (of the Run HelloWorld factory component invocation) the <b>org.eclipse.uml2.uml/model/UML.ecore</b> value.
+        </li>
+        <li>Run the previously set launch configuration.</li>
+        <li>Execute HelloWorld factory.</li>
+      </ul>
+    </p>
+
+    <h4>Understanding the result</h4>
+    <p>
+      The resulting output in the launching console is composed of several such outputs (indeed, one per EClassifier in UML.ecore) :
+      <pre class="code">
+2008-03-03 17:47:10,379  INFO [Worker-1] - PatternExecutionReporter.patternLoopExecutionFinished(..) _ Start of a loop in patternLibrary.1204215413112.38/Pattern.1204215762681.39
+Hello CallBehaviorAction !
+End of a loop in patternLibrary.1204215413112.38/Pattern.1204215762681.39
+      </pre>
+      And one big :
+      <pre class="code">
+2008-03-03 17:47:10,379  INFO [Worker-1] - PatternExecutionReporter.patternExecutionFinished(..) _ Start of patternLibrary.1204215413112.38/Pattern.1204215762681.39
+Hello ClearStructuralFeatureAction !
+Hello TemplateableElement !
+Hello Abstraction !
+Hello LiteralNull !
+Hello Vertex !
+Hello CommunicationPath !
+Hello CallConcurrencyKind !
+Hello ElementImport !
+Hello ActivityPartition !
+Hello UseCase !
+Hello Reception !
+...
+Hello PackageImport !
+Hello CallBehaviorAction !
+End of patternLibrary.1204215413112.38/Pattern.1204215762681.39
+      </pre>
+    As you might have already guessed, the pattern execution reporter is called at different times.
+    <ol>
+      <li>
+        The first case stands for a parameter value being accepted and dealt with by the pattern.<br/>
+        Since it is calling its <b>Generate</b> method, something as been generated, maybe it should be taken into account.<br/>
+        That part is referred to as a loop in the console output.
+      </li>
+      <li>
+        The second case stands for the whole pattern being executed.<br/>
+        That means, HelloWorld has been applied to every classifier of the UML2 model, maybe it should be taken into account too.
+      </li>
+    </ol>
+    </p>
+  </p>
+</p>
+
+<h2>The pattern inheritance part</h2>
+<p>
+  Imagine that <b>pattern.tests</b> is a FC provided by another team, as a usable COTS.<br/>
+  We are fine with the behavior, but we would like to change the output message.<br/>
+  This is a good opportunity to test the inheritance mechanism.<br/>
+  The following steps are required :
+  <ol>
+    <li>Deploy pattern.tests</li>
+    <li>Create a new FC with a pattern library</li>
+    <li>Create a new pattern ExtendedHelloWorld inheriting from HelloWorld</li>
+    <li>Run the new pattern</li>
+  </ol>
+
+  <h3><a name="pattern1_section3_step1">Step 1. Deploy pattern.tests</a></h3>
+  <p>
+    As Eclipse experts, you'll find that part pretty easy to achieve.
+    <ul>
+      <li>
+        Select <b>pattern.tests</b> in the Package Explorer and export it as a deployable plug-in.<br/>
+        Either use a dedicated extension location, or deploy it to the <i>dropins</i> directory in the target platform.
+      </li>
+      <li>
+        If everything goes ok, close the <b>pattern.tests</b> project in the Project Explorer.<br/>
+        This is an important step, for we need the newly deployed one to be taken into account.
+      </li>
+      <li>
+        Finally, launch test workbench. In EGF perspective views, <b>pattern.tests</b> should have migrated from
+        Factory Component Explorer to Factory Components (meaning it is deployed).<br/>
+        <img src="../common/images/tip.gif"/>If not, try and launch eclipse.exe with the -clean argument (or select clean configuration in your launch configuration).
+      </li>
+    </ul>
+  </p>
+
+  <h3><a name="pattern1_section3_step2">Step 2. Create a new FC</a></h3>
+  <p>
+    Again as EGF experts, that is something easy to do.
+    <ul>
+      <li>Create a new FC named (and identified as) <b>pattern.tests2</b></li>
+      <li>Add it a pattern library named <b>InheritanceTests</b></li>
+      <li>
+        Since our pattern will depend on <b>HelloWorld</b>, add this FC a dependency towards <b>pattern.tests</b>.<br/>
+        This is done through the plug-in mechanism of adding a dependency.<br/>
+        The main reason being that produced artifacts of the new pattern will depend on already produced ones of HelloWorld.
+      </li>
+    </ul>
+  </p>
+
+  <h3><a name="pattern1_section3_step3">Step 3. Create a new pattern</a></h3>
+  <p>
+    Now to the interesting part.
+    <ul>
+      <li>Create a new pattern named <b>ExtendedHelloWorld</b> underneath <b>InheritanceTests</b>.</li>
+      <li>
+        Go for its Inheritance page.
+        <p align="left">
+          <img src="./images/PatternInheritancePage.png" alt="Pattern editor inheritance page"/>
+        </p>
+        On the left viewer, you can select any deployed pattern found in the platform. This will be the selected parent.<br/>
+        On the right viewer is displayed current parent. If none, nothing is displayed.<br/>
+        Select <b>HelloWorld</b> in the left viewer and click the <b>&gt;</b> button.<br/>
+        <img src="../common/images/TryIt.gif"/>You can no longer select a new entry in the left viewer and click the &gt; button.
+        This is because a pattern can inherit from only one pattern at a time. To change parent, select current one in
+        the right viewer, then click the <b>&lt;</b> button. Now you can select a new parent.
+      </li>
+      <li>Save the pattern editor.</li>
+      <li>
+        Go for the Specification page.<br/>
+        ExtendedHelloWorld is now having a <b>condition class</b>.
+        <p align="left">
+          <img src="./images/PatternInheritance_newCondition.png" alt="Pattern is having inherited parameters"/>
+        </p>
+        Since ExtendedHelloWorld is inheriting from HelloWorld, it's also inheriting its parameters.<br/>
+        Nevertheless, you'll find that the generated condition class for ExtendedHelloWorld does not inherit from the
+        one of HelloWorld. In fact, this is the developer responsibility to choose whether the parent condition should be
+        taken into account or not.<br/>
+        <img src="../common/images/tip.gif"/>If you want to use parent condition, delegate to a new instance of parent condition.
+        Inheriting directly from parent condition won't be persisted when a merge operation occurs.
+      </li>
+      <li>
+        It's time to extend the HelloWorld behavior.<br/>
+        Go to the Implementation page.<br/>
+        We would like to override <b>HelloWorld displayMessage</b> method.<br/>
+        There is no specific UI mechanism provided to do so.<br/>
+        Instead, add a new method, and name it <b>displayMessage</b>. At production time, this will be interpreted as an
+        override of HelloWorld corresponding method.
+        <p align="left">
+          <img src="./images/PatternInheritance_methodOverriding.png" alt="Method overriding through inheritance"/>
+        </p>
+      </li>
+      <li>
+        Give it the following content (and save it):
+<pre class="code">
+Extended Hello &lt;%= anEclassifier.getName() %&gt;;
+
+</pre>
+        We do have access to the parent pattern parameters.
+      </li>
+      <li>
+        Go back to the pattern editor.<br/>
+        Let us feed the Generate method.<br/>
+        We said the behavior of HelloWorld was acceptable. That means we want to orchestrate our implementation the same
+        way.<br/>
+        Click the <b>Add</b> button of the Generate method section. Select <b>Super method call</b>.
+        <p align="left">
+          <img src="./images/PatternInheritance_callToSuperGenerate.png" alt="Calling generate method of parent pattern"/>
+        </p>
+        Click <b>Finish</b>.<br/>
+        We have just told our Generate method to call parent one.
+        <p align="left">
+          <img src="./images/PatternInheritance_callToSuperGenerateCreated.png" alt="Call to generate method of parent pattern"/>
+        </p>
+      </li>
+      <li>Save the pattern editor.</li>
+      <li>
+        One last step that we don't want to forget about.<br/>
+        Fill <b>generateHeader</b> template with following code :
+        <pre class="code">
+&lt;%@ jet package="pattern.test2" class="ExtendedHelloWorldGenerator" imports="org.eclipse.emf.ecore.EClassifier" %&gt;
+        </pre>
+        There is a need to import <b>EClassifier</b> because this is an inherited type.
+        <p>
+        <img src="../common/images/tip.gif"/>However, you should have noticed that a correct header is already available.<br/>
+        This one was generated by the framework at save time, which occurred after specifying the parent pattern.<br/>
+        This mechanism works for the first production only, when no header is provided.<br/>
+        If one header is found, then nothing happens, and you need to modify it by yourself.
+        </p>
+      </li>
+    </ul>
+  </p>
+
+  <h3><a name="pattern1_section3_step4">Step 4. Run the new pattern</a></h3>
+  <p>
+    <ul>
+      <li>First of all, <b>produce</b> ExtendedHelloWorld pattern (if needed only, because automatic production should have been triggered).</li>
+      <li>
+        Then create its factory content pointing to <b>Pattern Runner</b> with the following parameters :
+        <ul>
+          <li><b>PatternExecutionReporter</b> as the reporter</li>
+          <li><b>org.eclipse.uml2.uml/model/UML.ecore</b> as the model path</li>
+          <li><b>ExtendedHelloWorld</b> as the pattern to execute</li>
+        </ul>
+      </li>
+      <li>Launch a new Eclipse SDK, with workspace projects as deployed plug-ins and all enabled already deployed ones.</li>
+      <li>
+        Execute <b>pattern.test2</b> factory.<br/>
+        Check launching console content, and see that the original HelloWorld message has been changed to something like :
+        <pre class="code">
+Extended Hello SendOperationEvent;
+        </pre>
+      </li>
+    </ul>    
+  </p>
+</p>
+
+</body>
+</html>

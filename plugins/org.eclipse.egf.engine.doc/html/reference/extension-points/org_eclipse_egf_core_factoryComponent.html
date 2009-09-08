@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>EGF Factory Component</title>
+<style type="text/css">@import url("file:/D:/eclipse-3.5/configuration/org.eclipse.osgi/bundles/591/1/.cp/book.css");</style>
+<style type="text/css">@import url("file:/D:/eclipse-3.5/configuration/org.eclipse.osgi/bundles/608/1/.cp/schema.css");</style>
+</head><body>
+<h1 style="text-align: center;">EGF Factory Component</h1>
+<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Identifier: </h6>org.eclipse.egf.core.factoryComponent<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Since: </h6>[Enter the first release in which this extension point appears.]
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Description: </h6>Extension point to define a factory Component<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Configuration Markup:</h6>
+<p></p>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.factoryComponent">factoryComponent</a>)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST extension</p>
+<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;<p></p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.factoryComponent">factoryComponent</a> (<a href="#e.description">description</a>)?&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST factoryComponent</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">contractId&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">domain&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">productionPlanId&nbsp;CDATA #IMPLIED</p>&gt;<p></p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - Asset identifier.</li>
+<li><b>name</b> - </li>
+<li><b>contractId</b> - Reference to a contract extension point through its id.</li>
+<li><b>domain</b> - Plug-in path to ecore domain model.</li>
+<li><b>productionPlanId</b> - Reference to a production plan extension point through its id.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.description">description</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST description</p>
+<p class="code SchemaDtdAttlist">id&nbsp;CDATA #REQUIRED</p>&gt;<p></p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+Define a description node.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - </li>
+</ul>
+<br><h6 class="CaptionFigColumn SchemaHeader">Examples: </h6>[Enter extension point usage example here.]
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Supplied Implementation: </h6>[Enter information about supplied implementation of this extension point.]
+<p></p>
+
+<br>
+<p class="note SchemaCopyright">
+Copyright (c) 2009 Thales Corporate Services S.A.S.<br>
+All rights reserved. This program and the accompanying materials are
+made available under the terms of the Eclipse Public License v1.0 which
+accompanies this distribution, and is available at <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>
+
+</p>
+</body></html>

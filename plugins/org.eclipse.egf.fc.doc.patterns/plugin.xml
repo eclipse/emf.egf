@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+   <extension
+         point="org.eclipse.egf.core.contract">
+      <contract
+            id="contract.1212677795438.6">
+      </contract>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.productionPlan">
+      <productionPlan
+            id="productionPlan.1212677795438.7">
+      </productionPlan>
+   </extension>
+   <extension
+         point="org.eclipse.egf.pattern.patternCondition">
+      <conditionPointer
+            class="org.eclipse.egf.condition.HtmlFcDocCondition"
+            patternId="patternLibrary.1212569425341.37/Pattern.1212569887715.48">
+      </conditionPointer>
+   </extension>
+   <extension
+         point="org.eclipse.egf.pattern.patternCondition">
+      <conditionPointer
+            class="org.eclipse.egf.condition.TocCondition"
+            patternId="patternLibrary.1212569425341.37/Pattern.1212570575038.70">
+      </conditionPointer>
+   </extension>
+   <extension
+         point="org.eclipse.egf.pattern.pattern">
+      <library
+            id="patternLibrary.1212569425341.37"
+            name="FC Documentation Generation">
+         <pattern
+               model="/asset.1212677795454.8/model/pattern/Pattern.1212569465756.38.pm"
+               id="Pattern.1212569465756.38"
+               name="Style">
+         </pattern>
+         <pattern
+               model="/asset.1212677795454.8/model/pattern/Pattern.1212569887715.48.pm"
+               id="Pattern.1212569887715.48"
+               name="HtmlFcDoc">
+         </pattern>
+         <pattern
+               model="/asset.1212677795454.8/model/pattern/Pattern.1212570575038.70.pm"
+               id="Pattern.1212570575038.70"
+               name="Toc">
+         </pattern>
+      </library>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.factoryComponent">
+      <factoryComponent
+            contractId="contract.1212677795438.6"
+            id="asset.1212677795454.8"
+            name="Factory Component Documentation Patterns"
+            productionPlanId="productionPlan.1212677795438.7">
+         <description
+               id="asset.1212677795454.8.description">
+            This FC contains patterns used to generate documentation for a factory component.
+That generates a HTML page describing the selected FC content with its style file and an Eclipse Table Of Content to integrate EGF help. 
+Theses patterns are run by the Factory Component Documentation Generator.
+         </description>
+      </factoryComponent>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.egf.pattern.pattern_1212570575038_70.Pattern_1212570575038_70Package"
+            genModel="model/pattern/Pattern.1212570575038.70.genmodel"
+            uri="http://www.eclipse.org/egf/1.0.0/Pattern/Generated/Pattern.1212570575038.70">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.egf.pattern.pattern_1212569887715_48.Pattern_1212569887715_48Package"
+            genModel="model/pattern/Pattern.1212569887715.48.genmodel"
+            uri="http://www.eclipse.org/egf/1.0.0/Pattern/Generated/Pattern.1212569887715.48">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.egf.pattern.pattern_1212569465756_38.Pattern_1212569465756_38Package"
+            genModel="model/pattern/Pattern.1212569465756.38.genmodel"
+            uri="http://www.eclipse.org/egf/1.0.0/Pattern/Generated/Pattern.1212569465756.38">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.egf.pattern.patternTemplate">
+      <patternTemplate
+            class="org.eclipse.egf.fc.doc.gen.toc.TocGenerator"
+            id="patternLibrary.1212569425341.37/Pattern.1212570575038.70"
+            path="org.eclipse.egf.fc.doc.patterns/templates/generated//Pattern.1212570575038.70.pt"
+            type="jet">
+      </patternTemplate>
+      <patternTemplate
+            class="org.eclipse.egf.fc.doc.gen.htmlfcdoc.HtmlFcDocGenerator"
+            id="patternLibrary.1212569425341.37/Pattern.1212569887715.48"
+            path="org.eclipse.egf.fc.doc.patterns/templates/generated//Pattern.1212569887715.48.pt"
+            type="jet">
+      </patternTemplate>
+      <patternTemplate
+            class="org.eclipse.egf.fc.doc.gen.style.StyleGenerator"
+            id="patternLibrary.1212569425341.37/Pattern.1212569465756.38"
+            path="org.eclipse.egf.fc.doc.patterns/templates/generated//Pattern.1212569465756.38.pt"
+            type="jet">
+      </patternTemplate>
+   </extension>
+ 
+</plugin>

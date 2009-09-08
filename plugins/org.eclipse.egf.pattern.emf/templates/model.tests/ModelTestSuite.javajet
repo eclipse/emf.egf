@@ -1,0 +1,8 @@
+<%@ jet package="org.eclipse.egf.pattern.emf.model.tests" class="ModelTestSuite" imports="" %>
+
+<%
+// Start of ModelTestSuite (full id = EmfLibrary/patternLibrary.1240228737568.98/Pattern.1240229598054.121).
+%>
+<%
+// End of ModelTestSuite (full id = EmfLibrary/patternLibrary.1240228737568.98/Pattern.1240229598054.121).
+%>

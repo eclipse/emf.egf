@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="FC"
+	link_to="../org.eclipse.egf.doc.user/topics_FactoryComponents.xml#core">
+	<topic label="<%=factoryComponent.getName()%>"
+		href="html/fcs/fc.html" />
+</toc>

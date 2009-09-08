@@ -1,0 +1,8 @@
+<%@ jet package="org.eclipse.egf.pattern.emf.editor" class="ModelWizard" imports="" %>
+
+<%
+// Start of ModelWizard (full id = EmfLibrary/patternLibrary.1203064024097.22/Pattern.1240228359651.66).
+%>
+<%
+// End of ModelWizard (full id = EmfLibrary/patternLibrary.1203064024097.22/Pattern.1240228359651.66).
+%>

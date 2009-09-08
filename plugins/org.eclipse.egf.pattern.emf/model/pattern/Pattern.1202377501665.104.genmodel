@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="org.eclipse.egf.pattern.emf/generated/"
+    modelPluginID="org.eclipse.egf.pattern.emf" modelName="Pattern.1202377501665"
+    nonNLSMarkers="true" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.egf.model/model/pattern.genmodel#//pattern platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>Pattern.1202377501665.104.pm</foreignModel>
+  <genPackages prefix="Pattern_1202377501665_104" basePackage="org.eclipse.egf.pattern"
+      disposableProviderFactory="true" ecorePackage="Pattern.1202377501665.104.pm#/">
+    <genClasses ecoreClass="Pattern.1202377501665.104.pm#//Pattern_1202377501665_104">
+      <genOperations ecoreOperation="Pattern.1202377501665.104.pm#//Pattern_1202377501665_104/generateBody">
+        <genParameters ecoreParameter="Pattern.1202377501665.104.pm#//Pattern_1202377501665_104/generateBody/classLoader_p"/>
+      </genOperations>
+      <genOperations ecoreOperation="Pattern.1202377501665.104.pm#//Pattern_1202377501665_104/generatePreMatching"/>
+      <genOperations ecoreOperation="Pattern.1202377501665.104.pm#//Pattern_1202377501665_104/generatePostMatching"/>
+      <genOperations ecoreOperation="Pattern.1202377501665.104.pm#//Pattern_1202377501665_104/generateHeader"/>
+      <genOperations ecoreOperation="Pattern.1202377501665.104.pm#//Pattern_1202377501665_104/generateFooter"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

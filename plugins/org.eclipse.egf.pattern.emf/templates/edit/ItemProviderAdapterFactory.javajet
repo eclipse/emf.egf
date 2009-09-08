@@ -1,0 +1,8 @@
+<%@ jet package="org.eclipse.egf.pattern.emf.edit" class="ItemProviderAdapterFactory" imports="" %>
+
+<%
+// Start of ItemProviderAdapterFactory (full id = EmfLibrary/patternLibrary.1202723104683.6/Pattern.1202738211448.76).
+%>
+<%
+// End of ItemProviderAdapterFactory (full id = EmfLibrary/patternLibrary.1202723104683.6/Pattern.1202738211448.76).
+%>

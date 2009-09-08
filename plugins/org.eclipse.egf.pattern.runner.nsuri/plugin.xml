@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+   <extension
+         point="org.eclipse.egf.core.factoryComponent">
+      <factoryComponent
+            contractId="contract.1208869870937.2"
+            name="Pattern runner based on the metamodel nsURI"
+            productionPlanId="productionPlan.1208869870937.3"
+            id="asset.1208869870937.4">
+      </factoryComponent>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.contract">
+      <contract
+            id="contract.1208869870937.2">
+         <contractElement
+               id="contractElement.1208876507204.36"
+               mandatory="true"
+               name="executionReporter"
+               type="org.eclipse.egf.pattern.runner.contract.type.PatternExecutionReporterTypeHolder">
+            <description
+                  id="contractElement.1208876507204.36.description">
+               The reporter that should be used when the execution is taking place. This allows the user code to get the result of the execution at different steps.
+Must implement the IPatternExecutionReporter interface.
+            </description>
+         </contractElement>
+         <contractElement
+               id="contractElement.1208876576993.37"
+               mandatory="true"
+               name="patternOrLibrary"
+               type="org.eclipse.egf.pattern.runner.contract.type.PatternIdTypeHolder">
+            <description
+                  id="contractElement.1208876576993.37.description">
+               Selection of a pattern or a library that is to be run.
+            </description>
+         </contractElement>
+         <contractElement
+               id="contractElement.1208876661515.38"
+               mandatory="true"
+               name="modelNsUri"
+               type="org.eclipse.egf.model.contract.type.StringTypeHolder">
+            <description
+                  id="contractElement.1208876661515.38.description">
+               The meta-model Namespace URI as defined by its ecore contents.
+            </description>
+         </contractElement>
+      </contract>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.productionPlan">
+      <productionPlan
+            id="productionPlan.1208869870937.3">
+         <assetConfiguration
+               id="assetConfiguration.1208871667545.35">
+         </assetConfiguration>
+      </productionPlan>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.assetConfiguration">
+      <assetConfiguration
+            assetId="rootAsset"
+            id="assetConfiguration.1208871667545.35"
+            name="Execute pattern runner dynamically"
+            taskFactoryId="taskFactory.1209024448646.33">
+      </assetConfiguration>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.taskFactory">
+      <taskFactory
+            class="org.eclipse.egf.pattern.runner.nsuri.task.PatternRunnerNsUriTaskFactory"
+            id="taskFactory.1209024448646.33">
+      </taskFactory>
+   </extension>
+
+</plugin>

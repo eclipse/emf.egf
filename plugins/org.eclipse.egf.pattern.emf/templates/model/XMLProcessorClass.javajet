@@ -1,0 +1,8 @@
+<%@ jet package="org.eclipse.egf.pattern.emf.model" class="XMLProcessorClass" imports="" %>
+
+<%
+// Start of XMLProcessorClass (full id = EmfLibrary/Model/Pattern.1241081264166.36).
+%>
+<%
+// End of XMLProcessorClass (full id = EmfLibrary/Model/Pattern.1241081264166.36).
+%>

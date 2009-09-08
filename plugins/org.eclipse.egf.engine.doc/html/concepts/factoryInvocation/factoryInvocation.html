@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="factory invocation, factory"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>Factory Invocation</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<h1 class="Head">Factory invocation</h1>
+
+<a name="definition"><h2>Definition</h2></a>
+<p class="Para">A factory invocation is a step of a production plan which invokes either a factory component or Java task. Expected parameters for the invocation are provided by the contract element of the factory component or by the context of the invocation.</p>
+
+  
+<a name="motivation"><h2>Motivation</h2></a>
+<p class="Para"> Generation tailoring depends on i) the viewpoint contents, and ii) on the parameter values given to a factory component's contract. A factory component invocation meets the second point. In the context of a production plan, an invocation is an orchestration step which realizes the connection from a requester factory component to the provider factory component; the context provides values expected by the factory component's contract.</p>
+
+<p align="center">
+  <img src="./images/factoryInvocationGlobalView.jpg" alt="Global View"/>
+</p>
+<p align="center">
+  <i>Figure 1. Global view</i>
+</p>
+
+<p class="Para">To generalize this definition, a factory component or java task represents a function for a factory invocation. For instance, it could be a generation function (e.g., code, model generation, a generation function specialized by patterns), or a deployment function. An invocation FCI corresponds to a function f ensured by a factory component or Java Task and a list of parameters p required by f.</p>
+<p class="Para">FCI: f (p)</p>
+
+<p class="Para">FCI is a reflective structure because f can contain a new set of FCI; n is the depth level.</p>
+<p class="Para">FCIn: fn (pn)</p>
+
+<p class="Para">Creating an factory component invocation corresponds to the creation of a new FCI function. Executing a factory component corresponds to the application of FCI (b-reduction in lambda calculus).</p>
+
+<a name="structure"><h2>Structure</h2></a>
+
+<p class="Para">For an asset production with factory component, a factory invocation references a factory component. For an asset production with java task, an factory invocation contains a java task which references a java task factory. In the two cases, the factory invocation contains a context for passing parameter values. The relationship between a factory invocation and a factory component through a contract is explained in the contract section.</p>
+
+<p align="center">
+  <img src="./images/factoryInvocationStructure.jpg" alt="Factory Invocation structure"/>
+</p>
+<p align="center">
+  <i>Figure 1. Factory Invocation structure</i>
+</p>
+
+<br>
+
+
+</body>
+</html>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+  <extension
+    point="org.eclipse.ui.menus"
+  >
+    <menuContribution
+      locationURI="menu:org.eclipse.ui.main.menu?after=additions"
+    >
+      <menu
+        id="org.eclipse.egf.core.ui.egfMenuEntry"
+        label="%egf.menu.entry"
+      >
+        <separator
+          name="assetGroup"
+        />
+        <separator
+          name="generators"
+          visible="true"
+        />
+      </menu>
+    </menuContribution>
+  </extension>
+  
+  <extension
+    point="org.eclipse.ui.keywords"
+  >
+    <keyword
+      label="%egf.preferences.keyword.general"
+      id="org.eclipse.egf.general"
+    />  
+  </extension>  
+  
+  <extension
+    point="org.eclipse.core.runtime.preferences"
+  >
+    <initializer
+      class="org.eclipse.egf.core.ui.EgfPreferencesInitializer"
+    />
+  </extension>
+  
+  <extension
+    point="org.eclipse.ui.preferencePages"
+  >
+    <page
+      class="org.eclipse.egf.core.ui.preferences.EgfGeneralPreferencePage"
+      id="org.eclipse.egf.preferences"
+      name="%egf.preferences.general"
+    >
+      <keywordReference 
+        id="org.eclipse.egf.general"
+      />
+    </page>    
+    <page
+      category="org.eclipse.egf.preferences"
+      class="org.eclipse.egf.core.ui.preferences.fc.FactoryComponentPreferencePage"
+      id="org.eclipse.egf.core.ui.preferences.fc"
+      name="%egf.preferences.fc"
+    >
+      <keywordReference 
+        id="org.eclipse.egf.general"
+      />
+    </page>    
+    <page
+      category="org.eclipse.egf.preferences"
+      class="org.eclipse.egf.core.ui.preferences.domain.DomainPreferencePage"
+      id="org.eclipse.egf.core.ui.preferences.domain"
+      name="%egf.preferences.domain"
+    >
+      <keywordReference 
+        id="org.eclipse.egf.general"
+      />
+    </page>
+    <page
+      category="org.eclipse.egf.preferences"
+      class="org.eclipse.egf.core.ui.preferences.pattern.PatternPreferencePage"
+      id="org.eclipse.egf.core.ui.preferences.pattern"
+      name="%egf.preferences.pattern"
+    >
+      <keywordReference 
+        id="org.eclipse.egf.general"
+      />
+    </page>    
+  </extension>
+  
+  <extension
+    point="org.eclipse.ui.decorators"
+  >
+    <decorator
+      class="org.eclipse.egf.core.ui.viewers.LightweightLabelDecorator"
+      id="org.eclipse.egf.core.ui.workbench.decorator"
+      label="%decoratorLabel"
+      lightweight="true"
+      location="TOP_LEFT"
+      state="true"
+    >
+      <enablement>
+        <objectClass
+          name="org.eclipse.egf.model.ContractElement"
+        />
+      </enablement>
+    </decorator>
+  </extension>
+  
+  <extension
+    point="org.eclipse.egf.core.log4jConfigurer"
+  >
+    <configurerImplementation
+      class="org.eclipse.egf.core.ui.internal.log4j.Log4jConfigurer"
+    />
+  </extension>
+  
+</plugin>

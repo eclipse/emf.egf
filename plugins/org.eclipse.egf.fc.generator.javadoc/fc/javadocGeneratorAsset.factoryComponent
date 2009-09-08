@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ASCII"?>
+<egf.factorycomponent:FactoryComponent xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:egf.factorycomponent="http://www.eclipse.org/egf/1.0.0/FactoryComponent" id="javadocGeneratorAsset" name="Java Documentation Generator" description="This factory component produces Java documentation for a source folder located in a project in the workspace.&#xA;Java documentation is generated under a 'doc' folder within given project.">
+  <domain/>
+  <specification>
+    <viewpoints xsi:type="egf.factorycomponent:MappingViewpoint" id="MappingViewpointImpl.1238597782690.3"/>
+    <viewpoints xsi:type="egf.factorycomponent:Contract" id="javadocGeneratorAsset.contract"/>
+    <viewpoints xsi:type="egf.factorycomponent:PatternViewpoint" id="PatternViewpointImpl.1238597782690.2"/>
+  </specification>
+  <factory productionPlanId="javadocGeneratorAsset.productionPlan">
+    <productionPlan id="javadocGeneratorAsset.productionPlan">
+      <factoryComponentInvocations id="javadocGeneratorAsset.assetConfiguration" name="javadocGeneratorAsset.assetConfiguration" taskFactoryId="javadocGeneratorAsset.taskFactory" factoryComponentId="rootAsset">
+        <taskFactory id="javadocGeneratorAsset.taskFactory" factoryClass="org.eclipse.egf.fc.generator.javadoc.task.JavadocGeneratorTaskFactory"/>
+      </factoryComponentInvocations>
+      <factoryComponentInvocationIds>javadocGeneratorAsset.assetConfiguration</factoryComponentInvocationIds>
+    </productionPlan>
+  </factory>
+</egf.factorycomponent:FactoryComponent>

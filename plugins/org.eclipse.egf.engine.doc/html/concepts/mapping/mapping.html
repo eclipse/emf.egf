@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="mapping"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>Mapping</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<h1 class="Head">Mapping</h1>
+
+<a name="definition"><h2>Definition</h2></a>
+<p class="Para">A mapping is a correspondence between model elements from source and target models.</p>
+  
+  
+<a name="motivation"><h2>Motivation</h2></a>
+<p class="Para">Mapping is useful for several types of application: model/domain equivalence (e.g., Eclipse/ECore or OMG's MOF to UML mapping), model transformation, merging, comparison, migration, definition of bridge, problem to solution relationship. The objective is to explicitly declare a correspondence between a source and a target and to use it in different aspects of the production. This allows more flexibility when the source, the target or the correspondence evolve.</p>
+
+<a name="structure"><h2>Structure</h2></a>
+
+<p class="Para">There exist four types of mapping relationship: [1-1], [1-N], [N-1] and [N-M].</p>
+
+
+<p align="center">
+  <img src="./images/mappingRelationships.jpg" alt="Possible mapping relationships between source and target model elements"/>
+</p>
+<p align="center">
+  <i>Figure 1. Possible mapping relationships between source and target model elements</i>
+</p>
+
+<p class="Para">The [1-1] and [1-N] mappings are the most used types of mapping (e.g., a concept is mapped into a UML class for the [1-1] mapping, or mapped into a UML Class and Attribute for the [1-N] mapping). Model merge and model transformation are examples of [N-1] mapping, when several source elements allows deducing one target element. The [N-M] mapping means several source and target elements are jointly implied for the realization of a mapping. For reducing complexity and maintenance, the N cardinalities can be reduced in applying N times the same kind of mapping, such as transforming the [1-N] mapping into N [1-1] mappings. A mapping is stored in a mapping model containing all source to target model element relationships.</p>
+
+<p class="Para">Mappings, such as toward UML, need extensions (e.g., UML stereotypes and tagged values). Extensions are to be managed as model elements. As a consequence, there are two target models, the UML model and the extensions model, what infringes the rule to have one source and one target model. The solution is to compose the two target models in order to reduce them into one target model. The same operation can be applied at the source level.</p>
+
+<p align="center">
+  <img src="./images/modelMapping.jpg" alt="Model Mapping"/>
+</p>
+<p align="center">
+  <i>Figure 2. Model Mapping</i>
+</p>
+
+<p class="Para">A complete mapping management environment provides mapping services in the bidirectional way.</p>
+
+<br>
+
+</body>
+</html>

@@ -1,0 +1,1 @@
+<%@ jet package="org.eclipse.egf.pattern.emf.model" class="ResourceFactoryClass" imports="" %>

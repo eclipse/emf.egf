@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.tests.pattern; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.egf.core,
+ org.eclipse.egf.pattern,
+ org.eclipse.egf.pattern.runner,
+ org.eclipse.egf.plugin.gen
+Bundle-ActivationPolicy: lazy
+Export-Package: org.eclipse.egf.tests.pattern,
+ org.eclipse.egf.pattern.pattern_1233239232789_12,
+ org.eclipse.egf.pattern.pattern_1233239232789_12.util,
+ org.eclipse.egf.pattern.pattern_1233239232789_12.impl

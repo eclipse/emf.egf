@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.model; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.model.ModelActivator
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.egf.common;visibility:=reexport,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.codegen.ecore;visibility:=reexport
+Export-Package: 
+ org.eclipse.egf.model,
+ org.eclipse.egf.model.contract.type,
+ org.eclipse.egf.model.data.helper,
+ org.eclipse.egf.model.data.reader.descriptor,
+ org.eclipse.egf.model.internal.data,
+ org.eclipse.egf.model.util,
+ org.eclipse.egf.model.validation,
+ org.eclipse.egf.pattern,
+ org.eclipse.egf.pattern.impl,
+ org.eclipse.egf.pattern.relations,
+ org.eclipse.egf.pattern.relations.impl,
+ org.eclipse.egf.pattern.relations.util,
+ org.eclipse.egf.pattern.util
+Bundle-ActivationPolicy: lazy

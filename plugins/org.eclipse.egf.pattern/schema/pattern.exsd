@@ -1,0 +1,184 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="org.eclipse.egf.pattern" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appInfo>
+         <meta.schema plugin="org.eclipse.egf.pattern" id="pattern" name="EGF Pattern"/>
+      </appInfo>
+      <documentation>
+         EGF pattern extension point.
+
+Used to define patterns and librairies.
+
+A library can contain either librairies or patterns (elements).
+It can also add specific description about how (which order) to use its elements.
+A pattern is defined by an id and an ecore model (that fully describes the pattern).
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appInfo>
+            <meta.element />
+         </appInfo>
+      </annotation>
+      <complexType>
+         <sequence>
+            <element ref="library"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute translatable="true"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="library">
+      <annotation>
+         <documentation>
+            A new pattern library.
+         </documentation>
+      </annotation>
+      <complexType>
+         <choice minOccurs="1" maxOccurs="unbounded">
+            <element ref="library"/>
+            <element ref="pattern"/>
+         </choice>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The id of the library.
+A comment on characters that are allowed is needed here.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The name of the library.
+Shown in the mdsofa explorer (the id being not exposed).
+A comment on characters that are allowed is needed here.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="productionOrchestration" type="string">
+            <annotation>
+               <documentation>
+                  Defines the way the library should be used when being produced.
+It contains short library or pattern ids separated by comma (or white space) characters.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="runtimeOrchestration" type="string">
+            <annotation>
+               <documentation>
+                  Defines the way the library should be used when being executed.
+It contains full library or pattern ids separated by comma (or white space) characters.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="pattern">
+      <annotation>
+         <documentation>
+            A new pattern.
+         </documentation>
+      </annotation>
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The unique id of the pattern in its containing library.
+A comment on characters that are allowed is needed here.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The pattern name.
+A comment on characters that are allowed is needed here.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="model" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The ecore file defining the pattern.
+Each pattern is a subclass of the Pattern class as provided by the pattern model (pattern.ecore).
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="since"/>
+      </appInfo>
+      <documentation>
+         [Enter the first release in which this extension point appears.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="examples"/>
+      </appInfo>
+      <documentation>
+         [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="implementation"/>
+      </appInfo>
+      <documentation>
+         [Enter information about supplied implementation of this extension point.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2009 Thales Corporate Services S.A.S.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at &lt;a 
+href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
+
+</schema>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.egf.mapping.ui.editor.EGFMappingEditor"
+            contributorClass="org.eclipse.emf.mapping.ecore2ecore.presentation.Ecore2EcoreActionBarContributor"
+            extensions="ecore2ecore"
+            icon="platform:/plugin/org.eclipse.emf.mapping.ecore2ecore.editor/icons/full/obj16/Ecore2EcoreModelFile.gif"
+            id="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorId"
+            name="%mappingEditor.name">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorContributionId"
+            targetID="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorId">
+         <menu
+               id="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorId"
+               label="%mappingEditor.menu.name">
+            <separator
+                  name="settings">
+            </separator>
+            <separator
+                  name="actions">
+            </separator>
+            <separator
+                  name="global-actions">
+            </separator>
+            <separator
+                  name="additions">
+            </separator>
+            <separator
+                  name="additions-end">
+            </separator>
+         </menu>
+         <action
+               class="org.eclipse.emf.mapping.action.RemoveMappingAction"
+               icon="platform:/plugin/org.eclipse.emf.mapping/icons/full/ctool16/RemoveOneToOneMapping.gif"
+               id="org.eclipse.emf.mapping.action.RemoveMappingActionID"
+               label="%_UI_RemoveMapping_menu_item"
+               menubarPath="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorId/actions"
+               toolbarPath="Normal/mapping-additions"
+               tooltip="%_UI_RemoveMapping_tooltip">
+         </action>
+         <action
+               class="org.eclipse.emf.mapping.action.TypeMatchMappingAction"
+               icon="platform:/plugin/org.eclipse.emf.mapping/icons/full/ctool16/MatchByType.gif"
+               id="org.eclipse.emf.mapping.action.TypeMatchMappingActionID"
+               label="%_UI_MatchMappingByType_menu_item"
+               menubarPath="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorId/actions"
+               toolbarPath="Normal/mapping-additions"
+               tooltip="%_UI_MatchMappingByType_tooltip">
+         </action>
+         <action
+               class="org.eclipse.emf.mapping.action.NameMatchMappingAction"
+               icon="platform:/plugin/org.eclipse.emf.mapping/icons/full/ctool16/MatchByName.gif"
+               id="org.eclipse.emf.mapping.action.NameMatchMappingActionID"
+               label="%_UI_MatchMappingByName_menu_item"
+               menubarPath="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorId/actions"
+               toolbarPath="Normal/mapping-additions"
+               tooltip="%_UI_MatchMappingByName_tooltip">
+         </action>
+         <action
+               class="org.eclipse.emf.mapping.action.CreateOneSidedMappingAction"
+               icon="platform:/plugin/org.eclipse.emf.mapping/icons/full/ctool16/CreateOneToNoneMapping.gif"
+               id="org.eclipse.emf.mapping.action.CreateOneSidedMappingActionID"
+               label="%_UI_CreateOneSideMapping_menu_item"
+               menubarPath="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorId/actions"
+               toolbarPath="Normal/mapping-additions"
+               tooltip="%_UI_CreateOneSideMapping_tooltip">
+         </action>
+         <action
+               class="org.eclipse.emf.mapping.action.CreateMappingAction"
+               icon="platform:/plugin/org.eclipse.emf.mapping/icons/full/ctool16/CreateOneToOneMapping.gif"
+               id="org.eclipse.emf.mapping.action.CreateMappingActionID"
+               label="%_UI_CreateMapping_menu_item"
+               menubarPath="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorId/actions"
+               toolbarPath="Normal/mapping-additions"
+               tooltip="%_UI_CreateMapping_tooltip">
+         </action>
+         <action
+               class="org.eclipse.emf.mapping.ecore2ecore.action.AddOutputRootAction"
+               icon="platform:/plugin/org.eclipse.emf.mapping.ui/icons/full/ctool16/AddRootBottom.gif"
+               id="org.eclipse.emf.mapping.ecore2ecore.action.AddOuputRootActionID"
+               label="%_UI_AddOutputRoot_menu_item"
+               menubarPath="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorId/actions"
+               toolbarPath="Normal/mapping-additions"
+               tooltip="%_UI_AddOutputRoot_tooltip">
+         </action>
+         <action
+               class="org.eclipse.emf.mapping.ecore2ecore.action.AddInputRootAction"
+               icon="platform:/plugin/org.eclipse.emf.mapping.ui/icons/full/ctool16/AddRootTop.gif"
+               id="org.eclipse.emf.mapping.ecore2ecore.action.AddInputRootActionID"
+               label="%_UI_AddInputRoot_menu_item"
+               menubarPath="com.thalesgroup.mde.mdsofa.mapping.ui.editor.mappingEditorId/actions"
+               toolbarPath="Normal/mapping-additions"
+               tooltip="%_UI_AddInputRoot_tooltip">
+         </action>
+      </editorContribution>
+   </extension>
+
+</plugin>

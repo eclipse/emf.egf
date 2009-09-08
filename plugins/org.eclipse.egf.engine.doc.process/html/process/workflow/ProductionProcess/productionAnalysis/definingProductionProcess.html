@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+	<title>
+		Defining production process
+	</title>
+	<link rel="stylesheet" href="../../../../default_style.css" charset="ISO-8859-1" type="text/css" />
+</head>
+
+<body xml:lang="EN-US" lang="EN-US">
+<div align="right">  
+  <table border="0" cellpadding="2" cellspacing="0" width="100%">
+    <tbody>
+      <tr>
+      	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+      	  <b><font face="Arial,Helvetica"><font color="#ffffff">
+      	  &nbsp;EGF Process
+      	  </font></font></b>
+      	</td>
+      </tr>
+  	</tbody>
+  </table>
+</div>
+
+<h1 align="center">Activity: Defining production process</h1>
+
+  <br/>
+
+<h2>Purpose</h2>
+
+	<br/>
+	<p>
+		The purpose of this activity is to:
+	</p> 
+	<ul>
+		<li>Define each process of the production process.</li>
+		<ul>
+			<li>Purpose and interests (e.g., added value, improvements).</li>
+			<li>Process breakdown (processes decomposition).</li>
+			<li>Process relationships.</li>
+			<li>Actors, activities, asset transformation.</li>
+			<li>Activity relationships (activity chaining and asset consumed and produced).</li>
+		</ul>
+		<li>Check the process is internally and externally valid (consistent, complete).</li>
+		<li>Check the general production process is valid.</li>
+		<li>Check the architecture principles are respected.</li>
+	</ul>
+ 	<p>
+		The interest to define processes and their activities is to: 
+	</p>
+	<ul>
+		<li>Clarify the transformation process realized by the production process.</li>
+		<li>Identifiy processes and activities needing generation or manually realized.</li>
+		<li>Foreshadow the need or usage of factory components.</li>
+	</ul>
+  <p>
+		This activity is led in parallel of the <a href="definingProducedAssets.html">asset definition</a> activity.
+  </p>
+  <br/>
+
+<h2>Inputs</h2>
+	<p>Inputs of this activity are:</p>
+	<ul>
+		<li>Processes and activities already defined.</li>
+		<li>Behavioral architecture through processes and activities.</li>
+		<li>Assets of the production process.</li>
+	</ul>
+	<br/>
+
+<h2>Outputs</h2>
+	<p>Outputs of this activity are:</p>
+	<ul>
+		<li>New or updated processes and activities.</li>
+		<li>Behavioral architecture.</li>
+	</ul>
+ 	<br/>
+
+<h2>Work Guidelines</h2>
+	<p>
+		Process and activity description and their relationships must:
+	</p>
+	<ul>
+		<li>Classify processes (e.g., for code, framework, tool, language production).</li>
+		<li>Conduct gathering / breakdown / refactoring of processes and activities.</li>
+		<li>Check process consistency.</li>
+		<li>Give an optimal processes.</li>
+		<li>Clarify or improve behavioral architecture of the production process.</li>
+		<li>Clarify activities that will become factory components.</li>
+		<li>Identify reusable / specific processes and activities.</li>
+	</ul>
+
+	<br />
+	<p>
+		Copyright (c) 2008 Thales / EPM. All Rights Reserved.
+	</p>
+
+
+	<br />
+<h2>Illustration</h2>
+	<p>
+		Figures below presents examples of representation of processes and activities. It is advisable to reuse a common language (e.g., UML Activity, BPMN). 
+	</p>
+
+ 	<br />
+    <p align="left">
+      <img src="./images/Process-GlobalView.png" alt="Example of global view of process"/>
+    </p>
+	<p><i>Figure 1. Example of global view of process</i></p>
+	<br />
+ 	<p>
+		In this example, a tool infrastructure is generated from a domain model, named Melody. 
+	</p>
+
+ 	<br />
+    <p align="left">
+      <img src="./images/Process-DetailedView.png" alt="Example of detailed view of process"/>
+    </p>
+	<p><i>Figure 2. Example of detailed view of process</i></p>
+	<br />
+ 	<p>
+		This figure shows how the general process is detailed. The "Tool Infrastructure Generation" activity is broken down into three activities "Model API Generation", "Validation API Generation", and "Basic Editor API Generation".
+	</p>
+
+ 	<br />
+    <p align="left">
+      <img src="./images/Process-ProcessComplete.png" alt="Example of complete process"/>
+    </p>
+	<p><i>Figure 3. Example of complete process</i></p>
+	<br />
+ 	<p>
+		This figure shows a complete process with actors, an activity chain, and inputs/outputs of assets.
+	</p>
+
+
+</body>
+</html>

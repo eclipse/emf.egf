@@ -1,0 +1,7 @@
+<%
+StringBuilder pattern121256946575638Builder = new StringBuilder(stringBuffer);
+stringBuffer = new StringBuffer(pattern121256946575638BuilderSave).append(pattern121256946575638Builder);
+reporter.patternExecutionFinished(pattern121256946575638Builder.toString(),"patternLibrary.1212569425341.37/Pattern.1212569465756.38",context);
+// End of Style (full id = patternLibrary.1212569425341.37/Pattern.1212569465756.38).
+}
+%>

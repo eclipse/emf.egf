@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+   <extension
+         point="org.eclipse.egf.core.contract">
+      <contract
+            id="contract.1212569371570.32">
+         <contractElement
+               id="contractElement.1212594422519.34"
+               mandatory="true"
+               name="updatedFactoryComponentId"
+               type="org.eclipse.egf.model.contract.type.StringTypeHolder">
+            <description
+                  id="contractElement.1212594422519.34.description">
+               Id of the factory component that the documentation is generated for.
+            </description>
+            <contractElementRef
+                  contractElementReferenceId="contractElementReference.1213026563344.49">
+            </contractElementRef>
+         </contractElement>
+      </contract>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.productionPlan">
+      <productionPlan
+            id="productionPlan.1212569371570.33">
+         <assetConfiguration
+               id="assetConfiguration.1213025833097.32">
+         </assetConfiguration>
+      </productionPlan>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.assetConfiguration">
+      <assetConfiguration
+            assetId="asset.1213023897781.32"
+            contextId="context.1213025845968.33"
+            id="assetConfiguration.1213025833097.32"
+            name="run">
+      </assetConfiguration>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.contractReferences">
+      <contractElementReference
+            id="contractElementReference.1213025916600.35"
+            referencedAssetId="asset.1213023897781.32"
+            referencedContractElementId="contractElement.1213024390572.36">
+      </contractElementReference>
+      <contractElementReference
+            id="contractElementReference.1213025972823.37"
+            referencedAssetId="asset.1213023897781.32"
+            referencedContractElementId="contractElement.1213024622141.38">
+      </contractElementReference>
+      <contractElementReference
+            id="contractElementReference.1213026563344.49"
+            referencedAssetId="asset.1213023897781.32"
+            referencedContractElementId="contractElement.1213024594767.37">
+      </contractElementReference>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.factoryComponent">
+      <factoryComponent
+            contractId="contract.1212569371570.32"
+            id="asset.1212569371570.34"
+            name="Factory Component Documentation Generator"
+            productionPlanId="productionPlan.1212569371570.33">
+         <description
+               id="asset.1212569371570.34.description">
+            This FC generates documentation for a factory component.
+Generated documentation is integrated in the EGF help in  Factory Component Portfolio section.
+         </description>
+      </factoryComponent>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.context">
+      <context
+            id="context.1213025845968.33">
+         <contextElement
+               id="contextElement.1213025916537.34">
+            <contextValue
+                  value="org.eclipse.egf.fc.doc.gen.internal.FcDocPatternReporter">
+            </contextValue>
+            <contractElementRef
+                  contractElementReferenceId="contractElementReference.1213025916600.35">
+            </contractElementRef>
+         </contextElement>
+         <contextElement
+               id="contextElement.1213025972823.36">
+            <contextValue
+                  value="patternLibrary.1212569425341.37">
+            </contextValue>
+            <contractElementRef
+                  contractElementReferenceId="contractElementReference.1213025972823.37">
+            </contractElementRef>
+         </contextElement>
+      </context>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <actionProvider
+            class="org.eclipse.egf.fc.doc.gen.action.ActionProvider"
+            dependsOn="org.eclipse.egf.core.ui.workbench.views.explorer.assetProjectExplorerActionProvider"
+            id="org.eclipse.egf.fc.doc.gen.actionProvider">
+         <enablement>
+            <instanceof
+                  value="org.eclipse.egf.model.FactoryComponent">
+            </instanceof>
+         </enablement>
+      </actionProvider>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerActionBinding
+            viewerId="org.eclipse.egf.core.ui.workbench.views.explorer.assetProjectExplorer">
+         <includes>
+            <actionExtension
+                  pattern="org.eclipse.egf.fc.doc.gen.actionProvider">
+            </actionExtension>
+         </includes>
+      </viewerActionBinding>
+   </extension>
+
+</plugin>

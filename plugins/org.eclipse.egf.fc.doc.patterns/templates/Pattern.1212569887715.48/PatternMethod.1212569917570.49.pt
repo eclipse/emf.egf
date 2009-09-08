@@ -1,0 +1,1 @@
+<%@ jet package="org.eclipse.egf.fc.doc.gen.htmlfcdoc" class="HtmlFcDocGenerator" imports="java.util.Iterator org.eclipse.egf.model.* org.eclipse.egf.model.data.helper.ModelHelper org.eclipse.egf.core.data.helper.DataHelper org.eclipse.egf.fc.doc.patterns.internal.*" %>

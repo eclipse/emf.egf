@@ -1,0 +1,33 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.core.ui; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.core.ui.EgfUiActivator
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.egf.model.edit;visibility:=reexport,
+ org.eclipse.egf.pde;visibility:=reexport,
+ org.eclipse.emf.edit.ui;visibility:=reexport,
+ org.eclipse.ui.navigator;visibility:=reexport,
+ org.eclipse.egf.pde.emf;visibility:=reexport,
+ org.eclipse.core.expressions;visibility:=reexport,
+ org.eclipse.ui.console
+Export-Package: 
+ org.eclipse.egf.core.ui,
+ org.eclipse.egf.core.ui.actions,
+ org.eclipse.egf.core.ui.contract.type, 
+ org.eclipse.egf.core.ui.data,
+ org.eclipse.egf.core.ui.data.explorer,
+ org.eclipse.egf.core.ui.data.fc,
+ org.eclipse.egf.core.ui.data.listener,
+ org.eclipse.egf.core.ui.dialogs, 
+ org.eclipse.egf.core.ui.preferences,
+ org.eclipse.egf.core.ui.viewers,
+ org.eclipse.egf.core.ui.viewers.explorer,
+ org.eclipse.egf.core.ui.viewers.fc,
+ org.eclipse.egf.core.ui.wizard
+Bundle-ActivationPolicy: lazy

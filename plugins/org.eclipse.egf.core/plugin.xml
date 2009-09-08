@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+<!-- ================================================================================= -->
+<!-- Extension Points                                                                  -->
+<!-- ================================================================================= -->
+
+  <extension-point 
+    id="factoryComponent" 
+    name="%EGFFactoryComponentExtensionPoint" 
+    schema="schema/factoryComponent.exsd"
+  />
+  
+  <extension-point 
+    id="contract" 
+    name="%EGFContractExtensionPoint" 
+    schema="schema/contract.exsd"
+  />
+  
+  <extension-point 
+    id="productionPlan" 
+    name="%EGFProductionPlanExtensionPoint" 
+    schema="schema/productionPlan.exsd"
+  />
+  
+  <extension-point 
+    id="context" 
+    name="%EGFContextExtensionPoint" 
+    schema="schema/context.exsd"
+  />
+  
+  <extension-point 
+    id="assetConfiguration" 
+    name="%EGFAssetConfigurationExtensionPoint" 
+    schema="schema/assetConfiguration.exsd"
+  />
+  
+  <extension-point 
+    id="taskFactory" 
+    name="%EGFTaskfactoryExtensionPoint" 
+    schema="schema/taskFactory.exsd"
+  />
+  
+  <extension-point 
+    id="contractReferences" 
+    name="%EGFContractReferencesExtensionPoint" 
+    schema="schema/contractReferences.exsd"
+  />
+  
+  <extension-point 
+    id="factoryComponentReader" 
+    name="%EGFFactoryComponentReaderExtensionPoint" 
+    schema="schema/factoryComponentReader.exsd"
+  />
+  
+  <extension-point 
+    id="mapping" 
+    name="%EGFMappingExtensionPoint" 
+    schema="schema/mapping.exsd"
+  />
+  
+  <extension-point 
+    id="log4jConfigurer" 
+    name="%EGFLog4JConfigurerExtensionPoint" 
+    schema="schema/log4jConfigurer.exsd"
+  />
+  
+<!-- ================================================================================= -->
+<!-- Bootstrap Factory Component                                                       -->
+<!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.egf.core.factoryComponent"
+  >
+    <factoryComponent
+      id="rootAsset"
+      name="Bootstrap Factory Component"
+      productionPlanId="rootAsset.productionPlanId"
+    >
+      <description
+        id="rootasset.description"
+      >
+Bootstrap factory component.
+A productive factory component has to depend on it.
+      </description>
+    </factoryComponent>
+  </extension>
+  
+  <extension
+    point="org.eclipse.egf.core.productionPlan"
+  >
+    <productionPlan
+      id="rootAsset.productionPlanId"
+    />
+  </extension>
+  
+<!-- ================================================================================= -->
+<!-- Loading Helper                                                                    -->
+<!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.egf.model.factoryComponentLoadingHelper"
+  >
+    <factoryComponentLoadingHelper
+      class="org.eclipse.egf.core.internal.helper.FactoryComponentLoadingHelper"
+      id="org.eclipse.egf.rootasset.assetLoadingHelper"
+    />
+  </extension>
+  
+<!-- ================================================================================= -->
+<!-- Delegated Validator                                                               -->
+<!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.egf.model.delegatedValidator"
+  >
+    <validationImplementation
+      class="org.eclipse.egf.core.data.validation.ModelElementDelegatedValidator"
+    />
+  </extension>
+  
+<!-- ================================================================================= -->
+<!-- Natures                                                                           -->
+<!-- ================================================================================= -->
+
+  <extension
+    point="org.eclipse.core.resources.natures"  
+    id="FactoryComponentNature"
+    name="%EGFFactoryComponentNature.name"
+  >
+    <runtime>
+      <run
+        class="org.eclipse.egf.core.internal.natures.FactoryComponentProject"
+      />
+    </runtime>
+  </extension>  
+
+</plugin>

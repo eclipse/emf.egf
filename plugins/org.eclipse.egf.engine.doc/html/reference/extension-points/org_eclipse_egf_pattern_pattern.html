@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>EGF Pattern</title>
+<style type="text/css">@import url("file:/D:/eclipse-3.5/configuration/org.eclipse.osgi/bundles/591/1/.cp/book.css");</style>
+<style type="text/css">@import url("file:/D:/eclipse-3.5/configuration/org.eclipse.osgi/bundles/608/1/.cp/schema.css");</style>
+</head><body>
+<h1 style="text-align: center;">EGF Pattern</h1>
+<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Identifier: </h6>org.eclipse.egf.pattern.pattern<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Since: </h6>[Enter the first release in which this extension point appears.]
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Description: </h6>EGF pattern extension point.
+
+Used to define patterns and librairies.
+
+A library can contain either librairies or patterns (elements).
+It can also add specific description about how (which order) to use its elements.
+A pattern is defined by an id and an ecore model (that fully describes the pattern).<p></p>
+<h6 class="CaptionFigColumn SchemaHeader">Configuration Markup:</h6>
+<p></p>
+<p class="code SchemaDtd">&lt;!ELEMENT <a name="e.extension">extension</a> (<a href="#e.library">library</a>)&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST extension</p>
+<p class="code SchemaDtdAttlist">point&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;<p></p>
+<p></p>
+<ul class="ConfigMarkupAttlistDesc">
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.library">library</a> (<a href="#e.library">library</a> | <a href="#e.pattern">pattern</a>)+&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST library</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA
+#REQUIRED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDATA
+#REQUIRED</p><p class="code SchemaDtdAttlist">productionOrchestration&nbsp;CDATA #IMPLIED</p><p class="code SchemaDtdAttlist">runtimeOrchestration&nbsp;&nbsp;&nbsp;&nbsp;CDATA #IMPLIED</p>&gt;<p></p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A new pattern library.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The id of the library.
+A comment on characters that are allowed is needed here.</li>
+<li><b>name</b> - The name of the library.
+Shown in the mdsofa explorer (the id being not exposed).
+A comment on characters that are allowed is needed here.</li>
+<li><b>productionOrchestration</b> - Defines the way the library should be used when being produced.
+It contains short library or pattern ids separated by comma (or white space) characters.</li>
+<li><b>runtimeOrchestration</b> - Defines the way the library should be used when being executed.
+It contains full library or pattern ids separated by comma (or white space) characters.</li>
+</ul>
+<br><p class="code SchemaDtd">&lt;!ELEMENT <a name="e.pattern">pattern</a> EMPTY&gt;</p>
+<p class="code SchemaDtd">&lt;!ATTLIST pattern</p>
+<p class="code SchemaDtdAttlist">id&nbsp;&nbsp;&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">name&nbsp;&nbsp;CDATA #REQUIRED</p><p class="code SchemaDtdAttlist">model&nbsp;CDATA #REQUIRED</p>&gt;<p></p>
+<p></p>
+<p class="ConfigMarkupElementDesc">
+A new pattern.</p>
+<br>
+<ul class="ConfigMarkupAttlistDesc">
+<li><b>id</b> - The unique id of the pattern in its containing library.
+A comment on characters that are allowed is needed here.</li>
+<li><b>name</b> - The pattern name.
+A comment on characters that are allowed is needed here.</li>
+<li><b>model</b> - The ecore file defining the pattern.
+Each pattern is a subclass of the Pattern class as provided by the pattern model (pattern.ecore).</li>
+</ul>
+<br><h6 class="CaptionFigColumn SchemaHeader">Examples: </h6>[Enter extension point usage example here.]
+<p></p>
+
+<h6 class="CaptionFigColumn SchemaHeader">Supplied Implementation: </h6>[Enter information about supplied implementation of this extension point.]
+<p></p>
+
+<br>
+<p class="note SchemaCopyright">
+Copyright (c) 2009 Thales Corporate Services S.A.S.<br>
+All rights reserved. This program and the accompanying materials are
+made available under the terms of the Eclipse Public License v1.0 which
+accompanies this distribution, and is available at <a href="http://www.eclipse.org/legal/epl-v10.html">http://www.eclipse.org/legal/epl-v10.html</a>
+
+</p>
+</body></html>

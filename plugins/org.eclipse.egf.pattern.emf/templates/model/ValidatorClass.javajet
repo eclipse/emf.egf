@@ -1,0 +1,8 @@
+<%@ jet package="org.eclipse.egf.pattern.emf.model" class="ValidatorClass" imports="" %>
+
+<%
+// Start of ValidatorClass (full id = EmfLibrary/Model/Pattern.1202377562135.155).
+%>
+<%
+// End of ValidatorClass (full id = EmfLibrary/Model/Pattern.1202377562135.155).
+%>

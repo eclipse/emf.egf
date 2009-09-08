@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="context"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>Context</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<h1 class="Head">Context</h1>
+
+
+<a name="definition"><h2>Definition</h2></a>
+<p class="Para">A context is a set of key / value pairs.</p>
+  
+
+<a name="motivation"><h2>Motivation</h2></a>
+<p class="Para">The context structure and management is similar to a function context in a programming language. Some factory component elements declare value contexts while others use them. The issue is to manage context stacks: a context can successively be enriched by different factory components with new key/value pairs; the <i>getValue(key)</i> function must returns the value of the last key/value declaration.</p>
+  
+<a name="structure"><h2>Structure</h2></a>
+<p class="Para">A context is a set of context elements. Basically, a context element is a key/value pair. A key is a string name. A value has a type, typically defined by a Java class (e.g., String). The value can be simple (e.g., "Hello, world!" for a String), or complex (e.g., an array).</p>
+
+<p CLASS="Para">A context is valued at the orchestration level, in two different ways:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">A context element declares a value. This is simple key/value declaration,</li>
+    <li CLASS="Item"> A context element values contract elements either of used (assembled) factory components or contract elements of the current factory component in order to provide default values. A context element can simultaneously values several contract elements.</li>
+</ul>
+
+<p CLASS="Para">Note: a contract element is built on the same principle. A contract element can declare values or references contract elements of used factory components. For the latter, this avoids a useless context element declaration.</p>
+
+<p align="center">
+<img src="./images/contextStructure.jpg" alt="Context Structure"/>
+</p>
+<p align="center">
+<i>Figure 1. Context Structure</i>
+</p>
+
+
+<a name="stackAndVisibility"><h2>Context Stacking and Context Visibility</h2></a>
+
+<p CLASS="Para">The context management is the same than for functions:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">each factory component call creates a new context stack,</li>
+    <li CLASS="Item">when two context elements have the same key, the last context element is visible and overshadows the previous one,</li>
+    <li CLASS="Item">A factory component just sees its context stack and the context stacks of its predecessors.</li>
+</ul>
+
+<br>
+
+</body>
+</html>

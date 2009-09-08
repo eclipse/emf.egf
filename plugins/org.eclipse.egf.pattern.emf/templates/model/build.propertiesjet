@@ -1,0 +1,8 @@
+<%@ jet package="org.eclipse.egf.pattern.emf.model" class="BuildProperties" imports="" %>
+
+<%
+// Start of buildProperties (full id = EmfLibrary/Model/Pattern.1240216069488.48).
+%>
+<%
+// End of buildProperties (full id = EmfLibrary/Model/Pattern.1240216069488.48).
+%>

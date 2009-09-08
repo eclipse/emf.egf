@@ -1,0 +1,32 @@
+<h2>Contract Description</h2>
+<p>
+<ul>
+<%Contract contract = ModelHelper.getContract(factoryComponent);
+	Iterator<ContractElement> contractElements = contract.getContractElements().iterator();
+	while (contractElements.hasNext()) {	 
+	 	ContractElement currentContractElement = contractElements.next();
+	 	String contractElementName = currentContractElement.getName();
+	 	String contractElementType = currentContractElement.getContractType().getTypeHolderClassName();
+	 	String contractElementMandatoryValue = "No"; //$NON-NLS-1$
+	 	String contractElementMandatoryImage = "ContractElement"; //$NON-NLS-1$
+	 	if (currentContractElement.isMandatory()) {
+	 		contractElementMandatoryValue = "Yes"; //$NON-NLS-1$
+	 		contractElementMandatoryImage = "MandatoryContractElement"; //$NON-NLS-1$
+	 	}
+	 	String contractElementDescription = DataHelper.getDescription(currentContractElement);
+	 	if (null == contractElementDescription) {
+	 		contractElementDescription = "Empty Description"; //$NON-NLS-1$
+	 	}
+%>
+	<li><img src="../../../org.eclipse.egf.model.edit/icons/full/obj16/<%=contractElementMandatoryImage%>.gif" border="0" /> 
+  <b><%=contractElementName%></b> :<br/>
+	<%=contractElementDescription%>
+	<ul>
+		<li><b>Type holder class</b> : <%=contractElementType%></li>
+		<li><b>Mandatory</b> : <%=contractElementMandatoryValue%></li>
+	</ul>
+	</li>
+	<br/>
+<%}%>
+</ul>
+</p>

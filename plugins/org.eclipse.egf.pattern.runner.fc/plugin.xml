@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+   <extension
+         point="org.eclipse.egf.core.contract">
+      <contract
+            id="contract.1213023897781.30">
+         <contractElement
+               id="contractElement.1213024390572.36"
+               mandatory="true"
+               name="executionReporter"
+               type="org.eclipse.egf.pattern.runner.contract.type.PatternExecutionReporterTypeHolder">
+            <description
+                  id="contractElement.1213024390572.36.description">
+               The reporter that should be used when the execution is taking place. This allows the user code to get the result of the execution at different steps.
+Must implement the IPatternExecutionReporter interface.
+            </description>
+         </contractElement>
+         <contractElement
+               id="contractElement.1213024594767.37"
+               mandatory="true"
+               name="factoryComponentId"
+               type="org.eclipse.egf.model.contract.type.StringTypeHolder">
+            <description
+                  id="contractElement.1213024594767.37.description">
+               Id of the Factory Component used as input model of pattern executions.
+            </description>
+         </contractElement>
+         <contractElement
+               id="contractElement.1213024622141.38"
+               mandatory="true"
+               name="patternOrLibraryFullId"
+               type="org.eclipse.egf.pattern.runner.contract.type.PatternIdTypeHolder">
+            <description
+                  id="contractElement.1213024622141.38.description">
+               Selection of a pattern or a library that is to be run.
+            </description>
+         </contractElement>
+      </contract>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.productionPlan">
+      <productionPlan
+            id="productionPlan.1213023897781.31">
+         <assetConfiguration
+               id="assetConfiguration.1213024071388.35">
+         </assetConfiguration>
+      </productionPlan>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.assetConfiguration">
+      <assetConfiguration
+            assetId="rootAsset"
+            id="assetConfiguration.1213024071388.35"
+            name="Execute pattern runner dynamically"
+            taskFactoryId="taskFactory.1213024864323.39">
+      </assetConfiguration>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.taskFactory">
+      <taskFactory
+            class="org.eclipse.egf.pattern.runner.fc.PatternRunnerFcTaskFactory"
+            id="taskFactory.1213024864323.39">
+      </taskFactory>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.factoryComponent">
+      <factoryComponent
+            contractId="contract.1213023897781.30"
+            id="asset.1213023897781.32"
+            name="Pattern runner for Factory Component model"
+            productionPlanId="productionPlan.1213023897781.31">
+         <description
+               id="asset.1213023897781.32.description">
+            This factory component executes a pattern library with a Factory Component as input model.
+         </description>
+      </factoryComponent>
+   </extension>
+
+</plugin>

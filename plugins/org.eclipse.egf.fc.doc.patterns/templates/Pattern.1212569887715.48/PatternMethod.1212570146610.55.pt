@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>
+		<%=factoryComponentName%>
+	</title>
+	<link rel="stylesheet" href="../book.css" charset="ISO-8859-1" type="text/css" />
+</head>
+
+<body xml:lang="EN-US" lang="EN-US">
+<div align="right">
+  &nbsp;
+  <font face="Times New Roman, Times, serif" size="2">
+  Copyright <a href="http://www.epm.services.thales/wps/portal/epm">Thales EPM</a> 2008. All rights reserved
+  </font>  
+  <table border="0" cellpadding="2" cellspacing="0" width="100%">
+    <tbody>
+      <tr>
+      	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+      	  <b><font face="Arial,Helvetica"><font color="#ffffff">
+      	  &nbsp;Factory Component Description 
+      	  </font></font></b>
+      	</td>
+      </tr>
+  	</tbody>
+  </table>
+</div>

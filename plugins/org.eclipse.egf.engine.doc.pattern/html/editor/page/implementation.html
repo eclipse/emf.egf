@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+	<head>
+		<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    	<meta http-equiv="Content-Style-Type" content="text/css">
+    	<link rel="stylesheet" href="../../book.css" charset="ISO-8859-1" type="text/css">
+    	<title>Pattern Editor Implementation Page</title>
+</head>
+<body>
+<h1>Implementation Page</h1>
+	<p>
+		The implementation page defines the pattern implemented behavior.<br/>
+		The implementation is splitted into two concepts :<br/>
+		<ul>
+			<li>The definition of reusable behaviors, named the <a href="#internalMethods"><b>internal methods</b></a>.</li>
+			<li>The orchestration of the usage of the available behaviors, named the <a href="#generateMethod"><b>generate method</b></a>.</li>
+		</ul>
+		<p align="center">
+			<img src="../images/implementation/ImplementationViewers.png" alt="Implementation viewers overview"/>
+		</p>
+		<p>
+			<a name="internalMethods">
+				<h2>The Pattern internal methods section</h2>
+			</a>
+			<p>
+				This is a collection of defined internal methods (behaviors).<br/>
+				<p>
+					A new method can be added by clicking the <b>Add</b> button. It's having a default name (something like <i>newMethodXXX</i>).<br/>
+				</p>
+				<p>
+					To modify a method, click it's representation on the left collection. A new section named <b>Internal method properties</b> appears on the right.
+					<p align="center">
+						<img src="../images/implementation/InternalMethodProperties.png" alt="Internal method properties"/><br/>
+					</p>
+					The method can be renamed (Name field), its content edited (Content link), and its orchestration modified (Sub-list below).<br/>
+					<ul>
+						<li>
+							The name needs to be unique within edited pattern.<br/>
+							It must be the same as parent method one (whatever level the parent may be), in case of overriding need.
+						</li>
+						<li>
+							Clicking the <b>Content</b> link does open the associated JET editor.<br/>
+							<p align="center">
+								<img src="../images/implementation/InternalMethodContentEdition.png" alt="Editing internal method"/>
+							</p>
+							The editor is displaying the internal method name.<br/>
+							To save changes to the implementation, simply save this editor.
+						</li>
+						<li>
+							The orchestration is having sense in the case of an override only.<br/>
+							See the <a href="#generateMethod">Generate method section</a> as of how to use this list, only calls to Super can be added here.
+						</li>
+					</ul>
+				</p>
+				<p>
+					An existing method can be removed.<br/>
+					Select it on the left collection, and click the <b>Remove</b> button.
+				</p>
+			</p>
+		</p>
+		<p>
+			<a name="generateMethod">
+				<h2>The Generate method section</h2>
+			</a>
+			This method is about orchestrating the inherited or local internal methods.<br/>
+			This is defining the pattern behavior as a whole, and is the only visible entry point from outside the pattern.
+			<p>
+				To invoke a new action (ie behavior), click the <b>Add</b> button.<br/>
+				A new dialog opens.<br/>
+				<p align="center">
+					<img src="../images/implementation/CreateNewAction.png" alt="Create a new action"/>
+				</p>
+				<ul>
+					<li>Select the <b>Internal method call</b> action to invoke one of current pattern internal methods.</li>
+					<li>Select the <b>Call to another pattern</b> action to invoke another pattern, as part of current behavior.</li>
+					<li>Select the <b>Super method call</b> action to either invoke parent orchestration (no parameter) or one of the inherited internal methods (parameter).</li>
+				</ul>
+			</p>
+			<p>
+				You can click an action (left viewer) to see its properties.<br/>
+				A new section (<b>Selected action properties</b>) appears on the right side.<br/>
+				<p align="center">
+					<img src="../images/implementation/GenerateMethodActionProperties.png" alt="Display action properties"/>
+				</p>
+				The action properties can not be modified textually, but using the <b>Browse</b> button instead.
+			</p>
+			<p>
+				To organize the orchestration, select an action on the left viewer, and click the <b>Up</b> or <b>Down</b> buttons as required.
+			</p>
+		</p>
+	</p>
+	<p>
+		<img src="../../../../org.eclipse.egf.engine.doc/html/images/ngrelr.png" alt="Related Reference">
+	</p>
+	<a href="../editor.html">Pattern editor</a>
+</body>
+</html>

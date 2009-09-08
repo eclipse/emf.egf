@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="factory component"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>Factory Component</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<h1 class="Head">Factory Component</h1>
+
+
+<a name="definition"><h2>Definition</h2></a>
+<p class="Para">A Factory Component is a deployable software generation unit aiming at producing assets from inputs assets.</p>
+  
+  
+<a name="motivation"><h2>Motivation</h2></a>
+<p class="Para">A factory component is a component with an interface, named contract, a set of viewpoints and a factory for the generation orchestration.</p>
+<p class="Para">The purpose of factory components is to achieve complex, heterogeneous and large-scale production. Unlike generators with a defined technical scope of generation (e.g., text or model transformation), a factory component can embed several generation techniques, produce complex assets, such as languages, framework or tools, and cover the complete production lifecycle of assets. An heterogeneous generation can be realized individually by a factory component or collectivelly by a set of factory components in a generation chain.</p>
+<p class="Para">Actually, a factory component is built on the "divide and conquer" strategy. A factory component cannot assume alone complex generations. It distributes them by assembly to other factory components. Every factory component has a generation objective and realizes the generation it is specialized for.</p>
+<p class="Para">Regarding the process engineering, a factory component is an actor (a role in <a href="http://www.omg.org/spec/SPEM/2.0/">SPEM</a>) that contributes to a work definition (<a href="http://www.omg.org/spec/SPEM/2.0/">SPEM</a> term) (e.g., process, phase, iteration, activity). The intent is to progressively replace manual development tasks by automated tasks. Then, a factory component is not only a technique but becomes, when intensively used, a vector for common generation practices and structures the communication language between project team members. Over the time, the stake is to develop sharable factory component portfolios, that is homogeneous groups of generation topic know-how extensible by mutual team enrichment.</p>
+
+<p align="center">
+  <img src="./images/factoryComponentGlobalView.jpg" alt="GLobal view of a Factory Component"/>
+</p>
+<p align="center">
+  <i>Figure 1. GLobal view of a Factory Component</i>
+</p>
+
+
+<a name="structure"><h2>Structure</h2></a>
+<p class="Para">A factory component consists of:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">A <i>contract</i>, for declaring required generation data,</li>
+    <li CLASS="Item">A set of <i>viewpoints</i> for the declaration of the generation data organized by concerns,</li>
+    <li CLASS="Item"><i>A factory</i> for the generation orchestration.</li>
+</ul>
+
+<p class="Para">Beyond this structure, a factory component is generally specialized by its contents. Some factory components just contain viewpoint information (e.g., domain models, model-to-model mapping), others conduct the generation, or some are a conglomerate of viewpoints and orchestration. A factory component is hyper-specialized when it contains only one information type, such as generation patterns on a generation topic.</p>
+
+
+<a name="relationAndType"><h2>Relationships between factory components and factory component types</h2></a>
+<p class="Para">Two kinds of relationships exist between factory components.</p>
+<p class="Para">
+  <i>Delegation relationship</i>. A factory component delegates its work to another one. This implies that every factory used component has an identified generation role among the others. The following figure presents a tool infrastructure factory component that delegates its generation to factory components for model management, model check, transformation and presentation with user interfaces. The model management API generation delegates its generation to two factory components, one for code generation (e.g., Java code) and another one for documentation (e.g., Java Doc.).
+</p>
+<p class="Para">
+  <i>Resource provider relationship</i>. In this case, a factory component has one or several viewpoints which provide generation information. For instance, a factory component contains generation patterns in a generation viewpoint (e.g., a web site generation). Those patterns are used by factory component users (e.g., users of the patterns for a web site generation).  
+</p>
+
+<p align="center">
+  <img src="./images/factoryComponentAssembly.gif" alt="Assembly of a Factory Component"/>
+</p>
+<p align="center">
+  <i>Figure 2. Assembly of Factory Component</i>
+</p>
+
+<p class="Para">Finally, there are four types of factory components:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item"><i>Productive factory component</i>: this kind of factory component is able to produce assets by itself,</li>
+    <li CLASS="Item"><i>Assembly factory component</i>: this kind of factory component delegates its generation to specialized factory components (i.e., productive or assembly factory components),</li>
+    <li CLASS="Item"><i>Resource provider factory component</i>: this kind of factory provides generation data information, such as generation patterns or the licensing policy,</li>
+    <li CLASS="Item"><i>Conglomerate factory component</i>: this kind of factory cumulates one or several of the previous factory component roles (i.e., productive, assembly, resource provider).</li>
+</ul>
+
+
+<a name="lifecycle"><h2>Factory Component Lifecycle</h2></a>
+<p class="Para">A factory component can adopt three kinds of stage during its lifecycle: development, execution and exchange. The <i>development</i>, or edition, consists in defining and populating the factory component contents. The <i>execution</i> is the stage when a factory component is activated and produces the expected assets. During those two stages, there are two complementary lifecycles. A "in the small" lifecycle only focuses on a factory component: i) during the factory component development, the viewpoints and orchestration are defined; ii) at the execution, the factory component generates the expected assets. A "in the large" lifecycle focuses on factory component assembly, covering progressively all the generation chain: i) during the factory component development, factory components are assembled, ii) at the execution time, factory components of the generation chain are successively executed.</p>
+
+<p align="center">
+  <img src="./images/factoryComponentLifecycle.jpg" alt="Factory Component Lifecycle"/>
+</p>
+<p align="center">
+  <i>Figure 3. Factory Component Lifecycle</i>
+</p>
+
+<p class="Para">
+<i>Exchange</i> is the last state. A factory component is a generation unit, actually an Eclipse plug-in. A factory component exchange consists in publishing (i.e., exporting) and harvesting (i.e., importing) factory components between teams and team members. The team that reuses off-the-shelf factory components integrate them in its generation chain, or specialize them.
+</p>
+
+
+<br>
+
+</body>
+</html>

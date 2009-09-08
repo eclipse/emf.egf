@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+ 
+<plugin>
+
+   <extension
+         point="org.eclipse.egf.core.contract">
+      <contract
+            id="contract.1233741482389.0">
+         <contractElement
+               id="contractElement.1233742135169.7"
+               mandatory="true"
+               name="filePath"
+               type="org.eclipse.egf.model.contract.type.StringTypeHolder">
+            <description
+                  id="contractElement.1233742135169.7.description">
+               A path to test file, relative to the specified plug-in (created in the workspace).
+            </description>
+         </contractElement>
+         <contractElement
+               id="contractElement.1233742706851.9"
+               mandatory="true"
+               name="fileContent"
+               type="org.eclipse.egf.model.contract.type.StringTypeHolder">
+            <description
+                  id="contractElement.1233742706851.9.description">
+               The content of the resulting text file.
+            </description>
+         </contractElement>
+         <contractElement
+               id="contractElement.1233742188808.8"
+               mandatory="true"
+               name="pluginId"
+               type="org.eclipse.egf.model.contract.type.StringTypeHolder">
+            <description
+                  id="contractElement.1233742188808.8.description">
+               The plug-in Id of the plug-in that will be created in the workspace (to host the FC resulting files).
+            </description>
+            <contractElementRef
+                  contractElementReferenceId="contractElementReference.1233742950228.39">
+            </contractElementRef>
+         </contractElement>
+      </contract>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.productionPlan">
+      <productionPlan
+            contextId="context.1233743069681.42"
+            id="productionPlan.1233741482389.1">
+         <assetConfiguration
+               id="factoryComponentInvocation.1233742927385.38">
+         </assetConfiguration>
+         <assetConfiguration
+               id="factoryComponentInvocation.1233742983486.40">
+         </assetConfiguration>
+      </productionPlan>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.assetConfiguration">
+      <assetConfiguration
+            assetId="asset.1204818310706.4"
+            id="factoryComponentInvocation.1233742927385.38"
+            name="Create plug-in in workspace">
+      </assetConfiguration>
+      <assetConfiguration
+            assetId="rootAsset"
+            id="factoryComponentInvocation.1233742983486.40"
+            name="Invoke file creation task"
+            taskFactoryId="taskFactory.1233742997201.41">
+      </assetConfiguration>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.contractReferences">
+      <contractElementReference
+            id="contractElementReference.1233742950228.39"
+            referencedAssetId="asset.1204818310706.4"
+            referencedContractElementId="contractElement.1204818516576.7">
+      </contractElementReference>
+      <contractElementReference
+            id="contractElementReference.1233743085480.44"
+            referencedAssetId="factoryComponent.1233741482405.2"
+            referencedContractElementId="contractElement.1233742706851.9">
+      </contractElementReference>
+      <contractElementReference
+            id="contractElementReference.1233743110135.46"
+            referencedAssetId="factoryComponent.1233741482405.2"
+            referencedContractElementId="contractElement.1233742135169.7">
+      </contractElementReference>
+      <contractElementReference
+            id="contractElementReference.1233743127541.48"
+            referencedAssetId="factoryComponent.1233741482405.2"
+            referencedContractElementId="contractElement.1233742188808.8">
+      </contractElementReference>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.taskFactory">
+      <taskFactory
+            class="org.eclipse.egf.tests.factory.FactoryInActionTaskFactory"
+            id="taskFactory.1233742997201.41">
+      </taskFactory>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.context">
+      <context
+            id="context.1233743069681.42">
+         <contextElement
+               id="contextElement.1233743085465.43">
+            <contextValue
+                  value="HelloWorld !">
+            </contextValue>
+            <contractElementRef
+                  contractElementReferenceId="contractElementReference.1233743085480.44">
+            </contractElementRef>
+         </contextElement>
+         <contextElement
+               id="contextElement.1233743110135.45">
+            <contextValue
+                  value="tmp/helloworld.txt">
+            </contextValue>
+            <contractElementRef
+                  contractElementReferenceId="contractElementReference.1233743110135.46">
+            </contractElementRef>
+         </contextElement>
+         <contextElement
+               id="contextElement.1233743127541.47">
+            <contextValue
+                  value="helloworld.plugin">
+            </contextValue>
+            <contractElementRef
+                  contractElementReferenceId="contractElementReference.1233743127541.48">
+            </contractElementRef>
+         </contextElement>
+      </context>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.factoryComponent">
+      <factoryComponent
+            contractId="contract.1233741482389.0"
+            id="factoryComponent.1233741482405.2"
+            name="EGF Test Factory"
+            productionPlanId="productionPlan.1233741482389.1">
+         <description
+               id="factoryComponent.1233741482405.2.description">
+            HelloWorld factory in action test FC
+         </description>
+      </factoryComponent>
+   </extension>
+
+</plugin>

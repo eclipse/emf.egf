@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.tests.emf.generation.library; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.egf.core,
+ org.eclipse.egf.pattern,
+ org.eclipse.egf.fc.generator.java,
+ org.eclipse.egf.emf.generator.edit,
+ org.eclipse.egf.emf.generator.editor
+Bundle-ActivationPolicy: lazy

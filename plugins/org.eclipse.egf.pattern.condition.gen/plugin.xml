@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+   <extension
+         point="org.eclipse.egf.core.contract">
+      <contract
+            id="contract.1213692164306.85">
+         <contractElement
+               id="contractElement.1213715622825.42"
+               mandatory="true"
+               name="patternModelPath"
+               type="org.eclipse.egf.model.contract.type.StringTypeHolder">
+            <description
+                  id="contractElement.1213715622825.42.description">
+               A workspace relative path that points to a pattern model.
+            </description>
+         </contractElement>
+      </contract>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.productionPlan">
+      <productionPlan
+            id="productionPlan.1213692164306.86">
+         <assetConfiguration
+               id="assetConfiguration.1213715732295.48">
+         </assetConfiguration>
+      </productionPlan>
+   </extension>
+   <extension
+         point="org.eclipse.egf.pattern.pattern">
+      <library
+            id="patternLibrary.1213692227054.90"
+            name="ConditionLibrary">
+         <pattern
+               model="asset.1213692164306.87/model/pattern/Pattern.1213692237160.91.pm"
+               id="Pattern.1213692237160.91"
+               name="Condition">
+         </pattern>
+      </library>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.assetConfiguration">
+      <assetConfiguration
+            assetId="Pattern Runner"
+            contextId="context.1213715735624.49"
+            id="assetConfiguration.1213715732295.48"
+            name="Run Condition pattern">
+      </assetConfiguration>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.context">
+      <context
+            id="context.1213715735624.49">
+         <contextElement
+               id="contextElement.1213715750843.50">
+            <contextValue
+                  value="org.eclipse.egf.pattern.condition.gen.ConditionExecutionReporter">
+            </contextValue>
+            <contractElementRef
+                  contractElementReferenceId="contractElementReference.1213715750874.51">
+            </contractElementRef>
+         </contextElement>
+         <contextElement
+               id="contextElement.1213715766593.52">
+            <contextValue
+                  value="patternLibrary.1213692227054.90/Pattern.1213692237160.91">
+            </contextValue>
+            <contractElementRef
+                  contractElementReferenceId="contractElementReference.1213715766593.53">
+            </contractElementRef>
+         </contextElement>
+      </context>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.contractReferences">
+      <contractElementReference
+            id="contractElementReference.1213715750874.51"
+            referencedAssetId="Pattern Runner"
+            referencedContractElementId="Pattern Runner.contract.contractElment.executionReporter">
+      </contractElementReference>
+      <contractElementReference
+            id="contractElementReference.1213715766593.53"
+            referencedAssetId="Pattern Runner"
+            referencedContractElementId="Pattern Runner.contract.contractElment.patternOrLibraryFullId">
+      </contractElementReference>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.factoryComponent">
+      <factoryComponent
+            contractId="contract.1213692164306.85"
+            id="asset.1213692164306.87"
+            name="Pattern Condition Class Generator"
+            productionPlanId="productionPlan.1213692164306.86">
+         <description
+               id="asset.1213692164306.87.description">
+            Generates a given pattern model associated condition class.
+Note that the result is not directly written on the disk, it is delivered to a singleton class called ConditionClassOutput.
+Either you are able to get this result, or you should not use this FC as you're class generator. In this case, use contained pattern for generation but provide your own reporter.
+         </description>
+      </factoryComponent>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.eclipse.egf.pattern.pattern_1213692237160_91.Pattern_1213692237160_91Package"
+            genModel="model/pattern/Pattern.1213692237160.91.genmodel"
+            uri="http://www.eclipse.org/egf/1.0.0/Pattern/Generated/Pattern.1213692237160.91">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.egf.pattern.patternTemplate">
+      <patternTemplate
+            class="org.eclipse.egf.pattern.condition.gen.condition.ConditionGenerator"
+            id="patternLibrary.1213692227054.90/Pattern.1213692237160.91"
+            path="org.eclipse.egf.pattern.condition.gen/templates/generated//Pattern.1213692237160.91.pt"
+            type="jet">
+      </patternTemplate>
+   </extension>
+
+</plugin>

@@ -1,0 +1,26 @@
+<h2>Mapping Description</h2>
+<p>
+<ul>
+<% MappingViewpoint mappingViewpoint = ModelHelper.getMappingViewpoint(factoryComponent);
+	Iterator<MappingModel> mappings = mappingViewpoint.getMappings().iterator();
+	while(mappings.hasNext()) {	 
+	 	MappingModel currentMapping = mappings.next();
+	 	String mappingName = currentMapping.getName();
+	 	String mappingId = currentMapping.getId();
+	 	String mappingPath = currentMapping.getPath();
+	 	org.eclipse.egf.core.CoreActivator coreActivator = org.eclipse.egf.core.CoreActivator.getDefault();
+	 	FactoryComponent fcAsSource = coreActivator.getFactoryComponent(currentMapping.getSource());
+	 	FactoryComponent fcAsTarget = coreActivator.getFactoryComponent(currentMapping.getTarget());
+%>
+	<li><img src="../../../org.eclipse.egf.model.edit/icons/full/obj16/MappingModel.gif" border="0" />
+	<b><%=mappingName%></b> (id: <b><%=mappingId%></b>) :<br/>
+	<ul>
+		<li><b>Path</b> : <%=mappingPath%></li>
+		<li><b>Factory Component used as source (domain provided by)</b> : <%= fcAsSource.getName()%></li>
+		<li><b>Factory Component used as target (domain provided by)</b> : <%= fcAsTarget.getName()%></li>
+	</ul>
+	</li>
+	<br/>
+<%}%>	
+</ul>
+</p>

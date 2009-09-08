@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="org.eclipse.egf.core"
+      label="%featureName"
+      version="0.1.0.qualifier"
+      provider-name="%providerName"
+      plugin="org.eclipse.egf.core"
+      image="eclipse_update_120.jpg">
+
+   <description>
+      %description
+   </description>
+
+   <copyright>
+      Copyright (c) 2009 Thales Corporate Services S.A.S.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+   </copyright>
+
+   <license url="%licenseURL">
+      %license
+   </license>
+   
+   <url>
+      <update label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
+      <discovery label="%EMFUpdateSiteName" url="http://download.eclipse.org/modeling/emf/updates/"/>
+      <discovery label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
+   </url>   
+
+   <requires>
+      <import feature="org.eclipse.egf.dependencies" version="0.1.0.qualifier"/>
+   </requires>
+   
+    <includes
+      id="org.eclipse.egf.core.source"
+      version="0.0.0"
+    />
+         
+   <plugin
+         id="org.eclipse.egf.console"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>   
+
+   <plugin
+         id="org.eclipse.egf.common"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.common.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.core"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.core.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.core.ui.workbench"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.doc.user"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>         
+
+   <plugin
+         id="org.eclipse.egf.engine.doc"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>         
+
+   <plugin
+         id="org.eclipse.egf.engine.doc.process"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>         
+
+   <plugin
+         id="org.eclipse.egf.model"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.model.edit"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.pde"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.batch.application"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.mapping"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.mapping.ui.editor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.pde.emf"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.pde.pattern"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.fc.builder.java"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.fc.generator.java"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.pattern"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.pattern.condition.gen"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.pattern.refactoring"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.pattern.runner"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.pattern.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+   <plugin
+         id="org.eclipse.egf.engine.doc.pattern"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>         
+
+</feature>
