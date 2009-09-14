@@ -21,8 +21,8 @@ Require-Bundle:
  org.eclipse.egf.fc.builder.java;visibility:=reexport,
  org.eclipse.egf.fc.generator.java;visibility:=reexport,
  org.eclipse.egf.pde.pattern;visibility:=reexport,
- org.antlr,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.query;visibility:=reexport,
- org.eclipse.egf.pde.emf
+ org.eclipse.egf.pde.emf,
+ org.antlr.runtime
 Bundle-ActivationPolicy: lazy
