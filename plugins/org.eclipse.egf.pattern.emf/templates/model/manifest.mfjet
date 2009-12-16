@@ -1,8 +1,0 @@
-<%@ jet package="org.eclipse.egf.pattern.emf.model" class="ManifestMF" imports="" %>
-
-<%
-// Start of manifestMF (full id = EmfLibrary/Model/Pattern.1202377572044.159).
-%>
-<%
-// End of manifestMF (full id = EmfLibrary/Model/Pattern.1202377572044.159).
-%>

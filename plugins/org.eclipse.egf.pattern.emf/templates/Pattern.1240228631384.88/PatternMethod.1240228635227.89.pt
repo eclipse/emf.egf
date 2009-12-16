@@ -1,2 +1,0 @@
-<%@ jet package="org.eclipse.egf.pattern.emf.editor" class="Plugin" imports="" %>
-

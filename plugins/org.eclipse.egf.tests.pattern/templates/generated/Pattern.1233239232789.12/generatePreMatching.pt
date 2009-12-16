@@ -1,6 +1,0 @@
-<%
-{
-// Start of HelloWorld (full id = patternLibrary.1233239207231.11/Pattern.1233239232789.12).
-StringBuilder pattern123323923278912BuilderSave = new StringBuilder(stringBuffer);
-stringBuffer = new StringBuffer();
-%>

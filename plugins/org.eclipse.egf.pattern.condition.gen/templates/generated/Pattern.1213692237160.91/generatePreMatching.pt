@@ -1,6 +1,0 @@
-<%
-{
-// Start of Condition (full id = patternLibrary.1213692227054.90/Pattern.1213692237160.91).
-StringBuilder pattern121369223716091BuilderSave = new StringBuilder(stringBuffer);
-stringBuffer = new StringBuffer();
-%>

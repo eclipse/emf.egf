@@ -1,7 +1,0 @@
-<%
-StringBuilder pattern121369223716091Builder = new StringBuilder(stringBuffer);
-stringBuffer = new StringBuffer(pattern121369223716091BuilderSave).append(pattern121369223716091Builder);
-reporter.patternExecutionFinished(pattern121369223716091Builder.toString(),"patternLibrary.1213692227054.90/Pattern.1213692237160.91",context);
-// End of Condition (full id = patternLibrary.1213692227054.90/Pattern.1213692237160.91).
-}
-%>

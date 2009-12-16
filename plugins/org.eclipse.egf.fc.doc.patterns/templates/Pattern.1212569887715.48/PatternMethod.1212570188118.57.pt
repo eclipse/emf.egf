@@ -1,9 +1,0 @@
-<h1 align="center"><%=factoryComponentName%></h1>
-<blockquote>
-  <b>Summary</b>
-  <br/>
-  <p>
-  	<%=DataHelper.getDescription(factoryComponent)%>
-  </p>
-</blockquote>
-<hr width="100%" />

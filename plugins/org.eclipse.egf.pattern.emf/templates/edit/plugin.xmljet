@@ -1,8 +1,0 @@
-<%@ jet package="org.eclipse.egf.pattern.emf.edit" class="PluginXML" imports="" %>
-
-<%
-// Start of pluginXML (full id = EmfLibrary/patternLibrary.1202723104683.6/Pattern.1202737824146.70).
-%>
-<%
-// End of pluginXML (full id = EmfLibrary/patternLibrary.1202723104683.6/Pattern.1202737824146.70).
-%>

@@ -1,6 +1,0 @@
-<%
-{
-// Start of Style (full id = patternLibrary.1212569425341.37/Pattern.1212569465756.38).
-StringBuilder pattern121256946575638BuilderSave = new StringBuilder(stringBuffer);
-stringBuffer = new StringBuffer();
-%>

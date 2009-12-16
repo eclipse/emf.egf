@@ -1,7 +1,0 @@
-<h2>Patterns Description</h2>
-<p>
-<% PatternViewpoint patternViewpoint = ModelHelper.getPatternViewpoint(factoryComponent);
-	String patternViewpointDescription = PatternDescriptionHelper.generateDescription(patternViewpoint);
-%>
-<%=patternViewpointDescription%>
-</p>

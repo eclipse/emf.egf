@@ -1,8 +1,0 @@
-<%@ jet package="org.eclipse.egf.pattern.emf.model.tests" class="PackageExample" imports="" %>
-
-<%
-// Start of PackageExample (full id = EmfLibrary/patternLibrary.1240228737568.98/Pattern.1240229759010.131).
-%>
-<%
-// End of PackageExample (full id = EmfLibrary/patternLibrary.1240228737568.98/Pattern.1240229759010.131).
-%>

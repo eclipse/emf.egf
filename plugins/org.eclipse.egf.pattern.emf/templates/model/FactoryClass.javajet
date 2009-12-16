@@ -1,8 +1,0 @@
-<%@ jet package="org.eclipse.egf.pattern.emf.model" class="FactoryClass" imports="" %>
-
-<%
-// Start of FactoryClass (full id = EmfLibrary/Model/Pattern.1216381179160.4).
-%>
-<%
-// End of FactoryClass (full id = EmfLibrary/Model/Pattern.1216381179160.4).
-%>

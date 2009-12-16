@@ -1,8 +1,0 @@
-<%@ jet package="org.eclipse.egf.pattern.emf.model" class="ResourceClass" imports="" %>
-
-<%
-// Start of ResourceClass (full id = EmfLibrary/Model/Pattern.1202377577896.171).
-%>
-<%
-// End of ResourceClass (full id = EmfLibrary/Model/Pattern.1202377577896.171).
-%>

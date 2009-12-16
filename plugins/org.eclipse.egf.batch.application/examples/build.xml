@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="EGF FactoryComponent Runner" default="executeFactoryComponentRunnerInHeadlessMode" basedir=".">
-    <target name="executeFactoryComponentRunnerInWorkbenchWindow">
-		<egf.FactoryComponentRunnerInWorkbenchWindow factoryComponentId="asset.1197474451873.101" />
-    </target>
-	<target name="executeFactoryComponentRunnerInHeadlessMode">
-		<egf.FactoryComponentRunnerInHeadlessMode factoryComponentId="asset.1197474451873.101" />
-	</target>
-</project>
