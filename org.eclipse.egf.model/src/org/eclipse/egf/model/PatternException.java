@@ -21,6 +21,8 @@ package org.eclipse.egf.model;
  */
 public class PatternException extends Exception {
 
+    private static final long serialVersionUID = 8116611457631229391L;
+
     /**
      * @param message
      * @param cause
