@@ -47,9 +47,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class InvocationItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-    ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider,
-    ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class InvocationItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -159,8 +157,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.INVOCATION__CONTEXT, FactoryComponentFactory.eINSTANCE
-        .createContext()));
+    newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.INVOCATION__CONTEXT, FactoryComponentFactory.eINSTANCE.createContext()));
   }
 
 }

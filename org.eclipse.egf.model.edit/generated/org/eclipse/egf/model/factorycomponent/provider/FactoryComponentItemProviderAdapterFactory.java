@@ -62,8 +62,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FactoryComponentItemProviderAdapterFactory extends FactoryComponentAdapterFactory implements ComposeableAdapterFactory,
-    IChangeNotifier, IDisposable, IChildCreationExtender {
+public class FactoryComponentItemProviderAdapterFactory extends FactoryComponentAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
    * <!-- begin-user-doc -->
@@ -86,8 +85,7 @@ public class FactoryComponentItemProviderAdapterFactory extends FactoryComponent
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(EGFModelsEditPlugin.INSTANCE,
-      FactoryComponentPackage.eNS_URI);
+  protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(EGFModelsEditPlugin.INSTANCE, FactoryComponentPackage.eNS_URI);
 
   /**
    * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.

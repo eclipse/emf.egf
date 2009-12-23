@@ -49,9 +49,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-    ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider,
-    ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class ContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -86,8 +84,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * @generated
    */
   protected void addModePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(), getString("_UI_Contract_mode_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Contract_mode_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_Contract_mode_feature", "_UI_Contract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FactoryComponentPackage.Literals.CONTRACT__MODE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
@@ -99,8 +96,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * @generated
    */
   protected void addTypePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(), getString("_UI_Contract_type_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Contract_type_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_Contract_type_feature", "_UI_Contract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FactoryComponentPackage.Literals.CONTRACT__TYPE, true, false, true, null, null, null));
   }
@@ -193,8 +189,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.CONTRACT__DEFAULT_VALUE,
-        FactoryComponentFactory.eINSTANCE.createContractValue()));
+    newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.CONTRACT__DEFAULT_VALUE, FactoryComponentFactory.eINSTANCE.createContractValue()));
   }
 
 }

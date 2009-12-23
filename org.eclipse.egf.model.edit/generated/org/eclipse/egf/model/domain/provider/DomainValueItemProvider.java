@@ -50,9 +50,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DomainValueItemProvider extends ContextValueItemProvider implements IEditingDomainItemProvider,
-    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider,
-    ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class DomainValueItemProvider extends ContextValueItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -86,8 +84,7 @@ public class DomainValueItemProvider extends ContextValueItemProvider implements
    * @generated
    */
   protected void addDomainPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(), getString("_UI_DomainValue_domain_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainValue_domain_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_DomainValue_domain_feature", "_UI_DomainValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         DomainPackage.Literals.DOMAIN_VALUE__DOMAIN, true, false, true, null, null, null));
   }

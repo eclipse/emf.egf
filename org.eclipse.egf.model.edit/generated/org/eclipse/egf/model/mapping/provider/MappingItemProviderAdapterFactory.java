@@ -60,8 +60,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingItemProviderAdapterFactory extends MappingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier,
-    IDisposable {
+public class MappingItemProviderAdapterFactory extends MappingAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
    * <!-- begin-user-doc -->
@@ -304,8 +303,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
        */
       @Override
       public Object caseViewpointContainer(ViewpointContainer object) {
-        newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS,
-            MappingFactory.eINSTANCE.createMappingViewpoint()));
+        newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS, MappingFactory.eINSTANCE.createMappingViewpoint()));
 
         return null;
       }

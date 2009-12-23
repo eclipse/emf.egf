@@ -46,9 +46,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContractValueItemProvider extends ContextValueItemProvider implements IEditingDomainItemProvider,
-    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider,
-    ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class ContractValueItemProvider extends ContextValueItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -84,8 +82,7 @@ public class ContractValueItemProvider extends ContextValueItemProvider implemen
    * @generated
    */
   protected void addContractPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(), getString("_UI_ContractValue_contract_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ContractValue_contract_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_ContractValue_contract_feature", "_UI_ContractValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FactoryComponentPackage.Literals.CONTRACT_VALUE__CONTRACT, true, false, true, null, null, null));
   }
@@ -97,13 +94,9 @@ public class ContractValueItemProvider extends ContextValueItemProvider implemen
    * @generated
    */
   protected void addValuePropertyDescriptor(Object object) {
-    itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(),
-            getString("_UI_ContractValue_value_feature"), //$NON-NLS-1$
-            getString("_UI_PropertyDescriptor_description", "_UI_ContractValue_value_feature", "_UI_ContractValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            FactoryComponentPackage.Literals.CONTRACT_VALUE__VALUE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-            null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ContractValue_value_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_ContractValue_value_feature", "_UI_ContractValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FactoryComponentPackage.Literals.CONTRACT_VALUE__VALUE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -113,12 +106,9 @@ public class ContractValueItemProvider extends ContextValueItemProvider implemen
    * @generated
    */
   protected void addPluginIdPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_ContractValue_pluginId_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ContractValue_pluginId_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_ContractValue_pluginId_feature", "_UI_ContractValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FactoryComponentPackage.Literals.CONTRACT_VALUE__PLUGIN_ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-        null));
+        FactoryComponentPackage.Literals.CONTRACT_VALUE__PLUGIN_ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**

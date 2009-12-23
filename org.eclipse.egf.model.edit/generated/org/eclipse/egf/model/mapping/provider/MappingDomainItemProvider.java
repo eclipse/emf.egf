@@ -45,9 +45,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class MappingDomainItemProvider extends MappingItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-    ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider,
-    ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class MappingDomainItemProvider extends MappingItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -82,8 +80,7 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
    * @generated
    */
   protected void addSourcePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(), getString("_UI_MappingDomain_source_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_MappingDomain_source_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_MappingDomain_source_feature", "_UI_MappingDomain_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         MappingPackage.Literals.MAPPING_DOMAIN__SOURCE, true, false, true, null, null, null));
   }
@@ -95,8 +92,7 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
    * @generated
    */
   protected void addTargetPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(), getString("_UI_MappingDomain_target_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_MappingDomain_target_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_MappingDomain_target_feature", "_UI_MappingDomain_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         MappingPackage.Literals.MAPPING_DOMAIN__TARGET, true, false, true, null, null, null));
   }

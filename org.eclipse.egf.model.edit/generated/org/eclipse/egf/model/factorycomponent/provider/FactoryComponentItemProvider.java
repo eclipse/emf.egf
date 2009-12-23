@@ -47,9 +47,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class FactoryComponentItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider,
-    IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider,
-    ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class FactoryComponentItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -161,8 +159,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER,
-        FactoryComponentFactory.eINSTANCE.createViewpointContainer()));
+    newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, FactoryComponentFactory.eINSTANCE.createViewpointContainer()));
   }
 
 }
