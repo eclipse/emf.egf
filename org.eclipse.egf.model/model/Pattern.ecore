@@ -4,6 +4,9 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="pattern"
     nsURI="http://www.eclipse.org/egf/1.0.0/pattern" nsPrefix="pattern">
   <eClassifiers xsi:type="ecore:EClass" name="Pattern" eSuperTypes="#//PatternElement">
+    <eOperations name="getMethod" eType="#//PatternMethod">
+      <eParameters name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="headerMethod" lowerBound="1"
         eType="#//PatternMethod" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
@@ -30,8 +33,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternRunner" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement">
-    <eOperations name="run"/>
-    <eOperations name="translate"/>
+    <eOperations name="run" eExceptions="#//PatternException">
+      <eParameters name="context" lowerBound="1" eType="#//PatternContext"/>
+    </eOperations>
+    <eOperations name="translate" eExceptions="#//PatternException"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
         eType="#//Pattern"/>
   </eClassifiers>
@@ -51,4 +56,6 @@
         eType="#//PatternLibrary" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternNature" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="PatternContext" instanceClassName="org.eclipse.egf.model.PatternContext"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="PatternException" instanceClassName="org.eclipse.egf.model.PatternException"/>
 </ecore:EPackage>

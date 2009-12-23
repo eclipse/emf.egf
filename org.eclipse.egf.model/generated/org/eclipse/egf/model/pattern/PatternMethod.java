@@ -36,56 +36,56 @@ import org.eclipse.emf.common.util.URI;
  * @generated
  */
 public interface PatternMethod extends PatternUnit {
-  /**
-   * Returns the value of the '<em><b>Pattern</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Pattern</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Pattern</em>' reference.
-   * @see #setPattern(Pattern)
-   * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternMethod_Pattern()
-   * @model required="true"
-   * @generated
-   */
-  Pattern getPattern();
+    /**
+     * Returns the value of the '<em><b>Pattern</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Pattern</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Pattern</em>' reference.
+     * @see #setPattern(Pattern)
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternMethod_Pattern()
+     * @model required="true"
+     * @generated
+     */
+    Pattern getPattern();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternMethod#getPattern <em>Pattern</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Pattern</em>' reference.
-   * @see #getPattern()
-   * @generated
-   */
-  void setPattern(Pattern value);
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternMethod#getPattern <em>Pattern</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Pattern</em>' reference.
+     * @see #getPattern()
+     * @generated
+     */
+    void setPattern(Pattern value);
 
-  /**
-   * Returns the value of the '<em><b>Pattern File Path</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Pattern File Path</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Pattern File Path</em>' attribute.
-   * @see #setPatternFilePath(URI)
-   * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternMethod_PatternFilePath()
-   * @model dataType="org.eclipse.egf.model.factorycomponent.URI" required="true"
-   * @generated
-   */
-  URI getPatternFilePath();
+    /**
+     * Returns the value of the '<em><b>Pattern File Path</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Pattern File Path</em>' attribute isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Pattern File Path</em>' attribute.
+     * @see #setPatternFilePath(URI)
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternMethod_PatternFilePath()
+     * @model dataType="org.eclipse.egf.model.factorycomponent.URI" required="true"
+     * @generated
+     */
+    URI getPatternFilePath();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternMethod#getPatternFilePath <em>Pattern File Path</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Pattern File Path</em>' attribute.
-   * @see #getPatternFilePath()
-   * @generated
-   */
-  void setPatternFilePath(URI value);
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternMethod#getPatternFilePath <em>Pattern File Path</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Pattern File Path</em>' attribute.
+     * @see #getPatternFilePath()
+     * @generated
+     */
+    void setPatternFilePath(URI value);
 
 } // PatternMethod

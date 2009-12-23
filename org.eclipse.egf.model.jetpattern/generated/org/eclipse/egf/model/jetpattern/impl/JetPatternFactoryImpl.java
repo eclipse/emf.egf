@@ -33,90 +33,89 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * @generated
  */
 public class JetPatternFactoryImpl extends EFactoryImpl implements JetPatternFactory {
-  /**
-   * Creates the default factory implementation.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public static JetPatternFactory init() {
-    try {
-      JetPatternFactory theJetPatternFactory = (JetPatternFactory) EPackage.Registry.INSTANCE
-          .getEFactory("http://www.eclipse.org/egf/1.0.0/jetpattern"); //$NON-NLS-1$ 
-      if (theJetPatternFactory != null) {
-        return theJetPatternFactory;
-      }
-    } catch (Exception exception) {
-      EcorePlugin.INSTANCE.log(exception);
+    /**
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static JetPatternFactory init() {
+        try {
+            JetPatternFactory theJetPatternFactory = (JetPatternFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/egf/1.0.0/jetpattern"); //$NON-NLS-1$ 
+            if (theJetPatternFactory != null) {
+                return theJetPatternFactory;
+            }
+        } catch (Exception exception) {
+            EcorePlugin.INSTANCE.log(exception);
+        }
+        return new JetPatternFactoryImpl();
     }
-    return new JetPatternFactoryImpl();
-  }
 
-  /**
-   * Creates an instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JetPatternFactoryImpl() {
-    super();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EObject create(EClass eClass) {
-    switch (eClass.getClassifierID()) {
-    case JetPatternPackage.JET_NATURE:
-      return createJetNature();
-    case JetPatternPackage.JET_RUNNER:
-      return createJetRunner();
-    default:
-      throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+    /**
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public JetPatternFactoryImpl() {
+        super();
     }
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JetNature createJetNature() {
-    JetNatureImpl jetNature = new JetNatureImpl();
-    return jetNature;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public EObject create(EClass eClass) {
+        switch (eClass.getClassifierID()) {
+        case JetPatternPackage.JET_NATURE:
+            return createJetNature();
+        case JetPatternPackage.JET_RUNNER:
+            return createJetRunner();
+        default:
+            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JetRunner createJetRunner() {
-    JetRunnerImpl jetRunner = new JetRunnerImpl();
-    return jetRunner;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public JetNature createJetNature() {
+        JetNatureImpl jetNature = new JetNatureImpl();
+        return jetNature;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JetPatternPackage getJetPatternPackage() {
-    return (JetPatternPackage) getEPackage();
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public JetRunner createJetRunner() {
+        JetRunnerImpl jetRunner = new JetRunnerImpl();
+        return jetRunner;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @deprecated
-   * @generated
-   */
-  @Deprecated
-  public static JetPatternPackage getPackage() {
-    return JetPatternPackage.eINSTANCE;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public JetPatternPackage getJetPatternPackage() {
+        return (JetPatternPackage) getEPackage();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @deprecated
+     * @generated
+     */
+    @Deprecated
+    public static JetPatternPackage getPackage() {
+        return JetPatternPackage.eINSTANCE;
+    }
 
 } //JetPatternFactoryImpl

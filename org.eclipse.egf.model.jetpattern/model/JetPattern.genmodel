@@ -17,8 +17,7 @@
       disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
       childCreationExtenders="true" contentTypeIdentifier="" ecorePackage="JetPattern.ecore#/">
     <genClasses ecoreClass="JetPattern.ecore#//JetNature">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JetPattern.ecore#//JetNature/compileTemplate"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JetPattern.ecore#//JetNature/templateFilePath"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute JetPattern.ecore#//JetNature/templateClassName"/>
     </genClasses>
     <genClasses ecoreClass="JetPattern.ecore#//JetRunner"/>
   </genPackages>

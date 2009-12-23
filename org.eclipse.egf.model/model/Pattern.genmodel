@@ -16,6 +16,8 @@
   <genPackages prefix="Pattern" basePackage="org.eclipse.egf.model" resource="XMI"
       disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
       childCreationExtenders="true" contentTypeIdentifier="" ecorePackage="Pattern.ecore#/">
+    <genDataTypes ecoreDataType="Pattern.ecore#//PatternContext"/>
+    <genDataTypes ecoreDataType="Pattern.ecore#//PatternException"/>
     <genClasses ecoreClass="Pattern.ecore#//Pattern">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/headerMethod"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/methods"/>
@@ -24,6 +26,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/orchestration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/parameters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/nature"/>
+      <genOperations ecoreOperation="Pattern.ecore#//Pattern/getMethod">
+        <genParameters ecoreParameter="Pattern.ecore#//Pattern/getMethod/name"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//PatternMethod">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternMethod/pattern"/>
@@ -35,7 +40,9 @@
     </genClasses>
     <genClasses image="false" ecoreClass="Pattern.ecore#//PatternRunner">
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternRunner/pattern"/>
-      <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/run"/>
+      <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/run">
+        <genParameters ecoreParameter="Pattern.ecore#//PatternRunner/run/context"/>
+      </genOperations>
       <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/translate"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//PatternSuperMethod"/>
