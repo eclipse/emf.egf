@@ -15,6 +15,9 @@
 
 package org.eclipse.egf.model;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * TODO Ici on ne devrait avoir qu'une pauvre map avec name-valeur. Son
  * initialisation étant à la charge de l'orchestrateur. TODO il faudrait ajouetr
@@ -26,23 +29,33 @@ package org.eclipse.egf.model;
  */
 public class PatternContext {
 
-	public static final String INTERNAL_PATTERN_REPORTER = "internal.pattern.reporter";
-	public static final String INTERNAL_PATTERN_PARAMETER_ALIAS = "internal.pattern.parameter.alias";
+    public static final String INTERNAL_PATTERN_REPORTER = "internal.pattern.reporter";
+    public static final String INTERNAL_PATTERN_PARAMETER_ALIAS = "internal.pattern.parameter.alias";
 
-	public PatternContext() {
-	}
+    private PatternContext parent;
+    private final Map<String, Object> data = new HashMap<String, Object>();
 
-	public void setValue(String name, Object value) {
-		if (name == null)
-			throw new IllegalArgumentException();
+    public PatternContext() {
+    }
 
-	}
+    public PatternContext(PatternContext parent) {
+        this.parent = parent;
+    }
 
-	public Object getValue(String name) {
-		if (name == null)
-			throw new IllegalArgumentException();
+    public void setValue(String name, Object value) {
+        if (name == null)
+            throw new IllegalArgumentException();
+        throw new UnsupportedOperationException();
+        // TODO how to deal with parent ctx ?
 
-		return null;
-	}
+    }
+
+    public Object getValue(String name) {
+        if (name == null)
+            throw new IllegalArgumentException();
+        if (data.containsKey(name))
+            return data.get(name);
+        return parent == null ? null : parent.getValue(name);
+    }
 
 }
