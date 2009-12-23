@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.egf.model/generated"
+    creationSubmenus="true" editDirectory="/org.eclipse.egf.model.edit/generated"
+    editorDirectory="/org.eclipse.egf.model.editor/generated" modelPluginID="org.eclipse.egf.model"
+    templateDirectory="/org.eclipse.egf.model/templates" dynamicTemplates="true" modelName="Pattern"
+    modelPluginClass="org.eclipse.egf.model.EGFModelsPlugin" editPluginClass="org.eclipse.egf.model.edit.EGFModelsEditPlugin"
+    editorPluginClass="org.eclipse.egf.model.editor.EGFModelsEditorPlugin" nonNLSMarkers="true"
+    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container" codeFormatting="true"
+    testsDirectory="/org.eclipse.egf.model.tests/generated" booleanFlagsField="eFlags"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
+    optimizedHasChildren="true" tableProviders="true" colorProviders="true" fontProviders="true"
+    packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore FactoryComponent.genmodel#//factorycomponent Types.genmodel#//types">
+  <foreignModel>Pattern.ecore</foreignModel>
+  <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
+  <genPackages prefix="Pattern" basePackage="org.eclipse.egf.model" resource="XMI"
+      disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
+      childCreationExtenders="true" ecorePackage="Pattern.ecore#/">
+    <genClasses ecoreClass="Pattern.ecore#//Pattern">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/headerMethod"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/allMethods"/>
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/superPattern"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/footerMethod"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/orchestration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/parameters"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/nature"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//PatternMethod">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternMethod/pattern"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pattern.ecore#//PatternMethod/patternFilePath"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//PatternUnit"/>
+    <genClasses ecoreClass="Pattern.ecore#//Parameter">
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Parameter/type"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//PatternRunner">
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternRunner/pattern"/>
+      <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/run"/>
+      <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/translate"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//SuperMethod"/>
+    <genClasses ecoreClass="Pattern.ecore#//Library">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Library/elements"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Library/runtimeOrchestration"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//PatternElement">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternElement/container"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//PatternViewpoint">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternViewpoint/libraries"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//PatternNature"/>
+  </genPackages>
+</genmodel:GenModel>
