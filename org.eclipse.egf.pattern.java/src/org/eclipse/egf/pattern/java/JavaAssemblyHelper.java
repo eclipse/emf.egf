@@ -15,12 +15,15 @@
 
 package org.eclipse.egf.pattern.java;
 
+import java.util.Map.Entry;
+
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
+import org.eclipse.egf.pattern.ParameterMatcher;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.execution.AssemblyHelper;
 import org.eclipse.emf.ecore.EClass;
@@ -45,20 +48,38 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         if (templateClassName == null)
             throw new PatternException(Messages.assembly_error1);
 
-        content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(ctx");
+        if (call.getParameterMatching().isEmpty()) {
+            // try to match parameters
+            ParameterMatcher matcher = ParameterMatcher.create(call.getPattern(), pattern);
+            if (!matcher.matches())
+                throw new PatternException(Messages.bind(Messages.assembly_error7, call.getPattern().getName()));
+            for (PatternParameter key : matcher.getMatching().keySet()) {
+                String called = PatternHelper.uniqueName(matcher.getMatching().get(key));
+                EClass pEClass = key.getType().eClass();
+                content.append(pEClass.getName()).append(" ").append(called).append(" = (").append(pEClass.getName()).append(")").append(key.getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
+            }
+        } else {
+            for (Entry<PatternParameter, PatternParameter> binding : call.getParameterMatching()) {
+                String called = PatternHelper.uniqueName(binding.getValue());
+                EClass pEClass = binding.getKey().getType().eClass();
+                content.append(pEClass.getName()).append(" ").append(called).append(" = (").append(pEClass.getName()).append(")").append(binding.getKey().getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
+            }
+        }
+        String ctxName = "ctx_" + PatternHelper.uniqueName(pattern);
+        content.append("PatternContext ").append(ctxName).append(" = new PatternContext(ctx);").append(CharacterConstants.LINE_SEPARATOR);
+        content.append(ctxName).append(".setValue(\"key\", \"value\");").append(CharacterConstants.LINE_SEPARATOR);
+        content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append(" (").append(ctxName);
         for (PatternParameter parameter : pattern.getParameters())
-            content.append(", ").append(parameter.getName());
+            content.append(", ").append(PatternHelper.uniqueName(parameter));
 
         content.append(");");
     }
 
     protected void addVariable(Pattern pattern) throws PatternException {
-        content.append("<%").append(START_MARKER).append("%>");
-        content.append("<%");
+        content.append(START_MARKER).append(CharacterConstants.LINE_SEPARATOR);
         for (PatternVariable var : pattern.getVariables()) {
             content.append("EObject ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
         }
-        content.append("%>");
         super.addVariable(pattern);
 
     }
