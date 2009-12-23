@@ -1,10 +1,28 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Common
-Bundle-SymbolicName: org.eclipse.egf.common
-Bundle-Version: 1.0.0.qualifier
-Bundle-Activator: org.eclipse.egf.common.Activator
-Require-Bundle: org.eclipse.core.runtime
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.common;singleton:=true
+Bundle-Version: 0.2.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.common.activator.EGFCommonPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.core.resources;visibility:=reexport,
+ org.eclipse.core.runtime;visibility:=reexport,
+ org.eclipse.egf.console;visibility:=reexport,
+ org.eclipse.jdt.core;visibility:=reexport,
+ org.eclipse.pde.core;visibility:=reexport, 
+ org.eclipse.emf.codegen.ecore;visibility:=reexport,
+ org.apache.ant;visibility:=reexport,
+ org.eclipse.ant.core;visibility:=reexport 
+Export-Package: 
+ org.eclipse.egf.common.activator,
+ org.eclipse.egf.common.ant,
+ org.eclipse.egf.common.constant,
+ org.eclipse.egf.common.generator,
+ org.eclipse.egf.common.helper,
+ org.eclipse.egf.common.listener,
+ org.eclipse.egf.common.progress
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Export-Package: org.eclipse.egf.common
