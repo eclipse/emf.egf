@@ -24,8 +24,7 @@ import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternSuperMethod;
-import org.eclipse.egf.pattern.PatternConstants;
-import org.eclipse.egf.pattern.PatternPreferences;
+import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -159,20 +158,15 @@ public abstract class PatternFactory {
         method.setPatternFilePath(createURI(method));
     }
 
+    private URI createURI(PatternMethod method) {
+
+        return PatternHelper.Filename.computeFileURI(method);
+    }
+
     /**
      * @param pattern
      */
     protected abstract void addNature(Pattern pattern);
-
-    /**
-     * @param footerMethod
-     * @return
-     */
-
-    protected URI createURI(PatternMethod method) {
-        URI uri = URI.createFileURI(PatternPreferences.getTemplatesFolderName() + "/pattern." + method.getPattern().getID() + "/method." + method.getID() + "." + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
-        return uri;
-    }
 
     /**
      * @param element

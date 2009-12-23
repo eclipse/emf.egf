@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
+import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 import org.eclipse.emf.common.util.URI;
 
 /**

@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern;
+package org.eclipse.egf.pattern.execution;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

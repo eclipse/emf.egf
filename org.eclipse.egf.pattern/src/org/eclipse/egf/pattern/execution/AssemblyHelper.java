@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern;
+package org.eclipse.egf.pattern.execution;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -21,8 +21,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.helper.ObjectHolder;
-import org.eclipse.egf.core.platform.EGFPlatformPlugin;
-import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
@@ -31,6 +29,7 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternSuperMethod;
 import org.eclipse.egf.model.pattern.PatternUnit;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
+import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
@@ -38,7 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  * @author Thomas Guiu
  * 
  */
-public abstract class PatternTranslationHelper {
+public abstract class AssemblyHelper {
 
     protected final Pattern pattern;
     protected final StringBuilder content = new StringBuilder(1000);
@@ -46,7 +45,7 @@ public abstract class PatternTranslationHelper {
     // needed alias (Validation ensure that they can be matched)
     protected List<List<String>> parameterAlias;
 
-    public PatternTranslationHelper(Pattern pattern) {
+    public AssemblyHelper(Pattern pattern) {
         super();
         this.pattern = pattern;
     }
@@ -135,7 +134,7 @@ public abstract class PatternTranslationHelper {
             public String casePatternMethod(PatternMethod object) {
                 URI uri = object.getPatternFilePath();
                 try {
-                    return FileHelper_to_be_upgraded.getContent(getPlatformFactoryComponent(object.getPattern()), uri);
+                    return FileHelper_to_be_upgraded.getContent(PatternHelper.getPlatformFactoryComponent(object.getPattern()), uri);
                 } catch (CoreException e) {
                     holder.object = new PatternException(e);
                 } catch (IOException e) {
@@ -166,36 +165,6 @@ public abstract class PatternTranslationHelper {
         if (holder.object != null)
             throw holder.object;
         return result;
-    }
-
-    /**
-     * This method return a string from the libraries who contain the pattern.
-     * For example: myLib.mySubLib
-     */
-    public static String getFullLibraryName(Pattern pattern) {
-        List<PatternLibrary> libs = new ArrayList<PatternLibrary>();
-        PatternLibrary lib = pattern.getContainer();
-        while (lib != null) {
-            libs.add(lib);
-            lib = lib.getContainer();
-        }
-        if (libs.isEmpty())
-            return "";
-        if (libs.size() == 1)
-            return libs.get(0).getName();
-        StringBuffer buf = new StringBuffer();
-        for (PatternLibrary mylib : libs) {
-            buf.append(mylib.getName()).append('.');
-        }
-        return buf.deleteCharAt(buf.length() - 1).toString();
-    }
-
-    public static IPlatformFactoryComponent getPlatformFactoryComponent(Pattern pattern) {
-        return EGFPlatformPlugin.getPlatformFactoryComponent(pattern.eResource());
-    }
-
-    public static String localizeName(org.eclipse.egf.model.pattern.PatternParameter parameter) {
-        return parameter.getName() + "Parameter";
     }
 
 }
