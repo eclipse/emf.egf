@@ -240,7 +240,11 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       }
       // Process Added Entries
       for (IPluginModelBase base : event.getAddedModels()) {
-        addModel(EGFPlatformPlugin.getId(base), createPlatformPlugin(base), delta);
+        String id = EGFPlatformPlugin.getId(base);
+        IPlatformPlugin existing = _models.get(id);
+        if (existing == null || base.equals(existing.getPluginModelBase()) == false) {
+          addModel(id, createPlatformPlugin(base), delta);
+        }
       }
       // Something to process
       if (delta.isEmpty() == false) {
