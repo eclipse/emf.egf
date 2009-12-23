@@ -20,7 +20,7 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.egf.pattern.PatternTranslationHelper;
 import org.eclipse.egf.pattern.extension.TemplateInitializer;
 import org.eclipse.egf.pattern.templates.SimpleEngine;
 
@@ -37,7 +37,7 @@ public class JavaPatternInitializer extends TemplateInitializer {
     public JavaPatternInitializer(IProject project, Pattern pattern) {
         super(project, pattern, new SimpleEngine(Activator.PLUGIN_ID, project, JavaPreferences.getTemplateFileExtension()));
         ctx.put(CLASS_KEY, pattern.getName());
-        String fullLibraryName = PatternHelper.getFullLibraryName(pattern);
+        String fullLibraryName = PatternTranslationHelper.getFullLibraryName(pattern);
         if (fullLibraryName == null || "".equals(fullLibraryName))
             fullLibraryName = "default_package";
         ctx.put(PACKAGE_KEY, fullLibraryName);

@@ -27,7 +27,7 @@ import org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
-import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.egf.pattern.PatternTranslationHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.execution.WorkspaceAndPluginClassLoader;
 
@@ -50,7 +50,7 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
             throw new IllegalStateException("Pattern class is null");
         try {
 
-            Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternHelper.getPlatformFactoryComponent(getPattern())).loadClass(templateClassName);
+            Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternTranslationHelper.getPlatformFactoryComponent(getPattern())).loadClass(templateClassName);
             Method method = templateClass.getMethod("generate", Object.class);
             Object template = templateClass.newInstance();
             method.invoke(template, context);
@@ -65,13 +65,13 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
 
         // **************************************************************************
         // 1 - put together all pt files
-        PatternHelper helper = new JavaPatternHelper(getPattern());
+        PatternTranslationHelper helper = new JavaTranslationHelper(getPattern());
         String templatecontent = helper.visit();
 
         // 2 - put the result in the right file
         try {
 
-            IPlatformFactoryComponent platformFactoryComponent = PatternHelper.getPlatformFactoryComponent(getPattern());
+            IPlatformFactoryComponent platformFactoryComponent = PatternTranslationHelper.getPlatformFactoryComponent(getPattern());
             if (platformFactoryComponent == null)
                 throw new PatternException("Cannot get platformFactoryComponent related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
             IProject project = platformFactoryComponent.getPlatformPlugin().getProject();
@@ -91,8 +91,8 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
 
     private String getContent(String content) {
         StringBuilder builder = new StringBuilder(content.length() + 500);
-        int startIndex = content.indexOf(JavaPatternHelper.START_MARKER);
-        int endIndex = content.indexOf(JavaPatternHelper.END_MARKER);
+        int startIndex = content.indexOf(JavaTranslationHelper.START_MARKER);
+        int endIndex = content.indexOf(JavaTranslationHelper.END_MARKER);
         int insertionIndex = content.lastIndexOf('}');
         if (startIndex == -1 || endIndex == -1 || insertionIndex == -1)
             return content;
@@ -103,25 +103,25 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
         builder.append("generate((PatternContext)argument");
         if (!getPattern().getParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getParameters()) {
-                String local = PatternHelper.localizeName(parameter);
+                String local = PatternTranslationHelper.localizeName(parameter);
                 builder.append(", ").append(local);
             }
         }
         builder.append(");");
 
         // add end of class code
-        builder.append(content.substring(endIndex + JavaPatternHelper.END_MARKER.length(), insertionIndex));
+        builder.append(content.substring(endIndex + JavaTranslationHelper.END_MARKER.length(), insertionIndex));
 
         // add new method body
         builder.append("public void generate(StringBuffer stringBuffer, PatternContext ctx");
         if (!getPattern().getParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getParameters()) {
-                String local = PatternHelper.localizeName(parameter);
+                String local = PatternTranslationHelper.localizeName(parameter);
                 builder.append(", EObject ").append(local);
             }
         }
         builder.append(") {").append(PatternPreferences.NL);
-        builder.append(content.substring(startIndex + JavaPatternHelper.START_MARKER.length(), endIndex));
+        builder.append(content.substring(startIndex + JavaTranslationHelper.START_MARKER.length(), endIndex));
 
         builder.append("} ").append(PatternPreferences.NL);
         builder.append(content.substring(insertionIndex));
