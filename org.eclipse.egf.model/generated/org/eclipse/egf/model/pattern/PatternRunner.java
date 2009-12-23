@@ -23,15 +23,14 @@ import org.eclipse.egf.model.factorycomponent.ModelElement;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Runner</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.PatternRunner#getPattern <em>Pattern
- * </em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.PatternRunner#getPattern <em>Pattern</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternRunner()
  * @model abstract="true"
  * @generated
@@ -69,17 +68,13 @@ public interface PatternRunner extends ModelElement {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @model exceptions="org.eclipse.egf.model.pattern.PatternException"
-     *        contextDataType="org.eclipse.egf.model.pattern.PatternContext"
-     *        contextRequired="true"
+     * @model exceptions="org.eclipse.egf.model.pattern.PatternException" contextDataType="org.eclipse.egf.model.pattern.PatternContext" contextRequired="true"
      * @generated
      */
     void run(PatternContext context) throws PatternException;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @model exceptions="org.eclipse.egf.model.pattern.PatternException"
      * @generated
      */

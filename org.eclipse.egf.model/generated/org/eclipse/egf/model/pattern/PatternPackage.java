@@ -220,7 +220,7 @@ public interface PatternPackage extends EPackage {
     int PATTERN__CONTAINER = PATTERN_ELEMENT__CONTAINER;
 
     /**
-     * The feature id for the '<em><b>Header Method</b></em>' containment reference.
+     * The feature id for the '<em><b>Header Method</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -238,7 +238,7 @@ public interface PatternPackage extends EPackage {
     int PATTERN__METHODS = PATTERN_ELEMENT_FEATURE_COUNT + 1;
 
     /**
-     * The feature id for the '<em><b>Footer Method</b></em>' containment reference.
+     * The feature id for the '<em><b>Footer Method</b></em>' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -329,7 +329,7 @@ public interface PatternPackage extends EPackage {
     int PATTERN_METHOD__DESCRIPTION = PATTERN_UNIT__DESCRIPTION;
 
     /**
-     * The feature id for the '<em><b>Pattern</b></em>' reference.
+     * The feature id for the '<em><b>Pattern</b></em>' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -725,10 +725,10 @@ public interface PatternPackage extends EPackage {
     EClass getPattern();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.pattern.Pattern#getHeaderMethod <em>Header Method</em>}'.
+     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.Pattern#getHeaderMethod <em>Header Method</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Header Method</em>'.
+     * @return the meta object for the reference '<em>Header Method</em>'.
      * @see org.eclipse.egf.model.pattern.Pattern#getHeaderMethod()
      * @see #getPattern()
      * @generated
@@ -758,10 +758,10 @@ public interface PatternPackage extends EPackage {
     EReference getPattern_SuperPattern();
 
     /**
-     * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.pattern.Pattern#getFooterMethod <em>Footer Method</em>}'.
+     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.Pattern#getFooterMethod <em>Footer Method</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the containment reference '<em>Footer Method</em>'.
+     * @return the meta object for the reference '<em>Footer Method</em>'.
      * @see org.eclipse.egf.model.pattern.Pattern#getFooterMethod()
      * @see #getPattern()
      * @generated
@@ -812,10 +812,10 @@ public interface PatternPackage extends EPackage {
     EClass getPatternMethod();
 
     /**
-     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.PatternMethod#getPattern <em>Pattern</em>}'.
+     * Returns the meta object for the container reference '{@link org.eclipse.egf.model.pattern.PatternMethod#getPattern <em>Pattern</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Pattern</em>'.
+     * @return the meta object for the container reference '<em>Pattern</em>'.
      * @see org.eclipse.egf.model.pattern.PatternMethod#getPattern()
      * @see #getPatternMethod()
      * @generated
@@ -1034,7 +1034,7 @@ public interface PatternPackage extends EPackage {
         EClass PATTERN = eINSTANCE.getPattern();
 
         /**
-         * The meta object literal for the '<em><b>Header Method</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Header Method</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
@@ -1058,7 +1058,7 @@ public interface PatternPackage extends EPackage {
         EReference PATTERN__SUPER_PATTERN = eINSTANCE.getPattern_SuperPattern();
 
         /**
-         * The meta object literal for the '<em><b>Footer Method</b></em>' containment reference feature.
+         * The meta object literal for the '<em><b>Footer Method</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
@@ -1100,7 +1100,7 @@ public interface PatternPackage extends EPackage {
         EClass PATTERN_METHOD = eINSTANCE.getPatternMethod();
 
         /**
-         * The meta object literal for the '<em><b>Pattern</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Pattern</b></em>' container reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated

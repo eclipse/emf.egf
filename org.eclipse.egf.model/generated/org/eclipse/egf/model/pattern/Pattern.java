@@ -43,26 +43,26 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  */
 public interface Pattern extends PatternElement {
     /**
-     * Returns the value of the '<em><b>Header Method</b></em>' containment reference.
+     * Returns the value of the '<em><b>Header Method</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Header Method</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Header Method</em>' containment reference.
+     * @return the value of the '<em>Header Method</em>' reference.
      * @see #setHeaderMethod(PatternMethod)
      * @see org.eclipse.egf.model.pattern.PatternPackage#getPattern_HeaderMethod()
-     * @model containment="true" required="true"
+     * @model resolveProxies="false" required="true"
      * @generated
      */
     PatternMethod getHeaderMethod();
 
     /**
-     * Sets the value of the '{@link org.eclipse.egf.model.pattern.Pattern#getHeaderMethod <em>Header Method</em>}' containment reference.
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.Pattern#getHeaderMethod <em>Header Method</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Header Method</em>' containment reference.
+     * @param value the new value of the '<em>Header Method</em>' reference.
      * @see #getHeaderMethod()
      * @generated
      */
@@ -71,6 +71,7 @@ public interface Pattern extends PatternElement {
     /**
      * Returns the value of the '<em><b>Methods</b></em>' containment reference list.
      * The list contents are of type {@link org.eclipse.egf.model.pattern.PatternMethod}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.pattern.PatternMethod#getPattern <em>Pattern</em>}'.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Methods</em>' containment reference list isn't clear,
@@ -79,7 +80,8 @@ public interface Pattern extends PatternElement {
      * <!-- end-user-doc -->
      * @return the value of the '<em>Methods</em>' containment reference list.
      * @see org.eclipse.egf.model.pattern.PatternPackage#getPattern_Methods()
-     * @model containment="true"
+     * @see org.eclipse.egf.model.pattern.PatternMethod#getPattern
+     * @model opposite="pattern" containment="true"
      * @generated
      */
     EList<PatternMethod> getMethods();
@@ -111,26 +113,26 @@ public interface Pattern extends PatternElement {
     void setSuperPattern(Pattern value);
 
     /**
-     * Returns the value of the '<em><b>Footer Method</b></em>' containment reference.
+     * Returns the value of the '<em><b>Footer Method</b></em>' reference.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Footer Method</em>' reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Footer Method</em>' containment reference.
+     * @return the value of the '<em>Footer Method</em>' reference.
      * @see #setFooterMethod(PatternMethod)
      * @see org.eclipse.egf.model.pattern.PatternPackage#getPattern_FooterMethod()
-     * @model containment="true" required="true"
+     * @model resolveProxies="false" required="true"
      * @generated
      */
     PatternMethod getFooterMethod();
 
     /**
-     * Sets the value of the '{@link org.eclipse.egf.model.pattern.Pattern#getFooterMethod <em>Footer Method</em>}' containment reference.
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.Pattern#getFooterMethod <em>Footer Method</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Footer Method</em>' containment reference.
+     * @param value the new value of the '<em>Footer Method</em>' reference.
      * @see #getFooterMethod()
      * @generated
      */

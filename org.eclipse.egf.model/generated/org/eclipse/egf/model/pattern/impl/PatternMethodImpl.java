@@ -48,16 +48,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class PatternMethodImpl extends PatternUnitImpl implements PatternMethod {
     /**
-     * The cached value of the '{@link #getPattern() <em>Pattern</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getPattern()
-     * @generated
-     * @ordered
-     */
-    protected Pattern pattern;
-
-    /**
      * The default value of the '{@link #getPatternFilePath() <em>Pattern File Path</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -102,15 +92,9 @@ public class PatternMethodImpl extends PatternUnitImpl implements PatternMethod 
      * @generated
      */
     public Pattern getPattern() {
-        if (pattern != null && pattern.eIsProxy()) {
-            InternalEObject oldPattern = (InternalEObject) pattern;
-            pattern = (Pattern) eResolveProxy(oldPattern);
-            if (pattern != oldPattern) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN_METHOD__PATTERN, oldPattern, pattern));
-            }
-        }
-        return pattern;
+        if (eContainerFeatureID() != PatternPackage.PATTERN_METHOD__PATTERN)
+            return null;
+        return (Pattern) eContainer();
     }
 
     /**
@@ -118,8 +102,9 @@ public class PatternMethodImpl extends PatternUnitImpl implements PatternMethod 
      * <!-- end-user-doc -->
      * @generated
      */
-    public Pattern basicGetPattern() {
-        return pattern;
+    public NotificationChain basicSetPattern(Pattern newPattern, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject) newPattern, PatternPackage.PATTERN_METHOD__PATTERN, msgs);
+        return msgs;
     }
 
     /**
@@ -128,10 +113,19 @@ public class PatternMethodImpl extends PatternUnitImpl implements PatternMethod 
      * @generated
      */
     public void setPattern(Pattern newPattern) {
-        Pattern oldPattern = pattern;
-        pattern = newPattern;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_METHOD__PATTERN, oldPattern, pattern));
+        if (newPattern != eInternalContainer() || (eContainerFeatureID() != PatternPackage.PATTERN_METHOD__PATTERN && newPattern != null)) {
+            if (EcoreUtil.isAncestor(this, newPattern))
+                throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+            NotificationChain msgs = null;
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            if (newPattern != null)
+                msgs = ((InternalEObject) newPattern).eInverseAdd(this, PatternPackage.PATTERN__METHODS, Pattern.class, msgs);
+            msgs = basicSetPattern(newPattern, msgs);
+            if (msgs != null)
+                msgs.dispatch();
+        } else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_METHOD__PATTERN, newPattern, newPattern));
     }
 
     /**
@@ -161,12 +155,54 @@ public class PatternMethodImpl extends PatternUnitImpl implements PatternMethod 
      * @generated
      */
     @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+        case PatternPackage.PATTERN_METHOD__PATTERN:
+            if (eInternalContainer() != null)
+                msgs = eBasicRemoveFromContainer(msgs);
+            return basicSetPattern((Pattern) otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+        case PatternPackage.PATTERN_METHOD__PATTERN:
+            return basicSetPattern(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+        switch (eContainerFeatureID()) {
+        case PatternPackage.PATTERN_METHOD__PATTERN:
+            return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN__METHODS, Pattern.class, msgs);
+        }
+        return super.eBasicRemoveFromContainerFeature(msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
         case PatternPackage.PATTERN_METHOD__PATTERN:
-            if (resolve)
-                return getPattern();
-            return basicGetPattern();
+            return getPattern();
         case PatternPackage.PATTERN_METHOD__PATTERN_FILE_PATH:
             return getPatternFilePath();
         }
@@ -218,7 +254,7 @@ public class PatternMethodImpl extends PatternUnitImpl implements PatternMethod 
     public boolean eIsSet(int featureID) {
         switch (featureID) {
         case PatternPackage.PATTERN_METHOD__PATTERN:
-            return pattern != null;
+            return getPattern() != null;
         case PatternPackage.PATTERN_METHOD__PATTERN_FILE_PATH:
             return PATTERN_FILE_PATH_EDEFAULT == null ? patternFilePath != null : !PATTERN_FILE_PATH_EDEFAULT.equals(patternFilePath);
         }

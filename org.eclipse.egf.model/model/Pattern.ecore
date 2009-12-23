@@ -8,11 +8,11 @@
       <eParameters name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="headerMethod" lowerBound="1"
-        eType="#//PatternMethod" containment="true" resolveProxies="false"/>
+        eType="#//PatternMethod" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
-        eType="#//PatternMethod" containment="true" resolveProxies="false"/>
+        eType="#//PatternMethod" containment="true" resolveProxies="false" eOpposite="#//PatternMethod/pattern"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="footerMethod" lowerBound="1"
-        eType="#//PatternMethod" containment="true" resolveProxies="false"/>
+        eType="#//PatternMethod" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superPattern" eType="#//Pattern"
         resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" upperBound="-1"
@@ -24,7 +24,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternMethod" eSuperTypes="#//PatternUnit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
-        eType="#//Pattern"/>
+        eType="#//Pattern" resolveProxies="false" eOpposite="#//Pattern/methods"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternFilePath" lowerBound="1"
         eType="ecore:EDataType FactoryComponent.ecore#//URI"/>
   </eClassifiers>

@@ -37,26 +37,28 @@ import org.eclipse.emf.common.util.URI;
  */
 public interface PatternMethod extends PatternUnit {
     /**
-     * Returns the value of the '<em><b>Pattern</b></em>' reference.
+     * Returns the value of the '<em><b>Pattern</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.pattern.Pattern#getMethods <em>Methods</em>}'.
      * <!-- begin-user-doc -->
      * <p>
      * If the meaning of the '<em>Pattern</em>' container reference isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Pattern</em>' reference.
+     * @return the value of the '<em>Pattern</em>' container reference.
      * @see #setPattern(Pattern)
      * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternMethod_Pattern()
-     * @model required="true"
+     * @see org.eclipse.egf.model.pattern.Pattern#getMethods
+     * @model opposite="methods" resolveProxies="false" required="true" transient="false"
      * @generated
      */
     Pattern getPattern();
 
     /**
-     * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternMethod#getPattern <em>Pattern</em>}' reference.
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternMethod#getPattern <em>Pattern</em>}' container reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Pattern</em>' reference.
+     * @param value the new value of the '<em>Pattern</em>' container reference.
      * @see #getPattern()
      * @generated
      */
