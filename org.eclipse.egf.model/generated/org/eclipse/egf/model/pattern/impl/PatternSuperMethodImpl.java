@@ -31,23 +31,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class PatternSuperMethodImpl extends PatternUnitImpl implements PatternSuperMethod {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected PatternSuperMethodImpl() {
-        super();
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PatternSuperMethodImpl() {
+    super();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return PatternPackage.Literals.PATTERN_SUPER_METHOD;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return PatternPackage.Literals.PATTERN_SUPER_METHOD;
+  }
 
 } //PatternSuperMethodImpl
