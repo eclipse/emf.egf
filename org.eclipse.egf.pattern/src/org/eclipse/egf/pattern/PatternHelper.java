@@ -155,6 +155,13 @@ public class PatternHelper {
 
     }
 
+    /**
+     * This class manage the relationship between pt file paths and patterns.
+     * 
+     * @author Thomas Guiu
+     * 
+     */
+
     public static class Filename {
         private static final String PATTERN_TOKEN = "pattern.";
         private static final String METHOD_TOKEN = "method.";
@@ -165,14 +172,14 @@ public class PatternHelper {
 
         public static String extractPatternId(IPath patternMethodPath) throws FilenameFormatException {
             if (patternMethodPath == null)
-                throw new FilenameFormatException("Null value");
+                throw new FilenameFormatException(Messages.PatternFilename_error1);
 
             int segmentCount = patternMethodPath.segmentCount();
             if (segmentCount < 3)
-                throw new FilenameFormatException("Expecting at least 3 segments in filepath value: " + patternMethodPath);
+                throw new FilenameFormatException(Messages.bind(Messages.PatternFilename_error2, patternMethodPath));
             String segment = patternMethodPath.segment(segmentCount - 2);
             if (segment == null || "".equals(segment) || !segment.startsWith(PATTERN_TOKEN) || PATTERN_TOKEN.length() == segment.length())
-                throw new FilenameFormatException("The segment has an unexpected format: " + segment + " (it should be '" + PATTERN_TOKEN + "PATTERN_ID')");
+                throw new FilenameFormatException(Messages.bind(Messages.PatternFilename_error3, segment, PATTERN_TOKEN));
             return segment.substring(PATTERN_TOKEN.length());
         }
 

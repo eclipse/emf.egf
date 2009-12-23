@@ -20,6 +20,7 @@ import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternRunner;
+import org.eclipse.egf.pattern.Messages;
 
 /**
  * @author Guiu
@@ -37,7 +38,7 @@ public abstract class PatternExtension {
 
     public PatternRunner createRunner(Pattern pattern) throws PatternException {
         if (!matchNature(pattern))
-            throw new PatternException("Expected pattern nature is " + getNature().eClass().getName() + ", got " + pattern.getNature().eClass().getName());
+            throw new PatternException(Messages.bind(Messages.extension_error2, getNature().eClass().getName(), pattern.getNature().eClass().getName()));
         return doCreateRunner(pattern);
     }
 
@@ -45,7 +46,7 @@ public abstract class PatternExtension {
 
     public PatternInitializer createInitializer(IProject project, Pattern pattern) throws PatternException {
         if (!matchNature(pattern))
-            throw new PatternException("Expected pattern nature is " + getNature().eClass().getName() + ", got " + pattern.getNature().eClass().getName());
+            throw new PatternException(Messages.bind(Messages.extension_error2, getNature().eClass().getName(), pattern.getNature().eClass().getName()));
         return doCreateInitializer(project, pattern);
     }
 

@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 import org.eclipse.emf.common.util.URI;
 
@@ -72,11 +73,11 @@ public abstract class PatternInitializer {
     protected IFile getFile(PatternMethod method) {
         URI patternFilePath = method.getPatternFilePath();
         if (patternFilePath == null)
-            throw new IllegalStateException(method.getName() + " method pt file path is null");
+            throw new IllegalStateException(Messages.bind(Messages.initializer_error1, method.getName()));
 
         IFile file = project.getFile(patternFilePath.toFileString());
         if (file == null)
-            throw new IllegalStateException("Cannot get file for method " + method.getName());
+            throw new IllegalStateException(Messages.bind(Messages.initializer_error2, method.getName()));
         return file;
     }
 

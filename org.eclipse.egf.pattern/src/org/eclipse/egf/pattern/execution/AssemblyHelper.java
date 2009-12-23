@@ -29,6 +29,7 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternSuperMethod;
 import org.eclipse.egf.model.pattern.PatternUnit;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
+import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -150,14 +151,14 @@ public abstract class AssemblyHelper {
                     throw new IllegalArgumentException();
                 PatternMethod method = pattern.getMethod(name);
                 if (method == null)
-                    throw new IllegalStateException("Cannot find method '" + name + "'");
+                    throw new IllegalStateException(Messages.bind(Messages.assembly_error2, name));
                 return casePatternMethod(method);
             }
 
             @Override
             public String defaultCase(EObject object) {
 
-                throw new IllegalStateException("unexpected type: " + object.eClass().getName());
+                throw new IllegalStateException(Messages.bind(Messages.assembly_error1, object.eClass().getName()));
             }
 
         }.doSwitch(unit);

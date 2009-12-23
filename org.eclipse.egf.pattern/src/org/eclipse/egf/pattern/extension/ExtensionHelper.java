@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.pattern.Messages;
 
 /**
  * TODO for each call the extension point is read ...
@@ -49,7 +50,7 @@ public class ExtensionHelper {
         Map<String, PatternExtension> extensions = getExtensions();
         PatternExtension patternExtension = extensions.get(getName(nature));
         if (patternExtension == null)
-            throw new MissingExtensionException("Cannot find extension for nature '" + getName(nature) + "'");
+            throw new MissingExtensionException(Messages.bind(Messages.extension_error1, getName(nature)));
         return patternExtension;
 
     }
@@ -59,6 +60,8 @@ public class ExtensionHelper {
     }
 
     public static class MissingExtensionException extends Exception {
+
+        private static final long serialVersionUID = 8310777379305723688L;
 
         private MissingExtensionException(String message) {
             super(message);

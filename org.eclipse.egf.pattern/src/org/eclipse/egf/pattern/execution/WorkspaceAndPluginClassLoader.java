@@ -29,6 +29,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.pattern.Messages;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
@@ -90,7 +91,7 @@ public class WorkspaceAndPluginClassLoader extends ClassLoader {
             });
             return cl.loadClass(name);
         } catch (Exception e) {
-            throw new ClassNotFoundException("Cannot find " + name, e);
+            throw new ClassNotFoundException(Messages.bind(Messages.classloader_error1, name), e);
         }
     }
 
@@ -101,7 +102,7 @@ public class WorkspaceAndPluginClassLoader extends ClassLoader {
         try {
             outputLocation = javaProject.getOutputLocation();
         } catch (JavaModelException e) {
-            Activator.getDefault().logError("Cannot get output folder for project " + project.getName(), e);
+            Activator.getDefault().logError(Messages.bind(Messages.classloader_error2, project.getName()), e);
             return null;
         }
         IFolder folder = project.getFolder(outputLocation.removeFirstSegments(1));

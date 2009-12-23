@@ -49,6 +49,7 @@ import org.eclipse.egf.pattern.execution.TranslationHelper;
  */
 public class PatternBuilder extends IncrementalProjectBuilder {
 
+    @SuppressWarnings("unchecked")
     @Override
     protected IProject[] build(int kind, Map args, IProgressMonitor monitor) throws CoreException {
         Set<String> patternIds = null;
@@ -63,12 +64,12 @@ public class PatternBuilder extends IncrementalProjectBuilder {
 
         Set<Pattern> patterns = PatternHelper.getPatterns(getProject(), patternIds);
         if (patternIds != null && patterns.size() != patternIds.size())
-            Activator.getDefault().logWarning("Unexpected number of pattern to build.");
+            Activator.getDefault().logWarning(Messages.PatternBuilding_warning);
         try {
             // TODO que se passe t il si le header est supprimé ?
             TranslationHelper.translate(patterns);
         } catch (PatternException e) {
-            throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.PatternBuildingFailed, e));
+            throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.PatternBuilding_Failed, e));
         }
         return null;
     }

@@ -24,7 +24,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
-import org.eclipse.egf.pattern.templates.TemplateEngine.Templates;
 
 /**
  * This is a quick 'template engine' used for initialization of the contents of
@@ -38,7 +37,7 @@ public class SimpleEngine extends TemplateEngine {
     public SimpleEngine(String pluginId, IProject project, String templateFileExtension) {
         super(pluginId, project, templateFileExtension);
     }
-    
+
     public String process(Templates template, Map<String, String> context) throws CoreException, IOException {
         IPath path = new Path(PatternPreferences.getTemplatesFolderName()).append(template.getTemplateName()).addFileExtension(getExtension());
         String content = FileHelper_to_be_upgraded.getContent(getPluginId(), getProject(), path);

@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
+import org.eclipse.egf.pattern.Messages;
 import org.eclipse.emf.common.util.URI;
 import org.osgi.framework.Bundle;
 
@@ -94,15 +95,13 @@ public class FileHelper_to_be_upgraded {
 
         Bundle bundle = Platform.getBundle(pluginId);
         if (bundle == null)
-            throw new IllegalArgumentException("Cannot get bundle " + pluginId);
+            throw new IllegalArgumentException(Messages.bind(Messages.fileHelper_error1, pluginId));
 
         URL entry = bundle.getEntry(templatePath.toPortableString());
         if (entry == null)
-            throw new IllegalStateException("Cannot get entry '" + templatePath.toPortableString() + " from bundle " + pluginId);
-        // entry.openStream()
+            throw new IllegalStateException(Messages.bind(Messages.fileHelper_error2, templatePath.toPortableString(), pluginId));
 
         return getContent(entry.openStream());
-
     }
 
     /**
@@ -112,7 +111,7 @@ public class FileHelper_to_be_upgraded {
      */
     public static String getContent(IPlatformFactoryComponent component, URI uri) throws CoreException, IOException {
         if (component == null)
-            throw new IllegalArgumentException("The platformFactoryComponent is null");
+            throw new IllegalArgumentException(Messages.fileHelper_error3);
         IProject project = component.getPlatformPlugin().getProject();
         if (project != null) {
             IFile file = project.getFile(uri.path());
@@ -126,11 +125,10 @@ public class FileHelper_to_be_upgraded {
         String pluginId = component.getPluginElement().getName();
         Bundle bundle = Platform.getBundle(pluginId);
         if (bundle == null)
-            throw new IllegalArgumentException("Cannot get bundle " + pluginId);
+            throw new IllegalArgumentException(Messages.bind(Messages.fileHelper_error1, pluginId));
         URL entry = bundle.getEntry(uri.path());
         if (entry == null)
-            throw new IllegalStateException("Cannot get entry '" + uri.toString() + " from bundle " + pluginId);
-        // entry.openStream()
+            throw new IllegalStateException(Messages.bind(Messages.fileHelper_error2, uri.toString(), pluginId));
 
         return getContent(entry.openStream());
 
