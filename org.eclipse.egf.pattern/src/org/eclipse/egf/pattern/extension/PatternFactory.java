@@ -58,6 +58,34 @@ public abstract class PatternFactory {
 
     }
 
+    public List<Pattern> createDebugPattern5(PatternLibrary lib) {
+        List<Pattern> result = new ArrayList<Pattern>();
+        Pattern parent = createPattern(lib, "parent");
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
+        param1.setName("parentP");
+        param1.setType(EcorePackage.eINSTANCE.getEClass());
+        parent.getParameters().add(param1);
+        PatternParameter param12 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
+        param12.setName("parentP");
+        param12.setType(EcorePackage.eINSTANCE.getEClass());
+        parent.getParameters().add(param12);
+
+        Pattern child = createPattern(lib, "child");
+        PatternParameter param2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
+        param2.setName("childP");
+        param2.setType(EcorePackage.eINSTANCE.getEClass());
+        child.getParameters().add(param2);
+        PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
+        patternCall.getParameterMatching().put(param12, param2);
+        patternCall.setCalled(child);
+
+        parent.getOrchestration().add(patternCall);
+        result.add(parent);
+        result.add(child);
+
+        return result;
+    }
+
     public List<Pattern> createDebugPattern4(PatternLibrary lib) {
         List<Pattern> result = new ArrayList<Pattern>();
         Pattern parent = createPattern(lib, "parent");

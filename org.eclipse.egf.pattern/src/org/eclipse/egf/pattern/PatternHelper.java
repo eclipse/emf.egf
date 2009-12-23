@@ -120,6 +120,11 @@ public class PatternHelper {
         return parameter.getName() + "Parameter";
     }
 
+    public static String uniqueName(org.eclipse.egf.model.pattern.PatternParameter parameter) {
+
+        return parameter.getName() + "_" + parameter.getID().replaceAll("\\W", "");
+    }
+
     private PatternHelper() {
     }
 

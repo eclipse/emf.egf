@@ -16,8 +16,6 @@
 package org.eclipse.egf.pattern.execution;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.constant.CharacterConstants;
@@ -28,7 +26,6 @@ import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternHelper;
@@ -43,9 +40,6 @@ public abstract class AssemblyHelper {
 
     protected final Pattern pattern;
     protected final StringBuilder content = new StringBuilder(1000);
-    // Every called pattern owns its list of parameters, we need to create all
-    // needed alias (Validation ensure that they can be matched)
-    protected List<List<String>> parameterAlias;
 
     public AssemblyHelper(Pattern pattern) {
         super();
@@ -59,11 +53,9 @@ public abstract class AssemblyHelper {
 
         int insertionIndex = content.length();
 
-        collectParameters(pattern);
-
         visitOrchestration(pattern);
 
-        if (!parameterAlias.isEmpty())
+        if (!pattern.getParameters().isEmpty())
             handleParameters(insertionIndex);
 
         read = getMethodContent(pattern.getFooterMethod());
@@ -71,22 +63,6 @@ public abstract class AssemblyHelper {
             content.append(read);
 
         return content.toString();
-    }
-
-    private void collectParameters(Pattern pattern) {
-        if (parameterAlias == null) {
-            parameterAlias = new ArrayList<List<String>>();
-            for (PatternParameter param : pattern.getParameters()) {
-                List<String> names = new ArrayList<String>();
-                names.add(param.getName());
-                parameterAlias.add(names);
-            }
-        } else {
-            for (int i = 0; i < pattern.getParameters().size(); i++) {
-                List<String> names = parameterAlias.get(i);
-                names.add(pattern.getParameters().get(i).getName());
-            }
-        }
     }
 
     /**
@@ -97,9 +73,20 @@ public abstract class AssemblyHelper {
     protected abstract void handleParameters(int insertionIndex);
 
     /**
-     * This method handles pattern calls.
+     * This method handles pattern calls.<br>
+     * We must provide the expected parameters or throw an exception if we
+     * can't.
      */
-    protected abstract void call(Pattern object) throws PatternException;
+    protected abstract void call(PatternCall object) throws PatternException;
+
+    /**
+     * This method handles pattern calls.<br>
+     * We must provide a context so the called pattern can perform a query to
+     * fill its paremeters.
+     */
+    protected void callWithContext(Pattern object) throws PatternException {
+        // TODO implementation
+    }
 
     // TODO mark this method abstract as its implementation depends on the
     // nature of pattern.
@@ -130,8 +117,13 @@ public abstract class AssemblyHelper {
             public String casePatternCall(PatternCall object) {
 
                 try {
-                    collectParameters(object.getCalled());
-                    call(object.getCalled());
+
+                    // TODO at this time we need to know how the pattern will be
+                    // called. 2 ways:
+                    // 1 - we give the expected parameters
+                    // 2 - we a context object so it can perform a query to fill
+                    // its parameters
+                    call(object);
                 } catch (PatternException e) {
                     holder.object = e;
                 }
