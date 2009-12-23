@@ -29,6 +29,7 @@ import org.eclipse.egf.model.jetpattern.JetNature;
 import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.Registry_to_be_upgraded;
+import org.eclipse.egf.pattern.Runner_to_be_moved_to_model;
 import org.eclipse.emf.codegen.jet.JETCompiler;
 import org.eclipse.emf.codegen.jet.JETException;
 import org.eclipse.emf.codegen.jet.JETSkeleton;

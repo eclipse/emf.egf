@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.jet;
+package org.eclipse.egf.pattern;
 
 import org.eclipse.egf.model.pattern.Pattern;
 
