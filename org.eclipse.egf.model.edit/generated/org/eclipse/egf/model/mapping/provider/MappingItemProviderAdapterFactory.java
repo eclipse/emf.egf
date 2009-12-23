@@ -21,28 +21,18 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-
-import org.eclipse.egf.model.factorycomponent.FactoryComponent;
 import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
-
+import org.eclipse.egf.model.factorycomponent.ViewpointContainer;
 import org.eclipse.egf.model.factorycomponent.util.FactoryComponentSwitch;
-
 import org.eclipse.egf.model.mapping.MappingFactory;
-
 import org.eclipse.egf.model.mapping.util.MappingAdapterFactory;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -313,8 +303,8 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
        * @generated
        */
       @Override
-      public Object caseFactoryComponent(FactoryComponent object) {
-        newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.FACTORY_COMPONENT__VIEWPOINTS,
+      public Object caseViewpointContainer(ViewpointContainer object) {
+        newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS,
             MappingFactory.eINSTANCE.createMappingViewpoint()));
 
         return null;

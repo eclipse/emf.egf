@@ -79,8 +79,8 @@ public class OrchestrationItemProvider extends ModelElementItemProvider implemen
   @Override
   public String getText(Object object) {
     String label = ((Orchestration) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_Orchestration_type") : //$NON-NLS-1$
-        getString("_UI_Orchestration_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_Orchestration_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_Orchestration_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**

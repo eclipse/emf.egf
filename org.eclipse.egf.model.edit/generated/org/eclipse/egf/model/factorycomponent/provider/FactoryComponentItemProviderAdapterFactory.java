@@ -163,26 +163,26 @@ public class FactoryComponentItemProviderAdapterFactory extends FactoryComponent
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.factorycomponent.Invocation} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.factorycomponent.ViewpointContainer} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected InvocationItemProvider invocationItemProvider;
+  protected ViewpointContainerItemProvider viewpointContainerItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.factorycomponent.Invocation}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.factorycomponent.ViewpointContainer}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createInvocationAdapter() {
-    if (invocationItemProvider == null) {
-      invocationItemProvider = new InvocationItemProvider(this);
+  public Adapter createViewpointContainerAdapter() {
+    if (viewpointContainerItemProvider == null) {
+      viewpointContainerItemProvider = new ViewpointContainerItemProvider(this);
     }
 
-    return invocationItemProvider;
+    return viewpointContainerItemProvider;
   }
 
   /**
@@ -255,26 +255,26 @@ public class FactoryComponentItemProviderAdapterFactory extends FactoryComponent
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.factorycomponent.ContextValue} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.factorycomponent.ContractValue} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ContextValueItemProvider contextValueItemProvider;
+  protected ContractValueItemProvider contractValueItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.factorycomponent.ContextValue}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.factorycomponent.ContractValue}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createContextValueAdapter() {
-    if (contextValueItemProvider == null) {
-      contextValueItemProvider = new ContextValueItemProvider(this);
+  public Adapter createContractValueAdapter() {
+    if (contractValueItemProvider == null) {
+      contractValueItemProvider = new ContractValueItemProvider(this);
     }
 
-    return contextValueItemProvider;
+    return contractValueItemProvider;
   }
 
   /**
@@ -430,16 +430,16 @@ public class FactoryComponentItemProviderAdapterFactory extends FactoryComponent
       taskItemProvider.dispose();
     if (factoryComponentItemProvider != null)
       factoryComponentItemProvider.dispose();
-    if (invocationItemProvider != null)
-      invocationItemProvider.dispose();
+    if (viewpointContainerItemProvider != null)
+      viewpointContainerItemProvider.dispose();
     if (contextItemProvider != null)
       contextItemProvider.dispose();
     if (contractContainerItemProvider != null)
       contractContainerItemProvider.dispose();
     if (contractItemProvider != null)
       contractItemProvider.dispose();
-    if (contextValueItemProvider != null)
-      contextValueItemProvider.dispose();
+    if (contractValueItemProvider != null)
+      contractValueItemProvider.dispose();
     if (contractConnectorItemProvider != null)
       contractConnectorItemProvider.dispose();
   }

@@ -117,29 +117,6 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.Type} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TypeItemProvider typeItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.types.Type}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createTypeAdapter() {
-    if (typeItemProvider == null) {
-      typeItemProvider = new TypeItemProvider(this);
-    }
-
-    return typeItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.BooleanType} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -357,8 +334,6 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
    * @generated
    */
   public void dispose() {
-    if (typeItemProvider != null)
-      typeItemProvider.dispose();
     if (booleanTypeItemProvider != null)
       booleanTypeItemProvider.dispose();
     if (stringTypeItemProvider != null)

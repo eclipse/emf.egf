@@ -12,10 +12,8 @@ Export-Package:
  org.eclipse.egf.model.domain.provider,
  org.eclipse.egf.model.edit, 
  org.eclipse.egf.model.factorycomponent.provider,
- org.eclipse.egf.model.jetpattern.provider,
  org.eclipse.egf.model.mapping.provider,
  org.eclipse.egf.model.pattern.provider,
- org.eclipse.egf.model.productionplan.provider,
  org.eclipse.egf.model.types.provider  
 Require-Bundle: 
  org.eclipse.core.runtime,

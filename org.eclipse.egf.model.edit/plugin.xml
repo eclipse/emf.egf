@@ -129,39 +129,6 @@
   </extension>  
   
   <!-- ================================================================================= -->
-  <!-- ProductionPlan Model                                                              -->
-  <!-- ================================================================================= --> 
-  
-  <extension 
-    point="org.eclipse.emf.edit.itemProviderAdapterFactories"
-  >
-    <factory
-      uri="http://www.eclipse.org/egf/1.0.0/productionplan"
-      class="org.eclipse.egf.model.productionplan.provider.ProductionplanItemProviderAdapterFactory"
-      supportedTypes=
-        "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-         org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-         org.eclipse.emf.edit.provider.ITreeItemContentProvider
-         org.eclipse.emf.edit.provider.IItemLabelProvider
-         org.eclipse.emf.edit.provider.IItemPropertySource
-         org.eclipse.emf.edit.provider.ITableItemLabelProvider
-         org.eclipse.emf.edit.provider.ITableItemColorProvider
-         org.eclipse.emf.edit.provider.ITableItemFontProvider
-         org.eclipse.emf.edit.provider.IItemColorProvider
-         org.eclipse.emf.edit.provider.IItemFontProvider"
-      />
-  </extension>
-  
-  <extension 
-    point="org.eclipse.emf.edit.childCreationExtenders"
-  >
-    <extender
-      uri="http://www.eclipse.org/egf/1.0.0/factorycomponent"
-      class="org.eclipse.egf.model.productionplan.provider.ProductionplanItemProviderAdapterFactory$FactoryComponentChildCreationExtender"
-    />
-  </extension>  
-  
-  <!-- ================================================================================= -->
   <!-- Pattern Model                                                                     -->
   <!-- ================================================================================= --> 
   
@@ -193,38 +160,5 @@
       class="org.eclipse.egf.model.pattern.provider.PatternItemProviderAdapterFactory$FactoryComponentChildCreationExtender"
     />
   </extension>   
-
-  <!-- ================================================================================= -->
-  <!-- JetPattern Model                                                                  -->
-  <!-- ================================================================================= -->
-
-  <extension 
-    point="org.eclipse.emf.edit.itemProviderAdapterFactories"
-  >
-    <factory
-      uri="http://www.eclipse.org/egf/1.0.0/jetpattern"
-      class="org.eclipse.egf.model.jetpattern.provider.JetpatternItemProviderAdapterFactory"
-      supportedTypes=
-        "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-         org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-         org.eclipse.emf.edit.provider.ITreeItemContentProvider
-         org.eclipse.emf.edit.provider.IItemLabelProvider
-         org.eclipse.emf.edit.provider.IItemPropertySource
-         org.eclipse.emf.edit.provider.ITableItemLabelProvider
-         org.eclipse.emf.edit.provider.ITableItemColorProvider
-         org.eclipse.emf.edit.provider.ITableItemFontProvider
-         org.eclipse.emf.edit.provider.IItemColorProvider
-         org.eclipse.emf.edit.provider.IItemFontProvider"
-      />
-   </extension>
-
-  <extension 
-    point="org.eclipse.emf.edit.childCreationExtenders"
-  >
-    <extender
-      uri="http://www.eclipse.org/egf/1.0.0/pattern"
-      class="org.eclipse.egf.model.jetpattern.provider.JetpatternItemProviderAdapterFactory$PatternChildCreationExtender"
-    />
-  </extension>
 
 </plugin>

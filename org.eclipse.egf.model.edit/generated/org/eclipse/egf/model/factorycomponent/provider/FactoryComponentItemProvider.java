@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.factorycomponent.FactoryComponent;
+import org.eclipse.egf.model.factorycomponent.FactoryComponentFactory;
 import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -86,7 +87,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(FactoryComponentPackage.Literals.FACTORY_COMPONENT__VIEWPOINTS);
+      childrenFeatures.add(FactoryComponentPackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER);
       childrenFeatures.add(FactoryComponentPackage.Literals.FACTORY_COMPONENT__ORCHESTRATION);
     }
     return childrenFeatures;
@@ -125,8 +126,8 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   @Override
   public String getText(Object object) {
     String label = ((FactoryComponent) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_FactoryComponent_type") : //$NON-NLS-1$
-        getString("_UI_FactoryComponent_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_FactoryComponent_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_FactoryComponent_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -141,7 +142,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
     updateChildren(notification);
 
     switch (notification.getFeatureID(FactoryComponent.class)) {
-    case FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINTS:
+    case FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
     case FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
@@ -159,6 +160,9 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER,
+        FactoryComponentFactory.eINSTANCE.createViewpointContainer()));
   }
 
 }

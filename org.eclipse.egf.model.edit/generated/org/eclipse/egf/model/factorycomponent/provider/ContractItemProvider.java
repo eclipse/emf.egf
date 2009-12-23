@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.factorycomponent.Contract;
+import org.eclipse.egf.model.factorycomponent.FactoryComponentFactory;
 import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -135,6 +136,17 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   }
 
   /**
+   * This returns Contract.gif.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Contract")); //$NON-NLS-1$
+  }
+
+  /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -143,8 +155,8 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   @Override
   public String getText(Object object) {
     String label = ((Contract) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_Contract_type") : //$NON-NLS-1$
-        getString("_UI_Contract_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_Contract_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_Contract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -180,6 +192,9 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.CONTRACT__DEFAULT_VALUE,
+        FactoryComponentFactory.eINSTANCE.createContractValue()));
   }
 
 }

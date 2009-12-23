@@ -125,8 +125,8 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
   @Override
   public String getText(Object object) {
     String label = ((Invocation) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_Invocation_type") : //$NON-NLS-1$
-        getString("_UI_Invocation_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_Invocation_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_Invocation_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**

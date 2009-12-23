@@ -90,8 +90,8 @@ public class BooleanTypeItemProvider extends PrimitiveObjectTypeItemProvider imp
   @Override
   public String getText(Object object) {
     String label = ((BooleanType) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_BooleanType_type") : //$NON-NLS-1$
-        getString("_UI_BooleanType_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_BooleanType_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_BooleanType_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**

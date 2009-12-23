@@ -141,8 +141,8 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements IEd
   @Override
   public String getText(Object object) {
     String label = ((ModelElement) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_ModelElement_type") : //$NON-NLS-1$
-        getString("_UI_ModelElement_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_ModelElement_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_ModelElement_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**

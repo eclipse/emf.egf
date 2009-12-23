@@ -139,8 +139,8 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
   @Override
   public String getText(Object object) {
     String label = ((TypeElement) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_TypeElement_type") : //$NON-NLS-1$
-        getString("_UI_TypeElement_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_TypeElement_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_TypeElement_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**

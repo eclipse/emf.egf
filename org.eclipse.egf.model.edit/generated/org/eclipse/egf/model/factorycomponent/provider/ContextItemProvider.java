@@ -126,8 +126,8 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
   @Override
   public String getText(Object object) {
     String label = ((Context) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_Context_type") : //$NON-NLS-1$
-        getString("_UI_Context_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_Context_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_Context_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -162,7 +162,7 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
     newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.CONTEXT__VALUES, FactoryComponentFactory.eINSTANCE
-        .createContextValue()));
+        .createContractValue()));
 
     newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.CONTEXT__CONNECTORS, FactoryComponentFactory.eINSTANCE
         .createContractConnector()));

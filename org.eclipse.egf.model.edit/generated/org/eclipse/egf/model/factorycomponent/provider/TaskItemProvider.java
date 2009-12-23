@@ -108,8 +108,8 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
   @Override
   public String getText(Object object) {
     String label = ((Task) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_Task_type") : //$NON-NLS-1$
-        getString("_UI_Task_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_Task_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_Task_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**

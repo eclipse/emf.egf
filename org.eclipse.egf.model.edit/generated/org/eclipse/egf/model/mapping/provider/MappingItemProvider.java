@@ -85,8 +85,8 @@ public class MappingItemProvider extends ModelElementItemProvider implements IEd
   @Override
   public String getText(Object object) {
     String label = ((Mapping) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_Mapping_type") : //$NON-NLS-1$
-        getString("_UI_Mapping_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_Mapping_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_Mapping_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
