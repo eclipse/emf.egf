@@ -70,9 +70,35 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addHeaderMethodPropertyDescriptor(object);
+            addFooterMethodPropertyDescriptor(object);
             addSuperPatternPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Header Method feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addHeaderMethodPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Pattern_headerMethod_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Pattern_headerMethod_feature", "_UI_Pattern_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.PATTERN__HEADER_METHOD, true, false, true, null, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Footer Method feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addFooterMethodPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Pattern_footerMethod_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Pattern_footerMethod_feature", "_UI_Pattern_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.PATTERN__FOOTER_METHOD, true, false, true, null, null, null));
     }
 
     /**
@@ -99,9 +125,7 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
         if (childrenFeatures == null) {
             super.getChildrenFeatures(object);
-            childrenFeatures.add(PatternPackage.Literals.PATTERN__HEADER_METHOD);
             childrenFeatures.add(PatternPackage.Literals.PATTERN__METHODS);
-            childrenFeatures.add(PatternPackage.Literals.PATTERN__FOOTER_METHOD);
             childrenFeatures.add(PatternPackage.Literals.PATTERN__ORCHESTRATION);
             childrenFeatures.add(PatternPackage.Literals.PATTERN__PARAMETERS);
             childrenFeatures.add(PatternPackage.Literals.PATTERN__NATURE);
@@ -158,12 +182,12 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         updateChildren(notification);
 
         switch (notification.getFeatureID(Pattern.class)) {
+        case PatternPackage.PATTERN__HEADER_METHOD:
+        case PatternPackage.PATTERN__FOOTER_METHOD:
         case PatternPackage.PATTERN__SUPER_PATTERN:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
             return;
-        case PatternPackage.PATTERN__HEADER_METHOD:
         case PatternPackage.PATTERN__METHODS:
-        case PatternPackage.PATTERN__FOOTER_METHOD:
         case PatternPackage.PATTERN__ORCHESTRATION:
         case PatternPackage.PATTERN__PARAMETERS:
         case PatternPackage.PATTERN__NATURE:
@@ -184,11 +208,7 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
     protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
         super.collectNewChildDescriptors(newChildDescriptors, object);
 
-        newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN__HEADER_METHOD, PatternFactory.eINSTANCE.createPatternMethod()));
-
         newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN__METHODS, PatternFactory.eINSTANCE.createPatternMethod()));
-
-        newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN__FOOTER_METHOD, PatternFactory.eINSTANCE.createPatternMethod()));
 
         newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN__ORCHESTRATION, PatternFactory.eINSTANCE.createPattern()));
 
@@ -212,7 +232,7 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         Object childFeature = feature;
         Object childObject = child;
 
-        boolean qualify = childFeature == PatternPackage.Literals.PATTERN__HEADER_METHOD || childFeature == PatternPackage.Literals.PATTERN__METHODS || childFeature == PatternPackage.Literals.PATTERN__FOOTER_METHOD || childFeature == PatternPackage.Literals.PATTERN__ORCHESTRATION;
+        boolean qualify = childFeature == PatternPackage.Literals.PATTERN__METHODS || childFeature == PatternPackage.Literals.PATTERN__ORCHESTRATION;
 
         if (qualify) {
             return getString("_UI_CreateChild_text2", //$NON-NLS-1$
