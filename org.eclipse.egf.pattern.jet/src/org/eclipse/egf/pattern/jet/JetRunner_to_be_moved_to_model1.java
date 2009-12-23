@@ -77,7 +77,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
         String templatecontent = helper.visit();
 
         // 2 - compile the result
-        String templateURI = "uri_test";
+        String templateURI = "Pattern_" + pattern.getName() + " (" + pattern.getID() + ")";
         try {
             JETCompiler compiler = new JETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
             compiler.parse();
