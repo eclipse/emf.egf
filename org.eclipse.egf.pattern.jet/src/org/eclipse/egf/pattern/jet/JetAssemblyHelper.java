@@ -18,11 +18,14 @@ package org.eclipse.egf.pattern.jet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.pattern.ParameterMatcher;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.execution.AssemblyHelper;
 import org.eclipse.emf.ecore.EClass;
@@ -42,15 +45,33 @@ public class JetAssemblyHelper extends AssemblyHelper {
     }
 
     @Override
-    protected void call(Pattern pattern) throws PatternException {
+    protected void call(PatternCall call) throws PatternException {
+        Pattern pattern = call.getCalled();
         String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
         if (templateClassName == null)
             throw new PatternException(Messages.assembly_error1);
 
         content.append("<%");
+        if (call.getParameterMatching().isEmpty()) {
+            // try to match parameters
+            ParameterMatcher matcher = ParameterMatcher.create(call.getPattern(), pattern);
+            if (!matcher.matches())
+                throw new PatternException(Messages.bind(Messages.assembly_error7, call.getPattern().getName()));
+            for (PatternParameter key : matcher.getMatching().keySet()) {
+                String called = PatternHelper.uniqueName(matcher.getMatching().get(key));
+                EClass pEClass = key.getType().eClass();
+                content.append(pEClass.getName()).append(" ").append(called).append(" = (").append(pEClass.getName()).append(")").append(key.getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
+            }
+        } else {
+            for (Entry<PatternParameter, PatternParameter> binding : call.getParameterMatching()) {
+                String called = PatternHelper.uniqueName(binding.getValue());
+                EClass pEClass = binding.getKey().getType().eClass();
+                content.append(pEClass.getName()).append(" ").append(called).append(" = (").append(pEClass.getName()).append(")").append(binding.getKey().getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
+            }
+        }
         content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(stringBuffer, ctx");
         for (PatternParameter parameter : pattern.getParameters())
-            content.append(", ").append(parameter.getName());
+            content.append(", ").append(PatternHelper.uniqueName(parameter));
 
         content.append(");");
         content.append("%>");
@@ -75,9 +96,6 @@ public class JetAssemblyHelper extends AssemblyHelper {
         localContent.append("").append(CharacterConstants.LINE_SEPARATOR).append(CharacterConstants.LINE_SEPARATOR);
 
         Map<String, List<String>> aliases = new HashMap<String, List<String>>();
-        for (List<String> names : parameterAlias) {
-            aliases.put(names.get(0), names);
-        }
 
         for (PatternParameter parameter : pattern.getParameters()) {
             localContent.append("Collection<EObject> ").append(parameter.getName()).append("Collection = new ArrayList<EObject>(); //TODO Query;").append(CharacterConstants.LINE_SEPARATOR);
@@ -98,7 +116,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
         // 2 - Add post block at current index
         content.append("<%").append(CharacterConstants.LINE_SEPARATOR);
 
-        for (int i = 0; i < parameterAlias.size(); i++)
+        for (int i = 0; i < pattern.getParameters().size(); i++)
             content.append("}").append(CharacterConstants.LINE_SEPARATOR);
         content.append(CharacterConstants.LINE_SEPARATOR).append("%>");
 
@@ -110,12 +128,10 @@ public class JetAssemblyHelper extends AssemblyHelper {
         localContent.setLength(0);
         localContent.append(CharacterConstants.LINE_SEPARATOR);
         for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getParameters()) {
-            List<String> alias = aliases.get(parameter.getName());
             String local = PatternHelper.localizeName(parameter);
             EClass pEClass = parameter.getType().eClass();
-            for (String name : alias) {
-                localContent.append(pEClass.getName()).append(" ").append(name).append(" = (").append(pEClass.getName()).append(")").append(local).append(";").append(CharacterConstants.LINE_SEPARATOR);
-            }
+            localContent.append(pEClass.getName()).append(" ").append(parameter.getName()).append(" = (").append(pEClass.getName()).append(")").append(local).append(";").append(CharacterConstants.LINE_SEPARATOR);
+
         }
         content.insert(startIndex + START_MARKER.length(), localContent);
     }
