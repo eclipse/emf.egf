@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.java;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternRunner;
@@ -45,6 +46,20 @@ public class JavaPatternExtension extends PatternExtension {
     @Override
     public PatternFactory getFactory() {
         return factory;
+    }
+
+    @Override
+    public String canTranslate(Pattern pattern) {
+
+        String canTranslate = super.canTranslate(pattern);
+        if (canTranslate == null) {
+            try {
+                JavaNatureHelper.getClassName(pattern);
+            } catch (PatternException e) {
+                return e.getMessage();
+            }
+        }
+        return canTranslate;
     }
 
     @Override
