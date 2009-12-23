@@ -16,6 +16,8 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
+import org.eclipse.egf.model.PatternContext;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
 
 import org.eclipse.egf.model.pattern.Library;
@@ -124,6 +126,13 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 	 * @generated
 	 */
 	private EDataType patternExceptionEDataType = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EDataType patternContextEDataType = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -428,6 +437,15 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EDataType getPatternContext() {
+		return patternContextEDataType;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public PatternFactory getPatternFactory() {
 		return (PatternFactory) getEFactoryInstance();
 	}
@@ -489,6 +507,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
 		// Create data types
 		patternExceptionEDataType = createEDataType(PATTERN_EXCEPTION);
+		patternContextEDataType = createEDataType(PATTERN_CONTEXT);
 	}
 
 	/**
@@ -561,6 +580,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 		initEReference(getPatternRunner_Pattern(), this.getPattern(), null, "pattern", null, 1, 1, PatternRunner.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		op = addEOperation(patternRunnerEClass, null, "run", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getPatternContext(), "context", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEException(op, this.getPatternException());
 
 		op = addEOperation(patternRunnerEClass, null, "translate", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -581,7 +601,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 		initEClass(patternNatureEClass, PatternNature.class, "PatternNature", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Initialize data types
-		initEDataType(patternExceptionEDataType, Exception.class, "PatternException", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(patternExceptionEDataType, PatternException.class, "PatternException", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEDataType(patternContextEDataType, PatternContext.class, "PatternContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
 		// Create resource
 		createResource(eNS_URI);

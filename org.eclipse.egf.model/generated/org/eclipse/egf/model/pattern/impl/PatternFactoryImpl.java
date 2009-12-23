@@ -16,6 +16,7 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
+import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.pattern.*;
 
 import org.eclipse.emf.ecore.EClass;
@@ -95,6 +96,8 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
+		case PatternPackage.PATTERN_CONTEXT:
+			return createPatternContextFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -108,6 +111,8 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
+		case PatternPackage.PATTERN_CONTEXT:
+			return convertPatternContextToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
 		}
@@ -171,6 +176,24 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 	public PatternViewpoint createPatternViewpoint() {
 		PatternViewpointImpl patternViewpoint = new PatternViewpointImpl();
 		return patternViewpoint;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public PatternContext createPatternContextFromString(EDataType eDataType, String initialValue) {
+		return (PatternContext) super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertPatternContextToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
 	}
 
 	/**

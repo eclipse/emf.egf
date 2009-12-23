@@ -16,6 +16,8 @@
  */
 package org.eclipse.egf.model.pattern;
 
+import org.eclipse.egf.model.PatternContext;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.factorycomponent.ModelElement;
 
 /**
@@ -64,10 +66,10 @@ public interface PatternRunner extends ModelElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model exceptions="org.eclipse.egf.model.pattern.PatternException"
+	 * @model exceptions="org.eclipse.egf.model.pattern.PatternException" contextDataType="org.eclipse.egf.model.pattern.PatternContext"
 	 * @generated
 	 */
-	void run() ;
+	void run(PatternContext context) throws PatternException;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -75,6 +77,6 @@ public interface PatternRunner extends ModelElement {
 	 * @model exceptions="org.eclipse.egf.model.pattern.PatternException"
 	 * @generated
 	 */
-	void translate() ;
+	void translate() throws PatternException;
 
 } // PatternRunner

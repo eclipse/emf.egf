@@ -34,7 +34,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternRunner" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement">
-    <eOperations name="run" eExceptions="#//PatternException"/>
+    <eOperations name="run" eExceptions="#//PatternException">
+      <eParameters name="context" eType="#//PatternContext"/>
+    </eOperations>
     <eOperations name="translate" eExceptions="#//PatternException"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
         eType="#//Pattern"/>
@@ -55,6 +57,7 @@
         eType="#//Library" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternNature" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="PatternException" instanceClassName="Exception"
+  <eClassifiers xsi:type="ecore:EDataType" name="PatternException" instanceClassName="org.eclipse.egf.model.PatternException"
       serializable="false"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="PatternContext" instanceClassName="org.eclipse.egf.model.PatternContext"/>
 </ecore:EPackage>

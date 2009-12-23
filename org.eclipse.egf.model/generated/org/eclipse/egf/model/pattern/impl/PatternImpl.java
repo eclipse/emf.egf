@@ -300,8 +300,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 	 * @generated NOT
 	 */
 	public PatternMethod getMethod(String name) {
-		for (PatternMethod method : getAllMethods())
-		{
+		for (PatternMethod method : getAllMethods()) {
 			if (method.getName().equals(name))
 				return method;
 		}

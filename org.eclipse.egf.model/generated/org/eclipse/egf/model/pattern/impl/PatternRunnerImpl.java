@@ -16,6 +16,8 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
+import org.eclipse.egf.model.PatternContext;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.factorycomponent.impl.ModelElementImpl;
 
 import org.eclipse.egf.model.pattern.Pattern;
@@ -124,7 +126,7 @@ public abstract class PatternRunnerImpl extends ModelElementImpl implements Patt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void run()  {
+	public void run(PatternContext context) throws PatternException {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -135,7 +137,7 @@ public abstract class PatternRunnerImpl extends ModelElementImpl implements Patt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void translate() {
+	public void translate() throws PatternException {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();

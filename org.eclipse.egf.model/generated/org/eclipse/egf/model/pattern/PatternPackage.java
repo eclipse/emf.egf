@@ -689,11 +689,21 @@ public interface PatternPackage extends EPackage {
 	 * The meta object id for the '<em>Exception</em>' data type.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see Exception
+	 * @see org.eclipse.egf.model.PatternException
 	 * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
 	 * @generated
 	 */
 	int PATTERN_EXCEPTION = 10;
+
+	/**
+	 * The meta object id for the '<em>Context</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.egf.model.PatternContext
+	 * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
+	 * @generated
+	 */
+	int PATTERN_CONTEXT = 11;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -961,15 +971,26 @@ public interface PatternPackage extends EPackage {
 	EClass getPatternNature();
 
 	/**
-	 * Returns the meta object for data type '{@link Exception <em>Exception</em>}'.
+	 * Returns the meta object for data type '{@link org.eclipse.egf.model.PatternException <em>Exception</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for data type '<em>Exception</em>'.
-	 * @see Exception
-	 * @model instanceClass="java.lang.Object" serializeable="false"
+	 * @see org.eclipse.egf.model.PatternException
+	 * @model instanceClass="org.eclipse.egf.model.PatternException" serializeable="false"
 	 * @generated
 	 */
 	EDataType getPatternException();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.egf.model.PatternContext <em>Context</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Context</em>'.
+	 * @see org.eclipse.egf.model.PatternContext
+	 * @model instanceClass="org.eclipse.egf.model.PatternContext"
+	 * @generated
+	 */
+	EDataType getPatternContext();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -1217,11 +1238,21 @@ public interface PatternPackage extends EPackage {
 		 * The meta object literal for the '<em>Exception</em>' data type.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see Exception
+		 * @see org.eclipse.egf.model.PatternException
 		 * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
 		 * @generated
 		 */
 		EDataType PATTERN_EXCEPTION = eINSTANCE.getPatternException();
+
+		/**
+		 * The meta object literal for the '<em>Context</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.egf.model.PatternContext
+		 * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
+		 * @generated
+		 */
+		EDataType PATTERN_CONTEXT = eINSTANCE.getPatternContext();
 
 	}
 

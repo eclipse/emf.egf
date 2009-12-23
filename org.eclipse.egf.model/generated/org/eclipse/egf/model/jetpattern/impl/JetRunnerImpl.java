@@ -16,11 +16,11 @@
  */
 package org.eclipse.egf.model.jetpattern.impl;
 
+import org.eclipse.egf.model.PatternContext;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.jetpattern.JetRunner;
 import org.eclipse.egf.model.jetpattern.JetpatternPackage;
-
 import org.eclipse.egf.model.pattern.impl.PatternRunnerImpl;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -28,14 +28,15 @@ import org.eclipse.emf.ecore.EClass;
  * <em><b>Jet Runner</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class JetRunnerImpl extends PatternRunnerImpl implements JetRunner {
 	/**
-	 * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-	 * <!-- begin-user-doc --> <!--
+	 * A set of bit flags representing the values of boolean attributes and
+	 * whether unsettable features have been set. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -43,6 +44,7 @@ public class JetRunnerImpl extends PatternRunnerImpl implements JetRunner {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected JetRunnerImpl() {
@@ -50,25 +52,25 @@ public class JetRunnerImpl extends PatternRunnerImpl implements JetRunner {
 	}
 
 	@Override
-	public void run() {
+	public void run(PatternContext context) throws PatternException {
 		if (getPattern() == null)
 			throw new IllegalStateException();
-		super.run();
 	}
 
 	@Override
-	public void translate() {
+	public void translate() throws PatternException {
 		if (getPattern() == null)
 			throw new IllegalStateException();
 
-		//**************************************************************************
+		// **************************************************************************
 		StringBuilder builder = new StringBuilder(1000);
-		//		getPattern().getHeaderMethod()
-		//**************************************************************************
+		// getPattern().getHeaderMethod()
+		// **************************************************************************
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
