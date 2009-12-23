@@ -14,7 +14,6 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.uri.URIHelper;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -28,11 +27,11 @@ public class ResourceHelper {
     // Prevent instantiation
   }
 
-  public static Resource createResource(ResourceSet resourceSet, IResource resource) throws RuntimeException, WrappedException {
+  public static Resource createResource(ResourceSet resourceSet, IResource resource) {
     return createResource(resourceSet, URIHelper.getPlatformURI(resource));
   }
 
-  public static Resource createResource(ResourceSet resourceSet, URI uri) throws RuntimeException, WrappedException {
+  public static Resource createResource(ResourceSet resourceSet, URI uri) {
     if (resourceSet == null || uri == null) {
       return null;
     }
@@ -44,11 +43,11 @@ public class ResourceHelper {
     return resourceSet.createResource(uri);
   }
 
-  public static Resource loadResource(ResourceSet resourceSet, IResource resource) throws RuntimeException, WrappedException {
+  public static Resource loadResource(ResourceSet resourceSet, IResource resource) {
     return loadResource(resourceSet, URIHelper.getPlatformURI(resource));
   }
 
-  public static Resource loadResource(ResourceSet resourceSet, URI uri) throws RuntimeException, WrappedException {
+  public static Resource loadResource(ResourceSet resourceSet, URI uri) {
     if (resourceSet == null || uri == null) {
       return null;
     }
