@@ -17,8 +17,33 @@ package org.eclipse.egf.model;
 
 /**
  * @author Guiu
- *
+ * 
  */
 public class PatternException extends Exception {
+
+    /**
+     * @param message
+     * @param cause
+     */
+    public PatternException(String message, Throwable cause) {
+        super(message, cause);
+
+    }
+
+    /**
+     * @param message
+     */
+    public PatternException(String message) {
+        super(message);
+
+    }
+
+    /**
+     * @param cause
+     */
+    public PatternException(Throwable cause) {
+        super(cause);
+
+    }
 
 }
