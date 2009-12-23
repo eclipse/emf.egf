@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IFactoryComponentConstants;
@@ -168,7 +169,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     _workspaceFcs = new ArrayList<IPlatformFactoryComponent>();
     _targetFcs = new ArrayList<IPlatformFactoryComponent>();
     for (IPluginModelBase base : PluginRegistry.getActiveModels(true)) {
-      addModel(EGFPlatformPlugin.getId(base), createPlatformPlugin(base), null);
+      addModel(BundleHelper.getBundleId(base), createPlatformPlugin(base), null);
     }
     // Debug
     if (EGFPlatformPlugin.getDefault().isDebugging()) {
@@ -242,7 +243,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       PlatformFactoryComponentDelta delta = new PlatformFactoryComponentDelta();
       // Process Removed Entries
       for (IPluginModelBase base : event.getRemovedModels()) {
-        String id = EGFPlatformPlugin.getId(base);
+        String id = BundleHelper.getBundleId(base);
         // Ignore Model with unknown id
         if (id == null) {
           continue;
@@ -258,7 +259,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       }
       // Process Added Entries
       for (IPluginModelBase base : event.getAddedModels()) {
-        String id = EGFPlatformPlugin.getId(base);
+        String id = BundleHelper.getBundleId(base);
         // Ignore Model with unknown id
         if (id == null) {
           continue;
@@ -323,7 +324,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       if ((event.getKind() & PluginModelDelta.ADDED) != 0) {
         for (ModelEntry entry : event.getAddedEntries()) {
           for (IPluginModelBase base : getFactoryComponentsModels(entry)) {
-            String id = EGFPlatformPlugin.getId(base);
+            String id = BundleHelper.getBundleId(base);
             // Ignore Model with unknown id
             if (id == null) {
               continue;
@@ -362,7 +363,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
 
   private void handleChange(IPluginModelBase base, PlatformFactoryComponentDelta delta) {
     // Check an existing one
-    String id = EGFPlatformPlugin.getId(base);
+    String id = BundleHelper.getBundleId(base);
     IPlatformPlugin existingModel = _models.get(id);
     if (base.isEnabled()) {
       if (existingModel != null && base.equals(existingModel.getPluginModelBase())) {

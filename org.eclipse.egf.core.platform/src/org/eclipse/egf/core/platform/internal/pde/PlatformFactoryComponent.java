@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.core.platform.pde.IFactoryComponentConstants;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.core.platform.pde.IPlatformPlugin;
+import org.eclipse.egf.core.platform.uri.URIHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IPluginAttribute;
 import org.eclipse.pde.core.plugin.IPluginElement;
@@ -49,7 +50,7 @@ public class PlatformFactoryComponent implements IPlatformFactoryComponent {
     _base = base;
     _element = element;
     _value = attribute.getValue().trim();
-    _previousUri = buildURI(base.getId(), attribute.getValue());
+    _previousUri = URIHelper.getPlatformURI(base.getBundleId(), attribute.getValue());
     _name = new Path(_previousUri.lastSegment()).removeFileExtension().toString();
   }
 
@@ -61,17 +62,6 @@ public class PlatformFactoryComponent implements IPlatformFactoryComponent {
       return toString().compareTo(fc.toString());
     }
     return getURI().toString().compareTo(fc.getURI().toString());
-  }
-
-  public static URI buildURI(String id, String value) {
-    if (id == null || id.trim().length() == 0 || value == null || value.trim().length() == 0) {
-      return null;
-    }
-    URI uri = URI.createURI(value.trim());
-    if (uri.isRelative()) {
-      uri = URI.createPlatformPluginURI(id.trim() + "/" + uri.toString(), true); //$NON-NLS-1$
-    }
-    return uri;
   }
 
   public String getName() {
@@ -95,8 +85,8 @@ public class PlatformFactoryComponent implements IPlatformFactoryComponent {
   }
 
   public URI getURI() {
-    if (getPlatformPlugin().getId().equals(getPlatformPlugin().getPreviousId()) == false) {
-      return buildURI(getPlatformPlugin().getId(), getValue());
+    if (getPlatformPlugin().getBundleId().equals(getPlatformPlugin().getPreviousBundleId()) == false) {
+      return URIHelper.getPlatformURI(getPlatformPlugin().getBundleId(), getValue());
     }
     return getPreviousURI();
   }

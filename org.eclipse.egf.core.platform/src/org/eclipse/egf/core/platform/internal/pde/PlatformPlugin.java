@@ -19,8 +19,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IFactoryComponentConstants;
@@ -40,16 +40,16 @@ public class PlatformPlugin implements IPlatformPlugin {
 
   private IPluginModelBase _base;
 
-  private String _previousId;
+  private String _previousBundleId;
 
   private Map<String, IPlatformFactoryComponent> _factoryComponents = new HashMap<String, IPlatformFactoryComponent>();
 
   public PlatformPlugin(IPluginModelBase base) {
     Assert.isNotNull(base);
     Assert.isNotNull(base.getBundleDescription());
-    Assert.isNotNull(EGFPlatformPlugin.getId(base));
+    Assert.isNotNull(BundleHelper.getBundleId(base));
     _base = base;
-    _previousId = EGFPlatformPlugin.getId(base);
+    _previousBundleId = BundleHelper.getBundleId(base);
   }
 
   public int compareTo(IPlatformPlugin model) {
@@ -65,12 +65,12 @@ public class PlatformPlugin implements IPlatformPlugin {
     return 1;
   }
 
-  public String getId() {
-    return EGFPlatformPlugin.getId(getPluginModelBase());
+  public String getBundleId() {
+    return BundleHelper.getBundleId(getPluginModelBase());
   }
 
-  public String getPreviousId() {
-    return _previousId;
+  public String getPreviousBundleId() {
+    return _previousBundleId;
   }
 
   public IPlatformFactoryComponent[] getPlatformFactoryComponents() {
@@ -91,10 +91,9 @@ public class PlatformPlugin implements IPlatformPlugin {
    * @return null if the plug-in is not in the workspace.
    */
   public IProject getProject() {
-    IResource underlyingResource = getPluginModelBase().getUnderlyingResource();
-    if (underlyingResource != null) {
+    if (isTarget() == false) {
       // Retrieve project from the model.
-      return underlyingResource.getProject();
+      return getPluginModelBase().getUnderlyingResource().getProject();
     }
     return null;
   }
@@ -127,7 +126,7 @@ public class PlatformPlugin implements IPlatformPlugin {
         IPlatformFactoryComponent fc = new PlatformFactoryComponent(this, element);
         if (_factoryComponents.get(fc.getValue()) != null) {
           String msg = NLS.bind("PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' already contains such Factory Component ''{1}''.", //$NON-NLS-1$
-              getId(), fc.getValue());
+              getBundleId(), fc.getValue());
           EGFPlatformPlugin.getDefault().log(msg);
           if (EGFPlatformPlugin.getDefault().isDebugging()) {
             EGFConsolePlugin.getConsole().logWarning(msg);
@@ -135,7 +134,7 @@ public class PlatformPlugin implements IPlatformPlugin {
         } else {
           if (_factoryComponents.put(fc.getValue(), fc) != null) {
             String msg = NLS.bind("PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' unable to add Factory Component ''{1}''.", //$NON-NLS-1$
-                getId(), fc.getValue());
+                getBundleId(), fc.getValue());
             EGFPlatformPlugin.getDefault().log(msg);
             if (EGFPlatformPlugin.getDefault().isDebugging()) {
               EGFConsolePlugin.getConsole().logError(msg);
@@ -175,8 +174,8 @@ public class PlatformPlugin implements IPlatformPlugin {
 
   public String toString() {
     IPluginBase pluginBase = getPluginModelBase().getPluginBase();
-    String id = getId();
-    String previousId = getPreviousId();
+    String id = getBundleId();
+    String previousId = getPreviousBundleId();
     String version = pluginBase.getVersion();
     StringBuilder text = new StringBuilder("Id: ");
     if (version != null && version.length() > 0) {
