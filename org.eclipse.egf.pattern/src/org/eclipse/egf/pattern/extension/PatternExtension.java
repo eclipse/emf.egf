@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.extension;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternRunner;
@@ -26,22 +27,34 @@ import org.eclipse.egf.model.pattern.PatternRunner;
  */
 public abstract class PatternExtension {
 
-	public static final String EXTENSION_ID = "org.eclipse.egf.pattern.extension";
+    public static final String EXTENSION_ID = "org.eclipse.egf.pattern.extension";
 
-	public abstract PatternNature getNature();
+    public abstract PatternNature getNature();
 
-	public abstract PatternFactory getFactory();
+    public abstract PatternFactory getFactory();
 
-	public abstract PatternRunner createRunner();
+    protected abstract PatternRunner doCreateRunner(Pattern pattern);
 
-	public abstract PatternInitializer createInitializer(IProject project, Pattern pattern);
+    public PatternRunner createRunner(Pattern pattern) throws PatternException {
+        if (!matchNature(pattern))
+            throw new PatternException("Expected pattern nature is " + getNature().getName());
+        return doCreateRunner(pattern);
+    }
 
-	public boolean matchNature(Pattern pattern) {
-		if (pattern == null || pattern.getNature() == null)
-			throw new IllegalArgumentException();
-		if (getNature() == null)
-			throw new IllegalStateException();
+    protected abstract PatternInitializer doCreateInitializer(IProject project, Pattern pattern);
 
-		return getNature().eClass().equals(pattern.getNature().eClass());
-	}
+    public PatternInitializer createInitializer(IProject project, Pattern pattern) throws PatternException {
+        if (!matchNature(pattern))
+            throw new PatternException("Expected pattern nature is " + getNature().getName());
+        return doCreateInitializer(project, pattern);
+    }
+
+    public boolean matchNature(Pattern pattern) {
+        if (pattern == null || pattern.getNature() == null)
+            throw new IllegalArgumentException();
+        if (getNature() == null)
+            throw new IllegalStateException();
+
+        return getNature().eClass().equals(pattern.getNature().eClass());
+    }
 }

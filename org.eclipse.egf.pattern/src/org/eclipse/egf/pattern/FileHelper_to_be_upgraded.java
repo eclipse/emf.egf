@@ -38,21 +38,22 @@ import org.osgi.framework.Bundle;
  */
 public class FileHelper_to_be_upgraded {
 
-    public static void setContent(IPlatformFactoryComponent component, IPath path, InputStream source) throws CoreException {
-        if (component == null)
-            throw new IllegalArgumentException("The factory component is null");
-
-        if (path.isEmpty())
-            throw new IllegalArgumentException("Path is empty");
-
-        IProject project = component.getPlatformPlugin().getProject();
-        if (project == null)
-            throw new IllegalStateException("Cannot get project");
-        IFile file = project.getFile(path);
-        if (file == null)
-            throw new IllegalStateException("Target file is null");
-        setContent(file, source);
-    }
+    // public static void setContent(IPlatformFactoryComponent component, IPath
+    // path, InputStream source) throws CoreException {
+    // if (component == null)
+    // throw new IllegalArgumentException("The factory component is null");
+    //
+    // if (path.isEmpty())
+    // throw new IllegalArgumentException("Path is empty");
+    //
+    // IProject project = component.getPlatformPlugin().getProject();
+    // if (project == null)
+    // throw new IllegalStateException("Cannot get project");
+    // IFile file = project.getFile(path);
+    // if (file == null)
+    // throw new IllegalStateException("Target file is null");
+    // setContent(file, source);
+    // }
 
     public static void setContent(IFile file, String source) throws CoreException {
         setContent(file, new ByteArrayInputStream(source.getBytes()));
