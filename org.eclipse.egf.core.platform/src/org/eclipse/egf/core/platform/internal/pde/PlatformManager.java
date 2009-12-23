@@ -230,6 +230,10 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       // Process Removed Entries
       for (IPluginModelBase base : event.getRemovedModels()) {
         String id = EGFPlatformPlugin.getId(base);
+        // Ignore Model with unknown id
+        if (id == null) {
+          continue;
+        }
         IPlatformPlugin existingModel = _models.get(id);
         if (existingModel != null && base.equals(existingModel.getPluginModelBase())) {
           removeModel(id, existingModel, delta);
@@ -242,6 +246,10 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       // Process Added Entries
       for (IPluginModelBase base : event.getAddedModels()) {
         String id = EGFPlatformPlugin.getId(base);
+        // Ignore Model with unknown id
+        if (id == null) {
+          continue;
+        }
         IPlatformPlugin existingModel = _models.get(id);
         if (existingModel != null && base.equals(existingModel.getPluginModelBase()) == false) {
           removeModel(id, existingModel, delta);
@@ -279,10 +287,16 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       // Process Removed Entries
       if ((event.getKind() & PluginModelDelta.REMOVED) != 0) {
         for (ModelEntry entry : event.getRemovedEntries()) {
-          String id = EGFPlatformPlugin.getId(entry.getModel());
-          IPlatformPlugin existingModel = _models.get(id);
-          if (existingModel != null && entry.getModel().equals(existingModel.getPluginModelBase())) {
-            removeModel(id, existingModel, delta);
+          for (IPluginModelBase base : getFactoryComponentsModels(entry)) {
+            String id = EGFPlatformPlugin.getId(base);
+            // Ignore Model with unknown id
+            if (id == null) {
+              continue;
+            }
+            IPlatformPlugin existingModel = _models.get(id);
+            if (existingModel != null && entry.getModel().equals(existingModel.getPluginModelBase())) {
+              removeModel(id, existingModel, delta);
+            }
           }
         }
       }
@@ -299,6 +313,10 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
         for (ModelEntry entry : event.getAddedEntries()) {
           for (IPluginModelBase base : getFactoryComponentsModels(entry)) {
             String id = EGFPlatformPlugin.getId(base);
+            // Ignore Model with unknown id
+            if (id == null) {
+              continue;
+            }
             IPlatformPlugin existingModel = _models.get(id);
             if (existingModel != null && base.equals(existingModel.getPluginModelBase()) == false) {
               removeModel(id, existingModel, delta);
