@@ -36,48 +36,35 @@ import org.eclipse.egf.model.factorycomponent.ModelElement;
  * @generated
  */
 public interface PatternRunner extends ModelElement {
-  /**
-   * Returns the value of the '<em><b>Pattern</b></em>' reference. <!--
-   * begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Pattern</em>' reference isn't clear, there
-   * really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * 
-   * @return the value of the '<em>Pattern</em>' reference.
-   * @see #setPattern(Pattern)
-   * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternRunner_Pattern()
-   * @model required="true"
-   * @generated
-   */
-  Pattern getPattern();
+    /**
+     * Returns the value of the '<em><b>Pattern</b></em>' reference. <!--
+     * begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Pattern</em>' reference isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * 
+     * @return the value of the '<em>Pattern</em>' reference.
+     * @see #setPattern(Pattern)
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternRunner_Pattern()
+     * @model required="true"
+     * @generated
+     */
+    Pattern getPattern();
 
-  /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.pattern.PatternRunner#getPattern
-   * <em>Pattern</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc
-   * -->
-   * 
-   * @param value
-   *            the new value of the '<em>Pattern</em>' reference.
-   * @see #getPattern()
-   * @generated
-   */
-  void setPattern(Pattern value);
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @model exceptions="org.eclipse.egf.model.pattern.PatternException" contextDataType="org.eclipse.egf.model.pattern.PatternContext" contextRequired="true"
+     * @generated
+     */
+    void run(PatternContext context) throws PatternException;
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @model exceptions="org.eclipse.egf.model.pattern.PatternException" contextDataType="org.eclipse.egf.model.pattern.PatternContext" contextRequired="true"
-   * @generated
-   */
-  void run(PatternContext context) throws PatternException;
-
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @model exceptions="org.eclipse.egf.model.pattern.PatternException"
-   * @generated
-   */
-  void translate() throws PatternException;
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @model exceptions="org.eclipse.egf.model.pattern.PatternException"
+     * @generated
+     */
+    void translate() throws PatternException;
 
 } // PatternRunner

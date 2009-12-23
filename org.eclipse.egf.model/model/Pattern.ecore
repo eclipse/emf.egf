@@ -38,7 +38,7 @@
     </eOperations>
     <eOperations name="translate" eExceptions="#//PatternException"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
-        eType="#//Pattern"/>
+        eType="#//Pattern" changeable="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternSuperMethod" eSuperTypes="#//PatternUnit"/>
   <eClassifiers xsi:type="ecore:EClass" name="PatternLibrary" eSuperTypes="#//PatternElement">
