@@ -161,9 +161,6 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
                     for (IPlatformFactoryComponent fc : EGFPlatformPlugin.getDefault().getWorkspacePluginFactoryComponents()) {
                       if (fc.getURI().equals(resourceURI)) {
                         removedFcs.add(fc);
-                        if ((delta.getFlags() & IResourceDelta.MOVED_TO) == 0) {
-                          deltaFcs.storeRemovedResourceFactoryComponent(resourceURI);
-                        }
                         break;
                       }
                     }
@@ -178,9 +175,7 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
                     }
                     if (found == false) {
                       addedFcs.add(resource);
-                      if ((delta.getFlags() & IResourceDelta.MOVED_FROM) == 0) {
-                        deltaFcs.storeAddedResourceFactoryComponent(resourceURI);
-                      } else {
+                      if ((delta.getFlags() & IResourceDelta.MOVED_FROM) != 0) {
                         IProject fromProject = ProjectHelper.getProject(delta.getMovedFromPath().segment(0));
                         IPluginModelBase fromBase = EGFPlatformPlugin.getPluginModelBase(fromProject);
                         if (fromBase != null) {
@@ -327,18 +322,6 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
   }
 
   private void trace(IResourceFactoryComponentDelta delta) {
-    if (delta.getRemovedResourceFactoryComponents().length > 0) {
-      EGFConsolePlugin.getConsole().logInfo(NLS.bind("FactoryComponentResourceListener Removed {0} Factory Component{1}.", //$NON-NLS-1$ 
-          delta.getRemovedResourceFactoryComponents().length, delta.getRemovedResourceFactoryComponents().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
-      ));
-      trace(delta.getRemovedResourceFactoryComponents(), null);
-    }
-    if (delta.getAddedResourceFactoryComponents().length > 0) {
-      EGFConsolePlugin.getConsole().logInfo(NLS.bind("FactoryComponentResourceListener Added {0} Factory Component{1}.", //$NON-NLS-1$ 
-          delta.getAddedResourceFactoryComponents().length, delta.getAddedResourceFactoryComponents().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
-      ));
-      trace(delta.getAddedResourceFactoryComponents(), null);
-    }
     if (delta.getChangedResourceFactoryComponents().length > 0) {
       EGFConsolePlugin.getConsole().logInfo(NLS.bind("FactoryComponentResourceListener Changed {0} Factory Component{1}.", //$NON-NLS-1$ 
           delta.getChangedResourceFactoryComponents().length, delta.getChangedResourceFactoryComponents().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
