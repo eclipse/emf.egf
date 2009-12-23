@@ -97,7 +97,17 @@ public class FactoryComponentSelectionDialog extends FilteredItemsSelectionDialo
       if (element instanceof IPlatformFactoryComponent == false) {
         return super.getText(element);
       }
-      return ((IPlatformFactoryComponent) element).getPlatformPlugin().getLocation();
+      StringBuffer buffer = new StringBuffer();
+      IPlatformFactoryComponent fc = (IPlatformFactoryComponent) element;
+      if (fc.getPlatformPlugin().isTarget()) {
+        buffer.append(" [Target]"); //$NON-NLS-1$
+      } else {
+        buffer.append(" [Workspace]"); //$NON-NLS-1$
+      }
+      buffer.append(" ["); //$NON-NLS-1$
+      buffer.append(fc.getPlatformPlugin().getLocation());
+      buffer.append("]"); //$NON-NLS-1$      
+      return buffer.toString();
     }
   };
 

@@ -40,10 +40,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.egf.common.ui.emf.EGFEditUIUtil;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.factorycomponent.provider.FactoryComponentItemProviderAdapterFactory;
 import org.eclipse.egf.model.types.provider.TypesItemProviderAdapterFactory;
+import org.eclipse.egf.provider.resource.EGFResourceItemProviderAdapterFactory;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -69,7 +71,6 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
-import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
@@ -79,7 +80,6 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.util.EditUIUtil;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
@@ -576,14 +576,14 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
    * This sets up the editing domain for the model editor. <!-- begin-user-doc
    * --> <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   protected void initializeEditingDomain() {
     // Create an adapter factory that yields item providers.
     //
     adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-    adapterFactory.addAdapterFactory(new ResourceItemProviderAdapterFactory());
+    adapterFactory.addAdapterFactory(new EGFResourceItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new FactoryComponentItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
@@ -815,7 +815,7 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
    * @generated NOT
    */
   public void createModel() {
-    URI resourceURI = EditUIUtil.getURI(getEditorInput());
+    URI resourceURI = EGFEditUIUtil.getURI(getEditorInput());
     editingDomain.getResourceSet().getURIConverter().getURIMap().putAll(EGFPlatformPlugin.computePlatformURIMap());
     Exception exception = null;
     Resource resource = null;
