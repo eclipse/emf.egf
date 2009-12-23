@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.EObject;
  * 
  */
 public abstract class PatternHelper {
+
     protected final Pattern pattern;
     protected final StringBuilder content = new StringBuilder(1000);
     // Every called pattern owns its list of parameters, we need to create all
@@ -57,7 +58,9 @@ public abstract class PatternHelper {
 
         int insertionIndex = content.length();
 
-        doVisit(pattern);
+        collectParameters(pattern);
+
+        visitOrchestration(pattern);
 
         if (!parameterAlias.isEmpty())
             handleParameters(insertionIndex);
@@ -69,17 +72,7 @@ public abstract class PatternHelper {
         return content.toString();
     }
 
-    /**
-     * This method may code to handle parameter at the insertionIndex and at the
-     * current index. The inserted code is mainly a kind of loop containing the
-     * pattern body over the result of the query.
-     */
-    protected abstract void handleParameters(int insertionIndex);
-
-    // TODO mark this method abstract as its implementation depends on the
-    // nature of pattern.
-
-    private void doVisit(Pattern pattern) throws PatternException {
+    private void collectParameters(Pattern pattern) {
         if (parameterAlias == null) {
             parameterAlias = new ArrayList<List<String>>();
             for (PatternParameter param : pattern.getParameters()) {
@@ -93,6 +86,24 @@ public abstract class PatternHelper {
                 names.add(pattern.getParameters().get(i).getName());
             }
         }
+    }
+
+    /**
+     * This method may code to handle parameter at the insertionIndex and at the
+     * current index. The inserted code is mainly a kind of loop containing the
+     * pattern body over the result of the query.
+     */
+    protected abstract void handleParameters(int insertionIndex);
+
+    /**
+     * This method handles pattern calls.
+     */
+    protected abstract void call(Pattern object) throws PatternException;
+
+    // TODO mark this method abstract as its implementation depends on the
+    // nature of pattern.
+
+    protected void visitOrchestration(Pattern pattern) throws PatternException {
         for (PatternUnit element : pattern.getOrchestration()) {
             String read = getContent(element);
             if (read != null)
@@ -112,7 +123,8 @@ public abstract class PatternHelper {
             @Override
             public String casePattern(Pattern object) {
                 try {
-                    doVisit(object);
+                    collectParameters(object);
+                    call(object);
                 } catch (PatternException e) {
                     holder.object = new PatternException(e);
                 }
@@ -180,6 +192,10 @@ public abstract class PatternHelper {
 
     public static IPlatformFactoryComponent getPlatformFactoryComponent(Pattern pattern) {
         return EGFPlatformPlugin.getPlatformFactoryComponent(pattern.eResource());
+    }
+
+    public static String localizeName(org.eclipse.egf.model.pattern.PatternParameter parameter) {
+        return parameter.getName() + "Parameter";
     }
 
 }
