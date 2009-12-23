@@ -23,12 +23,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.common.helper.ObjectHolder;
 import org.eclipse.egf.model.PatternException;
+import org.eclipse.egf.model.pattern.Call;
+import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternLibrary;
+import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.model.pattern.PatternSuperMethod;
-import org.eclipse.egf.model.pattern.PatternUnit;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternHelper;
@@ -53,7 +53,7 @@ public abstract class AssemblyHelper {
     }
 
     public String visit() throws PatternException {
-        String read = getContent(pattern.getHeaderMethod());
+        String read = getMethodContent(pattern.getHeaderMethod());
         if (read != null)
             content.append(read);
 
@@ -66,7 +66,7 @@ public abstract class AssemblyHelper {
         if (!parameterAlias.isEmpty())
             handleParameters(insertionIndex);
 
-        read = getContent(pattern.getFooterMethod());
+        read = getMethodContent(pattern.getFooterMethod());
         if (read != null)
             content.append(read);
 
@@ -105,55 +105,37 @@ public abstract class AssemblyHelper {
     // nature of pattern.
 
     protected void visitOrchestration(Pattern pattern) throws PatternException {
-        for (PatternUnit element : pattern.getOrchestration()) {
+        for (Call element : pattern.getOrchestration()) {
             String read = getContent(element);
             if (read != null)
                 content.append(read);
         }
     }
 
-    private String getContent(PatternUnit unit) throws PatternException {
+    private String getContent(Call unit) throws PatternException {
         final ObjectHolder<PatternException> holder = new ObjectHolder<PatternException>();
         String result = new PatternSwitch<String>() {
 
             @Override
-            public String casePatternLibrary(PatternLibrary object) {
-                throw new UnsupportedOperationException("not implemented yet");
-            }
-
-            @Override
-            public String casePattern(Pattern object) {
+            public String caseMethodCall(MethodCall object) {
                 try {
-                    collectParameters(object);
-                    call(object);
+                    return getMethodContent(object.getCalled());
                 } catch (PatternException e) {
-                    holder.object = new PatternException(e);
-                }
-                return "";
-            }
-
-            @Override
-            public String casePatternMethod(PatternMethod object) {
-                URI uri = object.getPatternFilePath();
-                try {
-                    return FileHelper_to_be_upgraded.getContent(PatternHelper.getPlatformFactoryComponent(object.getPattern()), uri);
-                } catch (CoreException e) {
-                    holder.object = new PatternException(e);
-                } catch (IOException e) {
-                    holder.object = new PatternException(e);
+                    holder.object = e;
                 }
                 return CharacterConstants.EMPTY_STRING;
             }
 
             @Override
-            public String casePatternSuperMethod(PatternSuperMethod object) {
-                String name = object.getName();
-                if (name == null)
-                    throw new IllegalArgumentException();
-                PatternMethod method = pattern.getMethod(name);
-                if (method == null)
-                    throw new IllegalStateException(Messages.bind(Messages.assembly_error2, name));
-                return casePatternMethod(method);
+            public String casePatternCall(PatternCall object) {
+
+                try {
+                    collectParameters(object.getCalled());
+                    call(object.getCalled());
+                } catch (PatternException e) {
+                    holder.object = e;
+                }
+                return CharacterConstants.EMPTY_STRING;
             }
 
             @Override
@@ -167,6 +149,17 @@ public abstract class AssemblyHelper {
         if (holder.object != null)
             throw holder.object;
         return result;
+    }
+
+    private String getMethodContent(PatternMethod object) throws PatternException {
+        URI uri = object.getPatternFilePath();
+        try {
+            return FileHelper_to_be_upgraded.getContent(PatternHelper.getPlatformFactoryComponent(object.getPattern()), uri);
+        } catch (CoreException e) {
+            throw new PatternException(e);
+        } catch (IOException e) {
+            throw new PatternException(e);
+        }
     }
 
 }

@@ -19,11 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.egf.model.factorycomponent.ModelElement;
+import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.model.pattern.PatternSuperMethod;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -43,26 +44,13 @@ public abstract class PatternFactory {
         return createPattern;
     }
 
-    // currently broken since there is a problem with SuperMethod
-    public List<Pattern> createDebugPattern2(PatternLibrary lib) {
-        List<Pattern> result = new ArrayList<Pattern>();
-        Pattern parent = createPattern(lib, "parent");
-        Pattern child = createPattern(lib, "child");
-        child.setSuperPattern(parent);
-        PatternSuperMethod superMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternSuperMethod();
-        superMethod.setName(BODY_METHOD_NAME);
-        child.getOrchestration().add(superMethod);
-        result.add(child);
-        result.add(parent);
-
-        return result;
-    }
-
     public List<Pattern> createDebugPattern3(PatternLibrary lib) {
         List<Pattern> result = new ArrayList<Pattern>();
         Pattern parent = createPattern(lib, "parent");
         Pattern child = createPattern(lib, "child");
-        parent.getOrchestration().add(child);
+        PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
+        patternCall.setCalled(child);
+        parent.getOrchestration().add(patternCall);
         result.add(parent);
         result.add(child);
 
@@ -83,8 +71,10 @@ public abstract class PatternFactory {
         param2.setName("childP");
         param2.setType(EcorePackage.eINSTANCE.getEClass());
         child.getParameters().add(param2);
+        PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
+        patternCall.setCalled(child);
 
-        parent.getOrchestration().add(child);
+        parent.getOrchestration().add(patternCall);
         result.add(parent);
         result.add(child);
 
@@ -118,7 +108,9 @@ public abstract class PatternFactory {
         initFooter(footerMethod);
 
         // 2 - set up default orchestration
-        pattern.getOrchestration().add(bodyMethod);
+        MethodCall methodCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
+        methodCall.setCalled(bodyMethod);
+        pattern.getOrchestration().add(methodCall);
         return pattern;
     }
 
