@@ -18,14 +18,15 @@ package org.eclipse.egf.pattern;
 import org.eclipse.egf.model.pattern.Pattern;
 
 /**
- * D'une maniere ou d'une autre je dois pouvoir savoir où vit mon pattern i.e. son FC puis le projet ou plugins où celui ci se trouve
+ * D'une maniere ou d'une autre je dois pouvoir savoir où vit mon pattern i.e.
+ * son FC puis le projet ou plugins où celui ci se trouve
+ * 
  * @author Guiu
- *
+ * 
  */
 public class Registry_to_be_upgraded {
-	
-	public static String getProjectName(Pattern pattern)
-	{
-		return "test4";
+
+	public static String getProjectName(Pattern pattern) {
+		return "test3";
 	}
 }

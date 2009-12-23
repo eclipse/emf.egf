@@ -31,7 +31,7 @@ public abstract class PatternExtension {
 
 	public abstract PatternFactory getFactory();
 
-	public abstract PatternRunner getRunner();
+	public abstract PatternRunner createRunner();
 
 	public boolean matchNature(Pattern pattern) {
 		if (pattern == null || pattern.getNature() == null)

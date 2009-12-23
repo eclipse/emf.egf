@@ -23,7 +23,7 @@ import org.eclipse.egf.pattern.extension.PatternFactory;
 
 /**
  * @author Guiu
- *
+ * 
  */
 public class JetPatternExtension extends PatternExtension {
 
@@ -36,8 +36,8 @@ public class JetPatternExtension extends PatternExtension {
 	}
 
 	@Override
-	public PatternRunner getRunner() {
-		return null;
+	public PatternRunner createRunner() {
+		return new JetRunner_to_be_moved_to_model1();
 	}
 
 	@Override

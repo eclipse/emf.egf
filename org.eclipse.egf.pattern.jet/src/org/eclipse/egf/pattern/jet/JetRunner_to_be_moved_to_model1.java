@@ -26,10 +26,12 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.jetpattern.JetNature;
+import org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl;
 import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.Registry_to_be_upgraded;
-import org.eclipse.egf.pattern.Runner_to_be_moved_to_model;
+import org.eclipse.egf.pattern.execution.WorkspacePluginClassLoader;
 import org.eclipse.emf.codegen.jet.JETCompiler;
 import org.eclipse.emf.codegen.jet.JETException;
 import org.eclipse.emf.codegen.jet.JETSkeleton;
@@ -39,7 +41,7 @@ import org.eclipse.emf.codegen.jet.JETSkeleton;
  * 
  *         Temp class ...
  */
-public class JetRunner_to_be_moved_to_model1 extends Runner_to_be_moved_to_model {
+public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
 
 	public void run(PatternContext context) {
 		if (getPattern() == null)
@@ -112,7 +114,7 @@ public class JetRunner_to_be_moved_to_model1 extends Runner_to_be_moved_to_model
 	}
 
 	private IPath computeFilePath(String classname) {
-		IPath result = new Path(JetPreferences.getGenerationFolderName());
+		IPath result = new Path(PatternPreferences.getGenerationFolderName());
 		String[] names = classname.split("\\.");
 		for (String name : names) {
 			result = result.append(name);

@@ -21,10 +21,6 @@ package org.eclipse.egf.pattern.jet;
  */
 public class JetPreferences {
 
-	public static String getGenerationFolderName() {
-		return "generated";
-	}
-	
 	//TODO get the encoding value from global preferences
 	public static String getEncoding() {
 		return "UTF8";

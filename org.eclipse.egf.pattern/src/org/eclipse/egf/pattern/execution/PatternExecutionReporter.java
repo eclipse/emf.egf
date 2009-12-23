@@ -13,26 +13,21 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern;
+package org.eclipse.egf.pattern.execution;
 
-import org.eclipse.egf.model.pattern.Pattern;
+import java.util.Map;
+
+import org.eclipse.egf.model.PatternContext;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Guiu
  * 
  */
-public abstract class Runner_to_be_moved_to_model {
+public interface PatternExecutionReporter {
 
-	private Pattern pattern;
+	public void patternExecutionFinished(String output, PatternContext context);
 
-	public Pattern getPattern() {
-
-		return pattern;
-	}
-
-	public void setPattern(Pattern pat) {
-
-		this.pattern = pat;
-	}
+	public void patternLoopExecutionFinished(String output, PatternContext context, Map<String, EObject> parameterValues);
 
 }
