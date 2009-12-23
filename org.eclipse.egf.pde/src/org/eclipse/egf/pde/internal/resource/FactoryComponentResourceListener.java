@@ -133,11 +133,8 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
           // Analyse projects
           if (resource.getType() == IResource.PROJECT || delta.getFlags() == IResourceDelta.MARKERS) {
             // Added resource
-            if (delta.getKind() == IResourceDelta.ADDED) {
-              // Project is renamed, do not look further
-              if ((delta.getFlags() & IResourceDelta.MOVED_FROM) != 0) {
-                return false;
-              }
+            if (delta.getKind() == IResourceDelta.ADDED || delta.getKind() == IResourceDelta.REMOVED) {
+              return false;
             } else if (delta.getKind() == IResourceDelta.CHANGED) {
               // Project is opened or closed
               if ((delta.getFlags() & IResourceDelta.OPEN) != 0) {
@@ -158,8 +155,7 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
                 IPluginModelBase base = EGFPlatformPlugin.getPluginModelBase(resource.getProject());
                 if (base != null) {
                   // Build a Resource URI
-                  URI resourceURI = URI.createPlatformPluginURI(EGFPlatformPlugin.getId(base) + "/" + resource.getFullPath().removeFirstSegments(1).toString(), //$NON-NLS-1$ 
-                      true);
+                  URI resourceURI = URI.createPlatformPluginURI(EGFPlatformPlugin.getId(base) + "/" + resource.getFullPath().removeFirstSegments(1).toString(), true); //$NON-NLS-1$ 
                   // Removed resource
                   if (delta.getKind() == IResourceDelta.REMOVED) {
                     for (IPlatformFactoryComponent fc : EGFPlatformPlugin.getDefault().getWorkspacePluginFactoryComponents()) {
@@ -173,17 +169,25 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
                     }
                     // Added resource
                   } else if (delta.getKind() == IResourceDelta.ADDED) {
-                    addedFcs.add(resource);
-                    if ((delta.getFlags() & IResourceDelta.MOVED_FROM) == 0) {
-                      deltaFcs.storeAddedResourceFactoryComponent(resourceURI);
-                    } else {
-                      IProject fromProject = ProjectHelper.getProject(delta.getMovedFromPath().segment(0));
-                      IPluginModelBase fromBase = EGFPlatformPlugin.getPluginModelBase(fromProject);
-                      if (fromBase != null) {
-                        // Build a Resource URI
-                        URI fromURI = URI.createPlatformPluginURI(EGFPlatformPlugin.getId(fromBase) + "/" + delta.getMovedFromPath().removeFirstSegments(1).toString(), //$NON-NLS-1$ 
-                            true);
-                        deltaFcs.storeMovedResourceFactoryComponent(resourceURI, fromURI);
+                    boolean found = false;
+                    for (IPlatformFactoryComponent fc : EGFPlatformPlugin.getDefault().getWorkspacePluginFactoryComponents()) {
+                      if (fc.getURI().equals(resourceURI)) {
+                        found = true;
+                        break;
+                      }
+                    }
+                    if (found == false) {
+                      addedFcs.add(resource);
+                      if ((delta.getFlags() & IResourceDelta.MOVED_FROM) == 0) {
+                        deltaFcs.storeAddedResourceFactoryComponent(resourceURI);
+                      } else {
+                        IProject fromProject = ProjectHelper.getProject(delta.getMovedFromPath().segment(0));
+                        IPluginModelBase fromBase = EGFPlatformPlugin.getPluginModelBase(fromProject);
+                        if (fromBase != null) {
+                          // Build a Resource URI
+                          URI fromURI = URI.createPlatformPluginURI(EGFPlatformPlugin.getId(fromBase) + "/" + delta.getMovedFromPath().removeFirstSegments(1).toString(), true); //$NON-NLS-1$
+                          deltaFcs.storeMovedResourceFactoryComponent(resourceURI, fromURI);
+                        }
                       }
                     }
                     // Changed resource
