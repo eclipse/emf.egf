@@ -35,6 +35,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 /**
+ * TODO faut il mettre à jour le nom du package destination quand le nom d'une
+ * lib change ?
  * 
  * @author Thomas Guiu
  * 
