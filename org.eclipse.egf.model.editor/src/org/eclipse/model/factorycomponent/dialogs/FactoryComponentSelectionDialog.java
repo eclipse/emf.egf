@@ -8,7 +8,7 @@
  *  Contributors:
  *      Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.model.factorycomponent.presentation;
+package org.eclipse.model.factorycomponent.dialogs;
 
 import java.util.Comparator;
 
