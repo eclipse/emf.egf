@@ -65,14 +65,14 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     return __platformManager;
   }
 
-  // IPlatformPlugin registry
+  // IPlatformPlugin Target registry
   private volatile Map<String, IPlatformPlugin> _models;
 
-  // IPlatformFactoryComponent Target platform registry
-  private List<IPlatformFactoryComponent> _workspace;
+  // IPlatformFactoryComponent Workspace platform registry
+  private List<IPlatformFactoryComponent> _workspaceFcs;
 
-  // IPlatformFactoryComponent Workspace registry
-  private List<IPlatformFactoryComponent> _target;
+  // IPlatformFactoryComponent Target registry
+  private List<IPlatformFactoryComponent> _targetFcs;
 
   // A list of listeners interested in changes to the plug-in factory components
   // models
@@ -86,8 +86,8 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     PDECore.getDefault().getModelManager().removePluginModelListener(this);
     PDECore.getDefault().getModelManager().removeExtensionDeltaListener(this);
     _models = null;
-    _target = null;
-    _workspace = null;
+    _targetFcs = null;
+    _workspaceFcs = null;
     _listeners = null;
   }
 
@@ -98,9 +98,9 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
         initializePlatformPlugin();
       }
       // Create a copy of known values
-      IPlatformPlugin[] platformModels = _models.values().toArray(new IPlatformPlugin[_models.size()]);
+      IPlatformPlugin[] targetModels = _models.values().toArray(new IPlatformPlugin[_models.size()]);
       // Return
-      return platformModels;
+      return targetModels;
     }
   }
 
@@ -111,7 +111,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
         initializePlatformPlugin();
       }
       // Return
-      return _workspace.toArray(new IPlatformFactoryComponent[_workspace.size()]);
+      return _workspaceFcs.toArray(new IPlatformFactoryComponent[_workspaceFcs.size()]);
     }
   }
 
@@ -122,7 +122,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
         initializePlatformPlugin();
       }
       // Return
-      return _target.toArray(new IPlatformFactoryComponent[_target.size()]);
+      return _targetFcs.toArray(new IPlatformFactoryComponent[_targetFcs.size()]);
     }
   }
 
@@ -150,21 +150,22 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     // Initialize listeners
     PDECore.getDefault().getModelManager().addPluginModelListener(this);
     PDECore.getDefault().getModelManager().addExtensionDeltaListener(this);
-    // Create our registry
+    // Create our registries
     _models = new TreeMap<String, IPlatformPlugin>();
-    _workspace = new ArrayList<IPlatformFactoryComponent>();
-    _target = new ArrayList<IPlatformFactoryComponent>();
+    _workspaceFcs = new ArrayList<IPlatformFactoryComponent>();
+    _targetFcs = new ArrayList<IPlatformFactoryComponent>();
     for (IPluginModelBase base : PluginRegistry.getActiveModels(true)) {
       addModel(EGFPlatformPlugin.getId(base), createPlatformPlugin(base), null);
     }
     // Debug
     if (EGFPlatformPlugin.getDefault().isDebugging()) {
-      if (_models.size() > 0) {
+      IPlatformPlugin[] models = getPlatformPlugins();
+      if (models.length > 0) {
         EGFConsolePlugin.getConsole().logInfo(NLS.bind("PlatformManager.initializePlatformPlugin(..) _ found {0} Platform Plugin Model{1}", //$NON-NLS-1$ 
-            _models.size(), _models.size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+            models.length, models.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
         ));
       }
-      trace(getPlatformPlugins());
+      trace(models);
     }
   }
 
@@ -229,9 +230,9 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       // Process Removed Entries
       for (IPluginModelBase base : event.getRemovedModels()) {
         String id = EGFPlatformPlugin.getId(base);
-        IPlatformPlugin existing = _models.get(id);
-        if (existing != null && base.equals(existing.getPluginModelBase())) {
-          removeModel(id, _models.get(id), delta);
+        IPlatformPlugin existingModel = _models.get(id);
+        if (existingModel != null && base.equals(existingModel.getPluginModelBase())) {
+          removeModel(id, existingModel, delta);
         }
       }
       // Process Changed Entries
@@ -279,9 +280,9 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       if ((event.getKind() & PluginModelDelta.REMOVED) != 0) {
         for (ModelEntry entry : event.getRemovedEntries()) {
           String id = EGFPlatformPlugin.getId(entry.getModel());
-          IPlatformPlugin existing = _models.get(id);
-          if (existing != null && entry.getModel().equals(existing.getPluginModelBase())) {
-            removeModel(id, _models.get(id), delta);
+          IPlatformPlugin existingModel = _models.get(id);
+          if (existingModel != null && entry.getModel().equals(existingModel.getPluginModelBase())) {
+            removeModel(id, existingModel, delta);
           }
         }
       }
@@ -331,8 +332,8 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
   }
 
   private void handleChange(IPluginModelBase base, PlatformFactoryComponentDelta delta) {
-    String id = EGFPlatformPlugin.getId(base);
     // Check an existing one
+    String id = EGFPlatformPlugin.getId(base);
     IPlatformPlugin existingModel = _models.get(id);
     if (base.isEnabled()) {
       if (existingModel != null && base.equals(existingModel.getPluginModelBase())) {
@@ -376,7 +377,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       }
       // Remove factory component in our target or workspace registry
       if (existingModel.isTarget()) {
-        if (_target.remove(fc) == false) {
+        if (_targetFcs.remove(fc) == false) {
           String msg = NLS.bind("PlatformManager.mergeModel(..) _ ''{0}'' unable to remove Factory Component from target registry.", //$NON-NLS-1$
               fc.getURI());
           EGFPlatformPlugin.getDefault().log(msg);
@@ -390,7 +391,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
           }
         }
       } else {
-        if (_workspace.remove(fc) == false) {
+        if (_workspaceFcs.remove(fc) == false) {
           String msg = NLS.bind("PlatformManager.mergeModel(..) _ ''{0}'' unable to remove Factory Component from workspace registry.", //$NON-NLS-1$
               fc.getURI());
           EGFPlatformPlugin.getDefault().log(msg);
@@ -420,7 +421,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       }
       // add factory component in our target or workspace registry
       if (existingModel.isTarget()) {
-        if (_target.add(newFc) == false) {
+        if (_targetFcs.add(newFc) == false) {
           String msg = NLS.bind("PlatformManager.mergeModel(..) _ ''{0}'' unable to add Factory Component in target registry.", //$NON-NLS-1$
               newFc.getURI());
           EGFPlatformPlugin.getDefault().log(msg);
@@ -434,7 +435,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
           }
         }
       } else {
-        if (_workspace.add(newFc) == false) {
+        if (_workspaceFcs.add(newFc) == false) {
           String msg = NLS.bind("PlatformManager.mergeModel(..) _ ''{0}'' unable to add Factory Component in workspace registry.", //$NON-NLS-1$
               newFc.getURI());
           EGFPlatformPlugin.getDefault().log(msg);
@@ -480,7 +481,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     for (IPlatformFactoryComponent fc : model.getPlatformFactoryComponents()) {
       // remove factory component in our target or workspace registry
       if (model.isTarget()) {
-        if (_target.remove(fc) == false) {
+        if (_targetFcs.remove(fc) == false) {
           String msg = NLS.bind("PlatformManager.removeModel(..) _ ''{0}'' unable to remove Factory Component from target registry.", //$NON-NLS-1$
               fc.getURI());
           EGFPlatformPlugin.getDefault().log(msg);
@@ -494,7 +495,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
           }
         }
       } else {
-        if (_workspace.remove(fc) == false) {
+        if (_workspaceFcs.remove(fc) == false) {
           String msg = NLS.bind("PlatformManager.removeModel(..) _ ''{0}'' unable to remove Factory Component from workspace registry.", //$NON-NLS-1$
               fc.getURI());
           EGFPlatformPlugin.getDefault().log(msg);
@@ -511,22 +512,19 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     }
   }
 
-  private void addModel(String id, IPlatformPlugin model, PlatformFactoryComponentDelta delta) {
-    if (id == null || model == null || model.getPlatformFactoryComponents().length == 0) {
+  private void addModel(String id, IPlatformPlugin newModel, PlatformFactoryComponentDelta delta) {
+    if (id == null || newModel == null || newModel.getPlatformFactoryComponents().length == 0) {
       return;
     }
-    // Check any troubleshoot in our model registry
-    if (_models.get(id) != null) {
-      String msg = NLS.bind("PlatformManager.addModel(..) _ Bundle ''{0}'' contains a duplicate Model.", //$NON-NLS-1$
-          id);
-      EGFPlatformPlugin.getDefault().log(msg);
-      if (EGFPlatformPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logError(msg);
-      }
+    // Check existing model
+    // Retrieve an existing one
+    IPlatformPlugin existingModel = _models.get(id);
+    if (existingModel != null) {
+      // Nothing to add
       return;
     }
-    // Add model from our main registry
-    if (_models.put(id, model) != null) {
+    // Add model to our main registry
+    if (_models.put(id, newModel) != null) {
       String msg = NLS.bind("PlatformManager.addModel(..) _ Bundle ''{0}'' unable to a model.", //$NON-NLS-1$
           id);
       EGFPlatformPlugin.getDefault().log(msg);
@@ -536,10 +534,10 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       return;
     }
     // Process Factory Component
-    for (IPlatformFactoryComponent fc : model.getPlatformFactoryComponents()) {
+    for (IPlatformFactoryComponent fc : newModel.getPlatformFactoryComponents()) {
       // add factory component in our target or workspace registry
-      if (model.isTarget()) {
-        if (_target.add(fc) == false) {
+      if (newModel.isTarget()) {
+        if (_targetFcs.add(fc) == false) {
           String msg = NLS.bind("PlatformManager.addModel(..) _ ''{0}'' unable to add Factory Component in target registry.", //$NON-NLS-1$
               fc.getURI());
           EGFPlatformPlugin.getDefault().log(msg);
@@ -553,7 +551,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
           }
         }
       } else {
-        if (_workspace.add(fc) == false) {
+        if (_workspaceFcs.add(fc) == false) {
           String msg = NLS.bind("PlatformManager.addModel(..) _ ''{0}'' unable to add Factory Component in workspace registry.", //$NON-NLS-1$
               fc.getURI());
           EGFPlatformPlugin.getDefault().log(msg);
