@@ -29,8 +29,7 @@ import org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl;
 import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
-import org.eclipse.egf.pattern.Registry_to_be_upgraded;
-import org.eclipse.egf.pattern.execution.WorkspacePluginClassLoader;
+import org.eclipse.egf.pattern.execution.WorkspaceAndPluginClassLoader;
 import org.eclipse.emf.codegen.jet.JETCompiler;
 import org.eclipse.emf.codegen.jet.JETSkeleton;
 
@@ -49,7 +48,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
             throw new IllegalStateException("Pattern class is null");
         try {
 
-            Class<?> templateClass = new WorkspacePluginClassLoader(Registry_to_be_upgraded.getProjectName(getPattern())).loadClass(templateClassName);
+            Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternHelper.getPlatformFactoryComponent(getPattern())).loadClass(templateClassName);
             Method method = templateClass.getMethod("generate", Object.class);
             Object template = templateClass.newInstance();
             // the pattern is executed but we don't care about the result.
@@ -82,7 +81,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
 
             String targetClassName = getTargetClassName(compiler.getSkeleton());
             IPath outputPath = computeFilePath(targetClassName);
-            FileHelper_to_be_upgraded.setContent(Registry_to_be_upgraded.getProjectName(getPattern()), outputPath, new ByteArrayInputStream(outStream.toByteArray()));
+            FileHelper_to_be_upgraded.setContent(PatternHelper.getPlatformFactoryComponent(getPattern()), outputPath, new ByteArrayInputStream(outStream.toByteArray()));
             {
                 // TODO: modifier le model ça va compliquer les choses .. mais
                 // où mettre le nom de la classe ?

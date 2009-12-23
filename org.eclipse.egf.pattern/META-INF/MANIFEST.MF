@@ -4,12 +4,10 @@ Bundle-Name: Pattern
 Bundle-SymbolicName: org.eclipse.egf.pattern;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.egf.pattern.Activator
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.egf.model;visibility:=reexport,
- org.eclipse.egf.common;visibility:=reexport,
- org.eclipse.pde.core,
- org.eclipse.jdt.core
+ org.eclipse.jdt.core,
+ org.eclipse.egf.core.platform;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.egf.pattern,

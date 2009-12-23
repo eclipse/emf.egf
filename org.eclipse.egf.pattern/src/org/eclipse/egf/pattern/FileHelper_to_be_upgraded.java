@@ -23,10 +23,10 @@ import java.net.URL;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.emf.common.util.URI;
 import org.osgi.framework.Bundle;
 
@@ -38,11 +38,14 @@ import org.osgi.framework.Bundle;
  */
 public class FileHelper_to_be_upgraded {
 
-    public static void setContent(String pluginId, IPath path, InputStream source) throws CoreException {
+    public static void setContent(IPlatformFactoryComponent component, IPath path, InputStream source) throws CoreException {
+        if (component == null)
+            throw new IllegalArgumentException("The factory component is null");
+
         if (path.isEmpty())
             throw new IllegalArgumentException("Path is empty");
 
-        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(pluginId);
+        IProject project = component.getPlatformPlugin().getProject();
         if (project == null)
             throw new IllegalStateException("Cannot get project");
         IFile file = project.getFile(path);
@@ -105,18 +108,31 @@ public class FileHelper_to_be_upgraded {
      * Reads a file from a plugin who lives in the workspace or RT. If the file
      * doesn't exist an empty string is returned.
      * 
-     * TODO can only ready in workspace
      */
-    public static String getContent(String pluginId, URI uri) throws CoreException, IOException {
-        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(pluginId);
-        if (project == null)
-            throw new IllegalStateException();
-        IFile file = project.getFile(uri.path());
-        if (file == null)
-            throw new IllegalStateException();
-        if (!file.exists())
-            return "";
-        return getFileContent(file);
+    public static String getContent(IPlatformFactoryComponent component, URI uri) throws CoreException, IOException {
+        if (component == null)
+            throw new IllegalArgumentException("The platformFactoryComponent is null");
+        IProject project = component.getPlatformPlugin().getProject();
+        if (project != null) {
+            IFile file = project.getFile(uri.path());
+            if (file == null)
+                throw new IllegalStateException();
+            if (!file.exists())
+                return "";
+            return getFileContent(file);
+        }
+
+        String pluginId = component.getPluginElement().getName();
+        Bundle bundle = Platform.getBundle(pluginId);
+        if (bundle == null)
+            throw new IllegalArgumentException("Cannot get bundle " + pluginId);
+        URL entry = bundle.getEntry(uri.path());
+        if (entry == null)
+            throw new IllegalStateException("Cannot get entry '" + uri.toString() + " from bundle " + pluginId);
+        // entry.openStream()
+
+        return getContent(entry.openStream());
+
     }
 
     private static String getFileContent(IFile file) throws CoreException, IOException {

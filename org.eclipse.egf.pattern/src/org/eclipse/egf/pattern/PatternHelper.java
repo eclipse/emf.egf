@@ -21,6 +21,8 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.helper.ObjectHolder;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
+import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
@@ -121,7 +123,7 @@ public abstract class PatternHelper {
             public String casePatternMethod(PatternMethod object) {
                 URI uri = object.getPatternFilePath();
                 try {
-                    return FileHelper_to_be_upgraded.getContent(Registry_to_be_upgraded.getProjectName(object.getPattern()), uri);
+                    return FileHelper_to_be_upgraded.getContent(getPlatformFactoryComponent(object.getPattern()), uri);
                 } catch (CoreException e) {
                     holder.object = new PatternException(e);
                 } catch (IOException e) {
@@ -168,11 +170,16 @@ public abstract class PatternHelper {
         if (libs.isEmpty())
             return "";
         if (libs.size() == 1)
-            return lib.getName();
+            return libs.get(0).getName();
         StringBuffer buf = new StringBuffer();
         for (PatternLibrary mylib : libs) {
             buf.append(mylib.getName()).append('.');
         }
         return buf.deleteCharAt(buf.length() - 1).toString();
     }
+
+    public static IPlatformFactoryComponent getPlatformFactoryComponent(Pattern pattern) {
+        return EGFPlatformPlugin.getPlatformFactoryComponent(pattern.eResource());
+    }
+
 }
