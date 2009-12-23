@@ -15,31 +15,55 @@
 
 package org.eclipse.egf.pattern.extension;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.pattern.Activator;
 
 /**
+ * TODO for each call the extension point is read ...
+ * 
  * @author Guiu
- *
+ * 
  */
 public class ExtensionHelper {
 
-	public static List<PatternExtension> getExtensions()
-	{
-		List<PatternExtension> result = new ArrayList<PatternExtension>();
-		for (IConfigurationElement element: Platform.getExtensionRegistry().getConfigurationElementsFor(PatternExtension.EXTENSION_ID))
-		{
-			try {
-				result.add((PatternExtension)element.createExecutableExtension("class"));
-			} catch (CoreException e) {
-				Activator.getDefault().logError(e);
-			}
-		}
-		return result;
-	}
+    private static Map<String, PatternExtension> getExtensions() {
+        Map<String, PatternExtension> result = new HashMap<String, PatternExtension>();
+        for (IConfigurationElement element : Platform.getExtensionRegistry().getConfigurationElementsFor(PatternExtension.EXTENSION_ID)) {
+            try {
+                PatternExtension pe = (PatternExtension) element.createExecutableExtension("class");
+                result.put(getName(pe.getNature()), pe);
+            } catch (CoreException e) {
+                Activator.getDefault().logError(e);
+            }
+        }
+        return result;
+    }
+
+    public static PatternExtension getExtension(PatternNature nature) throws MissingExtensionException {
+        Map<String, PatternExtension> extensions = getExtensions();
+        PatternExtension patternExtension = extensions.get(getName(nature));
+        if (patternExtension == null)
+            throw new MissingExtensionException("Cannot find extension for nature '" + getName(nature) + "'");
+        return patternExtension;
+
+    }
+
+    private static String getName(PatternNature nature) {
+        return nature.eClass().getName();
+    }
+
+    public static class MissingExtensionException extends Exception {
+
+        private MissingExtensionException(String message) {
+            super(message);
+
+        }
+
+    }
 }
