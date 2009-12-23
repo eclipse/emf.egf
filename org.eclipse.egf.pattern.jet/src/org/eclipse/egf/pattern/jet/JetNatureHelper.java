@@ -46,7 +46,7 @@ public class JetNatureHelper {
         } catch (Exception e) {
             throw new PatternException(e);
         }
-        throw new PatternException(Messages.assembly_error6);
+        throw new PatternException(Messages.bind(Messages.assembly_error6, pattern.getName()));
     }
 
     private JetNatureHelper() {
