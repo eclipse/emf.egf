@@ -35,7 +35,6 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternMethod/pattern"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pattern.ecore#//PatternMethod/patternFilePath"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Pattern.ecore#//PatternUnit"/>
     <genClasses ecoreClass="Pattern.ecore#//PatternParameter">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternParameter/type"/>
     </genClasses>
@@ -46,7 +45,6 @@
       </genOperations>
       <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/translate"/>
     </genClasses>
-    <genClasses ecoreClass="Pattern.ecore#//PatternSuperMethod"/>
     <genClasses ecoreClass="Pattern.ecore#//PatternLibrary">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/elements"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/runtimeOrchestration"/>
@@ -58,5 +56,19 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternViewpoint/libraries"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Pattern.ecore#//PatternNature"/>
+    <genClasses ecoreClass="Pattern.ecore#//PatternCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternCall/parameterMatching"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternCall/called"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//Paramerter2ParameterMap">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Paramerter2ParameterMap/value"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Paramerter2ParameterMap/key"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//Call">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//Call/pattern"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//MethodCall">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//MethodCall/called"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

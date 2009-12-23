@@ -16,58 +16,47 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.factorycomponent.impl.ModelElementImpl;
-
+import org.eclipse.egf.model.pattern.MethodCall;
+import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
-import org.eclipse.egf.model.pattern.PatternParameter;
 
 import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Parameter</b></em>'.
+ * An implementation of the model object '<em><b>Method Call</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.MethodCallImpl#getCalled <em>Called</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PatternParameterImpl extends ModelElementImpl implements PatternParameter {
+public class MethodCallImpl extends CallImpl implements MethodCall {
     /**
-     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * The cached value of the '{@link #getCalled() <em>Called</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see #getCalled()
      * @generated
      * @ordered
      */
-    protected int eFlags = 0;
-
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected EModelElement type;
+    protected PatternMethod called;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected PatternParameterImpl() {
+    protected MethodCallImpl() {
         super();
     }
 
@@ -78,7 +67,7 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
      */
     @Override
     protected EClass eStaticClass() {
-        return PatternPackage.Literals.PATTERN_PARAMETER;
+        return PatternPackage.Literals.METHOD_CALL;
     }
 
     /**
@@ -86,16 +75,16 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
      * <!-- end-user-doc -->
      * @generated
      */
-    public EModelElement getType() {
-        if (type != null && type.eIsProxy()) {
-            InternalEObject oldType = (InternalEObject) type;
-            type = (EModelElement) eResolveProxy(oldType);
-            if (type != oldType) {
+    public PatternMethod getCalled() {
+        if (called != null && called.eIsProxy()) {
+            InternalEObject oldCalled = (InternalEObject) called;
+            called = (PatternMethod) eResolveProxy(oldCalled);
+            if (called != oldCalled) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN_PARAMETER__TYPE, oldType, type));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.METHOD_CALL__CALLED, oldCalled, called));
             }
         }
-        return type;
+        return called;
     }
 
     /**
@@ -103,8 +92,8 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
      * <!-- end-user-doc -->
      * @generated
      */
-    public EModelElement basicGetType() {
-        return type;
+    public PatternMethod basicGetCalled() {
+        return called;
     }
 
     /**
@@ -112,11 +101,11 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setType(EModelElement newType) {
-        EModelElement oldType = type;
-        type = newType;
+    public void setCalled(PatternMethod newCalled) {
+        PatternMethod oldCalled = called;
+        called = newCalled;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_PARAMETER__TYPE, oldType, type));
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.METHOD_CALL__CALLED, oldCalled, called));
     }
 
     /**
@@ -127,10 +116,10 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.PATTERN_PARAMETER__TYPE:
+        case PatternPackage.METHOD_CALL__CALLED:
             if (resolve)
-                return getType();
-            return basicGetType();
+                return getCalled();
+            return basicGetCalled();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -143,8 +132,8 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.PATTERN_PARAMETER__TYPE:
-            setType((EModelElement) newValue);
+        case PatternPackage.METHOD_CALL__CALLED:
+            setCalled((PatternMethod) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -158,8 +147,8 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN_PARAMETER__TYPE:
-            setType((EModelElement) null);
+        case PatternPackage.METHOD_CALL__CALLED:
+            setCalled((PatternMethod) null);
             return;
         }
         super.eUnset(featureID);
@@ -173,10 +162,10 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN_PARAMETER__TYPE:
-            return type != null;
+        case PatternPackage.METHOD_CALL__CALLED:
+            return called != null;
         }
         return super.eIsSet(featureID);
     }
 
-} //PatternParameterImpl
+} //MethodCallImpl

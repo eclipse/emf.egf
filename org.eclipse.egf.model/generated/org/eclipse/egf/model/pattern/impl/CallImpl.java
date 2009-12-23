@@ -16,9 +16,8 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.factorycomponent.impl.ModelElementImpl;
-import org.eclipse.egf.model.pattern.PatternElement;
-import org.eclipse.egf.model.pattern.PatternLibrary;
+import org.eclipse.egf.model.pattern.Call;
+import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternPackage;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -29,22 +28,24 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Element</b></em>'.
+ * An implementation of the model object '<em><b>Call</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternElementImpl#getContainer <em>Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.CallImpl#getPattern <em>Pattern</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class PatternElementImpl extends ModelElementImpl implements PatternElement {
+public abstract class CallImpl extends Container implements Call {
     /**
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
@@ -59,7 +60,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
      * <!-- end-user-doc -->
      * @generated
      */
-    protected PatternElementImpl() {
+    protected CallImpl() {
         super();
     }
 
@@ -70,7 +71,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
      */
     @Override
     protected EClass eStaticClass() {
-        return PatternPackage.Literals.PATTERN_ELEMENT;
+        return PatternPackage.Literals.CALL;
     }
 
     /**
@@ -78,10 +79,10 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternLibrary getContainer() {
-        if (eContainerFeatureID() != PatternPackage.PATTERN_ELEMENT__CONTAINER)
+    public Pattern getPattern() {
+        if (eContainerFeatureID() != PatternPackage.CALL__PATTERN)
             return null;
-        return (PatternLibrary) eContainer();
+        return (Pattern) eContainer();
     }
 
     /**
@@ -89,8 +90,8 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
      * <!-- end-user-doc -->
      * @generated
      */
-    public NotificationChain basicSetContainer(PatternLibrary newContainer, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject) newContainer, PatternPackage.PATTERN_ELEMENT__CONTAINER, msgs);
+    public NotificationChain basicSetPattern(Pattern newPattern, NotificationChain msgs) {
+        msgs = eBasicSetContainer((InternalEObject) newPattern, PatternPackage.CALL__PATTERN, msgs);
         return msgs;
     }
 
@@ -99,20 +100,20 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setContainer(PatternLibrary newContainer) {
-        if (newContainer != eInternalContainer() || (eContainerFeatureID() != PatternPackage.PATTERN_ELEMENT__CONTAINER && newContainer != null)) {
-            if (EcoreUtil.isAncestor(this, newContainer))
+    public void setPattern(Pattern newPattern) {
+        if (newPattern != eInternalContainer() || (eContainerFeatureID() != PatternPackage.CALL__PATTERN && newPattern != null)) {
+            if (EcoreUtil.isAncestor(this, newPattern))
                 throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
             NotificationChain msgs = null;
             if (eInternalContainer() != null)
                 msgs = eBasicRemoveFromContainer(msgs);
-            if (newContainer != null)
-                msgs = ((InternalEObject) newContainer).eInverseAdd(this, PatternPackage.PATTERN_LIBRARY__ELEMENTS, PatternLibrary.class, msgs);
-            msgs = basicSetContainer(newContainer, msgs);
+            if (newPattern != null)
+                msgs = ((InternalEObject) newPattern).eInverseAdd(this, PatternPackage.PATTERN__ORCHESTRATION, Pattern.class, msgs);
+            msgs = basicSetPattern(newPattern, msgs);
             if (msgs != null)
                 msgs.dispatch();
         } else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_ELEMENT__CONTAINER, newContainer, newContainer));
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.CALL__PATTERN, newPattern, newPattern));
     }
 
     /**
@@ -123,10 +124,10 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
     @Override
     public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+        case PatternPackage.CALL__PATTERN:
             if (eInternalContainer() != null)
                 msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetContainer((PatternLibrary) otherEnd, msgs);
+            return basicSetPattern((Pattern) otherEnd, msgs);
         }
         return super.eInverseAdd(otherEnd, featureID, msgs);
     }
@@ -139,8 +140,8 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            return basicSetContainer(null, msgs);
+        case PatternPackage.CALL__PATTERN:
+            return basicSetPattern(null, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -153,8 +154,8 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
     @Override
     public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
         switch (eContainerFeatureID()) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN_LIBRARY__ELEMENTS, PatternLibrary.class, msgs);
+        case PatternPackage.CALL__PATTERN:
+            return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN__ORCHESTRATION, Pattern.class, msgs);
         }
         return super.eBasicRemoveFromContainerFeature(msgs);
     }
@@ -167,8 +168,8 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            return getContainer();
+        case PatternPackage.CALL__PATTERN:
+            return getPattern();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -181,8 +182,8 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            setContainer((PatternLibrary) newValue);
+        case PatternPackage.CALL__PATTERN:
+            setPattern((Pattern) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -196,8 +197,8 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            setContainer((PatternLibrary) null);
+        case PatternPackage.CALL__PATTERN:
+            setPattern((Pattern) null);
             return;
         }
         super.eUnset(featureID);
@@ -211,10 +212,10 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            return getContainer() != null;
+        case PatternPackage.CALL__PATTERN:
+            return getPattern() != null;
         }
         return super.eIsSet(featureID);
     }
 
-} //PatternElementImpl
+} //CallImpl
