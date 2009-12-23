@@ -39,8 +39,12 @@ public class JavaNatureHelper {
             if (matcher.matches()) {
                 String pack = matcher.group(1);
                 String cls = matcher.group(2);
+                if ("".equals(pack) || "".equals(cls))
+                    throw new PatternException(Messages.bind(Messages.assembly_error8, pattern.getName()));
                 return pack + "." + cls;
             }
+        } catch (PatternException e) {
+            throw e;
         } catch (Exception e) {
             throw new PatternException(e);
         }
