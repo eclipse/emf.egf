@@ -25,6 +25,7 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternSuperMethod;
 import org.eclipse.egf.pattern.PatternConstants;
+import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
 
@@ -102,6 +103,7 @@ public abstract class PatternFactory {
         // 1 - create default content
         PatternMethod headerMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         checkId(headerMethod);
+        pattern.getMethods().add(headerMethod);
         pattern.setHeaderMethod(headerMethod);
         initHeader(headerMethod);
 
@@ -112,6 +114,7 @@ public abstract class PatternFactory {
 
         PatternMethod footerMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         checkId(footerMethod);
+        pattern.getMethods().add(footerMethod);
         pattern.setFooterMethod(footerMethod);
         initFooter(footerMethod);
 
@@ -167,7 +170,7 @@ public abstract class PatternFactory {
      */
 
     protected URI createURI(PatternMethod method) {
-        URI uri = URI.createFileURI("templates/pattern." + method.getPattern().getID() + "/method." + method.getID() + "." + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
+        URI uri = URI.createFileURI(PatternPreferences.getTemplatesFolderName() + "/pattern." + method.getPattern().getID() + "/method." + method.getID() + "." + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
         return uri;
     }
 

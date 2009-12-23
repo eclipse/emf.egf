@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.java;
 
 import org.eclipse.egf.model.PatternContext;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl;
 import org.eclipse.egf.pattern.PatternHelper;
 
@@ -26,19 +27,19 @@ import org.eclipse.egf.pattern.PatternHelper;
  */
 public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
 
-	public void run(PatternContext context) {
-	}
+    public void run(PatternContext context) {
+    }
 
-	public void translate() {
-		if (getPattern() == null)
-			throw new IllegalStateException();
+    public void translate() throws PatternException {
+        if (getPattern() == null)
+            throw new IllegalStateException();
 
-		// **************************************************************************
-		// 1 - put together all pt files
-		PatternHelper helper = new JavaPatternHelper(getPattern());
-		String templatecontent = helper.visit();
+        // **************************************************************************
+        // 1 - put together all pt files
+        PatternHelper helper = new JavaPatternHelper(getPattern());
+        String templatecontent = helper.visit();
 
-		// 2 - put the result in the right file
-		// TODO
-	}
+        // 2 - put the result in the right file
+        // TODO
+    }
 }

@@ -15,8 +15,14 @@
 
 package org.eclipse.egf.pattern.extension;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
+import org.eclipse.emf.common.util.URI;
 
 /**
  * @author Guiu
@@ -24,5 +30,54 @@ import org.eclipse.egf.model.pattern.Pattern;
  */
 public abstract class PatternInitializer {
 
-	public abstract void initContent(IProject project, Pattern pattern);
+    private final IProject project;
+    private final Pattern pattern;
+
+    public PatternInitializer(IProject project, Pattern pattern) {
+        this.project = project;
+        this.pattern = pattern;
+    }
+
+    public void initContent() throws PatternException {
+
+        for (PatternMethod method : pattern.getMethods()) {
+            IFile outputFile = getFile(method);
+            String content = null;
+            if (method == pattern.getHeaderMethod())
+                content = getHeaderContent(method);
+            else if (method == pattern.getFooterMethod())
+                content = getFooterContent(method);
+            else
+                content = getDefaultContent(method);
+            try {
+                FileHelper_to_be_upgraded.setContent(outputFile, content == null ? "" : content);
+            } catch (CoreException e) {
+                throw new PatternException(e);
+
+            }
+        }
+    }
+
+    protected abstract String getHeaderContent(PatternMethod method) throws PatternException;
+
+    protected abstract String getFooterContent(PatternMethod method) throws PatternException;
+
+    protected abstract String getDefaultContent(PatternMethod method) throws PatternException;
+
+    /**
+     * @param project
+     * @param method
+     * @return
+     */
+    protected IFile getFile(PatternMethod method) {
+        URI patternFilePath = method.getPatternFilePath();
+        if (patternFilePath == null)
+            throw new IllegalStateException(method.getName() + " method pt file path is null");
+
+        IFile file = project.getFile(patternFilePath.toFileString());
+        if (file == null)
+            throw new IllegalStateException("Cannot get file for method " + method.getName());
+        return file;
+    }
+
 }

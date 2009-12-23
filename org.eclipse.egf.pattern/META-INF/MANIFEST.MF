@@ -14,4 +14,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.egf.pattern,
  org.eclipse.egf.pattern.execution,
- org.eclipse.egf.pattern.extension
+ org.eclipse.egf.pattern.extension,
+ org.eclipse.egf.pattern.templates

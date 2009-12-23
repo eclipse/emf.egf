@@ -17,18 +17,22 @@ package org.eclipse.egf.pattern.jet;
 
 /**
  * @author Guiu
- *
+ * 
  */
 public class JetPreferences {
 
-	//TODO get the encoding value from global preferences
-	public static String getEncoding() {
-		return "UTF8";
-	}
-	
-	private JetPreferences() {
-		super();
-		
-	}
+    // TODO get the encoding value from global preferences
+    public static String getEncoding() {
+        return "UTF8";
+    }
+
+    public static String getTemplateFileExtension() {
+        return "jet_template";
+    }
+
+    private JetPreferences() {
+        super();
+
+    }
 
 }

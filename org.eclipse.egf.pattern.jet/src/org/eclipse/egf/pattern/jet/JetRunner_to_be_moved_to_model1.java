@@ -76,7 +76,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
             JETCompiler compiler = new JETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
             compiler.parse();
             // Quick hack for debug
-            compiler.getSkeleton().addImports("java.util.* org.eclipse.emf.ecore.* ");
+            // compiler.getSkeleton().addImports("java.util.* org.eclipse.emf.ecore.* ");
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();
             compiler.generate(outStream);
 

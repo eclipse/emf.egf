@@ -15,6 +15,8 @@
 
 package org.eclipse.egf.pattern.jet;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternRunner;
 import org.eclipse.egf.pattern.extension.PatternExtension;
@@ -29,7 +31,6 @@ public class JetPatternExtension extends PatternExtension {
 
     private static final PatternNature NATURE = org.eclipse.egf.model.jetpattern.JetPatternFactory.eINSTANCE.createJetNature();
     private final PatternFactory factory = new JetPatternFactory();
-    private final JetPatternInitializer initializer = new JetPatternInitializer();
 
     @Override
     public PatternNature getNature() {
@@ -47,9 +48,9 @@ public class JetPatternExtension extends PatternExtension {
     }
 
     @Override
-    public PatternInitializer getInitializer() {
+    public PatternInitializer createInitializer(IProject project, Pattern pattern) {
 
-        return initializer;
+        return new JetPatternInitializer(project, pattern);
     }
 
 }

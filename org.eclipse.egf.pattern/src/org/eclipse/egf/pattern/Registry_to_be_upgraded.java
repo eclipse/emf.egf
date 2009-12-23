@@ -26,7 +26,7 @@ import org.eclipse.egf.model.pattern.Pattern;
  */
 public class Registry_to_be_upgraded {
 
-	public static String getProjectName(Pattern pattern) {
-		return "test3";
-	}
+    public static String getProjectName(Pattern pattern) {
+        return "test5";
+    }
 }

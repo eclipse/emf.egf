@@ -13,20 +13,13 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern;
+package org.eclipse.egf.common.helper;
 
 /**
  * @author Guiu
  * 
  */
-public class PatternPreferences {
-    public final static String NL = System.getProperties().getProperty("line.separator");
+public class ObjectHolder<E> {
+    public E object;
 
-    public static String getGenerationFolderName() {
-        return "generated";
-    }
-
-    public static String getTemplatesFolderName() {
-        return "templates";
-    }
 }

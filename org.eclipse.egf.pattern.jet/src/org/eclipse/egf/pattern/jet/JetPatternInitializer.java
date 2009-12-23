@@ -15,19 +15,37 @@
 
 package org.eclipse.egf.pattern.jet;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.pattern.extension.PatternInitializer;
+import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.egf.pattern.extension.TemplateInitializer;
+import org.eclipse.egf.pattern.templates.SimpleEngine;
 
 /**
  * @author Guiu
  * 
  */
-public class JetPatternInitializer extends PatternInitializer {
+public class JetPatternInitializer extends TemplateInitializer {
 
-	@Override
-	public void initContent(IProject project, Pattern pattern) {
+    private static final String CLASS_KEY = "CLASS";
+    private static final String PACKAGE_KEY = "PACKAGE";
+    private final Map<String, String> ctx = new HashMap<String, String>();
 
-	}
+    public JetPatternInitializer(IProject project, Pattern pattern) {
+        super(project, pattern, new SimpleEngine(Activator.PLUGIN_ID, project, JetPreferences.getTemplateFileExtension()));
+        ctx.put(CLASS_KEY, pattern.getName());
+        String fullLibraryName = PatternHelper.getFullLibraryName(pattern);
+        if (fullLibraryName == null || "".equals(fullLibraryName))
+            fullLibraryName = "default_package";
+        ctx.put(PACKAGE_KEY, fullLibraryName);
+    }
+
+    @Override
+    protected Map<String, String> createContext() {
+        return ctx;
+    }
 
 }

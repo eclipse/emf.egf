@@ -17,6 +17,7 @@ package org.eclipse.egf.pattern.java;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
 
 /**
@@ -25,8 +26,31 @@ import org.eclipse.egf.pattern.extension.PatternInitializer;
  */
 public class JavaPatternInitializer extends PatternInitializer {
 
-	@Override
-	public void initContent(IProject project, Pattern pattern) {
-	}
+    public static final String classname = "class";
+    public static final String packagename = "package";
+    public static final String imports = "imports";
+
+    public JavaPatternInitializer(IProject project, Pattern pattern) {
+        super(project, pattern);
+
+    }
+
+    @Override
+    protected String getDefaultContent(PatternMethod method) {
+
+        return null;
+    }
+
+    @Override
+    protected String getFooterContent(PatternMethod method) {
+
+        return null;
+    }
+
+    @Override
+    protected String getHeaderContent(PatternMethod method) {
+
+        return null;
+    }
 
 }

@@ -15,9 +15,13 @@
 
 package org.eclipse.egf.pattern;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.egf.common.helper.ObjectHolder;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -44,7 +48,7 @@ public abstract class PatternHelper {
         this.pattern = pattern;
     }
 
-    public String visit() {
+    public String visit() throws PatternException {
         String read = getContent(pattern.getHeaderMethod());
         if (read != null)
             content.append(read);
@@ -73,7 +77,7 @@ public abstract class PatternHelper {
     // TODO mark this method abstract as its implementation depends on the
     // nature of pattern.
 
-    private void doVisit(Pattern pattern) {
+    private void doVisit(Pattern pattern) throws PatternException {
         if (parameterAlias == null) {
             parameterAlias = new ArrayList<List<String>>();
             for (PatternParameter param : pattern.getParameters()) {
@@ -94,8 +98,9 @@ public abstract class PatternHelper {
         }
     }
 
-    private String getContent(PatternUnit unit) {
-        return new PatternSwitch<String>() {
+    private String getContent(PatternUnit unit) throws PatternException {
+        final ObjectHolder<PatternException> holder = new ObjectHolder<PatternException>();
+        String result = new PatternSwitch<String>() {
 
             @Override
             public String casePatternLibrary(PatternLibrary object) {
@@ -104,14 +109,25 @@ public abstract class PatternHelper {
 
             @Override
             public String casePattern(Pattern object) {
-                doVisit(object);
+                try {
+                    doVisit(object);
+                } catch (PatternException e) {
+                    holder.object = new PatternException(e);
+                }
                 return "";
             }
 
             @Override
             public String casePatternMethod(PatternMethod object) {
                 URI uri = object.getPatternFilePath();
-                return FileHelper_to_be_upgraded.getContent(Registry_to_be_upgraded.getProjectName(object.getPattern()), uri);
+                try {
+                    return FileHelper_to_be_upgraded.getContent(Registry_to_be_upgraded.getProjectName(object.getPattern()), uri);
+                } catch (CoreException e) {
+                    holder.object = new PatternException(e);
+                } catch (IOException e) {
+                    holder.object = new PatternException(e);
+                }
+                return "";
             }
 
             @Override
@@ -132,5 +148,31 @@ public abstract class PatternHelper {
             }
 
         }.doSwitch(unit);
+
+        if (holder.object != null)
+            throw holder.object;
+        return result;
+    }
+
+    /**
+     * This method return a string from the libraries who contain the pattern.
+     * For example: myLib.mySubLib
+     */
+    public static String getFullLibraryName(Pattern pattern) {
+        List<PatternLibrary> libs = new ArrayList<PatternLibrary>();
+        PatternLibrary lib = pattern.getContainer();
+        while (lib != null) {
+            libs.add(lib);
+            lib = lib.getContainer();
+        }
+        if (libs.isEmpty())
+            return "";
+        if (libs.size() == 1)
+            return lib.getName();
+        StringBuffer buf = new StringBuffer();
+        for (PatternLibrary mylib : libs) {
+            buf.append(mylib.getName()).append('.');
+        }
+        return buf.deleteCharAt(buf.length() - 1).toString();
     }
 }

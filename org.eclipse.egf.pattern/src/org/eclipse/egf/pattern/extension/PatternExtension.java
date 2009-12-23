@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.extension;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternRunner;
@@ -33,7 +34,7 @@ public abstract class PatternExtension {
 
 	public abstract PatternRunner createRunner();
 
-	public abstract PatternInitializer getInitializer();
+	public abstract PatternInitializer createInitializer(IProject project, Pattern pattern);
 
 	public boolean matchNature(Pattern pattern) {
 		if (pattern == null || pattern.getNature() == null)
