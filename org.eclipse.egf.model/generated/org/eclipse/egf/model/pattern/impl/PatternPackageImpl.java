@@ -681,6 +681,10 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         op = addEOperation(patternRunnerEClass, null, "translate", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         addEException(op, this.getPatternException());
 
+        addEOperation(patternRunnerEClass, ecorePackage.getEString(), "canRun", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        addEOperation(patternRunnerEClass, ecorePackage.getEString(), "canTranslate", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
         initEClass(patternLibraryEClass, PatternLibrary.class, "PatternLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getPatternLibrary_Elements(), this.getPatternElement(), this.getPatternElement_Container(), "elements", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getPatternLibrary_RuntimeOrchestration(), this.getPatternLibrary(), null, "runtimeOrchestration", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

@@ -67,4 +67,20 @@ public interface PatternRunner extends ModelElement {
      */
     void translate() throws PatternException;
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model
+     * @generated
+     */
+    String canRun();
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model
+     * @generated
+     */
+    String canTranslate();
+
 } // PatternRunner

@@ -46,6 +46,8 @@
         <genParameters ecoreParameter="Pattern.ecore#//PatternRunner/run/context"/>
       </genOperations>
       <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/translate"/>
+      <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/canRun"/>
+      <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/canTranslate"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//PatternLibrary">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/elements"/>
