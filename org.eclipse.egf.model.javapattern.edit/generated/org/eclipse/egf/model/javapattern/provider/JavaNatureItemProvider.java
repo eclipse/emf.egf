@@ -74,21 +74,8 @@ public class JavaNatureItemProvider extends PatternNatureItemProvider implements
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addClassNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Class Name feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addClassNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_JavaNature_className_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_JavaNature_className_feature", "_UI_JavaNature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                JavaPatternPackage.Literals.JAVA_NATURE__CLASS_NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -125,12 +112,6 @@ public class JavaNatureItemProvider extends PatternNatureItemProvider implements
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
-
-        switch (notification.getFeatureID(JavaNature.class)) {
-        case JavaPatternPackage.JAVA_NATURE__CLASS_NAME:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
-        }
         super.notifyChanged(notification);
     }
 
