@@ -52,132 +52,109 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class JetNatureItemProvider extends PatternNatureItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider,
-    ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider,
-    ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
-  /**
-   * This constructs an instance from a factory and a notifier.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JetNatureItemProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
-  }
+public class JetNatureItemProvider extends PatternNatureItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+	/**
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public JetNatureItemProvider(AdapterFactory adapterFactory) {
+		super(adapterFactory);
+	}
 
-  /**
-   * This returns the property descriptors for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-    if (itemPropertyDescriptors == null) {
-      super.getPropertyDescriptors(object);
+	/**
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
+			super.getPropertyDescriptors(object);
 
-      addCompileTemplatePropertyDescriptor(object);
-      addTemplateFilePathPropertyDescriptor(object);
-    }
-    return itemPropertyDescriptors;
-  }
+			addTemplateClassNamePropertyDescriptor(object);
+		}
+		return itemPropertyDescriptors;
+	}
 
-  /**
-   * This adds a property descriptor for the Compile Template feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addCompileTemplatePropertyDescriptor(Object object) {
-    itemPropertyDescriptors
-        .add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-            getResourceLocator(),
-            getString("_UI_JetNature_compileTemplate_feature"), //$NON-NLS-1$
-            getString("_UI_PropertyDescriptor_description", "_UI_JetNature_compileTemplate_feature", "_UI_JetNature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-            JetpatternPackage.Literals.JET_NATURE__COMPILE_TEMPLATE, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null,
-            null));
-  }
+	/**
+	 * This adds a property descriptor for the Template Class Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addTemplateClassNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_JetNature_templateClassName_feature"), //$NON-NLS-1$
+				getString("_UI_PropertyDescriptor_description", "_UI_JetNature_templateClassName_feature", "_UI_JetNature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+				JetpatternPackage.Literals.JET_NATURE__TEMPLATE_CLASS_NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
 
-  /**
-   * This adds a property descriptor for the Template File Path feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addTemplateFilePathPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-        getResourceLocator(),
-        getString("_UI_JetNature_templateFilePath_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_JetNature_templateFilePath_feature", "_UI_JetNature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        JetpatternPackage.Literals.JET_NATURE__TEMPLATE_FILE_PATH, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-        null));
-  }
+	/**
+	 * This returns JetNature.gif.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object getImage(Object object) {
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/JetNature")); //$NON-NLS-1$
+	}
 
-  /**
-   * This returns JetNature.gif.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/JetNature")); //$NON-NLS-1$
-  }
+	/**
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String getText(Object object) {
+		String label = ((JetNature) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_JetNature_type") : //$NON-NLS-1$
+				getString("_UI_JetNature_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
+	}
 
-  /**
-   * This returns the label text for the adapted class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getText(Object object) {
-    String label = ((JetNature) object).getName();
-    return label == null || label.length() == 0 ? getString("_UI_JetNature_type") : //$NON-NLS-1$
-        getString("_UI_JetNature_type") + " " + label; //$NON-NLS-1$ //$NON-NLS-2$
-  }
+	/**
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
+		updateChildren(notification);
 
-  /**
-   * This handles model notifications by calling {@link #updateChildren} to update any cached
-   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void notifyChanged(Notification notification) {
-    updateChildren(notification);
+		switch (notification.getFeatureID(JetNature.class)) {
+		case JetpatternPackage.JET_NATURE__TEMPLATE_CLASS_NAME:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		}
+		super.notifyChanged(notification);
+	}
 
-    switch (notification.getFeatureID(JetNature.class)) {
-    case JetpatternPackage.JET_NATURE__COMPILE_TEMPLATE:
-    case JetpatternPackage.JET_NATURE__TEMPLATE_FILE_PATH:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
-    }
-    super.notifyChanged(notification);
-  }
+	/**
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+		super.collectNewChildDescriptors(newChildDescriptors, object);
+	}
 
-  /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-   * that can be created under this object.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-    super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return EGFModelsEditPlugin.INSTANCE;
-  }
+	/**
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public ResourceLocator getResourceLocator() {
+		return EGFModelsEditPlugin.INSTANCE;
+	}
 
 }

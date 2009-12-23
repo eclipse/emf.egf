@@ -28,8 +28,7 @@ import org.eclipse.emf.common.util.URI;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.jetpattern.JetNature#isCompileTemplate <em>Compile Template</em>}</li>
- *   <li>{@link org.eclipse.egf.model.jetpattern.JetNature#getTemplateFilePath <em>Template File Path</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.jetpattern.JetNature#getTemplateClassName <em>Template Class Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,57 +37,30 @@ import org.eclipse.emf.common.util.URI;
  * @generated
  */
 public interface JetNature extends PatternNature {
-  /**
-   * Returns the value of the '<em><b>Compile Template</b></em>' attribute.
-   * The default value is <code>"false"</code>.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Compile Template</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Compile Template</em>' attribute.
-   * @see #setCompileTemplate(boolean)
-   * @see org.eclipse.egf.model.jetpattern.JetpatternPackage#getJetNature_CompileTemplate()
-   * @model default="false" required="true"
-   * @generated
-   */
-  boolean isCompileTemplate();
+	/**
+	 * Returns the value of the '<em><b>Template Class Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Template Class Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Template Class Name</em>' attribute.
+	 * @see #setTemplateClassName(URI)
+	 * @see org.eclipse.egf.model.jetpattern.JetpatternPackage#getJetNature_TemplateClassName()
+	 * @model dataType="org.eclipse.egf.model.factorycomponent.URI"
+	 * @generated
+	 */
+	URI getTemplateClassName();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.jetpattern.JetNature#isCompileTemplate <em>Compile Template</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Compile Template</em>' attribute.
-   * @see #isCompileTemplate()
-   * @generated
-   */
-  void setCompileTemplate(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Template File Path</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Template File Path</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Template File Path</em>' attribute.
-   * @see #setTemplateFilePath(URI)
-   * @see org.eclipse.egf.model.jetpattern.JetpatternPackage#getJetNature_TemplateFilePath()
-   * @model dataType="org.eclipse.egf.model.factorycomponent.URI"
-   * @generated
-   */
-  URI getTemplateFilePath();
-
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.jetpattern.JetNature#getTemplateFilePath <em>Template File Path</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Template File Path</em>' attribute.
-   * @see #getTemplateFilePath()
-   * @generated
-   */
-  void setTemplateFilePath(URI value);
+	/**
+	 * Sets the value of the '{@link org.eclipse.egf.model.jetpattern.JetNature#getTemplateClassName <em>Template Class Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Template Class Name</em>' attribute.
+	 * @see #getTemplateClassName()
+	 * @generated
+	 */
+	void setTemplateClassName(URI value);
 
 } // JetNature
