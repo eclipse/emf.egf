@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.java;
 
+import java.lang.reflect.Method;
 import java.util.Collections;
 
 import org.eclipse.core.resources.IProject;
@@ -29,6 +30,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
+import org.eclipse.egf.pattern.execution.WorkspaceAndPluginClassLoader;
 
 /**
  * @author Guiu
@@ -41,7 +43,21 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
         setPattern(pattern);
     }
 
-    public void run(PatternContext context) {
+    public void run(PatternContext context) throws PatternException {
+        if (getPattern() == null)
+            throw new IllegalStateException();
+        String templateClassName = ((JavaNature) getPattern().getNature()).getClassName();
+        if (templateClassName == null)
+            throw new IllegalStateException("Pattern class is null");
+        try {
+
+            Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternHelper.getPlatformFactoryComponent(getPattern())).loadClass(templateClassName);
+            Method method = templateClass.getMethod("generate", Object.class);
+            Object template = templateClass.newInstance();
+            method.invoke(template, context);
+        } catch (Exception e) {
+            throw new PatternException(e);
+        }
     }
 
     public void translate() throws PatternException {
