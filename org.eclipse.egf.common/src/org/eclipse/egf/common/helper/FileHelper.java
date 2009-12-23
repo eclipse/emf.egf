@@ -35,7 +35,7 @@ import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.eclipse.emf.common.util.URI;
 
 import org.eclipse.egf.common.activator.EGFCommonPlugin;
-import org.eclipse.egf.common.constant.ICommonConstants;
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.console.EGFConsolePlugin;
 
 
@@ -117,7 +117,7 @@ public class FileHelper {
    * @return
    */
   public static String convertPackageNameToFolderPath(String packageName_p) {
-    return packageName_p != null ? packageName_p.replace(ICommonConstants.DOT_CHARACTER, ICommonConstants.SLASH_CHARACTER) : null;
+    return packageName_p != null ? packageName_p.replace(CharacterConstants.DOT_CHARACTER, CharacterConstants.SLASH_CHARACTER) : null;
   }
 
   /**
@@ -159,11 +159,11 @@ public class FileHelper {
    * Read file as a string.
    * @param filePath_p File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @return If an error occurred {@link ICommonConstants#EMPTY_STRING} is returned.
+   * @return If an error occurred {@link CharacterConstants#EMPTY_STRING} is returned.
    */
   public static String readFile(String filePath_p) {
     byte[] rawContent = readRawFile(filePath_p);
-    return rawContent.length == 0 ? ICommonConstants.EMPTY_STRING : new String(rawContent);
+    return rawContent.length == 0 ? CharacterConstants.EMPTY_STRING : new String(rawContent);
   }
 
   /**

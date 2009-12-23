@@ -30,7 +30,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.egf.common.activator.EGFCommonPlugin;
-import org.eclipse.egf.common.constant.ICommonConstants;
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.common.generator.IEgfGeneratorConstants;
 import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.emf.codegen.ecore.Generator;
@@ -358,9 +358,9 @@ public class ProjectHelper {
       return ProjectExistenceStatus.ALREADY_EXISTS;
     }
     // Else, try and create an EMF project.
-    IPath projectLocationPath = new Path(ICommonConstants.SLASH_CHARACTER + projectName_p);
+    IPath projectLocationPath = new Path(CharacterConstants.SLASH_CHARACTER + projectName_p);
     IProject resultingProject = Generator.createEMFProject(
-      projectLocationPath.append(ICommonConstants.SLASH_CHARACTER + IEgfGeneratorConstants.SRC_FOLDER), 
+      projectLocationPath.append(CharacterConstants.SLASH_CHARACTER + IEgfGeneratorConstants.SRC_FOLDER), 
       null,
       new ArrayList<IProject>(0), 
       new NullProgressMonitor(), 

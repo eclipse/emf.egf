@@ -10,13 +10,10 @@
  */
 package org.eclipse.egf.common.constant;
 
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
-
 /**
  * @author fournier
  */
-public interface ICommonConstants {
+public interface CharacterConstants {
 
     /**
      * Internal Error constant.
@@ -64,11 +61,6 @@ public interface ICommonConstants {
     public static final char WHITE_SPACE_CHARACTER = ' ';
 
     /**
-     * Define the platform resource path
-     */
-    public static final String PLATFORM_RESOURCE = "platform:/resource/"; //$NON-NLS-1$
-
-    /**
      * End of line character.
      */
     public static final char EOL_CHARACTER = '\n';
@@ -95,52 +87,8 @@ public interface ICommonConstants {
     public static final char UNDERSCORE_CHARACTER = '_';
 
     /**
-     * Http URI prefix.
-     */
-    public static final String HTTP_PREFIX = "http://"; //$NON-NLS-1$
-
-    /**
-     * Ecore file extension.
-     */
-    public static final String ECORE_FILE_EXTENSION = "ecore"; //$NON-NLS-1$
-
-    /**
-     * GenModel file extension.
-     */
-    public static final String GENMODEL_FILE_EXTENSION = "genmodel"; //$NON-NLS-1$
-
-    /**
-     * Ecore diagram file extension.
-     */
-    public static final String ECORE_DIAGRAM_FILE_EXTENSION = "ecorediag"; //$NON-NLS-1$
-
-    /**
      * Line separator.
      */
     public static final String LINE_SEPARATOR = System.getProperty("line.separator"); //$NON-NLS-1$ 
-
-    /**
-     * Generated folder path.
-     * 
-     * @deprecated use {@link PatternPreferences instead}
-     */
-    public static final String GENERATED_FOLDER_PATH = "generated"; //$NON-NLS-1$
-
-    /**
-     * Model folder path.
-     */
-    public static final String MODEL_FOLDER_PATH = "model"; //$NON-NLS-1$
-
-    /**
-     * Model folder IPath.
-     */
-    public static final IPath MODEL_FOLDER_IPATH = new Path("model"); //$NON-NLS-1$  
-
-    /**
-     * Templates folder path.
-     * 
-     * @deprecated use {@link PatternPreferences instead}
-     */
-    public static final String TEMPLATES_FOLDER_PATH = "templates"; //$NON-NLS-1$
 
 }

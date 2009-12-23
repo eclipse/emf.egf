@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.activator.EGFCommonPlugin;
-import org.eclipse.egf.common.constant.ICommonConstants;
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.console.EGFConsolePlugin;
 
 /**
@@ -304,7 +304,7 @@ public class ExtensionPointHelper {
      */
     public static String getExtensionPointId(String hostingPluginId_p, String extensionPointId_p) {
         StringBuilder result = new StringBuilder(hostingPluginId_p);
-        result.append(ICommonConstants.DOT_CHARACTER).append(extensionPointId_p);
+        result.append(CharacterConstants.DOT_CHARACTER).append(extensionPointId_p);
         return result.toString();
     }
 }

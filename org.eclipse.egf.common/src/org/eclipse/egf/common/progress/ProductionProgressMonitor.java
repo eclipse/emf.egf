@@ -12,7 +12,7 @@ package org.eclipse.egf.common.progress;
 
 import org.eclipse.core.runtime.SubMonitor;
 
-import org.eclipse.egf.common.constant.ICommonConstants;
+import org.eclipse.egf.common.constant.CharacterConstants;
 
 
 /**
@@ -48,7 +48,7 @@ public class ProductionProgressMonitor {
   public ProductionProgressMonitor(SubMonitor parentMonitor_p, String taskName_p, int totalWork_p) {
     _totalWork = totalWork_p;
     _monitor = parentMonitor_p.newChild(_totalWork);
-    _monitor.beginTask(ICommonConstants.EMPTY_STRING, _totalWork);
+    _monitor.beginTask(CharacterConstants.EMPTY_STRING, _totalWork);
     _monitor.setTaskName(taskName_p);
   }
 

@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.common.helper;
 
-import org.eclipse.egf.common.constant.ICommonConstants;
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -43,7 +43,7 @@ public class IDGeneratorHelper {
   public static String generatePrefixUID(String prefix_p) {
     String prefix = prefix_p;
     if (prefix == null) {
-      prefix = ICommonConstants.EMPTY_STRING;
+      prefix = CharacterConstants.EMPTY_STRING;
     }    
     return new StringBuilder(StringHelper.replaceNonWordCharactersWithDot(prefix))
       .append(EcoreUtil.generateUUID())
