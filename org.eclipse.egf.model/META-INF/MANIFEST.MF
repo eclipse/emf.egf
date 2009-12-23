@@ -17,6 +17,7 @@ Export-Package:
  org.eclipse.egf.model.factorycomponent.impl,
  org.eclipse.egf.model.factorycomponent.util,
  org.eclipse.egf.model.javapattern,
+ org.eclipse.egf.model.javapattern.impl,
  org.eclipse.egf.model.jetpattern,
  org.eclipse.egf.model.jetpattern.impl,
  org.eclipse.egf.model.jetpattern.util,
