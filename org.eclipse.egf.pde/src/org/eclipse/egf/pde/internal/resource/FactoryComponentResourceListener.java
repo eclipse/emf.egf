@@ -155,7 +155,7 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
 
           // Process files
           if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED || delta.getKind() == IResourceDelta.ADDED) {
-            if (resource.getFileExtension().equals(IFactoryComponentConstants.FACTORY_COMPONENT_FILE_EXTENSION)) {
+            if (IFactoryComponentConstants.FACTORY_COMPONENT_FILE_EXTENSION.equals(resource.getFileExtension())) {
               try {
                 // Build a Resource URI
                 URI uri = URIHelper.getPlatformURI(resource);
