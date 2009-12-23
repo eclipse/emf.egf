@@ -12,7 +12,7 @@ package org.eclipse.egf.pde.internal.core.text.plugin;
 
 import java.util.ArrayList;
 
-import org.eclipse.egf.common.constant.ICommonConstants;
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
@@ -497,7 +497,7 @@ public class XMLTextChangeListener extends AbstractTextChangeListener {
    * @see org.eclipse.pde.internal.core.text.IModelTextChangeListener#getReadableName(org.eclipse.text.edits.TextEdit)
    */
   public String getReadableName(TextEdit edit_p) {
-    return ICommonConstants.EMPTY_STRING;
+    return CharacterConstants.EMPTY_STRING;
   }
   
 }
