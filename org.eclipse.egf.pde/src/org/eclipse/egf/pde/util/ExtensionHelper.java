@@ -15,7 +15,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.console.EGFConsolePlugin;
-import org.eclipse.egf.core.platform.EGFPlatformPlugin;
+import org.eclipse.egf.core.platform.uri.URIHelper;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IExtensions;
@@ -30,15 +30,19 @@ import org.eclipse.pde.core.plugin.IPluginParent;
 
 /**
  * Provides helpful methods to deal with Extension used in plug-in file.
+ * 
  * @author fournier
  */
 public class ExtensionHelper {
-  
+
   /**
    * Create a new extension into given plug-in model object.
-   * @param extensionPointId_p the fully qualified extension-point id.
+   * 
+   * @param extensionPointId_p
+   *          the fully qualified extension-point id.
    * @param pluginModelBase_p
-   * @return an {@link IPluginExtension} instance or null if a creation error occurs.
+   * @return an {@link IPluginExtension} instance or null if a creation error
+   *         occurs.
    */
   public static IPluginExtension createExtension(String extensionPointId_p, IPluginModelBase pluginModelBase_p) {
     IPluginExtension extension = null;
@@ -58,7 +62,8 @@ public class ExtensionHelper {
         if (EGFPDEPlugin.getDefault().isDebugging()) {
           EGFConsolePlugin.getConsole().logThrowable(msg, ce);
         }
-        // Reset to null the result to force the caller to debug where is the bug.
+        // Reset to null the result to force the caller to debug where is the
+        // bug.
         extension = null;
       }
     }
@@ -67,8 +72,10 @@ public class ExtensionHelper {
 
   /**
    * Create a plug-in element and add it into parent.
+   * 
    * @param parent_p
-   * @return an {@link IPluginElement} instance or null if a creation error occurs.
+   * @return an {@link IPluginElement} instance or null if a creation error
+   *         occurs.
    */
   public static IPluginElement createPluginElement(IPluginParent parent_p, String name_p) {
     if (parent_p == null) {
@@ -89,8 +96,9 @@ public class ExtensionHelper {
         EGFPDEPlugin.getDefault().log(msg, ce);
         if (EGFPDEPlugin.getDefault().isDebugging()) {
           EGFConsolePlugin.getConsole().logThrowable(msg, ce);
-        }        
-        // Reset to null the result to force the caller to debug where is the bug.
+        }
+        // Reset to null the result to force the caller to debug where is the
+        // bug.
         element = null;
       }
     }
@@ -99,8 +107,13 @@ public class ExtensionHelper {
 
   /**
    * Get a list of {@link IPluginExtension} matching given extension-point id.
-   * @param extensionPart_p extension part where is stored all extensions and extension-points.
-   * @param fullyQualifiedExtensionPointId_p fully qualified extension-point id (with the id of plug-in that hosts that one.)
+   * 
+   * @param extensionPart_p
+   *          extension part where is stored all extensions and
+   *          extension-points.
+   * @param fullyQualifiedExtensionPointId_p
+   *          fully qualified extension-point id (with the id of plug-in that
+   *          hosts that one.)
    * @return a not null array of {@link IPluginExtension}.
    */
   public static IPluginExtension[] getPluginExtension(IExtensions extensionPart_p, String fullyQualifiedExtensionPointId_p) {
@@ -122,9 +135,12 @@ public class ExtensionHelper {
   }
 
   /**
-   * Remove an {@link IPluginExtension} from an {@link IExtensions} object for given extension-point id.
+   * Remove an {@link IPluginExtension} from an {@link IExtensions} object for
+   * given extension-point id.
+   * 
    * @param extensionPart_p
-   * @param extensionPointId_p the fully qualified extension-point id.
+   * @param extensionPointId_p
+   *          the fully qualified extension-point id.
    */
   public static boolean removePluginExtension(IExtensions extensionPart_p, String extensionPointId_p, String elementId_p, Object elementIdValue_p) {
     boolean result = false;
@@ -146,7 +162,7 @@ public class ExtensionHelper {
           EGFPDEPlugin.getDefault().log(msg, ce);
           if (EGFPDEPlugin.getDefault().isDebugging()) {
             EGFConsolePlugin.getConsole().logThrowable(msg, ce);
-          }           
+          }
         }
         // Specified element was successfully removed, stop the loop.
         break;
@@ -154,12 +170,15 @@ public class ExtensionHelper {
     }
     return result;
   }
-    
+
   /**
    * Get an {@link IPluginElement} instance for given parameters.<br>
-   * The research looks up for a child with an attribute equals to attributeId_p and its value set to <code>attributeIdValue_p</code>.
+   * The research looks up for a child with an attribute equals to attributeId_p
+   * and its value set to <code>attributeIdValue_p</code>.
+   * 
    * @param parent_p
-   * @param attributeId_p.
+   * @param attributeId_p
+   *          .
    * @param uri_p
    * @return a {@link IPluginElement} instance or null if not found.
    */
@@ -181,7 +200,7 @@ public class ExtensionHelper {
           elementIdValue = child.getName();
         } else {
           // Look up for the one related to given element name.
-          IPluginAttribute attribute = child.getAttribute(attributeId_p);           
+          IPluginAttribute attribute = child.getAttribute(attributeId_p);
           if (attribute != null) {
             elementIdValue = attribute.getValue();
           }
@@ -189,30 +208,23 @@ public class ExtensionHelper {
         // analysis
         if (elementIdValue != null) {
           if (elementIdValue_p instanceof URI) {
-            URI uri = URI.createURI(elementIdValue);
-            if (uri.isRelative()) {
-              if (parent_p.getPluginModel().getUnderlyingResource() != null) {
-                IPluginModelBase base = EGFPlatformPlugin.getPluginModelBase(parent_p.getPluginModel().getUnderlyingResource().getProject());
-                uri = URI.createPlatformPluginURI(EGFPlatformPlugin.getId(base) + "/" + uri, true);
-              } else {
-                uri = URI.createPlatformPluginURI(EGFPlatformPlugin.getId(parent_p.getPluginModel()) + "/" + uri, true);
-              }
-            }
-            if (elementIdValue_p.equals(uri)) {
+            if (elementIdValue_p.equals(URIHelper.getPlatformURI(parent_p.getPluginModel(), elementIdValue))) {
               result = child;
             }
           } else if (elementIdValue_p.equals(elementIdValue)) {
-            result = child;            
+            result = child;
           }
         }
       }
     }
     return result;
-  }  
+  }
 
   /**
    * Get the {@link IPluginElement} instances for given parameters.<br>
-   * The research looks up for children with a name equals to <code>nodeName_p</code>.
+   * The research looks up for children with a name equals to
+   * <code>nodeName_p</code>.
+   * 
    * @param parent_p
    * @param nodeName_p
    * @return a not null array of {@link IPluginElement}.
@@ -239,9 +251,13 @@ public class ExtensionHelper {
   }
 
   /**
-   * Remove an {@link IPluginElement} element from an IPluginParent for given parameters.<br>
-   * If elementId_p is provided (ie not null), the research looks up for a child with a name equals to value_p.<br>
-   * Otherwise, the research looks up for a child with an attribute equals to attributeId_p and its value set to value_p.
+   * Remove an {@link IPluginElement} element from an IPluginParent for given
+   * parameters.<br>
+   * If elementId_p is provided (ie not null), the research looks up for a child
+   * with a name equals to value_p.<br>
+   * Otherwise, the research looks up for a child with an attribute equals to
+   * attributeId_p and its value set to value_p.
+   * 
    * @param parent_p
    * @param elementId_p
    * @param elementIdValue_p
@@ -266,9 +282,9 @@ public class ExtensionHelper {
       EGFPDEPlugin.getDefault().log(msg, ce);
       if (EGFPDEPlugin.getDefault().isDebugging()) {
         EGFConsolePlugin.getConsole().logThrowable(msg, ce);
-      }       
+      }
     }
     return result;
   }
-    
+
 }

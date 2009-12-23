@@ -41,7 +41,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.ui.emf.EGFEditUIUtil;
-import org.eclipse.egf.core.platform.EGFPlatformPlugin;
+import org.eclipse.egf.core.platform.resource.ResourceHelper;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.factorycomponent.provider.FactoryComponentItemProviderAdapterFactory;
 import org.eclipse.egf.model.types.provider.TypesItemProviderAdapterFactory;
@@ -815,17 +815,16 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
    * @generated NOT
    */
   public void createModel() {
-    URI resourceURI = EGFEditUIUtil.getURI(getEditorInput());
-    editingDomain.getResourceSet().getURIConverter().getURIMap().putAll(EGFPlatformPlugin.computePlatformURIMap());
+    URI uri = EGFEditUIUtil.getURI(getEditorInput());
     Exception exception = null;
     Resource resource = null;
     try {
       // Load the resource through the editing domain.
       //
-      resource = editingDomain.getResourceSet().getResource(resourceURI, true);
+      resource = ResourceHelper.loadResource(editingDomain.getResourceSet(), uri);
     } catch (Exception e) {
       exception = e;
-      resource = editingDomain.getResourceSet().getResource(resourceURI, false);
+      resource = editingDomain.getResourceSet().getResource(uri, false);
     }
 
     Diagnostic diagnostic = analyzeResourceProblems(resource, exception);

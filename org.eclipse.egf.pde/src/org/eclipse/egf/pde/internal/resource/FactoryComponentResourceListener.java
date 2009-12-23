@@ -16,7 +16,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -30,7 +29,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.common.helper.ProjectHelper;
+import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.StatusHelper;
 import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
@@ -38,13 +37,13 @@ import org.eclipse.egf.core.platform.pde.IFactoryComponentConstants;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.core.platform.resource.IResourceFactoryComponentDelta;
 import org.eclipse.egf.core.platform.resource.IResourceFactoryComponentListener;
+import org.eclipse.egf.core.platform.uri.URIHelper;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommand;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommandRunner;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
 
 /**
  * @author Xavier Maysonnave
@@ -158,14 +157,13 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
           if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED || delta.getKind() == IResourceDelta.ADDED) {
             if (resource.getFileExtension().equals(IFactoryComponentConstants.FACTORY_COMPONENT_FILE_EXTENSION)) {
               try {
-                IPluginModelBase base = EGFPlatformPlugin.getPluginModelBase(resource.getProject());
-                if (base != null) {
-                  // Build a Resource URI
-                  URI resourceURI = URI.createPlatformPluginURI(EGFPlatformPlugin.getId(base) + "/" + resource.getFullPath().removeFirstSegments(1).toString(), true); //$NON-NLS-1$ 
+                // Build a Resource URI
+                URI uri = URIHelper.getPlatformURI(resource);
+                if (uri != null) {
                   // Removed resource
                   if (delta.getKind() == IResourceDelta.REMOVED) {
                     for (IPlatformFactoryComponent fc : EGFPlatformPlugin.getDefault().getWorkspacePluginFactoryComponents()) {
-                      if (fc.getURI().equals(resourceURI)) {
+                      if (fc.getURI().equals(uri)) {
                         removedFcs.add(fc);
                         break;
                       }
@@ -174,7 +172,7 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
                   } else if (delta.getKind() == IResourceDelta.ADDED) {
                     boolean found = false;
                     for (IPlatformFactoryComponent fc : EGFPlatformPlugin.getDefault().getWorkspacePluginFactoryComponents()) {
-                      if (fc.getURI().equals(resourceURI)) {
+                      if (fc.getURI().equals(uri)) {
                         found = true;
                         break;
                       }
@@ -182,19 +180,17 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
                     if (found == false) {
                       addedFcs.add(resource);
                       if ((delta.getFlags() & IResourceDelta.MOVED_FROM) != 0) {
-                        IProject fromProject = ProjectHelper.getProject(delta.getMovedFromPath().segment(0));
-                        IPluginModelBase fromBase = EGFPlatformPlugin.getPluginModelBase(fromProject);
-                        if (fromBase != null) {
-                          // Build a Resource URI
-                          URI fromURI = URI.createPlatformPluginURI(EGFPlatformPlugin.getId(fromBase) + "/" + delta.getMovedFromPath().removeFirstSegments(1).toString(), true); //$NON-NLS-1$
-                          deltaFcs.storeMovedResourceFactoryComponent(resourceURI, fromURI);
+                        // Build a Resource URI
+                        URI fromURI = URIHelper.getPlatformURI(delta.getMovedFromPath());
+                        if (fromURI != null) {
+                          deltaFcs.storeMovedResourceFactoryComponent(uri, fromURI);
                         }
                       }
                     }
                     // Changed resource
                   } else if (delta.getKind() == IResourceDelta.CHANGED) {
                     if ((delta.getFlags() & IResourceDelta.CONTENT) != 0) {
-                      deltaFcs.storeChangedResourceFactoryComponent(resourceURI);
+                      deltaFcs.storeChangedResourceFactoryComponent(uri);
                     }
                   }
                 }
@@ -291,7 +287,7 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
             // Delete an extension point
             IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFactoryComponentExtensionHelper().unsetFactoryComponentExtension(fc.getURI());
             IPluginChangesCommandRunner runner = EGFPDEPlugin.getPluginChangesCommandRunner();
-            runner.performChangesOnPlugin(fc.getPlatformPlugin().getId(), Collections.singletonList(unsetCommand));
+            runner.performChangesOnPlugin(fc.getPlatformPlugin().getBundleId(), Collections.singletonList(unsetCommand));
             monitor.worked(1000);
             if (monitor.isCanceled()) {
               throw new OperationCanceledException();
@@ -302,16 +298,12 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
             // Create an extension point
             IPluginChangesCommand createCommand = EGFPDEPlugin.getFactoryComponentExtensionHelper().setFactoryComponentExtension(URI.createURI(resource.getFullPath().removeFirstSegments(1).makeRelative().toString()));
             IPluginChangesCommandRunner runner = EGFPDEPlugin.getPluginChangesCommandRunner();
-            // Locate the bundleId
-            String bundleId = null;
-            IPluginModelBase base = EGFPlatformPlugin.getPluginModelBase(resource.getProject());
-            if (base != null) {
-              bundleId = EGFPlatformPlugin.getId(base);
+            // Locate the bundleId, resource should be located in a bundle
+            // project
+            String bundleId = BundleHelper.getBundleId(resource);
+            if (bundleId != null) {
+              runner.performChangesOnPlugin(bundleId, Collections.singletonList(createCommand));
             }
-            if (bundleId == null) {
-              bundleId = resource.getProject().getName();
-            }
-            runner.performChangesOnPlugin(bundleId, Collections.singletonList(createCommand));
             monitor.worked(1000);
             if (monitor.isCanceled()) {
               throw new OperationCanceledException();
