@@ -13,10 +13,8 @@ Export-Package:
  org.eclipse.egf.core.platform.pde,
  org.eclipse.egf.core.platform.resource
 Require-Bundle: 
- org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.pde.ui;visibility:=reexport,
- org.eclipse.egf.console;visibility:=reexport, 
- org.eclipse.egf.model, 
- org.eclipse.egf.common.ui
+ org.eclipse.pde.ui,
+ org.eclipse.egf.common;visibility:=reexport,
+ org.eclipse.egf.model 
 Bundle-ActivationPolicy: lazy

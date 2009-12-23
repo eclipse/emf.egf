@@ -19,7 +19,7 @@ import java.util.Map;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.egf.common.ui.activator.EGFAbstractUIPlugin;
+import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.core.platform.internal.pde.PlatformManager;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponentListener;
@@ -35,7 +35,7 @@ import org.osgi.framework.BundleContext;
  * @author Xavier Maysonnave
  * 
  */
-public class EGFPlatformPlugin extends EGFAbstractUIPlugin {
+public class EGFPlatformPlugin extends EGFAbstractPlugin {
 
   private static EGFPlatformPlugin _plugin;
 
@@ -65,7 +65,7 @@ public class EGFPlatformPlugin extends EGFAbstractUIPlugin {
       return null;
     }
     // Project Name
-    String firstSegment = resource_p.getURI().segment(0);
+    String firstSegment = resource_p.getURI().segment(1);
     if (firstSegment == null || firstSegment.trim().length() == 0) {
       return null;
     }
