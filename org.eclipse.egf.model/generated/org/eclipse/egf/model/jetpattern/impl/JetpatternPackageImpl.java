@@ -205,7 +205,6 @@ public class JetpatternPackageImpl extends EPackageImpl implements JetpatternPac
 
 		// Obtain other dependent packages
 		PatternPackage thePatternPackage = (PatternPackage) EPackage.Registry.INSTANCE.getEPackage(PatternPackage.eNS_URI);
-		FactoryComponentPackage theFactoryComponentPackage = (FactoryComponentPackage) EPackage.Registry.INSTANCE.getEPackage(FactoryComponentPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -217,7 +216,7 @@ public class JetpatternPackageImpl extends EPackageImpl implements JetpatternPac
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(jetNatureEClass, JetNature.class, "JetNature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getJetNature_TemplateClassName(), theFactoryComponentPackage.getURI(), "templateClassName", null, 0, 1, JetNature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getJetNature_TemplateClassName(), ecorePackage.getEString(), "templateClassName", null, 0, 1, JetNature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(jetRunnerEClass, JetRunner.class, "JetRunner", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

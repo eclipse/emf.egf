@@ -60,7 +60,7 @@ public class JetNatureImpl extends PatternNatureImpl implements JetNature {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final URI TEMPLATE_CLASS_NAME_EDEFAULT = null;
+	protected static final String TEMPLATE_CLASS_NAME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getTemplateClassName() <em>Template Class Name</em>}' attribute.
@@ -70,7 +70,7 @@ public class JetNatureImpl extends PatternNatureImpl implements JetNature {
 	 * @generated
 	 * @ordered
 	 */
-	protected URI templateClassName = TEMPLATE_CLASS_NAME_EDEFAULT;
+	protected String templateClassName = TEMPLATE_CLASS_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -96,7 +96,7 @@ public class JetNatureImpl extends PatternNatureImpl implements JetNature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public URI getTemplateClassName() {
+	public String getTemplateClassName() {
 		return templateClassName;
 	}
 
@@ -105,8 +105,8 @@ public class JetNatureImpl extends PatternNatureImpl implements JetNature {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTemplateClassName(URI newTemplateClassName) {
-		URI oldTemplateClassName = templateClassName;
+	public void setTemplateClassName(String newTemplateClassName) {
+		String oldTemplateClassName = templateClassName;
 		templateClassName = newTemplateClassName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, JetpatternPackage.JET_NATURE__TEMPLATE_CLASS_NAME, oldTemplateClassName, templateClassName));
@@ -135,7 +135,7 @@ public class JetNatureImpl extends PatternNatureImpl implements JetNature {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case JetpatternPackage.JET_NATURE__TEMPLATE_CLASS_NAME:
-			setTemplateClassName((URI) newValue);
+			setTemplateClassName((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

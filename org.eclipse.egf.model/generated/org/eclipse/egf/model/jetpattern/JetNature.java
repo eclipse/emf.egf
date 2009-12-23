@@ -46,12 +46,12 @@ public interface JetNature extends PatternNature {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Template Class Name</em>' attribute.
-	 * @see #setTemplateClassName(URI)
+	 * @see #setTemplateClassName(String)
 	 * @see org.eclipse.egf.model.jetpattern.JetpatternPackage#getJetNature_TemplateClassName()
-	 * @model dataType="org.eclipse.egf.model.factorycomponent.URI"
+	 * @model
 	 * @generated
 	 */
-	URI getTemplateClassName();
+	String getTemplateClassName();
 
 	/**
 	 * Sets the value of the '{@link org.eclipse.egf.model.jetpattern.JetNature#getTemplateClassName <em>Template Class Name</em>}' attribute.
@@ -61,6 +61,6 @@ public interface JetNature extends PatternNature {
 	 * @see #getTemplateClassName()
 	 * @generated
 	 */
-	void setTemplateClassName(URI value);
+	void setTemplateClassName(String value);
 
 } // JetNature
