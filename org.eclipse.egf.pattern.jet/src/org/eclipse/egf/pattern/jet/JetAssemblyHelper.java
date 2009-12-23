@@ -25,6 +25,7 @@ import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.ParameterMatcher;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.execution.AssemblyHelper;
@@ -77,9 +78,19 @@ public class JetAssemblyHelper extends AssemblyHelper {
         content.append("%>");
     }
 
+    protected void addVariable(Pattern pattern) throws PatternException {
+        content.append("<%").append(START_MARKER).append("%>");
+        content.append("<%");
+        for (PatternVariable var : pattern.getVariables()) {
+            content.append("EObject ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
+        }
+        content.append("%>");
+        super.addVariable(pattern);
+
+    }
+
     @Override
     protected void visitOrchestration(Pattern pattern) throws PatternException {
-        content.append("<%").append(START_MARKER).append("%>");
         super.visitOrchestration(pattern);
         content.append("<%").append(END_MARKER).append("%>");
     }
