@@ -18,25 +18,21 @@ package org.eclipse.egf.core.natures;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-
 import org.eclipse.egf.core.EGFCorePlugin;
-
 
 public class FactoryComponentNatures {
 
-  public static final String FACTORY_COMPONENT_NATURE = "org.eclipse.egf.core.FactoryComponentNature"; //$NON-NLS-1$
+    public static final String FACTORY_COMPONENT_NATURE = "org.eclipse.egf.core.FactoryComponentNature"; //$NON-NLS-1$
 
-  public static final String PATTERN_BUILDER_ID = "org.eclipse.egf.pattern.PatternBuilder"; //$NON-NLS-1$
-  
-  public static final String PATTERN_TEMPLATE_BUILDER_ID = "org.eclipse.egf.pattern.PatternTemplateBuilder"; //$NON-NLS-1$
+    public static final String PATTERN_BUILDER_ID = "org.eclipse.egf.pattern.PatternBuilder"; //$NON-NLS-1$
 
-  public static boolean hasFactoryComponentNature(IProject project) {
-    try {
-      return project.hasNature(FACTORY_COMPONENT_NATURE);
-    } catch (CoreException e) {
-      EGFCorePlugin.getDefault().log(e);
-      return false;
+    public static boolean hasFactoryComponentNature(IProject project) {
+        try {
+            return project.hasNature(FACTORY_COMPONENT_NATURE);
+        } catch (CoreException e) {
+            EGFCorePlugin.getDefault().log(e);
+            return false;
+        }
     }
-  }
 
 }

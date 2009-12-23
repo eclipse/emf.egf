@@ -17,28 +17,24 @@
 package org.eclipse.egf.core.internal.natures;
 
 import org.eclipse.core.runtime.CoreException;
-
 import org.eclipse.egf.core.helper.EclipseBuilderHelper;
 import org.eclipse.egf.core.natures.FactoryComponentNatures;
 
-
 public class FactoryComponentProject extends BaseProject {
 
-  /**
-   * FactoryComponentNature constructor comment.
-   */
-  public FactoryComponentProject() {
-    super();
-  }
+    /**
+     * FactoryComponentNature constructor comment.
+     */
+    public FactoryComponentProject() {
+        super();
+    }
 
-  public void configure() throws CoreException {
-    EclipseBuilderHelper.addToBuildSpec(getProject(), FactoryComponentNatures.PATTERN_BUILDER_ID);    
-    EclipseBuilderHelper.addToBuildSpec(getProject(), FactoryComponentNatures.PATTERN_TEMPLATE_BUILDER_ID);
-  }
+    public void configure() throws CoreException {
+        EclipseBuilderHelper.addToBuildSpec(getProject(), FactoryComponentNatures.PATTERN_BUILDER_ID);
+    }
 
-  public void deconfigure() throws CoreException {
-    EclipseBuilderHelper.removeFromBuildSpec(getProject(), FactoryComponentNatures.PATTERN_BUILDER_ID);    
-    EclipseBuilderHelper.removeFromBuildSpec(getProject(), FactoryComponentNatures.PATTERN_TEMPLATE_BUILDER_ID);
-  }
+    public void deconfigure() throws CoreException {
+        EclipseBuilderHelper.removeFromBuildSpec(getProject(), FactoryComponentNatures.PATTERN_BUILDER_ID);
+    }
 
 }
