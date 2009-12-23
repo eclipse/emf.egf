@@ -36,23 +36,22 @@ import org.eclipse.pde.core.plugin.IPluginObject;
 import org.eclipse.pde.internal.ui.PDELabelProvider;
 import org.eclipse.pde.internal.ui.PDEUIMessages;
 
-
 public class PlatformPlugin implements IPlatformPlugin {
-  
+
   private IPluginModelBase _base;
-  
+
   private String _previousId;
-  
+
   private Map<String, IPlatformFactoryComponent> _factoryComponents = new HashMap<String, IPlatformFactoryComponent>();
-  
+
   public PlatformPlugin(IPluginModelBase base) {
     Assert.isNotNull(base);
-    Assert.isNotNull(base.getBundleDescription());    
+    Assert.isNotNull(base.getBundleDescription());
     Assert.isNotNull(EGFPlatformPlugin.getId(base));
     _base = base;
     _previousId = EGFPlatformPlugin.getId(base);
   }
-  
+
   public int compareTo(IPlatformPlugin model) {
     if (this.equals(model)) {
       return 0;
@@ -65,29 +64,30 @@ public class PlatformPlugin implements IPlatformPlugin {
     }
     return 1;
   }
-      
+
   public String getId() {
     return EGFPlatformPlugin.getId(getPluginModelBase());
   }
-  
+
   public String getPreviousId() {
     return _previousId;
-  }  
-  
-  public IPlatformFactoryComponent[] getPlatformFactoryComponents() {
-    return _factoryComponents.values().toArray(new IPlatformFactoryComponent [_factoryComponents.size()]);
   }
-  
+
+  public IPlatformFactoryComponent[] getPlatformFactoryComponents() {
+    return _factoryComponents.values().toArray(new IPlatformFactoryComponent[_factoryComponents.size()]);
+  }
+
   public IPluginBase getPluginBase() {
     return _base.getPluginBase();
-  }  
-  
+  }
+
   public IPluginModelBase getPluginModelBase() {
     return _base;
   }
-  
+
   /**
    * Get the IProject from this IPlatformPlugin
+   * 
    * @return null if the plug-in is not in the workspace.
    */
   public IProject getProject() {
@@ -97,16 +97,16 @@ public class PlatformPlugin implements IPlatformPlugin {
       return underlyingResource.getProject();
     }
     return null;
-  }  
-  
+  }
+
   public BundleDescription getBundleDescription() {
     return getPluginModelBase().getBundleDescription();
   }
-  
+
   public boolean isTarget() {
     return getPluginModelBase().getUnderlyingResource() == null;
   }
-    
+
   public void addPlatformFactoryComponent(IPluginExtension extension) {
     if (extension == null || extension.getPluginModel() == null) {
       return;
@@ -115,9 +115,9 @@ public class PlatformPlugin implements IPlatformPlugin {
       if (pluginObject instanceof IPluginElement) {
         addPlatformFactoryComponent((IPluginElement) pluginObject);
       }
-    }    
+    }
   }
-  
+
   public IPlatformFactoryComponent addPlatformFactoryComponent(IPluginElement element) {
     if (element == null) {
       return null;
@@ -125,19 +125,24 @@ public class PlatformPlugin implements IPlatformPlugin {
     if (IFactoryComponentConstants.FACTORY_COMPONENT_EXTENSION_CHILD.equals(element.getName())) {
       try {
         IPlatformFactoryComponent fc = new PlatformFactoryComponent(this, element);
-        if (_factoryComponents.put(fc.getValue(), fc) != null) {
-          String msg = NLS.bind(
-            "PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' contains a duplicate Factory Component ''{1}''.", //$NON-NLS-1$
-            getId(),
-            fc.getValue()
-          );
+        if (_factoryComponents.get(fc.getValue()) != null) {
+          String msg = NLS.bind("PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' already contains such Factory Component ''{1}''.", //$NON-NLS-1$
+              getId(), fc.getValue());
           EGFPlatformPlugin.getDefault().log(msg);
           if (EGFPlatformPlugin.getDefault().isDebugging()) {
             EGFConsolePlugin.getConsole().logWarning(msg);
-            EGFConsolePlugin.getConsole().logWarning(new String("The previous Factory Component has been discarded."), 1);
-          } 
+          }
         } else {
-          return fc;
+          if (_factoryComponents.put(fc.getValue(), fc) != null) {
+            String msg = NLS.bind("PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' unable to add Factory Component ''{1}''.", //$NON-NLS-1$
+                getId(), fc.getValue());
+            EGFPlatformPlugin.getDefault().log(msg);
+            if (EGFPlatformPlugin.getDefault().isDebugging()) {
+              EGFConsolePlugin.getConsole().logError(msg);
+            }
+          } else {
+            return fc;
+          }
         }
       } catch (RuntimeException re) {
         String msg = new String("PlatformPlugin.addPlatformFactoryComponent(..)"); //$NON-NLS-1$
@@ -146,32 +151,32 @@ public class PlatformPlugin implements IPlatformPlugin {
           EGFConsolePlugin.getConsole().logThrowable(msg, re);
         }
       }
-    }    
+    }
     return null;
-  } 
-    
+  }
+
   public boolean removePlatformFactoryComponent(IPlatformFactoryComponent factoryComponent) {
     if (factoryComponent == null) {
       return false;
     }
     return _factoryComponents.remove(factoryComponent.getValue()) != null;
   }
-  
+
   public boolean hasPlatformFactoryComponent(IPlatformFactoryComponent factoryComponent) {
     if (factoryComponent == null) {
       return false;
     }
     return _factoryComponents.get(factoryComponent.getValue()) != null;
   }
-    
+
   public String getLocation() {
     return getBundleDescription().getLocation();
-  }  
-  
+  }
+
   public String toString() {
     IPluginBase pluginBase = getPluginModelBase().getPluginBase();
     String id = getId();
-    String previousId = getPreviousId();    
+    String previousId = getPreviousId();
     String version = pluginBase.getVersion();
     StringBuilder text = new StringBuilder("Id: ");
     if (version != null && version.length() > 0) {
@@ -194,6 +199,6 @@ public class PlatformPlugin implements IPlatformPlugin {
       text.append(" [").append(getLocation()).append("]"); //$NON-NLS-1$  //$NON-NLS-2$
     }
     return text.toString();
-  } 
-    
+  }
+
 }

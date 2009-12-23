@@ -241,10 +241,11 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       // Process Added Entries
       for (IPluginModelBase base : event.getAddedModels()) {
         String id = EGFPlatformPlugin.getId(base);
-        IPlatformPlugin existing = _models.get(id);
-        if (existing == null || base.equals(existing.getPluginModelBase()) == false) {
-          addModel(id, createPlatformPlugin(base), delta);
+        IPlatformPlugin existingModel = _models.get(id);
+        if (existingModel != null && base.equals(existingModel.getPluginModelBase()) == false) {
+          removeModel(id, existingModel, delta);
         }
+        addModel(id, createPlatformPlugin(base), delta);
       }
       // Something to process
       if (delta.isEmpty() == false) {
@@ -277,8 +278,11 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       // Process Removed Entries
       if ((event.getKind() & PluginModelDelta.REMOVED) != 0) {
         for (ModelEntry entry : event.getRemovedEntries()) {
-          String id = EGFPlatformPlugin.getId(entry);
-          removeModel(id, _models.get(id), delta);
+          String id = EGFPlatformPlugin.getId(entry.getModel());
+          IPlatformPlugin existing = _models.get(id);
+          if (existing != null && entry.getModel().equals(existing.getPluginModelBase())) {
+            removeModel(id, _models.get(id), delta);
+          }
         }
       }
       // Process Changed Entries
@@ -293,7 +297,12 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       if ((event.getKind() & PluginModelDelta.ADDED) != 0) {
         for (ModelEntry entry : event.getAddedEntries()) {
           for (IPluginModelBase base : getFactoryComponentsModels(entry)) {
-            addModel(EGFPlatformPlugin.getId(base), createPlatformPlugin(base), delta);
+            String id = EGFPlatformPlugin.getId(base);
+            IPlatformPlugin existingModel = _models.get(id);
+            if (existingModel != null && base.equals(existingModel.getPluginModelBase()) == false) {
+              removeModel(id, existingModel, delta);
+            }
+            addModel(id, createPlatformPlugin(base), delta);
           }
         }
       }
@@ -506,15 +515,25 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     if (id == null || model == null || model.getPlatformFactoryComponents().length == 0) {
       return;
     }
-    // Add model from our main registry
-    if (_models.put(id, model) != null) {
+    // Check any troubleshoot in our model registry
+    if (_models.get(id) != null) {
       String msg = NLS.bind("PlatformManager.addModel(..) _ Bundle ''{0}'' contains a duplicate Model.", //$NON-NLS-1$
           id);
       EGFPlatformPlugin.getDefault().log(msg);
       if (EGFPlatformPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logWarning(msg);
-        EGFConsolePlugin.getConsole().logWarning(new String("The previous Model has been discarded."), 1);
+        EGFConsolePlugin.getConsole().logError(msg);
       }
+      return;
+    }
+    // Add model from our main registry
+    if (_models.put(id, model) != null) {
+      String msg = NLS.bind("PlatformManager.addModel(..) _ Bundle ''{0}'' unable to a model.", //$NON-NLS-1$
+          id);
+      EGFPlatformPlugin.getDefault().log(msg);
+      if (EGFPlatformPlugin.getDefault().isDebugging()) {
+        EGFConsolePlugin.getConsole().logError(msg);
+      }
+      return;
     }
     // Process Factory Component
     for (IPlatformFactoryComponent fc : model.getPlatformFactoryComponents()) {
