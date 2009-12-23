@@ -14,19 +14,19 @@ import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Xavier Maysonnave
- *
+ * 
  */
 public class InternalResourcesMessages extends NLS {
-  
-  private static final String BUNDLE_NAME = "org.eclipse.egf.core.platform.internal.resource.messages";//$NON-NLS-1$  
-  
+
+  private static final String BUNDLE_NAME = "org.eclipse.egf.pde.internal.resource.messages";//$NON-NLS-1$  
+
   static {
     // load message values from bundle file
     NLS.initializeMessages(BUNDLE_NAME, InternalResourcesMessages.class);
-  } 
-  
-  public static String PluginModelUpdate_progressMessage;  
-  
+  }
+
+  public static String PluginModelUpdate_progressMessage;
+
   public static String PluginModelUpdate_logTitle;
 
 }
