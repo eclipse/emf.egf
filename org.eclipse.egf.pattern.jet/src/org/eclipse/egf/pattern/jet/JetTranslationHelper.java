@@ -22,21 +22,21 @@ import java.util.Map;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.egf.pattern.PatternTranslationHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.emf.ecore.EClass;
 
 /**
- * @author Guiu
+ * @author Thomas Guiu
  * 
  */
-public class JetPatternHelper extends PatternHelper {
+public class JetTranslationHelper extends PatternTranslationHelper {
 
     public static final String GENERATE_METHOD = "generate";
     public static final String START_MARKER = "//Start of work";
     public static final String END_MARKER = "//End of work";
 
-    public JetPatternHelper(Pattern pattern) {
+    public JetTranslationHelper(Pattern pattern) {
         super(pattern);
     }
 
