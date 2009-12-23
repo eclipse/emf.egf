@@ -27,6 +27,7 @@ import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.core.platform.resource.ResourceHelper;
 import org.eclipse.egf.model.factorycomponent.FactoryComponent;
+import org.eclipse.egf.model.factorycomponent.ModelElement;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternLibrary;
@@ -120,7 +121,7 @@ public class PatternHelper {
         return parameter.getName() + "Parameter";
     }
 
-    public static String uniqueName(org.eclipse.egf.model.pattern.PatternParameter parameter) {
+    public static String uniqueName(ModelElement parameter) {
 
         return parameter.getName() + "_" + parameter.getID().replaceAll("\\W", "");
     }

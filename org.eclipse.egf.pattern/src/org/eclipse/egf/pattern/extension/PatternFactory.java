@@ -64,11 +64,11 @@ public abstract class PatternFactory {
         List<Pattern> result = new ArrayList<Pattern>();
         Pattern parent = createPattern(lib, "parent");
         PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
-        param1.setName("parentP");
+        param1.setName("parentP1");
         param1.setType(EcorePackage.eINSTANCE.getEClass());
         parent.getParameters().add(param1);
         PatternParameter param12 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
-        param12.setName("parentP");
+        param12.setName("parentP2");
         param12.setType(EcorePackage.eINSTANCE.getEClass());
         parent.getParameters().add(param12);
 
