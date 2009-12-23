@@ -329,7 +329,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       if (existingModel != null && base.equals(existingModel.getPluginModelBase())) {
         mergeModel(id, createPlatformPlugin(base), delta);
       } else {
-        if (base.equals(existingModel.getPluginModelBase()) == false) {
+        if (existingModel != null && base.equals(existingModel.getPluginModelBase()) == false) {
           removeModel(id, existingModel, delta);
         }
         addModel(id, createPlatformPlugin(base), delta);
