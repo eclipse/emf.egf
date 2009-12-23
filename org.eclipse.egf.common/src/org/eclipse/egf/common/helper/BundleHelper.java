@@ -10,18 +10,28 @@
  */
 package org.eclipse.egf.common.helper;
 
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.core.plugin.ModelEntry;
+import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.osgi.framework.Bundle;
 
 /**
  * This helper provides high-level services to deal with class loading.
+ * 
  * @author Xavier Maysonnave
  */
 public class BundleHelper {
-    
+
   /**
    * Instantiate given fully qualified class name using given bundle.
-   * @param fullyQualifiedClassName_p the class name with its package name (dot separated syntax).
-   * @param bundle_p which can load given class name.
+   * 
+   * @param fullyQualifiedClassName_p
+   *          the class name with its package name (dot separated syntax).
+   * @param bundle_p
+   *          which can load given class name.
    * @return an instance of given class name or null if instantiation failed.
    */
   public static Object instantiate(String fullyQualifiedClassName_p, Bundle bundle_p) {
@@ -30,12 +40,12 @@ public class BundleHelper {
     if (bundle_p == null) {
       return result;
     }
-    try {    
+    try {
       // Try loading a class according to the class name.
-      Class<?> class_ = loadClass(fullyQualifiedClassName_p, bundle_p);
+      Class<?> clazz = loadClass(fullyQualifiedClassName_p, bundle_p);
       // Try instantiating an object of loaded class.
-      if (null != class_) {
-        result = class_.newInstance();
+      if (clazz != null) {
+        result = clazz.newInstance();
       }
     } catch (Throwable exception_p) {
       // Failed silently.
@@ -45,23 +55,131 @@ public class BundleHelper {
 
   /**
    * Load given fully qualified class name using given bundle.
-   * @param fullyQualifiedClassName_p the class name with its package name (dot separated syntax).
-   * @param bundle_p bundle which can load given class name.
-   * @return loaded Class according to given class name or null if loading failed.
+   * 
+   * @param fullyQualifiedClassName_p
+   *          the class name with its package name (dot separated syntax).
+   * @param bundle_p
+   *          bundle which can load given class name.
+   * @return loaded Class according to given class name or null if loading
+   *         failed.
    */
   public static Class<?> loadClass(String fullyQualifiedClassName_p, Bundle bundle_p) {
-    Class<?> class_ = null;
+    Class<?> clazz = null;
     // Precondition.
     if (bundle_p == null) {
-      return class_;
+      return clazz;
     }
-    try {       
+    try {
       // Try loading a class according to the class name.
-      class_ = bundle_p.loadClass(fullyQualifiedClassName_p);
+      clazz = bundle_p.loadClass(fullyQualifiedClassName_p);
     } catch (Throwable exception_p) {
       // Failed silently.
     }
-    return class_;
+    return clazz;
   }
-  
+
+  /**
+   * Unique ID based on bundle symbolic name
+   */
+  public static String getBundleId(ModelEntry entry) {
+    if (entry == null) {
+      return null;
+    }
+    String id = entry.getId();
+    if (id == null || id.trim().length() == 0) {
+      return null;
+    }
+    return id.trim();
+  }
+
+  /**
+   * Unique ID based on bundle symbolic name
+   */
+  public static String getBundleId(IPluginModelBase model) {
+    if (model == null || model.getPluginBase() == null) {
+      return null;
+    }
+    if (model.getUnderlyingResource() != null && model.getUnderlyingResource().getProject() != null) {
+      return getBundleId(model.getUnderlyingResource().getProject());
+    }
+    String id = model.getPluginBase().getId();
+    if (id == null || id.trim().length() == 0) {
+      return null;
+    }
+    return id.trim();
+  }
+
+  /**
+   * Unique ID based on project
+   */
+  public static String getBundleId(IProject project) {
+    if (project == null) {
+      return null;
+    }
+    String id = null;
+    IPluginModelBase base = getPluginModelBase(project);
+    if (base != null) {
+      id = base.getPluginBase().getId();
+    }
+    if (id == null) {
+      id = project.getName();
+    }
+    if (id == null || id.trim().length() == 0) {
+      return null;
+    }
+    return id.trim();
+  }
+
+  /**
+   * Unique ID based on resource
+   */
+  public static String getBundleId(IResource resource) {
+    if (resource == null) {
+      return null;
+    }
+    return getBundleId(resource.getProject());
+  }
+
+  /**
+   * Get the plug-in model base for given project.
+   * 
+   * @param project_p
+   * @return an {@link IPluginModelBase} instance or null if the project is not
+   *         a plug-in.
+   */
+  public static IPluginModelBase getPluginModelBase(IPath path) {
+    if (path == null || path.segmentCount() < 2) {
+      return null;
+    }
+    return getPluginModelBase(ProjectHelper.getProject(path.segment(0)));
+  }
+
+  /**
+   * Get the plug-in model base for given project.
+   * 
+   * @param project_p
+   * @return an {@link IPluginModelBase} instance or null if the project is not
+   *         a plug-in.
+   */
+  public static IPluginModelBase getPluginModelBase(IResource resource) {
+    if (resource == null) {
+      return null;
+    }
+    return getPluginModelBase(resource.getProject());
+  }
+
+  /**
+   * Get the plug-in model base for given project.
+   * 
+   * @param project_p
+   * @return an {@link IPluginModelBase} instance or null if the project is not
+   *         a plug-in.
+   */
+  public static IPluginModelBase getPluginModelBase(IProject project) {
+    if (project == null) {
+      return null;
+    }
+    return PluginRegistry.findModel(project);
+  }
+
 }
