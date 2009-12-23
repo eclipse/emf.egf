@@ -20,12 +20,15 @@ import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Method;
 import java.util.Collections;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.jetpattern.JetNature;
 import org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl;
+import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
@@ -39,6 +42,10 @@ import org.eclipse.emf.codegen.jet.JETSkeleton;
  *         Temp class ...
  */
 public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
+
+    public JetRunner_to_be_moved_to_model1(Pattern pattern) {
+        setPattern(pattern);
+    }
 
     public void run(PatternContext context) throws PatternException {
         if (getPattern() == null)
@@ -81,7 +88,13 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
 
             String targetClassName = getTargetClassName(compiler.getSkeleton());
             IPath outputPath = computeFilePath(targetClassName);
-            FileHelper_to_be_upgraded.setContent(PatternHelper.getPlatformFactoryComponent(getPattern()), outputPath, new ByteArrayInputStream(outStream.toByteArray()));
+            IPlatformFactoryComponent platformFactoryComponent = PatternHelper.getPlatformFactoryComponent(getPattern());
+            if (platformFactoryComponent == null)
+                throw new PatternException("Cannot get platformFactoryComponent related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
+            IProject project = platformFactoryComponent.getPlatformPlugin().getProject();
+            if (project == null)
+                throw new PatternException("Cannot get project related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
+            FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), new String(outStream.toByteArray()));
             {
                 // TODO: modifier le model ça va compliquer les choses .. mais
                 // où mettre le nom de la classe ?
@@ -89,6 +102,8 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
                 getPattern().eResource().save(Collections.EMPTY_MAP);
             }
 
+        } catch (PatternException e) {
+            throw e;
         } catch (Exception e) {
             throw new PatternException(e);
         }
