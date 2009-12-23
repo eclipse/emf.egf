@@ -25,6 +25,7 @@ import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.EcorePackage;
  */
 public abstract class PatternFactory {
 
+    public static final String INIT_METHOD_NAME = "init";
     public static final String HEADER_METHOD_NAME = "header";
     public static final String FOOTER_METHOD_NAME = "footer";
     public static final String BODY_METHOD_NAME = "body";
@@ -117,12 +119,27 @@ public abstract class PatternFactory {
         checkId(pattern);
         addNature(pattern);
 
+        PatternVariable var1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
+        checkId(var1);
+        var1.setName("var1");
+        pattern.getVariables().add(var1);
+        PatternVariable var2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
+        checkId(var2);
+        var2.setName("var2");
+        pattern.getVariables().add(var2);
+
         // 1 - create default content
         PatternMethod headerMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         checkId(headerMethod);
         pattern.getMethods().add(headerMethod);
         pattern.setHeaderMethod(headerMethod);
         initHeader(headerMethod);
+
+        PatternMethod initMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        checkId(initMethod);
+        pattern.getMethods().add(initMethod);
+        pattern.setInitMethod(initMethod);
+        initIinit(initMethod);
 
         PatternMethod bodyMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         checkId(bodyMethod);
@@ -175,6 +192,14 @@ public abstract class PatternFactory {
      */
     protected void initHeader(PatternMethod method) {
         method.setName(HEADER_METHOD_NAME);
+        method.setPatternFilePath(createURI(method));
+    }
+
+    /**
+     * @param headerMethod
+     */
+    protected void initIinit(PatternMethod method) {
+        method.setName(INIT_METHOD_NAME);
         method.setPatternFilePath(createURI(method));
     }
 

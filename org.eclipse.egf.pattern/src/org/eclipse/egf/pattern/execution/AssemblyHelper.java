@@ -53,6 +53,7 @@ public abstract class AssemblyHelper {
 
         int insertionIndex = content.length();
 
+        addVariable(pattern);
         visitOrchestration(pattern);
 
         if (!pattern.getParameters().isEmpty())
@@ -63,6 +64,11 @@ public abstract class AssemblyHelper {
             content.append(read);
 
         return content.toString();
+    }
+
+    protected void addVariable(Pattern pattern) throws PatternException {
+        content.append(getMethodContent(pattern.getInitMethod()));
+
     }
 
     /**

@@ -48,6 +48,8 @@ public abstract class PatternInitializer {
                 content = getHeaderContent(method);
             else if (method == pattern.getFooterMethod())
                 content = getFooterContent(method);
+            else if (method == pattern.getInitMethod())
+                content = getInitContent(method);
             else
                 content = getDefaultContent(method);
             try {
@@ -62,6 +64,8 @@ public abstract class PatternInitializer {
     protected abstract String getHeaderContent(PatternMethod method) throws PatternException;
 
     protected abstract String getFooterContent(PatternMethod method) throws PatternException;
+
+    protected abstract String getInitContent(PatternMethod method) throws PatternException;
 
     protected abstract String getDefaultContent(PatternMethod method) throws PatternException;
 

@@ -53,6 +53,11 @@ public abstract class TemplateInitializer extends PatternInitializer {
         return runEngine(TemplateEngine.Templates.HEADER);
     }
 
+    @Override
+    protected final String getInitContent(PatternMethod method) throws PatternException {
+        return runEngine(TemplateEngine.Templates.INIT);
+    }
+
     private String runEngine(TemplateEngine.Templates template) throws PatternException {
         try {
             return engine.process(template, createContext());
