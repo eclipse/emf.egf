@@ -74,21 +74,8 @@ public class JetNatureItemProvider extends PatternNatureItemProvider implements 
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addTemplateClassNamePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Template Class Name feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addTemplateClassNamePropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_JetNature_templateClassName_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_JetNature_templateClassName_feature", "_UI_JetNature_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                JetPatternPackage.Literals.JET_NATURE__TEMPLATE_CLASS_NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -125,12 +112,6 @@ public class JetNatureItemProvider extends PatternNatureItemProvider implements 
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
-
-        switch (notification.getFeatureID(JetNature.class)) {
-        case JetPatternPackage.JET_NATURE__TEMPLATE_CLASS_NAME:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
-        }
         super.notifyChanged(notification);
     }
 
