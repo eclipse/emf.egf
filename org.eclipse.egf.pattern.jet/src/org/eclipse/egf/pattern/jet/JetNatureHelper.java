@@ -41,8 +41,12 @@ public class JetNatureHelper {
 
                 String pack = matcher.group(1);
                 String cls = matcher.group(2);
+                if ("".equals(pack) || "".equals(cls))
+                    throw new PatternException(Messages.bind(Messages.assembly_error8, pattern.getName()));
                 return pack + "." + cls;
             }
+        } catch (PatternException e) {
+            throw e;
         } catch (Exception e) {
             throw new PatternException(e);
         }
@@ -52,4 +56,9 @@ public class JetNatureHelper {
     private JetNatureHelper() {
     }
 
+    public static void main(String[] args) {
+        String tmp = "s-2.5";
+        String replaceAll = tmp.replaceAll("\\W", "");
+        System.out.println(replaceAll);
+    }
 }
