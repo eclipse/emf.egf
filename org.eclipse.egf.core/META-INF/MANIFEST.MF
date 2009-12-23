@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.core; singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.core.EGFCorePlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.egf.common;visibility:=reexport,
+ org.eclipse.egf.model;visibility:=reexport,
+ org.eclipse.egf.console;visibility:=reexport
+Export-Package: 
+ org.eclipse.egf.core,
+ org.eclipse.egf.core.natures, 
+ org.eclipse.egf.core.helper
+Bundle-ActivationPolicy: lazy
