@@ -10,16 +10,16 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
  org.eclipse.egf.model,
- org.eclipse.egf.model.uri, 
  org.eclipse.egf.model.domain,
  org.eclipse.egf.model.domain.impl,
- org.eclipse.egf.model.domain.util, 
+ org.eclipse.egf.model.domain.util,
  org.eclipse.egf.model.factorycomponent,
  org.eclipse.egf.model.factorycomponent.impl,
  org.eclipse.egf.model.factorycomponent.util,
+ org.eclipse.egf.model.javapattern,
  org.eclipse.egf.model.jetpattern,
  org.eclipse.egf.model.jetpattern.impl,
- org.eclipse.egf.model.jetpattern.util ,
+ org.eclipse.egf.model.jetpattern.util,
  org.eclipse.egf.model.mapping,
  org.eclipse.egf.model.mapping.impl,
  org.eclipse.egf.model.mapping.util,
@@ -31,7 +31,8 @@ Export-Package:
  org.eclipse.egf.model.productionplan.util,
  org.eclipse.egf.model.types,
  org.eclipse.egf.model.types.impl,
- org.eclipse.egf.model.types.util  
+ org.eclipse.egf.model.types.util,
+ org.eclipse.egf.model.uri
 Require-Bundle: 
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
