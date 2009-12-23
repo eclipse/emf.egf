@@ -25,9 +25,9 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 
 public interface IPlatformPlugin extends Comparable<IPlatformPlugin> {
   
-  public String getId();
+  public String getBundleId();
   
-  public String getPreviousId();  
+  public String getPreviousBundleId();  
   
   public IProject getProject();
   
