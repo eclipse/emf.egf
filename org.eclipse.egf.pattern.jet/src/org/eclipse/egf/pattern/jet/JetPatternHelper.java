@@ -39,7 +39,7 @@ public class JetPatternHelper extends PatternHelper {
 		// 1 - Add pre block at insertionIndex
 		
 		// a revoir l'init ne convient pas ...
-		
+/*		
 		StringBuilder localContent = new StringBuilder(300);
 		for (int i = 0; i< parameterAlias.size(); i++)
 		{
@@ -63,6 +63,7 @@ public class JetPatternHelper extends PatternHelper {
 		// 2 - Add post block at current index
 		for (int i = 0; i< parameterAlias.size(); i++)
 			content.append("}").append(PatternPreferences.NL);
-	}
+*/
+		}
 
 }
