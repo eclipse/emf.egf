@@ -26,77 +26,54 @@ import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.StringTokenizer;
 
-import org.eclipse.emf.common.CommonPlugin;
-
-import org.eclipse.emf.common.util.URI;
-
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
-
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-
-import org.eclipse.emf.ecore.EObject;
-
-import org.eclipse.emf.ecore.xmi.XMLResource;
-
-import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-
 import org.eclipse.core.runtime.IProgressMonitor;
-
+import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
+import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
+import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.egf.model.factorycomponent.FactoryComponentFactory;
+import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
+import org.eclipse.egf.pde.EGFPDEPlugin;
+import org.eclipse.emf.common.CommonPlugin;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMLResource;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.dialogs.MessageDialog;
-
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.swt.SWT;
-
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.ModifyEvent;
-
+import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
-
-import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
-
-import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.part.ISetSelectionTarget;
-
-import org.eclipse.egf.model.factorycomponent.FactoryComponentFactory;
-import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-
-import org.eclipse.core.runtime.Path;
-
-import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
-
-import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.StructuredSelection;
-
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
+import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.part.ISetSelectionTarget;
 
 /**
  * This is a simple wizard for creating a new model file.
@@ -197,19 +174,13 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
    * Returns the names of the types that can be created as the root object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   protected Collection<String> getInitialObjectNames() {
     if (initialObjectNames == null) {
       initialObjectNames = new ArrayList<String>();
-      for (EClassifier eClassifier : factoryComponentPackage.getEClassifiers()) {
-        if (eClassifier instanceof EClass) {
-          EClass eClass = (EClass) eClassifier;
-          if (!eClass.isAbstract()) {
-            initialObjectNames.add(eClass.getName());
-          }
-        }
-      }
+      initialObjectNames.add(factoryComponentPackage.getFactoryComponent().getName());
+      initialObjectNames.add(factoryComponentPackage.getTask().getName());      
       Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
     }
     return initialObjectNames;
@@ -231,7 +202,7 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
    * Do the work after everything is specified.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   @Override
   public boolean performFinish() {
@@ -239,7 +210,6 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
       // Remember the file.
       //
       final IFile modelFile = getModelFile();
-
       // Do the work within an operation.
       //
       WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
@@ -249,27 +219,32 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
             // Create a resource set
             //
             ResourceSet resourceSet = new ResourceSetImpl();
-
+            resourceSet.getURIConverter().getURIMap().putAll(EGFPlatformPlugin.computePlatformURIMap());
             // Get the URI of the model file.
             //
             URI fileURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
-
             // Create a resource for this file.
             //
             Resource resource = resourceSet.createResource(fileURI);
-
             // Add the initial model object to the contents.
             //
             EObject rootObject = createInitialModel();
             if (rootObject != null) {
               resource.getContents().add(rootObject);
             }
-
             // Save the contents of the resource to the file system.
             //
             Map<Object, Object> options = new HashMap<Object, Object>();
             options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
             resource.save(options);
+            // Retrieve the current IProject
+            IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(modelFile.getFullPath().segment(0));
+            // Check if the current IProject is a plugin project
+            IPluginModelBase base = EGFPlatformPlugin.getPluginModelBase(project);
+            // Do we need to Convert the current IProject in plugin project ?
+            if (base == null) {
+              EGFPDEPlugin.getDefault().convertToPlugin(project);
+            }            
           } catch (Exception exception) {
             EGFModelsEditorPlugin.INSTANCE.log(exception);
           } finally {
@@ -300,16 +275,18 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
         page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString())
             .getId());
       } catch (PartInitException exception) {
-        MessageDialog.openError(workbenchWindow.getShell(),
-            EGFModelsEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), exception.getMessage()); //$NON-NLS-1$
+        MessageDialog.openError(workbenchWindow.getShell(), EGFModelsEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), //$NON-NLS-1$ 
+            exception.getMessage());
         return false;
       }
 
       return true;
+
     } catch (Exception exception) {
       EGFModelsEditorPlugin.INSTANCE.log(exception);
       return false;
     }
+
   }
 
   /**

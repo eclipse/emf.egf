@@ -16,15 +16,16 @@
  */
 package org.eclipse.egf.model.editor;
 
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 
 /**
  * This is the central singleton for the FactoryComponent editor plugin.
@@ -89,19 +90,52 @@ public final class EGFModelsEditorPlugin extends EMFPlugin {
    * @generated
    */
   public static class Implementation extends EclipseUIPlugin {
+    
     /**
      * Creates an instance.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @generated
+     * @generated NOT
      */
     public Implementation() {
       super();
-
-      // Remember the static instance.
-      //
+    }   
+    
+    /**
+     * <!-- begin-user-doc -->
+     * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext) 
+     * <!-- end-user-doc -->
+     * @generated NOT
+     */
+    @Override
+    public void start(BundleContext context_p) throws Exception {
+      super.start(context_p);
       plugin = this;
+      // Force EGF Platform Plugin initialization
+      EGFPlatformPlugin.getDefault().getWorkspacePluginFactoryComponents();
+      // Force EGF PDE Plugin initialization
+      Bundle bundleGroupBundle = Platform.getBundle("org.eclipse.egf.pde"); //$NON-NLS-1$
+      if (bundleGroupBundle != null) {
+        try {
+          bundleGroupBundle.start(Bundle.START_TRANSIENT);
+        } catch (BundleException e) {
+          // Nothing to do
+        }
+      }      
     }
+    
+    /**
+     * <!-- begin-user-doc -->
+     * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext) 
+     * <!-- end-user-doc -->
+     * @generated NOT 
+     */
+    @Override
+    public void stop(BundleContext context_p) throws Exception {
+      plugin = null;
+      super.stop(context_p);
+    }    
+    
   }
 
 }

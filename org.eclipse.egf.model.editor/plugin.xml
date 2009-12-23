@@ -18,30 +18,36 @@
 
 <plugin>
 
-   <extension point="org.eclipse.ui.newWizards">
-      <category
-            id="org.eclipse.emf.ecore.Wizard.category.ID"
-            name="%_UI_Wizard_category"/>
-      <wizard
-            id="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentModelWizardID"
-            name="%_UI_FactoryComponentModelWizard_label"
-            class="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentModelWizard"
-            category="org.eclipse.emf.ecore.Wizard.category.ID"
-            icon="icons/full/obj16/FactoryComponentModelFile.gif">
-         <description>%_UI_FactoryComponentModelWizard_description</description>
-         <selection class="org.eclipse.core.resources.IResource"/>
-      </wizard>
-   </extension>
+  <extension 
+    point="org.eclipse.ui.newWizards"
+  >
+    <category
+      id="org.eclipse.egf.category.wizards"
+      name="%_UI_EGF_Wizard_Category"
+    />
+    <wizard
+      id="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentModelWizardID"
+      name="%_UI_FactoryComponentModelWizard_label"
+      class="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentModelWizard"
+      category="org.eclipse.egf.category.wizards"
+      icon="icons/full/obj16/FactoryComponentModelFile.gif"
+    >
+      <description>%_UI_FactoryComponentModelWizard_description</description>
+      <selection class="org.eclipse.core.resources.IResource"/>
+    </wizard>
+  </extension>
 
-   <extension point="org.eclipse.ui.editors">
-      <editor
-            id="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentEditorID"
-            name="%_UI_FactoryComponentEditor_label"
-            icon="icons/full/obj16/FactoryComponentModelFile.gif"
-            extensions="fc"
-            class="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentEditor"
-            contributorClass="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentActionBarContributor">
-      </editor>
-   </extension>
+  <extension 
+    point="org.eclipse.ui.editors"
+  >
+    <editor
+      id="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentEditorID"
+      name="%_UI_FactoryComponentEditor_label"
+      icon="icons/full/obj16/FactoryComponentModelFile.gif"
+      extensions="fc"
+      class="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentEditor"
+      contributorClass="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentActionBarContributor"
+    />
+  </extension>
 
 </plugin>
