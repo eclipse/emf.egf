@@ -25,23 +25,22 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IPluginAttribute;
 import org.eclipse.pde.core.plugin.IPluginElement;
 
-
 public class PlatformFactoryComponent implements IPlatformFactoryComponent {
-  
+
   private IPluginElement _element;
-  
+
   private IPlatformPlugin _base;
-    
-  private URI _previousUri; 
-  
+
+  private URI _previousUri;
+
   private String _value;
-  
+
   private String _name;
-  
+
   public PlatformFactoryComponent(IPlatformPlugin base, IPluginElement element) throws AssertionFailedException, IllegalArgumentException {
     Assert.isNotNull(base);
     Assert.isNotNull(element);
-    Assert.isNotNull(element.getPluginModel());    
+    Assert.isNotNull(element.getPluginModel());
     Assert.isLegal(base.getPluginModelBase().equals(element.getPluginModel()));
     Assert.isLegal(IFactoryComponentConstants.FACTORY_COMPONENT_EXTENSION_CHILD.equals(element.getName()));
     IPluginAttribute attribute = element.getAttribute(IFactoryComponentConstants.FACTORY_COMPONENT_ATT_ID);
@@ -53,17 +52,17 @@ public class PlatformFactoryComponent implements IPlatformFactoryComponent {
     _previousUri = buildURI(base.getId(), attribute.getValue());
     _name = new Path(_previousUri.lastSegment()).removeFileExtension().toString();
   }
-  
+
   public int compareTo(IPlatformFactoryComponent fc) {
     if (this.equals(fc)) {
       return 0;
     }
-    if (getName().equals(fc.getName())) {
+    if (getURI().equals(fc.getURI())) {
       return toString().compareTo(fc.toString());
     }
-    return getName().compareTo(fc.getName());
-  }  
-  
+    return getURI().toString().compareTo(fc.getURI().toString());
+  }
+
   public static URI buildURI(String id, String value) {
     if (id == null || id.trim().length() == 0 || value == null || value.trim().length() == 0) {
       return null;
@@ -74,36 +73,36 @@ public class PlatformFactoryComponent implements IPlatformFactoryComponent {
     }
     return uri;
   }
-  
+
   public String getName() {
     return _name;
   }
-  
+
   public String getValue() {
     return _value;
   }
-  
+
   public IPluginElement getPluginElement() {
     return _element;
   }
-  
+
   public IPlatformPlugin getPlatformPlugin() {
     return _base;
   }
-  
+
   public URI getPreviousURI() {
     return _previousUri;
   }
-  
+
   public URI getURI() {
     if (getPlatformPlugin().getId().equals(getPlatformPlugin().getPreviousId()) == false) {
       return buildURI(getPlatformPlugin().getId(), getValue());
     }
     return getPreviousURI();
-  }  
-  
+  }
+
   public String toString() {
     return getURI().toString();
-  }   
-  
+  }
+
 }
