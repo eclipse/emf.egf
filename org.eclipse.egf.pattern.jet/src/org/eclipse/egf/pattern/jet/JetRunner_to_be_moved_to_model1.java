@@ -30,11 +30,10 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
-import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.execution.AssemblyHelper;
+import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.execution.WorkspaceAndPluginClassLoader;
 import org.eclipse.emf.codegen.jet.JETCompiler;
-import org.eclipse.emf.codegen.jet.JETSkeleton;
 
 /**
  * @author Guiu
@@ -52,7 +51,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
             throw new IllegalStateException();
         String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
         if (templateClassName == null)
-            throw new IllegalStateException("Pattern class is null");
+            throw new IllegalStateException(Messages.assembly_error1);
 
         try {
             Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternHelper.getPlatformFactoryComponent(getPattern())).loadClass(templateClassName);
@@ -90,10 +89,10 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
             IPath outputPath = computeFilePath(targetClassName);
             IPlatformFactoryComponent platformFactoryComponent = PatternHelper.getPlatformFactoryComponent(getPattern());
             if (platformFactoryComponent == null)
-                throw new PatternException("Cannot get platformFactoryComponent related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
+                throw new PatternException(Messages.bind(Messages.assembly_error4, pattern.getName(), pattern.getID()));
             IProject project = platformFactoryComponent.getPlatformPlugin().getProject();
             if (project == null)
-                throw new PatternException("Cannot get project related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
+                throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getName(), pattern.getID()));
             FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), getContent(new String(outStream.toByteArray())));
 
         } catch (PatternException e) {
@@ -141,13 +140,6 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
         builder.append(content.substring(insertionIndex));
 
         return builder.toString();
-    }
-
-    private String getTargetClassName(JETSkeleton skeleton) {
-        String packageName = skeleton.getPackageName();
-        if (packageName == null || "".equals(packageName))
-            return skeleton.getClassName();
-        return packageName + '.' + skeleton.getClassName();
     }
 
     private IPath computeFilePath(String classname) {

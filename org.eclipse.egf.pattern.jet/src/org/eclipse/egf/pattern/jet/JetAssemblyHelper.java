@@ -45,7 +45,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
     protected void call(Pattern pattern) throws PatternException {
         String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
         if (templateClassName == null)
-            throw new PatternException("There is no class to call.");
+            throw new PatternException(Messages.assembly_error1);
 
         content.append("<%");
         content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(stringBuffer, ctx");
@@ -105,7 +105,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
         // 3- Add additional code for parameter names handling
         int startIndex = content.indexOf(START_MARKER);
         if (startIndex == -1)
-            throw new IllegalStateException("Cannot insert parameter names aliases.");
+            throw new IllegalStateException(Messages.assembly_error2);
 
         localContent.setLength(0);
         localContent.append(PatternPreferences.NL);
