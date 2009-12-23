@@ -1,5 +1,5 @@
 /**
- * <copyright>
+² * <copyright>
  *
  *  Copyright (c) 2009 Thales Corporate Services S.A.S.
  *  All rights reserved. This program and the accompanying materials
@@ -132,6 +132,9 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
     }
 
     private IPath computeFilePath(String classname) {
+        if (classname == null || "".equals(classname))
+            throw new IllegalArgumentException();
+
         IPath result = new Path(PatternPreferences.getGenerationFolderName());
         String[] names = classname.split("\\.");
         for (String name : names) {
