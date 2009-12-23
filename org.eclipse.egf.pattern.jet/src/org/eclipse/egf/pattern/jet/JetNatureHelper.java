@@ -19,8 +19,8 @@ import java.util.regex.Matcher;
 
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
-import org.eclipse.egf.pattern.PatternTranslationHelper;
+import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 
 /**
  * @author Thomas Guiu
@@ -35,7 +35,7 @@ public class JetNatureHelper {
      */
     public static String getTemplateClassName(Pattern pattern) throws PatternException {
         try {
-            String content = FileHelper_to_be_upgraded.getContent(PatternTranslationHelper.getPlatformFactoryComponent(pattern), pattern.getHeaderMethod().getPatternFilePath());
+            String content = FileHelper_to_be_upgraded.getContent(PatternHelper.getPlatformFactoryComponent(pattern), pattern.getHeaderMethod().getPatternFilePath());
             Matcher matcher = compile.matcher(content);
             if (matcher.matches()) {
 

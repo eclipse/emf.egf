@@ -28,9 +28,10 @@ import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
-import org.eclipse.egf.pattern.PatternTranslationHelper;
+import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
+import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
+import org.eclipse.egf.pattern.execution.AssemblyHelper;
 import org.eclipse.egf.pattern.execution.WorkspaceAndPluginClassLoader;
 import org.eclipse.emf.codegen.jet.JETCompiler;
 import org.eclipse.emf.codegen.jet.JETSkeleton;
@@ -54,8 +55,8 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
             throw new IllegalStateException("Pattern class is null");
 
         try {
-            Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternTranslationHelper.getPlatformFactoryComponent(getPattern())).loadClass(templateClassName);
-            Method method = templateClass.getMethod(JetTranslationHelper.GENERATE_METHOD, Object.class);
+            Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternHelper.getPlatformFactoryComponent(getPattern())).loadClass(templateClassName);
+            Method method = templateClass.getMethod(JetAssemblyHelper.GENERATE_METHOD, Object.class);
             Object template = templateClass.newInstance();
             // the pattern is executed but we don't care about the result.
             // TODO initialiser le context
@@ -72,7 +73,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
 
         // **************************************************************************
         // 1 - put together all pt files
-        PatternTranslationHelper helper = new JetTranslationHelper(getPattern());
+        AssemblyHelper helper = new JetAssemblyHelper(getPattern());
         String templatecontent = helper.visit();
 
         // 2 - compile the result
@@ -87,7 +88,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
 
             String targetClassName = JetNatureHelper.getTemplateClassName(pattern);
             IPath outputPath = computeFilePath(targetClassName);
-            IPlatformFactoryComponent platformFactoryComponent = PatternTranslationHelper.getPlatformFactoryComponent(getPattern());
+            IPlatformFactoryComponent platformFactoryComponent = PatternHelper.getPlatformFactoryComponent(getPattern());
             if (platformFactoryComponent == null)
                 throw new PatternException("Cannot get platformFactoryComponent related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
             IProject project = platformFactoryComponent.getPlatformPlugin().getProject();
@@ -104,8 +105,8 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
 
     private String getContent(String content) {
         StringBuilder builder = new StringBuilder(content.length() + 500);
-        int startIndex = content.indexOf(JetTranslationHelper.START_MARKER);
-        int endIndex = content.indexOf(JetTranslationHelper.END_MARKER);
+        int startIndex = content.indexOf(JetAssemblyHelper.START_MARKER);
+        int endIndex = content.indexOf(JetAssemblyHelper.END_MARKER);
         int insertionIndex = content.lastIndexOf('}');
         if (startIndex == -1 || endIndex == -1 || insertionIndex == -1)
             return content;
@@ -116,25 +117,25 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
         builder.append("generate(stringBuffer, (PatternContext)argument");
         if (!getPattern().getParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getParameters()) {
-                String local = PatternTranslationHelper.localizeName(parameter);
+                String local = PatternHelper.localizeName(parameter);
                 builder.append(", ").append(local);
             }
         }
         builder.append(");");
 
         // add end of class code
-        builder.append(content.substring(endIndex + JetTranslationHelper.END_MARKER.length(), insertionIndex));
+        builder.append(content.substring(endIndex + JetAssemblyHelper.END_MARKER.length(), insertionIndex));
 
         // add new method body
         builder.append("public void generate(StringBuffer stringBuffer, PatternContext ctx");
         if (!getPattern().getParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getParameters()) {
-                String local = PatternTranslationHelper.localizeName(parameter);
+                String local = PatternHelper.localizeName(parameter);
                 builder.append(", EObject ").append(local);
             }
         }
         builder.append(") {").append(PatternPreferences.NL);
-        builder.append(content.substring(startIndex + JetTranslationHelper.START_MARKER.length(), endIndex));
+        builder.append(content.substring(startIndex + JetAssemblyHelper.START_MARKER.length(), endIndex));
 
         builder.append("} ").append(PatternPreferences.NL);
         builder.append(content.substring(insertionIndex));
