@@ -128,27 +128,33 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
 
         public boolean visit(IResourceDelta delta) throws CoreException {
 
+          if (delta.getFlags() == IResourceDelta.MARKERS) {
+            return true;
+          }
+
           IResource resource = delta.getResource();
 
           // Analyse projects
-          if (resource.getType() == IResource.PROJECT || delta.getFlags() == IResourceDelta.MARKERS) {
-            // Added resource
+          if (resource.getType() == IResource.PROJECT) {
+            // Ignore Added or Remove projects
             if (delta.getKind() == IResourceDelta.ADDED || delta.getKind() == IResourceDelta.REMOVED) {
               return false;
             } else if (delta.getKind() == IResourceDelta.CHANGED) {
-              // Project is opened or closed
+              // Ignore opened or closed project
               if ((delta.getFlags() & IResourceDelta.OPEN) != 0) {
                 return false;
               }
             }
+            // Deeper projects analysis
             return true;
           }
 
           // Analyse further all other artifacts
-          if (resource.getType() != IResource.FILE || delta.getFlags() == IResourceDelta.MARKERS) {
+          if (resource.getType() != IResource.FILE) {
             return true;
           }
 
+          // Process files
           if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED || delta.getKind() == IResourceDelta.ADDED) {
             if (resource.getFileExtension().equals(IFactoryComponentConstants.FACTORY_COMPONENT_FILE_EXTENSION)) {
               try {
