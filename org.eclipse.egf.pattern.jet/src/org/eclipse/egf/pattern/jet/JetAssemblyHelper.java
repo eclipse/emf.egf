@@ -70,7 +70,10 @@ public class JetAssemblyHelper extends AssemblyHelper {
                 content.append(pEClass.getName()).append(" ").append(called).append(" = (").append(pEClass.getName()).append(")").append(binding.getKey().getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
             }
         }
-        content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(stringBuffer, ctx");
+        String ctxName = "ctx_" + PatternHelper.uniqueName(pattern);
+        content.append("PatternContext ").append(ctxName).append(" = new PatternContext(ctx);").append(CharacterConstants.LINE_SEPARATOR);
+        content.append(ctxName).append(".setValue(\"key\", \"value\");").append(CharacterConstants.LINE_SEPARATOR);
+        content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(stringBuffer, ").append(ctxName);
         for (PatternParameter parameter : pattern.getParameters())
             content.append(", ").append(PatternHelper.uniqueName(parameter));
 
