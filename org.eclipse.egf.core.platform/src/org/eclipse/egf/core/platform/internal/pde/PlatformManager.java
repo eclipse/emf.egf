@@ -91,6 +91,19 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     _listeners = null;
   }
 
+  public IPlatformPlugin getPlatformPlugin(String id) {
+    if (id == null) {
+      return null;
+    }
+    // Lock PlatformManager
+    synchronized (_lock) {
+      if (_models == null) {
+        initializePlatformPlugin();
+      }
+      return _models.get(id);
+    }
+  }
+
   public IPlatformPlugin[] getPlatformPlugins() {
     // Lock PlatformManager
     synchronized (_lock) {
