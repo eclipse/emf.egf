@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.model.PatternException;
-import org.eclipse.egf.model.javapattern.JavaNature;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.PatternHelper;
@@ -45,7 +44,7 @@ public class JavaPatternHelper extends PatternHelper {
 
     @Override
     protected void call(Pattern pattern) throws PatternException {
-        String templateClassName = ((JavaNature) pattern.getNature()).getClassName();
+        String templateClassName = JavaNatureHelper.getClassName(pattern);
         if (templateClassName == null)
             throw new PatternException("There is no class to call.");
 

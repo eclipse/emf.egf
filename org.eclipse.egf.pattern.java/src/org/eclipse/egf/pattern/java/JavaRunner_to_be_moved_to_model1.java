@@ -16,7 +16,6 @@
 package org.eclipse.egf.pattern.java;
 
 import java.lang.reflect.Method;
-import java.util.Collections;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
@@ -24,7 +23,6 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
-import org.eclipse.egf.model.javapattern.JavaNature;
 import org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -47,7 +45,7 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
     public void run(PatternContext context) throws PatternException {
         if (getPattern() == null)
             throw new IllegalStateException();
-        String templateClassName = ((JavaNature) getPattern().getNature()).getClassName();
+        String templateClassName = JavaNatureHelper.getClassName(pattern);
         if (templateClassName == null)
             throw new IllegalStateException("Pattern class is null");
         try {
@@ -80,15 +78,9 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
             if (project == null)
                 throw new PatternException("Cannot get project related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
             // TODO
-            String classname = "MyLibJava.child";
+            String classname = JavaNatureHelper.getClassName(pattern);
             IPath outputPath = computeFilePath(classname);
             FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), getContent(templatecontent));
-            {
-                // TODO: modifier le model ça va compliquer les choses .. mais
-                // où mettre le nom de la classe ?
-                ((JavaNature) getPattern().getNature()).setClassName(classname);
-                getPattern().eResource().save(Collections.EMPTY_MAP);
-            }
         } catch (PatternException e) {
             throw e;
         } catch (Exception e) {
