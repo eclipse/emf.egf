@@ -35,10 +35,10 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * @author Guiu
+ * @author Thomas Guiu
  * 
  */
-public abstract class PatternHelper {
+public abstract class PatternTranslationHelper {
 
     protected final Pattern pattern;
     protected final StringBuilder content = new StringBuilder(1000);
@@ -46,7 +46,7 @@ public abstract class PatternHelper {
     // needed alias (Validation ensure that they can be matched)
     protected List<List<String>> parameterAlias;
 
-    public PatternHelper(Pattern pattern) {
+    public PatternTranslationHelper(Pattern pattern) {
         super();
         this.pattern = pattern;
     }
