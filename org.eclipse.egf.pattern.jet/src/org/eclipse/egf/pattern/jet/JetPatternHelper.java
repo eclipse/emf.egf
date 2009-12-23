@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.model.PatternException;
-import org.eclipse.egf.model.jetpattern.JetNature;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.PatternHelper;
@@ -43,7 +42,7 @@ public class JetPatternHelper extends PatternHelper {
 
     @Override
     protected void call(Pattern pattern) throws PatternException {
-        String templateClassName = ((JetNature) pattern.getNature()).getTemplateClassName();
+        String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
         if (templateClassName == null)
             throw new PatternException("There is no class to call.");
 
