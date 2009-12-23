@@ -290,6 +290,15 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getPattern_InitMethod() {
+        return (EReference) patternEClass.getEStructuralFeatures().get(8);
+    }
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
@@ -551,6 +560,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         createEReference(patternEClass, PATTERN__PARAMETERS);
         createEReference(patternEClass, PATTERN__NATURE);
         createEReference(patternEClass, PATTERN__VARIABLES);
+        createEReference(patternEClass, PATTERN__INIT_METHOD);
 
         patternMethodEClass = createEClass(PATTERN_METHOD);
         createEReference(patternMethodEClass, PATTERN_METHOD__PATTERN);
@@ -649,6 +659,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         initEReference(getPattern_Parameters(), this.getPatternParameter(), null, "parameters", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getPattern_Nature(), this.getPatternNature(), null, "nature", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
         initEReference(getPattern_Variables(), this.getPatternVariable(), null, "variables", null, 0, -1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPattern_InitMethod(), this.getPatternMethod(), null, "initMethod", null, 1, 1, Pattern.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         EOperation op = addEOperation(patternEClass, this.getPatternMethod(), "getMethod", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         addEParameter(op, theEcorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$

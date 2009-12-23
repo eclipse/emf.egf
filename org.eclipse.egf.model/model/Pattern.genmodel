@@ -28,6 +28,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/parameters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/nature"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/variables"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/initMethod"/>
       <genOperations ecoreOperation="Pattern.ecore#//Pattern/getMethod">
         <genParameters ecoreParameter="Pattern.ecore#//Pattern/getMethod/name"/>
       </genOperations>

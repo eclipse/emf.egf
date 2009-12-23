@@ -246,13 +246,22 @@ public interface PatternPackage extends EPackage {
     int PATTERN__VARIABLES = PATTERN_ELEMENT_FEATURE_COUNT + 7;
 
     /**
+     * The feature id for the '<em><b>Init Method</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN__INIT_METHOD = PATTERN_ELEMENT_FEATURE_COUNT + 8;
+
+    /**
      * The number of structural features of the '<em>Pattern</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PATTERN_FEATURE_COUNT = PATTERN_ELEMENT_FEATURE_COUNT + 8;
+    int PATTERN_FEATURE_COUNT = PATTERN_ELEMENT_FEATURE_COUNT + 9;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternMethodImpl <em>Method</em>}' class.
@@ -924,6 +933,17 @@ public interface PatternPackage extends EPackage {
     EReference getPattern_Variables();
 
     /**
+     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.Pattern#getInitMethod <em>Init Method</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Init Method</em>'.
+     * @see org.eclipse.egf.model.pattern.Pattern#getInitMethod()
+     * @see #getPattern()
+     * @generated
+     */
+    EReference getPattern_InitMethod();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternMethod <em>Method</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1317,6 +1337,14 @@ public interface PatternPackage extends EPackage {
          * @generated
          */
         EReference PATTERN__VARIABLES = eINSTANCE.getPattern_Variables();
+
+        /**
+         * The meta object literal for the '<em><b>Init Method</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PATTERN__INIT_METHOD = eINSTANCE.getPattern_InitMethod();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternMethodImpl <em>Method</em>}' class.

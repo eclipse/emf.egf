@@ -49,6 +49,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getNature <em>Nature</em>}</li>
  *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getInitMethod <em>Init Method</em>}</li>
  * </ul>
  * </p>
  *
@@ -131,6 +132,16 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
      * @ordered
      */
     protected EList<PatternVariable> variables;
+
+    /**
+     * The cached value of the '{@link #getInitMethod() <em>Init Method</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getInitMethod()
+     * @generated
+     * @ordered
+     */
+    protected PatternMethod initMethod;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -327,6 +338,44 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PatternMethod getInitMethod() {
+        if (initMethod != null && initMethod.eIsProxy()) {
+            InternalEObject oldInitMethod = (InternalEObject) initMethod;
+            initMethod = (PatternMethod) eResolveProxy(oldInitMethod);
+            if (initMethod != oldInitMethod) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN__INIT_METHOD, oldInitMethod, initMethod));
+            }
+        }
+        return initMethod;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PatternMethod basicGetInitMethod() {
+        return initMethod;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setInitMethod(PatternMethod newInitMethod) {
+        PatternMethod oldInitMethod = initMethod;
+        initMethod = newInitMethod;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN__INIT_METHOD, oldInitMethod, initMethod));
+    }
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated NOT
@@ -405,6 +454,10 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
             return getNature();
         case PatternPackage.PATTERN__VARIABLES:
             return getVariables();
+        case PatternPackage.PATTERN__INIT_METHOD:
+            if (resolve)
+                return getInitMethod();
+            return basicGetInitMethod();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -445,6 +498,9 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
             getVariables().clear();
             getVariables().addAll((Collection<? extends PatternVariable>) newValue);
             return;
+        case PatternPackage.PATTERN__INIT_METHOD:
+            setInitMethod((PatternMethod) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -480,6 +536,9 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
         case PatternPackage.PATTERN__VARIABLES:
             getVariables().clear();
             return;
+        case PatternPackage.PATTERN__INIT_METHOD:
+            setInitMethod((PatternMethod) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -507,6 +566,8 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
             return nature != null;
         case PatternPackage.PATTERN__VARIABLES:
             return variables != null && !variables.isEmpty();
+        case PatternPackage.PATTERN__INIT_METHOD:
+            return initMethod != null;
         }
         return super.eIsSet(featureID);
     }
