@@ -46,8 +46,6 @@ public class FactoryComponentListener implements IResourceFactoryComponentListen
     public void factoryComponentChanged(IResourceFactoryComponentDelta delta) {
         Set<Pattern> patterns = new HashSet<Pattern>();
         for (URI uri : delta.getChangedResourceFactoryComponents()) {
-            // TODO this work should be in a job: 1- gather all patterns to be
-            // translated 2- translate them in a job
             patterns.addAll(PatternHelper.getPatterns(uri));
         }
         translate(patterns);
