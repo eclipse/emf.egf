@@ -19,10 +19,8 @@ Require-Bundle:
  org.eclipse.ant.core;visibility:=reexport 
 Export-Package: 
  org.eclipse.egf.common.activator,
- org.eclipse.egf.common.ant,
  org.eclipse.egf.common.constant,
  org.eclipse.egf.common.generator,
  org.eclipse.egf.common.helper,
- org.eclipse.egf.common.listener,
  org.eclipse.egf.common.progress
 Bundle-ActivationPolicy: lazy
