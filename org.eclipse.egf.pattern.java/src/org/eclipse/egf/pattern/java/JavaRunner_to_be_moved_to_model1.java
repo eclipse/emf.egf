@@ -27,6 +27,7 @@ import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.javapattern.JavaNature;
 import org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
@@ -79,9 +80,9 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
             if (project == null)
                 throw new PatternException("Cannot get project related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
             // TODO
-            String classname = "MyLib.child";
+            String classname = "MyLibJava.child";
             IPath outputPath = computeFilePath(classname);
-            FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), templatecontent);
+            FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), getContent(templatecontent));
             {
                 // TODO: modifier le model ça va compliquer les choses .. mais
                 // où mettre le nom de la classe ?
@@ -94,6 +95,46 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
             throw new PatternException(e);
         }
 
+    }
+
+    private String getContent(String content) {
+        StringBuilder builder = new StringBuilder(content.length() + 500);
+        int startIndex = content.indexOf(JavaPatternHelper.START_MARKER);
+        int endIndex = content.indexOf(JavaPatternHelper.END_MARKER);
+        int insertionIndex = content.lastIndexOf('}');
+        if (startIndex == -1 || endIndex == -1 || insertionIndex == -1)
+            return content;
+        // add start of class code
+        builder.append(content.substring(0, startIndex));
+
+        // add new method call
+        builder.append("generate((PatternContext)argument");
+        if (!getPattern().getParameters().isEmpty()) {
+            for (PatternParameter parameter : pattern.getParameters()) {
+                String local = PatternHelper.localizeName(parameter);
+                builder.append(", ").append(local);
+            }
+        }
+        builder.append(");");
+
+        // add end of class code
+        builder.append(content.substring(endIndex + JavaPatternHelper.END_MARKER.length(), insertionIndex));
+
+        // add new method body
+        builder.append("public void generate(StringBuffer stringBuffer, PatternContext ctx");
+        if (!getPattern().getParameters().isEmpty()) {
+            for (PatternParameter parameter : pattern.getParameters()) {
+                String local = PatternHelper.localizeName(parameter);
+                builder.append(", EObject ").append(local);
+            }
+        }
+        builder.append(") {").append(PatternPreferences.NL);
+        builder.append(content.substring(startIndex + JavaPatternHelper.START_MARKER.length(), endIndex));
+
+        builder.append("} ").append(PatternPreferences.NL);
+        builder.append(content.substring(insertionIndex));
+
+        return builder.toString();
     }
 
     private IPath computeFilePath(String classname) {
