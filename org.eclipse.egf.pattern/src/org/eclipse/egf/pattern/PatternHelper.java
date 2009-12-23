@@ -22,6 +22,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.core.platform.resource.ResourceHelper;
@@ -35,6 +36,7 @@ import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 /**
@@ -55,7 +57,7 @@ public class PatternHelper {
             lib = lib.getContainer();
         }
         if (libs.isEmpty())
-            return "";
+            return CharacterConstants.EMPTY_STRING;
         if (libs.size() == 1)
             return libs.get(0).getName();
         StringBuffer buf = new StringBuffer();
@@ -86,18 +88,32 @@ public class PatternHelper {
      * Reads FC models from the given project and return the patterns with the
      * given ids if any. If the ids set is null all patterns are returned.
      */
+    public static Set<Pattern> getPatterns(URI uri) {
+        Set<Pattern> result = new HashSet<Pattern>();
+        collectPatterns(new ResourceSetImpl(), uri, null, result);
+        return result;
+    }
+
+    /**
+     * Reads FC models from the given project and return the patterns with the
+     * given ids if any. If the ids set is null all patterns are returned.
+     */
     public static Set<Pattern> getPatterns(IProject project, Set<String> ids) {
-        ResourceSetImpl set = new ResourceSetImpl();
+        ResourceSet set = new ResourceSetImpl();
         Set<Pattern> result = new HashSet<Pattern>();
         IPlatformFactoryComponent[] platformFactoryComponents = EGFPlatformPlugin.getPlatformFactoryComponents(project);
         for (IPlatformFactoryComponent pfc : platformFactoryComponents) {
             URI uri = pfc.getURI();
-            Resource res = ResourceHelper.loadResource(set, uri);
-            FCVisitor fcVisitor = new FCVisitor();
-            for (EObject obj : res.getContents())
-                fcVisitor.collect((FactoryComponent) obj, ids, result);
+            collectPatterns(set, uri, ids, result);
         }
         return result;
+    }
+
+    private static void collectPatterns(ResourceSet set, URI uri, Set<String> ids, Set<Pattern> collector) {
+        Resource res = ResourceHelper.loadResource(set, uri);
+        FCVisitor fcVisitor = new FCVisitor();
+        for (EObject obj : res.getContents())
+            fcVisitor.collect((FactoryComponent) obj, ids, collector);
     }
 
     public static String localizeName(org.eclipse.egf.model.pattern.PatternParameter parameter) {
@@ -137,7 +153,7 @@ public class PatternHelper {
                 public String casePatternViewpoint(PatternViewpoint object) {
                     for (PatternLibrary lib : object.getLibraries())
                         casePatternLibrary(lib);
-                    return "";
+                    return CharacterConstants.EMPTY_STRING;
                 }
             }.doSwitch(pvp);
 
@@ -167,7 +183,7 @@ public class PatternHelper {
         private static final String METHOD_TOKEN = "method.";
 
         public static URI computeFileURI(PatternMethod method) {
-            return URI.createFileURI(PatternPreferences.getTemplatesFolderName() + "/" + PATTERN_TOKEN + method.getPattern().getID() + "/" + METHOD_TOKEN + method.getID() + "." + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
+            return URI.createFileURI(PatternPreferences.getTemplatesFolderName() + CharacterConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + CharacterConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + CharacterConstants.DOT_CHARACTER + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
         }
 
         public static String extractPatternId(IPath patternMethodPath) throws FilenameFormatException {

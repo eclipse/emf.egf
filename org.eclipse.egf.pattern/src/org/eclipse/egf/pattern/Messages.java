@@ -23,6 +23,8 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
 
+    public static String translation_job_label;
+
     // Initializer
     public static String initializer_error1;
     public static String initializer_error2;

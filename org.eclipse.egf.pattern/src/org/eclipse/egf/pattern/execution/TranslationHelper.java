@@ -34,7 +34,9 @@ import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionExcepti
  */
 public class TranslationHelper {
 
-    public static void translate(Set<Pattern> patterns) throws PatternException {
+    public static void translate(final Set<Pattern> patterns) throws PatternException {
+        if (patterns.isEmpty())
+            return;
         try {
             for (Pattern p : patterns) {
                 PatternExtension extension = ExtensionHelper.getExtension(p.getNature());
@@ -44,6 +46,6 @@ public class TranslationHelper {
             throw new PatternException(e);
 
         }
-    }
 
+    }
 }
