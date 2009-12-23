@@ -27,6 +27,7 @@ import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
@@ -106,7 +107,7 @@ public class WorkspaceAndPluginClassLoader extends ClassLoader {
             return null;
         }
         IFolder folder = project.getFolder(outputLocation.removeFirstSegments(1));
-        return new URL("file", null, folder.getLocation().toOSString() + "/");
+        return new URL("file", null, folder.getLocation().toOSString() + CharacterConstants.SLASH_CHARACTER);
 
     }
 }

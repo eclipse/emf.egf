@@ -26,8 +26,8 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface PatternExecutionReporter {
 
-	public void patternExecutionFinished(String output, PatternContext context);
+    void patternExecutionFinished(String output, PatternContext context);
 
-	public void patternLoopExecutionFinished(String output, PatternContext context, Map<String, EObject> parameterValues);
+    void patternLoopExecutionFinished(String output, PatternContext context, Map<String, EObject> parameterValues);
 
 }

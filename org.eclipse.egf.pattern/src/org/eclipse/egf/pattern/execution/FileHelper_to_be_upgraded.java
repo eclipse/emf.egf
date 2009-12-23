@@ -26,6 +26,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.emf.common.util.URI;
@@ -118,7 +119,7 @@ public class FileHelper_to_be_upgraded {
             if (file == null)
                 throw new IllegalStateException();
             if (!file.exists())
-                return "";
+                return CharacterConstants.EMPTY_STRING;
             return getFileContent(file);
         }
 

@@ -20,7 +20,6 @@ package org.eclipse.egf.pattern;
  * 
  */
 public class PatternPreferences {
-    public final static String NL = System.getProperties().getProperty("line.separator");
 
     public static String getGenerationFolderName() {
         return "generated";

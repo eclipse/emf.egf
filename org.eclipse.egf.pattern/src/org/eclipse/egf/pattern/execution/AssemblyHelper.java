@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.common.helper.ObjectHolder;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -141,7 +142,7 @@ public abstract class AssemblyHelper {
                 } catch (IOException e) {
                     holder.object = new PatternException(e);
                 }
-                return "";
+                return CharacterConstants.EMPTY_STRING;
             }
 
             @Override
