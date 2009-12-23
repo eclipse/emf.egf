@@ -87,22 +87,19 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
    * @generated
    */
   public void setFactoryComponent(FactoryComponent newFactoryComponent) {
-    if (newFactoryComponent != eInternalContainer()
-        || (eContainerFeatureID() != FactoryComponentPackage.ORCHESTRATION__FACTORY_COMPONENT && newFactoryComponent != null)) {
+    if (newFactoryComponent != eInternalContainer() || (eContainerFeatureID() != FactoryComponentPackage.ORCHESTRATION__FACTORY_COMPONENT && newFactoryComponent != null)) {
       if (EcoreUtil.isAncestor(this, newFactoryComponent))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
       NotificationChain msgs = null;
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newFactoryComponent != null)
-        msgs = ((InternalEObject) newFactoryComponent).eInverseAdd(this, FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION,
-            FactoryComponent.class, msgs);
+        msgs = ((InternalEObject) newFactoryComponent).eInverseAdd(this, FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION, FactoryComponent.class, msgs);
       msgs = basicSetFactoryComponent(newFactoryComponent, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.ORCHESTRATION__FACTORY_COMPONENT, newFactoryComponent,
-          newFactoryComponent));
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.ORCHESTRATION__FACTORY_COMPONENT, newFactoryComponent, newFactoryComponent));
   }
 
   /**
@@ -144,8 +141,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
     case FactoryComponentPackage.ORCHESTRATION__FACTORY_COMPONENT:
-      return eInternalContainer().eInverseRemove(this, FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION, FactoryComponent.class,
-          msgs);
+      return eInternalContainer().eInverseRemove(this, FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION, FactoryComponent.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }

@@ -629,8 +629,7 @@ public class FactoryComponentValidator extends EObjectValidator {
         appendDiagnostics(children[i], diagnostics);
       }
     } else if (status instanceof IConstraintStatus) {
-      diagnostics.add(new BasicDiagnostic(status.getSeverity(), status.getPlugin(), status.getCode(), status.getMessage(),
-          ((IConstraintStatus) status).getResultLocus().toArray()));
+      diagnostics.add(new BasicDiagnostic(status.getSeverity(), status.getPlugin(), status.getCode(), status.getMessage(), ((IConstraintStatus) status).getResultLocus().toArray()));
     }
   }
 } //FactoryComponentValidator

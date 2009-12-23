@@ -121,8 +121,7 @@ public class ContextImpl extends ModelElementImpl implements Context {
    * @generated
    */
   public void setInvocation(Invocation newInvocation) {
-    if (newInvocation != eInternalContainer()
-        || (eContainerFeatureID() != FactoryComponentPackage.CONTEXT__INVOCATION && newInvocation != null)) {
+    if (newInvocation != eInternalContainer() || (eContainerFeatureID() != FactoryComponentPackage.CONTEXT__INVOCATION && newInvocation != null)) {
       if (EcoreUtil.isAncestor(this, newInvocation))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
       NotificationChain msgs = null;
@@ -156,8 +155,7 @@ public class ContextImpl extends ModelElementImpl implements Context {
    */
   public EList<ContractConnector> getConnectors() {
     if (connectors == null) {
-      connectors = new EObjectContainmentWithInverseEList<ContractConnector>(ContractConnector.class, this,
-          FactoryComponentPackage.CONTEXT__CONNECTORS, FactoryComponentPackage.CONTRACT_CONNECTOR__CONTEXT);
+      connectors = new EObjectContainmentWithInverseEList<ContractConnector>(ContractConnector.class, this, FactoryComponentPackage.CONTEXT__CONNECTORS, FactoryComponentPackage.CONTRACT_CONNECTOR__CONTEXT);
     }
     return connectors;
   }

@@ -90,8 +90,7 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
     ContractContainer oldContractContainer = contractContainer;
     contractContainer = newContractContainer;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.ACTIVITY__CONTRACT_CONTAINER,
-          oldContractContainer, newContractContainer);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.ACTIVITY__CONTRACT_CONTAINER, oldContractContainer, newContractContainer);
       if (msgs == null)
         msgs = notification;
       else
@@ -109,17 +108,14 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
     if (newContractContainer != contractContainer) {
       NotificationChain msgs = null;
       if (contractContainer != null)
-        msgs = ((InternalEObject) contractContainer).eInverseRemove(this, FactoryComponentPackage.CONTRACT_CONTAINER__ACTIVITY,
-            ContractContainer.class, msgs);
+        msgs = ((InternalEObject) contractContainer).eInverseRemove(this, FactoryComponentPackage.CONTRACT_CONTAINER__ACTIVITY, ContractContainer.class, msgs);
       if (newContractContainer != null)
-        msgs = ((InternalEObject) newContractContainer).eInverseAdd(this, FactoryComponentPackage.CONTRACT_CONTAINER__ACTIVITY,
-            ContractContainer.class, msgs);
+        msgs = ((InternalEObject) newContractContainer).eInverseAdd(this, FactoryComponentPackage.CONTRACT_CONTAINER__ACTIVITY, ContractContainer.class, msgs);
       msgs = basicSetContractContainer(newContractContainer, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.ACTIVITY__CONTRACT_CONTAINER, newContractContainer,
-          newContractContainer));
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.ACTIVITY__CONTRACT_CONTAINER, newContractContainer, newContractContainer));
   }
 
   /**
@@ -143,8 +139,7 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
     switch (featureID) {
     case FactoryComponentPackage.ACTIVITY__CONTRACT_CONTAINER:
       if (contractContainer != null)
-        msgs = ((InternalEObject) contractContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-            - FactoryComponentPackage.ACTIVITY__CONTRACT_CONTAINER, null, msgs);
+        msgs = ((InternalEObject) contractContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FactoryComponentPackage.ACTIVITY__CONTRACT_CONTAINER, null, msgs);
       return basicSetContractContainer((ContractContainer) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);

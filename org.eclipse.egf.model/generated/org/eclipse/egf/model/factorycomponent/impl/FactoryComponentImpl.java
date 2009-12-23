@@ -98,8 +98,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     ViewpointContainer oldViewpointContainer = viewpointContainer;
     viewpointContainer = newViewpointContainer;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-          FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, oldViewpointContainer, newViewpointContainer);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, oldViewpointContainer, newViewpointContainer);
       if (msgs == null)
         msgs = notification;
       else
@@ -117,17 +116,14 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     if (newViewpointContainer != viewpointContainer) {
       NotificationChain msgs = null;
       if (viewpointContainer != null)
-        msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT,
-            ViewpointContainer.class, msgs);
+        msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT, ViewpointContainer.class, msgs);
       if (newViewpointContainer != null)
-        msgs = ((InternalEObject) newViewpointContainer).eInverseAdd(this, FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT,
-            ViewpointContainer.class, msgs);
+        msgs = ((InternalEObject) newViewpointContainer).eInverseAdd(this, FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT, ViewpointContainer.class, msgs);
       msgs = basicSetViewpointContainer(newViewpointContainer, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER,
-          newViewpointContainer, newViewpointContainer));
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, newViewpointContainer, newViewpointContainer));
   }
 
   /**
@@ -148,8 +144,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     Orchestration oldOrchestration = orchestration;
     orchestration = newOrchestration;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-          FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION, oldOrchestration, newOrchestration);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION, oldOrchestration, newOrchestration);
       if (msgs == null)
         msgs = notification;
       else
@@ -167,17 +162,14 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     if (newOrchestration != orchestration) {
       NotificationChain msgs = null;
       if (orchestration != null)
-        msgs = ((InternalEObject) orchestration).eInverseRemove(this, FactoryComponentPackage.ORCHESTRATION__FACTORY_COMPONENT,
-            Orchestration.class, msgs);
+        msgs = ((InternalEObject) orchestration).eInverseRemove(this, FactoryComponentPackage.ORCHESTRATION__FACTORY_COMPONENT, Orchestration.class, msgs);
       if (newOrchestration != null)
-        msgs = ((InternalEObject) newOrchestration).eInverseAdd(this, FactoryComponentPackage.ORCHESTRATION__FACTORY_COMPONENT,
-            Orchestration.class, msgs);
+        msgs = ((InternalEObject) newOrchestration).eInverseAdd(this, FactoryComponentPackage.ORCHESTRATION__FACTORY_COMPONENT, Orchestration.class, msgs);
       msgs = basicSetOrchestration(newOrchestration, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION, newOrchestration,
-          newOrchestration));
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION, newOrchestration, newOrchestration));
   }
 
   /**
@@ -190,13 +182,11 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
     switch (featureID) {
     case FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
       if (viewpointContainer != null)
-        msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-            - FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, null, msgs);
+        msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, null, msgs);
       return basicSetViewpointContainer((ViewpointContainer) otherEnd, msgs);
     case FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION:
       if (orchestration != null)
-        msgs = ((InternalEObject) orchestration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-            - FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION, null, msgs);
+        msgs = ((InternalEObject) orchestration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FactoryComponentPackage.FACTORY_COMPONENT__ORCHESTRATION, null, msgs);
       return basicSetOrchestration((Orchestration) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);

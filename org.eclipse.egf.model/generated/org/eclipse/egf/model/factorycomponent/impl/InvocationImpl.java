@@ -89,8 +89,7 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
     Context oldContext = context;
     context = newContext;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.INVOCATION__CONTEXT,
-          oldContext, newContext);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.INVOCATION__CONTEXT, oldContext, newContext);
       if (msgs == null)
         msgs = notification;
       else
@@ -128,8 +127,7 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
     switch (featureID) {
     case FactoryComponentPackage.INVOCATION__CONTEXT:
       if (context != null)
-        msgs = ((InternalEObject) context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FactoryComponentPackage.INVOCATION__CONTEXT, null,
-            msgs);
+        msgs = ((InternalEObject) context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FactoryComponentPackage.INVOCATION__CONTEXT, null, msgs);
       return basicSetContext((Context) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);

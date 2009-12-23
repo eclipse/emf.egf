@@ -252,8 +252,7 @@ public class TypesValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean validatePrimitiveObjectType(PrimitiveObjectType primitiveObjectType, DiagnosticChain diagnostics,
-      Map<Object, Object> context) {
+  public boolean validatePrimitiveObjectType(PrimitiveObjectType primitiveObjectType, DiagnosticChain diagnostics, Map<Object, Object> context) {
     boolean result = validate_EveryMultiplicityConforms(primitiveObjectType, diagnostics, context);
     if (result || diagnostics != null)
       result &= validate_EveryDataValueConforms(primitiveObjectType, diagnostics, context);
@@ -349,8 +348,7 @@ public class TypesValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean validatePatternExecutionReporterType(PatternExecutionReporterType patternExecutionReporterType,
-      DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validatePatternExecutionReporterType(PatternExecutionReporterType patternExecutionReporterType, DiagnosticChain diagnostics, Map<Object, Object> context) {
     boolean result = validate_EveryMultiplicityConforms(patternExecutionReporterType, diagnostics, context);
     if (result || diagnostics != null)
       result &= validate_EveryDataValueConforms(patternExecutionReporterType, diagnostics, context);
@@ -374,8 +372,7 @@ public class TypesValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean validateGeneratorAdapterFactoryType(GeneratorAdapterFactoryType generatorAdapterFactoryType, DiagnosticChain diagnostics,
-      Map<Object, Object> context) {
+  public boolean validateGeneratorAdapterFactoryType(GeneratorAdapterFactoryType generatorAdapterFactoryType, DiagnosticChain diagnostics, Map<Object, Object> context) {
     boolean result = validate_EveryMultiplicityConforms(generatorAdapterFactoryType, diagnostics, context);
     if (result || diagnostics != null)
       result &= validate_EveryDataValueConforms(generatorAdapterFactoryType, diagnostics, context);
@@ -468,8 +465,7 @@ public class TypesValidator extends EObjectValidator {
         appendDiagnostics(children[i], diagnostics);
       }
     } else if (status instanceof IConstraintStatus) {
-      diagnostics.add(new BasicDiagnostic(status.getSeverity(), status.getPlugin(), status.getCode(), status.getMessage(),
-          ((IConstraintStatus) status).getResultLocus().toArray()));
+      diagnostics.add(new BasicDiagnostic(status.getSeverity(), status.getPlugin(), status.getCode(), status.getMessage(), ((IConstraintStatus) status).getResultLocus().toArray()));
     }
   }
 } //TypesValidator

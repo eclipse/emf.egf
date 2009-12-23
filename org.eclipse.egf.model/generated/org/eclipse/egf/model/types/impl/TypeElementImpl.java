@@ -141,7 +141,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
     }
     return iD;
   }
-  
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -166,7 +166,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
       ((TypesResourceImpl) eResource).getIntrinsicIDToEObjectMap().clear();
     }
     setIDGen(newID);
-  }  
+  }
 
   /**
    * <!-- begin-user-doc -->

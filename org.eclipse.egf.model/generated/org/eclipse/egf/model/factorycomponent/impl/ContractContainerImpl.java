@@ -103,16 +103,14 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
    * @generated
    */
   public void setActivity(Activity newActivity) {
-    if (newActivity != eInternalContainer()
-        || (eContainerFeatureID() != FactoryComponentPackage.CONTRACT_CONTAINER__ACTIVITY && newActivity != null)) {
+    if (newActivity != eInternalContainer() || (eContainerFeatureID() != FactoryComponentPackage.CONTRACT_CONTAINER__ACTIVITY && newActivity != null)) {
       if (EcoreUtil.isAncestor(this, newActivity))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
       NotificationChain msgs = null;
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newActivity != null)
-        msgs = ((InternalEObject) newActivity)
-            .eInverseAdd(this, FactoryComponentPackage.ACTIVITY__CONTRACT_CONTAINER, Activity.class, msgs);
+        msgs = ((InternalEObject) newActivity).eInverseAdd(this, FactoryComponentPackage.ACTIVITY__CONTRACT_CONTAINER, Activity.class, msgs);
       msgs = basicSetActivity(newActivity, msgs);
       if (msgs != null)
         msgs.dispatch();
@@ -127,8 +125,7 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
    */
   public EList<Contract> getContracts() {
     if (contracts == null) {
-      contracts = new EObjectContainmentWithInverseEList<Contract>(Contract.class, this,
-          FactoryComponentPackage.CONTRACT_CONTAINER__CONTRACTS, FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER);
+      contracts = new EObjectContainmentWithInverseEList<Contract>(Contract.class, this, FactoryComponentPackage.CONTRACT_CONTAINER__CONTRACTS, FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER);
     }
     return contracts;
   }

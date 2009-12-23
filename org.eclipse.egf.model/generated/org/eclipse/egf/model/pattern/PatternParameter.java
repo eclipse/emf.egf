@@ -37,30 +37,30 @@ import org.eclipse.emf.ecore.EModelElement;
  * @generated
  */
 public interface PatternParameter extends ModelElement {
-    /**
-     * Returns the value of the '<em><b>Type</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Type</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Type</em>' reference.
-     * @see #setType(EModelElement)
-     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternParameter_Type()
-     * @model required="true"
-     * @generated
-     */
-    EModelElement getType();
+  /**
+   * Returns the value of the '<em><b>Type</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Type</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Type</em>' reference.
+   * @see #setType(EModelElement)
+   * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternParameter_Type()
+   * @model required="true"
+   * @generated
+   */
+  EModelElement getType();
 
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternParameter#getType <em>Type</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Type</em>' reference.
-     * @see #getType()
-     * @generated
-     */
-    void setType(EModelElement value);
+  /**
+   * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternParameter#getType <em>Type</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Type</em>' reference.
+   * @see #getType()
+   * @generated
+   */
+  void setType(EModelElement value);
 
 } // PatternParameter

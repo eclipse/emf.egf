@@ -113,8 +113,7 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
    * @generated
    */
   public void setContext(Context newContext) {
-    if (newContext != eInternalContainer()
-        || (eContainerFeatureID() != FactoryComponentPackage.CONTRACT_CONNECTOR__CONTEXT && newContext != null)) {
+    if (newContext != eInternalContainer() || (eContainerFeatureID() != FactoryComponentPackage.CONTRACT_CONNECTOR__CONTEXT && newContext != null)) {
       if (EcoreUtil.isAncestor(this, newContext))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
       NotificationChain msgs = null;

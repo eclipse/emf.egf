@@ -87,22 +87,19 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
    * @generated
    */
   public void setViewerpointContainer(ViewpointContainer newViewerpointContainer) {
-    if (newViewerpointContainer != eInternalContainer()
-        || (eContainerFeatureID() != FactoryComponentPackage.VIEWPOINT__VIEWERPOINT_CONTAINER && newViewerpointContainer != null)) {
+    if (newViewerpointContainer != eInternalContainer() || (eContainerFeatureID() != FactoryComponentPackage.VIEWPOINT__VIEWERPOINT_CONTAINER && newViewerpointContainer != null)) {
       if (EcoreUtil.isAncestor(this, newViewerpointContainer))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
       NotificationChain msgs = null;
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newViewerpointContainer != null)
-        msgs = ((InternalEObject) newViewerpointContainer).eInverseAdd(this, FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS,
-            ViewpointContainer.class, msgs);
+        msgs = ((InternalEObject) newViewerpointContainer).eInverseAdd(this, FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS, ViewpointContainer.class, msgs);
       msgs = basicSetViewerpointContainer(newViewerpointContainer, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.VIEWPOINT__VIEWERPOINT_CONTAINER,
-          newViewerpointContainer, newViewerpointContainer));
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.VIEWPOINT__VIEWERPOINT_CONTAINER, newViewerpointContainer, newViewerpointContainer));
   }
 
   /**
@@ -144,8 +141,7 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
     case FactoryComponentPackage.VIEWPOINT__VIEWERPOINT_CONTAINER:
-      return eInternalContainer().eInverseRemove(this, FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS, ViewpointContainer.class,
-          msgs);
+      return eInternalContainer().eInverseRemove(this, FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS, ViewpointContainer.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }

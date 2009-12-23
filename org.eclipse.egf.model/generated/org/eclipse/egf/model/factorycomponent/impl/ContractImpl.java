@@ -163,22 +163,19 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * @generated
    */
   public void setContractContainer(ContractContainer newContractContainer) {
-    if (newContractContainer != eInternalContainer()
-        || (eContainerFeatureID() != FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER && newContractContainer != null)) {
+    if (newContractContainer != eInternalContainer() || (eContainerFeatureID() != FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER && newContractContainer != null)) {
       if (EcoreUtil.isAncestor(this, newContractContainer))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
       NotificationChain msgs = null;
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newContractContainer != null)
-        msgs = ((InternalEObject) newContractContainer).eInverseAdd(this, FactoryComponentPackage.CONTRACT_CONTAINER__CONTRACTS,
-            ContractContainer.class, msgs);
+        msgs = ((InternalEObject) newContractContainer).eInverseAdd(this, FactoryComponentPackage.CONTRACT_CONTAINER__CONTRACTS, ContractContainer.class, msgs);
       msgs = basicSetContractContainer(newContractContainer, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER, newContractContainer,
-          newContractContainer));
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER, newContractContainer, newContractContainer));
   }
 
   /**
@@ -260,8 +257,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     ContractValue oldDefaultValue = defaultValue;
     defaultValue = newDefaultValue;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.CONTRACT__DEFAULT_VALUE,
-          oldDefaultValue, newDefaultValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.CONTRACT__DEFAULT_VALUE, oldDefaultValue, newDefaultValue);
       if (msgs == null)
         msgs = notification;
       else
@@ -279,17 +275,14 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     if (newDefaultValue != defaultValue) {
       NotificationChain msgs = null;
       if (defaultValue != null)
-        msgs = ((InternalEObject) defaultValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-            - FactoryComponentPackage.CONTRACT__DEFAULT_VALUE, null, msgs);
+        msgs = ((InternalEObject) defaultValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FactoryComponentPackage.CONTRACT__DEFAULT_VALUE, null, msgs);
       if (newDefaultValue != null)
-        msgs = ((InternalEObject) newDefaultValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-            - FactoryComponentPackage.CONTRACT__DEFAULT_VALUE, null, msgs);
+        msgs = ((InternalEObject) newDefaultValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FactoryComponentPackage.CONTRACT__DEFAULT_VALUE, null, msgs);
       msgs = basicSetDefaultValue(newDefaultValue, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.CONTRACT__DEFAULT_VALUE, newDefaultValue,
-          newDefaultValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.CONTRACT__DEFAULT_VALUE, newDefaultValue, newDefaultValue));
   }
 
   /**
@@ -333,8 +326,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
     case FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER:
-      return eInternalContainer()
-          .eInverseRemove(this, FactoryComponentPackage.CONTRACT_CONTAINER__CONTRACTS, ContractContainer.class, msgs);
+      return eInternalContainer().eInverseRemove(this, FactoryComponentPackage.CONTRACT_CONTAINER__CONTRACTS, ContractContainer.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }

@@ -43,140 +43,140 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class PatternParameterImpl extends ModelElementImpl implements PatternParameter {
-    /**
-     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected int eFlags = 0;
+  /**
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  protected int eFlags = 0;
 
-    /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getType()
-     * @generated
-     * @ordered
-     */
-    protected EModelElement type;
+  /**
+   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getType()
+   * @generated
+   * @ordered
+   */
+  protected EModelElement type;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected PatternParameterImpl() {
-        super();
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PatternParameterImpl() {
+    super();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return PatternPackage.Literals.PATTERN_PARAMETER;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return PatternPackage.Literals.PATTERN_PARAMETER;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EModelElement getType() {
-        if (type != null && type.eIsProxy()) {
-            InternalEObject oldType = (InternalEObject) type;
-            type = (EModelElement) eResolveProxy(oldType);
-            if (type != oldType) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN_PARAMETER__TYPE, oldType, type));
-            }
-        }
-        return type;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EModelElement basicGetType() {
-        return type;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setType(EModelElement newType) {
-        EModelElement oldType = type;
-        type = newType;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EModelElement getType() {
+    if (type != null && type.eIsProxy()) {
+      InternalEObject oldType = (InternalEObject) type;
+      type = (EModelElement) eResolveProxy(oldType);
+      if (type != oldType) {
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_PARAMETER__TYPE, oldType, type));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN_PARAMETER__TYPE, oldType, type));
+      }
     }
+    return type;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_PARAMETER__TYPE:
-            if (resolve)
-                return getType();
-            return basicGetType();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EModelElement basicGetType() {
+    return type;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_PARAMETER__TYPE:
-            setType((EModelElement) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setType(EModelElement newType) {
+    EModelElement oldType = type;
+    type = newType;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_PARAMETER__TYPE, oldType, type));
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_PARAMETER__TYPE:
-            setType((EModelElement) null);
-            return;
-        }
-        super.eUnset(featureID);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_PARAMETER__TYPE:
+      if (resolve)
+        return getType();
+      return basicGetType();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_PARAMETER__TYPE:
-            return type != null;
-        }
-        return super.eIsSet(featureID);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_PARAMETER__TYPE:
+      setType((EModelElement) newValue);
+      return;
     }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_PARAMETER__TYPE:
+      setType((EModelElement) null);
+      return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_PARAMETER__TYPE:
+      return type != null;
+    }
+    return super.eIsSet(featureID);
+  }
 
 } //PatternParameterImpl

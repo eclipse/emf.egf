@@ -103,9 +103,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
       return (MappingPackage) EPackage.Registry.INSTANCE.getEPackage(MappingPackage.eNS_URI);
 
     // Obtain or create and register package
-    MappingPackageImpl theMappingPackage = (MappingPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE
-        .get(eNS_URI)
-        : new MappingPackageImpl());
+    MappingPackageImpl theMappingPackage = (MappingPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MappingPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new MappingPackageImpl());
 
     isInited = true;
 
@@ -244,8 +242,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    FactoryComponentPackage theFactoryComponentPackage = (FactoryComponentPackage) EPackage.Registry.INSTANCE
-        .getEPackage(FactoryComponentPackage.eNS_URI);
+    FactoryComponentPackage theFactoryComponentPackage = (FactoryComponentPackage) EPackage.Registry.INSTANCE.getEPackage(FactoryComponentPackage.eNS_URI);
     DomainPackage theDomainPackage = (DomainPackage) EPackage.Registry.INSTANCE.getEPackage(DomainPackage.eNS_URI);
 
     // Create type parameters
@@ -259,25 +256,13 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
     // Initialize classes and features; add operations and parameters
     initEClass(mappingViewpointEClass, MappingViewpoint.class, "MappingViewpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(
-        getMappingViewpoint_Mappings(),
-        this.getMappingDomain(),
-        null,
-        "mappings", null, 0, -1, MappingViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getMappingViewpoint_Mappings(), this.getMappingDomain(), null, "mappings", null, 0, -1, MappingViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(mappingEClass, Mapping.class, "Mapping", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
     initEClass(mappingDomainEClass, MappingDomain.class, "MappingDomain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(
-        getMappingDomain_Source(),
-        theDomainPackage.getDomain(),
-        null,
-        "source", null, 1, 1, MappingDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(
-        getMappingDomain_Target(),
-        theDomainPackage.getDomain(),
-        null,
-        "target", null, 1, 1, MappingDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getMappingDomain_Source(), theDomainPackage.getDomain(), null, "source", null, 1, 1, MappingDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getMappingDomain_Target(), theDomainPackage.getDomain(), null, "target", null, 1, 1, MappingDomain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);
