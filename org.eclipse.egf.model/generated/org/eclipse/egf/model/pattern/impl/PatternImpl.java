@@ -143,6 +143,23 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
    * @generated
    */
   public PatternMethod getHeaderMethod() {
+    if (headerMethod != null && headerMethod.eIsProxy()) {
+      InternalEObject oldHeaderMethod = (InternalEObject) headerMethod;
+      headerMethod = (PatternMethod) eResolveProxy(oldHeaderMethod);
+      if (headerMethod != oldHeaderMethod) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN__HEADER_METHOD, oldHeaderMethod, headerMethod));
+      }
+    }
+    return headerMethod;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternMethod basicGetHeaderMethod() {
     return headerMethod;
   }
 
@@ -192,6 +209,23 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
    * @generated
    */
   public PatternMethod getFooterMethod() {
+    if (footerMethod != null && footerMethod.eIsProxy()) {
+      InternalEObject oldFooterMethod = (InternalEObject) footerMethod;
+      footerMethod = (PatternMethod) eResolveProxy(oldFooterMethod);
+      if (footerMethod != oldFooterMethod) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN__FOOTER_METHOD, oldFooterMethod, footerMethod));
+      }
+    }
+    return footerMethod;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternMethod basicGetFooterMethod() {
     return footerMethod;
   }
 
@@ -326,11 +360,15 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case PatternPackage.PATTERN__HEADER_METHOD:
-      return getHeaderMethod();
+      if (resolve)
+        return getHeaderMethod();
+      return basicGetHeaderMethod();
     case PatternPackage.PATTERN__METHODS:
       return getMethods();
     case PatternPackage.PATTERN__FOOTER_METHOD:
-      return getFooterMethod();
+      if (resolve)
+        return getFooterMethod();
+      return basicGetFooterMethod();
     case PatternPackage.PATTERN__SUPER_PATTERN:
       return getSuperPattern();
     case PatternPackage.PATTERN__ORCHESTRATION:

@@ -53,7 +53,7 @@ public interface Pattern extends PatternElement {
    * @return the value of the '<em>Header Method</em>' reference.
    * @see #setHeaderMethod(PatternMethod)
    * @see org.eclipse.egf.model.pattern.PatternPackage#getPattern_HeaderMethod()
-   * @model resolveProxies="false" required="true"
+   * @model required="true"
    * @generated
    */
   PatternMethod getHeaderMethod();
@@ -123,7 +123,7 @@ public interface Pattern extends PatternElement {
    * @return the value of the '<em>Footer Method</em>' reference.
    * @see #setFooterMethod(PatternMethod)
    * @see org.eclipse.egf.model.pattern.PatternPackage#getPattern_FooterMethod()
-   * @model resolveProxies="false" required="true"
+   * @model required="true"
    * @generated
    */
   PatternMethod getFooterMethod();

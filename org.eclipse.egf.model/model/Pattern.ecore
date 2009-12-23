@@ -11,11 +11,11 @@
       <eParameters name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="headerMethod" lowerBound="1"
-        eType="#//PatternMethod" resolveProxies="false"/>
+        eType="#//PatternMethod"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
         eType="#//PatternMethod" containment="true" resolveProxies="false" eOpposite="#//PatternMethod/pattern"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="footerMethod" lowerBound="1"
-        eType="#//PatternMethod" resolveProxies="false"/>
+        eType="#//PatternMethod"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superPattern" eType="#//Pattern"
         resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" upperBound="-1"
