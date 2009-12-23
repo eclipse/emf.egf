@@ -208,6 +208,15 @@ public class PatternSwitch<T> {
                 result = defaultCase(theEObject);
             return result;
         }
+        case PatternPackage.PATTERN_VARIABLE: {
+            PatternVariable patternVariable = (PatternVariable) theEObject;
+            T result = casePatternVariable(patternVariable);
+            if (result == null)
+                result = caseModelElement(patternVariable);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
         default:
             return defaultCase(theEObject);
         }
@@ -390,6 +399,21 @@ public class PatternSwitch<T> {
      * @generated
      */
     public T caseMethodCall(MethodCall object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePatternVariable(PatternVariable object) {
         return null;
     }
 

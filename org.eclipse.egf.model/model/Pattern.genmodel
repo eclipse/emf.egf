@@ -27,6 +27,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/orchestration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/parameters"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/nature"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/variables"/>
       <genOperations ecoreOperation="Pattern.ecore#//Pattern/getMethod">
         <genParameters ecoreParameter="Pattern.ecore#//Pattern/getMethod/name"/>
       </genOperations>
@@ -70,5 +71,6 @@
     <genClasses ecoreClass="Pattern.ecore#//MethodCall">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//MethodCall/called"/>
     </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//PatternVariable"/>
   </genPackages>
 </genmodel:GenModel>

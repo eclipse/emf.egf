@@ -237,13 +237,22 @@ public interface PatternPackage extends EPackage {
     int PATTERN__NATURE = PATTERN_ELEMENT_FEATURE_COUNT + 6;
 
     /**
+     * The feature id for the '<em><b>Variables</b></em>' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN__VARIABLES = PATTERN_ELEMENT_FEATURE_COUNT + 7;
+
+    /**
      * The number of structural features of the '<em>Pattern</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PATTERN_FEATURE_COUNT = PATTERN_ELEMENT_FEATURE_COUNT + 7;
+    int PATTERN_FEATURE_COUNT = PATTERN_ELEMENT_FEATURE_COUNT + 8;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternMethodImpl <em>Method</em>}' class.
@@ -751,6 +760,52 @@ public interface PatternPackage extends EPackage {
     int METHOD_CALL_FEATURE_COUNT = CALL_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternVariableImpl <em>Variable</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.PatternVariableImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternVariable()
+     * @generated
+     */
+    int PATTERN_VARIABLE = 12;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_VARIABLE__ID = FactoryComponentPackage.MODEL_ELEMENT__ID;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_VARIABLE__NAME = FactoryComponentPackage.MODEL_ELEMENT__NAME;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_VARIABLE__DESCRIPTION = FactoryComponentPackage.MODEL_ELEMENT__DESCRIPTION;
+
+    /**
+     * The number of structural features of the '<em>Variable</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_VARIABLE_FEATURE_COUNT = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '<em>Context</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -758,7 +813,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
      */
-    int PATTERN_CONTEXT = 12;
+    int PATTERN_CONTEXT = 13;
 
     /**
      * The meta object id for the '<em>Exception</em>' data type.
@@ -768,7 +823,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated
      */
-    int PATTERN_EXCEPTION = 13;
+    int PATTERN_EXCEPTION = 14;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -856,6 +911,17 @@ public interface PatternPackage extends EPackage {
      * @generated
      */
     EReference getPattern_Nature();
+
+    /**
+     * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.pattern.Pattern#getVariables <em>Variables</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference list '<em>Variables</em>'.
+     * @see org.eclipse.egf.model.pattern.Pattern#getVariables()
+     * @see #getPattern()
+     * @generated
+     */
+    EReference getPattern_Variables();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternMethod <em>Method</em>}'.
@@ -1114,6 +1180,16 @@ public interface PatternPackage extends EPackage {
     EReference getMethodCall_Called();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternVariable <em>Variable</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Variable</em>'.
+     * @see org.eclipse.egf.model.pattern.PatternVariable
+     * @generated
+     */
+    EClass getPatternVariable();
+
+    /**
      * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1233,6 +1309,14 @@ public interface PatternPackage extends EPackage {
          * @generated
          */
         EReference PATTERN__NATURE = eINSTANCE.getPattern_Nature();
+
+        /**
+         * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PATTERN__VARIABLES = eINSTANCE.getPattern_Variables();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternMethodImpl <em>Method</em>}' class.
@@ -1447,6 +1531,16 @@ public interface PatternPackage extends EPackage {
          * @generated
          */
         EReference METHOD_CALL__CALLED = eINSTANCE.getMethodCall_Called();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternVariableImpl <em>Variable</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.PatternVariableImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternVariable()
+         * @generated
+         */
+        EClass PATTERN_VARIABLE = eINSTANCE.getPatternVariable();
 
         /**
          * The meta object literal for the '<em><b>Value</b></em>' reference feature.

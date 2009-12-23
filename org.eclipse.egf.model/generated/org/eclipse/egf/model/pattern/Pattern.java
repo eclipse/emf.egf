@@ -34,6 +34,7 @@ import org.eclipse.emf.ecore.util.FeatureMap;
  *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getOrchestration <em>Orchestration</em>}</li>
  *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getNature <em>Nature</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Pattern#getVariables <em>Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -197,6 +198,22 @@ public interface Pattern extends PatternElement {
      * @generated
      */
     void setNature(PatternNature value);
+
+    /**
+     * Returns the value of the '<em><b>Variables</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.model.pattern.PatternVariable}.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Variables</em>' containment reference list isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Variables</em>' containment reference list.
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPattern_Variables()
+     * @model containment="true"
+     * @generated
+     */
+    EList<PatternVariable> getVariables();
 
     /**
      * <!-- begin-user-doc -->

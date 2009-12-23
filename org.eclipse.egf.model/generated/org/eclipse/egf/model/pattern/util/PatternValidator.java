@@ -190,6 +190,8 @@ public class PatternValidator extends EObjectValidator {
             return validateCall((Call) value, diagnostics, context);
         case PatternPackage.METHOD_CALL:
             return validateMethodCall((MethodCall) value, diagnostics, context);
+        case PatternPackage.PATTERN_VARIABLE:
+            return validatePatternVariable((PatternVariable) value, diagnostics, context);
         case PatternPackage.PATTERN_CONTEXT:
             return validatePatternContext((PatternContext) value, diagnostics, context);
         case PatternPackage.PATTERN_EXCEPTION:
@@ -453,6 +455,30 @@ public class PatternValidator extends EObjectValidator {
      */
     public boolean validateMethodCall(MethodCall methodCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(methodCall, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validatePatternVariable(PatternVariable patternVariable, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        boolean result = validate_EveryMultiplicityConforms(patternVariable, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryDataValueConforms(patternVariable, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryReferenceIsContained(patternVariable, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryProxyResolves(patternVariable, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_UniqueID(patternVariable, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryKeyUnique(patternVariable, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryMapEntryUnique(patternVariable, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= factoryComponentValidator.validateModelElement_overall(patternVariable, diagnostics, context);
+        return result;
     }
 
     /**

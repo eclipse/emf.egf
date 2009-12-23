@@ -24,6 +24,8 @@
         eType="#//PatternParameter" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nature" lowerBound="1"
         eType="#//PatternNature" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
+        eType="#//PatternVariable" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternMethod" eSuperTypes="FactoryComponent.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
@@ -78,4 +80,5 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="called" lowerBound="1"
         eType="#//PatternMethod"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternVariable" eSuperTypes="FactoryComponent.ecore#//ModelElement"/>
 </ecore:EPackage>

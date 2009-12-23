@@ -24,6 +24,7 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -47,6 +48,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getOrchestration <em>Orchestration</em>}</li>
  *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getParameters <em>Parameters</em>}</li>
  *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getNature <em>Nature</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getVariables <em>Variables</em>}</li>
  * </ul>
  * </p>
  *
@@ -119,6 +121,16 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
      * @ordered
      */
     protected PatternNature nature;
+
+    /**
+     * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getVariables()
+     * @generated
+     * @ordered
+     */
+    protected EList<PatternVariable> variables;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -303,6 +315,18 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<PatternVariable> getVariables() {
+        if (variables == null) {
+            variables = new EObjectContainmentEList<PatternVariable>(PatternVariable.class, this, PatternPackage.PATTERN__VARIABLES);
+        }
+        return variables;
+    }
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated NOT
@@ -348,6 +372,8 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
             return ((InternalEList<?>) getParameters()).basicRemove(otherEnd, msgs);
         case PatternPackage.PATTERN__NATURE:
             return basicSetNature(null, msgs);
+        case PatternPackage.PATTERN__VARIABLES:
+            return ((InternalEList<?>) getVariables()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -377,6 +403,8 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
             return getParameters();
         case PatternPackage.PATTERN__NATURE:
             return getNature();
+        case PatternPackage.PATTERN__VARIABLES:
+            return getVariables();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -413,6 +441,10 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
         case PatternPackage.PATTERN__NATURE:
             setNature((PatternNature) newValue);
             return;
+        case PatternPackage.PATTERN__VARIABLES:
+            getVariables().clear();
+            getVariables().addAll((Collection<? extends PatternVariable>) newValue);
+            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -445,6 +477,9 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
         case PatternPackage.PATTERN__NATURE:
             setNature((PatternNature) null);
             return;
+        case PatternPackage.PATTERN__VARIABLES:
+            getVariables().clear();
+            return;
         }
         super.eUnset(featureID);
     }
@@ -470,6 +505,8 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
             return parameters != null && !parameters.isEmpty();
         case PatternPackage.PATTERN__NATURE:
             return nature != null;
+        case PatternPackage.PATTERN__VARIABLES:
+            return variables != null && !variables.isEmpty();
         }
         return super.eIsSet(featureID);
     }
