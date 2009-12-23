@@ -28,8 +28,8 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
-import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.execution.AssemblyHelper;
+import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.execution.WorkspaceAndPluginClassLoader;
 
 /**
@@ -48,7 +48,7 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
             throw new IllegalStateException();
         String templateClassName = JavaNatureHelper.getClassName(pattern);
         if (templateClassName == null)
-            throw new IllegalStateException("Pattern class is null");
+            throw new IllegalStateException(Messages.assembly_error3);
         try {
 
             Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternHelper.getPlatformFactoryComponent(getPattern())).loadClass(templateClassName);
@@ -74,10 +74,10 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
 
             IPlatformFactoryComponent platformFactoryComponent = PatternHelper.getPlatformFactoryComponent(getPattern());
             if (platformFactoryComponent == null)
-                throw new PatternException("Cannot get platformFactoryComponent related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
+                throw new PatternException(Messages.bind(Messages.assembly_error4, pattern.getName(), pattern.getID()));
             IProject project = platformFactoryComponent.getPlatformPlugin().getProject();
             if (project == null)
-                throw new PatternException("Cannot get project related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
+                throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getName(), pattern.getID()));
             // TODO
             String classname = JavaNatureHelper.getClassName(pattern);
             IPath outputPath = computeFilePath(classname);
