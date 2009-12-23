@@ -128,15 +128,6 @@ public class JavaPatternPackageImpl extends EPackageImpl implements JavaPatternP
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJavaNature_ClassName() {
-        return (EAttribute) javaNatureEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getJavaRunner() {
         return javaRunnerEClass;
     }
@@ -171,7 +162,6 @@ public class JavaPatternPackageImpl extends EPackageImpl implements JavaPatternP
 
         // Create classes and their features
         javaNatureEClass = createEClass(JAVA_NATURE);
-        createEAttribute(javaNatureEClass, JAVA_NATURE__CLASS_NAME);
 
         javaRunnerEClass = createEClass(JAVA_RUNNER);
     }
@@ -213,7 +203,6 @@ public class JavaPatternPackageImpl extends EPackageImpl implements JavaPatternP
 
         // Initialize classes and features; add operations and parameters
         initEClass(javaNatureEClass, JavaNature.class, "JavaNature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEAttribute(getJavaNature_ClassName(), ecorePackage.getEString(), "className", null, 0, 1, JavaNature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(javaRunnerEClass, JavaRunner.class, "JavaRunner", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

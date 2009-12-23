@@ -108,22 +108,13 @@ public interface JavaPatternPackage extends EPackage {
     int JAVA_NATURE__DESCRIPTION = PatternPackage.PATTERN_NATURE__DESCRIPTION;
 
     /**
-     * The feature id for the '<em><b>Class Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JAVA_NATURE__CLASS_NAME = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 0;
-
-    /**
      * The number of structural features of the '<em>Java Nature</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JAVA_NATURE_FEATURE_COUNT = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 1;
+    int JAVA_NATURE_FEATURE_COUNT = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 0;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl <em>Java Runner</em>}' class.
@@ -191,17 +182,6 @@ public interface JavaPatternPackage extends EPackage {
     EClass getJavaNature();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.model.javapattern.JavaNature#getClassName <em>Class Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Class Name</em>'.
-     * @see org.eclipse.egf.model.javapattern.JavaNature#getClassName()
-     * @see #getJavaNature()
-     * @generated
-     */
-    EAttribute getJavaNature_ClassName();
-
-    /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.javapattern.JavaRunner <em>Java Runner</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -242,14 +222,6 @@ public interface JavaPatternPackage extends EPackage {
          * @generated
          */
         EClass JAVA_NATURE = eINSTANCE.getJavaNature();
-
-        /**
-         * The meta object literal for the '<em><b>Class Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute JAVA_NATURE__CLASS_NAME = eINSTANCE.getJavaNature_ClassName();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl <em>Java Runner</em>}' class.
