@@ -131,15 +131,6 @@ public class JetPatternPackageImpl extends EPackageImpl implements JetPatternPac
      * <!-- end-user-doc -->
      * @generated
      */
-    public EAttribute getJetNature_TemplateClassName() {
-        return (EAttribute) jetNatureEClass.getEStructuralFeatures().get(0);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     public EClass getJetRunner() {
         return jetRunnerEClass;
     }
@@ -174,7 +165,6 @@ public class JetPatternPackageImpl extends EPackageImpl implements JetPatternPac
 
         // Create classes and their features
         jetNatureEClass = createEClass(JET_NATURE);
-        createEAttribute(jetNatureEClass, JET_NATURE__TEMPLATE_CLASS_NAME);
 
         jetRunnerEClass = createEClass(JET_RUNNER);
     }
@@ -216,7 +206,6 @@ public class JetPatternPackageImpl extends EPackageImpl implements JetPatternPac
 
         // Initialize classes and features; add operations and parameters
         initEClass(jetNatureEClass, JetNature.class, "JetNature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEAttribute(getJetNature_TemplateClassName(), ecorePackage.getEString(), "templateClassName", null, 0, 1, JetNature.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(jetRunnerEClass, JetRunner.class, "JetRunner", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

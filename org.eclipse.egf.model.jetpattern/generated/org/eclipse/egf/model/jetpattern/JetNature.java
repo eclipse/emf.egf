@@ -25,42 +25,11 @@ import org.eclipse.emf.common.util.URI;
  * A representation of the model object '<em><b>Jet Nature</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.egf.model.jetpattern.JetNature#getTemplateClassName <em>Template Class Name</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipse.egf.model.jetpattern.JetPatternPackage#getJetNature()
  * @model
  * @generated
  */
 public interface JetNature extends PatternNature {
-    /**
-     * Returns the value of the '<em><b>Template Class Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Template Class Name</em>' attribute isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Template Class Name</em>' attribute.
-     * @see #setTemplateClassName(String)
-     * @see org.eclipse.egf.model.jetpattern.JetPatternPackage#getJetNature_TemplateClassName()
-     * @model
-     * @generated
-     */
-    String getTemplateClassName();
-
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.model.jetpattern.JetNature#getTemplateClassName <em>Template Class Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Template Class Name</em>' attribute.
-     * @see #getTemplateClassName()
-     * @generated
-     */
-    void setTemplateClassName(String value);
 
 } // JetNature

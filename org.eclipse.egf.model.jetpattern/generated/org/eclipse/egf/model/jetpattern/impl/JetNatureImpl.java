@@ -34,10 +34,6 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * An implementation of the model object '<em><b>Jet Nature</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl#getTemplateClassName <em>Template Class Name</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
@@ -51,26 +47,6 @@ public class JetNatureImpl extends PatternNatureImpl implements JetNature {
      * @ordered
      */
     protected int eFlags = 0;
-
-    /**
-     * The default value of the '{@link #getTemplateClassName() <em>Template Class Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getTemplateClassName()
-     * @generated
-     * @ordered
-     */
-    protected static final String TEMPLATE_CLASS_NAME_EDEFAULT = null;
-
-    /**
-     * The cached value of the '{@link #getTemplateClassName() <em>Template Class Name</em>}' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getTemplateClassName()
-     * @generated
-     * @ordered
-     */
-    protected String templateClassName = TEMPLATE_CLASS_NAME_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -89,102 +65,6 @@ public class JetNatureImpl extends PatternNatureImpl implements JetNature {
     @Override
     protected EClass eStaticClass() {
         return JetPatternPackage.Literals.JET_NATURE;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String getTemplateClassName() {
-        return templateClassName;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setTemplateClassName(String newTemplateClassName) {
-        String oldTemplateClassName = templateClassName;
-        templateClassName = newTemplateClassName;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, JetPatternPackage.JET_NATURE__TEMPLATE_CLASS_NAME, oldTemplateClassName, templateClassName));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-        case JetPatternPackage.JET_NATURE__TEMPLATE_CLASS_NAME:
-            return getTemplateClassName();
-        }
-        return super.eGet(featureID, resolve, coreType);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-        case JetPatternPackage.JET_NATURE__TEMPLATE_CLASS_NAME:
-            setTemplateClassName((String) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-        case JetPatternPackage.JET_NATURE__TEMPLATE_CLASS_NAME:
-            setTemplateClassName(TEMPLATE_CLASS_NAME_EDEFAULT);
-            return;
-        }
-        super.eUnset(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-        case JetPatternPackage.JET_NATURE__TEMPLATE_CLASS_NAME:
-            return TEMPLATE_CLASS_NAME_EDEFAULT == null ? templateClassName != null : !TEMPLATE_CLASS_NAME_EDEFAULT.equals(templateClassName);
-        }
-        return super.eIsSet(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String toString() {
-        if (eIsProxy())
-            return super.toString();
-
-        StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (templateClassName: "); //$NON-NLS-1$
-        result.append(templateClassName);
-        result.append(')');
-        return result.toString();
     }
 
 } //JetNatureImpl

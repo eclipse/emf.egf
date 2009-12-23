@@ -108,22 +108,13 @@ public interface JetPatternPackage extends EPackage {
     int JET_NATURE__DESCRIPTION = PatternPackage.PATTERN_NATURE__DESCRIPTION;
 
     /**
-     * The feature id for the '<em><b>Template Class Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JET_NATURE__TEMPLATE_CLASS_NAME = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 0;
-
-    /**
      * The number of structural features of the '<em>Jet Nature</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JET_NATURE_FEATURE_COUNT = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 1;
+    int JET_NATURE_FEATURE_COUNT = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 0;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl <em>Jet Runner</em>}' class.
@@ -191,17 +182,6 @@ public interface JetPatternPackage extends EPackage {
     EClass getJetNature();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.model.jetpattern.JetNature#getTemplateClassName <em>Template Class Name</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Template Class Name</em>'.
-     * @see org.eclipse.egf.model.jetpattern.JetNature#getTemplateClassName()
-     * @see #getJetNature()
-     * @generated
-     */
-    EAttribute getJetNature_TemplateClassName();
-
-    /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.jetpattern.JetRunner <em>Jet Runner</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -242,14 +222,6 @@ public interface JetPatternPackage extends EPackage {
          * @generated
          */
         EClass JET_NATURE = eINSTANCE.getJetNature();
-
-        /**
-         * The meta object literal for the '<em><b>Template Class Name</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EAttribute JET_NATURE__TEMPLATE_CLASS_NAME = eINSTANCE.getJetNature_TemplateClassName();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl <em>Jet Runner</em>}' class.
