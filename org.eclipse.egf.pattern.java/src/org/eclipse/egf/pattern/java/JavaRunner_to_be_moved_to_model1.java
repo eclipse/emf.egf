@@ -20,6 +20,7 @@ import java.lang.reflect.Method;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
@@ -121,10 +122,10 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
                 builder.append(", EObject ").append(local);
             }
         }
-        builder.append(") {").append(PatternPreferences.NL);
+        builder.append(") {").append(CharacterConstants.LINE_SEPARATOR);
         builder.append(content.substring(startIndex + JavaAssemblyHelper.START_MARKER.length(), endIndex));
 
-        builder.append("} ").append(PatternPreferences.NL);
+        builder.append("} ").append(CharacterConstants.LINE_SEPARATOR);
         builder.append(content.substring(insertionIndex));
 
         return builder.toString();

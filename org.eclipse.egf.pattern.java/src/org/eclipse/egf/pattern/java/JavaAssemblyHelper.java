@@ -19,11 +19,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.PatternHelper;
-import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.execution.AssemblyHelper;
 import org.eclipse.emf.ecore.EClass;
 
@@ -55,9 +55,9 @@ public class JavaAssemblyHelper extends AssemblyHelper {
 
     @Override
     protected void visitOrchestration(Pattern pattern) throws PatternException {
-        content.append(START_MARKER).append(PatternPreferences.NL);
+        content.append(START_MARKER).append(CharacterConstants.LINE_SEPARATOR);
         super.visitOrchestration(pattern);
-        content.append(END_MARKER).append(PatternPreferences.NL);
+        content.append(END_MARKER).append(CharacterConstants.LINE_SEPARATOR);
     }
 
     /**
@@ -68,7 +68,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
     protected void handleParameters(int insertionIndex) {
         // 1 - Add pre block at insertionIndex
         StringBuilder localContent = new StringBuilder(300);
-        localContent.append("").append(PatternPreferences.NL).append(PatternPreferences.NL);
+        localContent.append("").append(CharacterConstants.LINE_SEPARATOR).append(CharacterConstants.LINE_SEPARATOR);
 
         Map<String, List<String>> aliases = new HashMap<String, List<String>>();
         for (List<String> names : parameterAlias) {
@@ -76,27 +76,27 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         }
 
         for (PatternParameter parameter : pattern.getParameters()) {
-            localContent.append("Collection<EObject> ").append(parameter.getName()).append("Collection = new ArrayList<EObject>(); //TODO Query;").append(PatternPreferences.NL);
+            localContent.append("Collection<EObject> ").append(parameter.getName()).append("Collection = new ArrayList<EObject>(); //TODO Query;").append(CharacterConstants.LINE_SEPARATOR);
         }
 
-        localContent.append(PatternPreferences.NL).append(PatternPreferences.NL);
+        localContent.append(CharacterConstants.LINE_SEPARATOR).append(CharacterConstants.LINE_SEPARATOR);
 
         // create a loop per parameter
         for (PatternParameter parameter : pattern.getParameters()) {
             String local = PatternHelper.localizeName(parameter);
-            localContent.append("for (EObject ").append(local).append(" : ").append(parameter.getName()).append("Collection ) {").append(PatternPreferences.NL);
+            localContent.append("for (EObject ").append(local).append(" : ").append(parameter.getName()).append("Collection ) {").append(CharacterConstants.LINE_SEPARATOR);
         }
 
-        localContent.append(PatternPreferences.NL);
+        localContent.append(CharacterConstants.LINE_SEPARATOR);
 
         content.insert(insertionIndex, localContent);
 
         // 2 - Add post block at current index
-        content.append(PatternPreferences.NL);
+        content.append(CharacterConstants.LINE_SEPARATOR);
 
         for (int i = 0; i < parameterAlias.size(); i++)
-            content.append("}").append(PatternPreferences.NL);
-        content.append(PatternPreferences.NL);
+            content.append("}").append(CharacterConstants.LINE_SEPARATOR);
+        content.append(CharacterConstants.LINE_SEPARATOR);
 
         // 3- Add additional code for parameter names handling
         int startIndex = content.indexOf(START_MARKER);
@@ -104,13 +104,13 @@ public class JavaAssemblyHelper extends AssemblyHelper {
             throw new IllegalStateException(Messages.assembly_error2);
 
         localContent.setLength(0);
-        localContent.append(PatternPreferences.NL);
+        localContent.append(CharacterConstants.LINE_SEPARATOR);
         for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getParameters()) {
             List<String> alias = aliases.get(parameter.getName());
             String local = PatternHelper.localizeName(parameter);
             EClass pEClass = parameter.getType().eClass();
             for (String name : alias) {
-                localContent.append(pEClass.getName()).append(" ").append(name).append(" = (").append(pEClass.getName()).append(")").append(local).append(";").append(PatternPreferences.NL);
+                localContent.append(pEClass.getName()).append(" ").append(name).append(" = (").append(pEClass.getName()).append(")").append(local).append(";").append(CharacterConstants.LINE_SEPARATOR);
             }
         }
         content.insert(startIndex + START_MARKER.length(), localContent);

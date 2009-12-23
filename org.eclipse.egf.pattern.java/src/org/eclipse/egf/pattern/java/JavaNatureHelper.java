@@ -44,7 +44,7 @@ public class JavaNatureHelper {
         } catch (Exception e) {
             throw new PatternException(e);
         }
-        throw new PatternException("Cannot match regex");
+        throw new PatternException(Messages.assembly_error6);
     }
 
     private JavaNatureHelper() {
