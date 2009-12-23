@@ -322,10 +322,10 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     // Check an existing one
     IPlatformPlugin existingModel = _models.get(id);
     if (base.isEnabled()) {
-      if (existingModel != null && existingModel.getPluginModelBase().equals(base)) {
+      if (existingModel != null && base.equals(existingModel.getPluginModelBase())) {
         mergeModel(id, createPlatformPlugin(base), delta);
       } else {
-        if (existingModel.getPluginModelBase().equals(base) == false) {
+        if (base.equals(existingModel.getPluginModelBase()) == false) {
           removeModel(id, existingModel, delta);
         }
         addModel(id, createPlatformPlugin(base), delta);
