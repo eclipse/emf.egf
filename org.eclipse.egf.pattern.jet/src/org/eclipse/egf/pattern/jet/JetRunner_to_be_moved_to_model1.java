@@ -29,6 +29,7 @@ import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.jetpattern.JetNature;
 import org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
@@ -53,10 +54,10 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
         String templateClassName = ((JetNature) getPattern().getNature()).getTemplateClassName();
         if (templateClassName == null)
             throw new IllegalStateException("Pattern class is null");
-        try {
 
+        try {
             Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternHelper.getPlatformFactoryComponent(getPattern())).loadClass(templateClassName);
-            Method method = templateClass.getMethod("generate", Object.class);
+            Method method = templateClass.getMethod(JetPatternHelper.GENERATE_METHOD, Object.class);
             Object template = templateClass.newInstance();
             // the pattern is executed but we don't care about the result.
             // TODO initialiser le context
@@ -94,7 +95,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
             IProject project = platformFactoryComponent.getPlatformPlugin().getProject();
             if (project == null)
                 throw new PatternException("Cannot get project related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
-            FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), new String(outStream.toByteArray()));
+            FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), getContent(new String(outStream.toByteArray())));
             {
                 // TODO: modifier le model ça va compliquer les choses .. mais
                 // où mettre le nom de la classe ?
@@ -107,6 +108,46 @@ public class JetRunner_to_be_moved_to_model1 extends JetRunnerImpl {
         } catch (Exception e) {
             throw new PatternException(e);
         }
+    }
+
+    private String getContent(String content) {
+        StringBuilder builder = new StringBuilder(content.length() + 500);
+        int startIndex = content.indexOf(JetPatternHelper.START_MARKER);
+        int endIndex = content.indexOf(JetPatternHelper.END_MARKER);
+        int insertionIndex = content.lastIndexOf('}');
+        if (startIndex == -1 || endIndex == -1 || insertionIndex == -1)
+            return content;
+        // add start of class code
+        builder.append(content.substring(0, startIndex));
+
+        // add new method call
+        builder.append("generate(stringBuffer, (PatternContext)argument");
+        if (!getPattern().getParameters().isEmpty()) {
+            for (PatternParameter parameter : pattern.getParameters()) {
+                String local = PatternHelper.localizeName(parameter);
+                builder.append(", ").append(local);
+            }
+        }
+        builder.append(");");
+
+        // add end of class code
+        builder.append(content.substring(endIndex + JetPatternHelper.END_MARKER.length(), insertionIndex));
+
+        // add new method body
+        builder.append("public void generate(StringBuffer stringBuffer, PatternContext ctx");
+        if (!getPattern().getParameters().isEmpty()) {
+            for (PatternParameter parameter : pattern.getParameters()) {
+                String local = PatternHelper.localizeName(parameter);
+                builder.append(", EObject ").append(local);
+            }
+        }
+        builder.append(") {").append(PatternPreferences.NL);
+        builder.append(content.substring(startIndex + JetPatternHelper.START_MARKER.length(), endIndex));
+
+        builder.append("} ").append(PatternPreferences.NL);
+        builder.append(content.substring(insertionIndex));
+
+        return builder.toString();
     }
 
     private String getTargetClassName(JETSkeleton skeleton) {
