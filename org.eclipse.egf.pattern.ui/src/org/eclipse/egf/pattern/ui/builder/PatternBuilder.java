@@ -66,12 +66,10 @@ public class PatternBuilder extends IncrementalProjectBuilder {
         if (patternIds != null && patterns.size() != patternIds.size())
             Activator.getDefault().logWarning(Messages.PatternBuilding_warning);
         try {
-            // TODO que se passe t il si le header est supprimé ?
             TranslationHelper.translate(patterns);
         } catch (PatternException e) {
+            // log the error instead of throwing a CoreException
             Activator.getDefault().logError(Messages.PatternBuilding_Failed, e);
-            // throw new CoreException(new Status(IStatus.ERROR,
-            // Activator.PLUGIN_ID, Messages.PatternBuilding_Failed, e));
         }
         return null;
     }
