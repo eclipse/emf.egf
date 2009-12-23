@@ -17,18 +17,12 @@ package org.eclipse.egf.core.platform.resource;
 
 import org.eclipse.emf.common.util.URI;
 
-
-
 public interface IResourceFactoryComponentDelta {
-  
-  public URI[] getRemovedResourceFactoryComponents();  
-    
-  public URI[] getAddedResourceFactoryComponents();
-  
+
   public URI[] getMovedResourceFactoryComponents();
-  
-  public URI getMovedFromResourceFactoryComponent(URI uri);  
-  
-  public URI[] getChangedResourceFactoryComponents();   
-    
+
+  public URI getMovedFromResourceFactoryComponent(URI uri);
+
+  public URI[] getChangedResourceFactoryComponents();
+
 }
