@@ -22,20 +22,21 @@ import java.util.Map;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.pattern.PatternTranslationHelper;
+import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
+import org.eclipse.egf.pattern.execution.AssemblyHelper;
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * @author Thomas Guiu
  */
-public class JavaTranslationHelper extends PatternTranslationHelper {
+public class JavaAssemblyHelper extends AssemblyHelper {
 
     public static final String GENERATE_METHOD = "generate";
     public static final String START_MARKER = "//Start of work";
     public static final String END_MARKER = "//End of work";
 
-    public JavaTranslationHelper(Pattern pattern) {
+    public JavaAssemblyHelper(Pattern pattern) {
         super(pattern);
     }
 
@@ -82,7 +83,7 @@ public class JavaTranslationHelper extends PatternTranslationHelper {
 
         // create a loop per parameter
         for (PatternParameter parameter : pattern.getParameters()) {
-            String local = localizeName(parameter);
+            String local = PatternHelper.localizeName(parameter);
             localContent.append("for (EObject ").append(local).append(" : ").append(parameter.getName()).append("Collection ) {").append(PatternPreferences.NL);
         }
 
@@ -106,7 +107,7 @@ public class JavaTranslationHelper extends PatternTranslationHelper {
         localContent.append(PatternPreferences.NL);
         for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getParameters()) {
             List<String> alias = aliases.get(parameter.getName());
-            String local = localizeName(parameter);
+            String local = PatternHelper.localizeName(parameter);
             EClass pEClass = parameter.getType().eClass();
             for (String name : alias) {
                 localContent.append(pEClass.getName()).append(" ").append(name).append(" = (").append(pEClass.getName()).append(")").append(local).append(";").append(PatternPreferences.NL);
