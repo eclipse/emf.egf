@@ -38,8 +38,8 @@ public class JavaPatternExtension extends PatternExtension {
     }
 
     @Override
-    public PatternRunner createRunner() {
-        return new JavaRunner_to_be_moved_to_model1();
+    public PatternRunner doCreateRunner(Pattern pattern) {
+        return new JavaRunner_to_be_moved_to_model1(pattern);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class JavaPatternExtension extends PatternExtension {
     }
 
     @Override
-    public PatternInitializer createInitializer(IProject project, Pattern pattern) {
+    protected PatternInitializer doCreateInitializer(IProject project, Pattern pattern) {
 
         return new JavaPatternInitializer(project, pattern);
     }

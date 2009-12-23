@@ -21,15 +21,19 @@ package org.eclipse.egf.pattern.java;
  */
 public class JavaPreferences {
 
-	/*
-	 * 
-	 * 
-	 * //TODO get the encoding value from global preferences public static
-	 * String getEncoding() { return "UTF8"; }
-	 */
-	private JavaPreferences() {
-		super();
+    public static String getTemplateFileExtension() {
+        return "java_template";
+    }
 
-	}
+    /*
+     * 
+     * 
+     * //TODO get the encoding value from global preferences public static
+     * String getEncoding() { return "UTF8"; }
+     */
+    private JavaPreferences() {
+        super();
+
+    }
 
 }

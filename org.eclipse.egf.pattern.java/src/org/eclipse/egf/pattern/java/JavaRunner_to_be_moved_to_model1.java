@@ -15,10 +15,20 @@
 
 package org.eclipse.egf.pattern.java;
 
+import java.util.Collections;
+
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
+import org.eclipse.egf.model.javapattern.JavaNature;
 import org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl;
+import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.pattern.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.egf.pattern.PatternPreferences;
 
 /**
  * @author Guiu
@@ -26,6 +36,10 @@ import org.eclipse.egf.pattern.PatternHelper;
  *         Temp class ...
  */
 public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
+
+    public JavaRunner_to_be_moved_to_model1(Pattern pattern) {
+        setPattern(pattern);
+    }
 
     public void run(PatternContext context) {
     }
@@ -40,6 +54,40 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaRunnerImpl {
         String templatecontent = helper.visit();
 
         // 2 - put the result in the right file
-        // TODO
+        try {
+
+            IPlatformFactoryComponent platformFactoryComponent = PatternHelper.getPlatformFactoryComponent(getPattern());
+            if (platformFactoryComponent == null)
+                throw new PatternException("Cannot get platformFactoryComponent related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
+            IProject project = platformFactoryComponent.getPlatformPlugin().getProject();
+            if (project == null)
+                throw new PatternException("Cannot get project related to pattern: " + pattern.getName() + " (Id: " + pattern.getID() + ").");
+            // TODO
+            String classname = "MyLib.child";
+            IPath outputPath = computeFilePath(classname);
+            FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), templatecontent);
+            {
+                // TODO: modifier le model ça va compliquer les choses .. mais
+                // où mettre le nom de la classe ?
+                ((JavaNature) getPattern().getNature()).setClassName(classname);
+                getPattern().eResource().save(Collections.EMPTY_MAP);
+            }
+        } catch (PatternException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new PatternException(e);
+        }
+
     }
+
+    private IPath computeFilePath(String classname) {
+        IPath result = new Path(PatternPreferences.getGenerationFolderName());
+        String[] names = classname.split("\\.");
+        for (String name : names) {
+            result = result.append(name);
+        }
+        result = result.addFileExtension("java");
+        return result;
+    }
+
 }

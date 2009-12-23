@@ -15,42 +15,36 @@
 
 package org.eclipse.egf.pattern.java;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.extension.PatternInitializer;
+import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.egf.pattern.extension.TemplateInitializer;
+import org.eclipse.egf.pattern.templates.SimpleEngine;
 
 /**
  * @author Guiu
  * 
  */
-public class JavaPatternInitializer extends PatternInitializer {
+public class JavaPatternInitializer extends TemplateInitializer {
 
-    public static final String classname = "class";
-    public static final String packagename = "package";
-    public static final String imports = "imports";
+    private static final String CLASS_KEY = "CLASS";
+    private static final String PACKAGE_KEY = "PACKAGE";
+    private final Map<String, String> ctx = new HashMap<String, String>();
 
     public JavaPatternInitializer(IProject project, Pattern pattern) {
-        super(project, pattern);
-
+        super(project, pattern, new SimpleEngine(Activator.PLUGIN_ID, project, JavaPreferences.getTemplateFileExtension()));
+        ctx.put(CLASS_KEY, pattern.getName());
+        String fullLibraryName = PatternHelper.getFullLibraryName(pattern);
+        if (fullLibraryName == null || "".equals(fullLibraryName))
+            fullLibraryName = "default_package";
+        ctx.put(PACKAGE_KEY, fullLibraryName);
     }
 
     @Override
-    protected String getDefaultContent(PatternMethod method) {
-
-        return null;
+    protected Map<String, String> createContext() {
+        return ctx;
     }
-
-    @Override
-    protected String getFooterContent(PatternMethod method) {
-
-        return null;
-    }
-
-    @Override
-    protected String getHeaderContent(PatternMethod method) {
-
-        return null;
-    }
-
 }
