@@ -16,16 +16,15 @@
  */
 package org.eclipse.egf.model.types.impl;
 
+import org.eclipse.egf.common.helper.IDGeneratorHelper;
 import org.eclipse.egf.model.types.TypeElement;
 import org.eclipse.egf.model.types.TypesPackage;
-
+import org.eclipse.egf.model.types.util.TypesResourceImpl;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
+import org.eclipse.emf.ecore.resource.Resource;
 
 /**
  * <!-- begin-user-doc -->
@@ -134,23 +133,40 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public String getID() {
+    if (iD == null) {
+      iD = IDGeneratorHelper.generateUID(this);
+    }
     return iD;
+  }
+  
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated NOT
+   */
+  public void setIDGen(String newID) {
+    String oldID = iD;
+    iD = newID;
+    if (eNotificationRequired()) {
+      eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.TYPE_ELEMENT__ID, oldID, iD));
+    }
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public void setID(String newID) {
-    String oldID = iD;
-    iD = newID;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.TYPE_ELEMENT__ID, oldID, iD));
-  }
+    Resource eResource = eResource();
+    if (eResource instanceof TypesResourceImpl) {
+      ((TypesResourceImpl) eResource).getIntrinsicIDToEObjectMap().clear();
+    }
+    setIDGen(newID);
+  }  
 
   /**
    * <!-- begin-user-doc -->

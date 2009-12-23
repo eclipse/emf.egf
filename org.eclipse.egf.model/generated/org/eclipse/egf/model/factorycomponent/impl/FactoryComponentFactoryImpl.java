@@ -77,16 +77,16 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
       return createTask();
     case FactoryComponentPackage.FACTORY_COMPONENT:
       return createFactoryComponent();
-    case FactoryComponentPackage.INVOCATION:
-      return createInvocation();
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER:
+      return createViewpointContainer();
     case FactoryComponentPackage.CONTEXT:
       return createContext();
     case FactoryComponentPackage.CONTRACT_CONTAINER:
       return createContractContainer();
     case FactoryComponentPackage.CONTRACT:
       return createContract();
-    case FactoryComponentPackage.CONTEXT_VALUE:
-      return createContextValue();
+    case FactoryComponentPackage.CONTRACT_VALUE:
+      return createContractValue();
     case FactoryComponentPackage.CONTRACT_CONNECTOR:
       return createContractConnector();
     default:
@@ -157,9 +157,9 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Invocation createInvocation() {
-    InvocationImpl invocation = new InvocationImpl();
-    return invocation;
+  public ViewpointContainer createViewpointContainer() {
+    ViewpointContainerImpl viewpointContainer = new ViewpointContainerImpl();
+    return viewpointContainer;
   }
 
   /**
@@ -197,9 +197,9 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
    * <!-- end-user-doc -->
    * @generated
    */
-  public ContextValue createContextValue() {
-    ContextValueImpl contextValue = new ContextValueImpl();
-    return contextValue;
+  public ContractValue createContractValue() {
+    ContractValueImpl contractValue = new ContractValueImpl();
+    return contractValue;
   }
 
   /**
@@ -254,10 +254,10 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated NOT
+   * @generated
    */
   public URI createURIFromString(EDataType eDataType, String initialValue) {
-    return URI.createURI(initialValue);
+    return (URI) super.createFromString(eDataType, initialValue);
   }
 
   /**

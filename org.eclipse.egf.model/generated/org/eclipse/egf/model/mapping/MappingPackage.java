@@ -108,6 +108,15 @@ public interface MappingPackage extends EPackage {
   int MAPPING_VIEWPOINT__DESCRIPTION = FactoryComponentPackage.VIEWPOINT__DESCRIPTION;
 
   /**
+   * The feature id for the '<em><b>Viewerpoint Container</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MAPPING_VIEWPOINT__VIEWERPOINT_CONTAINER = FactoryComponentPackage.VIEWPOINT__VIEWERPOINT_CONTAINER;
+
+  /**
    * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

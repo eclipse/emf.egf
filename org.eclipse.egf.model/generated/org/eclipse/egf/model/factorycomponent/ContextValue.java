@@ -23,7 +23,7 @@ package org.eclipse.egf.model.factorycomponent;
  *
  *
  * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#getContextValue()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface ContextValue extends ModelElement {

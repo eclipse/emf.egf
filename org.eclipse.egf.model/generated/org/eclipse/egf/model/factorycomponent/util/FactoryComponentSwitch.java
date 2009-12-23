@@ -131,6 +131,15 @@ public class FactoryComponentSwitch<T> {
         result = defaultCase(theEObject);
       return result;
     }
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER: {
+      ViewpointContainer viewpointContainer = (ViewpointContainer) theEObject;
+      T result = caseViewpointContainer(viewpointContainer);
+      if (result == null)
+        result = caseModelElement(viewpointContainer);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
     case FactoryComponentPackage.VIEWPOINT: {
       Viewpoint viewpoint = (Viewpoint) theEObject;
       T result = caseViewpoint(viewpoint);
@@ -276,6 +285,21 @@ public class FactoryComponentSwitch<T> {
    * @generated
    */
   public T caseFactoryComponent(FactoryComponent object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Viewpoint Container</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Viewpoint Container</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseViewpointContainer(ViewpointContainer object) {
     return null;
   }
 

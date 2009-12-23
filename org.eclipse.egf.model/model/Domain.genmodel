@@ -2,7 +2,7 @@
 <genmodel:GenModel xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
     xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText=""
-    modelDirectory="/org.eclipse.egf.model/generated" creationSubmenus="true" editDirectory="/org.eclipse.egf.model.edit/generated"
+    modelDirectory="/org.eclipse.egf.model/generated" editDirectory="/org.eclipse.egf.model.edit/generated"
     editorDirectory="/org.eclipse.egf.model.editor/generated" modelPluginID="org.eclipse.egf.model"
     templateDirectory="/org.eclipse.egf.model/templates" dynamicTemplates="true" modelName="Domain"
     modelPluginClass="org.eclipse.egf.model.EGFModelsPlugin" editPluginClass="org.eclipse.egf.model.edit.EGFModelsEditPlugin"
@@ -16,7 +16,7 @@
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Domain" basePackage="org.eclipse.egf.model" resource="XMI"
       disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
-      childCreationExtenders="true" ecorePackage="Domain.ecore#/">
+      childCreationExtenders="true" contentTypeIdentifier="" ecorePackage="Domain.ecore#/">
     <genClasses ecoreClass="Domain.ecore#//DomainViewpoint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domain.ecore#//DomainViewpoint/domains"/>
     </genClasses>

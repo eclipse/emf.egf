@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public class ContextValueImpl extends ModelElementImpl implements ContextValue {
+public abstract class ContextValueImpl extends ModelElementImpl implements ContextValue {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

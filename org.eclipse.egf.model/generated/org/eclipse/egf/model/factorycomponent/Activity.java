@@ -35,6 +35,7 @@ package org.eclipse.egf.model.factorycomponent;
 public interface Activity extends ModelElement {
   /**
    * Returns the value of the '<em><b>Contract Container</b></em>' containment reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.factorycomponent.ContractContainer#getActivity <em>Activity</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Contract Container</em>' reference isn't clear,
@@ -44,7 +45,8 @@ public interface Activity extends ModelElement {
    * @return the value of the '<em>Contract Container</em>' containment reference.
    * @see #setContractContainer(ContractContainer)
    * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#getActivity_ContractContainer()
-   * @model containment="true"
+   * @see org.eclipse.egf.model.factorycomponent.ContractContainer#getActivity
+   * @model opposite="activity" containment="true"
    * @generated
    */
   ContractContainer getContractContainer();

@@ -29,7 +29,7 @@ package org.eclipse.egf.model.factorycomponent;
  * </p>
  *
  * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#getInvocation()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Invocation extends ModelElement {

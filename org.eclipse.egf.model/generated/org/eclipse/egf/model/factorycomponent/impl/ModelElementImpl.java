@@ -16,6 +16,7 @@
  */
 package org.eclipse.egf.model.factorycomponent.impl;
 
+import org.eclipse.egf.common.helper.IDGeneratorHelper;
 import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
 import org.eclipse.egf.model.factorycomponent.ModelElement;
 import org.eclipse.egf.model.factorycomponent.util.FactoryComponentResourceImpl;
@@ -24,7 +25,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -137,7 +137,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    */
   public String getID() {
     if (iD == null) {
-      iD = EcoreUtil.generateUUID();
+      iD = IDGeneratorHelper.generateUID(this);
     }
     return iD;
   }

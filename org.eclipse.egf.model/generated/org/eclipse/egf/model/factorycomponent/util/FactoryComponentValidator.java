@@ -139,6 +139,8 @@ public class FactoryComponentValidator extends EObjectValidator {
       return validateTask((Task) value, diagnostics, context);
     case FactoryComponentPackage.FACTORY_COMPONENT:
       return validateFactoryComponent((FactoryComponent) value, diagnostics, context);
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER:
+      return validateViewpointContainer((ViewpointContainer) value, diagnostics, context);
     case FactoryComponentPackage.VIEWPOINT:
       return validateViewpoint((Viewpoint) value, diagnostics, context);
     case FactoryComponentPackage.ORCHESTRATION:
@@ -283,6 +285,30 @@ public class FactoryComponentValidator extends EObjectValidator {
       result &= validate_EveryMapEntryUnique(factoryComponent, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateModelElement_overall(factoryComponent, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateViewpointContainer(ViewpointContainer viewpointContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(viewpointContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(viewpointContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(viewpointContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(viewpointContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(viewpointContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(viewpointContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(viewpointContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateModelElement_overall(viewpointContainer, diagnostics, context);
     return result;
   }
 

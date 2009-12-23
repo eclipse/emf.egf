@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.model.factorycomponent.ModelElement;
-import org.eclipse.egf.model.uri.EGFURIPlatformSchemeAware;
+import org.eclipse.egf.model.uri.EGFSchemeAware;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -71,10 +71,13 @@ public class MappingResourceImpl extends XMIResourceImpl {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param uri the URI of the new resource.
-   * @generated
+   * @generated NOT
    */
   public MappingResourceImpl(URI uri) {
     super(uri);
+    setEncoding("UTF-8"); //$NON-NLS-1$
+    setXMIVersion("2.1"); //$NON-NLS-1$
+    setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
   }
 
   /**
@@ -149,7 +152,7 @@ public class MappingResourceImpl extends XMIResourceImpl {
     });
     getDefaultSaveOptions().put(XMLResource.OPTION_LINE_WIDTH, new Integer(80));
     // Avoid relative paths from workspace resources to plugin resources.    
-    getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new EGFURIPlatformSchemeAware());
+    getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new EGFSchemeAware());
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
     // Load Options

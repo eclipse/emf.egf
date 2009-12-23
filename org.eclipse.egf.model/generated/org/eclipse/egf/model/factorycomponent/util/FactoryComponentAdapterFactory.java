@@ -101,6 +101,11 @@ public class FactoryComponentAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
+    public Adapter caseViewpointContainer(ViewpointContainer object) {
+      return createViewpointContainerAdapter();
+    }
+
+    @Override
     public Adapter caseViewpoint(Viewpoint object) {
       return createViewpointAdapter();
     }
@@ -217,6 +222,20 @@ public class FactoryComponentAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createFactoryComponentAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.factorycomponent.ViewpointContainer <em>Viewpoint Container</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.factorycomponent.ViewpointContainer
+   * @generated
+   */
+  public Adapter createViewpointContainerAdapter() {
     return null;
   }
 

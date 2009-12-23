@@ -29,7 +29,7 @@ package org.eclipse.egf.model.types;
  * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getType()
- * @model
+ * @model abstract="true"
  * @generated
  */
 public interface Type extends TypeElement {

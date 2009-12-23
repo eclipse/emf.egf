@@ -4,60 +4,51 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="pattern"
     nsURI="http://www.eclipse.org/egf/1.0.0/pattern" nsPrefix="pattern">
   <eClassifiers xsi:type="ecore:EClass" name="Pattern" eSuperTypes="#//PatternElement">
-    <eOperations name="getMethod" eType="#//PatternMethod">
-      <eParameters name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="headerMethod" lowerBound="1"
-        eType="#//PatternMethod" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="allMethods" lowerBound="1"
-        upperBound="-1" eType="#//PatternMethod" containment="true" resolveProxies="false"
-        eOpposite="#//PatternMethod/pattern"/>
+        eType="#//PatternMethod" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
+        eType="#//PatternMethod" containment="true" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="footerMethod" lowerBound="1"
+        eType="#//PatternMethod" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="superPattern" eType="#//Pattern"
         resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="footerMethod" lowerBound="1"
-        eType="#//PatternMethod" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" upperBound="-1"
         eType="#//PatternUnit"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
-        eType="#//Parameter" containment="true" resolveProxies="false"/>
+        eType="#//PatternParameter" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nature" lowerBound="1"
         eType="#//PatternNature" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternMethod" eSuperTypes="#//PatternUnit">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
-        eType="#//Pattern" eOpposite="#//Pattern/allMethods"/>
+        eType="#//Pattern"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternFilePath" lowerBound="1"
         eType="ecore:EDataType FactoryComponent.ecore#//URI"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternUnit" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Parameter" eSuperTypes="FactoryComponent.ecore#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternParameter" eSuperTypes="FactoryComponent.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternRunner" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement">
-    <eOperations name="run" eExceptions="#//PatternException">
-      <eParameters name="context" eType="#//PatternContext"/>
-    </eOperations>
-    <eOperations name="translate" eExceptions="#//PatternException"/>
+    <eOperations name="run"/>
+    <eOperations name="translate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
         eType="#//Pattern"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="SuperMethod" eSuperTypes="#//PatternUnit"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Library" eSuperTypes="#//PatternElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternSuperMethod" eSuperTypes="#//PatternUnit"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternLibrary" eSuperTypes="#//PatternElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//PatternElement" containment="true" resolveProxies="false" eOpposite="#//PatternElement/container"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="runtimeOrchestration" upperBound="-1"
-        eType="#//Library" resolveProxies="false"/>
+        eType="#//PatternLibrary" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternElement" abstract="true" eSuperTypes="#//PatternUnit">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//Library"
-        resolveProxies="false" eOpposite="#//Library/elements"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//PatternLibrary"
+        resolveProxies="false" eOpposite="#//PatternLibrary/elements"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternViewpoint" eSuperTypes="FactoryComponent.ecore#//Viewpoint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraries" upperBound="-1"
-        eType="#//Library" containment="true" resolveProxies="false"/>
+        eType="#//PatternLibrary" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternNature" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="PatternException" instanceClassName="org.eclipse.egf.model.PatternException"
-      serializable="false"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="PatternContext" instanceClassName="org.eclipse.egf.model.PatternContext"/>
 </ecore:EPackage>

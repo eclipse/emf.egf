@@ -38,7 +38,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeImpl extends TypeElementImpl implements Type {
+public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * The default value of the '{@link #getTypeId() <em>Type Id</em>}' attribute.
    * <!-- begin-user-doc -->

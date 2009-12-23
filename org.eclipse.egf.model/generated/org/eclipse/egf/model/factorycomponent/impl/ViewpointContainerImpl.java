@@ -1,0 +1,262 @@
+/**
+ * <copyright>
+ *
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
+ * 
+ * </copyright>
+ *
+ * $Id$
+ */
+package org.eclipse.egf.model.factorycomponent.impl;
+
+import java.util.Collection;
+
+import org.eclipse.egf.model.factorycomponent.FactoryComponent;
+import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
+import org.eclipse.egf.model.factorycomponent.Viewpoint;
+import org.eclipse.egf.model.factorycomponent.ViewpointContainer;
+
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
+
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Viewpoint Container</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ *   <li>{@link org.eclipse.egf.model.factorycomponent.impl.ViewpointContainerImpl#getFactoryComponent <em>Factory Component</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.factorycomponent.impl.ViewpointContainerImpl#getViewpoints <em>Viewpoints</em>}</li>
+ * </ul>
+ * </p>
+ *
+ * @generated
+ */
+public class ViewpointContainerImpl extends ModelElementImpl implements ViewpointContainer {
+  /**
+   * The cached value of the '{@link #getViewpoints() <em>Viewpoints</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getViewpoints()
+   * @generated
+   * @ordered
+   */
+  protected EList<Viewpoint> viewpoints;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ViewpointContainerImpl() {
+    super();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return FactoryComponentPackage.Literals.VIEWPOINT_CONTAINER;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FactoryComponent getFactoryComponent() {
+    if (eContainerFeatureID() != FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT)
+      return null;
+    return (FactoryComponent) eContainer();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetFactoryComponent(FactoryComponent newFactoryComponent, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject) newFactoryComponent, FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT, msgs);
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setFactoryComponent(FactoryComponent newFactoryComponent) {
+    if (newFactoryComponent != eInternalContainer()
+        || (eContainerFeatureID() != FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT && newFactoryComponent != null)) {
+      if (EcoreUtil.isAncestor(this, newFactoryComponent))
+        throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+      NotificationChain msgs = null;
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      if (newFactoryComponent != null)
+        msgs = ((InternalEObject) newFactoryComponent).eInverseAdd(this, FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER,
+            FactoryComponent.class, msgs);
+      msgs = basicSetFactoryComponent(newFactoryComponent, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT,
+          newFactoryComponent, newFactoryComponent));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<Viewpoint> getViewpoints() {
+    if (viewpoints == null) {
+      viewpoints = new EObjectContainmentWithInverseEList<Viewpoint>(Viewpoint.class, this,
+          FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS, FactoryComponentPackage.VIEWPOINT__VIEWERPOINT_CONTAINER);
+    }
+    return viewpoints;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      return basicSetFactoryComponent((FactoryComponent) otherEnd, msgs);
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+      return ((InternalEList<InternalEObject>) (InternalEList<?>) getViewpoints()).basicAdd(otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+      return basicSetFactoryComponent(null, msgs);
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+      return ((InternalEList<?>) getViewpoints()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    switch (eContainerFeatureID()) {
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+      return eInternalContainer().eInverseRemove(this, FactoryComponentPackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER,
+          FactoryComponent.class, msgs);
+    }
+    return super.eBasicRemoveFromContainerFeature(msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    switch (featureID) {
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+      return getFactoryComponent();
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+      return getViewpoints();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue) {
+    switch (featureID) {
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+      setFactoryComponent((FactoryComponent) newValue);
+      return;
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+      getViewpoints().clear();
+      getViewpoints().addAll((Collection<? extends Viewpoint>) newValue);
+      return;
+    }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID) {
+    switch (featureID) {
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+      setFactoryComponent((FactoryComponent) null);
+      return;
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+      getViewpoints().clear();
+      return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID) {
+    switch (featureID) {
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT:
+      return getFactoryComponent() != null;
+    case FactoryComponentPackage.VIEWPOINT_CONTAINER__VIEWPOINTS:
+      return viewpoints != null && !viewpoints.isEmpty();
+    }
+    return super.eIsSet(featureID);
+  }
+
+} //ViewpointContainerImpl

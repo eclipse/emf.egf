@@ -54,13 +54,13 @@ public interface FactoryComponentFactory extends EFactory {
   FactoryComponent createFactoryComponent();
 
   /**
-   * Returns a new object of class '<em>Invocation</em>'.
+   * Returns a new object of class '<em>Viewpoint Container</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Invocation</em>'.
+   * @return a new object of class '<em>Viewpoint Container</em>'.
    * @generated
    */
-  Invocation createInvocation();
+  ViewpointContainer createViewpointContainer();
 
   /**
    * Returns a new object of class '<em>Context</em>'.
@@ -90,13 +90,13 @@ public interface FactoryComponentFactory extends EFactory {
   Contract createContract();
 
   /**
-   * Returns a new object of class '<em>Context Value</em>'.
+   * Returns a new object of class '<em>Contract Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Context Value</em>'.
+   * @return a new object of class '<em>Contract Value</em>'.
    * @generated
    */
-  ContextValue createContextValue();
+  ContractValue createContractValue();
 
   /**
    * Returns a new object of class '<em>Contract Connector</em>'.

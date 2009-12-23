@@ -16,8 +16,6 @@
  */
 package org.eclipse.egf.model.factorycomponent;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Factory Component</b></em>'.
@@ -26,7 +24,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.factorycomponent.FactoryComponent#getViewpoints <em>Viewpoints</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.factorycomponent.FactoryComponent#getViewpointContainer <em>Viewpoint Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.factorycomponent.FactoryComponent#getOrchestration <em>Orchestration</em>}</li>
  * </ul>
  * </p>
@@ -37,23 +35,36 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface FactoryComponent extends Activity {
   /**
-   * Returns the value of the '<em><b>Viewpoints</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.egf.model.factorycomponent.Viewpoint}.
+   * Returns the value of the '<em><b>Viewpoint Container</b></em>' containment reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.factorycomponent.ViewpointContainer#getFactoryComponent <em>Factory Component</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Viewpoints</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Viewpoint Container</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Viewpoints</em>' containment reference list.
-   * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#getFactoryComponent_Viewpoints()
-   * @model containment="true"
+   * @return the value of the '<em>Viewpoint Container</em>' containment reference.
+   * @see #setViewpointContainer(ViewpointContainer)
+   * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#getFactoryComponent_ViewpointContainer()
+   * @see org.eclipse.egf.model.factorycomponent.ViewpointContainer#getFactoryComponent
+   * @model opposite="factoryComponent" containment="true"
    * @generated
    */
-  EList<Viewpoint> getViewpoints();
+  ViewpointContainer getViewpointContainer();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.egf.model.factorycomponent.FactoryComponent#getViewpointContainer <em>Viewpoint Container</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Viewpoint Container</em>' containment reference.
+   * @see #getViewpointContainer()
+   * @generated
+   */
+  void setViewpointContainer(ViewpointContainer value);
 
   /**
    * Returns the value of the '<em><b>Orchestration</b></em>' containment reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.factorycomponent.Orchestration#getFactoryComponent <em>Factory Component</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Orchestration</em>' containment reference isn't clear,
@@ -63,7 +74,8 @@ public interface FactoryComponent extends Activity {
    * @return the value of the '<em>Orchestration</em>' containment reference.
    * @see #setOrchestration(Orchestration)
    * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#getFactoryComponent_Orchestration()
-   * @model containment="true"
+   * @see org.eclipse.egf.model.factorycomponent.Orchestration#getFactoryComponent
+   * @model opposite="factoryComponent" containment="true"
    * @generated
    */
   Orchestration getOrchestration();

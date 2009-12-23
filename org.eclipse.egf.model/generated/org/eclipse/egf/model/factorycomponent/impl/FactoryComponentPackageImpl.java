@@ -33,6 +33,7 @@ import org.eclipse.egf.model.factorycomponent.Orchestration;
 import org.eclipse.egf.model.factorycomponent.Task;
 import org.eclipse.egf.model.factorycomponent.Viewpoint;
 
+import org.eclipse.egf.model.factorycomponent.ViewpointContainer;
 import org.eclipse.egf.model.factorycomponent.util.FactoryComponentValidator;
 
 import org.eclipse.egf.model.types.TypesPackage;
@@ -83,6 +84,13 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   private EClass factoryComponentEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass viewpointContainerEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -327,7 +335,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getFactoryComponent_Viewpoints() {
+  public EReference getFactoryComponent_ViewpointContainer() {
     return (EReference) factoryComponentEClass.getEStructuralFeatures().get(0);
   }
 
@@ -345,6 +353,33 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getViewpointContainer() {
+    return viewpointContainerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getViewpointContainer_FactoryComponent() {
+    return (EReference) viewpointContainerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getViewpointContainer_Viewpoints() {
+    return (EReference) viewpointContainerEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getViewpoint() {
     return viewpointEClass;
   }
@@ -354,8 +389,26 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getViewpoint_ViewerpointContainer() {
+    return (EReference) viewpointEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getOrchestration() {
     return orchestrationEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrchestration_FactoryComponent() {
+    return (EReference) orchestrationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -426,8 +479,17 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getContractContainer_Contracts() {
+  public EReference getContractContainer_Activity() {
     return (EReference) contractContainerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getContractContainer_Contracts() {
+    return (EReference) contractContainerEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -444,8 +506,17 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getContract_ContractContainer() {
+    return (EReference) contractEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getContract_Mode() {
-    return (EAttribute) contractEClass.getEStructuralFeatures().get(0);
+    return (EAttribute) contractEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -454,7 +525,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   public EReference getContract_Type() {
-    return (EReference) contractEClass.getEStructuralFeatures().get(1);
+    return (EReference) contractEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -463,7 +534,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
    * @generated
    */
   public EReference getContract_DefaultValue() {
-    return (EReference) contractEClass.getEStructuralFeatures().get(2);
+    return (EReference) contractEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -615,12 +686,18 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
     createEAttribute(taskEClass, TASK__TASK_ID);
 
     factoryComponentEClass = createEClass(FACTORY_COMPONENT);
-    createEReference(factoryComponentEClass, FACTORY_COMPONENT__VIEWPOINTS);
+    createEReference(factoryComponentEClass, FACTORY_COMPONENT__VIEWPOINT_CONTAINER);
     createEReference(factoryComponentEClass, FACTORY_COMPONENT__ORCHESTRATION);
 
+    viewpointContainerEClass = createEClass(VIEWPOINT_CONTAINER);
+    createEReference(viewpointContainerEClass, VIEWPOINT_CONTAINER__FACTORY_COMPONENT);
+    createEReference(viewpointContainerEClass, VIEWPOINT_CONTAINER__VIEWPOINTS);
+
     viewpointEClass = createEClass(VIEWPOINT);
+    createEReference(viewpointEClass, VIEWPOINT__VIEWERPOINT_CONTAINER);
 
     orchestrationEClass = createEClass(ORCHESTRATION);
+    createEReference(orchestrationEClass, ORCHESTRATION__FACTORY_COMPONENT);
 
     invocationEClass = createEClass(INVOCATION);
     createEReference(invocationEClass, INVOCATION__CONTEXT);
@@ -631,9 +708,11 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
     createEReference(contextEClass, CONTEXT__CONNECTORS);
 
     contractContainerEClass = createEClass(CONTRACT_CONTAINER);
+    createEReference(contractContainerEClass, CONTRACT_CONTAINER__ACTIVITY);
     createEReference(contractContainerEClass, CONTRACT_CONTAINER__CONTRACTS);
 
     contractEClass = createEClass(CONTRACT);
+    createEReference(contractEClass, CONTRACT__CONTRACT_CONTAINER);
     createEAttribute(contractEClass, CONTRACT__MODE);
     createEReference(contractEClass, CONTRACT__TYPE);
     createEReference(contractEClass, CONTRACT__DEFAULT_VALUE);
@@ -694,6 +773,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
     activityEClass.getESuperTypes().add(this.getModelElement());
     taskEClass.getESuperTypes().add(this.getActivity());
     factoryComponentEClass.getESuperTypes().add(this.getActivity());
+    viewpointContainerEClass.getESuperTypes().add(this.getModelElement());
     viewpointEClass.getESuperTypes().add(this.getModelElement());
     orchestrationEClass.getESuperTypes().add(this.getModelElement());
     invocationEClass.getESuperTypes().add(this.getModelElement());
@@ -723,7 +803,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
     initEReference(
         getActivity_ContractContainer(),
         this.getContractContainer(),
-        null,
+        this.getContractContainer_Activity(),
         "contractContainer", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     EOperation op = addEOperation(activityEClass, null, "invoke", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -738,21 +818,44 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
 
     initEClass(factoryComponentEClass, FactoryComponent.class, "FactoryComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(
-        getFactoryComponent_Viewpoints(),
-        this.getViewpoint(),
-        null,
-        "viewpoints", null, 0, -1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        getFactoryComponent_ViewpointContainer(),
+        this.getViewpointContainer(),
+        this.getViewpointContainer_FactoryComponent(),
+        "viewpointContainer", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(
         getFactoryComponent_Orchestration(),
         this.getOrchestration(),
-        null,
+        this.getOrchestration_FactoryComponent(),
         "orchestration", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+    initEClass(viewpointContainerEClass, ViewpointContainer.class,
+        "ViewpointContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(
+        getViewpointContainer_FactoryComponent(),
+        this.getFactoryComponent(),
+        this.getFactoryComponent_ViewpointContainer(),
+        "factoryComponent", null, 1, 1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(
+        getViewpointContainer_Viewpoints(),
+        this.getViewpoint(),
+        this.getViewpoint_ViewerpointContainer(),
+        "viewpoints", null, 0, -1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
     initEClass(viewpointEClass, Viewpoint.class, "Viewpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(
+        getViewpoint_ViewerpointContainer(),
+        this.getViewpointContainer(),
+        this.getViewpointContainer_Viewpoints(),
+        "viewerpointContainer", null, 1, 1, Viewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(orchestrationEClass, Orchestration.class, "Orchestration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(
+        getOrchestration_FactoryComponent(),
+        this.getFactoryComponent(),
+        this.getFactoryComponent_Orchestration(),
+        "factoryComponent", null, 1, 1, Orchestration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(invocationEClass, Invocation.class, "Invocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEClass(invocationEClass, Invocation.class, "Invocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(
         getInvocation_Context(),
         this.getContext(),
@@ -779,12 +882,22 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
     initEClass(contractContainerEClass, ContractContainer.class,
         "ContractContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(
+        getContractContainer_Activity(),
+        this.getActivity(),
+        this.getActivity_ContractContainer(),
+        "activity", null, 1, 1, ContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(
         getContractContainer_Contracts(),
         this.getContract(),
-        null,
+        this.getContract_ContractContainer(),
         "contracts", null, 0, -1, ContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(contractEClass, Contract.class, "Contract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(
+        getContract_ContractContainer(),
+        this.getContractContainer(),
+        this.getContractContainer_Contracts(),
+        "contractContainer", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEAttribute(
         getContract_Mode(),
         this.getContractMode(),
@@ -800,9 +913,9 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
         null,
         "defaultValue", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(contextValueEClass, ContextValue.class, "ContextValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEClass(contextValueEClass, ContextValue.class, "ContextValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-    initEClass(contractValueEClass, ContractValue.class, "ContractValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEClass(contractValueEClass, ContractValue.class, "ContractValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(
         getContractValue_Contract(),
         this.getContract(),

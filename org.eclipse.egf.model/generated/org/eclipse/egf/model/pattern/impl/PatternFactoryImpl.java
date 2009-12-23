@@ -16,11 +16,9 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.pattern.*;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -35,185 +33,138 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * @generated
  */
 public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
-	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static PatternFactory init() {
-		try {
-			PatternFactory thePatternFactory = (PatternFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/egf/1.0.0/pattern"); //$NON-NLS-1$ 
-			if (thePatternFactory != null) {
-				return thePatternFactory;
-			}
-		} catch (Exception exception) {
-			EcorePlugin.INSTANCE.log(exception);
-		}
-		return new PatternFactoryImpl();
-	}
+  /**
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static PatternFactory init() {
+    try {
+      PatternFactory thePatternFactory = (PatternFactory) EPackage.Registry.INSTANCE
+          .getEFactory("http://www.eclipse.org/egf/1.0.0/pattern"); //$NON-NLS-1$ 
+      if (thePatternFactory != null) {
+        return thePatternFactory;
+      }
+    } catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
+    }
+    return new PatternFactoryImpl();
+  }
 
-	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PatternFactoryImpl() {
-		super();
-	}
+  /**
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternFactoryImpl() {
+    super();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
-		case PatternPackage.PATTERN:
-			return createPattern();
-		case PatternPackage.PATTERN_METHOD:
-			return createPatternMethod();
-		case PatternPackage.PARAMETER:
-			return createParameter();
-		case PatternPackage.SUPER_METHOD:
-			return createSuperMethod();
-		case PatternPackage.LIBRARY:
-			return createLibrary();
-		case PatternPackage.PATTERN_VIEWPOINT:
-			return createPatternViewpoint();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EObject create(EClass eClass) {
+    switch (eClass.getClassifierID()) {
+    case PatternPackage.PATTERN:
+      return createPattern();
+    case PatternPackage.PATTERN_METHOD:
+      return createPatternMethod();
+    case PatternPackage.PATTERN_PARAMETER:
+      return createPatternParameter();
+    case PatternPackage.PATTERN_SUPER_METHOD:
+      return createPatternSuperMethod();
+    case PatternPackage.PATTERN_LIBRARY:
+      return createPatternLibrary();
+    case PatternPackage.PATTERN_VIEWPOINT:
+      return createPatternViewpoint();
+    default:
+      throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
+    }
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
-		case PatternPackage.PATTERN_CONTEXT:
-			return createPatternContextFromString(eDataType, initialValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Pattern createPattern() {
+    PatternImpl pattern = new PatternImpl();
+    return pattern;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
-		case PatternPackage.PATTERN_CONTEXT:
-			return convertPatternContextToString(eDataType, instanceValue);
-		default:
-			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-		}
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternMethod createPatternMethod() {
+    PatternMethodImpl patternMethod = new PatternMethodImpl();
+    return patternMethod;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Pattern createPattern() {
-		PatternImpl pattern = new PatternImpl();
-		return pattern;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternParameter createPatternParameter() {
+    PatternParameterImpl patternParameter = new PatternParameterImpl();
+    return patternParameter;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PatternMethod createPatternMethod() {
-		PatternMethodImpl patternMethod = new PatternMethodImpl();
-		return patternMethod;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternSuperMethod createPatternSuperMethod() {
+    PatternSuperMethodImpl patternSuperMethod = new PatternSuperMethodImpl();
+    return patternSuperMethod;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Parameter createParameter() {
-		ParameterImpl parameter = new ParameterImpl();
-		return parameter;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternLibrary createPatternLibrary() {
+    PatternLibraryImpl patternLibrary = new PatternLibraryImpl();
+    return patternLibrary;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public SuperMethod createSuperMethod() {
-		SuperMethodImpl superMethod = new SuperMethodImpl();
-		return superMethod;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternViewpoint createPatternViewpoint() {
+    PatternViewpointImpl patternViewpoint = new PatternViewpointImpl();
+    return patternViewpoint;
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Library createLibrary() {
-		LibraryImpl library = new LibraryImpl();
-		return library;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternPackage getPatternPackage() {
+    return (PatternPackage) getEPackage();
+  }
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PatternViewpoint createPatternViewpoint() {
-		PatternViewpointImpl patternViewpoint = new PatternViewpointImpl();
-		return patternViewpoint;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PatternContext createPatternContextFromString(EDataType eDataType, String initialValue) {
-		return (PatternContext) super.createFromString(eDataType, initialValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertPatternContextToString(EDataType eDataType, Object instanceValue) {
-		return super.convertToString(eDataType, instanceValue);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public PatternPackage getPatternPackage() {
-		return (PatternPackage) getEPackage();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @deprecated
-	 * @generated
-	 */
-	@Deprecated
-	public static PatternPackage getPackage() {
-		return PatternPackage.eINSTANCE;
-	}
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @deprecated
+   * @generated
+   */
+  @Deprecated
+  public static PatternPackage getPackage() {
+    return PatternPackage.eINSTANCE;
+  }
 
 } //PatternFactoryImpl

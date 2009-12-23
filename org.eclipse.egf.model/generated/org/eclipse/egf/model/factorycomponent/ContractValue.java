@@ -31,7 +31,7 @@ package org.eclipse.egf.model.factorycomponent;
  * </p>
  *
  * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#getContractValue()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface ContractValue extends ContextValue {

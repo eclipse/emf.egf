@@ -26,6 +26,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.egf.model.factorycomponent.ContractContainer#getActivity <em>Activity</em>}</li>
  *   <li>{@link org.eclipse.egf.model.factorycomponent.ContractContainer#getContracts <em>Contracts</em>}</li>
  * </ul>
  * </p>
@@ -36,8 +37,37 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface ContractContainer extends ModelElement {
   /**
+   * Returns the value of the '<em><b>Activity</b></em>' container reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.factorycomponent.Activity#getContractContainer <em>Contract Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Activity</em>' container reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Activity</em>' container reference.
+   * @see #setActivity(Activity)
+   * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#getContractContainer_Activity()
+   * @see org.eclipse.egf.model.factorycomponent.Activity#getContractContainer
+   * @model opposite="contractContainer" resolveProxies="false" required="true" transient="false"
+   * @generated
+   */
+  Activity getActivity();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.egf.model.factorycomponent.ContractContainer#getActivity <em>Activity</em>}' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Activity</em>' container reference.
+   * @see #getActivity()
+   * @generated
+   */
+  void setActivity(Activity value);
+
+  /**
    * Returns the value of the '<em><b>Contracts</b></em>' containment reference list.
    * The list contents are of type {@link org.eclipse.egf.model.factorycomponent.Contract}.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.factorycomponent.Contract#getContractContainer <em>Contract Container</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Contracts</em>' containment reference list isn't clear,
@@ -46,7 +76,8 @@ public interface ContractContainer extends ModelElement {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Contracts</em>' containment reference list.
    * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#getContractContainer_Contracts()
-   * @model containment="true"
+   * @see org.eclipse.egf.model.factorycomponent.Contract#getContractContainer
+   * @model opposite="contractContainer" containment="true"
    * @generated
    */
   EList<Contract> getContracts();

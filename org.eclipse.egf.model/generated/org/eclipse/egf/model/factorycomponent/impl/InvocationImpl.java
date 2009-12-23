@@ -41,7 +41,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class InvocationImpl extends ModelElementImpl implements Invocation {
+public abstract class InvocationImpl extends ModelElementImpl implements Invocation {
   /**
    * The cached value of the '{@link #getContext() <em>Context</em>}' containment reference.
    * <!-- begin-user-doc -->

@@ -24,42 +24,18 @@
     <package
       uri="http://www.eclipse.org/egf/1.0.0/types"
       class="org.eclipse.egf.model.types.TypesPackage"
-      genModel="model/Types.genmodel"/>
+      genModel="model/Types.genmodel"
+    />
   </extension>  
   
   <extension 
-    point="org.eclipse.emf.ecore.content_parser"
+    point="org.eclipse.emf.ecore.extension_parser"
   >
     <parser
-      contentTypeIdentifier="org.eclipse.egf.model.types_1.0.0"
-      class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"
+      type="types"
+      class="org.eclipse.egf.model.types.util.TypesResourceFactoryImpl"
     />
   </extension>
-
-  <extension
-    point="org.eclipse.core.contenttype.contentTypes"
-  >
-    <content-type
-      base-type="org.eclipse.emf.ecore.xmi"
-      file-extensions="types"
-      id="org.eclipse.egf.model.types_1.0.0"
-      name="%_UI_EGF_Types_content_type"
-      priority="normal"
-    >
-      <describer 
-        class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer"
-      >
-        <parameter 
-          name="namespace" 
-          value="http://www.eclipse.org/egf/1.0.0/types"
-        />
-        <parameter 
-          name="kind" 
-          value="xmi"
-        />
-      </describer>
-    </content-type>
-  </extension>  
 
   <!-- ================================================================================= -->
   <!-- FactoryComponent Model                                                            -->
@@ -76,37 +52,12 @@
   </extension>
 
   <extension 
-    point="org.eclipse.emf.ecore.content_parser"
+    point="org.eclipse.emf.ecore.extension_parser"
   >
     <parser
-      contentTypeIdentifier="org.eclipse.egf.model.factorycomponent_1.0.0"
-      class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"
+      type="fc"
+      class="org.eclipse.egf.model.factorycomponent.util.FactoryComponentResourceFactoryImpl"
     />
-  </extension>
-
-  <extension
-    point="org.eclipse.core.contenttype.contentTypes"
-  >
-    <content-type
-      base-type="org.eclipse.emf.ecore.xmi"
-      file-extensions="fc"
-      id="org.eclipse.egf.model.factorycomponent_1.0.0"
-      name="%_UI_EGF_FactoryComponent_content_type"
-      priority="normal"
-    >
-      <describer 
-        class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer"
-      >
-        <parameter 
-          name="namespace" 
-          value="http://www.eclipse.org/egf/1.0.0/factorycomponent"
-        />
-        <parameter 
-          name="kind" 
-          value="xmi"
-        />
-      </describer>
-    </content-type>
   </extension>
   
   <!-- ================================================================================= -->
@@ -124,37 +75,12 @@
   </extension>
   
   <extension 
-    point="org.eclipse.emf.ecore.content_parser"
+    point="org.eclipse.emf.ecore.extension_parser"
   >
     <parser
-      contentTypeIdentifier="org.eclipse.egf.model.domain_1.0.0"
-      class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"
+      type="domain"
+      class="org.eclipse.egf.model.domain.util.DomainResourceFactoryImpl"
     />
-  </extension>
-
-  <extension
-    point="org.eclipse.core.contenttype.contentTypes"
-  >
-    <content-type
-      base-type="org.eclipse.emf.ecore.xmi"
-      file-extensions="domain"
-      id="org.eclipse.egf.model.domain_1.0.0"
-      name="%_UI_EGF_Domain_content_type"
-      priority="normal"
-    >
-      <describer 
-        class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer"
-      >
-        <parameter 
-          name="namespace" 
-          value="http://www.eclipse.org/egf/1.0.0/domain"
-        />
-        <parameter 
-          name="kind" 
-          value="xmi"
-        />
-      </describer>
-    </content-type>
   </extension>
   
   <!-- ================================================================================= -->
@@ -172,87 +98,14 @@
   </extension> 
   
   <extension 
-    point="org.eclipse.emf.ecore.content_parser"
+    point="org.eclipse.emf.ecore.extension_parser"
   >
     <parser
-      contentTypeIdentifier="org.eclipse.egf.model.mapping_1.0.0"
-      class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"
+      type="mapping"
+      class="org.eclipse.egf.model.mapping.util.MappingResourceFactoryImpl"
     />
   </extension>
-
-  <extension
-    point="org.eclipse.core.contenttype.contentTypes"
-  >
-    <content-type
-      base-type="org.eclipse.emf.ecore.xmi"
-      file-extensions="mapping"
-      id="org.eclipse.egf.model.mapping_1.0.0"
-      name="%_UI_EGF_Mapping_content_type"
-      priority="normal"
-    >
-      <describer 
-        class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer"
-      >
-        <parameter 
-          name="namespace" 
-          value="http://www.eclipse.org/egf/1.0.0/mapping"
-        />
-        <parameter 
-          name="kind" 
-          value="xmi"
-        />
-      </describer>
-    </content-type>
-  </extension>
-  
-  <!-- ================================================================================= -->
-  <!-- ProductionPlan Model                                                              -->
-  <!-- ================================================================================= --> 
-  
-  <extension 
-    point="org.eclipse.emf.ecore.generated_package"
-  >
-    <package
-      uri="http://www.eclipse.org/egf/1.0.0/productionplan"
-      class="org.eclipse.egf.model.productionplan.ProductionplanPackage"
-      genModel="model/ProductionPlan.genmodel"
-    />
-  </extension>  
-  
-  <extension 
-    point="org.eclipse.emf.ecore.content_parser"
-  >
-    <parser
-      contentTypeIdentifier="org.eclipse.egf.model.productionplan_1.0.0"
-      class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"
-    />
-  </extension>
-
-  <extension
-    point="org.eclipse.core.contenttype.contentTypes"
-  >
-    <content-type
-      base-type="org.eclipse.emf.ecore.xmi"
-      file-extensions="pp"
-      id="org.eclipse.egf.model.productionplan_1.0.0"
-      name="%_UI_EGF_ProductionPlan_content_type"
-      priority="normal"
-    >
-      <describer 
-        class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer"
-      >
-        <parameter 
-          name="namespace" 
-          value="http://www.eclipse.org/egf/1.0.0/productionplan"
-        />
-        <parameter 
-          name="kind" 
-          value="xmi"
-        />
-      </describer>
-    </content-type>
-  </extension> 
-  
+    
   <!-- ================================================================================= -->
   <!-- Pattern Model                                                                     -->
   <!-- ================================================================================= --> 
@@ -268,134 +121,12 @@
   </extension>
   
   <extension 
-    point="org.eclipse.emf.ecore.content_parser"
+    point="org.eclipse.emf.ecore.extension_parser"
   >
     <parser
-      contentTypeIdentifier="org.eclipse.egf.model.pattern_1.0.0"
-      class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"
-    />
-  </extension>
-
-  <extension
-    point="org.eclipse.core.contenttype.contentTypes"
-  >
-    <content-type
-      base-type="org.eclipse.emf.ecore.xmi"
-      file-extensions="pattern"
-      id="org.eclipse.egf.model.pattern_1.0.0"
-      name="%_UI_EGF_Pattern_content_type"
-      priority="normal"
-    >
-      <describer 
-        class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer"
-      >
-        <parameter 
-          name="namespace" 
-          value="http://www.eclipse.org/egf/1.0.0/pattern"
-        />
-        <parameter 
-          name="kind" 
-          value="xmi"
-        />
-      </describer>
-    </content-type>
-  </extension>
-  
-  <!-- ================================================================================= -->
-  <!-- JetPattern Model                                                                  -->
-  <!-- ================================================================================= --> 
-  
-  <extension 
-    point="org.eclipse.emf.ecore.generated_package"
-  >
-    <package
-      uri="http://www.eclipse.org/egf/1.0.0/jetpattern"
-      class="org.eclipse.egf.model.jetpattern.JetpatternPackage"
-      genModel="model/JetPattern.genmodel"
+      type="pattern"
+      class="org.eclipse.egf.model.pattern.util.PatternResourceFactoryImpl"
     />
   </extension>
   
-  <extension 
-    point="org.eclipse.emf.ecore.content_parser"
-  >
-    <parser
-      contentTypeIdentifier="org.eclipse.egf.model.jetpattern_1.0.0"
-      class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"
-    />
-  </extension>
-
-  <extension
-    point="org.eclipse.core.contenttype.contentTypes"
-  >
-    <content-type
-      base-type="org.eclipse.emf.ecore.xmi"
-      file-extensions="jetpattern"
-      id="org.eclipse.egf.model.jetpattern_1.0.0"
-      name="%_UI_EGF_JetPattern_content_type"
-      priority="normal"
-    >
-      <describer 
-        class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer"
-      >
-        <parameter 
-          name="namespace" 
-          value="http://www.eclipse.org/egf/1.0.0/jetpattern"
-        />
-        <parameter 
-          name="kind" 
-          value="xmi"
-        />
-      </describer>
-    </content-type>
-  </extension>    
-  
-  <!-- ================================================================================= -->
-  <!-- JavaPattern Model                                                                  -->
-  <!-- ================================================================================= --> 
-  
-  <extension 
-    point="org.eclipse.emf.ecore.generated_package"
-  >
-    <package
-      uri="http://www.eclipse.org/egf/1.0.0/javapattern"
-      class="org.eclipse.egf.model.javapattern.JavapatternPackage"
-      genModel="model/JavaPattern.genmodel"
-    />
-  </extension>
-  
-  <extension 
-    point="org.eclipse.emf.ecore.content_parser"
-  >
-    <parser
-      contentTypeIdentifier="org.eclipse.egf.model.javapattern_1.0.0"
-      class="org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl"
-    />
-  </extension>
-
-  <extension
-    point="org.eclipse.core.contenttype.contentTypes"
-  >
-    <content-type
-      base-type="org.eclipse.emf.ecore.xmi"
-      file-extensions="javapattern"
-      id="org.eclipse.egf.model.javapattern_1.0.0"
-      name="%_UI_EGF_JavaPattern_content_type"
-      priority="normal"
-    >
-      <describer 
-        class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer"
-      >
-        <parameter 
-          name="namespace" 
-          value="http://www.eclipse.org/egf/1.0.0/javapattern"
-        />
-        <parameter 
-          name="kind" 
-          value="xmi"
-        />
-      </describer>
-    </content-type>
-  </extension>    
-
-
 </plugin>

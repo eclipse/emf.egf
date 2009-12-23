@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public abstract class ContractValueImpl extends ContextValueImpl implements ContractValue {
+public class ContractValueImpl extends ContextValueImpl implements ContractValue {
   /**
    * The cached value of the '{@link #getContract() <em>Contract</em>}' reference.
    * <!-- begin-user-doc -->

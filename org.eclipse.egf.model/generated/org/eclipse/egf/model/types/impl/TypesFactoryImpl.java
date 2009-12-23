@@ -69,8 +69,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   @Override
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
-    case TypesPackage.TYPE:
-      return createType();
     case TypesPackage.BOOLEAN_TYPE:
       return createBooleanType();
     case TypesPackage.STRING_TYPE:
@@ -82,16 +80,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Type createType() {
-    TypeImpl type = new TypeImpl();
-    return type;
   }
 
   /**

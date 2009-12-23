@@ -26,6 +26,7 @@ import org.eclipse.egf.model.types.Type;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.egf.model.factorycomponent.Contract#getContractContainer <em>Contract Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.factorycomponent.Contract#getMode <em>Mode</em>}</li>
  *   <li>{@link org.eclipse.egf.model.factorycomponent.Contract#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.egf.model.factorycomponent.Contract#getDefaultValue <em>Default Value</em>}</li>
@@ -37,6 +38,34 @@ import org.eclipse.egf.model.types.Type;
  * @generated
  */
 public interface Contract extends ModelElement {
+  /**
+   * Returns the value of the '<em><b>Contract Container</b></em>' container reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.factorycomponent.ContractContainer#getContracts <em>Contracts</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Contract Container</em>' container reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Contract Container</em>' container reference.
+   * @see #setContractContainer(ContractContainer)
+   * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#getContract_ContractContainer()
+   * @see org.eclipse.egf.model.factorycomponent.ContractContainer#getContracts
+   * @model opposite="contracts" resolveProxies="false" required="true" transient="false"
+   * @generated
+   */
+  ContractContainer getContractContainer();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.egf.model.factorycomponent.Contract#getContractContainer <em>Contract Container</em>}' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Contract Container</em>' container reference.
+   * @see #getContractContainer()
+   * @generated
+   */
+  void setContractContainer(ContractContainer value);
+
   /**
    * Returns the value of the '<em><b>Mode</b></em>' attribute.
    * The literals are from the enumeration {@link org.eclipse.egf.model.factorycomponent.ContractMode}.

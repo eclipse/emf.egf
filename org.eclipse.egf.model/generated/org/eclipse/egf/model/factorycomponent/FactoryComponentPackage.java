@@ -283,13 +283,13 @@ public interface FactoryComponentPackage extends EPackage {
   int FACTORY_COMPONENT__CONTRACT_CONTAINER = ACTIVITY__CONTRACT_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Viewpoints</b></em>' containment reference list.
+   * The feature id for the '<em><b>Viewpoint Container</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FACTORY_COMPONENT__VIEWPOINTS = ACTIVITY_FEATURE_COUNT + 0;
+  int FACTORY_COMPONENT__VIEWPOINT_CONTAINER = ACTIVITY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Orchestration</b></em>' containment reference.
@@ -310,6 +310,70 @@ public interface FactoryComponentPackage extends EPackage {
   int FACTORY_COMPONENT_FEATURE_COUNT = ACTIVITY_FEATURE_COUNT + 2;
 
   /**
+   * The meta object id for the '{@link org.eclipse.egf.model.factorycomponent.impl.ViewpointContainerImpl <em>Viewpoint Container</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.factorycomponent.impl.ViewpointContainerImpl
+   * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getViewpointContainer()
+   * @generated
+   */
+  int VIEWPOINT_CONTAINER = 4;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIEWPOINT_CONTAINER__ID = MODEL_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIEWPOINT_CONTAINER__NAME = MODEL_ELEMENT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIEWPOINT_CONTAINER__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Factory Component</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIEWPOINT_CONTAINER__FACTORY_COMPONENT = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Viewpoints</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIEWPOINT_CONTAINER__VIEWPOINTS = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Viewpoint Container</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIEWPOINT_CONTAINER_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.eclipse.egf.model.factorycomponent.impl.ViewpointImpl <em>Viewpoint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -317,7 +381,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getViewpoint()
    * @generated
    */
-  int VIEWPOINT = 4;
+  int VIEWPOINT = 5;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -347,13 +411,22 @@ public interface FactoryComponentPackage extends EPackage {
   int VIEWPOINT__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
 
   /**
+   * The feature id for the '<em><b>Viewerpoint Container</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int VIEWPOINT__VIEWERPOINT_CONTAINER = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Viewpoint</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int VIEWPOINT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int VIEWPOINT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.factorycomponent.impl.OrchestrationImpl <em>Orchestration</em>}' class.
@@ -363,7 +436,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getOrchestration()
    * @generated
    */
-  int ORCHESTRATION = 5;
+  int ORCHESTRATION = 6;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -393,13 +466,22 @@ public interface FactoryComponentPackage extends EPackage {
   int ORCHESTRATION__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
 
   /**
+   * The feature id for the '<em><b>Factory Component</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ORCHESTRATION__FACTORY_COMPONENT = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
    * The number of structural features of the '<em>Orchestration</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ORCHESTRATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int ORCHESTRATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.factorycomponent.impl.InvocationImpl <em>Invocation</em>}' class.
@@ -409,7 +491,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getInvocation()
    * @generated
    */
-  int INVOCATION = 6;
+  int INVOCATION = 7;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -464,7 +546,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getContext()
    * @generated
    */
-  int CONTEXT = 7;
+  int CONTEXT = 8;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -537,7 +619,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getContractContainer()
    * @generated
    */
-  int CONTRACT_CONTAINER = 8;
+  int CONTRACT_CONTAINER = 9;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -567,13 +649,22 @@ public interface FactoryComponentPackage extends EPackage {
   int CONTRACT_CONTAINER__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
 
   /**
+   * The feature id for the '<em><b>Activity</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTRACT_CONTAINER__ACTIVITY = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Contracts</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTRACT_CONTAINER__CONTRACTS = MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int CONTRACT_CONTAINER__CONTRACTS = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Contract Container</em>' class.
@@ -582,7 +673,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTRACT_CONTAINER_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int CONTRACT_CONTAINER_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl <em>Contract</em>}' class.
@@ -592,7 +683,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getContract()
    * @generated
    */
-  int CONTRACT = 9;
+  int CONTRACT = 10;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -622,13 +713,22 @@ public interface FactoryComponentPackage extends EPackage {
   int CONTRACT__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
 
   /**
+   * The feature id for the '<em><b>Contract Container</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTRACT__CONTRACT_CONTAINER = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
    * The feature id for the '<em><b>Mode</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTRACT__MODE = MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int CONTRACT__MODE = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' reference.
@@ -637,7 +737,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTRACT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int CONTRACT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Default Value</b></em>' containment reference.
@@ -646,7 +746,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTRACT__DEFAULT_VALUE = MODEL_ELEMENT_FEATURE_COUNT + 2;
+  int CONTRACT__DEFAULT_VALUE = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Contract</em>' class.
@@ -655,7 +755,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTRACT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+  int CONTRACT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.factorycomponent.impl.ContextValueImpl <em>Context Value</em>}' class.
@@ -665,7 +765,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getContextValue()
    * @generated
    */
-  int CONTEXT_VALUE = 10;
+  int CONTEXT_VALUE = 11;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -711,7 +811,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getContractValue()
    * @generated
    */
-  int CONTRACT_VALUE = 11;
+  int CONTRACT_VALUE = 12;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -784,7 +884,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getContractConnector()
    * @generated
    */
-  int CONTRACT_CONNECTOR = 12;
+  int CONTRACT_CONNECTOR = 13;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -857,7 +957,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getContractMode()
    * @generated
    */
-  int CONTRACT_MODE = 13;
+  int CONTRACT_MODE = 14;
 
   /**
    * The meta object id for the '<em>Invocation Exception</em>' data type.
@@ -867,7 +967,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getInvocationException()
    * @generated
    */
-  int INVOCATION_EXCEPTION = 14;
+  int INVOCATION_EXCEPTION = 15;
 
   /**
    * The meta object id for the '<em>URI</em>' data type.
@@ -877,7 +977,7 @@ public interface FactoryComponentPackage extends EPackage {
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getURI()
    * @generated
    */
-  int URI = 15;
+  int URI = 16;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.factorycomponent.ModelElement <em>Model Element</em>}'.
@@ -975,15 +1075,15 @@ public interface FactoryComponentPackage extends EPackage {
   EClass getFactoryComponent();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.factorycomponent.FactoryComponent#getViewpoints <em>Viewpoints</em>}'.
+   * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.factorycomponent.FactoryComponent#getViewpointContainer <em>Viewpoint Container</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Viewpoints</em>'.
-   * @see org.eclipse.egf.model.factorycomponent.FactoryComponent#getViewpoints()
+   * @return the meta object for the containment reference '<em>Viewpoint Container</em>'.
+   * @see org.eclipse.egf.model.factorycomponent.FactoryComponent#getViewpointContainer()
    * @see #getFactoryComponent()
    * @generated
    */
-  EReference getFactoryComponent_Viewpoints();
+  EReference getFactoryComponent_ViewpointContainer();
 
   /**
    * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.factorycomponent.FactoryComponent#getOrchestration <em>Orchestration</em>}'.
@@ -997,6 +1097,38 @@ public interface FactoryComponentPackage extends EPackage {
   EReference getFactoryComponent_Orchestration();
 
   /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.factorycomponent.ViewpointContainer <em>Viewpoint Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Viewpoint Container</em>'.
+   * @see org.eclipse.egf.model.factorycomponent.ViewpointContainer
+   * @generated
+   */
+  EClass getViewpointContainer();
+
+  /**
+   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.factorycomponent.ViewpointContainer#getFactoryComponent <em>Factory Component</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Factory Component</em>'.
+   * @see org.eclipse.egf.model.factorycomponent.ViewpointContainer#getFactoryComponent()
+   * @see #getViewpointContainer()
+   * @generated
+   */
+  EReference getViewpointContainer_FactoryComponent();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.factorycomponent.ViewpointContainer#getViewpoints <em>Viewpoints</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Viewpoints</em>'.
+   * @see org.eclipse.egf.model.factorycomponent.ViewpointContainer#getViewpoints()
+   * @see #getViewpointContainer()
+   * @generated
+   */
+  EReference getViewpointContainer_Viewpoints();
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.factorycomponent.Viewpoint <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1007,6 +1139,17 @@ public interface FactoryComponentPackage extends EPackage {
   EClass getViewpoint();
 
   /**
+   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.factorycomponent.Viewpoint#getViewerpointContainer <em>Viewerpoint Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Viewerpoint Container</em>'.
+   * @see org.eclipse.egf.model.factorycomponent.Viewpoint#getViewerpointContainer()
+   * @see #getViewpoint()
+   * @generated
+   */
+  EReference getViewpoint_ViewerpointContainer();
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.factorycomponent.Orchestration <em>Orchestration</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1015,6 +1158,17 @@ public interface FactoryComponentPackage extends EPackage {
    * @generated
    */
   EClass getOrchestration();
+
+  /**
+   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.factorycomponent.Orchestration#getFactoryComponent <em>Factory Component</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Factory Component</em>'.
+   * @see org.eclipse.egf.model.factorycomponent.Orchestration#getFactoryComponent()
+   * @see #getOrchestration()
+   * @generated
+   */
+  EReference getOrchestration_FactoryComponent();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.factorycomponent.Invocation <em>Invocation</em>}'.
@@ -1091,6 +1245,17 @@ public interface FactoryComponentPackage extends EPackage {
   EClass getContractContainer();
 
   /**
+   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.factorycomponent.ContractContainer#getActivity <em>Activity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Activity</em>'.
+   * @see org.eclipse.egf.model.factorycomponent.ContractContainer#getActivity()
+   * @see #getContractContainer()
+   * @generated
+   */
+  EReference getContractContainer_Activity();
+
+  /**
    * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.factorycomponent.ContractContainer#getContracts <em>Contracts</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1110,6 +1275,17 @@ public interface FactoryComponentPackage extends EPackage {
    * @generated
    */
   EClass getContract();
+
+  /**
+   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.factorycomponent.Contract#getContractContainer <em>Contract Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Contract Container</em>'.
+   * @see org.eclipse.egf.model.factorycomponent.Contract#getContractContainer()
+   * @see #getContract()
+   * @generated
+   */
+  EReference getContract_ContractContainer();
 
   /**
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.factorycomponent.Contract#getMode <em>Mode</em>}'.
@@ -1375,12 +1551,12 @@ public interface FactoryComponentPackage extends EPackage {
     EClass FACTORY_COMPONENT = eINSTANCE.getFactoryComponent();
 
     /**
-     * The meta object literal for the '<em><b>Viewpoints</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Viewpoint Container</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference FACTORY_COMPONENT__VIEWPOINTS = eINSTANCE.getFactoryComponent_Viewpoints();
+    EReference FACTORY_COMPONENT__VIEWPOINT_CONTAINER = eINSTANCE.getFactoryComponent_ViewpointContainer();
 
     /**
      * The meta object literal for the '<em><b>Orchestration</b></em>' containment reference feature.
@@ -1389,6 +1565,32 @@ public interface FactoryComponentPackage extends EPackage {
      * @generated
      */
     EReference FACTORY_COMPONENT__ORCHESTRATION = eINSTANCE.getFactoryComponent_Orchestration();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.factorycomponent.impl.ViewpointContainerImpl <em>Viewpoint Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.factorycomponent.impl.ViewpointContainerImpl
+     * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getViewpointContainer()
+     * @generated
+     */
+    EClass VIEWPOINT_CONTAINER = eINSTANCE.getViewpointContainer();
+
+    /**
+     * The meta object literal for the '<em><b>Factory Component</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VIEWPOINT_CONTAINER__FACTORY_COMPONENT = eINSTANCE.getViewpointContainer_FactoryComponent();
+
+    /**
+     * The meta object literal for the '<em><b>Viewpoints</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VIEWPOINT_CONTAINER__VIEWPOINTS = eINSTANCE.getViewpointContainer_Viewpoints();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.factorycomponent.impl.ViewpointImpl <em>Viewpoint</em>}' class.
@@ -1401,6 +1603,14 @@ public interface FactoryComponentPackage extends EPackage {
     EClass VIEWPOINT = eINSTANCE.getViewpoint();
 
     /**
+     * The meta object literal for the '<em><b>Viewerpoint Container</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference VIEWPOINT__VIEWERPOINT_CONTAINER = eINSTANCE.getViewpoint_ViewerpointContainer();
+
+    /**
      * The meta object literal for the '{@link org.eclipse.egf.model.factorycomponent.impl.OrchestrationImpl <em>Orchestration</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1409,6 +1619,14 @@ public interface FactoryComponentPackage extends EPackage {
      * @generated
      */
     EClass ORCHESTRATION = eINSTANCE.getOrchestration();
+
+    /**
+     * The meta object literal for the '<em><b>Factory Component</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ORCHESTRATION__FACTORY_COMPONENT = eINSTANCE.getOrchestration_FactoryComponent();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.factorycomponent.impl.InvocationImpl <em>Invocation</em>}' class.
@@ -1473,6 +1691,14 @@ public interface FactoryComponentPackage extends EPackage {
     EClass CONTRACT_CONTAINER = eINSTANCE.getContractContainer();
 
     /**
+     * The meta object literal for the '<em><b>Activity</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTRACT_CONTAINER__ACTIVITY = eINSTANCE.getContractContainer_Activity();
+
+    /**
      * The meta object literal for the '<em><b>Contracts</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1489,6 +1715,14 @@ public interface FactoryComponentPackage extends EPackage {
      * @generated
      */
     EClass CONTRACT = eINSTANCE.getContract();
+
+    /**
+     * The meta object literal for the '<em><b>Contract Container</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTRACT__CONTRACT_CONTAINER = eINSTANCE.getContract_ContractContainer();
 
     /**
      * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.

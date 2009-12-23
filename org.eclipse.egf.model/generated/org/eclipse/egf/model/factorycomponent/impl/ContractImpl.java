@@ -17,6 +17,7 @@
 package org.eclipse.egf.model.factorycomponent.impl;
 
 import org.eclipse.egf.model.factorycomponent.Contract;
+import org.eclipse.egf.model.factorycomponent.ContractContainer;
 import org.eclipse.egf.model.factorycomponent.ContractMode;
 import org.eclipse.egf.model.factorycomponent.ContractValue;
 import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
@@ -30,6 +31,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -38,6 +40,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getContractContainer <em>Contract Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getMode <em>Mode</em>}</li>
  *   <li>{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getDefaultValue <em>Default Value</em>}</li>
@@ -131,6 +134,51 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   @Override
   protected EClass eStaticClass() {
     return FactoryComponentPackage.Literals.CONTRACT;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContractContainer getContractContainer() {
+    if (eContainerFeatureID() != FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER)
+      return null;
+    return (ContractContainer) eContainer();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetContractContainer(ContractContainer newContractContainer, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject) newContractContainer, FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER, msgs);
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContractContainer(ContractContainer newContractContainer) {
+    if (newContractContainer != eInternalContainer()
+        || (eContainerFeatureID() != FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER && newContractContainer != null)) {
+      if (EcoreUtil.isAncestor(this, newContractContainer))
+        throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+      NotificationChain msgs = null;
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      if (newContractContainer != null)
+        msgs = ((InternalEObject) newContractContainer).eInverseAdd(this, FactoryComponentPackage.CONTRACT_CONTAINER__CONTRACTS,
+            ContractContainer.class, msgs);
+      msgs = basicSetContractContainer(newContractContainer, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER, newContractContainer,
+          newContractContainer));
   }
 
   /**
@@ -250,8 +298,26 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * @generated
    */
   @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER:
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      return basicSetContractContainer((ContractContainer) otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
+    case FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER:
+      return basicSetContractContainer(null, msgs);
     case FactoryComponentPackage.CONTRACT__DEFAULT_VALUE:
       return basicSetDefaultValue(null, msgs);
     }
@@ -264,8 +330,25 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * @generated
    */
   @Override
+  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    switch (eContainerFeatureID()) {
+    case FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER:
+      return eInternalContainer()
+          .eInverseRemove(this, FactoryComponentPackage.CONTRACT_CONTAINER__CONTRACTS, ContractContainer.class, msgs);
+    }
+    return super.eBasicRemoveFromContainerFeature(msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+    case FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER:
+      return getContractContainer();
     case FactoryComponentPackage.CONTRACT__MODE:
       return getMode();
     case FactoryComponentPackage.CONTRACT__TYPE:
@@ -286,6 +369,9 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
+    case FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER:
+      setContractContainer((ContractContainer) newValue);
+      return;
     case FactoryComponentPackage.CONTRACT__MODE:
       setMode((ContractMode) newValue);
       return;
@@ -307,6 +393,9 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
+    case FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER:
+      setContractContainer((ContractContainer) null);
+      return;
     case FactoryComponentPackage.CONTRACT__MODE:
       setMode(MODE_EDEFAULT);
       return;
@@ -328,6 +417,8 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+    case FactoryComponentPackage.CONTRACT__CONTRACT_CONTAINER:
+      return getContractContainer() != null;
     case FactoryComponentPackage.CONTRACT__MODE:
       return (eFlags & MODE_EFLAG) != MODE_EFLAG_DEFAULT;
     case FactoryComponentPackage.CONTRACT__TYPE:
