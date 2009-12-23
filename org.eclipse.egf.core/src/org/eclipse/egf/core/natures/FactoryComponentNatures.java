@@ -24,7 +24,7 @@ public class FactoryComponentNatures {
 
     public static final String FACTORY_COMPONENT_NATURE = "org.eclipse.egf.core.FactoryComponentNature"; //$NON-NLS-1$
 
-    public static final String PATTERN_BUILDER_ID = "org.eclipse.egf.pattern.PatternBuilder"; //$NON-NLS-1$
+    public static final String PATTERN_BUILDER_ID = "org.eclipse.egf.pattern.ui.PatternBuilder"; //$NON-NLS-1$
 
     public static boolean hasFactoryComponentNature(IProject project) {
         try {
