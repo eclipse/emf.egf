@@ -169,6 +169,7 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
             childrenFeatures.add(PatternPackage.Literals.PATTERN__METHODS);
             childrenFeatures.add(PatternPackage.Literals.PATTERN__PARAMETERS);
             childrenFeatures.add(PatternPackage.Literals.PATTERN__NATURE);
+            childrenFeatures.add(PatternPackage.Literals.PATTERN__VARIABLES);
         }
         return childrenFeatures;
     }
@@ -229,6 +230,7 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         case PatternPackage.PATTERN__METHODS:
         case PatternPackage.PATTERN__PARAMETERS:
         case PatternPackage.PATTERN__NATURE:
+        case PatternPackage.PATTERN__VARIABLES:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
             return;
         }
@@ -249,6 +251,8 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN__METHODS, PatternFactory.eINSTANCE.createPatternMethod()));
 
         newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN__PARAMETERS, PatternFactory.eINSTANCE.createPatternParameter()));
+
+        newChildDescriptors.add(createChildParameter(PatternPackage.Literals.PATTERN__VARIABLES, PatternFactory.eINSTANCE.createPatternVariable()));
     }
 
 }

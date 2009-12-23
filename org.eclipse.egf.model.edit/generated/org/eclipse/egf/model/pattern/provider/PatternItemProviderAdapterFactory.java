@@ -299,6 +299,29 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternVariable} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternVariableItemProvider patternVariableItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternVariable}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternVariableAdapter() {
+        if (patternVariableItemProvider == null) {
+            patternVariableItemProvider = new PatternVariableItemProvider(this);
+        }
+
+        return patternVariableItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -413,6 +436,8 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             paramerter2ParameterMapItemProvider.dispose();
         if (methodCallItemProvider != null)
             methodCallItemProvider.dispose();
+        if (patternVariableItemProvider != null)
+            patternVariableItemProvider.dispose();
     }
 
     /**
