@@ -41,7 +41,7 @@ import org.osgi.framework.Bundle;
  * This classloader will try to load classes from the given project (and its
  * dependencies) The given projet must a java plugin project
  * 
- * TODO utilisation de PDECore, comment faire autrement ? 
+ * TODO utilisation de PDECore, comment faire autrement ?
  * 
  * @author Guiu
  * 
@@ -80,17 +80,21 @@ public class WorkspacePluginClassLoader extends ClassLoader {
 				}
 			}
 
-			URLClassLoader cl = new URLClassLoader((URL[]) urls.toArray(new URL[urls.size()]));
-			return cl.loadClass(name);
-		} catch (ClassNotFoundException e) {
-			for (Bundle bundle : bundles) {
-				try {
-					return bundle.loadClass(name);
-				} catch (ClassNotFoundException ee) {
-					// don't care
+			URLClassLoader cl = new URLClassLoader((URL[]) urls.toArray(new URL[urls.size()]), new ClassLoader() {
+
+				@Override
+				protected Class<?> findClass(String name) throws ClassNotFoundException {
+					for (Bundle bundle : bundles) {
+						try {
+							return bundle.loadClass(name);
+						} catch (ClassNotFoundException ee) {
+							// don't care
+						}
+					}
+					return super.findClass(name);
 				}
-			}
-			return super.loadClass(name);
+			});
+			return cl.loadClass(name);
 		} catch (Exception e) {
 			throw new ClassNotFoundException("Cannot find " + name, e);
 		}
@@ -106,7 +110,7 @@ public class WorkspacePluginClassLoader extends ClassLoader {
 			Activator.getDefault().logError("Cannot get output folder for project " + project.getName(), e);
 			outputLocation = new Path(".");
 		}
-		IFolder folder = project.getFolder(outputLocation);
+		IFolder folder = project.getFolder(outputLocation.removeFirstSegments(1));
 		return new URL("file", null, folder.getLocation().toOSString() + "/");
 
 	}
