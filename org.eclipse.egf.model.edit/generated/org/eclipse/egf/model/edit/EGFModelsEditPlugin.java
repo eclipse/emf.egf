@@ -25,39 +25,39 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
 /**
- * This is the central singleton for the Types edit plugin. <!-- begin-user-doc
+ * This is the central singleton for the FactoryComponent edit plugin.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public final class EGFModelsEditPlugin extends EMFPlugin {
   /**
-   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Keep track of the singleton.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static final EGFModelsEditPlugin INSTANCE = new EGFModelsEditPlugin();
 
   /**
-   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Keep track of the singleton.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   private static Implementation plugin;
 
   /**
-   * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Create the instance.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public EGFModelsEditPlugin() {
-    super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, });
+    super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelsEditPlugin.INSTANCE, });
   }
 
   /**
-   * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
+   * Returns the singleton instance of the Eclipse plugin.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @return the singleton instance.
    * @generated
    */
@@ -67,9 +67,9 @@ public final class EGFModelsEditPlugin extends EMFPlugin {
   }
 
   /**
-   * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
+   * Returns the singleton instance of the Eclipse plugin.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @return the singleton instance.
    * @generated
    */
@@ -78,9 +78,9 @@ public final class EGFModelsEditPlugin extends EMFPlugin {
   }
 
   /**
-   * The actual implementation of the Eclipse <b>Plugin</b>. <!-- begin-user-doc
+   * The actual implementation of the Eclipse <b>Plugin</b>.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static class Implementation extends EclipsePlugin {

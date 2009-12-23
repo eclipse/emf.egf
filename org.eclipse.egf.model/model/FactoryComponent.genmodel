@@ -69,8 +69,8 @@
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryComponent.ecore#//Contract/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference FactoryComponent.ecore#//Contract/defaultValue"/>
     </genClasses>
-    <genClasses ecoreClass="FactoryComponent.ecore#//ContextValue"/>
-    <genClasses image="false" ecoreClass="FactoryComponent.ecore#//ContractValue">
+    <genClasses image="false" ecoreClass="FactoryComponent.ecore#//ContextValue"/>
+    <genClasses ecoreClass="FactoryComponent.ecore#//ContractValue">
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference FactoryComponent.ecore#//ContractValue/contract"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryComponent.ecore#//ContractValue/value"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute FactoryComponent.ecore#//ContractValue/pluginId"/>
