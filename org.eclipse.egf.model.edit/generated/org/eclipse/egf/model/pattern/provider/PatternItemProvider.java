@@ -75,6 +75,7 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
             addFooterMethodPropertyDescriptor(object);
             addSuperPatternPropertyDescriptor(object);
             addOrchestrationPropertyDescriptor(object);
+            addInitMethodPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
@@ -153,6 +154,18 @@ public class PatternItemProvider extends PatternElementItemProvider implements I
         itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Pattern_orchestration_feature"), //$NON-NLS-1$
                 getString("_UI_PropertyDescriptor_description", "_UI_Pattern_orchestration_feature", "_UI_Pattern_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 PatternPackage.Literals.PATTERN__ORCHESTRATION, true, false, false, null, null, null));
+    }
+
+    /**
+     * This adds a property descriptor for the Init Method feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addInitMethodPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Pattern_initMethod_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Pattern_initMethod_feature", "_UI_Pattern_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.PATTERN__INIT_METHOD, true, false, true, null, null, null));
     }
 
     /**
