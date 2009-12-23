@@ -7,7 +7,9 @@ Bundle-Activator: org.eclipse.egf.pattern.jet.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.egf.pattern,
- org.eclipse.emf.codegen
+ org.eclipse.emf.codegen,
+ org.eclipse.pde.core,
+ org.eclipse.jdt.core
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.egf.pattern.jet

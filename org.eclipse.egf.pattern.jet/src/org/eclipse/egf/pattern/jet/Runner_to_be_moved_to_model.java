@@ -19,19 +19,19 @@ import org.eclipse.egf.model.pattern.Pattern;
 
 /**
  * @author Guiu
- *
+ * 
  */
-public class Runner_to_be_moved_to_model {
+public abstract class Runner_to_be_moved_to_model {
 
-	private Pattern pattern ;
+	private Pattern pattern;
 
 	public Pattern getPattern() {
-		
+
 		return pattern;
 	}
-	
+
 	public void setPattern(Pattern pat) {
-		
+
 		this.pattern = pat;
 	}
 

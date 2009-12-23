@@ -15,7 +15,6 @@
 
 package org.eclipse.egf.model;
 
-
 /**
  * TODO Ici on ne devrait avoir qu'une pauvre map avec name-valeur. Son
  * initialisation étant à la charge de l'orchestrateur. TODO il faudrait ajouetr
@@ -26,6 +25,10 @@ package org.eclipse.egf.model;
  * 
  */
 public class PatternContext {
+
+	public static final String INTERNAL_PATTERN_REPORTER = "internal.pattern.reporter";
+	public static final String INTERNAL_PATTERN_PARAMETER_ALIAS = "internal.pattern.parameter.alias";
+
 	public PatternContext() {
 	}
 

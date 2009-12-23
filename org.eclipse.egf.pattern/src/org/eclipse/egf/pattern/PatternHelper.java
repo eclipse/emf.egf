@@ -16,15 +16,12 @@
 package org.eclipse.egf.pattern;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.eclipse.egf.model.pattern.Library;
 import org.eclipse.egf.model.pattern.Parameter;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.model.pattern.PatternUnit;
 import org.eclipse.egf.model.pattern.PatternUnit;
 import org.eclipse.egf.model.pattern.SuperMethod;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
@@ -33,32 +30,32 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Guiu
- *
+ * 
  */
 public abstract class PatternHelper {
 	protected final Pattern pattern;
 	protected final StringBuilder content = new StringBuilder(1000);
-	// Every called pattern owns its list of parameters, we need to create all needed alias (Validation ensure that they can be matched)
+	// Every called pattern owns its list of parameters, we need to create all
+	// needed alias (Validation ensure that they can be matched)
 	protected List<List<String>> parameterAlias;
-	
+
 	public PatternHelper(Pattern pattern) {
 		super();
 		this.pattern = pattern;
 	}
 
-	public String visit()
-	{
+	public String visit() {
 		String read = getContent(pattern.getHeaderMethod());
 		if (read != null)
 			content.append(read);
-		
+
 		int insertionIndex = content.length();
-		
+
 		doVisit(pattern);
 
 		if (!parameterAlias.isEmpty())
 			handleParameters(insertionIndex);
-		
+
 		read = getContent(pattern.getFooterMethod());
 		if (read != null)
 			content.append(read);
@@ -67,29 +64,25 @@ public abstract class PatternHelper {
 	}
 
 	/**
-	 * This method may code to handle parameter at the insertionIndex and at the current index.
-	 * The inserted code is mainly a kind of loop containing the pattern body over the result of the query.
+	 * This method may code to handle parameter at the insertionIndex and at the
+	 * current index. The inserted code is mainly a kind of loop containing the
+	 * pattern body over the result of the query.
 	 */
-	protected abstract void handleParameters(int insertionIndex); 
-//		TODO mark this method abstract as its implementation depends on the nature of pattern.
-	
+	protected abstract void handleParameters(int insertionIndex);
 
-	 
+	// TODO mark this method abstract as its implementation depends on the
+	// nature of pattern.
+
 	private void doVisit(Pattern pattern) {
-		if (parameterAlias == null)
-		{
+		if (parameterAlias == null) {
 			parameterAlias = new ArrayList<List<String>>();
-			for (Parameter param : pattern.getParameters())
-			{
+			for (Parameter param : pattern.getParameters()) {
 				List<String> names = new ArrayList<String>();
 				names.add(param.getName());
 				parameterAlias.add(names);
 			}
-		}
-		else
-		{
-			for (int i = 0; i < pattern.getParameters().size(); i++)
-			{
+		} else {
+			for (int i = 0; i < pattern.getParameters().size(); i++) {
 				List<String> names = parameterAlias.get(i);
 				names.add(pattern.getParameters().get(i).getName());
 			}
@@ -101,9 +94,7 @@ public abstract class PatternHelper {
 		}
 	}
 
-
-	private String getContent(PatternUnit unit)
-	{
+	private String getContent(PatternUnit unit) {
 		return new PatternSwitch<String>() {
 
 			@Override
@@ -130,16 +121,16 @@ public abstract class PatternHelper {
 					throw new IllegalArgumentException();
 				PatternMethod method = pattern.getMethod(name);
 				if (method == null)
-					throw new IllegalStateException("Cannot find method '"+name+"'");
+					throw new IllegalStateException("Cannot find method '" + name + "'");
 				return casePatternMethod(method);
 			}
 
 			@Override
 			public String defaultCase(EObject object) {
-				
-				throw new IllegalStateException("unexpected type: "+object.eClass().getName());
+
+				throw new IllegalStateException("unexpected type: " + object.eClass().getName());
 			}
-			
+
 		}.doSwitch(unit);
 	}
 }

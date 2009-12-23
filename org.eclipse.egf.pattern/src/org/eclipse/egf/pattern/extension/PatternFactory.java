@@ -90,7 +90,7 @@ public abstract class PatternFactory {
 		Parameter param2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createParameter();
 		param2.setName("childP");
 		param2.setType(EcorePackage.eINSTANCE.getEClass());
-		parent.getParameters().add(param2);
+		child.getParameters().add(param2);
 		child.setName("child");
 		
 		parent.getOrchestration().add(child);
