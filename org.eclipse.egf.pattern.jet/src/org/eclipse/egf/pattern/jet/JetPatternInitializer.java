@@ -15,18 +15,19 @@
 
 package org.eclipse.egf.pattern.jet;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.pattern.extension.PatternFactory;
+import org.eclipse.egf.pattern.extension.PatternInitializer;
 
 /**
  * @author Guiu
  * 
  */
-public class JetPatternFactory extends PatternFactory {
+public class JetPatternInitializer extends PatternInitializer {
 
-    @Override
-    protected void addNature(Pattern pattern) {
-        pattern.setNature(org.eclipse.egf.model.jetpattern.JetPatternFactory.eINSTANCE.createJetNature());
-    }
+	@Override
+	public void initContent(IProject project, Pattern pattern) {
+
+	}
 
 }

@@ -15,11 +15,11 @@
 
 package org.eclipse.egf.pattern.jet;
 
-import org.eclipse.egf.model.jetpattern.JetpatternFactory;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternRunner;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.PatternFactory;
+import org.eclipse.egf.pattern.extension.PatternInitializer;
 
 /**
  * @author Guiu
@@ -27,22 +27,29 @@ import org.eclipse.egf.pattern.extension.PatternFactory;
  */
 public class JetPatternExtension extends PatternExtension {
 
-	private static final PatternNature NATURE = JetpatternFactory.eINSTANCE.createJetNature();
-	private final PatternFactory factory = new JetPatternFactory();
+    private static final PatternNature NATURE = org.eclipse.egf.model.jetpattern.JetPatternFactory.eINSTANCE.createJetNature();
+    private final PatternFactory factory = new JetPatternFactory();
+    private final JetPatternInitializer initializer = new JetPatternInitializer();
 
-	@Override
-	public PatternNature getNature() {
-		return NATURE;
-	}
+    @Override
+    public PatternNature getNature() {
+        return NATURE;
+    }
 
-	@Override
-	public PatternRunner createRunner() {
-		return new JetRunner_to_be_moved_to_model1();
-	}
+    @Override
+    public PatternRunner createRunner() {
+        return new JetRunner_to_be_moved_to_model1();
+    }
 
-	@Override
-	public PatternFactory getFactory() {
-		return factory;
-	}
+    @Override
+    public PatternFactory getFactory() {
+        return factory;
+    }
+
+    @Override
+    public PatternInitializer getInitializer() {
+
+        return initializer;
+    }
 
 }

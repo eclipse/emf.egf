@@ -15,14 +15,14 @@
 
 package org.eclipse.egf.pattern.jet;
 
-import org.eclipse.egf.common.AbstractActivator;
+import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  * @author Guiu
  */
-public class Activator extends AbstractActivator {
+public class Activator extends EGFAbstractPlugin {
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.eclipse.egf.pattern.jet";

@@ -21,17 +21,19 @@ import org.eclipse.egf.model.pattern.PatternRunner;
 
 /**
  * @author Guiu
- *
+ * 
  */
 public abstract class PatternExtension {
-	
-	public static final String EXTENSION_ID= "org.eclipse.egf.pattern.extension";
+
+	public static final String EXTENSION_ID = "org.eclipse.egf.pattern.extension";
 
 	public abstract PatternNature getNature();
 
 	public abstract PatternFactory getFactory();
 
 	public abstract PatternRunner createRunner();
+
+	public abstract PatternInitializer getInitializer();
 
 	public boolean matchNature(Pattern pattern) {
 		if (pattern == null || pattern.getNature() == null)
