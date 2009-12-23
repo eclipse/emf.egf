@@ -35,22 +35,22 @@ import org.osgi.framework.BundleException;
  */
 public final class EGFModelsEditorPlugin extends EMFPlugin {
   /**
-   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Keep track of the singleton.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public static final EGFModelsEditorPlugin INSTANCE = new EGFModelsEditorPlugin();
 
   /**
-   * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Keep track of the singleton.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   private static Implementation plugin;
 
   /**
-   * Create the instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * Create the instance.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   public EGFModelsEditorPlugin() {
@@ -58,9 +58,9 @@ public final class EGFModelsEditorPlugin extends EMFPlugin {
   }
 
   /**
-   * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
+   * Returns the singleton instance of the Eclipse plugin.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @return the singleton instance.
    * @generated
    */
@@ -70,9 +70,9 @@ public final class EGFModelsEditorPlugin extends EMFPlugin {
   }
 
   /**
-   * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
+   * Returns the singleton instance of the Eclipse plugin.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @return the singleton instance.
    * @generated
    */
@@ -81,9 +81,9 @@ public final class EGFModelsEditorPlugin extends EMFPlugin {
   }
 
   /**
-   * The actual implementation of the Eclipse <b>Plugin</b>. <!-- begin-user-doc
+   * The actual implementation of the Eclipse <b>Plugin</b>.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static class Implementation extends EclipseUIPlugin {
