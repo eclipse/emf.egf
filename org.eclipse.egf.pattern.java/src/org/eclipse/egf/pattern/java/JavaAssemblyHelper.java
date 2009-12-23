@@ -15,13 +15,10 @@
 
 package org.eclipse.egf.pattern.java;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.execution.AssemblyHelper;
@@ -41,7 +38,8 @@ public class JavaAssemblyHelper extends AssemblyHelper {
     }
 
     @Override
-    protected void call(Pattern pattern) throws PatternException {
+    protected void call(PatternCall call) throws PatternException {
+        Pattern pattern = call.getCalled();
         String templateClassName = JavaNatureHelper.getClassName(pattern);
         if (templateClassName == null)
             throw new PatternException(Messages.assembly_error1);
@@ -70,11 +68,6 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         StringBuilder localContent = new StringBuilder(300);
         localContent.append("").append(CharacterConstants.LINE_SEPARATOR).append(CharacterConstants.LINE_SEPARATOR);
 
-        Map<String, List<String>> aliases = new HashMap<String, List<String>>();
-        for (List<String> names : parameterAlias) {
-            aliases.put(names.get(0), names);
-        }
-
         for (PatternParameter parameter : pattern.getParameters()) {
             localContent.append("Collection<EObject> ").append(parameter.getName()).append("Collection = new ArrayList<EObject>(); //TODO Query;").append(CharacterConstants.LINE_SEPARATOR);
         }
@@ -94,7 +87,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         // 2 - Add post block at current index
         content.append(CharacterConstants.LINE_SEPARATOR);
 
-        for (int i = 0; i < parameterAlias.size(); i++)
+        for (int i = 0; i < pattern.getParameters().size(); i++)
             content.append("}").append(CharacterConstants.LINE_SEPARATOR);
         content.append(CharacterConstants.LINE_SEPARATOR);
 
@@ -106,12 +99,9 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         localContent.setLength(0);
         localContent.append(CharacterConstants.LINE_SEPARATOR);
         for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getParameters()) {
-            List<String> alias = aliases.get(parameter.getName());
             String local = PatternHelper.localizeName(parameter);
             EClass pEClass = parameter.getType().eClass();
-            for (String name : alias) {
-                localContent.append(pEClass.getName()).append(" ").append(name).append(" = (").append(pEClass.getName()).append(")").append(local).append(";").append(CharacterConstants.LINE_SEPARATOR);
-            }
+            localContent.append(pEClass.getName()).append(" ").append(parameter.getName()).append(" = (").append(pEClass.getName()).append(")").append(local).append(";").append(CharacterConstants.LINE_SEPARATOR);
         }
         content.insert(startIndex + START_MARKER.length(), localContent);
     }
