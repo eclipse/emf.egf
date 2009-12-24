@@ -16,14 +16,12 @@
 package org.eclipse.egf.pattern.ecore;
 
 import java.lang.reflect.Field;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.core.platform.resource.ResourceHelper;
-import org.eclipse.egf.pattern.URLHelper;
+import org.eclipse.egf.pattern.execution.ProjectClassLoaderHelper;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;
@@ -80,9 +78,7 @@ public class EPackageHelper {
      */
     public static void registerPackage(IProject project, String classname) throws RegistrationExcpetion {
         try {
-            URL url = URLHelper.getURL(project);
-            URLClassLoader urlClassLoader = new URLClassLoader(new URL[] { url }, EPackageHelper.class.getClassLoader());
-            Class<?> loadClass = urlClassLoader.loadClass(classname);
+            Class<?> loadClass = ProjectClassLoaderHelper.getProjectClassLoader(project).loadClass(classname);
             Field declaredField = loadClass.getDeclaredField("eINSTANCE");
             EPackage ePackage = (EPackage) declaredField.get(null);
             REGISTRY.put(ePackage.getNsURI(), new Descriptor(ePackage));
