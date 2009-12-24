@@ -87,7 +87,7 @@ public class CustomQueryItemProvider extends QueryItemProvider implements IEditi
      */
     @Override
     public String getText(Object object) {
-        String label = ((CustomQuery) object).getDelegateClass();
+        String label = ((CustomQuery) object).getExtensionId();
         return label == null || label.length() == 0 ? "[" + getString("_UI_CustomQuery_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 label + " [" + getString("_UI_CustomQuery_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }

@@ -87,7 +87,7 @@ public class StringQueryItemProvider extends QueryItemProvider implements IEditi
      */
     @Override
     public String getText(Object object) {
-        String label = ((StringQuery) object).getDelegateClass();
+        String label = ((StringQuery) object).getExtensionId();
         return label == null || label.length() == 0 ? "[" + getString("_UI_StringQuery_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 label + " [" + getString("_UI_StringQuery_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }

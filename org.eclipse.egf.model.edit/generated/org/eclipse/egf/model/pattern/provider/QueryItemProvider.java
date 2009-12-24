@@ -73,21 +73,21 @@ public class QueryItemProvider extends ItemProviderAdapter implements IEditingDo
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addDelegateClassPropertyDescriptor(object);
+            addExtensionIdPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Delegate Class feature.
+     * This adds a property descriptor for the Extension Id feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addDelegateClassPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Query_delegateClass_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_Query_delegateClass_feature", "_UI_Query_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.QUERY__DELEGATE_CLASS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    protected void addExtensionIdPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Query_extensionId_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_Query_extensionId_feature", "_UI_Query_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.QUERY__EXTENSION_ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -108,7 +108,7 @@ public class QueryItemProvider extends ItemProviderAdapter implements IEditingDo
      */
     @Override
     public String getText(Object object) {
-        String label = ((Query) object).getDelegateClass();
+        String label = ((Query) object).getExtensionId();
         return label == null || label.length() == 0 ? "[" + getString("_UI_Query_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
                 label + " [" + getString("_UI_Query_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
@@ -125,7 +125,7 @@ public class QueryItemProvider extends ItemProviderAdapter implements IEditingDo
         updateChildren(notification);
 
         switch (notification.getFeatureID(Query.class)) {
-        case PatternPackage.QUERY__DELEGATE_CLASS:
+        case PatternPackage.QUERY__EXTENSION_ID:
             fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
             return;
         }
