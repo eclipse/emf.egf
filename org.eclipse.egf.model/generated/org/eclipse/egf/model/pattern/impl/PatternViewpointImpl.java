@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,27 +9,19 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern.impl;
 
 import java.util.Collection;
 
-import org.eclipse.egf.model.factorycomponent.impl.ViewpointImpl;
-
+import org.eclipse.egf.model.fcore.impl.ViewpointImpl;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternViewpoint;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -41,26 +32,32 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternViewpointImpl#getLibraries <em>Libraries</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.pattern.impl.PatternViewpointImpl#getLibraries
+ * <em>Libraries</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpoint {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and
+   * whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getLibraries() <em>Libraries</em>}' containment reference list.
+   * The cached value of the '{@link #getLibraries() <em>Libraries</em>}'
+   * containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getLibraries()
    * @generated
    * @ordered
@@ -70,6 +67,7 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected PatternViewpointImpl() {
@@ -79,6 +77,7 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -89,6 +88,7 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<PatternLibrary> getLibraries() {
@@ -101,6 +101,7 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -115,6 +116,7 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -129,6 +131,7 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -146,6 +149,7 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -161,6 +165,7 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -172,4 +177,4 @@ public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpo
     return super.eIsSet(featureID);
   }
 
-} //PatternViewpointImpl
+} // PatternViewpointImpl

@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,20 +9,14 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern.impl;
 
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
@@ -34,10 +27,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.MethodCallImpl#getCalled <em>Called</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.MethodCallImpl#getCalled <em>
+ * Called</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MethodCallImpl extends CallImpl implements MethodCall {
@@ -45,6 +39,7 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
    * The cached value of the '{@link #getCalled() <em>Called</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getCalled()
    * @generated
    * @ordered
@@ -54,6 +49,7 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected MethodCallImpl() {
@@ -63,6 +59,7 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -73,6 +70,7 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternMethod getCalled() {
@@ -90,6 +88,7 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternMethod basicGetCalled() {
@@ -99,6 +98,7 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setCalled(PatternMethod newCalled) {
@@ -111,6 +111,7 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -127,6 +128,7 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -142,6 +144,7 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -157,6 +160,7 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -168,4 +172,4 @@ public class MethodCallImpl extends CallImpl implements MethodCall {
     return super.eIsSet(featureID);
   }
 
-} //MethodCallImpl
+} // MethodCallImpl

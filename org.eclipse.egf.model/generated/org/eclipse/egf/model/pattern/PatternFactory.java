@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,6 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern;
 
@@ -23,6 +19,7 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.pattern.PatternPackage
  * @generated
  */
@@ -31,6 +28,7 @@ public interface PatternFactory extends EFactory {
    * The singleton instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   PatternFactory eINSTANCE = org.eclipse.egf.model.pattern.impl.PatternFactoryImpl.init();
@@ -39,6 +37,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Pattern</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Pattern</em>'.
    * @generated
    */
@@ -48,6 +47,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Method</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Method</em>'.
    * @generated
    */
@@ -57,6 +57,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Parameter</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Parameter</em>'.
    * @generated
    */
@@ -66,6 +67,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Library</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Library</em>'.
    * @generated
    */
@@ -75,6 +77,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Viewpoint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Viewpoint</em>'.
    * @generated
    */
@@ -84,6 +87,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Call</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Call</em>'.
    * @generated
    */
@@ -93,6 +97,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Method Call</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Method Call</em>'.
    * @generated
    */
@@ -102,6 +107,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Variable</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Variable</em>'.
    * @generated
    */
@@ -111,6 +117,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Injected Call</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Injected Call</em>'.
    * @generated
    */
@@ -120,6 +127,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Basic Query</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Basic Query</em>'.
    * @generated
    */
@@ -129,6 +137,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>String Query</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>String Query</em>'.
    * @generated
    */
@@ -138,6 +147,7 @@ public interface PatternFactory extends EFactory {
    * Returns a new object of class '<em>Custom Query</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return a new object of class '<em>Custom Query</em>'.
    * @generated
    */
@@ -147,9 +157,10 @@ public interface PatternFactory extends EFactory {
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @return the package supported by this factory.
    * @generated
    */
   PatternPackage getPatternPackage();
 
-} //PatternFactory
+} // PatternFactory

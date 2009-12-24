@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,26 +9,26 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.types.impl;
 
-import org.eclipse.egf.model.types.*;
-
+import org.eclipse.egf.model.types.BooleanType;
+import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
+import org.eclipse.egf.model.types.PatternExecutionReporterType;
+import org.eclipse.egf.model.types.StringType;
+import org.eclipse.egf.model.types.TypesFactory;
+import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
@@ -37,6 +36,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static TypesFactory init() {
@@ -55,6 +55,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypesFactoryImpl() {
@@ -64,6 +65,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -85,6 +87,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public BooleanType createBooleanType() {
@@ -95,6 +98,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public StringType createStringType() {
@@ -105,6 +109,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternExecutionReporterType createPatternExecutionReporterType() {
@@ -115,6 +120,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public GeneratorAdapterFactoryType createGeneratorAdapterFactoryType() {
@@ -125,6 +131,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypesPackage getTypesPackage() {
@@ -134,6 +141,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @deprecated
    * @generated
    */
@@ -142,4 +150,4 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
     return TypesPackage.eINSTANCE;
   }
 
-} //TypesFactoryImpl
+} // TypesFactoryImpl

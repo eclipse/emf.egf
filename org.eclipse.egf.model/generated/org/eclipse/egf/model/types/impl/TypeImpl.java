@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,19 +9,13 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.types.impl;
 
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.model.types.TypesPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -32,10 +25,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.types.impl.TypeImpl#getTypeId <em>Type Id</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.TypeImpl#getTypeId <em>Type Id
+ * </em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class TypeImpl extends TypeElementImpl implements Type {
@@ -43,6 +37,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
    * The default value of the '{@link #getTypeId() <em>Type Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getTypeId()
    * @generated
    * @ordered
@@ -53,6 +48,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
    * The cached value of the '{@link #getTypeId() <em>Type Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getTypeId()
    * @generated
    * @ordered
@@ -62,6 +58,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TypeImpl() {
@@ -71,6 +68,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -81,6 +79,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getTypeId() {
@@ -90,6 +89,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setTypeId(String newTypeId) {
@@ -102,6 +102,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Object newInstance(String pluginId, String value) {
@@ -113,6 +114,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -127,6 +129,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -142,6 +145,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -157,6 +161,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -171,6 +176,7 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -185,4 +191,4 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
     return result.toString();
   }
 
-} //TypeImpl
+} // TypeImpl

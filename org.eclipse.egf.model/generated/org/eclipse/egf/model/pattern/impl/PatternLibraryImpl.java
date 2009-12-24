@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,6 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern.impl;
 
@@ -21,14 +17,10 @@ import java.util.Collection;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternPackage;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -40,18 +32,23 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getRuntimeOrchestration <em>Runtime Orchestration</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getElements
+ * <em>Elements</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getRuntimeOrchestration
+ * <em>Runtime Orchestration</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class PatternLibraryImpl extends PatternElementImpl implements PatternLibrary {
   /**
-   * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
+   * The cached value of the '{@link #getElements() <em>Elements</em>}'
+   * containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getElements()
    * @generated
    * @ordered
@@ -59,9 +56,11 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   protected EList<PatternElement> elements;
 
   /**
-   * The cached value of the '{@link #getRuntimeOrchestration() <em>Runtime Orchestration</em>}' reference list.
+   * The cached value of the '{@link #getRuntimeOrchestration()
+   * <em>Runtime Orchestration</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getRuntimeOrchestration()
    * @generated
    * @ordered
@@ -71,6 +70,7 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected PatternLibraryImpl() {
@@ -80,6 +80,7 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -90,6 +91,7 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<PatternElement> getElements() {
@@ -102,6 +104,7 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<PatternLibrary> getRuntimeOrchestration() {
@@ -114,6 +117,7 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -129,6 +133,7 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -143,6 +148,7 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -159,6 +165,7 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -180,6 +187,7 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -198,6 +206,7 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -211,4 +220,4 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
     return super.eIsSet(featureID);
   }
 
-} //PatternLibraryImpl
+} // PatternLibraryImpl

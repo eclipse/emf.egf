@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,6 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern.impl;
 
@@ -41,25 +37,36 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getHeaderMethod <em>Header Method</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getMethods <em>Methods</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getFooterMethod <em>Footer Method</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getSuperPattern <em>Super Pattern</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getOrchestration <em>Orchestration</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getParameters <em>Parameters</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getNature <em>Nature</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getVariables <em>Variables</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getInitMethod <em>Init Method</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getHeaderMethod
+ * <em>Header Method</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getMethods <em>
+ * Methods</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getFooterMethod
+ * <em>Footer Method</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getSuperPattern
+ * <em>Super Pattern</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getOrchestration
+ * <em>Orchestration</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getParameters <em>
+ * Parameters</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getNature <em>
+ * Nature</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getVariables <em>
+ * Variables</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getInitMethod <em>
+ * Init Method</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class PatternImpl extends PatternElementImpl implements Pattern {
   /**
-   * The cached value of the '{@link #getHeaderMethod() <em>Header Method</em>}' reference.
+   * The cached value of the '{@link #getHeaderMethod() <em>Header Method</em>}'
+   * reference.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @see #getHeaderMethod()
    * @generated
    * @ordered
@@ -67,8 +74,10 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   protected PatternMethod headerMethod;
 
   /**
-   * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
+   * The cached value of the '{@link #getMethods() <em>Methods</em>}'
+   * containment reference list.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getMethods()
    * @generated
    * @ordered
@@ -76,9 +85,11 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   protected EList<PatternMethod> methods;
 
   /**
-   * The cached value of the '{@link #getFooterMethod() <em>Footer Method</em>}' reference.
+   * The cached value of the '{@link #getFooterMethod() <em>Footer Method</em>}'
+   * reference.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @see #getFooterMethod()
    * @generated
    * @ordered
@@ -86,9 +97,11 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   protected PatternMethod footerMethod;
 
   /**
-   * The cached value of the '{@link #getSuperPattern() <em>Super Pattern</em>}' reference.
+   * The cached value of the '{@link #getSuperPattern() <em>Super Pattern</em>}'
+   * reference.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @see #getSuperPattern()
    * @generated
    * @ordered
@@ -96,9 +109,11 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   protected Pattern superPattern;
 
   /**
-   * The cached value of the '{@link #getOrchestration() <em>Orchestration</em>}' containment reference list.
+   * The cached value of the '{@link #getOrchestration() <em>Orchestration</em>}
+   * ' containment reference list.
    * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
+   * 
    * @see #getOrchestration()
    * @generated
    * @ordered
@@ -106,8 +121,10 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   protected EList<Call> orchestration;
 
   /**
-   * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
+   * The cached value of the '{@link #getParameters() <em>Parameters</em>}'
+   * containment reference list.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getParameters()
    * @generated
    * @ordered
@@ -115,8 +132,10 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   protected EList<PatternParameter> parameters;
 
   /**
-   * The cached value of the '{@link #getNature() <em>Nature</em>}' containment reference.
+   * The cached value of the '{@link #getNature() <em>Nature</em>}' containment
+   * reference.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #getNature()
    * @generated
    * @ordered
@@ -124,9 +143,11 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   protected PatternNature nature;
 
   /**
-   * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
+   * The cached value of the '{@link #getVariables() <em>Variables</em>}'
+   * containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getVariables()
    * @generated
    * @ordered
@@ -134,9 +155,11 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   protected EList<PatternVariable> variables;
 
   /**
-   * The cached value of the '{@link #getInitMethod() <em>Init Method</em>}' reference.
+   * The cached value of the '{@link #getInitMethod() <em>Init Method</em>}'
+   * reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getInitMethod()
    * @generated
    * @ordered
@@ -145,6 +168,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected PatternImpl() {
@@ -153,6 +177,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -162,6 +187,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternMethod getHeaderMethod() {
@@ -178,6 +204,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternMethod basicGetHeaderMethod() {
@@ -186,6 +213,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setHeaderMethod(PatternMethod newHeaderMethod) {
@@ -197,6 +225,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<PatternMethod> getMethods() {
@@ -208,6 +237,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Pattern getSuperPattern() {
@@ -216,6 +246,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setSuperPattern(Pattern newSuperPattern) {
@@ -227,6 +258,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternMethod getFooterMethod() {
@@ -243,6 +275,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternMethod basicGetFooterMethod() {
@@ -251,6 +284,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setFooterMethod(PatternMethod newFooterMethod) {
@@ -262,6 +296,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<Call> getOrchestration() {
@@ -273,6 +308,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<PatternParameter> getParameters() {
@@ -284,6 +320,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternNature getNature() {
@@ -292,6 +329,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetNature(PatternNature newNature, NotificationChain msgs) {
@@ -309,6 +347,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setNature(PatternNature newNature) {
@@ -328,6 +367,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<PatternVariable> getVariables() {
@@ -340,6 +380,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternMethod getInitMethod() {
@@ -357,6 +398,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternMethod basicGetInitMethod() {
@@ -366,6 +408,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setInitMethod(PatternMethod newInitMethod) {
@@ -392,6 +435,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -408,6 +452,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -429,6 +474,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -464,6 +510,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -507,6 +554,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -545,6 +593,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

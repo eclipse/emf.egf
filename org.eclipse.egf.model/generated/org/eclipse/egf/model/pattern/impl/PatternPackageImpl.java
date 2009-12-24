@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,6 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern.impl;
 
@@ -20,7 +16,7 @@ import java.util.Map;
 
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
-import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
+import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.Call;
@@ -56,131 +52,153 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternMethodEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternParameterEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternEngineEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternLibraryEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternElementEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternViewpointEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternNatureEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternCallEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass paramerter2ParameterMapEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass callEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass methodCallEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternVariableEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass abstractPatternCallEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternInjectedCallEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass queryEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass basicQueryEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass stringQueryEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass customQueryEClass = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EDataType patternContextEDataType = null;
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EDataType patternExceptionEDataType = null;
@@ -206,6 +224,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private static boolean isInited = false;
@@ -235,7 +254,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     isInited = true;
 
     // Initialize simple dependencies
-    FactoryComponentPackage.eINSTANCE.eClass();
+    FcorePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     thePatternPackage.createPackageContents();
@@ -260,6 +279,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPattern() {
@@ -268,6 +288,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPattern_HeaderMethod() {
@@ -276,6 +297,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPattern_Methods() {
@@ -284,6 +306,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPattern_SuperPattern() {
@@ -292,6 +315,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPattern_FooterMethod() {
@@ -300,6 +324,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPattern_Orchestration() {
@@ -308,6 +333,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPattern_Parameters() {
@@ -316,6 +342,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPattern_Nature() {
@@ -324,6 +351,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPattern_Variables() {
@@ -332,6 +360,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPattern_InitMethod() {
@@ -340,6 +369,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternMethod() {
@@ -348,6 +378,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPatternMethod_Pattern() {
@@ -356,6 +387,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getPatternMethod_PatternFilePath() {
@@ -364,6 +396,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternParameter() {
@@ -372,6 +405,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getPatternParameter_Type() {
@@ -380,6 +414,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPatternParameter_Query() {
@@ -388,6 +423,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternEngine() {
@@ -396,6 +432,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPatternEngine_Pattern() {
@@ -404,6 +441,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternLibrary() {
@@ -412,6 +450,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPatternLibrary_Elements() {
@@ -420,6 +459,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPatternLibrary_RuntimeOrchestration() {
@@ -428,6 +468,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternElement() {
@@ -436,6 +477,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPatternElement_Container() {
@@ -444,6 +486,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternViewpoint() {
@@ -452,6 +495,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPatternViewpoint_Libraries() {
@@ -460,6 +504,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternNature() {
@@ -468,6 +513,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternCall() {
@@ -476,6 +522,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPatternCall_ParameterMatching() {
@@ -484,6 +531,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getParamerter2ParameterMap() {
@@ -492,6 +540,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getParamerter2ParameterMap_Key() {
@@ -500,6 +549,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getCall() {
@@ -508,6 +558,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getCall_Pattern() {
@@ -516,6 +567,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getMethodCall() {
@@ -524,6 +576,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getMethodCall_Called() {
@@ -532,6 +585,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternVariable() {
@@ -541,6 +595,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getPatternVariable_Type() {
@@ -549,6 +604,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getAbstractPatternCall() {
@@ -557,6 +613,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getAbstractPatternCall_Called() {
@@ -565,6 +622,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternInjectedCall() {
@@ -573,6 +631,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getPatternInjectedCall_Context() {
@@ -581,6 +640,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getQuery() {
@@ -589,6 +649,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getQuery_Parameter() {
@@ -598,6 +659,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getQuery_ExtensionId() {
@@ -606,6 +668,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getBasicQuery() {
@@ -614,6 +677,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getStringQuery() {
@@ -622,6 +686,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getCustomQuery() {
@@ -630,6 +695,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getParamerter2ParameterMap_Value() {
@@ -638,6 +704,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EDataType getPatternContext() {
@@ -646,6 +713,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EDataType getPatternException() {
@@ -654,6 +722,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternFactory getPatternFactory() {
@@ -662,15 +731,17 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package.  This method is
+   * Creates the meta-model objects for the package. This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void createPackageContents() {
@@ -752,6 +823,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isInitialized = false;
@@ -775,7 +847,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
     // Obtain other dependent packages
     EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-    FactoryComponentPackage theFactoryComponentPackage = (FactoryComponentPackage) EPackage.Registry.INSTANCE.getEPackage(FactoryComponentPackage.eNS_URI);
+    FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
 
     // Create type parameters
 
@@ -783,16 +855,16 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
     // Add supertypes to classes
     patternEClass.getESuperTypes().add(this.getPatternElement());
-    patternMethodEClass.getESuperTypes().add(theFactoryComponentPackage.getModelElement());
-    patternParameterEClass.getESuperTypes().add(theFactoryComponentPackage.getModelElement());
-    patternEngineEClass.getESuperTypes().add(theFactoryComponentPackage.getModelElement());
+    patternMethodEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+    patternParameterEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+    patternEngineEClass.getESuperTypes().add(theFcorePackage.getModelElement());
     patternLibraryEClass.getESuperTypes().add(this.getPatternElement());
-    patternElementEClass.getESuperTypes().add(theFactoryComponentPackage.getModelElement());
-    patternViewpointEClass.getESuperTypes().add(theFactoryComponentPackage.getViewpoint());
-    patternNatureEClass.getESuperTypes().add(theFactoryComponentPackage.getModelElement());
+    patternElementEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+    patternViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
+    patternNatureEClass.getESuperTypes().add(theFcorePackage.getModelElement());
     patternCallEClass.getESuperTypes().add(this.getAbstractPatternCall());
     methodCallEClass.getESuperTypes().add(this.getCall());
-    patternVariableEClass.getESuperTypes().add(theFactoryComponentPackage.getModelElement());
+    patternVariableEClass.getESuperTypes().add(theFcorePackage.getModelElement());
     abstractPatternCallEClass.getESuperTypes().add(this.getCall());
     patternInjectedCallEClass.getESuperTypes().add(this.getAbstractPatternCall());
     basicQueryEClass.getESuperTypes().add(this.getQuery());
@@ -816,7 +888,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
     initEClass(patternMethodEClass, PatternMethod.class, "PatternMethod", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getPatternMethod_Pattern(), this.getPattern(), this.getPattern_Methods(), "pattern", null, 1, 1, PatternMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEAttribute(getPatternMethod_PatternFilePath(), theFactoryComponentPackage.getURI(), "patternFilePath", null, 1, 1, PatternMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getPatternMethod_PatternFilePath(), theFcorePackage.getURI(), "patternFilePath", null, 1, 1, PatternMethod.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(patternParameterEClass, PatternParameter.class, "PatternParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getPatternParameter_Type(), ecorePackage.getEString(), "type", null, 1, 1, PatternParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -897,9 +969,11 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
   }
 
   /**
-   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+   * Initializes the annotations for
+   * <b>http://www.eclipse.org/emf/2002/Ecore</b>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void createEcoreAnnotations() {

@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,17 +9,12 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.factorycomponent.impl.ModelElementImpl;
-
+import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternVariable;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -32,17 +26,20 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternVariableImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternVariableImpl#getType
+ * <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class PatternVariableImpl extends ModelElementImpl implements PatternVariable {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and
+   * whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -52,6 +49,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
    * The default value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getType()
    * @generated
    * @ordered
@@ -61,6 +59,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
    * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getType()
    * @generated
    * @ordered
@@ -70,6 +69,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected PatternVariableImpl() {
@@ -79,6 +79,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -89,6 +90,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getType() {
@@ -98,6 +100,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setType(String newType) {
@@ -110,6 +113,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -124,6 +128,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -139,6 +144,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -154,6 +160,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -168,6 +175,7 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -182,4 +190,4 @@ public class PatternVariableImpl extends ModelElementImpl implements PatternVari
     return result.toString();
   }
 
-} //PatternVariableImpl
+} // PatternVariableImpl

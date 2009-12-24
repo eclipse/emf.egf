@@ -1,18 +1,14 @@
 /**
- * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * </copyright>
- *
- * $Id$
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * 
  */
 package org.eclipse.egf.model.mapping.util;
 
@@ -21,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.egf.model.factorycomponent.ModelElement;
+import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.uri.EGFSchemeAware;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -40,6 +36,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.mapping.util.MappingResourceFactoryImpl
  * @generated
  */
@@ -48,6 +45,7 @@ public class MappingResourceImpl extends XMIResourceImpl {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   private List<Object> lookupTable = new ArrayList<Object>();
@@ -55,6 +53,7 @@ public class MappingResourceImpl extends XMIResourceImpl {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   private XMLParserPool parserPool = new XMLParserPoolImpl();
@@ -62,6 +61,7 @@ public class MappingResourceImpl extends XMIResourceImpl {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   private Map<Object, Object> nameToFeatureMap = new HashMap<Object, Object>();
@@ -70,7 +70,9 @@ public class MappingResourceImpl extends XMIResourceImpl {
    * Creates an instance of the resource.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param uri the URI of the new resource.
+   * 
+   * @param uri
+   *          the URI of the new resource.
    * @generated NOT
    */
   public MappingResourceImpl(URI uri) {
@@ -83,6 +85,7 @@ public class MappingResourceImpl extends XMIResourceImpl {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   @Override
@@ -93,6 +96,7 @@ public class MappingResourceImpl extends XMIResourceImpl {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   @Override
@@ -102,8 +106,9 @@ public class MappingResourceImpl extends XMIResourceImpl {
 
   /**
    * <!-- begin-user-doc -->
+   * 
    * @see {@link org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#getID(org.eclipse.emf.ecore.EObject)}
-   * <!-- end-user-doc -->
+   *      <!-- end-user-doc -->
    * @generated NOT
    */
   @Override
@@ -113,24 +118,28 @@ public class MappingResourceImpl extends XMIResourceImpl {
 
   /**
    * <!-- begin-user-doc -->
+   * 
    * @see {@link org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#setID(org.eclipse.emf.ecore.EObject, java.lang.String)}
-   * <!-- end-user-doc -->
+   *      <!-- end-user-doc -->
    * @generated NOT
    */
-  /*  @Override
-    public void setID(EObject eObject, String id) {
-      Object oldID = getID(eObject);
-      if (oldID != null) {
-        getIDToEObjectMap().remove(oldID);
-      }
-      if (id != null) {
-        getIDToEObjectMap().put(id, eObject);
-      }
-    }*/
+  /*
+   * @Override
+   * public void setID(EObject eObject, String id) {
+   * Object oldID = getID(eObject);
+   * if (oldID != null) {
+   * getIDToEObjectMap().remove(oldID);
+   * }
+   * if (id != null) {
+   * getIDToEObjectMap().put(id, eObject);
+   * }
+   * }
+   */
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   @Override
@@ -151,7 +160,7 @@ public class MappingResourceImpl extends XMIResourceImpl {
       }
     });
     getDefaultSaveOptions().put(XMLResource.OPTION_LINE_WIDTH, new Integer(80));
-    // Avoid relative paths from workspace resources to plugin resources.    
+    // Avoid relative paths from workspace resources to plugin resources.
     getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new EGFSchemeAware());
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
@@ -167,4 +176,4 @@ public class MappingResourceImpl extends XMIResourceImpl {
     getDefaultLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
   }
 
-} //MappingResourceImpl
+} // MappingResourceImpl

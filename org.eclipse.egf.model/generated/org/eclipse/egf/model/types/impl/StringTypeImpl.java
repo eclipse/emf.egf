@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,15 +9,11 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.types.impl;
 
 import org.eclipse.egf.model.types.StringType;
 import org.eclipse.egf.model.types.TypesPackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -27,13 +22,14 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class StringTypeImpl extends PrimitiveObjectTypeImpl implements StringType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected StringTypeImpl() {
@@ -43,6 +39,7 @@ public class StringTypeImpl extends PrimitiveObjectTypeImpl implements StringTyp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -50,4 +47,4 @@ public class StringTypeImpl extends PrimitiveObjectTypeImpl implements StringTyp
     return TypesPackage.Literals.STRING_TYPE;
   }
 
-} //StringTypeImpl
+} // StringTypeImpl

@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,6 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.types.impl;
 
@@ -37,12 +33,14 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass typeElementEClass = null;
@@ -50,6 +48,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass typeEClass = null;
@@ -57,6 +56,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass primitiveObjectTypeEClass = null;
@@ -64,6 +64,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass booleanTypeEClass = null;
@@ -71,6 +72,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass stringTypeEClass = null;
@@ -78,6 +80,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass classTypeEClass = null;
@@ -85,6 +88,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass patternExecutionReporterTypeEClass = null;
@@ -92,6 +96,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass generatorAdapterFactoryTypeEClass = null;
@@ -119,17 +124,21 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private static boolean isInited = false;
 
   /**
-   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+   * Creates, registers, and initializes the <b>Package</b> for this model, and
+   * for any others upon which it depends.
    * 
-   * <p>This method is used to initialize {@link TypesPackage#eINSTANCE} when that field is accessed.
-   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-   * <!-- begin-user-doc
+   * <p>
+   * This method is used to initialize {@link TypesPackage#eINSTANCE} when that
+   * field is accessed. Clients should not invoke it directly. Instead, they
+   * should simply access that field to obtain the package. <!-- begin-user-doc
    * --> <!-- end-user-doc -->
+   * 
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
@@ -164,6 +173,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getTypeElement() {
@@ -173,6 +183,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getTypeElement_ID() {
@@ -182,6 +193,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getTypeElement_Name() {
@@ -191,6 +203,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getTypeElement_Description() {
@@ -200,6 +213,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getType() {
@@ -209,6 +223,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getType_TypeId() {
@@ -218,6 +233,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPrimitiveObjectType() {
@@ -227,6 +243,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getBooleanType() {
@@ -236,6 +253,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getStringType() {
@@ -245,6 +263,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getClassType() {
@@ -254,6 +273,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getPatternExecutionReporterType() {
@@ -263,6 +283,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getGeneratorAdapterFactoryType() {
@@ -272,6 +293,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypesFactory getTypesFactory() {
@@ -281,15 +303,17 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package.  This method is
+   * Creates the meta-model objects for the package. This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void createPackageContents() {
@@ -322,15 +346,17 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model.  This
+   * Complete the initialization of the package and its meta-model. This
    * method is guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void initializePackageContents() {

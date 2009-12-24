@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,17 +9,12 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.factorycomponent.impl.ModelElementImpl;
-
+import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternPackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,14 +23,16 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class PatternNatureImpl extends ModelElementImpl implements PatternNature {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and
+   * whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -45,6 +41,7 @@ public abstract class PatternNatureImpl extends ModelElementImpl implements Patt
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected PatternNatureImpl() {
@@ -54,6 +51,7 @@ public abstract class PatternNatureImpl extends ModelElementImpl implements Patt
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -61,4 +59,4 @@ public abstract class PatternNatureImpl extends ModelElementImpl implements Patt
     return PatternPackage.Literals.PATTERN_NATURE;
   }
 
-} //PatternNatureImpl
+} // PatternNatureImpl

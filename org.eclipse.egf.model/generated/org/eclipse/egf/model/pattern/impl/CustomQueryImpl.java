@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,15 +9,11 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern.impl;
 
 import org.eclipse.egf.model.pattern.CustomQuery;
 import org.eclipse.egf.model.pattern.PatternPackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -27,13 +22,14 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class CustomQueryImpl extends QueryImpl implements CustomQuery {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected CustomQueryImpl() {
@@ -43,6 +39,7 @@ public class CustomQueryImpl extends QueryImpl implements CustomQuery {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -50,4 +47,4 @@ public class CustomQueryImpl extends QueryImpl implements CustomQuery {
     return PatternPackage.Literals.CUSTOM_QUERY;
   }
 
-} //CustomQueryImpl
+} // CustomQueryImpl

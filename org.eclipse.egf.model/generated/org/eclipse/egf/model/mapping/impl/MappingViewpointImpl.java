@@ -1,36 +1,27 @@
 /**
- * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * </copyright>
- *
- * $Id$
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * 
  */
 package org.eclipse.egf.model.mapping.impl;
 
 import java.util.Collection;
 
-import org.eclipse.egf.model.factorycomponent.impl.ViewpointImpl;
-
+import org.eclipse.egf.model.fcore.impl.ViewpointImpl;
 import org.eclipse.egf.model.mapping.MappingDomain;
 import org.eclipse.egf.model.mapping.MappingPackage;
 import org.eclipse.egf.model.mapping.MappingViewpoint;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -41,26 +32,32 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.mapping.impl.MappingViewpointImpl#getMappings <em>Mappings</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.mapping.impl.MappingViewpointImpl#getMappings
+ * <em>Mappings</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpoint {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and
+   * whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
+   * The cached value of the '{@link #getMappings() <em>Mappings</em>}'
+   * containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getMappings()
    * @generated
    * @ordered
@@ -70,6 +67,7 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected MappingViewpointImpl() {
@@ -79,6 +77,7 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -89,6 +88,7 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<MappingDomain> getMappings() {
@@ -101,6 +101,7 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -115,6 +116,7 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -129,6 +131,7 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -146,6 +149,7 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -161,6 +165,7 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -172,4 +177,4 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
     return super.eIsSet(featureID);
   }
 
-} //MappingViewpointImpl
+} // MappingViewpointImpl

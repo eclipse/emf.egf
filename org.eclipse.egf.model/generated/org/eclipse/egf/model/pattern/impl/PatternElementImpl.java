@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,25 +9,18 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.factorycomponent.impl.ModelElementImpl;
+import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternPackage;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -38,17 +30,21 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternElementImpl#getContainer <em>Container</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.pattern.impl.PatternElementImpl#getContainer
+ * <em>Container</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class PatternElementImpl extends ModelElementImpl implements PatternElement {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and
+   * whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -57,6 +53,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected PatternElementImpl() {
@@ -66,6 +63,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -76,6 +74,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternLibrary getContainer() {
@@ -87,6 +86,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetContainer(PatternLibrary newContainer, NotificationChain msgs) {
@@ -97,6 +97,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setContainer(PatternLibrary newContainer) {
@@ -118,6 +119,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -134,6 +136,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -148,6 +151,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -162,6 +166,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -176,6 +181,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -191,6 +197,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -206,6 +213,7 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -217,4 +225,4 @@ public abstract class PatternElementImpl extends ModelElementImpl implements Pat
     return super.eIsSet(featureID);
   }
 
-} //PatternElementImpl
+} // PatternElementImpl

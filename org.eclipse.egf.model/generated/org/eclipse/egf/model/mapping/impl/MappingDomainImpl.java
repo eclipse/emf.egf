@@ -1,30 +1,22 @@
 /**
- * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * </copyright>
- *
- * $Id$
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * 
  */
 package org.eclipse.egf.model.mapping.impl;
 
 import org.eclipse.egf.model.domain.Domain;
-
 import org.eclipse.egf.model.mapping.MappingDomain;
 import org.eclipse.egf.model.mapping.MappingPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -34,11 +26,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl#getSource
+ * <em>Source</em>}</li>
+ * <li>{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl#getTarget
+ * <em>Target</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class MappingDomainImpl extends MappingImpl implements MappingDomain {
@@ -46,6 +40,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
    * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getSource()
    * @generated
    * @ordered
@@ -56,6 +51,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getTarget()
    * @generated
    * @ordered
@@ -65,6 +61,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected MappingDomainImpl() {
@@ -74,6 +71,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -84,6 +82,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Domain getSource() {
@@ -93,6 +92,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setSource(Domain newSource) {
@@ -105,6 +105,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Domain getTarget() {
@@ -114,6 +115,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setTarget(Domain newTarget) {
@@ -126,6 +128,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -142,6 +145,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -160,6 +164,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -178,6 +183,7 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -191,4 +197,4 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
     return super.eIsSet(featureID);
   }
 
-} //MappingDomainImpl
+} // MappingDomainImpl

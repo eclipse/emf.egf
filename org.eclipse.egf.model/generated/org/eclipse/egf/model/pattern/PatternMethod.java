@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,13 +9,10 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.pattern;
 
-import org.eclipse.egf.model.factorycomponent.ModelElement;
+import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.emf.common.util.URI;
 
 /**
@@ -86,8 +82,7 @@ public interface PatternMethod extends ModelElement {
    * @return the value of the '<em>Pattern File Path</em>' attribute.
    * @see #setPatternFilePath(URI)
    * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternMethod_PatternFilePath()
-   * @model dataType="org.eclipse.egf.model.factorycomponent.URI"
-   *        required="true"
+   * @model dataType="org.eclipse.egf.model.fcore.URI" required="true"
    * @generated
    */
   URI getPatternFilePath();

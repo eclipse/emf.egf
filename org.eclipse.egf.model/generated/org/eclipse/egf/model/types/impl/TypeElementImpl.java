@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,6 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.types.impl;
 
@@ -33,19 +29,24 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.types.impl.TypeElementImpl#getID <em>ID</em>}</li>
- *   <li>{@link org.eclipse.egf.model.types.impl.TypeElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.egf.model.types.impl.TypeElementImpl#getDescription <em>Description</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.TypeElementImpl#getID <em>ID
+ * </em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.TypeElementImpl#getName <em>Name
+ * </em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.TypeElementImpl#getDescription
+ * <em>Description</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and
+   * whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -55,6 +56,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
    * The default value of the '{@link #getID() <em>ID</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getID()
    * @generated
    * @ordered
@@ -65,6 +67,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
    * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getID()
    * @generated
    * @ordered
@@ -75,6 +78,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getName()
    * @generated
    * @ordered
@@ -85,6 +89,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getName()
    * @generated
    * @ordered
@@ -92,9 +97,11 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
+   * The default value of the '{@link #getDescription() <em>Description</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDescription()
    * @generated
    * @ordered
@@ -102,9 +109,11 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   protected static final String DESCRIPTION_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
+   * The cached value of the '{@link #getDescription() <em>Description</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDescription()
    * @generated
    * @ordered
@@ -114,6 +123,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TypeElementImpl() {
@@ -123,6 +133,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -133,6 +144,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public String getID() {
@@ -145,6 +157,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public void setIDGen(String newID) {
@@ -158,6 +171,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public void setID(String newID) {
@@ -171,6 +185,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getName() {
@@ -180,6 +195,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setName(String newName) {
@@ -192,6 +208,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getDescription() {
@@ -201,6 +218,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setDescription(String newDescription) {
@@ -213,6 +231,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -231,6 +250,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -252,6 +272,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -273,6 +294,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -291,6 +313,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -309,4 +332,4 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
     return result.toString();
   }
 
-} //TypeElementImpl
+} // TypeElementImpl

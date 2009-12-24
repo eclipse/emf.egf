@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,30 +9,28 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.types.impl;
 
 import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
 import org.eclipse.egf.model.types.TypesPackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Generator Adapter Factory Type</b></em>'.
+ * An implementation of the model object '
+ * <em><b>Generator Adapter Factory Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public class GeneratorAdapterFactoryTypeImpl extends ClassTypeImpl implements GeneratorAdapterFactoryType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected GeneratorAdapterFactoryTypeImpl() {
@@ -43,6 +40,7 @@ public class GeneratorAdapterFactoryTypeImpl extends ClassTypeImpl implements Ge
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -50,4 +48,4 @@ public class GeneratorAdapterFactoryTypeImpl extends ClassTypeImpl implements Ge
     return TypesPackage.Literals.GENERATOR_ADAPTER_FACTORY_TYPE;
   }
 
-} //GeneratorAdapterFactoryTypeImpl
+} // GeneratorAdapterFactoryTypeImpl
