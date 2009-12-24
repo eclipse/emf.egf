@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,20 +9,16 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.editor;
 
 import org.eclipse.egf.common.ui.activator.EGFEclipseUIPlugin;
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
- * This is the central singleton for the FactoryComponent editor plugin.
+ * This is the central singleton for the Fcore editor plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
@@ -56,7 +51,7 @@ public final class EGFModelsEditorPlugin extends EMFPlugin {
    * @generated
    */
   public EGFModelsEditorPlugin() {
-    super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelsEditPlugin.INSTANCE, });
+    super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, });
   }
 
   /**
