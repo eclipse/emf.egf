@@ -47,7 +47,18 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
     @Override
     protected void call(PatternInjectedCall call) throws PatternException {
-        // TODO implementation
+        Pattern pattern = call.getCalled();
+        String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
+        if (templateClassName == null)
+            throw new PatternException(Messages.assembly_error1);
+
+        content.append("<%");
+        String ctxName = "ctx_" + PatternHelper.uniqueName(pattern);
+        content.append("PatternContext ").append(ctxName).append(" = new PatternContext(ctx);").append(CharacterConstants.LINE_SEPARATOR);
+        content.append(ctxName).append(".setValue(").append("PatternContext.INJECTED_CONTEXT, ").append(call.getContext().getName()).append(");").append(CharacterConstants.LINE_SEPARATOR);
+        content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(").append(ctxName).append(");");
+        content.append("%>");
+
     }
 
     @Override
