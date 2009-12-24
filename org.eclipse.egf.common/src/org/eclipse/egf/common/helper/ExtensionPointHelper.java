@@ -235,7 +235,7 @@ public class ExtensionPointHelper {
           }
         }
         if (isExecutableExtensionCreatable) {
-          object = createInstance(configElement, ATT_CLASS);
+          object = createInstance(configElement);
         }
       }
     }
@@ -259,6 +259,17 @@ public class ExtensionPointHelper {
    */
   public static Object createExecutableExtension(String pluginId_p, String extensionPointId_p, String idValue_p) {
     return createExecutableExtension(pluginId_p, extensionPointId_p, ATT_ID, idValue_p);
+  }
+
+  /**
+   * Create an object instance for specified parameters.
+   * 
+   * @param configurationElement_p
+   *          a configuration element loaded from an extension point.
+   * @return an Object instance if instantiation is successful; null otherwise.
+   */
+  public static Object createInstance(IConfigurationElement configurationElement_p) {
+    return createInstance(configurationElement_p, ATT_CLASS);
   }
 
   /**
