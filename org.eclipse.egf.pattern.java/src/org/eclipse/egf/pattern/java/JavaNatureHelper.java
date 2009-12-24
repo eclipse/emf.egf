@@ -36,7 +36,7 @@ public class JavaNatureHelper {
      */
     public static String getClassName(Pattern pattern) throws PatternException {
         try {
-            String content = FileHelper_to_be_upgraded.getContent(PatternHelper.getPlatformFactoryComponent(pattern), pattern.getHeaderMethod().getPatternFilePath());
+            String content = FileHelper_to_be_upgraded.getContent(PatternHelper.getPlatformFcore(pattern), pattern.getHeaderMethod().getPatternFilePath());
             Matcher matcher = compile.matcher(content);
             if (matcher.matches()) {
                 String pack = matcher.group(1);
