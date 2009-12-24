@@ -60,7 +60,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
 
   public void log(IStatus status) {
-    log(status, 0, isDebugging());
+    log(status, 0, true);
   }
 
   public void log(IStatus status, boolean appendLogger) {
@@ -68,7 +68,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   }
 
   public void log(IStatus status, int nesting) {
-    log(status, nesting, isDebugging());
+    log(status, nesting, true);
   }
 
   public void log(IStatus status, int nesting, boolean appendLogger) {
@@ -85,7 +85,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
 
   public void logInfo(String message) {
-    logInfo(message, 0, isDebugging());
+    logInfo(message, 0, true);
   }
 
   public void logInfo(String message, boolean appendLogger) {
@@ -93,7 +93,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   }
 
   public void logInfo(String message, int nesting) {
-    logInfo(message, nesting, isDebugging());
+    logInfo(message, nesting, true);
   }
 
   public void logInfo(String message, int nesting, boolean appendLogger) {
@@ -105,7 +105,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
 
   public void logInfo(String message, Throwable t) {
-    logInfo(message, t, 0, isDebugging());
+    logInfo(message, t, 0, true);
   }
 
   public void logInfo(String message, Throwable t, boolean appendLogger) {
@@ -113,7 +113,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   }
 
   public void logInfo(String message, Throwable t, int nesting) {
-    logInfo(message, t, nesting, isDebugging());
+    logInfo(message, t, nesting, true);
   }
 
   public void logInfo(String message, Throwable t, int nesting, boolean appendLogger) {
@@ -125,7 +125,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
 
   public void logInfo(Throwable t) {
-    logInfo(t, 0, isDebugging());
+    logInfo(t, 0, true);
   }
 
   public void logInfo(Throwable t, boolean appendLogger) {
@@ -133,7 +133,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   }
 
   public void logInfo(Throwable t, int nesting) {
-    logInfo(t, nesting, isDebugging());
+    logInfo(t, nesting, true);
   }
 
   public void logInfo(Throwable t, int nesting, boolean appendLogger) {
@@ -145,7 +145,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
 
   public void logError(String message) {
-    logError(message, 0, isDebugging());
+    logError(message, 0, true);
   }
 
   public void logError(String message, boolean appendLogger) {
@@ -153,7 +153,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   }
 
   public void logError(String message, int nesting) {
-    logError(message, nesting, isDebugging());
+    logError(message, nesting, true);
   }
 
   public void logError(String message, int nesting, boolean appendLogger) {
@@ -165,7 +165,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
 
   public void logError(String message, Throwable t) {
-    logError(message, t, 0, isDebugging());
+    logError(message, t, 0, true);
   }
 
   public void logError(String message, Throwable t, boolean appendLogger) {
@@ -173,7 +173,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   }
 
   public void logError(String message, Throwable t, int nesting) {
-    logError(message, t, nesting, isDebugging());
+    logError(message, t, nesting, true);
   }
 
   public void logError(String message, Throwable t, int nesting, boolean appendLogger) {
@@ -185,7 +185,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
 
   public void logError(Throwable t) {
-    logError(t, 0, isDebugging());
+    logError(t, 0, true);
   }
 
   public void logError(Throwable t, boolean appendLogger) {
@@ -193,7 +193,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   }
 
   public void logError(Throwable t, int nesting) {
-    logError(t, nesting, isDebugging());
+    logError(t, nesting, true);
   }
 
   public void logError(Throwable t, int nesting, boolean appendLogger) {
@@ -205,7 +205,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
 
   public void logWarning(String message) {
-    logWarning(message, 0, isDebugging());
+    logWarning(message, 0, true);
   }
 
   public void logWarning(String message, boolean appendLogger) {
@@ -213,7 +213,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   }
 
   public void logWarning(String message, int nesting) {
-    logWarning(message, nesting, isDebugging());
+    logWarning(message, nesting, true);
   }
 
   public void logWarning(String message, int nesting, boolean appendLogger) {
@@ -225,7 +225,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
 
   public void logWarning(String message, Throwable t) {
-    logWarning(message, t, 0, isDebugging());
+    logWarning(message, t, 0, true);
   }
 
   public void logWarning(String message, Throwable t, boolean appendLogger) {
@@ -233,7 +233,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   }
 
   public void logWarning(String message, Throwable t, int nesting) {
-    logWarning(message, t, nesting, isDebugging());
+    logWarning(message, t, nesting, true);
   }
 
   public void logWarning(String message, Throwable t, int nesting, boolean appendLogger) {
@@ -245,7 +245,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
 
   public void logWarning(Throwable t) {
-    logWarning(t, 0, isDebugging());
+    logWarning(t, 0, true);
   }
 
   public void logWarning(Throwable t, boolean appendLogger) {
@@ -253,7 +253,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   }
 
   public void logWarning(Throwable t, int nesting) {
-    logWarning(t, nesting, isDebugging());
+    logWarning(t, nesting, true);
   }
 
   public void logWarning(Throwable t, int nesting, boolean appendLogger) {
