@@ -130,7 +130,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetEngineImpl {
         builder.append(content.substring(endIndex + JetAssemblyHelper.END_MARKER.length(), insertionIndex));
 
         // add new method body
-        builder.append("public void generate(StringBuffer stringBuffer, PatternContext ctx");
+        builder.append("public void generate(final StringBuffer stringBuffer, PatternContext ctx");
         if (!getPattern().getParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getParameters()) {
                 String local = PatternHelper.localizeName(parameter);
