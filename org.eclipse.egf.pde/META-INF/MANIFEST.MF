@@ -23,8 +23,8 @@ Require-Bundle:
  org.eclipse.ltk.core.refactoring
 Export-Package: 
  org.eclipse.egf.pde,
+ org.eclipse.egf.pde.manifest.command,
  org.eclipse.egf.pde.plugin.command,
  org.eclipse.egf.pde.plugin.extension,
- org.eclipse.egf.pde.plugin.manifest.command,
  org.eclipse.egf.pde.util
 Bundle-ActivationPolicy: lazy

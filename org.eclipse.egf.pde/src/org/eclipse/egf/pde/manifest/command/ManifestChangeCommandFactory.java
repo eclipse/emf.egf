@@ -8,7 +8,7 @@
  *  Contributors:
  *      Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.pde.plugin.manifest.command;
+package org.eclipse.egf.pde.manifest.command;
 
 import org.eclipse.egf.pde.internal.plugin.manifest.command.SetExportedPackagesCommand;
 import org.eclipse.egf.pde.internal.plugin.manifest.command.SetRequiredPluginsCommand;
