@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.jetpattern;
@@ -38,201 +38,201 @@ import org.eclipse.emf.ecore.EPackage;
  * @generated
  */
 public interface JetPatternPackage extends EPackage {
-    /**
-     * The package name.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    String eNAME = "jetpattern"; //$NON-NLS-1$
+  /**
+   * The package name.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  String eNAME = "jetpattern"; //$NON-NLS-1$
 
-    /**
-     * The package namespace URI.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    String eNS_URI = "http://www.eclipse.org/egf/1.0.0/jetpattern"; //$NON-NLS-1$
+  /**
+   * The package namespace URI.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  String eNS_URI = "http://www.eclipse.org/egf/1.0.0/jetpattern"; //$NON-NLS-1$
 
-    /**
-     * The package namespace name.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    String eNS_PREFIX = "jetpattern"; //$NON-NLS-1$
+  /**
+   * The package namespace name.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  String eNS_PREFIX = "jetpattern"; //$NON-NLS-1$
 
-    /**
-     * The singleton instance of the package.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    JetPatternPackage eINSTANCE = org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl.init();
+  /**
+   * The singleton instance of the package.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  JetPatternPackage eINSTANCE = org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl.init();
 
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl <em>Jet Nature</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.jetpattern.impl.JetNatureImpl
+   * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetNature()
+   * @generated
+   */
+  int JET_NATURE = 0;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JET_NATURE__ID = PatternPackage.PATTERN_NATURE__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JET_NATURE__NAME = PatternPackage.PATTERN_NATURE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JET_NATURE__DESCRIPTION = PatternPackage.PATTERN_NATURE__DESCRIPTION;
+
+  /**
+   * The number of structural features of the '<em>Jet Nature</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JET_NATURE_FEATURE_COUNT = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.jetpattern.impl.JetEngineImpl <em>Jet Engine</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.jetpattern.impl.JetEngineImpl
+   * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetEngine()
+   * @generated
+   */
+  int JET_ENGINE = 1;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JET_ENGINE__ID = PatternPackage.PATTERN_ENGINE__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JET_ENGINE__NAME = PatternPackage.PATTERN_ENGINE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JET_ENGINE__DESCRIPTION = PatternPackage.PATTERN_ENGINE__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Pattern</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JET_ENGINE__PATTERN = PatternPackage.PATTERN_ENGINE__PATTERN;
+
+  /**
+   * The number of structural features of the '<em>Jet Engine</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JET_ENGINE_FEATURE_COUNT = PatternPackage.PATTERN_ENGINE_FEATURE_COUNT + 0;
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.jetpattern.JetNature <em>Jet Nature</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Jet Nature</em>'.
+   * @see org.eclipse.egf.model.jetpattern.JetNature
+   * @generated
+   */
+  EClass getJetNature();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.jetpattern.JetEngine <em>Jet Engine</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Jet Engine</em>'.
+   * @see org.eclipse.egf.model.jetpattern.JetEngine
+   * @generated
+   */
+  EClass getJetEngine();
+
+  /**
+   * Returns the factory that creates the instances of the model.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the factory that creates the instances of the model.
+   * @generated
+   */
+  JetPatternFactory getJetPatternFactory();
+
+  /**
+   * <!-- begin-user-doc -->
+   * Defines literals for the meta objects that represent
+   * <ul>
+   *   <li>each class,</li>
+   *   <li>each feature of each class,</li>
+   *   <li>each enum,</li>
+   *   <li>and each data type</li>
+   * </ul>
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  interface Literals {
     /**
-     * The meta object id for the '{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl <em>Jet Nature</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl <em>Jet Nature</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.egf.model.jetpattern.impl.JetNatureImpl
      * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetNature()
      * @generated
      */
-    int JET_NATURE = 0;
+    EClass JET_NATURE = eINSTANCE.getJetNature();
 
     /**
-     * The feature id for the '<em><b>ID</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JET_NATURE__ID = PatternPackage.PATTERN_NATURE__ID;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JET_NATURE__NAME = PatternPackage.PATTERN_NATURE__NAME;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JET_NATURE__DESCRIPTION = PatternPackage.PATTERN_NATURE__DESCRIPTION;
-
-    /**
-     * The number of structural features of the '<em>Jet Nature</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JET_NATURE_FEATURE_COUNT = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 0;
-
-    /**
-     * The meta object id for the '{@link org.eclipse.egf.model.jetpattern.impl.JetEngineImpl <em>Jet Engine</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetEngineImpl <em>Jet Engine</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see org.eclipse.egf.model.jetpattern.impl.JetEngineImpl
      * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetEngine()
      * @generated
      */
-    int JET_ENGINE = 1;
+    EClass JET_ENGINE = eINSTANCE.getJetEngine();
 
-    /**
-     * The feature id for the '<em><b>ID</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JET_ENGINE__ID = PatternPackage.PATTERN_ENGINE__ID;
-
-    /**
-     * The feature id for the '<em><b>Name</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JET_ENGINE__NAME = PatternPackage.PATTERN_ENGINE__NAME;
-
-    /**
-     * The feature id for the '<em><b>Description</b></em>' attribute.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JET_ENGINE__DESCRIPTION = PatternPackage.PATTERN_ENGINE__DESCRIPTION;
-
-    /**
-     * The feature id for the '<em><b>Pattern</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JET_ENGINE__PATTERN = PatternPackage.PATTERN_ENGINE__PATTERN;
-
-    /**
-     * The number of structural features of the '<em>Jet Engine</em>' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int JET_ENGINE_FEATURE_COUNT = PatternPackage.PATTERN_ENGINE_FEATURE_COUNT + 0;
-
-    /**
-     * Returns the meta object for class '{@link org.eclipse.egf.model.jetpattern.JetNature <em>Jet Nature</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Jet Nature</em>'.
-     * @see org.eclipse.egf.model.jetpattern.JetNature
-     * @generated
-     */
-    EClass getJetNature();
-
-    /**
-     * Returns the meta object for class '{@link org.eclipse.egf.model.jetpattern.JetEngine <em>Jet Engine</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Jet Engine</em>'.
-     * @see org.eclipse.egf.model.jetpattern.JetEngine
-     * @generated
-     */
-    EClass getJetEngine();
-
-    /**
-     * Returns the factory that creates the instances of the model.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the factory that creates the instances of the model.
-     * @generated
-     */
-    JetPatternFactory getJetPatternFactory();
-
-    /**
-     * <!-- begin-user-doc -->
-     * Defines literals for the meta objects that represent
-     * <ul>
-     *   <li>each class,</li>
-     *   <li>each feature of each class,</li>
-     *   <li>each enum,</li>
-     *   <li>and each data type</li>
-     * </ul>
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    interface Literals {
-        /**
-         * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl <em>Jet Nature</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.egf.model.jetpattern.impl.JetNatureImpl
-         * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetNature()
-         * @generated
-         */
-        EClass JET_NATURE = eINSTANCE.getJetNature();
-
-        /**
-         * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetEngineImpl <em>Jet Engine</em>}' class.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.egf.model.jetpattern.impl.JetEngineImpl
-         * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetEngine()
-         * @generated
-         */
-        EClass JET_ENGINE = eINSTANCE.getJetEngine();
-
-    }
+  }
 
 } //JetPatternPackage

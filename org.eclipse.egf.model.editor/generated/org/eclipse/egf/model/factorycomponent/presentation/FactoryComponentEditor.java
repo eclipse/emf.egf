@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.factorycomponent.presentation;
@@ -41,6 +41,9 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.ui.emf.EGFEditUIUtil;
+import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
+import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponentDelta;
+import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponentListener;
 import org.eclipse.egf.core.platform.resource.ResourceHelper;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.factorycomponent.provider.FactoryComponentItemProviderAdapterFactory;
@@ -128,7 +131,8 @@ import org.eclipse.ui.views.properties.PropertySheet;
 import org.eclipse.ui.views.properties.PropertySheetPage;
 
 /**
- * This is an example of a FactoryComponent model editor. <!-- begin-user-doc
+ * This is an example of a FactoryComponent model editor.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * 
  * @generated
@@ -136,7 +140,8 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
 public class FactoryComponentEditor extends MultiPageEditorPart implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
   /**
    * This keeps track of the editing domain that is used to track all changes to
-   * the model. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * the model.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -159,14 +164,16 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   protected IContentOutlinePage contentOutlinePage;
 
   /**
-   * This is a kludge... <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This is a kludge...
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected IStatusLineManager contentOutlineStatusLineManager;
 
   /**
-   * This is the content outline page's viewer. <!-- begin-user-doc --> <!--
+   * This is the content outline page's viewer.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -192,7 +199,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * This keeps track of the active content viewer, which may be either one of
-   * the viewers in the pages or the content outline viewer. <!-- begin-user-doc
+   * the viewers in the pages or the content outline viewer.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
    * 
    * @generated
@@ -200,7 +208,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   protected Viewer currentViewer;
 
   /**
-   * This listens to which ever viewer is active. <!-- begin-user-doc --> <!--
+   * This listens to which ever viewer is active.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -210,7 +219,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   /**
    * This keeps track of all the
    * {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are
-   * listening to this editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * listening to this editor.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -226,7 +236,9 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * The MarkerHelper is responsible for creating workspace resource markers
-   * presented in Eclipse's Problems View. <!-- begin-user-doc --> <!--
+   * presented
+   * in Eclipse's Problems View.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -234,7 +246,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   protected MarkerHelper markerHelper = new EditUIMarkerHelper();
 
   /**
-   * This listens for when the outline becomes active <!-- begin-user-doc -->
+   * This listens for when the outline becomes active
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated
@@ -275,7 +288,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   };
 
   /**
-   * Resources that have been removed since last activation. <!-- begin-user-doc
+   * Resources that have been removed since last activation.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
    * 
    * @generated
@@ -283,7 +297,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
   /**
-   * Resources that have been changed since last activation. <!-- begin-user-doc
+   * Resources that have been changed since last activation.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
    * 
    * @generated
@@ -299,7 +314,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   protected Collection<Resource> savedResources = new ArrayList<Resource>();
 
   /**
-   * Map to store the diagnostic associated with a resource. <!-- begin-user-doc
+   * Map to store the diagnostic associated with a resource.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
    * 
    * @generated
@@ -316,7 +332,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * Adapter used to update the problem indication when resources are demanded
-   * loaded. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * loaded.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -363,7 +380,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   };
 
   /**
-   * This listens for workspace changes. <!-- begin-user-doc --> <!--
+   * This listens for workspace changes.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -431,6 +449,63 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
         EGFModelsEditorPlugin.INSTANCE.log(exception);
       }
     }
+  };
+
+  /**
+   * This listens for platform changes. <!-- begin-user-doc --> <!--
+   * end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected IPlatformFactoryComponentListener platformFCListener = new IPlatformFactoryComponentListener() {
+
+    public void factoryComponentChanged(IPlatformFactoryComponentDelta delta) {
+
+      final Collection<Resource> deltaChangedResources = new ArrayList<Resource>();
+      final Collection<Resource> deltaRemovedResources = new ArrayList<Resource>();
+      ResourceSet resourceSet = editingDomain.getResourceSet();
+
+      // Check if removed platform factory components are applicable to this
+      // editor
+      for (IPlatformFactoryComponent fc : delta.getRemovedPlatformFactoryComponents()) {
+        Resource resource = resourceSet.getResource(fc.getURI(), false);
+        if (resource != null) {
+          deltaRemovedResources.add(resource);
+        }
+      }
+      // Check if added platform factory components are applicable to this
+      // editor
+      for (IPlatformFactoryComponent fc : delta.getRemovedPlatformFactoryComponents()) {
+        Resource resource = resourceSet.getResource(fc.getURI(), false);
+        if (resource != null && savedResources.remove(resource) == false) {
+          deltaChangedResources.add(resource);
+        }
+      }
+
+      if (deltaRemovedResources.isEmpty() == false) {
+        getSite().getShell().getDisplay().asyncExec(new Runnable() {
+          public void run() {
+            removedResources.addAll(deltaRemovedResources);
+            if (!isDirty()) {
+              getSite().getPage().closeEditor(FactoryComponentEditor.this, false);
+            }
+          }
+        });
+      }
+
+      if (deltaChangedResources.isEmpty() == false) {
+        getSite().getShell().getDisplay().asyncExec(new Runnable() {
+          public void run() {
+            changedResources.addAll(deltaChangedResources);
+            if (getSite().getPage().getActiveEditor() == FactoryComponentEditor.this) {
+              handleActivate();
+            }
+          }
+        });
+      }
+
+    }
+
   };
 
   /**
@@ -504,7 +579,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * Updates the problems indication with the information described in the
-   * specified diagnostic. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * specified diagnostic.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -563,7 +639,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   }
 
   /**
-   * This creates a model editor. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * This creates a model editor.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -623,7 +700,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   }
 
   /**
-   * This is here for the listener to be able to call it. <!-- begin-user-doc
+   * This is here for the listener to be able to call it.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
    * 
    * @generated
@@ -732,7 +810,9 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * This makes sure that one content viewer, either for the current page or the
-   * outline view, if it has focus, is the current one. <!-- begin-user-doc -->
+   * outline view, if it has focus,
+   * is the current one.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated
@@ -777,7 +857,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * This returns the viewer as required by the {@link IViewerProvider}
-   * interface. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * interface.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -787,7 +868,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * This creates a context menu for the viewer and adds a listener as well
-   * registering the menu for extension. <!-- begin-user-doc --> <!--
+   * registering the menu for extension.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -836,7 +918,9 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * Returns a diagnostic describing the errors and warnings listed in the
-   * resource and the specified exception (if any). <!-- begin-user-doc --> <!--
+   * resource
+   * and the specified exception (if any).
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -920,8 +1004,9 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   }
 
   /**
-   * If there is just one page in the multi-page editor part, this hides the
-   * single tab at the bottom. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * If there is just one page in the multi-page editor part,
+   * this hides the single tab at the bottom.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -937,8 +1022,9 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   }
 
   /**
-   * If there is more than one page in the multi-page editor part, this shows
-   * the tabs at the bottom. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * If there is more than one page in the multi-page editor part,
+   * this shows the tabs at the bottom.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -954,7 +1040,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   }
 
   /**
-   * This is used to track the active viewer. <!-- begin-user-doc --> <!--
+   * This is used to track the active viewer.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -989,7 +1076,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   }
 
   /**
-   * This accesses a cached version of the content outliner. <!-- begin-user-doc
+   * This accesses a cached version of the content outliner.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
    * 
    * @generated
@@ -1052,7 +1140,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   }
 
   /**
-   * This accesses a cached version of the property sheet. <!-- begin-user-doc
+   * This accesses a cached version of the property sheet.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
    * 
    * @generated
@@ -1080,7 +1169,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * This deals with how we want selection in the outliner to affect the other
-   * views. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * views.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1107,7 +1197,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * This is for implementing {@link IEditorPart} and simply tests the command
-   * stack. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * stack.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1118,7 +1209,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * This is for implementing {@link IEditorPart} and simply saves the model
-   * file. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * file.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -1178,8 +1270,10 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * This returns whether something has been persisted to the URI of the
-   * specified resource. The implementation uses the URI converter from the
-   * editor's resource set to try to open an input stream. <!-- begin-user-doc
+   * specified resource.
+   * The implementation uses the URI converter from the editor's resource set to
+   * try to open an input stream.
+   * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
    * 
    * @generated
@@ -1210,7 +1304,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
   }
 
   /**
-   * This also changes the editor's input. <!-- begin-user-doc --> <!--
+   * This also changes the editor's input.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -1311,7 +1406,8 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to
-   * return this editor's overall selection. <!-- begin-user-doc --> <!--
+   * return this editor's overall selection.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -1322,8 +1418,9 @@ public class FactoryComponentEditor extends MultiPageEditorPart implements IEdit
 
   /**
    * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set
-   * this editor's overall selection. Calling this result will notify the
-   * listeners. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * this editor's overall selection.
+   * Calling this result will notify the listeners.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */

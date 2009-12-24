@@ -1,21 +1,22 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.factorycomponent.impl;
 
+import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.factorycomponent.Activity;
 import org.eclipse.egf.model.factorycomponent.Context;
 import org.eclipse.egf.model.factorycomponent.ContextValue;
@@ -32,12 +33,8 @@ import org.eclipse.egf.model.factorycomponent.ModelElement;
 import org.eclipse.egf.model.factorycomponent.Orchestration;
 import org.eclipse.egf.model.factorycomponent.Task;
 import org.eclipse.egf.model.factorycomponent.Viewpoint;
-
 import org.eclipse.egf.model.factorycomponent.ViewpointContainer;
 import org.eclipse.egf.model.factorycomponent.util.FactoryComponentValidator;
-
-import org.eclipse.egf.model.types.TypesPackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -47,19 +44,20 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FactoryComponentPackageImpl extends EPackageImpl implements FactoryComponentPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass modelElementEClass = null;
@@ -67,6 +65,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass activityEClass = null;
@@ -74,6 +73,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass taskEClass = null;
@@ -81,6 +81,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass factoryComponentEClass = null;
@@ -88,6 +89,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass viewpointContainerEClass = null;
@@ -95,6 +97,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass viewpointEClass = null;
@@ -102,6 +105,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass orchestrationEClass = null;
@@ -109,6 +113,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass invocationEClass = null;
@@ -116,6 +121,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass contextEClass = null;
@@ -123,6 +129,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass contractContainerEClass = null;
@@ -130,6 +137,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass contractEClass = null;
@@ -137,6 +145,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass contextValueEClass = null;
@@ -144,6 +153,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass contractValueEClass = null;
@@ -151,6 +161,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass contractConnectorEClass = null;
@@ -158,6 +169,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EEnum contractModeEEnum = null;
@@ -165,6 +177,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EDataType invocationExceptionEDataType = null;
@@ -172,20 +185,22 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EDataType uriEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
-   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+   * package
    * package URI value.
-   * <p>Note: the correct way to create the package is via the static
-   * factory method {@link #init init()}, which also performs
-   * initialization of the package, or returns the registered package,
-   * if one already exists.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <p>
+   * Note: the correct way to create the package is via the static factory
+   * method {@link #init init()}, which also performs initialization of the
+   * package, or returns the registered package, if one already exists. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see org.eclipse.emf.ecore.EPackage.Registry
    * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage#eNS_URI
    * @see #init()
@@ -198,17 +213,21 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private static boolean isInited = false;
 
   /**
-   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+   * Creates, registers, and initializes the <b>Package</b> for this model, and
+   * for any others upon which it depends.
    * 
-   * <p>This method is used to initialize {@link FactoryComponentPackage#eINSTANCE} when that field is accessed.
-   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <p>
+   * This method is used to initialize {@link FactoryComponentPackage#eINSTANCE}
+   * when that field is accessed. Clients should not invoke it directly.
+   * Instead, they should simply access that field to obtain the package. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
@@ -224,7 +243,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
     isInited = true;
 
     // Initialize simple dependencies
-    TypesPackage.eINSTANCE.eClass();
+    EcorePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theFactoryComponentPackage.createPackageContents();
@@ -250,6 +269,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getModelElement() {
@@ -259,6 +279,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getModelElement_ID() {
@@ -268,6 +289,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getModelElement_Name() {
@@ -277,6 +299,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getModelElement_Description() {
@@ -286,6 +309,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getActivity() {
@@ -295,6 +319,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getActivity_ContractContainer() {
@@ -304,6 +329,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getTask() {
@@ -313,6 +339,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getTask_TaskId() {
@@ -322,6 +349,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getFactoryComponent() {
@@ -331,6 +359,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getFactoryComponent_ViewpointContainer() {
@@ -340,6 +369,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getFactoryComponent_Orchestration() {
@@ -349,6 +379,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getViewpointContainer() {
@@ -358,6 +389,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getViewpointContainer_FactoryComponent() {
@@ -367,6 +399,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getViewpointContainer_Viewpoints() {
@@ -376,6 +409,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getViewpoint() {
@@ -385,6 +419,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getViewpoint_ViewerpointContainer() {
@@ -394,6 +429,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getOrchestration() {
@@ -403,6 +439,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getOrchestration_FactoryComponent() {
@@ -412,6 +449,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getInvocation() {
@@ -421,6 +459,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocation_Context() {
@@ -430,6 +469,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getContext() {
@@ -439,6 +479,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContext_Invocation() {
@@ -448,6 +489,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContext_Values() {
@@ -457,6 +499,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContext_Connectors() {
@@ -466,6 +509,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getContractContainer() {
@@ -475,6 +519,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContractContainer_Activity() {
@@ -484,6 +529,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContractContainer_Contracts() {
@@ -493,6 +539,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getContract() {
@@ -502,6 +549,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContract_ContractContainer() {
@@ -511,6 +559,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getContract_Mode() {
@@ -520,6 +569,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContract_Type() {
@@ -529,6 +579,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContract_DefaultValue() {
@@ -538,6 +589,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getContextValue() {
@@ -547,6 +599,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getContractValue() {
@@ -556,6 +609,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContractValue_Contract() {
@@ -565,6 +619,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getContractValue_Value() {
@@ -574,6 +629,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getContractValue_PluginId() {
@@ -583,6 +639,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getContractConnector() {
@@ -592,6 +649,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContractConnector_Context() {
@@ -601,6 +659,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContractConnector_Source() {
@@ -610,6 +669,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getContractConnector_Target() {
@@ -619,6 +679,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EEnum getContractMode() {
@@ -628,6 +689,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EDataType getInvocationException() {
@@ -637,6 +699,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EDataType getURI() {
@@ -646,6 +709,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponentFactory getFactoryComponentFactory() {
@@ -655,15 +719,17 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package.  This method is
+   * Creates the meta-model objects for the package. This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void createPackageContents() {
@@ -738,15 +804,17 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model.  This
+   * Complete the initialization of the package and its meta-model. This
    * method is guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void initializePackageContents() {
@@ -761,7 +829,6 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
 
     // Obtain other dependent packages
     EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-    TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
     // Create type parameters
 
@@ -827,7 +894,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
     initEClass(contractEClass, Contract.class, "Contract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getContract_ContractContainer(), this.getContractContainer(), this.getContractContainer_Contracts(), "contractContainer", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEAttribute(getContract_Mode(), this.getContractMode(), "mode", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContract_Type(), theTypesPackage.getType(), null, "type", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getContract_Type(), theEcorePackage.getEClass(), null, "type", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getContract_DefaultValue(), this.getContractValue(), null, "defaultValue", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(contextValueEClass, ContextValue.class, "ContextValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -848,7 +915,7 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
     addEEnumLiteral(contractModeEEnum, ContractMode.OUT);
 
     // Initialize data types
-    initEDataType(invocationExceptionEDataType, RuntimeException.class, "InvocationException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(invocationExceptionEDataType, InvocationException.class, "InvocationException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEDataType(uriEDataType, org.eclipse.emf.common.util.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
     // Create resource
@@ -860,15 +927,17 @@ public class FactoryComponentPackageImpl extends EPackageImpl implements Factory
   }
 
   /**
-   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+   * Initializes the annotations for
+   * <b>http://www.eclipse.org/emf/2002/Ecore</b>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void createEcoreAnnotations() {
-    String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-    addAnnotation(modelElementEClass, source, new String[] { "constraints", "overall" //$NON-NLS-1$ //$NON-NLS-2$
+    String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$			
+    addAnnotation(contractEClass, source, new String[] { "constraints", "type" //$NON-NLS-1$ //$NON-NLS-2$
     });
   }
 
-} //FactoryComponentPackageImpl
+} // FactoryComponentPackageImpl

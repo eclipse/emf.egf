@@ -1,11 +1,30 @@
 package org.eclipse.egf.model.factorycomponent.util;
 
 import java.util.Map;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.EGFModelsPlugin;
-import org.eclipse.egf.model.factorycomponent.*;
+import org.eclipse.egf.model.InvocationException;
+import org.eclipse.egf.model.factorycomponent.Activity;
+import org.eclipse.egf.model.factorycomponent.Context;
+import org.eclipse.egf.model.factorycomponent.ContextValue;
+import org.eclipse.egf.model.factorycomponent.Contract;
+import org.eclipse.egf.model.factorycomponent.ContractConnector;
+import org.eclipse.egf.model.factorycomponent.ContractContainer;
+import org.eclipse.egf.model.factorycomponent.ContractMode;
+import org.eclipse.egf.model.factorycomponent.ContractValue;
+import org.eclipse.egf.model.factorycomponent.FactoryComponent;
+import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
+import org.eclipse.egf.model.factorycomponent.Invocation;
+import org.eclipse.egf.model.factorycomponent.ModelElement;
+import org.eclipse.egf.model.factorycomponent.Orchestration;
+import org.eclipse.egf.model.factorycomponent.Task;
+import org.eclipse.egf.model.factorycomponent.Viewpoint;
+import org.eclipse.egf.model.factorycomponent.ViewpointContainer;
+import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -18,13 +37,14 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
-import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
 import org.eclipse.emf.validation.service.ModelValidationService;
+import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.factorycomponent.FactoryComponentPackage
  * @generated
  */
@@ -33,14 +53,19 @@ public class FactoryComponentValidator extends EObjectValidator {
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static final FactoryComponentValidator INSTANCE = new FactoryComponentValidator();
 
   /**
-   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+   * A constant for the
+   * {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
+   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes}
+   * from this package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.emf.common.util.Diagnostic#getSource()
    * @see org.eclipse.emf.common.util.Diagnostic#getCode()
    * @generated
@@ -48,17 +73,21 @@ public class FactoryComponentValidator extends EObjectValidator {
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.factorycomponent"; //$NON-NLS-1$
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written constants.
+   * A constant with a fixed name that can be used as the base value for
+   * additional hand written constants.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
+   * A constant with a fixed name that can be used as the base value for
+   * additional hand written constants in a derived class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
@@ -67,6 +96,7 @@ public class FactoryComponentValidator extends EObjectValidator {
    * Model Validation Service interface for batch validation of EMF elements.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final IBatchValidator batchValidator;
@@ -75,6 +105,7 @@ public class FactoryComponentValidator extends EObjectValidator {
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponentValidator() {
@@ -89,6 +120,7 @@ public class FactoryComponentValidator extends EObjectValidator {
    * Returns the package of this validator switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -99,6 +131,7 @@ public class FactoryComponentValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -109,10 +142,10 @@ public class FactoryComponentValidator extends EObjectValidator {
     // no point in validating if we can't report results
     if (diagnostics != null) {
       // if EMF Mode Validation Service already covered the sub-tree,
-      //    which it does for efficient computation and error reporting,
-      //    then don't repeat (the Diagnostician does the recursion
-      //    externally).  If there is no context map, then we can't
-      //    help it
+      // which it does for efficient computation and error reporting,
+      // then don't repeat (the Diagnostician does the recursion
+      // externally). If there is no context map, then we can't
+      // help it
       if (hasProcessed(eObject, context) == false) {
         status = batchValidator.validate(eObject, new NullProgressMonitor());
         processed(eObject, context, status);
@@ -123,9 +156,11 @@ public class FactoryComponentValidator extends EObjectValidator {
   }
 
   /**
-   * Calls <code>validateXXX</code> for the corresponding classifier of the model.
+   * Calls <code>validateXXX</code> for the corresponding classifier of the
+   * model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -162,7 +197,7 @@ public class FactoryComponentValidator extends EObjectValidator {
     case FactoryComponentPackage.CONTRACT_MODE:
       return validateContractMode((ContractMode) value, diagnostics, context);
     case FactoryComponentPackage.INVOCATION_EXCEPTION:
-      return validateInvocationException((RuntimeException) value, diagnostics, context);
+      return validateInvocationException((InvocationException) value, diagnostics, context);
     case FactoryComponentPackage.URI:
       return validateURI((URI) value, diagnostics, context);
     default:
@@ -173,268 +208,107 @@ public class FactoryComponentValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateModelElement(ModelElement modelElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(modelElement, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(modelElement, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(modelElement, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(modelElement, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(modelElement, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(modelElement, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(modelElement, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(modelElement, diagnostics, context);
-    return result;
-  }
-
-  /**
-   * Validates the overall constraint of '<em>Model Element</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateModelElement_overall(ModelElement modelElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    // TODO implement the constraint
-    // -> specify the condition that violates the constraint
-    // -> verify the diagnostic details, including severity, code, and message
-    // Ensure that you remove @generated or mark it @generated NOT
-    if (false) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "overall", getObjectLabel(modelElement, context) }, //$NON-NLS-1$
-            new Object[] { modelElement }, context));
-      }
-      return false;
-    }
-    return true;
+    return validate_EveryDefaultConstraint(modelElement, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateActivity(Activity activity, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(activity, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(activity, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(activity, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(activity, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(activity, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(activity, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(activity, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(activity, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(activity, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateTask(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(task, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(task, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateFactoryComponent(FactoryComponent factoryComponent, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(factoryComponent, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(factoryComponent, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(factoryComponent, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(factoryComponent, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(factoryComponent, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(factoryComponent, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(factoryComponent, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(factoryComponent, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(factoryComponent, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateViewpointContainer(ViewpointContainer viewpointContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(viewpointContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(viewpointContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(viewpointContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(viewpointContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(viewpointContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(viewpointContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(viewpointContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(viewpointContainer, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(viewpointContainer, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateViewpoint(Viewpoint viewpoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(viewpoint, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(viewpoint, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(viewpoint, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(viewpoint, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(viewpoint, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(viewpoint, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(viewpoint, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(viewpoint, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(viewpoint, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateOrchestration(Orchestration orchestration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(orchestration, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(orchestration, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(orchestration, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(orchestration, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(orchestration, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(orchestration, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(orchestration, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(orchestration, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(orchestration, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateInvocation(Invocation invocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(invocation, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(invocation, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(invocation, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(invocation, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(invocation, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(invocation, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(invocation, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(invocation, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(invocation, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateContext(Context context, DiagnosticChain diagnostics, Map<Object, Object> theContext) {
-    boolean result = validate_EveryMultiplicityConforms(context, diagnostics, theContext);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(context, diagnostics, theContext);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(context, diagnostics, theContext);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(context, diagnostics, theContext);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(context, diagnostics, theContext);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(context, diagnostics, theContext);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(context, diagnostics, theContext);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(context, diagnostics, theContext);
-    return result;
+    return validate_EveryDefaultConstraint(context, diagnostics, theContext);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateContractContainer(ContractContainer contractContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(contractContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(contractContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(contractContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(contractContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(contractContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(contractContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(contractContainer, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(contractContainer, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(contractContainer, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateContract(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -452,85 +326,73 @@ public class FactoryComponentValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(contract, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateModelElement_overall(contract, diagnostics, context);
+      result &= validateContract_type(contract, diagnostics, context);
     return result;
+  }
+
+  /**
+   * Validates the type constraint of '<em>Contract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateContract_type(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (contract.getType() != null) {
+      // Analyse the super types of this EClass against the static package
+      boolean isValid = false;
+      for (EClass eClass : contract.getType().getEAllSuperTypes()) {
+        if (TypesPackage.Literals.TYPE.equals(EMFHelper.solveAgainstStaticPackage(eClass))) {
+          isValid = true;
+          break;
+        }
+      }
+      if (isValid == false) {
+        if (diagnostics != null) {
+          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+              new Object[] { "Contract Type should be a sub-type of Type.", getObjectLabel(contract, context) }, //$NON-NLS-1$
+              new Object[] { contract }, context));
+        }
+      }
+      return false;
+    }
+    return true;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateContextValue(ContextValue contextValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(contextValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(contextValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(contextValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(contextValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(contextValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(contextValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(contextValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(contextValue, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(contextValue, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateContractValue(ContractValue contractValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(contractValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(contractValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(contractValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(contractValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(contractValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(contractValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(contractValue, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(contractValue, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(contractValue, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateContractConnector(ContractConnector contractConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(contractConnector, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(contractConnector, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(contractConnector, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(contractConnector, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(contractConnector, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(contractConnector, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(contractConnector, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateModelElement_overall(contractConnector, diagnostics, context);
-    return result;
+    return validate_EveryDefaultConstraint(contractConnector, diagnostics, context);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateContractMode(ContractMode contractMode, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -540,15 +402,17 @@ public class FactoryComponentValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public boolean validateInvocationException(RuntimeException invocationException, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateInvocationException(InvocationException invocationException, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return true;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateURI(URI uri, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -556,9 +420,11 @@ public class FactoryComponentValidator extends EObjectValidator {
   }
 
   /**
-   * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
+   * Returns the resource locator that will be used to fetch messages for this
+   * validator's diagnostics.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -570,11 +436,14 @@ public class FactoryComponentValidator extends EObjectValidator {
    * If we have a context map, record this object's <code>status</code> in it
    * so that we will know later that we have processed it and its sub-tree.
    * 
-   * @param eObject an element that we have validated
-   * @param context the context (may be <code>null</code>)
-   * @param status the element's validation status
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * @param eObject
+   *          an element that we have validated
+   * @param context
+   *          the context (may be <code>null</code>)
+   * @param status
+   *          the element's validation status
+   *          <!-- begin-user-doc -->
+   *          <!-- end-user-doc -->
    * @generated
    */
   private void processed(EObject eObject, Map<Object, Object> context, IStatus status) {
@@ -585,16 +454,18 @@ public class FactoryComponentValidator extends EObjectValidator {
 
   /**
    * Determines whether we have processed this <code>eObject</code> before,
-   * by automatic recursion of the EMF Model Validation Service.  This is
+   * by automatic recursion of the EMF Model Validation Service. This is
    * only possible if we do, indeed, have a context.
    * 
-   * @param eObject an element to be validated (we hope not)
-   * @param context the context (may be <code>null</code>)
+   * @param eObject
+   *          an element to be validated (we hope not)
+   * @param context
+   *          the context (may be <code>null</code>)
    * @return <code>true</code> if the context is not <code>null</code> and
-   *     the <code>eObject</code> or one of its containers has already been
-   *     validated;  <code>false</code>, otherwise
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   *         the <code>eObject</code> or one of its containers has already been
+   *         validated; <code>false</code>, otherwise
+   *         <!-- begin-user-doc -->
+   *         <!-- end-user-doc -->
    * @generated
    */
   private boolean hasProcessed(EObject eObject, Map<Object, Object> context) {
@@ -616,10 +487,12 @@ public class FactoryComponentValidator extends EObjectValidator {
   /**
    * Converts a status result from the EMF validation service to diagnostics.
    * 
-   * @param status the EMF validation service's status result
-   * @param diagnostics a diagnostic chain to accumulate results on
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * @param status
+   *          the EMF validation service's status result
+   * @param diagnostics
+   *          a diagnostic chain to accumulate results on
+   *          <!-- begin-user-doc -->
+   *          <!-- end-user-doc -->
    * @generated
    */
   private void appendDiagnostics(IStatus status, DiagnosticChain diagnostics) {
@@ -632,4 +505,4 @@ public class FactoryComponentValidator extends EObjectValidator {
       diagnostics.add(new BasicDiagnostic(status.getSeverity(), status.getPlugin(), status.getCode(), status.getMessage(), ((IConstraintStatus) status).getResultLocus().toArray()));
     }
   }
-} //FactoryComponentValidator
+} // FactoryComponentValidator

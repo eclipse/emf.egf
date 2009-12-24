@@ -1,12 +1,12 @@
 /*******************************************************************************
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  *******************************************************************************/
 /**
  * 
@@ -297,4 +297,20 @@ public class ExtensionPointHelper {
     result.append(CharacterConstants.DOT_CHARACTER).append(extensionPointId_p);
     return result.toString();
   }
+
+  /**
+   * Get the bundleId of this IConfigurationElement
+   * 
+   * @param configurationElement_p
+   *          a configuration element
+   * @return a {@link String} instance or null if the specified
+   *         extension is not found.
+   */
+  public static String getNamespace(IConfigurationElement configurationElement_p) {
+    if (configurationElement_p == null) {
+      return null;
+    }
+    return configurationElement_p.getContributor().getName();
+  }
+
 }

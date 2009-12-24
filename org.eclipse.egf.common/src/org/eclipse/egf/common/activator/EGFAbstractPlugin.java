@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -36,12 +36,12 @@ public abstract class EGFAbstractPlugin extends Plugin {
   /**
    * Extension point "egf_logger" short id.
    */
-  protected static final String EXTENSION_POINT_SHORT_ID_EGF_LOGGER = "egf_logger"; //$NON-NLS-1$    
+  protected static final String EXTENSION_POINT_LOGGER = "logger"; //$NON-NLS-1$ 
 
   /**
    * EGF Registered loggers.
    */
-  private List<IEGFLogger> _egfLoggers;
+  private static List<IEGFLogger> _egfLoggers;
 
   /**
    * Log Status
@@ -271,12 +271,12 @@ public abstract class EGFAbstractPlugin extends Plugin {
    * 
    * @return an empty list if none could be found.
    */
-  public List<IEGFLogger> getEGFLoggers() {
+  public static List<IEGFLogger> getEGFLoggers() {
     // Lazy loading. Search for the implementation.
     if (_egfLoggers == null) {
       _egfLoggers = new ArrayList<IEGFLogger>();
       // Get EGF logger extension points.
-      for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFCommonPlugin.getDefault().getPluginID(), EXTENSION_POINT_SHORT_ID_EGF_LOGGER)) {
+      for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFCommonPlugin.getDefault().getPluginID(), EXTENSION_POINT_LOGGER)) {
         Object instantiatedClass = ExtensionPointHelper.createInstance(configurationElement, ExtensionPointHelper.ATT_CLASS);
         // Make sure this is the correct resulting type.
         if (instantiatedClass instanceof IEGFLogger) {

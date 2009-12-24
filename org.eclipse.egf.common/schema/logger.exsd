@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.egf.common" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.egf.common" id="egf_logger" name="EGF Logger"/>
+         <meta.schema plugin="org.eclipse.egf.common" id="logger" name="EGF Logger"/>
       </appInfo>
       <documentation>
          Breaks the dependency towards UI for log purposes.

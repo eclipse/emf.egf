@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.factorycomponent.presentation;
@@ -76,14 +76,16 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
 
 /**
- * This is a simple wizard for creating a new model file. <!-- begin-user-doc
+ * This is a simple wizard for creating a new model file.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public class FactoryComponentModelWizard extends Wizard implements INewWizard {
   /**
-   * The supported extensions for created files. <!-- begin-user-doc --> <!--
+   * The supported extensions for created files.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -99,7 +101,8 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
   public static final String FORMATTED_FILE_EXTENSIONS = EGFModelsEditorPlugin.INSTANCE.getString("_UI_FactoryComponentEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
   /**
-   * This caches an instance of the model package. <!-- begin-user-doc --> <!--
+   * This caches an instance of the model package.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -107,7 +110,8 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
   protected FactoryComponentPackage factoryComponentPackage = FactoryComponentPackage.eINSTANCE;
 
   /**
-   * This caches an instance of the model factory. <!-- begin-user-doc --> <!--
+   * This caches an instance of the model factory.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -123,7 +127,8 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
   protected FactoryComponentModelWizardNewFileCreationPage newFileCreationPage;
 
   /**
-   * This is the initial object creation page. <!-- begin-user-doc --> <!--
+   * This is the initial object creation page.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -132,14 +137,16 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
 
   /**
    * Remember the selection during initialization for populating the default
-   * container. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * container.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
   protected IStructuredSelection selection;
 
   /**
-   * Remember the workbench during initialization. <!-- begin-user-doc --> <!--
+   * Remember the workbench during initialization.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -155,7 +162,8 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
   protected List<String> initialObjectNames;
 
   /**
-   * This just records the information. <!-- begin-user-doc --> <!--
+   * This just records the information.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
@@ -184,7 +192,8 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * Create a new model. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Create a new model.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */
@@ -275,14 +284,16 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * This is the one page of the wizard. <!-- begin-user-doc --> <!--
+   * This is the one page of the wizard.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
    * 
    * @generated
    */
   public class FactoryComponentModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
     /**
-     * Pass in the selection. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * Pass in the selection.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -347,7 +358,8 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
     protected Combo encodingField;
 
     /**
-     * Pass in the selection. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * Pass in the selection.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
      * @generated
      */
@@ -493,7 +505,8 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
     }
 
     /**
-     * Returns the label for the specified type name. <!-- begin-user-doc -->
+     * Returns the label for the specified type name.
+     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
      * @generated
@@ -581,7 +594,8 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
   }
 
   /**
-   * Get the file from the page. <!-- begin-user-doc --> <!-- end-user-doc -->
+   * Get the file from the page.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated
    */

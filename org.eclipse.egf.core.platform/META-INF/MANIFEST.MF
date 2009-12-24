@@ -11,8 +11,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
  org.eclipse.egf.core.platform,
  org.eclipse.egf.core.platform.pde,
- org.eclipse.egf.core.platform.resource,
- org.eclipse.egf.core.platform.uri
+ org.eclipse.egf.core.platform.resource
 Require-Bundle: 
  org.eclipse.core.runtime,
  org.eclipse.pde.ui,

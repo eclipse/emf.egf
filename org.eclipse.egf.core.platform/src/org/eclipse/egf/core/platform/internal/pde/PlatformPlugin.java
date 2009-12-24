@@ -1,15 +1,15 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- *
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *
+ * 
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * 
  * </copyright>
  * 
  */
@@ -123,13 +123,13 @@ public class PlatformPlugin implements IPlatformPlugin {
     if (IFactoryComponentConstants.FACTORY_COMPONENT_EXTENSION_CHILD.equals(element.getName())) {
       try {
         IPlatformFactoryComponent fc = new PlatformFactoryComponent(this, element);
-        if (_factoryComponents.get(fc.getValue()) != null) {
+        if (_factoryComponents.get(fc.getId()) != null) {
           EGFPlatformPlugin.getDefault().logWarning(NLS.bind("PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' already contains such Factory Component ''{1}''.", //$NON-NLS-1$
-              getBundleId(), fc.getValue()));
+              getBundleId(), fc.getId()));
         } else {
-          if (_factoryComponents.put(fc.getValue(), fc) != null) {
+          if (_factoryComponents.put(fc.getId(), fc) != null) {
             EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' unable to add Factory Component ''{1}''.", //$NON-NLS-1$
-                getBundleId(), fc.getValue()));
+                getBundleId(), fc.getId()));
           } else {
             return fc;
           }
@@ -145,14 +145,14 @@ public class PlatformPlugin implements IPlatformPlugin {
     if (factoryComponent == null) {
       return false;
     }
-    return _factoryComponents.remove(factoryComponent.getValue()) != null;
+    return _factoryComponents.remove(factoryComponent.getId()) != null;
   }
 
   public boolean hasPlatformFactoryComponent(IPlatformFactoryComponent factoryComponent) {
     if (factoryComponent == null) {
       return false;
     }
-    return _factoryComponents.get(factoryComponent.getValue()) != null;
+    return _factoryComponents.get(factoryComponent.getId()) != null;
   }
 
   public String getLocation() {

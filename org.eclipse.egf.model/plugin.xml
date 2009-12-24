@@ -15,6 +15,16 @@
 <plugin>
 
   <!-- ================================================================================= -->
+  <!-- Extension Points Definition                                                       -->
+  <!-- ================================================================================= -->
+
+  <extension-point 
+    id="type" 
+    name="%EGFTypeExtensionPoint" 
+    schema="schema/type.exsd"
+  />  
+
+  <!-- ================================================================================= -->
   <!-- Types Model                                                                       -->
   <!-- ================================================================================= -->
   
@@ -128,5 +138,29 @@
       class="org.eclipse.egf.model.pattern.util.PatternResourceFactoryImpl"
     />
   </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- Types                                                                             -->
+  <!-- ================================================================================= -->
+  
+  <extension
+    point="org.eclipse.egf.model.type"
+  >
+    <type
+      id="model/Types.ecore#//TypeElement"
+    />  
+    <type
+      id="model/Types.ecore#//BooleanType"
+    />
+    <type
+      id="model/Types.ecore#//StringType"
+    />    
+    <type
+      id="model/Types.ecore#//PatternExecutionReporterType"
+    />
+    <type
+      id="model/Types.ecore#//GeneratorAdapterFactoryType"
+    />    
+  </extension>  
   
 </plugin>

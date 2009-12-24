@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.productionplan.impl;
@@ -98,22 +98,19 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
    * @generated
    */
   public void setProductionPlan(ProductionPlan newProductionPlan) {
-    if (newProductionPlan != eInternalContainer()
-        || (eContainerFeatureID() != ProductionPlanPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN && newProductionPlan != null)) {
+    if (newProductionPlan != eInternalContainer() || (eContainerFeatureID() != ProductionPlanPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN && newProductionPlan != null)) {
       if (EcoreUtil.isAncestor(this, newProductionPlan))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
       NotificationChain msgs = null;
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newProductionPlan != null)
-        msgs = ((InternalEObject) newProductionPlan).eInverseAdd(this, ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS,
-            ProductionPlan.class, msgs);
+        msgs = ((InternalEObject) newProductionPlan).eInverseAdd(this, ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS, ProductionPlan.class, msgs);
       msgs = basicSetProductionPlan(newProductionPlan, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductionPlanPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN,
-          newProductionPlan, newProductionPlan));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProductionPlanPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN, newProductionPlan, newProductionPlan));
   }
 
   /**
@@ -155,8 +152,7 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
     case ProductionPlanPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN:
-      return eInternalContainer().eInverseRemove(this, ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS,
-          ProductionPlan.class, msgs);
+      return eInternalContainer().eInverseRemove(this, ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS, ProductionPlan.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }

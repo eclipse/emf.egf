@@ -3,7 +3,7 @@
 <plugin> 
 
   <extension
-    point="org.eclipse.egf.common.egf_logger"
+    point="org.eclipse.egf.common.logger"
   >
     <logger
       class="org.eclipse.egf.console.Console"

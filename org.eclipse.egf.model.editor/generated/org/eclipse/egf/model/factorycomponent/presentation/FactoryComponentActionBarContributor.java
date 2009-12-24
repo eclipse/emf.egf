@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.factorycomponent.presentation;
@@ -63,7 +63,6 @@ import org.eclipse.ui.PlatformUI;
 /**
  * This is the action bar contributor for the FactoryComponent model editor.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FactoryComponentActionBarContributor extends EditingDomainActionBarContributor implements ISelectionChangedListener {
@@ -132,25 +131,25 @@ public class FactoryComponentActionBarContributor extends EditingDomainActionBar
   }
 
   /**
-   * This keeps track of the active editor. <!-- begin-user-doc --> <!--
+   * This keeps track of the active editor.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected IEditorPart activeEditorPart;
 
   /**
-   * This keeps track of the current selection provider. <!-- begin-user-doc -->
+   * This keeps track of the current selection provider.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ISelectionProvider selectionProvider;
 
   /**
-   * This action opens the Properties view. <!-- begin-user-doc --> <!--
+   * This action opens the Properties view.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   protected IAction showPropertiesViewAction = new Action(EGFModelsEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) //$NON-NLS-1$
@@ -191,37 +190,31 @@ public class FactoryComponentActionBarContributor extends EditingDomainActionBar
   };
 
   /**
-   * This will contain one
-   * {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to
-   * each descriptor generated for the current selection by the item provider.
+   * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateChildAction} corresponding to each descriptor
+   * generated for the current selection by the item provider.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected Collection<IAction> createChildActions;
 
   /**
-   * This is the menu manager into which menu contribution items should be added
-   * for CreateChild actions. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This is the menu manager into which menu contribution items should be added for CreateChild actions.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected IMenuManager createChildMenuManager;
 
   /**
-   * This will contain one
-   * {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding to
-   * each descriptor generated for the current selection by the item provider.
+   * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding to each descriptor
+   * generated for the current selection by the item provider.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected Collection<IAction> createSiblingActions;
 
   /**
-   * This is the menu manager into which menu contribution items should be added
-   * for CreateSibling actions. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This is the menu manager into which menu contribution items should be added for CreateSibling actions.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected IMenuManager createSiblingMenuManager;
@@ -253,9 +246,9 @@ public class FactoryComponentActionBarContributor extends EditingDomainActionBar
 
   /**
    * This adds to the menu bar a menu and some separators for editor additions,
-   * as well as the sub-menus for object creation items. <!-- begin-user-doc -->
+   * as well as the sub-menus for object creation items.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -322,12 +315,11 @@ public class FactoryComponentActionBarContributor extends EditingDomainActionBar
   }
 
   /**
-   * This implements {@link org.eclipse.jface.viewers.ISelectionChangedListener}
-   * , handling {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by
-   * querying for the children and siblings that can be added to the selected
-   * object and updating the menus accordingly. <!-- begin-user-doc --> <!--
+   * This implements {@link org.eclipse.jface.viewers.ISelectionChangedListener},
+   * handling {@link org.eclipse.jface.viewers.SelectionChangedEvent}s by querying for the children and siblings
+   * that can be added to the selected object and updating the menus accordingly.
+   * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    */
   public void selectionChanged(SelectionChangedEvent event) {
@@ -371,10 +363,9 @@ public class FactoryComponentActionBarContributor extends EditingDomainActionBar
   }
 
   /**
-   * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction}
-   * for each object in <code>descriptors</code>, and returns the collection of
-   * these actions. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This generates a {@link org.eclipse.emf.edit.ui.action.CreateChildAction} for each object in <code>descriptors</code>,
+   * and returns the collection of these actions.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected Collection<IAction> generateCreateChildActions(Collection<?> descriptors, ISelection selection) {
@@ -388,10 +379,9 @@ public class FactoryComponentActionBarContributor extends EditingDomainActionBar
   }
 
   /**
-   * This generates a {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction}
-   * for each object in <code>descriptors</code>, and returns the collection of
-   * these actions. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This generates a {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} for each object in <code>descriptors</code>,
+   * and returns the collection of these actions.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   protected Collection<IAction> generateCreateSiblingActions(Collection<?> descriptors, ISelection selection) {
@@ -405,14 +395,11 @@ public class FactoryComponentActionBarContributor extends EditingDomainActionBar
   }
 
   /**
-   * This populates the specified <code>manager</code> with
-   * {@link org.eclipse.jface.action.ActionContributionItem}s based on the
-   * {@link org.eclipse.jface.action.IAction}s contained in the
-   * <code>actions</code> collection, by inserting them before the specified
-   * contribution item <code>contributionID</code>. If
-   * <code>contributionID</code> is <code>null</code>, they are simply added.
+   * This populates the specified <code>manager</code> with {@link org.eclipse.jface.action.ActionContributionItem}s
+   * based on the {@link org.eclipse.jface.action.IAction}s contained in the <code>actions</code> collection,
+   * by inserting them before the specified contribution item <code>contributionID</code>.
+   * If <code>contributionID</code> is <code>null</code>, they are simply added.
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void populateManager(IContributionManager manager, Collection<? extends IAction> actions, String contributionID) {
@@ -460,9 +447,9 @@ public class FactoryComponentActionBarContributor extends EditingDomainActionBar
   }
 
   /**
-   * This populates the pop-up menu before it appears. <!-- begin-user-doc -->
+   * This populates the pop-up menu before it appears.
+   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -497,9 +484,8 @@ public class FactoryComponentActionBarContributor extends EditingDomainActionBar
   }
 
   /**
-   * This ensures that a delete action will clean up all references to deleted
-   * objects. <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * This ensures that a delete action will clean up all references to deleted objects.
+   * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
   @Override

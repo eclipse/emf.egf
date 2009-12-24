@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.productionplan.impl;
@@ -109,9 +109,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
       return (ProductionPlanPackage) EPackage.Registry.INSTANCE.getEPackage(ProductionPlanPackage.eNS_URI);
 
     // Obtain or create and register package
-    ProductionPlanPackageImpl theProductionPlanPackage = (ProductionPlanPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ProductionPlanPackageImpl ? EPackage.Registry.INSTANCE
-        .get(eNS_URI)
-        : new ProductionPlanPackageImpl());
+    ProductionPlanPackageImpl theProductionPlanPackage = (ProductionPlanPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ProductionPlanPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ProductionPlanPackageImpl());
 
     isInited = true;
 
@@ -271,8 +269,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    FactoryComponentPackage theFactoryComponentPackage = (FactoryComponentPackage) EPackage.Registry.INSTANCE
-        .getEPackage(FactoryComponentPackage.eNS_URI);
+    FactoryComponentPackage theFactoryComponentPackage = (FactoryComponentPackage) EPackage.Registry.INSTANCE.getEPackage(FactoryComponentPackage.eNS_URI);
 
     // Create type parameters
 
@@ -286,34 +283,16 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
 
     // Initialize classes and features; add operations and parameters
     initEClass(productionPlanEClass, ProductionPlan.class, "ProductionPlan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(
-        getProductionPlan_ProductionPlanInvocations(),
-        this.getProductionPlanInvocation(),
-        this.getProductionPlanInvocation_ProductionPlan(),
-        "productionPlanInvocations", null, 0, -1, ProductionPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getProductionPlan_ProductionPlanInvocations(), this.getProductionPlanInvocation(), this.getProductionPlanInvocation_ProductionPlan(), "productionPlanInvocations", null, 0, -1, ProductionPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(productionPlanInvocationEClass, ProductionPlanInvocation.class,
-        "ProductionPlanInvocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(
-        getProductionPlanInvocation_ProductionPlan(),
-        this.getProductionPlan(),
-        this.getProductionPlan_ProductionPlanInvocations(),
-        "productionPlan", null, 1, 1, ProductionPlanInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEClass(productionPlanInvocationEClass, ProductionPlanInvocation.class, "ProductionPlanInvocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getProductionPlanInvocation_ProductionPlan(), this.getProductionPlan(), this.getProductionPlan_ProductionPlanInvocations(), "productionPlan", null, 1, 1, ProductionPlanInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(factoryComponentInvocationEClass, FactoryComponentInvocation.class,
-        "FactoryComponentInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(
-        getFactoryComponentInvocation_FactoryComponent(),
-        theFactoryComponentPackage.getFactoryComponent(),
-        null,
-        "factoryComponent", null, 1, 1, FactoryComponentInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEClass(factoryComponentInvocationEClass, FactoryComponentInvocation.class, "FactoryComponentInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getFactoryComponentInvocation_FactoryComponent(), theFactoryComponentPackage.getFactoryComponent(), null, "factoryComponent", null, 1, 1, FactoryComponentInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(taskInvocationEClass, TaskInvocation.class, "TaskInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(
-        getTaskInvocation_Task(),
-        theFactoryComponentPackage.getTask(),
-        null,
-        "task", null, 1, 1, TaskInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getTaskInvocation_Task(), theFactoryComponentPackage.getTask(), null, "task", null, 1, 1, TaskInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);

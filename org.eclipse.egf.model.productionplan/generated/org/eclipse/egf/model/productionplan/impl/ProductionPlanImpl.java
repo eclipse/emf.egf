@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.productionplan.impl;
@@ -94,9 +94,7 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
    */
   public EList<ProductionPlanInvocation> getProductionPlanInvocations() {
     if (productionPlanInvocations == null) {
-      productionPlanInvocations = new EObjectContainmentWithInverseEList<ProductionPlanInvocation>(ProductionPlanInvocation.class, this,
-          ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS,
-          ProductionPlanPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN);
+      productionPlanInvocations = new EObjectContainmentWithInverseEList<ProductionPlanInvocation>(ProductionPlanInvocation.class, this, ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS, ProductionPlanPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN);
     }
     return productionPlanInvocations;
   }

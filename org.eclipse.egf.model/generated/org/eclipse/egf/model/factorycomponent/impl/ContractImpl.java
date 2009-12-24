@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.factorycomponent.impl;
@@ -21,15 +21,10 @@ import org.eclipse.egf.model.factorycomponent.ContractContainer;
 import org.eclipse.egf.model.factorycomponent.ContractMode;
 import org.eclipse.egf.model.factorycomponent.ContractValue;
 import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
-
-import org.eclipse.egf.model.types.Type;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
@@ -40,13 +35,19 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getContractContainer <em>Contract Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getMode <em>Mode</em>}</li>
- *   <li>{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getDefaultValue <em>Default Value</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getContractContainer
+ * <em>Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getMode
+ * <em>Mode</em>}</li>
+ * <li>{@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getType
+ * <em>Type</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.factorycomponent.impl.ContractImpl#getDefaultValue
+ * <em>Default Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ContractImpl extends ModelElementImpl implements Contract {
@@ -54,6 +55,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getMode()
    * @generated
    * @ordered
@@ -61,18 +63,22 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   protected static final ContractMode MODE_EDEFAULT = ContractMode.IN;
 
   /**
-   * The offset of the flags representing the value of the '{@link #getMode() <em>Mode</em>}' attribute.
+   * The offset of the flags representing the value of the '{@link #getMode()
+   * <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
   protected static final int MODE_EFLAG_OFFSET = 0;
 
   /**
-   * The flags representing the default value of the '{@link #getMode() <em>Mode</em>}' attribute.
+   * The flags representing the default value of the '{@link #getMode()
+   * <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -82,15 +88,18 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * The array of enumeration values for '{@link ContractMode Contract Mode}'
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
   private static final ContractMode[] MODE_EFLAG_VALUES = ContractMode.values();
 
   /**
-   * The flag representing the value of the '{@link #getMode() <em>Mode</em>}' attribute.
+   * The flag representing the value of the '{@link #getMode() <em>Mode</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getMode()
    * @generated
    * @ordered
@@ -101,16 +110,19 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected Type type;
+  protected EClass type;
 
   /**
-   * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' containment reference.
+   * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}'
+   * containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDefaultValue()
    * @generated
    * @ordered
@@ -120,6 +132,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ContractImpl() {
@@ -129,6 +142,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -139,6 +153,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractContainer getContractContainer() {
@@ -150,6 +165,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetContractContainer(ContractContainer newContractContainer, NotificationChain msgs) {
@@ -160,6 +176,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setContractContainer(ContractContainer newContractContainer) {
@@ -181,6 +198,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractMode getMode() {
@@ -190,6 +208,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setMode(ContractMode newMode) {
@@ -204,12 +223,13 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public Type getType() {
+  public EClass getType() {
     if (type != null && type.eIsProxy()) {
       InternalEObject oldType = (InternalEObject) type;
-      type = (Type) eResolveProxy(oldType);
+      type = (EClass) eResolveProxy(oldType);
       if (type != oldType) {
         if (eNotificationRequired())
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, FactoryComponentPackage.CONTRACT__TYPE, oldType, type));
@@ -221,19 +241,21 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public Type basicGetType() {
+  public EClass basicGetType() {
     return type;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public void setType(Type newType) {
-    Type oldType = type;
+  public void setType(EClass newType) {
+    EClass oldType = type;
     type = newType;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FactoryComponentPackage.CONTRACT__TYPE, oldType, type));
@@ -242,6 +264,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractValue getDefaultValue() {
@@ -251,6 +274,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetDefaultValue(ContractValue newDefaultValue, NotificationChain msgs) {
@@ -269,6 +293,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setDefaultValue(ContractValue newDefaultValue) {
@@ -288,6 +313,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -304,6 +330,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -320,6 +347,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -334,6 +362,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -356,6 +385,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -368,7 +398,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
       setMode((ContractMode) newValue);
       return;
     case FactoryComponentPackage.CONTRACT__TYPE:
-      setType((Type) newValue);
+      setType((EClass) newValue);
       return;
     case FactoryComponentPackage.CONTRACT__DEFAULT_VALUE:
       setDefaultValue((ContractValue) newValue);
@@ -380,6 +410,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -392,7 +423,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
       setMode(MODE_EDEFAULT);
       return;
     case FactoryComponentPackage.CONTRACT__TYPE:
-      setType((Type) null);
+      setType((EClass) null);
       return;
     case FactoryComponentPackage.CONTRACT__DEFAULT_VALUE:
       setDefaultValue((ContractValue) null);
@@ -404,6 +435,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -424,6 +456,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -438,4 +471,4 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     return result.toString();
   }
 
-} //ContractImpl
+} // ContractImpl

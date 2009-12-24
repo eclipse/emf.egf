@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.types.impl;
@@ -26,16 +26,11 @@ import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.model.types.TypeElement;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.model.types.TypesPackage;
-
-import org.eclipse.egf.model.types.util.TypesValidator;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -103,14 +98,15 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
-   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+   * package
    * package URI value.
-   * <p>Note: the correct way to create the package is via the static
-   * factory method {@link #init init()}, which also performs
-   * initialization of the package, or returns the registered package,
-   * if one already exists.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <p>
+   * Note: the correct way to create the package is via the static factory
+   * method {@link #init init()}, which also performs initialization of the
+   * package, or returns the registered package, if one already exists. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see org.eclipse.emf.ecore.EPackage.Registry
    * @see org.eclipse.egf.model.types.TypesPackage#eNS_URI
    * @see #init()
@@ -132,8 +128,8 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * 
    * <p>This method is used to initialize {@link TypesPackage#eINSTANCE} when that field is accessed.
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
@@ -156,13 +152,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
     // Initialize created meta-data
     theTypesPackage.initializePackageContents();
-
-    // Register package validator
-    EValidator.Registry.INSTANCE.put(theTypesPackage, new EValidator.Descriptor() {
-      public EValidator getEValidator() {
-        return TypesValidator.INSTANCE;
-      }
-    });
 
     // Mark meta-data to indicate it can't be changed
     theTypesPackage.freeze();
@@ -397,22 +386,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
     // Create resource
     createResource(eNS_URI);
-
-    // Create annotations
-    // http://www.eclipse.org/emf/2002/Ecore
-    createEcoreAnnotations();
   }
 
-  /**
-   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void createEcoreAnnotations() {
-    String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-    addAnnotation(typeElementEClass, source, new String[] { "constraints", "overall" //$NON-NLS-1$ //$NON-NLS-2$
-    });
-  }
-
-} //TypesPackageImpl
+} // TypesPackageImpl

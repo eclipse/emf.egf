@@ -6,8 +6,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     IBM Corporation - initial API and implementation
- *     Thales Corporate Services S.A.S
+ * IBM Corporation - initial API and implementation
+ * Thales Corporate Services S.A.S
  */
 
 package org.eclipse.egf.console;
@@ -165,8 +165,9 @@ public class Console extends MessageConsole implements IPropertyChangeListener, 
       bringConsoleToFront();
     }
     outputStatus(status, nesting);
-    // In case of IStatus.ERROR, we print a final Message
-    if (status != null && status.getSeverity() == IStatus.ERROR) {
+    // In case of IStatus.ERROR with a defined exception, we print a final
+    // Message
+    if (status != null && status.getSeverity() == IStatus.ERROR && status.getException() != null) {
       logError(ConsoleMessages.Console_see_your_log_file, nesting);
     }
   }

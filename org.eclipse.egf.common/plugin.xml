@@ -23,9 +23,9 @@
   />
   
   <extension-point 
-    id="egf_logger" 
+    id="logger" 
     name="%EGFLoggerExtensionPoint" 
-    schema="schema/egf_logger.exsd"
+    schema="schema/logger.exsd"
   />  
 
 </plugin>

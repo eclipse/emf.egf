@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.factorycomponent;
@@ -963,7 +963,7 @@ public interface FactoryComponentPackage extends EPackage {
    * The meta object id for the '<em>Invocation Exception</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see java.lang.RuntimeException
+   * @see org.eclipse.egf.model.InvocationException
    * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getInvocationException()
    * @generated
    */
@@ -1427,12 +1427,12 @@ public interface FactoryComponentPackage extends EPackage {
   EEnum getContractMode();
 
   /**
-   * Returns the meta object for data type '{@link java.lang.RuntimeException <em>Invocation Exception</em>}'.
+   * Returns the meta object for data type '{@link org.eclipse.egf.model.InvocationException <em>Invocation Exception</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for data type '<em>Invocation Exception</em>'.
-   * @see java.lang.RuntimeException
-   * @model instanceClass="java.lang.RuntimeException"
+   * @see org.eclipse.egf.model.InvocationException
+   * @model instanceClass="org.eclipse.egf.model.InvocationException"
    * @generated
    */
   EDataType getInvocationException();
@@ -1840,7 +1840,7 @@ public interface FactoryComponentPackage extends EPackage {
      * The meta object literal for the '<em>Invocation Exception</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see java.lang.RuntimeException
+     * @see org.eclipse.egf.model.InvocationException
      * @see org.eclipse.egf.model.factorycomponent.impl.FactoryComponentPackageImpl#getInvocationException()
      * @generated
      */

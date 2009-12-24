@@ -1,22 +1,22 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.factorycomponent.impl;
 
-import org.eclipse.egf.model.factorycomponent.*;
+import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.factorycomponent.Context;
 import org.eclipse.egf.model.factorycomponent.Contract;
 import org.eclipse.egf.model.factorycomponent.ContractConnector;
@@ -39,6 +39,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class FactoryComponentFactoryImpl extends EFactoryImpl implements FactoryComponentFactory {
@@ -46,6 +47,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
    * Creates the default factory implementation.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @generated
    */
   public static FactoryComponentFactory init() {
@@ -64,6 +66,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
    * Creates an instance of the factory.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponentFactoryImpl() {
@@ -72,6 +75,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -100,6 +104,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -118,6 +123,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -136,6 +142,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Task createTask() {
@@ -145,6 +152,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponent createFactoryComponent() {
@@ -154,6 +162,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ViewpointContainer createViewpointContainer() {
@@ -163,6 +172,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Context createContext() {
@@ -172,6 +182,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractContainer createContractContainer() {
@@ -181,6 +192,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Contract createContract() {
@@ -190,6 +202,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractValue createContractValue() {
@@ -199,6 +212,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractConnector createContractConnector() {
@@ -208,6 +222,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractMode createContractModeFromString(EDataType eDataType, String initialValue) {
@@ -219,6 +234,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertContractModeToString(EDataType eDataType, Object instanceValue) {
@@ -227,14 +243,16 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public RuntimeException createInvocationExceptionFromString(EDataType eDataType, String initialValue) {
-    return (RuntimeException) super.createFromString(eDataType, initialValue);
+  public InvocationException createInvocationExceptionFromString(EDataType eDataType, String initialValue) {
+    return (InvocationException) super.createFromString(eDataType, initialValue);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertInvocationExceptionToString(EDataType eDataType, Object instanceValue) {
@@ -252,6 +270,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertURIToString(EDataType eDataType, Object instanceValue) {
@@ -260,6 +279,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponentPackage getFactoryComponentPackage() {
@@ -268,6 +288,7 @@ public class FactoryComponentFactoryImpl extends EFactoryImpl implements Factory
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @deprecated
    * @generated
    */

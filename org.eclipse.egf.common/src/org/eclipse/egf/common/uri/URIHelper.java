@@ -1,14 +1,14 @@
 /**
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.platform.uri;
+package org.eclipse.egf.common.uri;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -36,7 +36,7 @@ public class URIHelper {
     if (bundleId == null) {
       return null;
     }
-    return getPlatformURI(bundleId, value.trim());
+    return getPlatformURI(bundleId, value.trim(), true);
   }
 
   public static URI getPlatformURI(IPath path) {
@@ -51,7 +51,7 @@ public class URIHelper {
     if (bundleId == null) {
       return null;
     }
-    return getPlatformURI(bundleId, path.removeFirstSegments(1).toString());
+    return getPlatformURI(bundleId, path.removeFirstSegments(1).toString(), true);
   }
 
   public static URI getPlatformURI(IResource resource) {
@@ -62,16 +62,16 @@ public class URIHelper {
     if (bundleId == null) {
       return null;
     }
-    return getPlatformURI(bundleId, resource.getFullPath().removeFirstSegments(1).toString());
+    return getPlatformURI(bundleId, resource.getFullPath().removeFirstSegments(1).toString(), true);
   }
 
-  public static URI getPlatformURI(String bundleId, String value) {
+  public static URI getPlatformURI(String bundleId, String value, boolean encode) {
     if (bundleId == null || bundleId.trim().length() == 0 || value == null || value.trim().length() == 0) {
       return null;
     }
     URI uri = URI.createURI(value.trim());
     if (uri.isRelative()) {
-      uri = URI.createPlatformPluginURI(bundleId.trim() + "/" + uri.toString(), true); //$NON-NLS-1$
+      uri = URI.createPlatformPluginURI(bundleId.trim() + "/" + uri.toString(), encode); //$NON-NLS-1$
     }
     return uri;
   }

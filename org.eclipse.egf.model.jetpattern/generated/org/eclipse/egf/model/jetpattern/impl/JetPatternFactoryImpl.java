@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
- *
+ * 
  * $Id$
  */
 package org.eclipse.egf.model.jetpattern.impl;
@@ -33,89 +33,89 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * @generated
  */
 public class JetPatternFactoryImpl extends EFactoryImpl implements JetPatternFactory {
-    /**
-     * Creates the default factory implementation.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public static JetPatternFactory init() {
-        try {
-            JetPatternFactory theJetPatternFactory = (JetPatternFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/egf/1.0.0/jetpattern"); //$NON-NLS-1$ 
-            if (theJetPatternFactory != null) {
-                return theJetPatternFactory;
-            }
-        } catch (Exception exception) {
-            EcorePlugin.INSTANCE.log(exception);
-        }
-        return new JetPatternFactoryImpl();
+  /**
+   * Creates the default factory implementation.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public static JetPatternFactory init() {
+    try {
+      JetPatternFactory theJetPatternFactory = (JetPatternFactory) EPackage.Registry.INSTANCE.getEFactory("http://www.eclipse.org/egf/1.0.0/jetpattern"); //$NON-NLS-1$ 
+      if (theJetPatternFactory != null) {
+        return theJetPatternFactory;
+      }
+    } catch (Exception exception) {
+      EcorePlugin.INSTANCE.log(exception);
     }
+    return new JetPatternFactoryImpl();
+  }
 
-    /**
-     * Creates an instance of the factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public JetPatternFactoryImpl() {
-        super();
-    }
+  /**
+   * Creates an instance of the factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JetPatternFactoryImpl() {
+    super();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public EObject create(EClass eClass) {
-        switch (eClass.getClassifierID()) {
-        case JetPatternPackage.JET_NATURE:
-            return createJetNature();
-        case JetPatternPackage.JET_ENGINE:
-            return createJetEngine();
-        default:
-            throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
-        }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EObject create(EClass eClass) {
+    switch (eClass.getClassifierID()) {
+    case JetPatternPackage.JET_NATURE:
+      return createJetNature();
+    case JetPatternPackage.JET_ENGINE:
+      return createJetEngine();
+    default:
+      throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public JetNature createJetNature() {
-        JetNatureImpl jetNature = new JetNatureImpl();
-        return jetNature;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JetNature createJetNature() {
+    JetNatureImpl jetNature = new JetNatureImpl();
+    return jetNature;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public JetEngine createJetEngine() {
-        JetEngineImpl jetEngine = new JetEngineImpl();
-        return jetEngine;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JetEngine createJetEngine() {
+    JetEngineImpl jetEngine = new JetEngineImpl();
+    return jetEngine;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public JetPatternPackage getJetPatternPackage() {
-        return (JetPatternPackage) getEPackage();
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public JetPatternPackage getJetPatternPackage() {
+    return (JetPatternPackage) getEPackage();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @deprecated
-     * @generated
-     */
-    @Deprecated
-    public static JetPatternPackage getPackage() {
-        return JetPatternPackage.eINSTANCE;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @deprecated
+   * @generated
+   */
+  @Deprecated
+  public static JetPatternPackage getPackage() {
+    return JetPatternPackage.eINSTANCE;
+  }
 
 } //JetPatternFactoryImpl

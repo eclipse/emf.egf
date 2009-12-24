@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.egf.core.platform.uri.URIHelper;
+import org.eclipse.egf.common.uri.URIHelper;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IExtensions;

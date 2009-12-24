@@ -1,26 +1,22 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
 package org.eclipse.egf.common.ui.activator;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.common.helper.ExtensionPointHelper;
+import org.eclipse.egf.common.activator.EGFCommonPlugin;
 import org.eclipse.egf.common.log.IEGFLogger;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -36,17 +32,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
 
-  private static final String ICONS_PATH = "$nl$/icons/"; //$NON-NLS-1$ 
-
-  /**
-   * Extension point "egf_logger" short id.
-   */
-  protected static final String EXTENSION_POINT_SHORT_ID_EGF_LOGGER = "egf_logger"; //$NON-NLS-1$    
-
-  /**
-   * EGF Registered loggers.
-   */
-  private List<IEGFLogger> _egfLoggers;
+  private static final String ICONS_PATH = "$nl$/icons/"; //$NON-NLS-1$  
 
   /**
    * Returns the workbench display to be used.
@@ -74,7 +60,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
   public void log(IStatus status, int nesting, boolean appendLogger) {
     getLog().log(status);
     if (appendLogger) {
-      for (IEGFLogger logger : getEGFLoggers()) {
+      for (IEGFLogger logger : EGFCommonPlugin.getEGFLoggers()) {
         logger.logStatus(status, nesting);
       }
     }
@@ -331,27 +317,6 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    */
   public String getPluginID() {
     return getBundle().getSymbolicName();
-  }
-
-  /**
-   * Get egf loggers implementations.
-   * 
-   * @return an empty list if none could be found.
-   */
-  public List<IEGFLogger> getEGFLoggers() {
-    // Lazy loading. Search for the implementation.
-    if (_egfLoggers == null) {
-      _egfLoggers = new ArrayList<IEGFLogger>();
-      // Get EGF logger extension points.
-      for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(getPluginID(), EXTENSION_POINT_SHORT_ID_EGF_LOGGER)) {
-        Object instantiatedClass = ExtensionPointHelper.createInstance(configurationElement, ExtensionPointHelper.ATT_CLASS);
-        // Make sure this is the correct resulting type.
-        if (instantiatedClass instanceof IEGFLogger) {
-          _egfLoggers.add((IEGFLogger) instantiatedClass);
-        }
-      }
-    }
-    return _egfLoggers;
   }
 
 }
