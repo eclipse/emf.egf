@@ -1,0 +1,34 @@
+/**
+ * Copyright (c) 2000, 2009 IBM Corporation and others.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * IBM Corporation - initial API and implementation
+ * Thales Corporate Services S.A.S
+ */
+
+package org.eclipse.egf.core.l10n;
+
+import org.eclipse.osgi.util.NLS;
+
+public class CoreMessages {
+
+  private static final String BUNDLE_NAME = "org.eclipse.egf.core.l10n.messages"; //$NON-NLS-1$
+
+  static {
+    // load message values from bundle file
+    NLS.initializeMessages(BUNDLE_NAME, CoreMessages.class);
+  }
+
+  public static String AbstractTask_Execute;
+
+  public static String AbstractTask_postExecute;
+
+  public static String AbstractTask_doExecute;
+
+  public static String AbstractTask_preExecute;
+
+}
