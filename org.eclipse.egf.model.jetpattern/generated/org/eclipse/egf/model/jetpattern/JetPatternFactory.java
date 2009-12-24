@@ -45,13 +45,13 @@ public interface JetPatternFactory extends EFactory {
     JetNature createJetNature();
 
     /**
-     * Returns a new object of class '<em>Jet Runner</em>'.
+     * Returns a new object of class '<em>Jet Engine</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Jet Runner</em>'.
+     * @return a new object of class '<em>Jet Engine</em>'.
      * @generated
      */
-    JetRunner createJetRunner();
+    JetEngine createJetEngine();
 
     /**
      * Returns the package supported by this factory.

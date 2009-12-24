@@ -16,23 +16,23 @@
  */
 package org.eclipse.egf.model.jetpattern.impl;
 
+import org.eclipse.egf.model.jetpattern.JetEngine;
 import org.eclipse.egf.model.jetpattern.JetPatternPackage;
-import org.eclipse.egf.model.jetpattern.JetRunner;
 
-import org.eclipse.egf.model.pattern.impl.PatternRunnerImpl;
+import org.eclipse.egf.model.pattern.impl.PatternEngineImpl;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Jet Runner</b></em>'.
+ * An implementation of the model object '<em><b>Jet Engine</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class JetRunnerImpl extends PatternRunnerImpl implements JetRunner {
+public class JetEngineImpl extends PatternEngineImpl implements JetEngine {
     /**
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
@@ -47,7 +47,7 @@ public class JetRunnerImpl extends PatternRunnerImpl implements JetRunner {
      * <!-- end-user-doc -->
      * @generated
      */
-    protected JetRunnerImpl() {
+    protected JetEngineImpl() {
         super();
     }
 
@@ -58,7 +58,7 @@ public class JetRunnerImpl extends PatternRunnerImpl implements JetRunner {
      */
     @Override
     protected EClass eStaticClass() {
-        return JetPatternPackage.Literals.JET_RUNNER;
+        return JetPatternPackage.Literals.JET_ENGINE;
     }
 
-} //JetRunnerImpl
+} //JetEngineImpl

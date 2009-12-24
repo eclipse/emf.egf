@@ -117,14 +117,14 @@ public interface JetPatternPackage extends EPackage {
     int JET_NATURE_FEATURE_COUNT = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl <em>Jet Runner</em>}' class.
+     * The meta object id for the '{@link org.eclipse.egf.model.jetpattern.impl.JetEngineImpl <em>Jet Engine</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl
-     * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetRunner()
+     * @see org.eclipse.egf.model.jetpattern.impl.JetEngineImpl
+     * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetEngine()
      * @generated
      */
-    int JET_RUNNER = 1;
+    int JET_ENGINE = 1;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -133,7 +133,7 @@ public interface JetPatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JET_RUNNER__ID = PatternPackage.PATTERN_RUNNER__ID;
+    int JET_ENGINE__ID = PatternPackage.PATTERN_ENGINE__ID;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -142,7 +142,7 @@ public interface JetPatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JET_RUNNER__NAME = PatternPackage.PATTERN_RUNNER__NAME;
+    int JET_ENGINE__NAME = PatternPackage.PATTERN_ENGINE__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -151,7 +151,7 @@ public interface JetPatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JET_RUNNER__DESCRIPTION = PatternPackage.PATTERN_RUNNER__DESCRIPTION;
+    int JET_ENGINE__DESCRIPTION = PatternPackage.PATTERN_ENGINE__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' reference.
@@ -160,16 +160,16 @@ public interface JetPatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JET_RUNNER__PATTERN = PatternPackage.PATTERN_RUNNER__PATTERN;
+    int JET_ENGINE__PATTERN = PatternPackage.PATTERN_ENGINE__PATTERN;
 
     /**
-     * The number of structural features of the '<em>Jet Runner</em>' class.
+     * The number of structural features of the '<em>Jet Engine</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JET_RUNNER_FEATURE_COUNT = PatternPackage.PATTERN_RUNNER_FEATURE_COUNT + 0;
+    int JET_ENGINE_FEATURE_COUNT = PatternPackage.PATTERN_ENGINE_FEATURE_COUNT + 0;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.jetpattern.JetNature <em>Jet Nature</em>}'.
@@ -182,14 +182,14 @@ public interface JetPatternPackage extends EPackage {
     EClass getJetNature();
 
     /**
-     * Returns the meta object for class '{@link org.eclipse.egf.model.jetpattern.JetRunner <em>Jet Runner</em>}'.
+     * Returns the meta object for class '{@link org.eclipse.egf.model.jetpattern.JetEngine <em>Jet Engine</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Jet Runner</em>'.
-     * @see org.eclipse.egf.model.jetpattern.JetRunner
+     * @return the meta object for class '<em>Jet Engine</em>'.
+     * @see org.eclipse.egf.model.jetpattern.JetEngine
      * @generated
      */
-    EClass getJetRunner();
+    EClass getJetEngine();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -224,14 +224,14 @@ public interface JetPatternPackage extends EPackage {
         EClass JET_NATURE = eINSTANCE.getJetNature();
 
         /**
-         * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl <em>Jet Runner</em>}' class.
+         * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetEngineImpl <em>Jet Engine</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.egf.model.jetpattern.impl.JetRunnerImpl
-         * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetRunner()
+         * @see org.eclipse.egf.model.jetpattern.impl.JetEngineImpl
+         * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetEngine()
          * @generated
          */
-        EClass JET_RUNNER = eINSTANCE.getJetRunner();
+        EClass JET_ENGINE = eINSTANCE.getJetEngine();
 
     }
 

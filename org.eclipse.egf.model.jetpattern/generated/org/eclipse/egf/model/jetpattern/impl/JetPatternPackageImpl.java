@@ -16,53 +16,46 @@
  */
 package org.eclipse.egf.model.jetpattern.impl;
 
-import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
-
+import org.eclipse.egf.model.jetpattern.JetEngine;
 import org.eclipse.egf.model.jetpattern.JetNature;
 import org.eclipse.egf.model.jetpattern.JetPatternFactory;
 import org.eclipse.egf.model.jetpattern.JetPatternPackage;
-import org.eclipse.egf.model.jetpattern.JetRunner;
-
 import org.eclipse.egf.model.pattern.PatternPackage;
-
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
- * <!-- begin-user-doc -->
- * An implementation of the model <b>Package</b>.
- * <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!--
+ * end-user-doc -->
+ * 
  * @generated
  */
 public class JetPatternPackageImpl extends EPackageImpl implements JetPatternPackage {
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     private EClass jetNatureEClass = null;
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
-    private EClass jetRunnerEClass = null;
+    private EClass jetEngineEClass = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
-     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
-     * package URI value.
-     * <p>Note: the correct way to create the package is via the static
-     * factory method {@link #init init()}, which also performs
-     * initialization of the package, or returns the registered package,
-     * if one already exists.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+     * package package URI value.
+     * <p>
+     * Note: the correct way to create the package is via the static factory
+     * method {@link #init init()}, which also performs initialization of the
+     * package, or returns the registered package, if one already exists. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @see org.eclipse.emf.ecore.EPackage.Registry
      * @see org.eclipse.egf.model.jetpattern.JetPatternPackage#eNS_URI
      * @see #init()
@@ -73,19 +66,22 @@ public class JetPatternPackageImpl extends EPackageImpl implements JetPatternPac
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     private static boolean isInited = false;
 
     /**
-     * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+     * Creates, registers, and initializes the <b>Package</b> for this model,
+     * and for any others upon which it depends.
      * 
-     * <p>This method is used to initialize {@link JetPatternPackage#eINSTANCE} when that field is accessed.
-     * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <p>
+     * This method is used to initialize {@link JetPatternPackage#eINSTANCE}
+     * when that field is accessed. Clients should not invoke it directly.
+     * Instead, they should simply access that field to obtain the package. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @see #eNS_URI
      * @see #createPackageContents()
      * @see #initializePackageContents()
@@ -118,8 +114,8 @@ public class JetPatternPackageImpl extends EPackageImpl implements JetPatternPac
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public EClass getJetNature() {
@@ -127,17 +123,17 @@ public class JetPatternPackageImpl extends EPackageImpl implements JetPatternPac
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
-    public EClass getJetRunner() {
-        return jetRunnerEClass;
+    public EClass getJetEngine() {
+        return jetEngineEClass;
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public JetPatternFactory getJetPatternFactory() {
@@ -145,17 +141,17 @@ public class JetPatternPackageImpl extends EPackageImpl implements JetPatternPac
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     private boolean isCreated = false;
 
     /**
-     * Creates the meta-model objects for the package.  This method is
-     * guarded to have no affect on any invocation but its first.
-     * <!-- begin-user-doc -->
+     * Creates the meta-model objects for the package. This method is guarded to
+     * have no affect on any invocation but its first. <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void createPackageContents() {
@@ -166,21 +162,21 @@ public class JetPatternPackageImpl extends EPackageImpl implements JetPatternPac
         // Create classes and their features
         jetNatureEClass = createEClass(JET_NATURE);
 
-        jetRunnerEClass = createEClass(JET_RUNNER);
+        jetEngineEClass = createEClass(JET_ENGINE);
     }
 
     /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     private boolean isInitialized = false;
 
     /**
-     * Complete the initialization of the package and its meta-model.  This
-     * method is guarded to have no affect on any invocation but its first.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
+     * Complete the initialization of the package and its meta-model. This
+     * method is guarded to have no affect on any invocation but its first. <!--
+     * begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void initializePackageContents() {
@@ -202,15 +198,15 @@ public class JetPatternPackageImpl extends EPackageImpl implements JetPatternPac
 
         // Add supertypes to classes
         jetNatureEClass.getESuperTypes().add(thePatternPackage.getPatternNature());
-        jetRunnerEClass.getESuperTypes().add(thePatternPackage.getPatternRunner());
+        jetEngineEClass.getESuperTypes().add(thePatternPackage.getPatternEngine());
 
         // Initialize classes and features; add operations and parameters
         initEClass(jetNatureEClass, JetNature.class, "JetNature", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-        initEClass(jetRunnerEClass, JetRunner.class, "JetRunner", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEClass(jetEngineEClass, JetEngine.class, "JetEngine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
         // Create resource
         createResource(eNS_URI);
     }
 
-} //JetPatternPackageImpl
+} // JetPatternPackageImpl

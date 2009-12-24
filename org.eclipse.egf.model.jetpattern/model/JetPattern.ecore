@@ -4,5 +4,5 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="jetpattern"
     nsURI="http://www.eclipse.org/egf/1.0.0/jetpattern" nsPrefix="jetpattern">
   <eClassifiers xsi:type="ecore:EClass" name="JetNature" eSuperTypes="../../org.eclipse.egf.model/model/Pattern.ecore#//PatternNature"/>
-  <eClassifiers xsi:type="ecore:EClass" name="JetRunner" eSuperTypes="../../org.eclipse.egf.model/model/Pattern.ecore#//PatternRunner"/>
+  <eClassifiers xsi:type="ecore:EClass" name="JetEngine" eSuperTypes="../../org.eclipse.egf.model/model/Pattern.ecore#//PatternEngine"/>
 </ecore:EPackage>

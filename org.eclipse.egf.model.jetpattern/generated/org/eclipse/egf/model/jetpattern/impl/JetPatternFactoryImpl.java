@@ -71,8 +71,8 @@ public class JetPatternFactoryImpl extends EFactoryImpl implements JetPatternFac
         switch (eClass.getClassifierID()) {
         case JetPatternPackage.JET_NATURE:
             return createJetNature();
-        case JetPatternPackage.JET_RUNNER:
-            return createJetRunner();
+        case JetPatternPackage.JET_ENGINE:
+            return createJetEngine();
         default:
             throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -93,9 +93,9 @@ public class JetPatternFactoryImpl extends EFactoryImpl implements JetPatternFac
      * <!-- end-user-doc -->
      * @generated
      */
-    public JetRunner createJetRunner() {
-        JetRunnerImpl jetRunner = new JetRunnerImpl();
-        return jetRunner;
+    public JetEngine createJetEngine() {
+        JetEngineImpl jetEngine = new JetEngineImpl();
+        return jetEngine;
     }
 
     /**

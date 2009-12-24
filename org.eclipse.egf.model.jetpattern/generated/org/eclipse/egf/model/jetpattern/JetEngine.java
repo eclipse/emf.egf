@@ -16,17 +16,17 @@
  */
 package org.eclipse.egf.model.jetpattern;
 
-import org.eclipse.egf.model.pattern.PatternRunner;
+import org.eclipse.egf.model.pattern.PatternEngine;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Jet Runner</b></em>'.
+ * A representation of the model object '<em><b>Jet Engine</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.egf.model.jetpattern.JetPatternPackage#getJetRunner()
+ * @see org.eclipse.egf.model.jetpattern.JetPatternPackage#getJetEngine()
  * @model
  * @generated
  */
-public interface JetRunner extends PatternRunner {
-} // JetRunner
+public interface JetEngine extends PatternEngine {
+} // JetEngine

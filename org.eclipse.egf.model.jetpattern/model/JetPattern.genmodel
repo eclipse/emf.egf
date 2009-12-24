@@ -16,6 +16,6 @@
       disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
       childCreationExtenders="true" contentTypeIdentifier="" ecorePackage="JetPattern.ecore#/">
     <genClasses ecoreClass="JetPattern.ecore#//JetNature"/>
-    <genClasses ecoreClass="JetPattern.ecore#//JetRunner"/>
+    <genClasses ecoreClass="JetPattern.ecore#//JetEngine"/>
   </genPackages>
 </genmodel:GenModel>
