@@ -32,6 +32,8 @@ public class JetNatureHelper {
 
     /**
      * This method parses the template header to know the template class name.
+     * 
+     * @return never returns null or empty string.
      */
     public static String getTemplateClassName(Pattern pattern) throws PatternException {
         try {

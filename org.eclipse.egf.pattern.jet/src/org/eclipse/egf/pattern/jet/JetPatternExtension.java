@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.jet;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternRunner;
@@ -31,6 +32,21 @@ public class JetPatternExtension extends PatternExtension {
 
     private static final PatternNature NATURE = org.eclipse.egf.model.jetpattern.JetPatternFactory.eINSTANCE.createJetNature();
     private final PatternFactory factory = new JetPatternFactory();
+
+    @Override
+    public String canTranslate(Pattern pattern) {
+
+        String canTranslate = super.canTranslate(pattern);
+        if (canTranslate == null) {
+            try {
+                JetNatureHelper.getTemplateClassName(pattern);
+            } catch (PatternException e) {
+                return e.getMessage();
+            }
+
+        }
+        return canTranslate;
+    }
 
     @Override
     public PatternNature getNature() {
