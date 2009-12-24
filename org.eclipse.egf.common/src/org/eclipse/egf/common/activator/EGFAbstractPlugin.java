@@ -15,14 +15,9 @@
 
 package org.eclipse.egf.common.activator;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.common.log.IEGFLogger;
 
 /**
@@ -37,11 +32,6 @@ public abstract class EGFAbstractPlugin extends Plugin {
    * Extension point "egf_logger" short id.
    */
   protected static final String EXTENSION_POINT_LOGGER = "logger"; //$NON-NLS-1$ 
-
-  /**
-   * EGF Registered loggers.
-   */
-  private static List<IEGFLogger> _egfLoggers;
 
   /**
    * Log Status
@@ -62,7 +52,7 @@ public abstract class EGFAbstractPlugin extends Plugin {
   public void log(IStatus status, int nesting, boolean appendLogger) {
     getLog().log(status);
     if (appendLogger) {
-      for (IEGFLogger logger : getEGFLoggers()) {
+      for (IEGFLogger logger : EGFCommonPlugin.getEGFLoggers()) {
         logger.logStatus(status, nesting);
       }
     }
@@ -264,27 +254,6 @@ public abstract class EGFAbstractPlugin extends Plugin {
    */
   public String getPluginID() {
     return getBundle().getSymbolicName();
-  }
-
-  /**
-   * Get egf loggers implementations.
-   * 
-   * @return an empty list if none could be found.
-   */
-  public static List<IEGFLogger> getEGFLoggers() {
-    // Lazy loading. Search for the implementation.
-    if (_egfLoggers == null) {
-      _egfLoggers = new ArrayList<IEGFLogger>();
-      // Get EGF logger extension points.
-      for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFCommonPlugin.getDefault().getPluginID(), EXTENSION_POINT_LOGGER)) {
-        Object instantiatedClass = ExtensionPointHelper.createInstance(configurationElement, ExtensionPointHelper.ATT_CLASS);
-        // Make sure this is the correct resulting type.
-        if (instantiatedClass instanceof IEGFLogger) {
-          _egfLoggers.add((IEGFLogger) instantiatedClass);
-        }
-      }
-    }
-    return _egfLoggers;
   }
 
 }
