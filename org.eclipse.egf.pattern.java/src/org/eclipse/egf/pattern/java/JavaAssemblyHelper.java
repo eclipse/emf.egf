@@ -53,13 +53,13 @@ public class JavaAssemblyHelper extends AssemblyHelper {
             if (!matcher.matches())
                 throw new PatternException(Messages.bind(Messages.assembly_error7, call.getPattern().getName()));
             for (PatternParameter key : matcher.getMatching().keySet()) {
-                String called = PatternHelper.uniqueName(matcher.getMatching().get(key));
-                content.append(key.getType()).append(" ").append(called).append(" = (").append(key.getType()).append(")").append(key.getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
+                String called = PatternHelper.uniqueName(key);
+                content.append(key.getType()).append(" ").append(called).append(" = ").append(matcher.getMatching().get(key).getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
             }
         } else {
             for (Entry<PatternParameter, PatternParameter> binding : call.getParameterMatching()) {
-                String called = PatternHelper.uniqueName(binding.getValue());
-                content.append(binding.getKey().getType()).append(" ").append(called).append(" = ").append(binding.getKey().getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
+                String called = PatternHelper.uniqueName(binding.getKey());
+                content.append(binding.getKey().getType()).append(" ").append(called).append(" = ").append(binding.getValue().getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
             }
         }
         String ctxName = "ctx_" + PatternHelper.uniqueName(pattern);
