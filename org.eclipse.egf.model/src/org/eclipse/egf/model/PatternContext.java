@@ -29,8 +29,20 @@ import java.util.Map;
  */
 public class PatternContext {
 
-    public static final String INTERNAL_PATTERN_REPORTER = "internal.pattern.reporter";
-    public static final String INTERNAL_PATTERN_PARAMETER_ALIAS = "internal.pattern.parameter.alias";
+    /**
+     * Key to manage the patter execution reporter.
+     */
+    public static final String PATTERN_REPORTER = "internal.pattern.reporter";
+
+    /**
+     * key to manage the context injected to a pattern.
+     */
+    public static final String INJECTED_CONTEXT = "internal.injected.context";
+
+    /**
+     * key to manage the object collection to perform queries on.
+     */
+    public static final String DOMAIN_OBJECTS = "internal.domain.objects";
 
     private PatternContext parent;
     private final Map<String, Object> data = new HashMap<String, Object>();
@@ -45,7 +57,7 @@ public class PatternContext {
     public void setValue(String name, Object value) {
         if (name == null)
             throw new IllegalArgumentException();
-        throw new UnsupportedOperationException();
+        data.put(name, value);
         // TODO how to deal with parent ctx ?
 
     }

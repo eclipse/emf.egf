@@ -21,8 +21,10 @@ import org.eclipse.egf.model.factorycomponent.impl.ModelElementImpl;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
 
+import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -37,6 +39,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl#getQuery <em>Query</em>}</li>
  * </ul>
  * </p>
  *
@@ -71,6 +74,16 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
      * @ordered
      */
     protected String type = TYPE_EDEFAULT;
+
+    /**
+     * The cached value of the '{@link #getQuery() <em>Query</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getQuery()
+     * @generated
+     * @ordered
+     */
+    protected Query query;
 
     /**
      * <!-- begin-user-doc -->
@@ -117,11 +130,89 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
      * <!-- end-user-doc -->
      * @generated
      */
+    public Query getQuery() {
+        return query;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetQuery(Query newQuery, NotificationChain msgs) {
+        Query oldQuery = query;
+        query = newQuery;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_PARAMETER__QUERY, oldQuery, newQuery);
+            if (msgs == null)
+                msgs = notification;
+            else
+                msgs.add(notification);
+        }
+        return msgs;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setQuery(Query newQuery) {
+        if (newQuery != query) {
+            NotificationChain msgs = null;
+            if (query != null)
+                msgs = ((InternalEObject) query).eInverseRemove(this, PatternPackage.QUERY__PARAMETER, Query.class, msgs);
+            if (newQuery != null)
+                msgs = ((InternalEObject) newQuery).eInverseAdd(this, PatternPackage.QUERY__PARAMETER, Query.class, msgs);
+            msgs = basicSetQuery(newQuery, msgs);
+            if (msgs != null)
+                msgs.dispatch();
+        } else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_PARAMETER__QUERY, newQuery, newQuery));
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            if (query != null)
+                msgs = ((InternalEObject) query).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - PatternPackage.PATTERN_PARAMETER__QUERY, null, msgs);
+            return basicSetQuery((Query) otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            return basicSetQuery(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
         case PatternPackage.PATTERN_PARAMETER__TYPE:
             return getType();
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            return getQuery();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -136,6 +227,9 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
         switch (featureID) {
         case PatternPackage.PATTERN_PARAMETER__TYPE:
             setType((String) newValue);
+            return;
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            setQuery((Query) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -152,6 +246,9 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
         case PatternPackage.PATTERN_PARAMETER__TYPE:
             setType(TYPE_EDEFAULT);
             return;
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            setQuery((Query) null);
+            return;
         }
         super.eUnset(featureID);
     }
@@ -166,6 +263,8 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
         switch (featureID) {
         case PatternPackage.PATTERN_PARAMETER__TYPE:
             return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+        case PatternPackage.PATTERN_PARAMETER__QUERY:
+            return query != null;
         }
         return super.eIsSet(featureID);
     }

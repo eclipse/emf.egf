@@ -239,6 +239,40 @@ public class PatternSwitch<T> {
                 result = defaultCase(theEObject);
             return result;
         }
+        case PatternPackage.QUERY: {
+            Query query = (Query) theEObject;
+            T result = caseQuery(query);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case PatternPackage.BASIC_QUERY: {
+            BasicQuery basicQuery = (BasicQuery) theEObject;
+            T result = caseBasicQuery(basicQuery);
+            if (result == null)
+                result = caseQuery(basicQuery);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case PatternPackage.STRING_QUERY: {
+            StringQuery stringQuery = (StringQuery) theEObject;
+            T result = caseStringQuery(stringQuery);
+            if (result == null)
+                result = caseQuery(stringQuery);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case PatternPackage.CUSTOM_QUERY: {
+            CustomQuery customQuery = (CustomQuery) theEObject;
+            T result = caseCustomQuery(customQuery);
+            if (result == null)
+                result = caseQuery(customQuery);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
         default:
             return defaultCase(theEObject);
         }
@@ -466,6 +500,66 @@ public class PatternSwitch<T> {
      * @generated
      */
     public T casePatternInjectedCall(PatternInjectedCall object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Query</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Query</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseQuery(Query object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Basic Query</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Basic Query</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseBasicQuery(BasicQuery object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>String Query</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>String Query</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseStringQuery(StringQuery object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Custom Query</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Custom Query</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseCustomQuery(CustomQuery object) {
         return null;
     }
 

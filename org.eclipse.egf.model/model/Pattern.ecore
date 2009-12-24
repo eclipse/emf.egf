@@ -37,6 +37,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternParameter" eSuperTypes="FactoryComponent.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="query" eType="#//Query"
+        containment="true" resolveProxies="false" eOpposite="#//Query/parameter"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternEngine" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement">
     <eOperations name="execute" eExceptions="#//PatternException">
@@ -90,4 +92,19 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
         eType="#//PatternVariable" resolveProxies="false"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Query" abstract="true">
+    <eOperations name="getQueryContext">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      </eGenericType>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
+        eType="#//PatternParameter" resolveProxies="false" eOpposite="#//PatternParameter/query"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="delegateClass" lowerBound="1"
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicQuery" eSuperTypes="#//Query"/>
+  <eClassifiers xsi:type="ecore:EClass" name="StringQuery" eSuperTypes="#//Query"/>
+  <eClassifiers xsi:type="ecore:EClass" name="CustomQuery" eSuperTypes="#//Query"/>
 </ecore:EPackage>

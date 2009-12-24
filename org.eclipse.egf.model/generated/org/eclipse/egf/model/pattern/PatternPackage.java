@@ -374,13 +374,22 @@ public interface PatternPackage extends EPackage {
     int PATTERN_PARAMETER__TYPE = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
+     * The feature id for the '<em><b>Query</b></em>' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_PARAMETER__QUERY = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+    /**
      * The number of structural features of the '<em>Parameter</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PATTERN_PARAMETER_FEATURE_COUNT = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+    int PATTERN_PARAMETER_FEATURE_COUNT = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternEngineImpl <em>Engine</em>}' class.
@@ -898,6 +907,154 @@ public interface PatternPackage extends EPackage {
     int PATTERN_INJECTED_CALL_FEATURE_COUNT = ABSTRACT_PATTERN_CALL_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.QueryImpl <em>Query</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.QueryImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getQuery()
+     * @generated
+     */
+    int QUERY = 15;
+
+    /**
+     * The feature id for the '<em><b>Parameter</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY__PARAMETER = 0;
+
+    /**
+     * The feature id for the '<em><b>Delegate Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY__DELEGATE_CLASS = 1;
+
+    /**
+     * The number of structural features of the '<em>Query</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int QUERY_FEATURE_COUNT = 2;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.BasicQueryImpl <em>Basic Query</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.BasicQueryImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getBasicQuery()
+     * @generated
+     */
+    int BASIC_QUERY = 16;
+
+    /**
+     * The feature id for the '<em><b>Parameter</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_QUERY__PARAMETER = QUERY__PARAMETER;
+
+    /**
+     * The feature id for the '<em><b>Delegate Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_QUERY__DELEGATE_CLASS = QUERY__DELEGATE_CLASS;
+
+    /**
+     * The number of structural features of the '<em>Basic Query</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int BASIC_QUERY_FEATURE_COUNT = QUERY_FEATURE_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.StringQueryImpl <em>String Query</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.StringQueryImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getStringQuery()
+     * @generated
+     */
+    int STRING_QUERY = 17;
+
+    /**
+     * The feature id for the '<em><b>Parameter</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STRING_QUERY__PARAMETER = QUERY__PARAMETER;
+
+    /**
+     * The feature id for the '<em><b>Delegate Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STRING_QUERY__DELEGATE_CLASS = QUERY__DELEGATE_CLASS;
+
+    /**
+     * The number of structural features of the '<em>String Query</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int STRING_QUERY_FEATURE_COUNT = QUERY_FEATURE_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.CustomQueryImpl <em>Custom Query</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.CustomQueryImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getCustomQuery()
+     * @generated
+     */
+    int CUSTOM_QUERY = 18;
+
+    /**
+     * The feature id for the '<em><b>Parameter</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CUSTOM_QUERY__PARAMETER = QUERY__PARAMETER;
+
+    /**
+     * The feature id for the '<em><b>Delegate Class</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CUSTOM_QUERY__DELEGATE_CLASS = QUERY__DELEGATE_CLASS;
+
+    /**
+     * The number of structural features of the '<em>Custom Query</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int CUSTOM_QUERY_FEATURE_COUNT = QUERY_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '<em>Context</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -905,7 +1062,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
      */
-    int PATTERN_CONTEXT = 15;
+    int PATTERN_CONTEXT = 19;
 
     /**
      * The meta object id for the '<em>Exception</em>' data type.
@@ -915,7 +1072,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated
      */
-    int PATTERN_EXCEPTION = 16;
+    int PATTERN_EXCEPTION = 20;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -1078,6 +1235,17 @@ public interface PatternPackage extends EPackage {
      * @generated
      */
     EAttribute getPatternParameter_Type();
+
+    /**
+     * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.pattern.PatternParameter#getQuery <em>Query</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the containment reference '<em>Query</em>'.
+     * @see org.eclipse.egf.model.pattern.PatternParameter#getQuery()
+     * @see #getPatternParameter()
+     * @generated
+     */
+    EReference getPatternParameter_Query();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternEngine <em>Engine</em>}'.
@@ -1324,6 +1492,68 @@ public interface PatternPackage extends EPackage {
     EReference getPatternInjectedCall_Context();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Query <em>Query</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Query</em>'.
+     * @see org.eclipse.egf.model.pattern.Query
+     * @generated
+     */
+    EClass getQuery();
+
+    /**
+     * Returns the meta object for the container reference '{@link org.eclipse.egf.model.pattern.Query#getParameter <em>Parameter</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the container reference '<em>Parameter</em>'.
+     * @see org.eclipse.egf.model.pattern.Query#getParameter()
+     * @see #getQuery()
+     * @generated
+     */
+    EReference getQuery_Parameter();
+
+    /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.model.pattern.Query#getDelegateClass <em>Delegate Class</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Delegate Class</em>'.
+     * @see org.eclipse.egf.model.pattern.Query#getDelegateClass()
+     * @see #getQuery()
+     * @generated
+     */
+    EAttribute getQuery_DelegateClass();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.BasicQuery <em>Basic Query</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Basic Query</em>'.
+     * @see org.eclipse.egf.model.pattern.BasicQuery
+     * @generated
+     */
+    EClass getBasicQuery();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.StringQuery <em>String Query</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>String Query</em>'.
+     * @see org.eclipse.egf.model.pattern.StringQuery
+     * @generated
+     */
+    EClass getStringQuery();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.CustomQuery <em>Custom Query</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Custom Query</em>'.
+     * @see org.eclipse.egf.model.pattern.CustomQuery
+     * @generated
+     */
+    EClass getCustomQuery();
+
+    /**
      * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1503,6 +1733,14 @@ public interface PatternPackage extends EPackage {
          * @generated
          */
         EAttribute PATTERN_PARAMETER__TYPE = eINSTANCE.getPatternParameter_Type();
+
+        /**
+         * The meta object literal for the '<em><b>Query</b></em>' containment reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PATTERN_PARAMETER__QUERY = eINSTANCE.getPatternParameter_Query();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternEngineImpl <em>Engine</em>}' class.
@@ -1711,6 +1949,62 @@ public interface PatternPackage extends EPackage {
          * @generated
          */
         EReference PATTERN_INJECTED_CALL__CONTEXT = eINSTANCE.getPatternInjectedCall_Context();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.QueryImpl <em>Query</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.QueryImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getQuery()
+         * @generated
+         */
+        EClass QUERY = eINSTANCE.getQuery();
+
+        /**
+         * The meta object literal for the '<em><b>Parameter</b></em>' container reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference QUERY__PARAMETER = eINSTANCE.getQuery_Parameter();
+
+        /**
+         * The meta object literal for the '<em><b>Delegate Class</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute QUERY__DELEGATE_CLASS = eINSTANCE.getQuery_DelegateClass();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.BasicQueryImpl <em>Basic Query</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.BasicQueryImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getBasicQuery()
+         * @generated
+         */
+        EClass BASIC_QUERY = eINSTANCE.getBasicQuery();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.StringQueryImpl <em>String Query</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.StringQueryImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getStringQuery()
+         * @generated
+         */
+        EClass STRING_QUERY = eINSTANCE.getStringQuery();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.CustomQueryImpl <em>Custom Query</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.CustomQueryImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getCustomQuery()
+         * @generated
+         */
+        EClass CUSTOM_QUERY = eINSTANCE.getCustomQuery();
 
         /**
          * The meta object literal for the '<em><b>Value</b></em>' reference feature.

@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EModelElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.pattern.PatternParameter#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.PatternParameter#getQuery <em>Query</em>}</li>
  * </ul>
  * </p>
  *
@@ -62,5 +63,33 @@ public interface PatternParameter extends ModelElement {
      * @generated
      */
     void setType(String value);
+
+    /**
+     * Returns the value of the '<em><b>Query</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.pattern.Query#getParameter <em>Parameter</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Query</em>' containment reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Query</em>' containment reference.
+     * @see #setQuery(Query)
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternParameter_Query()
+     * @see org.eclipse.egf.model.pattern.Query#getParameter
+     * @model opposite="parameter" containment="true"
+     * @generated
+     */
+    Query getQuery();
+
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternParameter#getQuery <em>Query</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Query</em>' containment reference.
+     * @see #getQuery()
+     * @generated
+     */
+    void setQuery(Query value);
 
 } // PatternParameter

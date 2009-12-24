@@ -117,6 +117,33 @@ public interface PatternFactory extends EFactory {
     PatternInjectedCall createPatternInjectedCall();
 
     /**
+     * Returns a new object of class '<em>Basic Query</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Basic Query</em>'.
+     * @generated
+     */
+    BasicQuery createBasicQuery();
+
+    /**
+     * Returns a new object of class '<em>String Query</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>String Query</em>'.
+     * @generated
+     */
+    StringQuery createStringQuery();
+
+    /**
+     * Returns a new object of class '<em>Custom Query</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Custom Query</em>'.
+     * @generated
+     */
+    CustomQuery createCustomQuery();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

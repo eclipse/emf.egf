@@ -160,6 +160,26 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
+        public Adapter caseQuery(Query object) {
+            return createQueryAdapter();
+        }
+
+        @Override
+        public Adapter caseBasicQuery(BasicQuery object) {
+            return createBasicQueryAdapter();
+        }
+
+        @Override
+        public Adapter caseStringQuery(StringQuery object) {
+            return createStringQueryAdapter();
+        }
+
+        @Override
+        public Adapter caseCustomQuery(CustomQuery object) {
+            return createCustomQueryAdapter();
+        }
+
+        @Override
         public Adapter caseModelElement(ModelElement object) {
             return createModelElementAdapter();
         }
@@ -395,6 +415,62 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createPatternInjectedCallAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.Query <em>Query</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.Query
+     * @generated
+     */
+    public Adapter createQueryAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.BasicQuery <em>Basic Query</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.BasicQuery
+     * @generated
+     */
+    public Adapter createBasicQueryAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.StringQuery <em>String Query</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.StringQuery
+     * @generated
+     */
+    public Adapter createStringQueryAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.CustomQuery <em>Custom Query</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.CustomQuery
+     * @generated
+     */
+    public Adapter createCustomQueryAdapter() {
         return null;
     }
 

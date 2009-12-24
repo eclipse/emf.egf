@@ -39,6 +39,7 @@
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//PatternParameter">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Pattern.ecore#//PatternParameter/type"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternParameter/query"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Pattern.ecore#//PatternEngine">
       <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternEngine/pattern"/>
@@ -78,5 +79,13 @@
     <genClasses ecoreClass="Pattern.ecore#//PatternInjectedCall">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternInjectedCall/context"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//Query">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//Query/parameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pattern.ecore#//Query/delegateClass"/>
+      <genOperations ecoreOperation="Pattern.ecore#//Query/getQueryContext"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//BasicQuery"/>
+    <genClasses ecoreClass="Pattern.ecore#//StringQuery"/>
+    <genClasses ecoreClass="Pattern.ecore#//CustomQuery"/>
   </genPackages>
 </genmodel:GenModel>
