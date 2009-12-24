@@ -117,14 +117,14 @@ public interface JavaPatternPackage extends EPackage {
     int JAVA_NATURE_FEATURE_COUNT = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 0;
 
     /**
-     * The meta object id for the '{@link org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl <em>Java Runner</em>}' class.
+     * The meta object id for the '{@link org.eclipse.egf.model.javapattern.impl.JavaEngineImpl <em>Java Engine</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl
-     * @see org.eclipse.egf.model.javapattern.impl.JavaPatternPackageImpl#getJavaRunner()
+     * @see org.eclipse.egf.model.javapattern.impl.JavaEngineImpl
+     * @see org.eclipse.egf.model.javapattern.impl.JavaPatternPackageImpl#getJavaEngine()
      * @generated
      */
-    int JAVA_RUNNER = 1;
+    int JAVA_ENGINE = 1;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -133,7 +133,7 @@ public interface JavaPatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JAVA_RUNNER__ID = PatternPackage.PATTERN_RUNNER__ID;
+    int JAVA_ENGINE__ID = PatternPackage.PATTERN_ENGINE__ID;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -142,7 +142,7 @@ public interface JavaPatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JAVA_RUNNER__NAME = PatternPackage.PATTERN_RUNNER__NAME;
+    int JAVA_ENGINE__NAME = PatternPackage.PATTERN_ENGINE__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -151,7 +151,7 @@ public interface JavaPatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JAVA_RUNNER__DESCRIPTION = PatternPackage.PATTERN_RUNNER__DESCRIPTION;
+    int JAVA_ENGINE__DESCRIPTION = PatternPackage.PATTERN_ENGINE__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' reference.
@@ -160,16 +160,16 @@ public interface JavaPatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int JAVA_RUNNER__PATTERN = PatternPackage.PATTERN_RUNNER__PATTERN;
+    int JAVA_ENGINE__PATTERN = PatternPackage.PATTERN_ENGINE__PATTERN;
 
     /**
-     * The number of structural features of the '<em>Java Runner</em>' class.
+     * The number of structural features of the '<em>Java Engine</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int JAVA_RUNNER_FEATURE_COUNT = PatternPackage.PATTERN_RUNNER_FEATURE_COUNT + 0;
+    int JAVA_ENGINE_FEATURE_COUNT = PatternPackage.PATTERN_ENGINE_FEATURE_COUNT + 0;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.javapattern.JavaNature <em>Java Nature</em>}'.
@@ -182,14 +182,14 @@ public interface JavaPatternPackage extends EPackage {
     EClass getJavaNature();
 
     /**
-     * Returns the meta object for class '{@link org.eclipse.egf.model.javapattern.JavaRunner <em>Java Runner</em>}'.
+     * Returns the meta object for class '{@link org.eclipse.egf.model.javapattern.JavaEngine <em>Java Engine</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Java Runner</em>'.
-     * @see org.eclipse.egf.model.javapattern.JavaRunner
+     * @return the meta object for class '<em>Java Engine</em>'.
+     * @see org.eclipse.egf.model.javapattern.JavaEngine
      * @generated
      */
-    EClass getJavaRunner();
+    EClass getJavaEngine();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -224,14 +224,14 @@ public interface JavaPatternPackage extends EPackage {
         EClass JAVA_NATURE = eINSTANCE.getJavaNature();
 
         /**
-         * The meta object literal for the '{@link org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl <em>Java Runner</em>}' class.
+         * The meta object literal for the '{@link org.eclipse.egf.model.javapattern.impl.JavaEngineImpl <em>Java Engine</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.egf.model.javapattern.impl.JavaRunnerImpl
-         * @see org.eclipse.egf.model.javapattern.impl.JavaPatternPackageImpl#getJavaRunner()
+         * @see org.eclipse.egf.model.javapattern.impl.JavaEngineImpl
+         * @see org.eclipse.egf.model.javapattern.impl.JavaPatternPackageImpl#getJavaEngine()
          * @generated
          */
-        EClass JAVA_RUNNER = eINSTANCE.getJavaRunner();
+        EClass JAVA_ENGINE = eINSTANCE.getJavaEngine();
 
     }
 

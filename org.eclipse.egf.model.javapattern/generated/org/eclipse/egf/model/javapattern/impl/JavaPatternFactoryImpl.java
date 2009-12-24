@@ -71,8 +71,8 @@ public class JavaPatternFactoryImpl extends EFactoryImpl implements JavaPatternF
         switch (eClass.getClassifierID()) {
         case JavaPatternPackage.JAVA_NATURE:
             return createJavaNature();
-        case JavaPatternPackage.JAVA_RUNNER:
-            return createJavaRunner();
+        case JavaPatternPackage.JAVA_ENGINE:
+            return createJavaEngine();
         default:
             throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -93,9 +93,9 @@ public class JavaPatternFactoryImpl extends EFactoryImpl implements JavaPatternF
      * <!-- end-user-doc -->
      * @generated
      */
-    public JavaRunner createJavaRunner() {
-        JavaRunnerImpl javaRunner = new JavaRunnerImpl();
-        return javaRunner;
+    public JavaEngine createJavaEngine() {
+        JavaEngineImpl javaEngine = new JavaEngineImpl();
+        return javaEngine;
     }
 
     /**

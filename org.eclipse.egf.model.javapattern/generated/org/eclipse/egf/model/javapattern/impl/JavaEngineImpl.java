@@ -16,23 +16,23 @@
  */
 package org.eclipse.egf.model.javapattern.impl;
 
+import org.eclipse.egf.model.javapattern.JavaEngine;
 import org.eclipse.egf.model.javapattern.JavaPatternPackage;
-import org.eclipse.egf.model.javapattern.JavaRunner;
 
-import org.eclipse.egf.model.pattern.impl.PatternRunnerImpl;
+import org.eclipse.egf.model.pattern.impl.PatternEngineImpl;
 
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Java Runner</b></em>'.
+ * An implementation of the model object '<em><b>Java Engine</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public class JavaRunnerImpl extends PatternRunnerImpl implements JavaRunner {
+public class JavaEngineImpl extends PatternEngineImpl implements JavaEngine {
     /**
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
@@ -47,7 +47,7 @@ public class JavaRunnerImpl extends PatternRunnerImpl implements JavaRunner {
      * <!-- end-user-doc -->
      * @generated
      */
-    protected JavaRunnerImpl() {
+    protected JavaEngineImpl() {
         super();
     }
 
@@ -58,7 +58,7 @@ public class JavaRunnerImpl extends PatternRunnerImpl implements JavaRunner {
      */
     @Override
     protected EClass eStaticClass() {
-        return JavaPatternPackage.Literals.JAVA_RUNNER;
+        return JavaPatternPackage.Literals.JAVA_ENGINE;
     }
 
-} //JavaRunnerImpl
+} //JavaEngineImpl

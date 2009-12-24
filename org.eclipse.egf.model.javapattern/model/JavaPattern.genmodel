@@ -16,6 +16,6 @@
       disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
       childCreationExtenders="true" ecorePackage="JavaPattern.ecore#/">
     <genClasses ecoreClass="JavaPattern.ecore#//JavaNature"/>
-    <genClasses ecoreClass="JavaPattern.ecore#//JavaRunner"/>
+    <genClasses ecoreClass="JavaPattern.ecore#//JavaEngine"/>
   </genPackages>
 </genmodel:GenModel>

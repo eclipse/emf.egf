@@ -45,13 +45,13 @@ public interface JavaPatternFactory extends EFactory {
     JavaNature createJavaNature();
 
     /**
-     * Returns a new object of class '<em>Java Runner</em>'.
+     * Returns a new object of class '<em>Java Engine</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return a new object of class '<em>Java Runner</em>'.
+     * @return a new object of class '<em>Java Engine</em>'.
      * @generated
      */
-    JavaRunner createJavaRunner();
+    JavaEngine createJavaEngine();
 
     /**
      * Returns the package supported by this factory.

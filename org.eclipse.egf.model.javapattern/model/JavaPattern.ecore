@@ -4,5 +4,5 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="javapattern"
     nsURI="http://www.eclipse.org/egf/1.0.0/javapattern" nsPrefix="javapattern">
   <eClassifiers xsi:type="ecore:EClass" name="JavaNature" eSuperTypes="platform:/plugin/org.eclipse.egf.model/model/Pattern.ecore#//PatternNature"/>
-  <eClassifiers xsi:type="ecore:EClass" name="JavaRunner" eSuperTypes="platform:/plugin/org.eclipse.egf.model/model/Pattern.ecore#//PatternRunner"/>
+  <eClassifiers xsi:type="ecore:EClass" name="JavaEngine" eSuperTypes="platform:/plugin/org.eclipse.egf.model/model/Pattern.ecore#//PatternEngine"/>
 </ecore:EPackage>
