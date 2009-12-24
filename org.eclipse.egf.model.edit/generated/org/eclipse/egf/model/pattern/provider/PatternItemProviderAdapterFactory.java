@@ -345,6 +345,75 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.BasicQuery} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BasicQueryItemProvider basicQueryItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.BasicQuery}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBasicQueryAdapter() {
+        if (basicQueryItemProvider == null) {
+            basicQueryItemProvider = new BasicQueryItemProvider(this);
+        }
+
+        return basicQueryItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.StringQuery} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected StringQueryItemProvider stringQueryItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.StringQuery}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createStringQueryAdapter() {
+        if (stringQueryItemProvider == null) {
+            stringQueryItemProvider = new StringQueryItemProvider(this);
+        }
+
+        return stringQueryItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.CustomQuery} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected CustomQueryItemProvider customQueryItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.CustomQuery}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createCustomQueryAdapter() {
+        if (customQueryItemProvider == null) {
+            customQueryItemProvider = new CustomQueryItemProvider(this);
+        }
+
+        return customQueryItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -463,6 +532,12 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             patternVariableItemProvider.dispose();
         if (patternInjectedCallItemProvider != null)
             patternInjectedCallItemProvider.dispose();
+        if (basicQueryItemProvider != null)
+            basicQueryItemProvider.dispose();
+        if (stringQueryItemProvider != null)
+            stringQueryItemProvider.dispose();
+        if (customQueryItemProvider != null)
+            customQueryItemProvider.dispose();
     }
 
     /**
