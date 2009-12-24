@@ -40,6 +40,18 @@ public abstract class PatternFactory {
     public static final String FOOTER_METHOD_NAME = "footer";
     public static final String BODY_METHOD_NAME = "body";
 
+    public List<Pattern> createDebugPattern6(PatternLibrary lib) {
+        List<Pattern> result = new ArrayList<Pattern>();
+        Pattern createPattern = createPattern(lib, "MyPattern");
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
+        param1.setName("myParam");
+        param1.setType("org.eclipse.emf.ecore.EClass");
+        param1.setQuery(org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery());
+        createPattern.getParameters().add(param1);
+        result.add(createPattern);
+        return result;
+    }
+
     public Pattern createDebugPattern1(PatternLibrary lib) {
         Pattern createPattern = createPattern(lib, "MyPattern");
         return createPattern;

@@ -34,6 +34,7 @@ import org.eclipse.egf.pattern.Messages;
 public class ExtensionHelper {
 
     private static Map<String, PatternExtension> getExtensions() {
+
         Map<String, PatternExtension> result = new HashMap<String, PatternExtension>();
         for (IConfigurationElement element : Platform.getExtensionRegistry().getConfigurationElementsFor(PatternExtension.EXTENSION_ID)) {
             try {

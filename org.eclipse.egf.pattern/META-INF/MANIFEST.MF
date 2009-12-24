@@ -7,11 +7,13 @@ Bundle-Activator: org.eclipse.egf.pattern.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.egf.model;visibility:=reexport,
  org.eclipse.jdt.core,
- org.eclipse.egf.core.platform;visibility:=reexport
+ org.eclipse.egf.core.platform;visibility:=reexport,
+ org.eclipse.emf.query
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.egf.pattern,
  org.eclipse.egf.pattern.execution,
  org.eclipse.egf.pattern.extension,
+ org.eclipse.egf.pattern.query,
  org.eclipse.egf.pattern.templates
 Bundle-Vendor: %providerName

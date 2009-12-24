@@ -41,6 +41,7 @@ public abstract class AssemblyHelper {
 
     protected final Pattern pattern;
     protected final StringBuilder content = new StringBuilder(1000);
+    protected int orchestrationIndex;
 
     public AssemblyHelper(Pattern pattern) {
         super();
@@ -48,17 +49,19 @@ public abstract class AssemblyHelper {
     }
 
     public String visit() throws PatternException {
+        orchestrationIndex = -1;
         String read = getMethodContent(pattern.getHeaderMethod());
         if (read != null)
             content.append(read);
 
-        int insertionIndex = content.length();
+        beginOrchestration();
+        if (orchestrationIndex == -1)
+            throw new PatternException(Messages.assembly_error6);
 
         addVariable(pattern);
         visitOrchestration(pattern);
 
-        if (!pattern.getParameters().isEmpty())
-            handleParameters(insertionIndex);
+        endOrchestration();
 
         read = getMethodContent(pattern.getFooterMethod());
         if (read != null)
@@ -67,17 +70,25 @@ public abstract class AssemblyHelper {
         return content.toString();
     }
 
+    /**
+     * This method may code to handle parameter at the orchestrationIndex and at
+     * the current index. The inserted code is mainly a kind of loop containing
+     * the pattern body over the result of the query.
+     */
+    protected void endOrchestration() {
+    }
+
+    protected void beginOrchestration() {
+        orchestrationIndex = content.length();
+    }
+
     protected void addVariable(Pattern pattern) throws PatternException {
         content.append(getMethodContent(pattern.getInitMethod()));
 
     }
 
-    /**
-     * This method may code to handle parameter at the insertionIndex and at the
-     * current index. The inserted code is mainly a kind of loop containing the
-     * pattern body over the result of the query.
-     */
-    protected abstract void handleParameters(int insertionIndex);
+    protected final void handleParameters(int insertionIndex) {
+    }
 
     /**
      * This method handles pattern calls.<br>

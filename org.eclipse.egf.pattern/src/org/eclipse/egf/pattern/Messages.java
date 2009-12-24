@@ -48,6 +48,7 @@ public class Messages extends NLS {
     public static String assembly_error3;
     public static String assembly_error4;
     public static String assembly_error5;
+    public static String assembly_error6;
 
     // builder
     public static String PatternBuilding_Failed;
