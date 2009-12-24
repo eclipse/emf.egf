@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,59 +9,22 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model;
 
-import java.io.FileNotFoundException;
-import java.util.Collection;
-
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.egf.common.activator.EGFEclipsePlugin;
-import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.common.helper.ExtensionPointHelper;
-import org.eclipse.egf.common.uri.URIHelper;
-import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.UniqueEList;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.BundleContext;
 
 /**
- * This is the central singleton for the Types model plugin.
+ * This is the central singleton for the Pattern model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
  */
 public final class EGFModelsPlugin extends EMFPlugin {
-
-  /**
-   * Extension point "type".
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  protected static final String EXTENSION_POINT_TYPE = "type"; //$NON-NLS-1$  
-
-  /**
-   * EGF Registered Types.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  private static Collection<EClass> __types;
 
   /**
    * Keep track of the singleton.
@@ -91,76 +53,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
    */
   public EGFModelsPlugin() {
     super(new ResourceLocator[] {});
-  }
-
-  /**
-   * Get Types.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @return an empty list if none could be found.
-   * @generated NOT
-   */
-  public static Collection<EClass> getTypes() {
-    // Lazy loading.
-    if (__types == null) {
-      __types = new UniqueEList<EClass>();
-      ResourceSet resourceSet = new ResourceSetImpl();
-      resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
-      // Get EGF logger extension points.
-      for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(getPlugin().getSymbolicName(), EXTENSION_POINT_TYPE)) {
-        // Id retrieval
-        String id = ExtensionPointHelper.getId(configurationElement);
-        // Ignore
-        if (id == null || id.trim().length() == 0) {
-          continue;
-        }
-        id = id.trim();
-        // Build URI
-        URI uri = null;
-        try {
-          uri = URIHelper.getPlatformURI(ExtensionPointHelper.getNamespace(configurationElement), id, false);
-        } catch (Exception e) {
-          getPlugin().logError(e);
-          continue;
-        }
-        // Load
-        try {
-          EObject eObject = resourceSet.getEObject(uri, true);
-          if (eObject instanceof EClass == false) {
-            continue;
-          }
-          // Analyse the super types of this EClass against the static package
-          boolean isValid = false;
-          for (EClass eClass : ((EClass) eObject).getEAllSuperTypes()) {
-            if (TypesPackage.Literals.TYPE.equals(EMFHelper.solveAgainstStaticPackage(eClass))) {
-              isValid = true;
-              break;
-            }
-          }
-          if (isValid == false) {
-            getPlugin().logError(NLS.bind("Wrong Class {0}", uri.toString()));
-            getPlugin().logInfo("This Class should be a Sub-Type of ''org.eclipse.egf.model.types.Type''", 1);
-            getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1);
-            getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1);
-            getPlugin().logInfo(NLS.bind("Id ''{0}''", id), 1);
-            continue;
-          }
-          __types.add((EClass) eObject);
-        } catch (Exception e) {
-          if (e.getCause() instanceof FileNotFoundException) {
-            getPlugin().logError(NLS.bind("Unable to load {0}", uri.toString()));
-            getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1);
-            getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1);
-            getPlugin().logInfo(NLS.bind("Id ''{0}''", id), 1);
-          } else {
-            getPlugin().logError(e);
-          }
-          continue;
-        }
-      }
-    }
-    return __types;
   }
 
   /**
@@ -222,7 +114,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
      */
     @Override
     public void stop(BundleContext context_p) throws Exception {
-      __types = null;
       plugin = null;
       super.stop(context_p);
     }
