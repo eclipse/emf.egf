@@ -29,6 +29,7 @@ import org.eclipse.egf.pattern.ParameterMatcher;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.execution.AssemblyHelper;
 import org.eclipse.egf.pattern.query.ParameterTypeHelper;
+import org.eclipse.egf.pattern.query.QueryManager;
 
 /**
  * @author Thomas Guiu
@@ -89,7 +90,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
     }
 
     @Override
-    protected void beginOrchestration() {
+    protected void beginOrchestration() throws PatternException {
         content.append("PatternContext ctx = (PatternContext)argument;").append(CharacterConstants.LINE_SEPARATOR);
         super.beginOrchestration();
         content.append(START_MARKER).append(CharacterConstants.LINE_SEPARATOR);
@@ -100,7 +101,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
      * add this stuff. TODO query is not supported yet.
      */
     @Override
-    protected void endOrchestration() {
+    protected void endOrchestration() throws PatternException {
         content.append(END_MARKER).append(CharacterConstants.LINE_SEPARATOR);
         if (pattern.getParameters().isEmpty())
             return;
@@ -134,7 +135,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         // 3- Add additional code for parameter names handling
         int startIndex = content.indexOf(START_MARKER);
         if (startIndex == -1)
-            throw new IllegalStateException(Messages.assembly_error2);
+            throw new PatternException(Messages.assembly_error2);
 
         localContent.setLength(0);
         localContent.append(CharacterConstants.LINE_SEPARATOR);
@@ -150,7 +151,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         return parameter.getName() + "List";
     }
 
-    private void appendQueryCode(StringBuilder localContent, PatternParameter parameter) {
+    private void appendQueryCode(StringBuilder localContent, PatternParameter parameter) throws PatternException {
         Query query = parameter.getQuery();
         localContent.append("Map<String, String> queryCtx = new HashMap<String, String>();").append(CharacterConstants.LINE_SEPARATOR);
         if (query.getQueryContext() != null) {
@@ -160,7 +161,8 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         }
 
         localContent.append("List<Object> ").append(getParameterListName(parameter)).append(" = ");
-        localContent.append("new ").append(query.getDelegateClass()).append("().executeQuery(queryCtx, ctx);").append(CharacterConstants.LINE_SEPARATOR);
+
+        localContent.append("new ").append(QueryManager.INSTANCE.getQueryManagerClassName(query.getExtensionId())).append("().executeQuery(queryCtx, ctx);").append(CharacterConstants.LINE_SEPARATOR);
     }
 
 }
