@@ -105,7 +105,7 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaEngineImpl {
         builder.append(content.substring(0, startIndex));
 
         // add new method call
-        builder.append("generate((PatternContext)argument");
+        builder.append("generate(tmpCollector, (PatternContext)argument");
         if (!getPattern().getParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getParameters()) {
                 String local = PatternHelper.localizeName(parameter);
@@ -118,7 +118,7 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaEngineImpl {
         builder.append(content.substring(endIndex + JavaAssemblyHelper.END_MARKER.length(), insertionIndex));
 
         // add new method body
-        builder.append("public void generate(PatternContext ctx");
+        builder.append("public void generate(StringBuilder out, PatternContext ctx");
         if (!getPattern().getParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getParameters()) {
                 String local = PatternHelper.localizeName(parameter);

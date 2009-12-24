@@ -100,19 +100,27 @@ public class JavaAssemblyHelper extends AssemblyHelper {
     @Override
     protected void beginOrchestration() throws PatternException {
         content.append("PatternContext ctx = (PatternContext)argument;").append(CharacterConstants.LINE_SEPARATOR);
+        content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(CharacterConstants.LINE_SEPARATOR);
+        content.append("StringBuilder collector = new StringBuilder(2000);").append(CharacterConstants.LINE_SEPARATOR);
+        content.append("StringBuilder tmpCollector = new StringBuilder(2000);").append(CharacterConstants.LINE_SEPARATOR);
+        content.append("Map<String, String> queryCtx = null;").append(CharacterConstants.LINE_SEPARATOR);
+        content.append("PatternExecutionReporter reporter = (PatternExecutionReporter)ctx.getValue(PatternContext.PATTERN_REPORTER);").append(CharacterConstants.LINE_SEPARATOR);
+        content.append("if (reporter == null) reporter = new ConsoleReporter();").append(CharacterConstants.LINE_SEPARATOR);
         super.beginOrchestration();
         content.append(START_MARKER).append(CharacterConstants.LINE_SEPARATOR);
     }
 
     /**
      * TODO quick work to validate the whole process, needs a plugable way to
-     * add this stuff. TODO query is not supported yet.
+     * add this stuff.
      */
     @Override
     protected void endOrchestration() throws PatternException {
         content.append(END_MARKER).append(CharacterConstants.LINE_SEPARATOR);
-        if (pattern.getParameters().isEmpty())
+        if (pattern.getParameters().isEmpty()) {
+            content.append("reporter.executionFinished(tmpCollector.toString(), ctx);").append(CharacterConstants.LINE_SEPARATOR);
             return;
+        }
         // 1 - Add pre block at insertionIndex
         StringBuilder localContent = new StringBuilder(300);
         localContent.append("").append(CharacterConstants.LINE_SEPARATOR).append(CharacterConstants.LINE_SEPARATOR);
@@ -127,6 +135,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         for (PatternParameter parameter : pattern.getParameters()) {
             String local = PatternHelper.localizeName(parameter);
             localContent.append("for (Object ").append(local).append(" : ").append(getParameterListName(parameter)).append(" ) {").append(CharacterConstants.LINE_SEPARATOR);
+            localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(CharacterConstants.LINE_SEPARATOR);
         }
 
         localContent.append(CharacterConstants.LINE_SEPARATOR);
@@ -135,9 +144,15 @@ public class JavaAssemblyHelper extends AssemblyHelper {
 
         // 2 - Add post block at current index
         content.append(CharacterConstants.LINE_SEPARATOR);
+        content.append("String loop = tmpCollector.toString();").append(CharacterConstants.LINE_SEPARATOR);
+        content.append("reporter.loopFinished(loop, ctx, null );").append(CharacterConstants.LINE_SEPARATOR);
+
+        content.append("collector.append(loop);").append(CharacterConstants.LINE_SEPARATOR);
+        content.append("tmpCollector.setLength(0);").append(CharacterConstants.LINE_SEPARATOR);
 
         for (int i = 0; i < pattern.getParameters().size(); i++)
             content.append("}").append(CharacterConstants.LINE_SEPARATOR);
+        content.append("reporter.executionFinished(collector.toString(), ctx);").append(CharacterConstants.LINE_SEPARATOR);
         content.append(CharacterConstants.LINE_SEPARATOR);
 
         // 3- Add additional code for parameter names handling
@@ -161,8 +176,8 @@ public class JavaAssemblyHelper extends AssemblyHelper {
 
     private void appendQueryCode(StringBuilder localContent, PatternParameter parameter) throws PatternException {
         Query query = parameter.getQuery();
-        localContent.append("Map<String, String> queryCtx = new HashMap<String, String>();").append(CharacterConstants.LINE_SEPARATOR);
-        if (query.getQueryContext() != null) {
+        localContent.append("queryCtx = new HashMap<String, String>();").append(CharacterConstants.LINE_SEPARATOR);
+        if (query != null && query.getQueryContext() != null) {
             for (String key : query.getQueryContext().keySet()) {
                 localContent.append("queryCtx.put(\"").append(key).append("\", \"").append(query.getQueryContext().get(key)).append("\");").append(CharacterConstants.LINE_SEPARATOR);
             }
@@ -170,7 +185,10 @@ public class JavaAssemblyHelper extends AssemblyHelper {
 
         localContent.append("List<Object> ").append(getParameterListName(parameter)).append(" = ");
 
-        localContent.append("new ").append(QueryManager.INSTANCE.getQueryManagerClassName(query.getExtensionId())).append("().executeQuery(queryCtx, ctx);").append(CharacterConstants.LINE_SEPARATOR);
+        if (query == null)
+            localContent.append("new ArrayList<Object>()");
+        else
+            localContent.append("new ").append(QueryManager.INSTANCE.getQueryManagerClassName(query.getExtensionId())).append("().executeQuery(queryCtx, ctx);").append(CharacterConstants.LINE_SEPARATOR);
     }
 
 }
