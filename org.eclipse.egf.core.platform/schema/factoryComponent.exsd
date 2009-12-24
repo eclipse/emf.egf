@@ -6,7 +6,7 @@
          <meta.schema plugin="org.eclipse.egf.core.platform" id="factoryComponent" name="EGF Platform Factory Component"/>
       </appInfo>
       <documentation>
-         Extension point to define a Factory Component
+         Extension point to define a Factory Component.
       </documentation>
    </annotation>
 
@@ -69,7 +69,7 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         [Enter the first release in which this extension point appears.]
+         0.1.0
       </documentation>
    </annotation>
 
@@ -100,5 +100,15 @@
       </documentation>
    </annotation>
 
+   <annotation>
+      <appInfo>
+         <meta.section type="copyright"/>
+      </appInfo>
+      <documentation>
+         Copyright (c) 2009 Thales Corporate Services S.A.S.&lt;br&gt;
+All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at &lt;a 
+href=&quot;http://www.eclipse.org/legal/epl-v10.html&quot;&gt;http://www.eclipse.org/legal/epl-v10.html&lt;/a&gt;
+      </documentation>
+   </annotation>
 
 </schema>
