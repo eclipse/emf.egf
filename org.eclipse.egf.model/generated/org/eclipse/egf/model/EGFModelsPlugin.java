@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.osgi.util.NLS;
+import org.osgi.framework.BundleContext;
 
 /**
  * This is the central singleton for the Types model plugin.
@@ -61,7 +62,7 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * 
    * @generated NOT
    */
-  private static Collection<EClass> _types;
+  private static Collection<EClass> __types;
 
   /**
    * Keep track of the singleton.
@@ -102,21 +103,23 @@ public final class EGFModelsPlugin extends EMFPlugin {
    */
   public static Collection<EClass> getTypes() {
     // Lazy loading.
-    if (_types == null) {
-      _types = new UniqueEList<EClass>();
+    if (__types == null) {
+      __types = new UniqueEList<EClass>();
       ResourceSet resourceSet = new ResourceSetImpl();
       resourceSet.getURIConverter().getURIMap().putAll(EcorePlugin.computePlatformURIMap());
       // Get EGF logger extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(getPlugin().getSymbolicName(), EXTENSION_POINT_TYPE)) {
+        // Id retrieval
         String id = ExtensionPointHelper.getId(configurationElement);
         // Ignore
         if (id == null || id.trim().length() == 0) {
           continue;
         }
-        URI uri = null;
+        id = id.trim();
         // Build URI
+        URI uri = null;
         try {
-          uri = URIHelper.getPlatformURI(ExtensionPointHelper.getNamespace(configurationElement), id.trim(), false);
+          uri = URIHelper.getPlatformURI(ExtensionPointHelper.getNamespace(configurationElement), id, false);
         } catch (Exception e) {
           getPlugin().logError(e);
           continue;
@@ -136,20 +139,20 @@ public final class EGFModelsPlugin extends EMFPlugin {
             }
           }
           if (isValid == false) {
-            getPlugin().logError(NLS.bind("Wrong Type {0}", uri.toString()));
-            getPlugin().logInfo("Type should be a sub-type of Type", 1);
-            getPlugin().logInfo(NLS.bind("in extension point ''{0}''", configurationElement.getName()), 1);
-            getPlugin().logInfo(NLS.bind("with attribute id ''{0}''", id.trim()), 1);
-            getPlugin().logInfo(NLS.bind("in bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1);
+            getPlugin().logError(NLS.bind("Wrong Class {0}", uri.toString()));
+            getPlugin().logInfo("This Class should be a Sub-Type of ''org.eclipse.egf.model.types.Type''", 1);
+            getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1);
+            getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1);
+            getPlugin().logInfo(NLS.bind("Id ''{0}''", id), 1);
             continue;
           }
-          _types.add((EClass) eObject);
+          __types.add((EClass) eObject);
         } catch (Exception e) {
           if (e.getCause() instanceof FileNotFoundException) {
-            getPlugin().logError(NLS.bind("Unable to load uri {0}", uri.toString()));
-            getPlugin().logInfo(NLS.bind("in extension point ''{0}''", configurationElement.getName()), 1);
-            getPlugin().logInfo(NLS.bind("with attribute id ''{0}''", id.trim()), 1);
-            getPlugin().logInfo(NLS.bind("in bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1);
+            getPlugin().logError(NLS.bind("Unable to load {0}", uri.toString()));
+            getPlugin().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1);
+            getPlugin().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1);
+            getPlugin().logInfo(NLS.bind("Id ''{0}''", id), 1);
           } else {
             getPlugin().logError(e);
           }
@@ -157,7 +160,7 @@ public final class EGFModelsPlugin extends EMFPlugin {
         }
       }
     }
-    return _types;
+    return __types;
   }
 
   /**
@@ -207,6 +210,23 @@ public final class EGFModelsPlugin extends EMFPlugin {
       //
       plugin = this;
     }
+
+    /**
+     * Stop this bundle.
+     * <!-- begin-user-doc -->
+     * 
+     * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
+     *      <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public void stop(BundleContext context_p) throws Exception {
+      __types = null;
+      plugin = null;
+      super.stop(context_p);
+    }
+
   }
 
 }
