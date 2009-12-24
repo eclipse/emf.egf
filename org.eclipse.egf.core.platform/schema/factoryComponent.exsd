@@ -54,7 +54,7 @@
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  Asset identifier.
+                  FactoryComponent identifier.
                </documentation>
                <appInfo>
                   <meta.attribute kind="identifier"/>
