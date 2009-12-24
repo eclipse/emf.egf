@@ -34,6 +34,7 @@ public abstract class PlatformExtensionPointURI extends PlatformExtensionPoint i
     return getPreviousURI();
   }
 
+  @Override
   public String toString() {
     return getURI().toString();
   }

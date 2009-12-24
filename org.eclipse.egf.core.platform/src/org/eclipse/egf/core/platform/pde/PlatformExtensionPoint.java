@@ -53,6 +53,7 @@ public abstract class PlatformExtensionPoint implements IPlatformExtensionPoint 
     return toString().compareTo(platformExtensionPoint.toString());
   }
 
+  @Override
   public String toString() {
     return getId();
   }
