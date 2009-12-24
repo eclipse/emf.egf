@@ -13,32 +13,35 @@ package org.eclipse.egf.pde.internal.plugin.manifest.command;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginImport;
 import org.eclipse.pde.internal.core.ibundle.IBundlePluginModel;
 
 /**
- * Implement a command that adds required plug-ins in the <code>Require-Bundle</code> property of the manifest file.
+ * Implement a command that adds required plug-ins in the
+ * <code>Require-Bundle</code> property of the manifest file.
+ * 
  * @author Guillaume Brocard
  */
 public class SetRequiredPluginsCommand extends AbstractRequiredPluginsCommand {
-  
+
   /**
    * Are required plug-ins dependencies optional (true) or mandatory (false) ?
    */
   private boolean _optional;
-  
+
   /**
-   * Are required plug-ins dependencies to be re-exported (true) or not (false) ?
+   * Are required plug-ins dependencies to be re-exported (true) or not (false)
+   * ?
    */
   private boolean _reexport;
 
   /**
    * Constructor.
+   * 
    * @param requiredPlugins_p
-   * Plug-ins dependencies are considered mandatory.
+   *          Plug-ins dependencies are considered mandatory.
    */
   public SetRequiredPluginsCommand(String[] requiredPlugins_p) {
     this(requiredPlugins_p, false, false);
@@ -46,9 +49,14 @@ public class SetRequiredPluginsCommand extends AbstractRequiredPluginsCommand {
 
   /**
    * Constructor.
+   * 
    * @param requiredPlugins_p
-   * @param optional_p Are plug-ins dependencies optional (<code>true</code>) or mandatory (<code>false</code>) ?
-   * @param reexport_p Are plug-ins dependencies to be re-exported (<code>true</code>) or not (<code>false</code>) ?
+   * @param optional_p
+   *          Are plug-ins dependencies optional (<code>true</code>) or
+   *          mandatory (<code>false</code>) ?
+   * @param reexport_p
+   *          Are plug-ins dependencies to be re-exported (<code>true</code>) or
+   *          not (<code>false</code>) ?
    */
   public SetRequiredPluginsCommand(String[] requiredPlugins_p, boolean optional_p, boolean reexport_p) {
     super(requiredPlugins_p);
@@ -58,7 +66,8 @@ public class SetRequiredPluginsCommand extends AbstractRequiredPluginsCommand {
 
   /**
    * @see org.eclipse.egf.pde.internal.plugin.manifest.command.AbstractRequiredPluginsCommand#handleRequiredPlugin(java.lang.String,
-   *      org.eclipse.pde.internal.core.ibundle.IBundlePluginModel, java.util.List)
+   *      org.eclipse.pde.internal.core.ibundle.IBundlePluginModel,
+   *      java.util.List)
    */
   @Override
   public void handleRequiredPlugin(String requiredPlugin_p, IBundlePluginModel bundlePluginModel_p, List<IPluginImport> existingPluginImports_p) {
@@ -76,23 +85,16 @@ public class SetRequiredPluginsCommand extends AbstractRequiredPluginsCommand {
         // Add the newly created import in the manifest.
         pluginBase.add(pluginImport);
       } catch (CoreException ce) {
-        StringBuilder msg = new StringBuilder("SetRequiredPluginsCommand.execute(..) _ "); //$NON-NLS-1$
-        EGFPDEPlugin.getDefault().log(msg.toString(), ce);
-        if (EGFPDEPlugin.getDefault().isDebugging()) {
-          EGFConsolePlugin.getConsole().logThrowable(msg.toString(), ce);
-        }
+        EGFPDEPlugin.getDefault().logError(new String("SetRequiredPluginsCommand.execute(..) _ "), ce); //$NON-NLS-1$
       }
     }
-    // Set optional and re-exported flags, whether the plug-in import already existed or not.
+    // Set optional and re-exported flags, whether the plug-in import already
+    // existed or not.
     try {
       pluginImport.setOptional(_optional);
       pluginImport.setReexported(_reexport);
     } catch (CoreException ce) {
-      StringBuilder msg = new StringBuilder("SetRequiredPluginsCommand.handleRequiredPlugin(..) _ "); //$NON-NLS-1$
-      EGFPDEPlugin.getDefault().log(msg.toString(), ce);
-      if (EGFPDEPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logThrowable(msg.toString(), ce);
-      }
+      EGFPDEPlugin.getDefault().logError(new String("SetRequiredPluginsCommand.handleRequiredPlugin(..) _ "), ce); //$NON-NLS-1$
     }
   }
 }

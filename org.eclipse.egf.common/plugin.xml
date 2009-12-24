@@ -17,5 +17,11 @@
     name="%EGFUserHelperExtensionPoint" 
     schema="schema/user_helper.exsd"
   />
+  
+  <extension-point 
+    id="egf_logger" 
+    name="%EGFLoggerExtensionPoint" 
+    schema="schema/egf_logger.exsd"
+  />  
 
 </plugin>

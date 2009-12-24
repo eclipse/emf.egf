@@ -12,7 +12,6 @@ package org.eclipse.egf.core.ui.preferences;
 
 import java.io.IOException;
 
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.jface.preference.IPersistentPreferenceStore;
@@ -69,11 +68,7 @@ public abstract class AbstractPreferencePage extends FieldEditorPreferencePage i
       try {
         ((IPersistentPreferenceStore) store).save();
       } catch (IOException ioe) {
-        String msg = new String("AbstractPreferencePage.performOk(..) _"); //$NON-NLS-1$
-        EGFCoreUIPlugin.getDefault().log(msg, ioe);
-        if (EGFCoreUIPlugin.getDefault().isDebugging()) {
-          EGFConsolePlugin.getConsole().logThrowable(msg, ioe);
-        }
+        EGFCoreUIPlugin.getDefault().logError(new String("AbstractPreferencePage.performOk(..) _"), ioe); //$NON-NLS-1$
         return false;
       }
     }

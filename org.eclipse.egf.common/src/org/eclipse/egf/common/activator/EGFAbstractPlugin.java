@@ -15,9 +15,15 @@
 
 package org.eclipse.egf.common.activator;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.helper.ExtensionPointHelper;
+import org.eclipse.egf.common.log.IEGFLogger;
 
 /**
  * Adds logging methods
@@ -27,57 +33,258 @@ import org.eclipse.core.runtime.Status;
  */
 public abstract class EGFAbstractPlugin extends Plugin {
 
-    public void log(IStatus status) {
-        getLog().log(status);
+  /**
+   * Extension point "egf_logger" short id.
+   */
+  protected static final String EXTENSION_POINT_SHORT_ID_EGF_LOGGER = "egf_logger"; //$NON-NLS-1$    
+
+  /**
+   * EGF Registered loggers.
+   */
+  private List<IEGFLogger> _egfLoggers;
+
+  /**
+   * Log Status
+   */
+
+  public void log(IStatus status) {
+    log(status, 0, isDebugging());
+  }
+
+  public void log(IStatus status, boolean appendLogger) {
+    log(status, 0, appendLogger);
+  }
+
+  public void log(IStatus status, int nesting) {
+    log(status, nesting, isDebugging());
+  }
+
+  public void log(IStatus status, int nesting, boolean appendLogger) {
+    getLog().log(status);
+    if (appendLogger) {
+      for (IEGFLogger logger : getEGFLoggers()) {
+        logger.logStatus(status, nesting);
+      }
     }
+  }
 
-	public void log(String message, Throwable t) {
-		getLog().log(newStatus(IStatus.INFO, message, t));
-	}
+  /**
+   * Log Message Info
+   */
 
-	public void log(Throwable t) {
-		getLog().log(newStatus(IStatus.INFO, t.getMessage(), t));
-	}
+  public void logInfo(String message) {
+    logInfo(message, 0, isDebugging());
+  }
 
-	public void log(String message) {
-		getLog().log(newStatus(IStatus.INFO, message, null));
-	}
+  public void logInfo(String message, boolean appendLogger) {
+    logInfo(message, 0, appendLogger);
+  }
 
-	public void logError(String message, Throwable t) {
-		getLog().log(newStatus(IStatus.ERROR, message, t));
-	}
+  public void logInfo(String message, int nesting) {
+    logInfo(message, nesting, isDebugging());
+  }
 
-	public void logError(Throwable t) {
-		getLog().log(newStatus(IStatus.ERROR, t.getMessage(), t));
-	}
+  public void logInfo(String message, int nesting, boolean appendLogger) {
+    log(newStatus(IStatus.INFO, message, null), nesting, appendLogger);
+  }
 
-	public void logError(String message) {
-		getLog().log(newStatus(IStatus.ERROR, message, null));
-	}
+  /**
+   * Log Message and Throwable Info
+   */
 
-	public void logWarning(String message, Throwable t) {
-		getLog().log(newStatus(IStatus.WARNING, message, t));
-	}
+  public void logInfo(String message, Throwable t) {
+    logInfo(message, t, 0, isDebugging());
+  }
 
-	public void logWarning(Throwable t) {
-		getLog().log(newStatus(IStatus.WARNING, t.getMessage(), t));
-	}
+  public void logInfo(String message, Throwable t, boolean appendLogger) {
+    logInfo(message, t, 0, appendLogger);
+  }
 
-	public void logWarning(String message) {
-		getLog().log(newStatus(IStatus.WARNING, message, null));
-	}
+  public void logInfo(String message, Throwable t, int nesting) {
+    logInfo(message, t, nesting, isDebugging());
+  }
 
-	private IStatus newStatus(int severity, String message, Throwable exception) {
-		return new Status(severity, getPluginID(), 0, message, exception);
-	}
+  public void logInfo(String message, Throwable t, int nesting, boolean appendLogger) {
+    log(newStatus(IStatus.INFO, message, t), nesting, appendLogger);
+  }
 
-	/**
-	 * Get the plug-in ID according to MANIFEST.MF definition.
-	 * 
-	 * @return a String containing the plug-in ID.
-	 */
-	public String getPluginID() {
-		return getBundle().getSymbolicName();
-	}
+  /**
+   * Log Throwable Info
+   */
+
+  public void logInfo(Throwable t) {
+    logInfo(t, 0, isDebugging());
+  }
+
+  public void logInfo(Throwable t, boolean appendLogger) {
+    logInfo(t, 0, appendLogger);
+  }
+
+  public void logInfo(Throwable t, int nesting) {
+    logInfo(t, nesting, isDebugging());
+  }
+
+  public void logInfo(Throwable t, int nesting, boolean appendLogger) {
+    log(newStatus(IStatus.INFO, t.getMessage(), t), nesting, appendLogger);
+  }
+
+  /**
+   * Log Message Error
+   */
+
+  public void logError(String message) {
+    logError(message, 0, isDebugging());
+  }
+
+  public void logError(String message, boolean appendLogger) {
+    logError(message, 0, appendLogger);
+  }
+
+  public void logError(String message, int nesting) {
+    logError(message, nesting, isDebugging());
+  }
+
+  public void logError(String message, int nesting, boolean appendLogger) {
+    log(newStatus(IStatus.ERROR, message, null), nesting, appendLogger);
+  }
+
+  /**
+   * Log Message and Throwable Error
+   */
+
+  public void logError(String message, Throwable t) {
+    logError(message, t, 0, isDebugging());
+  }
+
+  public void logError(String message, Throwable t, boolean appendLogger) {
+    logError(message, t, 0, appendLogger);
+  }
+
+  public void logError(String message, Throwable t, int nesting) {
+    logError(message, t, nesting, isDebugging());
+  }
+
+  public void logError(String message, Throwable t, int nesting, boolean appendLogger) {
+    log(newStatus(IStatus.ERROR, message, t), nesting, appendLogger);
+  }
+
+  /**
+   * Log Throwable Error
+   */
+
+  public void logError(Throwable t) {
+    logError(t, 0, isDebugging());
+  }
+
+  public void logError(Throwable t, boolean appendLogger) {
+    logError(t, 0, appendLogger);
+  }
+
+  public void logError(Throwable t, int nesting) {
+    logError(t, nesting, isDebugging());
+  }
+
+  public void logError(Throwable t, int nesting, boolean appendLogger) {
+    log(newStatus(IStatus.ERROR, t.getMessage(), t), nesting, appendLogger);
+  }
+
+  /**
+   * Log Message Warning
+   */
+
+  public void logWarning(String message) {
+    logWarning(message, 0, isDebugging());
+  }
+
+  public void logWarning(String message, boolean appendLogger) {
+    logWarning(message, 0, appendLogger);
+  }
+
+  public void logWarning(String message, int nesting) {
+    logWarning(message, nesting, isDebugging());
+  }
+
+  public void logWarning(String message, int nesting, boolean appendLogger) {
+    log(newStatus(IStatus.WARNING, message, null), nesting, appendLogger);
+  }
+
+  /**
+   * Log Message and Throwable Warning
+   */
+
+  public void logWarning(String message, Throwable t) {
+    logWarning(message, t, 0, isDebugging());
+  }
+
+  public void logWarning(String message, Throwable t, boolean appendLogger) {
+    logWarning(message, t, 0, appendLogger);
+  }
+
+  public void logWarning(String message, Throwable t, int nesting) {
+    logWarning(message, t, nesting, isDebugging());
+  }
+
+  public void logWarning(String message, Throwable t, int nesting, boolean appendLogger) {
+    log(newStatus(IStatus.WARNING, message, t), nesting, appendLogger);
+  }
+
+  /**
+   * Log Throwable Warning
+   */
+
+  public void logWarning(Throwable t) {
+    logWarning(t, 0, isDebugging());
+  }
+
+  public void logWarning(Throwable t, boolean appendLogger) {
+    logWarning(t, 0, appendLogger);
+  }
+
+  public void logWarning(Throwable t, int nesting) {
+    logWarning(t, nesting, isDebugging());
+  }
+
+  public void logWarning(Throwable t, int nesting, boolean appendLogger) {
+    log(newStatus(IStatus.WARNING, t.getMessage(), t), nesting, appendLogger);
+  }
+
+  /**
+   * Create an IStatus
+   * 
+   * @return a new IStatus
+   */
+  private IStatus newStatus(int severity, String message, Throwable exception) {
+    return new Status(severity, getPluginID(), 0, message, exception);
+  }
+
+  /**
+   * Get the plug-in ID according to MANIFEST.MF definition.
+   * 
+   * @return a String containing the plug-in ID.
+   */
+  public String getPluginID() {
+    return getBundle().getSymbolicName();
+  }
+
+  /**
+   * Get egf loggers implementations.
+   * 
+   * @return an empty list if none could be found.
+   */
+  public List<IEGFLogger> getEGFLoggers() {
+    // Lazy loading. Search for the implementation.
+    if (_egfLoggers == null) {
+      _egfLoggers = new ArrayList<IEGFLogger>();
+      // Get EGF logger extension points.
+      for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFCommonPlugin.getDefault().getPluginID(), EXTENSION_POINT_SHORT_ID_EGF_LOGGER)) {
+        Object instantiatedClass = ExtensionPointHelper.createInstance(configurationElement, ExtensionPointHelper.ATT_CLASS);
+        // Make sure this is the correct resulting type.
+        if (instantiatedClass instanceof IEGFLogger) {
+          _egfLoggers.add((IEGFLogger) instantiatedClass);
+        }
+      }
+    }
+    return _egfLoggers;
+  }
 
 }

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
-<plugin>  
+<plugin> 
+
+  <extension
+    point="org.eclipse.egf.common.egf_logger"
+  >
+    <logger
+      class="org.eclipse.egf.console.Console"
+    />
+  </extension>
 
   <extension
     point="org.eclipse.ui.themes"

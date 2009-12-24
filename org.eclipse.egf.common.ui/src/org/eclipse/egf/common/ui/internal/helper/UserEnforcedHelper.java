@@ -17,28 +17,25 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.IUserEnforcedHelper;
 import org.eclipse.egf.common.ui.activator.EGFCommonUIPlugin;
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
-
 
 /**
  * Helper methods enforced by user interaction.<br>
  * It should not be overridden nor instantiated.<br>
  * It is located here for dependencies issues.
+ * 
  * @author Guillaume Brocard
  */
 public class UserEnforcedHelper implements IUserEnforcedHelper {
-    
+
   /**
    * @see org.eclipse.egf.common.helper.IUserEnforcedHelper#makeFileWritable(org.eclipse.core.resources.IFile)
    */
   public IStatus makeFileWritable(final IFile file_p) {
     // Resulting status.
-    final IStatus[] result = new IStatus[] { 
-      Status.CANCEL_STATUS 
-    };
+    final IStatus[] result = new IStatus[] { Status.CANCEL_STATUS };
     // Get display, if any.
     // Do not create a new one if none, simply ignore it.
     final Display display = PlatformUI.isWorkbenchRunning() ? PlatformUI.getWorkbench().getDisplay() : null;
@@ -48,7 +45,8 @@ public class UserEnforcedHelper implements IUserEnforcedHelper {
         result[0] = makeFileWritable(file_p, display);
       }
     };
-    // Whether it is displaying a user interface dialog or not, the execution is always synchronous.
+    // Whether it is displaying a user interface dialog or not, the execution is
+    // always synchronous.
     if (display != null) {
       // Ask user, if needed.
       display.syncExec(makeFileWritableRunnable);
@@ -60,7 +58,8 @@ public class UserEnforcedHelper implements IUserEnforcedHelper {
   }
 
   /**
-   * @see org.eclipse.egf.common.helper.IUserEnforcedHelper#makeFileWritable(org.eclipse.core.resources.IFile, java.lang.Object)
+   * @see org.eclipse.egf.common.helper.IUserEnforcedHelper#makeFileWritable(org.eclipse.core.resources.IFile,
+   *      java.lang.Object)
    */
   public IStatus makeFileWritable(IFile file_p, Object display_p) {
     // Given file must not be null.
@@ -78,23 +77,16 @@ public class UserEnforcedHelper implements IUserEnforcedHelper {
       // Get shell from display.
       shell = ((Display) display_p).getActiveShell();
     }
-    // If a shell is active, use it to make sure an end-user confirmation is performed (as needed).
+    // If a shell is active, use it to make sure an end-user confirmation is
+    // performed (as needed).
     // Try validate prompt behavior otherwise.
     Object context = shell == null ? IWorkspace.VALIDATE_PROMPT : shell;
     // Check given file.
-    IStatus result = ResourcesPlugin.getWorkspace().validateEdit(
-      new IFile[] { 
-        file_p 
-      }, 
-      context
-    );
+    IStatus result = ResourcesPlugin.getWorkspace().validateEdit(new IFile[] { file_p }, context);
     if (result.isOK() == false) {
       EGFCommonUIPlugin.getDefault().log(result);
-      if (EGFCommonUIPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logStatus(result);
-      }
     }
     return result;
   }
-  
+
 }

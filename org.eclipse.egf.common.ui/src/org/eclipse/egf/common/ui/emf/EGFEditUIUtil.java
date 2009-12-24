@@ -104,8 +104,8 @@ public class EGFEditUIUtil {
         if (fileRevision != null) {
           try {
             return URI.createURI(((java.net.URI) FILE_REVISION_GET_URI_METHOD.invoke(fileRevision)).toString());
-          } catch (Throwable exception) {
-            EGFCommonUIPlugin.getDefault().log(exception);
+          } catch (Throwable t) {
+            EGFCommonUIPlugin.getDefault().logError(t);
           }
         }
       }

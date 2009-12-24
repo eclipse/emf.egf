@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IFactoryComponentConstants;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
@@ -125,30 +124,18 @@ public class PlatformPlugin implements IPlatformPlugin {
       try {
         IPlatformFactoryComponent fc = new PlatformFactoryComponent(this, element);
         if (_factoryComponents.get(fc.getValue()) != null) {
-          String msg = NLS.bind("PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' already contains such Factory Component ''{1}''.", //$NON-NLS-1$
-              getBundleId(), fc.getValue());
-          EGFPlatformPlugin.getDefault().log(msg);
-          if (EGFPlatformPlugin.getDefault().isDebugging()) {
-            EGFConsolePlugin.getConsole().logWarning(msg);
-          }
+          EGFPlatformPlugin.getDefault().logWarning(NLS.bind("PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' already contains such Factory Component ''{1}''.", //$NON-NLS-1$
+              getBundleId(), fc.getValue()));
         } else {
           if (_factoryComponents.put(fc.getValue(), fc) != null) {
-            String msg = NLS.bind("PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' unable to add Factory Component ''{1}''.", //$NON-NLS-1$
-                getBundleId(), fc.getValue());
-            EGFPlatformPlugin.getDefault().log(msg);
-            if (EGFPlatformPlugin.getDefault().isDebugging()) {
-              EGFConsolePlugin.getConsole().logError(msg);
-            }
+            EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformPlugin.addPlatformFactoryComponent(..) _ Bundle ''{0}'' unable to add Factory Component ''{1}''.", //$NON-NLS-1$
+                getBundleId(), fc.getValue()));
           } else {
             return fc;
           }
         }
       } catch (RuntimeException re) {
-        String msg = new String("PlatformPlugin.addPlatformFactoryComponent(..)"); //$NON-NLS-1$
-        EGFPlatformPlugin.getDefault().log(msg, re);
-        if (EGFPlatformPlugin.getDefault().isDebugging()) {
-          EGFConsolePlugin.getConsole().logThrowable(msg, re);
-        }
+        EGFPlatformPlugin.getDefault().logError(new String("PlatformPlugin.addPlatformFactoryComponent(..)"), re); //$NON-NLS-1$
       }
     }
     return null;

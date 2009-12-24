@@ -14,6 +14,11 @@ package org.eclipse.egf.console.internal;
 
 import java.util.StringTokenizer;
 
+import org.eclipse.egf.console.Console;
+import org.eclipse.egf.console.EGFConsolePlugin;
+import org.eclipse.egf.console.util.ConsoleUtil;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
@@ -22,14 +27,6 @@ import org.eclipse.ui.console.IPatternMatchListener;
 import org.eclipse.ui.console.PatternMatchEvent;
 import org.eclipse.ui.console.TextConsole;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-
-import org.eclipse.egf.console.Console;
-import org.eclipse.egf.console.EGFConsolePlugin;
-import org.eclipse.egf.console.util.ConsoleUtil;
-
-
 /**
  * Tracks text appended to the console and notifies listeners in terms of whole
  * lines.
@@ -37,12 +34,16 @@ import org.eclipse.egf.console.util.ConsoleUtil;
 public class ConsoleLineNotifier implements IPatternMatchListener {
 
   /**
-   * The console this notifier is tracking 
+   * The console this notifier is tracking
    */
   private Console _console = null;
 
-  /* (non-Javadoc)
-   * @see org.eclipse.ui.console.IPatternMatchListenerDelegate#connect(org.eclipse.ui.console.TextConsole)
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.eclipse.ui.console.IPatternMatchListenerDelegate#connect(org.eclipse
+   * .ui.console.TextConsole)
    */
   public void connect(TextConsole console) {
     if (console instanceof Console) {
@@ -50,15 +51,21 @@ public class ConsoleLineNotifier implements IPatternMatchListener {
     }
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see org.eclipse.ui.console.IPatternMatchListener#disconnect()
    */
   public synchronized void disconnect() {
     _console = null;
   }
 
-  /* (non-Javadoc)
-   * @see org.eclipse.ui.console.IPatternMatchListener#matchFound(org.eclipse.ui.console.PatternMatchEvent)
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.eclipse.ui.console.IPatternMatchListener#matchFound(org.eclipse.ui.
+   * console.PatternMatchEvent)
    */
   public void matchFound(PatternMatchEvent event) {
     try {
@@ -101,21 +108,27 @@ public class ConsoleLineNotifier implements IPatternMatchListener {
     }
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see org.eclipse.ui.console.IPatternMatchListener#getPattern()
    */
   public String getPattern() {
     return ".*\\r(\\n?)|.*\\n"; //$NON-NLS-1$
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see org.eclipse.ui.console.IPatternMatchListener#getCompilerFlags()
    */
   public int getCompilerFlags() {
     return 0;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see org.eclipse.ui.console.IPatternMatchListener#getLineQualifier()
    */
   public String getLineQualifier() {
@@ -135,7 +148,7 @@ public class ConsoleLineNotifier implements IPatternMatchListener {
     }
 
     public void linkExited() {
-      // Nothing to do      
+      // Nothing to do
     }
 
     public void linkActivated() {
@@ -146,8 +159,8 @@ public class ConsoleLineNotifier implements IPatternMatchListener {
             ConsoleUtil.setSelectionToViewer(part, _uri);
           }
         }
-      } catch (PartInitException e) {
-        EGFConsolePlugin.getDefault().log(e);
+      } catch (PartInitException pie) {
+        EGFConsolePlugin.getDefault().logError(pie);
       }
     }
 

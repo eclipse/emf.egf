@@ -31,7 +31,6 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.StatusHelper;
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IFactoryComponentConstants;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
@@ -195,11 +194,7 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
                   }
                 }
               } catch (IllegalArgumentException iae) {
-                String msg = new String("PlatformManager.ResourceDeltaVisitor.visit(..) _ "); //$NON-NLS-1$
-                EGFPlatformPlugin.getDefault().log(msg, iae);
-                if (EGFPlatformPlugin.getDefault().isDebugging()) {
-                  EGFConsolePlugin.getConsole().logThrowable(msg, iae);
-                }
+                EGFPlatformPlugin.getDefault().logError(new String("PlatformManager.ResourceDeltaVisitor.visit(..) _ "), iae); //$NON-NLS-1$
               }
             }
           }
@@ -261,11 +256,7 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
       }
 
     } catch (CoreException ce) {
-      String msg = new String("PlatformManager.ResourceDeltaVisitor.resourceChanged(..) _"); //$NON-NLS-1$
-      EGFPDEPlugin.getDefault().log(msg, ce);
-      if (EGFPDEPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logThrowable(msg, ce);
-      }
+      EGFPDEPlugin.getDefault().logError(new String("PlatformManager.ResourceDeltaVisitor.resourceChanged(..) _"), ce); //$NON-NLS-1$
     }
 
   }
@@ -321,13 +312,13 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
 
   private void trace(IResourceFactoryComponentDelta delta) {
     if (delta.getChangedResourceFactoryComponents().length > 0) {
-      EGFConsolePlugin.getConsole().logInfo(NLS.bind("FactoryComponentResourceListener Changed {0} Factory Component{1}.", //$NON-NLS-1$ 
+      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FactoryComponentResourceListener Changed {0} Factory Component{1}.", //$NON-NLS-1$ 
           delta.getChangedResourceFactoryComponents().length, delta.getChangedResourceFactoryComponents().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
       trace(delta.getChangedResourceFactoryComponents(), null);
     }
     if (delta.getMovedResourceFactoryComponents().length > 0) {
-      EGFConsolePlugin.getConsole().logInfo(NLS.bind("FactoryComponentResourceListener Moved {0} Factory Component{1}.", //$NON-NLS-1$ 
+      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FactoryComponentResourceListener Moved {0} Factory Component{1}.", //$NON-NLS-1$ 
           delta.getMovedResourceFactoryComponents().length, delta.getMovedResourceFactoryComponents().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
       trace(delta.getMovedResourceFactoryComponents(), delta);
@@ -336,9 +327,9 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
 
   private void trace(URI[] uris, IResourceFactoryComponentDelta delta) {
     for (URI uri : uris) {
-      EGFConsolePlugin.getConsole().logWarning(uri.toString(), 1);
+      EGFPDEPlugin.getDefault().logWarning(uri.toString(), 1);
       if (delta != null) {
-        EGFConsolePlugin.getConsole().logWarning("From: " + delta.getMovedFromResourceFactoryComponent(uri), 2); //$NON-NLS-1$
+        EGFPDEPlugin.getDefault().logWarning("From: " + delta.getMovedFromResourceFactoryComponent(uri), 2); //$NON-NLS-1$
       }
     }
   }

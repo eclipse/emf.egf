@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.core.platform.uri.URIHelper;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.emf.common.util.URI;
@@ -57,11 +56,7 @@ public class ExtensionHelper {
         // Add it to the plug-in extensions container.
         pluginModelBase_p.getExtensions().add(extension);
       } catch (CoreException ce) {
-        String msg = new String("ExtensionHelper.createExtension(..) _"); //$NON-NLS-1$
-        EGFPDEPlugin.getDefault().log(msg, ce);
-        if (EGFPDEPlugin.getDefault().isDebugging()) {
-          EGFConsolePlugin.getConsole().logThrowable(msg, ce);
-        }
+        EGFPDEPlugin.getDefault().logError(new String("ExtensionHelper.createExtension(..) _"), ce); //$NON-NLS-1$
         // Reset to null the result to force the caller to debug where is the
         // bug.
         extension = null;
@@ -92,11 +87,7 @@ public class ExtensionHelper {
         // Add it to the extension content.
         parent_p.add(element);
       } catch (CoreException ce) {
-        String msg = new String("ExtensionHelper.createPluginElement(..) _"); //$NON-NLS-1$
-        EGFPDEPlugin.getDefault().log(msg, ce);
-        if (EGFPDEPlugin.getDefault().isDebugging()) {
-          EGFConsolePlugin.getConsole().logThrowable(msg, ce);
-        }
+        EGFPDEPlugin.getDefault().logError(new String("ExtensionHelper.createPluginElement(..) _"), ce); //$NON-NLS-1$
         // Reset to null the result to force the caller to debug where is the
         // bug.
         element = null;
@@ -158,11 +149,7 @@ public class ExtensionHelper {
             extensionPart_p.remove(currentExtension);
           }
         } catch (CoreException ce) {
-          String msg = new String("ExtensionHelper.removePluginExtension(..) _"); //$NON-NLS-1$
-          EGFPDEPlugin.getDefault().log(msg, ce);
-          if (EGFPDEPlugin.getDefault().isDebugging()) {
-            EGFConsolePlugin.getConsole().logThrowable(msg, ce);
-          }
+          EGFPDEPlugin.getDefault().logError(new String("ExtensionHelper.removePluginExtension(..) _"), ce); //$NON-NLS-1$
         }
         // Specified element was successfully removed, stop the loop.
         break;
@@ -278,11 +265,7 @@ public class ExtensionHelper {
         result = true;
       }
     } catch (CoreException ce) {
-      String msg = new String("ExtensionHelper.removePluginElement(..) _"); //$NON-NLS-1$
-      EGFPDEPlugin.getDefault().log(msg, ce);
-      if (EGFPDEPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logThrowable(msg, ce);
-      }
+      EGFPDEPlugin.getDefault().logError(new String("ExtensionHelper.removePluginElement(..) _"), ce); //$NON-NLS-1$
     }
     return result;
   }

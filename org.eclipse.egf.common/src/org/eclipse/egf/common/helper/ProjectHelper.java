@@ -32,7 +32,6 @@ import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.egf.common.activator.EGFCommonPlugin;
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.common.generator.IEgfGeneratorConstants;
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.emf.codegen.ecore.Generator;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaElement;
@@ -44,10 +43,11 @@ import org.eclipse.pde.core.plugin.PluginRegistry;
 
 /**
  * Workspace projects helper.
+ * 
  * @author brocard
  */
 public class ProjectHelper {
-    
+
   /**
    * Required plug-ins class path entry path identifier.
    */
@@ -55,7 +55,8 @@ public class ProjectHelper {
 
   /**
    * Project existence status after check.<br>
-   * The project already exists (including default structure), or it has just been created, or creation process failed.<br>
+   * The project already exists (including default structure), or it has just
+   * been created, or creation process failed.<br>
    * Internal purpose only.
    */
   public enum ProjectExistenceStatus {
@@ -65,8 +66,12 @@ public class ProjectHelper {
   /**
    * Get project from its name.<br>
    * It is assumed that this project name refers to a plug-in.<br>
-   * If not, the method <code>ResourcesPlugin.getWorkspace().getRoot().getProject(projectName_p)</code> is invoked as result.
-   * @param projectName_p A project name that points to a plug-in in the workspace.
+   * If not, the method
+   * <code>ResourcesPlugin.getWorkspace().getRoot().getProject(projectName_p)</code>
+   * is invoked as result.
+   * 
+   * @param projectName_p
+   *          A project name that points to a plug-in in the workspace.
    * @return
    */
   public static IProject getProject(String projectName_p) {
@@ -77,8 +82,10 @@ public class ProjectHelper {
     // Get model base from project name.
     IPluginModelBase modelBase = PluginRegistry.findModel(projectName_p);
     // Precondition.
-    // Warning : fix for the Eclipse platform bug that consists in having PDE in a weird state
-    // regarding in-development plug-ins from launching platform as deployed ones in current one.
+    // Warning : fix for the Eclipse platform bug that consists in having PDE in
+    // a weird state
+    // regarding in-development plug-ins from launching platform as deployed
+    // ones in current one.
     if (modelBase == null) {
       return ResourcesPlugin.getWorkspace().getRoot().getProject(projectName_p);
     }
@@ -87,6 +94,7 @@ public class ProjectHelper {
 
   /**
    * Get the IProject for specified plug-in model.
+   * 
    * @param pluginModelBase_p
    * @return null if the plug-in is not in the workspace.
    */
@@ -105,9 +113,13 @@ public class ProjectHelper {
 
   /**
    * Can identified project element be converted to a factory component ?
-   * @param elementId_p The chosen project element id. Can either be the project name or the plug-in id.
-   * @return <code>false</code> if no project can be found, or it is not a plug-in, or its id does not match its name. <code>true</code> if it can be converted
-   *         to a FC.
+   * 
+   * @param elementId_p
+   *          The chosen project element id. Can either be the project name or
+   *          the plug-in id.
+   * @return <code>false</code> if no project can be found, or it is not a
+   *         plug-in, or its id does not match its name. <code>true</code> if it
+   *         can be converted to a FC.
    */
   public static boolean canBeConvertedToFC(String elementId_p) {
     boolean result = false;
@@ -115,10 +127,7 @@ public class ProjectHelper {
     if (project == null) {
       StringBuilder msg = new StringBuilder("ProjectHelper.canBeConvertedToFC(..) _ "); //$NON-NLS-1$
       msg.append("Unable to locate a project with element id ").append(elementId_p); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().log(msg.toString());
-      if (EGFCommonPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logError(msg.toString());
-      }      
+      EGFCommonPlugin.getDefault().logError(msg.toString());
     } else {
       IPluginModelBase model = PluginRegistry.findModel(project);
       if (model != null) {
@@ -126,20 +135,14 @@ public class ProjectHelper {
         result = project.getName().equals(modelId);
         if (result == false) {
           StringBuilder msg = new StringBuilder("ProjectHelper.canBeConvertedToFC(..) _ "); //$NON-NLS-1$
-          msg.append("To convert an exisiting plug-in into a FC, its related project name must be equal to the plug-in id."); //$NON-NLS-1$
-          EGFCommonPlugin.getDefault().log(msg.toString());
-          if (EGFCommonPlugin.getDefault().isDebugging()) {
-            EGFConsolePlugin.getConsole().logError(msg.toString());
-          }      
+          msg.append("To convert an existing plug-in into a FC, its related project name must be equal to the plug-in id."); //$NON-NLS-1$
+          EGFCommonPlugin.getDefault().logError(msg.toString());
         }
       } else {
         StringBuilder msg = new StringBuilder("ProjectHelper.canBeConvertedToFC(..) _ "); //$NON-NLS-1$
         msg.append("Element ").append(elementId_p).append(" is not a valid plug-in project."); //$NON-NLS-1$ //$NON-NLS-2$
         msg.append("Only plug-in projects can be converted to FCs."); //$NON-NLS-1$
-        EGFCommonPlugin.getDefault().log(msg.toString());
-        if (EGFCommonPlugin.getDefault().isDebugging()) {
-          EGFConsolePlugin.getConsole().logError(msg.toString());
-        }      
+        EGFCommonPlugin.getDefault().logError(msg.toString());
       }
     }
     return result;
@@ -147,9 +150,13 @@ public class ProjectHelper {
 
   /**
    * Get java project in the workspace from its project name.
-   * @param projectName_p It is assumed given project name points to a plug-in project. If not, use {@link #getJavaProject(IProject)} instead.
-   * @return null if it could not be found. Either the given name is null, or there is no java project in the workspace with this name (maybe then the project
-   *         is deployed instead).
+   * 
+   * @param projectName_p
+   *          It is assumed given project name points to a plug-in project. If
+   *          not, use {@link #getJavaProject(IProject)} instead.
+   * @return null if it could not be found. Either the given name is null, or
+   *         there is no java project in the workspace with this name (maybe
+   *         then the project is deployed instead).
    */
   public static IJavaProject getJavaProject(String projectName_p) {
     return getJavaProject(getProject(projectName_p));
@@ -157,8 +164,10 @@ public class ProjectHelper {
 
   /**
    * Get java project from workspace project.
+   * 
    * @param project_p
-   * @return null if it could not be found. The given project is not a Java one, or JDT has not been initialized correctly.
+   * @return null if it could not be found. The given project is not a Java one,
+   *         or JDT has not been initialized correctly.
    */
   public static IJavaProject getJavaProject(IProject project_p) {
     IJavaProject result = null;
@@ -169,7 +178,8 @@ public class ProjectHelper {
     // Get java project from project.
     IJavaElement javaElement = (IJavaElement) ((IAdaptable) project_p).getAdapter(IJavaElement.class);
     // Only JDT UI initializes adapter mechanism.
-    // If this method is called from a non UI application (e.g antRunner) uses the JavaCore API instead.
+    // If this method is called from a non UI application (e.g antRunner) uses
+    // the JavaCore API instead.
     if (javaElement == null) {
       javaElement = JavaCore.create(project_p);
     }
@@ -178,10 +188,13 @@ public class ProjectHelper {
   }
 
   /**
-   * Create a new class loader for a java project, son of specified parent class loader.
+   * Create a new class loader for a java project, son of specified parent class
+   * loader.
+   * 
    * @param javaProject_p
    * @param parentClassLoader_p
-   * @return null if one of the parameter is null or no extra dependency was found in the java project
+   * @return null if one of the parameter is null or no extra dependency was
+   *         found in the java project
    * @throws Exception
    */
   public static ClassLoader getClassLoaderFor(IJavaProject javaProject_p, ClassLoader parentClassLoader_p) throws Exception {
@@ -201,10 +214,11 @@ public class ProjectHelper {
     result = new URLClassLoader(classPathEntries, parentClassLoader_p);
     return result;
   }
-  
+
   /**
    * Get given java project dependencies in terms of compilation.<br>
    * The resulting array can be used to feed a specific class loader.
+   * 
    * @param javaProject_p
    * @return An array of URL.<br>
    *         Not null, but possibly empty.
@@ -218,15 +232,16 @@ public class ProjectHelper {
     for (IClasspathEntry classpathEntry : classpathEntries) {
       IPath urlPath = classpathEntry.getPath();
       switch (classpathEntry.getEntryKind()) {
-        // For source project or projects, look for the output folder...
-        case IClasspathEntry.CPE_SOURCE:
-        case IClasspathEntry.CPE_PROJECT:
-          IJavaProject localProject = ProjectHelper.getJavaProject(urlPath.segment(0));
-          urlPath = localProject.getProject().getLocation().append(localProject.getOutputLocation().removeFirstSegments(1));
-          break;
-        // For libraries and installed plug-ins, simply retain the class-path entry path.
-        default:
-          break;
+      // For source project or projects, look for the output folder...
+      case IClasspathEntry.CPE_SOURCE:
+      case IClasspathEntry.CPE_PROJECT:
+        IJavaProject localProject = ProjectHelper.getJavaProject(urlPath.segment(0));
+        urlPath = localProject.getProject().getLocation().append(localProject.getOutputLocation().removeFirstSegments(1));
+        break;
+      // For libraries and installed plug-ins, simply retain the class-path
+      // entry path.
+      default:
+        break;
       }
       classpathUrls.add(urlPath.toFile().toURI().toURL());
     }
@@ -235,6 +250,7 @@ public class ProjectHelper {
 
   /**
    * Refresh given project in the workspace.
+   * 
    * @param project_p
    * @param monitor_p
    */
@@ -244,6 +260,7 @@ public class ProjectHelper {
 
   /**
    * Refresh a project in the workspace.
+   * 
    * @param projectToRefresh_p
    * @param depth_p
    * @param monitor_p
@@ -254,18 +271,19 @@ public class ProjectHelper {
       projectToRefresh_p.refreshLocal(depth_p, monitor_p);
     } catch (CoreException ce) {
       StringBuilder msg = new StringBuilder("ProjectHelper.refreshProject(..) _ "); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().log(msg.toString(), ce);
-      if (EGFCommonPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logThrowable(msg.toString(), ce);
-      }      
+      EGFCommonPlugin.getDefault().logError(msg.toString(), ce);
     }
   }
 
   /**
    * Create a source folder in given project.
-   * @param sourceFolderName_p the name of the source folder.
-   * @param project_p the hosting project.
-   * @param monitor_p progress monitor.
+   * 
+   * @param sourceFolderName_p
+   *          the name of the source folder.
+   * @param project_p
+   *          the hosting project.
+   * @param monitor_p
+   *          progress monitor.
    * @return <code>true</code> means the creation is successful.
    */
   public static boolean createSourceFolder(String sourceFolderName_p, IProject project_p, IProgressMonitor monitor_p) {
@@ -297,16 +315,14 @@ public class ProjectHelper {
     } catch (Exception e) {
       successful = false;
       StringBuilder msg = new StringBuilder("ProjectHelper.createSourceFolder(..) _ "); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().log(msg.toString(), e);
-      if (EGFCommonPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logThrowable(msg.toString(), e);
-      }      
+      EGFCommonPlugin.getDefault().logError(msg.toString(), e);
     }
     return successful;
   }
 
   /**
    * Create a folder with given name in given project.
+   * 
    * @param folderName_p
    * @param project_p
    * @param monitor_p
@@ -329,10 +345,7 @@ public class ProjectHelper {
       } catch (CoreException ce) {
         folder = null;
         StringBuilder msg = new StringBuilder("ProjectHelper.createFolder(..) _ "); //$NON-NLS-1$
-        EGFCommonPlugin.getDefault().log(msg.toString(), ce);
-        if (EGFCommonPlugin.getDefault().isDebugging()) {
-          EGFConsolePlugin.getConsole().logThrowable(msg.toString(), ce);
-        }      
+        EGFCommonPlugin.getDefault().logError(msg.toString(), ce);
       }
     }
     return folder;
@@ -341,9 +354,13 @@ public class ProjectHelper {
   /**
    * Make sure named project exists.<br>
    * If not try and create a new one with given name.
-   * @param projectName_p The expected project name.
-   * @param cleanProject_p true to clean project structure after creation, false otherwise.
-   * @param projectType_p {@link Generator#EMF_EMPTY_PROJECT_STYLE} see other values.
+   * 
+   * @param projectName_p
+   *          The expected project name.
+   * @param cleanProject_p
+   *          true to clean project structure after creation, false otherwise.
+   * @param projectType_p
+   *          {@link Generator#EMF_EMPTY_PROJECT_STYLE} see other values.
    * @return {@link ProjectExistenceStatus} value.
    */
   private static ProjectExistenceStatus ensureProjectExists(String projectName_p, boolean cleanProject_p, int projectType_p) {
@@ -359,14 +376,7 @@ public class ProjectHelper {
     }
     // Else, try and create an EMF project.
     IPath projectLocationPath = new Path(CharacterConstants.SLASH_CHARACTER + projectName_p);
-    IProject resultingProject = Generator.createEMFProject(
-      projectLocationPath.append(CharacterConstants.SLASH_CHARACTER + IEgfGeneratorConstants.SRC_FOLDER), 
-      null,
-      new ArrayList<IProject>(0), 
-      new NullProgressMonitor(), 
-      projectType_p, 
-      Collections.EMPTY_LIST
-    );
+    IProject resultingProject = Generator.createEMFProject(projectLocationPath.append(CharacterConstants.SLASH_CHARACTER + IEgfGeneratorConstants.SRC_FOLDER), null, new ArrayList<IProject>(0), new NullProgressMonitor(), projectType_p, Collections.EMPTY_LIST);
     if (resultingProject != null && resultingProject.exists()) {
       result = ProjectExistenceStatus.CREATED;
       // If project should be cleaned, do it.
@@ -381,8 +391,10 @@ public class ProjectHelper {
 
   /**
    * Clean newly created project structure.<br/>
-   * Remove plug-in dependencies class path container from given project (if applicable).<br/>
+   * Remove plug-in dependencies class path container from given project (if
+   * applicable).<br/>
    * Also set nature back to Java one.
+   * 
    * @param project_p
    */
   private static void cleanProjectStructure(IProject project_p) {
@@ -399,10 +411,7 @@ public class ProjectHelper {
       project_p.setDescription(description, new NullProgressMonitor());
     } catch (CoreException ce) {
       StringBuilder msg = new StringBuilder("ProjectHelper.cleanProjectStructure(..) _ "); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().log(msg.toString(), ce);
-      if (EGFCommonPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logThrowable(msg.toString(), ce);
-      }      
+      EGFCommonPlugin.getDefault().logError(msg.toString(), ce);
     }
     // Get raw class path.
     IClasspathEntry[] rawClasspath = null;
@@ -410,10 +419,7 @@ public class ProjectHelper {
       rawClasspath = javaProject.getRawClasspath();
     } catch (JavaModelException jme) {
       StringBuilder msg = new StringBuilder("ProjectHelper.cleanProjectStructure(..) _ "); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().log(msg.toString(), jme);
-      if (EGFCommonPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logThrowable(msg.toString(), jme);
-      }      
+      EGFCommonPlugin.getDefault().logError(msg.toString(), jme);
     }
     // Iterate over class path elements.
     if (rawClasspath != null && rawClasspath.length != 0) {
@@ -434,10 +440,7 @@ public class ProjectHelper {
         javaProject.setRawClasspath(newRawClasspath.toArray(new IClasspathEntry[newRawClasspath.size()]), new NullProgressMonitor());
       } catch (JavaModelException jme) {
         StringBuilder msg = new StringBuilder("ProjectHelper.cleanProjectStructure(..) _ "); //$NON-NLS-1$
-        EGFCommonPlugin.getDefault().log(msg.toString(), jme);
-        if (EGFCommonPlugin.getDefault().isDebugging()) {
-          EGFConsolePlugin.getConsole().logThrowable(msg.toString(), jme);
-        }      
+        EGFCommonPlugin.getDefault().logError(msg.toString(), jme);
       }
     }
   }
@@ -445,7 +448,9 @@ public class ProjectHelper {
   /**
    * Make sure named plug-in project exists.<br>
    * If not try and create a new one with given name.
-   * @param projectName_p The expected project name.
+   * 
+   * @param projectName_p
+   *          The expected project name.
    * @return
    */
   public static ProjectExistenceStatus ensurePluginProjectExists(String projectName_p) {
@@ -455,11 +460,13 @@ public class ProjectHelper {
   /**
    * Make sure named project exists.<br>
    * If not try and create a new one with given name.
-   * @param projectName_p The expected project name.
+   * 
+   * @param projectName_p
+   *          The expected project name.
    * @return
    */
   public static ProjectExistenceStatus ensureProjectExists(String projectName_p) {
     return ensureProjectExists(projectName_p, true, Generator.EMF_EMPTY_PROJECT_STYLE);
   }
-  
+
 }

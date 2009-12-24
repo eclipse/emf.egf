@@ -16,6 +16,11 @@ import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.egf.common.log.IEGFLogger;
+import org.eclipse.egf.console.internal.ConsoleDocument;
+import org.eclipse.egf.console.internal.ConsoleFactory;
+import org.eclipse.egf.console.internal.IEGFConsoleConstants;
+import org.eclipse.egf.console.l10n.ConsoleMessages;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.jface.resource.JFaceResources;
@@ -33,14 +38,8 @@ import org.eclipse.ui.console.IConsoleManager;
 import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 
-import org.eclipse.egf.console.internal.ConsoleDocument;
-import org.eclipse.egf.console.internal.ConsoleFactory;
-import org.eclipse.egf.console.internal.IEGFConsoleConstants;
-import org.eclipse.egf.console.l10n.ConsoleMessages;
-
 import com.ibm.icu.text.DateFormat;
 import com.ibm.icu.text.SimpleDateFormat;
-
 
 /**
  * Console that shows the output of CVS commands. It is shown as a page in the
@@ -49,9 +48,7 @@ import com.ibm.icu.text.SimpleDateFormat;
  * 
  * @since 3.0
  */
-public class Console extends MessageConsole implements IPropertyChangeListener {
-
-  private Color _debugColor;
+public class Console extends MessageConsole implements IPropertyChangeListener, IEGFLogger {
 
   private Color _errorColor;
 
@@ -60,7 +57,6 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
   private Color _warningColor;
 
   // streams for each command type - each stream has its own color
-  private MessageConsoleStream _debugStream;
 
   private MessageConsoleStream _errorStream;
 
@@ -137,10 +133,6 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
     EGFConsolePlugin.getDefault().getPreferenceStore().addPropertyChangeListener(this);
   }
 
-  public MessageConsoleStream getDebugStream() {
-    return _debugStream;
-  }
-
   public MessageConsoleStream getErrorStream() {
     return _errorStream;
   }
@@ -153,17 +145,6 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
     return _warningStream;
   }
 
-  public void logDebug(String line) {
-    logDebug(line, 0);
-  }
-
-  public void logDebug(String line, int nesting) {
-    if (_showOnMessage) {
-      bringConsoleToFront();
-    }
-    appendLine(ConsoleDocument.DEBUG, line, nesting);
-  }
-
   public void logError(String line) {
     logError(line, 0);
   }
@@ -173,14 +154,6 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
       bringConsoleToFront();
     }
     appendLine(ConsoleDocument.ERROR, line, nesting);
-  }
-
-  public void logThrowable(String message, Throwable throwable) {
-    logThrowable(message, throwable, 0);
-  }
-
-  public void logThrowable(String message, Throwable throwable, int nesting) {
-    logStatus(EGFConsolePlugin.getDefault().newErrorStatus(message, throwable), nesting);
   }
 
   public void logStatus(IStatus status) {
@@ -219,7 +192,7 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
 
   private void bringConsoleToFront() {
     if (_visible == false) {
-      _consoleManager.addConsoles(new IConsole []{ this });
+      _consoleManager.addConsoles(new IConsole[] { this });
     }
     _consoleManager.showConsoleView(this);
   }
@@ -261,7 +234,7 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
     IPreferenceStore store = EGFConsolePlugin.getDefault().getPreferenceStore();
     if (store.getBoolean(IEGFConsoleConstants.CONSOLE_LIMIT_OUTPUT)) {
       int lowWater = store.getInt(IEGFConsoleConstants.CONSOLE_LOW_WATER_MARK);
-      int highWater = store.getInt(IEGFConsoleConstants.CONSOLE_HIGH_WATER_MARK);      
+      int highWater = store.getInt(IEGFConsoleConstants.CONSOLE_HIGH_WATER_MARK);
       setWaterMarks(lowWater, highWater);
     } else {
       setWaterMarks(-1, 0);
@@ -274,13 +247,10 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
   protected void initializeStreams() {
     synchronized (_document) {
       if (_initialized == false) {
-        _debugStream = newMessageStream();
         _errorStream = newMessageStream();
         _infoStream = newMessageStream();
         _warningStream = newMessageStream();
         // install colors
-        _debugColor = createColor(EGFConsolePlugin.getWorkbenchDisplay(), IEGFConsoleConstants.CONSOLE_DEBUG_COLOR);
-        _debugStream.setColor(_debugColor);
         _errorColor = createColor(EGFConsolePlugin.getWorkbenchDisplay(), IEGFConsoleConstants.CONSOLE_ERROR_COLOR);
         _errorStream.setColor(_errorColor);
         _infoColor = createColor(EGFConsolePlugin.getWorkbenchDisplay(), IEGFConsoleConstants.CONSOLE_INFO_COLOR);
@@ -319,22 +289,18 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
     synchronized (_document) {
       if (_visible) {
         switch (type) {
-          case ConsoleDocument.DEBUG:
-            buffer.append(line);
-            getDebugStream().println(buffer.toString());
-            break;
-          case ConsoleDocument.ERROR:
-            buffer.append(line);
-            getErrorStream().println(buffer.toString());
-            break;
-          case ConsoleDocument.INFO:
-            buffer.append(line);
-            getInfoStream().println(buffer.toString());
-            break;
-          case ConsoleDocument.WARNING:
-            buffer.append(line);
-            getWarningStream().println(buffer.toString());
-            break;
+        case ConsoleDocument.ERROR:
+          buffer.append(line);
+          getErrorStream().println(buffer.toString());
+          break;
+        case ConsoleDocument.INFO:
+          buffer.append(line);
+          getInfoStream().println(buffer.toString());
+          break;
+        case ConsoleDocument.WARNING:
+          buffer.append(line);
+          getWarningStream().println(buffer.toString());
+          break;
         }
       } else {
         _document.appendConsoleLine(type, line, nesting);
@@ -373,9 +339,6 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
     // Call super dispose because we want the partitioner to be
     // disconnected.
     super.dispose();
-    if (_debugColor != null) {
-      _debugColor.dispose();
-    }
     if (_errorColor != null) {
       _errorColor.dispose();
     }
@@ -421,8 +384,7 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
     }
     // First we print the status message if applicable
     if (status.getMessage() != null && status.getMessage().trim().length() > 0) {
-      if (status.getException() == null || status.getException() != null
-        && status.getMessage().equals(status.getException().toString()) == false) {
+      if (status.getException() == null || status.getException() != null && status.getMessage().equals(status.getException().toString()) == false) {
         buffer.append(status.getMessage());
         if (status.getSeverity() == IStatus.ERROR) {
           appendLine(ConsoleDocument.ERROR, buffer.toString(), 0);
@@ -453,28 +415,18 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
   /*
    * (non-Javadoc)
    * 
-   * @see org.eclipse.jface.util.IPropertyChangeListener#propertyChange(org.eclipse.jface.util.PropertyChangeEvent)
+   * @see
+   * org.eclipse.jface.util.IPropertyChangeListener#propertyChange(org.eclipse
+   * .jface.util.PropertyChangeEvent)
    */
   public void propertyChange(PropertyChangeEvent event) {
     String property = event.getProperty();
     // colors
     if (_visible) {
-      if (property.equals(
-             IEGFConsoleConstants.CONSOLE_WRAP) 
-          || property.equals(IEGFConsoleConstants.CONSOLE_WIDTH)
-      ) {
+      if (property.equals(IEGFConsoleConstants.CONSOLE_WRAP) || property.equals(IEGFConsoleConstants.CONSOLE_WIDTH)) {
         initWrapSetting();
-      } else if (
-             property.equals(IEGFConsoleConstants.CONSOLE_LIMIT_OUTPUT) 
-          || property.equals(IEGFConsoleConstants.CONSOLE_HIGH_WATER_MARK)
-          || property.equals(IEGFConsoleConstants.CONSOLE_LOW_WATER_MARK)
-      ) {
+      } else if (property.equals(IEGFConsoleConstants.CONSOLE_LIMIT_OUTPUT) || property.equals(IEGFConsoleConstants.CONSOLE_HIGH_WATER_MARK) || property.equals(IEGFConsoleConstants.CONSOLE_LOW_WATER_MARK)) {
         initLimitOutput();
-      } else if (property.equals(IEGFConsoleConstants.CONSOLE_DEBUG_COLOR)) {
-        Color newColor = createColor(EGFConsolePlugin.getWorkbenchDisplay(), IEGFConsoleConstants.CONSOLE_DEBUG_COLOR);
-        _debugStream.setColor(newColor);
-        _debugColor.dispose();
-        _debugColor = newColor;
       } else if (property.equals(IEGFConsoleConstants.CONSOLE_ERROR_COLOR)) {
         Color newColor = createColor(EGFConsolePlugin.getWorkbenchDisplay(), IEGFConsoleConstants.CONSOLE_ERROR_COLOR);
         _errorStream.setColor(newColor);
@@ -508,11 +460,11 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
 
   private String messageLineForStatus(IStatus status) {
     if (status.getSeverity() == IStatus.ERROR) {
-      return NLS.bind(ConsoleMessages.Console_error, new String []{ status.getException().toString() });
+      return NLS.bind(ConsoleMessages.Console_error, new String[] { status.getException().toString() });
     } else if (status.getSeverity() == IStatus.WARNING) {
-      return NLS.bind(ConsoleMessages.Console_warning, new String []{ status.getException().toString() });
+      return NLS.bind(ConsoleMessages.Console_warning, new String[] { status.getException().toString() });
     } else if (status.getSeverity() == IStatus.INFO) {
-      return NLS.bind(ConsoleMessages.Console_info, new String []{ status.getException().toString() });
+      return NLS.bind(ConsoleMessages.Console_info, new String[] { status.getException().toString() });
     }
     return status.getMessage();
   }
@@ -529,7 +481,7 @@ public class Console extends MessageConsole implements IPropertyChangeListener {
    * Show the console.
    * 
    * @param showNoMatterWhat
-   *        ignore preferences if <code>true</code>
+   *          ignore preferences if <code>true</code>
    */
   public void show(boolean showNoMatterWhat) {
     if (showNoMatterWhat || _showOnMessage) {

@@ -10,16 +10,17 @@
  */
 package org.eclipse.egf.pde.plugin.command;
 
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 
 /**
- * Base class to implement a command that performs plug-in changes either in the manifest file or in the plug-in file.<br>
+ * Base class to implement a command that performs plug-in changes either in the
+ * manifest file or in the plug-in file.<br>
+ * 
  * @author Guillaume Brocard
  */
 public abstract class AbstractChangesCommand implements IPluginChangesCommand {
-    
+
   /**
    * Plug-in model that this command is performed against.
    */
@@ -34,6 +35,7 @@ public abstract class AbstractChangesCommand implements IPluginChangesCommand {
 
   /**
    * Get the plug-in model that this command is performed against.
+   * 
    * @return the pluginModelBase
    */
   protected IPluginModelBase getPluginModelBase() {
@@ -46,13 +48,9 @@ public abstract class AbstractChangesCommand implements IPluginChangesCommand {
   public void execute() {
     // Check Precondition.
     if (_pluginModelBase == null) {
-      String msg = "AbstractChangesCommand.execute(..) _ PluginModelBase object must not be null"; //$NON-NLS-1$
-      EGFPDEPlugin.getDefault().log(msg);
-      if (EGFPDEPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logError(msg);
-      }
+      EGFPDEPlugin.getDefault().logError(new String("AbstractChangesCommand.execute(..) _ PluginModelBase object must not be null")); //$NON-NLS-1$
       return;
     }
   }
-  
+
 }

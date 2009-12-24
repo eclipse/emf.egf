@@ -10,20 +10,23 @@
  */
 package org.eclipse.egf.pde.plugin.command;
 
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.internal.core.ibundle.IBundlePluginModel;
 
 /**
- * Base class to implement a command that performs plug-in changes in the manifest file.
+ * Base class to implement a command that performs plug-in changes in the
+ * manifest file.
+ * 
  * @author Guillaume Brocard
  */
 public class AbstractManifestChangesCommand extends AbstractChangesCommand {
-  
+
   /**
    * Get the bundle plugin model that this command is performed against.
-   * @return <code>null</code> if the underlying {@link IPluginModelBase} instance is not an {@link IBundlePluginModel}.
+   * 
+   * @return <code>null</code> if the underlying {@link IPluginModelBase}
+   *         instance is not an {@link IBundlePluginModel}.
    */
   protected IBundlePluginModel getBundlePluginModel() {
     IBundlePluginModel result = null;
@@ -45,11 +48,8 @@ public class AbstractManifestChangesCommand extends AbstractChangesCommand {
     if (getBundlePluginModel() == null) {
       StringBuilder msg = new StringBuilder("AbstractManifestChangesCommand.execute(..) _ "); //$NON-NLS-1$
       msg.append("BundlePluginModel object must not be null"); //$NON-NLS-1$
-      EGFPDEPlugin.getDefault().log(msg.toString());
-      if (EGFPDEPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logError(msg.toString());
-      }
+      EGFPDEPlugin.getDefault().logError(msg.toString());
     }
   }
-  
+
 }

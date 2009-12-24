@@ -21,7 +21,6 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.activator.EGFCommonPlugin;
 import org.eclipse.egf.common.helper.IUserEnforcedHelper;
 import org.eclipse.egf.common.helper.ProjectHelper;
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.egf.pde.internal.FactoryComponentGeneratorHelper;
 import org.eclipse.egf.pde.internal.ui.util.ModelModification;
@@ -47,40 +46,38 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Constants;
 
-
 /**
  * Implement a plug-in changes command runner.
+ * 
  * @author Guillaume Brocard
  */
 public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
-  
+
   /**
    * 3.0 level compliance of plugin.xml
    */
   private static final String PLUGIN_VERSION_3_0 = "3.0"; //$NON-NLS-1$
-  
+
   /**
    * 3.2 level compliance of plugin.xml
    */
   private static final String PLUGIN_VERSION_3_2 = "3.2"; //$NON-NLS-1$
-    
+
   /**
    * Get the user enforced helper.
    */
   static final IUserEnforcedHelper USER_ENFORCED_HELPER = EGFCommonPlugin.getDefault().getUserEnforcedHelper();
 
   /**
-   * @see org.eclipse.egf.pde.plugin.command.IPluginChangesCommandRunner#performChangesOnPlugin(java.lang.String, java.util.List)
+   * @see org.eclipse.egf.pde.plugin.command.IPluginChangesCommandRunner#performChangesOnPlugin(java.lang.String,
+   *      java.util.List)
    */
   public void performChangesOnPlugin(String bundleId_p, List<IPluginChangesCommand> commands_p) {
     // Check Precondition.
     if (bundleId_p == null) {
       StringBuffer msg = new StringBuffer("PluginChangesCommandRunner.performChangesOnPlugin(..) _ "); //$NON-NLS-1$
       msg.append("bundleId_p can't be null"); //$NON-NLS-1$
-      EGFPDEPlugin.getDefault().log(msg.toString());
-      if (EGFPDEPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logError(msg.toString());
-      }
+      EGFPDEPlugin.getDefault().logError(msg.toString());
       return;
     }
     // Get the plug-in model object for given id.
@@ -95,17 +92,15 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
   }
 
   /**
-   * @see org.eclipse.egf.pde.plugin.command.IPluginChangesCommandRunner#performChangesOnManifest(java.lang.String, java.util.List)
+   * @see org.eclipse.egf.pde.plugin.command.IPluginChangesCommandRunner#performChangesOnManifest(java.lang.String,
+   *      java.util.List)
    */
   public void performChangesOnManifest(String bundleId_p, List<IPluginChangesCommand> commands_p) {
     // Check Precondition.
     if (bundleId_p == null) {
       StringBuffer msg = new StringBuffer("PluginChangesCommandRunner.performChangesOnManifest(..) _ "); //$NON-NLS-1$
       msg.append("bundleId_p can't be null"); //$NON-NLS-1$
-      EGFPDEPlugin.getDefault().log(msg.toString());
-      if (EGFPDEPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logError(msg.toString());
-      }
+      EGFPDEPlugin.getDefault().logError(msg.toString());
       return;
     }
     // Get the plug-in model object for given id.
@@ -117,9 +112,11 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
 
   /**
    * Create a plug-in file for given bundleModel.
+   * 
    * @param commands_p
    * @param model_p
-   * @param bundleId_p The bundle id.
+   * @param bundleId_p
+   *          The bundle id.
    */
   private void createNewPlugin(final List<IPluginChangesCommand> commands_p, IPluginModelBase bundleModel_p, String bundleId_p) {
     // Plug-in file needs to be created.
@@ -134,7 +131,9 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
   }
 
   /**
-   * Update the build.properties file to add the plugin.xml file in bin.includes.
+   * Update the build.properties file to add the plugin.xml file in
+   * bin.includes.
+   * 
    * @param pluginModel_p
    */
   private void updateBuildFile(WorkspacePluginModelBase pluginModel_p) {
@@ -151,7 +150,9 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
   }
 
   /**
-   * Save given plug-in model object ie related plugin.xml file is written in its workspace project location.
+   * Save given plug-in model object ie related plugin.xml file is written in
+   * its workspace project location.
+   * 
    * @param pluginModelBase_p
    * @return
    */
@@ -164,61 +165,59 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
 
   /**
    * Modify an existing plugin in performing commands that contain the changes.
+   * 
    * @param commands_p
    * @param bundleModel_p
-   * @param bundleRelativeFileName_p the searched bundle file name.<br>
-   *          Most of the time it is either {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or {@link EGFPDEPlugin#MANIFEST_FILE_NAME}
-   * @param bundleId_p The bundle id.
+   * @param bundleRelativeFileName_p
+   *          the searched bundle file name.<br>
+   *          Most of the time it is either
+   *          {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or
+   *          {@link EGFPDEPlugin#MANIFEST_FILE_NAME}
+   * @param bundleId_p
+   *          The bundle id.
    */
-  private void modifyExistingPlugin(
-    final List<IPluginChangesCommand> commands_p, 
-    IPluginModelBase bundleModel_p, 
-    String bundleRelativeFileName_p,
-    String bundleId_p
-  ) {
+  private void modifyExistingPlugin(final List<IPluginChangesCommand> commands_p, IPluginModelBase bundleModel_p, String bundleRelativeFileName_p, String bundleId_p) {
     // Add a new extension and update existing plug-in file.
     final IFile file = getFile(bundleModel_p, bundleRelativeFileName_p, bundleId_p);
-    // Execute the plug-in changes in the SWT thread to give a chance to the end-user to check-out its plug-in file (if not already in RW mode).
-    // Perform the plug-in changes in synchronous mode to prevent from executing another dependent task if the end-user is requested for a check-out.
+    // Execute the plug-in changes in the SWT thread to give a chance to the
+    // end-user to check-out its plug-in file (if not already in RW mode).
+    // Perform the plug-in changes in synchronous mode to prevent from executing
+    // another dependent task if the end-user is requested for a check-out.
     final Display display = getDisplay();
-    display.syncExec(
-      new Runnable() {
-        public void run() {
-          // Check if the file is not in read-only mode.
-          IStatus status = USER_ENFORCED_HELPER.makeFileWritable(file, display);
-          if (status.getSeverity() != IStatus.OK) {
-            StringBuffer msg = new StringBuffer("PluginChangesCommandRunner.modifyExistingPlugin(..) _ "); //$NON-NLS-1$
-            msg.append(file.getName() + " file is read only, changes are impossible."); //$NON-NLS-1$
-            EGFPDEPlugin.getDefault().log(msg.toString());
-            if (EGFPDEPlugin.getDefault().isDebugging()) {
-              EGFConsolePlugin.getConsole().logError(msg.toString());
-            }
-            return;
-          }
-          // Create an update operation that deals with modifying extensions.
-          ModelModification updateOperation = new ModelModification(file) {
-            @Override
-            protected void modifyModel(IBaseModel model_p, IProgressMonitor monitor_p) throws CoreException {
-              if (model_p instanceof IPluginModelBase == false) {
-                return;
-			  }
-              IPluginModelBase pluginModel = (IPluginModelBase) model_p;
-              // Execute all changes.
-              for (IPluginChangesCommand command : commands_p) {
-                command.setPluginModelBase(pluginModel);
-                command.execute();
-              }
-            }
-          };
-          // Let's update the file.
-          PDEModelUtility.modifyModel(updateOperation, new NullProgressMonitor());
+    display.syncExec(new Runnable() {
+      public void run() {
+        // Check if the file is not in read-only mode.
+        IStatus status = USER_ENFORCED_HELPER.makeFileWritable(file, display);
+        if (status.getSeverity() != IStatus.OK) {
+          StringBuffer msg = new StringBuffer("PluginChangesCommandRunner.modifyExistingPlugin(..) _ "); //$NON-NLS-1$
+          msg.append(file.getName() + " file is read only, changes are impossible."); //$NON-NLS-1$
+          EGFPDEPlugin.getDefault().logError(msg.toString());
+          return;
         }
+        // Create an update operation that deals with modifying extensions.
+        ModelModification updateOperation = new ModelModification(file) {
+          @Override
+          protected void modifyModel(IBaseModel model_p, IProgressMonitor monitor_p) throws CoreException {
+            if (model_p instanceof IPluginModelBase == false) {
+              return;
+            }
+            IPluginModelBase pluginModel = (IPluginModelBase) model_p;
+            // Execute all changes.
+            for (IPluginChangesCommand command : commands_p) {
+              command.setPluginModelBase(pluginModel);
+              command.execute();
+            }
+          }
+        };
+        // Let's update the file.
+        PDEModelUtility.modifyModel(updateOperation, new NullProgressMonitor());
       }
-    );
+    });
   }
 
   /**
    * Return the display.
+   * 
    * @return
    */
   protected Display getDisplay() {
@@ -235,13 +234,15 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
 
   /**
    * Update singleton attribute in bundle manifest file.
+   * 
    * @param bundleModel_p
    * @param monitor_p
    */
   private void updateSingleton(final IPluginModelBase bundleModel_p, final IProgressMonitor monitor_p) {
     if (bundleModel_p instanceof IBundlePluginModel) {
       IFile file = (IFile) bundleModel_p.getUnderlyingResource();
-      // Create an update operation that deals with updating the singleton attribute.
+      // Create an update operation that deals with updating the singleton
+      // attribute.
       ModelModification modification = new ModelModification(file) {
         @Override
         protected void modifyModel(IBaseModel model_p, IProgressMonitor progressMonitor_p) throws CoreException {
@@ -266,17 +267,24 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
 
   /**
    * Create plug-in model object
+   * 
    * @param model_p
-   * @param bundleRelativeFileName_p the searched bundle file name.<br>
-   *          Most of the time it is either {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or {@link EGFPDEPlugin#MANIFEST_FILE_NAME}
-   * @param bundleId_p The bundle id.
-   * @return a {@link WorkspacePluginModelBase} instance or null if instantiation fails.
+   * @param bundleRelativeFileName_p
+   *          the searched bundle file name.<br>
+   *          Most of the time it is either
+   *          {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or
+   *          {@link EGFPDEPlugin#MANIFEST_FILE_NAME}
+   * @param bundleId_p
+   *          The bundle id.
+   * @return a {@link WorkspacePluginModelBase} instance or null if
+   *         instantiation fails.
    */
   private WorkspacePluginModelBase createPluginModel(IPluginModelBase model_p, String bundleId_p) {
     IFile pluginFile = getFile(model_p, EGFPDEPlugin.PLUGIN_FILE_NAME, bundleId_p);
     // Create an internal PDE class that deals with plug-in manipulation.
     // It is not recommended but it is faster than re-implementing all PDE API.
-    // TODO Stephane : ask a feature request on eclipse bugzilla to get a factory.
+    // TODO Stephane : ask a feature request on eclipse bugzilla to get a
+    // factory.
     WorkspacePluginModelBase pluginModel = null;
     try {
       // Get real model file.
@@ -285,20 +293,20 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
       IPluginBase plugin = pluginModel.getPluginBase();
       plugin.setSchemaVersion(TargetPlatformHelper.getTargetVersion() < 3.2 ? PLUGIN_VERSION_3_0 : PLUGIN_VERSION_3_2);
     } catch (CoreException ce) {
-      String msg = new String("AbstractExtensionHelper.createNewPlugin(..) _ "); //$NON-NLS-1$
-      EGFPDEPlugin.getDefault().log(msg, ce);
-      if (EGFPDEPlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logThrowable(msg, ce);
-      }
+      EGFPDEPlugin.getDefault().logError(new String("AbstractExtensionHelper.createNewPlugin(..) _ "), ce); //$NON-NLS-1$
     }
     return pluginModel;
   }
 
   /**
    * Test whether or not given bundle model object exists.
+   * 
    * @param model_p
-   * @param bundleRelativeFileName_p the searched bundle file name.<br>
-   *          Most of the time it is either {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or {@link EGFPDEPlugin#MANIFEST_FILE_NAME}
+   * @param bundleRelativeFileName_p
+   *          the searched bundle file name.<br>
+   *          Most of the time it is either
+   *          {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or
+   *          {@link EGFPDEPlugin#MANIFEST_FILE_NAME}
    * @return
    */
   private boolean bundleFileExists(IPluginModelBase model_p, String bundleRelativeFileName_p, String bundleId_p) {
@@ -311,7 +319,9 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
   }
 
   /**
-   * Get the Plug-in object for given {@link IFile} related to a plugin.xml file.
+   * Get the Plug-in object for given {@link IFile} related to a plugin.xml
+   * file.
+   * 
    * @param file
    * @return
    */
@@ -325,10 +335,15 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
   }
 
   /**
-   * Get the plug-in file for given plug-in model object (without checking existence) for specified bundle fileName.
+   * Get the plug-in file for given plug-in model object (without checking
+   * existence) for specified bundle fileName.
+   * 
    * @param pluginModelBase_p
-   * @param bundleRelativeFileName_p the searched bundle file name.<br>
-   *          Most of the time it is either {@link EgfPdeActivator#PLUGIN_FILE_NAME} or {@link EgfPdeActivator#MANIFEST_FILE_NAME}
+   * @param bundleRelativeFileName_p
+   *          the searched bundle file name.<br>
+   *          Most of the time it is either
+   *          {@link EgfPdeActivator#PLUGIN_FILE_NAME} or
+   *          {@link EgfPdeActivator#MANIFEST_FILE_NAME}
    * @return.
    */
   private static IFile getFile(IPluginModelBase pluginModelBase_p, String bundleRelativeFileName_p) {
@@ -344,6 +359,7 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
 
   /**
    * Get plug-in file for identified bundle and relative path.<br>
+   * 
    * @see #getFile(IPluginModelBase, String) comments.
    * @param pluginModelBase_p
    * @param bundleRelativeFileName_p
@@ -361,5 +377,5 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
     }
     return result;
   }
-  
+
 }

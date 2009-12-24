@@ -17,15 +17,13 @@ package org.eclipse.egf.console.internal;
  */
 public class ConsoleDocument {
 
-  public static final int DEBUG = 0; // debug text
+  public static final int ERROR = 0; // error received
 
-  public static final int ERROR = 1; // error received
+  public static final int INFO = 1; // message received
 
-  public static final int INFO = 2; // message received
+  public static final int WARNING = 2; // error received
 
-  public static final int WARNING = 3; // error received	
-
-  public static final int DELIMITER = 4; // delimiter text between runs
+  public static final int DELIMITER = 3; // delimiter text between runs
 
   private int[] _lineTypes;
 
@@ -77,9 +75,9 @@ public class ConsoleDocument {
    */
   public void appendConsoleLine(int type, String line, int nesting) {
     if (_lines == null) {
-      _lines = new String [BUFFER_SIZE];
-      _lineTypes = new int [BUFFER_SIZE];
-      _lineNestings = new int [BUFFER_SIZE];
+      _lines = new String[BUFFER_SIZE];
+      _lineTypes = new int[BUFFER_SIZE];
+      _lineNestings = new int[BUFFER_SIZE];
     }
     _lines[_writeIndex] = line;
     _lineTypes[_writeIndex] = type;
@@ -97,9 +95,9 @@ public class ConsoleDocument {
 
   public ConsoleLine[] getLines() {
     if (isEmpty()) {
-      return new ConsoleLine [0];
+      return new ConsoleLine[0];
     }
-    ConsoleLine[] docLines = new ConsoleLine [_readIndex > _writeIndex ? BUFFER_SIZE : _writeIndex];
+    ConsoleLine[] docLines = new ConsoleLine[_readIndex > _writeIndex ? BUFFER_SIZE : _writeIndex];
     int index = _readIndex;
     for (int i = 0; i < docLines.length; i++) {
       docLines[i] = new ConsoleLine(_lines[index], _lineTypes[index], _lineNestings[index]);

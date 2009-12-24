@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.egf.console.preferences;
 
+import org.eclipse.egf.console.EGFConsolePlugin;
+import org.eclipse.egf.console.internal.IEGFConsoleConstants;
+import org.eclipse.egf.console.l10n.ConsoleMessages;
 import org.eclipse.jface.dialogs.Dialog;
 import org.eclipse.jface.preference.ColorFieldEditor;
 import org.eclipse.jface.preference.FieldEditor;
@@ -24,44 +27,37 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 
-import org.eclipse.egf.console.EGFConsolePlugin;
-import org.eclipse.egf.console.internal.IEGFConsoleConstants;
-import org.eclipse.egf.console.l10n.ConsoleMessages;
-
-
 public class EGFPreferencePage extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
-  
+
   private BooleanFieldEditor2 _wrapEditor = null;
-  
-  private ConsoleIntegerFieldEditor _widthEditor = null;  
-			
-  private ColorFieldEditor _debugColorEditor;
-  
+
+  private ConsoleIntegerFieldEditor _widthEditor = null;
+
   private ColorFieldEditor _errorColorEditor;
-  
-  private ColorFieldEditor _infoColorEditor;  
-  
-  private ColorFieldEditor _warningColorEditor;      
-  
-  private ColorFieldEditor _backgroundColorEditor;  
-	
-  private BooleanFieldEditor2 _showOnMessage;	
-    
+
+  private ColorFieldEditor _infoColorEditor;
+
+  private ColorFieldEditor _warningColorEditor;
+
+  private ColorFieldEditor _backgroundColorEditor;
+
+  private BooleanFieldEditor2 _showOnMessage;
+
   private BooleanFieldEditor2 _restrictOutput;
-  
-  private ConsoleIntegerFieldEditor _highWaterMark;  
-  
+
+  private ConsoleIntegerFieldEditor _highWaterMark;
+
   /**
    * This class exists to provide visibility to the
    * <code>refreshValidState</code> method and to perform more intelligent
    * clearing of the error message.
    */
-  protected class ConsoleIntegerFieldEditor extends IntegerFieldEditor {            
-    
+  protected class ConsoleIntegerFieldEditor extends IntegerFieldEditor {
+
     public ConsoleIntegerFieldEditor(String name, String labelText, Composite parent) {
       super(name, labelText, parent);
     }
-    
+
     /**
      * @see org.eclipse.jface.preference.FieldEditor#refreshValidState()
      */
@@ -69,10 +65,10 @@ public class EGFPreferencePage extends FieldEditorPreferencePage implements IWor
     protected void refreshValidState() {
       super.refreshValidState();
     }
-    
+
     /**
-     * Clears the error message from the message line if the error
-     * message is the error message from this field editor.
+     * Clears the error message from the message line if the error message is
+     * the error message from this field editor.
      */
     @Override
     protected void clearErrorMessage() {
@@ -80,22 +76,22 @@ public class EGFPreferencePage extends FieldEditorPreferencePage implements IWor
         super.clearErrorMessage();
       }
     }
-    
-  }  
-		
+
+  }
+
   public EGFPreferencePage() {
-    super(GRID);	  
+    super(GRID);
     setDescription(ConsoleMessages.ConsolePreferencePage_General);
     setPreferenceStore(EGFConsolePlugin.getDefault().getPreferenceStore());
-}
-	
+  }
+
   protected boolean canClearErrorMessage() {
     if (_widthEditor.isValid() && _highWaterMark.isValid()) {
       return true;
     }
     return false;
-  }	
-	
+  }
+
   /**
    * Creates a new color field editor.
    */
@@ -104,17 +100,18 @@ public class EGFPreferencePage extends FieldEditorPreferencePage implements IWor
     editor.setPage(this);
     editor.setPreferenceStore(getPreferenceStore());
     return editor;
-  }	
-	  
+  }
+
   /**
-   * Update enablement of width editor based on enablement of 'fixed width' editor.
+   * Update enablement of width editor based on enablement of 'fixed width'
+   * editor.
    */
   protected void updateWidthEditor() {
     Button b = _wrapEditor.getChangeControl(getFieldEditorParent());
     _widthEditor.getTextControl(getFieldEditorParent()).setEnabled(b.getSelection());
-    _widthEditor.getLabelControl(getFieldEditorParent()).setEnabled(b.getSelection());        
-  } 
-  
+    _widthEditor.getLabelControl(getFieldEditorParent()).setEnabled(b.getSelection());
+  }
+
   /**
    * Update enablement of buffer size editor based on enablement of 'limit
    * console output' editor.
@@ -123,119 +120,95 @@ public class EGFPreferencePage extends FieldEditorPreferencePage implements IWor
     Button b = _restrictOutput.getChangeControl(getFieldEditorParent());
     _highWaterMark.getTextControl(getFieldEditorParent()).setEnabled(b.getSelection());
     _highWaterMark.getLabelControl(getFieldEditorParent()).setEnabled(b.getSelection());
-  }  
-	
-  @Override
-  protected void createFieldEditors() {                        
-       
-    _wrapEditor = new BooleanFieldEditor2(IEGFConsoleConstants.CONSOLE_WRAP, ConsoleMessages.ConsolePreferencePage_Wrap_text, SWT.NONE, getFieldEditorParent()); 
-    addField(_wrapEditor);
-    
-    _widthEditor = new ConsoleIntegerFieldEditor(IEGFConsoleConstants.CONSOLE_WIDTH, ConsoleMessages.ConsolePreferencePage_Maximum_Console_width, getFieldEditorParent());
-    _widthEditor.setValidRange(80, Integer.MAX_VALUE - 1);    
-    addField(_widthEditor);
-    _widthEditor.setErrorMessage(ConsoleMessages.ConsolePreferencePage_Error_Console_width); 
-    
-    _wrapEditor.getChangeControl(getFieldEditorParent()).addSelectionListener(
-      new SelectionAdapter() {
-        @Override
-        public void widgetSelected(SelectionEvent e) {
-          updateWidthEditor();
-        }
-      }
-    );    
-	      
-    _restrictOutput = new BooleanFieldEditor2(IEGFConsoleConstants.CONSOLE_LIMIT_OUTPUT, ConsoleMessages.ConsolePreferencePage_limitOutput, SWT.NONE, getFieldEditorParent()); 
-    addField(_restrictOutput);
-    
-    _highWaterMark = new ConsoleIntegerFieldEditor(IEGFConsoleConstants.CONSOLE_HIGH_WATER_MARK, ConsoleMessages.ConsolePreferencePage_highWaterMark, getFieldEditorParent()); 
-    addField(_highWaterMark);       
-    _highWaterMark.setValidRange(1000, Integer.MAX_VALUE - 1);
-    _highWaterMark.setErrorMessage(ConsoleMessages.ConsolePreferencePage_Console_buffer_size); 
-    
-    _restrictOutput.getChangeControl(getFieldEditorParent()).addSelectionListener(
-      new SelectionAdapter() {
-        @Override
-        public void widgetSelected(SelectionEvent e) {
-          updateBufferSizeEditor();
-        }
-      }
-    );    
-    
-    _showOnMessage = new BooleanFieldEditor2(IEGFConsoleConstants.CONSOLE_SHOW_ON_MESSAGE, ConsoleMessages.ConsolePreferencePage_ShowOnMessage, SWT.NONE, getFieldEditorParent()); 
-    addField(_showOnMessage);
-         
-    _debugColorEditor = createColorFieldEditor(
-      IEGFConsoleConstants.CONSOLE_DEBUG_COLOR,
-      ConsoleMessages.ConsolePreferencePage_Debug, 
-      getFieldEditorParent()
-    );
-    addField(_debugColorEditor);
-    
-    _errorColorEditor = createColorFieldEditor(
-      IEGFConsoleConstants.CONSOLE_ERROR_COLOR,
-      ConsoleMessages.ConsolePreferencePage_Error, 
-      getFieldEditorParent()
-    );
-    addField(_errorColorEditor);
-      
-    _infoColorEditor = createColorFieldEditor(
-      IEGFConsoleConstants.CONSOLE_INFO_COLOR,
-      ConsoleMessages.ConsolePreferencePage_Information, 
-      getFieldEditorParent()
-    );
-    addField(_infoColorEditor);
-    
-    _warningColorEditor = createColorFieldEditor(
-        IEGFConsoleConstants.CONSOLE_WARNING_COLOR,
-        ConsoleMessages.ConsolePreferencePage_Warning, 
-        getFieldEditorParent()
-      );
-    addField(_warningColorEditor);
-    
-    _backgroundColorEditor = createColorFieldEditor(
-        IEGFConsoleConstants.CONSOLE_BACKGROUND_COLOR,
-        ConsoleMessages.ConsolePreferencePage_BackgroundColor, 
-        getFieldEditorParent()
-      );
-    addField(_backgroundColorEditor);        
-    
-    Dialog.applyDialogFont(getFieldEditorParent());
-    getPreferenceStore().addPropertyChangeListener(this);    
-		    				
   }
-  
-  /* (non-Javadoc)
-   * @see org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
+
+  @Override
+  protected void createFieldEditors() {
+
+    _wrapEditor = new BooleanFieldEditor2(IEGFConsoleConstants.CONSOLE_WRAP, ConsoleMessages.ConsolePreferencePage_Wrap_text, SWT.NONE, getFieldEditorParent());
+    addField(_wrapEditor);
+
+    _widthEditor = new ConsoleIntegerFieldEditor(IEGFConsoleConstants.CONSOLE_WIDTH, ConsoleMessages.ConsolePreferencePage_Maximum_Console_width, getFieldEditorParent());
+    _widthEditor.setValidRange(80, Integer.MAX_VALUE - 1);
+    addField(_widthEditor);
+    _widthEditor.setErrorMessage(ConsoleMessages.ConsolePreferencePage_Error_Console_width);
+
+    _wrapEditor.getChangeControl(getFieldEditorParent()).addSelectionListener(new SelectionAdapter() {
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        updateWidthEditor();
+      }
+    });
+
+    _restrictOutput = new BooleanFieldEditor2(IEGFConsoleConstants.CONSOLE_LIMIT_OUTPUT, ConsoleMessages.ConsolePreferencePage_limitOutput, SWT.NONE, getFieldEditorParent());
+    addField(_restrictOutput);
+
+    _highWaterMark = new ConsoleIntegerFieldEditor(IEGFConsoleConstants.CONSOLE_HIGH_WATER_MARK, ConsoleMessages.ConsolePreferencePage_highWaterMark, getFieldEditorParent());
+    addField(_highWaterMark);
+    _highWaterMark.setValidRange(1000, Integer.MAX_VALUE - 1);
+    _highWaterMark.setErrorMessage(ConsoleMessages.ConsolePreferencePage_Console_buffer_size);
+
+    _restrictOutput.getChangeControl(getFieldEditorParent()).addSelectionListener(new SelectionAdapter() {
+      @Override
+      public void widgetSelected(SelectionEvent e) {
+        updateBufferSizeEditor();
+      }
+    });
+
+    _showOnMessage = new BooleanFieldEditor2(IEGFConsoleConstants.CONSOLE_SHOW_ON_MESSAGE, ConsoleMessages.ConsolePreferencePage_ShowOnMessage, SWT.NONE, getFieldEditorParent());
+    addField(_showOnMessage);
+
+    _errorColorEditor = createColorFieldEditor(IEGFConsoleConstants.CONSOLE_ERROR_COLOR, ConsoleMessages.ConsolePreferencePage_Error, getFieldEditorParent());
+    addField(_errorColorEditor);
+
+    _infoColorEditor = createColorFieldEditor(IEGFConsoleConstants.CONSOLE_INFO_COLOR, ConsoleMessages.ConsolePreferencePage_Information, getFieldEditorParent());
+    addField(_infoColorEditor);
+
+    _warningColorEditor = createColorFieldEditor(IEGFConsoleConstants.CONSOLE_WARNING_COLOR, ConsoleMessages.ConsolePreferencePage_Warning, getFieldEditorParent());
+    addField(_warningColorEditor);
+
+    _backgroundColorEditor = createColorFieldEditor(IEGFConsoleConstants.CONSOLE_BACKGROUND_COLOR, ConsoleMessages.ConsolePreferencePage_BackgroundColor, getFieldEditorParent());
+    addField(_backgroundColorEditor);
+
+    Dialog.applyDialogFont(getFieldEditorParent());
+    getPreferenceStore().addPropertyChangeListener(this);
+
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see
+   * org.eclipse.ui.IWorkbenchPreferencePage#init(org.eclipse.ui.IWorkbench)
    */
   public void init(IWorkbench workbench) {
     // Nothing to do
-  }  
-  				
+  }
+
   /**
    * @see org.eclipse.jface.preference.FieldEditorPreferencePage#initialize()
    */
-	@Override
+  @Override
   protected void initialize() {
     super.initialize();
     updateWidthEditor();
     updateBufferSizeEditor();
   }
-  
+
   /**
    * @see org.eclipse.jface.preference.PreferencePage#performDefaults()
    */
-	@Override
+  @Override
   protected void performDefaults() {
     super.performDefaults();
     updateWidthEditor();
     updateBufferSizeEditor();
-  }  
-		
+  }
+
   /**
    * @see org.eclipse.jface.util.IPropertyChangeListener#propertyChange(org.eclipse.jface.util.PropertyChangeEvent)
    */
-	@Override
+  @Override
   public void propertyChange(PropertyChangeEvent event) {
 
     if (event.getProperty().equals(FieldEditor.IS_VALID)) {
@@ -245,7 +218,7 @@ public class EGFPreferencePage extends FieldEditorPreferencePage implements IWor
       if (newValue) {
         if (_widthEditor != null && event.getSource() != _widthEditor) {
           _widthEditor.refreshValidState();
-        } 
+        }
         if (_highWaterMark != null && event.getSource() != _highWaterMark) {
           _highWaterMark.refreshValidState();
         }
@@ -258,5 +231,5 @@ public class EGFPreferencePage extends FieldEditorPreferencePage implements IWor
       super.propertyChange(event);
     }
   }
-		
+
 }

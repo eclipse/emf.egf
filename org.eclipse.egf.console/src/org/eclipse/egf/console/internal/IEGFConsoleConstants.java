@@ -14,7 +14,7 @@ package org.eclipse.egf.console.internal;
 
 /**
  * @author Xavier Maysonnave
- *
+ * 
  */
 public interface IEGFConsoleConstants {
 
@@ -32,9 +32,7 @@ public interface IEGFConsoleConstants {
 
   public static final String CONSOLE_WARNING_COLOR = "org.eclipse.egf.console.internal.warningColor"; //$NON-NLS-1$
 
-  public static final String CONSOLE_INFO_COLOR = "org.eclipse.egf.console.internal.informationColor"; //$NON-NLS-1$
-
-  public static final String CONSOLE_DEBUG_COLOR = "org.eclipse.egf.console.internal.debugColor"; //$NON-NLS-1$	
+  public static final String CONSOLE_INFO_COLOR = "org.eclipse.egf.console.internal.informationColor"; //$NON-NLS-1$	
 
   public static final String CONSOLE_SHOW_ON_MESSAGE = "org.eclipse.egf.console.internal.showOnMessage"; //$NON-NLS-1$
 

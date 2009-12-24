@@ -13,20 +13,22 @@ package org.eclipse.egf.pde.internal.plugin.manifest.command;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginImport;
 import org.eclipse.pde.internal.core.ibundle.IBundlePluginModel;
 
 /**
- * Implement a command that removes required plug-ins from the <code>Require-Bundle</code> property of the manifest file.
+ * Implement a command that removes required plug-ins from the
+ * <code>Require-Bundle</code> property of the manifest file.
+ * 
  * @author Guillaume Brocard
  */
 public class UnsetRequiredPluginsCommand extends AbstractRequiredPluginsCommand {
 
   /**
    * Constructor.
+   * 
    * @param requiredPlugins_p
    */
   public UnsetRequiredPluginsCommand(String[] requiredPlugins_p) {
@@ -35,7 +37,8 @@ public class UnsetRequiredPluginsCommand extends AbstractRequiredPluginsCommand 
 
   /**
    * @see org.eclipse.egf.pde.internal.plugin.manifest.command.AbstractRequiredPluginsCommand#handleRequiredPlugin(java.lang.String,
-   *      org.eclipse.pde.internal.core.ibundle.IBundlePluginModel, java.util.List)
+   *      org.eclipse.pde.internal.core.ibundle.IBundlePluginModel,
+   *      java.util.List)
    */
   @Override
   protected void handleRequiredPlugin(String requiredPlugin_p, IBundlePluginModel bundlePluginModel_p, List<IPluginImport> existingPluginImports_p) {
@@ -49,13 +52,9 @@ public class UnsetRequiredPluginsCommand extends AbstractRequiredPluginsCommand 
         // Remove the import in the manifest.
         pluginBase.remove(removedPluginImport);
       } catch (CoreException ce) {
-        StringBuilder msg = new StringBuilder("UnsetRequiredPluginsCommand.execute(..) _ "); //$NON-NLS-1$
-        EGFPDEPlugin.getDefault().log(msg.toString(), ce);
-        if (EGFPDEPlugin.getDefault().isDebugging()) {
-          EGFConsolePlugin.getConsole().logThrowable(msg.toString(), ce);
-        }
+        EGFPDEPlugin.getDefault().logError(new String("UnsetRequiredPluginsCommand.execute(..) _ "), ce); //$NON-NLS-1$
       }
     }
   }
-  
+
 }

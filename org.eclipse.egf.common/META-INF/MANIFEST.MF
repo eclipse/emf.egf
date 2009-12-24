@@ -11,7 +11,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
  org.eclipse.core.resources;visibility:=reexport,
  org.eclipse.core.runtime;visibility:=reexport,
- org.eclipse.egf.console;visibility:=reexport,
  org.eclipse.jdt.core;visibility:=reexport,
  org.eclipse.pde.core;visibility:=reexport, 
  org.eclipse.emf.codegen.ecore;visibility:=reexport,
@@ -22,5 +21,6 @@ Export-Package:
  org.eclipse.egf.common.constant,
  org.eclipse.egf.common.generator,
  org.eclipse.egf.common.helper,
- org.eclipse.egf.common.progress
+ org.eclipse.egf.common.progress,
+ org.eclipse.egf.common.log 
 Bundle-ActivationPolicy: lazy

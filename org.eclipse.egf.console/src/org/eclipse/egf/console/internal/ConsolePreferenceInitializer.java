@@ -42,7 +42,6 @@ public class ConsolePreferenceInitializer extends AbstractPreferenceInitializer 
     PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_ERROR_COLOR, new RGB(255, 0, 0));
     PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_WARNING_COLOR, new RGB(64, 128, 128));
     PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_INFO_COLOR, new RGB(0, 0, 255));
-    PreferenceConverter.setDefault(prefs, IEGFConsoleConstants.CONSOLE_DEBUG_COLOR, new RGB(0, 0, 0));
     prefs.setDefault(IEGFConsoleConstants.CONSOLE_SHOW_ON_MESSAGE, true);
     prefs.setDefault(IEGFConsoleConstants.CONSOLE_WRAP, false);
     prefs.setDefault(IEGFConsoleConstants.CONSOLE_WIDTH, 220);

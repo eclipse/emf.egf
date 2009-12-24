@@ -19,6 +19,13 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.console.EGFConsolePlugin;
+import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -30,16 +37,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.part.FileEditorInput;
-
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-
-import org.eclipse.egf.console.EGFConsolePlugin;
-
 
 /**
  * Utility class to create status objects.
@@ -59,23 +56,20 @@ public class ConsoleUtil {
       return;
     }
     try {
-      Class<?>[] types = new Class []{ Class.forName("java.util.Collection") }; //$NON-NLS-1$              
+      Class<?>[] types = new Class[] { Class.forName("java.util.Collection") }; //$NON-NLS-1$              
       Method method = part.getClass().getMethod("setSelectionToViewer", types); //$NON-NLS-1$
       if (method != null) {
-        Object[] params = new Object []{ Collections.singletonList(eObject) };
+        Object[] params = new Object[] { Collections.singletonList(eObject) };
         method.invoke(part, params);
       }
     } catch (Exception e) {
-      EGFConsolePlugin.getDefault().log("IEditingDomainProvider.setSelectionToViewer", e); //$NON-NLS-1$
-      if (EGFConsolePlugin.getDefault().isDebugging()) {
-        EGFConsolePlugin.getConsole().logThrowable("IEditingDomainProvider.setSelectionToViewer", e); //$NON-NLS-1$
-      }
+      EGFConsolePlugin.getDefault().logError("IEditingDomainProvider.setSelectionToViewer", e); //$NON-NLS-1$
     }
   }
 
   /**
    * Opens the default editor for the resource that contains the specified
-   * EObject.  
+   * EObject.
    */
   public static IEditorPart openEditor(EObject eObject) throws PartInitException {
     if (eObject == null) {
@@ -91,20 +85,20 @@ public class ConsoleUtil {
     }
     return openEditor(uri);
   }
-  
+
   public static String computeEditorId(String fileName_p) {
     IWorkbench workbench = PlatformUI.getWorkbench();
     IEditorRegistry editorRegistry = workbench.getEditorRegistry();
-    IEditorDescriptor descriptor= editorRegistry.getDefaultEditor(fileName_p);
+    IEditorDescriptor descriptor = editorRegistry.getDefaultEditor(fileName_p);
     if (descriptor != null) {
       return descriptor.getId();
     }
     return EditorsUI.DEFAULT_TEXT_EDITOR_ID;
-}  
+  }
 
   /**
    * Opens the default editor for the resource that contains the specified
-   * EObject.  
+   * EObject.
    */
   public static IEditorPart openEditor(URI uri) throws PartInitException {
     if (uri == null) {
@@ -127,7 +121,7 @@ public class ConsoleUtil {
   private static IEditorPart openEditor(IEditorInput input, URI uri) throws PartInitException {
     if (input != null && uri != null) {
       IWorkbench workbench = PlatformUI.getWorkbench();
-      IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();        
+      IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
       return page.openEditor(input, computeEditorId(uri.trimFragment().lastSegment()));
     }
     return null;

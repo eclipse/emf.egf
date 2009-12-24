@@ -22,17 +22,17 @@ import org.eclipse.egf.core.EGFCorePlugin;
 
 public class FactoryComponentNatures {
 
-    public static final String FACTORY_COMPONENT_NATURE = "org.eclipse.egf.core.FactoryComponentNature"; //$NON-NLS-1$
+  public static final String FACTORY_COMPONENT_NATURE = "org.eclipse.egf.core.FactoryComponentNature"; //$NON-NLS-1$
 
-    public static final String PATTERN_BUILDER_ID = "org.eclipse.egf.pattern.ui.PatternBuilder"; //$NON-NLS-1$
+  public static final String PATTERN_BUILDER_ID = "org.eclipse.egf.pattern.ui.PatternBuilder"; //$NON-NLS-1$
 
-    public static boolean hasFactoryComponentNature(IProject project) {
-        try {
-            return project.hasNature(FACTORY_COMPONENT_NATURE);
-        } catch (CoreException e) {
-            EGFCorePlugin.getDefault().log(e);
-            return false;
-        }
+  public static boolean hasFactoryComponentNature(IProject project) {
+    try {
+      return project.hasNature(FACTORY_COMPONENT_NATURE);
+    } catch (CoreException ce) {
+      EGFCorePlugin.getDefault().logError(ce);
+      return false;
     }
+  }
 
 }
