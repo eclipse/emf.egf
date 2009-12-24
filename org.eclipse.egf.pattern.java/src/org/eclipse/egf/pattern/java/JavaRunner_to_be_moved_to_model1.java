@@ -119,7 +119,7 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaEngineImpl {
         if (!getPattern().getParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getParameters()) {
                 String local = PatternHelper.localizeName(parameter);
-                builder.append(", EObject ").append(local);
+                builder.append(", Object ").append(local);
             }
         }
         builder.append(") {").append(CharacterConstants.LINE_SEPARATOR);
