@@ -77,7 +77,7 @@ public abstract class PatternFactory {
         param2.setType("org.eclipse.emf.ecore.EClass");
         child.getParameters().add(param2);
         PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
-        patternCall.getParameterMatching().put(param12, param2);
+        patternCall.getParameterMatching().put(param2, param12);
         patternCall.setCalled(child);
 
         parent.getOrchestration().add(patternCall);

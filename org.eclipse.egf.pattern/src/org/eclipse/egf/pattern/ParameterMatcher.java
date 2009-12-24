@@ -33,8 +33,8 @@ import org.eclipse.egf.model.pattern.PatternParameter;
  * 
  */
 public class ParameterMatcher {
-    private final Pattern source;
-    private final Pattern target;
+    private final Pattern called;
+    private final Pattern caller;
     private Map<PatternParameter, PatternParameter> matching;
 
     public boolean matches() {
@@ -42,20 +42,24 @@ public class ParameterMatcher {
             matching = new HashMap<PatternParameter, PatternParameter>();
 
             PatternParameter match = null;
-            for (PatternParameter tParam : target.getParameters()) {
-                String type = tParam.getType();
+            for (PatternParameter sParam : called.getParameters()) {
+                String type = sParam.getType();
 
-                for (PatternParameter sParam : source.getParameters()) {
-                    if (type.equals(sParam.getType())) {
+                for (PatternParameter tParam : caller.getParameters()) {
+                    if (type.equals(tParam.getType())) {
                         if (match == null)
-                            match = sParam;
+                            match = tParam;
                         else {
                             matching.clear();
                             return false;
                         }
                     }
                 }
-                matching.put(match, tParam);
+                if (match == null) {
+                    matching.clear();
+                    return false;
+                }
+                matching.put(sParam, match);
                 match = null;
             }
         }
@@ -68,16 +72,16 @@ public class ParameterMatcher {
         return matching;
     }
 
-    private ParameterMatcher(Pattern source, Pattern target) {
-        this.source = source;
-        this.target = target;
+    private ParameterMatcher(Pattern caller, Pattern called) {
+        this.called = called;
+        this.caller = caller;
     }
 
-    public static boolean matches(Pattern source, Pattern target) {
-        return create(source, target).matches();
+    public static boolean matches(Pattern caller, Pattern called) {
+        return create(called, caller).matches();
     }
 
-    public static ParameterMatcher create(Pattern source, Pattern target) {
-        return new ParameterMatcher(source, target);
+    public static ParameterMatcher create(Pattern caller, Pattern called) {
+        return new ParameterMatcher(caller, called);
     }
 }
