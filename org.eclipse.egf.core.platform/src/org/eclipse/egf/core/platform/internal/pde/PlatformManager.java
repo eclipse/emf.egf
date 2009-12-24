@@ -59,16 +59,18 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
   public static PlatformManager getInstance() {
     if (__platformManager == null) {
       synchronized (_lock) {
-        __platformManager = new PlatformManager();
+        if (__platformManager == null) {
+          __platformManager = new PlatformManager();
+        }
       }
     }
     return __platformManager;
   }
 
-  // IPlatformPlugin Target registry
-  private volatile Map<String, IPlatformPlugin> _models;
+  // IPlatformPlugin registry
+  private Map<String, IPlatformPlugin> _models;
 
-  // IPlatformFactoryComponent Workspace platform registry
+  // IPlatformFactoryComponent Workspace registry
   private List<IPlatformFactoryComponent> _workspaceFcs;
 
   // IPlatformFactoryComponent Target registry
@@ -203,11 +205,14 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
    *          the listener to be added
    */
   public void addPlatformFactoryComponentListener(IPlatformFactoryComponentListener listener) {
-    if (_listeners == null) {
-      _listeners = new ArrayList<IPlatformFactoryComponentListener>();
-    }
-    if (_listeners.contains(listener) == false) {
-      _listeners.add(listener);
+    // Lock PlatformManager
+    synchronized (_lock) {
+      if (_listeners == null) {
+        _listeners = new ArrayList<IPlatformFactoryComponentListener>();
+      }
+      if (_listeners.contains(listener) == false) {
+        _listeners.add(listener);
+      }
     }
   }
 
@@ -218,10 +223,13 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
    *          the listener to be removed
    */
   public void removePlatformFactoryComponentListener(IPlatformFactoryComponentListener listener) {
-    if (_listeners == null) {
-      return;
+    // Lock PlatformManager
+    synchronized (_lock) {
+      if (_listeners == null) {
+        return;
+      }
+      _listeners.remove(listener);
     }
-    _listeners.remove(listener);
   }
 
   /**
