@@ -68,6 +68,10 @@ public class Messages extends NLS {
     public static String query_error4;
     public static String query_error5;
 
+    // epackage registry
+    public static String registration_error2;
+    public static String registration_error1;
+
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.PatternMessages";//$NON-NLS-1$
     static {
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);

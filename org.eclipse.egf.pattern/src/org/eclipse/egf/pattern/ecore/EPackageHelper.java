@@ -21,6 +21,7 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.core.platform.resource.ResourceHelper;
+import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.execution.ProjectClassLoaderHelper;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
@@ -40,13 +41,13 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
  * TODO Une fois terminée, cette classe devrait pltot se trouver dans core ou
  * platform <br>
  * TODO lire les point extension du workspace pour trouver les modeles<br>
- * TODO ecouter les modifs pour savoir quand le modele est regénéré (par exemple
- * des classes package ou factory générées)
  * 
  * @author Thomas Guiu
  * 
  */
 public class EPackageHelper {
+    public static final String INSTANCE_FIELD_NAME = "eINSTANCE";
+
     public static final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
     private static final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
 
@@ -73,33 +74,52 @@ public class EPackageHelper {
         return null;
     }
 
+    public static void unregisterPackage(IProject project, String classname) throws RegistrationException {
+        try {
+            Class<?> loadClass = ProjectClassLoaderHelper.getProjectClassLoader(project).loadClass(classname);
+            Field declaredField = loadClass.getDeclaredField(INSTANCE_FIELD_NAME);
+
+            EPackage ePackage = (EPackage) declaredField.get(null);
+            String nsURI = ePackage.getNsURI();
+            REGISTRY.remove(nsURI);
+            nsuri2basePackage.remove(nsURI);
+        } catch (Exception e) {
+            throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
+        }
+
+    }
+
     /**
      * This method will be used by the workspace resource listener
      */
-    public static void registerPackage(IProject project, String classname) throws RegistrationExcpetion {
+    public static void registerPackage(IProject project, String classname) throws RegistrationException {
         try {
             Class<?> loadClass = ProjectClassLoaderHelper.getProjectClassLoader(project).loadClass(classname);
-            Field declaredField = loadClass.getDeclaredField("eINSTANCE");
+            Field declaredField = loadClass.getDeclaredField(INSTANCE_FIELD_NAME);
+
             EPackage ePackage = (EPackage) declaredField.get(null);
-            REGISTRY.put(ePackage.getNsURI(), new Descriptor(ePackage));
+            String nsURI = ePackage.getNsURI();
+            REGISTRY.put(nsURI, new Descriptor(ePackage));
 
             // computing basePackage
             int index = classname.lastIndexOf(ePackage.getName());
             if (index == -1)
                 throw new IllegalStateException();
             if (index == 0)
-                nsuri2basePackage.put(ePackage.getNsURI(), "");
+                nsuri2basePackage.put(nsURI, "");
             else
                 // to remove the last dot
-                nsuri2basePackage.put(ePackage.getNsURI(), classname.substring(index - 1));
+                nsuri2basePackage.put(nsURI, classname.substring(index - 1));
         } catch (Exception e) {
-            throw new RegistrationExcpetion(e);
+            throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
         }
     }
 
-    public static class RegistrationExcpetion extends Exception {
-        private RegistrationExcpetion(Throwable cause) {
-            super(cause);
+    public static class RegistrationException extends Exception {
+        private static final long serialVersionUID = 1L;
+
+        private RegistrationException(String message, Throwable cause) {
+            super(message, cause);
         }
     }
 
@@ -132,5 +152,4 @@ public class EPackageHelper {
         }
 
     }
-
 }

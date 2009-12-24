@@ -15,7 +15,10 @@
 
 package org.eclipse.egf.pattern;
 
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
+import org.eclipse.egf.pattern.ecore.EPackageListener;
+import org.eclipse.egf.pattern.ecore.RegistryReader;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -30,6 +33,8 @@ public class Activator extends EGFAbstractPlugin {
 
     // The shared instance
     private static Activator plugin;
+
+    private final EPackageListener resourceListener = new EPackageListener();
 
     /**
      * The constructor
@@ -47,6 +52,9 @@ public class Activator extends EGFAbstractPlugin {
     public void start(BundleContext context) throws Exception {
         super.start(context);
         plugin = this;
+        // set up ecore model registry with workspace models
+        new RegistryReader().load();
+        ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceListener);
     }
 
     /*
@@ -57,6 +65,7 @@ public class Activator extends EGFAbstractPlugin {
      * )
      */
     public void stop(BundleContext context) throws Exception {
+        ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceListener);
         plugin = null;
         super.stop(context);
     }
