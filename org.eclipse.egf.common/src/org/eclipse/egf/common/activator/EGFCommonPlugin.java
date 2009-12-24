@@ -65,8 +65,8 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
 
   @Override
   public void stop(BundleContext context_p) throws Exception {
-    __plugin = null;
     __egfLoggers = null;
+    __plugin = null;
     super.stop(context_p);
   }
 
