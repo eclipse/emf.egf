@@ -147,9 +147,6 @@
     point="org.eclipse.egf.model.type"
   >
     <type
-      id="model/Types.ecore#//TypeElement"
-    />  
-    <type
       id="model/Types.ecore#//BooleanType"
     />
     <type
