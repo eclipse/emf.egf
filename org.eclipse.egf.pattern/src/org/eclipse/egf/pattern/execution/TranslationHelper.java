@@ -44,7 +44,7 @@ public class TranslationHelper {
                 PatternExtension extension = ExtensionHelper.getExtension(p.getNature());
                 String reason = extension.canTranslate(p);
                 if (reason == null)
-                    extension.createRunner(p).translate();
+                    extension.createEngine(p).translate();
                 else
                     Activator.getDefault().logWarning(Messages.bind(Messages.assembly_error3, p.getName(), reason));
             }

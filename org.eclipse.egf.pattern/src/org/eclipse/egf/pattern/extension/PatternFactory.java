@@ -28,7 +28,6 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EcorePackage;
 
 /**
  * @author Guiu
@@ -65,17 +64,17 @@ public abstract class PatternFactory {
         Pattern parent = createPattern(lib, "parent");
         PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("parentP1");
-        param1.setType(EcorePackage.eINSTANCE.getEClass());
+        param1.setType("org.eclipse.emf.ecore.EClass");
         parent.getParameters().add(param1);
         PatternParameter param12 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param12.setName("parentP2");
-        param12.setType(EcorePackage.eINSTANCE.getEClass());
+        param12.setType("org.eclipse.emf.ecore.EClass");
         parent.getParameters().add(param12);
 
         Pattern child = createPattern(lib, "child");
         PatternParameter param2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param2.setName("childP");
-        param2.setType(EcorePackage.eINSTANCE.getEClass());
+        param2.setType("org.eclipse.emf.ecore.EClass");
         child.getParameters().add(param2);
         PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
         patternCall.getParameterMatching().put(param12, param2);
@@ -93,13 +92,13 @@ public abstract class PatternFactory {
         Pattern parent = createPattern(lib, "parent");
         PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("parentP");
-        param1.setType(EcorePackage.eINSTANCE.getEClass());
+        param1.setType("org.eclipse.emf.ecore.EClass");
         parent.getParameters().add(param1);
 
         Pattern child = createPattern(lib, "child");
         PatternParameter param2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param2.setName("childP");
-        param2.setType(EcorePackage.eINSTANCE.getEClass());
+        param2.setType("org.eclipse.emf.ecore.EClass");
         child.getParameters().add(param2);
         PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
         patternCall.setCalled(child);

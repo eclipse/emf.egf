@@ -19,8 +19,8 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternEngine;
 import org.eclipse.egf.model.pattern.PatternNature;
-import org.eclipse.egf.model.pattern.PatternRunner;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternHelper;
 
@@ -36,9 +36,9 @@ public abstract class PatternExtension {
 
     public abstract PatternFactory getFactory();
 
-    protected abstract PatternRunner doCreateRunner(Pattern pattern);
+    protected abstract PatternEngine doCreateRunner(Pattern pattern);
 
-    public PatternRunner createRunner(Pattern pattern) throws PatternException {
+    public PatternEngine createEngine(Pattern pattern) throws PatternException {
         if (!matchNature(pattern))
             throw new PatternException(Messages.bind(Messages.extension_error2, getNature().eClass().getName(), pattern.getNature().eClass().getName()));
         return doCreateRunner(pattern);
@@ -83,7 +83,7 @@ public abstract class PatternExtension {
      * @return the reason who prevents the execution or null if there is no
      *         problem
      */
-    public String canRun(Pattern pattern) {
+    public String canExecute(Pattern pattern) {
         return null; // no problem
     }
 }

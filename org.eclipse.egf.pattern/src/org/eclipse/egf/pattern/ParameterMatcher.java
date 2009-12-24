@@ -20,8 +20,6 @@ import java.util.Map;
 
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EModelElement;
 
 /**
  * This class aims at matching parameters between 2 patterns. This matching
@@ -45,10 +43,10 @@ public class ParameterMatcher {
 
             PatternParameter match = null;
             for (PatternParameter tParam : target.getParameters()) {
-                EModelElement type = tParam.getType();
+                String type = tParam.getType();
 
                 for (PatternParameter sParam : source.getParameters()) {
-                    if (isAssignable(type, sParam.getType())) {
+                    if (type.equals(sParam.getType())) {
                         if (match == null)
                             match = sParam;
                         else {
@@ -62,16 +60,6 @@ public class ParameterMatcher {
             }
         }
         return !matching.isEmpty();
-    }
-
-    private boolean isAssignable(EModelElement type1, EModelElement type2) {
-        // TODO handle all other cases
-        if (type1 instanceof EClass && type2 instanceof EClass) {
-            EClass c1 = (EClass) type1;
-            EClass c2 = (EClass) type2;
-            return c1.isSuperTypeOf(c2);
-        }
-        return type1.equals(type2);
     }
 
     public Map<PatternParameter, PatternParameter> getMatching() {
