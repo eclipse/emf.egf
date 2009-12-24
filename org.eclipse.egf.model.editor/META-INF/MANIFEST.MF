@@ -10,14 +10,14 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
  org.eclipse.egf.model.editor,
- org.eclipse.egf.model.factorycomponent.presentation
+ org.eclipse.egf.model.fcore.presentation
 Require-Bundle: 
  org.eclipse.core.runtime,
- org.eclipse.core.resources;visibility:=reexport,
+ org.eclipse.core.resources,
  org.eclipse.egf.common.ui,
- org.eclipse.egf.model.edit;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.emf.edit.ui;visibility:=reexport,
- org.eclipse.ui.ide;visibility:=reexport,
- org.eclipse.emf.ecore.edit;visibility:=reexport
+ org.eclipse.egf.model.edit,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.ui.ide,
+ org.eclipse.emf.ecore.edit
 Bundle-ActivationPolicy: lazy
