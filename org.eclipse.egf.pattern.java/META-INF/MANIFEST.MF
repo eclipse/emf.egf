@@ -7,9 +7,11 @@ Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.egf.pattern.java; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.egf.pattern.java.Activator
-Require-Bundle: org.eclipse.core.runtime,
+Require-Bundle: 
+ org.eclipse.core.runtime,
  org.eclipse.egf.pattern;visibility:=reexport,
  org.eclipse.egf.model.javapattern
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.egf.pattern.java
+Export-Package: 
+ org.eclipse.egf.pattern.java
