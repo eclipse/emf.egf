@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,14 +9,11 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.edit;
 
-import org.eclipse.egf.common.activator.EGFEclipsePlugin;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.egf.common.activator.EGFEclipsePlugin;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
@@ -26,7 +22,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
 /**
- * This is the central singleton for the FactoryComponent edit plugin.
+ * This is the central singleton for the Types edit plugin.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * @generated
@@ -112,7 +108,7 @@ public final class EGFModelsEditPlugin extends EMFPlugin {
         try {
           platformBundle.start(Bundle.START_TRANSIENT);
         } catch (BundleException e) {
-          // Nothing to do
+          logError(e);
         }
       }
       // Force EGF PDE Plugin initialization
@@ -121,7 +117,7 @@ public final class EGFModelsEditPlugin extends EMFPlugin {
         try {
           pdeBundle.start(Bundle.START_TRANSIENT);
         } catch (BundleException e) {
-          // Nothing to do
+          logError(e);
         }
       }
     }

@@ -10,16 +10,19 @@
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
-package org.eclipse.egf.model.types.provider;
+package org.eclipse.egf.model.fcore.provider;
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.types.TypeElement;
-import org.eclipse.egf.model.types.TypesPackage;
+import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.ModelElement;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -38,19 +41,19 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.types.TypeElement} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.ModelElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeElementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class ModelElementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypeElementItemProvider(AdapterFactory adapterFactory) {
+  public ModelElementItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -79,9 +82,9 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
    * @generated
    */
   protected void addIDPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeElement_iD_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypeElement_iD_feature", "_UI_TypeElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        TypesPackage.Literals.TYPE_ELEMENT__ID, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_iD_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_iD_feature", "_UI_ModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.MODEL_ELEMENT__ID, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -91,9 +94,9 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
    * @generated
    */
   protected void addNamePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeElement_name_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypeElement_name_feature", "_UI_TypeElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        TypesPackage.Literals.TYPE_ELEMENT__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_name_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_name_feature", "_UI_ModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.MODEL_ELEMENT__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -103,9 +106,9 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
    * @generated
    */
   protected void addDescriptionPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeElement_description_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypeElement_description_feature", "_UI_TypeElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        TypesPackage.Literals.TYPE_ELEMENT__DESCRIPTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_description_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_ModelElement_description_feature", "_UI_ModelElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.MODEL_ELEMENT__DESCRIPTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
@@ -126,9 +129,9 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
    */
   @Override
   public String getText(Object object) {
-    String label = ((TypeElement) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_TypeElement_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_TypeElement_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    String label = ((ModelElement) object).getName();
+    return label == null || label.length() == 0 ? "[" + getString("_UI_ModelElement_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_ModelElement_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -142,10 +145,10 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(TypeElement.class)) {
-    case TypesPackage.TYPE_ELEMENT__ID:
-    case TypesPackage.TYPE_ELEMENT__NAME:
-    case TypesPackage.TYPE_ELEMENT__DESCRIPTION:
+    switch (notification.getFeatureID(ModelElement.class)) {
+    case FcorePackage.MODEL_ELEMENT__ID:
+    case FcorePackage.MODEL_ELEMENT__NAME:
+    case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }

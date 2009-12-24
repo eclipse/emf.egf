@@ -10,18 +10,18 @@
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
-package org.eclipse.egf.model.pattern.provider;
+package org.eclipse.egf.model.fcore.provider;
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-import org.eclipse.egf.model.fcore.provider.ModelElementItemProvider;
-import org.eclipse.egf.model.pattern.PatternEngine;
-import org.eclipse.egf.model.pattern.PatternPackage;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.task.IPlatformTask;
+import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.Task;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -34,16 +34,18 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.pattern.PatternEngine} object.
+ * {@link org.eclipse.egf.model.fcore.Task} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class PatternEngineItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class TaskItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -51,7 +53,7 @@ public class PatternEngineItemProvider extends ModelElementItemProvider implemen
    * 
    * @generated
    */
-  public PatternEngineItemProvider(AdapterFactory adapterFactory) {
+  public TaskItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -67,22 +69,46 @@ public class PatternEngineItemProvider extends ModelElementItemProvider implemen
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addPatternPropertyDescriptor(object);
+      addTaskIdPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Pattern feature.
+   * This adds a property descriptor for the Task Id feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected void addTaskIdPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_taskId_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_Task_taskId_feature", "_UI_Task_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.TASK__TASK_ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null) {
+      @Override
+      public Collection<?> getChoiceOfValues(Object current) {
+        Collection<String> result = new UniqueEList<String>();
+        // add a null value to reset an existing value
+        result.add(null);
+        // Load type elements in the current resource set
+        for (IPlatformTask platformTask : EGFCorePlugin.getPlatformTasks()) {
+          result.add(platformTask.getURI().toString());
+        }
+        return result;
+      }
+    });
+  }
+
+  /**
+   * This returns Task.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated
    */
-  protected void addPatternPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PatternEngine_pattern_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_PatternEngine_pattern_feature", "_UI_PatternEngine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        PatternPackage.Literals.PATTERN_ENGINE__PATTERN, false, false, false, null, null, null));
+  @Override
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/Task")); //$NON-NLS-1$
   }
 
   /**
@@ -94,9 +120,9 @@ public class PatternEngineItemProvider extends ModelElementItemProvider implemen
    */
   @Override
   public String getText(Object object) {
-    String label = ((PatternEngine) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_PatternEngine_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_PatternEngine_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    String label = ((Task) object).getName();
+    return label == null || label.length() == 0 ? "[" + getString("_UI_Task_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_Task_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -112,6 +138,12 @@ public class PatternEngineItemProvider extends ModelElementItemProvider implemen
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
+
+    switch (notification.getFeatureID(Task.class)) {
+    case FcorePackage.TASK__TASK_ID:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
+    }
     super.notifyChanged(notification);
   }
 
@@ -127,18 +159,6 @@ public class PatternEngineItemProvider extends ModelElementItemProvider implemen
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return EGFModelsEditPlugin.INSTANCE;
   }
 
 }

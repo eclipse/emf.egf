@@ -10,18 +10,18 @@
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
-package org.eclipse.egf.model.types.provider;
+package org.eclipse.egf.model.fcore.provider;
 
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.types.TypeElement;
-import org.eclipse.egf.model.types.TypesPackage;
+import org.eclipse.egf.model.fcore.ContractValue;
+import org.eclipse.egf.model.fcore.FcorePackage;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -34,23 +34,22 @@ import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.types.TypeElement} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.ContractValue} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeElementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class ContractValueItemProvider extends ContextValueItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public TypeElementItemProvider(AdapterFactory adapterFactory) {
+  public ContractValueItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -65,57 +64,58 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addIDPropertyDescriptor(object);
-      addNamePropertyDescriptor(object);
-      addDescriptionPropertyDescriptor(object);
+      addContractPropertyDescriptor(object);
+      addValuePropertyDescriptor(object);
+      addPluginIdPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the ID feature.
+   * This adds a property descriptor for the Contract feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addIDPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeElement_iD_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypeElement_iD_feature", "_UI_TypeElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        TypesPackage.Literals.TYPE_ELEMENT__ID, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+  protected void addContractPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ContractValue_contract_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_ContractValue_contract_feature", "_UI_ContractValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.CONTRACT_VALUE__CONTRACT, true, false, true, null, null, null));
   }
 
   /**
-   * This adds a property descriptor for the Name feature.
+   * This adds a property descriptor for the Value feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addNamePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeElement_name_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypeElement_name_feature", "_UI_TypeElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        TypesPackage.Literals.TYPE_ELEMENT__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+  protected void addValuePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ContractValue_value_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_ContractValue_value_feature", "_UI_ContractValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.CONTRACT_VALUE__VALUE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
-   * This adds a property descriptor for the Description feature.
+   * This adds a property descriptor for the Plugin Id feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addDescriptionPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeElement_description_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypeElement_description_feature", "_UI_TypeElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        TypesPackage.Literals.TYPE_ELEMENT__DESCRIPTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+  protected void addPluginIdPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ContractValue_pluginId_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_ContractValue_pluginId_feature", "_UI_ContractValue_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.CONTRACT_VALUE__PLUGIN_ID, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
   }
 
   /**
+   * This returns ContractValue.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public boolean hasChildren(Object object) {
-    return hasChildren(object, true);
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/ContractValue")); //$NON-NLS-1$
   }
 
   /**
@@ -126,9 +126,9 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
    */
   @Override
   public String getText(Object object) {
-    String label = ((TypeElement) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_TypeElement_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_TypeElement_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    String label = ((ContractValue) object).getName();
+    return label == null || label.length() == 0 ? "[" + getString("_UI_ContractValue_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_ContractValue_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -142,10 +142,10 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(TypeElement.class)) {
-    case TypesPackage.TYPE_ELEMENT__ID:
-    case TypesPackage.TYPE_ELEMENT__NAME:
-    case TypesPackage.TYPE_ELEMENT__DESCRIPTION:
+    switch (notification.getFeatureID(ContractValue.class)) {
+    case FcorePackage.CONTRACT_VALUE__CONTRACT:
+    case FcorePackage.CONTRACT_VALUE__VALUE:
+    case FcorePackage.CONTRACT_VALUE__PLUGIN_ID:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }
@@ -162,17 +162,6 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-  }
-
-  /**
-   * Return the resource locator for this item provider's resources.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public ResourceLocator getResourceLocator() {
-    return ((IChildCreationExtender) adapterFactory).getResourceLocator();
   }
 
 }

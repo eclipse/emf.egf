@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.0"?>
+<?eclipse version="3.2"?>
 
 <!--
      Copyright (c) 2009 Thales Corporate Services S.A.S.
@@ -39,15 +39,15 @@
   </extension>
   
   <!-- ================================================================================= -->
-  <!-- FactoryComponent Model                                                            -->
+  <!-- Fcore Model                                                                       -->
   <!-- ================================================================================= -->
   
   <extension 
     point="org.eclipse.emf.edit.itemProviderAdapterFactories"
   >
     <factory
-      uri="http://www.eclipse.org/egf/1.0.0/factorycomponent"
-      class="org.eclipse.egf.model.factorycomponent.provider.FactoryComponentItemProviderAdapterFactory"
+      uri="http://www.eclipse.org/egf/1.0.0/fcore"
+      class="org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory"
       supportedTypes=
         "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
          org.eclipse.emf.edit.provider.IStructuredItemContentProvider
@@ -90,8 +90,8 @@
     point="org.eclipse.emf.edit.childCreationExtenders"
   >
     <extender
-      uri="http://www.eclipse.org/egf/1.0.0/factorycomponent"
-      class="org.eclipse.egf.model.domain.provider.DomainItemProviderAdapterFactory$FactoryComponentChildCreationExtender"
+      uri="http://www.eclipse.org/egf/1.0.0/fcore"
+      class="org.eclipse.egf.model.domain.provider.DomainItemProviderAdapterFactory$FcoreChildCreationExtender"
     />
   </extension>   
    
@@ -123,8 +123,8 @@
     point="org.eclipse.emf.edit.childCreationExtenders"
   >
     <extender
-      uri="http://www.eclipse.org/egf/1.0.0/factorycomponent"
-      class="org.eclipse.egf.model.mapping.provider.MappingItemProviderAdapterFactory$FactoryComponentChildCreationExtender"
+      uri="http://www.eclipse.org/egf/1.0.0/fcore"
+      class="org.eclipse.egf.model.mapping.provider.MappingItemProviderAdapterFactory$FcoreChildCreationExtender"
     />
   </extension>  
   
@@ -156,8 +156,8 @@
     point="org.eclipse.emf.edit.childCreationExtenders"
   >
     <extender
-      uri="http://www.eclipse.org/egf/1.0.0/factorycomponent"
-      class="org.eclipse.egf.model.pattern.provider.PatternItemProviderAdapterFactory$FactoryComponentChildCreationExtender"
+      uri="http://www.eclipse.org/egf/1.0.0/fcore"
+      class="org.eclipse.egf.model.pattern.provider.PatternItemProviderAdapterFactory$FcoreChildCreationExtender"
     />
   </extension>   
 

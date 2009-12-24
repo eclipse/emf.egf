@@ -10,27 +10,28 @@
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
-package org.eclipse.egf.model.domain.provider;
+package org.eclipse.egf.model.fcore.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.util.DomainAdapterFactory;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-import org.eclipse.egf.model.fcore.Context;
+
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.ViewpointContainer;
-import org.eclipse.egf.model.fcore.util.FcoreSwitch;
+
+import org.eclipse.egf.model.fcore.util.FcoreAdapterFactory;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.command.CommandParameter;
+
 import org.eclipse.emf.edit.domain.EditingDomain;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
+import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IChangeNotifier;
@@ -57,7 +58,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * <!-- end-user-doc -->
  * @generated
  */
-public class DomainItemProviderAdapterFactory extends DomainAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
   /**
    * This keeps track of the root adapter factory that delegates to this adapter factory.
    * <!-- begin-user-doc -->
@@ -75,6 +76,14 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
   protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
   /**
+   * This helps manage the child creation extenders.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(EGFModelsEditPlugin.INSTANCE, FcorePackage.eNS_URI);
+
+  /**
    * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -88,7 +97,7 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
    * <!-- end-user-doc -->
    * @generated
    */
-  public DomainItemProviderAdapterFactory() {
+  public FcoreItemProviderAdapterFactory() {
     supportedTypes.add(IEditingDomainItemProvider.class);
     supportedTypes.add(IStructuredItemContentProvider.class);
     supportedTypes.add(ITreeItemContentProvider.class);
@@ -102,72 +111,187 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainViewpoint} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Task} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainViewpointItemProvider domainViewpointItemProvider;
+  protected TaskItemProvider taskItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainViewpoint}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Task}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createDomainViewpointAdapter() {
-    if (domainViewpointItemProvider == null) {
-      domainViewpointItemProvider = new DomainViewpointItemProvider(this);
+  public Adapter createTaskAdapter() {
+    if (taskItemProvider == null) {
+      taskItemProvider = new TaskItemProvider(this);
     }
 
-    return domainViewpointItemProvider;
+    return taskItemProvider;
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.Domain} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.FactoryComponent} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainItemProvider domainItemProvider;
+  protected FactoryComponentItemProvider factoryComponentItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.Domain}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponent}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createDomainAdapter() {
-    if (domainItemProvider == null) {
-      domainItemProvider = new DomainItemProvider(this);
+  public Adapter createFactoryComponentAdapter() {
+    if (factoryComponentItemProvider == null) {
+      factoryComponentItemProvider = new FactoryComponentItemProvider(this);
     }
 
-    return domainItemProvider;
+    return factoryComponentItemProvider;
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainValue} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ViewpointContainer} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainValueItemProvider domainValueItemProvider;
+  protected ViewpointContainerItemProvider viewpointContainerItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainValue}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ViewpointContainer}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createDomainValueAdapter() {
-    if (domainValueItemProvider == null) {
-      domainValueItemProvider = new DomainValueItemProvider(this);
+  public Adapter createViewpointContainerAdapter() {
+    if (viewpointContainerItemProvider == null) {
+      viewpointContainerItemProvider = new ViewpointContainerItemProvider(this);
     }
 
-    return domainValueItemProvider;
+    return viewpointContainerItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Context} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContextItemProvider contextItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Context}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContextAdapter() {
+    if (contextItemProvider == null) {
+      contextItemProvider = new ContextItemProvider(this);
+    }
+
+    return contextItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractContainer} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContractContainerItemProvider contractContainerItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractContainer}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContractContainerAdapter() {
+    if (contractContainerItemProvider == null) {
+      contractContainerItemProvider = new ContractContainerItemProvider(this);
+    }
+
+    return contractContainerItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Contract} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContractItemProvider contractItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Contract}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContractAdapter() {
+    if (contractItemProvider == null) {
+      contractItemProvider = new ContractItemProvider(this);
+    }
+
+    return contractItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractValue} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContractValueItemProvider contractValueItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractValue}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContractValueAdapter() {
+    if (contractValueItemProvider == null) {
+      contractValueItemProvider = new ContractValueItemProvider(this);
+    }
+
+    return contractValueItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractConnector} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContractConnectorItemProvider contractConnectorItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractConnector}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContractConnectorAdapter() {
+    if (contractConnectorItemProvider == null) {
+      contractConnectorItemProvider = new ContractConnectorItemProvider(this);
+    }
+
+    return contractConnectorItemProvider;
   }
 
   /**
@@ -229,6 +353,33 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
   }
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public List<IChildCreationExtender> getChildCreationExtenders() {
+    return childCreationExtenderManager.getChildCreationExtenders();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+    return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ResourceLocator getResourceLocator() {
+    return childCreationExtenderManager;
+  }
+
+  /**
    * This adds a listener.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -269,109 +420,22 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
    * @generated
    */
   public void dispose() {
-    if (domainViewpointItemProvider != null)
-      domainViewpointItemProvider.dispose();
-    if (domainItemProvider != null)
-      domainItemProvider.dispose();
-    if (domainValueItemProvider != null)
-      domainValueItemProvider.dispose();
-  }
-
-  /**
-   * A child creation extender for the {@link FcorePackage}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public static class FcoreChildCreationExtender implements IChildCreationExtender {
-    /**
-     * The switch for creating child descriptors specific to each extended class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected static class CreationSwitch extends FcoreSwitch<Object> {
-      /**
-       * The child descriptors being populated.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected List<Object> newChildDescriptors;
-
-      /**
-       * The domain in which to create the children.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected EditingDomain editingDomain;
-
-      /**
-       * Creates the a switch for populating child descriptors in the given domain.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
-        this.newChildDescriptors = newChildDescriptors;
-        this.editingDomain = editingDomain;
-      }
-
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      @Override
-      public Object caseViewpointContainer(ViewpointContainer object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS, DomainFactory.eINSTANCE.createDomainViewpoint()));
-
-        return null;
-      }
-
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      @Override
-      public Object caseContext(Context object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__VALUES, DomainFactory.eINSTANCE.createDomainValue()));
-
-        return null;
-      }
-
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected CommandParameter createChildParameter(Object feature, Object child) {
-        return new CommandParameter(null, feature, child);
-      }
-
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-      ArrayList<Object> result = new ArrayList<Object>();
-      new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
-      return result;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ResourceLocator getResourceLocator() {
-      return EGFModelsEditPlugin.INSTANCE;
-    }
+    if (taskItemProvider != null)
+      taskItemProvider.dispose();
+    if (factoryComponentItemProvider != null)
+      factoryComponentItemProvider.dispose();
+    if (viewpointContainerItemProvider != null)
+      viewpointContainerItemProvider.dispose();
+    if (contextItemProvider != null)
+      contextItemProvider.dispose();
+    if (contractContainerItemProvider != null)
+      contractContainerItemProvider.dispose();
+    if (contractItemProvider != null)
+      contractItemProvider.dispose();
+    if (contractValueItemProvider != null)
+      contractValueItemProvider.dispose();
+    if (contractConnectorItemProvider != null)
+      contractConnectorItemProvider.dispose();
   }
 
 }
