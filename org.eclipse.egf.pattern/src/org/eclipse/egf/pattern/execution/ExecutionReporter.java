@@ -18,16 +18,15 @@ package org.eclipse.egf.pattern.execution;
 import java.util.Map;
 
 import org.eclipse.egf.model.PatternContext;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Guiu
  * 
  */
-public interface PatternExecutionReporter {
+public interface ExecutionReporter {
 
-    void patternExecutionFinished(String output, PatternContext context);
+    void executionFinished(String output, PatternContext context);
 
-    void patternLoopExecutionFinished(String output, PatternContext context, Map<String, EObject> parameterValues);
+    void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues);
 
 }
