@@ -1,32 +1,24 @@
 /**
- * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * </copyright>
- *
- * $Id$
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * 
  */
 package org.eclipse.egf.model.domain.impl;
 
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainPackage;
-
-import org.eclipse.egf.model.factorycomponent.impl.ModelElementImpl;
-
+import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -36,26 +28,31 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.domain.impl.DomainImpl#getEpackage <em>Epackage</em>}</li>
+ * <li>{@link org.eclipse.egf.model.domain.impl.DomainImpl#getEpackage <em>
+ * Epackage</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DomainImpl extends ModelElementImpl implements Domain {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and
+   * whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getEpackage() <em>Epackage</em>}' reference.
+   * The cached value of the '{@link #getEpackage() <em>Epackage</em>}'
+   * reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getEpackage()
    * @generated
    * @ordered
@@ -65,6 +62,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected DomainImpl() {
@@ -74,6 +72,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -84,6 +83,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EPackage getEpackage() {
@@ -101,6 +101,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EPackage basicGetEpackage() {
@@ -110,6 +111,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setEpackage(EPackage newEpackage) {
@@ -122,6 +124,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -138,6 +141,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -153,6 +157,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -168,6 +173,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -179,4 +185,4 @@ public class DomainImpl extends ModelElementImpl implements Domain {
     return super.eIsSet(featureID);
   }
 
-} //DomainImpl
+} // DomainImpl

@@ -1,35 +1,33 @@
 /**
- * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * </copyright>
- *
- * $Id$
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * 
  */
 package org.eclipse.egf.model.domain.impl;
 
-import org.eclipse.egf.model.domain.*;
-
+import org.eclipse.egf.model.domain.Domain;
+import org.eclipse.egf.model.domain.DomainFactory;
+import org.eclipse.egf.model.domain.DomainPackage;
+import org.eclipse.egf.model.domain.DomainValue;
+import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
@@ -37,6 +35,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static DomainFactory init() {
@@ -55,6 +54,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainFactoryImpl() {
@@ -64,6 +64,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -83,6 +84,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainViewpoint createDomainViewpoint() {
@@ -93,6 +95,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Domain createDomain() {
@@ -103,6 +106,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainValue createDomainValue() {
@@ -113,6 +117,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainPackage getDomainPackage() {
@@ -122,6 +127,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @deprecated
    * @generated
    */
@@ -130,4 +136,4 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
     return DomainPackage.eINSTANCE;
   }
 
-} //DomainFactoryImpl
+} // DomainFactoryImpl

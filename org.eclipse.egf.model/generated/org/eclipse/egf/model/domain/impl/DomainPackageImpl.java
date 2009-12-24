@@ -1,18 +1,14 @@
 /**
- * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- * </copyright>
- *
- * $Id$
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * 
  */
 package org.eclipse.egf.model.domain.impl;
 
@@ -21,26 +17,25 @@ import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainValue;
 import org.eclipse.egf.model.domain.DomainViewpoint;
-
-import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
-
+import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass domainViewpointEClass = null;
@@ -48,6 +43,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass domainEClass = null;
@@ -55,20 +51,22 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass domainValueEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
-   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+   * package
    * package URI value.
-   * <p>Note: the correct way to create the package is via the static
-   * factory method {@link #init init()}, which also performs
-   * initialization of the package, or returns the registered package,
-   * if one already exists.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <p>
+   * Note: the correct way to create the package is via the static factory
+   * method {@link #init init()}, which also performs initialization of the
+   * package, or returns the registered package, if one already exists. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see org.eclipse.emf.ecore.EPackage.Registry
    * @see org.eclipse.egf.model.domain.DomainPackage#eNS_URI
    * @see #init()
@@ -81,17 +79,21 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private static boolean isInited = false;
 
   /**
-   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+   * Creates, registers, and initializes the <b>Package</b> for this model, and
+   * for any others upon which it depends.
    * 
-   * <p>This method is used to initialize {@link DomainPackage#eINSTANCE} when that field is accessed.
-   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <p>
+   * This method is used to initialize {@link DomainPackage#eINSTANCE} when that
+   * field is accessed. Clients should not invoke it directly. Instead, they
+   * should simply access that field to obtain the package. <!-- begin-user-doc
+   * --> <!-- end-user-doc -->
+   * 
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
@@ -107,7 +109,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     isInited = true;
 
     // Initialize simple dependencies
-    FactoryComponentPackage.eINSTANCE.eClass();
+    FcorePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theDomainPackage.createPackageContents();
@@ -126,6 +128,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getDomainViewpoint() {
@@ -135,6 +138,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getDomainViewpoint_Domains() {
@@ -144,6 +148,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getDomain() {
@@ -153,6 +158,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getDomain_Epackage() {
@@ -162,6 +168,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getDomainValue() {
@@ -171,6 +178,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getDomainValue_Domain() {
@@ -180,6 +188,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainFactory getDomainFactory() {
@@ -189,15 +198,17 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package.  This method is
+   * Creates the meta-model objects for the package. This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void createPackageContents() {
@@ -219,15 +230,17 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model.  This
+   * Complete the initialization of the package and its meta-model. This
    * method is guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void initializePackageContents() {
@@ -241,7 +254,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    FactoryComponentPackage theFactoryComponentPackage = (FactoryComponentPackage) EPackage.Registry.INSTANCE.getEPackage(FactoryComponentPackage.eNS_URI);
+    FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
     EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
@@ -249,9 +262,9 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    domainViewpointEClass.getESuperTypes().add(theFactoryComponentPackage.getViewpoint());
-    domainEClass.getESuperTypes().add(theFactoryComponentPackage.getModelElement());
-    domainValueEClass.getESuperTypes().add(theFactoryComponentPackage.getContextValue());
+    domainViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
+    domainEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+    domainValueEClass.getESuperTypes().add(theFcorePackage.getContextValue());
 
     // Initialize classes and features; add operations and parameters
     initEClass(domainViewpointEClass, DomainViewpoint.class, "DomainViewpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -267,4 +280,4 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     createResource(eNS_URI);
   }
 
-} //DomainPackageImpl
+} // DomainPackageImpl
