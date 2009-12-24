@@ -23,6 +23,7 @@ import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
+import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -42,12 +43,43 @@ public abstract class PatternFactory {
     public static final String FOOTER_METHOD_NAME = "footer";
     public static final String BODY_METHOD_NAME = "body";
 
+    public List<Pattern> createDebugPattern7(PatternLibrary lib) {
+        List<Pattern> result = new ArrayList<Pattern>();
+        Pattern parentPattern = createPattern(lib, "ParentPattern");
+        Pattern childPattern = createPattern(lib, "ChildPattern");
+
+        PatternVariable var1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
+        var1.setName("myVar");
+        var1.setType("String");
+        parentPattern.getVariables().add(var1);
+
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
+        param1.setName("myParam");
+        param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass");
+        param1.setQuery(createBasicQuery());
+        childPattern.getParameters().add(param1);
+
+        PatternInjectedCall iCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternInjectedCall();
+        iCall.setContext(var1);
+        iCall.setCalled(childPattern);
+        iCall.setPattern(parentPattern);
+
+        // PatternCall call =
+        // org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
+        // call.setCalled(childPattern);
+        // call.setPattern(parentPattern);
+
+        result.add(parentPattern);
+        result.add(childPattern);
+        return result;
+    }
+
     public List<Pattern> createDebugPattern6(PatternLibrary lib) {
         List<Pattern> result = new ArrayList<Pattern>();
         Pattern createPattern = createPattern(lib, "MyPattern");
         PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("myParam");
-        param1.setType("org.eclipse.emf.ecore.EClass");
+        param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass");
         param1.setQuery(createBasicQuery());
         createPattern.getParameters().add(param1);
         result.add(createPattern);
@@ -57,7 +89,7 @@ public abstract class PatternFactory {
     private Query createBasicQuery() {
         BasicQuery createBasicQuery = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery();
         createBasicQuery.setExtensionId("org.eclipse.egf.pattern.basic_query");
-        return createBasicQuery();
+        return createBasicQuery;
     }
 
     public Pattern createDebugPattern1(PatternLibrary lib) {
@@ -84,17 +116,17 @@ public abstract class PatternFactory {
         Pattern parent = createPattern(lib, "parent");
         PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("parentP1");
-        param1.setType("org.eclipse.emf.ecore.EClass");
+        param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass");
         parent.getParameters().add(param1);
         PatternParameter param12 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param12.setName("parentP2");
-        param12.setType("org.eclipse.emf.ecore.EClass");
+        param12.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass");
         parent.getParameters().add(param12);
 
         Pattern child = createPattern(lib, "child");
         PatternParameter param2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param2.setName("childP");
-        param2.setType("org.eclipse.emf.ecore.EClass");
+        param2.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass");
         child.getParameters().add(param2);
         PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
         patternCall.getParameterMatching().put(param2, param12);
@@ -112,13 +144,13 @@ public abstract class PatternFactory {
         Pattern parent = createPattern(lib, "parent");
         PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("parentP");
-        param1.setType("org.eclipse.emf.ecore.EClass");
+        param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass");
         parent.getParameters().add(param1);
 
         Pattern child = createPattern(lib, "child");
         PatternParameter param2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param2.setName("childP");
-        param2.setType("org.eclipse.emf.ecore.EClass");
+        param2.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass");
         child.getParameters().add(param2);
         PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
         patternCall.setCalled(child);
@@ -138,17 +170,22 @@ public abstract class PatternFactory {
         checkId(pattern);
         addNature(pattern);
 
-        PatternVariable var1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
-        checkId(var1);
-        var1.setName("var1");
-        var1.setType("String");
-        pattern.getVariables().add(var1);
-        PatternVariable var2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
-        checkId(var2);
-        var2.setName("var2");
-        var2.setType("java.util.List");
-        pattern.getVariables().add(var2);
-
+        /*
+         * PatternVariable var1 =
+         * org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE
+         * .createPatternVariable();
+         * checkId(var1);
+         * var1.setName("var1");
+         * var1.setType("String");
+         * pattern.getVariables().add(var1);
+         * PatternVariable var2 =
+         * org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE
+         * .createPatternVariable();
+         * checkId(var2);
+         * var2.setName("var2");
+         * var2.setType("java.util.List");
+         * pattern.getVariables().add(var2);
+         */
         // 1 - create default content
         PatternMethod headerMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         checkId(headerMethod);
