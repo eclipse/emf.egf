@@ -23,6 +23,7 @@ import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
 
 import org.eclipse.egf.model.factorycomponent.provider.ModelElementItemProvider;
 
+import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternVariable;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -30,6 +31,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -41,6 +43,8 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.PatternVariable} object.
@@ -70,8 +74,21 @@ public class PatternVariableItemProvider extends ModelElementItemProvider implem
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
+            addTypePropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
+    }
+
+    /**
+     * This adds a property descriptor for the Type feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected void addTypePropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PatternVariable_type_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_PatternVariable_type_feature", "_UI_PatternVariable_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.PATTERN_VARIABLE__TYPE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
     }
 
     /**
@@ -108,6 +125,12 @@ public class PatternVariableItemProvider extends ModelElementItemProvider implem
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
+
+        switch (notification.getFeatureID(PatternVariable.class)) {
+        case PatternPackage.PATTERN_VARIABLE__TYPE:
+            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+            return;
+        }
         super.notifyChanged(notification);
     }
 
