@@ -108,6 +108,15 @@ public interface PatternFactory extends EFactory {
     PatternVariable createPatternVariable();
 
     /**
+     * Returns a new object of class '<em>Injected Call</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Injected Call</em>'.
+     * @generated
+     */
+    PatternInjectedCall createPatternInjectedCall();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

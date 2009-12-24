@@ -48,13 +48,12 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternCallImpl#getParameterMatching <em>Parameter Matching</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternCallImpl#getCalled <em>Called</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class PatternCallImpl extends CallImpl implements PatternCall {
+public class PatternCallImpl extends AbstractPatternCallImpl implements PatternCall {
     /**
      * The cached value of the '{@link #getParameterMatching() <em>Parameter Matching</em>}' map.
      * <!-- begin-user-doc -->
@@ -64,16 +63,6 @@ public class PatternCallImpl extends CallImpl implements PatternCall {
      * @ordered
      */
     protected EMap<PatternParameter, PatternParameter> parameterMatching;
-
-    /**
-     * The cached value of the '{@link #getCalled() <em>Called</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getCalled()
-     * @generated
-     * @ordered
-     */
-    protected Pattern called;
 
     /**
      * <!-- begin-user-doc -->
@@ -111,44 +100,6 @@ public class PatternCallImpl extends CallImpl implements PatternCall {
      * <!-- end-user-doc -->
      * @generated
      */
-    public Pattern getCalled() {
-        if (called != null && called.eIsProxy()) {
-            InternalEObject oldCalled = (InternalEObject) called;
-            called = (Pattern) eResolveProxy(oldCalled);
-            if (called != oldCalled) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN_CALL__CALLED, oldCalled, called));
-            }
-        }
-        return called;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Pattern basicGetCalled() {
-        return called;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setCalled(Pattern newCalled) {
-        Pattern oldCalled = called;
-        called = newCalled;
-        if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_CALL__CALLED, oldCalled, called));
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
     @Override
     public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
         switch (featureID) {
@@ -171,10 +122,6 @@ public class PatternCallImpl extends CallImpl implements PatternCall {
                 return getParameterMatching();
             else
                 return getParameterMatching().map();
-        case PatternPackage.PATTERN_CALL__CALLED:
-            if (resolve)
-                return getCalled();
-            return basicGetCalled();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -191,9 +138,6 @@ public class PatternCallImpl extends CallImpl implements PatternCall {
         case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
             ((EStructuralFeature.Setting) getParameterMatching()).set(newValue);
             return;
-        case PatternPackage.PATTERN_CALL__CALLED:
-            setCalled((Pattern) newValue);
-            return;
         }
         super.eSet(featureID, newValue);
     }
@@ -209,9 +153,6 @@ public class PatternCallImpl extends CallImpl implements PatternCall {
         case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
             getParameterMatching().clear();
             return;
-        case PatternPackage.PATTERN_CALL__CALLED:
-            setCalled((Pattern) null);
-            return;
         }
         super.eUnset(featureID);
     }
@@ -226,8 +167,6 @@ public class PatternCallImpl extends CallImpl implements PatternCall {
         switch (featureID) {
         case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
             return parameterMatching != null && !parameterMatching.isEmpty();
-        case PatternPackage.PATTERN_CALL__CALLED:
-            return called != null;
         }
         return super.eIsSet(featureID);
     }

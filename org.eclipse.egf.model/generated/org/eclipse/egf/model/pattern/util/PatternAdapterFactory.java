@@ -150,6 +150,16 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
+        public Adapter caseAbstractPatternCall(AbstractPatternCall object) {
+            return createAbstractPatternCallAdapter();
+        }
+
+        @Override
+        public Adapter casePatternInjectedCall(PatternInjectedCall object) {
+            return createPatternInjectedCallAdapter();
+        }
+
+        @Override
         public Adapter caseModelElement(ModelElement object) {
             return createModelElementAdapter();
         }
@@ -357,6 +367,34 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createPatternVariableAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.AbstractPatternCall <em>Abstract Pattern Call</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.AbstractPatternCall
+     * @generated
+     */
+    public Adapter createAbstractPatternCallAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternInjectedCall <em>Injected Call</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.PatternInjectedCall
+     * @generated
+     */
+    public Adapter createPatternInjectedCallAdapter() {
         return null;
     }
 

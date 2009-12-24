@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="Pattern" size="1507,750" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#/" metadata="emf-1.0" initialized="true" scrolledX="150" scrolledY="-98" tag="100" key="32303037303533312D313030206F72672E65636C697073652E6567662E6D6F64656C">
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.1 //@children.11/@sourceConnections.1 //@children.5/@sourceConnections.0" name="Pattern" location="575,140" size="258,82" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//Pattern" runTimeClassModel=" getMethod(name: EString): PatternMethod">
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="Pattern" size="1618,750" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#/" metadata="emf-1.0" initialized="true" tag="100" key="32303037303533312D313030206F72672E65636C697073652E6567662E6D6F64656C">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.1 //@children.16/@sourceConnections.1" name="Pattern" location="575,140" size="258,82" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//Pattern" runTimeClassModel=" getMethod(name: EString): PatternMethod">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="90,18">
       <children xsi:type="editmodel:MethodEditModel" name="getMethod" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Pattern/getMethod">
@@ -8,7 +8,7 @@
       </children>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.14/@sourceConnections.0" autoLocated="true" source="//@children.0" target="//@children.7" targetEnd="//@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.12/@sourceConnections.0" autoLocated="true" source="//@children.0" target="//@children.6" targetEnd="//@children.0/@sourceConnections.0/@children.1" sourceEnd="//@children.0/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
       <children xsi:type="editmodel:AssociationEndEditModel" location="129,0" anchorKind="FixedAtEdge" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="81,30" anchorKind="FixedAtEdge"/>
     </sourceConnections>
@@ -20,7 +20,7 @@
       </children>
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,7" anchorKind="FixedAtEdge" attachSource="true"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.0" target="//@children.10" targetEnd="//@children.0/@sourceConnections.2/@children.1" sourceEnd="//@children.0/@sourceConnections.2/@children.0" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.0" target="//@children.9" targetEnd="//@children.0/@sourceConnections.2/@children.1" sourceEnd="//@children.0/@sourceConnections.2/@children.0" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:AssociationEndEditModel" location="57,0" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" name="nature" location="153,19" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//Pattern/nature" multiplicityLabel="//@children.0/@sourceConnections.2/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.2/@children.1/@children.0" aggregationKind="Composition" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name="nature" location="310,-39" size="37,14" anchorKind="LastPart"/>
@@ -36,31 +36,31 @@
       </children>
       <children xsi:type="editmodel:AssociationEndEditModel" location="87,82" attachSource="true"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.0" target="//@children.15" targetEnd="//@children.0/@sourceConnections.4/@children.0" sourceEnd="//@children.0/@sourceConnections.4/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="parameters" location="90,31" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Pattern/parameters" multiplicityLabel="//@children.0/@sourceConnections.4/@children.0/@children.0" roleLabel="//@children.0/@sourceConnections.4/@children.0/@children.1" aggregationKind="Composition" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name="*" location="707,-49" size="6,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="parameters" location="727,-49" size="67,14" anchorKind="LastPart"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.0" target="//@children.13" targetEnd="//@children.0/@sourceConnections.4/@children.0" sourceEnd="//@children.0/@sourceConnections.4/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="parameters" location="90,59" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Pattern/parameters" multiplicityLabel="//@children.0/@sourceConnections.4/@children.0/@children.0" roleLabel="//@children.0/@sourceConnections.4/@children.0/@children.1" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="707,-21" size="6,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="parameters" location="727,-21" size="67,14" anchorKind="LastPart"/>
         <model href="Pattern.ecore#//Pattern/parameters"/>
       </children>
       <children xsi:type="editmodel:AssociationEndEditModel" location="145,0" attachSource="true"/>
     </sourceConnections>
     <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.0" target="//@children.1" targetEnd="//@children.0/@sourceConnections.5/@children.0" sourceEnd="//@children.0/@sourceConnections.5/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="footerMethod" location="268,0" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Pattern/footerMethod" multiplicityLabel="//@children.0/@sourceConnections.5/@children.0/@children.0" roleLabel="//@children.0/@sourceConnections.5/@children.0/@children.1" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="footerMethod" location="186,0" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Pattern/footerMethod" multiplicityLabel="//@children.0/@sourceConnections.5/@children.0/@children.0" roleLabel="//@children.0/@sourceConnections.5/@children.0/@children.1" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name="1" location="736,322" size="7,14" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="footerMethod" location="757,350" size="75,14" anchorKind="LastPart"/>
         <model href="Pattern.ecore#//Pattern/footerMethod"/>
       </children>
       <children xsi:type="editmodel:AssociationEndEditModel" location="201,82" attachSource="true"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.0" target="//@children.12" targetEnd="//@children.0/@sourceConnections.6/@children.1" sourceEnd="//@children.0/@sourceConnections.6/@children.0" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.0" target="//@children.10" targetEnd="//@children.0/@sourceConnections.6/@children.1" sourceEnd="//@children.0/@sourceConnections.6/@children.0" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:AssociationEndEditModel" name="pattern" location="258,60" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Call/pattern" attachSource="true" multiplicityLabel="//@children.0/@sourceConnections.6/@children.0/@children.0" roleLabel="//@children.0/@sourceConnections.6/@children.0/@children.1" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name="1" location="840,207" size="7,14" anchorKind="FirstPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="pattern" location="755,149" size="41,14" automaticRelocationAllowed="false" locationOnWireFromSource="-136.0" distanceFromWire="43.99999999999996" anchorKind="FirstPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="pattern" location="805,149" size="41,14" automaticRelocationAllowed="false" locationOnWireFromSource="-136.0" distanceFromWire="43.99999999999996" anchorKind="FirstPart"/>
         <model href="Pattern.ecore#//Call/pattern"/>
       </children>
       <children xsi:type="editmodel:AssociationEndEditModel" name="orchestration" location="31,0" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Pattern/orchestration" multiplicityLabel="//@children.0/@sourceConnections.6/@children.1/@children.0" roleLabel="//@children.0/@sourceConnections.6/@children.1/@children.1" aggregationKind="Composition" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name="*" location="977,249" size="6,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="orchestration" location="997,249" size="76,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="*" location="1076,249" size="6,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="orchestration" location="1096,249" size="76,14" anchorKind="LastPart"/>
         <model href="Pattern.ecore#//Pattern/orchestration"/>
       </children>
     </sourceConnections>
@@ -72,7 +72,7 @@
       </children>
       <children xsi:type="editmodel:AssociationEndEditModel" location="16,82" attachSource="true"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.0" target="//@children.17" targetEnd="//@children.0/@sourceConnections.8/@children.1" sourceEnd="//@children.0/@sourceConnections.8/@children.0" connectionRouterKind="Manhattan">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.0" target="//@children.15" targetEnd="//@children.0/@sourceConnections.8/@children.1" sourceEnd="//@children.0/@sourceConnections.8/@children.0" connectionRouterKind="Manhattan">
       <children xsi:type="editmodel:AssociationEndEditModel" location="0,12" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" name="variables" location="163,17" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Pattern/variables" multiplicityLabel="//@children.0/@sourceConnections.8/@children.1/@children.1" roleLabel="//@children.0/@sourceConnections.8/@children.1/@children.0" aggregationKind="Composition" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name="variables" location="380,131" size="52,14" anchorKind="LastPart"/>
@@ -80,10 +80,18 @@
         <model href="Pattern.ecore#//Pattern/variables"/>
       </children>
     </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.0" target="//@children.1" targetEnd="//@children.0/@sourceConnections.9/@children.0" sourceEnd="//@children.0/@sourceConnections.9/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="initMethod" location="143,0" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Pattern/initMethod" multiplicityLabel="//@children.0/@sourceConnections.9/@children.0/@children.0" roleLabel="//@children.0/@sourceConnections.9/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="693,322" size="7,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="initMethod" location="714,322" size="58,14" anchorKind="LastPart"/>
+        <model href="Pattern.ecore#//Pattern/initMethod"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="132,82" attachSource="true"/>
+    </sourceConnections>
     <model href="Pattern.ecore#//Pattern"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.3 //@children.0/@sourceConnections.7 //@children.0/@sourceConnections.5 //@children.13/@sourceConnections.1" name="PatternMethod" location="564,343" size="186,58" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//PatternMethod" runTimeClassModel="patternFilePath">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.3 //@children.0/@sourceConnections.7 //@children.0/@sourceConnections.5 //@children.11/@sourceConnections.1 //@children.0/@sourceConnections.9" name="PatternMethod" location="564,343" size="186,58" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//PatternMethod" runTimeClassModel="patternFilePath">
     <children xsi:type="editmodel:CompartmentEditModel" size="163,18">
       <children xsi:type="editmodel:AttributeEditModel" name="patternFilePath" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternMethod/patternFilePath">
         <model href="Pattern.ecore#//PatternMethod/patternFilePath"/>
@@ -97,50 +105,28 @@
   <children xsi:type="editmodel:NotepadEditModel" location="20,343" size="414,42" fontInfo="Sans-8-0" note="allMethods contient toutes les methodes, sans notion d'ordre&#xA;Et ça permet d'avoir une eopposite sur tous les obj"/>
   <children xsi:type="editmodel:NotepadEditModel" location="20,411" size="777,74" fontInfo="Sans-8-0" note="Body définit le contenu du pattern ie quelles methodes appeler.&#xA;on peut appeler 2 fois la meme, un autre pattern (en entier mais pas seulement une méthode), celle d'un parent, etc...&#xA;&#xA;pour faire simple, body ne contient pas le header ni le footer"/>
   <children xsi:type="editmodel:NotepadEditModel" location="20,366" size="465,42" fontInfo="Sans-8-0" note="Dépendances entre pattern: ça se calcule en regardant le corps du pattern&#xA;"/>
-  <children xsi:type="editmodel:ClassEditModel" name="PatternRunner" location="285,242" size="157,86" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//Runner" runTimeClassModel=" run(context: PatternContext), translate()">
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <children xsi:type="editmodel:CompartmentEditModel" size="134,36">
-      <children xsi:type="editmodel:MethodEditModel" name="run" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//Runner/run" displayArguments="true">
-        <model href="Pattern.ecore#//PatternRunner/run"/>
-      </children>
-      <children xsi:type="editmodel:MethodEditModel" name="translate" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//Runner/produce" displayArguments="true">
-        <model href="Pattern.ecore#//PatternRunner/translate"/>
-      </children>
-    </children>
-    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.5" target="//@children.0" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="117,0" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="pattern" location="0,69" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//Runner/pattern" multiplicityLabel="//@children.5/@sourceConnections.0/@children.1/@children.1" roleLabel="//@children.5/@sourceConnections.0/@children.1/@children.0" navigable="true" changeability="2">
-        <children xsi:type="editmodel:LabelEditModel" name="pattern" location="527,188" size="41,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="561,216" size="7,14" anchorKind="LastPart"/>
-        <model href="Pattern.ecore#//PatternRunner/pattern"/>
-      </children>
-    </sourceConnections>
-    <model href="Pattern.ecore#//PatternRunner"/>
-    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" showMethodsParameterTypes="true" attributeSorter="Natural" methodSorter="Natural"/>
-  </children>
   <children xsi:type="editmodel:NotepadEditModel" location="20,486" size="805,122" fontInfo="Sans-8-0" note="Runner possède la logique pour assembler et executer un pattern:&#xA;ajouter ce qui va bien pour le support des parametres /conditions, du patternReporter et plus si affinités&#xA;&#xA;Donc une sous classe par techno, et chaque techno doit fournir sa nature, &#xA;ie une sous classe qui portera les info spécifiques requises par la techno&#xA;&#xA;"/>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0 //@children.14/@sourceConnections.1" name="PatternElement" location="765,0" size="163,30" id="platform:/resource/org.eclipse.egf.fc/model1/Pattern.ecore#//PatternElement" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.0 //@children.12/@sourceConnections.1" name="PatternElement" location="765,0" size="163,30" id="platform:/resource/org.eclipse.egf.fc/model1/Pattern.ecore#//PatternElement" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <model href="Pattern.ecore#//PatternElement"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.9/@sourceConnections.0" name="Viewpoint" location="1209,215" size="278,30" id="platform:/resource/org.eclipse.egf.fc/model/FactoryComponent.ecore#//Viewpoint" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.8/@sourceConnections.0" name="Viewpoint" location="1320,195" size="278,30" id="platform:/resource/org.eclipse.egf.fc/model/FactoryComponent.ecore#//Viewpoint" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <model href="FactoryComponent.ecore#//Viewpoint"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="PatternViewpoint" location="1230,88" size="179,30" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//PatternViewpoint" runTimeClassModel="">
+  <children xsi:type="editmodel:ClassEditModel" name="PatternViewpoint" location="1320,30" size="179,30" id="platform:/resource/org.eclipse.egf.fc/model/Pattern.ecore#//PatternViewpoint" runTimeClassModel="">
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.9" target="//@children.8" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.8" target="//@children.7" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
       <children xsi:type="editmodel:AssociationEndEditModel" location="89,30" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="110,0"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="89,0"/>
     </sourceConnections>
     <model href="Pattern.ecore#//PatternViewpoint"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
@@ -152,66 +138,47 @@
     <model href="Pattern.ecore#//PatternNature"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="PatternCall" location="1065,428" size="128,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternCall" runTimeClassModel="">
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.11" target="//@children.13/@sourceConnections.0" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" location="64,0" anchorKind="FixedAtEdge" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="39,30"/>
-    </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.11" target="//@children.0" targetEnd="//@children.11/@sourceConnections.1/@children.0" sourceEnd="//@children.11/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="called" location="248,82" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternCall/called" multiplicityLabel="//@children.11/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.11/@sourceConnections.1/@children.0/@children.1" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="830,229" size="7,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="called" location="792,229" size="33,14" automaticRelocationAllowed="false" locationOnWireFromSource="94.0" distanceFromWire="14.99999999999994" anchorKind="LastPart"/>
-        <model href="Pattern.ecore#//PatternCall/called"/>
-      </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10" attachSource="true"/>
-    </sourceConnections>
-    <model href="Pattern.ecore#//PatternCall"/>
-    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
-  </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.13/@sourceConnections.0 //@children.0/@sourceConnections.6" name="Call" location="959,270" size="70,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Call" runTimeClassModel="">
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.11/@sourceConnections.0 //@children.0/@sourceConnections.6" name="Call" location="1058,270" size="70,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Call" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <model href="Pattern.ecore#//Call"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" name="MethodCall" location="900,385" size="129,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//MethodCall" runTimeClassModel="">
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.11/@sourceConnections.0" autoLocated="true" source="//@children.13" target="//@children.12" targetEnd="//@children.13/@sourceConnections.0/@children.1" sourceEnd="//@children.13/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+  <children xsi:type="editmodel:ClassEditModel" name="MethodCall" location="912,357" size="129,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//MethodCall" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.16/@sourceConnections.0" autoLocated="true" source="//@children.11" target="//@children.10" targetEnd="//@children.11/@sourceConnections.0/@children.1" sourceEnd="//@children.11/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
       <children xsi:type="editmodel:AssociationEndEditModel" location="64,0" anchorKind="FixedAtEdge" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="35,30" anchorKind="FixedAtEdge"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.13" target="//@children.1" targetEnd="//@children.13/@sourceConnections.1/@children.0" sourceEnd="//@children.13/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="called" location="186,49" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//MethodCall/called" multiplicityLabel="//@children.13/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.13/@sourceConnections.1/@children.0/@children.1" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="757,399" size="7,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="called" location="757,371" size="33,14" anchorKind="LastPart"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.11" target="//@children.1" targetEnd="//@children.11/@sourceConnections.1/@children.0" sourceEnd="//@children.11/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="called" location="186,29" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//MethodCall/called" multiplicityLabel="//@children.11/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.11/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="757,379" size="7,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="called" location="757,351" size="33,14" anchorKind="LastPart"/>
         <model href="Pattern.ecore#//MethodCall/called"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="0,7" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,15" attachSource="true"/>
     </sourceConnections>
     <model href="Pattern.ecore#//MethodCall"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
   <children xsi:type="editmodel:ClassEditModel" name="PatternLibrary" location="967,135" size="155,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternLibrary" runTimeClassModel="">
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.14" target="//@children.0/@sourceConnections.0" targetEnd="//@children.14/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.12" target="//@children.0/@sourceConnections.0" targetEnd="//@children.12/@sourceConnections.0/@children.1" sourceEnd="//@children.12/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
       <children xsi:type="editmodel:AssociationEndEditModel" location="77,0" anchorKind="FixedAtEdge" attachSource="true"/>
       <children xsi:type="editmodel:AssociationEndEditModel" location="158,30"/>
     </sourceConnections>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.14" target="//@children.7" targetEnd="//@children.14/@sourceConnections.1/@children.1" sourceEnd="//@children.14/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="container" location="96,0" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternElement/container" attachSource="true" multiplicityLabel="//@children.14/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.14/@sourceConnections.1/@children.0/@children.1" navigable="true">
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.12" target="//@children.6" targetEnd="//@children.12/@sourceConnections.1/@children.1" sourceEnd="//@children.12/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="container" location="96,0" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternElement/container" attachSource="true" multiplicityLabel="//@children.12/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.12/@sourceConnections.1/@children.0/@children.1" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name="0..1" location="1034,114" size="22,14" anchorKind="FirstPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="container" location="1070,114" size="53,14" anchorKind="FirstPart"/>
         <model href="Pattern.ecore#//PatternElement/container"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="elements" location="163,17" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternLibrary/elements" multiplicityLabel="//@children.14/@sourceConnections.1/@children.1/@children.0" roleLabel="//@children.14/@sourceConnections.1/@children.1/@children.1" aggregationKind="Composition" navigable="true">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="elements" location="163,17" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternLibrary/elements" multiplicityLabel="//@children.12/@sourceConnections.1/@children.1/@children.0" roleLabel="//@children.12/@sourceConnections.1/@children.1/@children.1" aggregationKind="Composition" navigable="true">
         <children xsi:type="editmodel:LabelEditModel" name="*" location="935,24" size="6,14" anchorKind="LastPart"/>
         <children xsi:type="editmodel:LabelEditModel" name="elements" location="935,-4" size="53,14" anchorKind="LastPart"/>
         <model href="Pattern.ecore#//PatternLibrary/elements"/>
@@ -220,37 +187,89 @@
     <model href="Pattern.ecore#//PatternLibrary"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.4" name="PatternParameter" location="630,-86" size="182,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternParameter" runTimeClassModel="">
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.15" target="//@children.16" targetEnd="//@children.15/@sourceConnections.0/@children.0" sourceEnd="//@children.15/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
-      <children xsi:type="editmodel:AssociationEndEditModel" name="type" location="0,15" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternParameter/type" multiplicityLabel="//@children.15/@sourceConnections.0/@children.0/@children.0" roleLabel="//@children.15/@sourceConnections.0/@children.0/@children.1" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name="1" location="898,-64" size="7,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="type" location="881,-92" size="24,14" anchorKind="LastPart"/>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.4" name="PatternParameter" location="630,-86" size="182,58" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternParameter" runTimeClassModel="type">
+    <children xsi:type="editmodel:CompartmentEditModel" size="126,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="type" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternParameter/type">
         <model href="Pattern.ecore#//PatternParameter/type"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="182,15" attachSource="true"/>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.13" target="//@children.14" targetEnd="//@children.13/@sourceConnections.0/@children.0" sourceEnd="//@children.13/@sourceConnections.0/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="type" location="0,30" roleLabel="//@children.13/@sourceConnections.0/@children.0/@children.0">
+        <children xsi:type="editmodel:LabelEditModel" name="type" location="881,-77" size="24,14" anchorKind="LastPart"/>
+        <model href="Pattern.ecore#//PatternParameter/type"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="182,30" attachSource="true"/>
     </sourceConnections>
     <model href="Pattern.ecore#//PatternParameter"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.15/@sourceConnections.0" name="EModelElement" location="912,-86" size="219,68" id="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
-    <children xsi:type="editmodel:CompartmentEditModel"/>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.13/@sourceConnections.0" name="EModelElement" location="912,-86" size="219,68" id="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <children xsi:type="editmodel:CompartmentEditModel" size="116,18">
       <children xsi:type="editmodel:MethodEditModel" name="getEAnnotation" id="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement/getEAnnotation">
         <model href="../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement/getEAnnotation"/>
       </children>
     </children>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <model href="../../../plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.8" name="PatternVariable" location="210,135" size="163,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternVariable">
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
-    <children xsi:type="editmodel:CompartmentEditModel"/>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.0/@sourceConnections.8 //@children.18/@sourceConnections.1" name="PatternVariable" location="210,135" size="163,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternVariable" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <model href="Pattern.ecore#//PatternVariable"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.17/@sourceConnections.0" name="AbstractPatternCall" location="1080,357" size="195,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//AbstractPatternCall" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.16" target="//@children.11/@sourceConnections.0" targetEnd="//@children.16/@sourceConnections.0/@children.1" sourceEnd="//@children.16/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="97,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="53,30"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" source="//@children.16" target="//@children.0" targetEnd="//@children.16/@sourceConnections.1/@children.0" sourceEnd="//@children.16/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="called" location="258,38" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//AbstractPatternCall/called" multiplicityLabel="//@children.16/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.16/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="840,185" size="7,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="called" location="840,157" size="33,14" anchorKind="LastPart"/>
+        <model href="Pattern.ecore#//AbstractPatternCall/called"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="128,0" attachSource="true"/>
+    </sourceConnections>
+    <model href="Pattern.ecore#//AbstractPatternCall"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PatternCall" location="1003,465" size="128,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternCall" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.18/@sourceConnections.0" autoLocated="true" source="//@children.17" target="//@children.16" targetEnd="//@children.17/@sourceConnections.0/@children.1" sourceEnd="//@children.17/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="64,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="97,30" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="Pattern.ecore#//PatternCall"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="PatternInjectedCall" location="1209,510" size="191,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternInjectedCall" runTimeClassModel="">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.18" target="//@children.17/@sourceConnections.0" targetEnd="//@children.18/@sourceConnections.0/@children.1" sourceEnd="//@children.18/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="95,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="121,30"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.18" target="//@children.15" targetEnd="//@children.18/@sourceConnections.1/@children.0" sourceEnd="//@children.18/@sourceConnections.1/@children.1" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="context" location="153,30" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternInjectedCall/context" multiplicityLabel="//@children.18/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.18/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="370,172" size="7,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="context" location="315,172" size="41,14" anchorKind="LastPart"/>
+        <model href="Pattern.ecore#//PatternInjectedCall/context"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="0,10" attachSource="true"/>
+    </sourceConnections>
+    <model href="Pattern.ecore#//PatternInjectedCall"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
   <model href="Pattern.ecore#/"/>

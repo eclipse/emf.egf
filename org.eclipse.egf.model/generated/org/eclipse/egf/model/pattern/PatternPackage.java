@@ -649,6 +649,43 @@ public interface PatternPackage extends EPackage {
     int CALL_FEATURE_COUNT = 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl <em>Abstract Pattern Call</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getAbstractPatternCall()
+     * @generated
+     */
+    int ABSTRACT_PATTERN_CALL = 13;
+
+    /**
+     * The feature id for the '<em><b>Pattern</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_PATTERN_CALL__PATTERN = CALL__PATTERN;
+
+    /**
+     * The feature id for the '<em><b>Called</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_PATTERN_CALL__CALLED = CALL_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Abstract Pattern Call</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int ABSTRACT_PATTERN_CALL_FEATURE_COUNT = CALL_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternCallImpl <em>Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -665,16 +702,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN_CALL__PATTERN = CALL__PATTERN;
-
-    /**
-     * The feature id for the '<em><b>Parameter Matching</b></em>' map.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    int PATTERN_CALL__PARAMETER_MATCHING = CALL_FEATURE_COUNT + 0;
+    int PATTERN_CALL__PATTERN = ABSTRACT_PATTERN_CALL__PATTERN;
 
     /**
      * The feature id for the '<em><b>Called</b></em>' reference.
@@ -683,7 +711,16 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN_CALL__CALLED = CALL_FEATURE_COUNT + 1;
+    int PATTERN_CALL__CALLED = ABSTRACT_PATTERN_CALL__CALLED;
+
+    /**
+     * The feature id for the '<em><b>Parameter Matching</b></em>' map.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_CALL__PARAMETER_MATCHING = ABSTRACT_PATTERN_CALL_FEATURE_COUNT + 0;
 
     /**
      * The number of structural features of the '<em>Call</em>' class.
@@ -692,7 +729,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN_CALL_FEATURE_COUNT = CALL_FEATURE_COUNT + 2;
+    int PATTERN_CALL_FEATURE_COUNT = ABSTRACT_PATTERN_CALL_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl <em>Paramerter2 Parameter Map</em>}' class.
@@ -815,6 +852,52 @@ public interface PatternPackage extends EPackage {
     int PATTERN_VARIABLE_FEATURE_COUNT = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl <em>Injected Call</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternInjectedCall()
+     * @generated
+     */
+    int PATTERN_INJECTED_CALL = 14;
+
+    /**
+     * The feature id for the '<em><b>Pattern</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_INJECTED_CALL__PATTERN = ABSTRACT_PATTERN_CALL__PATTERN;
+
+    /**
+     * The feature id for the '<em><b>Called</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_INJECTED_CALL__CALLED = ABSTRACT_PATTERN_CALL__CALLED;
+
+    /**
+     * The feature id for the '<em><b>Context</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_INJECTED_CALL__CONTEXT = ABSTRACT_PATTERN_CALL_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Injected Call</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_INJECTED_CALL_FEATURE_COUNT = ABSTRACT_PATTERN_CALL_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '<em>Context</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -822,7 +905,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
      */
-    int PATTERN_CONTEXT = 13;
+    int PATTERN_CONTEXT = 15;
 
     /**
      * The meta object id for the '<em>Exception</em>' data type.
@@ -832,7 +915,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated
      */
-    int PATTERN_EXCEPTION = 14;
+    int PATTERN_EXCEPTION = 16;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -1123,17 +1206,6 @@ public interface PatternPackage extends EPackage {
     EReference getPatternCall_ParameterMatching();
 
     /**
-     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.PatternCall#getCalled <em>Called</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Called</em>'.
-     * @see org.eclipse.egf.model.pattern.PatternCall#getCalled()
-     * @see #getPatternCall()
-     * @generated
-     */
-    EReference getPatternCall_Called();
-
-    /**
      * Returns the meta object for class '{@link java.util.Map.Entry <em>Paramerter2 Parameter Map</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1208,6 +1280,48 @@ public interface PatternPackage extends EPackage {
      * @generated
      */
     EClass getPatternVariable();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.AbstractPatternCall <em>Abstract Pattern Call</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Abstract Pattern Call</em>'.
+     * @see org.eclipse.egf.model.pattern.AbstractPatternCall
+     * @generated
+     */
+    EClass getAbstractPatternCall();
+
+    /**
+     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.AbstractPatternCall#getCalled <em>Called</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Called</em>'.
+     * @see org.eclipse.egf.model.pattern.AbstractPatternCall#getCalled()
+     * @see #getAbstractPatternCall()
+     * @generated
+     */
+    EReference getAbstractPatternCall_Called();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternInjectedCall <em>Injected Call</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Injected Call</em>'.
+     * @see org.eclipse.egf.model.pattern.PatternInjectedCall
+     * @generated
+     */
+    EClass getPatternInjectedCall();
+
+    /**
+     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.PatternInjectedCall#getContext <em>Context</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference '<em>Context</em>'.
+     * @see org.eclipse.egf.model.pattern.PatternInjectedCall#getContext()
+     * @see #getPatternInjectedCall()
+     * @generated
+     */
+    EReference getPatternInjectedCall_Context();
 
     /**
      * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
@@ -1499,14 +1613,6 @@ public interface PatternPackage extends EPackage {
         EReference PATTERN_CALL__PARAMETER_MATCHING = eINSTANCE.getPatternCall_ParameterMatching();
 
         /**
-         * The meta object literal for the '<em><b>Called</b></em>' reference feature.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @generated
-         */
-        EReference PATTERN_CALL__CALLED = eINSTANCE.getPatternCall_Called();
-
-        /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl <em>Paramerter2 Parameter Map</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -1569,6 +1675,42 @@ public interface PatternPackage extends EPackage {
          * @generated
          */
         EClass PATTERN_VARIABLE = eINSTANCE.getPatternVariable();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl <em>Abstract Pattern Call</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getAbstractPatternCall()
+         * @generated
+         */
+        EClass ABSTRACT_PATTERN_CALL = eINSTANCE.getAbstractPatternCall();
+
+        /**
+         * The meta object literal for the '<em><b>Called</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference ABSTRACT_PATTERN_CALL__CALLED = eINSTANCE.getAbstractPatternCall_Called();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl <em>Injected Call</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternInjectedCall()
+         * @generated
+         */
+        EClass PATTERN_INJECTED_CALL = eINSTANCE.getPatternInjectedCall();
+
+        /**
+         * The meta object literal for the '<em><b>Context</b></em>' reference feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference PATTERN_INJECTED_CALL__CONTEXT = eINSTANCE.getPatternInjectedCall_Context();
 
         /**
          * The meta object literal for the '<em><b>Value</b></em>' reference feature.

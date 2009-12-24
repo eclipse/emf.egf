@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.pattern.PatternCall#getParameterMatching <em>Parameter Matching</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.PatternCall#getCalled <em>Called</em>}</li>
  * </ul>
  * </p>
  *
@@ -38,7 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface PatternCall extends Call {
+public interface PatternCall extends AbstractPatternCall {
     /**
      * Returns the value of the '<em><b>Parameter Matching</b></em>' map.
      * The key is of type {@link org.eclipse.egf.model.pattern.PatternParameter},
@@ -55,31 +54,5 @@ public interface PatternCall extends Call {
      * @generated
      */
     EMap<PatternParameter, PatternParameter> getParameterMatching();
-
-    /**
-     * Returns the value of the '<em><b>Called</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Called</em>' reference isn't clear,
-     * there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Called</em>' reference.
-     * @see #setCalled(Pattern)
-     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternCall_Called()
-     * @model required="true"
-     * @generated
-     */
-    Pattern getCalled();
-
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternCall#getCalled <em>Called</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Called</em>' reference.
-     * @see #getCalled()
-     * @generated
-     */
-    void setCalled(Pattern value);
 
 } // PatternCall

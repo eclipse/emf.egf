@@ -33,28 +33,25 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternEngineImpl#getPattern
- * <em>Pattern</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternEngineImpl#getPattern <em>Pattern</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class PatternEngineImpl extends ModelElementImpl implements PatternEngine {
     /**
-     * A set of bit flags representing the values of boolean attributes and
-     * whether unsettable features have been set. <!-- begin-user-doc --> <!--
+     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @generated
      * @ordered
      */
     protected int eFlags = 0;
 
     /**
-     * The cached value of the '{@link #getPattern() <em>Pattern</em>}'
-     * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
+     * The cached value of the '{@link #getPattern() <em>Pattern</em>}' reference.
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @see #getPattern()
      * @generated
      * @ordered
@@ -63,7 +60,6 @@ public abstract class PatternEngineImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternEngineImpl() {
@@ -72,7 +68,6 @@ public abstract class PatternEngineImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -82,7 +77,6 @@ public abstract class PatternEngineImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Pattern getPattern() {
@@ -103,7 +97,6 @@ public abstract class PatternEngineImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Pattern basicGetPattern() {
@@ -112,7 +105,6 @@ public abstract class PatternEngineImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void execute(PatternContext context) throws PatternException {
@@ -123,7 +115,6 @@ public abstract class PatternEngineImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void translate() throws PatternException {
@@ -134,7 +125,6 @@ public abstract class PatternEngineImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -150,7 +140,6 @@ public abstract class PatternEngineImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override

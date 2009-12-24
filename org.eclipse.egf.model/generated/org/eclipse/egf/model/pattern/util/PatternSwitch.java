@@ -179,6 +179,8 @@ public class PatternSwitch<T> {
             PatternCall patternCall = (PatternCall) theEObject;
             T result = casePatternCall(patternCall);
             if (result == null)
+                result = caseAbstractPatternCall(patternCall);
+            if (result == null)
                 result = caseCall(patternCall);
             if (result == null)
                 result = defaultCase(theEObject);
@@ -213,6 +215,26 @@ public class PatternSwitch<T> {
             T result = casePatternVariable(patternVariable);
             if (result == null)
                 result = caseModelElement(patternVariable);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case PatternPackage.ABSTRACT_PATTERN_CALL: {
+            AbstractPatternCall abstractPatternCall = (AbstractPatternCall) theEObject;
+            T result = caseAbstractPatternCall(abstractPatternCall);
+            if (result == null)
+                result = caseCall(abstractPatternCall);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case PatternPackage.PATTERN_INJECTED_CALL: {
+            PatternInjectedCall patternInjectedCall = (PatternInjectedCall) theEObject;
+            T result = casePatternInjectedCall(patternInjectedCall);
+            if (result == null)
+                result = caseAbstractPatternCall(patternInjectedCall);
+            if (result == null)
+                result = caseCall(patternInjectedCall);
             if (result == null)
                 result = defaultCase(theEObject);
             return result;
@@ -414,6 +436,36 @@ public class PatternSwitch<T> {
      * @generated
      */
     public T casePatternVariable(PatternVariable object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Abstract Pattern Call</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Abstract Pattern Call</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseAbstractPatternCall(AbstractPatternCall object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Injected Call</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Injected Call</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T casePatternInjectedCall(PatternInjectedCall object) {
         return null;
     }
 

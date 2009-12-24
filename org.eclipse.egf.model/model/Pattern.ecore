@@ -8,7 +8,7 @@
       <details key="constraints" value="headerMethod footerMethod"/>
     </eAnnotations>
     <eOperations name="getMethod" eType="#//PatternMethod">
-      <eParameters name="name" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eParameters name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="headerMethod" lowerBound="1"
         eType="#//PatternMethod"/>
@@ -63,11 +63,9 @@
   <eClassifiers xsi:type="ecore:EClass" name="PatternNature" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement"/>
   <eClassifiers xsi:type="ecore:EDataType" name="PatternContext" instanceClassName="org.eclipse.egf.model.PatternContext"/>
   <eClassifiers xsi:type="ecore:EDataType" name="PatternException" instanceClassName="org.eclipse.egf.model.PatternException"/>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternCall" eSuperTypes="#//Call">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternCall" eSuperTypes="#//AbstractPatternCall">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterMatching" upperBound="-1"
         eType="#//Paramerter2ParameterMap" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="called" lowerBound="1"
-        eType="#//Pattern"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Paramerter2ParameterMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//PatternParameter"/>
@@ -83,4 +81,13 @@
         eType="#//PatternMethod"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternVariable" eSuperTypes="FactoryComponent.ecore#//ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="AbstractPatternCall" abstract="true"
+      eSuperTypes="#//Call">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="called" lowerBound="1"
+        eType="#//Pattern"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternInjectedCall" eSuperTypes="#//AbstractPatternCall">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="context" lowerBound="1"
+        eType="#//PatternVariable" resolveProxies="false"/>
+  </eClassifiers>
 </ecore:EPackage>

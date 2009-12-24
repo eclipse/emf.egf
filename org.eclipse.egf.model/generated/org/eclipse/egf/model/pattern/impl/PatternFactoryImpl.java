@@ -91,6 +91,8 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
             return createMethodCall();
         case PatternPackage.PATTERN_VARIABLE:
             return createPatternVariable();
+        case PatternPackage.PATTERN_INJECTED_CALL:
+            return createPatternInjectedCall();
         default:
             throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -218,6 +220,16 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     public PatternVariable createPatternVariable() {
         PatternVariableImpl patternVariable = new PatternVariableImpl();
         return patternVariable;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PatternInjectedCall createPatternInjectedCall() {
+        PatternInjectedCallImpl patternInjectedCall = new PatternInjectedCallImpl();
+        return patternInjectedCall;
     }
 
     /**
