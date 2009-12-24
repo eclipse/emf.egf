@@ -39,6 +39,9 @@ useful right after the creation.
                <documentation>
                   an optional identifier of the extension instance
                </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier"/>
+               </appInfo>
             </annotation>
          </attribute>
          <attribute name="name" type="string">
@@ -69,6 +72,9 @@ useful right after the creation.
                <documentation>
                   a unique name that will be used to identify this wizard.
                </documentation>
+               <appInfo>
+                  <meta.attribute kind="identifier"/>
+               </appInfo>
             </annotation>
          </attribute>
          <attribute name="name" type="string" use="required">
