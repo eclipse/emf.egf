@@ -38,19 +38,19 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.PatternCall} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.PatternInjectedCall} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PatternCallItemProvider extends AbstractPatternCallItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class PatternInjectedCallItemProvider extends AbstractPatternCallItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternCallItemProvider(AdapterFactory adapterFactory) {
+    public PatternInjectedCallItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -65,32 +65,32 @@ public class PatternCallItemProvider extends AbstractPatternCallItemProvider imp
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addParameterMatchingPropertyDescriptor(object);
+            addContextPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
     }
 
     /**
-     * This adds a property descriptor for the Parameter Matching feature.
+     * This adds a property descriptor for the Context feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected void addParameterMatchingPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PatternCall_parameterMatching_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_PatternCall_parameterMatching_feature", "_UI_PatternCall_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.PATTERN_CALL__PARAMETER_MATCHING, true, false, true, null, null, null));
+    protected void addContextPropertyDescriptor(Object object) {
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PatternInjectedCall_context_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_PatternInjectedCall_context_feature", "_UI_PatternInjectedCall_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.PATTERN_INJECTED_CALL__CONTEXT, true, false, true, null, null, null));
     }
 
     /**
-     * This returns PatternCall.gif.
+     * This returns PatternInjectedCall.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/PatternCall")); //$NON-NLS-1$
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/PatternInjectedCall")); //$NON-NLS-1$
     }
 
     /**
@@ -101,7 +101,7 @@ public class PatternCallItemProvider extends AbstractPatternCallItemProvider imp
      */
     @Override
     public String getText(Object object) {
-        return "[" + getString("_UI_PatternCall_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        return "[" + getString("_UI_PatternInjectedCall_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     /**

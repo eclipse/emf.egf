@@ -322,6 +322,29 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternInjectedCall} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternInjectedCallItemProvider patternInjectedCallItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternInjectedCall}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternInjectedCallAdapter() {
+        if (patternInjectedCallItemProvider == null) {
+            patternInjectedCallItemProvider = new PatternInjectedCallItemProvider(this);
+        }
+
+        return patternInjectedCallItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -438,6 +461,8 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             methodCallItemProvider.dispose();
         if (patternVariableItemProvider != null)
             patternVariableItemProvider.dispose();
+        if (patternInjectedCallItemProvider != null)
+            patternInjectedCallItemProvider.dispose();
     }
 
     /**
