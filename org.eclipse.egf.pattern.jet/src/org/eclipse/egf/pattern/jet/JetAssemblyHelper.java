@@ -15,9 +15,6 @@
 
 package org.eclipse.egf.pattern.jet;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.egf.common.constant.CharacterConstants;
@@ -27,6 +24,7 @@ import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
+import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.ParameterMatcher;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.execution.AssemblyHelper;
@@ -85,7 +83,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
     }
 
     protected void addVariable(Pattern pattern) throws PatternException {
-        content.append("<%").append(START_MARKER).append("%>");
+
         content.append("<%");
         for (PatternVariable var : pattern.getVariables()) {
             content.append("EObject ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
@@ -96,9 +94,10 @@ public class JetAssemblyHelper extends AssemblyHelper {
     }
 
     @Override
-    protected void visitOrchestration(Pattern pattern) throws PatternException {
-        super.visitOrchestration(pattern);
-        content.append("<%").append(END_MARKER).append("%>");
+    protected void beginOrchestration() {
+        content.append("<%").append("PatternContext ctx = (PatternContext)argument;").append(CharacterConstants.LINE_SEPARATOR).append("%>");
+        super.beginOrchestration();
+        content.append("<%").append(START_MARKER).append("%>");
     }
 
     /**
@@ -106,16 +105,17 @@ public class JetAssemblyHelper extends AssemblyHelper {
      * add this stuff. TODO query is not supported yet.
      */
     @Override
-    protected void handleParameters(int insertionIndex) {
+    protected void endOrchestration() {
+        content.append("<%").append(END_MARKER).append("%>");
+        if (pattern.getParameters().isEmpty())
+            return;
         // 1 - Add pre block at insertionIndex
         StringBuilder localContent = new StringBuilder(300);
         localContent.append("<%").append(CharacterConstants.LINE_SEPARATOR);
         localContent.append("").append(CharacterConstants.LINE_SEPARATOR).append(CharacterConstants.LINE_SEPARATOR);
 
-        Map<String, List<String>> aliases = new HashMap<String, List<String>>();
-
         for (PatternParameter parameter : pattern.getParameters()) {
-            localContent.append("Collection<EObject> ").append(parameter.getName()).append("Collection = new ArrayList<EObject>(); //TODO Query;").append(CharacterConstants.LINE_SEPARATOR);
+            appendQueryCode(localContent, parameter);
         }
 
         localContent.append(CharacterConstants.LINE_SEPARATOR).append(CharacterConstants.LINE_SEPARATOR);
@@ -123,12 +123,12 @@ public class JetAssemblyHelper extends AssemblyHelper {
         // create a loop per parameter
         for (PatternParameter parameter : pattern.getParameters()) {
             String local = PatternHelper.localizeName(parameter);
-            localContent.append("for (EObject ").append(local).append(" : ").append(parameter.getName()).append("Collection ) {").append(CharacterConstants.LINE_SEPARATOR);
+            localContent.append("for (EObject ").append(local).append(" : ").append(getParameterListName(parameter)).append(" ) {").append(CharacterConstants.LINE_SEPARATOR);
         }
 
         localContent.append(CharacterConstants.LINE_SEPARATOR).append("%>");
 
-        content.insert(insertionIndex, localContent);
+        content.insert(orchestrationIndex, localContent);
 
         // 2 - Add post block at current index
         content.append("<%").append(CharacterConstants.LINE_SEPARATOR);
@@ -151,4 +151,22 @@ public class JetAssemblyHelper extends AssemblyHelper {
         }
         content.insert(startIndex + START_MARKER.length(), localContent);
     }
+
+    private String getParameterListName(PatternParameter parameter) {
+        return parameter.getName() + "List";
+    }
+
+    private void appendQueryCode(StringBuilder localContent, PatternParameter parameter) {
+        Query query = parameter.getQuery();
+        localContent.append("Map<String, String> queryCtx = new HashMap<String, String>();").append(CharacterConstants.LINE_SEPARATOR);
+        if (query.getQueryContext() != null) {
+            for (String key : query.getQueryContext().keySet()) {
+                localContent.append("queryCtx.put(\"").append(key).append("\", \"").append(query.getQueryContext().get(key)).append("\");").append(CharacterConstants.LINE_SEPARATOR);
+            }
+        }
+
+        localContent.append("List<EObject> ").append(getParameterListName(parameter)).append(" = ");
+        localContent.append("new ").append(query.getDelegateClass()).append("().executeQuery(queryCtx, ctx);").append(CharacterConstants.LINE_SEPARATOR);
+    }
+
 }

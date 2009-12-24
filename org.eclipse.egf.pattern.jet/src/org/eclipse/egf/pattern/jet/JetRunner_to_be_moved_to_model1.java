@@ -17,6 +17,7 @@ package org.eclipse.egf.pattern.jet;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.eclipse.core.resources.IProject;
@@ -61,6 +62,8 @@ public class JetRunner_to_be_moved_to_model1 extends JetEngineImpl {
             // the pattern is executed but we don't care about the result.
             // TODO initialiser le context
             method.invoke(template, context);
+        } catch (InvocationTargetException e) {
+            throw new PatternException(e.getCause());
         } catch (Exception e) {
             throw new PatternException(e);
         }
@@ -114,7 +117,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetEngineImpl {
         builder.append(content.substring(0, startIndex));
 
         // add new method call
-        builder.append("generate(stringBuffer, (PatternContext)argument");
+        builder.append("generate(stringBuffer, ctx");
         if (!getPattern().getParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getParameters()) {
                 String local = PatternHelper.localizeName(parameter);
