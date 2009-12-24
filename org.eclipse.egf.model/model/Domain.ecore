@@ -3,15 +3,15 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="domain"
     nsURI="http://www.eclipse.org/egf/1.0.0/domain" nsPrefix="domain">
-  <eClassifiers xsi:type="ecore:EClass" name="DomainViewpoint" eSuperTypes="FactoryComponent.ecore#//Viewpoint">
+  <eClassifiers xsi:type="ecore:EClass" name="DomainViewpoint" eSuperTypes="Fcore.ecore#//Viewpoint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="domains" upperBound="-1"
         eType="#//Domain" containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Domain" eSuperTypes="FactoryComponent.ecore#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Domain" eSuperTypes="Fcore.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="epackage" lowerBound="1"
         eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DomainValue" eSuperTypes="FactoryComponent.ecore#//ContextValue">
+  <eClassifiers xsi:type="ecore:EClass" name="DomainValue" eSuperTypes="Fcore.ecore#//ContextValue">
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
         eType="#//Domain" resolveProxies="false"/>
   </eClassifiers>

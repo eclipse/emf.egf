@@ -10,7 +10,7 @@
     codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
     booleanFlagsField="eFlags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" optimizedHasChildren="true" tableProviders="true" colorProviders="true"
-    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore FactoryComponent.genmodel#//factorycomponent">
+    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore">
   <foreignModel>Pattern.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Pattern" basePackage="org.eclipse.egf.model" resource="XMI"

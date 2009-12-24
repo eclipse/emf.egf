@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.0"?>
+<?eclipse version="3.2"?>
 
 <!--
      Copyright (c) 2009 Thales Corporate Services S.A.S.
@@ -13,16 +13,6 @@
  -->
 
 <plugin>
-
-  <!-- ================================================================================= -->
-  <!-- Extension Points Definition                                                       -->
-  <!-- ================================================================================= -->
-
-  <extension-point 
-    id="type" 
-    name="%EGFTypeExtensionPoint" 
-    schema="schema/type.exsd"
-  />  
 
   <!-- ================================================================================= -->
   <!-- Types Model                                                                       -->
@@ -48,16 +38,16 @@
   </extension>
 
   <!-- ================================================================================= -->
-  <!-- FactoryComponent Model                                                            -->
+  <!-- Fcore Model                                                                       -->
   <!-- ================================================================================= -->
 
   <extension 
     point="org.eclipse.emf.ecore.generated_package"
   >
     <package
-      uri="http://www.eclipse.org/egf/1.0.0/factorycomponent"
-      class="org.eclipse.egf.model.factorycomponent.FactoryComponentPackage"
-      genModel="model/FactoryComponent.genmodel"
+      uri="http://www.eclipse.org/egf/1.0.0/fcore"
+      class="org.eclipse.egf.model.fcore.FcorePackage"
+      genModel="model/Fcore.genmodel"
     />
   </extension>
 
@@ -65,8 +55,8 @@
     point="org.eclipse.emf.ecore.extension_parser"
   >
     <parser
-      type="fc"
-      class="org.eclipse.egf.model.factorycomponent.util.FactoryComponentResourceFactoryImpl"
+      type="fcore"
+      class="org.eclipse.egf.model.fcore.util.FcoreResourceFactoryImpl"
     />
   </extension>
   
@@ -144,7 +134,7 @@
   <!-- ================================================================================= -->
   
   <extension
-    point="org.eclipse.egf.model.type"
+    point="org.eclipse.egf.core.type"
   >
     <type
       id="model/Types.ecore#//BooleanType"

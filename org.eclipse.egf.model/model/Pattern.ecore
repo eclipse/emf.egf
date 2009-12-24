@@ -29,18 +29,18 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="initMethod" lowerBound="1"
         eType="#//PatternMethod"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternMethod" eSuperTypes="FactoryComponent.ecore#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternMethod" eSuperTypes="Fcore.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
         eType="#//Pattern" resolveProxies="false" eOpposite="#//Pattern/methods"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternFilePath" lowerBound="1"
-        eType="ecore:EDataType FactoryComponent.ecore#//URI"/>
+        eType="ecore:EDataType Fcore.ecore#//URI"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternParameter" eSuperTypes="FactoryComponent.ecore#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternParameter" eSuperTypes="Fcore.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="query" eType="#//Query"
         containment="true" resolveProxies="false" eOpposite="#//Query/parameter"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternEngine" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternEngine" abstract="true" eSuperTypes="Fcore.ecore#//ModelElement">
     <eOperations name="execute" eExceptions="#//PatternException">
       <eParameters name="context" lowerBound="1" eType="#//PatternContext"/>
     </eOperations>
@@ -54,15 +54,15 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="runtimeOrchestration" upperBound="-1"
         eType="#//PatternLibrary" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternElement" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternElement" abstract="true" eSuperTypes="Fcore.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="container" eType="#//PatternLibrary"
         resolveProxies="false" eOpposite="#//PatternLibrary/elements"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternViewpoint" eSuperTypes="FactoryComponent.ecore#//Viewpoint">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternViewpoint" eSuperTypes="Fcore.ecore#//Viewpoint">
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraries" upperBound="-1"
         eType="#//PatternLibrary" containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternNature" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternNature" abstract="true" eSuperTypes="Fcore.ecore#//ModelElement"/>
   <eClassifiers xsi:type="ecore:EDataType" name="PatternContext" instanceClassName="org.eclipse.egf.model.PatternContext"/>
   <eClassifiers xsi:type="ecore:EDataType" name="PatternException" instanceClassName="org.eclipse.egf.model.PatternException"/>
   <eClassifiers xsi:type="ecore:EClass" name="PatternCall" eSuperTypes="#//AbstractPatternCall">
@@ -82,7 +82,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="called" lowerBound="1"
         eType="#//PatternMethod"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternVariable" eSuperTypes="FactoryComponent.ecore#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternVariable" eSuperTypes="Fcore.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractPatternCall" abstract="true"
