@@ -15,9 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.CoreMessages;
-import org.eclipse.egf.model.factorycomponent.Task;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -29,13 +27,13 @@ import org.eclipse.osgi.util.NLS;
 public class TaskRunner {
 
   /**
-   * Task
+   * IPlatformTask
    */
-  private Task _task;
+  private IPlatformTask _platformTask;
 
-  public TaskRunner(Task task_p) {
-    Assert.isNotNull(task_p);
-    _task = task_p;
+  public TaskRunner(IPlatformTask platformTask_p) {
+    Assert.isNotNull(platformTask_p);
+    _platformTask = platformTask_p;
   }
 
   /**
@@ -45,7 +43,10 @@ public class TaskRunner {
    * @return the instantiated object or null
    */
   protected ITask createTaskInstance() {
-    return EGFCorePlugin.createTaskInstance(_task.getTaskId());
+    if (_platformTask.getPlatformBundle().isTarget() == false) {
+      return null;
+    }
+    return null;
   }
 
   /**
@@ -55,7 +56,7 @@ public class TaskRunner {
    * @return true if the execution was successful, false otherwise.
    */
   protected boolean execute(final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException {
-    SubMonitor monitor = SubMonitor.convert(monitor_p, NLS.bind(CoreMessages.AbstractTask_Execute, getTask().getTaskId().trim()), 40);
+    SubMonitor monitor = SubMonitor.convert(monitor_p, NLS.bind(CoreMessages.AbstractTask_Execute, getPlatformTask().getId()), 40);
     try {
       // Instantiate an ITask object
       ITask task = createTaskInstance();
@@ -100,7 +101,7 @@ public class TaskRunner {
    * @return true if the execution was successful, false otherwise.
    */
   public boolean preExecute(final ITask task, final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException {
-    SubMonitor monitor = SubMonitor.convert(monitor_p, NLS.bind(CoreMessages.AbstractTask_preExecute, getTask().getTaskId().trim()), 10);
+    SubMonitor monitor = SubMonitor.convert(monitor_p, NLS.bind(CoreMessages.AbstractTask_preExecute, getPlatformTask().getId()), 10);
     try {
       if (task != null && task.preExecute(monitor.newChild(10)) == false) {
         return false;
@@ -122,7 +123,7 @@ public class TaskRunner {
    * @return true if the execution was successful, false otherwise.
    */
   public boolean doExecute(final ITask task_p, final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException {
-    SubMonitor monitor = SubMonitor.convert(monitor_p, NLS.bind(CoreMessages.AbstractTask_doExecute, getTask().getTaskId().trim()), 10);
+    SubMonitor monitor = SubMonitor.convert(monitor_p, NLS.bind(CoreMessages.AbstractTask_doExecute, getPlatformTask().getId()), 10);
     try {
       if (task_p != null && task_p.doExecute(monitor.newChild(10)) == false) {
         return false;
@@ -144,7 +145,7 @@ public class TaskRunner {
    * @return true if the execution was successful, false otherwise.
    */
   public boolean postExecute(final ITask task_p, final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException {
-    SubMonitor monitor = SubMonitor.convert(monitor_p, NLS.bind(CoreMessages.AbstractTask_postExecute, getTask().getTaskId().trim()), 10);
+    SubMonitor monitor = SubMonitor.convert(monitor_p, NLS.bind(CoreMessages.AbstractTask_postExecute, getPlatformTask().getId()), 10);
     try {
       if (task_p != null && task_p.postExecute(monitor.newChild(10)) == false) {
         return false;
@@ -162,8 +163,8 @@ public class TaskRunner {
   /**
    * @return the task
    */
-  public Task getTask() {
-    return _task;
+  public IPlatformTask getPlatformTask() {
+    return _platformTask;
   }
 
 }

@@ -3,10 +3,10 @@
 <schema targetNamespace="org.eclipse.egf.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.egf.core" id="task" name="EGF Core Task"/>
+         <meta.schema plugin="org.eclipse.egf.core" id="type" name="EGF Core Type"/>
       </appInfo>
       <documentation>
-         Exposes EGF Core Tasks.
+         Exposes EGF Core Types.
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="task" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="type" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -50,18 +50,17 @@
       </complexType>
    </element>
 
-   <element name="task">
+   <element name="type">
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
          </sequence>
-         <attribute name="class" type="string" use="required">
+         <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  The implementation of the expected services.
-Must implement ITask interface (either directly or not).
+                  Types identifier.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.egf.core.task.ITask"/>
+                  <meta.attribute kind="identifier"/>
                </appInfo>
             </annotation>
          </attribute>

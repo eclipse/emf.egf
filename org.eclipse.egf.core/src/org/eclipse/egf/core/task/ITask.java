@@ -21,7 +21,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 public interface ITask {
 
   /**
-   * @return the task id
+   * Task Id
+   * 
+   * @return The current Task Id
    */
   public String getTaskId();
 
