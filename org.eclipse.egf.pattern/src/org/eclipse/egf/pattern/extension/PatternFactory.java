@@ -141,10 +141,12 @@ public abstract class PatternFactory {
         PatternVariable var1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
         checkId(var1);
         var1.setName("var1");
+        var1.setType("String");
         pattern.getVariables().add(var1);
         PatternVariable var2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
         checkId(var2);
         var2.setName("var2");
+        var2.setType("java.util.List");
         pattern.getVariables().add(var2);
 
         // 1 - create default content
