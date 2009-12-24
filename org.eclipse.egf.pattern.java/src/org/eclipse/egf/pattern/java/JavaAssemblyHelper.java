@@ -83,7 +83,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
 
     protected void addVariable(Pattern pattern) throws PatternException {
         for (PatternVariable var : pattern.getVariables()) {
-            content.append("EObject ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
+            content.append(var.getType()).append(" ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
         }
         super.addVariable(pattern);
 
