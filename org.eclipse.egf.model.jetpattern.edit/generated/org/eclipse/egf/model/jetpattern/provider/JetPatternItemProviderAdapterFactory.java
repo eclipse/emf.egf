@@ -138,26 +138,26 @@ public class JetPatternItemProviderAdapterFactory extends JetPatternAdapterFacto
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.jetpattern.JetRunner} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.jetpattern.JetEngine} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected JetRunnerItemProvider jetRunnerItemProvider;
+    protected JetEngineItemProvider jetEngineItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.jetpattern.JetRunner}.
+     * This creates an adapter for a {@link org.eclipse.egf.model.jetpattern.JetEngine}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createJetRunnerAdapter() {
-        if (jetRunnerItemProvider == null) {
-            jetRunnerItemProvider = new JetRunnerItemProvider(this);
+    public Adapter createJetEngineAdapter() {
+        if (jetEngineItemProvider == null) {
+            jetEngineItemProvider = new JetEngineItemProvider(this);
         }
 
-        return jetRunnerItemProvider;
+        return jetEngineItemProvider;
     }
 
     /**
@@ -261,8 +261,8 @@ public class JetPatternItemProviderAdapterFactory extends JetPatternAdapterFacto
     public void dispose() {
         if (jetNatureItemProvider != null)
             jetNatureItemProvider.dispose();
-        if (jetRunnerItemProvider != null)
-            jetRunnerItemProvider.dispose();
+        if (jetEngineItemProvider != null)
+            jetEngineItemProvider.dispose();
     }
 
     /**

@@ -21,9 +21,9 @@ import java.util.List;
 
 import org.eclipse.egf.model.edit.EGFJetPatternEditPlugin;
 
-import org.eclipse.egf.model.jetpattern.JetRunner;
+import org.eclipse.egf.model.jetpattern.JetEngine;
 
-import org.eclipse.egf.model.pattern.provider.PatternRunnerItemProvider;
+import org.eclipse.egf.model.pattern.provider.PatternEngineItemProvider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -43,19 +43,19 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.jetpattern.JetRunner} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.jetpattern.JetEngine} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class JetRunnerItemProvider extends PatternRunnerItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class JetEngineItemProvider extends PatternEngineItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public JetRunnerItemProvider(AdapterFactory adapterFactory) {
+    public JetEngineItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -75,14 +75,14 @@ public class JetRunnerItemProvider extends PatternRunnerItemProvider implements 
     }
 
     /**
-     * This returns JetRunner.gif.
+     * This returns JetEngine.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/JetRunner")); //$NON-NLS-1$
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/JetEngine")); //$NON-NLS-1$
     }
 
     /**
@@ -93,9 +93,9 @@ public class JetRunnerItemProvider extends PatternRunnerItemProvider implements 
      */
     @Override
     public String getText(Object object) {
-        String label = ((JetRunner) object).getName();
-        return label == null || label.length() == 0 ? "[" + getString("_UI_JetRunner_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                label + " [" + getString("_UI_JetRunner_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        String label = ((JetEngine) object).getName();
+        return label == null || label.length() == 0 ? "[" + getString("_UI_JetEngine_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                label + " [" + getString("_UI_JetEngine_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     /**
