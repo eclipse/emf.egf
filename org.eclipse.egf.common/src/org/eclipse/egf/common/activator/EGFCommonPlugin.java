@@ -36,17 +36,17 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
   /**
    * EGF Registered loggers.
    */
-  private static List<IEGFLogger> _egfLoggers;
-
-  /**
-   * User enforced helper.
-   */
-  private IUserEnforcedHelper _userHelper;
+  private static List<IEGFLogger> __egfLoggers;
 
   /**
    * Shared instance.
    */
   protected static EGFCommonPlugin __plugin;
+
+  /**
+   * User enforced helper.
+   */
+  private IUserEnforcedHelper _userHelper;
 
   /**
    * Get shared instance.
@@ -66,6 +66,7 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
   @Override
   public void stop(BundleContext context_p) throws Exception {
     __plugin = null;
+    __egfLoggers = null;
     super.stop(context_p);
   }
 
@@ -103,8 +104,8 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
    */
   public static List<IEGFLogger> getEGFLoggers() {
     // Lazy loading. Search for the implementation.
-    if (_egfLoggers == null) {
-      _egfLoggers = new ArrayList<IEGFLogger>();
+    if (__egfLoggers == null) {
+      __egfLoggers = new ArrayList<IEGFLogger>();
       // Get EGF logger extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFCommonPlugin.getDefault().getPluginID(), EXTENSION_POINT_LOGGER)) {
         Object object = ExtensionPointHelper.createInstance(configurationElement);
@@ -116,10 +117,10 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
           getDefault().logInfo(NLS.bind("Extension-point ''{0}''", configurationElement.getName()), 1);
           continue;
         }
-        _egfLoggers.add((IEGFLogger) object);
+        __egfLoggers.add((IEGFLogger) object);
       }
     }
-    return _egfLoggers;
+    return __egfLoggers;
   }
 
 }
