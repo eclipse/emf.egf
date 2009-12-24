@@ -1,34 +1,28 @@
 /**
- * Copyright (c) 2000, 2009 IBM Corporation and others.
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- * IBM Corporation - initial API and implementation
- * Thales Corporate Services S.A.S
+ * Thales Corporate Services S.A.S - initial API and implementation
  */
-
 package org.eclipse.egf.core.platform;
 
-import java.util.Collection;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
-import org.eclipse.egf.common.helper.BundleHelper;
+import org.eclipse.egf.common.helper.ExtensionPointHelper;
+import org.eclipse.egf.core.platform.internal.pde.IManagerConstants;
 import org.eclipse.egf.core.platform.internal.pde.PlatformManager;
-import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
-import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponentListener;
-import org.eclipse.egf.core.platform.pde.IPlatformPlugin;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
+import org.eclipse.egf.core.platform.pde.IPlatformManager;
+import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -39,153 +33,83 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
 
   private static EGFPlatformPlugin _plugin;
 
-  /**
-   * Get the IPlatformFactoryComponent for given EMF Resource.
-   * 
-   * @param resource_p
-   * @return an {@link IPlatformFactoryComponent} instance or null if the
-   *         resource is null or not associated with an
-   *         IPlatformFactoryComponent
-   */
-  public static IPlatformFactoryComponent getPlatformFactoryComponent(Resource resource_p) {
-    // a URI should be absolute, otherwise we are unable to analyse its
-    // first
-    // segment
-    if (resource_p == null || resource_p.getURI() == null || resource_p.getURI().isRelative()) {
-      return null;
-    }
-    // Project Name
-    String firstSegment = resource_p.getURI().segment(1);
-    if (firstSegment == null || firstSegment.trim().length() == 0) {
-      return null;
-    }
-    // Retrieve a workspace project if available, its is safe as our
-    // implementation always hide a target project if a workspace project is
-    // available. The idea here is to locate a bundle based on its name
-    // rather
-    // on its project name
-    IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(firstSegment.trim());
-    IPlatformPlugin platform = null;
-    if (project != null)
-      platform = getPlatform(project);
-    // if no IPlatformPlugin is available, locate an IPlatformPlugin based
-    // on
-    // firstSegment
-    if (platform == null) {
-      platform = PlatformManager.getInstance().getPlatformPlugin(firstSegment.trim());
-    }
-    // Nothing to process
-    if (platform == null) {
-      return null;
-    }
-    // Finally try to locate an associated IPlatformFactoryComponent
-    for (IPlatformFactoryComponent fc : platform.getPlatformFactoryComponents()) {
-      if (fc.getURI().equals(resource_p.getURI())) {
-        return fc;
-      }
-    }
-    // Nothing to retrieve
-    return null;
+  public static IPlatformManager getPlatformManager() {
+    return PlatformManager.getInstance();
   }
 
   /**
-   * Get the IPlatformFactoryComponents for given project.
+   * EGF Registered Managers.
    * 
    */
-  public static IPlatformFactoryComponent[] getPlatformFactoryComponents(IProject project) {
-    IPlatformPlugin platform = getPlatform(project);
-    if (platform == null)
-      return new IPlatformFactoryComponent[0];
-    return platform.getPlatformFactoryComponents();
-  }
-
-  private static IPlatformPlugin getPlatform(IProject project) {
-    IPluginModelBase base = BundleHelper.getPluginModelBase(project);
-    String id = BundleHelper.getBundleId(base);
-    if (id == null)
-      return null;
-    return PlatformManager.getInstance().getPlatformPlugin(id);
-  }
+  private static Map<String, IConfigurationElement> __managers;
 
   /**
-   * Computes a map so that plugins in the workspace will override those in
-   * the environment and so that plugins with Ecore and GenModels will look
-   * like projects in the workspace. It's implemented like this:
+   * EGF Registered Interface.
    * 
-   * <pre>
-   * Map result = new HashMap();
-   * result.putAll(computePlatformPluginToPlatformResourceMap());
-   * result.putAll(computePlatformResourceToPlatformPluginMap(new HashSet(EcorePlugin.getEPackageNsURIToGenModelLocationMap().values())));
-   * return result;
-   *</pre>
-   * 
-   * @return computes a map so that plugins in the workspace will override
-   *         those in the environment and so that plugins with Ecore and
-   *         GenModels will look like projects in the workspace.
-   * @see org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
-   * @see URI
-   * @see #computePlatformPluginToPlatformResourceMap()
-   * @see #computePlatformResourceToPlatformPluginMap(Collection)
    */
-  public static Map<URI, URI> computePlatformURIMap() {
-    Map<URI, URI> result = new HashMap<URI, URI>();
-    result.putAll(EcorePlugin.computePlatformURIMap());
-    result.putAll(computePlatformPluginToPlatformResourceMap());
-    result.putAll(computePlatformResourceToTargetPluginMap(getDefault().getTargetPluginFactoryComponents()));
-    return result;
-  }
+  private static Map<String, Object> __interfaces;
 
   /**
-   * Computes a map from <code>platform:/plugin/&lt;plugin-id>/</code>
-   * {@link URI} to <code>platform:/resource/&lt;plugin-location>/</code> URI
-   * for each plugin project in the workspace. This allows each plugin from
-   * the runtime to be
-   * {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
-   * redirected} to its active version in the workspace.
+   * Get Platforms.
    * 
-   * @return a map from plugin URIs to resource URIs.
-   * @see org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
-   * @see URI
+   * @return an empty map if none could be found.
    */
-  public static Map<URI, URI> computePlatformPluginToPlatformResourceMap() {
-    Map<URI, URI> result = new HashMap<URI, URI>();
-    for (IPlatformFactoryComponent fc : getDefault().getWorkspacePluginFactoryComponents()) {
-      URI platformPluginURI = URI.createPlatformPluginURI(fc.getPlatformPlugin().getBundleId() + "/", false);
-      URI platformResourceURI = URI.createPlatformResourceURI(fc.getPlatformPlugin().getProject().getName() + "/", true);
-      result.put(platformPluginURI, platformResourceURI);
-    }
-    return result;
-  }
-
-  /**
-   * Computes a map from <code>platform:/resource/&lt;plugin-location>/</code>
-   * {@link URI} to <code>platform:/plugin/&lt;plugin-id>/</code> URI for each
-   * URI in the collection of the form
-   * <code>platform:/plugin/&lt;plugin-id>/...</code>. This allows each plugin
-   * to be {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
-   * treated} as if it were a project in the workspace. If the workspace
-   * already contains a project for the plugin location, no mapping is
-   * produced.
-   * 
-   * @param uris
-   *          a collections of {@link URI}s.
-   * @return a map from platform resource URI to platform plugin URI.
-   */
-  public static Map<URI, URI> computePlatformResourceToTargetPluginMap(IPlatformFactoryComponent[] fcs) {
-    Map<URI, URI> result = new HashMap<URI, URI>();
-    IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-    if (root != null) {
-      for (IPlatformFactoryComponent fc : fcs) {
-        String pluginID = fc.getURI().segment(1);
-        for (IProject project : root.getProjects()) {
-          IPluginModelBase base = BundleHelper.getPluginModelBase(project);
-          if (base != null && BundleHelper.getBundleId(base).equals(pluginID) && project.isOpen() == false) {
-            result.put(URI.createPlatformResourceURI(pluginID + "/", false), URI.createPlatformPluginURI(pluginID + "/", false));
+  public Map<String, IConfigurationElement> getPlatform() {
+    // Lazy loading.
+    if (__managers == null) {
+      __managers = new HashMap<String, IConfigurationElement>();
+      __interfaces = new HashMap<String, Object>();
+      // Get EGF Platform extension points.
+      for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(getDefault().getBundle().getSymbolicName(), IManagerConstants.MANAGER_EXTENSION_POINT_ID)) {
+        // Extension retrieval
+        String extension = ExtensionPointHelper.getAttributeValue(configurationElement, IManagerConstants.MANAGER_ATT_EXTENSION);
+        // Ignore
+        if (extension == null || extension.trim().length() == 0) {
+          continue;
+        }
+        extension = extension.trim();
+        // Check
+        if (__managers.containsKey(extension)) {
+          getDefault().logError(NLS.bind("Duplicate Extension {0}", extension));
+          getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1);
+          getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1);
+          continue;
+        }
+        // Check factory
+        Object factory = ExtensionPointHelper.createInstance(configurationElement, IManagerConstants.MANAGER_ATT_FACTORY);
+        if (factory == null || factory instanceof IPlatformExtensionPointFactory<?> == false) {
+          getDefault().logError(NLS.bind("Wrong Class {0}", factory.getClass().getName()));
+          getDefault().logInfo("Class should be an implementation of ''org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory''.", 1);
+          getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1);
+          getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1);
+          getDefault().logInfo(NLS.bind("extension ''{0}''", extension), 1);
+          continue;
+        }
+        // Check Interfaces
+        Class<?> key = null;
+        LOOP: for (Type type : factory.getClass().getGenericInterfaces()) {
+          if (type instanceof ParameterizedType) {
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+            for (Type innerType : parameterizedType.getActualTypeArguments()) {
+              if (innerType instanceof Class<?>) {
+                key = (Class<?>) innerType;
+                break LOOP;
+              }
+            }
           }
         }
+        if (__interfaces.get(key) != null) {
+          getDefault().logError(NLS.bind("Duplicate Interface {0}", key.getClass().getName()));
+          getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1);
+          getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1);
+          continue;
+        }
+        // Register
+        __managers.put(extension, configurationElement);
+        __interfaces.put(factory.getClass().getName(), key);
       }
     }
-    return result;
+    return __managers;
   }
 
   /**
@@ -196,75 +120,19 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
   }
 
   /**
-   * Add a listener to the platform manager
    * 
-   * @param listener
-   *          the listener to be added
-   */
-  public void addPlatformFactoryComponentListener(IPlatformFactoryComponentListener listener) {
-    PlatformManager.getInstance().addPlatformFactoryComponentListener(listener);
-  }
-
-  /**
-   * Remove a listener from the platform manager
-   * 
-   * @param listener
-   *          the listener to be removed
-   */
-  public void removePlatformFactoryComponentListener(IPlatformFactoryComponentListener listener) {
-    PlatformManager.getInstance().removePlatformFactoryComponentListener(listener);
-  }
-
-  /**
-   * Returns a snapshot of known workspace IPlatformPluginFactoryComponent
-   * 
-   * @return an array of IPlatformPluginFactoryComponent
-   */
-  public IPlatformFactoryComponent[] getWorkspacePluginFactoryComponents() {
-    return PlatformManager.getInstance().getWorkspaceFactoryComponents();
-  }
-
-  /**
-   * Returns a snapshot of known target IPlatformPluginFactoryComponent
-   * 
-   * @return an array of IPlatformPluginFactoryComponent
-   */
-  public IPlatformFactoryComponent[] getTargetPluginFactoryComponents() {
-    return PlatformManager.getInstance().getWorkspaceFactoryComponents();
-  }
-
-  /**
-   * Returns a snapshot of known IPlatformPluginFactoryComponent
-   * 
-   * @return an array of IPlatformPluginFactoryComponent
-   */
-  public IPlatformFactoryComponent[] getFactoryComponents() {
-    return PlatformManager.getInstance().getFactoryComponents();
-  }
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * 
-   * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext
-   * )
+   * org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.
+   * BundleContext)
    */
   @Override
   public void start(BundleContext context) throws Exception {
     super.start(context);
     _plugin = this;
-    // Start our PlatformManager and force initialization
-    getWorkspacePluginFactoryComponents();
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see
-   * 
-   * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext
-   * )
+  /**
+   * org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.
+   * BundleContext)
    */
   @Override
   public void stop(BundleContext context) throws Exception {
@@ -272,6 +140,8 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
     PlatformManager.getInstance().dispose();
     // Final steps
     _plugin = null;
+    __managers = null;
+    __interfaces = null;
     super.stop(context);
   }
 

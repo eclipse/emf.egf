@@ -1,6 +1,4 @@
 /**
- * <copyright>
- * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,25 +7,30 @@
  * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
- * </copyright>
- * 
  */
-
 package org.eclipse.egf.core.platform.internal.pde;
 
+import java.lang.reflect.Array;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.common.helper.BundleHelper;
+import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
-import org.eclipse.egf.core.platform.pde.IFactoryComponentConstants;
-import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
-import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponentDelta;
-import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponentListener;
-import org.eclipse.egf.core.platform.pde.IPlatformPlugin;
+import org.eclipse.egf.core.platform.pde.IPlatformBundle;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
+import org.eclipse.egf.core.platform.pde.IPlatformManager;
+import org.eclipse.egf.core.platform.util.CollectionHelper;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginExtension;
@@ -48,7 +51,39 @@ import org.eclipse.pde.internal.core.PluginModelDelta;
  * 
  * @since 1.0
  */
-public final class PlatformManager implements IPluginModelListener, IExtensionDeltaListener {
+public final class PlatformManager implements IPlatformManager, IPluginModelListener, IExtensionDeltaListener {
+
+  private static Map<String, Class<? extends IPlatformExtensionPoint>> _extensionPoints;
+
+  @SuppressWarnings("unchecked")
+  private static Map<String, Class<? extends IPlatformExtensionPoint>> getExtensionPoints() {
+    if (_extensionPoints == null) {
+      _extensionPoints = new HashMap<String, Class<? extends IPlatformExtensionPoint>>();
+      for (String extensionPoint : EGFPlatformPlugin.getDefault().getPlatform().keySet()) {
+        // Factory
+        IPlatformExtensionPointFactory<?> factory = (IPlatformExtensionPointFactory<?>) ExtensionPointHelper.createInstance(EGFPlatformPlugin.getDefault().getPlatform().get(extensionPoint), IManagerConstants.MANAGER_ATT_FACTORY);
+        // Key
+        Class<?> key = null;
+        LOOP: for (Type type : factory.getClass().getGenericInterfaces()) {
+          if (type instanceof ParameterizedType) {
+            ParameterizedType parameterizedType = (ParameterizedType) type;
+            for (Type innerType : parameterizedType.getActualTypeArguments()) {
+              if (innerType instanceof Class<?>) {
+                key = (Class<?>) innerType;
+                break LOOP;
+              }
+            }
+          }
+        }
+        _extensionPoints.put(extensionPoint, (Class<? extends IPlatformExtensionPoint>) key);
+      }
+    }
+    return _extensionPoints;
+  }
+
+  public static Collection<Class<? extends IPlatformExtensionPoint>> getExtensionPointsValues() {
+    return getExtensionPoints().values();
+  }
 
   private static volatile PlatformManager __platformManager;
 
@@ -67,18 +102,17 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     return __platformManager;
   }
 
-  // IPlatformPlugin registry
-  private Map<String, IPlatformPlugin> _models;
+  // IPlatformBundle registry
+  private Map<String, IPlatformBundle> _platformBundles;
 
-  // IPlatformFactoryComponent Workspace registry
-  private List<IPlatformFactoryComponent> _workspaceFcs;
+  // IPlatformExtensionPoint Workspace registry
+  private Map<Class<?>, List<Object>> _workspaceRegistry;
 
-  // IPlatformFactoryComponent Target registry
-  private List<IPlatformFactoryComponent> _targetFcs;
+  // IPlatformExtensionPoint Target registry
+  private Map<Class<?>, List<Object>> _targetRegistry;
 
-  // A list of listeners interested in changes to the plug-in factory components
-  // models
-  private List<IPlatformFactoryComponentListener> _listeners;
+  // A list of listeners interested in changes to extension points
+  private List<IPlatformExtensionPointListener> _listeners;
 
   private PlatformManager() {
     // Nothing to do
@@ -87,100 +121,121 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
   public void dispose() {
     PDECore.getDefault().getModelManager().removePluginModelListener(this);
     PDECore.getDefault().getModelManager().removeExtensionDeltaListener(this);
-    _models = null;
-    _targetFcs = null;
-    _workspaceFcs = null;
+    _platformBundles = null;
+    _targetRegistry = null;
+    _workspaceRegistry = null;
     _listeners = null;
   }
 
-  public IPlatformPlugin getPlatformPlugin(String id) {
+  public IPlatformBundle getPlatformBundle(String id) {
+    // Lock PlatformManager
+    synchronized (_lock) {
+      if (id == null) {
+        return null;
+      }
+      if (_platformBundles == null) {
+        initializePlatformManager();
+      }
+      return _platformBundles.get(id);
+    }
+  }
+
+  public IPlatformBundle[] getPlatformBundles() {
+    // Lock PlatformManager
+    synchronized (_lock) {
+      if (_platformBundles == null) {
+        initializePlatformManager();
+      }
+      // Create a copy of known values
+      return _platformBundles.values().toArray(new IPlatformBundle[_platformBundles.size()]);
+    }
+  }
+
+  public IPlatformBundle getPlatformBundle(IProject project) {
+    IPluginModelBase base = BundleHelper.getPluginModelBase(project);
+    String id = BundleHelper.getBundleId(base);
     if (id == null) {
       return null;
     }
+    return PlatformManager.getInstance().getPlatformBundle(id);
+  }
+
+  public <T extends IPlatformExtensionPoint> T[] getWorkspacePlatformExtensionPoints(Class<T> clazz) {
     // Lock PlatformManager
     synchronized (_lock) {
-      if (_models == null) {
-        initializePlatformPlugin();
+      List<Object> extensionPoints = new ArrayList<Object>();
+      if (clazz != null && getExtensionPointsValues().contains(clazz)) {
+        if (_platformBundles == null) {
+          initializePlatformManager();
+        }
+        if (_workspaceRegistry.get(clazz) != null) {
+          extensionPoints.addAll(_workspaceRegistry.get(clazz));
+        }
       }
-      return _models.get(id);
+      return CollectionHelper.toArray(extensionPoints, clazz);
     }
   }
 
-  public IPlatformPlugin[] getPlatformPlugins() {
+  public <T extends IPlatformExtensionPoint> T[] getTargetPlatformExtensionPoints(Class<T> clazz) {
     // Lock PlatformManager
     synchronized (_lock) {
-      if (_models == null) {
-        initializePlatformPlugin();
+      List<Object> extensionPoints = new ArrayList<Object>();
+      if (clazz != null && getExtensionPointsValues().contains(clazz)) {
+        if (_platformBundles == null) {
+          initializePlatformManager();
+        }
+        if (_targetRegistry.get(clazz) != null) {
+          extensionPoints.addAll(_targetRegistry.get(clazz));
+        }
       }
-      // Create a copy of known values
-      IPlatformPlugin[] targetModels = _models.values().toArray(new IPlatformPlugin[_models.size()]);
-      // Return
-      return targetModels;
+      return CollectionHelper.toArray(extensionPoints, clazz);
     }
   }
 
-  public IPlatformFactoryComponent[] getWorkspaceFactoryComponents() {
+  @SuppressWarnings("unchecked")
+  public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(Class<T> clazz) {
     // Lock PlatformManager
     synchronized (_lock) {
-      if (_models == null) {
-        initializePlatformPlugin();
+      if (clazz == null || getExtensionPointsValues().contains(clazz) == false) {
+        return null;
       }
-      // Return
-      return _workspaceFcs.toArray(new IPlatformFactoryComponent[_workspaceFcs.size()]);
-    }
-  }
-
-  public IPlatformFactoryComponent[] getTargetFactoryComponents() {
-    // Lock PlatformManager
-    synchronized (_lock) {
-      if (_models == null) {
-        initializePlatformPlugin();
-      }
-      // Return
-      return _targetFcs.toArray(new IPlatformFactoryComponent[_targetFcs.size()]);
-    }
-  }
-
-  public IPlatformFactoryComponent[] getFactoryComponents() {
-    // Lock PlatformManager
-    synchronized (_lock) {
-      if (_models == null) {
-        initializePlatformPlugin();
+      if (_platformBundles == null) {
+        initializePlatformManager();
       }
       // Create a copy of known values
-      IPlatformFactoryComponent[] targetFCs = getTargetFactoryComponents();
-      IPlatformFactoryComponent[] workspaceFCs = getWorkspaceFactoryComponents();
-      IPlatformFactoryComponent[] fcs = new IPlatformFactoryComponent[targetFCs.length + workspaceFCs.length];
-      System.arraycopy(targetFCs, 0, fcs, 0, targetFCs.length);
-      System.arraycopy(workspaceFCs, 0, fcs, targetFCs.length, workspaceFCs.length);
+      T[] targetExtensionPoints = getTargetPlatformExtensionPoints(clazz);
+      T[] workspaceExtensionPoints = getWorkspacePlatformExtensionPoints(clazz);
+      T[] extensionPoints = (T[]) Array.newInstance(clazz, targetExtensionPoints.length + workspaceExtensionPoints.length);
+      System.arraycopy(targetExtensionPoints, 0, extensionPoints, 0, targetExtensionPoints.length);
+      System.arraycopy(workspaceExtensionPoints, 0, extensionPoints, targetExtensionPoints.length, workspaceExtensionPoints.length);
       // Return
-      return fcs;
+      return extensionPoints;
     }
   }
 
-  private void initializePlatformPlugin() {
-    if (_models != null) {
+  private void initializePlatformManager() {
+    if (_platformBundles != null) {
       return;
     }
-    // Initialize listeners
+    // listeners
     PDECore.getDefault().getModelManager().addPluginModelListener(this);
     PDECore.getDefault().getModelManager().addExtensionDeltaListener(this);
-    // Create our registries
-    _models = new TreeMap<String, IPlatformPlugin>();
-    _workspaceFcs = new ArrayList<IPlatformFactoryComponent>();
-    _targetFcs = new ArrayList<IPlatformFactoryComponent>();
+    // registries
+    _platformBundles = new TreeMap<String, IPlatformBundle>();
+    _workspaceRegistry = new HashMap<Class<?>, List<Object>>();
+    _targetRegistry = new HashMap<Class<?>, List<Object>>();
     for (IPluginModelBase base : PluginRegistry.getActiveModels(true)) {
-      addModel(BundleHelper.getBundleId(base), createPlatformPlugin(base), null);
+      addPlatformBundle(BundleHelper.getBundleId(base), createPlatformBundle(base), null);
     }
     // Debug
     if (EGFPlatformPlugin.getDefault().isDebugging()) {
-      IPlatformPlugin[] models = getPlatformPlugins();
-      if (models.length > 0) {
-        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager.initializePlatformPlugin(..) _ found {0} Platform Plugin Model{1}", //$NON-NLS-1$ 
-            models.length, models.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+      IPlatformBundle[] platformBundles = getPlatformBundles();
+      if (platformBundles.length > 0) {
+        EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager.initializePlatformManager(..) _ found {0} Platform Bundle{1}", //$NON-NLS-1$ 
+            platformBundles.length, platformBundles.length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
         ));
       }
-      trace(models);
+      trace(platformBundles);
     }
   }
 
@@ -190,10 +245,10 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
    * @param delta
    *          the delta of changes
    */
-  private void firePlatformFactoryComponent(IPlatformFactoryComponentDelta delta) {
+  private void firePlatformExtensionPoint(IPlatformExtensionPointDelta delta) {
     if (_listeners != null) {
-      for (IPlatformFactoryComponentListener listener : _listeners) {
-        listener.factoryComponentChanged(delta);
+      for (IPlatformExtensionPointListener listener : _listeners) {
+        listener.platformExtensionPointChanged(delta);
       }
     }
   }
@@ -204,11 +259,11 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
    * @param listener
    *          the listener to be added
    */
-  public void addPlatformFactoryComponentListener(IPlatformFactoryComponentListener listener) {
+  public void addPlatformExtensionPointListener(IPlatformExtensionPointListener listener) {
     // Lock PlatformManager
     synchronized (_lock) {
       if (_listeners == null) {
-        _listeners = new ArrayList<IPlatformFactoryComponentListener>();
+        _listeners = new ArrayList<IPlatformExtensionPointListener>();
       }
       if (_listeners.contains(listener) == false) {
         _listeners.add(listener);
@@ -222,7 +277,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
    * @param listener
    *          the listener to be removed
    */
-  public void removePlatformFactoryComponentListener(IPlatformFactoryComponentListener listener) {
+  public void removePlatformExtensionPointListener(IPlatformExtensionPointListener listener) {
     // Lock PlatformManager
     synchronized (_lock) {
       if (_listeners == null) {
@@ -236,7 +291,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
    * Process extension delta event This method is called when listeners are
    * initialized.
    * 
-   * @see {@link org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformPlugins()}
+   * @see {@link org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformBundles()}
    *      for initialization. If someone call dispose() this method is no longer
    *      called. No need to initialize the PlatformManager
    * 
@@ -247,7 +302,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     // Lock PlatformManager
     synchronized (_lock) {
       // Initialize a delta
-      PlatformFactoryComponentDelta delta = new PlatformFactoryComponentDelta();
+      PlatformExtensionPointDelta delta = new PlatformExtensionPointDelta();
       // Process Removed Entries
       for (IPluginModelBase base : event.getRemovedModels()) {
         String id = BundleHelper.getBundleId(base);
@@ -255,9 +310,9 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
         if (id == null) {
           continue;
         }
-        IPlatformPlugin existingModel = _models.get(id);
-        if (existingModel != null && base.equals(existingModel.getPluginModelBase())) {
-          removeModel(id, existingModel, delta);
+        IPlatformBundle existingPlatformBundle = _platformBundles.get(id);
+        if (existingPlatformBundle != null && base.equals(existingPlatformBundle.getPluginModelBase())) {
+          removePlatformBundle(id, existingPlatformBundle, delta);
         }
       }
       // Process Changed Entries
@@ -271,11 +326,11 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
         if (id == null) {
           continue;
         }
-        IPlatformPlugin existingModel = _models.get(id);
-        if (existingModel != null && base.equals(existingModel.getPluginModelBase()) == false) {
-          removeModel(id, existingModel, delta);
+        IPlatformBundle existingPlatformBundle = _platformBundles.get(id);
+        if (existingPlatformBundle != null && base.equals(existingPlatformBundle.getPluginModelBase()) == false) {
+          removePlatformBundle(id, existingPlatformBundle, delta);
         }
-        addModel(id, createPlatformPlugin(base), delta);
+        addPlatformBundle(id, createPlatformBundle(base), delta);
       }
       // Something to process
       if (delta.isEmpty() == false) {
@@ -284,7 +339,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
           trace(delta);
         }
         // Notify all interested listeners in the changes made to models
-        firePlatformFactoryComponent(delta);
+        firePlatformExtensionPoint(delta);
       }
     }
   }
@@ -293,7 +348,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
    * Process model delta event This method is called when listeners are
    * initialized.
    * 
-   * @see {@link org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformPlugins()}
+   * @see {@link org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformBundles()}
    *      for initialization. If someone call dispose() this method is no longer
    *      called. No need to initialize the PlatformManager
    * 
@@ -304,7 +359,7 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     // Lock PlatformManager
     synchronized (_lock) {
       // Initialize a delta
-      PlatformFactoryComponentDelta delta = new PlatformFactoryComponentDelta();
+      PlatformExtensionPointDelta delta = new PlatformExtensionPointDelta();
       // Process Removed Entries
       if ((event.getKind() & PluginModelDelta.REMOVED) != 0) {
         for (ModelEntry entry : event.getRemovedEntries()) {
@@ -313,16 +368,16 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
           if (id == null) {
             continue;
           }
-          IPlatformPlugin existingModel = _models.get(id);
-          if (existingModel != null) {
-            removeModel(id, existingModel, delta);
+          IPlatformBundle existingPlatformBundle = _platformBundles.get(id);
+          if (existingPlatformBundle != null) {
+            removePlatformBundle(id, existingPlatformBundle, delta);
           }
         }
       }
       // Process Changed Entries
       if ((event.getKind() & PluginModelDelta.CHANGED) != 0) {
         for (ModelEntry entry : event.getChangedEntries()) {
-          for (IPluginModelBase base : getFactoryComponentsModels(entry)) {
+          for (IPluginModelBase base : getExtensionPointModels(entry)) {
             handleChange(base, delta);
           }
         }
@@ -330,17 +385,17 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
       // Process Added Entries
       if ((event.getKind() & PluginModelDelta.ADDED) != 0) {
         for (ModelEntry entry : event.getAddedEntries()) {
-          for (IPluginModelBase base : getFactoryComponentsModels(entry)) {
+          for (IPluginModelBase base : getExtensionPointModels(entry)) {
             String id = BundleHelper.getBundleId(base);
             // Ignore Model with unknown id
             if (id == null) {
               continue;
             }
-            IPlatformPlugin existingModel = _models.get(id);
-            if (existingModel != null && base.equals(existingModel.getPluginModelBase()) == false) {
-              removeModel(id, existingModel, delta);
+            IPlatformBundle existingPlatformBundle = _platformBundles.get(id);
+            if (existingPlatformBundle != null && base.equals(existingPlatformBundle.getPluginModelBase()) == false) {
+              removePlatformBundle(id, existingPlatformBundle, delta);
             }
-            addModel(id, createPlatformPlugin(base), delta);
+            addPlatformBundle(id, createPlatformBundle(base), delta);
           }
         }
       }
@@ -351,213 +406,243 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
           trace(delta);
         }
         // Notify all interested listeners in the changes made to models
-        firePlatformFactoryComponent(delta);
+        firePlatformExtensionPoint(delta);
       }
     }
   }
 
-  private PlatformPlugin createPlatformPlugin(IPluginModelBase base) {
+  private IPlatformBundle createPlatformBundle(IPluginModelBase base) {
     // Always create a model
-    PlatformPlugin model = new PlatformPlugin(base);
+    IPlatformBundle platformBundle = new PlatformBundle(base);
     // Process extension point
     for (IPluginExtension extension : base.getExtensions(false).getExtensions()) {
-      if (IFactoryComponentConstants.FULLY_QUALIFIED_EXTENSION_POINT_ID.equals(extension.getPoint())) {
-        model.addPlatformFactoryComponent(extension);
+      Class<? extends IPlatformExtensionPoint> clazz = getExtensionPoints().get(extension.getPoint());
+      if (clazz != null) {
+        platformBundle.addPlatformExtensionPoint(clazz, extension);
       }
     }
-    return model;
+    return platformBundle;
   }
 
-  private void handleChange(IPluginModelBase base, PlatformFactoryComponentDelta delta) {
+  private void handleChange(IPluginModelBase base, PlatformExtensionPointDelta delta) {
     // Check an existing one
     String id = BundleHelper.getBundleId(base);
-    IPlatformPlugin existingModel = _models.get(id);
+    IPlatformBundle existingPlatformBundle = _platformBundles.get(id);
     if (base.isEnabled()) {
-      if (existingModel != null && base.equals(existingModel.getPluginModelBase())) {
-        mergeModel(id, createPlatformPlugin(base), delta);
+      if (existingPlatformBundle != null && base.equals(existingPlatformBundle.getPluginModelBase())) {
+        mergePlatformBundle(id, createPlatformBundle(base), delta);
       } else {
-        if (existingModel != null && base.equals(existingModel.getPluginModelBase()) == false) {
-          removeModel(id, existingModel, delta);
+        if (existingPlatformBundle != null && base.equals(existingPlatformBundle.getPluginModelBase()) == false) {
+          removePlatformBundle(id, existingPlatformBundle, delta);
         }
-        addModel(id, createPlatformPlugin(base), delta);
+        addPlatformBundle(id, createPlatformBundle(base), delta);
       }
     } else {
-      removeModel(id, existingModel, delta);
+      removePlatformBundle(id, existingPlatformBundle, delta);
     }
   }
 
-  private void mergeModel(String id, IPlatformPlugin newModel, PlatformFactoryComponentDelta delta) {
-    if (id == null || newModel == null) {
+  private void mergePlatformBundle(String id, IPlatformBundle newPlatformBundle, PlatformExtensionPointDelta delta) {
+    if (id == null || newPlatformBundle == null) {
       return;
     }
     // Retrieve an existing one
-    IPlatformPlugin existingModel = _models.get(id);
-    if (existingModel == null) {
+    IPlatformBundle existingPlatformBundle = _platformBundles.get(id);
+    if (existingPlatformBundle == null) {
       return;
     }
-    // Analyse Removed Factory Components
-    LOOP: for (IPlatformFactoryComponent fc : existingModel.getPlatformFactoryComponents()) {
-      // Analyse model
-      for (IPlatformFactoryComponent newFc : newModel.getPlatformFactoryComponents()) {
-        if (newFc.getURI().equals(fc.getURI())) {
-          continue LOOP;
-        }
-      }
-      // Remove factory component from our existing model
-      if (existingModel.removePlatformFactoryComponent(fc) == false) {
-        EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergeModel(..) _ ''{0}'' unable to remove Factory Component from existingModel.", //$NON-NLS-1$
-            fc.getURI()));
-      }
-      // Remove factory component in our target or workspace registry
-      if (existingModel.isTarget()) {
-        if (_targetFcs.remove(fc) == false) {
-          EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergeModel(..) _ ''{0}'' unable to remove Factory Component from target registry.", //$NON-NLS-1$
-              fc.getURI()));
-        } else {
-          // Update delta
-          if (delta != null) {
-            delta.storeRemovedPlatformFactoryComponent(fc);
+    // Analyse Removed Extension Points
+    for (Class<? extends IPlatformExtensionPoint> clazz : getExtensionPoints().values()) {
+      LOOP: for (IPlatformExtensionPoint extensionPoint : existingPlatformBundle.getPlatformExtensionPoints(clazz)) {
+        // Analyse Platform Bundle
+        for (IPlatformExtensionPoint newExtensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
+          if (newExtensionPoint.compareTo(extensionPoint) == 0) {
+            continue LOOP;
           }
         }
-      } else {
-        if (_workspaceFcs.remove(fc) == false) {
-          EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergeModel(..) _ ''{0}'' unable to remove Factory Component from workspace registry.", //$NON-NLS-1$
-              fc.getURI()));
+        // Remove factory component from our existing model
+        if (existingPlatformBundle.removePlatformExtensionPoint(clazz, extensionPoint) == false) {
+          EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergePlatformBundle(..) _ ''{0}'' unable to remove Extension Point from PlatformBundle.", //$NON-NLS-1$
+              extensionPoint));
+        }
+        // Remove factory component in our target or workspace registry
+        if (existingPlatformBundle.isTarget()) {
+          if (_targetRegistry.get(clazz).remove(extensionPoint)) {
+            // Clean Target Registry if necessary
+            if (_targetRegistry.get(clazz).isEmpty()) {
+              _targetRegistry.remove(clazz);
+            }
+            // Update delta
+            if (delta != null) {
+              delta.storeRemovedPlatformExtensionPoint(clazz, extensionPoint);
+            }
+          }
         } else {
-          // Update delta
-          if (delta != null) {
-            delta.storeRemovedPlatformFactoryComponent(fc);
+          if (_workspaceRegistry.get(clazz).remove(extensionPoint)) {
+            // Clean Workspace Registry if necessary
+            if (_workspaceRegistry.get(clazz).isEmpty()) {
+              _workspaceRegistry.remove(clazz);
+            }
+            // Update delta
+            if (delta != null) {
+              delta.storeRemovedPlatformExtensionPoint(clazz, extensionPoint);
+            }
           }
         }
       }
     }
-    // Analyse Added Factory Components
-    LOOP: for (IPlatformFactoryComponent newFc : newModel.getPlatformFactoryComponents()) {
-      // analyse model
-      for (IPlatformFactoryComponent fc : existingModel.getPlatformFactoryComponents()) {
-        if (fc.getURI().equals(newFc.getURI())) {
-          continue LOOP;
-        }
-      }
-      // add a new factory component in our existing model
-      newFc = existingModel.addPlatformFactoryComponent(newFc.getPluginElement());
-      if (newFc == null) {
-        continue;
-      }
-      // add factory component in our target or workspace registry
-      if (existingModel.isTarget()) {
-        if (_targetFcs.add(newFc) == false) {
-          EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergeModel(..) _ ''{0}'' unable to add Factory Component in target registry.", //$NON-NLS-1$
-              newFc.getURI()));
-        } else {
-          // Update delta
-          if (delta != null) {
-            delta.storeAddedPlatformFactoryComponent(newFc);
+    for (Class<? extends IPlatformExtensionPoint> clazz : getExtensionPoints().values()) {
+      // Analyse Added Extension Points
+      LOOP: for (IPlatformExtensionPoint newExtensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
+        // analyse Platform Bundle
+        for (IPlatformExtensionPoint extensionPoint : existingPlatformBundle.getPlatformExtensionPoints(clazz)) {
+          if (extensionPoint.compareTo(newExtensionPoint) == 0) {
+            continue LOOP;
           }
         }
-      } else {
-        if (_workspaceFcs.add(newFc) == false) {
-          EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergeModel(..) _ ''{0}'' unable to add Factory Component in workspace registry.", //$NON-NLS-1$
-              newFc.getURI()));
+        // add a new factory component in our existing model
+        newExtensionPoint = existingPlatformBundle.addPlatformExtensionPoint(clazz, newExtensionPoint.getPluginElement());
+        if (newExtensionPoint == null) {
+          continue;
+        }
+        // add factory component in our target or workspace registry
+        if (existingPlatformBundle.isTarget()) {
+          List<Object> extensionPoints = _targetRegistry.get(clazz);
+          if (extensionPoints == null) {
+            extensionPoints = new ArrayList<Object>();
+            _targetRegistry.put(clazz, extensionPoints);
+          }
+          if (extensionPoints.add(newExtensionPoint) == false) {
+            EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergePlatformBundle(..) _ ''{0}'' unable to add Extension Point in target registry.", //$NON-NLS-1$
+                newExtensionPoint));
+          } else {
+            // Update delta
+            if (delta != null) {
+              delta.storeAddedPlatformExtensionPoint(clazz, newExtensionPoint);
+            }
+          }
         } else {
-          // Update delta
-          if (delta != null) {
-            delta.storeAddedPlatformFactoryComponent(newFc);
+          List<Object> extensionPoints = _workspaceRegistry.get(clazz);
+          if (extensionPoints == null) {
+            extensionPoints = new ArrayList<Object>();
+            _workspaceRegistry.put(clazz, extensionPoints);
+          }
+          if (extensionPoints.add(newExtensionPoint) == false) {
+            EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergePlatformBundle(..) _ ''{0}'' unable to add Extension Point in workspace registry.", //$NON-NLS-1$
+                newExtensionPoint));
+          } else {
+            // Update delta
+            if (delta != null) {
+              delta.storeAddedPlatformExtensionPoint(clazz, newExtensionPoint);
+            }
           }
         }
       }
     }
     // Finally remove existingModel if necessary
-    if (existingModel.getPlatformFactoryComponents().length == 0) {
-      // remove model from our main registry
-      if (existingModel.equals(_models.remove(id)) == false) {
-        EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergeModel(..) _ ''{0}'' unknown model to remove.", //$NON-NLS-1$
+    if (existingPlatformBundle.isEmpty()) {
+      // remove platform bundle from our main registry
+      if (existingPlatformBundle.equals(_platformBundles.remove(id)) == false) {
+        EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergePlatformBundle(..) _ ''{0}'' unknown PlatformBundle.", //$NON-NLS-1$
             id));
       }
     }
   }
 
-  private void removeModel(String id, IPlatformPlugin model, PlatformFactoryComponentDelta delta) {
-    if (id == null || model == null) {
+  private void removePlatformBundle(String id, IPlatformBundle platformBundle, PlatformExtensionPointDelta delta) {
+    if (id == null || platformBundle == null) {
       return;
     }
-    // Remove model from our main registry
-    if (model.equals(_models.remove(id)) == false) {
-      EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.removeModel(..) _ ''{0}'' unknown model to remove.", //$NON-NLS-1$
+    // Remove platform bundle from our main registry
+    if (platformBundle.equals(_platformBundles.remove(id)) == false) {
+      EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.removePlatformBundle(..) _ ''{0}'' unknown PlatformBundle.", //$NON-NLS-1$
           id));
     }
-    // Process Factory Component
-    for (IPlatformFactoryComponent fc : model.getPlatformFactoryComponents()) {
-      // remove factory component in our target or workspace registry
-      if (model.isTarget()) {
-        if (_targetFcs.remove(fc) == false) {
-          EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.removeModel(..) _ ''{0}'' unable to remove Factory Component from target registry.", //$NON-NLS-1$
-              fc.getURI()));
-        } else {
-          // Update delta
-          if (delta != null) {
-            delta.storeRemovedPlatformFactoryComponent(fc);
+    // Process extension point
+    // Analyse Removed Extension Points
+    for (Class<? extends IPlatformExtensionPoint> clazz : getExtensionPoints().values()) {
+      for (IPlatformExtensionPoint extensionPoint : platformBundle.getPlatformExtensionPoints(clazz)) {
+        // remove extension point in our target or workspace registry
+        if (platformBundle.isTarget()) {
+          if (_targetRegistry.get(clazz).remove(extensionPoint)) {
+            // Clean Target Registry if necessary
+            if (_targetRegistry.get(clazz).isEmpty()) {
+              _targetRegistry.remove(clazz);
+            }
+            // Update delta
+            if (delta != null) {
+              delta.storeRemovedPlatformExtensionPoint(clazz, extensionPoint);
+            }
           }
-        }
-      } else {
-        if (_workspaceFcs.remove(fc) == false) {
-          EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.removeModel(..) _ ''{0}'' unable to remove Factory Component from workspace registry.", //$NON-NLS-1$
-              fc.getURI()));
         } else {
-          // Update delta
-          if (delta != null) {
-            delta.storeRemovedPlatformFactoryComponent(fc);
+          if (_workspaceRegistry.get(clazz).remove(extensionPoint)) {
+            // Clean Workspace Registry if necessary
+            if (_workspaceRegistry.get(clazz).isEmpty()) {
+              _workspaceRegistry.remove(clazz);
+            }
+            // Update delta
+            if (delta != null) {
+              delta.storeRemovedPlatformExtensionPoint(clazz, extensionPoint);
+            }
           }
         }
       }
     }
   }
 
-  private void addModel(String id, IPlatformPlugin newModel, PlatformFactoryComponentDelta delta) {
-    if (id == null || newModel == null || newModel.getPlatformFactoryComponents().length == 0) {
+  private void addPlatformBundle(String id, IPlatformBundle newPlatformBundle, PlatformExtensionPointDelta delta) {
+    if (id == null || newPlatformBundle == null || newPlatformBundle.isEmpty()) {
       return;
     }
     // Check existing model
     // Retrieve an existing one
-    IPlatformPlugin existingModel = _models.get(id);
-    if (existingModel != null) {
+    IPlatformBundle existingPlatformBundle = _platformBundles.get(id);
+    if (existingPlatformBundle != null) {
       // Nothing to add
       return;
     }
-    // Add model to our main registry
-    if (_models.put(id, newModel) != null) {
-      EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.addModel(..) _ Bundle ''{0}'' unable to a model.", //$NON-NLS-1$
-          id));
-      return;
-    }
-    // Process Factory Component
-    for (IPlatformFactoryComponent fc : newModel.getPlatformFactoryComponents()) {
-      // add factory component in our target or workspace registry
-      if (newModel.isTarget()) {
-        if (_targetFcs.add(fc) == false) {
-          EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.addModel(..) _ ''{0}'' unable to add Factory Component in target registry.", //$NON-NLS-1$
-              fc.getURI()));
-        } else {
-          // Update delta
-          if (delta != null) {
-            delta.storeAddedPlatformFactoryComponent(fc);
+    // Add platform bundle to our main registry
+    _platformBundles.put(id, newPlatformBundle);
+    // Process extension point
+    for (Class<? extends IPlatformExtensionPoint> clazz : getExtensionPoints().values()) {
+      for (IPlatformExtensionPoint extensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
+        // add extension point in our target or workspace registry
+        if (newPlatformBundle.isTarget()) {
+          List<Object> extensionPoints = _targetRegistry.get(clazz);
+          if (extensionPoints == null) {
+            extensionPoints = new ArrayList<Object>();
+            _targetRegistry.put(clazz, extensionPoints);
           }
-        }
-      } else {
-        if (_workspaceFcs.add(fc) == false) {
-          EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.addModel(..) _ ''{0}'' unable to add Factory Component in workspace registry.", //$NON-NLS-1$
-              fc.getURI()));
+          if (extensionPoints.add(extensionPoint) == false) {
+            EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.addPlatformBundle(..) _ ''{0}'' unable to add Extension Point in target registry.", //$NON-NLS-1$
+                extensionPoint.getId()));
+          } else {
+            // Update delta
+            if (delta != null) {
+              delta.storeAddedPlatformExtensionPoint(clazz, extensionPoint);
+            }
+          }
         } else {
-          // Update delta
-          if (delta != null) {
-            delta.storeAddedPlatformFactoryComponent(fc);
+          List<Object> extensionPoints = _workspaceRegistry.get(clazz);
+          if (extensionPoints == null) {
+            extensionPoints = new ArrayList<Object>();
+            _workspaceRegistry.put(clazz, extensionPoints);
+          }
+          if (extensionPoints.add(extensionPoint) == false) {
+            EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.addPlatformBundle(..) _ ''{0}'' unable to add Extension Point in workspace registry.", //$NON-NLS-1$
+                extensionPoint.getId()));
+          } else {
+            // Update delta
+            if (delta != null) {
+              delta.storeAddedPlatformExtensionPoint(clazz, extensionPoint);
+            }
           }
         }
       }
     }
   }
 
-  private List<IPluginModelBase> getFactoryComponentsModels(ModelEntry entry) {
+  private List<IPluginModelBase> getExtensionPointModels(ModelEntry entry) {
     List<IPluginModelBase> plugins = new UniqueEList<IPluginModelBase>();
     // workspace models are always processed first, pde and jdt default
     // behaviour
@@ -566,8 +651,11 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
         continue;
       }
       for (IPluginExtension extension : model.getExtensions(false).getExtensions()) {
-        if (IFactoryComponentConstants.FULLY_QUALIFIED_EXTENSION_POINT_ID.equals(extension.getPoint())) {
+        Class<? extends IPlatformExtensionPoint> clazz = getExtensionPoints().get(extension.getPoint());
+        if (clazz != null) {
           plugins.add(model);
+          // Only one known extension points is enough to further analyse such
+          // model
           continue LOOP;
         }
       }
@@ -575,34 +663,34 @@ public final class PlatformManager implements IPluginModelListener, IExtensionDe
     return plugins;
   }
 
-  private void trace(IPlatformPlugin[] models) {
-    for (IPlatformPlugin model : models) {
-      EGFPlatformPlugin.getDefault().logWarning(model.toString(), 1);
-      for (IPlatformFactoryComponent factoryComponent : model.getPlatformFactoryComponents()) {
-        EGFPlatformPlugin.getDefault().logWarning("Contains: " + factoryComponent.toString(), 2); //$NON-NLS-1$
+  private void trace(IPlatformBundle[] platformBundles) {
+    for (IPlatformBundle platformBundle : platformBundles) {
+      EGFPlatformPlugin.getDefault().logInfo(platformBundle.toString(), 1);
+      for (IPlatformExtensionPoint extensionPoint : platformBundle.getPlatformExtensionPoints()) {
+        EGFPlatformPlugin.getDefault().logInfo("Contains: " + extensionPoint.toString(), 2); //$NON-NLS-1$
       }
     }
   }
 
-  private void trace(IPlatformFactoryComponentDelta delta) {
-    if (delta.getRemovedPlatformFactoryComponents().length > 0) {
-      EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager Removed {0} Factory Component{1}.", //$NON-NLS-1$ 
-          delta.getRemovedPlatformFactoryComponents().length, delta.getRemovedPlatformFactoryComponents().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+  private void trace(IPlatformExtensionPointDelta delta) {
+    if (delta.getRemovedPlatformExtensionPoints().length > 0) {
+      EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager Removed {0} Extension Point{1}.", //$NON-NLS-1$ 
+          delta.getRemovedPlatformExtensionPoints().length, delta.getRemovedPlatformExtensionPoints().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
-      trace(delta.getRemovedPlatformFactoryComponents());
+      trace(delta.getRemovedPlatformExtensionPoints());
     }
-    if (delta.getAddedPlatformFactoryComponents().length > 0) {
-      EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager Added {0} Factory Component{1}.", //$NON-NLS-1$ 
-          delta.getAddedPlatformFactoryComponents().length, delta.getAddedPlatformFactoryComponents().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+    if (delta.getAddedPlatformExtensionPoints().length > 0) {
+      EGFPlatformPlugin.getDefault().logInfo(NLS.bind("PlatformManager Added {0} Extension Point{1}.", //$NON-NLS-1$ 
+          delta.getAddedPlatformExtensionPoints().length, delta.getAddedPlatformExtensionPoints().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
-      trace(delta.getAddedPlatformFactoryComponents());
+      trace(delta.getAddedPlatformExtensionPoints());
     }
   }
 
-  private void trace(IPlatformFactoryComponent[] factoryComponents) {
-    for (IPlatformFactoryComponent factoryComponent : factoryComponents) {
-      EGFPlatformPlugin.getDefault().logWarning(factoryComponent.toString(), 1);
-      EGFPlatformPlugin.getDefault().logWarning("From: " + factoryComponent.getPlatformPlugin().toString(), 2); //$NON-NLS-1$
+  private void trace(IPlatformExtensionPoint[] extensionPoints) {
+    for (IPlatformExtensionPoint extensionPoint : extensionPoints) {
+      EGFPlatformPlugin.getDefault().logInfo(extensionPoint.toString(), 1);
+      EGFPlatformPlugin.getDefault().logInfo("From: " + extensionPoint.getPlatformBundle().toString(), 2); //$NON-NLS-1$
     }
   }
 

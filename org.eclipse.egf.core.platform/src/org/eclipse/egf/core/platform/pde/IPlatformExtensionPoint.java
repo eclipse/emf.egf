@@ -1,6 +1,4 @@
 /**
- * <copyright>
- * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,27 +7,17 @@
  * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
- * </copyright>
- * 
  */
 package org.eclipse.egf.core.platform.pde;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IPluginElement;
 
-public interface IPlatformFactoryComponent extends Comparable<IPlatformFactoryComponent> {
-
-  public URI getURI();
-
-  public URI getPreviousURI();
+public interface IPlatformExtensionPoint extends Comparable<IPlatformExtensionPoint> {
 
   public String getId();
 
+  public IPlatformBundle getPlatformBundle();
+
   public IPluginElement getPluginElement();
-
-  public IPlatformPlugin getPlatformPlugin();
-
-  public String getName();
 
 }

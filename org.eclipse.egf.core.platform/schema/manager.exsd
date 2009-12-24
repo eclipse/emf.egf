@@ -3,10 +3,10 @@
 <schema targetNamespace="org.eclipse.egf.core.platform" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.egf.core.platform" id="factoryComponent" name="EGF Platform Factory Component"/>
+         <meta.schema plugin="org.eclipse.egf.core.platform" id="manager" name="EGF Platform Manager"/>
       </appInfo>
       <documentation>
-         Extension point to define a Factory Component.
+         Exposes EGF Platform Manager.
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="factoryComponent" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="manager" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -50,17 +50,28 @@
       </complexType>
    </element>
 
-   <element name="factoryComponent">
+   <element name="manager">
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
          </sequence>
-         <attribute name="id" type="string" use="required">
+         <attribute name="extension" type="string" use="required">
             <annotation>
                <documentation>
-                  FactoryComponent identifier.
+                  
                </documentation>
                <appInfo>
                   <meta.attribute kind="identifier"/>
+               </appInfo>
+            </annotation>
+         </attribute>
+         <attribute name="factory" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The implementation of the expected services.
+Must implement IPlatformExtensionPointFactory interface (either directly or not).
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory"/>
                </appInfo>
             </annotation>
          </attribute>
@@ -72,7 +83,7 @@
          <meta.section type="since"/>
       </appInfo>
       <documentation>
-         0.1.0
+         0.2.0
       </documentation>
    </annotation>
 
@@ -87,7 +98,7 @@
 
    <annotation>
       <appInfo>
-         <meta.section type="apiInfo"/>
+         <meta.section type="apiinfo"/>
       </appInfo>
       <documentation>
          [Enter API information here.]
