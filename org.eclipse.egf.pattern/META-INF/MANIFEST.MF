@@ -12,6 +12,7 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.eclipse.egf.pattern,
+ org.eclipse.egf.pattern.ecore,
  org.eclipse.egf.pattern.execution,
  org.eclipse.egf.pattern.extension,
  org.eclipse.egf.pattern.query,

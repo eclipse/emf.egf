@@ -15,25 +15,18 @@
 
 package org.eclipse.egf.pattern.execution;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
-import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.egf.pattern.URLHelper;
 import org.eclipse.osgi.service.resolver.BundleSpecification;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.osgi.framework.Bundle;
@@ -62,12 +55,12 @@ public class WorkspaceAndPluginClassLoader extends ClassLoader {
         try {
             IProject project = fc.getPlatformPlugin().getProject();
             if (project != null)
-                urls.add(toURL(project));
+                urls.add(URLHelper.getURL(project));
             IPluginModelBase model = fc.getPlatformPlugin().getPluginModelBase();
             for (BundleSpecification spec : model.getBundleDescription().getRequiredBundles()) {
                 Bundle bundle = Platform.getBundle(spec.getName());
                 if (bundle == null) {
-                    URL url = toURL(root.getProject(spec.getName()));
+                    URL url = URLHelper.getURL(root.getProject(spec.getName()));
                     if (url != null)
                         urls.add(url);
                 } else {
@@ -96,18 +89,4 @@ public class WorkspaceAndPluginClassLoader extends ClassLoader {
         }
     }
 
-    private URL toURL(IProject project) throws MalformedURLException {
-        IJavaProject javaProject = JavaCore.create(project);
-
-        IPath outputLocation = null;
-        try {
-            outputLocation = javaProject.getOutputLocation();
-        } catch (JavaModelException e) {
-            Activator.getDefault().logError(Messages.bind(Messages.classloader_error2, project.getName()), e);
-            return null;
-        }
-        IFolder folder = project.getFolder(outputLocation.removeFirstSegments(1));
-        return new URL("file", null, folder.getLocation().toOSString() + CharacterConstants.SLASH_CHARACTER);
-
-    }
 }

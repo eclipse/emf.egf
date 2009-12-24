@@ -15,17 +15,10 @@
 
 package org.eclipse.egf.pattern.query;
 
-import org.eclipse.egf.core.platform.resource.ResourceHelper;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
-import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.egf.pattern.ecore.EPackageHelper;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 /**
  * TODO we need to manage ecore models from the workspace.
@@ -50,20 +43,13 @@ public class ParameterTypeHelper {
             return type;
         EPackage ePackage = getEPackage(type, index);
         String nsURI = ePackage.getNsURI();
-        URI uri = EcorePlugin.getEPackageNsURIToGenModelLocationMap().get(nsURI);
-        Resource res = loadResource(uri);
-        for (EObject obj : res.getContents()) {
-            if (obj instanceof GenModel) {
-                GenModel genModel = (GenModel) obj;
-                for (GenPackage gPack : genModel.getGenPackages()) {
-                    EPackage ecorePackage = gPack.getEcorePackage();
-                    if (ePackage.getName().equals(ecorePackage.getName()) && ePackage.getNsPrefix().equals(ecorePackage.getNsPrefix()) && ePackage.getNsURI().equals(ecorePackage.getNsURI())) {
-                        return gPack.getBasePackage() + "." + ePackage.getName() + "." + getClassName(type, index);
-                    }
-                }
-            }
-        }
-        throw new IllegalStateException(Messages.bind(Messages.assembly_error7, type));
+        String basePackage = EPackageHelper.getBasePackage(ePackage);
+        if (basePackage == null)
+            throw new IllegalStateException(Messages.bind(Messages.assembly_error7, type));
+
+        if ("".equals(basePackage))
+            return ePackage.getName() + "." + getClassName(type, index);
+        return basePackage + "." + ePackage.getName() + "." + getClassName(type, index);
     }
 
     /**
@@ -96,7 +82,7 @@ public class ParameterTypeHelper {
     }
 
     private EPackage getEPackage(String type, int index) {
-        return EPackage.Registry.INSTANCE.getEPackage(getNsURI(type, index));
+        return EPackageHelper.REGISTRY.getEPackage(getNsURI(type, index));
     }
 
     private String getNsURI(String type, int index) {
@@ -108,14 +94,6 @@ public class ParameterTypeHelper {
         if (className.startsWith("//"))
             return className.substring(2);
         return className;
-    }
-
-    private Resource loadResource(URI uri) {
-        // TODO it may be interesting to keep loaded resources for future
-        // uses ... however, workspace resources may change.
-        ResourceSetImpl set = new ResourceSetImpl();
-        Resource res = ResourceHelper.loadResource(set, uri);
-        return res;
     }
 
     private ParameterTypeHelper() {
