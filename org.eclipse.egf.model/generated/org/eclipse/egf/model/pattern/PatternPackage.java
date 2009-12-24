@@ -852,13 +852,22 @@ public interface PatternPackage extends EPackage {
     int PATTERN_VARIABLE__DESCRIPTION = FactoryComponentPackage.MODEL_ELEMENT__DESCRIPTION;
 
     /**
+     * The feature id for the '<em><b>Type</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_VARIABLE__TYPE = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+    /**
      * The number of structural features of the '<em>Variable</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PATTERN_VARIABLE_FEATURE_COUNT = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+    int PATTERN_VARIABLE_FEATURE_COUNT = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl <em>Injected Call</em>}' class.
@@ -1450,6 +1459,17 @@ public interface PatternPackage extends EPackage {
     EClass getPatternVariable();
 
     /**
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.model.pattern.PatternVariable#getType <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Type</em>'.
+     * @see org.eclipse.egf.model.pattern.PatternVariable#getType()
+     * @see #getPatternVariable()
+     * @generated
+     */
+    EAttribute getPatternVariable_Type();
+
+    /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.AbstractPatternCall <em>Abstract Pattern Call</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1913,6 +1933,14 @@ public interface PatternPackage extends EPackage {
          * @generated
          */
         EClass PATTERN_VARIABLE = eINSTANCE.getPatternVariable();
+
+        /**
+         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EAttribute PATTERN_VARIABLE__TYPE = eINSTANCE.getPatternVariable_Type();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl <em>Abstract Pattern Call</em>}' class.

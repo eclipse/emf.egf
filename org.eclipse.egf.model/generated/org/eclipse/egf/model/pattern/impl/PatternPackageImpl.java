@@ -539,6 +539,15 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EAttribute getPatternVariable_Type() {
+        return (EAttribute) patternVariableEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
@@ -718,6 +727,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         createEReference(methodCallEClass, METHOD_CALL__CALLED);
 
         patternVariableEClass = createEClass(PATTERN_VARIABLE);
+        createEAttribute(patternVariableEClass, PATTERN_VARIABLE__TYPE);
 
         abstractPatternCallEClass = createEClass(ABSTRACT_PATTERN_CALL);
         createEReference(abstractPatternCallEClass, ABSTRACT_PATTERN_CALL__CALLED);
@@ -848,6 +858,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         initEReference(getMethodCall_Called(), this.getPatternMethod(), null, "called", null, 1, 1, MethodCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(patternVariableEClass, PatternVariable.class, "PatternVariable", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEAttribute(getPatternVariable_Type(), ecorePackage.getEString(), "type", null, 1, 1, PatternVariable.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(abstractPatternCallEClass, AbstractPatternCall.class, "AbstractPatternCall", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getAbstractPatternCall_Called(), this.getPattern(), null, "called", null, 1, 1, AbstractPatternCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

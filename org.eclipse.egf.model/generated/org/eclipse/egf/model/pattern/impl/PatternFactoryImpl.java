@@ -20,6 +20,7 @@ import java.util.Map;
 
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
+import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.CustomQuery;
 import org.eclipse.egf.model.pattern.MethodCall;
@@ -44,14 +45,13 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     /**
-     * Creates the default factory implementation. <!-- begin-user-doc --> <!--
+     * Creates the default factory implementation.
+     * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @generated
      */
     public static PatternFactory init() {
@@ -67,9 +67,9 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     }
 
     /**
-     * Creates an instance of the factory. <!-- begin-user-doc --> <!--
+     * Creates an instance of the factory.
+     * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @generated
      */
     public PatternFactoryImpl() {
@@ -78,7 +78,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -117,7 +116,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -134,7 +132,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -151,7 +148,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Pattern createPattern() {
@@ -161,7 +157,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternMethod createPatternMethod() {
@@ -171,7 +166,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternParameter createPatternParameter() {
@@ -181,7 +175,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternLibrary createPatternLibrary() {
@@ -191,7 +184,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternViewpoint createPatternViewpoint() {
@@ -201,7 +193,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternCall createPatternCall() {
@@ -211,7 +202,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Map.Entry<PatternParameter, PatternParameter> createParamerter2ParameterMap() {
@@ -221,7 +211,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public MethodCall createMethodCall() {
@@ -231,7 +220,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternVariable createPatternVariable() {
@@ -241,7 +229,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternInjectedCall createPatternInjectedCall() {
@@ -251,7 +238,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public BasicQuery createBasicQuery() {
@@ -261,7 +247,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public StringQuery createStringQuery() {
@@ -271,7 +256,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public CustomQuery createCustomQuery() {
@@ -281,7 +265,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternContext createPatternContextFromString(EDataType eDataType, String initialValue) {
@@ -290,7 +273,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String convertPatternContextToString(EDataType eDataType, Object instanceValue) {
@@ -299,7 +281,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternException createPatternExceptionFromString(EDataType eDataType, String initialValue) {
@@ -308,7 +289,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public String convertPatternExceptionToString(EDataType eDataType, Object instanceValue) {
@@ -317,7 +297,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternPackage getPatternPackage() {
@@ -326,7 +305,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @deprecated
      * @generated
      */

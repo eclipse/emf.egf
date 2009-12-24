@@ -72,7 +72,9 @@
     <genClasses ecoreClass="Pattern.ecore#//MethodCall">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//MethodCall/called"/>
     </genClasses>
-    <genClasses ecoreClass="Pattern.ecore#//PatternVariable"/>
+    <genClasses ecoreClass="Pattern.ecore#//PatternVariable">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pattern.ecore#//PatternVariable/type"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="Pattern.ecore#//AbstractPatternCall">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//AbstractPatternCall/called"/>
     </genClasses>

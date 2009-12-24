@@ -82,7 +82,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="called" lowerBound="1"
         eType="#//PatternMethod"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternVariable" eSuperTypes="FactoryComponent.ecore#//ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="PatternVariable" eSuperTypes="FactoryComponent.ecore#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AbstractPatternCall" abstract="true"
       eSuperTypes="#//Call">
     <eStructuralFeatures xsi:type="ecore:EReference" name="called" lowerBound="1"
