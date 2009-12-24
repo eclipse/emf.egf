@@ -19,6 +19,8 @@ import java.util.Set;
 
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
@@ -40,7 +42,11 @@ public class TranslationHelper {
         try {
             for (Pattern p : patterns) {
                 PatternExtension extension = ExtensionHelper.getExtension(p.getNature());
-                extension.createRunner(p).translate();
+                String reason = extension.canTranslate(p);
+                if (reason == null)
+                    extension.createRunner(p).translate();
+                else
+                    Activator.getDefault().logWarning(Messages.bind(Messages.assembly_error3, p.getName(), reason));
             }
         } catch (MissingExtensionException e) {
             throw new PatternException(e);

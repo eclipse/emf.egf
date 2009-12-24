@@ -15,12 +15,14 @@
 
 package org.eclipse.egf.pattern.extension;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternRunner;
 import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.pattern.PatternHelper;
 
 /**
  * @author Guiu
@@ -57,5 +59,31 @@ public abstract class PatternExtension {
             throw new IllegalStateException();
 
         return getNature().eClass().equals(pattern.getNature().eClass());
+    }
+
+    /**
+     * Tells if the pattern can be translated.
+     * 
+     * @return the reason who prevents the translation or null if there is no
+     *         problem
+     */
+    public String canTranslate(Pattern pattern) {
+        IProject project = PatternHelper.getProject(pattern);
+        if (project == null)
+            return Messages.assembly_error4;
+        IFile file = project.getFile(pattern.getHeaderMethod().getPatternFilePath().path());
+        if (!file.exists())
+            return Messages.assembly_error5;
+        return null; // no problem
+    }
+
+    /**
+     * Tells if the pattern can be executed.
+     * 
+     * @return the reason who prevents the execution or null if there is no
+     *         problem
+     */
+    public String canRun(Pattern pattern) {
+        return null; // no problem
     }
 }

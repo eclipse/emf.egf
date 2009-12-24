@@ -73,6 +73,16 @@ public class PatternHelper {
     }
 
     /**
+     * Return the IProject object who contains the pattern.
+     * 
+     * @return null if the FC is deployed in the runtime environment.
+     */
+    public static IProject getProject(Pattern pattern) {
+        IPlatformFactoryComponent fc = getPlatformFactoryComponent(pattern);
+        return fc.getPlatformPlugin().getProject();
+    }
+
+    /**
      * Reads FC models from the given project and return the pattern with the
      * given id if any. <br/>
      * TODO à supprimer car inutilisé

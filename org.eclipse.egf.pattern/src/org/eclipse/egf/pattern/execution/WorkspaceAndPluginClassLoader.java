@@ -39,8 +39,8 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.osgi.framework.Bundle;
 
 /**
- * This classloader will try to load classes from the given project (and its
- * dependencies) The given projet must be a java plugin project
+ * This classloader will try to load classes from the workspace projects and the
+ * runtimetime plugins.
  * 
  * 
  * @author Guiu
