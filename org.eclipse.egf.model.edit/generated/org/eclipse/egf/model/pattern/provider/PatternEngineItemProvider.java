@@ -23,8 +23,8 @@ import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
 
 import org.eclipse.egf.model.factorycomponent.provider.ModelElementItemProvider;
 
+import org.eclipse.egf.model.pattern.PatternEngine;
 import org.eclipse.egf.model.pattern.PatternPackage;
-import org.eclipse.egf.model.pattern.PatternRunner;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -43,22 +43,21 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.PatternRunner} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.PatternEngine} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class PatternRunnerItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class PatternEngineItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternRunnerItemProvider(AdapterFactory adapterFactory) {
+    public PatternEngineItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -85,9 +84,9 @@ public class PatternRunnerItemProvider extends ModelElementItemProvider implemen
      * @generated
      */
     protected void addPatternPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PatternRunner_pattern_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_PatternRunner_pattern_feature", "_UI_PatternRunner_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.PATTERN_RUNNER__PATTERN, true, false, true, null, null, null));
+        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_PatternEngine_pattern_feature"), //$NON-NLS-1$
+                getString("_UI_PropertyDescriptor_description", "_UI_PatternEngine_pattern_feature", "_UI_PatternEngine_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                PatternPackage.Literals.PATTERN_ENGINE__PATTERN, false, false, false, null, null, null));
     }
 
     /**
@@ -98,9 +97,9 @@ public class PatternRunnerItemProvider extends ModelElementItemProvider implemen
      */
     @Override
     public String getText(Object object) {
-        String label = ((PatternRunner) object).getName();
-        return label == null || label.length() == 0 ? "[" + getString("_UI_PatternRunner_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                label + " [" + getString("_UI_PatternRunner_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        String label = ((PatternEngine) object).getName();
+        return label == null || label.length() == 0 ? "[" + getString("_UI_PatternEngine_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                label + " [" + getString("_UI_PatternEngine_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     /**
@@ -113,12 +112,6 @@ public class PatternRunnerItemProvider extends ModelElementItemProvider implemen
     @Override
     public void notifyChanged(Notification notification) {
         updateChildren(notification);
-
-        switch (notification.getFeatureID(PatternRunner.class)) {
-        case PatternPackage.PATTERN_RUNNER__PATTERN:
-            fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-            return;
-        }
         super.notifyChanged(notification);
     }
 
