@@ -104,7 +104,7 @@ public class ExtensionPointHelper {
    * @return
    */
   public static boolean isDeclaredBy(IConfigurationElement configurationElement_p, String pluginId_p) {
-    return (null != configurationElement_p) && (null != pluginId_p) && pluginId_p.equals(configurationElement_p.getContributor().getName());
+    return configurationElement_p != null && pluginId_p != null && pluginId_p.equals(configurationElement_p.getContributor().getName());
   }
 
   /**
@@ -162,7 +162,7 @@ public class ExtensionPointHelper {
   public static boolean hasValue(IConfigurationElement configurationElement_p, String attName_p, String attValue_p) {
     boolean result = false;
     // Preconditions.
-    if ((null == configurationElement_p) || (null == attName_p) || (null == attValue_p)) {
+    if (configurationElement_p == null || attName_p == null || attValue_p == null) {
       return result;
     }
     // Get attribute value for the configuration element.
@@ -180,8 +180,22 @@ public class ExtensionPointHelper {
    */
   public static String getId(IConfigurationElement configurationElement_p) {
     String result = null;
-    if (null != configurationElement_p) {
+    if (configurationElement_p != null) {
       result = configurationElement_p.getAttribute(ATT_ID);
+    }
+    return result;
+  }
+
+  /**
+   * Return the value of the "id" attribute for given configuration element.
+   * 
+   * @param configurationElement_p
+   * @return null if given element is null, or has no attribute named "id".
+   */
+  public static String getAttributeValue(IConfigurationElement configurationElement_p, String attribute_p) {
+    String result = null;
+    if (configurationElement_p != null && attribute_p != null) {
+      result = configurationElement_p.getAttribute(attribute_p);
     }
     return result;
   }
@@ -207,7 +221,6 @@ public class ExtensionPointHelper {
   public static Object createExecutableExtension(String pluginId_p, String extensionPointId_p, String attributeId_p, String attributeValue_p) {
     Object object = null;
     IConfigurationElement[] configElements = getConfigurationElements(pluginId_p, extensionPointId_p);
-
     if (configElements.length == 0) {
       StringBuffer msg = new StringBuffer("ExtensionPointHelper.createExecutableExtension(..) _ "); //$NON-NLS-1$
       msg.append("extensionPointId:"); //$NON-NLS-1$
@@ -217,20 +230,19 @@ public class ExtensionPointHelper {
     } else {
       boolean isMatchingImperative = false;
       // Test if matching is imperative
-      if (null != attributeId_p && null != attributeValue_p) {
+      if (attributeId_p != null && attributeValue_p != null) {
         isMatchingImperative = true;
       }
       // Loop over configuration until object is created.
       for (int i = 0; i < configElements.length && (null == object); i++) {
         IConfigurationElement configElement = configElements[i];
         boolean isExecutableExtensionCreatable = true;
-
         if (isMatchingImperative) {
           // Perform matching on the attribute defined by an
           // identifier
           String attributeValue = configElement.getAttribute(attributeId_p);
           // If different, do not instantiate the object.
-          if (!attributeValue_p.equals(attributeValue)) {
+          if (attributeValue_p.equals(attributeValue) == false) {
             isExecutableExtensionCreatable = false;
           }
         }

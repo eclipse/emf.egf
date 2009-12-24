@@ -111,10 +111,10 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
         Object object = ExtensionPointHelper.createInstance(configurationElement);
         // Make sure this is the correct resulting type.
         if (object instanceof IEGFLogger == false) {
-          getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName()));
-          getDefault().logInfo("This Class should be a sub-type of ''org.eclipse.egf.common.log.IEGFLogger''.", 1);
-          getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1);
-          getDefault().logInfo(NLS.bind("Extension-point ''{0}''", configurationElement.getName()), 1);
+          getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
+          getDefault().logInfo("This Class should be a sub-type of ''org.eclipse.egf.common.log.IEGFLogger''.", 1); //$NON-NLS-1$
+          getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
+          getDefault().logInfo(NLS.bind("Extension-point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           continue;
         }
         __egfLoggers.add((IEGFLogger) object);
