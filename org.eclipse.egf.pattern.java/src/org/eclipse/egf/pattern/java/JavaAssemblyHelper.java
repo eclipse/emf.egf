@@ -79,7 +79,6 @@ public class JavaAssemblyHelper extends AssemblyHelper {
     }
 
     protected void addVariable(Pattern pattern) throws PatternException {
-        content.append(START_MARKER).append(CharacterConstants.LINE_SEPARATOR);
         for (PatternVariable var : pattern.getVariables()) {
             content.append("EObject ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
         }
@@ -88,9 +87,10 @@ public class JavaAssemblyHelper extends AssemblyHelper {
     }
 
     @Override
-    protected void visitOrchestration(Pattern pattern) throws PatternException {
-        super.visitOrchestration(pattern);
-        content.append(END_MARKER).append(CharacterConstants.LINE_SEPARATOR);
+    protected void beginOrchestration() {
+        content.append("PatternContext ctx = (PatternContext)argument;").append(CharacterConstants.LINE_SEPARATOR);
+        super.beginOrchestration();
+        content.append(START_MARKER).append(CharacterConstants.LINE_SEPARATOR);
     }
 
     /**
@@ -98,7 +98,10 @@ public class JavaAssemblyHelper extends AssemblyHelper {
      * add this stuff. TODO query is not supported yet.
      */
     @Override
-    protected void handleParameters(int insertionIndex) {
+    protected void endOrchestration() {
+        content.append(END_MARKER).append(CharacterConstants.LINE_SEPARATOR);
+        if (pattern.getParameters().isEmpty())
+            return;
         // 1 - Add pre block at insertionIndex
         StringBuilder localContent = new StringBuilder(300);
         localContent.append("").append(CharacterConstants.LINE_SEPARATOR).append(CharacterConstants.LINE_SEPARATOR);
@@ -117,7 +120,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
 
         localContent.append(CharacterConstants.LINE_SEPARATOR);
 
-        content.insert(insertionIndex, localContent);
+        content.insert(orchestrationIndex, localContent);
 
         // 2 - Add post block at current index
         content.append(CharacterConstants.LINE_SEPARATOR);

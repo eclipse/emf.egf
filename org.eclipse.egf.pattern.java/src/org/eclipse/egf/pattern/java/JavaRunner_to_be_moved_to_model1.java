@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.java;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.eclipse.core.resources.IProject;
@@ -56,6 +57,8 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaEngineImpl {
             Method method = templateClass.getMethod("generate", Object.class);
             Object template = templateClass.newInstance();
             method.invoke(template, context);
+        } catch (InvocationTargetException e) {
+            throw new PatternException(e.getCause());
         } catch (Exception e) {
             throw new PatternException(e);
         }
