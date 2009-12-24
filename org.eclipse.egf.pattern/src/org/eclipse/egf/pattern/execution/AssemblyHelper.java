@@ -25,6 +25,7 @@ import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
+import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.egf.pattern.Messages;
@@ -90,9 +91,7 @@ public abstract class AssemblyHelper {
      * We must provide a context so the called pattern can perform a query to
      * fill its paremeters.
      */
-    protected void callWithContext(Pattern object) throws PatternException {
-        // TODO implementation
-    }
+    protected abstract void call(PatternInjectedCall call) throws PatternException;
 
     // TODO mark this method abstract as its implementation depends on the
     // nature of pattern.
@@ -120,15 +119,18 @@ public abstract class AssemblyHelper {
             }
 
             @Override
-            public String casePatternCall(PatternCall object) {
-
+            public String casePatternInjectedCall(PatternInjectedCall object) {
                 try {
+                    call(object);
+                } catch (PatternException e) {
+                    holder.object = e;
+                }
+                return CharacterConstants.EMPTY_STRING;
+            }
 
-                    // TODO at this time we need to know how the pattern will be
-                    // called. 2 ways:
-                    // 1 - we give the expected parameters
-                    // 2 - we a context object so it can perform a query to fill
-                    // its parameters
+            @Override
+            public String casePatternCall(PatternCall object) {
+                try {
                     call(object);
                 } catch (PatternException e) {
                     holder.object = e;
