@@ -926,13 +926,13 @@ public interface PatternPackage extends EPackage {
     int QUERY__PARAMETER = 0;
 
     /**
-     * The feature id for the '<em><b>Delegate Class</b></em>' attribute.
+     * The feature id for the '<em><b>Extension Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int QUERY__DELEGATE_CLASS = 1;
+    int QUERY__EXTENSION_ID = 1;
 
     /**
      * The number of structural features of the '<em>Query</em>' class.
@@ -963,13 +963,13 @@ public interface PatternPackage extends EPackage {
     int BASIC_QUERY__PARAMETER = QUERY__PARAMETER;
 
     /**
-     * The feature id for the '<em><b>Delegate Class</b></em>' attribute.
+     * The feature id for the '<em><b>Extension Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int BASIC_QUERY__DELEGATE_CLASS = QUERY__DELEGATE_CLASS;
+    int BASIC_QUERY__EXTENSION_ID = QUERY__EXTENSION_ID;
 
     /**
      * The number of structural features of the '<em>Basic Query</em>' class.
@@ -1000,13 +1000,13 @@ public interface PatternPackage extends EPackage {
     int STRING_QUERY__PARAMETER = QUERY__PARAMETER;
 
     /**
-     * The feature id for the '<em><b>Delegate Class</b></em>' attribute.
+     * The feature id for the '<em><b>Extension Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int STRING_QUERY__DELEGATE_CLASS = QUERY__DELEGATE_CLASS;
+    int STRING_QUERY__EXTENSION_ID = QUERY__EXTENSION_ID;
 
     /**
      * The number of structural features of the '<em>String Query</em>' class.
@@ -1037,13 +1037,13 @@ public interface PatternPackage extends EPackage {
     int CUSTOM_QUERY__PARAMETER = QUERY__PARAMETER;
 
     /**
-     * The feature id for the '<em><b>Delegate Class</b></em>' attribute.
+     * The feature id for the '<em><b>Extension Id</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int CUSTOM_QUERY__DELEGATE_CLASS = QUERY__DELEGATE_CLASS;
+    int CUSTOM_QUERY__EXTENSION_ID = QUERY__EXTENSION_ID;
 
     /**
      * The number of structural features of the '<em>Custom Query</em>' class.
@@ -1513,15 +1513,15 @@ public interface PatternPackage extends EPackage {
     EReference getQuery_Parameter();
 
     /**
-     * Returns the meta object for the attribute '{@link org.eclipse.egf.model.pattern.Query#getDelegateClass <em>Delegate Class</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.model.pattern.Query#getExtensionId <em>Extension Id</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Delegate Class</em>'.
-     * @see org.eclipse.egf.model.pattern.Query#getDelegateClass()
+     * @return the meta object for the attribute '<em>Extension Id</em>'.
+     * @see org.eclipse.egf.model.pattern.Query#getExtensionId()
      * @see #getQuery()
      * @generated
      */
-    EAttribute getQuery_DelegateClass();
+    EAttribute getQuery_ExtensionId();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.BasicQuery <em>Basic Query</em>}'.
@@ -1969,12 +1969,12 @@ public interface PatternPackage extends EPackage {
         EReference QUERY__PARAMETER = eINSTANCE.getQuery_Parameter();
 
         /**
-         * The meta object literal for the '<em><b>Delegate Class</b></em>' attribute feature.
+         * The meta object literal for the '<em><b>Extension Id</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EAttribute QUERY__DELEGATE_CLASS = eINSTANCE.getQuery_DelegateClass();
+        EAttribute QUERY__EXTENSION_ID = eINSTANCE.getQuery_ExtensionId();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.BasicQueryImpl <em>Basic Query</em>}' class.

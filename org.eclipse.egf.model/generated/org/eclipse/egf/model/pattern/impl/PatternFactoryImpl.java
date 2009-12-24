@@ -252,11 +252,10 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * 
-     * @generated not
+     * @generated
      */
     public BasicQuery createBasicQuery() {
         BasicQueryImpl basicQuery = new BasicQueryImpl();
-        basicQuery.setDelegateClass("org.eclipse.egf.pattern.query.basic");
         return basicQuery;
     }
 

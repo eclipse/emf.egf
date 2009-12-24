@@ -189,9 +189,9 @@
         <children xsi:type="editmodel:LabelEditModel" name="1" location="616,-49" size="7,14" anchorKind="FirstPart"/>
         <model href="Pattern.ecore#//Query/parameter"/>
       </children>
-      <children xsi:type="editmodel:AssociationEndEditModel" name="query" location="202,0" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternParameter/query" multiplicityLabel="//@children.10/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.1/@children.1/@children.0" aggregationKind="Composition" navigable="true">
-        <children xsi:type="editmodel:LabelEditModel" name="query" location="337,71" size="32,14" anchorKind="LastPart"/>
-        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="383,71" size="22,14" anchorKind="LastPart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="query" location="155,0" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//PatternParameter/query" multiplicityLabel="//@children.10/@sourceConnections.1/@children.1/@children.1" roleLabel="//@children.10/@sourceConnections.1/@children.1/@children.0" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="query" location="290,52" size="32,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="336,52" size="22,14" anchorKind="LastPart"/>
         <model href="Pattern.ecore#//PatternParameter/query"/>
       </children>
     </sourceConnections>
@@ -265,16 +265,13 @@
     <model href="Pattern.ecore#//PatternInjectedCall"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
   </children>
-  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.17/@sourceConnections.0 //@children.10/@sourceConnections.1" name="Query" location="174,73" size="267,104" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//QueryManager" runTimeClassModel=" getQueryContext(): EMap,delegateClass">
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.17/@sourceConnections.0 //@children.10/@sourceConnections.1" name="Query" location="174,73" size="206,86" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//QueryManager" runTimeClassModel=" getQueryContext(): EMap,delegateClass">
     <children xsi:type="editmodel:CompartmentEditModel" size="183,18">
       <children xsi:type="editmodel:AttributeEditModel" name="delegateClass" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Query/delegateClass">
-        <model href="Pattern.ecore#//Query/delegateClass"/>
+        <model href="Pattern.ecore#//Query/extensionId"/>
       </children>
     </children>
     <children xsi:type="editmodel:CompartmentEditModel" size="244,36">
-      <children xsi:type="editmodel:MethodEditModel" name="executeQuery" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//QueryManager/executeQuery" displayArguments="true" displayReturnType="true">
-        <model href="Pattern.ecore#//Query/executeQuery"/>
-      </children>
       <children xsi:type="editmodel:MethodEditModel" name="getQueryContext" id="platform:/resource/org.eclipse.egf.model/model/Pattern.ecore#//Query/getQueryContext">
         <model href="Pattern.ecore#//Query/getQueryContext"/>
       </children>
@@ -289,7 +286,7 @@
     <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
     <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.18/@sourceConnections.0 //@children.19/@sourceConnections.0" autoLocated="true" source="//@children.17" target="//@children.16" targetEnd="//@children.17/@sourceConnections.0/@children.1" sourceEnd="//@children.17/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
       <children xsi:type="editmodel:AssociationEndEditModel" location="65,0" anchorKind="FixedAtEdge" attachSource="true"/>
-      <children xsi:type="editmodel:AssociationEndEditModel" location="129,103" anchorKind="FixedAtEdge"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="99,85" anchorKind="FixedAtEdge"/>
     </sourceConnections>
     <model href="Pattern.ecore#//BasicQuery"/>
     <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>

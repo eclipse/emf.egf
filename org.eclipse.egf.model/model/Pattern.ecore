@@ -101,7 +101,7 @@
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
         eType="#//PatternParameter" resolveProxies="false" eOpposite="#//PatternParameter/query"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="delegateClass" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensionId" lowerBound="1"
         eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BasicQuery" eSuperTypes="#//Query"/>

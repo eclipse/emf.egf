@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getParameter <em>Parameter</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getDelegateClass <em>Delegate Class</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getExtensionId <em>Extension Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -53,24 +53,24 @@ public abstract class QueryImpl extends Container implements Query {
     protected int eFlags = 0;
 
     /**
-     * The default value of the '{@link #getDelegateClass() <em>Delegate Class</em>}' attribute.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @see #getDelegateClass()
+     * The default value of the '{@link #getExtensionId() <em>Extension Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getExtensionId()
      * @generated
      * @ordered
      */
-    protected static final String DELEGATE_CLASS_EDEFAULT = null;
+    protected static final String EXTENSION_ID_EDEFAULT = null;
 
     /**
-     * The cached value of the '{@link #getDelegateClass() <em>Delegate Class</em>}' attribute.
-     * <!-- begin-user-doc --> <!--
-     * end-user-doc -->
-     * @see #getDelegateClass()
+     * The cached value of the '{@link #getExtensionId() <em>Extension Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getExtensionId()
      * @generated
      * @ordered
      */
-    protected String delegateClass = DELEGATE_CLASS_EDEFAULT;
+    protected String extensionId = EXTENSION_ID_EDEFAULT;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -129,22 +129,24 @@ public abstract class QueryImpl extends Container implements Query {
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-    public String getDelegateClass() {
-        return delegateClass;
+    public String getExtensionId() {
+        return extensionId;
     }
 
     /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @generated
      */
-    public void setDelegateClass(String newDelegateClass) {
-        String oldDelegateClass = delegateClass;
-        delegateClass = newDelegateClass;
+    public void setExtensionId(String newExtensionId) {
+        String oldExtensionId = extensionId;
+        extensionId = newExtensionId;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.QUERY__DELEGATE_CLASS, oldDelegateClass, delegateClass));
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.QUERY__EXTENSION_ID, oldExtensionId, extensionId));
     }
 
     /**
@@ -207,8 +209,8 @@ public abstract class QueryImpl extends Container implements Query {
         switch (featureID) {
         case PatternPackage.QUERY__PARAMETER:
             return getParameter();
-        case PatternPackage.QUERY__DELEGATE_CLASS:
-            return getDelegateClass();
+        case PatternPackage.QUERY__EXTENSION_ID:
+            return getExtensionId();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -223,8 +225,8 @@ public abstract class QueryImpl extends Container implements Query {
         case PatternPackage.QUERY__PARAMETER:
             setParameter((PatternParameter) newValue);
             return;
-        case PatternPackage.QUERY__DELEGATE_CLASS:
-            setDelegateClass((String) newValue);
+        case PatternPackage.QUERY__EXTENSION_ID:
+            setExtensionId((String) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -240,8 +242,8 @@ public abstract class QueryImpl extends Container implements Query {
         case PatternPackage.QUERY__PARAMETER:
             setParameter((PatternParameter) null);
             return;
-        case PatternPackage.QUERY__DELEGATE_CLASS:
-            setDelegateClass(DELEGATE_CLASS_EDEFAULT);
+        case PatternPackage.QUERY__EXTENSION_ID:
+            setExtensionId(EXTENSION_ID_EDEFAULT);
             return;
         }
         super.eUnset(featureID);
@@ -256,8 +258,8 @@ public abstract class QueryImpl extends Container implements Query {
         switch (featureID) {
         case PatternPackage.QUERY__PARAMETER:
             return getParameter() != null;
-        case PatternPackage.QUERY__DELEGATE_CLASS:
-            return DELEGATE_CLASS_EDEFAULT == null ? delegateClass != null : !DELEGATE_CLASS_EDEFAULT.equals(delegateClass);
+        case PatternPackage.QUERY__EXTENSION_ID:
+            return EXTENSION_ID_EDEFAULT == null ? extensionId != null : !EXTENSION_ID_EDEFAULT.equals(extensionId);
         }
         return super.eIsSet(featureID);
     }
@@ -272,8 +274,8 @@ public abstract class QueryImpl extends Container implements Query {
             return super.toString();
 
         StringBuffer result = new StringBuffer(super.toString());
-        result.append(" (delegateClass: "); //$NON-NLS-1$
-        result.append(delegateClass);
+        result.append(" (extensionId: "); //$NON-NLS-1$
+        result.append(extensionId);
         result.append(')');
         return result.toString();
     }

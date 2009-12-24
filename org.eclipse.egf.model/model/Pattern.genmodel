@@ -81,7 +81,7 @@
     </genClasses>
     <genClasses image="false" ecoreClass="Pattern.ecore#//Query">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//Query/parameter"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pattern.ecore#//Query/delegateClass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pattern.ecore#//Query/extensionId"/>
       <genOperations ecoreOperation="Pattern.ecore#//Query/getQueryContext"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//BasicQuery"/>
