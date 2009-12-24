@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.model.PatternContext;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Thomas Guiu
@@ -27,6 +26,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface QueryManager {
 
-    List<EObject> executeQuery(Map<String, String> queryContext, PatternContext context);
+    List<Object> executeQuery(Map<String, String> queryContext, PatternContext context);
 
 }

@@ -22,9 +22,9 @@ import java.util.Map;
 
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.pattern.BasicQuery;
+import org.eclipse.egf.pattern.Messages;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.query.conditions.eobjects.EObjectTypeRelationCondition;
 import org.eclipse.emf.query.conditions.eobjects.TypeRelation;
 import org.eclipse.emf.query.statements.FROM;
@@ -39,20 +39,14 @@ import org.eclipse.emf.query.statements.WHERE;
 public class BasicQueryDelegate implements QueryManager {
 
     @Override
-    public List<EObject> executeQuery(Map<String, String> queryContext, PatternContext context) {
+    public List<Object> executeQuery(Map<String, String> queryContext, PatternContext context) {
         String type = queryContext.get(BasicQuery.TYPE);
-        Class<?> loadClass;
-        try {
-            loadClass = getClass().getClassLoader().loadClass(type);
-        } catch (ClassNotFoundException e) {
-            throw new IllegalStateException(e);
-        }
-        if (!EObject.class.isAssignableFrom(loadClass))
-            throw new IllegalStateException();
-        EClass eclass = EcorePackage.eINSTANCE.getEClass(); // TODO ...
-        IQueryResult result = new SELECT(new FROM((Collection<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS)), new WHERE(new EObjectTypeRelationCondition(eclass, TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL))).execute();
+        Object loadClass = ParameterTypeHelper.INSTANCE.loadClass(type);
+        if (!(loadClass instanceof EClass))
+            throw new IllegalStateException(Messages.query_error1);
+        IQueryResult result = new SELECT(new FROM((Collection<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS)), new WHERE(new EObjectTypeRelationCondition((EClass) loadClass, TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL))).execute();
         if (result.getException() != null)
             throw new IllegalStateException(result.getException());
-        return new ArrayList<EObject>(result.getEObjects());
+        return new ArrayList<Object>(result.getEObjects());
     }
 }

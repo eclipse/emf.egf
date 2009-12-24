@@ -36,6 +36,7 @@ public class Messages extends NLS {
     // classloader
     public static String classloader_error1;
     public static String classloader_error2;
+    public static String classloader_error3;
 
     // file helper
     public static String fileHelper_error1;
@@ -49,6 +50,7 @@ public class Messages extends NLS {
     public static String assembly_error4;
     public static String assembly_error5;
     public static String assembly_error6;
+    public static String assembly_error7;
 
     // builder
     public static String PatternBuilding_Failed;
@@ -58,6 +60,9 @@ public class Messages extends NLS {
     public static String PatternFilename_error1;
     public static String PatternFilename_error2;
     public static String PatternFilename_error3;
+
+    // query
+    public static String query_error1;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.PatternMessages";//$NON-NLS-1$
     static {
