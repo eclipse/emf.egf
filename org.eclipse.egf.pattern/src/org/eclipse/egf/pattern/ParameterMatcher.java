@@ -63,6 +63,8 @@ public class ParameterMatcher {
                 match = null;
             }
         }
+        if (called.getParameters().isEmpty() && caller.getParameters().isEmpty())
+            return true;
         return !matching.isEmpty();
     }
 
