@@ -138,26 +138,26 @@ public class JavaPatternItemProviderAdapterFactory extends JavaPatternAdapterFac
     }
 
     /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.javapattern.JavaRunner} instances.
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.javapattern.JavaEngine} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected JavaRunnerItemProvider javaRunnerItemProvider;
+    protected JavaEngineItemProvider javaEngineItemProvider;
 
     /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.javapattern.JavaRunner}.
+     * This creates an adapter for a {@link org.eclipse.egf.model.javapattern.JavaEngine}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
-    public Adapter createJavaRunnerAdapter() {
-        if (javaRunnerItemProvider == null) {
-            javaRunnerItemProvider = new JavaRunnerItemProvider(this);
+    public Adapter createJavaEngineAdapter() {
+        if (javaEngineItemProvider == null) {
+            javaEngineItemProvider = new JavaEngineItemProvider(this);
         }
 
-        return javaRunnerItemProvider;
+        return javaEngineItemProvider;
     }
 
     /**
@@ -261,8 +261,8 @@ public class JavaPatternItemProviderAdapterFactory extends JavaPatternAdapterFac
     public void dispose() {
         if (javaNatureItemProvider != null)
             javaNatureItemProvider.dispose();
-        if (javaRunnerItemProvider != null)
-            javaRunnerItemProvider.dispose();
+        if (javaEngineItemProvider != null)
+            javaEngineItemProvider.dispose();
     }
 
     /**

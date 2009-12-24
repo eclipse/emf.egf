@@ -19,11 +19,11 @@ package org.eclipse.egf.model.javapattern.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.javapattern.JavaRunner;
+import org.eclipse.egf.model.javapattern.JavaEngine;
 
 import org.eclipse.egf.model.javapattern.edit.EGFModelsEditPlugin;
 
-import org.eclipse.egf.model.pattern.provider.PatternRunnerItemProvider;
+import org.eclipse.egf.model.pattern.provider.PatternEngineItemProvider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -43,19 +43,19 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.javapattern.JavaRunner} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.javapattern.JavaEngine} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class JavaRunnerItemProvider extends PatternRunnerItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class JavaEngineItemProvider extends PatternEngineItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
     /**
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public JavaRunnerItemProvider(AdapterFactory adapterFactory) {
+    public JavaEngineItemProvider(AdapterFactory adapterFactory) {
         super(adapterFactory);
     }
 
@@ -75,14 +75,14 @@ public class JavaRunnerItemProvider extends PatternRunnerItemProvider implements
     }
 
     /**
-     * This returns JavaRunner.gif.
+     * This returns JavaEngine.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     @Override
     public Object getImage(Object object) {
-        return overlayImage(object, getResourceLocator().getImage("full/obj16/JavaRunner")); //$NON-NLS-1$
+        return overlayImage(object, getResourceLocator().getImage("full/obj16/JavaEngine")); //$NON-NLS-1$
     }
 
     /**
@@ -93,9 +93,9 @@ public class JavaRunnerItemProvider extends PatternRunnerItemProvider implements
      */
     @Override
     public String getText(Object object) {
-        String label = ((JavaRunner) object).getName();
-        return label == null || label.length() == 0 ? "[" + getString("_UI_JavaRunner_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                label + " [" + getString("_UI_JavaRunner_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        String label = ((JavaEngine) object).getName();
+        return label == null || label.length() == 0 ? "[" + getString("_UI_JavaEngine_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+                label + " [" + getString("_UI_JavaEngine_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
 
     /**
