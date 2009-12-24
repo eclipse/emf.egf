@@ -88,7 +88,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         content.append("<%");
         for (PatternVariable var : pattern.getVariables()) {
-            content.append("EObject ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
+            content.append(var.getType()).append(" ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
         }
         content.append("%>");
         super.addVariable(pattern);
