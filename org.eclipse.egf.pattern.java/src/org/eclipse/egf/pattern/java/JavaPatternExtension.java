@@ -18,8 +18,8 @@ package org.eclipse.egf.pattern.java;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternEngine;
 import org.eclipse.egf.model.pattern.PatternNature;
-import org.eclipse.egf.model.pattern.PatternRunner;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
@@ -39,7 +39,7 @@ public class JavaPatternExtension extends PatternExtension {
     }
 
     @Override
-    public PatternRunner doCreateRunner(Pattern pattern) {
+    public PatternEngine doCreateRunner(Pattern pattern) {
         return new JavaRunner_to_be_moved_to_model1(pattern);
     }
 

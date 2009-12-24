@@ -26,7 +26,6 @@ import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.ParameterMatcher;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.execution.AssemblyHelper;
-import org.eclipse.emf.ecore.EClass;
 
 /**
  * @author Thomas Guiu
@@ -55,14 +54,12 @@ public class JavaAssemblyHelper extends AssemblyHelper {
                 throw new PatternException(Messages.bind(Messages.assembly_error7, call.getPattern().getName()));
             for (PatternParameter key : matcher.getMatching().keySet()) {
                 String called = PatternHelper.uniqueName(matcher.getMatching().get(key));
-                EClass pEClass = key.getType().eClass();
-                content.append(pEClass.getName()).append(" ").append(called).append(" = (").append(pEClass.getName()).append(")").append(key.getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
+                content.append(key.getType()).append(" ").append(called).append(" = (").append(key.getType()).append(")").append(key.getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
             }
         } else {
             for (Entry<PatternParameter, PatternParameter> binding : call.getParameterMatching()) {
                 String called = PatternHelper.uniqueName(binding.getValue());
-                EClass pEClass = binding.getKey().getType().eClass();
-                content.append(pEClass.getName()).append(" ").append(called).append(" = (").append(pEClass.getName()).append(")").append(binding.getKey().getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
+                content.append(binding.getKey().getType()).append(" ").append(called).append(" = ").append(binding.getKey().getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
             }
         }
         String ctxName = "ctx_" + PatternHelper.uniqueName(pattern);
@@ -132,8 +129,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         localContent.append(CharacterConstants.LINE_SEPARATOR);
         for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getParameters()) {
             String local = PatternHelper.localizeName(parameter);
-            EClass pEClass = parameter.getType().eClass();
-            localContent.append(pEClass.getName()).append(" ").append(parameter.getName()).append(" = (").append(pEClass.getName()).append(")").append(local).append(";").append(CharacterConstants.LINE_SEPARATOR);
+            localContent.append(parameter.getType()).append(" ").append(parameter.getName()).append(" = (").append(parameter.getType()).append(")").append(local).append(";").append(CharacterConstants.LINE_SEPARATOR);
         }
         content.insert(startIndex + START_MARKER.length(), localContent);
     }
