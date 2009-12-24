@@ -18,7 +18,12 @@ package org.eclipse.egf.pattern.query;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtension;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.model.PatternContext;
+import org.eclipse.egf.model.PatternException;
+import org.eclipse.egf.pattern.Messages;
 
 /**
  * @author Thomas Guiu
@@ -27,5 +32,27 @@ import org.eclipse.egf.model.PatternContext;
 public interface QueryManager {
 
     List<Object> executeQuery(Map<String, String> queryContext, PatternContext context);
+
+    Helper INSTANCE = new Helper();
+
+    public class Helper {
+        public String getQueryManagerClassName(String extensionID) throws PatternException {
+            if (extensionID == null || "".equals(extensionID))
+                throw new PatternException(Messages.query_error2);
+            IExtension extension = Platform.getExtensionRegistry().getExtension(extensionID);
+            if (extension == null)
+                throw new PatternException(Messages.bind(Messages.query_error3, extensionID));
+            IConfigurationElement[] configurationElements = extension.getConfigurationElements();
+            if (configurationElements.length != 1)
+                throw new PatternException(Messages.bind(Messages.query_error4, configurationElements.length));
+            String attribute = configurationElements[0].getAttribute("class");
+            if (attribute == null || "".equals(attribute))
+                throw new PatternException(Messages.query_error5);
+            return attribute;
+        }
+
+        private Helper() {
+        }
+    }
 
 }

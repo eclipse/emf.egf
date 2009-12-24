@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.egf.model.factorycomponent.ModelElement;
+import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
@@ -26,6 +27,7 @@ import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
+import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.emf.common.util.URI;
 
@@ -46,10 +48,16 @@ public abstract class PatternFactory {
         PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
         param1.setName("myParam");
         param1.setType("org.eclipse.emf.ecore.EClass");
-        param1.setQuery(org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery());
+        param1.setQuery(createBasicQuery());
         createPattern.getParameters().add(param1);
         result.add(createPattern);
         return result;
+    }
+
+    private Query createBasicQuery() {
+        BasicQuery createBasicQuery = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery();
+        createBasicQuery.setExtensionId("org.eclipse.egf.pattern.basic_query");
+        return createBasicQuery();
     }
 
     public Pattern createDebugPattern1(PatternLibrary lib) {

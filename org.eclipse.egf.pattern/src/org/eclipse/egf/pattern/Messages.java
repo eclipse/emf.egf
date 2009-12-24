@@ -63,6 +63,10 @@ public class Messages extends NLS {
 
     // query
     public static String query_error1;
+    public static String query_error2;
+    public static String query_error3;
+    public static String query_error4;
+    public static String query_error5;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.PatternMessages";//$NON-NLS-1$
     static {

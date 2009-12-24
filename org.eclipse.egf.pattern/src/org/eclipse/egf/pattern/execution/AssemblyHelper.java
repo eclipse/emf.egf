@@ -75,10 +75,10 @@ public abstract class AssemblyHelper {
      * the current index. The inserted code is mainly a kind of loop containing
      * the pattern body over the result of the query.
      */
-    protected void endOrchestration() {
+    protected void endOrchestration() throws PatternException {
     }
 
-    protected void beginOrchestration() {
+    protected void beginOrchestration() throws PatternException {
         orchestrationIndex = content.length();
     }
 
@@ -87,7 +87,7 @@ public abstract class AssemblyHelper {
 
     }
 
-    protected final void handleParameters(int insertionIndex) {
+    protected final void handleParameters(int insertionIndex) throws PatternException {
     }
 
     /**
