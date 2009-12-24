@@ -15,8 +15,6 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.egf.common.progress.ProgressReporter;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.CoreMessages;
 import org.eclipse.egf.model.factorycomponent.Task;
@@ -44,10 +42,6 @@ public class TaskRunner {
    * instantiate a Task
    * 
    * @param monitor_p
-   *          a new progress monitor usable for the execution of the task. By
-   *          default, it is allocated
-   *          {@link ProgressReporter#TASK_DEFAULT_TICKS_COUNT} ticks
-   *          (which in the end should be more than sufficient).
    * @return the instantiated object or null
    */
   protected ITask createTaskInstance() {
@@ -58,10 +52,6 @@ public class TaskRunner {
    * Execute this task.
    * 
    * @param monitor_p
-   *          a new progress monitor usable for the execution of the task. By
-   *          default, it is allocated
-   *          {@link ProgressReporter#TASK_DEFAULT_TICKS_COUNT} ticks
-   *          (which in the end should be more than sufficient).
    * @return true if the execution was successful, false otherwise.
    */
   protected boolean execute(final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException {
@@ -107,15 +97,6 @@ public class TaskRunner {
    * Pre execute this task.
    * 
    * @param monitor_p
-   *          A progress monitor with
-   *          {@link ProgressReporter#TASK_DEFAULT_TICKS_COUNT} ticks available.<br>
-   *          <b>Important note : </b>
-   *          {@link IProgressMonitor#beginTask(String, int)} must <b>never</b>
-   *          be called on given progress monitor.<br>
-   *          Instead call {@link IProgressMonitor#worked(int)} or (exclusive)
-   *          create a new {@link SubProgressMonitor}.<br>
-   *          Likewise, a call to {@link IProgressMonitor#done()} is
-   *          <b>forbidden</b> too.
    * @return true if the execution was successful, false otherwise.
    */
   public boolean preExecute(final ITask task, final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException {
@@ -138,15 +119,6 @@ public class TaskRunner {
    * Do execute this task.
    * 
    * @param monitor_p
-   *          A progress monitor with
-   *          {@link ProgressReporter#TASK_DEFAULT_TICKS_COUNT} ticks available.<br>
-   *          <b>Important note : </b>
-   *          {@link IProgressMonitor#beginTask(String, int)} must <b>never</b>
-   *          be called on given progress monitor.<br>
-   *          Instead call {@link IProgressMonitor#worked(int)} or (exclusive)
-   *          create a new {@link SubProgressMonitor}.<br>
-   *          Likewise, a call to {@link IProgressMonitor#done()} is
-   *          <b>forbidden</b> too.
    * @return true if the execution was successful, false otherwise.
    */
   public boolean doExecute(final ITask task_p, final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException {
@@ -169,15 +141,6 @@ public class TaskRunner {
    * Post execute this task.
    * 
    * @param monitor_p
-   *          A progress monitor with
-   *          {@link ProgressReporter#TASK_DEFAULT_TICKS_COUNT} ticks available.<br>
-   *          <b>Important note : </b>
-   *          {@link IProgressMonitor#beginTask(String, int)} must <b>never</b>
-   *          be called on given progress monitor.<br>
-   *          Instead call {@link IProgressMonitor#worked(int)} or (exclusive)
-   *          create a new {@link SubProgressMonitor}.<br>
-   *          Likewise, a call to {@link IProgressMonitor#done()} is
-   *          <b>forbidden</b> too.
    * @return true if the execution was successful, false otherwise.
    */
   public boolean postExecute(final ITask task_p, final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException {
