@@ -72,6 +72,8 @@ public class EPackageListener implements IResourceChangeListener {
     @Override
     public void resourceChanged(IResourceChangeEvent event) {
         IResourceDelta delta = event.getDelta();
+        if (delta == null)
+            return;
         try {
             delta.accept(new ResourceDeltaVisitor());
         } catch (CoreException e) {
