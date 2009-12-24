@@ -221,6 +221,12 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
         @Override
         protected void execute(IProgressMonitor progressMonitor) {
           try {
+            // Retrieve the current bundle holder of this modelFile
+            IPluginModelBase base = BundleHelper.getPluginModelBase(modelFile);
+            // Convert the current project in bundle if necessary
+            if (base == null) {
+              EGFPDEPlugin.getDefault().convertToPlugin(modelFile.getProject());
+            }
             // Create a resource set
             ResourceSet resourceSet = new ResourceSetImpl();
             // Create a resource for this file.
@@ -234,14 +240,8 @@ public class FactoryComponentModelWizard extends Wizard implements INewWizard {
             Map<Object, Object> options = new HashMap<Object, Object>();
             options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
             resource.save(options);
-            // Retrieve the current bundle holder of this modelFile
-            IPluginModelBase base = BundleHelper.getPluginModelBase(modelFile);
-            // Convert the current project in bundle if necessary
-            if (base == null) {
-              EGFPDEPlugin.getDefault().convertToPlugin(modelFile.getProject());
-            }
-          } catch (Exception exception) {
-            EGFModelsEditorPlugin.INSTANCE.log(exception);
+          } catch (Exception e) {
+            EGFModelsEditorPlugin.getPlugin().log(e);
           } finally {
             progressMonitor.done();
           }
