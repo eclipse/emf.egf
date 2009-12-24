@@ -36,7 +36,7 @@ public class JavaPatternInitializer extends TemplateInitializer {
 
     public JavaPatternInitializer(IProject project, Pattern pattern) {
         super(project, pattern, new SimpleEngine(Activator.PLUGIN_ID, project, JavaPreferences.getTemplateFileExtension()));
-        ctx.put(CLASS_KEY, pattern.getName());
+        ctx.put(CLASS_KEY, PatternHelper.dropNonWordCharacter(pattern.getName()));
         String fullLibraryName = PatternHelper.getFullLibraryName(pattern);
         if (fullLibraryName == null || "".equals(fullLibraryName))
             fullLibraryName = "default_package";
