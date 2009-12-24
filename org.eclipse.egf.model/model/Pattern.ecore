@@ -8,7 +8,7 @@
       <details key="constraints" value="headerMethod footerMethod"/>
     </eAnnotations>
     <eOperations name="getMethod" eType="#//PatternMethod">
-      <eParameters name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eParameters name="name" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="headerMethod" lowerBound="1"
         eType="#//PatternMethod"/>
@@ -36,10 +36,10 @@
         eType="ecore:EDataType FactoryComponent.ecore#//URI"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternParameter" eSuperTypes="FactoryComponent.ecore#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EModelElement"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="PatternRunner" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement">
-    <eOperations name="run" eExceptions="#//PatternException">
+  <eClassifiers xsi:type="ecore:EClass" name="PatternEngine" abstract="true" eSuperTypes="FactoryComponent.ecore#//ModelElement">
+    <eOperations name="execute" eExceptions="#//PatternException">
       <eParameters name="context" lowerBound="1" eType="#//PatternContext"/>
     </eOperations>
     <eOperations name="translate" eExceptions="#//PatternException"/>

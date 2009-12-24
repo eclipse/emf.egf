@@ -100,8 +100,8 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
-        public Adapter casePatternRunner(PatternRunner object) {
-            return createPatternRunnerAdapter();
+        public Adapter casePatternEngine(PatternEngine object) {
+            return createPatternEngineAdapter();
         }
 
         @Override
@@ -221,16 +221,16 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternRunner <em>Runner</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternEngine <em>Engine</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore cases;
      * it's useful to ignore a case when inheritance will catch all the cases anyway.
      * <!-- end-user-doc -->
      * @return the new adapter.
-     * @see org.eclipse.egf.model.pattern.PatternRunner
+     * @see org.eclipse.egf.model.pattern.PatternEngine
      * @generated
      */
-    public Adapter createPatternRunnerAdapter() {
+    public Adapter createPatternEngineAdapter() {
         return null;
     }
 

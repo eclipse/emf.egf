@@ -53,14 +53,24 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
     protected int eFlags = 0;
 
     /**
-     * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+     * The default value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #getType()
      * @generated
      * @ordered
      */
-    protected EModelElement type;
+    protected static final String TYPE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getType()
+     * @generated
+     * @ordered
+     */
+    protected String type = TYPE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
@@ -86,15 +96,7 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
      * <!-- end-user-doc -->
      * @generated
      */
-    public EModelElement getType() {
-        if (type != null && type.eIsProxy()) {
-            InternalEObject oldType = (InternalEObject) type;
-            type = (EModelElement) eResolveProxy(oldType);
-            if (type != oldType) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN_PARAMETER__TYPE, oldType, type));
-            }
-        }
+    public String getType() {
         return type;
     }
 
@@ -103,17 +105,8 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
      * <!-- end-user-doc -->
      * @generated
      */
-    public EModelElement basicGetType() {
-        return type;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setType(EModelElement newType) {
-        EModelElement oldType = type;
+    public void setType(String newType) {
+        String oldType = type;
         type = newType;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_PARAMETER__TYPE, oldType, type));
@@ -128,9 +121,7 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
         case PatternPackage.PATTERN_PARAMETER__TYPE:
-            if (resolve)
-                return getType();
-            return basicGetType();
+            return getType();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -144,7 +135,7 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
         case PatternPackage.PATTERN_PARAMETER__TYPE:
-            setType((EModelElement) newValue);
+            setType((String) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -159,7 +150,7 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
     public void eUnset(int featureID) {
         switch (featureID) {
         case PatternPackage.PATTERN_PARAMETER__TYPE:
-            setType((EModelElement) null);
+            setType(TYPE_EDEFAULT);
             return;
         }
         super.eUnset(featureID);
@@ -174,9 +165,26 @@ public class PatternParameterImpl extends ModelElementImpl implements PatternPar
     public boolean eIsSet(int featureID) {
         switch (featureID) {
         case PatternPackage.PATTERN_PARAMETER__TYPE:
-            return type != null;
+            return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy())
+            return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (type: "); //$NON-NLS-1$
+        result.append(type);
+        result.append(')');
+        return result.toString();
     }
 
 } //PatternParameterImpl

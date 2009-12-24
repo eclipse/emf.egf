@@ -38,14 +38,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pattern.ecore#//PatternMethod/patternFilePath"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//PatternParameter">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternParameter/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Pattern.ecore#//PatternParameter/type"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Pattern.ecore#//PatternRunner">
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternRunner/pattern"/>
-      <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/run">
-        <genParameters ecoreParameter="Pattern.ecore#//PatternRunner/run/context"/>
+    <genClasses image="false" ecoreClass="Pattern.ecore#//PatternEngine">
+      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternEngine/pattern"/>
+      <genOperations ecoreOperation="Pattern.ecore#//PatternEngine/execute">
+        <genParameters ecoreParameter="Pattern.ecore#//PatternEngine/execute/context"/>
       </genOperations>
-      <genOperations ecoreOperation="Pattern.ecore#//PatternRunner/translate"/>
+      <genOperations ecoreOperation="Pattern.ecore#//PatternEngine/translate"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//PatternLibrary">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/elements"/>

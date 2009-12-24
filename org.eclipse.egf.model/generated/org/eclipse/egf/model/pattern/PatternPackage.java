@@ -365,7 +365,7 @@ public interface PatternPackage extends EPackage {
     int PATTERN_PARAMETER__DESCRIPTION = FactoryComponentPackage.MODEL_ELEMENT__DESCRIPTION;
 
     /**
-     * The feature id for the '<em><b>Type</b></em>' reference.
+     * The feature id for the '<em><b>Type</b></em>' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
@@ -383,14 +383,14 @@ public interface PatternPackage extends EPackage {
     int PATTERN_PARAMETER_FEATURE_COUNT = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
     /**
-     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternRunnerImpl <em>Runner</em>}' class.
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternEngineImpl <em>Engine</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.pattern.impl.PatternRunnerImpl
-     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternRunner()
+     * @see org.eclipse.egf.model.pattern.impl.PatternEngineImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternEngine()
      * @generated
      */
-    int PATTERN_RUNNER = 3;
+    int PATTERN_ENGINE = 3;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -399,7 +399,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN_RUNNER__ID = FactoryComponentPackage.MODEL_ELEMENT__ID;
+    int PATTERN_ENGINE__ID = FactoryComponentPackage.MODEL_ELEMENT__ID;
 
     /**
      * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -408,7 +408,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN_RUNNER__NAME = FactoryComponentPackage.MODEL_ELEMENT__NAME;
+    int PATTERN_ENGINE__NAME = FactoryComponentPackage.MODEL_ELEMENT__NAME;
 
     /**
      * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -417,7 +417,7 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN_RUNNER__DESCRIPTION = FactoryComponentPackage.MODEL_ELEMENT__DESCRIPTION;
+    int PATTERN_ENGINE__DESCRIPTION = FactoryComponentPackage.MODEL_ELEMENT__DESCRIPTION;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' reference.
@@ -426,16 +426,16 @@ public interface PatternPackage extends EPackage {
      * @generated
      * @ordered
      */
-    int PATTERN_RUNNER__PATTERN = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+    int PATTERN_ENGINE__PATTERN = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
     /**
-     * The number of structural features of the '<em>Runner</em>' class.
+     * The number of structural features of the '<em>Engine</em>' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PATTERN_RUNNER_FEATURE_COUNT = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+    int PATTERN_ENGINE_FEATURE_COUNT = FactoryComponentPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl <em>Library</em>}' class.
@@ -986,36 +986,36 @@ public interface PatternPackage extends EPackage {
     EClass getPatternParameter();
 
     /**
-     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.PatternParameter#getType <em>Type</em>}'.
+     * Returns the meta object for the attribute '{@link org.eclipse.egf.model.pattern.PatternParameter#getType <em>Type</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the reference '<em>Type</em>'.
+     * @return the meta object for the attribute '<em>Type</em>'.
      * @see org.eclipse.egf.model.pattern.PatternParameter#getType()
      * @see #getPatternParameter()
      * @generated
      */
-    EReference getPatternParameter_Type();
+    EAttribute getPatternParameter_Type();
 
     /**
-     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternRunner <em>Runner</em>}'.
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternEngine <em>Engine</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for class '<em>Runner</em>'.
-     * @see org.eclipse.egf.model.pattern.PatternRunner
+     * @return the meta object for class '<em>Engine</em>'.
+     * @see org.eclipse.egf.model.pattern.PatternEngine
      * @generated
      */
-    EClass getPatternRunner();
+    EClass getPatternEngine();
 
     /**
-     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.PatternRunner#getPattern <em>Pattern</em>}'.
+     * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.PatternEngine#getPattern <em>Pattern</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @return the meta object for the reference '<em>Pattern</em>'.
-     * @see org.eclipse.egf.model.pattern.PatternRunner#getPattern()
-     * @see #getPatternRunner()
+     * @see org.eclipse.egf.model.pattern.PatternEngine#getPattern()
+     * @see #getPatternEngine()
      * @generated
      */
-    EReference getPatternRunner_Pattern();
+    EReference getPatternEngine_Pattern();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternLibrary <em>Library</em>}'.
@@ -1383,22 +1383,22 @@ public interface PatternPackage extends EPackage {
         EClass PATTERN_PARAMETER = eINSTANCE.getPatternParameter();
 
         /**
-         * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+         * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference PATTERN_PARAMETER__TYPE = eINSTANCE.getPatternParameter_Type();
+        EAttribute PATTERN_PARAMETER__TYPE = eINSTANCE.getPatternParameter_Type();
 
         /**
-         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternRunnerImpl <em>Runner</em>}' class.
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternEngineImpl <em>Engine</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
-         * @see org.eclipse.egf.model.pattern.impl.PatternRunnerImpl
-         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternRunner()
+         * @see org.eclipse.egf.model.pattern.impl.PatternEngineImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternEngine()
          * @generated
          */
-        EClass PATTERN_RUNNER = eINSTANCE.getPatternRunner();
+        EClass PATTERN_ENGINE = eINSTANCE.getPatternEngine();
 
         /**
          * The meta object literal for the '<em><b>Pattern</b></em>' reference feature.
@@ -1406,7 +1406,7 @@ public interface PatternPackage extends EPackage {
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference PATTERN_RUNNER__PATTERN = eINSTANCE.getPatternRunner_Pattern();
+        EReference PATTERN_ENGINE__PATTERN = eINSTANCE.getPatternEngine_Pattern();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl <em>Library</em>}' class.

@@ -126,11 +126,11 @@ public class PatternSwitch<T> {
                 result = defaultCase(theEObject);
             return result;
         }
-        case PatternPackage.PATTERN_RUNNER: {
-            PatternRunner patternRunner = (PatternRunner) theEObject;
-            T result = casePatternRunner(patternRunner);
+        case PatternPackage.PATTERN_ENGINE: {
+            PatternEngine patternEngine = (PatternEngine) theEObject;
+            T result = casePatternEngine(patternEngine);
             if (result == null)
-                result = caseModelElement(patternRunner);
+                result = caseModelElement(patternEngine);
             if (result == null)
                 result = defaultCase(theEObject);
             return result;
@@ -268,17 +268,17 @@ public class PatternSwitch<T> {
     }
 
     /**
-     * Returns the result of interpreting the object as an instance of '<em>Runner</em>'.
+     * Returns the result of interpreting the object as an instance of '<em>Engine</em>'.
      * <!-- begin-user-doc -->
      * This implementation returns null;
      * returning a non-null result will terminate the switch.
      * <!-- end-user-doc -->
      * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Runner</em>'.
+     * @return the result of interpreting the object as an instance of '<em>Engine</em>'.
      * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
      * @generated
      */
-    public T casePatternRunner(PatternRunner object) {
+    public T casePatternEngine(PatternEngine object) {
         return null;
     }
 

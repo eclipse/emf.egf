@@ -20,8 +20,8 @@ import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.factorycomponent.impl.ModelElementImpl;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternEngine;
 import org.eclipse.egf.model.pattern.PatternPackage;
-import org.eclipse.egf.model.pattern.PatternRunner;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -29,29 +29,32 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
- * <em><b>Runner</b></em>'. <!-- end-user-doc -->
+ * <em><b>Engine</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternRunnerImpl#getPattern <em>Pattern</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternEngineImpl#getPattern
+ * <em>Pattern</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
-public abstract class PatternRunnerImpl extends ModelElementImpl implements PatternRunner {
+public abstract class PatternEngineImpl extends ModelElementImpl implements PatternEngine {
     /**
-     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-     * <!-- begin-user-doc --> <!--
+     * A set of bit flags representing the values of boolean attributes and
+     * whether unsettable features have been set. <!-- begin-user-doc --> <!--
      * end-user-doc -->
+     * 
      * @generated
      * @ordered
      */
     protected int eFlags = 0;
 
     /**
-     * The cached value of the '{@link #getPattern() <em>Pattern</em>}' reference.
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * The cached value of the '{@link #getPattern() <em>Pattern</em>}'
+     * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @see #getPattern()
      * @generated
      * @ordered
@@ -60,23 +63,26 @@ public abstract class PatternRunnerImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
-    protected PatternRunnerImpl() {
+    protected PatternEngineImpl() {
         super();
     }
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     protected EClass eStaticClass() {
-        return PatternPackage.Literals.PATTERN_RUNNER;
+        return PatternPackage.Literals.PATTERN_ENGINE;
     }
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public Pattern getPattern() {
@@ -85,7 +91,7 @@ public abstract class PatternRunnerImpl extends ModelElementImpl implements Patt
             pattern = (Pattern) eResolveProxy(oldPattern);
             if (pattern != oldPattern) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN_RUNNER__PATTERN, oldPattern, pattern));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN_ENGINE__PATTERN, oldPattern, pattern));
             }
         }
         return pattern;
@@ -97,6 +103,7 @@ public abstract class PatternRunnerImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public Pattern basicGetPattern() {
@@ -105,9 +112,10 @@ public abstract class PatternRunnerImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
-    public void run(PatternContext context) throws PatternException {
+    public void execute(PatternContext context) throws PatternException {
         // TODO: implement this method
         // Ensure that you remove @generated or mark it @generated NOT
         throw new UnsupportedOperationException();
@@ -115,6 +123,7 @@ public abstract class PatternRunnerImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void translate() throws PatternException {
@@ -125,12 +134,13 @@ public abstract class PatternRunnerImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.PATTERN_RUNNER__PATTERN:
+        case PatternPackage.PATTERN_ENGINE__PATTERN:
             if (resolve)
                 return getPattern();
             return basicGetPattern();
@@ -140,15 +150,16 @@ public abstract class PatternRunnerImpl extends ModelElementImpl implements Patt
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.PATTERN_RUNNER__PATTERN:
+        case PatternPackage.PATTERN_ENGINE__PATTERN:
             return pattern != null;
         }
         return super.eIsSet(featureID);
     }
 
-} // PatternRunnerImpl
+} // PatternEngineImpl
