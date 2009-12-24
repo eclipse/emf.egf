@@ -21,6 +21,7 @@ import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
+import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.ParameterMatcher;
@@ -38,6 +39,11 @@ public class JavaAssemblyHelper extends AssemblyHelper {
 
     public JavaAssemblyHelper(Pattern pattern) {
         super(pattern);
+    }
+
+    @Override
+    protected void call(PatternInjectedCall call) throws PatternException {
+        // TODO implementation
     }
 
     @Override
