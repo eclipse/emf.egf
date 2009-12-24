@@ -22,7 +22,7 @@ import org.eclipse.egf.common.activator.EGFCommonPlugin;
 import org.eclipse.egf.common.helper.IUserEnforcedHelper;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.pde.EGFPDEPlugin;
-import org.eclipse.egf.pde.internal.FactoryComponentGeneratorHelper;
+import org.eclipse.egf.pde.internal.FcoreGeneratorHelper;
 import org.eclipse.egf.pde.internal.ui.util.ModelModification;
 import org.eclipse.egf.pde.internal.ui.util.PDEModelUtility;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommand;
@@ -141,10 +141,10 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
     IBuildModel buildModel = pluginModel_p.getBuildModel();
     IProject project = pluginModel_p.getUnderlyingResource().getProject();
     if (buildModel == null) {
-      buildModel = FactoryComponentGeneratorHelper.getBuildModel(project);
+      buildModel = FcoreGeneratorHelper.getBuildModel(project);
       pluginModel_p.setBuildModel(buildModel);
     }
-    FactoryComponentGeneratorHelper.addEntryInBinaryBuild(buildModel, EGFPDEPlugin.PLUGIN_FILE_NAME);
+    FcoreGeneratorHelper.addEntryInBinaryBuild(buildModel, EGFPDEPlugin.PLUGIN_FILE_NAME);
     // Save the build.properties.
     ((WorkspaceBuildModel) buildModel).save();
   }

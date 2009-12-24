@@ -165,7 +165,7 @@ public abstract class AssemblyHelper {
     private String getMethodContent(PatternMethod object) throws PatternException {
         URI uri = object.getPatternFilePath();
         try {
-            return FileHelper_to_be_upgraded.getContent(PatternHelper.getPlatformFactoryComponent(object.getPattern()), uri);
+            return FileHelper_to_be_upgraded.getContent(PatternHelper.getPlatformFcore(object.getPattern()), uri);
         } catch (CoreException e) {
             throw new PatternException(e);
         } catch (IOException e) {

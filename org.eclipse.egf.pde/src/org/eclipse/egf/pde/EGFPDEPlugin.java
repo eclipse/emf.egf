@@ -1,12 +1,12 @@
 /**
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  */
 package org.eclipse.egf.pde;
 
@@ -30,14 +30,14 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.common.ui.activator.EGFAbstractUIPlugin;
-import org.eclipse.egf.core.platform.resource.IResourceFactoryComponentListener;
-import org.eclipse.egf.pde.internal.FactoryComponentGeneratorHelper;
+import org.eclipse.egf.core.fcore.IResourceFcoreListener;
+import org.eclipse.egf.pde.internal.FcoreGeneratorHelper;
 import org.eclipse.egf.pde.internal.plugin.command.PluginChangesCommandRunner;
-import org.eclipse.egf.pde.internal.plugin.extension.FactoryComponentExtensionFactory;
-import org.eclipse.egf.pde.internal.resource.FactoryComponentResourceListener;
+import org.eclipse.egf.pde.internal.plugin.extension.FcoreExtensionFactory;
+import org.eclipse.egf.pde.internal.resource.FcoreResourceListener;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommand;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommandRunner;
-import org.eclipse.egf.pde.plugin.extension.IFactoryComponentExtensionFactory;
+import org.eclipse.egf.pde.plugin.extension.IFcoreExtensionFactory;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
@@ -76,9 +76,9 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
   private IPluginChangesCommandRunner _pluginChangesCommandRunner;
 
   /**
-   * Factory Component Resource listener
+   * Fcore Resource listener
    */
-  private FactoryComponentResourceListener _factoryComponentResourceListener;
+  private FcoreResourceListener _fcoreResourceListener;
 
   /**
    * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
@@ -88,12 +88,13 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
     super.start(context_p);
     __plugin = this;
     // Listener initalization
-    _factoryComponentResourceListener = new FactoryComponentResourceListener();
+    _fcoreResourceListener = new FcoreResourceListener();
     // process deltas since last activated in indexer thread so that indexes are
     // up-to-date.
     // see https://bugs.eclipse.org/bugs/show_bug.cgi?id=38658
     final IWorkspace workspace = ResourcesPlugin.getWorkspace();
     Job processSavedState = new Job(EGFPDEMessages.savedState_jobName) {
+      @Override
       protected IStatus run(IProgressMonitor monitor) {
         try {
           // add save participant and process delta atomically
@@ -106,8 +107,8 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
                 // POST_BUILD
                 // force it to be POST_CHANGE so that the delta processor can
                 // handle it
-                EGFPDEPlugin.this._factoryComponentResourceListener._overridenEventType = IResourceChangeEvent.POST_CHANGE;
-                savedState.processResourceChangeEvents(EGFPDEPlugin.this._factoryComponentResourceListener);
+                EGFPDEPlugin.this._fcoreResourceListener._overridenEventType = IResourceChangeEvent.POST_CHANGE;
+                savedState.processResourceChangeEvents(EGFPDEPlugin.this._fcoreResourceListener);
               }
             }
           }, monitor);
@@ -146,8 +147,8 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
   @Override
   public void stop(BundleContext context_p) throws Exception {
     // Stop our listeners
-    _factoryComponentResourceListener.dispose();
-    _factoryComponentResourceListener = null;
+    _fcoreResourceListener.dispose();
+    _fcoreResourceListener = null;
     __plugin = null;
     super.stop(context_p);
   }
@@ -166,8 +167,8 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
    * 
    * @return
    */
-  public static IFactoryComponentExtensionFactory getFactoryComponentExtensionHelper() {
-    return FactoryComponentExtensionFactory.getInstance();
+  public static IFcoreExtensionFactory getFcoreExtensionHelper() {
+    return FcoreExtensionFactory.getInstance();
   }
 
   /**
@@ -176,8 +177,8 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
    * @param listener
    *          the listener to be added
    */
-  public void addResourceFactoryComponentListener(IResourceFactoryComponentListener listener) {
-    _factoryComponentResourceListener.addResourceFactoryComponentListener(listener);
+  public void addResourceFcoreListener(IResourceFcoreListener listener) {
+    _fcoreResourceListener.addResourceFcoreListener(listener);
   }
 
   /**
@@ -186,8 +187,8 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
    * @param listener
    *          the listener to be removed
    */
-  public void removeResourceFactoryComponentListener(IResourceFactoryComponentListener listener) {
-    _factoryComponentResourceListener.removeResourceFactoryComponentListener(listener);
+  public void removeResourceFcoreListener(IResourceFcoreListener listener) {
+    _fcoreResourceListener.removeResourceFcoreListener(listener);
   }
 
   /**
@@ -256,9 +257,9 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
     if (project_p == null || entryName_p == null) {
       return;
     }
-    WorkspaceBuildModel buildModel = FactoryComponentGeneratorHelper.getBuildModel(project_p);
+    WorkspaceBuildModel buildModel = FcoreGeneratorHelper.getBuildModel(project_p);
     if (buildModel != null) {
-      FactoryComponentGeneratorHelper.addEntryInBinaryBuild(buildModel, entryName_p);
+      FcoreGeneratorHelper.addEntryInBinaryBuild(buildModel, entryName_p);
       buildModel.save();
     }
   }
@@ -279,7 +280,7 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
     try {
       convertOperation.run(new NullProgressMonitor());
     } catch (InvocationTargetException ite) {
-      EGFPDEPlugin.getDefault().logError(NLS.bind("EgfPdeActivator.convertToPlugin(..) _ Project: '{0}'", //$NON-NLS-1$
+      EGFPDEPlugin.getDefault().logError(NLS.bind("EGFPDEPlugin.convertToPlugin(..) _ Project: '{0}'", //$NON-NLS-1$
           project_p.getName()), ite);
     } catch (InterruptedException ie) {
       // Nothing to do

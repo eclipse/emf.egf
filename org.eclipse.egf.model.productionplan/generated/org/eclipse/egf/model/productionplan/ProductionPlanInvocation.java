@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,13 +9,10 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.productionplan;
 
-import org.eclipse.egf.model.factorycomponent.Invocation;
+import org.eclipse.egf.model.fcore.Invocation;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,7 +31,6 @@ import org.eclipse.egf.model.factorycomponent.Invocation;
  * @generated
  */
 public interface ProductionPlanInvocation extends Invocation {
-
   /**
    * Returns the value of the '<em><b>Production Plan</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.productionplan.ProductionPlan#getProductionPlanInvocations <em>Production Plan Invocations</em>}'.
@@ -63,4 +58,5 @@ public interface ProductionPlanInvocation extends Invocation {
    * @generated
    */
   void setProductionPlan(ProductionPlan value);
+
 } // ProductionPlanInvocation

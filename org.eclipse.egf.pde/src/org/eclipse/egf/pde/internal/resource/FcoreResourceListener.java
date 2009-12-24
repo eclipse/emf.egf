@@ -1,12 +1,12 @@
 /**
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  */
 package org.eclipse.egf.pde.internal.resource;
 
@@ -26,17 +26,17 @@ import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.StatusHelper;
 import org.eclipse.egf.common.uri.URIHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.fcore.IFcoreConstants;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
+import org.eclipse.egf.core.fcore.IResourceFcoreListener;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
-import org.eclipse.egf.core.platform.pde.IFactoryComponentConstants;
-import org.eclipse.egf.core.platform.pde.IPlatformFactoryComponent;
-import org.eclipse.egf.core.platform.resource.IResourceFactoryComponentDelta;
-import org.eclipse.egf.core.platform.resource.IResourceFactoryComponentListener;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommand;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommandRunner;
@@ -48,7 +48,7 @@ import org.eclipse.osgi.util.NLS;
  * @author Xavier Maysonnave
  * 
  */
-public class FactoryComponentResourceListener implements IResourceChangeListener {
+public class FcoreResourceListener implements IResourceChangeListener {
 
   /*
    * Type of event that should be processed no matter what the real event type
@@ -57,9 +57,9 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
   public int _overridenEventType = -1;
 
   // A list of listeners interested in changes to factory components resources
-  private List<IResourceFactoryComponentListener> _listeners;
+  private List<IResourceFcoreListener> _listeners;
 
-  public FactoryComponentResourceListener() {
+  public FcoreResourceListener() {
     ResourcesPlugin.getWorkspace().addResourceChangeListener(this, IResourceChangeEvent.POST_CHANGE);
   }
 
@@ -70,10 +70,10 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
    * @param delta
    *          the delta of changes
    */
-  private void fireResourceFactoryComponent(IResourceFactoryComponentDelta delta) {
+  private void fireResourceFcore(IResourceFcoreDelta delta) {
     if (_listeners != null) {
-      for (IResourceFactoryComponentListener listener : _listeners) {
-        listener.factoryComponentChanged(delta);
+      for (IResourceFcoreListener listener : _listeners) {
+        listener.fcoreChanged(delta);
       }
     }
   }
@@ -84,9 +84,9 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
    * @param listener
    *          the listener to be added
    */
-  public void addResourceFactoryComponentListener(IResourceFactoryComponentListener listener) {
+  public void addResourceFcoreListener(IResourceFcoreListener listener) {
     if (_listeners == null) {
-      _listeners = new ArrayList<IResourceFactoryComponentListener>();
+      _listeners = new ArrayList<IResourceFcoreListener>();
     }
     if (_listeners.contains(listener) == false) {
       _listeners.add(listener);
@@ -99,7 +99,7 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
    * @param listener
    *          the listener to be removed
    */
-  public void removeResourceFactoryComponentListener(IResourceFactoryComponentListener listener) {
+  public void removeResourceFcoreListener(IResourceFcoreListener listener) {
     if (_listeners == null) {
       return;
     }
@@ -118,11 +118,11 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
 
       final class ResourceDeltaVisitor implements IResourceDeltaVisitor {
 
-        protected ResourceFactoryComponentDelta deltaFcs = new ResourceFactoryComponentDelta();
+        protected ResourceFcoreDelta deltaFcores = new ResourceFcoreDelta();
 
-        protected Collection<IResource> addedFcs = new ArrayList<IResource>();
+        protected Collection<IResource> addedFcores = new ArrayList<IResource>();
 
-        protected Collection<IPlatformFactoryComponent> removedFcs = new ArrayList<IPlatformFactoryComponent>();
+        protected Collection<IPlatformFcore> removedFcores = new ArrayList<IPlatformFcore>();
 
         public boolean visit(IResourceDelta delta) throws CoreException {
 
@@ -154,47 +154,47 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
 
           // Process files
           if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED || delta.getKind() == IResourceDelta.ADDED) {
-            if (IFactoryComponentConstants.FACTORY_COMPONENT_FILE_EXTENSION.equals(resource.getFileExtension())) {
+            if (IFcoreConstants.FCORE_FILE_EXTENSION.equals(resource.getFileExtension())) {
               try {
                 // Build a Resource URI
                 URI uri = URIHelper.getPlatformURI(resource);
                 if (uri != null) {
                   // Removed resource
                   if (delta.getKind() == IResourceDelta.REMOVED) {
-                    for (IPlatformFactoryComponent fc : EGFPlatformPlugin.getDefault().getWorkspacePluginFactoryComponents()) {
+                    for (IPlatformFcore fc : EGFCorePlugin.getWorkspacePlatformFcores()) {
                       if (fc.getURI().equals(uri)) {
-                        removedFcs.add(fc);
+                        removedFcores.add(fc);
                         break;
                       }
                     }
                     // Added resource
                   } else if (delta.getKind() == IResourceDelta.ADDED) {
                     boolean found = false;
-                    for (IPlatformFactoryComponent fc : EGFPlatformPlugin.getDefault().getWorkspacePluginFactoryComponents()) {
+                    for (IPlatformFcore fc : EGFCorePlugin.getWorkspacePlatformFcores()) {
                       if (fc.getURI().equals(uri)) {
                         found = true;
                         break;
                       }
                     }
                     if (found == false) {
-                      addedFcs.add(resource);
+                      addedFcores.add(resource);
                       if ((delta.getFlags() & IResourceDelta.MOVED_FROM) != 0) {
                         // Build a Resource URI
                         URI fromURI = URIHelper.getPlatformURI(delta.getMovedFromPath());
                         if (fromURI != null) {
-                          deltaFcs.storeMovedResourceFactoryComponent(uri, fromURI);
+                          deltaFcores.storeMovedResourceFcore(uri, fromURI);
                         }
                       }
                     }
                     // Changed resource
                   } else if (delta.getKind() == IResourceDelta.CHANGED) {
                     if ((delta.getFlags() & IResourceDelta.CONTENT) != 0) {
-                      deltaFcs.storeChangedResourceFactoryComponent(uri);
+                      deltaFcores.storeChangedResourceFcore(uri);
                     }
                   }
                 }
               } catch (IllegalArgumentException iae) {
-                EGFPlatformPlugin.getDefault().logError(new String("PlatformManager.ResourceDeltaVisitor.visit(..) _ "), iae); //$NON-NLS-1$
+                EGFPlatformPlugin.getDefault().logError(new String("FcoreResourceListener.resourceChanged(..) _ "), iae); //$NON-NLS-1$
               }
             }
           }
@@ -203,16 +203,16 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
 
         }
 
-        public Collection<IPlatformFactoryComponent> getRemovedFactoryComponents() {
-          return removedFcs;
+        public Collection<IPlatformFcore> getRemovedFcores() {
+          return removedFcores;
         }
 
-        public Collection<IResource> getAddedFactoryComponents() {
-          return addedFcs;
+        public Collection<IResource> getAddedFcores() {
+          return addedFcores;
         }
 
-        public ResourceFactoryComponentDelta getFactoryComponentsDelta() {
-          return deltaFcs;
+        public ResourceFcoreDelta getFcoresDelta() {
+          return deltaFcores;
         }
 
       }
@@ -222,11 +222,12 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
         final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
         event.getDelta().accept(visitor);
         // Process added and removed resources
-        if (visitor.getRemovedFactoryComponents().isEmpty() == false || visitor.getAddedFactoryComponents().isEmpty() == false) {
+        if (visitor.getRemovedFcores().isEmpty() == false || visitor.getAddedFcores().isEmpty() == false) {
           final IStatus[] errorStatus = new IStatus[1];
           errorStatus[0] = Status.OK_STATUS;
-          final IRunnableWithProgress op = createFactoryComponentOperation(errorStatus, visitor.getRemovedFactoryComponents(), visitor.getAddedFactoryComponents());
+          final IRunnableWithProgress op = createFcoreOperation(errorStatus, visitor.getRemovedFcores(), visitor.getAddedFcores());
           WorkspaceJob job = new WorkspaceJob("update") { //$NON-NLS-1$
+            @Override
             public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
               try {
                 op.run(monitor);
@@ -238,25 +239,24 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
               }
               return errorStatus[0];
             }
-
           };
           job.setUser(true);
           job.schedule();
         }
         // Broadcast events
         // Something to process
-        if (visitor.getFactoryComponentsDelta().isEmpty() == false) {
+        if (visitor.getFcoresDelta().isEmpty() == false) {
           // Debug
           if (EGFPDEPlugin.getDefault().isDebugging()) {
-            trace(visitor.getFactoryComponentsDelta());
+            trace(visitor.getFcoresDelta());
           }
           // Notify all interested listeners in the changes made to models
-          fireResourceFactoryComponent(visitor.getFactoryComponentsDelta());
+          fireResourceFcore(visitor.getFcoresDelta());
         }
       }
 
     } catch (CoreException ce) {
-      EGFPDEPlugin.getDefault().logError(new String("PlatformManager.ResourceDeltaVisitor.resourceChanged(..) _"), ce); //$NON-NLS-1$
+      EGFPDEPlugin.getDefault().logError(new String("FcoreResourceListener.resourceChanged(..) _"), ce); //$NON-NLS-1$
     }
 
   }
@@ -266,28 +266,27 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
     _listeners = null;
   }
 
-  final protected IRunnableWithProgress createFactoryComponentOperation(final IStatus[] errorStatus, final Collection<IPlatformFactoryComponent> removedFCs, final Collection<IResource> addedFCs) {
+  final protected IRunnableWithProgress createFcoreOperation(final IStatus[] errorStatus, final Collection<IPlatformFcore> removedFcores, final Collection<IResource> addedFcores) {
     return new IRunnableWithProgress() {
       public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-        MultiStatus errors = null;
-        monitor.beginTask("", (removedFCs.size() + addedFCs.size()) * 1000); //$NON-NLS-1$
+        monitor.beginTask("", (removedFcores.size() + addedFcores.size()) * 1000); //$NON-NLS-1$
         monitor.setTaskName(InternalResourcesMessages.PluginModelUpdate_progressMessage);
         try {
-          // Removed FCs
-          for (IPlatformFactoryComponent fc : removedFCs) {
+          // Removed Fcores
+          for (IPlatformFcore fcore : removedFcores) {
             // Delete an extension point
-            IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFactoryComponentExtensionHelper().unsetFactoryComponentExtension(fc.getURI());
+            IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(fcore.getURI());
             IPluginChangesCommandRunner runner = EGFPDEPlugin.getPluginChangesCommandRunner();
-            runner.performChangesOnPlugin(fc.getPlatformPlugin().getBundleId(), Collections.singletonList(unsetCommand));
+            runner.performChangesOnPlugin(fcore.getPlatformBundle().getBundleId(), Collections.singletonList(unsetCommand));
             monitor.worked(1000);
             if (monitor.isCanceled()) {
               throw new OperationCanceledException();
             }
           }
-          // Added FCs
-          for (IResource resource : addedFCs) {
+          // Added Fcores
+          for (IResource resource : addedFcores) {
             // Create an extension point
-            IPluginChangesCommand createCommand = EGFPDEPlugin.getFactoryComponentExtensionHelper().setFactoryComponentExtension(URI.createURI(resource.getFullPath().removeFirstSegments(1).makeRelative().toString()));
+            IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(URI.createURI(resource.getFullPath().removeFirstSegments(1).makeRelative().toString()));
             IPluginChangesCommandRunner runner = EGFPDEPlugin.getPluginChangesCommandRunner();
             // Locate the bundleId, resource should be located in a bundle
             // project
@@ -300,9 +299,7 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
               throw new OperationCanceledException();
             }
           }
-          if (errors != null) {
-            errorStatus[0] = errors;
-          }
+          errorStatus[0] = Status.OK_STATUS;
         } finally {
           monitor.done();
         }
@@ -310,26 +307,26 @@ public class FactoryComponentResourceListener implements IResourceChangeListener
     };
   }
 
-  private void trace(IResourceFactoryComponentDelta delta) {
-    if (delta.getChangedResourceFactoryComponents().length > 0) {
-      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FactoryComponentResourceListener Changed {0} Factory Component{1}.", //$NON-NLS-1$ 
-          delta.getChangedResourceFactoryComponents().length, delta.getChangedResourceFactoryComponents().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+  private void trace(IResourceFcoreDelta delta) {
+    if (delta.getChangedResourceFcores().length > 0) {
+      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Changed {0} Fcore{1}.", //$NON-NLS-1$ 
+          delta.getChangedResourceFcores().length, delta.getChangedResourceFcores().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
-      trace(delta.getChangedResourceFactoryComponents(), null);
+      trace(delta.getChangedResourceFcores(), null);
     }
-    if (delta.getMovedResourceFactoryComponents().length > 0) {
-      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FactoryComponentResourceListener Moved {0} Factory Component{1}.", //$NON-NLS-1$ 
-          delta.getMovedResourceFactoryComponents().length, delta.getMovedResourceFactoryComponents().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+    if (delta.getMovedResourceFcores().length > 0) {
+      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Moved {0} Fcore{1}.", //$NON-NLS-1$ 
+          delta.getMovedResourceFcores().length, delta.getMovedResourceFcores().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
-      trace(delta.getMovedResourceFactoryComponents(), delta);
+      trace(delta.getMovedResourceFcores(), delta);
     }
   }
 
-  private void trace(URI[] uris, IResourceFactoryComponentDelta delta) {
+  private void trace(URI[] uris, IResourceFcoreDelta delta) {
     for (URI uri : uris) {
       EGFPDEPlugin.getDefault().logWarning(uri.toString(), 1);
       if (delta != null) {
-        EGFPDEPlugin.getDefault().logWarning("From: " + delta.getMovedFromResourceFactoryComponent(uri), 2); //$NON-NLS-1$
+        EGFPDEPlugin.getDefault().logWarning("From: " + delta.getMovedFromResourceFcore(uri), 2); //$NON-NLS-1$
       }
     }
   }

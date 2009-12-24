@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,17 +9,14 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.productionplan.util;
 
 import java.util.List;
 
-import org.eclipse.egf.model.factorycomponent.Invocation;
-import org.eclipse.egf.model.factorycomponent.ModelElement;
-import org.eclipse.egf.model.factorycomponent.Orchestration;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.Orchestration;
 
 import org.eclipse.egf.model.productionplan.*;
 

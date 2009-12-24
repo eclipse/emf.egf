@@ -1,17 +1,21 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
+Bundle-ClassPath: .
 Bundle-SymbolicName: org.eclipse.egf.pattern;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.egf.pattern.Activator
-Require-Bundle: org.eclipse.core.runtime,
+Bundle-Localization: plugin
+Require-Bundle: 
+ org.eclipse.core.runtime,
  org.eclipse.egf.model;visibility:=reexport,
  org.eclipse.jdt.core,
- org.eclipse.egf.core.platform;visibility:=reexport,
+ org.eclipse.egf.core;visibility:=reexport,
  org.eclipse.emf.query
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.egf.pattern,
+Export-Package: 
+ org.eclipse.egf.pattern,
  org.eclipse.egf.pattern.ecore,
  org.eclipse.egf.pattern.execution,
  org.eclipse.egf.pattern.extension,

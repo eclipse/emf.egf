@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,6 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.javapattern.impl;
 
@@ -21,11 +17,7 @@ import org.eclipse.egf.model.javapattern.JavaPatternPackage;
 
 import org.eclipse.egf.model.pattern.impl.PatternNatureImpl;
 
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->

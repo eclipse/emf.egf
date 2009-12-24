@@ -1,12 +1,12 @@
 /*******************************************************************************
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  *******************************************************************************/
 package org.eclipse.egf.pde.internal;
 
@@ -29,12 +29,12 @@ import org.eclipse.pde.core.build.IBuildModel;
 import org.eclipse.pde.internal.core.build.WorkspaceBuildModel;
 
 /**
- * Provides services when creating factory components or converting existing
- * plug-ins in factory components.
+ * Provides services when creating fcore or converting existing
+ * plug-ins in fcore projects.
  * 
  * @author Guillaume Brocard
  */
-public class FactoryComponentGeneratorHelper {
+public class FcoreGeneratorHelper {
 
   /**
    * Create and add a new folder in given plug-in. <br>
@@ -71,7 +71,7 @@ public class FactoryComponentGeneratorHelper {
           binEntry.addToken(entryName_p);
         }
       } catch (CoreException ce) {
-        EGFPDEPlugin.getDefault().logError(new String("FactoryComponentGeneratorHelper.addEntryInBinInclude(..) _ ").toString(), ce); //$NON-NLS-1$
+        EGFPDEPlugin.getDefault().logError(new String("FcoreGeneratorHelper.addEntryInBinInclude(..) _ ").toString(), ce); //$NON-NLS-1$
       }
     }
   }
@@ -103,7 +103,7 @@ public class FactoryComponentGeneratorHelper {
    * @param pluginId_p
    * @param optional_p
    */
-  public static void addStandardFactoryComponentDependencies(String pluginId_p, boolean optional_p) {
+  public static void addStandardFcoreDependencies(String pluginId_p, boolean optional_p) {
     // Add dependencies on bootstrap factory component plug-in and pattern
     // plug-in for given plug-in.
     String[] dependencies = getStandardDependencies();

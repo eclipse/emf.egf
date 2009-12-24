@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,13 +9,10 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.productionplan.impl;
 
-import org.eclipse.egf.model.factorycomponent.impl.InvocationImpl;
+import org.eclipse.egf.model.fcore.impl.InvocationImpl;
 
 import org.eclipse.egf.model.productionplan.ProductionPlan;
 import org.eclipse.egf.model.productionplan.ProductionPlanInvocation;
@@ -24,9 +20,12 @@ import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**

@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,43 +9,44 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.jetpattern.util;
 
-import org.eclipse.egf.model.factorycomponent.ModelElement;
+import org.eclipse.egf.model.fcore.ModelElement;
+
 import org.eclipse.egf.model.jetpattern.*;
-import org.eclipse.egf.model.jetpattern.JetEngine;
-import org.eclipse.egf.model.jetpattern.JetNature;
-import org.eclipse.egf.model.jetpattern.JetPatternPackage;
+
 import org.eclipse.egf.model.pattern.PatternEngine;
 import org.eclipse.egf.model.pattern.PatternNature;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides
- * an adapter <code>createXXX</code> method for each class of the model. <!--
- * end-user-doc -->
+ * <!-- begin-user-doc -->
+ * The <b>Adapter Factory</b> for the model.
+ * It provides an adapter <code>createXXX</code> method for each class of the model.
+ * <!-- end-user-doc -->
  * @see org.eclipse.egf.model.jetpattern.JetPatternPackage
  * @generated
  */
 public class JetPatternAdapterFactory extends AdapterFactoryImpl {
   /**
    * The cached model package.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   protected static JetPatternPackage modelPackage;
 
   /**
    * Creates an instance of the adapter factory.
-   * <!-- begin-user-doc --> <!--
-   * end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public JetPatternAdapterFactory() {
@@ -57,9 +57,9 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
 
   /**
    * Returns whether this factory is applicable for the type of the object.
-   * <!-- begin-user-doc --> This implementation returns <code>true</code> if
-   * the object is either the model's package or is an instance object of the
-   * model. <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * This implementation returns <code>true</code> if the object is either the model's package or is an instance object of the model.
+   * <!-- end-user-doc -->
    * @return whether this factory is applicable for the type of the object.
    * @generated
    */
@@ -75,9 +75,9 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * The switch that delegates to the <code>createXXX</code> methods. <!--
-   * begin-user-doc --> <!-- end-user-doc -->
-   * 
+   * The switch that delegates to the <code>createXXX</code> methods.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   protected JetPatternSwitch<Adapter> modelSwitch = new JetPatternSwitch<Adapter>() {
@@ -127,9 +127,10 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.jetpattern.JetNature <em>Jet Nature</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that
-   * we can easily ignore cases; it's useful to ignore a case when inheritance
-   * will catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.eclipse.egf.model.jetpattern.JetNature
    * @generated
@@ -140,9 +141,10 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.jetpattern.JetEngine <em>Jet Engine</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that
-   * we can easily ignore cases; it's useful to ignore a case when inheritance
-   * will catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.eclipse.egf.model.jetpattern.JetEngine
    * @generated
@@ -152,13 +154,13 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.factorycomponent.ModelElement <em>Model Element</em>}'.
-   * <!-- begin-user-doc --> This default
-   * implementation returns null so that we can easily ignore cases; it's
-   * useful to ignore a case when inheritance will catch all the cases anyway.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.egf.model.factorycomponent.ModelElement
+   * @see org.eclipse.egf.model.fcore.ModelElement
    * @generated
    */
   public Adapter createModelElementAdapter() {
@@ -167,9 +169,10 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternNature <em>Nature</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that
-   * we can easily ignore cases; it's useful to ignore a case when inheritance
-   * will catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.eclipse.egf.model.pattern.PatternNature
    * @generated
@@ -180,9 +183,10 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
 
   /**
    * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternEngine <em>Engine</em>}'.
-   * <!-- begin-user-doc --> This default implementation returns null so that
-   * we can easily ignore cases; it's useful to ignore a case when inheritance
-   * will catch all the cases anyway. <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.eclipse.egf.model.pattern.PatternEngine
    * @generated
@@ -193,8 +197,9 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
 
   /**
    * Creates a new adapter for the default case.
-   * <!-- begin-user-doc --> This
-   * default implementation returns null. <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * This default implementation returns null.
+   * <!-- end-user-doc -->
    * @return the new adapter.
    * @generated
    */
@@ -202,4 +207,4 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
     return null;
   }
 
-} // JetPatternAdapterFactory
+} //JetPatternAdapterFactory

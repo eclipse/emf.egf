@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,37 +9,33 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.productionplan.impl;
 
-import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
-
+import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlan;
 import org.eclipse.egf.model.productionplan.ProductionPlanFactory;
 import org.eclipse.egf.model.productionplan.ProductionPlanInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 import org.eclipse.egf.model.productionplan.TaskInvocation;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ProductionPlanPackageImpl extends EPackageImpl implements ProductionPlanPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass productionPlanEClass = null;
@@ -48,6 +43,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass productionPlanInvocationEClass = null;
@@ -55,6 +51,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass factoryComponentInvocationEClass = null;
@@ -62,20 +59,22 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass taskInvocationEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
-   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+   * package
    * package URI value.
-   * <p>Note: the correct way to create the package is via the static
-   * factory method {@link #init init()}, which also performs
-   * initialization of the package, or returns the registered package,
-   * if one already exists.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <p>
+   * Note: the correct way to create the package is via the static factory
+   * method {@link #init init()}, which also performs initialization of the
+   * package, or returns the registered package, if one already exists. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see org.eclipse.emf.ecore.EPackage.Registry
    * @see org.eclipse.egf.model.productionplan.ProductionPlanPackage#eNS_URI
    * @see #init()
@@ -88,17 +87,21 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private static boolean isInited = false;
 
   /**
-   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+   * Creates, registers, and initializes the <b>Package</b> for this model, and
+   * for any others upon which it depends.
    * 
-   * <p>This method is used to initialize {@link ProductionPlanPackage#eINSTANCE} when that field is accessed.
-   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * <p>
+   * This method is used to initialize {@link ProductionPlanPackage#eINSTANCE}
+   * when that field is accessed. Clients should not invoke it directly.
+   * Instead, they should simply access that field to obtain the package. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
@@ -114,7 +117,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     isInited = true;
 
     // Initialize simple dependencies
-    FactoryComponentPackage.eINSTANCE.eClass();
+    FcorePackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theProductionPlanPackage.createPackageContents();
@@ -133,6 +136,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getProductionPlan() {
@@ -142,6 +146,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getProductionPlan_ProductionPlanInvocations() {
@@ -151,6 +156,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getProductionPlanInvocation() {
@@ -160,6 +166,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getProductionPlanInvocation_ProductionPlan() {
@@ -169,6 +176,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getFactoryComponentInvocation() {
@@ -178,6 +186,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getFactoryComponentInvocation_FactoryComponent() {
@@ -187,6 +196,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getTaskInvocation() {
@@ -196,6 +206,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getTaskInvocation_Task() {
@@ -205,6 +216,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ProductionPlanFactory getProductionPlanFactory() {
@@ -214,15 +226,17 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package.  This method is
+   * Creates the meta-model objects for the package. This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void createPackageContents() {
@@ -247,15 +261,17 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model.  This
+   * Complete the initialization of the package and its meta-model. This
    * method is guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void initializePackageContents() {
@@ -269,15 +285,15 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    FactoryComponentPackage theFactoryComponentPackage = (FactoryComponentPackage) EPackage.Registry.INSTANCE.getEPackage(FactoryComponentPackage.eNS_URI);
+    FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
 
     // Create type parameters
 
     // Set bounds for type parameters
 
     // Add supertypes to classes
-    productionPlanEClass.getESuperTypes().add(theFactoryComponentPackage.getOrchestration());
-    productionPlanInvocationEClass.getESuperTypes().add(theFactoryComponentPackage.getInvocation());
+    productionPlanEClass.getESuperTypes().add(theFcorePackage.getOrchestration());
+    productionPlanInvocationEClass.getESuperTypes().add(theFcorePackage.getInvocation());
     factoryComponentInvocationEClass.getESuperTypes().add(this.getProductionPlanInvocation());
     taskInvocationEClass.getESuperTypes().add(this.getProductionPlanInvocation());
 
@@ -289,13 +305,13 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     initEReference(getProductionPlanInvocation_ProductionPlan(), this.getProductionPlan(), this.getProductionPlan_ProductionPlanInvocations(), "productionPlan", null, 1, 1, ProductionPlanInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(factoryComponentInvocationEClass, FactoryComponentInvocation.class, "FactoryComponentInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getFactoryComponentInvocation_FactoryComponent(), theFactoryComponentPackage.getFactoryComponent(), null, "factoryComponent", null, 1, 1, FactoryComponentInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getFactoryComponentInvocation_FactoryComponent(), theFcorePackage.getFactoryComponent(), null, "factoryComponent", null, 1, 1, FactoryComponentInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(taskInvocationEClass, TaskInvocation.class, "TaskInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getTaskInvocation_Task(), theFactoryComponentPackage.getTask(), null, "task", null, 1, 1, TaskInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getTaskInvocation_Task(), theFcorePackage.getTask(), null, "task", null, 1, 1, TaskInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);
   }
 
-} //ProductionPlanPackageImpl
+} // ProductionPlanPackageImpl

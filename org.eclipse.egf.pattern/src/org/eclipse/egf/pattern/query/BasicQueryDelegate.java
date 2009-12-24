@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -38,16 +38,15 @@ import org.eclipse.emf.query.statements.WHERE;
  */
 public class BasicQueryDelegate implements QueryManager {
 
-    @Override
-    public List<Object> executeQuery(Map<String, String> queryContext, PatternContext context) {
-        String type = queryContext.get(BasicQuery.TYPE);
-        Object loadClass = ParameterTypeHelper.INSTANCE.loadClass(type);
-        if (!(loadClass instanceof EClass))
-            throw new IllegalStateException(Messages.query_error1);
-        SELECT query = new SELECT(new FROM((Collection<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS)), new WHERE(new EObjectTypeRelationCondition((EClass) loadClass, TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)));
-        IQueryResult result = query.execute();
-        if (result.getException() != null)
-            throw new IllegalStateException(result.getException());
-        return new ArrayList<Object>(result.getEObjects());
-    }
+  public List<Object> executeQuery(Map<String, String> queryContext, PatternContext context) {
+    String type = queryContext.get(BasicQuery.TYPE);
+    Object loadClass = ParameterTypeHelper.INSTANCE.loadClass(type);
+    if (!(loadClass instanceof EClass))
+      throw new IllegalStateException(Messages.query_error1);
+    SELECT query = new SELECT(new FROM((Collection<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS)), new WHERE(new EObjectTypeRelationCondition((EClass) loadClass, TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)));
+    IQueryResult result = query.execute();
+    if (result.getException() != null)
+      throw new IllegalStateException(result.getException());
+    return new ArrayList<Object>(result.getEObjects());
+  }
 }

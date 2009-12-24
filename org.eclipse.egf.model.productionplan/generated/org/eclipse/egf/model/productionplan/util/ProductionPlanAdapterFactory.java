@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,15 +9,12 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.productionplan.util;
 
-import org.eclipse.egf.model.factorycomponent.Invocation;
-import org.eclipse.egf.model.factorycomponent.ModelElement;
-import org.eclipse.egf.model.factorycomponent.Orchestration;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.Orchestration;
 
 import org.eclipse.egf.model.productionplan.*;
 
@@ -195,13 +191,13 @@ public class ProductionPlanAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.factorycomponent.ModelElement <em>Model Element</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.egf.model.factorycomponent.ModelElement
+   * @see org.eclipse.egf.model.fcore.ModelElement
    * @generated
    */
   public Adapter createModelElementAdapter() {
@@ -209,13 +205,13 @@ public class ProductionPlanAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.factorycomponent.Orchestration <em>Orchestration</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Orchestration <em>Orchestration</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.egf.model.factorycomponent.Orchestration
+   * @see org.eclipse.egf.model.fcore.Orchestration
    * @generated
    */
   public Adapter createOrchestrationAdapter() {
@@ -223,13 +219,13 @@ public class ProductionPlanAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.factorycomponent.Invocation <em>Invocation</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Invocation <em>Invocation</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.egf.model.factorycomponent.Invocation
+   * @see org.eclipse.egf.model.fcore.Invocation
    * @generated
    */
   public Adapter createInvocationAdapter() {

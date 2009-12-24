@@ -1,12 +1,12 @@
 /**
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  */
 package org.eclipse.egf.pde.plugin.command;
 
@@ -286,10 +286,10 @@ public abstract class AbstractExtensionChangesCommand extends AbstractChangesCom
     // Get the parent elements.
     IPluginElement[] extensionElements = getExtensionElementWithNodeName(getExtensionChildName(), false);
     int matchingExtensionCount = extensionElements.length;
-    if (extensionElements != null && matchingExtensionCount > 0) {
+    if (matchingExtensionCount > 0) {
       // Loop over potential extensions where the element can be located as a
       // child.
-      for (int i = 0; i < matchingExtensionCount && !result; i++) {
+      for (int i = 0; i < matchingExtensionCount && result == false; i++) {
         // Remove the child element.
         result = ExtensionHelper.removePluginElement(extensionElements[i], elementChildIdAttribute_p, elementChildAttributeValue_p);
       }

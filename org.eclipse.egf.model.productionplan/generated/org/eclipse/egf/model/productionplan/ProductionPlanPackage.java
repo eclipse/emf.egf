@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,13 +9,10 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.productionplan;
 
-import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
+import org.eclipse.egf.model.fcore.FcorePackage;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -87,7 +83,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN__ID = FactoryComponentPackage.ORCHESTRATION__ID;
+  int PRODUCTION_PLAN__ID = FcorePackage.ORCHESTRATION__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -96,7 +92,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN__NAME = FactoryComponentPackage.ORCHESTRATION__NAME;
+  int PRODUCTION_PLAN__NAME = FcorePackage.ORCHESTRATION__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -105,7 +101,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN__DESCRIPTION = FactoryComponentPackage.ORCHESTRATION__DESCRIPTION;
+  int PRODUCTION_PLAN__DESCRIPTION = FcorePackage.ORCHESTRATION__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Factory Component</b></em>' container reference.
@@ -114,7 +110,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN__FACTORY_COMPONENT = FactoryComponentPackage.ORCHESTRATION__FACTORY_COMPONENT;
+  int PRODUCTION_PLAN__FACTORY_COMPONENT = FcorePackage.ORCHESTRATION__FACTORY_COMPONENT;
 
   /**
    * The feature id for the '<em><b>Production Plan Invocations</b></em>' containment reference list.
@@ -123,7 +119,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS = FactoryComponentPackage.ORCHESTRATION_FEATURE_COUNT + 0;
+  int PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS = FcorePackage.ORCHESTRATION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Production Plan</em>' class.
@@ -132,7 +128,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_FEATURE_COUNT = FactoryComponentPackage.ORCHESTRATION_FEATURE_COUNT + 1;
+  int PRODUCTION_PLAN_FEATURE_COUNT = FcorePackage.ORCHESTRATION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.productionplan.impl.ProductionPlanInvocationImpl <em>Invocation</em>}' class.
@@ -151,7 +147,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_INVOCATION__ID = FactoryComponentPackage.INVOCATION__ID;
+  int PRODUCTION_PLAN_INVOCATION__ID = FcorePackage.INVOCATION__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -160,7 +156,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_INVOCATION__NAME = FactoryComponentPackage.INVOCATION__NAME;
+  int PRODUCTION_PLAN_INVOCATION__NAME = FcorePackage.INVOCATION__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -169,7 +165,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_INVOCATION__DESCRIPTION = FactoryComponentPackage.INVOCATION__DESCRIPTION;
+  int PRODUCTION_PLAN_INVOCATION__DESCRIPTION = FcorePackage.INVOCATION__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Context</b></em>' containment reference.
@@ -178,7 +174,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_INVOCATION__CONTEXT = FactoryComponentPackage.INVOCATION__CONTEXT;
+  int PRODUCTION_PLAN_INVOCATION__CONTEXT = FcorePackage.INVOCATION__CONTEXT;
 
   /**
    * The feature id for the '<em><b>Production Plan</b></em>' container reference.
@@ -187,7 +183,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN = FactoryComponentPackage.INVOCATION_FEATURE_COUNT + 0;
+  int PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN = FcorePackage.INVOCATION_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Invocation</em>' class.
@@ -196,7 +192,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT = FactoryComponentPackage.INVOCATION_FEATURE_COUNT + 1;
+  int PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT = FcorePackage.INVOCATION_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.productionplan.impl.FactoryComponentInvocationImpl <em>Factory Component Invocation</em>}' class.

@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,6 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.productionplan.provider;
 
@@ -21,7 +17,7 @@ import java.util.List;
 
 import org.eclipse.egf.model.edit.EGFProductionPlanEditPlugin;
 
-import org.eclipse.egf.model.factorycomponent.provider.InvocationItemProvider;
+import org.eclipse.egf.model.fcore.provider.InvocationItemProvider;
 
 import org.eclipse.egf.model.productionplan.ProductionPlanInvocation;
 

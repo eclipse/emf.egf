@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,6 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
- * 
- * $Id$
  */
 package org.eclipse.egf.model.productionplan.provider;
 
@@ -22,10 +18,10 @@ import java.util.List;
 
 import org.eclipse.egf.model.edit.EGFProductionPlanEditPlugin;
 
-import org.eclipse.egf.model.factorycomponent.FactoryComponent;
-import org.eclipse.egf.model.factorycomponent.FactoryComponentPackage;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.FcorePackage;
 
-import org.eclipse.egf.model.factorycomponent.util.FactoryComponentSwitch;
+import org.eclipse.egf.model.fcore.util.FcoreSwitch;
 
 import org.eclipse.egf.model.productionplan.ProductionPlanFactory;
 
@@ -291,19 +287,19 @@ public class ProductionPlanItemProviderAdapterFactory extends ProductionPlanAdap
   }
 
   /**
-   * A child creation extender for the {@link FactoryComponentPackage}.
+   * A child creation extender for the {@link FcorePackage}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static class FactoryComponentChildCreationExtender implements IChildCreationExtender {
+  public static class FcoreChildCreationExtender implements IChildCreationExtender {
     /**
      * The switch for creating child descriptors specific to each extended class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected static class CreationSwitch extends FactoryComponentSwitch<Object> {
+    protected static class CreationSwitch extends FcoreSwitch<Object> {
       /**
        * The child descriptors being populated.
        * <!-- begin-user-doc -->
@@ -338,7 +334,7 @@ public class ProductionPlanItemProviderAdapterFactory extends ProductionPlanAdap
        */
       @Override
       public Object caseFactoryComponent(FactoryComponent object) {
-        newChildDescriptors.add(createChildParameter(FactoryComponentPackage.Literals.FACTORY_COMPONENT__ORCHESTRATION, ProductionPlanFactory.eINSTANCE.createProductionPlan()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__ORCHESTRATION, ProductionPlanFactory.eINSTANCE.createProductionPlan()));
 
         return null;
       }
