@@ -18,6 +18,7 @@ import java.util.Map;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.production.InvocationException;
@@ -141,7 +142,7 @@ public abstract class ProductionContext<Q extends Object> implements IProduction
   public void setOutputValue(String name, Object value) throws InvocationException {
     Data data = getData(name, _outputDatas);
     // null value is a valid value
-    if (value != null && (checkClass(value.getClass(), data.getType()) == false || data.getType().isInstance(value) == false)) {
+    if (value != null && (ClassHelper.asSubClass(value.getClass(), data.getType()) == false || data.getType().isInstance(value) == false)) {
       throw new InvocationException(NLS.bind(CoreProductionMessages.ProductionContext_wrong_value_type, new Object[] { data.getType().getName(), name.trim(), value.getClass().getName(), getName() }));
     }
     data.setValue(value);
@@ -180,7 +181,7 @@ public abstract class ProductionContext<Q extends Object> implements IProduction
 
   private <T extends Object> T getValue(String name, Class<T> clazz, Map<String, Data> datas) throws InvocationException {
     Data data = getData(name, datas);
-    if (checkClass(clazz, data.getType()) == false) {
+    if (ClassHelper.asSubClass(clazz, data.getType()) == false) {
       throw new InvocationException(NLS.bind(CoreProductionMessages.ProductionContext_wrong_value_type, new Object[] { data.getType().getName(), name.trim(), clazz.getName(), getName() }));
     }
     try {
@@ -188,16 +189,6 @@ public abstract class ProductionContext<Q extends Object> implements IProduction
     } catch (ClassCastException cce) {
       throw new InvocationException(cce);
     }
-  }
-
-  private boolean checkClass(Class<?> clazz, Class<?> type) {
-    // Type Checking
-    try {
-      clazz.asSubclass(type);
-    } catch (ClassCastException cce) {
-      return false;
-    }
-    return true;
   }
 
 }
