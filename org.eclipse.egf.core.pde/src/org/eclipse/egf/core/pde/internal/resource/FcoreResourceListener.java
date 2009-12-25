@@ -32,7 +32,7 @@ import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.StatusHelper;
 import org.eclipse.egf.common.uri.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.fcore.IFcoreConstants;
+import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
 import org.eclipse.egf.core.fcore.IResourceFcoreListener;
@@ -153,7 +153,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
           // Process files
           if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED || delta.getKind() == IResourceDelta.ADDED) {
-            if (IFcoreConstants.FCORE_FILE_EXTENSION.equals(resource.getFileExtension())) {
+            if (IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(resource.getFileExtension())) {
               try {
                 // Build a Resource URI
                 URI uri = URIHelper.getPlatformURI(resource);

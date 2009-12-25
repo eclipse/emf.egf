@@ -10,7 +10,7 @@
  *******************************************************************************/
 package org.eclipse.egf.core.pde.internal.extension;
 
-import org.eclipse.egf.core.fcore.IFcoreConstants;
+import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
 import org.eclipse.egf.core.pde.plugin.AbstractExtensionChangesCommand;
 import org.eclipse.emf.common.util.URI;
 
@@ -40,7 +40,7 @@ public class AbstractFcoreExtensionCommand extends AbstractExtensionChangesComma
    */
   @Override
   protected String getExtensionChildName() {
-    return IFcoreConstants.FCORE_EXTENSION_CHILD;
+    return IPlatformFcoreConstants.FCORE_EXTENSION_CHILD;
   }
 
   /**
@@ -48,7 +48,7 @@ public class AbstractFcoreExtensionCommand extends AbstractExtensionChangesComma
    */
   @Override
   protected String getExtensionPointId() {
-    return IFcoreConstants.FULLY_QUALIFIED_EXTENSION_POINT_ID;
+    return IPlatformFcoreConstants.FULLY_QUALIFIED_EXTENSION_POINT_ID;
   }
 
   /**
