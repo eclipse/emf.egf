@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -45,44 +45,44 @@ import org.eclipse.jdt.internal.core.search.JavaSearchParticipant;
  * 
  */
 public class RegistryReader {
-    public void load() {
-        List<IJavaProject> projects = new ArrayList<IJavaProject>();
-        for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+  public void load() {
+    List<IJavaProject> projects = new ArrayList<IJavaProject>();
+    for (IProject project : ResourcesPlugin.getWorkspace().getRoot().getProjects()) {
+      try {
+        if (project.isAccessible() && project.hasNature(JavaCore.NATURE_ID)) {
+          projects.add(JavaCore.create(project));
+        }
+      } catch (CoreException e) {
+        Activator.getDefault().logError(e);
+      }
+    }
+    if (projects.isEmpty())
+      return;
+    try {
+      IType ePackageType = projects.get(0).findType("org.eclipse.emf.ecore.EPackage");
+      IJavaSearchScope scope = SearchEngine.createJavaSearchScope(projects.toArray(new IJavaProject[projects.size()]), IJavaSearchScope.SOURCES);
+      SearchPattern pattern = SearchPattern.createPattern(ePackageType, IJavaSearchConstants.IMPLEMENTORS);
+      SearchRequestor requestor = new SearchRequestor() {
+
+        @Override
+        public void acceptSearchMatch(SearchMatch match) throws CoreException {
+          if (match instanceof TypeReferenceMatch) {
+            TypeReferenceMatch refMatch = (TypeReferenceMatch) match;
+            IType type = (IType) refMatch.getElement();
             try {
-                if (project.hasNature(JavaCore.NATURE_ID)) {
-                    projects.add(JavaCore.create(project));
-                }
-            } catch (CoreException e) {
-                Activator.getDefault().logError(e);
+              EPackageHelper.registerPackage(type.getJavaProject().getProject(), type.getFullyQualifiedName());
+            } catch (RegistrationException e) {
+              Activator.getDefault().logError(Messages.registration_error1, e);
             }
+          }
         }
-        if (projects.isEmpty())
-            return;
-        try {
-            IType ePackageType = projects.get(0).findType("org.eclipse.emf.ecore.EPackage");
-            IJavaSearchScope scope = SearchEngine.createJavaSearchScope(projects.toArray(new IJavaProject[projects.size()]), IJavaSearchScope.SOURCES);
-            SearchPattern pattern = SearchPattern.createPattern(ePackageType, IJavaSearchConstants.IMPLEMENTORS);
-            SearchRequestor requestor = new SearchRequestor() {
-
-                @Override
-                public void acceptSearchMatch(SearchMatch match) throws CoreException {
-                    if (match instanceof TypeReferenceMatch) {
-                        TypeReferenceMatch refMatch = (TypeReferenceMatch) match;
-                        IType type = (IType) refMatch.getElement();
-                        try {
-                            EPackageHelper.registerPackage(type.getJavaProject().getProject(), type.getFullyQualifiedName());
-                        } catch (RegistrationException e) {
-                            Activator.getDefault().logError(Messages.registration_error1, e);
-                        }
-                    }
-                }
-            };
-            new SearchEngine().search(pattern, new SearchParticipant[] { new JavaSearchParticipant() }, scope, requestor, null);
-        } catch (Exception e) {
-            Activator.getDefault().logError(Messages.registration_error1, e);
-        }
+      };
+      new SearchEngine().search(pattern, new SearchParticipant[] { new JavaSearchParticipant() }, scope, requestor, null);
+    } catch (Exception e) {
+      Activator.getDefault().logError(Messages.registration_error1, e);
     }
+  }
 
-    public static void main(String[] args) {
-    }
+  public static void main(String[] args) {
+  }
 }
