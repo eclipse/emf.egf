@@ -3,21 +3,11 @@
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:productionplan="http://www.eclipse.org/egf/1.0.0/productionplan"
     xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
     name="H1" description="" taskId="org.eclipse.egf.example.task.h1.H1.id">
-  <contractContainer xmi:id="1Zvd4bdCEd6AWpPtW_wFiQ">
-    <contracts xmi:id="1Zvd4rdCEd6AWpPtW_wFiQ" name="name">
-      <type xmi:type="types:StringType" xmi:id="1Zvd47dCEd6AWpPtW_wFiQ"
-          value="hkljkj"/>
-    </contracts>
-    <contracts xmi:id="1Zvd5LdCEd6AWpPtW_wFiQ" name="min">
-      <type xmi:type="types:IntegerType" xmi:id="1Zvd5bdCEd6AWpPtW_wFiQ"/>
-    </contracts>
-    <contracts xmi:id="1Zvd5rdCEd6AWpPtW_wFiQ" name="adapterFactory">
-      <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="1Zvd57dCEd6AWpPtW_wFiQ"
-          value="org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"/>
-    </contracts>
-    <contracts xmi:id="1Zvd6LdCEd6AWpPtW_wFiQ" name="result">
-      <type xmi:type="types:BooleanType" xmi:id="1Zvd6bdCEd6AWpPtW_wFiQ"
-          value="true"/>
-    </contracts>
+  <contractContainer xmi:id="plOdMbWxEd6o99NyLVg0Hw">
+    <contracts xmi:type="types:EStringContract" xmi:id="rpPjYLWxEd6o99NyLVg0Hw" name="name"/>
+    <contracts xmi:type="types:EBooleanObjectContract" xmi:id="3xZcALY1Ed6vEtsGdjo0aQ"
+        name="result" mode="OUT"/>
+    <contracts xmi:type="types:EGeneratorAdapterFactoryContract" xmi:id="meMwsbZHEd6DCdj3RQ3-2A"
+        name="generatorAdapterFactory" defaultValue=""/>
   </contractContainer>
 </productionplan:Task>

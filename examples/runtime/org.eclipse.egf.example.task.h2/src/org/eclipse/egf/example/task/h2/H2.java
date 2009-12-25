@@ -4,19 +4,20 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.core.production.task.IProductionTask;
+import org.eclipse.egf.core.production.invocation.IProduction;
+import org.eclipse.egf.model.productionplan.Task;
 
-public class H2 implements IProductionTask {
+public class H2 implements IProduction<Task> {
 
-  public void preExecute(final IProductionContext productionContext, final IProgressMonitor monitor_p) throws InvocationException {
+  public void preExecute(final IProductionContext<Task> productionContext, final IProgressMonitor monitor_p) throws InvocationException {
     EGFCorePlugin.getDefault().logInfo("preExecute H2"); //$NON-NLS-1$
   }
 
-  public void doExecute(final IProductionContext productionContext, final IProgressMonitor monitor_p) throws InvocationException {
+  public void doExecute(final IProductionContext<Task> productionContext, final IProgressMonitor monitor_p) throws InvocationException {	  	 
     EGFCorePlugin.getDefault().logInfo("doExecute H2"); //$NON-NLS-1$	  		  
   }
 
-  public void postExecute(final IProductionContext productionContext, final IProgressMonitor monitor_p) throws InvocationException {
+  public void postExecute(final IProductionContext<Task> productionContext, final IProgressMonitor monitor_p) throws InvocationException {
     EGFCorePlugin.getDefault().logInfo("postExecute H2"); //$NON-NLS-1$	  		  
   }
 
