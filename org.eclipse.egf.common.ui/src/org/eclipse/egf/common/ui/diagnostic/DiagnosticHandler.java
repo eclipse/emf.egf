@@ -10,7 +10,6 @@
  */
 package org.eclipse.egf.common.ui.diagnostic;
 
-import org.eclipse.egf.common.constant.IDiagnostic;
 import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -26,24 +25,15 @@ public class DiagnosticHandler {
     // Prevent Instantiation
   }
 
-  public static void displayAsyncDiagnostic(final Shell shell, final IDiagnostic diagnostic) {
+  public static void displayAsyncDiagnostic(final Shell shell, final Throwable throwable) {
     if (EGFCommonUIPlugin.getWorkbenchDisplay() != null) {
       EGFCommonUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
         public void run() {
-          MessageDialog dialog = new MessageDialog(shell, diagnostic.getHeader(), null, diagnostic.getMessage(), computeDialogImageType(diagnostic.getSeverity()), new String[] { IDialogConstants.OK_LABEL }, 0);
+          MessageDialog dialog = new MessageDialog(shell, throwable.getClass().getSimpleName(), null, throwable.getMessage(), MessageDialog.ERROR, new String[] { IDialogConstants.OK_LABEL }, 0);
           dialog.open();
         }
       });
     }
-  }
-
-  private static int computeDialogImageType(int severity) {
-    if (severity == IDiagnostic.ERROR) {
-      return MessageDialog.ERROR;
-    } else if (severity == IDiagnostic.WARNING) {
-      return MessageDialog.WARNING;
-    }
-    return MessageDialog.INFORMATION;
   }
 
 }

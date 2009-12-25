@@ -34,6 +34,4 @@ public class CoreProductionMessages {
   public static String ProjectBundleSession_URLFailure;
   public static String ProjectBundleSession_StoppingFailure;
 
-  public static String InvocationException_Header_Default;
-
 }
