@@ -22,14 +22,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class TypeObjectImpl<T extends Object> extends TypeImpl<T> implements TypeObject<T> {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypeObjectImpl() {
@@ -39,7 +38,6 @@ public abstract class TypeObjectImpl<T extends Object> extends TypeImpl<T> imple
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

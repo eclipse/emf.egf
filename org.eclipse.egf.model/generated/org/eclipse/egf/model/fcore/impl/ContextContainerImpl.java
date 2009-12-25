@@ -36,15 +36,12 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getInvocation
- * <em>Invocation</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getContexts <em>Contexts</em>}
- * </li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getConnectors
- * <em>Connectors</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getInvocation <em>Invocation</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getContexts <em>Contexts</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getConnectors <em>Connectors</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ContextContainerImpl extends ModelElementImpl implements ContextContainer {
@@ -52,7 +49,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
    * The cached value of the '{@link #getContexts() <em>Contexts</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getContexts()
    * @generated
    * @ordered
@@ -60,11 +56,9 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   protected EList<Context> contexts;
 
   /**
-   * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference
-   * list.
+   * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getConnectors()
    * @generated
    * @ordered
@@ -74,7 +68,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ContextContainerImpl() {
@@ -84,7 +77,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -95,7 +87,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Invocation<?> getInvocation() {
@@ -107,7 +98,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetInvocation(Invocation<?> newInvocation, NotificationChain msgs) {
@@ -118,7 +108,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setInvocation(Invocation<?> newInvocation) {
@@ -140,7 +129,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<Context> getContexts() {
@@ -153,7 +141,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<ContractConnector> getConnectors() {
@@ -166,7 +153,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -188,7 +174,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -207,7 +192,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -222,7 +206,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -241,7 +224,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -266,7 +248,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -288,7 +269,6 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

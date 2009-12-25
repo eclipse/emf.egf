@@ -30,27 +30,27 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum ContractMode implements Enumerator {
   /**
-   * The '<em><b>IN</b></em>' literal object.
+   * The '<em><b>In</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #IN_VALUE
    * @generated
    * @ordered
    */
-  IN(0, "IN", "IN"), //$NON-NLS-1$ //$NON-NLS-2$
+  IN(0, "In", "In"), //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
-   * The '<em><b>OUT</b></em>' literal object.
+   * The '<em><b>Out</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #OUT_VALUE
    * @generated
    * @ordered
    */
-  OUT(1, "OUT", "OUT"); //$NON-NLS-1$ //$NON-NLS-2$
+  OUT(1, "Out", "Out"); //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
-   * The '<em><b>IN</b></em>' literal value.
+   * The '<em><b>In</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>IN</b></em>' literal object isn't clear, there
@@ -58,14 +58,14 @@ public enum ContractMode implements Enumerator {
    * </p>
    * <!-- end-user-doc -->
    * @see #IN
-   * @model
+   * @model name="In"
    * @generated
    * @ordered
    */
   public static final int IN_VALUE = 0;
 
   /**
-   * The '<em><b>OUT</b></em>' literal value.
+   * The '<em><b>Out</b></em>' literal value.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of '<em><b>OUT</b></em>' literal object isn't clear, there
@@ -73,7 +73,7 @@ public enum ContractMode implements Enumerator {
    * </p>
    * <!-- end-user-doc -->
    * @see #OUT
-   * @model
+   * @model name="Out"
    * @generated
    * @ordered
    */

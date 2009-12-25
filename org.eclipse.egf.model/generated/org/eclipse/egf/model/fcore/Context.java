@@ -16,34 +16,30 @@ package org.eclipse.egf.model.fcore;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Context</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.Context#getContextContainer <em>Context Container</em>}
- * </li>
- * <li>{@link org.eclipse.egf.model.fcore.Context#getContract <em>Contract</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.Context#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Context#getContextContainer <em>Context Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Context#getContract <em>Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Context#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getContext()
- * @model 
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueContextName ValidContract'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueContextName ValidContract'"
  * @generated
  */
 public interface Context extends ModelElement {
   /**
    * Returns the value of the '<em><b>Context Container</b></em>' container reference.
-   * It is bidirectional and its opposite is '
-   * {@link org.eclipse.egf.model.fcore.ContextContainer#getContexts <em>Contexts</em>}'.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ContextContainer#getContexts <em>Contexts</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Context Container</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Context Container</em>' container reference.
    * @see #setContextContainer(ContextContainer)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContext_ContextContainer()
@@ -54,13 +50,10 @@ public interface Context extends ModelElement {
   ContextContainer getContextContainer();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Context#getContextContainer
-   * <em>Context Container</em>}' container reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Context#getContextContainer <em>Context Container</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Context Container</em>' container reference.
+   * @param value the new value of the '<em>Context Container</em>' container reference.
    * @see #getContextContainer()
    * @generated
    */
@@ -74,7 +67,6 @@ public interface Context extends ModelElement {
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Contract</em>' reference.
    * @see #setContract(Contract)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContext_Contract()
@@ -84,13 +76,10 @@ public interface Context extends ModelElement {
   Contract getContract();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Context#getContract
-   * <em>Contract</em>}' reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Context#getContract <em>Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Contract</em>' reference.
+   * @param value the new value of the '<em>Contract</em>' reference.
    * @see #getContract()
    * @generated
    */
@@ -104,7 +93,6 @@ public interface Context extends ModelElement {
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(Type)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContext_Type()
@@ -114,13 +102,10 @@ public interface Context extends ModelElement {
   Type<?> getType();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Context#getType <em>Type</em>}'
-   * containment reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Context#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Type</em>' containment reference.
+   * @param value the new value of the '<em>Type</em>' containment reference.
    * @see #getType()
    * @generated
    */

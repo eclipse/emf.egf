@@ -35,111 +35,110 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.fcore.util.FcoreResourceFactoryImpl
  * @generated
  */
 public class FcoreResourceImpl extends XMIResourceImpl {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    private List<Object> lookupTable = new ArrayList<Object>();
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  private List<Object> lookupTable = new ArrayList<Object>();
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    private XMLParserPool parserPool = new XMLParserPoolImpl();
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  private XMLParserPool parserPool = new XMLParserPoolImpl();
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    private Map<Object, Object> nameToFeatureMap = new HashMap<Object, Object>();
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  private Map<Object, Object> nameToFeatureMap = new HashMap<Object, Object>();
 
-    /**
-     * Creates an instance of the resource.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @param uri
-     *            the URI of the new resource.
-     * @generated NOT
-     */
-    public FcoreResourceImpl(URI uri) {
-        super(uri);
-        setEncoding("UTF-8"); //$NON-NLS-1$
-        setXMIVersion("2.1"); //$NON-NLS-1$
-    }
+  /**
+   * Creates an instance of the resource.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @param uri
+   *            the URI of the new resource.
+   * @generated NOT
+   */
+  public FcoreResourceImpl(URI uri) {
+    super(uri);
+    setEncoding("UTF-8"); //$NON-NLS-1$
+    setXMIVersion("2.1"); //$NON-NLS-1$
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    @Override
-    protected boolean useIDAttributes() {
-        return false;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  protected boolean useIDAttributes() {
+    return false;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    @Override
-    protected boolean useUUIDs() {
-        return true;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  protected boolean useUUIDs() {
+    return true;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    @Override
-    protected void init() {
-        super.init();
-        // Save Options
-        //
-        getDefaultSaveOptions().put(XMLResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
-        getDefaultSaveOptions().put(XMLResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
-        getDefaultSaveOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
-        getDefaultSaveOptions().put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-        getDefaultSaveOptions().put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, new XMLTypeInfo() {
-            public boolean shouldSaveType(EClass objectType, EClassifier featureType, EStructuralFeature feature) {
-                return objectType != featureType && objectType != XMLTypePackage.Literals.ANY_TYPE;
-            }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  protected void init() {
+    super.init();
+    // Save Options
+    //
+    getDefaultSaveOptions().put(XMLResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
+    getDefaultSaveOptions().put(XMLResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
+    getDefaultSaveOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
+    getDefaultSaveOptions().put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+    getDefaultSaveOptions().put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, new XMLTypeInfo() {
+      public boolean shouldSaveType(EClass objectType, EClassifier featureType, EStructuralFeature feature) {
+        return objectType != featureType && objectType != XMLTypePackage.Literals.ANY_TYPE;
+      }
 
-            public boolean shouldSaveType(EClass objectType, EClass featureType, EStructuralFeature feature) {
-                return objectType != featureType && objectType != XMLTypePackage.Literals.ANY_TYPE;
-            }
-        });
-        getDefaultSaveOptions().put(XMLResource.OPTION_LINE_WIDTH, new Integer(80));
-        // Avoid relative paths from workspace resources to plugin resources.
-        getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new ModelSchemeAware());
-        getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
-        getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-        // Load Options
-        //
-        getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-        getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
-        getDefaultLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
-        getDefaultLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
-        getDefaultLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
-        getDefaultLoadOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
-        getDefaultLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
-        getDefaultLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
-    }
+      public boolean shouldSaveType(EClass objectType, EClass featureType, EStructuralFeature feature) {
+        return objectType != featureType && objectType != XMLTypePackage.Literals.ANY_TYPE;
+      }
+    });
+    getDefaultSaveOptions().put(XMLResource.OPTION_LINE_WIDTH, new Integer(80));
+    // Avoid relative paths from workspace resources to plugin resources.
+    getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new ModelSchemeAware());
+    getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+    getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
+    // Load Options
+    //
+    getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
+    getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+    getDefaultLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
+    getDefaultLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
+    getDefaultLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);
+    getDefaultLoadOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
+    getDefaultLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+    getDefaultLoadOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
+  }
 
 } // FcoreResourceImpl

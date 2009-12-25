@@ -144,8 +144,8 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ContractMode">
-    <eLiterals name="IN"/>
-    <eLiterals name="OUT" value="1"/>
+    <eLiterals name="In" literal="In"/>
+    <eLiterals name="Out" value="1" literal="Out"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="URI" instanceClassName="org.eclipse.emf.common.util.URI"/>
 </ecore:EPackage>
