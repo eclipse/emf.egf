@@ -20,6 +20,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
+import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.core.production.task.IProductionTask;
 import org.eclipse.egf.core.production.task.IProductionTaskInvocation;
@@ -92,7 +93,7 @@ public class ProductionTaskInvocation implements IProductionTaskInvocation {
    * @param monitor
    * @return true if the execution was successful, false otherwise.
    */
-  public void invoke(final IProgressMonitor monitor) throws CoreException, InvocationTargetException, OperationCanceledException {
+  public void invoke(final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InvocationException, OperationCanceledException {
     SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, _productionContext.getName()), 1000);
     try {
       // Instantiate an ITask object

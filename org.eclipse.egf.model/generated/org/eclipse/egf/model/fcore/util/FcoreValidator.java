@@ -20,9 +20,9 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.EGFModelsPlugin;
-import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Context;
 import org.eclipse.egf.model.fcore.ContextValue;
@@ -74,10 +74,8 @@ public class FcoreValidator extends EObjectValidator {
   public static final FcoreValidator INSTANCE = new FcoreValidator();
 
   /**
-   * A constant for the
-   * {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes}
-   * from this package.
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
+   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 

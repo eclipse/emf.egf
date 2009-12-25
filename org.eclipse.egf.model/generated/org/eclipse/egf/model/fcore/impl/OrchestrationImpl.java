@@ -13,8 +13,8 @@
 package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Orchestration;
@@ -32,8 +32,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent
+ * <li> {@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent
  * <em>Factory Component</em>}</li>
  * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getSteps
  * <em>Steps</em>}</li>

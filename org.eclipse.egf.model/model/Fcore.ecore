@@ -116,7 +116,7 @@
     <eLiterals name="OUT" value="1"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="IProductionContext" instanceClassName="org.eclipse.egf.core.production.context.IProductionContext"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="InvocationException" instanceClassName="org.eclipse.egf.model.InvocationException"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="InvocationException" instanceClassName="org.eclipse.egf.production.InvocationException"/>
   <eClassifiers xsi:type="ecore:EDataType" name="IProgressMonitor" instanceClassName="org.eclipse.core.runtime.IProgressMonitor"/>
   <eClassifiers xsi:type="ecore:EDataType" name="URI" instanceClassName="org.eclipse.emf.common.util.URI"/>
 </ecore:EPackage>

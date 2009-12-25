@@ -13,8 +13,8 @@
 package org.eclipse.egf.model.fcore;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.InvocationException;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,8 +26,7 @@ import org.eclipse.egf.model.InvocationException;
  * <ul>
  * <li>{@link org.eclipse.egf.model.fcore.Orchestration#getFactoryComponent
  * <em>Factory Component</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.Orchestration#getSteps <em>Steps</em>}
- * </li>
+ * <li>{@link org.eclipse.egf.model.fcore.Orchestration#getSteps <em>Steps</em>} </li>
  * </ul>
  * </p>
  * 
@@ -60,8 +59,7 @@ public interface Orchestration extends ModelElement {
   FactoryComponent getFactoryComponent();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.Orchestration#getFactoryComponent
+   * Sets the value of the ' {@link org.eclipse.egf.model.fcore.Orchestration#getFactoryComponent
    * <em>Factory Component</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -15,6 +15,7 @@ import java.lang.reflect.InvocationTargetException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.egf.core.production.InvocationException;
 
 /**
  * @author Xavier Maysonnave
@@ -22,6 +23,6 @@ import org.eclipse.core.runtime.OperationCanceledException;
  */
 public interface IProductionTaskInvocation {
 
-  public void invoke(final IProgressMonitor monitor) throws CoreException, InvocationTargetException, OperationCanceledException;
+  public void invoke(final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InvocationException, OperationCanceledException;
 
 }

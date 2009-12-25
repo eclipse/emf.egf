@@ -13,8 +13,8 @@
 package org.eclipse.egf.model.fcore;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.InvocationException;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,8 +26,7 @@ import org.eclipse.egf.model.InvocationException;
  * <ul>
  * <li>{@link org.eclipse.egf.model.fcore.Invocation#getContext
  * <em>Context</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.Invocation#getSteps <em>Steps</em>}
- * </li>
+ * <li>{@link org.eclipse.egf.model.fcore.Invocation#getSteps <em>Steps</em>} </li>
  * </ul>
  * </p>
  * 
@@ -58,8 +57,8 @@ public interface Invocation extends ModelElement {
   Context getContext();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.Invocation#getContext <em>Context</em>}'
+   * Sets the value of the ' {@link org.eclipse.egf.model.fcore.Invocation#getContext
+   * <em>Context</em>}'
    * containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

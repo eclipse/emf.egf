@@ -13,8 +13,8 @@
 package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.Context;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;

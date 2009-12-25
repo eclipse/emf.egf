@@ -13,8 +13,8 @@
 package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
@@ -31,8 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.ActivityImpl#getContractContainer
+ * <li> {@link org.eclipse.egf.model.fcore.impl.ActivityImpl#getContractContainer
  * <em>Contract Container</em>}</li>
  * <li>{@link org.eclipse.egf.model.fcore.impl.ActivityImpl#getSteps
  * <em>Steps</em>}</li>

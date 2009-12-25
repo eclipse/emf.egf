@@ -13,8 +13,8 @@
 package org.eclipse.egf.model.fcore;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.InvocationException;
 
 /**
  * <!-- begin-user-doc -->
@@ -59,8 +59,7 @@ public interface Activity extends ModelElement {
   ContractContainer getContractContainer();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.Activity#getContractContainer
+   * Sets the value of the ' {@link org.eclipse.egf.model.fcore.Activity#getContractContainer
    * <em>Contract Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
