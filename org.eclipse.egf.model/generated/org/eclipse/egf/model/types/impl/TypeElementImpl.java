@@ -15,12 +15,12 @@ package org.eclipse.egf.model.types.impl;
 import org.eclipse.egf.common.helper.IDGeneratorHelper;
 import org.eclipse.egf.model.types.TypeElement;
 import org.eclipse.egf.model.types.TypesPackage;
-import org.eclipse.egf.model.types.util.TypesResourceImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -176,8 +176,8 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
    */
   public void setID(String newID) {
     Resource eResource = eResource();
-    if (eResource instanceof TypesResourceImpl) {
-      ((TypesResourceImpl) eResource).getIntrinsicIDToEObjectMap().clear();
+    if (eResource instanceof ResourceImpl) {
+      ((ResourceImpl) eResource).getIntrinsicIDToEObjectMap().clear();
     }
     setIDGen(newID);
   }
