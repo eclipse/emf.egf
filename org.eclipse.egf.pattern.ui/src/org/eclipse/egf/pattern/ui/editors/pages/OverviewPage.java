@@ -174,6 +174,7 @@ public class OverviewPage extends PatternEditorPage {
         gd = new GridData();
         gd.widthHint = 65;
         browse.setLayoutData(gd);
+        browse.setEnabled(false);
         browse.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
