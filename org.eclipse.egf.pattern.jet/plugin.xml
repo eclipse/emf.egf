@@ -2,7 +2,7 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.egf.pattern.extension" id="pipo">
+         point="org.eclipse.egf.pattern.extension">
       <flavor
             class="org.eclipse.egf.pattern.jet.JetPatternExtension">
       </flavor>
