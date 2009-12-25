@@ -304,7 +304,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
 
     public void platformExtensionPointChanged(IPlatformExtensionPointDelta delta) {
 
-      final Collection<Resource> deltaAddedResources = new ArrayList<Resource>();
+      final Collection<Resource> deltaChangedResources = new ArrayList<Resource>();
       final Collection<Resource> deltaRemovedResources = new ArrayList<Resource>();
       ResourceSet resourceSet = editingDomain.getResourceSet();
 
@@ -316,23 +316,13 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
           deltaRemovedResources.add(resource);
         }
       }
-      // Check if added platform factory components are applicable to this editor
+      // Check if added platform fcores are applicable to this editor
+      // if a removed platform fcore is also detected it means a changed resource
       for (IPlatformExtensionPoint extensionPoint : delta.getAddedPlatformExtensionPoints(IPlatformFcore.class)) {
         IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
         Resource resource = resourceSet.getResource(fcore.getURI(), false);
-        if (resource != null && savedResources.remove(resource) == false) {
-          deltaAddedResources.add(resource);
-        }
-      }
-
-      // Check whether or not added resource is a changed resource (target versus workspace fcores)
-      LOOP: for (Iterator<Resource> iter = deltaRemovedResources.iterator(); iter.hasNext();) {
-        Resource removedResource = iter.next();
-        for (Resource addedResource : deltaAddedResources) {
-          if (addedResource.getURI().equals(removedResource.getURI())) {
-            iter.remove();
-            continue LOOP;
-          }
+        if (resource != null && deltaRemovedResources.remove(resource) == true) {
+          deltaChangedResources.add(resource);
         }
       }
 
@@ -347,10 +337,17 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         });
       }
 
-      if (deltaAddedResources.isEmpty() == false) {
+      if (deltaChangedResources.isEmpty() == false) {
         getSite().getShell().getDisplay().asyncExec(new Runnable() {
           public void run() {
-            changedResources.addAll(deltaAddedResources);
+            changedResources.addAll(deltaChangedResources);
+            // TODO: we don't know yet how to deal with changed resource
+            // especially with the command stack
+            // no choice, if the editor is dirty we should cancel everything
+            if (isDirty()) {
+              getSite().getPage().closeEditor(FcoreEditor.this, false);
+            }
+            // Refresh the editors
             if (getSite().getPage().getActiveEditor() == FcoreEditor.this) {
               handleActivate();
             }
@@ -542,16 +539,12 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    */
   protected void handleActivate() {
     // Recompute the read only state.
-    //
     if (editingDomain.getResourceToReadOnlyMap() != null) {
       editingDomain.getResourceToReadOnlyMap().clear();
-
       // Refresh any actions that may become enabled or disabled.
-      //
       setSelection(getSelection());
     }
-
-    if (!removedResources.isEmpty()) {
+    if (removedResources.isEmpty() == false) {
       if (handleDirtyConflict()) {
         getSite().getPage().closeEditor(FcoreEditor.this, false);
       } else {
@@ -559,7 +552,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         changedResources.clear();
         savedResources.clear();
       }
-    } else if (!changedResources.isEmpty()) {
+    } else if (changedResources.isEmpty() == false) {
       changedResources.removeAll(savedResources);
       handleChangedResources();
       changedResources.clear();
@@ -580,13 +573,12 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         changedResources.addAll(editingDomain.getResourceSet().getResources());
       }
       editingDomain.getCommandStack().flush();
-
+      updateProblemIndication = false;
       ResourceHelper.reloadResources(editingDomain.getResourceSet(), changedResources);
-
       if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
         setSelection(StructuredSelection.EMPTY);
       }
-
+      updateProblemIndication = true;
       updateProblemIndication();
     }
   }
