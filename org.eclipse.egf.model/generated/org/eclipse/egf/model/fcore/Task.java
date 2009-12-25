@@ -29,30 +29,30 @@ package org.eclipse.egf.model.fcore;
  * @generated
  */
 public interface Task extends Activity {
-  /**
-   * Returns the value of the '<em><b>Task Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Task Id</em>' attribute isn't clear, there
-   * really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Task Id</em>' attribute.
-   * @see #setTaskId(String)
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getTask_TaskId()
-   * @model required="true"
-   * @generated
-   */
-  String getTaskId();
+    /**
+     * Returns the value of the '<em><b>Task Id</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Task Id</em>' attribute isn't clear, there
+     * really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Task Id</em>' attribute.
+     * @see #setTaskId(String)
+     * @see org.eclipse.egf.model.fcore.FcorePackage#getTask_TaskId()
+     * @model required="true"
+     * @generated
+     */
+    String getTaskId();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Task#getTaskId <em>Task Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Task Id</em>' attribute.
-   * @see #getTaskId()
-   * @generated
-   */
-  void setTaskId(String value);
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.fcore.Task#getTaskId <em>Task Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Task Id</em>' attribute.
+     * @see #getTaskId()
+     * @generated
+     */
+    void setTaskId(String value);
 
 } // Task

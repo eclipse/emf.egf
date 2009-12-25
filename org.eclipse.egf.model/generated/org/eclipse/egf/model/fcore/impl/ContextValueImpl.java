@@ -26,23 +26,23 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public abstract class ContextValueImpl extends ModelElementImpl implements ContextValue {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ContextValueImpl() {
-    super();
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ContextValueImpl() {
+        super();
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FcorePackage.Literals.CONTEXT_VALUE;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return FcorePackage.Literals.CONTEXT_VALUE;
+    }
 
 } // ContextValueImpl

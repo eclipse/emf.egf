@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
- * This is the central singleton for the Pattern edit plugin.
+ * This is the central singleton for the Fcore edit plugin.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * @generated
@@ -45,7 +45,7 @@ public final class EGFModelsEditPlugin extends EMFPlugin {
      * @generated
      */
     public EGFModelsEditPlugin() {
-        super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelsEditPlugin.INSTANCE, });
+        super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, });
     }
 
     /**

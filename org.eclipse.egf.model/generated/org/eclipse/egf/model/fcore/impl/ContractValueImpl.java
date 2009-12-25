@@ -36,252 +36,252 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class ContractValueImpl extends ContextValueImpl implements ContractValue {
-  /**
-   * The cached value of the '{@link #getContract() <em>Contract</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getContract()
-   * @generated
-   * @ordered
-   */
-  protected Contract contract;
+    /**
+     * The cached value of the '{@link #getContract() <em>Contract</em>}' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getContract()
+     * @generated
+     * @ordered
+     */
+    protected Contract contract;
 
-  /**
-   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected static final String VALUE_EDEFAULT = null;
+    /**
+     * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getValue()
+     * @generated
+     * @ordered
+     */
+    protected static final String VALUE_EDEFAULT = null;
 
-  /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected String value = VALUE_EDEFAULT;
+    /**
+     * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getValue()
+     * @generated
+     * @ordered
+     */
+    protected String value = VALUE_EDEFAULT;
 
-  /**
-   * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPluginId()
-   * @generated
-   * @ordered
-   */
-  protected static final String PLUGIN_ID_EDEFAULT = null;
+    /**
+     * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPluginId()
+     * @generated
+     * @ordered
+     */
+    protected static final String PLUGIN_ID_EDEFAULT = null;
 
-  /**
-   * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getPluginId()
-   * @generated
-   * @ordered
-   */
-  protected String pluginId = PLUGIN_ID_EDEFAULT;
+    /**
+     * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getPluginId()
+     * @generated
+     * @ordered
+     */
+    protected String pluginId = PLUGIN_ID_EDEFAULT;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ContractValueImpl() {
-    super();
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected ContractValueImpl() {
+        super();
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FcorePackage.Literals.CONTRACT_VALUE;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return FcorePackage.Literals.CONTRACT_VALUE;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Contract getContract() {
-    if (contract != null && contract.eIsProxy()) {
-      InternalEObject oldContract = (InternalEObject) contract;
-      contract = (Contract) eResolveProxy(oldContract);
-      if (contract != oldContract) {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Contract getContract() {
+        if (contract != null && contract.eIsProxy()) {
+            InternalEObject oldContract = (InternalEObject) contract;
+            contract = (Contract) eResolveProxy(oldContract);
+            if (contract != oldContract) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, FcorePackage.CONTRACT_VALUE__CONTRACT, oldContract, contract));
+            }
+        }
+        return contract;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Contract basicGetContract() {
+        return contract;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setContract(Contract newContract) {
+        Contract oldContract = contract;
+        contract = newContract;
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FcorePackage.CONTRACT_VALUE__CONTRACT, oldContract, contract));
-      }
+            eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_VALUE__CONTRACT, oldContract, contract));
     }
-    return contract;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Contract basicGetContract() {
-    return contract;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setContract(Contract newContract) {
-    Contract oldContract = contract;
-    contract = newContract;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_VALUE__CONTRACT, oldContract, contract));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getValue() {
-    return value;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setValue(String newValue) {
-    String oldValue = value;
-    value = newValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_VALUE__VALUE, oldValue, value));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getPluginId() {
-    return pluginId;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setPluginId(String newPluginId) {
-    String oldPluginId = pluginId;
-    pluginId = newPluginId;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_VALUE__PLUGIN_ID, oldPluginId, pluginId));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case FcorePackage.CONTRACT_VALUE__CONTRACT:
-      if (resolve)
-        return getContract();
-      return basicGetContract();
-    case FcorePackage.CONTRACT_VALUE__VALUE:
-      return getValue();
-    case FcorePackage.CONTRACT_VALUE__PLUGIN_ID:
-      return getPluginId();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getValue() {
+        return value;
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case FcorePackage.CONTRACT_VALUE__CONTRACT:
-      setContract((Contract) newValue);
-      return;
-    case FcorePackage.CONTRACT_VALUE__VALUE:
-      setValue((String) newValue);
-      return;
-    case FcorePackage.CONTRACT_VALUE__PLUGIN_ID:
-      setPluginId((String) newValue);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setValue(String newValue) {
+        String oldValue = value;
+        value = newValue;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_VALUE__VALUE, oldValue, value));
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case FcorePackage.CONTRACT_VALUE__CONTRACT:
-      setContract((Contract) null);
-      return;
-    case FcorePackage.CONTRACT_VALUE__VALUE:
-      setValue(VALUE_EDEFAULT);
-      return;
-    case FcorePackage.CONTRACT_VALUE__PLUGIN_ID:
-      setPluginId(PLUGIN_ID_EDEFAULT);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public String getPluginId() {
+        return pluginId;
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case FcorePackage.CONTRACT_VALUE__CONTRACT:
-      return contract != null;
-    case FcorePackage.CONTRACT_VALUE__VALUE:
-      return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-    case FcorePackage.CONTRACT_VALUE__PLUGIN_ID:
-      return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setPluginId(String newPluginId) {
+        String oldPluginId = pluginId;
+        pluginId = newPluginId;
+        if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_VALUE__PLUGIN_ID, oldPluginId, pluginId));
     }
-    return super.eIsSet(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString() {
-    if (eIsProxy())
-      return super.toString();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+        case FcorePackage.CONTRACT_VALUE__CONTRACT:
+            if (resolve)
+                return getContract();
+            return basicGetContract();
+        case FcorePackage.CONTRACT_VALUE__VALUE:
+            return getValue();
+        case FcorePackage.CONTRACT_VALUE__PLUGIN_ID:
+            return getPluginId();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
 
-    StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (value: "); //$NON-NLS-1$
-    result.append(value);
-    result.append(", pluginId: "); //$NON-NLS-1$
-    result.append(pluginId);
-    result.append(')');
-    return result.toString();
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+        case FcorePackage.CONTRACT_VALUE__CONTRACT:
+            setContract((Contract) newValue);
+            return;
+        case FcorePackage.CONTRACT_VALUE__VALUE:
+            setValue((String) newValue);
+            return;
+        case FcorePackage.CONTRACT_VALUE__PLUGIN_ID:
+            setPluginId((String) newValue);
+            return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+        case FcorePackage.CONTRACT_VALUE__CONTRACT:
+            setContract((Contract) null);
+            return;
+        case FcorePackage.CONTRACT_VALUE__VALUE:
+            setValue(VALUE_EDEFAULT);
+            return;
+        case FcorePackage.CONTRACT_VALUE__PLUGIN_ID:
+            setPluginId(PLUGIN_ID_EDEFAULT);
+            return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+        case FcorePackage.CONTRACT_VALUE__CONTRACT:
+            return contract != null;
+        case FcorePackage.CONTRACT_VALUE__VALUE:
+            return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+        case FcorePackage.CONTRACT_VALUE__PLUGIN_ID:
+            return PLUGIN_ID_EDEFAULT == null ? pluginId != null : !PLUGIN_ID_EDEFAULT.equals(pluginId);
+        }
+        return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy())
+            return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (value: "); //$NON-NLS-1$
+        result.append(value);
+        result.append(", pluginId: "); //$NON-NLS-1$
+        result.append(pluginId);
+        result.append(')');
+        return result.toString();
+    }
 
 } // ContractValueImpl

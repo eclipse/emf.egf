@@ -32,50 +32,50 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface ContractContainer extends ModelElement {
-  /**
-   * Returns the value of the '<em><b>Activity</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Activity#getContractContainer <em>Contract Container</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Activity</em>' container reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Activity</em>' container reference.
-   * @see #setActivity(Activity)
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getContractContainer_Activity()
-   * @see org.eclipse.egf.model.fcore.Activity#getContractContainer
-   * @model opposite="contractContainer" resolveProxies="false" required="true" transient="false"
-   * @generated
-   */
-  Activity getActivity();
+    /**
+     * Returns the value of the '<em><b>Activity</b></em>' container reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Activity#getContractContainer <em>Contract Container</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Activity</em>' container reference isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Activity</em>' container reference.
+     * @see #setActivity(Activity)
+     * @see org.eclipse.egf.model.fcore.FcorePackage#getContractContainer_Activity()
+     * @see org.eclipse.egf.model.fcore.Activity#getContractContainer
+     * @model opposite="contractContainer" resolveProxies="false" required="true" transient="false"
+     * @generated
+     */
+    Activity getActivity();
 
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.ContractContainer#getActivity <em>Activity</em>}' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Activity</em>' container reference.
-   * @see #getActivity()
-   * @generated
-   */
-  void setActivity(Activity value);
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.fcore.ContractContainer#getActivity <em>Activity</em>}' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Activity</em>' container reference.
+     * @see #getActivity()
+     * @generated
+     */
+    void setActivity(Activity value);
 
-  /**
-   * Returns the value of the '<em><b>Contracts</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.egf.model.fcore.Contract}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Contract#getContractContainer <em>Contract Container</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Contracts</em>' containment reference list isn't
-   * clear, there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Contracts</em>' containment reference list.
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getContractContainer_Contracts()
-   * @see org.eclipse.egf.model.fcore.Contract#getContractContainer
-   * @model opposite="contractContainer" containment="true"
-   * @generated
-   */
-  EList<Contract> getContracts();
+    /**
+     * Returns the value of the '<em><b>Contracts</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.model.fcore.Contract}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Contract#getContractContainer <em>Contract Container</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Contracts</em>' containment reference list isn't
+     * clear, there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Contracts</em>' containment reference list.
+     * @see org.eclipse.egf.model.fcore.FcorePackage#getContractContainer_Contracts()
+     * @see org.eclipse.egf.model.fcore.Contract#getContractContainer
+     * @model opposite="contractContainer" containment="true"
+     * @generated
+     */
+    EList<Contract> getContracts();
 
 } // ContractContainer

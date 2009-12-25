@@ -35,298 +35,278 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li> {@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getViewpointContainer
- * <em>Viewpoint Container</em>}</li>
- * <li> {@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getOrchestration
- * <em>Orchestration</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getViewpointContainer <em>Viewpoint Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getOrchestration <em>Orchestration</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class FactoryComponentImpl extends ActivityImpl implements FactoryComponent {
-  /**
-   * The cached value of the '{@link #getViewpointContainer() <em>Viewpoint
-   * Container</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @see #getViewpointContainer()
-   * @generated
-   * @ordered
-   */
-  protected ViewpointContainer viewpointContainer;
+    /**
+     * The cached value of the '{@link #getViewpointContainer() <em>Viewpoint Container</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getViewpointContainer()
+     * @generated
+     * @ordered
+     */
+    protected ViewpointContainer viewpointContainer;
 
-  /**
-   * The cached value of the '{@link #getOrchestration() <em>Orchestration</em>} ' containment
-   * reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @see #getOrchestration()
-   * @generated
-   * @ordered
-   */
-  protected Orchestration orchestration;
+    /**
+     * The cached value of the '{@link #getOrchestration() <em>Orchestration</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getOrchestration()
+     * @generated
+     * @ordered
+     */
+    protected Orchestration orchestration;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected FactoryComponentImpl() {
-    super();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return FcorePackage.Literals.FACTORY_COMPONENT;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public ViewpointContainer getViewpointContainer() {
-    return viewpointContainer;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public NotificationChain basicSetViewpointContainer(ViewpointContainer newViewpointContainer, NotificationChain msgs) {
-    ViewpointContainer oldViewpointContainer = viewpointContainer;
-    viewpointContainer = newViewpointContainer;
-    if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, oldViewpointContainer, newViewpointContainer);
-      if (msgs == null)
-        msgs = notification;
-      else
-        msgs.add(notification);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected FactoryComponentImpl() {
+        super();
     }
-    return msgs;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public void setViewpointContainer(ViewpointContainer newViewpointContainer) {
-    if (newViewpointContainer != viewpointContainer) {
-      NotificationChain msgs = null;
-      if (viewpointContainer != null)
-        msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT, ViewpointContainer.class, msgs);
-      if (newViewpointContainer != null)
-        msgs = ((InternalEObject) newViewpointContainer).eInverseAdd(this, FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT, ViewpointContainer.class, msgs);
-      msgs = basicSetViewpointContainer(newViewpointContainer, msgs);
-      if (msgs != null)
-        msgs.dispatch();
-    } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, newViewpointContainer, newViewpointContainer));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public Orchestration getOrchestration() {
-    return orchestration;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public NotificationChain basicSetOrchestration(Orchestration newOrchestration, NotificationChain msgs) {
-    Orchestration oldOrchestration = orchestration;
-    orchestration = newOrchestration;
-    if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, oldOrchestration, newOrchestration);
-      if (msgs == null)
-        msgs = notification;
-      else
-        msgs.add(notification);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return FcorePackage.Literals.FACTORY_COMPONENT;
     }
-    return msgs;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public void setOrchestration(Orchestration newOrchestration) {
-    if (newOrchestration != orchestration) {
-      NotificationChain msgs = null;
-      if (orchestration != null)
-        msgs = ((InternalEObject) orchestration).eInverseRemove(this, FcorePackage.ORCHESTRATION__FACTORY_COMPONENT, Orchestration.class, msgs);
-      if (newOrchestration != null)
-        msgs = ((InternalEObject) newOrchestration).eInverseAdd(this, FcorePackage.ORCHESTRATION__FACTORY_COMPONENT, Orchestration.class, msgs);
-      msgs = basicSetOrchestration(newOrchestration, msgs);
-      if (msgs != null)
-        msgs.dispatch();
-    } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, newOrchestration, newOrchestration));
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ViewpointContainer getViewpointContainer() {
+        return viewpointContainer;
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-    Assert.isNotNull(productionContext);
-    if (getOrchestration() != null) {
-      getOrchestration().invoke(EGFModelsPlugin.getModelProductionContextFactory().createModelProductionContext(productionContext, this), monitor);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetViewpointContainer(ViewpointContainer newViewpointContainer, NotificationChain msgs) {
+        ViewpointContainer oldViewpointContainer = viewpointContainer;
+        viewpointContainer = newViewpointContainer;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, oldViewpointContainer, newViewpointContainer);
+            if (msgs == null)
+                msgs = notification;
+            else
+                msgs.add(notification);
+        }
+        return msgs;
     }
-    if (monitor.isCanceled()) {
-      throw new OperationCanceledException();
-    }
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public int getSteps() {
-    if (getOrchestration() != null) {
-      return getOrchestration().getSteps();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setViewpointContainer(ViewpointContainer newViewpointContainer) {
+        if (newViewpointContainer != viewpointContainer) {
+            NotificationChain msgs = null;
+            if (viewpointContainer != null)
+                msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT, ViewpointContainer.class, msgs);
+            if (newViewpointContainer != null)
+                msgs = ((InternalEObject) newViewpointContainer).eInverseAdd(this, FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT, ViewpointContainer.class, msgs);
+            msgs = basicSetViewpointContainer(newViewpointContainer, msgs);
+            if (msgs != null)
+                msgs.dispatch();
+        } else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, newViewpointContainer, newViewpointContainer));
     }
-    return 0;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-      if (viewpointContainer != null)
-        msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, null, msgs);
-      return basicSetViewpointContainer((ViewpointContainer) otherEnd, msgs);
-    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-      if (orchestration != null)
-        msgs = ((InternalEObject) orchestration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, null, msgs);
-      return basicSetOrchestration((Orchestration) otherEnd, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Orchestration getOrchestration() {
+        return orchestration;
     }
-    return super.eInverseAdd(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-      return basicSetViewpointContainer(null, msgs);
-    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-      return basicSetOrchestration(null, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public NotificationChain basicSetOrchestration(Orchestration newOrchestration, NotificationChain msgs) {
+        Orchestration oldOrchestration = orchestration;
+        orchestration = newOrchestration;
+        if (eNotificationRequired()) {
+            ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, oldOrchestration, newOrchestration);
+            if (msgs == null)
+                msgs = notification;
+            else
+                msgs.add(notification);
+        }
+        return msgs;
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-      return getViewpointContainer();
-    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-      return getOrchestration();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setOrchestration(Orchestration newOrchestration) {
+        if (newOrchestration != orchestration) {
+            NotificationChain msgs = null;
+            if (orchestration != null)
+                msgs = ((InternalEObject) orchestration).eInverseRemove(this, FcorePackage.ORCHESTRATION__FACTORY_COMPONENT, Orchestration.class, msgs);
+            if (newOrchestration != null)
+                msgs = ((InternalEObject) newOrchestration).eInverseAdd(this, FcorePackage.ORCHESTRATION__FACTORY_COMPONENT, Orchestration.class, msgs);
+            msgs = basicSetOrchestration(newOrchestration, msgs);
+            if (msgs != null)
+                msgs.dispatch();
+        } else if (eNotificationRequired())
+            eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, newOrchestration, newOrchestration));
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-      setViewpointContainer((ViewpointContainer) newValue);
-      return;
-    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-      setOrchestration((Orchestration) newValue);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+        Assert.isNotNull(productionContext);
+        if (getOrchestration() != null) {
+            getOrchestration().invoke(EGFModelsPlugin.getModelProductionContextFactory().createModelProductionContext(productionContext, this), monitor);
+        }
+        if (monitor.isCanceled()) {
+            throw new OperationCanceledException();
+        }
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-      setViewpointContainer((ViewpointContainer) null);
-      return;
-    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-      setOrchestration((Orchestration) null);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    @Override
+    public int getSteps() {
+        if (getOrchestration() != null) {
+            return getOrchestration().getSteps();
+        }
+        return 0;
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-      return viewpointContainer != null;
-    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
-      return orchestration != null;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+            if (viewpointContainer != null)
+                msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, null, msgs);
+            return basicSetViewpointContainer((ViewpointContainer) otherEnd, msgs);
+        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+            if (orchestration != null)
+                msgs = ((InternalEObject) orchestration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, null, msgs);
+            return basicSetOrchestration((Orchestration) otherEnd, msgs);
+        }
+        return super.eInverseAdd(otherEnd, featureID, msgs);
     }
-    return super.eIsSet(featureID);
-  }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+            return basicSetViewpointContainer(null, msgs);
+        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+            return basicSetOrchestration(null, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+            return getViewpointContainer();
+        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+            return getOrchestration();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+            setViewpointContainer((ViewpointContainer) newValue);
+            return;
+        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+            setOrchestration((Orchestration) newValue);
+            return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+            setViewpointContainer((ViewpointContainer) null);
+            return;
+        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+            setOrchestration((Orchestration) null);
+            return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+        case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+            return viewpointContainer != null;
+        case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+            return orchestration != null;
+        }
+        return super.eIsSet(featureID);
+    }
 
 } // FactoryComponentImpl

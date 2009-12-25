@@ -23,93 +23,93 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface FcoreFactory extends EFactory {
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  FcoreFactory eINSTANCE = org.eclipse.egf.model.fcore.impl.FcoreFactoryImpl.init();
+    /**
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    FcoreFactory eINSTANCE = org.eclipse.egf.model.fcore.impl.FcoreFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Task</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Task</em>'.
-   * @generated
-   */
-  Task createTask();
+    /**
+     * Returns a new object of class '<em>Task</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Task</em>'.
+     * @generated
+     */
+    Task createTask();
 
-  /**
-   * Returns a new object of class '<em>Factory Component</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Factory Component</em>'.
-   * @generated
-   */
-  FactoryComponent createFactoryComponent();
+    /**
+     * Returns a new object of class '<em>Factory Component</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Factory Component</em>'.
+     * @generated
+     */
+    FactoryComponent createFactoryComponent();
 
-  /**
-   * Returns a new object of class '<em>Viewpoint Container</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Viewpoint Container</em>'.
-   * @generated
-   */
-  ViewpointContainer createViewpointContainer();
+    /**
+     * Returns a new object of class '<em>Viewpoint Container</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Viewpoint Container</em>'.
+     * @generated
+     */
+    ViewpointContainer createViewpointContainer();
 
-  /**
-   * Returns a new object of class '<em>Context</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Context</em>'.
-   * @generated
-   */
-  Context createContext();
+    /**
+     * Returns a new object of class '<em>Context</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Context</em>'.
+     * @generated
+     */
+    Context createContext();
 
-  /**
-   * Returns a new object of class '<em>Contract Container</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Contract Container</em>'.
-   * @generated
-   */
-  ContractContainer createContractContainer();
+    /**
+     * Returns a new object of class '<em>Contract Container</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Contract Container</em>'.
+     * @generated
+     */
+    ContractContainer createContractContainer();
 
-  /**
-   * Returns a new object of class '<em>Contract</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Contract</em>'.
-   * @generated
-   */
-  Contract createContract();
+    /**
+     * Returns a new object of class '<em>Contract</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Contract</em>'.
+     * @generated
+     */
+    Contract createContract();
 
-  /**
-   * Returns a new object of class '<em>Contract Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Contract Value</em>'.
-   * @generated
-   */
-  ContractValue createContractValue();
+    /**
+     * Returns a new object of class '<em>Contract Value</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Contract Value</em>'.
+     * @generated
+     */
+    ContractValue createContractValue();
 
-  /**
-   * Returns a new object of class '<em>Contract Connector</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Contract Connector</em>'.
-   * @generated
-   */
-  ContractConnector createContractConnector();
+    /**
+     * Returns a new object of class '<em>Contract Connector</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Contract Connector</em>'.
+     * @generated
+     */
+    ContractConnector createContractConnector();
 
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  FcorePackage getFcorePackage();
+    /**
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the package supported by this factory.
+     * @generated
+     */
+    FcorePackage getFcorePackage();
 
 } // FcoreFactory

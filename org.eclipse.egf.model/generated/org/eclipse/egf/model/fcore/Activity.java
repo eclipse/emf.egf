@@ -20,80 +20,65 @@ import org.eclipse.egf.core.production.context.IProductionContext;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Activity</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.Activity#getContractContainer
- * <em>Contract Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.Activity#getSteps <em>Steps</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Activity#getContractContainer <em>Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Activity#getSteps <em>Steps</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getActivity()
  * @model abstract="true"
  * @generated
  */
 public interface Activity extends ModelElement {
-  /**
-   * Returns the value of the '<em><b>Contract Container</b></em>' containment
-   * reference.
-   * It is bidirectional and its opposite is '
-   * {@link org.eclipse.egf.model.fcore.ContractContainer#getActivity
-   * <em>Activity</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Contract Container</em>' containment reference
-   * isn't clear, there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * 
-   * @return the value of the '<em>Contract Container</em>' containment
-   *         reference.
-   * @see #setContractContainer(ContractContainer)
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getActivity_ContractContainer()
-   * @see org.eclipse.egf.model.fcore.ContractContainer#getActivity
-   * @model opposite="activity" containment="true"
-   * @generated
-   */
-  ContractContainer getContractContainer();
+    /**
+     * Returns the value of the '<em><b>Contract Container</b></em>' containment reference.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ContractContainer#getActivity <em>Activity</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Contract Container</em>' containment reference
+     * isn't clear, there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Contract Container</em>' containment reference.
+     * @see #setContractContainer(ContractContainer)
+     * @see org.eclipse.egf.model.fcore.FcorePackage#getActivity_ContractContainer()
+     * @see org.eclipse.egf.model.fcore.ContractContainer#getActivity
+     * @model opposite="activity" containment="true"
+     * @generated
+     */
+    ContractContainer getContractContainer();
 
-  /**
-   * Sets the value of the ' {@link org.eclipse.egf.model.fcore.Activity#getContractContainer
-   * <em>Contract Container</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Contract Container</em>' containment
-   *          reference.
-   * @see #getContractContainer()
-   * @generated
-   */
-  void setContractContainer(ContractContainer value);
+    /**
+     * Sets the value of the '{@link org.eclipse.egf.model.fcore.Activity#getContractContainer <em>Contract Container</em>}' containment reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @param value the new value of the '<em>Contract Container</em>' containment reference.
+     * @see #getContractContainer()
+     * @generated
+     */
+    void setContractContainer(ContractContainer value);
 
-  /**
-   * Returns the value of the '<em><b>Steps</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @return the value of the '<em>Steps</em>' attribute.
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getActivity_Steps()
-   * @model transient="true" changeable="false" volatile="true" derived="true"
-   * @generated
-   */
-  int getSteps();
+    /**
+     * Returns the value of the '<em><b>Steps</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Steps</em>' attribute.
+     * @see org.eclipse.egf.model.fcore.FcorePackage#getActivity_Steps()
+     * @model transient="true" changeable="false" volatile="true" derived="true"
+     * @generated
+     */
+    int getSteps();
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @model exceptions="org.eclipse.egf.model.fcore.InvocationException"
-   *        productionContextDataType
-   *        ="org.eclipse.egf.model.fcore.IProductionContext"
-   *        monitorDataType="org.eclipse.egf.model.fcore.IProgressMonitor"
-   * @generated
-   */
-  void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model exceptions="org.eclipse.egf.model.fcore.InvocationException" productionContextDataType="org.eclipse.egf.model.fcore.IProductionContext" monitorDataType="org.eclipse.egf.model.fcore.IProgressMonitor"
+     * @generated
+     */
+    void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException;
 
 } // Activity
