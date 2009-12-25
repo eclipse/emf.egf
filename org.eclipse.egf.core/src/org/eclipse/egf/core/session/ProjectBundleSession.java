@@ -14,7 +14,6 @@ import java.net.URLDecoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,15 +22,12 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.helper.BundleHelper;
+import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
-import org.eclipse.jdt.core.IClasspathEntry;
-import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.osgi.baseadaptor.BaseData;
 import org.eclipse.osgi.framework.internal.core.AbstractBundle;
 import org.eclipse.osgi.service.resolver.BundleDescription;
@@ -235,7 +231,7 @@ public class ProjectBundleSession {
    *          development plugin.
    */
   private void setBundleClasspath(IProject plugin, Bundle bundle) throws CoreException {
-    Set<String> classpathEntries = getOutputFolders(plugin);
+    Set<String> classpathEntries = ProjectHelper.getOutputFolders(plugin);
     BaseData bundleData = (BaseData) ((AbstractBundle) bundle).getBundleData();
     if (classpathEntries.size() == 1) {
       bundleData.setClassPathString(classpathEntries.iterator().next());
@@ -250,43 +246,6 @@ public class ProjectBundleSession {
       }
       bundleData.setClassPathString(classpath.toString());
     }
-  }
-
-  /**
-   * This will return the set of output folders name for the given
-   * project.
-   * <p>
-   * For example, if a project has a source folder "src" with its output folder
-   * set as "bin" and a source
-   * folder "src-gen" with its output folder set as "bin-gen", this will return
-   * a LinkedHashSet containing
-   * both "bin" and "bin-gen".
-   * </p>
-   * 
-   * @param project
-   *          The project we seek the output folders of.
-   * @return The set of output folders name for the given (java) project.
-   */
-  private Set<String> getOutputFolders(IProject project) throws CoreException {
-    Set<String> classpathEntries = new LinkedHashSet<String>();
-    IJavaProject javaProject = JavaCore.create(project);
-    if (javaProject.exists() == false) {
-      return classpathEntries;
-    }
-    try {
-      for (IClasspathEntry entry : javaProject.getResolvedClasspath(true)) {
-        if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
-          IPath output = entry.getOutputLocation();
-          if (output != null) {
-            classpathEntries.add(output.removeFirstSegments(1).toString());
-          }
-        }
-      }
-      classpathEntries.add(javaProject.getOutputLocation().removeFirstSegments(1).toString());
-    } catch (Throwable t) {
-      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_AnalysingFailure, project.getName()), t));
-    }
-    return classpathEntries;
   }
 
   /**

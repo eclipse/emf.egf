@@ -236,8 +236,8 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
   }
 
   /**
-   * Get the plug-in changes command runner that is able to execute
-   * {@link IPluginChangesCommand} commands.
+   * Get the plug-in changes command runner that is able to execute {@link IPluginChangesCommand}
+   * commands.
    * 
    * @return a not null object.
    */

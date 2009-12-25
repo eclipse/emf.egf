@@ -162,8 +162,7 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
    * @param bundleModel_p
    * @param bundleRelativeFileName_p
    *          the searched bundle file name.<br>
-   *          Most of the time it is either
-   *          {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or
+   *          Most of the time it is either {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or
    *          {@link EGFPDEPlugin#MANIFEST_FILE_NAME}
    * @param bundleId_p
    *          The bundle id.
@@ -255,8 +254,7 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
    * @param model_p
    * @param bundleRelativeFileName_p
    *          the searched bundle file name.<br>
-   *          Most of the time it is either
-   *          {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or
+   *          Most of the time it is either {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or
    *          {@link EGFPDEPlugin#MANIFEST_FILE_NAME}
    * @param bundleId_p
    *          The bundle id.
@@ -288,8 +286,7 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
    * @param model_p
    * @param bundleRelativeFileName_p
    *          the searched bundle file name.<br>
-   *          Most of the time it is either
-   *          {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or
+   *          Most of the time it is either {@link EGFPDEPlugin#PLUGIN_FILE_NAME} or
    *          {@link EGFPDEPlugin#MANIFEST_FILE_NAME}
    * @return
    */
@@ -325,8 +322,7 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
    * @param pluginModelBase_p
    * @param bundleRelativeFileName_p
    *          the searched bundle file name.<br>
-   *          Most of the time it is either
-   *          {@link EgfPdeActivator#PLUGIN_FILE_NAME} or
+   *          Most of the time it is either {@link EgfPdeActivator#PLUGIN_FILE_NAME} or
    *          {@link EgfPdeActivator#MANIFEST_FILE_NAME}
    * @return.
    */

@@ -11,7 +11,7 @@
 package org.eclipse.egf.core.platform.pde;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.egf.common.uri.URIHelper;
+import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IPluginElement;
 

@@ -15,7 +15,7 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.eclipse.core.resources.IResource;
-import org.eclipse.egf.common.uri.URIHelper;
+import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;

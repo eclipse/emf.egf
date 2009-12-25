@@ -163,26 +163,26 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   /**
    * Get the IPlatformFcore for given EMF Resource.
    * 
-   * @param resource_
+   * @param resource
    * @return an {@link IPlatformFcore} instance or null if the
    *         resource is null or not associated with an
    *         IPlatformFcore
    */
-  public static IPlatformFcore getPlatformFcore(Resource resource_) {
+  public static IPlatformFcore getPlatformFcore(Resource resource) {
     // a URI should be absolute, otherwise we are unable to analyse its
     // first segment
-    if (resource_ == null || resource_.getURI() == null || resource_.getURI().isRelative()) {
+    if (resource == null || resource.getURI() == null || resource.getURI().isRelative()) {
       return null;
     }
     // Project Name
-    String firstSegment = resource_.getURI().segment(1);
+    String firstSegment = resource.getURI().segment(1);
     if (firstSegment == null || firstSegment.trim().length() == 0) {
       return null;
     }
     firstSegment = firstSegment.trim();
     // locate and return the first associated IPlatformFcore
     for (IPlatformFcore fcore : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(firstSegment, IPlatformFcore.class)) {
-      if (fcore.getURI().equals(resource_.getURI())) {
+      if (fcore.getURI().equals(resource.getURI())) {
         return fcore;
       }
     }

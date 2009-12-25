@@ -97,8 +97,8 @@ public class FcoreGeneratorHelper {
   }
 
   /**
-   * Add the standard dependencies in given plug-in manifest. See
-   * {@link #getStandardDependencies()}.
+   * Add the standard dependencies in given plug-in manifest. See {@link #getStandardDependencies()}
+   * .
    * 
    * @param pluginId_p
    * @param optional_p
