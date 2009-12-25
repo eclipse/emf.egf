@@ -23,14 +23,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class SuperPatternCallImpl extends AbstractPatternCallImpl implements SuperPatternCall {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected SuperPatternCallImpl() {
@@ -53,7 +52,6 @@ public class SuperPatternCallImpl extends AbstractPatternCallImpl implements Sup
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
