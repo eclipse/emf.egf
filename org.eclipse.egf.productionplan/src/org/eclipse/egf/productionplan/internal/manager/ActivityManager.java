@@ -84,20 +84,27 @@ public abstract class ActivityManager<Q extends ProductionPlanInvocationManager<
         } else if (contract.getMode() == ContractMode.OUT) {
           productionContext.addOutputData(contract.getName(), contract.getType().getType(), null);
         } else if (contract.getMode() == ContractMode.IN_OUT) {
+          productionContext.addInputData(contract.getName(), contract.getType().getType(), contract.getType().getValue());
           productionContext.addOutputData(contract.getName(), contract.getType().getType(), contract.getType().getValue());
         }
         // Class
       } else if (contract.getType() instanceof TypeClass<?>) {
         try {
-          Object object = BundleHelper.instantiate(((TypeClass<?>) contract.getType()).getValue(), getBundle());
-          if (object == null) {
-            throw new InvocationException(new CoreException(EGFProductionPlanPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, contract.getType().getValue(), getBundle().getSymbolicName()), null)));
+          Object object = null;
+          // Should we instantiate value
+          String fqcn = ((TypeClass<?>) contract.getType()).getValue();
+          if (fqcn != null && fqcn.trim().length() != 0) {
+            object = BundleHelper.instantiate(fqcn.trim(), getBundle());
+            if (object == null) {
+              throw new InvocationException(new CoreException(EGFProductionPlanPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, contract.getType().getValue(), getBundle().getSymbolicName()), null)));
+            }
           }
           if (contract.getMode() == ContractMode.IN) {
             productionContext.addInputData(contract.getName(), contract.getType().getType(), object);
           } else if (contract.getMode() == ContractMode.OUT) {
             productionContext.addOutputData(contract.getName(), contract.getType().getType(), null);
           } else if (contract.getMode() == ContractMode.IN_OUT) {
+            productionContext.addInputData(contract.getName(), contract.getType().getType(), object);
             productionContext.addOutputData(contract.getName(), contract.getType().getType(), object);
           }
         } catch (Throwable t) {
