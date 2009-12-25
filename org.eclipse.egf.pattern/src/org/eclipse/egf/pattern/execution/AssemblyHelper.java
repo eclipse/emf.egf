@@ -30,6 +30,7 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
@@ -108,7 +109,15 @@ public abstract class AssemblyHelper {
     // nature of pattern.
 
     protected void visitOrchestration(Pattern pattern) throws PatternException {
-        for (Call element : pattern.getOrchestration()) {
+        EList<Call> orchestration = pattern.getOrchestration();
+        while (orchestration.isEmpty() && pattern.getSuperPattern() != null) {
+            orchestration = pattern.getSuperPattern().getOrchestration();
+            pattern = pattern.getSuperPattern();
+        }
+        if (orchestration.isEmpty())
+            throw new PatternException(Messages.bind(Messages.assembly_error8, pattern.getName()));
+
+        for (Call element : orchestration) {
             String read = getContent(element);
             if (read != null)
                 content.append(read);
@@ -122,7 +131,10 @@ public abstract class AssemblyHelper {
             @Override
             public String caseMethodCall(MethodCall object) {
                 try {
-                    return getMethodContent(object.getCalled());
+                    PatternMethod called = object.getCalled();
+                    // this statement is used to look up for overridden methods.
+                    called = pattern.getMethod(called.getName());
+                    return getMethodContent(called);
                 } catch (PatternException e) {
                     holder.object = e;
                 }
