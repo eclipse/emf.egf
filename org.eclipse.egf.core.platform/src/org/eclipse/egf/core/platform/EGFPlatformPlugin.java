@@ -21,6 +21,7 @@ import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.core.platform.internal.pde.IManagerConstants;
 import org.eclipse.egf.core.platform.internal.pde.PlatformManager;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
 import org.eclipse.egf.core.platform.pde.IPlatformManager;
 import org.eclipse.osgi.util.NLS;
@@ -89,7 +90,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
         }
         // Fetch Returned Types from Factory
         Class<?> key = fetchReturnedTypeFromFactory(((IPlatformExtensionPointFactory<?>) factory).getClass());
-        if (__interfaces.get(key) != null) {
+        if (key != null && __interfaces.get(key) != null) {
           getDefault().logError(NLS.bind("Duplicate Interface {0}", key.getClass().getName())); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
@@ -110,7 +111,9 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
     super();
   }
 
-  public static Class<?> fetchReturnedTypeFromFactory(Class<?> factory) {
+  @SuppressWarnings("unchecked")
+  public static Class<? extends IPlatformExtensionPoint> fetchReturnedTypeFromFactory(Class<?> factory) {
+    Class<IPlatformExtensionPoint> clazz = null;
     Method method = null;
     try {
       method = factory.getDeclaredMethod("createExtensionPoint", IPlatformBundle.class, IPluginElement.class); //$NON-NLS-1$
@@ -119,11 +122,13 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
     }
     if (method != null) {
       Type type = method.getGenericReturnType();
-      if (type instanceof Class<?>) {
-        return (Class<?>) type;
+      try {
+        clazz = (Class<IPlatformExtensionPoint>) type;
+      } catch (ClassCastException cce) {
+        // Just Ignore
       }
     }
-    return null;
+    return clazz;
   }
 
   /**
