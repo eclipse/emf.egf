@@ -42,10 +42,10 @@ public class ParameterMatcher {
             matching = new HashMap<PatternParameter, PatternParameter>();
 
             PatternParameter match = null;
-            for (PatternParameter sParam : called.getParameters()) {
+            for (PatternParameter sParam : called.getAllParameters()) {
                 String type = sParam.getType();
 
-                for (PatternParameter tParam : caller.getParameters()) {
+                for (PatternParameter tParam : caller.getAllParameters()) {
                     if (type.equals(tParam.getType())) {
                         if (match == null)
                             match = tParam;
@@ -63,7 +63,7 @@ public class ParameterMatcher {
                 match = null;
             }
         }
-        if (called.getParameters().isEmpty() && caller.getParameters().isEmpty())
+        if (called.getAllParameters().isEmpty() && caller.getAllParameters().isEmpty())
             return true;
         return !matching.isEmpty();
     }

@@ -90,7 +90,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
         content.append("PatternContext ").append(ctxName).append(" = new PatternContext(ctx);").append(CharacterConstants.LINE_SEPARATOR);
         content.append(ctxName).append(".setValue(\"key\", \"value\");").append(CharacterConstants.LINE_SEPARATOR);
         content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(stringBuffer, ").append(ctxName);
-        for (PatternParameter parameter : pattern.getParameters())
+        for (PatternParameter parameter : pattern.getAllParameters())
             content.append(", ").append(PatternHelper.uniqueName(parameter));
 
         content.append(");");
@@ -129,7 +129,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
     @Override
     protected void endOrchestration() throws PatternException {
         content.append("<%").append(END_MARKER).append("%>");
-        if (pattern.getParameters().isEmpty()) {
+        if (pattern.getAllParameters().isEmpty()) {
             content.append("<%reporter.executionFinished(stringBuffer.toString(), ctx);%>").append(CharacterConstants.LINE_SEPARATOR);
             return;
         }
@@ -138,14 +138,14 @@ public class JetAssemblyHelper extends AssemblyHelper {
         localContent.append("<%").append(CharacterConstants.LINE_SEPARATOR);
         localContent.append("").append(CharacterConstants.LINE_SEPARATOR).append(CharacterConstants.LINE_SEPARATOR);
 
-        for (PatternParameter parameter : pattern.getParameters()) {
+        for (PatternParameter parameter : pattern.getAllParameters()) {
             appendQueryCode(localContent, parameter);
         }
 
         localContent.append(CharacterConstants.LINE_SEPARATOR).append(CharacterConstants.LINE_SEPARATOR);
 
         // create a loop per parameter
-        for (PatternParameter parameter : pattern.getParameters()) {
+        for (PatternParameter parameter : pattern.getAllParameters()) {
             String local = PatternHelper.localizeName(parameter);
             localContent.append("for (Object ").append(local).append(" : ").append(getParameterListName(parameter)).append(" ) {").append(CharacterConstants.LINE_SEPARATOR);
             localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(CharacterConstants.LINE_SEPARATOR);
@@ -164,7 +164,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
         content.append("collector.append(loop);").append(CharacterConstants.LINE_SEPARATOR);
         content.append("stringBuffer.setLength(0);").append(CharacterConstants.LINE_SEPARATOR);
 
-        for (int i = 0; i < pattern.getParameters().size(); i++)
+        for (int i = 0; i < pattern.getAllParameters().size(); i++)
             content.append("}").append(CharacterConstants.LINE_SEPARATOR);
         content.append("reporter.executionFinished(collector.toString(), ctx);").append(CharacterConstants.LINE_SEPARATOR);
         content.append("%>");
@@ -176,7 +176,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         localContent.setLength(0);
         localContent.append(CharacterConstants.LINE_SEPARATOR);
-        for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getParameters()) {
+        for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
             String local = PatternHelper.localizeName(parameter);
             String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
             localContent.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(CharacterConstants.LINE_SEPARATOR);
@@ -191,6 +191,8 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
     private void appendQueryCode(StringBuilder localContent, PatternParameter parameter) throws PatternException {
         Query query = parameter.getQuery();
+        if (query == null)
+            throw new PatternException(Messages.bind(Messages.assembly_error9, parameter.getName(), parameter.getID()));
         localContent.append("queryCtx = new HashMap<String, String>();").append(CharacterConstants.LINE_SEPARATOR);
         if (query.getQueryContext() != null) {
             for (String key : query.getQueryContext().keySet()) {

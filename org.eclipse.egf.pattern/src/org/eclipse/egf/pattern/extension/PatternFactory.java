@@ -46,6 +46,34 @@ public abstract class PatternFactory {
     public static final String FOOTER_METHOD_NAME = "footer";
     public static final String BODY_METHOD_NAME = "body";
 
+    public void createDebugPattern16(PatternLibrary lib) {
+        Pattern p1 = createPattern(lib, "Pattern Called");
+        Pattern p2 = createPattern(lib, "Pattern Parent");
+        Pattern p3 = createPattern(lib, "Pattern Child");
+
+        p3.setSuperPattern(p2);
+
+        // set up P1
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
+        param1.setName("myCalledParam");
+        param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass");
+        param1.setQuery(createBasicQuery());
+        p1.getParameters().add(param1);
+
+        // set up P2
+        PatternParameter param2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
+        param2.setName("myChildParam");
+        param2.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass");
+        param2.setQuery(createBasicQuery());
+        p2.getParameters().add(param2);
+
+        // set up P3
+        PatternCall patternCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternCall();
+        patternCall.setCalled(p1);
+        patternCall.getParameterMatching().put(param1, param2);
+        p3.getOrchestration().add(patternCall);
+    }
+
     public void createDebugPattern15(PatternLibrary lib) {
         Pattern p1 = createPattern(lib, "Pattern GrandParent");
         Pattern p2 = createPattern(lib, "Pattern Parent");
@@ -55,36 +83,16 @@ public abstract class PatternFactory {
         p3.setSuperPattern(p2);
 
         // set up P1
-        PatternMethod method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
-        method1.setName("test1");
-        p1.getMethods().add(method1);
-        method1.setPatternFilePath(createURI(method1));
-        PatternMethod method2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
-        method2.setName("test2");
-        p1.getMethods().add(method2);
-        method2.setPatternFilePath(createURI(method2));
-
-        MethodCall methodCall1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
-        methodCall1.setCalled(method1);
-        p1.getOrchestration().add(methodCall1);
-        MethodCall methodCall2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
-        methodCall2.setCalled(method2);
-        p1.getOrchestration().add(methodCall2);
+        PatternParameter param1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternParameter();
+        param1.setName("myGrandParentParam");
+        param1.setType("http://www.eclipse.org/emf/2002/Ecore#//EClass");
+        param1.setQuery(createBasicQuery());
+        p1.getParameters().add(param1);
 
         // set up P2
-        method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
-        method1.setName("test1");
-        p2.getMethods().add(method1);
-        method1.setPatternFilePath(createURI(method1));
-
         p2.getOrchestration().clear();
 
         // set up P3
-        method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
-        method1.setName("test2");
-        p3.getMethods().add(method1);
-        method1.setPatternFilePath(createURI(method1));
-
         p3.getOrchestration().clear();
     }
 
@@ -284,7 +292,7 @@ public abstract class PatternFactory {
 
     private Query createBasicQuery() {
         BasicQuery createBasicQuery = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery();
-        createBasicQuery.setExtensionId("org.eclipse.egf.pattern.basic_query");
+        createBasicQuery.setExtensionId("org.eclipse.egf.pattern.basic.query");
         return createBasicQuery;
     }
 

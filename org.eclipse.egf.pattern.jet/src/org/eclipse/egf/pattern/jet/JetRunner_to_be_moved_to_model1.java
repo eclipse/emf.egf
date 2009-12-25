@@ -44,116 +44,116 @@ import org.eclipse.emf.codegen.jet.JETCompiler;
  */
 public class JetRunner_to_be_moved_to_model1 extends JetEngineImpl {
 
-  public JetRunner_to_be_moved_to_model1(Pattern pattern) {
-    setPattern(pattern);
-  }
-
-  public void execute(PatternContext context) throws PatternException {
-    if (getPattern() == null)
-      throw new IllegalStateException();
-    String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
-    if (templateClassName == null)
-      throw new IllegalStateException(Messages.assembly_error1);
-
-    try {
-      Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternHelper.getPlatformFcore(getPattern())).loadClass(templateClassName);
-      Method method = templateClass.getMethod(JetAssemblyHelper.GENERATE_METHOD, Object.class);
-      Object template = templateClass.newInstance();
-      // the pattern is executed but we don't care about the result.
-      // TODO initialiser le context
-      method.invoke(template, context);
-    } catch (InvocationTargetException e) {
-      throw new PatternException(e.getCause());
-    } catch (Exception e) {
-      throw new PatternException(e);
+    public JetRunner_to_be_moved_to_model1(Pattern pattern) {
+        setPattern(pattern);
     }
 
-  }
+    public void execute(PatternContext context) throws PatternException {
+        if (getPattern() == null)
+            throw new IllegalStateException();
+        String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
+        if (templateClassName == null)
+            throw new IllegalStateException(Messages.assembly_error1);
 
-  public void translate() throws PatternException {
-    if (getPattern() == null)
-      throw new IllegalStateException();
+        try {
+            Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternHelper.getPlatformFcore(getPattern())).loadClass(templateClassName);
+            Method method = templateClass.getMethod(JetAssemblyHelper.GENERATE_METHOD, Object.class);
+            Object template = templateClass.newInstance();
+            // the pattern is executed but we don't care about the result.
+            // TODO initialiser le context
+            method.invoke(template, context);
+        } catch (InvocationTargetException e) {
+            throw new PatternException(e.getCause());
+        } catch (Exception e) {
+            throw new PatternException(e);
+        }
 
-    // **************************************************************************
-    // 1 - put together all pt files
-    AssemblyHelper helper = new JetAssemblyHelper(getPattern());
-    String templatecontent = helper.visit();
-
-    // 2 - compile the result
-    String templateURI = "Pattern_" + pattern.getName() + " (" + pattern.getID() + ")";
-    try {
-      JETCompiler compiler = new JETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
-      compiler.parse();
-      // Quick hack for debug
-      // compiler.getSkeleton().addImports("java.util.* org.eclipse.emf.ecore.* ");
-      ByteArrayOutputStream outStream = new ByteArrayOutputStream();
-      compiler.generate(outStream);
-
-      String targetClassName = JetNatureHelper.getTemplateClassName(pattern);
-      IPath outputPath = computeFilePath(targetClassName);
-      IPlatformFcore platformFcore = PatternHelper.getPlatformFcore(getPattern());
-      if (platformFcore == null)
-        throw new PatternException(Messages.bind(Messages.assembly_error4, pattern.getName(), pattern.getID()));
-      IProject project = platformFcore.getPlatformBundle().getProject();
-      if (project == null)
-        throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getName(), pattern.getID()));
-      FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), getContent(new String(outStream.toByteArray())));
-
-    } catch (PatternException e) {
-      throw e;
-    } catch (Exception e) {
-      throw new PatternException(e);
     }
-  }
 
-  private String getContent(String content) {
-    StringBuilder builder = new StringBuilder(content.length() + 500);
-    int startIndex = content.indexOf(JetAssemblyHelper.START_MARKER);
-    int endIndex = content.indexOf(JetAssemblyHelper.END_MARKER);
-    int insertionIndex = content.lastIndexOf('}');
-    if (startIndex == -1 || endIndex == -1 || insertionIndex == -1)
-      return content;
-    // add start of class code
-    builder.append(content.substring(0, startIndex));
+    public void translate() throws PatternException {
+        if (getPattern() == null)
+            throw new IllegalStateException();
 
-    // add new method call
-    builder.append("generate(stringBuffer, ctx");
-    if (!getPattern().getParameters().isEmpty()) {
-      for (PatternParameter parameter : pattern.getParameters()) {
-        String local = PatternHelper.localizeName(parameter);
-        builder.append(", ").append(local);
-      }
+        // **************************************************************************
+        // 1 - put together all pt files
+        AssemblyHelper helper = new JetAssemblyHelper(getPattern());
+        String templatecontent = helper.visit();
+
+        // 2 - compile the result
+        String templateURI = "Pattern_" + pattern.getName() + " (" + pattern.getID() + ")";
+        try {
+            JETCompiler compiler = new JETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
+            compiler.parse();
+            // Quick hack for debug
+            // compiler.getSkeleton().addImports("java.util.* org.eclipse.emf.ecore.* ");
+            ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+            compiler.generate(outStream);
+
+            String targetClassName = JetNatureHelper.getTemplateClassName(pattern);
+            IPath outputPath = computeFilePath(targetClassName);
+            IPlatformFcore platformFcore = PatternHelper.getPlatformFcore(getPattern());
+            if (platformFcore == null)
+                throw new PatternException(Messages.bind(Messages.assembly_error4, pattern.getName(), pattern.getID()));
+            IProject project = platformFcore.getPlatformBundle().getProject();
+            if (project == null)
+                throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getName(), pattern.getID()));
+            FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), getContent(new String(outStream.toByteArray())));
+
+        } catch (PatternException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new PatternException(e);
+        }
     }
-    builder.append(");");
 
-    // add end of class code
-    builder.append(content.substring(endIndex + JetAssemblyHelper.END_MARKER.length(), insertionIndex));
+    private String getContent(String content) {
+        StringBuilder builder = new StringBuilder(content.length() + 500);
+        int startIndex = content.indexOf(JetAssemblyHelper.START_MARKER);
+        int endIndex = content.indexOf(JetAssemblyHelper.END_MARKER);
+        int insertionIndex = content.lastIndexOf('}');
+        if (startIndex == -1 || endIndex == -1 || insertionIndex == -1)
+            return content;
+        // add start of class code
+        builder.append(content.substring(0, startIndex));
 
-    // add new method body
-    builder.append("public void generate(final StringBuffer stringBuffer, PatternContext ctx");
-    if (!getPattern().getParameters().isEmpty()) {
-      for (PatternParameter parameter : pattern.getParameters()) {
-        String local = PatternHelper.localizeName(parameter);
-        builder.append(", Object ").append(local);
-      }
+        // add new method call
+        builder.append("generate(stringBuffer, ctx");
+        if (!getPattern().getAllParameters().isEmpty()) {
+            for (PatternParameter parameter : pattern.getAllParameters()) {
+                String local = PatternHelper.localizeName(parameter);
+                builder.append(", ").append(local);
+            }
+        }
+        builder.append(");");
+
+        // add end of class code
+        builder.append(content.substring(endIndex + JetAssemblyHelper.END_MARKER.length(), insertionIndex));
+
+        // add new method body
+        builder.append("public void generate(final StringBuffer stringBuffer, PatternContext ctx");
+        if (!getPattern().getAllParameters().isEmpty()) {
+            for (PatternParameter parameter : pattern.getAllParameters()) {
+                String local = PatternHelper.localizeName(parameter);
+                builder.append(", Object ").append(local);
+            }
+        }
+        builder.append(") {").append(CharacterConstants.LINE_SEPARATOR);
+        builder.append(content.substring(startIndex + JetAssemblyHelper.START_MARKER.length(), endIndex));
+
+        builder.append("} ").append(CharacterConstants.LINE_SEPARATOR);
+        builder.append(content.substring(insertionIndex));
+
+        return builder.toString();
     }
-    builder.append(") {").append(CharacterConstants.LINE_SEPARATOR);
-    builder.append(content.substring(startIndex + JetAssemblyHelper.START_MARKER.length(), endIndex));
 
-    builder.append("} ").append(CharacterConstants.LINE_SEPARATOR);
-    builder.append(content.substring(insertionIndex));
-
-    return builder.toString();
-  }
-
-  private IPath computeFilePath(String classname) {
-    IPath result = new Path(PatternPreferences.getGenerationFolderName());
-    String[] names = classname.split("\\.");
-    for (String name : names) {
-      result = result.append(name);
+    private IPath computeFilePath(String classname) {
+        IPath result = new Path(PatternPreferences.getGenerationFolderName());
+        String[] names = classname.split("\\.");
+        for (String name : names) {
+            result = result.append(name);
+        }
+        result = result.addFileExtension("java");
+        return result;
     }
-    result = result.addFileExtension("java");
-    return result;
-  }
 
 }
