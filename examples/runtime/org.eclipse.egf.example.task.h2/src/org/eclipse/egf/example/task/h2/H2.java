@@ -4,8 +4,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
-import org.eclipse.egf.fprod.producer.invocation.IProductionTask;
 import org.eclipse.egf.model.fprod.Task;
+import org.eclipse.egf.model.fprod.task.IProductionTask;
 
 public class H2 implements IProductionTask {
 

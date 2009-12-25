@@ -2,7 +2,7 @@
 <fprod:Task xmi:version="2.1"
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
-    name="H1" description="" invocationId="org.eclipse.egf.example.task.h1.H1.id">
+    name="H1" description="" value="org.eclipse.egf.example.task.h1.H1">
   <activityContractContainer xmi:id="_sAEVUbpOEd6O-6ob3O13Lw">
     <activityContracts xmi:id="_sZPqULpOEd6O-6ob3O13Lw" name="quantity">
       <type xmi:type="types:IntegerType" xmi:id="_wO9-sLpOEd6O-6ob3O13Lw" value="100"/>
