@@ -29,7 +29,7 @@ import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
 import org.eclipse.egf.model.types.IntegerType;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.productionplan.EGFProductionPlanPlugin;
-import org.eclipse.egf.productionplan.manager.IProductionPlanManager;
+import org.eclipse.egf.productionplan.context.IProductionPlanManager;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 
 public class ContextTaskMemory extends TestCase {
@@ -41,7 +41,7 @@ public class ContextTaskMemory extends TestCase {
   public void testContractH1() throws Exception {
 
     Task task = ProductionPlanFactory.eINSTANCE.createTask();
-    task.setTaskId("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
+    task.setInvocationId("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
 
     IProductionPlanManager<?, ?> production = EGFProductionPlanPlugin.getProductionPlanManagerFactory().createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
     try {
@@ -57,7 +57,7 @@ public class ContextTaskMemory extends TestCase {
   public void testOutputContractClassNotTheSameH1() throws Exception {
 
     Task task = ProductionPlanFactory.eINSTANCE.createTask();
-    task.setTaskId("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
+    task.setInvocationId("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
 
     ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
     task.eSet(FcorePackage.Literals.CONTRACT__CONTRACT_CONTAINER, contracts);

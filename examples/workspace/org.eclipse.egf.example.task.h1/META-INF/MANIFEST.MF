@@ -10,7 +10,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
  org.eclipse.egf.common.ui,
  org.eclipse.egf.core.production,
- org.eclipse.egf.model.productionplan
+ org.eclipse.egf.productionplan
 Export-Package: 
  org.eclipse.egf.example.task.h1
 Bundle-ActivationPolicy: lazy

@@ -44,7 +44,7 @@ public class ProductionPlanContextValidation extends TestCase {
     // Task Definition
 
     Task task = ProductionPlanFactory.eINSTANCE.createTask();
-    task.setTaskId("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
+    task.setInvocationId("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
 
     ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
     task.eSet(FcorePackage.Literals.CONTRACT__CONTRACT_CONTAINER, contracts);
@@ -125,7 +125,7 @@ public class ProductionPlanContextValidation extends TestCase {
     // Task Definition
 
     Task task = ProductionPlanFactory.eINSTANCE.createTask();
-    task.setTaskId("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
+    task.setInvocationId("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
 
     ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
     task.eSet(FcorePackage.Literals.CONTRACT__CONTRACT_CONTAINER, contracts);

@@ -20,7 +20,7 @@ import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.productionplan.Task;
 import org.eclipse.egf.productionplan.EGFProductionPlanPlugin;
-import org.eclipse.egf.productionplan.manager.IProductionPlanManager;
+import org.eclipse.egf.productionplan.context.IProductionPlanManager;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
