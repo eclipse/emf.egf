@@ -14,8 +14,8 @@ public class H1 implements IProductionTask {
   private Float amount;
 
   public void preExecute(final IProductionContext productionContext, final IProgressMonitor monitor_p) throws InvocationException {
-	  quantity = productionContext.getValue("quantity", Integer.class); //$NON-NLS-1$
-	  price = productionContext.getValue("price", Float.class); //$NON-NLS-1$
+	  quantity = productionContext.getInputValue("quantity", Integer.class); //$NON-NLS-1$
+	  price = productionContext.getInputValue("price", Float.class); //$NON-NLS-1$
   }
 
   public void doExecute(final IProductionContext productionContext, final IProgressMonitor monitor_p) throws InvocationException {
@@ -23,7 +23,7 @@ public class H1 implements IProductionTask {
   }
 
   public void postExecute(final IProductionContext productionContext, final IProgressMonitor monitor_p) throws InvocationException {
-	  productionContext.setValue("amount", amount); //$NON-NLS-1$	  		  
+	  productionContext.setOutputValue("amount", amount); //$NON-NLS-1$	  		  
   }
 
 }
