@@ -47,14 +47,16 @@ public enum ContractMode implements Enumerator {
    * @generated
    * @ordered
    */
-  OUT(1, "Out", "Out"), /**
-                         * The '<em><b>In Out</b></em>' literal object.
-                         * <!-- begin-user-doc -->
-                         * <!-- end-user-doc -->
-                         * @see #IN_OUT_VALUE
-                         * @generated
-                         * @ordered
-                         */
+  OUT(1, "Out", "Out"), //$NON-NLS-1$ //$NON-NLS-2$
+
+  /**
+   * The '<em><b>In Out</b></em>' literal object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #IN_OUT_VALUE
+   * @generated
+   * @ordered
+   */
   IN_OUT(2, "In_Out", "In_Out"); //$NON-NLS-1$ //$NON-NLS-2$
 
   /**

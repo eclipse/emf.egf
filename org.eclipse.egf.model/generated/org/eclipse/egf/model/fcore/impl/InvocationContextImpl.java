@@ -12,8 +12,8 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
@@ -21,10 +21,9 @@ import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.InvocationContextContainer;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.egf.model.fcore.adapter.InvocationContextAdapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -37,14 +36,19 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getInvocationContextContainer <em>Invocation Context Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getExposedContract <em>Exposed Contract</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getOrchestrationContext <em>Orchestration Context</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getActivityContract <em>Activity Contract</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getInvocationContextContainer
+ * <em>Invocation Context Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getExposedContract <em>Exposed
+ * Contract</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getOrchestrationContext
+ * <em>Orchestration Context</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getActivityContract
+ * <em>Activity Contract</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getMode <em>Mode</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class InvocationContextImpl extends ModelElementImpl implements InvocationContext {
@@ -52,6 +56,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * The cached value of the '{@link #getExposedContract() <em>Exposed Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getExposedContract()
    * @generated
    * @ordered
@@ -59,9 +64,11 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   protected Contract exposedContract;
 
   /**
-   * The cached value of the '{@link #getOrchestrationContext() <em>Orchestration Context</em>}' reference.
+   * The cached value of the '{@link #getOrchestrationContext() <em>Orchestration Context</em>}'
+   * reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getOrchestrationContext()
    * @generated
    * @ordered
@@ -72,6 +79,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * The cached value of the '{@link #getActivityContract() <em>Activity Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getActivityContract()
    * @generated
    * @ordered
@@ -82,6 +90,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getType()
    * @generated
    * @ordered
@@ -89,17 +98,31 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   protected Type<?> type;
 
   /**
+   * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @see #getMode()
    * @generated
+   * @ordered
+   */
+  protected static final ContractMode MODE_EDEFAULT = ContractMode.IN;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
    */
   protected InvocationContextImpl() {
     super();
+    new InvocationContextAdapter(this);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -110,6 +133,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public InvocationContextContainer getInvocationContextContainer() {
@@ -121,6 +145,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetInvocationContextContainer(InvocationContextContainer newInvocationContextContainer, NotificationChain msgs) {
@@ -131,6 +156,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setInvocationContextContainer(InvocationContextContainer newInvocationContextContainer) {
@@ -152,6 +178,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Contract getExposedContract() {
@@ -161,6 +188,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetExposedContract(Contract newExposedContract, NotificationChain msgs) {
@@ -179,6 +207,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setExposedContract(Contract newExposedContract) {
@@ -198,6 +227,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public OrchestrationContext getOrchestrationContext() {
@@ -207,6 +237,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetOrchestrationContext(OrchestrationContext newOrchestrationContext, NotificationChain msgs) {
@@ -225,6 +256,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setOrchestrationContext(OrchestrationContext newOrchestrationContext) {
@@ -244,6 +276,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Contract getActivityContract() {
@@ -261,6 +294,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Contract basicGetActivityContract() {
@@ -270,6 +304,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setActivityContract(Contract newActivityContract) {
@@ -282,6 +317,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Type<?> getType() {
@@ -291,6 +327,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetType(Type<?> newType, NotificationChain msgs) {
@@ -309,6 +346,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setType(Type<?> newType) {
@@ -323,6 +361,32 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
         msgs.dispatch();
     } else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION_CONTEXT__TYPE, newType, newType));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public ContractMode getMode() {
+    if (getActivityContract() != null) {
+      return getActivityContract().getMode();
+    }
+    return null;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean isSetMode() {
+    if (getActivityContract() != null) {
+      return true;
+    }
+    return false;
   }
 
   /**
@@ -355,37 +419,6 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
-   */
-  public EList<InvocationContext> getInvocationContexts() {
-    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
-    if (getInvocationContextContainer() != null && getInvocationContextContainer().getInvocationContexts() != null) {
-      invocationContexts.addAll(getInvocationContextContainer().getInvocationContexts());
-    }
-    return invocationContexts;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public EList<InvocationContext> getInvocationContexts(Type<?> innerType) {
-    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
-    if (innerType != null) {
-      for (InvocationContext innerInvocationContext : getInvocationContexts()) {
-        if (innerInvocationContext.getType() != null && ClassHelper.asSubClass(innerType.getType(), innerInvocationContext.getType().getType())) {
-          invocationContexts.add(innerInvocationContext);
-        }
-      }
-    }
-    return invocationContexts;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * @generated
    */
   @Override
@@ -410,6 +443,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -430,6 +464,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -444,6 +479,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -461,6 +497,8 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
       return basicGetActivityContract();
     case FcorePackage.INVOCATION_CONTEXT__TYPE:
       return getType();
+    case FcorePackage.INVOCATION_CONTEXT__MODE:
+      return getMode();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -468,6 +506,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -495,6 +534,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -522,6 +562,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -537,6 +578,8 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
       return activityContract != null;
     case FcorePackage.INVOCATION_CONTEXT__TYPE:
       return type != null;
+    case FcorePackage.INVOCATION_CONTEXT__MODE:
+      return isSetMode();
     }
     return super.eIsSet(featureID);
   }

@@ -18,6 +18,17 @@
         </eGenericType>
       </eParameters>
     </eOperations>
+    <eOperations name="getContracts" upperBound="-1" eType="#//Contract">
+      <eParameters name="mode" eType="#//ContractMode"/>
+    </eOperations>
+    <eOperations name="getContracts" upperBound="-1" eType="#//Contract">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="mode" eType="#//ContractMode"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contractContainer" eType="#//ContractContainer"
         containment="true" resolveProxies="false" eOpposite="#//ContractContainer/activity"/>
   </eClassifiers>
@@ -30,6 +41,17 @@
         </eGenericType>
       </eParameters>
     </eOperations>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
+      <eParameters name="mode" eType="#//ContractMode"/>
+    </eOperations>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="mode" eType="#//ContractMode"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewpointContainer" eType="#//ViewpointContainer"
         containment="true" resolveProxies="false" eOpposite="#//ViewpointContainer/factoryComponent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" eType="#//Orchestration"
@@ -37,7 +59,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Contract" eSuperTypes="#//ModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniqueContractName"/>
+      <details key="constraints" value="MandatoryName UniqueName"/>
     </eAnnotations>
     <eOperations name="getActivity" lowerBound="1" eType="#//Activity"/>
     <eOperations name="getContracts" upperBound="-1" eType="#//Contract"/>
@@ -95,6 +117,17 @@
         </eGenericType>
       </eParameters>
     </eOperations>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
+      <eParameters name="mode" eType="#//ContractMode"/>
+    </eOperations>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="mode" eType="#//ContractMode"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="factoryComponent" lowerBound="1"
         eType="#//FactoryComponent" resolveProxies="false" eOpposite="#//FactoryComponent/orchestration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContextContainer"
@@ -135,14 +168,6 @@
       <eBounds eClassifier="#//Activity"/>
     </eTypeParameters>
     <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
-    <eOperations name="getActivityContracts" upperBound="-1" eType="#//Contract"/>
-    <eOperations name="getActivityContracts" upperBound="-1" eType="#//Contract">
-      <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
-          <eTypeArguments/>
-        </eGenericType>
-      </eParameters>
-    </eOperations>
     <eOperations name="getInvocationContracts" upperBound="-1" eType="#//Contract"/>
     <eOperations name="getInvocationContracts" upperBound="-1" eType="#//Contract">
       <eParameters name="type">
@@ -151,7 +176,17 @@
         </eGenericType>
       </eParameters>
     </eOperations>
-    <eOperations name="getExposedContracts" upperBound="-1" eType="#//Contract"/>
+    <eOperations name="getInvocationContracts" upperBound="-1" eType="#//Contract">
+      <eParameters name="mode" eType="#//ContractMode"/>
+    </eOperations>
+    <eOperations name="getInvocationContracts" upperBound="-1" eType="#//Contract">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="mode" eType="#//ContractMode"/>
+    </eOperations>
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext"/>
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
       <eParameters name="type">
@@ -159,6 +194,17 @@
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
+    </eOperations>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
+      <eParameters name="mode" eType="#//ContractMode"/>
+    </eOperations>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="mode" eType="#//ContractMode"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" lowerBound="1"
         eType="#//Orchestration" resolveProxies="false" eOpposite="#//Orchestration/invocations"/>
@@ -171,21 +217,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvocationContext" eSuperTypes="#//ModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ValidContext UniqueContextName ValidSourceContract ValidExposedContract"/>
+      <details key="constraints" value="MandatoryName UniqueName ValidActivityContract ValidActivityContractType ValidContext ValidExposedContract ValidExposedContractType MandatoryTypeValue UselessType"/>
     </eAnnotations>
     <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
     <eOperations name="getInvocation" lowerBound="1">
       <eGenericType eClassifier="#//Invocation">
         <eTypeArguments/>
       </eGenericType>
-    </eOperations>
-    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext"/>
-    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
-      <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
-          <eTypeArguments/>
-        </eGenericType>
-      </eParameters>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContextContainer"
         lowerBound="1" eType="#//InvocationContextContainer" resolveProxies="false"
@@ -196,12 +234,14 @@
         resolveProxies="false" eOpposite="#//OrchestrationContext/invocationContexts"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activityContract" lowerBound="1"
         eType="#//Contract"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" containment="true"
         resolveProxies="false">
       <eGenericType eClassifier="#//Type">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="#//ContractMode"
+        changeable="false" volatile="true" transient="true" unsettable="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvocationContextConnector" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContextContainer"
@@ -238,6 +278,9 @@
     <eOperations name="getValue" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeObject" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="LoadableValue ValidValue"/>
+    </eAnnotations>
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
     </eTypeParameters>
@@ -246,6 +289,9 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeClass" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="LoadableValue ValidValue"/>
+    </eAnnotations>
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
     </eTypeParameters>

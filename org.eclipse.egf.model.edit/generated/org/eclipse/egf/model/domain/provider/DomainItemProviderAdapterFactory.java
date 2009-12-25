@@ -386,9 +386,14 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        */
       @Override
       public Object caseInvocationContext(InvocationContext object) {
+
+        if (object.getActivityContract() == null || object.getActivityContract().getType() == null) {
+          return null;
+        }
+
         {
           DomainType type = DomainFactory.eINSTANCE.createDomainType();
-          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+          if (ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
             newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }

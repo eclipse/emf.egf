@@ -949,13 +949,22 @@ public interface FcorePackage extends EPackage {
   int INVOCATION_CONTEXT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
   /**
+   * The feature id for the '<em><b>Mode</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INVOCATION_CONTEXT__MODE = MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+  /**
    * The number of structural features of the '<em>Invocation Context</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INVOCATION_CONTEXT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
+  int INVOCATION_CONTEXT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 6;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -1607,6 +1616,17 @@ public interface FcorePackage extends EPackage {
   EReference getInvocationContext_Type();
 
   /**
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.InvocationContext#getMode <em>Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Mode</em>'.
+   * @see org.eclipse.egf.model.fcore.InvocationContext#getMode()
+   * @see #getInvocationContext()
+   * @generated
+   */
+  EAttribute getInvocationContext_Mode();
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.InvocationContextConnector <em>Invocation Context Connector</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2191,6 +2211,14 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     EReference INVOCATION_CONTEXT__TYPE = eINSTANCE.getInvocationContext_Type();
+
+    /**
+     * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INVOCATION_CONTEXT__MODE = eINSTANCE.getInvocationContext_Mode();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.InvocationContextConnectorImpl <em>Invocation Context Connector</em>}' class.

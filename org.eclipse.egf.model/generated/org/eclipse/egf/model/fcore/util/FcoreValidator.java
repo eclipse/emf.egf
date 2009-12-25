@@ -14,9 +14,15 @@ package org.eclipse.egf.model.fcore.util;
 
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.helper.ClassHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.helper.BundleSessionHelper;
+import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.EGFModelsPlugin;
 import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.Activity;
@@ -43,7 +49,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -53,6 +58,7 @@ import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
+import org.osgi.framework.Bundle;
 
 /**
  * <!-- begin-user-doc -->
@@ -308,14 +314,130 @@ public class FcoreValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(invocationContext, diagnostics, context);
     if (result || diagnostics != null)
+      result &= validateInvocationContext_MandatoryName(invocationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateInvocationContext_UniqueName(invocationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateInvocationContext_ValidActivityContract(invocationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateInvocationContext_ValidActivityContractType(invocationContext, diagnostics, context);
+    if (result || diagnostics != null)
       result &= validateInvocationContext_ValidContext(invocationContext, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateInvocationContext_UniqueContextName(invocationContext, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateInvocationContext_ValidSourceContract(invocationContext, diagnostics, context);
-    if (result || diagnostics != null)
       result &= validateInvocationContext_ValidExposedContract(invocationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateInvocationContext_ValidExposedContractType(invocationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateInvocationContext_MandatoryTypeValue(invocationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateInvocationContext_UselessType(invocationContext, diagnostics, context);
     return result;
+  }
+
+  /**
+   * Validates the MandatoryName constraint of '<em>Invocation Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocationContext_MandatoryName(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (invocationContext.getName() == null || invocationContext.getName().trim().length() == 0) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "InvocationContext Name is mandatory", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
+            new Object[] { invocationContext }, context));
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validates the UniqueName constraint of '<em>Invocation Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocationContext_UniqueName(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    // Verify if name is unique in its invocation context container
+    if (invocationContext.getName() == null || invocationContext.getInvocation() == null || invocationContext.getActivityContract() == null) {
+      return true;
+    }
+    boolean collapse = false;
+    for (InvocationContext innerInvocationContext : invocationContext.getInvocation().getInvocationContexts()) {
+      if (innerInvocationContext == invocationContext || innerInvocationContext.getActivityContract() == null || invocationContext.getActivityContract().getMode() != innerInvocationContext.getActivityContract().getMode()) {
+        continue;
+      }
+      if (invocationContext.getName().equals(innerInvocationContext.getName())) {
+        collapse = true;
+        break;
+      }
+    }
+    if (collapse) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "InvocationContext Name should be unique in its Context Container.", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
+            new Object[] { invocationContext }, context));
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validates the ValidActivityContract constraint of '<em>Invocation Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocationContext_ValidActivityContract(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (invocationContext.getActivityContract() == null) {
+      return true;
+    }
+    // Activity contract analysis
+    boolean found = false;
+    if (invocationContext.getInvocation() != null && invocationContext.getInvocation().getActivity() != null) {
+      for (Contract contract : invocationContext.getInvocation().getActivity().getContracts()) {
+        if (contract == invocationContext.getActivityContract()) {
+          found = true;
+          break;
+        }
+      }
+    }
+    if (found == false) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidActivityContract", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
+            new Object[] { invocationContext }, context));
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validates the ValidActivityContractType constraint of '<em>Invocation Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocationContext_ValidActivityContractType(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (invocationContext.getActivityContract() == null || invocationContext.getActivityContract().getType() == null || invocationContext.getType() == null) {
+      return true;
+    }
+    if (ClassHelper.asSubClass(invocationContext.getActivityContract().getType().getType(), invocationContext.getType().getType()) == false) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "InvocationContext Type and ActivityContract Type mismatch.", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
+            new Object[] { invocationContext }, context));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -370,7 +492,124 @@ public class FcoreValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateTypeObject(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(typeObject, diagnostics, context);
+    boolean result = validate_EveryMultiplicityConforms(typeObject, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(typeObject, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(typeObject, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(typeObject, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(typeObject, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(typeObject, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(typeObject, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeObject_LoadableValue(typeObject, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeObject_ValidValue(typeObject, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * Validates the LoadableValue constraint of '<em>Type Object</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateTypeObject_LoadableValue(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (typeObject.getValue() == null || typeObject.eResource() == null) {
+      return true;
+    }
+    IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(typeObject.eResource());
+    if (platformFcore == null) {
+      return true;
+    }
+    ProjectBundleSession session = new ProjectBundleSession(EGFModelsPlugin.getPlugin().getBundle().getBundleContext());
+    try {
+      Bundle bundle = BundleSessionHelper.getBundle(session, platformFcore);
+      if (bundle == null) {
+        return true;
+      }
+      Class<?> clazz = null;
+      try {
+        clazz = bundle.loadClass(typeObject.getValue().getClass().getName());
+      } catch (Throwable t) {
+        // Nothing to do
+      }
+      // Loadable Value
+      if (clazz == null) {
+        if (diagnostics != null) {
+          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+              new Object[] { "Unable to load Type.", getObjectLabel(typeObject, context) }, //$NON-NLS-1$
+              new Object[] { typeObject }, context));
+        }
+        return false;
+      }
+    } catch (Throwable t) {
+      EGFModelsPlugin.getPlugin().logError(t);
+    } finally {
+      try {
+        session.dispose();
+      } catch (CoreException ce) {
+        EGFModelsPlugin.getPlugin().logError(ce);
+      }
+    }
+    return true;
+  }
+
+  /**
+   * Validates the ValidValue constraint of '<em>Type Object</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateTypeObject_ValidValue(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (typeObject.getValue() == null || typeObject.eResource() == null) {
+      return true;
+    }
+    IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(typeObject.eResource());
+    if (platformFcore == null) {
+      return true;
+    }
+    ProjectBundleSession session = new ProjectBundleSession(EGFModelsPlugin.getPlugin().getBundle().getBundleContext());
+    try {
+      Bundle bundle = BundleSessionHelper.getBundle(session, platformFcore);
+      if (bundle == null) {
+        return true;
+      }
+      Class<?> clazz = null;
+      try {
+        clazz = bundle.loadClass(typeObject.getValue().getClass().getName());
+      } catch (Throwable t) {
+        // Nothing to do
+      }
+      // Loadable Value
+      if (clazz == null) {
+        return true;
+      }
+      // Valid Value
+      if (ClassHelper.asSubClass(clazz, typeObject.getType()) == false) {
+        if (diagnostics != null) {
+          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+              new Object[] { "Type mismatch.", getObjectLabel(typeObject, context) }, //$NON-NLS-1$
+              new Object[] { typeObject }, context));
+        }
+        return false;
+      }
+    } catch (Throwable t) {
+      EGFModelsPlugin.getPlugin().logError(t);
+    } finally {
+      try {
+        session.dispose();
+      } catch (CoreException ce) {
+        EGFModelsPlugin.getPlugin().logError(ce);
+      }
+    }
+    return true;
   }
 
   /**
@@ -379,76 +618,122 @@ public class FcoreValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateTypeClass(TypeClass<?> typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(typeClass, diagnostics, context);
+    boolean result = validate_EveryMultiplicityConforms(typeClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(typeClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(typeClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(typeClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(typeClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(typeClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(typeClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeClass_LoadableValue(typeClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeClass_ValidValue(typeClass, diagnostics, context);
+    return result;
   }
 
   /**
-   * Validates the UniqueContextName constraint of '<em>Context</em>'.
+   * Validates the LoadableValue constraint of '<em>Type Class</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public boolean validateInvocationContext_UniqueContextName(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    // InvocationContext 'name' is mandatory in this context
-    EAttribute name = FcorePackage.Literals.MODEL_ELEMENT__NAME;
-    if (invocationContext.getName() == null || invocationContext.getName().trim().length() == 0) {
-      diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, EOBJECT__EVERY_MULTIPCITY_CONFORMS, "_UI_RequiredFeatureMustBeSet_diagnostic", //$NON-NLS-1$
-          new Object[] { getFeatureLabel(name, context), getObjectLabel(invocationContext, context) }, new Object[] { invocationContext, name }, context));
-    }
-    // Then verify if name is unique in its invocation context container
-    if (invocationContext.getActivityContract() == null) {
+  public boolean validateTypeClass_LoadableValue(TypeClass<?> typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (typeClass.getValue() == null || typeClass.eResource() == null) {
       return true;
     }
-    boolean collapse = false;
-    for (InvocationContext innerInvocationContext : invocationContext.getInvocationContexts()) {
-      if (innerInvocationContext == invocationContext || innerInvocationContext.getActivityContract() == null || invocationContext.getActivityContract().getMode() != innerInvocationContext.getActivityContract().getMode()) {
-        continue;
-      }
-      if (invocationContext.getName().equals(innerInvocationContext.getName())) {
-        collapse = true;
-        break;
-      }
+    IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(typeClass.eResource());
+    if (platformFcore == null) {
+      return true;
     }
-    if (collapse) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Context Name should be unique in its Context Container.", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
-            new Object[] { invocationContext }, context));
+    ProjectBundleSession session = new ProjectBundleSession(EGFModelsPlugin.getPlugin().getBundle().getBundleContext());
+    try {
+      Bundle bundle = BundleSessionHelper.getBundle(session, platformFcore);
+      if (bundle == null) {
+        return true;
       }
-      return false;
+      Class<?> clazz = null;
+      try {
+        clazz = bundle.loadClass(typeClass.getValue());
+      } catch (Throwable t) {
+        // Nothing to do
+      }
+      // Loadable Value
+      if (clazz == null) {
+        if (diagnostics != null) {
+          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+              new Object[] { "Unable to load Value.", getObjectLabel(typeClass, context) }, //$NON-NLS-1$
+              new Object[] { typeClass }, context));
+        }
+        return false;
+      }
+    } catch (Throwable t) {
+      EGFModelsPlugin.getPlugin().logError(t);
+    } finally {
+      try {
+        session.dispose();
+      } catch (CoreException ce) {
+        EGFModelsPlugin.getPlugin().logError(ce);
+      }
     }
     return true;
   }
 
   /**
-   * Validates the ValidContract constraint of '<em>Context</em>'.
+   * Validates the ValidValue constraint of '<em>Type Class</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public boolean validateInvocationContext_ValidSourceContract(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> theContext) {
-    if (invocationContext.getActivityContract() == null) {
+  public boolean validateTypeClass_ValidValue(TypeClass<?> typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (typeClass.getValue() == null || typeClass.eResource() == null) {
       return true;
     }
-    // Activity contract analysis
-    boolean found = false;
-    if (invocationContext.getInvocation() != null && invocationContext.getInvocation().getActivityContracts() != null) {
-      for (Contract contract : invocationContext.getInvocation().getActivityContracts()) {
-        if (contract == invocationContext.getActivityContract()) {
-          found = true;
-          break;
-        }
-      }
+    IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(typeClass.eResource());
+    if (platformFcore == null) {
+      return true;
     }
-    if (found == false) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "ValidSourceContract", getObjectLabel(invocationContext, theContext) }, //$NON-NLS-1$
-            new Object[] { invocationContext }, theContext));
+    ProjectBundleSession session = new ProjectBundleSession(EGFModelsPlugin.getPlugin().getBundle().getBundleContext());
+    try {
+      Bundle bundle = BundleSessionHelper.getBundle(session, platformFcore);
+      if (bundle == null) {
+        return true;
       }
-      return false;
+      Class<?> clazz = null;
+      try {
+        clazz = bundle.loadClass(typeClass.getValue());
+      } catch (Throwable t) {
+        // Nothing to do
+      }
+      // Loadable Value
+      if (clazz == null) {
+        return true;
+      }
+      // Valid Value
+      if (ClassHelper.asSubClass(clazz, typeClass.getType()) == false) {
+        if (diagnostics != null) {
+          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+              new Object[] { "Type mismatch.", getObjectLabel(typeClass, context) }, //$NON-NLS-1$
+              new Object[] { typeClass }, context));
+        }
+        return false;
+      }
+    } catch (Throwable t) {
+      EGFModelsPlugin.getPlugin().logError(t);
+    } finally {
+      try {
+        session.dispose();
+      } catch (CoreException ce) {
+        EGFModelsPlugin.getPlugin().logError(ce);
+      }
     }
     return true;
   }
@@ -457,17 +742,89 @@ public class FcoreValidator extends EObjectValidator {
    * Validates the ValidExposedContract constraint of '<em>Invocation Context</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   public boolean validateInvocationContext_ValidExposedContract(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    // TODO implement the constraint
-    // -> specify the condition that violates the constraint
-    // -> verify the diagnostic details, including severity, code, and message
-    // Ensure that you remove @generated or mark it @generated NOT
-    if (false) {
+    if (invocationContext.getExposedContract() == null || invocationContext.getActivityContract() == null) {
+      return true;
+    }
+    boolean mistmatch = false;
+    if (invocationContext.getExposedContract().getMode() == ContractMode.IN && invocationContext.getActivityContract().getMode() == ContractMode.OUT) {
+      mistmatch = true;
+    } else if (invocationContext.getExposedContract().getMode() == ContractMode.OUT && invocationContext.getActivityContract().getMode() == ContractMode.IN) {
+      mistmatch = true;
+    }
+    if (mistmatch) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "ValidExposedContract", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
+            new Object[] { "ExposedContract and ActivityContract Mode mismatch.", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
+            new Object[] { invocationContext }, context));
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validates the ValidExposedContractType constraint of '<em>Invocation Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocationContext_ValidExposedContractType(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (invocationContext.getExposedContract() == null || invocationContext.getExposedContract().getType() == null || invocationContext.getActivityContract() == null || invocationContext.getActivityContract().getType() == null) {
+      return true;
+    }
+    if (ClassHelper.asSubClass(invocationContext.getExposedContract().getType().getType(), invocationContext.getActivityContract().getType().getType()) == false) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ExposedContract Type is not a subtype of ActivityContract Type.", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
+            new Object[] { invocationContext }, context));
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validates the MandatoryTypeValue constraint of '<em>Invocation Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocationContext_MandatoryTypeValue(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (invocationContext.getOrchestrationContext() != null || invocationContext.getExposedContract() != null) {
+      return true;
+    }
+    if (invocationContext.getType() == null || invocationContext.getType().getValue() == null) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "Useless InvocationContext, a Type and a Value are needed to be useful.", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
+            new Object[] { invocationContext }, context));
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validates the UselessType constraint of '<em>Invocation Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocationContext_UselessType(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (invocationContext.getOrchestrationContext() == null && invocationContext.getExposedContract() == null) {
+      return true;
+    }
+    if (invocationContext.getType() != null) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "Useless Type. InvocationContext is used in an OrchestrationContext or an ExposedContract.", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
             new Object[] { invocationContext }, context));
       }
       return false;
@@ -504,26 +861,43 @@ public class FcoreValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(contract, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateContract_UniqueContractName(contract, diagnostics, context);
+      result &= validateContract_MandatoryName(contract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateContract_UniqueName(contract, diagnostics, context);
     return result;
   }
 
   /**
-   * Validates the UniqueContractName constraint of '<em>Contract</em>'.
+   * Validates the MandatoryName constraint of '<em>Contract</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public boolean validateContract_UniqueContractName(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    // Contract name is mandatory in this context
+  public boolean validateContract_MandatoryName(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (contract.getName() == null || contract.getName().trim().length() == 0) {
-      // Contract 'name' is mandatory in this context
-      EAttribute name = FcorePackage.Literals.MODEL_ELEMENT__NAME;
-      diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, EOBJECT__EVERY_MULTIPCITY_CONFORMS, "_UI_RequiredFeatureMustBeSet_diagnostic", //$NON-NLS-1$
-          new Object[] { getFeatureLabel(name, context), getObjectLabel(contract, context) }, new Object[] { contract, name }, context));
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "Contract Name is mandatory.", getObjectLabel(contract, context) }, //$NON-NLS-1$
+            new Object[] { contract }, context));
+      }
+      return false;
     }
-    // Then verify if name is unique in its contract container
+    return true;
+  }
+
+  /**
+   * Validates the UniqueName constraint of '<em>Contract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateContract_UniqueName(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (contract.getName() == null) {
+      return true;
+    }
+    // Verify if name is unique in its contract container
     boolean collapse = false;
     for (Contract innerContract : contract.getContracts()) {
       if (innerContract == contract || contract.getMode() != innerContract.getMode()) {

@@ -12,8 +12,6 @@
  */
 package org.eclipse.egf.model.fcore;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Invocation Context</b></em>'.
@@ -27,11 +25,12 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContext#getOrchestrationContext <em>Orchestration Context</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContext#getActivityContract <em>Activity Contract</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContext#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.InvocationContext#getMode <em>Mode</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContext()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidContext UniqueContextName ValidSourceContract ValidExposedContract'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryName UniqueName ValidActivityContract ValidActivityContractType ValidContext ValidExposedContract ValidExposedContractType MandatoryTypeValue UselessType'"
  * @generated
  */
 public interface InvocationContext extends ModelElement {
@@ -156,7 +155,7 @@ public interface InvocationContext extends ModelElement {
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(Type)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContext_Type()
-   * @model containment="true" required="true"
+   * @model containment="true"
    * @generated
    */
   Type<?> getType();
@@ -170,6 +169,34 @@ public interface InvocationContext extends ModelElement {
    * @generated
    */
   void setType(Type<?> value);
+
+  /**
+   * Returns the value of the '<em><b>Mode</b></em>' attribute.
+   * The literals are from the enumeration {@link org.eclipse.egf.model.fcore.ContractMode}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Mode</em>' attribute isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Mode</em>' attribute.
+   * @see org.eclipse.egf.model.fcore.ContractMode
+   * @see #isSetMode()
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContext_Mode()
+   * @model unsettable="true" transient="true" changeable="false" volatile="true" derived="true"
+   * @generated
+   */
+  ContractMode getMode();
+
+  /**
+   * Returns whether the value of the '{@link org.eclipse.egf.model.fcore.InvocationContext#getMode <em>Mode</em>}' attribute is set.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return whether the value of the '<em>Mode</em>' attribute is set.
+   * @see #getMode()
+   * @generated
+   */
+  boolean isSetMode();
 
   /**
    * <!-- begin-user-doc -->
@@ -186,21 +213,5 @@ public interface InvocationContext extends ModelElement {
    * @generated
    */
   Invocation<?> getInvocation();
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  EList<InvocationContext> getInvocationContexts();
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
-  EList<InvocationContext> getInvocationContexts(Type<?> type);
 
 } // InvocationContext

@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getContract()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueContractName'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryName UniqueName'"
  * @generated
  */
 public interface Contract extends ModelElement {

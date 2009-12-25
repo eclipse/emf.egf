@@ -20,6 +20,7 @@ package org.eclipse.egf.model.fcore;
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getTypeObject()
  * @model abstract="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='LoadableValue ValidValue'"
  * @generated
  */
 public interface TypeObject<T extends Object> extends Type<T> {

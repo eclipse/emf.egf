@@ -32,5 +32,5 @@ Require-Bundle:
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.validation;visibility:=reexport,
- org.eclipse.egf.common;visibility:=reexport
+ org.eclipse.egf.core;visibility:=reexport
 Bundle-ActivationPolicy: lazy

@@ -125,22 +125,6 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @model kind="operation"
    * @generated
    */
-  EList<Contract> getActivityContracts();
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
-  EList<Contract> getActivityContracts(Type<?> type);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
   EList<Contract> getInvocationContracts();
 
   /**
@@ -154,10 +138,18 @@ public interface Invocation<T extends Activity> extends ModelElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model kind="operation"
+   * @model
    * @generated
    */
-  EList<Contract> getExposedContracts();
+  EList<Contract> getInvocationContracts(ContractMode mode);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<Contract> getInvocationContracts(Type<?> type, ContractMode mode);
 
   /**
    * <!-- begin-user-doc -->
@@ -174,5 +166,21 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @generated
    */
   EList<InvocationContext> getInvocationContexts(Type<?> type);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<InvocationContext> getInvocationContexts(ContractMode mode);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<InvocationContext> getInvocationContexts(Type<?> type, ContractMode mode);
 
 } // Invocation

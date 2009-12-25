@@ -38,9 +38,11 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContext} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContext}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InvocationContextItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -48,6 +50,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public InvocationContextItemProvider(AdapterFactory adapterFactory) {
@@ -58,6 +61,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -68,6 +72,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
       addExposedContractPropertyDescriptor(object);
       addOrchestrationContextPropertyDescriptor(object);
       addActivityContractPropertyDescriptor(object);
+      addModePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -90,8 +95,8 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
         Collection<Contract> result = new UniqueEList<Contract>();
         // Retrieve all the typed contracts if available
         if (invocationContext.getFactoryComponent() != null) {
-          if (invocationContext.getType() != null) {
-            result.addAll(invocationContext.getFactoryComponent().getContracts(invocationContext.getType()));
+          if (invocationContext.getActivityContract() != null && invocationContext.getActivityContract().getType() != null) {
+            result.addAll(invocationContext.getFactoryComponent().getContracts(invocationContext.getActivityContract().getType(), invocationContext.getMode()));
           }
         }
         if (result.contains(null) == false) {
@@ -106,6 +111,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * This adds a property descriptor for the Orchestration Context feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addOrchestrationContextPropertyDescriptor(Object object) {
@@ -132,12 +138,29 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
         InvocationContext invocationContext = (InvocationContext) current;
         Collection<Contract> result = new UniqueEList<Contract>();
         // Retrieve all the typed contracts if available
-        if (invocationContext.getInvocation() != null) {
+        if (invocationContext.getInvocation() != null && invocationContext.getInvocation().getActivity() != null) {
+          // Type filtering
           if (invocationContext.getType() != null) {
-            result.addAll(invocationContext.getInvocation().getActivityContracts(invocationContext.getType()));
+            if (invocationContext.getExposedContract() != null) {
+              result.addAll(invocationContext.getInvocation().getActivity().getContracts(invocationContext.getType(), invocationContext.getExposedContract().getMode()));
+            } else {
+              result.addAll(invocationContext.getInvocation().getActivity().getContracts(invocationContext.getType()));
+            }
             // Filter all assigned contracts if necessary
             if (result.size() > 0) {
               for (Contract innerContract : invocationContext.getInvocation().getInvocationContracts(invocationContext.getType())) {
+                result.remove(innerContract);
+              }
+            }
+          } else {
+            if (invocationContext.getExposedContract() != null) {
+              result.addAll(invocationContext.getInvocation().getActivity().getContracts(invocationContext.getExposedContract().getMode()));
+            } else {
+              result.addAll(invocationContext.getInvocation().getActivity().getContracts());
+            }
+            // Filter all assigned contracts if necessary
+            if (result.size() > 0) {
+              for (Contract innerContract : invocationContext.getInvocation().getInvocationContracts()) {
                 result.remove(innerContract);
               }
             }
@@ -152,11 +175,27 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This adds a property descriptor for the Mode feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected void addModePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContext_mode_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_InvocationContext_mode_feature", "_UI_InvocationContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.INVOCATION_CONTEXT__MODE, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_InvokePropertyCategory"), //$NON-NLS-1$
+        null));
+  }
+
+  /**
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
+   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -171,6 +210,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -185,6 +225,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * This returns InvocationContext.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -196,13 +237,30 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((InvocationContext) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_InvocationContext_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_InvocationContext_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    InvocationContext context = (InvocationContext) object;
+    String label = context.getName();
+    String mode = null;
+    if (context.getMode() != null) {
+      mode = "[" + context.getMode().getLiteral() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+    }
+    if (label == null || label.length() == 0) {
+      label = "[" + getString("_UI_InvocationContext_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      if (mode != null) {
+        label = mode + " " + label; //$NON-NLS-1$
+      }
+    } else {
+      if (mode != null) {
+        label = label + " " + mode + " [" + getString("_UI_InvocationContext_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+      } else {
+        label = label + " [" + getString("_UI_InvocationContext_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      }
+    }
+    return label;
   }
 
   /**
@@ -210,6 +268,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -217,6 +276,9 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
     updateChildren(notification);
 
     switch (notification.getFeatureID(InvocationContext.class)) {
+    case FcorePackage.INVOCATION_CONTEXT__MODE:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
     case FcorePackage.INVOCATION_CONTEXT__TYPE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
@@ -229,6 +291,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

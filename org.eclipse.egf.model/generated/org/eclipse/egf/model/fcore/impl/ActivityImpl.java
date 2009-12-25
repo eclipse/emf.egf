@@ -16,6 +16,7 @@ import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
+import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.emf.common.notify.Notification;
@@ -142,6 +143,48 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
         if (innerContract.getType() != null && ClassHelper.asSubClass(type.getType(), innerContract.getType().getType())) {
           contracts.add(innerContract);
         }
+      }
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getContracts(ContractMode mode) {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    if (mode != null) {
+      for (Contract innerContract : getContracts()) {
+        if (mode == ContractMode.IN && (innerContract.getMode() == ContractMode.IN || innerContract.getMode() == ContractMode.IN_OUT)) {
+          contracts.add(innerContract);
+        } else if (mode == ContractMode.OUT && (innerContract.getMode() == ContractMode.OUT || innerContract.getMode() == ContractMode.IN_OUT)) {
+          contracts.add(innerContract);
+        } else if (mode == ContractMode.IN_OUT) {
+          contracts.add(innerContract);
+        }
+      }
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getContracts(Type<?> type, ContractMode mode) {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    for (Contract innerContract : getContracts(type)) {
+      if (mode == ContractMode.IN && (innerContract.getMode() == ContractMode.IN || innerContract.getMode() == ContractMode.IN_OUT)) {
+        contracts.add(innerContract);
+      } else if (mode == ContractMode.OUT && (innerContract.getMode() == ContractMode.OUT || innerContract.getMode() == ContractMode.IN_OUT)) {
+        contracts.add(innerContract);
+      } else if (mode == ContractMode.IN_OUT) {
+        contracts.add(innerContract);
       }
     }
     return contracts;

@@ -75,4 +75,20 @@ public interface Activity extends ModelElement {
    */
   EList<Contract> getContracts(Type<?> type);
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<Contract> getContracts(ContractMode mode);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<Contract> getContracts(Type<?> type, ContractMode mode);
+
 } // Activity

@@ -104,4 +104,20 @@ public interface FactoryComponent extends Activity {
    */
   EList<InvocationContext> getInvocationContexts(Type<?> type);
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<InvocationContext> getInvocationContexts(ContractMode mode);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<InvocationContext> getInvocationContexts(Type<?> type, ContractMode mode);
+
 } // FactoryComponent
