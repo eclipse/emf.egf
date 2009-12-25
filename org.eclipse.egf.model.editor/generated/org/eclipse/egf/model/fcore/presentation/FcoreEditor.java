@@ -46,7 +46,7 @@ import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
-import org.eclipse.egf.model.productionplan.provider.ProductionPlanItemProviderAdapterFactory;
+import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
 import org.eclipse.egf.model.resource.ModelResourceItemProviderAdapterFactory;
 import org.eclipse.egf.model.types.provider.TypesItemProviderAdapterFactory;
 import org.eclipse.emf.common.command.BasicCommandStack;
@@ -689,7 +689,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
     adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
     adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new ProductionPlanItemProviderAdapterFactory());
+    adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());

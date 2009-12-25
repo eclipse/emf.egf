@@ -36,8 +36,8 @@ import org.eclipse.egf.core.pde.EGFPDEPlugin;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.productionplan.ProductionPlanFactory;
-import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
+import org.eclipse.egf.model.fprod.FprodFactory;
+import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -114,7 +114,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * 
    * @generated NOT
    */
-  protected ProductionPlanPackage productionPlanPackage = ProductionPlanPackage.eINSTANCE;
+  protected FprodPackage fprodPackage = FprodPackage.eINSTANCE;
 
   /**
    * This caches an instance of the model factory.
@@ -130,9 +130,9 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
-  protected ProductionPlanFactory productionPlanFactory = productionPlanPackage.getProductionPlanFactory();
+  protected FprodFactory fprodFactory = fprodPackage.getFprodFactory();
 
   /**
    * This is the file creation page.
@@ -204,7 +204,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     if (initialObjectNames == null) {
       initialObjectNames = new ArrayList<String>();
       initialObjectNames.add(fcorePackage.getFactoryComponent().getName());
-      initialObjectNames.add(productionPlanPackage.getTask().getName());
+      initialObjectNames.add(fprodPackage.getTask().getName());
       Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
     }
     return initialObjectNames;
@@ -220,8 +220,8 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
   protected EObject createInitialModel() {
     EClass eClass = (EClass) fcorePackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
     if (eClass == null) {
-      eClass = (EClass) productionPlanPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-      return productionPlanFactory.create(eClass);
+      eClass = (EClass) fprodPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+      return fprodFactory.create(eClass);
     }
     return fcoreFactory.create(eClass);
   }
