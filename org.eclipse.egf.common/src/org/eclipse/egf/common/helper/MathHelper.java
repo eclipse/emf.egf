@@ -17,6 +17,10 @@ package org.eclipse.egf.common.helper;
  */
 public class MathHelper {
 
+  private MathHelper() {
+    // Prevent Instantiation
+  }
+
   public final static long SECOND = 1000;
 
   public final static long MINUTE = SECOND * 60;

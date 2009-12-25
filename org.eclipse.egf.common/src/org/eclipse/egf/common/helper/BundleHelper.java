@@ -25,6 +25,10 @@ import org.osgi.framework.Bundle;
  */
 public class BundleHelper {
 
+  private BundleHelper() {
+    // Prevent Instantiation
+  }
+
   /**
    * Instantiate given fully qualified class name using given bundle.
    * 

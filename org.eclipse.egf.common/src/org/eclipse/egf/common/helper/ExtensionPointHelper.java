@@ -28,6 +28,10 @@ import org.eclipse.osgi.util.NLS;
  */
 public class ExtensionPointHelper {
 
+  private ExtensionPointHelper() {
+    // Prevent Instantiation
+  }
+
   /**
    * Define a constant for the attribute named <code>class</code> in
    * ExtensionPoint tab of plug-in xml files.

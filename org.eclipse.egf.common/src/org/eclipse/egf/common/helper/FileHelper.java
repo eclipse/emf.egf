@@ -39,6 +39,10 @@ import org.eclipse.pde.core.plugin.PluginRegistry;
  */
 public class FileHelper {
 
+  private FileHelper() {
+    // Prevent Instantiation
+  }
+
   /**
    * Get file full url from relative one.
    * 
