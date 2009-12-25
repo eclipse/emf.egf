@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.productionplan.util.ProductionPlanResourceFactoryImpl
  * @generated
  */
@@ -113,26 +114,6 @@ public class ProductionPlanResourceImpl extends XMIResourceImpl {
   public String getID(EObject eObject) {
     return eObject instanceof ModelElement ? ((ModelElement) eObject).getID() : super.getID(eObject);
   }
-
-  /**
-   * <!-- begin-user-doc -->
-   * 
-   * @see {@link org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#setID(org.eclipse.emf.ecore.EObject, java.lang.String)}
-   *      <!-- end-user-doc -->
-   * @generated NOT
-   */
-  /*
-   * @Override
-   * public void setID(EObject eObject, String id) {
-   * Object oldID = getID(eObject);
-   * if (oldID != null) {
-   * getIDToEObjectMap().remove(oldID);
-   * }
-   * if (id != null) {
-   * getIDToEObjectMap().put(id, eObject);
-   * }
-   * }
-   */
 
   /**
    * <!-- begin-user-doc -->

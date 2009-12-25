@@ -118,26 +118,6 @@ public class DomainResourceImpl extends XMIResourceImpl {
 
   /**
    * <!-- begin-user-doc -->
-   * 
-   * @see {@link org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#setID(org.eclipse.emf.ecore.EObject, java.lang.String)}
-   *      <!-- end-user-doc -->
-   * @generated NOT
-   */
-  /*
-   * @Override
-   * public void setID(EObject eObject, String id) {
-   * Object oldID = getID(eObject);
-   * if (oldID != null) {
-   * getIDToEObjectMap().remove(oldID);
-   * }
-   * if (id != null) {
-   * getIDToEObjectMap().put(id, eObject);
-   * }
-   * }
-   */
-
-  /**
-   * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
