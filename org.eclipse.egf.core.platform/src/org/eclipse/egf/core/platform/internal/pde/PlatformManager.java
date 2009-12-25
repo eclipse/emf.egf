@@ -500,7 +500,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
         // Analyse Platform Bundle
         for (IPlatformExtensionPoint newExtensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
           // TODO: PluginElement equals bug
-          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=290393
+          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
           if (newExtensionPoint.getPluginElement().equals(extensionPoint.getPluginElement())) {
             continue LOOP;
           }
@@ -542,7 +542,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
         // analyse Platform Bundle
         for (IPlatformExtensionPoint extensionPoint : existingPlatformBundle.getPlatformExtensionPoints(clazz)) {
           // TODO: PluginElement equals bug
-          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=290393
+          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
           if (newExtensionPoint.getPluginElement().equals(extensionPoint.getPluginElement())) {
             continue LOOP;
           }
