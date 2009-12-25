@@ -13,7 +13,7 @@ package org.eclipse.egf.core.test;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import org.eclipse.egf.core.test.h1.InvokeTask;
+import org.eclipse.egf.core.test.task.InvokeTaskH1;
 
 /**
  * @author Xavier Maysonnave
@@ -23,7 +23,7 @@ public class AllTests {
 
   public static Test suite() {
     TestSuite suite = new TestSuite("EGF Core Test Suite"); //$NON-NLS-1$
-    suite.addTest(InvokeTask.suite());
+    suite.addTest(InvokeTaskH1.suite());
     return suite;
   }
 

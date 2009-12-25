@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.test.h1;
+package org.eclipse.egf.core.test.task;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -28,10 +28,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.osgi.util.NLS;
 
-public class InvokeTask extends TestCase {
+public class InvokeTaskH1 extends TestCase {
 
   public static Test suite() {
-    return new TestSuite(InvokeTask.class);
+    return new TestSuite(InvokeTaskH1.class);
   }
 
   public void testInvokeH1() throws Exception {
