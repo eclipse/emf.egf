@@ -10,11 +10,11 @@
  */
 package org.eclipse.egf.productionplan.task;
 
+import org.eclipse.egf.core.invocation.IPlatformInvocation;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.core.production.invocation.IProductionInvocation;
 import org.eclipse.egf.core.session.ProjectBundleSession;
-import org.eclipse.egf.core.task.IPlatformTask;
 import org.eclipse.egf.model.productionplan.Task;
+import org.eclipse.egf.productionplan.invocation.IProductionInvocationTask;
 
 /**
  * @author Xavier Maysonnave
@@ -22,8 +22,8 @@ import org.eclipse.egf.model.productionplan.Task;
  */
 public interface IProductionPlanTaskInvocationFactory {
 
-  public IProductionInvocation createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, IPlatformTask platformTask);
+  public IProductionInvocationTask createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, IPlatformInvocation platformInvocation);
 
-  public IProductionInvocation createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, String taskId);
+  public IProductionInvocationTask createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, String invocationId);
 
 }

@@ -10,12 +10,8 @@
  */
 package org.eclipse.egf.productionplan.context;
 
-import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.fcore.FactoryComponent;
-import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
-import org.eclipse.egf.model.productionplan.ProductionPlan;
-import org.eclipse.egf.model.productionplan.Task;
-import org.eclipse.egf.model.productionplan.TaskInvocation;
+import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.production.internal.context.ModelElementContext;
 
 /**
  * @author Xavier Maysonnave
@@ -23,14 +19,6 @@ import org.eclipse.egf.model.productionplan.TaskInvocation;
  */
 public interface IProductionPlanContextFactory {
 
-  public IProductionContext<FactoryComponent> createContext(FactoryComponent factoryComponent);
-
-  public IProductionContext<Task> createContext(Task task);
-
-  public IProductionContext<ProductionPlan> createContext(ProductionPlan productionPlan);
-
-  public IProductionContext<FactoryComponentInvocation> createContext(FactoryComponentInvocation factoryComponentInvocation);
-
-  public IProductionContext<TaskInvocation> createContext(TaskInvocation taskInvocation);
+  public <T extends ModelElement> ModelElementContext<T> createContext(T element);
 
 }

@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.production.internal.context;
 
+import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.internal.context.ProductionContext;
 import org.eclipse.egf.model.fcore.ModelElement;
 
@@ -17,7 +18,7 @@ import org.eclipse.egf.model.fcore.ModelElement;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ModelElementContext<Q extends ModelElement> extends ProductionContext<Q> {
+public class ModelElementContext<Q extends ModelElement> extends ProductionContext<Q> {
 
   public ModelElementContext(Q element) {
     super(element);
@@ -26,6 +27,16 @@ public abstract class ModelElementContext<Q extends ModelElement> extends Produc
   @Override
   public String getName() {
     return getElement().getExternalName() != null ? getElement().getExternalName() : "Unknown"; //$NON-NLS-1$ 
+  }
+
+  @Override
+  protected void addInputData(String name, Class<?> clazz, Object object) throws InvocationException {
+    super.addInputData(name, clazz, object);
+  }
+
+  @Override
+  protected void addOutputData(String name, Class<?> clazz, Object object) throws InvocationException {
+    super.addOutputData(name, clazz, object);
   }
 
 }

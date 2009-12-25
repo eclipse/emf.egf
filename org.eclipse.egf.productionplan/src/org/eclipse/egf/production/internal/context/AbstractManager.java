@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.production.internal.manager;
+package org.eclipse.egf.production.internal.context;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
@@ -19,7 +19,7 @@ import org.eclipse.egf.core.session.BundleSessionHelper;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.productionplan.EGFProductionPlanPlugin;
-import org.eclipse.egf.productionplan.manager.IProductionPlanManager;
+import org.eclipse.egf.productionplan.context.IProductionPlanManager;
 import org.osgi.framework.Bundle;
 
 /**
@@ -36,7 +36,7 @@ public abstract class AbstractManager<Q extends AbstractManager<?, ?>, T extends
 
   private ProjectBundleSession _projectBundleSession;
 
-  protected IProductionContext<T> _productionContext;
+  protected ModelElementContext<T> _modelElementContext;
 
   protected IPlatformFcore _platformFcore;
 

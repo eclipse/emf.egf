@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.production.internal.manager;
+package org.eclipse.egf.production.internal.context;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.production.InvocationException;
@@ -22,11 +22,11 @@ public abstract class ProductionPlanInvocationManager<Q extends ProductionPlanMa
 
   public ProductionPlanInvocationManager(Q parent, T productionPlanInvocation) throws InvocationException {
     super(parent, productionPlanInvocation);
-    reset();
+    init();
   }
 
-  public void reset() throws InvocationException {
-    getProductionContext().init(getBundle());
+  public void init() throws InvocationException {
+    getProductionContext().reset();
   }
 
   public abstract void invoke(IProgressMonitor monitor) throws InvocationException;

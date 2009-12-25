@@ -8,19 +8,17 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.production.internal.context;
+package org.eclipse.egf.productionplan.invocation;
 
-import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.egf.productionplan.context.IProductionPlanContextFactory;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.InvocationException;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class ProductionPlanContextFactory implements IProductionPlanContextFactory {
+public interface IProductionInvocationTask {
 
-  public <T extends ModelElement> ModelElementContext<T> createContext(T element) {
-    return new ModelElementContext<T>(element);
-  }
+  public void invoke(final IProgressMonitor monitor) throws InvocationException;
 
 }

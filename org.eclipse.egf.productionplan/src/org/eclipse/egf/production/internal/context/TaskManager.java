@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.production.internal.manager;
+package org.eclipse.egf.production.internal.context;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
@@ -28,28 +28,28 @@ public class TaskManager extends ActivityManager<TaskInvocationManager, Task> {
 
   public TaskManager(Task task) throws InvocationException {
     super(task);
-    Assert.isNotNull(task.getTaskId());
+    Assert.isNotNull(task.getInvocationId());
   }
 
   public TaskManager(Bundle bundle, Task task) throws InvocationException {
     super(bundle, task);
-    Assert.isNotNull(task.getTaskId());
+    Assert.isNotNull(task.getInvocationId());
   }
 
   public TaskManager(TaskInvocationManager parent, Task task) throws InvocationException {
     super(parent, task);
-    Assert.isNotNull(task.getTaskId());
+    Assert.isNotNull(task.getInvocationId());
   }
 
-  public IProductionContext<Task> getProductionContext() {
-    if (_productionContext == null) {
-      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
+  public ModelElementContext<Task> getProductionContext() {
+    if (_modelElementContext == null) {
+      _modelElementContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
     }
-    return _productionContext;
+    return _modelElementContext;
   }
 
   public int getSteps() throws InvocationException {
-    if (getElement().getTaskId() != null) {
+    if (getElement().getInvocationId() != null) {
       return 1;
     }
     return 0;
@@ -59,7 +59,7 @@ public class TaskManager extends ActivityManager<TaskInvocationManager, Task> {
   public void invoke(IProgressMonitor monitor) throws InvocationException {
     try {
       IProductionContext<Task> productionContext = getProductionContext();
-      EGFProductionPlanPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getProjectBundleSession(), productionContext, getElement().getTaskId()).invoke(monitor);
+      EGFProductionPlanPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getProjectBundleSession(), productionContext, getElement().getInvocationId()).invoke(monitor);
       if (monitor.isCanceled()) {
         throw new OperationCanceledException();
       }

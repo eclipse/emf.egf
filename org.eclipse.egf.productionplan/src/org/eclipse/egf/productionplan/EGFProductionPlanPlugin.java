@@ -2,10 +2,10 @@ package org.eclipse.egf.productionplan;
 
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.production.internal.context.ProductionPlanContextFactory;
-import org.eclipse.egf.production.internal.manager.ProductionPlanFactory;
+import org.eclipse.egf.production.internal.context.ProductionPlanFactory;
 import org.eclipse.egf.productionplan.context.IProductionPlanContextFactory;
+import org.eclipse.egf.productionplan.context.IProductionPlanManagerFactory;
 import org.eclipse.egf.productionplan.internal.task.ProductionPlanTaskInvocationFactory;
-import org.eclipse.egf.productionplan.manager.IProductionPlanManagerFactory;
 import org.eclipse.egf.productionplan.task.IProductionPlanTaskInvocationFactory;
 import org.osgi.framework.BundleContext;
 

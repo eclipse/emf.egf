@@ -30,7 +30,7 @@ import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.productionplan.Task;
 import org.eclipse.egf.productionplan.EGFProductionPlanPlugin;
-import org.eclipse.egf.productionplan.manager.IProductionPlanManager;
+import org.eclipse.egf.productionplan.context.IProductionPlanManager;
 import org.eclipse.egf.productionplan.ui.ProductionPlanUIPlugin;
 import org.eclipse.egf.productionplan.ui.internal.ui.ProductionPlanUIImages;
 import org.eclipse.egf.productionplan.ui.l10n.ProductionPlanUIMessages;

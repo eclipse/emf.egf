@@ -11,12 +11,12 @@
 package org.eclipse.egf.productionplan.internal.task;
 
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.invocation.IPlatformInvocation;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.core.production.internal.invocation.ProductionInvocation;
-import org.eclipse.egf.core.production.invocation.IProductionInvocation;
 import org.eclipse.egf.core.session.ProjectBundleSession;
-import org.eclipse.egf.core.task.IPlatformTask;
 import org.eclipse.egf.model.productionplan.Task;
+import org.eclipse.egf.productionplan.internal.invocation.ProductionInvocationTask;
+import org.eclipse.egf.productionplan.invocation.IProductionInvocationTask;
 import org.eclipse.egf.productionplan.task.IProductionPlanTaskInvocationFactory;
 
 /**
@@ -25,12 +25,12 @@ import org.eclipse.egf.productionplan.task.IProductionPlanTaskInvocationFactory;
  */
 public class ProductionPlanTaskInvocationFactory implements IProductionPlanTaskInvocationFactory {
 
-  public IProductionInvocation createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, IPlatformTask platformTask) {
-    return new ProductionInvocation<Task>(projectBundleSession, context, platformTask);
+  public IProductionInvocationTask createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, IPlatformInvocation platformInvocation) {
+    return new ProductionInvocationTask(projectBundleSession, context, platformInvocation);
   }
 
-  public IProductionInvocation createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, String taskId) {
-    return new ProductionInvocation<Task>(projectBundleSession, context, EGFCorePlugin.getPlatformTask(taskId));
+  public IProductionInvocationTask createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, String invocationId) {
+    return new ProductionInvocationTask(projectBundleSession, context, EGFCorePlugin.getPlatformInvocation(invocationId));
   }
 
 }

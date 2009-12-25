@@ -8,13 +8,13 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.productionplan.manager;
+package org.eclipse.egf.productionplan.context;
 
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.productionplan.Task;
-import org.eclipse.egf.production.internal.manager.FactoryComponentInvocationManager;
-import org.eclipse.egf.production.internal.manager.TaskInvocationManager;
+import org.eclipse.egf.production.internal.context.FactoryComponentInvocationManager;
+import org.eclipse.egf.production.internal.context.TaskInvocationManager;
 import org.osgi.framework.Bundle;
 
 /**

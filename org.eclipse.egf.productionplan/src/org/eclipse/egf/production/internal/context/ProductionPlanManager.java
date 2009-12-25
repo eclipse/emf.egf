@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.production.internal.manager;
+package org.eclipse.egf.production.internal.context;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,7 +18,6 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlan;
@@ -36,18 +35,18 @@ public class ProductionPlanManager extends AbstractManager<FactoryComponentManag
 
   public ProductionPlanManager(FactoryComponentManager parent, ProductionPlan productionPlan) throws InvocationException {
     super(parent, productionPlan);
-    reset();
+    init();
   }
 
-  public void reset() throws InvocationException {
-    getProductionContext().init(getBundle());
+  public void init() throws InvocationException {
+    getProductionContext().reset();
   }
 
-  public IProductionContext<ProductionPlan> getProductionContext() {
-    if (_productionContext == null) {
-      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
+  public ModelElementContext<ProductionPlan> getProductionContext() {
+    if (_modelElementContext == null) {
+      _modelElementContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
     }
-    return _productionContext;
+    return _modelElementContext;
   }
 
   private Map<Invocation<?>, ProductionPlanInvocationManager<?, ?>> getProductionPlanManagers() throws InvocationException {
