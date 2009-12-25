@@ -535,7 +535,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   protected void handleActivate() {
     // Recompute the read only state.
@@ -553,10 +553,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         savedResources.clear();
       }
     } else if (changedResources.isEmpty() == false) {
-      changedResources.removeAll(savedResources);
       handleChangedResources();
-      changedResources.clear();
-      savedResources.clear();
     }
   }
 
@@ -568,6 +565,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * @generated NOT
    */
   protected void handleChangedResources() {
+    changedResources.removeAll(savedResources);
     if (changedResources.isEmpty() == false && (isDirty() == false || handleDirtyConflict())) {
       if (isDirty()) {
         changedResources.addAll(editingDomain.getResourceSet().getResources());
@@ -580,7 +578,9 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
       }
       updateProblemIndication = true;
       updateProblemIndication();
+      changedResources.clear();
     }
+    savedResources.clear();
   }
 
   /**
