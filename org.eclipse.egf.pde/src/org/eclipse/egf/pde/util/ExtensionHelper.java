@@ -1,12 +1,12 @@
 /*******************************************************************************
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  *******************************************************************************/
 package org.eclipse.egf.pde.util;
 
@@ -37,13 +37,13 @@ public class ExtensionHelper {
   /**
    * Create a new extension into given plug-in model object.
    * 
+   * @param pluginModelBase_p
    * @param extensionPointId_p
    *          the fully qualified extension-point id.
-   * @param pluginModelBase_p
    * @return an {@link IPluginExtension} instance or null if a creation error
    *         occurs.
    */
-  public static IPluginExtension createExtension(String extensionPointId_p, IPluginModelBase pluginModelBase_p) {
+  public static IPluginExtension createExtension(IPluginModelBase pluginModelBase_p, String extensionPointId_p) {
     IPluginExtension extension = null;
     // Get the factory.
     IPluginModelFactory pluginModelFactory = pluginModelBase_p.getPluginFactory();

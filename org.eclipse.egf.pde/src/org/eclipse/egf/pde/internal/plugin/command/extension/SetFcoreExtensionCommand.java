@@ -36,7 +36,7 @@ public class SetFcoreExtensionCommand extends AbstractFcoreExtensionCommand {
   public void execute() {
     super.execute();
     // Create it if it doesn't exist
-    getExtensionElementWithId(getURI());
+    createExtensionElementWithId(getURI(), true);
   }
 
 }

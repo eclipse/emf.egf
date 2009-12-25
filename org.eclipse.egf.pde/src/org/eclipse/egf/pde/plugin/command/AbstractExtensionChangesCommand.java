@@ -41,7 +41,7 @@ public abstract class AbstractExtensionChangesCommand extends AbstractChangesCom
    */
   protected IPluginExtension createExtension() {
     // Create a new extension matching extension-point id.
-    return ExtensionHelper.createExtension(getExtensionPointId(), getPluginModelBase());
+    return ExtensionHelper.createExtension(getPluginModelBase(), getExtensionPointId());
   }
 
   /**
@@ -95,15 +95,15 @@ public abstract class AbstractExtensionChangesCommand extends AbstractChangesCom
    * @param elementIdValue_p
    * @return null if
    */
-  protected IPluginElement getExtensionElementWithId(Object elementIdValue_p) {
+  protected IPluginElement createExtensionElementWithId(Object elementIdValue_p, boolean asChildIfOneIsFound) {
     IPluginElement element = null;
     // Get the portion of plug-in responsible for extensions and
     // extension-points
-    IExtensions extensionPart = getExtensions();
+    IExtensions extensions = getExtensions();
     // Get the extension point id.
     String extensionPointId = getExtensionPointId();
     // Get the extension.
-    IPluginExtension[] pluginExtensions = ExtensionHelper.getPluginExtension(extensionPart, extensionPointId);
+    IPluginExtension[] pluginExtensions = ExtensionHelper.getPluginExtension(extensions, extensionPointId);
     // Check if an extension is already containing the searched element?
     if (pluginExtensions != null) {
       // Loop over retrieved extensions to seek for a plug-in element with
@@ -120,7 +120,13 @@ public abstract class AbstractExtensionChangesCommand extends AbstractChangesCom
     // extension element.
     if (element == null) {
       // Extension doesn't exist yet, let's create it.
-      IPluginExtension extension = createExtension();
+      IPluginExtension extension = null;
+      if (asChildIfOneIsFound && pluginExtensions != null && pluginExtensions.length > 0) {
+        extension = pluginExtensions[0];
+      }
+      if (extension == null) {
+        extension = createExtension();
+      }
       // Create the element.
       element = ExtensionHelper.createPluginElement(extension, getExtensionChildName());
       if (element != null) {
