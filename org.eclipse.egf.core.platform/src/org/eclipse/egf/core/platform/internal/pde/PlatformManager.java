@@ -19,6 +19,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.InvalidRegistryObjectException;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
@@ -494,23 +495,27 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
     if (existingPlatformBundle == null) {
       return;
     }
-    // Analyse Removed Extension Points
+    // Remove existing Extension Point if necessary
     for (Class<? extends IPlatformExtensionPoint> clazz : getExtensionPoints().values()) {
       LOOP: for (IPlatformExtensionPoint extensionPoint : existingPlatformBundle.getPlatformExtensionPoints(clazz)) {
-        // Analyse Platform Bundle
+        // should we remove extensionPoint ?
         for (IPlatformExtensionPoint newExtensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
           // TODO: PluginElement equals bug
-          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
-          if (newExtensionPoint.getPluginElement().equals(extensionPoint.getPluginElement())) {
-            continue LOOP;
+          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=290393
+          try {
+            if (extensionPoint.getPluginElement().equals(newExtensionPoint.getPluginElement())) {
+              continue LOOP;
+            }
+          } catch (InvalidRegistryObjectException iroe) {
+            // Just ignore, extensionPoint will be removed
           }
         }
-        // Remove factory component from our existing model
+        // Remove ExtensionPoint from our existing model
         if (existingPlatformBundle.removePlatformExtensionPoint(clazz, extensionPoint) == false) {
           EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergePlatformBundle(..) _ ''{0}'' unable to remove Extension Point from PlatformBundle.", //$NON-NLS-1$
               extensionPoint));
         }
-        // Remove factory component in our target or workspace registry
+        // Remove ExtensionPoint from our target or workspace registry
         if (existingPlatformBundle.isTarget()) {
           if (_targetRegistry.get(clazz).remove(extensionPoint)) {
             // Clean Target Registry if necessary
@@ -536,25 +541,26 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
         }
       }
     }
+    // Add unknown Extension Point if necessary
     for (Class<? extends IPlatformExtensionPoint> clazz : getExtensionPoints().values()) {
-      // Analyse Added Extension Points
       LOOP: for (IPlatformExtensionPoint newExtensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
-        // analyse Platform Bundle
+        // should we add newExtensionPoint ?
         for (IPlatformExtensionPoint extensionPoint : existingPlatformBundle.getPlatformExtensionPoints(clazz)) {
           // TODO: PluginElement equals bug
-          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
-          if (newExtensionPoint.getPluginElement().equals(extensionPoint.getPluginElement())) {
+          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=290393
+          if (extensionPoint.getPluginElement().equals(newExtensionPoint.getPluginElement())) {
             continue LOOP;
           }
         }
-        // add a new factory component in our existing model
+        // Add newExtensionPoint in our existing model
         newExtensionPoint = existingPlatformBundle.addPlatformExtensionPoint(clazz, newExtensionPoint.getPluginElement());
         if (newExtensionPoint == null) {
           continue;
         }
-        // add factory component in our target or workspace registry
+        // Add newExtensionPoint in our target or workspace registry
         if (existingPlatformBundle.isTarget()) {
           List<Object> extensionPoints = _targetRegistry.get(clazz);
+          // init slot if necessary
           if (extensionPoints == null) {
             extensionPoints = new ArrayList<Object>();
             _targetRegistry.put(clazz, extensionPoints);
@@ -570,6 +576,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
           }
         } else {
           List<Object> extensionPoints = _workspaceRegistry.get(clazz);
+          // init slot if necessary
           if (extensionPoints == null) {
             extensionPoints = new ArrayList<Object>();
             _workspaceRegistry.put(clazz, extensionPoints);
@@ -588,7 +595,6 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
     }
     // Finally remove existingModel if necessary
     if (existingPlatformBundle.isEmpty()) {
-      // remove platform bundle from our main registry
       if (existingPlatformBundle.equals(_platformBundles.remove(id)) == false) {
         EGFPlatformPlugin.getDefault().logError(NLS.bind("PlatformManager.mergePlatformBundle(..) _ ''{0}'' unknown PlatformBundle.", //$NON-NLS-1$
             id));
@@ -609,7 +615,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
     // Analyse Removed Extension Points
     for (Class<? extends IPlatformExtensionPoint> clazz : getExtensionPoints().values()) {
       for (IPlatformExtensionPoint extensionPoint : platformBundle.getPlatformExtensionPoints(clazz)) {
-        // remove extension point in our target or workspace registry
+        // remove extension point from our target or workspace registry
         if (platformBundle.isTarget()) {
           if (_targetRegistry.get(clazz).remove(extensionPoint)) {
             // Clean Target Registry if necessary

@@ -164,6 +164,13 @@ public class PlatformBundle implements IPlatformBundle {
     if (pluginElement == null) {
       return null;
     }
+    // Check
+    if (pluginElement.isValid() == false) {
+      EGFPlatformPlugin.getDefault().logWarning(NLS.bind("PlatformPlugin.addPlatformExtensionPoint(..) _ Bundle ''{0}'' invalid PluginElement ''{1}''.", //$NON-NLS-1$
+          getBundleId(), pluginElement.getName()));
+      return null;
+    }
+    // Retrieve Factory
     IPlatformExtensionPointFactory<T> extensionPointFactory = getPlatformExtensionPointFactory(clazz);
     if (extensionPointFactory == null) {
       return null;
