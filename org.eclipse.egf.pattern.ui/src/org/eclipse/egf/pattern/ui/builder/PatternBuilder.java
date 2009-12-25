@@ -34,9 +34,7 @@ import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternConstants;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternHelper.FilenameFormatException;
-import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.PatternExtension;
-import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
+import org.eclipse.egf.pattern.translation.TranslationHelper;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -70,7 +68,7 @@ public class PatternBuilder extends IncrementalProjectBuilder {
         if (patternIds != null && patterns.size() != patternIds.size())
             Activator.getDefault().logWarning(Messages.PatternBuilding_warning);
         try {
-            translate(patterns);
+            new TranslationHelper().translate(patterns);
         } catch (PatternException e) {
             // log the error instead of throwing a CoreException
             Activator.getDefault().logError(Messages.PatternBuilding_Failed, e);
@@ -79,6 +77,7 @@ public class PatternBuilder extends IncrementalProjectBuilder {
                 ResourceSet set = patterns.iterator().next().eResource().getResourceSet();
                 for (Resource res : set.getResources())
                     res.unload();
+                patterns.clear();
             }
         }
         return null;
@@ -87,25 +86,6 @@ public class PatternBuilder extends IncrementalProjectBuilder {
     private void checkCancellation(IProgressMonitor monitor) {
         if (monitor != null && monitor.isCanceled())
             throw new OperationCanceledException();
-    }
-
-    private void translate(final Set<Pattern> patterns) throws PatternException {
-        if (patterns.isEmpty())
-            return;
-        try {
-            for (Pattern p : patterns) {
-                PatternExtension extension = ExtensionHelper.getExtension(p.getNature());
-                String reason = extension.canTranslate(p);
-                if (reason == null)
-                    extension.createEngine(p).translate();
-                else
-                    Activator.getDefault().logWarning(Messages.bind(Messages.assembly_error3, p.getName(), reason));
-            }
-        } catch (MissingExtensionException e) {
-            throw new PatternException(e);
-
-        }
-
     }
 
     class PatternVisitor implements IResourceDeltaVisitor {
