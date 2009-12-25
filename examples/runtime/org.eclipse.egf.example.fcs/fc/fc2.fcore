@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:productionplan="http://www.eclipse.org/egf/1.0.0/productionplan" xmi:id="FactoryComponent_6yt_IWV8Ed6WjOtbZOwqNA"
+    iD="FactoryComponent_6yt_IWV8Ed6WjOtbZOwqNA" name="FC2">
+  <orchestration xmi:type="productionplan:ProductionPlan" xmi:id="ProductionPlan_zwp8wKbGEd69ANF1SOWYYg"
+      iD="ProductionPlan_zwp8wKbGEd69ANF1SOWYYg">
+    <productionPlanInvocations xmi:type="productionplan:TaskInvocation" xmi:id="TaskInvocation_28WcsKbGEd69ANF1SOWYYg"
+        iD="TaskInvocation_28WcsKbGEd69ANF1SOWYYg" name="Call H2" task="platform:/plugin/org.eclipse.egf.example.task.h2/task_h2.fcore#Task_9hT-gKbGEd69ANF1SOWYYg"/>
+  </orchestration>
+</fcore:FactoryComponent>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.egf.core.fcore">
+      <fcore
+            id="task_h2.fcore">
+      </fcore>
+   </extension>
+
+  <extension
+    point="org.eclipse.egf.core.task"
+  >
+    <task
+      id="org.eclipse.egf.example.task.h2.H2.id"    
+      class="org.eclipse.egf.example.task.h2.H2"
+    />                       
+  </extension>
+
+</plugin>
