@@ -13,13 +13,12 @@
     <eOperations name="getAllParameters" upperBound="-1" eType="#//PatternParameter"/>
     <eOperations name="getAllVariables" upperBound="-1" eType="#//PatternVariable"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="headerMethod" lowerBound="1"
-        eType="#//PatternMethod"/>
+        eType="#//PatternMethod" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
         eType="#//PatternMethod" containment="true" resolveProxies="false" eOpposite="#//PatternMethod/pattern"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="footerMethod" lowerBound="1"
-        eType="#//PatternMethod"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="superPattern" eType="#//Pattern"
-        resolveProxies="false"/>
+        eType="#//PatternMethod" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superPattern" eType="#//Pattern"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" upperBound="-1"
         eType="#//Call" containment="true" eOpposite="#//Call/pattern"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameters" upperBound="-1"
@@ -29,7 +28,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="variables" upperBound="-1"
         eType="#//PatternVariable" containment="true" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="initMethod" lowerBound="1"
-        eType="#//PatternMethod"/>
+        eType="#//PatternMethod" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternMethod" eSuperTypes="Fcore.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"

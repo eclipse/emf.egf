@@ -38,36 +38,25 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getHeaderMethod
- * <em>Header Method</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getMethods <em>
- * Methods</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getFooterMethod
- * <em>Footer Method</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getSuperPattern
- * <em>Super Pattern</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getOrchestration
- * <em>Orchestration</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getParameters <em>
- * Parameters</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getNature <em>
- * Nature</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getVariables <em>
- * Variables</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getInitMethod <em>
- * Init Method</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getHeaderMethod <em>Header Method</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getMethods <em>Methods</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getFooterMethod <em>Footer Method</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getSuperPattern <em>Super Pattern</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getOrchestration <em>Orchestration</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getParameters <em>Parameters</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getNature <em>Nature</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getVariables <em>Variables</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternImpl#getInitMethod <em>Init Method</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PatternImpl extends PatternElementImpl implements Pattern {
     /**
-     * The cached value of the '{@link #getHeaderMethod()
-     * <em>Header Method</em>}' reference.
+     * The cached value of the '{@link #getHeaderMethod() <em>Header Method</em>}' reference.
      * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @see #getHeaderMethod()
      * @generated
      * @ordered
@@ -75,10 +64,8 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     protected PatternMethod headerMethod;
 
     /**
-     * The cached value of the '{@link #getMethods() <em>Methods</em>}'
-     * containment reference list.
+     * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @see #getMethods()
      * @generated
      * @ordered
@@ -86,11 +73,9 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     protected EList<PatternMethod> methods;
 
     /**
-     * The cached value of the '{@link #getFooterMethod()
-     * <em>Footer Method</em>}' reference.
+     * The cached value of the '{@link #getFooterMethod() <em>Footer Method</em>}' reference.
      * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @see #getFooterMethod()
      * @generated
      * @ordered
@@ -98,11 +83,9 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     protected PatternMethod footerMethod;
 
     /**
-     * The cached value of the '{@link #getSuperPattern()
-     * <em>Super Pattern</em>}' reference.
+     * The cached value of the '{@link #getSuperPattern() <em>Super Pattern</em>}' reference.
      * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @see #getSuperPattern()
      * @generated
      * @ordered
@@ -110,11 +93,9 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     protected Pattern superPattern;
 
     /**
-     * The cached value of the '{@link #getOrchestration()
-     * <em>Orchestration</em>}' containment reference list.
+     * The cached value of the '{@link #getOrchestration() <em>Orchestration</em>}' containment reference list.
      * <!-- begin-user-doc
      * --> <!-- end-user-doc -->
-     * 
      * @see #getOrchestration()
      * @generated
      * @ordered
@@ -122,10 +103,8 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     protected EList<Call> orchestration;
 
     /**
-     * The cached value of the '{@link #getParameters() <em>Parameters</em>}'
-     * containment reference list.
+     * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @see #getParameters()
      * @generated
      * @ordered
@@ -133,10 +112,8 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     protected EList<PatternParameter> parameters;
 
     /**
-     * The cached value of the '{@link #getNature() <em>Nature</em>}'
-     * containment reference.
+     * The cached value of the '{@link #getNature() <em>Nature</em>}' containment reference.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @see #getNature()
      * @generated
      * @ordered
@@ -144,11 +121,9 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     protected PatternNature nature;
 
     /**
-     * The cached value of the '{@link #getVariables() <em>Variables</em>}'
-     * containment reference list.
+     * The cached value of the '{@link #getVariables() <em>Variables</em>}' containment reference list.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getVariables()
      * @generated
      * @ordered
@@ -156,11 +131,9 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     protected EList<PatternVariable> variables;
 
     /**
-     * The cached value of the '{@link #getInitMethod() <em>Init Method</em>}'
-     * reference.
+     * The cached value of the '{@link #getInitMethod() <em>Init Method</em>}' reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see #getInitMethod()
      * @generated
      * @ordered
@@ -169,7 +142,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternImpl() {
@@ -178,7 +150,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -188,33 +159,14 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternMethod getHeaderMethod() {
-        if (headerMethod != null && headerMethod.eIsProxy()) {
-            InternalEObject oldHeaderMethod = (InternalEObject) headerMethod;
-            headerMethod = (PatternMethod) eResolveProxy(oldHeaderMethod);
-            if (headerMethod != oldHeaderMethod) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN__HEADER_METHOD, oldHeaderMethod, headerMethod));
-            }
-        }
         return headerMethod;
     }
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    public PatternMethod basicGetHeaderMethod() {
-        return headerMethod;
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setHeaderMethod(PatternMethod newHeaderMethod) {
@@ -226,7 +178,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public EList<PatternMethod> getMethods() {
@@ -238,16 +189,31 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Pattern getSuperPattern() {
+        if (superPattern != null && superPattern.eIsProxy()) {
+            InternalEObject oldSuperPattern = (InternalEObject) superPattern;
+            superPattern = (Pattern) eResolveProxy(oldSuperPattern);
+            if (superPattern != oldSuperPattern) {
+                if (eNotificationRequired())
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN__SUPER_PATTERN, oldSuperPattern, superPattern));
+            }
+        }
+        return superPattern;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public Pattern basicGetSuperPattern() {
         return superPattern;
     }
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setSuperPattern(Pattern newSuperPattern) {
@@ -259,33 +225,14 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternMethod getFooterMethod() {
-        if (footerMethod != null && footerMethod.eIsProxy()) {
-            InternalEObject oldFooterMethod = (InternalEObject) footerMethod;
-            footerMethod = (PatternMethod) eResolveProxy(oldFooterMethod);
-            if (footerMethod != oldFooterMethod) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN__FOOTER_METHOD, oldFooterMethod, footerMethod));
-            }
-        }
         return footerMethod;
     }
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    public PatternMethod basicGetFooterMethod() {
-        return footerMethod;
-    }
-
-    /**
-     * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setFooterMethod(PatternMethod newFooterMethod) {
@@ -297,7 +244,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public EList<Call> getOrchestration() {
@@ -309,7 +255,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public EList<PatternParameter> getParameters() {
@@ -321,7 +266,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternNature getNature() {
@@ -330,7 +274,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public NotificationChain basicSetNature(PatternNature newNature, NotificationChain msgs) {
@@ -348,7 +291,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setNature(PatternNature newNature) {
@@ -368,7 +310,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public EList<PatternVariable> getVariables() {
@@ -381,35 +322,15 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternMethod getInitMethod() {
-        if (initMethod != null && initMethod.eIsProxy()) {
-            InternalEObject oldInitMethod = (InternalEObject) initMethod;
-            initMethod = (PatternMethod) eResolveProxy(oldInitMethod);
-            if (initMethod != oldInitMethod) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PATTERN__INIT_METHOD, oldInitMethod, initMethod));
-            }
-        }
         return initMethod;
     }
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    public PatternMethod basicGetInitMethod() {
-        return initMethod;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public void setInitMethod(PatternMethod newInitMethod) {
@@ -454,8 +375,7 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @generated
+     * @generated NOT
      */
     public EList<PatternVariable> getAllVariables() {
         BasicEList<PatternVariable> result = new BasicEList<PatternVariable>();
@@ -470,7 +390,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -487,7 +406,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -509,24 +427,21 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
         case PatternPackage.PATTERN__HEADER_METHOD:
-            if (resolve)
-                return getHeaderMethod();
-            return basicGetHeaderMethod();
+            return getHeaderMethod();
         case PatternPackage.PATTERN__METHODS:
             return getMethods();
         case PatternPackage.PATTERN__FOOTER_METHOD:
-            if (resolve)
-                return getFooterMethod();
-            return basicGetFooterMethod();
+            return getFooterMethod();
         case PatternPackage.PATTERN__SUPER_PATTERN:
-            return getSuperPattern();
+            if (resolve)
+                return getSuperPattern();
+            return basicGetSuperPattern();
         case PatternPackage.PATTERN__ORCHESTRATION:
             return getOrchestration();
         case PatternPackage.PATTERN__PARAMETERS:
@@ -536,16 +451,13 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
         case PatternPackage.PATTERN__VARIABLES:
             return getVariables();
         case PatternPackage.PATTERN__INIT_METHOD:
-            if (resolve)
-                return getInitMethod();
-            return basicGetInitMethod();
+            return getInitMethod();
         }
         return super.eGet(featureID, resolve, coreType);
     }
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("unchecked")
@@ -589,7 +501,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -628,7 +539,6 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
