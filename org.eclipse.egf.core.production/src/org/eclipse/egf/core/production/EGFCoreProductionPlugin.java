@@ -32,12 +32,12 @@ public class EGFCoreProductionPlugin extends EGFAbstractPlugin {
   /**
    * IProductionContextFactory singleton.
    */
-  private static final IProductionContextFactory __productionContextFactory = new ProductionContextFactory();
+  private static IProductionContextFactory __productionContextFactory;
 
   /**
    * IProductionTaskInvocationFactory singleton.
    */
-  private static final IProductionTaskInvocationFactory __productionTaskInvocationFactory = new ProductionTaskInvocationFactory();
+  private static IProductionTaskInvocationFactory __productionTaskInvocationFactory;
 
   /**
    * Get activator shared instance.
@@ -54,6 +54,9 @@ public class EGFCoreProductionPlugin extends EGFAbstractPlugin {
    * @return the singleton production context factory.
    */
   public static IProductionContextFactory getProductionContextFactory() {
+    if (__productionContextFactory == null) {
+      __productionContextFactory = new ProductionContextFactory();
+    }
     return __productionContextFactory;
   }
 
@@ -63,6 +66,9 @@ public class EGFCoreProductionPlugin extends EGFAbstractPlugin {
    * @return the singleton task runner factory.
    */
   public static IProductionTaskInvocationFactory getProductionTaskInvocationFactory() {
+    if (__productionTaskInvocationFactory == null) {
+      __productionTaskInvocationFactory = new ProductionTaskInvocationFactory();
+    }
     return __productionTaskInvocationFactory;
   }
 
