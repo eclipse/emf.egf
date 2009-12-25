@@ -84,13 +84,58 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
    */
   protected TypesSwitch<Adapter> modelSwitch = new TypesSwitch<Adapter>() {
     @Override
+    public Adapter caseBigDecimalType(BigDecimalType object) {
+      return createBigDecimalTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseBigIntegerType(BigIntegerType object) {
+      return createBigIntegerTypeAdapter();
+    }
+
+    @Override
     public Adapter caseBooleanType(BooleanType object) {
       return createBooleanTypeAdapter();
     }
 
     @Override
+    public Adapter caseByteType(ByteType object) {
+      return createByteTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseCharacterType(CharacterType object) {
+      return createCharacterTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseDateType(DateType object) {
+      return createDateTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseDoubleType(DoubleType object) {
+      return createDoubleTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseFloatType(FloatType object) {
+      return createFloatTypeAdapter();
+    }
+
+    @Override
     public Adapter caseIntegerType(IntegerType object) {
       return createIntegerTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseLongType(LongType object) {
+      return createLongTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseShortType(ShortType object) {
+      return createShortTypeAdapter();
     }
 
     @Override
@@ -143,6 +188,34 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.BigDecimalType <em>Big Decimal Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.types.BigDecimalType
+   * @generated
+   */
+  public Adapter createBigDecimalTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.BigIntegerType <em>Big Integer Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.types.BigIntegerType
+   * @generated
+   */
+  public Adapter createBigIntegerTypeAdapter() {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.BooleanType <em>Boolean Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -153,6 +226,76 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createBooleanTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.ByteType <em>Byte Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.types.ByteType
+   * @generated
+   */
+  public Adapter createByteTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.CharacterType <em>Character Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.types.CharacterType
+   * @generated
+   */
+  public Adapter createCharacterTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.DateType <em>Date Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.types.DateType
+   * @generated
+   */
+  public Adapter createDateTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.DoubleType <em>Double Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.types.DoubleType
+   * @generated
+   */
+  public Adapter createDoubleTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.FloatType <em>Float Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.types.FloatType
+   * @generated
+   */
+  public Adapter createFloatTypeAdapter() {
     return null;
   }
 
@@ -181,6 +324,34 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createIntegerTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.LongType <em>Long Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.types.LongType
+   * @generated
+   */
+  public Adapter createLongTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.ShortType <em>Short Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.types.ShortType
+   * @generated
+   */
+  public Adapter createShortTypeAdapter() {
     return null;
   }
 

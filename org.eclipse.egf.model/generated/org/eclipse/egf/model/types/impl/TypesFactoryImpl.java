@@ -67,10 +67,28 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   @Override
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
+    case TypesPackage.BIG_DECIMAL_TYPE:
+      return createBigDecimalType();
+    case TypesPackage.BIG_INTEGER_TYPE:
+      return createBigIntegerType();
     case TypesPackage.BOOLEAN_TYPE:
       return createBooleanType();
+    case TypesPackage.BYTE_TYPE:
+      return createByteType();
+    case TypesPackage.CHARACTER_TYPE:
+      return createCharacterType();
+    case TypesPackage.DATE_TYPE:
+      return createDateType();
+    case TypesPackage.DOUBLE_TYPE:
+      return createDoubleType();
+    case TypesPackage.FLOAT_TYPE:
+      return createFloatType();
     case TypesPackage.INTEGER_TYPE:
       return createIntegerType();
+    case TypesPackage.LONG_TYPE:
+      return createLongType();
+    case TypesPackage.SHORT_TYPE:
+      return createShortType();
     case TypesPackage.STRING_TYPE:
       return createStringType();
     case TypesPackage.GENERATOR_ADAPTER_FACTORY_TYPE:
@@ -111,9 +129,79 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
+  public BigDecimalType createBigDecimalType() {
+    BigDecimalTypeImpl bigDecimalType = new BigDecimalTypeImpl();
+    return bigDecimalType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public BigIntegerType createBigIntegerType() {
+    BigIntegerTypeImpl bigIntegerType = new BigIntegerTypeImpl();
+    return bigIntegerType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public BooleanType createBooleanType() {
     BooleanTypeImpl booleanType = new BooleanTypeImpl();
     return booleanType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ByteType createByteType() {
+    ByteTypeImpl byteType = new ByteTypeImpl();
+    return byteType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public CharacterType createCharacterType() {
+    CharacterTypeImpl characterType = new CharacterTypeImpl();
+    return characterType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DateType createDateType() {
+    DateTypeImpl dateType = new DateTypeImpl();
+    return dateType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public DoubleType createDoubleType() {
+    DoubleTypeImpl doubleType = new DoubleTypeImpl();
+    return doubleType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FloatType createFloatType() {
+    FloatTypeImpl floatType = new FloatTypeImpl();
+    return floatType;
   }
 
   /**
@@ -134,6 +222,26 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   public IntegerType createIntegerType() {
     IntegerTypeImpl integerType = new IntegerTypeImpl();
     return integerType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public LongType createLongType() {
+    LongTypeImpl longType = new LongTypeImpl();
+    return longType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ShortType createShortType() {
+    ShortTypeImpl shortType = new ShortTypeImpl();
+    return shortType;
   }
 
   /**

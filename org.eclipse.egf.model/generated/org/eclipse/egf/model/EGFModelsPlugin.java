@@ -22,10 +22,9 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
 /**
- * This is the central singleton for the Pattern model plugin.
+ * This is the central singleton for the Types model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public final class EGFModelsPlugin extends EMFPlugin {
@@ -34,7 +33,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static final EGFModelsPlugin INSTANCE = new EGFModelsPlugin();
@@ -43,7 +41,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static Implementation plugin;
@@ -63,7 +60,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * Returns the singleton instance of the Eclipse plugin.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the singleton instance.
    * @generated
    */
@@ -76,7 +72,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * Returns the singleton instance of the Eclipse plugin.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the singleton instance.
    * @generated
    */
@@ -88,7 +83,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * The actual implementation of the Eclipse <b>Plugin</b>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static class Implementation extends EGFEclipsePlugin {
@@ -96,7 +90,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
      * Creates an instance.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public Implementation() {

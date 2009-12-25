@@ -33,6 +33,24 @@ public interface TypesFactory extends EFactory {
   TypesFactory eINSTANCE = org.eclipse.egf.model.types.impl.TypesFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Big Decimal Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Big Decimal Type</em>'.
+   * @generated
+   */
+  BigDecimalType createBigDecimalType();
+
+  /**
+   * Returns a new object of class '<em>Big Integer Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Big Integer Type</em>'.
+   * @generated
+   */
+  BigIntegerType createBigIntegerType();
+
+  /**
    * Returns a new object of class '<em>Boolean Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -40,6 +58,51 @@ public interface TypesFactory extends EFactory {
    * @generated
    */
   BooleanType createBooleanType();
+
+  /**
+   * Returns a new object of class '<em>Byte Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Byte Type</em>'.
+   * @generated
+   */
+  ByteType createByteType();
+
+  /**
+   * Returns a new object of class '<em>Character Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Character Type</em>'.
+   * @generated
+   */
+  CharacterType createCharacterType();
+
+  /**
+   * Returns a new object of class '<em>Date Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Date Type</em>'.
+   * @generated
+   */
+  DateType createDateType();
+
+  /**
+   * Returns a new object of class '<em>Double Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Double Type</em>'.
+   * @generated
+   */
+  DoubleType createDoubleType();
+
+  /**
+   * Returns a new object of class '<em>Float Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Float Type</em>'.
+   * @generated
+   */
+  FloatType createFloatType();
 
   /**
    * Returns a new object of class '<em>String Type</em>'.
@@ -58,6 +121,24 @@ public interface TypesFactory extends EFactory {
    * @generated
    */
   IntegerType createIntegerType();
+
+  /**
+   * Returns a new object of class '<em>Long Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Long Type</em>'.
+   * @generated
+   */
+  LongType createLongType();
+
+  /**
+   * Returns a new object of class '<em>Short Type</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Short Type</em>'.
+   * @generated
+   */
+  ShortType createShortType();
 
   /**
    * Returns a new object of class '<em>Generator Adapter Factory Type</em>'.

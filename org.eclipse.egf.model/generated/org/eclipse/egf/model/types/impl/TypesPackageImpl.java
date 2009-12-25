@@ -13,9 +13,20 @@
 package org.eclipse.egf.model.types.impl;
 
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.types.BigDecimalType;
+import org.eclipse.egf.model.types.BigIntegerType;
+import org.eclipse.egf.model.types.BigDecimal;
+import org.eclipse.egf.model.types.BigInteger;
 import org.eclipse.egf.model.types.BooleanType;
+import org.eclipse.egf.model.types.ByteType;
+import org.eclipse.egf.model.types.CharacterType;
+import org.eclipse.egf.model.types.DateType;
+import org.eclipse.egf.model.types.DoubleType;
+import org.eclipse.egf.model.types.FloatType;
 import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
 import org.eclipse.egf.model.types.IntegerType;
+import org.eclipse.egf.model.types.LongType;
+import org.eclipse.egf.model.types.ShortType;
 import org.eclipse.egf.model.types.StringType;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.model.types.TypesPackage;
@@ -41,7 +52,56 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass bigDecimalTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass bigIntegerTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass booleanTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass byteTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass characterTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass dateTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass doubleTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass floatTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -56,6 +116,20 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * @generated
    */
   private EClass integerTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass longTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass shortTypeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -140,6 +214,42 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getBigDecimalType() {
+    return bigDecimalTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBigDecimalType_Value() {
+    return (EAttribute) bigDecimalTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getBigIntegerType() {
+    return bigIntegerTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getBigIntegerType_Value() {
+    return (EAttribute) bigIntegerTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getBooleanType() {
     return booleanTypeEClass;
   }
@@ -151,6 +261,96 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    */
   public EAttribute getBooleanType_Value() {
     return (EAttribute) booleanTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getByteType() {
+    return byteTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getByteType_Value() {
+    return (EAttribute) byteTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getCharacterType() {
+    return characterTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getCharacterType_Value() {
+    return (EAttribute) characterTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDateType() {
+    return dateTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDateType_Value() {
+    return (EAttribute) dateTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDoubleType() {
+    return doubleTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDoubleType_Value() {
+    return (EAttribute) doubleTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getFloatType() {
+    return floatTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getFloatType_Value() {
+    return (EAttribute) floatTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -187,6 +387,42 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    */
   public EAttribute getIntegerType_Value() {
     return (EAttribute) integerTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getLongType() {
+    return longTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getLongType_Value() {
+    return (EAttribute) longTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getShortType() {
+    return shortTypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getShortType_Value() {
+    return (EAttribute) shortTypeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -236,11 +472,38 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     isCreated = true;
 
     // Create classes and their features
+    bigDecimalTypeEClass = createEClass(BIG_DECIMAL_TYPE);
+    createEAttribute(bigDecimalTypeEClass, BIG_DECIMAL_TYPE__VALUE);
+
+    bigIntegerTypeEClass = createEClass(BIG_INTEGER_TYPE);
+    createEAttribute(bigIntegerTypeEClass, BIG_INTEGER_TYPE__VALUE);
+
     booleanTypeEClass = createEClass(BOOLEAN_TYPE);
     createEAttribute(booleanTypeEClass, BOOLEAN_TYPE__VALUE);
 
+    byteTypeEClass = createEClass(BYTE_TYPE);
+    createEAttribute(byteTypeEClass, BYTE_TYPE__VALUE);
+
+    characterTypeEClass = createEClass(CHARACTER_TYPE);
+    createEAttribute(characterTypeEClass, CHARACTER_TYPE__VALUE);
+
+    dateTypeEClass = createEClass(DATE_TYPE);
+    createEAttribute(dateTypeEClass, DATE_TYPE__VALUE);
+
+    doubleTypeEClass = createEClass(DOUBLE_TYPE);
+    createEAttribute(doubleTypeEClass, DOUBLE_TYPE__VALUE);
+
+    floatTypeEClass = createEClass(FLOAT_TYPE);
+    createEAttribute(floatTypeEClass, FLOAT_TYPE__VALUE);
+
     integerTypeEClass = createEClass(INTEGER_TYPE);
     createEAttribute(integerTypeEClass, INTEGER_TYPE__VALUE);
+
+    longTypeEClass = createEClass(LONG_TYPE);
+    createEAttribute(longTypeEClass, LONG_TYPE__VALUE);
+
+    shortTypeEClass = createEClass(SHORT_TYPE);
+    createEAttribute(shortTypeEClass, SHORT_TYPE__VALUE);
 
     stringTypeEClass = createEClass(STRING_TYPE);
     createEAttribute(stringTypeEClass, STRING_TYPE__VALUE);
@@ -285,13 +548,49 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
     // Add supertypes to classes
     EGenericType g1 = createEGenericType(theFcorePackage.getTypeObject());
-    EGenericType g2 = createEGenericType(ecorePackage.getEBooleanObject());
+    EGenericType g2 = createEGenericType(theEcorePackage.getEBigDecimal());
+    g1.getETypeArguments().add(g2);
+    bigDecimalTypeEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEBigInteger());
+    g1.getETypeArguments().add(g2);
+    bigIntegerTypeEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g2 = createEGenericType(ecorePackage.getEBooleanObject());
     g1.getETypeArguments().add(g2);
     booleanTypeEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEByteObject());
+    g1.getETypeArguments().add(g2);
+    byteTypeEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getECharacterObject());
+    g1.getETypeArguments().add(g2);
+    characterTypeEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEDate());
+    g1.getETypeArguments().add(g2);
+    dateTypeEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEDoubleObject());
+    g1.getETypeArguments().add(g2);
+    doubleTypeEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEFloatObject());
+    g1.getETypeArguments().add(g2);
+    floatTypeEClass.getEGenericSuperTypes().add(g1);
     g1 = createEGenericType(theFcorePackage.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getEIntegerObject());
     g1.getETypeArguments().add(g2);
     integerTypeEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getELongObject());
+    g1.getETypeArguments().add(g2);
+    longTypeEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEShortObject());
+    g1.getETypeArguments().add(g2);
+    shortTypeEClass.getEGenericSuperTypes().add(g1);
     g1 = createEGenericType(theFcorePackage.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getEString());
     g1.getETypeArguments().add(g2);
@@ -302,12 +601,75 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     generatorAdapterFactoryTypeEClass.getEGenericSuperTypes().add(g1);
 
     // Initialize classes and features; add operations and parameters
+    initEClass(bigDecimalTypeEClass, BigDecimalType.class, "BigDecimalType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getBigDecimalType_Value(), theEcorePackage.getEBigDecimal(), "value", null, 0, 1, BigDecimalType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    EOperation op = addEOperation(bigDecimalTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(theEcorePackage.getEBigDecimal());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(bigIntegerTypeEClass, BigIntegerType.class, "BigIntegerType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getBigIntegerType_Value(), theEcorePackage.getEBigInteger(), "value", null, 0, 1, BigIntegerType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(bigIntegerTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(theEcorePackage.getEBigInteger());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
     initEClass(booleanTypeEClass, BooleanType.class, "BooleanType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getBooleanType_Value(), theEcorePackage.getEBooleanObject(), "value", null, 0, 1, BooleanType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    EOperation op = addEOperation(booleanTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    op = addEOperation(booleanTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
     g1 = createEGenericType(theEcorePackage.getEJavaClass());
     g2 = createEGenericType(theEcorePackage.getEBooleanObject());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(byteTypeEClass, ByteType.class, "ByteType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getByteType_Value(), theEcorePackage.getEByteObject(), "value", null, 0, 1, ByteType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(byteTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(theEcorePackage.getEByteObject());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(characterTypeEClass, CharacterType.class, "CharacterType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getCharacterType_Value(), theEcorePackage.getECharacterObject(), "value", null, 0, 1, CharacterType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(characterTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(theEcorePackage.getECharacterObject());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(dateTypeEClass, DateType.class, "DateType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getDateType_Value(), theEcorePackage.getEDate(), "value", null, 0, 1, DateType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(dateTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(theEcorePackage.getEDate());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(doubleTypeEClass, DoubleType.class, "DoubleType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getDoubleType_Value(), theEcorePackage.getEDoubleObject(), "value", null, 0, 1, DoubleType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(doubleTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(theEcorePackage.getEDoubleObject());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(floatTypeEClass, FloatType.class, "FloatType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getFloatType_Value(), theEcorePackage.getEFloatObject(), "value", null, 0, 1, FloatType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(floatTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(theEcorePackage.getEFloatObject());
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
 
@@ -317,6 +679,24 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     op = addEOperation(integerTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
     g1 = createEGenericType(theEcorePackage.getEJavaClass());
     g2 = createEGenericType(theEcorePackage.getEIntegerObject());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(longTypeEClass, LongType.class, "LongType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getLongType_Value(), theEcorePackage.getELongObject(), "value", null, 0, 1, LongType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(longTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(theEcorePackage.getELongObject());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(shortTypeEClass, ShortType.class, "ShortType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getShortType_Value(), theEcorePackage.getEShortObject(), "value", null, 0, 1, ShortType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(shortTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(theEcorePackage.getEShortObject());
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
 

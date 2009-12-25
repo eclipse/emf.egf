@@ -104,6 +104,52 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.BigDecimalType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected BigDecimalTypeItemProvider bigDecimalTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.BigDecimalType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createBigDecimalTypeAdapter() {
+    if (bigDecimalTypeItemProvider == null) {
+      bigDecimalTypeItemProvider = new BigDecimalTypeItemProvider(this);
+    }
+
+    return bigDecimalTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.BigIntegerType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected BigIntegerTypeItemProvider bigIntegerTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.BigIntegerType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createBigIntegerTypeAdapter() {
+    if (bigIntegerTypeItemProvider == null) {
+      bigIntegerTypeItemProvider = new BigIntegerTypeItemProvider(this);
+    }
+
+    return bigIntegerTypeItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.BooleanType} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -124,6 +170,121 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
     }
 
     return booleanTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.ByteType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ByteTypeItemProvider byteTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.ByteType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createByteTypeAdapter() {
+    if (byteTypeItemProvider == null) {
+      byteTypeItemProvider = new ByteTypeItemProvider(this);
+    }
+
+    return byteTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.CharacterType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected CharacterTypeItemProvider characterTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.CharacterType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createCharacterTypeAdapter() {
+    if (characterTypeItemProvider == null) {
+      characterTypeItemProvider = new CharacterTypeItemProvider(this);
+    }
+
+    return characterTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.DateType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected DateTypeItemProvider dateTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.DateType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createDateTypeAdapter() {
+    if (dateTypeItemProvider == null) {
+      dateTypeItemProvider = new DateTypeItemProvider(this);
+    }
+
+    return dateTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.DoubleType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected DoubleTypeItemProvider doubleTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.DoubleType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createDoubleTypeAdapter() {
+    if (doubleTypeItemProvider == null) {
+      doubleTypeItemProvider = new DoubleTypeItemProvider(this);
+    }
+
+    return doubleTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.FloatType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected FloatTypeItemProvider floatTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.FloatType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createFloatTypeAdapter() {
+    if (floatTypeItemProvider == null) {
+      floatTypeItemProvider = new FloatTypeItemProvider(this);
+    }
+
+    return floatTypeItemProvider;
   }
 
   /**
@@ -170,6 +331,52 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
     }
 
     return integerTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.LongType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected LongTypeItemProvider longTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.LongType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createLongTypeAdapter() {
+    if (longTypeItemProvider == null) {
+      longTypeItemProvider = new LongTypeItemProvider(this);
+    }
+
+    return longTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.ShortType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ShortTypeItemProvider shortTypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.ShortType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createShortTypeAdapter() {
+    if (shortTypeItemProvider == null) {
+      shortTypeItemProvider = new ShortTypeItemProvider(this);
+    }
+
+    return shortTypeItemProvider;
   }
 
   /**
@@ -294,10 +501,28 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
    * @generated
    */
   public void dispose() {
+    if (bigDecimalTypeItemProvider != null)
+      bigDecimalTypeItemProvider.dispose();
+    if (bigIntegerTypeItemProvider != null)
+      bigIntegerTypeItemProvider.dispose();
     if (booleanTypeItemProvider != null)
       booleanTypeItemProvider.dispose();
+    if (byteTypeItemProvider != null)
+      byteTypeItemProvider.dispose();
+    if (characterTypeItemProvider != null)
+      characterTypeItemProvider.dispose();
+    if (dateTypeItemProvider != null)
+      dateTypeItemProvider.dispose();
+    if (doubleTypeItemProvider != null)
+      doubleTypeItemProvider.dispose();
+    if (floatTypeItemProvider != null)
+      floatTypeItemProvider.dispose();
     if (integerTypeItemProvider != null)
       integerTypeItemProvider.dispose();
+    if (longTypeItemProvider != null)
+      longTypeItemProvider.dispose();
+    if (shortTypeItemProvider != null)
+      shortTypeItemProvider.dispose();
     if (stringTypeItemProvider != null)
       stringTypeItemProvider.dispose();
     if (generatorAdapterFactoryTypeItemProvider != null)
@@ -352,9 +577,27 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
        */
       @Override
       public Object caseContract(Contract object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createBigDecimalType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createBigIntegerType()));
+
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createBooleanType()));
 
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createByteType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createCharacterType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createDateType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createDoubleType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createFloatType()));
+
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createIntegerType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createLongType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createShortType()));
 
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createStringType()));
 
@@ -370,9 +613,27 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
        */
       @Override
       public Object caseContext(Context object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createBigDecimalType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createBigIntegerType()));
+
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createBooleanType()));
 
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createByteType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createCharacterType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createDateType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createDoubleType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createFloatType()));
+
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createIntegerType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createLongType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createShortType()));
 
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, TypesFactory.eINSTANCE.createStringType()));
 
