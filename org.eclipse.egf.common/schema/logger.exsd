@@ -58,10 +58,10 @@
             <annotation>
                <documentation>
                   The implementation of the expected services.
-Must implement IEGFLog interface (either directly or not).
+Must implement IEGFLoggerFactory interface (either directly or not).
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.egf.common.log.IEGFLog"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.egf.common.log.IEGFLoggerFactory"/>
                </appInfo>
             </annotation>
          </attribute>

@@ -17,6 +17,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.common.log.IEGFLogger;
+import org.eclipse.egf.common.log.IEGFLoggerFactory;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.BundleContext;
 
@@ -77,14 +78,14 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFCommonPlugin.getDefault().getPluginID(), EXTENSION_POINT_LOGGER)) {
         Object object = ExtensionPointHelper.createInstance(configurationElement);
         // Make sure this is the correct resulting type.
-        if (object instanceof IEGFLogger == false) {
+        if (object instanceof IEGFLoggerFactory == false) {
           getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
-          getDefault().logInfo("This Class should be a sub-type of ''org.eclipse.egf.common.log.IEGFLogger''.", 1); //$NON-NLS-1$
+          getDefault().logInfo("This Class should be a sub-type of ''org.eclipse.egf.common.log.IEGFLoggerFactory''.", 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Extension-point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           continue;
         }
-        __egfLoggers.add((IEGFLogger) object);
+        __egfLoggers.add(((IEGFLoggerFactory) object).getLogger());
       }
     }
     return __egfLoggers;

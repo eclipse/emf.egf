@@ -39,7 +39,7 @@ public class ConsoleFactory implements IConsoleFactory {
           exists = true;
         }
       }
-      if (!exists) {
+      if (exists == false) {
         manager.addConsoles(new IConsole[] { console });
       }
       manager.showConsoleView(console);

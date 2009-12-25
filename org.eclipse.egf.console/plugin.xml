@@ -6,7 +6,7 @@
     point="org.eclipse.egf.common.logger"
   >
     <logger
-      class="org.eclipse.egf.console.internal.Console"
+      class="org.eclipse.egf.console.internal.EGFLoggerFactory"
     />
   </extension>
 
