@@ -18,27 +18,105 @@ import org.eclipse.pde.core.plugin.IPluginBase;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.osgi.framework.Bundle;
 
 public interface IPlatformBundle extends Comparable<IPlatformBundle> {
 
+  /**
+   * Returns the current bundle id associated with IPlatformBundle
+   * 
+   * @return the current bundle id.
+   */
   public String getBundleId();
 
+  /**
+   * Returns the initial bundle id associated with IPlatformBundle.
+   * useful when the symbolic name has changed in the manifest file.
+   * 
+   * @return the initial bundle id.
+   */
   public String getPreviousBundleId();
 
+  /**
+   * Returns an IProject if this IPlatformBundle is associated with a
+   * workspace IProject.
+   * 
+   * @return an IProject if this IPlatformBundle is a workspace project,
+   *         or <code>null</code> if this IPlatformBundle is a target one.
+   * 
+   */
   public IProject getProject();
 
+  /**
+   * Returns a Bundle if this IPlatformBundle is a target bundle.
+   * 
+   * @return a Bundle if this IPlatformBundle is a target bundle,
+   *         or <code>null</code> if this IPlatformBundle is a workspace one.
+   * 
+   */
+  public Bundle getBundle();
+
+  /**
+   * Returns a top-level model object.
+   * 
+   * @return a top-level model object representing a plug-in or a fragment.
+   */
   public IPluginBase getPluginBase();
 
+  /**
+   * Manifest file model associated with IPlatformBundle
+   * 
+   * @return all plug-ins and (possibly) fragments in the workspace as well as
+   *         all plug-ins and
+   *         (possibly) fragments that are checked on the Target Platform
+   *         preference page.
+   */
   public IPluginModelBase getPluginModelBase();
 
+  /**
+   * Tests if this IPlatformBundle is for the plug-in fragment.
+   * 
+   * @return <code>true</code> if the model is for the fragment,
+   *         <code>false</code> otherwise.
+   */
+  public boolean isFragment();
+
+  /**
+   * Returns the bundle description of the plug-in
+   * in case the plug-in uses the new OSGi bundle layout.
+   * 
+   * @return bundle description if this is an OSGi plug-in,
+   *         or <code>null</code> if the plug-in is in a classic
+   *         format.
+   * 
+   * @since 3.0
+   */
   public BundleDescription getBundleDescription();
 
+  /**
+   * Whether or not this IPlatformBundle is a target IPlatformBundle.
+   * 
+   * @return true if this IPlatformBundle is a target bundle,
+   *         false if this IPlatformBundle is a workspace bundle.
+   * 
+   */
   public boolean isTarget();
 
   public boolean isEmpty();
 
+  /**
+   * The location string for this bundle.
+   * 
+   * @return The bundle location or null if the bundle description
+   *         does not have a location
+   */
   public String getBundleLocation();
 
+  /**
+   * The URL for this bundle.
+   * 
+   * @return The bundle URL.
+   */
   public URL getBundleURL();
 
   public IPlatformExtensionPoint[] getPlatformExtensionPoints();

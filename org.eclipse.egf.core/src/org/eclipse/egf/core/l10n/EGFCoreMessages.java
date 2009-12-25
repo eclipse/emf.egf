@@ -32,9 +32,10 @@ public class EGFCoreMessages {
   public static String AbstractTask_doExecute;
   public static String AbstractTask_preExecute;
   public static String AbstractTask_errorTaskInstance;
-  public static String AbstractTask_errorWorkspaceTaskInstance;
 
   public static String classloader_errorFindClass;
   public static String classloader_errorOuptutFolder;
+
+  public static String URLBundleProjectClassLoader_errorClasspath;
 
 }

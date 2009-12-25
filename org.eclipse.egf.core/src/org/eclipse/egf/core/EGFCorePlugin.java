@@ -1,4 +1,4 @@
-/*******************************************************************************
+/**
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,7 +7,7 @@
  * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.egf.core;
 
 import java.util.Collection;
@@ -139,9 +139,9 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    */
   public static Map<URI, URI> computePlatformPluginToPlatformResourceMap() {
     Map<URI, URI> result = new HashMap<URI, URI>();
-    for (IPlatformFcore fc : getWorkspacePlatformFcores()) {
-      URI platformPluginURI = URI.createPlatformPluginURI(fc.getPlatformBundle().getBundleId() + "/", false); //$NON-NLS-1$
-      URI platformResourceURI = URI.createPlatformResourceURI(fc.getPlatformBundle().getProject().getName() + "/", true); //$NON-NLS-1$
+    for (IPlatformFcore fcore : getWorkspacePlatformFcores()) {
+      URI platformPluginURI = URI.createPlatformPluginURI(fcore.getPlatformBundle().getBundleId() + "/", false); //$NON-NLS-1$
+      URI platformResourceURI = URI.createPlatformResourceURI(fcore.getPlatformBundle().getProject().getName() + "/", true); //$NON-NLS-1$
       result.put(platformPluginURI, platformResourceURI);
     }
     return result;
@@ -165,8 +165,8 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     Map<URI, URI> result = new HashMap<URI, URI>();
     IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
     if (root != null) {
-      for (IPlatformFcore fc : fcores) {
-        String pluginID = fc.getURI().segment(1);
+      for (IPlatformFcore fcore : fcores) {
+        String pluginID = fcore.getURI().segment(1);
         for (IProject project : root.getProjects()) {
           IPluginModelBase base = BundleHelper.getPluginModelBase(project);
           if (base != null && BundleHelper.getBundleId(base).equals(pluginID) && project.isOpen() == false) {

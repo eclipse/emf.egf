@@ -37,6 +37,7 @@ import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginObject;
 import org.eclipse.pde.internal.ui.PDELabelProvider;
+import org.osgi.framework.Bundle;
 
 public class PlatformBundle implements IPlatformBundle {
 
@@ -110,15 +111,32 @@ public class PlatformBundle implements IPlatformBundle {
     return _base;
   }
 
+  public boolean isFragment() {
+    return getPluginModelBase().isFragmentModel();
+  }
+
   /**
-   * Get the IProject from this IPlatformPlugin
+   * Get the IProject from this IPlatformBundle
    * 
-   * @return null if the plug-in is not in the workspace.
+   * @return null if the bundle is not in the workspace.
    */
   public IProject getProject() {
     if (isTarget() == false) {
       // Retrieve project from the model.
       return getPluginModelBase().getUnderlyingResource().getProject();
+    }
+    return null;
+  }
+
+  /**
+   * Get the Bundle from this IPlatformBundle
+   * 
+   * @return null if the bundle is in the workspace.
+   */
+  public Bundle getBundle() {
+    if (isTarget()) {
+      // Retrieve bundle from the registry
+      return Platform.getBundle(getBundleId());
     }
     return null;
   }
