@@ -42,80 +42,67 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
  * @generated
  */
 public class OrchestrationItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
-    /**
-     * This constructs an instance from a factory and a notifier.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public OrchestrationItemProvider(AdapterFactory adapterFactory) {
-        super(adapterFactory);
-    }
+  /**
+   * This constructs an instance from a factory and a notifier.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public OrchestrationItemProvider(AdapterFactory adapterFactory) {
+    super(adapterFactory);
+  }
 
-    /**
-     * This returns the property descriptors for the adapted class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-        if (itemPropertyDescriptors == null) {
-            super.getPropertyDescriptors(object);
+  /**
+   * This returns the property descriptors for the adapted class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
+    if (itemPropertyDescriptors == null) {
+      super.getPropertyDescriptors(object);
 
-            addStepsPropertyDescriptor(object);
-        }
-        return itemPropertyDescriptors;
     }
+    return itemPropertyDescriptors;
+  }
 
-    /**
-     * This adds a property descriptor for the Steps feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addStepsPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Orchestration_steps_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_Orchestration_steps_feature", "_UI_Orchestration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                FcorePackage.Literals.ORCHESTRATION__STEPS, false, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
-    }
+  /**
+   * This returns the label text for the adapted class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getText(Object object) {
+    String label = ((Orchestration) object).getName();
+    return label == null || label.length() == 0 ? "[" + getString("_UI_Orchestration_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_Orchestration_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+  }
 
-    /**
-     * This returns the label text for the adapted class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public String getText(Object object) {
-        String label = ((Orchestration) object).getName();
-        return label == null || label.length() == 0 ? "[" + getString("_UI_Orchestration_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                label + " [" + getString("_UI_Orchestration_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    }
+  /**
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void notifyChanged(Notification notification) {
+    updateChildren(notification);
+    super.notifyChanged(notification);
+  }
 
-    /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void notifyChanged(Notification notification) {
-        updateChildren(notification);
-        super.notifyChanged(notification);
-    }
-
-    /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-     * that can be created under this object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-        super.collectNewChildDescriptors(newChildDescriptors, object);
-    }
+  /**
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+   * that can be created under this object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+    super.collectNewChildDescriptors(newChildDescriptors, object);
+  }
 
 }

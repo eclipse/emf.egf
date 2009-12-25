@@ -40,32 +40,26 @@ import org.eclipse.osgi.util.NLS;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.productionplan.impl.ProductionPlanImpl#getProductionPlanInvocations
- * <em>Production Plan Invocations</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.productionplan.impl.ProductionPlanImpl#getProductionPlanInvocations <em>Production Plan Invocations</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ProductionPlanImpl extends OrchestrationImpl implements ProductionPlan {
   /**
-   * A set of bit flags representing the values of boolean attributes and
-   * whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getProductionPlanInvocations()
-   * <em>Production Plan Invocations</em>}' containment reference list.
+   * The cached value of the '{@link #getProductionPlanInvocations() <em>Production Plan Invocations</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getProductionPlanInvocations()
    * @generated
    * @ordered
@@ -75,7 +69,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ProductionPlanImpl() {
@@ -85,7 +78,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -96,7 +88,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<ProductionPlanInvocation> getProductionPlanInvocations() {
@@ -109,7 +100,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -125,7 +115,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -178,7 +167,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -193,7 +181,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -211,7 +198,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -227,7 +213,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

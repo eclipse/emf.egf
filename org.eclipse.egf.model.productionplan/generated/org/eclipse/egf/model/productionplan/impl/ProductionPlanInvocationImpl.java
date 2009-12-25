@@ -30,21 +30,17 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.productionplan.impl.ProductionPlanInvocationImpl#getProductionPlan
- * <em>Production Plan</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.productionplan.impl.ProductionPlanInvocationImpl#getProductionPlan <em>Production Plan</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ProductionPlanInvocationImpl extends InvocationImpl implements ProductionPlanInvocation {
   /**
-   * A set of bit flags representing the values of boolean attributes and
-   * whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -53,7 +49,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ProductionPlanInvocationImpl() {
@@ -63,7 +58,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -74,7 +68,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ProductionPlan getProductionPlan() {
@@ -86,7 +79,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetProductionPlan(ProductionPlan newProductionPlan, NotificationChain msgs) {
@@ -97,7 +89,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setProductionPlan(ProductionPlan newProductionPlan) {
@@ -119,7 +110,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -136,7 +126,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -151,7 +140,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -166,7 +154,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -181,7 +168,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -197,7 +183,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -213,7 +198,6 @@ public abstract class ProductionPlanInvocationImpl extends InvocationImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

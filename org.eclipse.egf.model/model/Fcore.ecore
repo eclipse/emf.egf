@@ -19,10 +19,9 @@
       <eParameters name="productionContext" eType="#//IProductionContext"/>
       <eParameters name="monitor" eType="#//IProgressMonitor"/>
     </eOperations>
+    <eOperations name="getSteps" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contractContainer" eType="#//ContractContainer"
         containment="true" resolveProxies="false" eOpposite="#//ContractContainer/activity"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="steps" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="#//Activity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -55,20 +54,18 @@
       <eParameters name="productionContext" eType="#//IProductionContext"/>
       <eParameters name="monitor" eType="#//IProgressMonitor"/>
     </eOperations>
+    <eOperations name="getSteps" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="factoryComponent" lowerBound="1"
         eType="#//FactoryComponent" resolveProxies="false" eOpposite="#//FactoryComponent/orchestration"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="steps" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Invocation" abstract="true" eSuperTypes="#//ModelElement">
     <eOperations name="invoke" eExceptions="#//InvocationException">
       <eParameters name="productionContext" eType="#//IProductionContext"/>
       <eParameters name="monitor" eType="#//IProgressMonitor"/>
     </eOperations>
+    <eOperations name="getSteps" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//Context"
         containment="true" resolveProxies="false" eOpposite="#//Context/invocation"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="steps" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EInt"
-        changeable="false" volatile="true" transient="true" derived="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="invocation" eType="#//Invocation"

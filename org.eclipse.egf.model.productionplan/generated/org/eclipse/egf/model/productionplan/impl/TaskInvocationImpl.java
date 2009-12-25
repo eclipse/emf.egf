@@ -33,12 +33,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.productionplan.impl.TaskInvocationImpl#getTask
- * <em>Task</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.productionplan.impl.TaskInvocationImpl#getTask <em>Task</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements TaskInvocation {
@@ -46,7 +44,6 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
    * The cached value of the '{@link #getTask() <em>Task</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getTask()
    * @generated
    * @ordered
@@ -56,7 +53,6 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TaskInvocationImpl() {
@@ -66,7 +62,6 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -77,7 +72,6 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Task getTask() {
@@ -95,7 +89,6 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Task basicGetTask() {
@@ -105,7 +98,6 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setTask(Task newTask) {
@@ -149,7 +141,6 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -166,7 +157,6 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -182,7 +172,6 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -198,7 +187,6 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

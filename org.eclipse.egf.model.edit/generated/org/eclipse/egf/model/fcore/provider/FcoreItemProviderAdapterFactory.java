@@ -59,383 +59,383 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable, IChildCreationExtender {
-    /**
-     * This keeps track of the root adapter factory that delegates to this adapter factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ComposedAdapterFactory parentAdapterFactory;
+  /**
+   * This keeps track of the root adapter factory that delegates to this adapter factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ComposedAdapterFactory parentAdapterFactory;
 
-    /**
-     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected IChangeNotifier changeNotifier = new ChangeNotifier();
+  /**
+   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
-    /**
-     * This helps manage the child creation extenders.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(EGFModelsEditPlugin.INSTANCE, FcorePackage.eNS_URI);
+  /**
+   * This helps manage the child creation extenders.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(EGFModelsEditPlugin.INSTANCE, FcorePackage.eNS_URI);
 
-    /**
-     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected Collection<Object> supportedTypes = new ArrayList<Object>();
+  /**
+   * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
-    /**
-     * This constructs an instance.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public FcoreItemProviderAdapterFactory() {
-        supportedTypes.add(IEditingDomainItemProvider.class);
-        supportedTypes.add(IStructuredItemContentProvider.class);
-        supportedTypes.add(ITreeItemContentProvider.class);
-        supportedTypes.add(IItemLabelProvider.class);
-        supportedTypes.add(IItemPropertySource.class);
-        supportedTypes.add(ITableItemLabelProvider.class);
-        supportedTypes.add(ITableItemColorProvider.class);
-        supportedTypes.add(ITableItemFontProvider.class);
-        supportedTypes.add(IItemColorProvider.class);
-        supportedTypes.add(IItemFontProvider.class);
+  /**
+   * This constructs an instance.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FcoreItemProviderAdapterFactory() {
+    supportedTypes.add(IEditingDomainItemProvider.class);
+    supportedTypes.add(IStructuredItemContentProvider.class);
+    supportedTypes.add(ITreeItemContentProvider.class);
+    supportedTypes.add(IItemLabelProvider.class);
+    supportedTypes.add(IItemPropertySource.class);
+    supportedTypes.add(ITableItemLabelProvider.class);
+    supportedTypes.add(ITableItemColorProvider.class);
+    supportedTypes.add(ITableItemFontProvider.class);
+    supportedTypes.add(IItemColorProvider.class);
+    supportedTypes.add(IItemFontProvider.class);
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Task} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected TaskItemProvider taskItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Task}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createTaskAdapter() {
+    if (taskItemProvider == null) {
+      taskItemProvider = new TaskItemProvider(this);
     }
 
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Task} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected TaskItemProvider taskItemProvider;
+    return taskItemProvider;
+  }
 
-    /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Task}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createTaskAdapter() {
-        if (taskItemProvider == null) {
-            taskItemProvider = new TaskItemProvider(this);
-        }
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.FactoryComponent} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected FactoryComponentItemProvider factoryComponentItemProvider;
 
-        return taskItemProvider;
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponent}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createFactoryComponentAdapter() {
+    if (factoryComponentItemProvider == null) {
+      factoryComponentItemProvider = new FactoryComponentItemProvider(this);
     }
 
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.FactoryComponent} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected FactoryComponentItemProvider factoryComponentItemProvider;
+    return factoryComponentItemProvider;
+  }
 
-    /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponent}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createFactoryComponentAdapter() {
-        if (factoryComponentItemProvider == null) {
-            factoryComponentItemProvider = new FactoryComponentItemProvider(this);
-        }
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ViewpointContainer} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ViewpointContainerItemProvider viewpointContainerItemProvider;
 
-        return factoryComponentItemProvider;
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ViewpointContainer}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createViewpointContainerAdapter() {
+    if (viewpointContainerItemProvider == null) {
+      viewpointContainerItemProvider = new ViewpointContainerItemProvider(this);
     }
 
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ViewpointContainer} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ViewpointContainerItemProvider viewpointContainerItemProvider;
+    return viewpointContainerItemProvider;
+  }
 
-    /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ViewpointContainer}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createViewpointContainerAdapter() {
-        if (viewpointContainerItemProvider == null) {
-            viewpointContainerItemProvider = new ViewpointContainerItemProvider(this);
-        }
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Context} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContextItemProvider contextItemProvider;
 
-        return viewpointContainerItemProvider;
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Context}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContextAdapter() {
+    if (contextItemProvider == null) {
+      contextItemProvider = new ContextItemProvider(this);
     }
 
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Context} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ContextItemProvider contextItemProvider;
+    return contextItemProvider;
+  }
 
-    /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Context}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createContextAdapter() {
-        if (contextItemProvider == null) {
-            contextItemProvider = new ContextItemProvider(this);
-        }
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractContainer} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContractContainerItemProvider contractContainerItemProvider;
 
-        return contextItemProvider;
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractContainer}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContractContainerAdapter() {
+    if (contractContainerItemProvider == null) {
+      contractContainerItemProvider = new ContractContainerItemProvider(this);
     }
 
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractContainer} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ContractContainerItemProvider contractContainerItemProvider;
+    return contractContainerItemProvider;
+  }
 
-    /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractContainer}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createContractContainerAdapter() {
-        if (contractContainerItemProvider == null) {
-            contractContainerItemProvider = new ContractContainerItemProvider(this);
-        }
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Contract} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContractItemProvider contractItemProvider;
 
-        return contractContainerItemProvider;
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Contract}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContractAdapter() {
+    if (contractItemProvider == null) {
+      contractItemProvider = new ContractItemProvider(this);
     }
 
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Contract} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ContractItemProvider contractItemProvider;
+    return contractItemProvider;
+  }
 
-    /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Contract}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createContractAdapter() {
-        if (contractItemProvider == null) {
-            contractItemProvider = new ContractItemProvider(this);
-        }
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractValue} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContractValueItemProvider contractValueItemProvider;
 
-        return contractItemProvider;
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractValue}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContractValueAdapter() {
+    if (contractValueItemProvider == null) {
+      contractValueItemProvider = new ContractValueItemProvider(this);
     }
 
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractValue} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ContractValueItemProvider contractValueItemProvider;
+    return contractValueItemProvider;
+  }
 
-    /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractValue}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createContractValueAdapter() {
-        if (contractValueItemProvider == null) {
-            contractValueItemProvider = new ContractValueItemProvider(this);
-        }
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractConnector} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContractConnectorItemProvider contractConnectorItemProvider;
 
-        return contractValueItemProvider;
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractConnector}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContractConnectorAdapter() {
+    if (contractConnectorItemProvider == null) {
+      contractConnectorItemProvider = new ContractConnectorItemProvider(this);
     }
 
-    /**
-     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractConnector} instances.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ContractConnectorItemProvider contractConnectorItemProvider;
+    return contractConnectorItemProvider;
+  }
 
-    /**
-     * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractConnector}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter createContractConnectorAdapter() {
-        if (contractConnectorItemProvider == null) {
-            contractConnectorItemProvider = new ContractConnectorItemProvider(this);
-        }
+  /**
+   * This returns the root adapter factory that contains this factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ComposeableAdapterFactory getRootAdapterFactory() {
+    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+  }
 
-        return contractConnectorItemProvider;
+  /**
+   * This sets the composed adapter factory that contains this factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+    this.parentAdapterFactory = parentAdapterFactory;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean isFactoryForType(Object type) {
+    return supportedTypes.contains(type) || super.isFactoryForType(type);
+  }
+
+  /**
+   * This implementation substitutes the factory itself as the key for the adapter.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter adapt(Notifier notifier, Object type) {
+    return super.adapt(notifier, this);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object adapt(Object object, Object type) {
+    if (isFactoryForType(type)) {
+      Object adapter = super.adapt(object, type);
+      if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+        return adapter;
+      }
     }
 
-    /**
-     * This returns the root adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ComposeableAdapterFactory getRootAdapterFactory() {
-        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    return null;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public List<IChildCreationExtender> getChildCreationExtenders() {
+    return childCreationExtenderManager.getChildCreationExtenders();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+    return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ResourceLocator getResourceLocator() {
+    return childCreationExtenderManager;
+  }
+
+  /**
+   * This adds a listener.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void addListener(INotifyChangedListener notifyChangedListener) {
+    changeNotifier.addListener(notifyChangedListener);
+  }
+
+  /**
+   * This removes a listener.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void removeListener(INotifyChangedListener notifyChangedListener) {
+    changeNotifier.removeListener(notifyChangedListener);
+  }
+
+  /**
+   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void fireNotifyChanged(Notification notification) {
+    changeNotifier.fireNotifyChanged(notification);
+
+    if (parentAdapterFactory != null) {
+      parentAdapterFactory.fireNotifyChanged(notification);
     }
+  }
 
-    /**
-     * This sets the composed adapter factory that contains this factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-        this.parentAdapterFactory = parentAdapterFactory;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean isFactoryForType(Object type) {
-        return supportedTypes.contains(type) || super.isFactoryForType(type);
-    }
-
-    /**
-     * This implementation substitutes the factory itself as the key for the adapter.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Adapter adapt(Notifier notifier, Object type) {
-        return super.adapt(notifier, this);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object adapt(Object object, Object type) {
-        if (isFactoryForType(type)) {
-            Object adapter = super.adapt(object, type);
-            if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
-                return adapter;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public List<IChildCreationExtender> getChildCreationExtenders() {
-        return childCreationExtenderManager.getChildCreationExtenders();
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Collection<?> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-        return childCreationExtenderManager.getNewChildDescriptors(object, editingDomain);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public ResourceLocator getResourceLocator() {
-        return childCreationExtenderManager;
-    }
-
-    /**
-     * This adds a listener.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void addListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.addListener(notifyChangedListener);
-    }
-
-    /**
-     * This removes a listener.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void removeListener(INotifyChangedListener notifyChangedListener) {
-        changeNotifier.removeListener(notifyChangedListener);
-    }
-
-    /**
-     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void fireNotifyChanged(Notification notification) {
-        changeNotifier.fireNotifyChanged(notification);
-
-        if (parentAdapterFactory != null) {
-            parentAdapterFactory.fireNotifyChanged(notification);
-        }
-    }
-
-    /**
-     * This disposes all of the item providers created by this factory. 
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void dispose() {
-        if (taskItemProvider != null)
-            taskItemProvider.dispose();
-        if (factoryComponentItemProvider != null)
-            factoryComponentItemProvider.dispose();
-        if (viewpointContainerItemProvider != null)
-            viewpointContainerItemProvider.dispose();
-        if (contextItemProvider != null)
-            contextItemProvider.dispose();
-        if (contractContainerItemProvider != null)
-            contractContainerItemProvider.dispose();
-        if (contractItemProvider != null)
-            contractItemProvider.dispose();
-        if (contractValueItemProvider != null)
-            contractValueItemProvider.dispose();
-        if (contractConnectorItemProvider != null)
-            contractConnectorItemProvider.dispose();
-    }
+  /**
+   * This disposes all of the item providers created by this factory. 
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void dispose() {
+    if (taskItemProvider != null)
+      taskItemProvider.dispose();
+    if (factoryComponentItemProvider != null)
+      factoryComponentItemProvider.dispose();
+    if (viewpointContainerItemProvider != null)
+      viewpointContainerItemProvider.dispose();
+    if (contextItemProvider != null)
+      contextItemProvider.dispose();
+    if (contractContainerItemProvider != null)
+      contractContainerItemProvider.dispose();
+    if (contractItemProvider != null)
+      contractItemProvider.dispose();
+    if (contractValueItemProvider != null)
+      contractValueItemProvider.dispose();
+    if (contractConnectorItemProvider != null)
+      contractConnectorItemProvider.dispose();
+  }
 
 }

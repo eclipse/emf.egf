@@ -39,287 +39,287 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public class ContractConnectorImpl extends ModelElementImpl implements ContractConnector {
-    /**
-     * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getSource()
-     * @generated
-     * @ordered
-     */
-    protected Contract source;
+  /**
+   * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getSource()
+   * @generated
+   * @ordered
+   */
+  protected Contract source;
 
-    /**
-     * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getTarget()
-     * @generated
-     * @ordered
-     */
-    protected Contract target;
+  /**
+   * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTarget()
+   * @generated
+   * @ordered
+   */
+  protected Contract target;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected ContractConnectorImpl() {
-        super();
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContractConnectorImpl() {
+    super();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return FcorePackage.Literals.CONTRACT_CONNECTOR;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return FcorePackage.Literals.CONTRACT_CONNECTOR;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Context getContext() {
-        if (eContainerFeatureID() != FcorePackage.CONTRACT_CONNECTOR__CONTEXT)
-            return null;
-        return (Context) eContainer();
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Context getContext() {
+    if (eContainerFeatureID() != FcorePackage.CONTRACT_CONNECTOR__CONTEXT)
+      return null;
+    return (Context) eContainer();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetContext(Context newContext, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject) newContext, FcorePackage.CONTRACT_CONNECTOR__CONTEXT, msgs);
-        return msgs;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetContext(Context newContext, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject) newContext, FcorePackage.CONTRACT_CONNECTOR__CONTEXT, msgs);
+    return msgs;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setContext(Context newContext) {
-        if (newContext != eInternalContainer() || (eContainerFeatureID() != FcorePackage.CONTRACT_CONNECTOR__CONTEXT && newContext != null)) {
-            if (EcoreUtil.isAncestor(this, newContext))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newContext != null)
-                msgs = ((InternalEObject) newContext).eInverseAdd(this, FcorePackage.CONTEXT__CONNECTORS, Context.class, msgs);
-            msgs = basicSetContext(newContext, msgs);
-            if (msgs != null)
-                msgs.dispatch();
-        } else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_CONNECTOR__CONTEXT, newContext, newContext));
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContext(Context newContext) {
+    if (newContext != eInternalContainer() || (eContainerFeatureID() != FcorePackage.CONTRACT_CONNECTOR__CONTEXT && newContext != null)) {
+      if (EcoreUtil.isAncestor(this, newContext))
+        throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+      NotificationChain msgs = null;
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      if (newContext != null)
+        msgs = ((InternalEObject) newContext).eInverseAdd(this, FcorePackage.CONTEXT__CONNECTORS, Context.class, msgs);
+      msgs = basicSetContext(newContext, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_CONNECTOR__CONTEXT, newContext, newContext));
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Contract getSource() {
-        if (source != null && source.eIsProxy()) {
-            InternalEObject oldSource = (InternalEObject) source;
-            source = (Contract) eResolveProxy(oldSource);
-            if (source != oldSource) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, FcorePackage.CONTRACT_CONNECTOR__SOURCE, oldSource, source));
-            }
-        }
-        return source;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Contract basicGetSource() {
-        return source;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setSource(Contract newSource) {
-        Contract oldSource = source;
-        source = newSource;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Contract getSource() {
+    if (source != null && source.eIsProxy()) {
+      InternalEObject oldSource = (InternalEObject) source;
+      source = (Contract) eResolveProxy(oldSource);
+      if (source != oldSource) {
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_CONNECTOR__SOURCE, oldSource, source));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FcorePackage.CONTRACT_CONNECTOR__SOURCE, oldSource, source));
+      }
     }
+    return source;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Contract getTarget() {
-        if (target != null && target.eIsProxy()) {
-            InternalEObject oldTarget = (InternalEObject) target;
-            target = (Contract) eResolveProxy(oldTarget);
-            if (target != oldTarget) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, FcorePackage.CONTRACT_CONNECTOR__TARGET, oldTarget, target));
-            }
-        }
-        return target;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Contract basicGetSource() {
+    return source;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public Contract basicGetTarget() {
-        return target;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setSource(Contract newSource) {
+    Contract oldSource = source;
+    source = newSource;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_CONNECTOR__SOURCE, oldSource, source));
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setTarget(Contract newTarget) {
-        Contract oldTarget = target;
-        target = newTarget;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Contract getTarget() {
+    if (target != null && target.eIsProxy()) {
+      InternalEObject oldTarget = (InternalEObject) target;
+      target = (Contract) eResolveProxy(oldTarget);
+      if (target != oldTarget) {
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_CONNECTOR__TARGET, oldTarget, target));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FcorePackage.CONTRACT_CONNECTOR__TARGET, oldTarget, target));
+      }
     }
+    return target;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-        case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetContext((Context) otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Contract basicGetTarget() {
+    return target;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-        case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
-            return basicSetContext(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setTarget(Contract newTarget) {
+    Contract oldTarget = target;
+    target = newTarget;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT_CONNECTOR__TARGET, oldTarget, target));
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-        case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
-            return eInternalContainer().eInverseRemove(this, FcorePackage.CONTEXT__CONNECTORS, Context.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      return basicSetContext((Context) otherEnd, msgs);
     }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-        case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
-            return getContext();
-        case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
-            if (resolve)
-                return getSource();
-            return basicGetSource();
-        case FcorePackage.CONTRACT_CONNECTOR__TARGET:
-            if (resolve)
-                return getTarget();
-            return basicGetTarget();
-        }
-        return super.eGet(featureID, resolve, coreType);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
+      return basicSetContext(null, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-        case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
-            setContext((Context) newValue);
-            return;
-        case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
-            setSource((Contract) newValue);
-            return;
-        case FcorePackage.CONTRACT_CONNECTOR__TARGET:
-            setTarget((Contract) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    switch (eContainerFeatureID()) {
+    case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
+      return eInternalContainer().eInverseRemove(this, FcorePackage.CONTEXT__CONNECTORS, Context.class, msgs);
     }
+    return super.eBasicRemoveFromContainerFeature(msgs);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-        case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
-            setContext((Context) null);
-            return;
-        case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
-            setSource((Contract) null);
-            return;
-        case FcorePackage.CONTRACT_CONNECTOR__TARGET:
-            setTarget((Contract) null);
-            return;
-        }
-        super.eUnset(featureID);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    switch (featureID) {
+    case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
+      return getContext();
+    case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
+      if (resolve)
+        return getSource();
+      return basicGetSource();
+    case FcorePackage.CONTRACT_CONNECTOR__TARGET:
+      if (resolve)
+        return getTarget();
+      return basicGetTarget();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-        case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
-            return getContext() != null;
-        case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
-            return source != null;
-        case FcorePackage.CONTRACT_CONNECTOR__TARGET:
-            return target != null;
-        }
-        return super.eIsSet(featureID);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue) {
+    switch (featureID) {
+    case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
+      setContext((Context) newValue);
+      return;
+    case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
+      setSource((Contract) newValue);
+      return;
+    case FcorePackage.CONTRACT_CONNECTOR__TARGET:
+      setTarget((Contract) newValue);
+      return;
     }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID) {
+    switch (featureID) {
+    case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
+      setContext((Context) null);
+      return;
+    case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
+      setSource((Contract) null);
+      return;
+    case FcorePackage.CONTRACT_CONNECTOR__TARGET:
+      setTarget((Contract) null);
+      return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID) {
+    switch (featureID) {
+    case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
+      return getContext() != null;
+    case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
+      return source != null;
+    case FcorePackage.CONTRACT_CONNECTOR__TARGET:
+      return target != null;
+    }
+    return super.eIsSet(featureID);
+  }
 
 } // ContractConnectorImpl

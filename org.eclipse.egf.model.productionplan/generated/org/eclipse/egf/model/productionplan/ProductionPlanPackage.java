@@ -113,15 +113,6 @@ public interface ProductionPlanPackage extends EPackage {
   int PRODUCTION_PLAN__FACTORY_COMPONENT = FcorePackage.ORCHESTRATION__FACTORY_COMPONENT;
 
   /**
-   * The feature id for the '<em><b>Steps</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRODUCTION_PLAN__STEPS = FcorePackage.ORCHESTRATION__STEPS;
-
-  /**
    * The feature id for the '<em><b>Production Plan Invocations</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -186,15 +177,6 @@ public interface ProductionPlanPackage extends EPackage {
   int PRODUCTION_PLAN_INVOCATION__CONTEXT = FcorePackage.INVOCATION__CONTEXT;
 
   /**
-   * The feature id for the '<em><b>Steps</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRODUCTION_PLAN_INVOCATION__STEPS = FcorePackage.INVOCATION__STEPS;
-
-  /**
    * The feature id for the '<em><b>Production Plan</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -257,15 +239,6 @@ public interface ProductionPlanPackage extends EPackage {
    * @ordered
    */
   int FACTORY_COMPONENT_INVOCATION__CONTEXT = PRODUCTION_PLAN_INVOCATION__CONTEXT;
-
-  /**
-   * The feature id for the '<em><b>Steps</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FACTORY_COMPONENT_INVOCATION__STEPS = PRODUCTION_PLAN_INVOCATION__STEPS;
 
   /**
    * The feature id for the '<em><b>Production Plan</b></em>' container reference.
@@ -339,15 +312,6 @@ public interface ProductionPlanPackage extends EPackage {
    * @ordered
    */
   int TASK_INVOCATION__CONTEXT = PRODUCTION_PLAN_INVOCATION__CONTEXT;
-
-  /**
-   * The feature id for the '<em><b>Steps</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK_INVOCATION__STEPS = PRODUCTION_PLAN_INVOCATION__STEPS;
 
   /**
    * The feature id for the '<em><b>Production Plan</b></em>' container reference.
