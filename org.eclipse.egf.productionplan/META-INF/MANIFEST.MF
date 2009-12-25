@@ -17,4 +17,3 @@ Export-Package:
  org.eclipse.egf.productionplan.context,
  org.eclipse.egf.productionplan.invocation
 Bundle-ActivationPolicy: lazy
-Eclipse-ExtensibleAPI: true
