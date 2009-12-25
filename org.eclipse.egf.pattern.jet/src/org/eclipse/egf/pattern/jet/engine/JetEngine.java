@@ -42,7 +42,6 @@ import org.eclipse.emf.codegen.jet.JETCompiler;
 /**
  * @author Guiu
  * 
- *         Temp class ...
  */
 public class JetEngine extends PatternEngine {
 
