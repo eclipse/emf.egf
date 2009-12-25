@@ -35,23 +35,29 @@ public class PatternLibraryCollector extends Collector<PatternLibrary> {
     public static final PatternLibraryCollector INSTANCE = new PatternLibraryCollector();
 
     protected void doCollect(EObject source, final Set<PatternLibrary> result, final Set<String> ids) {
-        switch (source.eClass().getClassifierID()) {
-        case FcorePackage.FACTORY_COMPONENT:
-            for (Viewpoint viewpoint : ((FactoryComponent) source).getViewpointContainer().getViewpoints())
-                doCollect(viewpoint, result, ids);
-            return;
-        case PatternPackage.PATTERN_VIEWPOINT:
-            for (PatternLibrary lib : ((PatternViewpoint) source).getLibraries())
-                doCollect(lib, result, ids);
-            return;
-        case PatternPackage.PATTERN_LIBRARY:
-            final PatternLibrary lib = (PatternLibrary) source;
-            final String id = lib.getID();
-            if (ids == null || ids.isEmpty() || (id != null && ids.contains(id)))
-                result.add(lib);
-            for (PatternElement elem : lib.getElements())
-                doCollect(elem, result, ids);
-            return;
+        if (FcorePackage.eINSTANCE.equals(source.eClass().getEPackage())) {
+            switch (source.eClass().getClassifierID()) {
+            case FcorePackage.FACTORY_COMPONENT:
+                for (Viewpoint viewpoint : ((FactoryComponent) source).getViewpointContainer().getViewpoints())
+                    doCollect(viewpoint, result, ids);
+                return;
+            }
+        }
+        if (PatternPackage.eINSTANCE.equals(source.eClass().getEPackage())) {
+            switch (source.eClass().getClassifierID()) {
+            case PatternPackage.PATTERN_VIEWPOINT:
+                for (PatternLibrary lib : ((PatternViewpoint) source).getLibraries())
+                    doCollect(lib, result, ids);
+                return;
+            case PatternPackage.PATTERN_LIBRARY:
+                final PatternLibrary lib = (PatternLibrary) source;
+                final String id = lib.getID();
+                if (ids == null || ids.isEmpty() || (id != null && ids.contains(id)))
+                    result.add(lib);
+                for (PatternElement elem : lib.getElements())
+                    doCollect(elem, result, ids);
+                return;
+            }
         }
     }
 
