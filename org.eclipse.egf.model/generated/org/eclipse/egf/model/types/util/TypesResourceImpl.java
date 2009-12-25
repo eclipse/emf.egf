@@ -17,8 +17,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.egf.model.types.TypeElement;
-import org.eclipse.egf.model.uri.EGFSchemeAware;
+import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.uri.ModelSchemeAware;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.types.util.TypesResourceFactoryImpl
  * @generated
  */
@@ -113,7 +112,7 @@ public class TypesResourceImpl extends XMIResourceImpl {
    */
   @Override
   public String getID(EObject eObject) {
-    return eObject instanceof TypeElement ? ((TypeElement) eObject).getID() : super.getID(eObject);
+    return eObject instanceof ModelElement ? ((ModelElement) eObject).getID() : super.getID(eObject);
   }
 
   /**
@@ -141,7 +140,7 @@ public class TypesResourceImpl extends XMIResourceImpl {
     });
     getDefaultSaveOptions().put(XMLResource.OPTION_LINE_WIDTH, new Integer(80));
     // Avoid relative paths from workspace resources to plugin resources.
-    getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new EGFSchemeAware());
+    getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new ModelSchemeAware());
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
     // Load Options
