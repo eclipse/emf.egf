@@ -13,5 +13,9 @@
     <contracts xmi:id="_2vwLILpOEd6O-6ob3O13Lw" name="amount" mode="OUT">
       <type xmi:type="types:FloatType" xmi:id="_5M9NYLpOEd6O-6ob3O13Lw"/>
     </contracts>
+    <contracts xmi:id="_PFOYwbshEd6hlL3ru-eQtQ" name="generatorAdapterFactory" mode="OUT">
+      <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="_PsaUkLshEd6hlL3ru-eQtQ"
+          value="org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"/>
+    </contracts>
   </contractContainer>
 </productionplan:Task>
