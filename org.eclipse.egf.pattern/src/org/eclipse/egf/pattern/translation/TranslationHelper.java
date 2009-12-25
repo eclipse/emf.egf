@@ -74,6 +74,10 @@ public class TranslationHelper {
         if (result.contains(pattern))
             return;
 
+        Pattern superPattern = pattern.getSuperPattern();
+        if (superPattern != null)
+            addRequirements(superPattern, result, allPatterns);
+
         // list dependencies
         for (Call call : pattern.getOrchestration()) {
             if (call instanceof AbstractPatternCall) {
