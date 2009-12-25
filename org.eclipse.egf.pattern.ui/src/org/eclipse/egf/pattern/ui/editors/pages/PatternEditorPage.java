@@ -15,11 +15,18 @@
 
 package org.eclipse.egf.pattern.ui.editors.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.core.databinding.Binding;
+import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.ui.editors.PatternEditor;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.FormPage;
 
@@ -28,6 +35,9 @@ import org.eclipse.ui.forms.editor.FormPage;
  * 
  */
 public abstract class PatternEditorPage extends FormPage {
+
+    protected final DataBindingContext ctx = new EMFDataBindingContext();
+    private final List<Binding> bindings = new ArrayList<Binding>();
 
     public PatternEditorPage(FormEditor editor, String id, String title) {
         super(editor, id, title);
@@ -44,6 +54,33 @@ public abstract class PatternEditorPage extends FormPage {
 
     protected TransactionalEditingDomain getEditingDomain() {
         return ((PatternEditor) getEditor()).getEditingDomain();
+    }
+
+    protected final void createFormContent(IManagedForm managedForm) {
+        doCreateFormContent(managedForm);
+        bind();
+    }
+
+    protected void addBinding(Binding binding) {
+        bindings.add(binding);
+    }
+
+    protected abstract void bind();
+
+    protected abstract void doCreateFormContent(IManagedForm managedForm);
+
+    public final void rebind() {
+        if (!bindings.isEmpty()) {
+            ctx.getValidationRealm().asyncExec(new Runnable() {
+
+                public void run() {
+                    for (Binding binding : bindings)
+                        ctx.removeBinding(binding);
+                    bindings.clear();
+                    bind();
+                }
+            });
+        }
     }
 
 }

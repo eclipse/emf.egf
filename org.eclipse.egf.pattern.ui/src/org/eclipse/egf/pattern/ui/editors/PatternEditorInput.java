@@ -17,6 +17,7 @@ package org.eclipse.egf.pattern.ui.editors;
 
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IMemento;
@@ -32,11 +33,13 @@ public class PatternEditorInput implements IEditorInput {
     public static final String PATTERN_ID = "id";
     public static final String RESSOURCE_URI = "uri";
 
-    private final Pattern pattern;
     private final PatternPersistableElement persistable = new PatternPersistableElement();
+    private final String fragment;
+    private final Resource resource;
 
-    public PatternEditorInput(Pattern pattern) {
-        this.pattern = pattern;
+    public PatternEditorInput(Resource resource, String fragment) {
+        this.resource = resource;
+        this.fragment = fragment;
     }
 
     public boolean exists() {
@@ -45,7 +48,11 @@ public class PatternEditorInput implements IEditorInput {
     }
 
     public Pattern getPattern() {
-        return pattern;
+        return (Pattern) resource.getEObject(fragment);
+    }
+
+    public Resource getResource() {
+        return resource;
     }
 
     public ImageDescriptor getImageDescriptor() {
@@ -55,7 +62,7 @@ public class PatternEditorInput implements IEditorInput {
 
     public String getName() {
 
-        return pattern.getName();
+        return getPattern().getName();
     }
 
     public IPersistableElement getPersistable() {
@@ -75,8 +82,8 @@ public class PatternEditorInput implements IEditorInput {
 
     private class PatternPersistableElement implements IPersistableElement {
         public void saveState(IMemento memento) {
-            memento.putString(PATTERN_ID, pattern.getID());
-            memento.putString(RESSOURCE_URI, pattern.eResource().getURI().toString());
+            memento.putString(PATTERN_ID, getPattern().getID());
+            memento.putString(RESSOURCE_URI, resource.getURI().toString());
         }
 
         public String getFactoryId() {

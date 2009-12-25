@@ -15,10 +15,12 @@
 
 package org.eclipse.egf.pattern.ui.editors.domain;
 
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain.Factory;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 
 /**
  * @author Thomas Guiu
@@ -28,7 +30,12 @@ public class PatternEditingDomainFactory implements Factory {
 
     public TransactionalEditingDomain createEditingDomain() {
 
-        return WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
+        TransactionalEditingDomain editingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
+        editingDomain.getResourceSet().getURIConverter().getURIMap().clear();
+        editingDomain.getResourceSet().getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+
+        new WorkspaceSynchronizer(editingDomain, new ResourceLoadedListener());
+        return editingDomain;
     }
 
     public TransactionalEditingDomain createEditingDomain(ResourceSet rset) {

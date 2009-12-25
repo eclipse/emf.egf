@@ -15,8 +15,9 @@
 
 package org.eclipse.egf.pattern.ui.editors;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
@@ -28,79 +29,67 @@ import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.ui.Activator;
+import org.eclipse.egf.pattern.ui.editors.domain.ResourceLoadedListener;
+import org.eclipse.egf.pattern.ui.editors.domain.ResourceLoadedListener.ResourceListener;
+import org.eclipse.egf.pattern.ui.editors.domain.ResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.pattern.ui.editors.pages.ImplementationPage;
 import org.eclipse.egf.pattern.ui.editors.pages.OverviewPage;
+import org.eclipse.egf.pattern.ui.editors.pages.PatternEditorPage;
 import org.eclipse.egf.pattern.ui.editors.pages.SpecificationPage;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.forms.editor.FormEditor;
+import org.eclipse.ui.forms.editor.IFormPage;
 
 /**
  * 
  * @author Thomas Guiu
  * 
  */
-public class PatternEditor extends FormEditor {
+public class PatternEditor extends FormEditor implements ResourceUser {
 
     protected IUndoContext undoContext;
     protected Resource resource;
     private TransactionalEditingDomain editingDomain;
     private IUndoableOperation savedOperation;
+    private final ResourceListener resourceListener = new ResourceListener() {
+
+        public void resourceMoved(Resource resource, URI newURI) {
+        }
+
+        public void resourceDeleted(Resource resource) {
+            if (getResource().equals(resource) && (!isDirty() || handleDirtyConflict()))
+                getSite().getPage().closeEditor(PatternEditor.this, false);
+        }
+
+        public void resourceChanged(Resource resource) {
+            for (PatternEditorPage page : pages)
+                page.rebind();
+        }
+    };
+    private final List<PatternEditorPage> pages = new ArrayList<PatternEditorPage>();
 
     public PatternEditor() {
         initializeEditingDomain();
     }
 
     public void doSave(IProgressMonitor monitor) {
-        // Save only resources that have actually changed.
-        //
-        final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
-        saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
-
-        // Do the work within an operation because this is a long running
-        // activity
-        // that modifies the workbench. Moreover, we must do this in a read-only
-        // transaction in the editing domain, to ensure exclusive read access
-        //
-        WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
-            // This is the method that gets invoked when the operation runs.
-            //
-            @Override
-            public void execute(IProgressMonitor monitor) {
-                try {
-                    // .CUSTOM: Save in a read-only transaction
-                    editingDomain.runExclusive(new Runnable() {
-                        public void run() {
-                            try {
-                                Resource savedResource = getPattern().eResource();
-                                savedResource.save(saveOptions);
-                            } catch (Exception exception) {
-                                Activator.getDefault().logError(exception);
-                            }
-                        }
-                    });
-                } catch (Exception exception) {
-                    Activator.getDefault().logError(exception);
-                }
-            }
-        };
-
         try {
-            new ProgressMonitorDialog(getSite().getShell()).run(true, false, operation);
-
-            // Refresh the necessary state.
-            //
             // .CUSTOM: We record the last operation executed when saved.
             savedOperation = getOperationHistory().getUndoOperation(undoContext);
+            new ProgressMonitorDialog(getSite().getShell()).run(true, false, ResourceLoadedListener.RESOURCE_MANAGER.createSaveOperation(this, editingDomain));
             firePropertyChange(IEditorPart.PROP_DIRTY);
+        } catch (InvocationTargetException exception) {
+            Activator.getDefault().logError(exception.getTargetException());
         } catch (Exception exception) {
             Activator.getDefault().logError(exception);
         }
@@ -129,6 +118,7 @@ public class PatternEditor extends FormEditor {
             throw new PartInitException("Invalid Input: Must be PatternEditorInput");
 
         super.init(site, editorInput);
+        ResourceLoadedListener.RESOURCE_MANAGER.addObserver(this);
     }
 
     @Override
@@ -167,6 +157,13 @@ public class PatternEditor extends FormEditor {
         if (input == null)
             throw new IllegalStateException();
         return input.getPattern();
+    }
+
+    public Resource getResource() {
+        PatternEditorInput input = (PatternEditorInput) getEditorInput();
+        if (input == null)
+            throw new IllegalStateException();
+        return input.getResource();
 
     }
 
@@ -179,11 +176,9 @@ public class PatternEditor extends FormEditor {
         getOperationHistory().removeOperationHistoryListener(historyListener);
         getOperationHistory().dispose(undoContext, true, true, true);
 
-        // TODO verifier si c'est une bonne idees: unload et remove
-        // NPE: donc non mais il faut gerer l'affaire
-        Resource eResource = getPattern().eResource();
-        eResource.unload();
-        editingDomain.getResourceSet().getResources().remove(eResource);
+        // getResource().unload();
+        // editingDomain.getResourceSet().getResources().remove(getResource());
+        ResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
 
         super.dispose();
     }
@@ -194,7 +189,7 @@ public class PatternEditor extends FormEditor {
             switch (event.getEventType()) {
             case OperationHistoryEvent.DONE:
 
-                if (affectedResources.contains(getPattern().eResource())) {
+                if (affectedResources.contains(getResource())) {
                     final IUndoableOperation operation = event.getOperation();
 
                     // remove the default undo context so that we can have
@@ -213,7 +208,7 @@ public class PatternEditor extends FormEditor {
                 break;
             case OperationHistoryEvent.UNDONE:
             case OperationHistoryEvent.REDONE:
-                if (affectedResources.contains(getPattern().eResource())) {
+                if (affectedResources.contains(getResource())) {
 
                     getSite().getShell().getDisplay().asyncExec(new Runnable() {
                         public void run() {
@@ -225,5 +220,25 @@ public class PatternEditor extends FormEditor {
             }
         }
     };
+
+    public void addPage(PatternEditorPage page) throws PartInitException {
+        pages.add(page);
+        addPage((IFormPage) page);
+    }
+
+    /**
+     * Shows a dialog that asks if conflicting changes should be discarded.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     */
+    protected boolean handleDirtyConflict() {
+        return MessageDialog.openQuestion(getSite().getShell(), "File Conflict", //$NON-NLS-1$
+                "External changes, close the editor ?"); //$NON-NLS-1$
+    }
+
+    public ResourceListener getListener() {
+
+        return resourceListener;
+    }
 
 }

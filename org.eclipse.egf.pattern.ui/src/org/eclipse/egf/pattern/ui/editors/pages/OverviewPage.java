@@ -15,7 +15,6 @@
 
 package org.eclipse.egf.pattern.ui.editors.pages;
 
-import org.eclipse.core.databinding.DataBindingContext;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.runtime.IStatus;
@@ -23,12 +22,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.ui.Messages;
-import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.databinding.edit.IEMFEditValueProperty;
-import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
@@ -50,48 +46,80 @@ public class OverviewPage extends PatternEditorPage {
 
     public static final String ID = "OverviewPage";
 
-    private final DataBindingContext ctx = new EMFDataBindingContext();
+    private Text text;
+
+    private Text label;
 
     public OverviewPage(FormEditor editor) {
         super(editor, ID, Messages.OverviewPage_title);
 
     }
 
-    protected void createFormContent(IManagedForm managedForm) {
+    protected void doCreateFormContent(IManagedForm managedForm) {
         FormToolkit toolkit = managedForm.getToolkit();
         ScrolledForm form = managedForm.getForm();
         form.getBody().setLayout(new GridLayout());
 
-        final Text text = toolkit.createText(form.getBody(), getPattern().getName(), SWT.BORDER);
+        text = toolkit.createText(form.getBody(), getPattern().getName(), SWT.BORDER);
         text.addModifyListener(new ModifyListener() {
 
             public void modifyText(ModifyEvent e) {
-                Pattern pattern = getPattern();
-
+                Pattern pattern = getPattern();// pattern.eResource()
+                // System.out.println("pattern = " + pattern + "\tresource = " +
+                // pattern.eResource());
+                // System.out.println("Parent is " + pattern.getSuperPattern()
+                // == null ? "none" : pattern.getSuperPattern().getName()));
+                System.out.println("Parent = " + pattern.getSuperPattern() + "\t");
                 String text2 = text.getText();
-                Command cmd = SetCommand.create(getEditingDomain(), pattern, FcorePackage.Literals.MODEL_ELEMENT__NAME, text2);
-                if (cmd.canExecute()) {
-                    execute(cmd);
-                }
+                // Command cmd = SetCommand.create(getEditingDomain(), pattern,
+                // FcorePackage.Literals.MODEL_ELEMENT__NAME, text2);
+                // if (cmd.canExecute()) {
+                // execute(cmd);
+                // }
             }
 
         });
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         text.setLayoutData(gd);
 
-        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.MODEL_ELEMENT__NAME);
-        IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
-        IObservableValue uiObs = textProp.observeDelayed(400, text);
-        IObservableValue mObs = mprop.observe(getPattern());
+        label = toolkit.createText(form.getBody(), "", SWT.BORDER);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        label.setLayoutData(gd);
 
-        ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+    }
+
+    void bindParentName() {
+        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.MODEL_ELEMENT__NAME);
+        IWidgetValueProperty labelProp = WidgetProperties.text(SWT.Modify);
+        IObservableValue uiObs = labelProp.observeDelayed(400, label);
+        IObservableValue mObs = mprop.observe(getPattern().getSuperPattern());
+        addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
 
             public IStatus validate(Object value) {
 
                 return Status.OK_STATUS;
             }
-        }), null);
-
+        }), null));
     }
 
+    void bindName() {
+        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.MODEL_ELEMENT__NAME);
+        IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
+        IObservableValue uiObs = textProp.observeDelayed(400, text);
+        IObservableValue mObs = mprop.observe(getPattern());
+
+        addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+
+            public IStatus validate(Object value) {
+
+                return Status.OK_STATUS;
+            }
+        }), null));
+    }
+
+    @Override
+    protected void bind() {
+        bindName();
+        bindParentName();
+    }
 }

@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.ui.editors.pages;
 
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormEditor;
 
 /**
@@ -28,6 +29,14 @@ public class ImplementationPage extends PatternEditorPage {
     public ImplementationPage(FormEditor editor) {
         super(editor, ID, Messages.ImplementationPage_title);
 
+    }
+
+    @Override
+    protected void bind() {
+    }
+
+    @Override
+    protected void doCreateFormContent(IManagedForm managedForm) {
     }
 
 }
