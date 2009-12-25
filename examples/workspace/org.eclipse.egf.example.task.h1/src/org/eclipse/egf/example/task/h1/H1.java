@@ -1,10 +1,10 @@
 package org.eclipse.egf.example.task.h1;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.productionplan.Task;
-import org.eclipse.egf.model.productionplan.invocation.IProductionTask;
+import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.core.producer.context.IProductionContext;
+import org.eclipse.egf.model.fprod.Task;
+import org.eclipse.egf.model.fprod.task.IProductionTask;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 
 public class H1 implements IProductionTask {
