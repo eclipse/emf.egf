@@ -84,8 +84,14 @@ public abstract class AssemblyHelper {
     }
 
     protected void addVariable(Pattern pattern) throws PatternException {
-        content.append(getMethodContent(pattern.getInitMethod()));
-
+        StringBuilder inits = new StringBuilder(1000);
+        Pattern parent = pattern.getSuperPattern();
+        inits.append(getMethodContent(pattern.getInitMethod()));
+        while (parent != null) {
+            inits.insert(0, getMethodContent(parent.getInitMethod()));
+            parent = parent.getSuperPattern();
+        }
+        content.append(inits);
     }
 
     protected final void handleParameters(int insertionIndex) throws PatternException {

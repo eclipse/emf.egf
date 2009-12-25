@@ -100,7 +100,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
     protected void addVariable(Pattern pattern) throws PatternException {
 
         content.append("<%");
-        for (PatternVariable var : pattern.getVariables()) {
+        for (PatternVariable var : pattern.getAllVariables()) {
             content.append(var.getType()).append(" ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
         }
         content.append("%>");

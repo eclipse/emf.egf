@@ -90,7 +90,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
     }
 
     protected void addVariable(Pattern pattern) throws PatternException {
-        for (PatternVariable var : pattern.getVariables()) {
+        for (PatternVariable var : pattern.getAllVariables()) {
             content.append(var.getType()).append(" ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
         }
         super.addVariable(pattern);
