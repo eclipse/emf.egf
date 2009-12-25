@@ -36,6 +36,7 @@ import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternConstants;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.collector.PatternCollector;
+import org.eclipse.egf.pattern.collector.PatternLibraryCollector;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -129,21 +130,41 @@ public class PatternHelper {
      * Reads all FC models and return the patterns.
      */
     public static Set<Pattern> getAllPatterns() {
-        Set<Pattern> result = new HashSet<Pattern>();
+        Set<Pattern> result = new HashSet<Pattern>(200);
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
         for (IPlatformFcore platformFcore : platformFcores) {
-            collectPatterns(platformFcore.getURI(), PatternCollector.EMPTY_ID_SET, result);
+            URI uri = platformFcore.getURI();
+            try {
+                collectPatterns(uri, PatternCollector.EMPTY_ID_SET, result);
+            } catch (Exception e) {
+                org.eclipse.egf.pattern.Activator.getDefault().logError(Messages.bind(Messages.collect_error1, uri.toString()), e);
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Reads all FC models and return the pattern libraries.
+     */
+    public static Set<PatternLibrary> getAllLibraries() {
+        Set<PatternLibrary> result = new HashSet<PatternLibrary>(200);
+        IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
+        final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
+        for (IPlatformFcore platformFcore : platformFcores) {
+            URI uri = platformFcore.getURI();
+            try {
+                Resource res = editingDomain.getResourceSet().getResource(uri, true);
+                PatternLibraryCollector.INSTANCE.collect(res.getContents(), result, PatternCollector.EMPTY_ID_SET);
+            } catch (Exception e) {
+                org.eclipse.egf.pattern.Activator.getDefault().logError(Messages.bind(Messages.collect_error2, uri.toString()), e);
+            }
         }
         return result;
     }
 
     private static void collectPatterns(URI uri, Set<String> ids, Set<Pattern> collector) {
-        // TODO: do we need to use in memory patterns instead of saved ones ?
-        // this method is usually used by translation process, maybe we should
-        // care only about saved data.
         final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
         Resource res = editingDomain.getResourceSet().getResource(uri, true);
-
         PatternCollector.INSTANCE.collect(res.getContents(), collector, ids);
     }
 
