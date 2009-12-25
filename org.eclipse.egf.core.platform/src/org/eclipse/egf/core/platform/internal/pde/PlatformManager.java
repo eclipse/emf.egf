@@ -492,11 +492,13 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
     }
     // Retrieve an existing one
     IPlatformBundle existingPlatformBundle = _platformBundles.get(id);
+    // Nothing to compare with
     if (existingPlatformBundle == null) {
       return;
     }
-    // Remove existing Extension Point if necessary
+    // Analyse existing monitored ExtensionPoints
     for (Class<? extends IPlatformExtensionPoint> clazz : getExtensionPoints().values()) {
+      // Remove existing Extension Point if necessary
       LOOP: for (IPlatformExtensionPoint extensionPoint : existingPlatformBundle.getPlatformExtensionPoints(clazz)) {
         // should we remove extensionPoint ?
         for (IPlatformExtensionPoint newExtensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
@@ -507,7 +509,9 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
               continue LOOP;
             }
           } catch (InvalidRegistryObjectException iroe) {
-            // Just ignore, extensionPoint will be removed
+            // org.eclipse.core.internal.registry.RegistryObjectManager raised such exception when
+            // an object is no longer valid. In such case we always discard it.
+            break;
           }
         }
         // Remove ExtensionPoint from our existing model
@@ -540,9 +544,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
           }
         }
       }
-    }
-    // Add unknown Extension Point if necessary
-    for (Class<? extends IPlatformExtensionPoint> clazz : getExtensionPoints().values()) {
+      // Add unknown Extension Point if necessary
       LOOP: for (IPlatformExtensionPoint newExtensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
         // should we add newExtensionPoint ?
         for (IPlatformExtensionPoint extensionPoint : existingPlatformBundle.getPlatformExtensionPoints(clazz)) {
