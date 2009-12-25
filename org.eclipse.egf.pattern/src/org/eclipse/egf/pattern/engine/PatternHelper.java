@@ -92,13 +92,9 @@ public class PatternHelper {
         return getPatterns(project, ids);
     }
 
-    /**
-     * Reads FC models from the given project and return the patterns with the
-     * given ids if any. If the ids set is null all patterns are returned.
-     */
     public static Set<Pattern> getPatterns(URI uri) {
         Set<Pattern> result = new HashSet<Pattern>();
-        collectPatterns(uri, null, result);
+        collectPatterns(uri, PatternCollector.EMPTY_ID_SET, result);
         return result;
     }
 
@@ -122,7 +118,7 @@ public class PatternHelper {
         Set<Pattern> result = new HashSet<Pattern>();
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
         for (IPlatformFcore platformFcore : platformFcores) {
-            collectPatterns(platformFcore.getURI(), null, result);
+            collectPatterns(platformFcore.getURI(), PatternCollector.EMPTY_ID_SET, result);
         }
         return result;
     }

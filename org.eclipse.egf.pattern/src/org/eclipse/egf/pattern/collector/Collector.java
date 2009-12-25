@@ -15,7 +15,7 @@ public abstract class Collector<E> {
     protected abstract void doCollect(EObject source, final Set<E> result, final Set<String> ids);
 
     public void collect(EObject source, final Set<E> result) {
-        collect(source, result, EMPTY_SET);
+        collect(source, result, EMPTY_ID_SET);
     }
 
     public void collect(EObject source, final Set<E> result, final Set<String> ids) {
@@ -29,7 +29,7 @@ public abstract class Collector<E> {
     }
 
     public void collect(List<EObject> source, final Set<E> result) {
-        collect(source, result, EMPTY_SET);
+        collect(source, result, EMPTY_ID_SET);
     }
 
     public void collect(List<EObject> source, final Set<E> result, final Set<String> ids) {
@@ -44,7 +44,7 @@ public abstract class Collector<E> {
     }
 
     public void collect(EObject[] source, final Set<E> result) {
-        collect(source, result, EMPTY_SET);
+        collect(source, result, EMPTY_ID_SET);
     }
 
     public void collect(EObject[] source, final Set<E> result, final Set<String> ids) {
@@ -58,5 +58,5 @@ public abstract class Collector<E> {
             collect(obj, result, ids);
     }
 
-    private static final Set<String> EMPTY_SET = new HashSet<String>();
+    public static final Set<String> EMPTY_ID_SET = new HashSet<String>();
 }
