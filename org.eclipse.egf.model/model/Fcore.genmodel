@@ -45,7 +45,8 @@
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//Contract">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//Contract/contractContainer"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//Contract/invocationContexts"/>
+      <genFeatures notify="false" createChild="false" propertyCategory="Context" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Fcore.ecore#//Contract/invocationContexts"/>
       <genFeatures notify="false" createChild="false" propertyCategory="Context" propertySortChoices="true"
           ecoreFeature="ecore:EReference Fcore.ecore#//Contract/orchestrationContexts"/>
       <genFeatures createChild="false" propertyCategory="Type" ecoreFeature="ecore:EAttribute Fcore.ecore#//Contract/mandatory"/>
