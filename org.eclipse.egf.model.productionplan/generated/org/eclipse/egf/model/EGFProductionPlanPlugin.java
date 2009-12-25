@@ -13,9 +13,9 @@
 package org.eclipse.egf.model;
 
 import org.eclipse.egf.common.activator.EGFEclipsePlugin;
-
+import org.eclipse.egf.model.productionplan.context.IPPModelProductionContextFactory;
+import org.eclipse.egf.model.productionplan.internal.context.PPModelProductionContextFactory;
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
 /**
@@ -34,12 +34,33 @@ public final class EGFProductionPlanPlugin extends EMFPlugin {
   public static final EGFProductionPlanPlugin INSTANCE = new EGFProductionPlanPlugin();
 
   /**
+   * IPPModelProductionContextFactory singleton.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  private static final IPPModelProductionContextFactory __ppModelProductionContextFactory = new PPModelProductionContextFactory();
+
+  /**
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   private static Implementation plugin;
+
+  /**
+   * Returns the singleton instance of the IPPModelProductionContextFactory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @return the singleton model production context factory.
+   * @generated NOT
+   */
+  public static IPPModelProductionContextFactory getPPModelProductionContextFactory() {
+    return __ppModelProductionContextFactory;
+  }
 
   /**
    * Create the instance.

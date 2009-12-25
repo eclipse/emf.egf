@@ -16,54 +16,42 @@ package org.eclipse.egf.model.fcore;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Viewpoint</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.Viewpoint#getViewerpointContainer <em>
- * Viewerpoint Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Viewpoint#getViewerpointContainer <em>Viewerpoint Container</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getViewpoint()
  * @model abstract="true"
  * @generated
  */
 public interface Viewpoint extends ModelElement {
   /**
-   * Returns the value of the '<em><b>Viewerpoint Container</b></em>' container
-   * reference.
-   * It is bidirectional and its opposite is '
-   * {@link org.eclipse.egf.model.fcore.ViewpointContainer#getViewpoints
-   * <em>Viewpoints</em>}'.
+   * Returns the value of the '<em><b>Viewerpoint Container</b></em>' container reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ViewpointContainer#getViewpoints <em>Viewpoints</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Viewerpoint Container</em>' container reference
    * isn't clear, there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
-   * @return the value of the '<em>Viewerpoint Container</em>' container
-   *         reference.
+   * @return the value of the '<em>Viewerpoint Container</em>' container reference.
    * @see #setViewerpointContainer(ViewpointContainer)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getViewpoint_ViewerpointContainer()
    * @see org.eclipse.egf.model.fcore.ViewpointContainer#getViewpoints
-   * @model opposite="viewpoints" resolveProxies="false" required="true"
-   *        transient="false"
+   * @model opposite="viewpoints" resolveProxies="false" required="true" transient="false"
    * @generated
    */
   ViewpointContainer getViewerpointContainer();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.Viewpoint#getViewerpointContainer
-   * <em>Viewerpoint Container</em>}' container reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Viewpoint#getViewerpointContainer <em>Viewerpoint Container</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Viewerpoint Container</em>' container
-   *          reference.
+   * @param value the new value of the '<em>Viewerpoint Container</em>' container reference.
    * @see #getViewerpointContainer()
    * @generated
    */

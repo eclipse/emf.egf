@@ -22,14 +22,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ContextValueImpl extends ModelElementImpl implements ContextValue {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ContextValueImpl() {
@@ -39,7 +38,6 @@ public abstract class ContextValueImpl extends ModelElementImpl implements Conte
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

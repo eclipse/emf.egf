@@ -12,6 +12,16 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.egf.core.production.EGFCoreProductionPlugin;
+import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.EGFModelsPlugin;
+import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Task;
 import org.eclipse.emf.common.notify.Notification;
@@ -25,8 +35,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.TaskImpl#getTaskId <em>Task Id
- * </em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.TaskImpl#getTaskId <em>Task
+ * Id</em>}</li>
  * </ul>
  * </p>
  * 
@@ -97,6 +107,38 @@ public class TaskImpl extends ActivityImpl implements Task {
     taskId = newTaskId;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.TASK__TASK_ID, oldTaskId, taskId));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+    Assert.isNotNull(productionContext);
+    try {
+      EGFCoreProductionPlugin.getProductionTaskInvocationFactory().createProductionTaskInvocation(EGFModelsPlugin.getModelProductionContextFactory().createModelProductionContext(productionContext, this), getTaskId()).invoke(monitor);
+      if (monitor.isCanceled()) {
+        throw new OperationCanceledException();
+      }
+    } catch (CoreException ce) {
+      throw new InvocationException(ce);
+    } catch (InvocationTargetException ite) {
+      throw new InvocationException(ite);
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public int getSteps() {
+    return 1;
   }
 
   /**

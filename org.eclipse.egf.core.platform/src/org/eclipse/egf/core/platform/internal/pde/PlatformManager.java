@@ -128,13 +128,36 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
     }
   }
 
-  public IPlatformBundle getPlatformBundle(IProject project) {
-    IPluginModelBase base = BundleHelper.getPluginModelBase(project);
-    String id = BundleHelper.getBundleId(base);
-    if (id == null) {
-      return null;
+  public IPlatformBundle getPlatformBundle(IPluginModelBase base) {
+    // Lock PlatformManager
+    synchronized (_lock) {
+      if (base == null) {
+        return null;
+      }
+      String id = BundleHelper.getBundleId(base);
+      if (id == null) {
+        return null;
+      }
+      return getPlatformBundle(id);
     }
-    return getPlatformBundle(id);
+  }
+
+  public IPlatformBundle getPlatformBundle(IProject project) {
+    // Lock PlatformManager
+    synchronized (_lock) {
+      if (project == null) {
+        return null;
+      }
+      IPluginModelBase base = BundleHelper.getPluginModelBase(project);
+      if (base == null) {
+        return null;
+      }
+      String id = BundleHelper.getBundleId(base);
+      if (id == null) {
+        return null;
+      }
+      return getPlatformBundle(id);
+    }
   }
 
   public IPlatformBundle[] getPlatformBundles() {

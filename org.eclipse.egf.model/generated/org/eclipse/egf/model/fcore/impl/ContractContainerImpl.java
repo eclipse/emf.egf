@@ -35,24 +35,18 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.ContractContainerImpl#getActivity
- * <em>Activity</em>}</li>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.ContractContainerImpl#getContracts
- * <em>Contracts</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractContainerImpl#getActivity <em>Activity</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractContainerImpl#getContracts <em>Contracts</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ContractContainerImpl extends ModelElementImpl implements ContractContainer {
   /**
-   * The cached value of the '{@link #getContracts() <em>Contracts</em>}'
-   * containment reference list.
+   * The cached value of the '{@link #getContracts() <em>Contracts</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getContracts()
    * @generated
    * @ordered
@@ -62,7 +56,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ContractContainerImpl() {
@@ -72,7 +65,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -83,7 +75,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Activity getActivity() {
@@ -95,7 +86,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetActivity(Activity newActivity, NotificationChain msgs) {
@@ -106,7 +96,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setActivity(Activity newActivity) {
@@ -128,7 +117,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<Contract> getContracts() {
@@ -141,7 +129,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -161,7 +148,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -178,7 +164,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -193,7 +178,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -210,7 +194,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -231,7 +214,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -250,7 +232,6 @@ public class ContractContainerImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

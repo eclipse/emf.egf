@@ -8,17 +8,16 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.model.context;
-
-import org.eclipse.egf.core.context.IProductionContext;
-import org.eclipse.egf.model.fcore.Activity;
+package org.eclipse.egf.core.context;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IActivityProductionContextFactory {
+public interface IEGFContext {
 
-  public IProductionContext createTaskProductionContext(IProductionContext parent, Activity activiry);
+  public void setValue(String name, Object value);
+
+  public Object getValue(String name);
 
 }

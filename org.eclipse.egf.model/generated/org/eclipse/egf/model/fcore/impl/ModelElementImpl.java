@@ -29,10 +29,10 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getID <em>ID
- * </em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getName <em>Name
- * </em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getID
+ * <em>ID</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getName
+ * <em>Name</em>}</li>
  * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getDescription
  * <em>Description</em>}</li>
  * </ul>
@@ -226,6 +226,16 @@ public abstract class ModelElementImpl extends Container implements ModelElement
     description = newDescription;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.MODEL_ELEMENT__DESCRIPTION, oldDescription, description));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public String getExternalName() {
+    return getName() != null && getName().trim().length() != 0 ? getName() : getID();
   }
 
   /**

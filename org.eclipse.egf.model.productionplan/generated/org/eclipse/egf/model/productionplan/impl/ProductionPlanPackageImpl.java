@@ -28,14 +28,12 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ProductionPlanPackageImpl extends EPackageImpl implements ProductionPlanPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass productionPlanEClass = null;
@@ -43,7 +41,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass productionPlanInvocationEClass = null;
@@ -51,7 +48,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass factoryComponentInvocationEClass = null;
@@ -59,7 +55,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass taskInvocationEClass = null;
@@ -87,7 +82,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static boolean isInited = false;
@@ -136,7 +130,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getProductionPlan() {
@@ -146,7 +139,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getProductionPlan_ProductionPlanInvocations() {
@@ -156,7 +148,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getProductionPlanInvocation() {
@@ -166,7 +157,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getProductionPlanInvocation_ProductionPlan() {
@@ -176,7 +166,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getFactoryComponentInvocation() {
@@ -186,7 +175,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getFactoryComponentInvocation_FactoryComponent() {
@@ -196,7 +184,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTaskInvocation() {
@@ -206,7 +193,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getTaskInvocation_Task() {
@@ -216,7 +202,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ProductionPlanFactory getProductionPlanFactory() {
@@ -226,17 +211,15 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package. This method is
+   * Creates the meta-model objects for the package.  This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void createPackageContents() {
@@ -261,17 +244,15 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model. This
+   * Complete the initialization of the package and its meta-model.  This
    * method is guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void initializePackageContents() {

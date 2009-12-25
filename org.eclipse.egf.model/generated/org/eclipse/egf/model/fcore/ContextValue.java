@@ -16,8 +16,8 @@ package org.eclipse.egf.model.fcore;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Context Value</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getContextValue()
  * @model abstract="true"
  * @generated

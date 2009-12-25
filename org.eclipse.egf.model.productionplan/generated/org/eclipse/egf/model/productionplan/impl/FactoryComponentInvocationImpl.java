@@ -12,36 +12,43 @@
  */
 package org.eclipse.egf.model.productionplan.impl;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.EGFProductionPlanPlugin;
+import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.FactoryComponent;
-
 import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Factory Component Invocation</b></em>'.
+ * An implementation of the model object '<em><b>Factory Component
+ * Invocation</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.productionplan.impl.FactoryComponentInvocationImpl#getFactoryComponent <em>Factory Component</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.productionplan.impl.FactoryComponentInvocationImpl#getFactoryComponent
+ * <em>Factory Component</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl implements FactoryComponentInvocation {
   /**
-   * The cached value of the '{@link #getFactoryComponent() <em>Factory Component</em>}' reference.
+   * The cached value of the '{@link #getFactoryComponent() <em>Factory
+   * Component</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getFactoryComponent()
    * @generated
    * @ordered
@@ -51,6 +58,7 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected FactoryComponentInvocationImpl() {
@@ -60,6 +68,7 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -70,6 +79,7 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponent getFactoryComponent() {
@@ -87,6 +97,7 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponent basicGetFactoryComponent() {
@@ -96,6 +107,7 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setFactoryComponent(FactoryComponent newFactoryComponent) {
@@ -108,6 +120,38 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+    Assert.isNotNull(productionContext);
+    if (getFactoryComponent() != null) {
+      getFactoryComponent().invoke(EGFProductionPlanPlugin.getPPModelProductionContextFactory().createModelProductionContext(productionContext, this), monitor);
+    }
+    if (monitor.isCanceled()) {
+      throw new OperationCanceledException();
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public int getSteps() {
+    if (getFactoryComponent() != null) {
+      return getFactoryComponent().getSteps();
+    }
+    return 0;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -124,6 +168,7 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -139,6 +184,7 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -154,6 +200,7 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -165,4 +212,4 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
     return super.eIsSet(featureID);
   }
 
-} //FactoryComponentInvocationImpl
+} // FactoryComponentInvocationImpl

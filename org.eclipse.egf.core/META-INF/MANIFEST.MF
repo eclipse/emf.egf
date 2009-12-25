@@ -14,9 +14,10 @@ Require-Bundle:
  org.eclipse.pde.core;visibility:=reexport 
 Export-Package: 
  org.eclipse.egf.core,
- org.eclipse.egf.core.context, 
+ org.eclipse.egf.core.context,
  org.eclipse.egf.core.fcore,
  org.eclipse.egf.core.helper,
+ org.eclipse.egf.core.internal.context; x-friends:="org.eclipse.egf.core.production", 
  org.eclipse.egf.core.l10n,
  org.eclipse.egf.core.loader, 
  org.eclipse.egf.core.natures,

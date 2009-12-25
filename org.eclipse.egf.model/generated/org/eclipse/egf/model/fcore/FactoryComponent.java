@@ -16,38 +16,30 @@ package org.eclipse.egf.model.fcore;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Factory Component</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.fcore.FactoryComponent#getViewpointContainer
- * <em>Viewpoint Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.FactoryComponent#getOrchestration <em>
- * Orchestration</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.FactoryComponent#getViewpointContainer <em>Viewpoint Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.FactoryComponent#getOrchestration <em>Orchestration</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getFactoryComponent()
  * @model
  * @generated
  */
 public interface FactoryComponent extends Activity {
   /**
-   * Returns the value of the '<em><b>Viewpoint Container</b></em>' containment
-   * reference.
-   * It is bidirectional and its opposite is '
-   * {@link org.eclipse.egf.model.fcore.ViewpointContainer#getFactoryComponent
-   * <em>Factory Component</em>}'.
+   * Returns the value of the '<em><b>Viewpoint Container</b></em>' containment reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ViewpointContainer#getFactoryComponent <em>Factory Component</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Viewpoint Container</em>' containment reference
    * isn't clear, there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
-   * @return the value of the '<em>Viewpoint Container</em>' containment
-   *         reference.
+   * @return the value of the '<em>Viewpoint Container</em>' containment reference.
    * @see #setViewpointContainer(ViewpointContainer)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getFactoryComponent_ViewpointContainer()
    * @see org.eclipse.egf.model.fcore.ViewpointContainer#getFactoryComponent
@@ -57,33 +49,24 @@ public interface FactoryComponent extends Activity {
   ViewpointContainer getViewpointContainer();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.FactoryComponent#getViewpointContainer
-   * <em>Viewpoint Container</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.FactoryComponent#getViewpointContainer <em>Viewpoint Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Viewpoint Container</em>' containment
-   *          reference.
+   * @param value the new value of the '<em>Viewpoint Container</em>' containment reference.
    * @see #getViewpointContainer()
    * @generated
    */
   void setViewpointContainer(ViewpointContainer value);
 
   /**
-   * Returns the value of the '<em><b>Orchestration</b></em>' containment
-   * reference.
-   * It is bidirectional and its opposite is '
-   * {@link org.eclipse.egf.model.fcore.Orchestration#getFactoryComponent
-   * <em>Factory Component</em>}'.
+   * Returns the value of the '<em><b>Orchestration</b></em>' containment reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Orchestration#getFactoryComponent <em>Factory Component</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Orchestration</em>' containment reference isn't
    * clear, there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Orchestration</em>' containment reference.
    * @see #setOrchestration(Orchestration)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getFactoryComponent_Orchestration()
@@ -94,15 +77,10 @@ public interface FactoryComponent extends Activity {
   Orchestration getOrchestration();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.FactoryComponent#getOrchestration
-   * <em>Orchestration</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.FactoryComponent#getOrchestration <em>Orchestration</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Orchestration</em>' containment
-   *          reference.
+   * @param value the new value of the '<em>Orchestration</em>' containment reference.
    * @see #getOrchestration()
    * @generated
    */

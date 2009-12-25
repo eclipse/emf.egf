@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.fcore;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.InvocationException;
 
 /**
@@ -22,8 +24,9 @@ import org.eclipse.egf.model.InvocationException;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.Activity#getContractContainer <em>
- * Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.Activity#getContractContainer
+ * <em>Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.Activity#getSteps <em>Steps</em>}</li>
  * </ul>
  * </p>
  * 
@@ -71,12 +74,27 @@ public interface Activity extends ModelElement {
   void setContractContainer(ContractContainer value);
 
   /**
+   * Returns the value of the '<em><b>Steps</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @return the value of the '<em>Steps</em>' attribute.
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getActivity_Steps()
+   * @model transient="true" changeable="false" volatile="true" derived="true"
+   * @generated
+   */
+  int getSteps();
+
+  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @model exceptions="org.eclipse.egf.model.fcore.InvocationException"
+   *        productionContextDataType
+   *        ="org.eclipse.egf.model.fcore.IProductionContext"
+   *        monitorDataType="org.eclipse.egf.model.fcore.IProgressMonitor"
    * @generated
    */
-  void invoke(Context invocationContext) throws InvocationException;
+  void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException;
 
 } // Activity

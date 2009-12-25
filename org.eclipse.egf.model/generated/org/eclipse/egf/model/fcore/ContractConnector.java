@@ -16,19 +16,16 @@ package org.eclipse.egf.model.fcore;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Contract Connector</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.ContractConnector#getContext <em>
- * Context</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.ContractConnector#getSource <em>Source
- * </em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.ContractConnector#getTarget <em>Target
- * </em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.ContractConnector#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.ContractConnector#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.ContractConnector#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getContractConnector()
  * @model
  * @generated
@@ -36,16 +33,13 @@ package org.eclipse.egf.model.fcore;
 public interface ContractConnector extends ModelElement {
   /**
    * Returns the value of the '<em><b>Context</b></em>' container reference.
-   * It is bidirectional and its opposite is '
-   * {@link org.eclipse.egf.model.fcore.Context#getConnectors
-   * <em>Connectors</em>}'.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Context#getConnectors <em>Connectors</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Context</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Context</em>' container reference.
    * @see #setContext(Context)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContractConnector_Context()
@@ -56,14 +50,10 @@ public interface ContractConnector extends ModelElement {
   Context getContext();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.ContractConnector#getContext
-   * <em>Context</em>}' container reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.ContractConnector#getContext <em>Context</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Context</em>' container reference.
+   * @param value the new value of the '<em>Context</em>' container reference.
    * @see #getContext()
    * @generated
    */
@@ -77,7 +67,6 @@ public interface ContractConnector extends ModelElement {
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Source</em>' reference.
    * @see #setSource(Contract)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContractConnector_Source()
@@ -87,14 +76,10 @@ public interface ContractConnector extends ModelElement {
   Contract getSource();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.ContractConnector#getSource
-   * <em>Source</em>}' reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.ContractConnector#getSource <em>Source</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Source</em>' reference.
+   * @param value the new value of the '<em>Source</em>' reference.
    * @see #getSource()
    * @generated
    */
@@ -108,7 +93,6 @@ public interface ContractConnector extends ModelElement {
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Target</em>' reference.
    * @see #setTarget(Contract)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContractConnector_Target()
@@ -118,14 +102,10 @@ public interface ContractConnector extends ModelElement {
   Contract getTarget();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.ContractConnector#getTarget
-   * <em>Target</em>}' reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.ContractConnector#getTarget <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Target</em>' reference.
+   * @param value the new value of the '<em>Target</em>' reference.
    * @see #getTarget()
    * @generated
    */

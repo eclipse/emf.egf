@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.egf.model.editor.internal.actions;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
@@ -26,10 +24,12 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
+import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.EGFModelsPlugin;
+import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.EGFModelsEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.Task;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -58,34 +58,27 @@ public class RunActivityAction implements IObjectActionDelegate {
 
       @Override
       public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.AbstractTask_Execute, EcoreUtil.getURI(_activity)), 20);
+        IProductionContext rootContext = EGFModelsPlugin.getModelProductionContextFactory().createModelProductionContext(_activity);
+        int steps = _activity.getSteps();
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, rootContext.getName()), (900 * steps) + 100);
         try {
-          Task task = null;
-          // Load Resource
           try {
-            if (_activity instanceof Task == false || ((Task) _activity).getTaskId() == null) {
-              return Status.OK_STATUS;
+            if (EGFModelsEditorPlugin.getPlugin().isDebugging()) {
+              EGFModelsEditorPlugin.getPlugin().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EcoreUtil.getURI(_activity).toString(), _activity.getSteps())); //$NON-NLS-1$
             }
-            task = (Task) _activity;
-          } catch (Throwable t) {
-            throw new CoreException(EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, "RunActivityAction.run(..) _", t)); //$NON-NLS-1$
-          }
-          subMonitor.worked(10);
-          if (subMonitor.isCanceled()) {
-            throw new OperationCanceledException();
-          }
-          try {
-            EGFCorePlugin.getTaskRunnerFactory().createTaskRunner(task.getTaskId()).execute(subMonitor.newChild(10));
-            if (subMonitor.isCanceled()) {
+            _activity.invoke(rootContext, subMonitor.newChild(900 * steps, SubMonitor.SUPPRESS_NONE));
+            if (monitor.isCanceled()) {
               throw new OperationCanceledException();
             }
-          } catch (InvocationTargetException ite) {
-            throw new CoreException(EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, "RunActivityAction.run(..) _", ite)); //$NON-NLS-1$
-          } catch (InterruptedException ie) {
-            throw new OperationCanceledException();
+          } catch (InvocationException ie) {
+            if (ie.getCause() instanceof CoreException) {
+              throw (CoreException) ie.getCause();
+            }
+            throw new CoreException(EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, "RunActivityAction.run(..) _", ie.getCause())); //$NON-NLS-1$
           }
         } finally {
-          subMonitor.setWorkRemaining(0);
+          rootContext.dispose();
+          subMonitor.done();
         }
         return Status.OK_STATUS;
       }

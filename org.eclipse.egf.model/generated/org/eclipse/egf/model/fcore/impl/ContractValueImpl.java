@@ -27,24 +27,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContractValueImpl#getContract
- * <em>Contract</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContractValueImpl#getValue <em>
- * Value</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContractValueImpl#getPluginId
- * <em>Plugin Id</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractValueImpl#getContract <em>Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractValueImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractValueImpl#getPluginId <em>Plugin Id</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ContractValueImpl extends ContextValueImpl implements ContractValue {
   /**
-   * The cached value of the '{@link #getContract() <em>Contract</em>}'
-   * reference.
+   * The cached value of the '{@link #getContract() <em>Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getContract()
    * @generated
    * @ordered
@@ -55,7 +50,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -66,7 +60,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -74,11 +67,9 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   protected String value = VALUE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}'
-   * attribute.
+   * The default value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getPluginId()
    * @generated
    * @ordered
@@ -86,11 +77,9 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   protected static final String PLUGIN_ID_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}'
-   * attribute.
+   * The cached value of the '{@link #getPluginId() <em>Plugin Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getPluginId()
    * @generated
    * @ordered
@@ -100,7 +89,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ContractValueImpl() {
@@ -110,7 +98,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -121,7 +108,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Contract getContract() {
@@ -139,7 +125,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Contract basicGetContract() {
@@ -149,7 +134,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setContract(Contract newContract) {
@@ -162,7 +146,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getValue() {
@@ -172,7 +155,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setValue(String newValue) {
@@ -185,7 +167,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getPluginId() {
@@ -195,7 +176,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setPluginId(String newPluginId) {
@@ -208,7 +188,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -229,7 +208,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -251,7 +229,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -273,7 +250,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -292,7 +268,6 @@ public class ContractValueImpl extends ContextValueImpl implements ContractValue
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

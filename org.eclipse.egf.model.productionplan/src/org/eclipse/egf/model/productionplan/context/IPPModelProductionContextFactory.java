@@ -8,20 +8,19 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.task;
+package org.eclipse.egf.model.productionplan.context;
 
-import org.eclipse.egf.core.context.IProductionContext;
+import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.productionplan.ProductionPlanInvocation;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface ITaskRunnerFactory {
+public interface IPPModelProductionContextFactory {
 
-  public ITaskRunner createTaskRunner(IProductionContext context, IPlatformTask platformTask);
+  public IProductionContext createModelProductionContext(IProductionContext parent, ProductionPlanInvocation invocation);
 
-  public ITaskRunner createTaskRunner(IPlatformTask platformTask);
-
-  public ITaskRunner createTaskRunner(String id);
+  public IProductionContext createModelProductionContext(ProductionPlanInvocation invocation);
 
 }

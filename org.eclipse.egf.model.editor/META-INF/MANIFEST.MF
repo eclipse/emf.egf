@@ -19,7 +19,7 @@ Require-Bundle:
  org.eclipse.emf.edit.ui,
  org.eclipse.emf.ecore.edit, 
  org.eclipse.egf.common.ui,
- org.eclipse.egf.core,
+ org.eclipse.egf.core.production,
  org.eclipse.egf.core.ui,
  org.eclipse.egf.core.pde, 
  org.eclipse.egf.model.edit

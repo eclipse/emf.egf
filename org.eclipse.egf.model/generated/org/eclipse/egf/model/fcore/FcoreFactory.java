@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.fcore.FcorePackage
  * @generated
  */
@@ -28,7 +27,6 @@ public interface FcoreFactory extends EFactory {
    * The singleton instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   FcoreFactory eINSTANCE = org.eclipse.egf.model.fcore.impl.FcoreFactoryImpl.init();
@@ -37,7 +35,6 @@ public interface FcoreFactory extends EFactory {
    * Returns a new object of class '<em>Task</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Task</em>'.
    * @generated
    */
@@ -47,7 +44,6 @@ public interface FcoreFactory extends EFactory {
    * Returns a new object of class '<em>Factory Component</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Factory Component</em>'.
    * @generated
    */
@@ -57,7 +53,6 @@ public interface FcoreFactory extends EFactory {
    * Returns a new object of class '<em>Viewpoint Container</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Viewpoint Container</em>'.
    * @generated
    */
@@ -67,7 +62,6 @@ public interface FcoreFactory extends EFactory {
    * Returns a new object of class '<em>Context</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Context</em>'.
    * @generated
    */
@@ -77,7 +71,6 @@ public interface FcoreFactory extends EFactory {
    * Returns a new object of class '<em>Contract Container</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Contract Container</em>'.
    * @generated
    */
@@ -87,7 +80,6 @@ public interface FcoreFactory extends EFactory {
    * Returns a new object of class '<em>Contract</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Contract</em>'.
    * @generated
    */
@@ -97,7 +89,6 @@ public interface FcoreFactory extends EFactory {
    * Returns a new object of class '<em>Contract Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Contract Value</em>'.
    * @generated
    */
@@ -107,7 +98,6 @@ public interface FcoreFactory extends EFactory {
    * Returns a new object of class '<em>Contract Connector</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Contract Connector</em>'.
    * @generated
    */
@@ -117,7 +107,6 @@ public interface FcoreFactory extends EFactory {
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the package supported by this factory.
    * @generated
    */

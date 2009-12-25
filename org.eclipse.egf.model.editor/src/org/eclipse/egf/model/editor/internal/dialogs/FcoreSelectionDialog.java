@@ -10,7 +10,9 @@
  */
 package org.eclipse.egf.model.editor.internal.dialogs;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -40,6 +42,8 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
 
   private static final String DIALOG_SETTINGS = "org.eclipse.egf.model.fcore.presentation.FcoreSelectionDialog"; //$NON-NLS-1$
 
+  private IPlatformFcore _previous;
+
   /**
    * <code>ResourceSelectionHistory</code> provides behavior specific to
    * resources - storing and restoring <code>IResource</code>s state
@@ -47,7 +51,11 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
    */
   private class FcoreSelectionHistory extends SelectionHistory {
 
-    private static final String TAG_URI = "path"; //$NON-NLS-1$    
+    private static final String TAG_URI = "path"; //$NON-NLS-1$
+
+    public FcoreSelectionHistory() {
+      super();
+    }
 
     @Override
     protected Object restoreItemFromMemento(IMemento memento) {
@@ -57,9 +65,10 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
         return null;
       }
       URI uri = URI.createURI(tag);
-      // TODO: We should have an index to improve such settings
+      // TODO: We should have an index to improve such control
       for (IPlatformFcore fcore : EGFCorePlugin.getPlatformFcores()) {
         if (fcore.getURI().equals(uri)) {
+          _previous = fcore;
           return fcore;
         }
       }
@@ -67,39 +76,60 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
     }
 
     @Override
-    protected void storeItemToMemento(Object item, IMemento memento) {
-      IPlatformFcore fcore = (IPlatformFcore) item;
-      memento.putString(TAG_URI, fcore.getURI().toString());
+    protected void storeItemToMemento(Object item, IMemento element) {
+      if (getReturnCode() == OK) {
+        Object[] items = getHistoryItems();
+        for (int i = 0; i < items.length; i++) {
+          IPlatformFcore fcore = (IPlatformFcore) items[i];
+          element.putString(TAG_URI, fcore.getURI().toString());
+        }
+      } else if (_previous != null) {
+        element.putString(TAG_URI, _previous.getURI().toString());
+      }
     }
 
   }
 
   private class FcoreSearchItemsFilter extends ItemsFilter {
-    @Override
-    public boolean isConsistentItem(Object item) {
-      return true;
-    }
 
     @Override
     public boolean matchItem(Object item) {
-      String id = null;
-      if (item instanceof IPlatformFcore) {
-        IPlatformFcore model = (IPlatformFcore) item;
-        id = model.getURI().toString();
+      if (item instanceof IPlatformFcore == false) {
+        return false;
       }
-
-      return (matches(id));
+      return (matches(((IPlatformFcore) item).getURI().toString()));
     }
 
     @Override
-    protected boolean matches(String text) {
-      String pattern = patternMatcher.getPattern();
-      if (pattern.indexOf("*") != 0 & pattern.indexOf("?") != 0 & pattern.indexOf(".") != 0) {//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        pattern = "*" + pattern; //$NON-NLS-1$
-        patternMatcher.setPattern(pattern);
+    public boolean isConsistentItem(Object item) {
+      if (item instanceof IPlatformFcore) {
+        return true;
       }
-      return patternMatcher.matches(text);
+      return false;
     }
+
+    @Override
+    public boolean isSubFilter(ItemsFilter filter) {
+      if (super.isSubFilter(filter) == false) {
+        return false;
+      }
+      if (filter instanceof FcoreSearchItemsFilter) {
+        return true;
+      }
+      return false;
+    }
+
+    @Override
+    public boolean equalsFilter(ItemsFilter filter) {
+      if (super.equalsFilter(filter) == false) {
+        return false;
+      }
+      if (filter instanceof FcoreSearchItemsFilter) {
+        return true;
+      }
+      return false;
+    }
+
   }
 
   private class FcoreSearchComparator implements Comparator<IPlatformFcore> {
@@ -166,6 +196,21 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
 
   private static IPlatformFcore[] getElements() {
     return EGFCorePlugin.getPlatformFcores();
+  }
+
+  @Override
+  public Object[] getResult() {
+    Object[] result = super.getResult();
+    if (result == null) {
+      return null;
+    }
+    List<IPlatformFcore> resultToReturn = new ArrayList<IPlatformFcore>();
+    for (int i = 0; i < result.length; i++) {
+      if (result[i] instanceof IPlatformFcore) {
+        resultToReturn.add(((IPlatformFcore) result[i]));
+      }
+    }
+    return resultToReturn.toArray();
   }
 
   @Override

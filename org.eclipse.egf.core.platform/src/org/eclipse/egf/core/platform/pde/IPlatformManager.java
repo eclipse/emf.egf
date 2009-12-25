@@ -11,6 +11,7 @@
 package org.eclipse.egf.core.platform.pde;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 
 /**
  * @author Xavier Maysonnave
@@ -19,6 +20,8 @@ import org.eclipse.core.resources.IProject;
 public interface IPlatformManager {
 
   public IPlatformBundle[] getPlatformBundles();
+
+  public IPlatformBundle getPlatformBundle(IPluginModelBase base);
 
   public IPlatformBundle getPlatformBundle(IProject project);
 

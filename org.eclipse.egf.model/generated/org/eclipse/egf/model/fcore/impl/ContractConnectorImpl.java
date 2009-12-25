@@ -30,15 +30,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContractConnectorImpl#getContext
- * <em>Context</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContractConnectorImpl#getSource
- * <em>Source</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContractConnectorImpl#getTarget
- * <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractConnectorImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractConnectorImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractConnectorImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ContractConnectorImpl extends ModelElementImpl implements ContractConnector {
@@ -46,7 +43,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
    * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getSource()
    * @generated
    * @ordered
@@ -57,7 +53,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getTarget()
    * @generated
    * @ordered
@@ -67,7 +62,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ContractConnectorImpl() {
@@ -77,7 +71,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -88,7 +81,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Context getContext() {
@@ -100,7 +92,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetContext(Context newContext, NotificationChain msgs) {
@@ -111,7 +102,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setContext(Context newContext) {
@@ -133,7 +123,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Contract getSource() {
@@ -151,7 +140,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Contract basicGetSource() {
@@ -161,7 +149,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setSource(Contract newSource) {
@@ -174,7 +161,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Contract getTarget() {
@@ -192,7 +178,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Contract basicGetTarget() {
@@ -202,7 +187,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setTarget(Contract newTarget) {
@@ -215,7 +199,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -232,7 +215,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -247,7 +229,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -262,7 +243,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -285,7 +265,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -307,7 +286,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -329,7 +307,6 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

@@ -14,21 +14,24 @@ package org.eclipse.egf.model.productionplan.impl;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.core.l10n.EGFCoreMessages;
+import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.impl.OrchestrationImpl;
-
 import org.eclipse.egf.model.productionplan.ProductionPlan;
 import org.eclipse.egf.model.productionplan.ProductionPlanInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
-
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,26 +40,32 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.productionplan.impl.ProductionPlanImpl#getProductionPlanInvocations <em>Production Plan Invocations</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.productionplan.impl.ProductionPlanImpl#getProductionPlanInvocations
+ * <em>Production Plan Invocations</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ProductionPlanImpl extends OrchestrationImpl implements ProductionPlan {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and
+   * whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getProductionPlanInvocations() <em>Production Plan Invocations</em>}' containment reference list.
+   * The cached value of the '{@link #getProductionPlanInvocations()
+   * <em>Production Plan Invocations</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getProductionPlanInvocations()
    * @generated
    * @ordered
@@ -66,6 +75,7 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ProductionPlanImpl() {
@@ -75,6 +85,7 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -85,6 +96,7 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<ProductionPlanInvocation> getProductionPlanInvocations() {
@@ -97,6 +109,7 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -112,6 +125,7 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -126,6 +140,45 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+    Assert.isNotNull(productionContext);
+    int steps = getSteps();
+    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, productionContext.getName()), steps * 900);
+    try {
+      for (ProductionPlanInvocation invocation : getProductionPlanInvocations()) {
+        invocation.invoke(productionContext, subMonitor.newChild(900 * invocation.getSteps(), SubMonitor.SUPPRESS_NONE));
+        if (monitor.isCanceled()) {
+          throw new OperationCanceledException();
+        }
+      }
+    } finally {
+      subMonitor.done();
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public int getSteps() {
+    int steps = 0;
+    for (ProductionPlanInvocation invocation : getProductionPlanInvocations()) {
+      steps += invocation.getSteps();
+    }
+    return steps;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -140,6 +193,7 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -157,6 +211,7 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -172,6 +227,7 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -183,4 +239,4 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
     return super.eIsSet(featureID);
   }
 
-} //ProductionPlanImpl
+} // ProductionPlanImpl

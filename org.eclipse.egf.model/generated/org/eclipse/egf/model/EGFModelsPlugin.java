@@ -12,18 +12,20 @@
  */
 package org.eclipse.egf.model;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.activator.EGFEclipsePlugin;
-import org.eclipse.egf.model.context.IActivityProductionContextFactory;
-import org.eclipse.egf.model.internal.context.ActivityProductionContextFactory;
+import org.eclipse.egf.model.context.IModelProductionContextFactory;
+import org.eclipse.egf.model.internal.context.ModelProductionContextFactory;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.BundleException;
 
 /**
- * This is the central singleton for the Pattern model plugin.
+ * This is the central singleton for the Fcore model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public final class EGFModelsPlugin extends EMFPlugin {
@@ -32,7 +34,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static final EGFModelsPlugin INSTANCE = new EGFModelsPlugin();
@@ -44,13 +45,12 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * 
    * @generated NOT
    */
-  private static final IActivityProductionContextFactory __factory = new ActivityProductionContextFactory();
+  private static final IModelProductionContextFactory __modelProductionContextFactory = new ModelProductionContextFactory();
 
   /**
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static Implementation plugin;
@@ -59,7 +59,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * Create the instance.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EGFModelsPlugin() {
@@ -70,7 +69,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * Returns the singleton instance of the Eclipse plugin.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the singleton instance.
    * @generated
    */
@@ -83,7 +81,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * Returns the singleton instance of the Eclipse plugin.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the singleton instance.
    * @generated
    */
@@ -99,15 +96,14 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * @return the singleton model production context factory.
    * @generated NOT
    */
-  public static IActivityProductionContextFactory getModelProductionContextFactory() {
-    return __factory;
+  public static IModelProductionContextFactory getModelProductionContextFactory() {
+    return __modelProductionContextFactory;
   }
 
   /**
    * The actual implementation of the Eclipse <b>Plugin</b>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static class Implementation extends EGFEclipsePlugin {
@@ -116,14 +112,41 @@ public final class EGFModelsPlugin extends EMFPlugin {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
-     * @generated
+     * @generated NOT
      */
     public Implementation() {
       super();
+    }
 
-      // Remember the static instance.
-      //
+    /**
+     * <!-- begin-user-doc -->
+     * 
+     * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
+     *      <!-- end-user-doc -->
+     * @generated NOT
+     */
+    @Override
+    public void start(BundleContext context_p) throws Exception {
+      super.start(context_p);
       plugin = this;
+      // Force EGF Core Platform Plugin initialization
+      Bundle platformBundle = Platform.getBundle("org.eclipse.egf.core.platform"); //$NON-NLS-1$
+      if (platformBundle != null) {
+        try {
+          platformBundle.start(Bundle.START_TRANSIENT);
+        } catch (BundleException e) {
+          logError(e);
+        }
+      }
+      // Force EGF Core PDE Plugin initialization
+      Bundle pdeBundle = Platform.getBundle("org.eclipse.egf.core.pde"); //$NON-NLS-1$
+      if (pdeBundle != null) {
+        try {
+          pdeBundle.start(Bundle.START_TRANSIENT);
+        } catch (BundleException e) {
+          logError(e);
+        }
+      }
     }
 
     /**

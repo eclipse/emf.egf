@@ -12,6 +12,9 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.Context;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
@@ -28,8 +31,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getContext <em>
- * Context</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getContext
+ * <em>Context</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getSteps
+ * <em>Steps</em>}</li>
  * </ul>
  * </p>
  * 
@@ -47,6 +52,17 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
    * @ordered
    */
   protected Context context;
+
+  /**
+   * The default value of the '{@link #getSteps() <em>Steps</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @see #getSteps()
+   * @generated
+   * @ordered
+   */
+  protected static final int STEPS_EDEFAULT = 0;
 
   /**
    * <!-- begin-user-doc -->
@@ -124,6 +140,30 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
    * 
    * @generated
    */
+  public int getSteps() {
+    // TODO: implement this method to return the 'Steps' attribute
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -161,6 +201,8 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
     switch (featureID) {
     case FcorePackage.INVOCATION__CONTEXT:
       return getContext();
+    case FcorePackage.INVOCATION__STEPS:
+      return getSteps();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -208,6 +250,8 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
     switch (featureID) {
     case FcorePackage.INVOCATION__CONTEXT:
       return context != null;
+    case FcorePackage.INVOCATION__STEPS:
+      return getSteps() != STEPS_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

@@ -12,6 +12,10 @@
  */
 package org.eclipse.egf.model.fcore;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.InvocationException;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Orchestration</b></em>'.
@@ -20,8 +24,10 @@ package org.eclipse.egf.model.fcore;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.Orchestration#getFactoryComponent <em>
- * Factory Component</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.Orchestration#getFactoryComponent
+ * <em>Factory Component</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.Orchestration#getSteps <em>Steps</em>}
+ * </li>
  * </ul>
  * </p>
  * 
@@ -67,5 +73,29 @@ public interface Orchestration extends ModelElement {
    * @generated
    */
   void setFactoryComponent(FactoryComponent value);
+
+  /**
+   * Returns the value of the '<em><b>Steps</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @return the value of the '<em>Steps</em>' attribute.
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getOrchestration_Steps()
+   * @model transient="true" changeable="false" volatile="true" derived="true"
+   * @generated
+   */
+  int getSteps();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @model exceptions="org.eclipse.egf.model.fcore.InvocationException"
+   *        productionContextDataType
+   *        ="org.eclipse.egf.model.fcore.IProductionContext"
+   *        monitorDataType="org.eclipse.egf.model.fcore.IProgressMonitor"
+   * @generated
+   */
+  void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException;
 
 } // Orchestration

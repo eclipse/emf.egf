@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.Enumerator;
  * <em><b>Contract Mode</b></em>',
  * and utility methods for working with them.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.fcore.FcorePackage#getContractMode()
  * @model
  * @generated
@@ -34,7 +33,6 @@ public enum ContractMode implements Enumerator {
    * The '<em><b>IN</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #IN_VALUE
    * @generated
    * @ordered
@@ -45,7 +43,6 @@ public enum ContractMode implements Enumerator {
    * The '<em><b>OUT</b></em>' literal object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #OUT_VALUE
    * @generated
    * @ordered
@@ -60,7 +57,6 @@ public enum ContractMode implements Enumerator {
    * really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #IN
    * @model
    * @generated
@@ -76,7 +72,6 @@ public enum ContractMode implements Enumerator {
    * really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @see #OUT
    * @model
    * @generated
@@ -88,27 +83,22 @@ public enum ContractMode implements Enumerator {
    * An array of all the '<em><b>Contract Mode</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static final ContractMode[] VALUES_ARRAY = new ContractMode[] { IN, OUT, };
 
   /**
-   * A public read-only list of all the '<em><b>Contract Mode</b></em>'
-   * enumerators.
+   * A public read-only list of all the '<em><b>Contract Mode</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static final List<ContractMode> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
 
   /**
-   * Returns the '<em><b>Contract Mode</b></em>' literal with the specified
-   * literal value.
+   * Returns the '<em><b>Contract Mode</b></em>' literal with the specified literal value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static ContractMode get(String literal) {
@@ -122,11 +112,9 @@ public enum ContractMode implements Enumerator {
   }
 
   /**
-   * Returns the '<em><b>Contract Mode</b></em>' literal with the specified
-   * name.
+   * Returns the '<em><b>Contract Mode</b></em>' literal with the specified name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static ContractMode getByName(String name) {
@@ -140,11 +128,9 @@ public enum ContractMode implements Enumerator {
   }
 
   /**
-   * Returns the '<em><b>Contract Mode</b></em>' literal with the specified
-   * integer value.
+   * Returns the '<em><b>Contract Mode</b></em>' literal with the specified integer value.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static ContractMode get(int value) {
@@ -160,7 +146,6 @@ public enum ContractMode implements Enumerator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private final int value;
@@ -168,7 +153,6 @@ public enum ContractMode implements Enumerator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private final String name;
@@ -176,7 +160,6 @@ public enum ContractMode implements Enumerator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private final String literal;
@@ -185,7 +168,6 @@ public enum ContractMode implements Enumerator {
    * Only this class can construct instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private ContractMode(int value, String name, String literal) {
@@ -197,7 +179,6 @@ public enum ContractMode implements Enumerator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public int getValue() {
@@ -207,7 +188,6 @@ public enum ContractMode implements Enumerator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getName() {
@@ -217,7 +197,6 @@ public enum ContractMode implements Enumerator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getLiteral() {
@@ -225,11 +204,9 @@ public enum ContractMode implements Enumerator {
   }
 
   /**
-   * Returns the literal value of the enumerator, which is its string
-   * representation.
+   * Returns the literal value of the enumerator, which is its string representation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

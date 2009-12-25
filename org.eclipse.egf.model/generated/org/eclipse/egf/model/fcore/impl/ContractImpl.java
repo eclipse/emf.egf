@@ -31,18 +31,13 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.ContractImpl#getContractContainer
- * <em>Contract Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getMode <em>Mode
- * </em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getType <em>Type
- * </em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getDefaultValue <em>
- * Default Value</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getContractContainer <em>Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getMode <em>Mode</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ContractImpl extends ModelElementImpl implements Contract {
@@ -50,7 +45,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getMode()
    * @generated
    * @ordered
@@ -58,22 +52,18 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   protected static final ContractMode MODE_EDEFAULT = ContractMode.IN;
 
   /**
-   * The offset of the flags representing the value of the '{@link #getMode()
-   * <em>Mode</em>}' attribute.
+   * The offset of the flags representing the value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   protected static final int MODE_EFLAG_OFFSET = 0;
 
   /**
-   * The flags representing the default value of the '{@link #getMode()
-   * <em>Mode</em>}' attribute.
+   * The flags representing the default value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -83,18 +73,15 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * The array of enumeration values for '{@link ContractMode Contract Mode}'
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   private static final ContractMode[] MODE_EFLAG_VALUES = ContractMode.values();
 
   /**
-   * The flag representing the value of the '{@link #getMode() <em>Mode</em>}'
-   * attribute.
+   * The flag representing the value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getMode()
    * @generated
    * @ordered
@@ -105,7 +92,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * The cached value of the '{@link #getType() <em>Type</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getType()
    * @generated
    * @ordered
@@ -113,11 +99,9 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   protected EClass type;
 
   /**
-   * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}'
-   * containment reference.
+   * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getDefaultValue()
    * @generated
    * @ordered
@@ -127,7 +111,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ContractImpl() {
@@ -137,7 +120,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -148,7 +130,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ContractContainer getContractContainer() {
@@ -160,7 +141,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetContractContainer(ContractContainer newContractContainer, NotificationChain msgs) {
@@ -171,7 +151,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setContractContainer(ContractContainer newContractContainer) {
@@ -193,7 +172,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ContractMode getMode() {
@@ -203,7 +181,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setMode(ContractMode newMode) {
@@ -218,7 +195,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getType() {
@@ -236,7 +212,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass basicGetType() {
@@ -246,7 +221,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setType(EClass newType) {
@@ -259,7 +233,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ContractValue getDefaultValue() {
@@ -269,7 +242,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetDefaultValue(ContractValue newDefaultValue, NotificationChain msgs) {
@@ -288,7 +260,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setDefaultValue(ContractValue newDefaultValue) {
@@ -308,7 +279,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -325,7 +295,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -342,7 +311,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -357,7 +325,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -380,7 +347,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -405,7 +371,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -430,7 +395,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -451,7 +415,6 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

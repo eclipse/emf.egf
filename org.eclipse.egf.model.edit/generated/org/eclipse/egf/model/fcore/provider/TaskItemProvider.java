@@ -38,11 +38,9 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.fcore.Task} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.Task} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TaskItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -50,7 +48,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TaskItemProvider(AdapterFactory adapterFactory) {
@@ -61,7 +58,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -103,7 +99,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This returns Task.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -115,7 +110,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -126,13 +120,10 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to
-   * update any cached
-   * children and by creating a viewer notification, which it passes to
-   * {@link #fireNotifyChanged}.
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -148,12 +139,10 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-   * the children
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

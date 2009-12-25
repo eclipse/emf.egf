@@ -35,24 +35,18 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.ViewpointContainerImpl#getFactoryComponent
- * <em>Factory Component</em>}</li>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.ViewpointContainerImpl#getViewpoints
- * <em>Viewpoints</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ViewpointContainerImpl#getFactoryComponent <em>Factory Component</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ViewpointContainerImpl#getViewpoints <em>Viewpoints</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ViewpointContainerImpl extends ModelElementImpl implements ViewpointContainer {
   /**
-   * The cached value of the '{@link #getViewpoints() <em>Viewpoints</em>}'
-   * containment reference list.
+   * The cached value of the '{@link #getViewpoints() <em>Viewpoints</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getViewpoints()
    * @generated
    * @ordered
@@ -62,7 +56,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ViewpointContainerImpl() {
@@ -72,7 +65,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -83,7 +75,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FactoryComponent getFactoryComponent() {
@@ -95,7 +86,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetFactoryComponent(FactoryComponent newFactoryComponent, NotificationChain msgs) {
@@ -106,7 +96,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setFactoryComponent(FactoryComponent newFactoryComponent) {
@@ -128,7 +117,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<Viewpoint> getViewpoints() {
@@ -141,7 +129,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -161,7 +148,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -178,7 +164,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -193,7 +178,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -210,7 +194,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -231,7 +214,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -250,7 +232,6 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

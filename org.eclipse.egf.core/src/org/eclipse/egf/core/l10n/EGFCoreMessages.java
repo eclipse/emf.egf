@@ -27,7 +27,10 @@ public class EGFCoreMessages {
     NLS.initializeMessages(BUNDLE_NAME, EGFCoreMessages.class);
   }
 
-  public static String AbstractTask_Execute;
+  public static String Production_Invoke;
+  public static String Production_Dispose;
+  public static String Production_Instantiate;
+
   public static String AbstractTask_postExecute;
   public static String AbstractTask_doExecute;
   public static String AbstractTask_preExecute;

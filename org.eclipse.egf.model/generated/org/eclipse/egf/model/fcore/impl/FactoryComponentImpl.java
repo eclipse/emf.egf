@@ -12,6 +12,12 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.EGFModelsPlugin;
+import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Orchestration;
@@ -42,8 +48,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class FactoryComponentImpl extends ActivityImpl implements FactoryComponent {
   /**
-   * The cached value of the '{@link #getViewpointContainer()
-   * <em>Viewpoint Container</em>}' containment reference.
+   * The cached value of the '{@link #getViewpointContainer() <em>Viewpoint
+   * Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -182,6 +188,37 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
         msgs.dispatch();
     } else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, newOrchestration, newOrchestration));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+    Assert.isNotNull(productionContext);
+    if (getOrchestration() != null) {
+      getOrchestration().invoke(EGFModelsPlugin.getModelProductionContextFactory().createModelProductionContext(productionContext, this), monitor);
+    }
+    if (monitor.isCanceled()) {
+      throw new OperationCanceledException();
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public int getSteps() {
+    if (getOrchestration() != null) {
+      return getOrchestration().getSteps();
+    }
+    return 0;
   }
 
   /**

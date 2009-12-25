@@ -14,10 +14,13 @@ package org.eclipse.egf.model.fcore.util;
 
 import java.util.Map;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.EGFModelsPlugin;
 import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
@@ -208,8 +211,12 @@ public class FcoreValidator extends EObjectValidator {
       return validateContractConnector((ContractConnector) value, diagnostics, context);
     case FcorePackage.CONTRACT_MODE:
       return validateContractMode((ContractMode) value, diagnostics, context);
+    case FcorePackage.IPRODUCTION_CONTEXT:
+      return validateIProductionContext((IProductionContext) value, diagnostics, context);
     case FcorePackage.INVOCATION_EXCEPTION:
       return validateInvocationException((InvocationException) value, diagnostics, context);
+    case FcorePackage.IPROGRESS_MONITOR:
+      return validateIProgressMonitor((IProgressMonitor) value, diagnostics, context);
     case FcorePackage.URI:
       return validateURI((URI) value, diagnostics, context);
     default:
@@ -244,7 +251,43 @@ public class FcoreValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateTask(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(task, diagnostics, context);
+    boolean result = validate_EveryMultiplicityConforms(task, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(task, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(task, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(task, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(task, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(task, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(task, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTask_task(task, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * Validates the task constraint of '<em>Task</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateTask_task(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (task.getTaskId() != null) {
+      if (EGFCorePlugin.getPlatformTask(task.getTaskId()) == null) {
+        if (diagnostics != null) {
+          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+              new Object[] { "TaskId is unknown.", getObjectLabel(task, context) }, //$NON-NLS-1$
+              new Object[] { task }, context));
+        }
+      }
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -417,7 +460,27 @@ public class FcoreValidator extends EObjectValidator {
    * 
    * @generated
    */
+  public boolean validateIProductionContext(IProductionContext iProductionContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return true;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
   public boolean validateInvocationException(InvocationException invocationException, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return true;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public boolean validateIProgressMonitor(IProgressMonitor iProgressMonitor, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return true;
   }
 

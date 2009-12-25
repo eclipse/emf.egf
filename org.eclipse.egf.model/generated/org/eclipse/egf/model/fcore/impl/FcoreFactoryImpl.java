@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.Context;
 import org.eclipse.egf.model.fcore.Contract;
@@ -111,8 +113,12 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     switch (eDataType.getClassifierID()) {
     case FcorePackage.CONTRACT_MODE:
       return createContractModeFromString(eDataType, initialValue);
+    case FcorePackage.IPRODUCTION_CONTEXT:
+      return createIProductionContextFromString(eDataType, initialValue);
     case FcorePackage.INVOCATION_EXCEPTION:
       return createInvocationExceptionFromString(eDataType, initialValue);
+    case FcorePackage.IPROGRESS_MONITOR:
+      return createIProgressMonitorFromString(eDataType, initialValue);
     case FcorePackage.URI:
       return createURIFromString(eDataType, initialValue);
     default:
@@ -131,8 +137,12 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     switch (eDataType.getClassifierID()) {
     case FcorePackage.CONTRACT_MODE:
       return convertContractModeToString(eDataType, instanceValue);
+    case FcorePackage.IPRODUCTION_CONTEXT:
+      return convertIProductionContextToString(eDataType, instanceValue);
     case FcorePackage.INVOCATION_EXCEPTION:
       return convertInvocationExceptionToString(eDataType, instanceValue);
+    case FcorePackage.IPROGRESS_MONITOR:
+      return convertIProgressMonitorToString(eDataType, instanceValue);
     case FcorePackage.URI:
       return convertURIToString(eDataType, instanceValue);
     default:
@@ -257,6 +267,26 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
    * 
    * @generated
    */
+  public IProductionContext createIProductionContextFromString(EDataType eDataType, String initialValue) {
+    return (IProductionContext) super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public String convertIProductionContextToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
   public InvocationException createInvocationExceptionFromString(EDataType eDataType, String initialValue) {
     return (InvocationException) super.createFromString(eDataType, initialValue);
   }
@@ -268,6 +298,26 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
    * @generated
    */
   public String convertInvocationExceptionToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public IProgressMonitor createIProgressMonitorFromString(EDataType eDataType, String initialValue) {
+    return (IProgressMonitor) super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public String convertIProgressMonitorToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(eDataType, instanceValue);
   }
 

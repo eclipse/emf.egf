@@ -37,24 +37,19 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getInvocation <em>
- * Invocation</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getValues <em>Values
- * </em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getConnectors <em>
- * Connectors</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getInvocation <em>Invocation</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getValues <em>Values</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getConnectors <em>Connectors</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ContextImpl extends ModelElementImpl implements Context {
   /**
-   * The cached value of the '{@link #getValues() <em>Values</em>}' containment
-   * reference list.
+   * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getValues()
    * @generated
    * @ordered
@@ -62,11 +57,9 @@ public class ContextImpl extends ModelElementImpl implements Context {
   protected EList<ContextValue> values;
 
   /**
-   * The cached value of the '{@link #getConnectors() <em>Connectors</em>}'
-   * containment reference list.
+   * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getConnectors()
    * @generated
    * @ordered
@@ -76,7 +69,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ContextImpl() {
@@ -86,7 +78,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -97,7 +88,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Invocation getInvocation() {
@@ -109,7 +99,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetInvocation(Invocation newInvocation, NotificationChain msgs) {
@@ -120,7 +109,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setInvocation(Invocation newInvocation) {
@@ -142,7 +130,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<ContextValue> getValues() {
@@ -155,7 +142,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<ContractConnector> getConnectors() {
@@ -168,7 +154,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -188,7 +173,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -207,7 +191,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -222,7 +205,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -241,7 +223,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -266,7 +247,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -288,7 +268,6 @@ public class ContextImpl extends ModelElementImpl implements Context {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

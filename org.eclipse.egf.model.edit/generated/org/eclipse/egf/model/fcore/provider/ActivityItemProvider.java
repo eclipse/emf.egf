@@ -24,6 +24,7 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -35,6 +36,7 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
@@ -65,8 +67,21 @@ public class ActivityItemProvider extends ModelElementItemProvider implements IE
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addStepsPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Steps feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addStepsPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Activity_steps_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_Activity_steps_feature", "_UI_Activity_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.ACTIVITY__STEPS, false, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**

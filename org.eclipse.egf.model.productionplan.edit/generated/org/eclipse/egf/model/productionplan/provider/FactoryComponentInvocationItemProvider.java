@@ -34,12 +34,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.productionplan.FactoryComponentInvocation}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.productionplan.FactoryComponentInvocation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FactoryComponentInvocationItemProvider extends ProductionPlanInvocationItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -47,7 +44,6 @@ public class FactoryComponentInvocationItemProvider extends ProductionPlanInvoca
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FactoryComponentInvocationItemProvider(AdapterFactory adapterFactory) {
@@ -58,7 +54,6 @@ public class FactoryComponentInvocationItemProvider extends ProductionPlanInvoca
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -98,7 +93,6 @@ public class FactoryComponentInvocationItemProvider extends ProductionPlanInvoca
    * This returns FactoryComponentInvocation.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -110,7 +104,6 @@ public class FactoryComponentInvocationItemProvider extends ProductionPlanInvoca
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -121,13 +114,10 @@ public class FactoryComponentInvocationItemProvider extends ProductionPlanInvoca
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to
-   * update any cached
-   * children and by creating a viewer notification, which it passes to
-   * {@link #fireNotifyChanged}.
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -137,12 +127,10 @@ public class FactoryComponentInvocationItemProvider extends ProductionPlanInvoca
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-   * the children
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

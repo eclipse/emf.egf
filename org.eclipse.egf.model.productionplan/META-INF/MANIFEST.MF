@@ -12,7 +12,8 @@ Export-Package:
  org.eclipse.egf.model,
  org.eclipse.egf.model.productionplan,
  org.eclipse.egf.model.productionplan.impl,
- org.eclipse.egf.model.productionplan.util
+ org.eclipse.egf.model.productionplan.util,
+ org.eclipse.egf.model.productionplan.context
 Require-Bundle: 
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

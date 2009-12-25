@@ -22,13 +22,11 @@ import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.core.context.IProductionContextFactory;
+import org.eclipse.egf.core.context.IEGFContextFactory;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.internal.context.ProductionContextFactory;
-import org.eclipse.egf.core.internal.task.TaskRunnerFactory;
+import org.eclipse.egf.core.internal.context.EGFContextFactory;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.task.IPlatformTask;
-import org.eclipse.egf.core.task.ITaskRunnerFactory;
 import org.eclipse.egf.core.type.IPlatformType;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -49,14 +47,9 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   private static EGFCorePlugin __plugin;
 
   /**
-   * IProductionContextFactory singleton.
+   * IContextFactory singleton.
    */
-  private static final IProductionContextFactory __productionContextFactory = new ProductionContextFactory();
-
-  /**
-   * ITaskRunnerFactory singleton.
-   */
-  private static final ITaskRunnerFactory __taskRunnerFactory = new TaskRunnerFactory();
+  private static final IEGFContextFactory __contextFactory = new EGFContextFactory();
 
   /**
    * Constant identifying the job family identifier for a background build job.
@@ -80,21 +73,12 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   }
 
   /**
-   * Returns the singleton instance of the IProductionContextFactory.
+   * Returns the singleton instance of the IContextFactory.
    * 
    * @return the singleton production context factory.
    */
-  public static IProductionContextFactory getProductionContextFactory() {
-    return __productionContextFactory;
-  }
-
-  /**
-   * Returns the singleton instance of the ITaskRunnerFactory.
-   * 
-   * @return the singleton task runner factory.
-   */
-  public static ITaskRunnerFactory getTaskRunnerFactory() {
-    return __taskRunnerFactory;
+  public static IEGFContextFactory getContextFactory() {
+    return __contextFactory;
   }
 
   /**
@@ -105,7 +89,8 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    * <pre>
    * Map result = new HashMap();
    * result.putAll(computePlatformPluginToPlatformResourceMap());
-   * result.putAll(computePlatformResourceToPlatformPluginMap(new HashSet(EcorePlugin.getEPackageNsURIToGenModelLocationMap().values())));
+   * result.putAll(computePlatformResourceToPlatformPluginMap(new
+   * HashSet(EcorePlugin.getEPackageNsURIToGenModelLocationMap().values())));
    * return result;
    *</pre>
    * 

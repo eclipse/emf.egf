@@ -15,7 +15,7 @@ package org.eclipse.egf.core.internal.context;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.egf.core.context.IProductionContext;
+import org.eclipse.egf.core.context.IEGFContext;
 
 /**
  * TODO Ici on ne devrait avoir qu'une pauvre map avec name-valeur. Son
@@ -26,18 +26,22 @@ import org.eclipse.egf.core.context.IProductionContext;
  * @author Guiu
  * 
  */
-public class ProductionContext implements IProductionContext {
+public class EGFContext implements IEGFContext {
 
-  private IProductionContext _parent;
+  private IEGFContext _parent;
 
   private final Map<String, Object> _data = new HashMap<String, Object>();
 
-  public ProductionContext() {
+  public EGFContext() {
     // Nothing to do
   }
 
-  public ProductionContext(IProductionContext parent) {
+  public EGFContext(IEGFContext parent) {
     _parent = parent;
+  }
+
+  public IEGFContext getParent() {
+    return _parent;
   }
 
   public void setValue(String name, Object value) {

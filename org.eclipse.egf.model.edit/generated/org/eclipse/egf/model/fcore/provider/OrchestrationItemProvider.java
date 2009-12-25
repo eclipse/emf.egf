@@ -15,11 +15,13 @@ package org.eclipse.egf.model.fcore.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Orchestration;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -31,6 +33,7 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.Orchestration} object.
@@ -60,8 +63,21 @@ public class OrchestrationItemProvider extends ModelElementItemProvider implemen
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addStepsPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Steps feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addStepsPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Orchestration_steps_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_Orchestration_steps_feature", "_UI_Orchestration_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.ORCHESTRATION__STEPS, false, false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
   }
 
   /**

@@ -12,9 +12,10 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.Context;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.emf.common.notify.Notification;
@@ -33,6 +34,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <li>
  * {@link org.eclipse.egf.model.fcore.impl.ActivityImpl#getContractContainer
  * <em>Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ActivityImpl#getSteps
+ * <em>Steps</em>}</li>
  * </ul>
  * </p>
  * 
@@ -40,8 +43,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public abstract class ActivityImpl extends ModelElementImpl implements Activity {
   /**
-   * The cached value of the '{@link #getContractContainer()
-   * <em>Contract Container</em>}' containment reference.
+   * The cached value of the '{@link #getContractContainer() <em>Contract
+   * Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -50,6 +53,17 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
    * @ordered
    */
   protected ContractContainer contractContainer;
+
+  /**
+   * The default value of the '{@link #getSteps() <em>Steps</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @see #getSteps()
+   * @generated
+   * @ordered
+   */
+  protected static final int STEPS_EDEFAULT = 0;
 
   /**
    * <!-- begin-user-doc -->
@@ -127,7 +141,19 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
    * 
    * @generated
    */
-  public void invoke(Context invocationContext) throws InvocationException {
+  public int getSteps() {
+    // TODO: implement this method to return the 'Steps' attribute
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -176,6 +202,8 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
     switch (featureID) {
     case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
       return getContractContainer();
+    case FcorePackage.ACTIVITY__STEPS:
+      return getSteps();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -223,6 +251,8 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
     switch (featureID) {
     case FcorePackage.ACTIVITY__CONTRACT_CONTAINER:
       return contractContainer != null;
+    case FcorePackage.ACTIVITY__STEPS:
+      return getSteps() != STEPS_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

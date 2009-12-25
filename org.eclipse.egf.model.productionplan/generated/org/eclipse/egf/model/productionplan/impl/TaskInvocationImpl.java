@@ -12,16 +12,18 @@
  */
 package org.eclipse.egf.model.productionplan.impl;
 
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.EGFProductionPlanPlugin;
+import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.Task;
-
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 import org.eclipse.egf.model.productionplan.TaskInvocation;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -31,10 +33,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.productionplan.impl.TaskInvocationImpl#getTask <em>Task</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.productionplan.impl.TaskInvocationImpl#getTask
+ * <em>Task</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements TaskInvocation {
@@ -42,6 +46,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
    * The cached value of the '{@link #getTask() <em>Task</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getTask()
    * @generated
    * @ordered
@@ -51,6 +56,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TaskInvocationImpl() {
@@ -60,6 +66,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -70,6 +77,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Task getTask() {
@@ -87,6 +95,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Task basicGetTask() {
@@ -96,6 +105,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setTask(Task newTask) {
@@ -108,6 +118,38 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+    Assert.isNotNull(productionContext);
+    if (getTask() != null) {
+      getTask().invoke(EGFProductionPlanPlugin.getPPModelProductionContextFactory().createModelProductionContext(productionContext, this), monitor);
+    }
+    if (monitor.isCanceled()) {
+      throw new OperationCanceledException();
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public int getSteps() {
+    if (getTask() != null) {
+      return getTask().getSteps();
+    }
+    return 0;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -124,6 +166,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -139,6 +182,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -154,6 +198,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -165,4 +210,4 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
     return super.eIsSet(featureID);
   }
 
-} //TaskInvocationImpl
+} // TaskInvocationImpl

@@ -12,6 +12,9 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.InvocationException;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Orchestration;
@@ -32,12 +35,25 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <li>
  * {@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent
  * <em>Factory Component</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getSteps
+ * <em>Steps</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
 public abstract class OrchestrationImpl extends ModelElementImpl implements Orchestration {
+  /**
+   * The default value of the '{@link #getSteps() <em>Steps</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @see #getSteps()
+   * @generated
+   * @ordered
+   */
+  protected static final int STEPS_EDEFAULT = 0;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -110,6 +126,30 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
    * 
    * @generated
    */
+  public int getSteps() {
+    // TODO: implement this method to return the 'Steps' attribute
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -162,6 +202,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     switch (featureID) {
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       return getFactoryComponent();
+    case FcorePackage.ORCHESTRATION__STEPS:
+      return getSteps();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -209,6 +251,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     switch (featureID) {
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       return getFactoryComponent() != null;
+    case FcorePackage.ORCHESTRATION__STEPS:
+      return getSteps() != STEPS_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }

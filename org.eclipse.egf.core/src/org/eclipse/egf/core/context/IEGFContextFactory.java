@@ -8,19 +8,16 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.task;
-
-import java.lang.reflect.InvocationTargetException;
-
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
+package org.eclipse.egf.core.context;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface ITaskRunner {
+public interface IEGFContextFactory {
 
-  public boolean execute(final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException;
+  public IEGFContext createContext(IEGFContext parent);
+
+  public IEGFContext createContext();
 
 }

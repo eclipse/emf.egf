@@ -16,19 +16,16 @@ package org.eclipse.egf.model.fcore;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Contract Value</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.ContractValue#getContract <em>Contract
- * </em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.ContractValue#getValue <em>Value</em>}
- * </li>
- * <li>{@link org.eclipse.egf.model.fcore.ContractValue#getPluginId <em>Plugin
- * Id</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.ContractValue#getContract <em>Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.ContractValue#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.ContractValue#getPluginId <em>Plugin Id</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getContractValue()
  * @model
  * @generated
@@ -42,7 +39,6 @@ public interface ContractValue extends ContextValue {
    * really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Contract</em>' reference.
    * @see #setContract(Contract)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContractValue_Contract()
@@ -52,14 +48,10 @@ public interface ContractValue extends ContextValue {
   Contract getContract();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.ContractValue#getContract
-   * <em>Contract</em>}' reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.ContractValue#getContract <em>Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Contract</em>' reference.
+   * @param value the new value of the '<em>Contract</em>' reference.
    * @see #getContract()
    * @generated
    */
@@ -71,11 +63,9 @@ public interface ContractValue extends ContextValue {
    * <!-- end-user-doc -->
    * <!-- begin-model-doc -->
    * If value is a stringValue then readableValue is equals to value.<br>
-   * Else if value is a classValue then readableValue is equals to the fully
-   * class name according to value attribute content.
+   * Else if  value is a classValue then readableValue is equals to the fully class name according to value attribute content. 
    * 
    * <!-- end-model-doc -->
-   * 
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(String)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContractValue_Value()
@@ -85,14 +75,10 @@ public interface ContractValue extends ContextValue {
   String getValue();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.ContractValue#getValue <em>Value</em>}'
-   * attribute.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.ContractValue#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Value</em>' attribute.
+   * @param value the new value of the '<em>Value</em>' attribute.
    * @see #getValue()
    * @generated
    */
@@ -106,7 +92,6 @@ public interface ContractValue extends ContextValue {
    * really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Plugin Id</em>' attribute.
    * @see #setPluginId(String)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContractValue_PluginId()
@@ -116,14 +101,10 @@ public interface ContractValue extends ContextValue {
   String getPluginId();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fcore.ContractValue#getPluginId
-   * <em>Plugin Id</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.ContractValue#getPluginId <em>Plugin Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Plugin Id</em>' attribute.
+   * @param value the new value of the '<em>Plugin Id</em>' attribute.
    * @see #getPluginId()
    * @generated
    */

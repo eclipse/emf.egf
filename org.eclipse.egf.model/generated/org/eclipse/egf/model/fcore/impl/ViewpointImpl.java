@@ -29,19 +29,16 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.ViewpointImpl#getViewerpointContainer
- * <em>Viewerpoint Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ViewpointImpl#getViewerpointContainer <em>Viewerpoint Container</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoint {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ViewpointImpl() {
@@ -51,7 +48,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -62,7 +58,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ViewpointContainer getViewerpointContainer() {
@@ -74,7 +69,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetViewerpointContainer(ViewpointContainer newViewerpointContainer, NotificationChain msgs) {
@@ -85,7 +79,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setViewerpointContainer(ViewpointContainer newViewerpointContainer) {
@@ -107,7 +100,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -124,7 +116,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -139,7 +130,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -154,7 +144,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -169,7 +158,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -185,7 +173,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -201,7 +188,6 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
