@@ -11,11 +11,13 @@ Require-Bundle:
  org.eclipse.egf.model;visibility:=reexport,
  org.eclipse.jdt.core,
  org.eclipse.egf.core;visibility:=reexport,
- org.eclipse.emf.query
+ org.eclipse.emf.query,
+ org.eclipse.emf.transaction;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
  org.eclipse.egf.pattern,
+ org.eclipse.egf.pattern.collector,
  org.eclipse.egf.pattern.ecore,
  org.eclipse.egf.pattern.execution,
  org.eclipse.egf.pattern.extension,

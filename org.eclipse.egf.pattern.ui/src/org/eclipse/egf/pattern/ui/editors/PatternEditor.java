@@ -28,6 +28,7 @@ import org.eclipse.core.commands.operations.ObjectUndoContext;
 import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.pattern.PatternConstants;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.editors.domain.ResourceLoadedListener;
 import org.eclipse.egf.pattern.ui.editors.domain.ResourceLoadedListener.ResourceListener;
@@ -100,7 +101,7 @@ public class PatternEditor extends FormEditor implements ResourceUser {
     }
 
     protected void initializeEditingDomain() {
-        editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.eclipse.egf.pattern.ui.editors.PatternEditingDomain"); //$NON-NLS-1$
+        editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
         undoContext = new ObjectUndoContext(this, "undoContext label"); //$NON-NLS-1$
         getOperationHistory().addOperationHistoryListener(historyListener);
     }

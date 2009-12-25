@@ -25,21 +25,14 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.helper.ResourceHelper;
-import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.model.pattern.PatternViewpoint;
-import org.eclipse.egf.model.pattern.util.PatternSwitch;
+import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * @author Thomas Guiu
@@ -102,7 +95,7 @@ public class PatternHelper {
      */
     public static Set<Pattern> getPatterns(URI uri) {
         Set<Pattern> result = new HashSet<Pattern>();
-        collectPatterns(new ResourceSetImpl(), uri, null, result);
+        collectPatterns(uri, null, result);
         return result;
     }
 
@@ -111,11 +104,10 @@ public class PatternHelper {
      * given ids if any. If the ids set is null all patterns are returned.
      */
     public static Set<Pattern> getPatterns(IProject project, Set<String> ids) {
-        ResourceSet set = new ResourceSetImpl();
         Set<Pattern> result = new HashSet<Pattern>();
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores(project);
         for (IPlatformFcore platformFcore : platformFcores) {
-            collectPatterns(set, platformFcore.getURI(), ids, result);
+            collectPatterns(platformFcore.getURI(), ids, result);
         }
         return result;
     }
@@ -124,22 +116,22 @@ public class PatternHelper {
      * Reads all FC models and return the patterns.
      */
     public static Set<Pattern> getAllPatterns() {
-        ResourceSet set = new ResourceSetImpl();
         Set<Pattern> result = new HashSet<Pattern>();
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
         for (IPlatformFcore platformFcore : platformFcores) {
-            collectPatterns(set, platformFcore.getURI(), null, result);
+            collectPatterns(platformFcore.getURI(), null, result);
         }
         return result;
     }
 
-    private static void collectPatterns(ResourceSet set, URI uri, Set<String> ids, Set<Pattern> collector) {
-        Resource res = ResourceHelper.loadResource(set, uri);
-        FCVisitor fcVisitor = new FCVisitor();
-        for (EObject obj : res.getContents()) {
-            if (obj instanceof FactoryComponent)
-                fcVisitor.collect((FactoryComponent) obj, ids, collector);
-        }
+    private static void collectPatterns(URI uri, Set<String> ids, Set<Pattern> collector) {
+        // TODO: do we need to use in memory patterns instead of saved ones ?
+        // this method is usually used by translation process, maybe we should
+        // care only about saved data.
+        final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
+        Resource res = editingDomain.getResourceSet().getResource(uri, true);
+
+        PatternCollector.INSTANCE.collect(res.getContents(), collector, ids);
     }
 
     public static String dropNonWordCharacter(String value) {
@@ -155,48 +147,6 @@ public class PatternHelper {
     }
 
     private PatternHelper() {
-    }
-
-    /**
-     * TODO ça serait bien d'avoir une switch unifié sur tous les modèles de
-     * base...
-     * 
-     * @author Thomas Guiu
-     * 
-     */
-    private static class FCVisitor {
-        public void collect(FactoryComponent fc, final Set<String> ids, final Set<Pattern> collector) {
-            ViewpointContainer viewpointContainer = fc.getViewpointContainer();
-            if (viewpointContainer == null || viewpointContainer.getViewpoints().isEmpty())
-                return;
-            PatternViewpoint pvp = (PatternViewpoint) viewpointContainer.getViewpoint(PatternViewpoint.class);
-            if (pvp == null)
-                return;
-            new PatternSwitch<String>() {
-
-                @Override
-                public String casePattern(Pattern object) {
-                    if (ids == null || ids.contains(object.getID()))
-                        collector.add(object);
-                    return null;
-                }
-
-                @Override
-                public String casePatternLibrary(PatternLibrary object) {
-                    for (PatternElement elemn : object.getElements())
-                        doSwitch(elemn);
-                    return null;
-                }
-
-                @Override
-                public String casePatternViewpoint(PatternViewpoint object) {
-                    for (PatternLibrary lib : object.getLibraries())
-                        casePatternLibrary(lib);
-                    return CharacterConstants.EMPTY_STRING;
-                }
-            }.doSwitch(pvp);
-
-        }
     }
 
     public static class FilenameFormatException extends Exception {

@@ -26,16 +26,15 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
 import org.eclipse.egf.core.fcore.IResourceFcoreListener;
-import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.strategy.PatternCollector;
+import org.eclipse.egf.pattern.PatternConstants;
+import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.translation.TranslationHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 /**
@@ -64,22 +63,19 @@ public class FcoreListener implements IResourceFcoreListener {
                     new WorkspaceModifyOperation() {
                         @Override
                         protected void execute(IProgressMonitor innerMonitor) throws CoreException, InvocationTargetException, InterruptedException {
-                            ResourceSet set = new ResourceSetImpl();
                             Set<Pattern> patterns = new HashSet<Pattern>();
                             try {
                                 innerMonitor.beginTask(Messages.translation_job_label, uris.length);
-                                PatternCollector collector = new PatternCollector();
                                 for (URI uri : uris) {
-                                    Resource res = ResourceHelper.loadResource(set, uri);
-                                    collector.collect(res.getContents(), patterns);
+                                    final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
+                                    Resource res = editingDomain.getResourceSet().getResource(uri, true);
+                                    PatternCollector.INSTANCE.collect(res.getContents(), patterns);
                                 }
                                 new TranslationHelper().translate(patterns);
                             } catch (Exception e) {
                                 throw new InvocationTargetException(e);
                             } finally {
                                 patterns.clear();
-                                for (Resource res : set.getResources())
-                                    res.unload();
                             }
                         }
                     }.run(monitor);

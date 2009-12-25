@@ -34,6 +34,7 @@ public class PatternEditingDomainFactory implements Factory {
         editingDomain.getResourceSet().getURIConverter().getURIMap().clear();
         editingDomain.getResourceSet().getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
 
+        // the listener depends on UI to ask the user to solve conflict
         new WorkspaceSynchronizer(editingDomain, new ResourceLoadedListener());
         return editingDomain;
     }

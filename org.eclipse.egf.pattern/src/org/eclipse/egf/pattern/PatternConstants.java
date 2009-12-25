@@ -17,8 +17,11 @@ package org.eclipse.egf.pattern;
 
 /**
  * @author Guiu
- *
+ * 
  */
 public interface PatternConstants {
-	String PATTERN_UNIT_FILE_EXTENSION = "pt";
+    String PATTERN_UNIT_FILE_EXTENSION = "pt";
+
+    String EDITING_DOMAIN_ID = "org.eclipse.egf.pattern.ui.editors.PatternEditingDomain";
+
 }
