@@ -10,10 +10,10 @@
  */
 package org.eclipse.egf.pde.manifest.command;
 
-import org.eclipse.egf.pde.internal.plugin.manifest.command.SetExportedPackagesCommand;
-import org.eclipse.egf.pde.internal.plugin.manifest.command.SetRequiredPluginsCommand;
-import org.eclipse.egf.pde.internal.plugin.manifest.command.UnsetExportedPackagesCommand;
-import org.eclipse.egf.pde.internal.plugin.manifest.command.UnsetRequiredPluginsCommand;
+import org.eclipse.egf.pde.internal.manifest.command.SetExportedPackagesCommand;
+import org.eclipse.egf.pde.internal.manifest.command.SetRequiredPluginsCommand;
+import org.eclipse.egf.pde.internal.manifest.command.UnsetExportedPackagesCommand;
+import org.eclipse.egf.pde.internal.manifest.command.UnsetRequiredPluginsCommand;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommand;
 
 /**

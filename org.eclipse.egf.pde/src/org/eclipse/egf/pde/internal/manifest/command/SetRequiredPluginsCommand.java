@@ -8,7 +8,7 @@
  *  Contributors:
  *      Thales Corporate Services S.A.S - initial API and implementation
  *******************************************************************************/
-package org.eclipse.egf.pde.internal.plugin.manifest.command;
+package org.eclipse.egf.pde.internal.manifest.command;
 
 import java.util.List;
 
@@ -65,7 +65,7 @@ public class SetRequiredPluginsCommand extends AbstractRequiredPluginsCommand {
   }
 
   /**
-   * @see org.eclipse.egf.pde.internal.plugin.manifest.command.AbstractRequiredPluginsCommand#handleRequiredPlugin(java.lang.String,
+   * @see org.eclipse.egf.pde.internal.manifest.command.AbstractRequiredPluginsCommand#handleRequiredPlugin(java.lang.String,
    *      org.eclipse.pde.internal.core.ibundle.IBundlePluginModel,
    *      java.util.List)
    */

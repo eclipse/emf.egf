@@ -8,7 +8,7 @@
  *  Contributors:
  *      Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.pde.internal.plugin.manifest.command;
+package org.eclipse.egf.pde.internal.manifest.command;
 
 import java.util.ArrayList;
 import java.util.List;
