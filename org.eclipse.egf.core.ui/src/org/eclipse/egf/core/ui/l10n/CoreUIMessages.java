@@ -32,4 +32,7 @@ public class CoreUIMessages {
   public static String _UI_FcoreSelection_label;
   public static String _UI_SelectRegisteredFcoreURI;
 
+  public static String EGFModelPreferencePage_General;
+  public static String EGFModelPreferencePage_Validate_Types;
+
 }

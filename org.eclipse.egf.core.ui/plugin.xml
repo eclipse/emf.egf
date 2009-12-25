@@ -34,5 +34,28 @@
       />
     </page>    
   </extension>
+  
+  <extension 
+    point="org.eclipse.core.runtime.preferences"
+  >
+    <initializer 
+      class="org.eclipse.egf.core.ui.internal.preferences.ModelPreferenceInitializer"
+    />
+  </extension>  
+  
+  <extension
+    point="org.eclipse.ui.preferencePages"
+  >
+    <page
+      name="%Model"
+      class="org.eclipse.egf.core.ui.preferences.EGFModelPreferencePage"
+      category="org.eclipse.egf.preferences"      
+      id="org.eclipse.egf.core.ui.preferences.EGFModelPreferencePage"
+    >
+      <keywordReference 
+        id="org.eclipse.egf.general"
+      />
+    </page>
+  </extension>    
     
 </plugin>
