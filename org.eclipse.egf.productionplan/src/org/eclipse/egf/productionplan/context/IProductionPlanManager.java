@@ -13,7 +13,7 @@ package org.eclipse.egf.productionplan.context;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.egf.production.internal.context.ModelElementContext;
+import org.eclipse.egf.productionplan.internal.context.ModelElementContext;
 import org.osgi.framework.Bundle;
 
 /**

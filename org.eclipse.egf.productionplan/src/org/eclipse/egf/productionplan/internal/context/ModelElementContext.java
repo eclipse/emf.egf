@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.production.internal.context;
+package org.eclipse.egf.productionplan.internal.context;
 
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.internal.context.ProductionContext;
