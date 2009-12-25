@@ -36,11 +36,9 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.productionplan.ProductionPlan} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.productionplan.ProductionPlan} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ProductionPlanItemProvider extends OrchestrationItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -48,7 +46,6 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ProductionPlanItemProvider(AdapterFactory adapterFactory) {
@@ -59,7 +56,6 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -75,7 +71,6 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
    * This returns ProductionPlan.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -87,7 +82,6 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -102,7 +96,6 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -116,7 +109,6 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -132,7 +124,6 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

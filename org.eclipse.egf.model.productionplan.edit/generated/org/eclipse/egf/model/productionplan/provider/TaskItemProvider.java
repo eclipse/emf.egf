@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.task.IPlatformTask;
+import org.eclipse.egf.core.invocation.IPlatformInvocation;
 import org.eclipse.egf.model.edit.EGFProductionPlanModelEditPlugin;
 import org.eclipse.egf.model.fcore.provider.ActivityItemProvider;
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
@@ -71,28 +71,28 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addTaskIdPropertyDescriptor(object);
+      addInvocationIdPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Task Id feature.
+   * This adds a property descriptor for the Invocation Id feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  protected void addTaskIdPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_taskId_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_Task_taskId_feature", "_UI_Task_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        ProductionPlanPackage.Literals.TASK__TASK_ID, true, false, true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_ImplementationPropertyCategory"), //$NON-NLS-1$
+  protected void addInvocationIdPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_invocationId_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_Task_invocationId_feature", "_UI_Task_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        ProductionPlanPackage.Literals.TASK__INVOCATION_ID, true, false, true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_ImplementationPropertyCategory"), //$NON-NLS-1$
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
         Collection<String> result = new UniqueEList<String>();
         // Load type elements in the current resource set
-        for (IPlatformTask platformTask : EGFCorePlugin.getPlatformTasks()) {
+        for (IPlatformInvocation platformTask : EGFCorePlugin.getPlatformInvocations()) {
           result.add(platformTask.getId());
         }
         if (result.contains(null) == false) {
@@ -142,7 +142,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
     updateChildren(notification);
 
     switch (notification.getFeatureID(Task.class)) {
-    case ProductionPlanPackage.TASK__TASK_ID:
+    case ProductionPlanPackage.TASK__INVOCATION_ID:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }

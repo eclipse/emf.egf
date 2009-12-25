@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
@@ -105,8 +104,8 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
    * for any others upon which it depends.
    * 
    * <p>
-   * This method is used to initialize {@link ProductionPlanPackage#eINSTANCE}
-   * when that field is accessed. Clients should not invoke it directly.
+   * This method is used to initialize {@link ProductionPlanPackage#eINSTANCE} when that field is
+   * accessed. Clients should not invoke it directly.
    * Instead, they should simply access that field to obtain the package. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    * 
@@ -189,7 +188,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTask_TaskId() {
+  public EAttribute getTask_InvocationId() {
     return (EAttribute) taskEClass.getEStructuralFeatures().get(0);
   }
 
@@ -240,7 +239,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     taskInvocationEClass = createEClass(TASK_INVOCATION);
 
     taskEClass = createEClass(TASK);
-    createEAttribute(taskEClass, TASK__TASK_ID);
+    createEAttribute(taskEClass, TASK__INVOCATION_ID);
   }
 
   /**
@@ -304,7 +303,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     initEClass(taskInvocationEClass, TaskInvocation.class, "TaskInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
     initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEAttribute(getTask_TaskId(), theEcorePackage.getEString(), "taskId", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getTask_InvocationId(), theEcorePackage.getEString(), "invocationId", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);
@@ -322,7 +321,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
    */
   protected void createEcoreAnnotations() {
     String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-    addAnnotation(taskEClass, source, new String[] { "constraints", "task" //$NON-NLS-1$ //$NON-NLS-2$
+    addAnnotation(taskEClass, source, new String[] { "constraints", "invocation" //$NON-NLS-1$ //$NON-NLS-2$
     });
   }
 

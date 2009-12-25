@@ -27,7 +27,7 @@
     <genClasses ecoreClass="ProductionPlan.ecore#//TaskInvocation"/>
     <genClasses ecoreClass="ProductionPlan.ecore#//Task">
       <genFeatures createChild="false" propertyCategory="Implementation" propertySortChoices="true"
-          ecoreFeature="ecore:EAttribute ProductionPlan.ecore#//Task/taskId"/>
+          ecoreFeature="ecore:EAttribute ProductionPlan.ecore#//Task/invocationId"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

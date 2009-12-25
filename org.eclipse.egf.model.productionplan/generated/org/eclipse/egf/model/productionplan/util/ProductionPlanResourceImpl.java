@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.productionplan.util.ProductionPlanResourceFactoryImpl
  * @generated
  */

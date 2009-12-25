@@ -22,39 +22,39 @@ import org.eclipse.egf.model.fcore.Activity;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.productionplan.Task#getTaskId <em>Task Id</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.productionplan.Task#getInvocationId <em>Invocation Id</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.egf.model.productionplan.ProductionPlanPackage#getTask()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='task'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='invocation'"
  * @generated
  */
 public interface Task extends Activity {
   /**
-   * Returns the value of the '<em><b>Task Id</b></em>' attribute.
+   * Returns the value of the '<em><b>Invocation Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Task Id</em>' attribute isn't clear,
+   * If the meaning of the '<em>Invocation Id</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Task Id</em>' attribute.
-   * @see #setTaskId(String)
-   * @see org.eclipse.egf.model.productionplan.ProductionPlanPackage#getTask_TaskId()
+   * @return the value of the '<em>Invocation Id</em>' attribute.
+   * @see #setInvocationId(String)
+   * @see org.eclipse.egf.model.productionplan.ProductionPlanPackage#getTask_InvocationId()
    * @model required="true"
    * @generated
    */
-  String getTaskId();
+  String getInvocationId();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.productionplan.Task#getTaskId <em>Task Id</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.egf.model.productionplan.Task#getInvocationId <em>Invocation Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Task Id</em>' attribute.
-   * @see #getTaskId()
+   * @param value the new value of the '<em>Invocation Id</em>' attribute.
+   * @see #getInvocationId()
    * @generated
    */
-  void setTaskId(String value);
+  void setInvocationId(String value);
 
 } // Task

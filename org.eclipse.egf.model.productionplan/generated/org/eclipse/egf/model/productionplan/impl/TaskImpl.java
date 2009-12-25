@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.productionplan.impl.TaskImpl#getTaskId <em>Task Id</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.productionplan.impl.TaskImpl#getInvocationId <em>Invocation Id</em>}</li>
  * </ul>
  * </p>
  *
@@ -43,24 +43,24 @@ public class TaskImpl extends ActivityImpl implements Task {
   protected int eFlags = 0;
 
   /**
-   * The default value of the '{@link #getTaskId() <em>Task Id</em>}' attribute.
+   * The default value of the '{@link #getInvocationId() <em>Invocation Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTaskId()
+   * @see #getInvocationId()
    * @generated
    * @ordered
    */
-  protected static final String TASK_ID_EDEFAULT = null;
+  protected static final String INVOCATION_ID_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getTaskId() <em>Task Id</em>}' attribute.
+   * The cached value of the '{@link #getInvocationId() <em>Invocation Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTaskId()
+   * @see #getInvocationId()
    * @generated
    * @ordered
    */
-  protected String taskId = TASK_ID_EDEFAULT;
+  protected String invocationId = INVOCATION_ID_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -86,8 +86,8 @@ public class TaskImpl extends ActivityImpl implements Task {
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getTaskId() {
-    return taskId;
+  public String getInvocationId() {
+    return invocationId;
   }
 
   /**
@@ -95,11 +95,11 @@ public class TaskImpl extends ActivityImpl implements Task {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setTaskId(String newTaskId) {
-    String oldTaskId = taskId;
-    taskId = newTaskId;
+  public void setInvocationId(String newInvocationId) {
+    String oldInvocationId = invocationId;
+    invocationId = newInvocationId;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductionPlanPackage.TASK__TASK_ID, oldTaskId, taskId));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProductionPlanPackage.TASK__INVOCATION_ID, oldInvocationId, invocationId));
   }
 
   /**
@@ -110,8 +110,8 @@ public class TaskImpl extends ActivityImpl implements Task {
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case ProductionPlanPackage.TASK__TASK_ID:
-      return getTaskId();
+    case ProductionPlanPackage.TASK__INVOCATION_ID:
+      return getInvocationId();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -124,8 +124,8 @@ public class TaskImpl extends ActivityImpl implements Task {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case ProductionPlanPackage.TASK__TASK_ID:
-      setTaskId((String) newValue);
+    case ProductionPlanPackage.TASK__INVOCATION_ID:
+      setInvocationId((String) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -139,8 +139,8 @@ public class TaskImpl extends ActivityImpl implements Task {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case ProductionPlanPackage.TASK__TASK_ID:
-      setTaskId(TASK_ID_EDEFAULT);
+    case ProductionPlanPackage.TASK__INVOCATION_ID:
+      setInvocationId(INVOCATION_ID_EDEFAULT);
       return;
     }
     super.eUnset(featureID);
@@ -154,8 +154,8 @@ public class TaskImpl extends ActivityImpl implements Task {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case ProductionPlanPackage.TASK__TASK_ID:
-      return TASK_ID_EDEFAULT == null ? taskId != null : !TASK_ID_EDEFAULT.equals(taskId);
+    case ProductionPlanPackage.TASK__INVOCATION_ID:
+      return INVOCATION_ID_EDEFAULT == null ? invocationId != null : !INVOCATION_ID_EDEFAULT.equals(invocationId);
     }
     return super.eIsSet(featureID);
   }
@@ -171,8 +171,8 @@ public class TaskImpl extends ActivityImpl implements Task {
       return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (taskId: "); //$NON-NLS-1$
-    result.append(taskId);
+    result.append(" (invocationId: "); //$NON-NLS-1$
+    result.append(invocationId);
     result.append(')');
     return result.toString();
   }

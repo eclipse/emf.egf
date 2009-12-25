@@ -14,8 +14,6 @@ package org.eclipse.egf.model.productionplan;
 
 import org.eclipse.egf.model.fcore.Orchestration;
 
-import org.eclipse.emf.common.util.EList;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Production Plan</b></em>'.

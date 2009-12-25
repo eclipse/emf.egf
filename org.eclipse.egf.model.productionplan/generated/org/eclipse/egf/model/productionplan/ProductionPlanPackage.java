@@ -13,21 +13,19 @@
 package org.eclipse.egf.model.productionplan;
 
 import org.eclipse.egf.model.fcore.FcorePackage;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- *   <li>each class,</li>
- *   <li>each feature of each class,</li>
- *   <li>each enum,</li>
- *   <li>and each data type</li>
+ * <li>each class,</li>
+ * <li>each feature of each class,</li>
+ * <li>each enum,</li>
+ * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
  * @see org.eclipse.egf.model.productionplan.ProductionPlanFactory
@@ -397,13 +395,13 @@ public interface ProductionPlanPackage extends EPackage {
   int TASK__CONTRACT_CONTAINER = FcorePackage.ACTIVITY__CONTRACT_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Task Id</b></em>' attribute.
+   * The feature id for the '<em><b>Invocation Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TASK__TASK_ID = FcorePackage.ACTIVITY_FEATURE_COUNT + 0;
+  int TASK__INVOCATION_ID = FcorePackage.ACTIVITY_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Task</em>' class.
@@ -455,15 +453,15 @@ public interface ProductionPlanPackage extends EPackage {
   EClass getTask();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.productionplan.Task#getTaskId <em>Task Id</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.productionplan.Task#getInvocationId <em>Invocation Id</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Task Id</em>'.
-   * @see org.eclipse.egf.model.productionplan.Task#getTaskId()
+   * @return the meta object for the attribute '<em>Invocation Id</em>'.
+   * @see org.eclipse.egf.model.productionplan.Task#getInvocationId()
    * @see #getTask()
    * @generated
    */
-  EAttribute getTask_TaskId();
+  EAttribute getTask_InvocationId();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.productionplan.TaskInvocation <em>Task Invocation</em>}'.
@@ -488,10 +486,10 @@ public interface ProductionPlanPackage extends EPackage {
    * <!-- begin-user-doc -->
    * Defines literals for the meta objects that represent
    * <ul>
-   *   <li>each class,</li>
-   *   <li>each feature of each class,</li>
-   *   <li>each enum,</li>
-   *   <li>and each data type</li>
+   * <li>each class,</li>
+   * <li>each feature of each class,</li>
+   * <li>each enum,</li>
+   * <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
    * @generated
@@ -538,12 +536,12 @@ public interface ProductionPlanPackage extends EPackage {
     EClass TASK = eINSTANCE.getTask();
 
     /**
-     * The meta object literal for the '<em><b>Task Id</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Invocation Id</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute TASK__TASK_ID = eINSTANCE.getTask_TaskId();
+    EAttribute TASK__INVOCATION_ID = eINSTANCE.getTask_InvocationId();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.productionplan.impl.TaskInvocationImpl <em>Task Invocation</em>}' class.
@@ -557,4 +555,4 @@ public interface ProductionPlanPackage extends EPackage {
 
   }
 
-} //ProductionPlanPackage
+} // ProductionPlanPackage

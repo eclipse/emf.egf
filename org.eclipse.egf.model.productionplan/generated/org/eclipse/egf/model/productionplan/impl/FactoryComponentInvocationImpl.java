@@ -24,14 +24,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl<FactoryComponent> implements FactoryComponentInvocation {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected FactoryComponentInvocationImpl() {
@@ -41,7 +40,6 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
