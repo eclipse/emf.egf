@@ -19,8 +19,6 @@ import java.util.List;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
 import org.eclipse.egf.model.fcore.Context;
 import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.ContextContainer;
-import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.util.FcoreSwitch;
 import org.eclipse.egf.model.types.TypesFactory;

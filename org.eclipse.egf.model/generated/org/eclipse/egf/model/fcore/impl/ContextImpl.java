@@ -13,6 +13,7 @@
 package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.egf.model.fcore.Context;
+import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Type;
@@ -21,6 +22,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,6 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getContextContainer <em>Context Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getContract <em>Contract</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getType <em>Type</em>}</li>
  * </ul>
@@ -74,6 +77,48 @@ public class ContextImpl extends ModelElementImpl implements Context {
   @Override
   protected EClass eStaticClass() {
     return FcorePackage.Literals.CONTEXT;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextContainer getContextContainer() {
+    if (eContainerFeatureID() != FcorePackage.CONTEXT__CONTEXT_CONTAINER)
+      return null;
+    return (ContextContainer) eContainer();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetContextContainer(ContextContainer newContextContainer, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject) newContextContainer, FcorePackage.CONTEXT__CONTEXT_CONTAINER, msgs);
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContextContainer(ContextContainer newContextContainer) {
+    if (newContextContainer != eInternalContainer() || (eContainerFeatureID() != FcorePackage.CONTEXT__CONTEXT_CONTAINER && newContextContainer != null)) {
+      if (EcoreUtil.isAncestor(this, newContextContainer))
+        throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+      NotificationChain msgs = null;
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      if (newContextContainer != null)
+        msgs = ((InternalEObject) newContextContainer).eInverseAdd(this, FcorePackage.CONTEXT_CONTAINER__CONTEXTS, ContextContainer.class, msgs);
+      msgs = basicSetContextContainer(newContextContainer, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTEXT__CONTEXT_CONTAINER, newContextContainer, newContextContainer));
   }
 
   /**
@@ -167,8 +212,26 @@ public class ContextImpl extends ModelElementImpl implements Context {
    * @generated
    */
   @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case FcorePackage.CONTEXT__CONTEXT_CONTAINER:
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      return basicSetContextContainer((ContextContainer) otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
+    case FcorePackage.CONTEXT__CONTEXT_CONTAINER:
+      return basicSetContextContainer(null, msgs);
     case FcorePackage.CONTEXT__TYPE:
       return basicSetType(null, msgs);
     }
@@ -181,8 +244,24 @@ public class ContextImpl extends ModelElementImpl implements Context {
    * @generated
    */
   @Override
+  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    switch (eContainerFeatureID()) {
+    case FcorePackage.CONTEXT__CONTEXT_CONTAINER:
+      return eInternalContainer().eInverseRemove(this, FcorePackage.CONTEXT_CONTAINER__CONTEXTS, ContextContainer.class, msgs);
+    }
+    return super.eBasicRemoveFromContainerFeature(msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+    case FcorePackage.CONTEXT__CONTEXT_CONTAINER:
+      return getContextContainer();
     case FcorePackage.CONTEXT__CONTRACT:
       if (resolve)
         return getContract();
@@ -202,6 +281,9 @@ public class ContextImpl extends ModelElementImpl implements Context {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
+    case FcorePackage.CONTEXT__CONTEXT_CONTAINER:
+      setContextContainer((ContextContainer) newValue);
+      return;
     case FcorePackage.CONTEXT__CONTRACT:
       setContract((Contract) newValue);
       return;
@@ -220,6 +302,9 @@ public class ContextImpl extends ModelElementImpl implements Context {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
+    case FcorePackage.CONTEXT__CONTEXT_CONTAINER:
+      setContextContainer((ContextContainer) null);
+      return;
     case FcorePackage.CONTEXT__CONTRACT:
       setContract((Contract) null);
       return;
@@ -238,6 +323,8 @@ public class ContextImpl extends ModelElementImpl implements Context {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+    case FcorePackage.CONTEXT__CONTEXT_CONTAINER:
+      return getContextContainer() != null;
     case FcorePackage.CONTEXT__CONTRACT:
       return contract != null;
     case FcorePackage.CONTEXT__TYPE:

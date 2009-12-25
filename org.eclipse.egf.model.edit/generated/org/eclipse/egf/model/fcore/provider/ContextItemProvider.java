@@ -16,9 +16,11 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.fcore.Context;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -32,12 +34,14 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.Context} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ContextItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -45,6 +49,7 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContextItemProvider(AdapterFactory adapterFactory) {
@@ -55,6 +60,7 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -71,20 +77,38 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
    * This adds a property descriptor for the Contract feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   protected void addContractPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Context_contract_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Context_contract_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_Context_contract_feature", "_UI_Context_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.CONTEXT__CONTRACT, true, false, true, null, null, null));
+        FcorePackage.Literals.CONTEXT__CONTRACT, true, false, true, null, null, null) {
+      @Override
+      public Collection<?> getChoiceOfValues(Object current) {
+        Context context = (Context) current;
+        Collection<Contract> result = new UniqueEList<Contract>();
+        if (context.getContextContainer() != null && context.getContextContainer().getInvocation() != null && context.getContextContainer().getInvocation().getActivity() != null && context.getContextContainer().getInvocation().getActivity().getContractContainer() != null && context.getContextContainer().getInvocation().getActivity().getContractContainer().getContracts() != null) {
+          for (Contract contract : context.getContextContainer().getInvocation().getActivity().getContractContainer().getContracts()) {
+            result.add(contract);
+          }
+        }
+        if (result.contains(null) == false) {
+          result.add(null);
+        }
+        return result;
+      }
+    });
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
+   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -99,6 +123,7 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -113,6 +138,7 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
    * This returns Context.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -124,6 +150,7 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -138,6 +165,7 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -157,6 +185,7 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

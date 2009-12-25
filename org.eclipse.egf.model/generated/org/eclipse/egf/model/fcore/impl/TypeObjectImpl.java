@@ -14,13 +14,7 @@ package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.TypeObject;
-
-import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
-import org.eclipse.emf.ecore.EDataType;
-import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,13 +22,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class TypeObjectImpl<T extends Object> extends TypeImpl<T> implements TypeObject<T> {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TypeObjectImpl() {
@@ -44,6 +39,7 @@ public abstract class TypeObjectImpl<T extends Object> extends TypeImpl<T> imple
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -51,4 +47,4 @@ public abstract class TypeObjectImpl<T extends Object> extends TypeImpl<T> imple
     return FcorePackage.Literals.TYPE_OBJECT;
   }
 
-} //TypeObjectImpl
+} // TypeObjectImpl

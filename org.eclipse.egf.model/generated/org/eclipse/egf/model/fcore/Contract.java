@@ -12,38 +12,38 @@
  */
 package org.eclipse.egf.model.fcore;
 
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EClass;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Contract</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.Contract#getContractContainer <em>Contract Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.Contract#isMandatory <em>Mandatory</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.Contract#getMode <em>Mode</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.Contract#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.Contract#getContractContainer <em>Contract Container</em>}
+ * </li>
+ * <li>{@link org.eclipse.egf.model.fcore.Contract#isMandatory <em>Mandatory</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.Contract#getMode <em>Mode</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.Contract#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.egf.model.fcore.FcorePackage#getContract()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UniqueContractName'"
  * @generated
  */
 public interface Contract extends ModelElement {
   /**
    * Returns the value of the '<em><b>Contract Container</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ContractContainer#getContracts <em>Contracts</em>}'.
+   * It is bidirectional and its opposite is '
+   * {@link org.eclipse.egf.model.fcore.ContractContainer#getContracts <em>Contracts</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Contract Container</em>' container reference
    * isn't clear, there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Contract Container</em>' container reference.
    * @see #setContractContainer(ContractContainer)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContract_ContractContainer()
@@ -54,10 +54,13 @@ public interface Contract extends ModelElement {
   ContractContainer getContractContainer();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Contract#getContractContainer <em>Contract Container</em>}' container reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Contract#getContractContainer
+   * <em>Contract Container</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Contract Container</em>' container reference.
+   * 
+   * @param value
+   *          the new value of the '<em>Contract Container</em>' container reference.
    * @see #getContractContainer()
    * @generated
    */
@@ -71,6 +74,7 @@ public interface Contract extends ModelElement {
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Mandatory</em>' attribute.
    * @see #setMandatory(boolean)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContract_Mandatory()
@@ -80,10 +84,13 @@ public interface Contract extends ModelElement {
   boolean isMandatory();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Contract#isMandatory <em>Mandatory</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Contract#isMandatory
+   * <em>Mandatory</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Mandatory</em>' attribute.
+   * 
+   * @param value
+   *          the new value of the '<em>Mandatory</em>' attribute.
    * @see #isMandatory()
    * @generated
    */
@@ -98,6 +105,7 @@ public interface Contract extends ModelElement {
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Mode</em>' attribute.
    * @see org.eclipse.egf.model.fcore.ContractMode
    * @see #setMode(ContractMode)
@@ -108,10 +116,13 @@ public interface Contract extends ModelElement {
   ContractMode getMode();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Contract#getMode <em>Mode</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Contract#getMode <em>Mode</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Mode</em>' attribute.
+   * 
+   * @param value
+   *          the new value of the '<em>Mode</em>' attribute.
    * @see org.eclipse.egf.model.fcore.ContractMode
    * @see #getMode()
    * @generated
@@ -126,6 +137,7 @@ public interface Contract extends ModelElement {
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Type</em>' containment reference.
    * @see #setType(Type)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContract_Type()
@@ -135,10 +147,13 @@ public interface Contract extends ModelElement {
   Type<?> getType();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Contract#getType <em>Type</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Contract#getType <em>Type</em>}'
+   * containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Type</em>' containment reference.
+   * 
+   * @param value
+   *          the new value of the '<em>Type</em>' containment reference.
    * @see #getType()
    * @generated
    */

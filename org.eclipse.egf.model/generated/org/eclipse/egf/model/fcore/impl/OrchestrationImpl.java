@@ -12,15 +12,20 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import java.util.Collection;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,12 +35,23 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent <em>Factory Component</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getInvocations <em>Invocations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class OrchestrationImpl extends ModelElementImpl implements Orchestration {
+  /**
+   * The cached value of the '{@link #getInvocations() <em>Invocations</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getInvocations()
+   * @generated
+   * @ordered
+   */
+  protected EList<Invocation<?>> invocations;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -102,6 +118,19 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
    * <!-- end-user-doc -->
    * @generated
    */
+  public EList<Invocation<?>> getInvocations() {
+    if (invocations == null) {
+      invocations = new EObjectContainmentWithInverseEList<Invocation<?>>(Invocation.class, this, FcorePackage.ORCHESTRATION__INVOCATIONS, FcorePackage.INVOCATION__ORCHESTRATION);
+    }
+    return invocations;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -109,6 +138,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       return basicSetFactoryComponent((FactoryComponent) otherEnd, msgs);
+    case FcorePackage.ORCHESTRATION__INVOCATIONS:
+      return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocations()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -123,6 +154,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     switch (featureID) {
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       return basicSetFactoryComponent(null, msgs);
+    case FcorePackage.ORCHESTRATION__INVOCATIONS:
+      return ((InternalEList<?>) getInvocations()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -151,6 +184,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     switch (featureID) {
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       return getFactoryComponent();
+    case FcorePackage.ORCHESTRATION__INVOCATIONS:
+      return getInvocations();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -160,11 +195,16 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       setFactoryComponent((FactoryComponent) newValue);
+      return;
+    case FcorePackage.ORCHESTRATION__INVOCATIONS:
+      getInvocations().clear();
+      getInvocations().addAll((Collection<? extends Invocation<?>>) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -181,6 +221,9 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       setFactoryComponent((FactoryComponent) null);
       return;
+    case FcorePackage.ORCHESTRATION__INVOCATIONS:
+      getInvocations().clear();
+      return;
     }
     super.eUnset(featureID);
   }
@@ -195,6 +238,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     switch (featureID) {
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       return getFactoryComponent() != null;
+    case FcorePackage.ORCHESTRATION__INVOCATIONS:
+      return invocations != null && !invocations.isEmpty();
     }
     return super.eIsSet(featureID);
   }

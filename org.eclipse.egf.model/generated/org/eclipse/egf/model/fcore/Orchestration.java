@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.fcore;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Orchestration</b></em>'.
@@ -21,6 +23,7 @@ package org.eclipse.egf.model.fcore;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.Orchestration#getFactoryComponent <em>Factory Component</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Orchestration#getInvocations <em>Invocations</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,5 +59,23 @@ public interface Orchestration extends ModelElement {
    * @generated
    */
   void setFactoryComponent(FactoryComponent value);
+
+  /**
+   * Returns the value of the '<em><b>Invocations</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.egf.model.fcore.Invocation}&lt;?>.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Invocation#getOrchestration <em>Orchestration</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Invocations</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Invocations</em>' containment reference list.
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getOrchestration_Invocations()
+   * @see org.eclipse.egf.model.fcore.Invocation#getOrchestration
+   * @model opposite="orchestration" containment="true"
+   * @generated
+   */
+  EList<Invocation<?>> getInvocations();
 
 } // Orchestration

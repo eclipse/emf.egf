@@ -4,7 +4,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="types"
     nsURI="http://www.eclipse.org/egf/1.0.0/types" nsPrefix="types">
   <eClassifiers xsi:type="ecore:EClass" name="BigDecimalType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.math.BigDecimal.class;"/>
       </eAnnotations>
@@ -18,7 +18,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BigIntegerType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.math.BigInteger.class;"/>
       </eAnnotations>
@@ -32,7 +32,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BooleanType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Boolean.class;"/>
       </eAnnotations>
@@ -46,7 +46,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ByteType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Byte.class;"/>
       </eAnnotations>
@@ -60,7 +60,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CharacterType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Character.class;"/>
       </eAnnotations>
@@ -74,7 +74,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DateType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.util.Date.class;"/>
       </eAnnotations>
@@ -88,7 +88,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DoubleType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Double.class;"/>
       </eAnnotations>
@@ -102,7 +102,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FloatType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Float.class;"/>
       </eAnnotations>
@@ -116,7 +116,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IntegerType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Integer.class;"/>
       </eAnnotations>
@@ -130,7 +130,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LongType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Long.class;"/>
       </eAnnotations>
@@ -144,7 +144,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ShortType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Short.class;"/>
       </eAnnotations>
@@ -158,7 +158,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.String.class;"/>
       </eAnnotations>
@@ -172,7 +172,7 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="GeneratorAdapterFactoryType">
-    <eOperations name="getType">
+    <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.class;"/>
       </eAnnotations>

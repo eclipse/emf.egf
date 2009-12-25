@@ -35,7 +35,7 @@ import org.eclipse.emf.common.util.EList;
 public interface ContextContainer extends ModelElement {
   /**
    * Returns the value of the '<em><b>Invocation</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Invocation#getContext <em>Context</em>}'.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Invocation#getContextContainer <em>Context Container</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Invocation</em>' container reference isn't clear,
@@ -45,11 +45,11 @@ public interface ContextContainer extends ModelElement {
    * @return the value of the '<em>Invocation</em>' container reference.
    * @see #setInvocation(Invocation)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContextContainer_Invocation()
-   * @see org.eclipse.egf.model.fcore.Invocation#getContext
-   * @model opposite="context" resolveProxies="false" transient="false"
+   * @see org.eclipse.egf.model.fcore.Invocation#getContextContainer
+   * @model opposite="contextContainer" resolveProxies="false" transient="false"
    * @generated
    */
-  Invocation getInvocation();
+  Invocation<?> getInvocation();
 
   /**
    * Sets the value of the '{@link org.eclipse.egf.model.fcore.ContextContainer#getInvocation <em>Invocation</em>}' container reference.
@@ -59,11 +59,12 @@ public interface ContextContainer extends ModelElement {
    * @see #getInvocation()
    * @generated
    */
-  void setInvocation(Invocation value);
+  void setInvocation(Invocation<?> value);
 
   /**
    * Returns the value of the '<em><b>Contexts</b></em>' containment reference list.
    * The list contents are of type {@link org.eclipse.egf.model.fcore.Context}.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Context#getContextContainer <em>Context Container</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Contexts</em>' containment reference list isn't clear,
@@ -72,7 +73,8 @@ public interface ContextContainer extends ModelElement {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Contexts</em>' containment reference list.
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContextContainer_Contexts()
-   * @model containment="true"
+   * @see org.eclipse.egf.model.fcore.Context#getContextContainer
+   * @model opposite="contextContainer" containment="true"
    * @generated
    */
   EList<Context> getContexts();

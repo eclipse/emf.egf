@@ -20,7 +20,9 @@ package org.eclipse.egf.model.fcore;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.Invocation#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Invocation#getOrchestration <em>Orchestration</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Invocation#getContextContainer <em>Context Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Invocation#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
  *
@@ -28,33 +30,83 @@ package org.eclipse.egf.model.fcore;
  * @model abstract="true"
  * @generated
  */
-public interface Invocation extends ModelElement {
+public interface Invocation<T extends Activity> extends ModelElement {
   /**
-   * Returns the value of the '<em><b>Context</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ContextContainer#getInvocation <em>Invocation</em>}'.
+   * Returns the value of the '<em><b>Orchestration</b></em>' container reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Orchestration#getInvocations <em>Invocations</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Context</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Orchestration</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Context</em>' containment reference.
-   * @see #setContext(ContextContainer)
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocation_Context()
+   * @return the value of the '<em>Orchestration</em>' container reference.
+   * @see #setOrchestration(Orchestration)
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocation_Orchestration()
+   * @see org.eclipse.egf.model.fcore.Orchestration#getInvocations
+   * @model opposite="invocations" resolveProxies="false" required="true" transient="false"
+   * @generated
+   */
+  Orchestration getOrchestration();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Invocation#getOrchestration <em>Orchestration</em>}' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Orchestration</em>' container reference.
+   * @see #getOrchestration()
+   * @generated
+   */
+  void setOrchestration(Orchestration value);
+
+  /**
+   * Returns the value of the '<em><b>Context Container</b></em>' containment reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ContextContainer#getInvocation <em>Invocation</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Context Container</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Context Container</em>' containment reference.
+   * @see #setContextContainer(ContextContainer)
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocation_ContextContainer()
    * @see org.eclipse.egf.model.fcore.ContextContainer#getInvocation
    * @model opposite="invocation" containment="true"
    * @generated
    */
-  ContextContainer getContext();
+  ContextContainer getContextContainer();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Invocation#getContext <em>Context</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Invocation#getContextContainer <em>Context Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Context</em>' containment reference.
-   * @see #getContext()
+   * @param value the new value of the '<em>Context Container</em>' containment reference.
+   * @see #getContextContainer()
    * @generated
    */
-  void setContext(ContextContainer value);
+  void setContextContainer(ContextContainer value);
+
+  /**
+   * Returns the value of the '<em><b>Activity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Activity</em>' reference.
+   * @see #setActivity(Activity)
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocation_Activity()
+   * @model required="true"
+   * @generated
+   */
+  T getActivity();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Invocation#getActivity <em>Activity</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Activity</em>' reference.
+   * @see #getActivity()
+   * @generated
+   */
+  void setActivity(T value);
 
 } // Invocation

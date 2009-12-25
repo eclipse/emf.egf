@@ -12,7 +12,6 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.Context;
 import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
@@ -35,6 +34,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
@@ -42,6 +42,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static FcoreFactory init() {
@@ -60,6 +61,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FcoreFactoryImpl() {
@@ -69,6 +71,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -96,6 +99,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -113,6 +117,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -130,6 +135,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponent createFactoryComponent() {
@@ -140,6 +146,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ViewpointContainer createViewpointContainer() {
@@ -150,6 +157,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContextContainer createContextContainer() {
@@ -160,6 +168,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Context createContext() {
@@ -170,6 +179,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractContainer createContractContainer() {
@@ -180,6 +190,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Contract createContract() {
@@ -190,6 +201,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractConnector createContractConnector() {
@@ -200,6 +212,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractMode createContractModeFromString(EDataType eDataType, String initialValue) {
@@ -212,6 +225,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertContractModeToString(EDataType eDataType, Object instanceValue) {
@@ -231,6 +245,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String convertURIToString(EDataType eDataType, Object instanceValue) {
@@ -250,6 +265,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FcorePackage getFcorePackage() {
@@ -259,6 +275,7 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @deprecated
    * @generated
    */

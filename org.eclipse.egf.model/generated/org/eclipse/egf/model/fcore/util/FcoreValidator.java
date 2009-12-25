@@ -14,7 +14,6 @@ package org.eclipse.egf.model.fcore.util;
 
 import java.util.Map;
 
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
@@ -188,7 +187,7 @@ public class FcoreValidator extends EObjectValidator {
     case FcorePackage.ORCHESTRATION:
       return validateOrchestration((Orchestration) value, diagnostics, context);
     case FcorePackage.INVOCATION:
-      return validateInvocation((Invocation) value, diagnostics, context);
+      return validateInvocation((Invocation<?>) value, diagnostics, context);
     case FcorePackage.TYPE:
       return validateType((Type<?>) value, diagnostics, context);
     case FcorePackage.TYPE_OBJECT:
@@ -207,8 +206,6 @@ public class FcoreValidator extends EObjectValidator {
       return validateContext((Context) value, diagnostics, context);
     case FcorePackage.CONTRACT_MODE:
       return validateContractMode((ContractMode) value, diagnostics, context);
-    case FcorePackage.IPROGRESS_MONITOR:
-      return validateIProgressMonitor((IProgressMonitor) value, diagnostics, context);
     case FcorePackage.URI:
       return validateURI((URI) value, diagnostics, context);
     default:
@@ -282,7 +279,7 @@ public class FcoreValidator extends EObjectValidator {
    * 
    * @generated
    */
-  public boolean validateInvocation(Invocation invocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateInvocation(Invocation<?> invocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return validate_EveryDefaultConstraint(invocation, diagnostics, context);
   }
 
@@ -333,7 +330,93 @@ public class FcoreValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateContext(Context context, DiagnosticChain diagnostics, Map<Object, Object> theContext) {
-    return validate_EveryDefaultConstraint(context, diagnostics, theContext);
+    boolean result = validate_EveryMultiplicityConforms(context, diagnostics, theContext);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(context, diagnostics, theContext);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(context, diagnostics, theContext);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(context, diagnostics, theContext);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(context, diagnostics, theContext);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(context, diagnostics, theContext);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(context, diagnostics, theContext);
+    if (result || diagnostics != null)
+      result &= validateContext_UniqueContextName(context, diagnostics, theContext);
+    if (result || diagnostics != null)
+      result &= validateContext_ValidContract(context, diagnostics, theContext);
+    return result;
+  }
+
+  /**
+   * Validates the UniqueContextName constraint of '<em>Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateContext_UniqueContextName(Context context, DiagnosticChain diagnostics, Map<Object, Object> theContext) {
+    // Context 'name' is mandatory in this context
+    EAttribute name = FcorePackage.Literals.MODEL_ELEMENT__NAME;
+    if (context.getName() == null || context.getName().trim().length() == 0) {
+      diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, EOBJECT__EVERY_MULTIPCITY_CONFORMS, "_UI_RequiredFeatureMustBeSet_diagnostic", //$NON-NLS-1$
+          new Object[] { getFeatureLabel(name, theContext), getObjectLabel(context, theContext) }, new Object[] { context, name }, theContext));
+    }
+    // Then verify if name is unique in its context container
+    if (context.getContextContainer() == null || context.getContract() == null) {
+      return true;
+    }
+    boolean collapse = false;
+    for (Context innerContext : context.getContextContainer().getContexts()) {
+      if (innerContext == context || innerContext.getContract() == null || context.getContract().getMode() != innerContext.getContract().getMode()) {
+        continue;
+      }
+      if (context.getName().equals(innerContext.getName())) {
+        collapse = true;
+        break;
+      }
+    }
+    if (collapse) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "Context Name should be unique in its Context Container.", getObjectLabel(context, theContext) }, //$NON-NLS-1$
+            new Object[] { context }, theContext));
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validates the ValidContract constraint of '<em>Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateContext_ValidContract(Context context, DiagnosticChain diagnostics, Map<Object, Object> theContext) {
+    if (context.getContract() == null || context.getContextContainer() == null || context.getContextContainer().getInvocation() == null || context.getContextContainer().getInvocation().getActivity() == null || context.getContextContainer().getInvocation().getActivity().getContractContainer() == null || context.getContextContainer().getInvocation().getActivity().getContractContainer().getContracts() == null) {
+      return true;
+    }
+    // Activity contract analysis
+    boolean found = false;
+    for (Contract contract : context.getContextContainer().getInvocation().getActivity().getContractContainer().getContracts()) {
+      if (contract == context.getContract()) {
+        found = true;
+        break;
+      }
+    }
+    if (found == false) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidContract", getObjectLabel(context, theContext) }, //$NON-NLS-1$
+            new Object[] { context }, theContext));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -350,19 +433,65 @@ public class FcoreValidator extends EObjectValidator {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   public boolean validateContract(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryDefaultConstraint(contract, diagnostics, context);
-    if (result || diagnostics != null) {
+    boolean result = validate_EveryMultiplicityConforms(contract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(contract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(contract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(contract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(contract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(contract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(contract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateContract_UniqueContractName(contract, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * Validates the UniqueContractName constraint of '<em>Contract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateContract_UniqueContractName(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    // Contract name is mandatory in this context
+    if (contract.getName() == null || contract.getName().trim().length() == 0) {
       // Contract 'name' is mandatory in this context
       EAttribute name = FcorePackage.Literals.MODEL_ELEMENT__NAME;
-      if (contract.getName() == null || contract.getName().trim().length() == 0) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, EOBJECT__EVERY_MULTIPCITY_CONFORMS, "_UI_RequiredFeatureMustBeSet_diagnostic", //$NON-NLS-1$
-            new Object[] { getFeatureLabel(name, context), getObjectLabel(contract, context) }, new Object[] { contract, name }, context));
+      diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, EOBJECT__EVERY_MULTIPCITY_CONFORMS, "_UI_RequiredFeatureMustBeSet_diagnostic", //$NON-NLS-1$
+          new Object[] { getFeatureLabel(name, context), getObjectLabel(contract, context) }, new Object[] { contract, name }, context));
+    }
+    // Then verify if name is unique in its contract container
+    if (contract.getContractContainer() == null) {
+      return true;
+    }
+    boolean collapse = false;
+    for (Contract innerContract : contract.getContractContainer().getContracts()) {
+      if (innerContract == contract || contract.getMode() != innerContract.getMode()) {
+        continue;
+      }
+      if (contract.getName().equals(innerContract.getName())) {
+        collapse = true;
+        break;
       }
     }
-    return result;
+    if (collapse) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "Contract Name should be unique in its Contract Container.", getObjectLabel(contract, context) }, //$NON-NLS-1$
+            new Object[] { contract }, context));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -382,16 +511,6 @@ public class FcoreValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateContractMode(ContractMode contractMode, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return true;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public boolean validateIProgressMonitor(IProgressMonitor iProgressMonitor, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return true;
   }
 

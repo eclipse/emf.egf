@@ -27,8 +27,16 @@ public interface Type<T extends Object> extends ModelElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model kind="operation"
+   * @model kind="operation" required="true"
    * @generated
    */
   Class<T> getType();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  Object getValue();
 } // Type

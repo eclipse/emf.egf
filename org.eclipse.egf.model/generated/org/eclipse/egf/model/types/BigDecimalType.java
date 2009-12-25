@@ -62,7 +62,7 @@ public interface BigDecimalType extends TypeObject<BigDecimal> {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model kind="operation"
+   * @model kind="operation" required="true"
    *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.math.BigDecimal.class;'"
    * @generated
    */

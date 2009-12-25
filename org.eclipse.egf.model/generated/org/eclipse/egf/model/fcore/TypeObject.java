@@ -12,14 +12,12 @@
  */
 package org.eclipse.egf.model.fcore;
 
-import org.eclipse.emf.ecore.EDataType;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type Object</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.egf.model.fcore.FcorePackage#getTypeObject()
  * @model abstract="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
  * @generated

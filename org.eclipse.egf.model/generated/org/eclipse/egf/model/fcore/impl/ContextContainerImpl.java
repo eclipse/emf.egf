@@ -19,18 +19,12 @@ import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.ContractConnector;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -42,12 +36,15 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getInvocation <em>Invocation</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getContexts <em>Contexts</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getConnectors <em>Connectors</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getInvocation
+ * <em>Invocation</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getContexts <em>Contexts</em>}
+ * </li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl#getConnectors
+ * <em>Connectors</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class ContextContainerImpl extends ModelElementImpl implements ContextContainer {
@@ -55,6 +52,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
    * The cached value of the '{@link #getContexts() <em>Contexts</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getContexts()
    * @generated
    * @ordered
@@ -62,9 +60,11 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   protected EList<Context> contexts;
 
   /**
-   * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference list.
+   * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference
+   * list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getConnectors()
    * @generated
    * @ordered
@@ -74,6 +74,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ContextContainerImpl() {
@@ -83,6 +84,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -93,20 +95,22 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public Invocation getInvocation() {
+  public Invocation<?> getInvocation() {
     if (eContainerFeatureID() != FcorePackage.CONTEXT_CONTAINER__INVOCATION)
       return null;
-    return (Invocation) eContainer();
+    return (Invocation<?>) eContainer();
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public NotificationChain basicSetInvocation(Invocation newInvocation, NotificationChain msgs) {
+  public NotificationChain basicSetInvocation(Invocation<?> newInvocation, NotificationChain msgs) {
     msgs = eBasicSetContainer((InternalEObject) newInvocation, FcorePackage.CONTEXT_CONTAINER__INVOCATION, msgs);
     return msgs;
   }
@@ -114,9 +118,10 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public void setInvocation(Invocation newInvocation) {
+  public void setInvocation(Invocation<?> newInvocation) {
     if (newInvocation != eInternalContainer() || (eContainerFeatureID() != FcorePackage.CONTEXT_CONTAINER__INVOCATION && newInvocation != null)) {
       if (EcoreUtil.isAncestor(this, newInvocation))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
@@ -124,7 +129,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newInvocation != null)
-        msgs = ((InternalEObject) newInvocation).eInverseAdd(this, FcorePackage.INVOCATION__CONTEXT, Invocation.class, msgs);
+        msgs = ((InternalEObject) newInvocation).eInverseAdd(this, FcorePackage.INVOCATION__CONTEXT_CONTAINER, Invocation.class, msgs);
       msgs = basicSetInvocation(newInvocation, msgs);
       if (msgs != null)
         msgs.dispatch();
@@ -135,11 +140,12 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<Context> getContexts() {
     if (contexts == null) {
-      contexts = new EObjectContainmentEList<Context>(Context.class, this, FcorePackage.CONTEXT_CONTAINER__CONTEXTS);
+      contexts = new EObjectContainmentWithInverseEList<Context>(Context.class, this, FcorePackage.CONTEXT_CONTAINER__CONTEXTS, FcorePackage.CONTEXT__CONTEXT_CONTAINER);
     }
     return contexts;
   }
@@ -147,6 +153,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<ContractConnector> getConnectors() {
@@ -159,6 +166,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -168,7 +176,9 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
     case FcorePackage.CONTEXT_CONTAINER__INVOCATION:
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
-      return basicSetInvocation((Invocation) otherEnd, msgs);
+      return basicSetInvocation((Invocation<?>) otherEnd, msgs);
+    case FcorePackage.CONTEXT_CONTAINER__CONTEXTS:
+      return ((InternalEList<InternalEObject>) (InternalEList<?>) getContexts()).basicAdd(otherEnd, msgs);
     case FcorePackage.CONTEXT_CONTAINER__CONNECTORS:
       return ((InternalEList<InternalEObject>) (InternalEList<?>) getConnectors()).basicAdd(otherEnd, msgs);
     }
@@ -178,6 +188,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -196,13 +207,14 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
     case FcorePackage.CONTEXT_CONTAINER__INVOCATION:
-      return eInternalContainer().eInverseRemove(this, FcorePackage.INVOCATION__CONTEXT, Invocation.class, msgs);
+      return eInternalContainer().eInverseRemove(this, FcorePackage.INVOCATION__CONTEXT_CONTAINER, Invocation.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
@@ -210,6 +222,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -228,6 +241,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -235,7 +249,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
     case FcorePackage.CONTEXT_CONTAINER__INVOCATION:
-      setInvocation((Invocation) newValue);
+      setInvocation((Invocation<?>) newValue);
       return;
     case FcorePackage.CONTEXT_CONTAINER__CONTEXTS:
       getContexts().clear();
@@ -252,13 +266,14 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
     case FcorePackage.CONTEXT_CONTAINER__INVOCATION:
-      setInvocation((Invocation) null);
+      setInvocation((Invocation<?>) null);
       return;
     case FcorePackage.CONTEXT_CONTAINER__CONTEXTS:
       getContexts().clear();
@@ -273,6 +288,7 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -288,4 +304,4 @@ public class ContextContainerImpl extends ModelElementImpl implements ContextCon
     return super.eIsSet(featureID);
   }
 
-} //ContextContainerImpl
+} // ContextContainerImpl
