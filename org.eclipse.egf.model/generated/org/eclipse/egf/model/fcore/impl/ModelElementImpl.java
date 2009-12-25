@@ -18,7 +18,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**
@@ -198,7 +197,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * @generated NOT
    */
   public String getExternalName() {
-    return getName() != null && getName().trim().length() != 0 ? getName() : EcoreUtil.getID(this);
+    return getName() != null && getName().trim().length() != 0 ? getName() : getID() != null ? getID() : "Unknown"; //$NON-NLS-1$
   }
 
   /**
