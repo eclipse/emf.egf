@@ -23,6 +23,7 @@ import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
+import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -30,6 +31,8 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 
 /**
@@ -42,6 +45,48 @@ public abstract class PatternFactory {
     public static final String HEADER_METHOD_NAME = "header";
     public static final String FOOTER_METHOD_NAME = "footer";
     public static final String BODY_METHOD_NAME = "body";
+
+    public void createDebugPattern11(PatternLibrary lib) {
+        Pattern p1 = createPattern(lib, "Pattern UN");
+        Pattern p2 = createPattern(lib, "Pattern DEUX");
+        Pattern p3 = createPattern(lib, "Pattern TROIS");
+
+        PatternLibrary subLib = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternLibrary();
+        subLib.setName("subLib");
+        lib.getElements().add(subLib);
+
+        Pattern sp1 = createPattern(subLib, "Sub UN");
+        Pattern sp2 = createPattern(subLib, "Sub DEUX");
+        Pattern sp3 = createPattern(subLib, "Sub TROIS");
+
+        EList<PatternElement> rule1 = new BasicEList<PatternElement>();
+        rule1.add(subLib);
+        rule1.add(p1);
+        rule1.add(p2);
+        // make sure the list is ok before putting it into the map
+        lib.getSchedulingRules().put("rule1", rule1);
+
+        EList<PatternElement> srule1 = new BasicEList<PatternElement>();
+        srule1.add(sp2);
+        srule1.add(sp1);
+        subLib.getSchedulingRules().put("rule12", srule1);
+
+    }
+
+    public void createDebugPattern9(PatternLibrary lib) {
+        Pattern p1 = createPattern(lib, "Pattern UN");
+        Pattern p2 = createPattern(lib, "Pattern DEUX");
+        Pattern p3 = createPattern(lib, "Pattern TROIS");
+
+        PatternLibrary subLib = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternLibrary();
+        subLib.setName("subLib");
+        lib.getElements().add(subLib);
+
+        Pattern sp1 = createPattern(subLib, "Sub UN");
+        Pattern sp2 = createPattern(subLib, "Sub DEUX");
+        Pattern sp3 = createPattern(subLib, "Sub TROIS");
+
+    }
 
     public List<Pattern> createDebugPattern8(PatternLibrary lib) {
         List<Pattern> result = new ArrayList<Pattern>();
