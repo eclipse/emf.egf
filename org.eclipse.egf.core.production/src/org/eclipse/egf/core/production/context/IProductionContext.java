@@ -10,20 +10,29 @@
  */
 package org.eclipse.egf.core.production.context;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.egf.core.context.IEGFContext;
-import org.eclipse.egf.core.production.session.ProjectBundleSession;
+import org.eclipse.egf.core.production.InvocationException;
+import org.osgi.framework.Bundle;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IProductionContext extends IEGFContext {
-
-  public ProjectBundleSession getProjectBundleSession();
-
-  public void dispose() throws CoreException;
+public interface IProductionContext<Q extends Object> {
 
   public String getName();
+
+  public Q getElement();
+
+  public void init(Bundle bundle) throws InvocationException;
+
+  public Class<?> getInputValueType(String name) throws InvocationException;
+
+  public <T extends Object> T getInputValue(String name, Class<T> clazz) throws InvocationException;
+
+  public Class<?> getOutputValueType(String name) throws InvocationException;
+
+  public <T extends Object> T getOutputValue(String name, Class<T> clazz) throws InvocationException;
+
+  public void setOutputValue(String name, Object value) throws InvocationException;
 
 }

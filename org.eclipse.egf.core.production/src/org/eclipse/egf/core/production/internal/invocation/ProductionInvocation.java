@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.production.internal.task;
+package org.eclipse.egf.core.production.internal.invocation;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
@@ -20,32 +20,41 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.core.production.task.IProductionTask;
-import org.eclipse.egf.core.production.task.IProductionTaskInvocation;
+import org.eclipse.egf.core.production.invocation.IProduction;
+import org.eclipse.egf.core.production.invocation.IProductionInvocation;
+import org.eclipse.egf.core.session.BundleSessionHelper;
+import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.task.IPlatformTask;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
 /**
  * This class is responsible to process user defined
- * {@link org.eclipse.egf.core.production.task.IProductionTask}.
+ * {@link org.eclipse.egf.core.production.invocation.IProduction}.
  * 
  * @author Xavier Maysonnave
  */
-public class ProductionTaskInvocation implements IProductionTaskInvocation {
+public class ProductionInvocation<Q extends Object> implements IProductionInvocation {
+
+  /**
+   * ProjectBundleSession
+   */
+  private ProjectBundleSession _projectBundleSession;
 
   /**
    * IProductionContext
    */
-  private IProductionContext _productionContext;
+  private IProductionContext<Q> _productionContext;
 
   /**
    * IPlatformTask
    */
   private IPlatformTask _platformTask;
 
-  public ProductionTaskInvocation(IProductionContext productionContext, IPlatformTask platformTask) {
+  public ProductionInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Q> productionContext, IPlatformTask platformTask) {
+    Assert.isNotNull(projectBundleSession);
     Assert.isNotNull(productionContext);
+    _projectBundleSession = projectBundleSession;
     _productionContext = productionContext;
     _platformTask = platformTask;
   }
@@ -56,25 +65,21 @@ public class ProductionTaskInvocation implements IProductionTaskInvocation {
    * @param monitor_p
    * @return the instantiated object or null
    */
-  protected IProductionTask createProductionTaskInstance() throws CoreException {
-    IProductionTask productionTask = null;
+  @SuppressWarnings("unchecked")
+  protected IProduction<Q> createProductionTaskInstance() throws CoreException {
+    IProduction<Q> productionTask = null;
     // Nothing to do
     if (_platformTask == null) {
       return null;
     }
     // Locate Bundle
-    Bundle bundle = null;
-    if (_platformTask.getPlatformBundle().isTarget()) {
-      bundle = _platformTask.getPlatformBundle().getBundle();
-    } else {
-      bundle = _productionContext.getProjectBundleSession().getBundle(_platformTask.getPlatformBundle().getProject());
-    }
+    Bundle bundle = BundleSessionHelper.getBundle(_projectBundleSession, _platformTask);
     if (bundle == null) {
       return null;
     }
     // Load Class and instantiate
     try {
-      productionTask = (IProductionTask) bundle.loadClass(_platformTask.getClazz()).newInstance();
+      productionTask = (IProduction<Q>) bundle.loadClass(_platformTask.getClazz()).newInstance();
     } catch (ClassNotFoundException cnfe) {
       throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _platformTask.getId()), cnfe));
     } catch (InstantiationException ie) {
@@ -95,7 +100,7 @@ public class ProductionTaskInvocation implements IProductionTaskInvocation {
     SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, _productionContext.getName()), 1000);
     try {
       // Instantiate an ITask object
-      IProductionTask task = null;
+      IProduction<Q> task = null;
       try {
         task = createProductionTaskInstance();
       } catch (CoreException ce) {

@@ -8,16 +8,17 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.production.context;
+package org.eclipse.egf.core.production.invocation;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.production.InvocationException;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IProductionContextFactory {
+public interface IProductionInvocation {
 
-  public IProductionContext createProductionContext(IProductionContext parent, String name);
-
-  public IProductionContext createProductionContext(String name);
+  public void invoke(final IProgressMonitor monitor) throws InvocationException;
 
 }

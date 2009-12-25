@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.production.task;
+package org.eclipse.egf.core.production.invocation;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.production.InvocationException;
@@ -18,27 +18,27 @@ import org.eclipse.egf.core.production.context.IProductionContext;
  * @author Xavier Maysonnave
  * 
  */
-public interface IProductionTask {
+public interface IProduction<Q extends Object> {
 
   /**
    * Pre execute this task.
    * 
    * @param monitor_p
    */
-  public void preExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws InvocationException;
+  public void preExecute(final IProductionContext<Q> productionContext, final IProgressMonitor monitor) throws InvocationException;
 
   /**
    * Do execute this task.
    * 
    * @param monitor_p
    */
-  public void doExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws InvocationException;
+  public void doExecute(final IProductionContext<Q> productionContext, final IProgressMonitor monitor) throws InvocationException;
 
   /**
    * Post execute this task.
    * 
    * @param monitor_p
    */
-  public void postExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws InvocationException;
+  public void postExecute(final IProductionContext<Q> productionContext, final IProgressMonitor monitor) throws InvocationException;
 
 }
