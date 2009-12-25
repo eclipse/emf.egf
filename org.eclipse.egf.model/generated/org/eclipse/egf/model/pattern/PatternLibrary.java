@@ -24,7 +24,7 @@ import org.eclipse.emf.common.util.EMap;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.pattern.PatternLibrary#getElements <em>Elements</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.PatternLibrary#getSchedulingRules <em>Scheduling Rules</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.PatternLibrary#getFilters <em>Filters</em>}</li>
  * </ul>
  * </p>
  *
@@ -52,20 +52,20 @@ public interface PatternLibrary extends PatternElement {
     EList<PatternElement> getElements();
 
     /**
-     * Returns the value of the '<em><b>Scheduling Rules</b></em>' map.
+     * Returns the value of the '<em><b>Filters</b></em>' map.
      * The key is of type {@link java.lang.String},
      * and the value is of type list of {@link org.eclipse.egf.model.pattern.PatternElement},
      * <!-- begin-user-doc -->
      * <p>
-     * If the meaning of the '<em>Scheduling Rules</em>' map isn't clear,
+     * If the meaning of the '<em>Filters</em>' map isn't clear,
      * there really should be more of a description here...
      * </p>
      * <!-- end-user-doc -->
-     * @return the value of the '<em>Scheduling Rules</em>' map.
-     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternLibrary_SchedulingRules()
+     * @return the value of the '<em>Filters</em>' map.
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternLibrary_Filters()
      * @model mapType="org.eclipse.egf.model.pattern.String2PatternList<org.eclipse.emf.ecore.EString, org.eclipse.egf.model.pattern.PatternElement>"
      * @generated
      */
-    EMap<String, EList<PatternElement>> getSchedulingRules();
+    EMap<String, EList<PatternElement>> getFilters();
 
 } // PatternLibrary

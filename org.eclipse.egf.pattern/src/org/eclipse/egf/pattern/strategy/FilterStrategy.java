@@ -47,7 +47,7 @@ public class FilterStrategy extends AbstractStrategy {
 
         @Override
         public String casePatternLibrary(PatternLibrary object) {
-            EList<PatternElement> list = object.getSchedulingRules().get(filter);
+            EList<PatternElement> list = object.getFilters().get(filter);
             if (list != null) {
                 for (PatternElement elem : list) {
                     String error = doSwitch(elem);

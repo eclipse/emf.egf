@@ -497,13 +497,13 @@ public interface PatternPackage extends EPackage {
     int PATTERN_LIBRARY__ELEMENTS = PATTERN_ELEMENT_FEATURE_COUNT + 0;
 
     /**
-     * The feature id for the '<em><b>Scheduling Rules</b></em>' map.
+     * The feature id for the '<em><b>Filters</b></em>' map.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      * @ordered
      */
-    int PATTERN_LIBRARY__SCHEDULING_RULES = PATTERN_ELEMENT_FEATURE_COUNT + 1;
+    int PATTERN_LIBRARY__FILTERS = PATTERN_ELEMENT_FEATURE_COUNT + 1;
 
     /**
      * The number of structural features of the '<em>Library</em>' class.
@@ -1331,15 +1331,15 @@ public interface PatternPackage extends EPackage {
     EReference getPatternLibrary_Elements();
 
     /**
-     * Returns the meta object for the map '{@link org.eclipse.egf.model.pattern.PatternLibrary#getSchedulingRules <em>Scheduling Rules</em>}'.
+     * Returns the meta object for the map '{@link org.eclipse.egf.model.pattern.PatternLibrary#getFilters <em>Filters</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @return the meta object for the map '<em>Scheduling Rules</em>'.
-     * @see org.eclipse.egf.model.pattern.PatternLibrary#getSchedulingRules()
+     * @return the meta object for the map '<em>Filters</em>'.
+     * @see org.eclipse.egf.model.pattern.PatternLibrary#getFilters()
      * @see #getPatternLibrary()
      * @generated
      */
-    EReference getPatternLibrary_SchedulingRules();
+    EReference getPatternLibrary_Filters();
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternElement <em>Element</em>}'.
@@ -1865,12 +1865,12 @@ public interface PatternPackage extends EPackage {
         EReference PATTERN_LIBRARY__ELEMENTS = eINSTANCE.getPatternLibrary_Elements();
 
         /**
-         * The meta object literal for the '<em><b>Scheduling Rules</b></em>' map feature.
+         * The meta object literal for the '<em><b>Filters</b></em>' map feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
          * @generated
          */
-        EReference PATTERN_LIBRARY__SCHEDULING_RULES = eINSTANCE.getPatternLibrary_SchedulingRules();
+        EReference PATTERN_LIBRARY__FILTERS = eINSTANCE.getPatternLibrary_Filters();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternElementImpl <em>Element</em>}' class.

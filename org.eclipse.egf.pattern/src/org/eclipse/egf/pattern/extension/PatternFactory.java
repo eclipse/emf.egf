@@ -46,6 +46,90 @@ public abstract class PatternFactory {
     public static final String FOOTER_METHOD_NAME = "footer";
     public static final String BODY_METHOD_NAME = "body";
 
+    public void createDebugPattern15(PatternLibrary lib) {
+        Pattern p1 = createPattern(lib, "Pattern GrandParent");
+        Pattern p2 = createPattern(lib, "Pattern Parent");
+        Pattern p3 = createPattern(lib, "Pattern Child");
+
+        p2.setSuperPattern(p1);
+        p3.setSuperPattern(p2);
+
+        // set up P1
+        PatternMethod method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method1.setName("test1");
+        p1.getMethods().add(method1);
+        method1.setPatternFilePath(createURI(method1));
+        PatternMethod method2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method2.setName("test2");
+        p1.getMethods().add(method2);
+        method2.setPatternFilePath(createURI(method2));
+
+        MethodCall methodCall1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
+        methodCall1.setCalled(method1);
+        p1.getOrchestration().add(methodCall1);
+        MethodCall methodCall2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
+        methodCall2.setCalled(method2);
+        p1.getOrchestration().add(methodCall2);
+
+        // set up P2
+        method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method1.setName("test1");
+        p2.getMethods().add(method1);
+        method1.setPatternFilePath(createURI(method1));
+
+        p2.getOrchestration().clear();
+
+        // set up P3
+        method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method1.setName("test2");
+        p3.getMethods().add(method1);
+        method1.setPatternFilePath(createURI(method1));
+
+        p3.getOrchestration().clear();
+    }
+
+    public void createDebugPattern14(PatternLibrary lib) {
+        Pattern p1 = createPattern(lib, "Pattern GrandParent");
+        Pattern p2 = createPattern(lib, "Pattern Parent");
+        Pattern p3 = createPattern(lib, "Pattern Child");
+
+        p2.setSuperPattern(p1);
+        p3.setSuperPattern(p2);
+
+        // set up P1
+        PatternMethod method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method1.setName("test1");
+        p1.getMethods().add(method1);
+        method1.setPatternFilePath(createURI(method1));
+        PatternMethod method2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method2.setName("test2");
+        p1.getMethods().add(method2);
+        method2.setPatternFilePath(createURI(method2));
+
+        MethodCall methodCall1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
+        methodCall1.setCalled(method1);
+        p1.getOrchestration().add(methodCall1);
+        MethodCall methodCall2 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
+        methodCall2.setCalled(method2);
+        p1.getOrchestration().add(methodCall2);
+
+        // set up P2
+        method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method1.setName("test1");
+        p2.getMethods().add(method1);
+        method1.setPatternFilePath(createURI(method1));
+
+        p2.getOrchestration().clear();
+
+        // set up P3
+        method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method1.setName("test2");
+        p3.getMethods().add(method1);
+        method1.setPatternFilePath(createURI(method1));
+
+        p3.getOrchestration().clear();
+    }
+
     public void createDebugPattern13(PatternLibrary lib) {
         Pattern p1 = createPattern(lib, "Pattern UN");
         Pattern p2 = createPattern(lib, "Pattern DEUX");
@@ -111,12 +195,12 @@ public abstract class PatternFactory {
         rule1.add(p1);
         rule1.add(p2);
         // make sure the list is ok before putting it into the map
-        lib.getSchedulingRules().put("rule1", rule1);
+        lib.getFilters().put("rule1", rule1);
 
         EList<PatternElement> srule1 = new BasicEList<PatternElement>();
         srule1.add(sp2);
         srule1.add(sp1);
-        subLib.getSchedulingRules().put("rule12", srule1);
+        subLib.getFilters().put("rule12", srule1);
 
     }
 

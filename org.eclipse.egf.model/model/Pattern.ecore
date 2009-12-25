@@ -51,7 +51,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="PatternLibrary" eSuperTypes="#//PatternElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
         eType="#//PatternElement" containment="true" resolveProxies="false" eOpposite="#//PatternElement/container"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="schedulingRules" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="filters" upperBound="-1"
         eType="#//String2PatternList" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternElement" abstract="true" eSuperTypes="Fcore.ecore#//ModelElement">

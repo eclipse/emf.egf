@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getSchedulingRules <em>Scheduling Rules</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getFilters <em>Filters</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,14 +54,14 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
     protected EList<PatternElement> elements;
 
     /**
-     * The cached value of the '{@link #getSchedulingRules() <em>Scheduling Rules</em>}' map.
+     * The cached value of the '{@link #getFilters() <em>Filters</em>}' map.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see #getSchedulingRules()
+     * @see #getFilters()
      * @generated
      * @ordered
      */
-    protected EMap<String, EList<PatternElement>> schedulingRules;
+    protected EMap<String, EList<PatternElement>> filters;
 
     /**
      * <!-- begin-user-doc -->
@@ -99,11 +99,11 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
      * <!-- end-user-doc -->
      * @generated
      */
-    public EMap<String, EList<PatternElement>> getSchedulingRules() {
-        if (schedulingRules == null) {
-            schedulingRules = new EcoreEMap<String, EList<PatternElement>>(PatternPackage.Literals.STRING2_PATTERN_LIST, String2PatternListImpl.class, this, PatternPackage.PATTERN_LIBRARY__SCHEDULING_RULES);
+    public EMap<String, EList<PatternElement>> getFilters() {
+        if (filters == null) {
+            filters = new EcoreEMap<String, EList<PatternElement>>(PatternPackage.Literals.STRING2_PATTERN_LIST, String2PatternListImpl.class, this, PatternPackage.PATTERN_LIBRARY__FILTERS);
         }
-        return schedulingRules;
+        return filters;
     }
 
     /**
@@ -131,8 +131,8 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
         switch (featureID) {
         case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
             return ((InternalEList<?>) getElements()).basicRemove(otherEnd, msgs);
-        case PatternPackage.PATTERN_LIBRARY__SCHEDULING_RULES:
-            return ((InternalEList<?>) getSchedulingRules()).basicRemove(otherEnd, msgs);
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
+            return ((InternalEList<?>) getFilters()).basicRemove(otherEnd, msgs);
         }
         return super.eInverseRemove(otherEnd, featureID, msgs);
     }
@@ -147,11 +147,11 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
         switch (featureID) {
         case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
             return getElements();
-        case PatternPackage.PATTERN_LIBRARY__SCHEDULING_RULES:
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
             if (coreType)
-                return getSchedulingRules();
+                return getFilters();
             else
-                return getSchedulingRules().map();
+                return getFilters().map();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -169,8 +169,8 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
             getElements().clear();
             getElements().addAll((Collection<? extends PatternElement>) newValue);
             return;
-        case PatternPackage.PATTERN_LIBRARY__SCHEDULING_RULES:
-            ((EStructuralFeature.Setting) getSchedulingRules()).set(newValue);
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
+            ((EStructuralFeature.Setting) getFilters()).set(newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -187,8 +187,8 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
         case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
             getElements().clear();
             return;
-        case PatternPackage.PATTERN_LIBRARY__SCHEDULING_RULES:
-            getSchedulingRules().clear();
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
+            getFilters().clear();
             return;
         }
         super.eUnset(featureID);
@@ -204,8 +204,8 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
         switch (featureID) {
         case PatternPackage.PATTERN_LIBRARY__ELEMENTS:
             return elements != null && !elements.isEmpty();
-        case PatternPackage.PATTERN_LIBRARY__SCHEDULING_RULES:
-            return schedulingRules != null && !schedulingRules.isEmpty();
+        case PatternPackage.PATTERN_LIBRARY__FILTERS:
+            return filters != null && !filters.isEmpty();
         }
         return super.eIsSet(featureID);
     }

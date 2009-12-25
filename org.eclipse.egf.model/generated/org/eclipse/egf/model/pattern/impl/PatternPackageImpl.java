@@ -426,7 +426,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * <!-- end-user-doc -->
      * @generated
      */
-    public EReference getPatternLibrary_SchedulingRules() {
+    public EReference getPatternLibrary_Filters() {
         return (EReference) patternLibraryEClass.getEStructuralFeatures().get(1);
     }
 
@@ -734,7 +734,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
         patternLibraryEClass = createEClass(PATTERN_LIBRARY);
         createEReference(patternLibraryEClass, PATTERN_LIBRARY__ELEMENTS);
-        createEReference(patternLibraryEClass, PATTERN_LIBRARY__SCHEDULING_RULES);
+        createEReference(patternLibraryEClass, PATTERN_LIBRARY__FILTERS);
 
         patternElementEClass = createEClass(PATTERN_ELEMENT);
         createEReference(patternElementEClass, PATTERN_ELEMENT__CONTAINER);
@@ -869,7 +869,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
         initEClass(patternLibraryEClass, PatternLibrary.class, "PatternLibrary", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getPatternLibrary_Elements(), this.getPatternElement(), this.getPatternElement_Container(), "elements", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getPatternLibrary_SchedulingRules(), this.getString2PatternList(), null, "schedulingRules", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPatternLibrary_Filters(), this.getString2PatternList(), null, "filters", null, 0, -1, PatternLibrary.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(patternElementEClass, PatternElement.class, "PatternElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getPatternElement_Container(), this.getPatternLibrary(), this.getPatternLibrary_Elements(), "container", null, 0, 1, PatternElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
