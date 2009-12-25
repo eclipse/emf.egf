@@ -1,12 +1,12 @@
 /**
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  */
 package org.eclipse.egf.common.helper;
 
@@ -16,12 +16,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * Helper to generate object unique id.
- * @author fournier
+ * 
+ * @author Xavier Maysonnave
  */
 public class IDGeneratorHelper {
-  
+
   /**
    * Generate unique id for given EObject.
+   * 
    * @param eObject_p
    * @return the not null generated unique id.
    */
@@ -37,6 +39,7 @@ public class IDGeneratorHelper {
 
   /**
    * Generate unique id using given prefix.
+   * 
    * @param prefix_p
    * @return the not null generated unique id.
    */
@@ -44,10 +47,8 @@ public class IDGeneratorHelper {
     String prefix = prefix_p;
     if (prefix == null) {
       prefix = CharacterConstants.EMPTY_STRING;
-    }    
-    return new StringBuilder(StringHelper.replaceNonWordCharactersWithDot(prefix))
-      .append(EcoreUtil.generateUUID())
-      .toString();
+    }
+    return new StringBuilder(StringHelper.replaceNonWordCharactersWithDot(prefix)).append(EcoreUtil.generateUUID()).toString();
   }
-  
+
 }
