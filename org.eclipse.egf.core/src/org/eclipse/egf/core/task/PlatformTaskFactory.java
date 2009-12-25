@@ -19,7 +19,7 @@ import org.eclipse.pde.core.plugin.IPluginElement;
  * @author Xavier Maysonnave
  * 
  */
-public class PlatformTaskFactory implements IPlatformExtensionPointFactory<IPlatformTask> {
+public final class PlatformTaskFactory implements IPlatformExtensionPointFactory<IPlatformTask> {
 
   public IPlatformTask createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement) {
     if (pluginElement == null) {

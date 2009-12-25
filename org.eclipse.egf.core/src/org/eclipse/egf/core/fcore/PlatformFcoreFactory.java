@@ -19,7 +19,7 @@ import org.eclipse.pde.core.plugin.IPluginElement;
  * @author Xavier Maysonnave
  * 
  */
-public class PlatformFcoreFactory implements IPlatformExtensionPointFactory<IPlatformFcore> {
+public final class PlatformFcoreFactory implements IPlatformExtensionPointFactory<IPlatformFcore> {
 
   public IPlatformFcore createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement) {
     if (pluginElement == null) {
