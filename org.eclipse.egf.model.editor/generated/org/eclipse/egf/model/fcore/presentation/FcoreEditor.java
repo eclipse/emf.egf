@@ -333,8 +333,22 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
       if (deltaRemovedResources.isEmpty() == false) {
         getSite().getShell().getDisplay().asyncExec(new Runnable() {
           public void run() {
+            // if a removed resource is a workspace one and the editor is dirty we close it
+            // This is the default behaviour when a removed resource belong to a dirty editor
             if (isDirty() == false && conflict[0]) {
               getSite().getPage().closeEditor(FcoreEditor.this, false);
+            } else {
+              // Unload memory removed resources
+              for (Resource resource : deltaRemovedResources) {
+                resource.unload();
+              }
+              // UI Update
+              updateProblemIndication = false;
+              if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
+                setSelection(StructuredSelection.EMPTY);
+              }
+              updateProblemIndication = true;
+              updateProblemIndication();
             }
           }
         });
@@ -349,6 +363,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
               }
               editingDomain.getCommandStack().flush();
             }
+            // Reload Changed Resources and update UI
             updateProblemIndication = false;
             ResourceHelper.reloadResources(editingDomain.getResourceSet(), deltaChangedResources);
             if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
