@@ -15,12 +15,6 @@
   <!-- ================================================================================= -->
   <!-- Extension Points Definition                                                       -->
   <!-- ================================================================================= -->
-
-  <extension-point 
-    id="user_helper" 
-    name="%EGFUserHelperExtensionPoint" 
-    schema="schema/user_helper.exsd"
-  />
   
   <extension-point 
     id="logger" 

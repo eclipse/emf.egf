@@ -16,8 +16,6 @@ import java.util.List;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
-import org.eclipse.egf.common.helper.IUserEnforcedHelper;
-import org.eclipse.egf.common.internal.helper.DefaultUserHelper;
 import org.eclipse.egf.common.log.IEGFLogger;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.BundleContext;
@@ -45,11 +43,6 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
   protected static EGFCommonPlugin __plugin;
 
   /**
-   * User enforced helper.
-   */
-  private IUserEnforcedHelper _userHelper;
-
-  /**
    * Get shared instance.
    * 
    * @return
@@ -69,33 +62,6 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
     __egfLoggers = null;
     __plugin = null;
     super.stop(context_p);
-  }
-
-  /**
-   * Get user enforced helper unique implementation.
-   * 
-   * @return null if none could be found.
-   */
-  public IUserEnforcedHelper getUserEnforcedHelper() {
-    // Lazy loading. Search for the implementation.
-    if (_userHelper == null) {
-      // Get extensions abiding to user helper extension point.
-      IConfigurationElement[] configurationElements = ExtensionPointHelper.getConfigurationElements(getPluginID(), EXTENSION_POINT_SHORT_ID_USER_HELPER);
-      if (configurationElements != null && configurationElements.length > 0) {
-        // There should be one implementation only !
-        // So take the first one, as expected.
-        Object instantiatedClass = ExtensionPointHelper.createInstance(configurationElements[0]);
-        // Make sure this is the correct resulting type.
-        if (instantiatedClass instanceof IUserEnforcedHelper) {
-          _userHelper = (IUserEnforcedHelper) instantiatedClass;
-        }
-      }
-      // Could not find any user helper, use default one.
-      if (_userHelper == null) {
-        _userHelper = new DefaultUserHelper();
-      }
-    }
-    return _userHelper;
   }
 
   /**

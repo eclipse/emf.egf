@@ -1,12 +1,12 @@
 /**
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  */
 package org.eclipse.egf.common.helper;
 
@@ -26,7 +26,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.common.EGFCommonPlugin;
@@ -259,7 +258,6 @@ public class FileHelper {
    * @return
    */
   public static boolean writeFile(String filePath_p, boolean ensureFolders_p, byte[] contents_p) {
-    boolean result = false;
     FileChannel channel = null;
     try {
       // Get file full path from its relative one.
@@ -268,29 +266,22 @@ public class FileHelper {
       if (ensureFolders_p) {
         ensurePathAvailability(fileFullPath);
       }
-      // Make sure file is writable.
-      boolean fileWritable = makeFileWritable(filePath_p);
-      // Write content.
-      if (fileWritable) {
-        // Try and open the resulting file.
-        channel = new FileOutputStream(fileFullPath).getChannel();
-        // Write contents.
-        channel.write(ByteBuffer.wrap(contents_p));
-        result = true;
-      }
+      // Try and open the resulting file.
+      channel = new FileOutputStream(fileFullPath).getChannel();
+      // Write contents.
+      channel.write(ByteBuffer.wrap(contents_p));
     } catch (Exception e) {
-      result = false;
       StringBuilder msg = new StringBuilder("FileHelper.writeFile(..) _ "); //$NON-NLS-1$
       msg.append("Failed to open channel in write mode for "); //$NON-NLS-1$
       msg.append(filePath_p).append(" !"); //$NON-NLS-1$
       EGFCommonPlugin.getDefault().logError(msg.toString(), e);
+      return false;
     } finally {
       if (channel != null && channel.isOpen()) {
         try {
           // Close the channel.
           channel.close();
         } catch (IOException e) {
-          result = false;
           StringBuilder msg = new StringBuilder("FileHelper.writeFile(..) _ "); //$NON-NLS-1$
           msg.append("Failed to close opened channel in write mode ! "); //$NON-NLS-1$
           msg.append(filePath_p).append(" may no longer be usable."); //$NON-NLS-1$
@@ -298,7 +289,7 @@ public class FileHelper {
         }
       }
     }
-    return result;
+    return true;
   }
 
   /**
@@ -546,30 +537,6 @@ public class FileHelper {
       return null;
     }
     return new Path(filePath_p).getFileExtension();
-  }
-
-  /**
-   * Make file writable.<br>
-   * That is, make sure file is modifiable after this call.<br>
-   * The user may be asked to take a decision if the file is held by the
-   * configuration management system.<br>
-   * Nevertheless, if no UI is reachable, then the system is urged into making
-   * the file writable.
-   * 
-   * @param filePath_p
-   *          File path relative to the plug-in, plug-in id included. See
-   *          {@link #getFileFullUrl(String)} documentation.
-   * @return false if file could not be made writable or user denied rights to
-   *         (in case of a configuration management). true if it does not exist
-   *         (then it is writable) or permission was granted (either by the
-   *         system or by the user).
-   */
-  public static boolean makeFileWritable(String filePath_p) {
-    // Get user helper.
-    IUserEnforcedHelper helper = EGFCommonPlugin.getDefault().getUserEnforcedHelper();
-    // Delegate to it.
-    IStatus status = helper.makeFileWritable(getPlatformFile(filePath_p));
-    return status.isOK();
   }
 
 }
