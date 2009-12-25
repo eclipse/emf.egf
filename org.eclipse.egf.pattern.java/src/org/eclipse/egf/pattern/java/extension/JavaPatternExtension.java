@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.java;
+package org.eclipse.egf.pattern.java.extension;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.PatternException;
@@ -23,6 +23,8 @@ import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
+import org.eclipse.egf.pattern.java.engine.JavaEngine;
+import org.eclipse.egf.pattern.java.engine.JavaNatureHelper;
 
 /**
  * @author Guiu
@@ -40,7 +42,7 @@ public class JavaPatternExtension extends PatternExtension {
 
     @Override
     public PatternEngine doCreateRunner(Pattern pattern) {
-        return new JavaRunner_to_be_moved_to_model1(pattern);
+        return new JavaEngine(pattern);
     }
 
     @Override

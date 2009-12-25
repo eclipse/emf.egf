@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.java;
+package org.eclipse.egf.pattern.java.engine;
 
 import java.util.regex.Matcher;
 
@@ -21,6 +21,7 @@ import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
+import org.eclipse.egf.pattern.java.Messages;
 
 /**
  * @author Thomas Guiu

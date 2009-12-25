@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.java;
+package org.eclipse.egf.pattern.java.engine;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -33,15 +33,16 @@ import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.engine.WorkspaceAndPluginClassLoader;
 import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
+import org.eclipse.egf.pattern.java.Messages;
 
 /**
  * @author Guiu
  * 
  *         Temp class ...
  */
-public class JavaRunner_to_be_moved_to_model1 extends PatternEngine {
+public class JavaEngine extends PatternEngine {
 
-    public JavaRunner_to_be_moved_to_model1(Pattern pattern) {
+    public JavaEngine(Pattern pattern) {
         setPattern(pattern);
     }
 
