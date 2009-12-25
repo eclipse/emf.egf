@@ -43,7 +43,7 @@ public interface ModelElement extends EObject {
    * <!-- end-user-doc -->
    * @return the value of the '<em>ID</em>' attribute.
    * @see org.eclipse.egf.model.fcore.FcorePackage#getModelElement_ID()
-   * @model id="true" required="true" suppressedSetVisibility="true"
+   * @model id="true" required="true" transient="true" derived="true" suppressedSetVisibility="true"
    * @generated
    */
   String getID();
