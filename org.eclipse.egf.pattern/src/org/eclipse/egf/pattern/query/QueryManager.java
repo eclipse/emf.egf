@@ -18,9 +18,7 @@ package org.eclipse.egf.pattern.query;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtension;
-import org.eclipse.core.runtime.Platform;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.pattern.Messages;
@@ -36,19 +34,17 @@ public interface QueryManager {
     Helper INSTANCE = new Helper();
 
     public class Helper {
-        public String getQueryManagerClassName(String extensionID) throws PatternException {
-            if (extensionID == null || "".equals(extensionID))
+        public String getQueryManagerClassName(String queryID) throws PatternException {
+            if (queryID == null || "".equals(queryID))
                 throw new PatternException(Messages.query_error2);
-            IExtension extension = Platform.getExtensionRegistry().getExtension(extensionID);
-            if (extension == null)
-                throw new PatternException(Messages.bind(Messages.query_error3, extensionID));
-            IConfigurationElement[] configurationElements = extension.getConfigurationElements();
-            if (configurationElements.length != 1)
-                throw new PatternException(Messages.bind(Messages.query_error4, configurationElements.length));
-            String attribute = configurationElements[0].getAttribute("class");
-            if (attribute == null || "".equals(attribute))
-                throw new PatternException(Messages.query_error5);
-            return attribute;
+            for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
+                if (queryID.equals(kind.getId())) {
+                    if (kind.getClassName() == null || "".equals(kind.getClassName()))
+                        throw new PatternException(Messages.query_error5);
+                    return kind.getClassName();
+                }
+            }
+            throw new PatternException(Messages.bind(Messages.query_error3, queryID));
         }
 
         private Helper() {
