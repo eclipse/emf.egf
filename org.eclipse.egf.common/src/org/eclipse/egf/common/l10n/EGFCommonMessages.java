@@ -10,29 +10,23 @@
  * Thales Corporate Services S.A.S
  */
 
-package org.eclipse.egf.core.l10n;
+package org.eclipse.egf.common.l10n;
 
 import org.eclipse.osgi.util.NLS;
 
-public class CoreMessages {
+public class EGFCommonMessages {
 
-  private static final String BUNDLE_NAME = "org.eclipse.egf.core.l10n.messages"; //$NON-NLS-1$
+  private static final String BUNDLE_NAME = "org.eclipse.egf.common.l10n.messages"; //$NON-NLS-1$
 
-  private CoreMessages() {
+  private EGFCommonMessages() {
     // Do not instantiate
   }
 
   static {
     // load message values from bundle file
-    NLS.initializeMessages(BUNDLE_NAME, CoreMessages.class);
+    NLS.initializeMessages(BUNDLE_NAME, EGFCommonMessages.class);
   }
 
-  public static String AbstractTask_Execute;
-
-  public static String AbstractTask_postExecute;
-
-  public static String AbstractTask_doExecute;
-
-  public static String AbstractTask_preExecute;
+  public static String URI_errorInstance;
 
 }

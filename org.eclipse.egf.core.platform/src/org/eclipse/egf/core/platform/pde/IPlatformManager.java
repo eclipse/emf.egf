@@ -26,6 +26,10 @@ public interface IPlatformManager {
 
   public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(Class<T> clazz);
 
+  public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(IProject project, Class<T> clazz);
+
+  public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(String id, Class<T> clazz);
+
   public <T extends IPlatformExtensionPoint> T[] getWorkspacePlatformExtensionPoints(Class<T> clazz);
 
   public <T extends IPlatformExtensionPoint> T[] getTargetPlatformExtensionPoints(Class<T> clazz);

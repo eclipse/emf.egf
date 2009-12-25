@@ -266,7 +266,7 @@ public class EGFEclipseUIPlugin extends EclipseUIPlugin {
    * 
    * @return a new IStatus
    */
-  private IStatus newStatus(int severity, String message, Throwable exception) {
+  public IStatus newStatus(int severity, String message, Throwable exception) {
     return new Status(severity, getSymbolicName(), 0, message, exception);
   }
 

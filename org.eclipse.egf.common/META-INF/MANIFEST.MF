@@ -22,6 +22,7 @@ Export-Package:
  org.eclipse.egf.common.constant,
  org.eclipse.egf.common.generator,
  org.eclipse.egf.common.helper,
+ org.eclipse.egf.common.l10n,
  org.eclipse.egf.common.log,
  org.eclipse.egf.common.progress,
  org.eclipse.egf.common.uri

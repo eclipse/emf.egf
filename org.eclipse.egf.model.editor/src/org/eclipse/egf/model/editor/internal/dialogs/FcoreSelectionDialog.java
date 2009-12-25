@@ -56,12 +56,7 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
       if (tag == null) {
         return null;
       }
-      URI uri = null;
-      try {
-        uri = URI.createURI(tag);
-      } catch (IllegalArgumentException iae) {
-        return null;
-      }
+      URI uri = URI.createURI(tag);
       // TODO: We should have an index to improve such settings
       for (IPlatformFcore fcore : EGFCorePlugin.getPlatformFcores()) {
         if (fcore.getURI().equals(uri)) {

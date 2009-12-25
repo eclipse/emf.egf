@@ -128,6 +128,15 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
     }
   }
 
+  public IPlatformBundle getPlatformBundle(IProject project) {
+    IPluginModelBase base = BundleHelper.getPluginModelBase(project);
+    String id = BundleHelper.getBundleId(base);
+    if (id == null) {
+      return null;
+    }
+    return getPlatformBundle(id);
+  }
+
   public IPlatformBundle[] getPlatformBundles() {
     // Lock PlatformManager
     synchronized (_lock) {
@@ -137,15 +146,6 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
       // Create a copy of known values
       return _platformBundles.values().toArray(new IPlatformBundle[_platformBundles.size()]);
     }
-  }
-
-  public IPlatformBundle getPlatformBundle(IProject project) {
-    IPluginModelBase base = BundleHelper.getPluginModelBase(project);
-    String id = BundleHelper.getBundleId(base);
-    if (id == null) {
-      return null;
-    }
-    return PlatformManager.getInstance().getPlatformBundle(id);
   }
 
   public <T extends IPlatformExtensionPoint> T[] getWorkspacePlatformExtensionPoints(Class<T> clazz) {
@@ -198,6 +198,38 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
       System.arraycopy(workspaceExtensionPoints, 0, extensionPoints, targetExtensionPoints.length, workspaceExtensionPoints.length);
       // Return
       return extensionPoints;
+    }
+  }
+
+  public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(IProject project, Class<T> clazz) {
+    // Lock PlatformManager
+    synchronized (_lock) {
+      if (project != null && clazz != null && getExtensionPointsValues().contains(clazz)) {
+        if (_platformBundles == null) {
+          initializePlatformManager();
+        }
+        IPlatformBundle platformBundle = getPlatformBundle(project);
+        if (platformBundle != null) {
+          return platformBundle.getPlatformExtensionPoints(clazz);
+        }
+      }
+      return CollectionHelper.toArray(new ArrayList<Object>(0), clazz);
+    }
+  }
+
+  public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(String id, Class<T> clazz) {
+    // Lock PlatformManager
+    synchronized (_lock) {
+      if (id != null && clazz != null && getExtensionPointsValues().contains(clazz)) {
+        if (_platformBundles == null) {
+          initializePlatformManager();
+        }
+        IPlatformBundle platformBundle = _platformBundles.get(id);
+        if (platformBundle != null) {
+          return platformBundle.getPlatformExtensionPoints(clazz);
+        }
+      }
+      return CollectionHelper.toArray(new ArrayList<Object>(0), clazz);
     }
   }
 

@@ -251,7 +251,7 @@ public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
    * 
    * @return a new IStatus
    */
-  private IStatus newStatus(int severity, String message, Throwable exception) {
+  public IStatus newStatus(int severity, String message, Throwable exception) {
     return new Status(severity, getPluginID(), 0, message, exception);
   }
 

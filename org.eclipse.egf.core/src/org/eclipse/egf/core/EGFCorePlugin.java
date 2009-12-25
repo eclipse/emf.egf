@@ -17,12 +17,18 @@ import java.util.Map;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.jobs.IJobManager;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.helper.BundleHelper;
+import org.eclipse.egf.core.context.IProductionContextFactory;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.internal.context.ProductionContextFactory;
+import org.eclipse.egf.core.internal.task.TaskRunnerFactory;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
-import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.task.IPlatformTask;
+import org.eclipse.egf.core.task.ITaskRunnerFactory;
 import org.eclipse.egf.core.type.IPlatformType;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -43,6 +49,28 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   private static EGFCorePlugin __plugin;
 
   /**
+   * IProductionContextFactory singleton.
+   */
+  private static final IProductionContextFactory __productionContextFactory = new ProductionContextFactory();
+
+  /**
+   * ITaskRunnerFactory singleton.
+   */
+  private static final ITaskRunnerFactory __taskRunnerFactory = new TaskRunnerFactory();
+
+  /**
+   * Constant identifying the job family identifier for a background build job.
+   * All clients
+   * that schedule background jobs for performing builds should include this job
+   * family in their implementation of <code>belongsTo</code>.
+   * 
+   * @see IJobManager#join(Object, IProgressMonitor)
+   * @see Job#belongsTo(Object)
+   * @since 3.0
+   */
+  public static final Object FAMILY_MANUAL_BUILD = new Object();
+
+  /**
    * Get activator shared instance.
    * 
    * @return
@@ -52,61 +80,21 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   }
 
   /**
-   * Get the IPlatformFcore for given EMF Resource.
+   * Returns the singleton instance of the IProductionContextFactory.
    * 
-   * @param resource_p
-   * @return an {@link IPlatformFcore} instance or null if the
-   *         resource is null or not associated with an
-   *         IPlatformFactoryComponent
+   * @return the singleton production context factory.
    */
-  public static IPlatformFcore getPlatformFcore(Resource resource_p) {
-    // a URI should be absolute, otherwise we are unable to analyse its
-    // first segment
-    if (resource_p == null || resource_p.getURI() == null || resource_p.getURI().isRelative()) {
-      return null;
-    }
-    // Project Name
-    String firstSegment = resource_p.getURI().segment(1);
-    if (firstSegment == null || firstSegment.trim().length() == 0) {
-      return null;
-    }
-    // Retrieve a workspace project if available, its is safe as our
-    // implementation always hide a target project if a workspace project is
-    // available. The idea here is to locate a bundle based on its name
-    // rather than its project name
-    IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(firstSegment.trim());
-    IPlatformBundle platformBundle = null;
-    if (project != null)
-      platformBundle = EGFPlatformPlugin.getPlatformManager().getPlatformBundle(project);
-    // if no IPlatformPlugin is available, locate an IPlatformPlugin based
-    // on its firstSegment
-    if (platformBundle == null) {
-      platformBundle = EGFPlatformPlugin.getPlatformManager().getPlatformBundle(firstSegment.trim());
-    }
-    // Nothing to process
-    if (platformBundle == null) {
-      return null;
-    }
-    // Finally try to locate an associated IPlatformFactoryComponent
-    for (IPlatformFcore fc : platformBundle.getPlatformExtensionPoints(IPlatformFcore.class)) {
-      if (fc.getURI().equals(resource_p.getURI())) {
-        return fc;
-      }
-    }
-    // Nothing to retrieve
-    return null;
+  public static IProductionContextFactory getProductionContextFactory() {
+    return __productionContextFactory;
   }
 
   /**
-   * Get the IPlatformFcore[] for given project.
+   * Returns the singleton instance of the ITaskRunnerFactory.
    * 
+   * @return the singleton task runner factory.
    */
-  public static IPlatformFcore[] getPlatformFcores(IProject project) {
-    IPlatformBundle platformBundle = EGFPlatformPlugin.getPlatformManager().getPlatformBundle(project);
-    if (platformBundle == null) {
-      return new IPlatformFcore[0];
-    }
-    return platformBundle.getPlatformExtensionPoints(IPlatformFcore.class);
+  public static ITaskRunnerFactory getTaskRunnerFactory() {
+    return __taskRunnerFactory;
   }
 
   /**
@@ -169,15 +157,15 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    * already contains a project for the plugin location, no mapping is
    * produced.
    * 
-   * @param uris
-   *          a collections of {@link URI}s.
+   * @param fcores
+   *          a collections of {@link IPlatformFcore}s.
    * @return a map from platform resource URI to platform plugin URI.
    */
-  public static Map<URI, URI> computePlatformResourceToTargetPluginMap(IPlatformFcore[] fcs) {
+  public static Map<URI, URI> computePlatformResourceToTargetPluginMap(IPlatformFcore[] fcores) {
     Map<URI, URI> result = new HashMap<URI, URI>();
     IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
     if (root != null) {
-      for (IPlatformFcore fc : fcs) {
+      for (IPlatformFcore fc : fcores) {
         String pluginID = fc.getURI().segment(1);
         for (IProject project : root.getProjects()) {
           IPluginModelBase base = BundleHelper.getPluginModelBase(project);
@@ -188,6 +176,44 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
       }
     }
     return result;
+  }
+
+  /**
+   * Get the IPlatformFcore for given EMF Resource.
+   * 
+   * @param resource_
+   * @return an {@link IPlatformFcore} instance or null if the
+   *         resource is null or not associated with an
+   *         IPlatformFcore
+   */
+  public static IPlatformFcore getPlatformFcore(Resource resource_) {
+    // a URI should be absolute, otherwise we are unable to analyse its
+    // first segment
+    if (resource_ == null || resource_.getURI() == null || resource_.getURI().isRelative()) {
+      return null;
+    }
+    // Project Name
+    String firstSegment = resource_.getURI().segment(1);
+    if (firstSegment == null || firstSegment.trim().length() == 0) {
+      return null;
+    }
+    firstSegment = firstSegment.trim();
+    // locate and return the first associated IPlatformFcore
+    for (IPlatformFcore fcore : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(firstSegment, IPlatformFcore.class)) {
+      if (fcore.getURI().equals(resource_.getURI())) {
+        return fcore;
+      }
+    }
+    // Nothing to retrieve
+    return null;
+  }
+
+  /**
+   * Get the IPlatformFcore[] for given project.
+   * 
+   */
+  public static IPlatformFcore[] getPlatformFcores(IProject project) {
+    return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(project, IPlatformFcore.class);
   }
 
   /**
@@ -218,6 +244,36 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   }
 
   /**
+   * Get the IPlatformTask for given EMF Resource.
+   * 
+   * @param uri
+   * @return an {@link IPlatformTask} instance or null if the
+   *         uri is null or not associated with an
+   *         IPlatformFcore
+   */
+  public static IPlatformTask getPlatformTask(URI uri) {
+    // a URI should be absolute, otherwise we are unable to analyse its
+    // first segment
+    if (uri == null || uri.isRelative()) {
+      return null;
+    }
+    // Bundle Name
+    String firstSegment = uri.segment(1);
+    if (firstSegment == null || firstSegment.trim().length() == 0) {
+      return null;
+    }
+    firstSegment = firstSegment.trim();
+    // locate and return the first associated IPlatformTask
+    for (IPlatformTask task : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(firstSegment, IPlatformTask.class)) {
+      if (task.getURI().equals(uri)) {
+        return task;
+      }
+    }
+    // Nothing to retrieve
+    return null;
+  }
+
+  /**
    * Returns a snapshot of known IPlatformTask
    * 
    * @return an array of IPlatformTask
@@ -239,8 +295,8 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    * @see org.eclipse.core.runtime.Plugin#start(org.osgi.framework.BundleContext)
    */
   @Override
-  public void start(BundleContext context_p) throws Exception {
-    super.start(context_p);
+  public void start(BundleContext context) throws Exception {
+    super.start(context);
     __plugin = this;
   }
 
@@ -248,9 +304,9 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
    */
   @Override
-  public void stop(BundleContext context_p) throws Exception {
+  public void stop(BundleContext context) throws Exception {
     __plugin = null;
-    super.stop(context_p);
+    super.stop(context);
   }
 
 }

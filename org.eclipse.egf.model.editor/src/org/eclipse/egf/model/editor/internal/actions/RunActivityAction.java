@@ -10,14 +10,36 @@
  *******************************************************************************/
 package org.eclipse.egf.model.editor.internal.actions;
 
+import java.lang.reflect.InvocationTargetException;
+
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.resources.WorkspaceJob;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.context.IProductionContext;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.helper.ResourceHelper;
+import org.eclipse.egf.core.l10n.EGFCoreMessages;
+import org.eclipse.egf.core.task.ITaskRunner;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.editor.internal.dialogs.FcoreSelectionDialog;
 import org.eclipse.egf.model.editor.internal.ui.EGFModelsEditorImages;
 import org.eclipse.egf.model.editor.l10n.EGFModelsEditorMessages;
+import org.eclipse.egf.model.fcore.Task;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IActionDelegate2;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -50,21 +72,66 @@ public class RunActivityAction extends Action implements IWorkbenchWindowActionD
       return;
     }
 
-    Object[] fcores = dialog.getResult();
-    if (fcores == null || fcores.length == 0) {
+    final Object[] fcores = dialog.getResult();
+    if (fcores == null || fcores.length != 1) {
       return;
     }
 
-    // if (fcores.length == 1) {
-    // try {
-    // // Run
-    // } catch (CoreException ce) {
-    // ExceptionHandler.handle(ce,
-    // EGFModelsEditorMessages.RunActivityAction_errorTitle,
-    // EGFModelsEditorMessages.RunActivityAction_errorMessage);
-    // }
-    // return;
-    // }
+    // batching changes
+    WorkspaceJob cleanJob = new WorkspaceJob(EGFModelsEditorMessages.RunActivityAction_label) {
+      @Override
+      public boolean belongsTo(Object family) {
+        return EGFCorePlugin.FAMILY_MANUAL_BUILD.equals(family);
+      }
+
+      @Override
+      public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.AbstractTask_Execute, ((IPlatformFcore) fcores[0]).getURI()), 20);
+        try {
+          Task task = null;
+          // Load Resource
+          try {
+            Resource resource = ResourceHelper.loadResource(new ResourceSetImpl(), ((IPlatformFcore) fcores[0]).getURI());
+            EObject eObject = resource.getContents().get(0);
+            if (eObject instanceof Task == false || ((Task) eObject).getTaskId() == null) {
+              return Status.OK_STATUS;
+            }
+            task = (Task) eObject;
+          } catch (Throwable t) {
+            throw new CoreException(EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, "RunActivityAction.runWithEvent(..) _", t)); //$NON-NLS-1$
+          }
+          try {
+            Thread.currentThread().sleep(10000);
+          } catch (InterruptedException ie) {
+            throw new OperationCanceledException();
+          }
+          subMonitor.worked(10);
+          if (subMonitor.isCanceled()) {
+            throw new OperationCanceledException();
+          }
+          IProductionContext context = EGFCorePlugin.getProductionContextFactory().createProductionContext(null);
+          ITaskRunner runner = EGFCorePlugin.getTaskRunnerFactory().createTaskRunner(context, EGFCorePlugin.getPlatformTask(URI.createURI(task.getTaskId())));
+          try {
+            runner.execute(subMonitor.newChild(10));
+            if (subMonitor.isCanceled()) {
+              throw new OperationCanceledException();
+            }
+          } catch (InvocationTargetException ite) {
+            throw new CoreException(EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, "RunActivityAction.runWithEvent(..) _", ite)); //$NON-NLS-1$
+          } catch (InterruptedException ie) {
+            throw new OperationCanceledException();
+          }
+        } finally {
+          subMonitor.setWorkRemaining(0);
+        }
+        return Status.OK_STATUS;
+      }
+    };
+    cleanJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
+    cleanJob.setUser(true);
+    cleanJob.schedule();
+
+    return;
 
   }
 
