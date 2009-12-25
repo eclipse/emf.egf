@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fcore:Task xmi:version="2.1"
-    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmi:id="Task_phmDsJ3yEd6QT-rlVS67-Q"
-    iD="Task_phmDsJ3yEd6QT-rlVS67-Q" name="H1" description="" taskId="org.eclipse.egf.example.task.h1.H1.id"/>
+<productionplan:Task xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:productionplan="http://www.eclipse.org/egf/1.0.0/productionplan"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="Task_phmDsJ3yEd6QT-rlVS67-Q"
+    iD="Task_phmDsJ3yEd6QT-rlVS67-Q" name="H1" description="" taskId="org.eclipse.egf.example.task.h1.H1.id">
+  <contractContainer xmi:id="ContractContainer_7FvNoLcREd6P46UdXnCWtw" iD="ContractContainer_7FvNoLcREd6P46UdXnCWtw">
+    <contracts xmi:id="Contract_7VPCMLcREd6P46UdXnCWtw" iD="Contract_7VPCMLcREd6P46UdXnCWtw"
+        name="name">
+      <type xmi:type="types:StringType" xmi:id="StringType_8IMwMLcREd6P46UdXnCWtw"
+          iD="StringType_8IMwMLcREd6P46UdXnCWtw" value="hkljkj"/>
+    </contracts>
+    <contracts xmi:id="Contract_-5OtYLcREd6P46UdXnCWtw" iD="Contract_-5OtYLcREd6P46UdXnCWtw"
+        name="min">
+      <type xmi:type="types:IntegerType" xmi:id="IntegerType__NV8MLcREd6P46UdXnCWtw"
+          iD="IntegerType__NV8MLcREd6P46UdXnCWtw"/>
+    </contracts>
+    <contracts xmi:id="Contract_EUbrobcvEd6sCohz0xaTBQ" iD="Contract_EUbrobcvEd6sCohz0xaTBQ"
+        name="adapterFactory">
+      <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="GeneratorAdapterFactoryType_FBu2gLcvEd6sCohz0xaTBQ"
+          iD="GeneratorAdapterFactoryType_FBu2gLcvEd6sCohz0xaTBQ" value="org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"/>
+    </contracts>
+    <contracts xmi:id="Contract_KlRXkLcvEd6sCohz0xaTBQ" iD="Contract_KlRXkLcvEd6sCohz0xaTBQ"
+        name="result">
+      <type xmi:type="types:BooleanType" xmi:id="BooleanType_K9tswLcvEd6sCohz0xaTBQ"
+          iD="BooleanType_K9tswLcvEd6sCohz0xaTBQ" value="true"/>
+    </contracts>
+  </contractContainer>
+</productionplan:Task>

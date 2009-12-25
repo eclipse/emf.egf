@@ -14,6 +14,9 @@
   <extension
         point="org.eclipse.egf.core.fcore">
      <fcore
+           id="Copy of task_h1.fcore">
+     </fcore>
+     <fcore
            id="task_h1.fcore">
      </fcore>
   </extension>
