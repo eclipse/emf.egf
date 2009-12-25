@@ -18,34 +18,32 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.EGFModelsPlugin;
-import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Context;
-import org.eclipse.egf.model.fcore.ContextValue;
+import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractConnector;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
-import org.eclipse.egf.model.fcore.ContractValue;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
-import org.eclipse.egf.model.fcore.Task;
+import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.egf.model.fcore.TypeClass;
+import org.eclipse.egf.model.fcore.TypeObject;
 import org.eclipse.egf.model.fcore.Viewpoint;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
-import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -60,6 +58,7 @@ import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.fcore.FcorePackage
  * @generated
  */
@@ -68,14 +67,17 @@ public class FcoreValidator extends EObjectValidator {
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static final FcoreValidator INSTANCE = new FcoreValidator();
 
   /**
-   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
+   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see org.eclipse.emf.common.util.Diagnostic#getSource()
    * @see org.eclipse.emf.common.util.Diagnostic#getCode()
    * @generated
@@ -83,17 +85,21 @@ public class FcoreValidator extends EObjectValidator {
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.fcore"; //$NON-NLS-1$
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written constants.
+   * A constant with a fixed name that can be used as the base value for additional hand written
+   * constants.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
+   * A constant with a fixed name that can be used as the base value for additional hand written
+   * constants in a derived class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
@@ -102,6 +108,7 @@ public class FcoreValidator extends EObjectValidator {
    * Model Validation Service interface for batch validation of EMF elements.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private final IBatchValidator batchValidator;
@@ -110,6 +117,7 @@ public class FcoreValidator extends EObjectValidator {
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FcoreValidator() {
@@ -124,6 +132,7 @@ public class FcoreValidator extends EObjectValidator {
    * Returns the package of this validator switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -134,6 +143,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -144,10 +154,10 @@ public class FcoreValidator extends EObjectValidator {
     // no point in validating if we can't report results
     if (diagnostics != null) {
       // if EMF Mode Validation Service already covered the sub-tree,
-      //    which it does for efficient computation and error reporting,
-      //    then don't repeat (the Diagnostician does the recursion
-      //    externally).  If there is no context map, then we can't
-      //    help it
+      // which it does for efficient computation and error reporting,
+      // then don't repeat (the Diagnostician does the recursion
+      // externally). If there is no context map, then we can't
+      // help it
       if (hasProcessed(eObject, context) == false) {
         status = batchValidator.validate(eObject, new NullProgressMonitor());
         processed(eObject, context, status);
@@ -161,6 +171,7 @@ public class FcoreValidator extends EObjectValidator {
    * Calls <code>validateXXX</code> for the corresponding classifier of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -170,8 +181,6 @@ public class FcoreValidator extends EObjectValidator {
       return validateModelElement((ModelElement) value, diagnostics, context);
     case FcorePackage.ACTIVITY:
       return validateActivity((Activity) value, diagnostics, context);
-    case FcorePackage.TASK:
-      return validateTask((Task) value, diagnostics, context);
     case FcorePackage.FACTORY_COMPONENT:
       return validateFactoryComponent((FactoryComponent) value, diagnostics, context);
     case FcorePackage.VIEWPOINT_CONTAINER:
@@ -182,18 +191,22 @@ public class FcoreValidator extends EObjectValidator {
       return validateOrchestration((Orchestration) value, diagnostics, context);
     case FcorePackage.INVOCATION:
       return validateInvocation((Invocation) value, diagnostics, context);
-    case FcorePackage.CONTEXT:
-      return validateContext((Context) value, diagnostics, context);
+    case FcorePackage.TYPE:
+      return validateType((Type<?>) value, diagnostics, context);
+    case FcorePackage.TYPE_OBJECT:
+      return validateTypeObject((TypeObject<?>) value, diagnostics, context);
+    case FcorePackage.TYPE_CLASS:
+      return validateTypeClass((TypeClass<?>) value, diagnostics, context);
     case FcorePackage.CONTRACT_CONTAINER:
       return validateContractContainer((ContractContainer) value, diagnostics, context);
     case FcorePackage.CONTRACT:
       return validateContract((Contract) value, diagnostics, context);
-    case FcorePackage.CONTEXT_VALUE:
-      return validateContextValue((ContextValue) value, diagnostics, context);
-    case FcorePackage.CONTRACT_VALUE:
-      return validateContractValue((ContractValue) value, diagnostics, context);
     case FcorePackage.CONTRACT_CONNECTOR:
       return validateContractConnector((ContractConnector) value, diagnostics, context);
+    case FcorePackage.CONTEXT_CONTAINER:
+      return validateContextContainer((ContextContainer) value, diagnostics, context);
+    case FcorePackage.CONTEXT:
+      return validateContext((Context) value, diagnostics, context);
     case FcorePackage.CONTRACT_MODE:
       return validateContractMode((ContractMode) value, diagnostics, context);
     case FcorePackage.IPRODUCTION_CONTEXT:
@@ -204,8 +217,6 @@ public class FcoreValidator extends EObjectValidator {
       return validateIProgressMonitor((IProgressMonitor) value, diagnostics, context);
     case FcorePackage.URI:
       return validateURI((URI) value, diagnostics, context);
-    case FcorePackage.CLAZZ:
-      return validateClazz((Class) value, diagnostics, context);
     default:
       return true;
     }
@@ -214,6 +225,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateModelElement(ModelElement modelElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -223,6 +235,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateActivity(Activity activity, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -232,51 +245,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateTask(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(task, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateTask_task(task, diagnostics, context);
-    return result;
-  }
-
-  /**
-   * Validates the task constraint of '<em>Task</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * 
-   * @generated NOT
-   */
-  public boolean validateTask_task(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (task.getTaskId() != null) {
-      if (EGFCorePlugin.getPlatformTask(task.getTaskId()) == null) {
-        if (diagnostics != null) {
-          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-              new Object[] { "TaskId is unknown.", getObjectLabel(task, context) }, //$NON-NLS-1$
-              new Object[] { task }, context));
-        }
-      }
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * @generated
    */
   public boolean validateFactoryComponent(FactoryComponent factoryComponent, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -286,6 +255,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateViewpointContainer(ViewpointContainer viewpointContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -295,6 +265,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateViewpoint(Viewpoint viewpoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -304,6 +275,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateOrchestration(Orchestration orchestration, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -313,6 +285,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateInvocation(Invocation invocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -322,6 +295,47 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public boolean validateType(Type<?> type, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(type, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public boolean validateTypeObject(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(typeObject, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public boolean validateTypeClass(TypeClass<?> typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(typeClass, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public boolean validateContextContainer(ContextContainer contextContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(contextContainer, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateContext(Context context, DiagnosticChain diagnostics, Map<Object, Object> theContext) {
@@ -331,6 +345,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateContractContainer(ContractContainer contractContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -340,77 +355,26 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   public boolean validateContract(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(contract, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(contract, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(contract, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(contract, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(contract, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(contract, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(contract, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateContract_type(contract, diagnostics, context);
+    boolean result = validate_EveryDefaultConstraint(contract, diagnostics, context);
+    if (result || diagnostics != null) {
+      // Contract 'name' is mandatory in this context
+      EAttribute name = FcorePackage.Literals.MODEL_ELEMENT__NAME;
+      if (contract.getName() == null || contract.getName().trim().length() == 0) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, EOBJECT__EVERY_MULTIPCITY_CONFORMS, "_UI_RequiredFeatureMustBeSet_diagnostic", //$NON-NLS-1$
+            new Object[] { getFeatureLabel(name, context), getObjectLabel(contract, context) }, new Object[] { contract, name }, context));
+      }
+    }
     return result;
   }
 
   /**
-   * Validates the type constraint of '<em>Contract</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
-   */
-  public boolean validateContract_type(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (contract.getType() != null) {
-      // Analyse the super types of this EClass against the static package
-      boolean isValid = false;
-      for (EClass eClass : contract.getType().getEAllSuperTypes()) {
-        if (TypesPackage.Literals.TYPE.equals(EMFHelper.solveAgainstStaticPackage(eClass))) {
-          isValid = true;
-          break;
-        }
-      }
-      if (isValid == false) {
-        if (diagnostics != null) {
-          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-              new Object[] { "Contract Type should be a sub-type of Type.", getObjectLabel(contract, context) }, //$NON-NLS-1$
-              new Object[] { contract }, context));
-        }
-      }
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateContextValue(ContextValue contextValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(contextValue, diagnostics, context);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateContractValue(ContractValue contractValue, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(contractValue, diagnostics, context);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * @generated
    */
   public boolean validateContractConnector(ContractConnector contractConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -420,6 +384,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateContractMode(ContractMode contractMode, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -429,6 +394,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateIProductionContext(IProductionContext iProductionContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -438,6 +404,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateInvocationException(InvocationException invocationException, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -447,6 +414,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateIProgressMonitor(IProgressMonitor iProgressMonitor, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -456,6 +424,7 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean validateURI(URI uri, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -463,18 +432,11 @@ public class FcoreValidator extends EObjectValidator {
   }
 
   /**
+   * Returns the resource locator that will be used to fetch messages for this validator's
+   * diagnostics.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateClazz(Class clazz, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return true;
-  }
-
-  /**
-   * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -486,9 +448,12 @@ public class FcoreValidator extends EObjectValidator {
    * If we have a context map, record this object's <code>status</code> in it
    * so that we will know later that we have processed it and its sub-tree.
    * 
-   * @param eObject an element that we have validated
-   * @param context the context (may be <code>null</code>)
-   * @param status the element's validation status
+   * @param eObject
+   *          an element that we have validated
+   * @param context
+   *          the context (may be <code>null</code>)
+   * @param status
+   *          the element's validation status
    *          <!-- begin-user-doc -->
    *          <!-- end-user-doc -->
    * @generated
@@ -501,14 +466,16 @@ public class FcoreValidator extends EObjectValidator {
 
   /**
    * Determines whether we have processed this <code>eObject</code> before,
-   * by automatic recursion of the EMF Model Validation Service.  This is
+   * by automatic recursion of the EMF Model Validation Service. This is
    * only possible if we do, indeed, have a context.
    * 
-   * @param eObject an element to be validated (we hope not)
-   * @param context the context (may be <code>null</code>)
+   * @param eObject
+   *          an element to be validated (we hope not)
+   * @param context
+   *          the context (may be <code>null</code>)
    * @return <code>true</code> if the context is not <code>null</code> and
-   *     the <code>eObject</code> or one of its containers has already been
-   *     validated;  <code>false</code>, otherwise
+   *         the <code>eObject</code> or one of its containers has already been
+   *         validated; <code>false</code>, otherwise
    *         <!-- begin-user-doc -->
    *         <!-- end-user-doc -->
    * @generated
@@ -532,8 +499,10 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * Converts a status result from the EMF validation service to diagnostics.
    * 
-   * @param status the EMF validation service's status result
-   * @param diagnostics a diagnostic chain to accumulate results on
+   * @param status
+   *          the EMF validation service's status result
+   * @param diagnostics
+   *          a diagnostic chain to accumulate results on
    *          <!-- begin-user-doc -->
    *          <!-- end-user-doc -->
    * @generated

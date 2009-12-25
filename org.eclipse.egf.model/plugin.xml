@@ -129,25 +129,4 @@
     />
   </extension>
   
-  <!-- ================================================================================= -->
-  <!-- Types                                                                             -->
-  <!-- ================================================================================= -->
-  
-  <extension
-    point="org.eclipse.egf.core.type"
-  >
-    <type
-      id="model/Types.ecore#//BooleanType"
-    />
-    <type
-      id="model/Types.ecore#//StringType"
-    />    
-    <type
-      id="model/Types.ecore#//PatternExecutionReporterType"
-    />
-    <type
-      id="model/Types.ecore#//GeneratorAdapterFactoryType"
-    />    
-  </extension>  
-  
 </plugin>

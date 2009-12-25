@@ -38,6 +38,15 @@
       />
   </extension>
   
+  <extension 
+    point="org.eclipse.emf.edit.childCreationExtenders"
+  >
+    <extender
+      uri="http://www.eclipse.org/egf/1.0.0/fcore"
+      class="org.eclipse.egf.model.types.provider.TypesItemProviderAdapterFactory$FcoreChildCreationExtender"
+    />
+  </extension>  
+  
   <!-- ================================================================================= -->
   <!-- Fcore Model                                                                       -->
   <!-- ================================================================================= -->

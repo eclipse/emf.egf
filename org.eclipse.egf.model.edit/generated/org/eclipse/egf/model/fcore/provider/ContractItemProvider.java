@@ -15,15 +15,10 @@ package org.eclipse.egf.model.fcore.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.type.IPlatformType;
 import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.UniqueEList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -68,10 +63,23 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addMandatoryPropertyDescriptor(object);
       addModePropertyDescriptor(object);
-      addTypePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Mandatory feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addMandatoryPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Contract_mandatory_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_Contract_mandatory_feature", "_UI_Contract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.CONTRACT__MANDATORY, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, getString("_UI_TypePropertyCategory"), //$NON-NLS-1$
+        null));
   }
 
   /**
@@ -83,33 +91,8 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   protected void addModePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Contract_mode_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_Contract_mode_feature", "_UI_Contract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.CONTRACT__MODE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-  }
-
-  /**
-   * This adds a property descriptor for the Type feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  protected void addTypePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Contract_type_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_Contract_type_feature", "_UI_Contract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.CONTRACT__TYPE, true, false, true, null, null, null) {
-      @Override
-      public Collection<?> getChoiceOfValues(Object current) {
-        Contract contract = (Contract) current;
-        Collection<EClass> result = new UniqueEList<EClass>();
-        // add a null value to reset an existing value
-        result.add(null);
-        // Load type elements in the current resource set
-        for (IPlatformType platformType : EGFCorePlugin.getPlatformTypes()) {
-          result.add((EClass) contract.eResource().getResourceSet().getEObject(platformType.getURI(), true));
-        }
-        return result;
-      }
-    });
+        FcorePackage.Literals.CONTRACT__MODE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_TypePropertyCategory"), //$NON-NLS-1$
+        null));
   }
 
   /**
@@ -124,7 +107,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(FcorePackage.Literals.CONTRACT__DEFAULT_VALUE);
+      childrenFeatures.add(FcorePackage.Literals.CONTRACT__TYPE);
     }
     return childrenFeatures;
   }
@@ -178,11 +161,11 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
     updateChildren(notification);
 
     switch (notification.getFeatureID(Contract.class)) {
+    case FcorePackage.CONTRACT__MANDATORY:
     case FcorePackage.CONTRACT__MODE:
-    case FcorePackage.CONTRACT__TYPE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
-    case FcorePackage.CONTRACT__DEFAULT_VALUE:
+    case FcorePackage.CONTRACT__TYPE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -199,8 +182,6 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__DEFAULT_VALUE, FcoreFactory.eINSTANCE.createContractValue()));
   }
 
 }

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.domain.DomainPackage
  * @generated
  */
@@ -28,7 +27,6 @@ public interface DomainFactory extends EFactory {
    * The singleton instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   DomainFactory eINSTANCE = org.eclipse.egf.model.domain.impl.DomainFactoryImpl.init();
@@ -37,7 +35,6 @@ public interface DomainFactory extends EFactory {
    * Returns a new object of class '<em>Viewpoint</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Viewpoint</em>'.
    * @generated
    */
@@ -47,27 +44,24 @@ public interface DomainFactory extends EFactory {
    * Returns a new object of class '<em>Domain</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Domain</em>'.
    * @generated
    */
   Domain createDomain();
 
   /**
-   * Returns a new object of class '<em>Value</em>'.
+   * Returns a new object of class '<em>Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @return a new object of class '<em>Value</em>'.
+   * @return a new object of class '<em>Type</em>'.
    * @generated
    */
-  DomainValue createDomainValue();
+  DomainType createDomainType();
 
   /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the package supported by this factory.
    * @generated
    */

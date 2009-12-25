@@ -22,9 +22,8 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.Context#getInvocation <em>Invocation</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.Context#getValues <em>Values</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.Context#getConnectors <em>Connectors</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Context#getContract <em>Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Context#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -34,65 +33,55 @@ import org.eclipse.emf.common.util.EList;
  */
 public interface Context extends ModelElement {
   /**
-   * Returns the value of the '<em><b>Invocation</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Invocation#getContext <em>Context</em>}'.
+   * Returns the value of the '<em><b>Contract</b></em>' reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Invocation</em>' container reference isn't
-   * clear, there really should be more of a description here...
+   * If the meaning of the '<em>Contract</em>' reference isn't clear,
+   * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Invocation</em>' container reference.
-   * @see #setInvocation(Invocation)
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getContext_Invocation()
-   * @see org.eclipse.egf.model.fcore.Invocation#getContext
-   * @model opposite="context" resolveProxies="false" transient="false"
+   * @return the value of the '<em>Contract</em>' reference.
+   * @see #setContract(Contract)
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getContext_Contract()
+   * @model required="true"
    * @generated
    */
-  Invocation getInvocation();
+  Contract getContract();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Context#getInvocation <em>Invocation</em>}' container reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Context#getContract <em>Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Invocation</em>' container reference.
-   * @see #getInvocation()
+   * @param value the new value of the '<em>Contract</em>' reference.
+   * @see #getContract()
    * @generated
    */
-  void setInvocation(Invocation value);
+  void setContract(Contract value);
 
   /**
-   * Returns the value of the '<em><b>Values</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.egf.model.fcore.ContextValue}.
+   * Returns the value of the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Values</em>' containment reference list isn't
-   * clear, there really should be more of a description here...
+   * If the meaning of the '<em>Type</em>' containment reference isn't clear,
+   * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Values</em>' containment reference list.
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getContext_Values()
-   * @model containment="true"
+   * @return the value of the '<em>Type</em>' containment reference.
+   * @see #setType(Type)
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getContext_Type()
+   * @model containment="true" required="true"
    * @generated
    */
-  EList<ContextValue> getValues();
+  Type<?> getType();
 
   /**
-   * Returns the value of the '<em><b>Connectors</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.egf.model.fcore.ContractConnector}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ContractConnector#getContext <em>Context</em>}'.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Context#getType <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Connectors</em>' containment reference list
-   * isn't clear, there really should be more of a description here...
-   * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Connectors</em>' containment reference list.
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getContext_Connectors()
-   * @see org.eclipse.egf.model.fcore.ContractConnector#getContext
-   * @model opposite="context" containment="true"
+   * @param value the new value of the '<em>Type</em>' containment reference.
+   * @see #getType()
    * @generated
    */
-  EList<ContractConnector> getConnectors();
+  void setType(Type<?> value);
 
 } // Context

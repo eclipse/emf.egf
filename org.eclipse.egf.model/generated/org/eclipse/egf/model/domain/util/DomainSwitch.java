@@ -14,12 +14,12 @@ package org.eclipse.egf.model.domain.util;
 
 import java.util.List;
 
+import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.DomainValue;
 import org.eclipse.egf.model.domain.DomainViewpoint;
-import org.eclipse.egf.model.fcore.ContextValue;
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.Viewpoint;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -34,16 +34,14 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.domain.DomainPackage
  * @generated
  */
-public class DomainSwitch<T> {
+public class DomainSwitch<T1> {
   /**
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static DomainPackage modelPackage;
@@ -52,7 +50,6 @@ public class DomainSwitch<T> {
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public DomainSwitch() {
@@ -62,28 +59,24 @@ public class DomainSwitch<T> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a
-   * non null result; it yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  public T doSwitch(EObject theEObject) {
+  public T1 doSwitch(EObject theEObject) {
     return doSwitch(theEObject.eClass(), theEObject);
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a
-   * non null result; it yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  protected T doSwitch(EClass theEClass, EObject theEObject) {
+  protected T1 doSwitch(EClass theEClass, EObject theEObject) {
     if (theEClass.eContainer() == modelPackage) {
       return doSwitch(theEClass.getClassifierID(), theEObject);
     } else {
@@ -93,19 +86,17 @@ public class DomainSwitch<T> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a
-   * non null result; it yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  protected T doSwitch(int classifierID, EObject theEObject) {
+  protected T1 doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
     case DomainPackage.DOMAIN_VIEWPOINT: {
       DomainViewpoint domainViewpoint = (DomainViewpoint) theEObject;
-      T result = caseDomainViewpoint(domainViewpoint);
+      T1 result = caseDomainViewpoint(domainViewpoint);
       if (result == null)
         result = caseViewpoint(domainViewpoint);
       if (result == null)
@@ -116,20 +107,20 @@ public class DomainSwitch<T> {
     }
     case DomainPackage.DOMAIN: {
       Domain domain = (Domain) theEObject;
-      T result = caseDomain(domain);
+      T1 result = caseDomain(domain);
       if (result == null)
         result = caseModelElement(domain);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
-    case DomainPackage.DOMAIN_VALUE: {
-      DomainValue domainValue = (DomainValue) theEObject;
-      T result = caseDomainValue(domainValue);
+    case DomainPackage.DOMAIN_TYPE: {
+      DomainType domainType = (DomainType) theEObject;
+      T1 result = caseDomainType(domainType);
       if (result == null)
-        result = caseContextValue(domainValue);
+        result = caseType(domainType);
       if (result == null)
-        result = caseModelElement(domainValue);
+        result = caseModelElement(domainType);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -140,136 +131,108 @@ public class DomainSwitch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Viewpoint</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Viewpoint</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDomainViewpoint(DomainViewpoint object) {
+  public T1 caseDomainViewpoint(DomainViewpoint object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Domain</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Domain</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Domain</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Domain</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDomain(Domain object) {
+  public T1 caseDomain(Domain object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Value</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDomainValue(DomainValue object) {
+  public T1 caseDomainType(DomainType object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Model Element</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Model Element</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseModelElement(ModelElement object) {
+  public T1 caseModelElement(ModelElement object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Viewpoint</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Viewpoint</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseViewpoint(Viewpoint object) {
+  public T1 caseViewpoint(Viewpoint object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Context Value</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Context Value</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseContextValue(ContextValue object) {
+  public <T extends Object> T1 caseType(Type<T> object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>EObject</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch, but this is the last
    * case anyway.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>EObject</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated
    */
-  public T defaultCase(EObject object) {
+  public T1 defaultCase(EObject object) {
     return null;
   }
 

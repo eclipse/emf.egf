@@ -111,29 +111,6 @@ public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Task} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TaskItemProvider taskItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Task}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createTaskAdapter() {
-    if (taskItemProvider == null) {
-      taskItemProvider = new TaskItemProvider(this);
-    }
-
-    return taskItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.FactoryComponent} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -177,6 +154,29 @@ public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory impleme
     }
 
     return viewpointContainerItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContextContainer} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected ContextContainerItemProvider contextContainerItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContextContainer}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createContextContainerAdapter() {
+    if (contextContainerItemProvider == null) {
+      contextContainerItemProvider = new ContextContainerItemProvider(this);
+    }
+
+    return contextContainerItemProvider;
   }
 
   /**
@@ -246,29 +246,6 @@ public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory impleme
     }
 
     return contractItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractValue} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ContractValueItemProvider contractValueItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractValue}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createContractValueAdapter() {
-    if (contractValueItemProvider == null) {
-      contractValueItemProvider = new ContractValueItemProvider(this);
-    }
-
-    return contractValueItemProvider;
   }
 
   /**
@@ -420,22 +397,20 @@ public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory impleme
    * @generated
    */
   public void dispose() {
-    if (taskItemProvider != null)
-      taskItemProvider.dispose();
     if (factoryComponentItemProvider != null)
       factoryComponentItemProvider.dispose();
     if (viewpointContainerItemProvider != null)
       viewpointContainerItemProvider.dispose();
-    if (contextItemProvider != null)
-      contextItemProvider.dispose();
     if (contractContainerItemProvider != null)
       contractContainerItemProvider.dispose();
     if (contractItemProvider != null)
       contractItemProvider.dispose();
-    if (contractValueItemProvider != null)
-      contractValueItemProvider.dispose();
     if (contractConnectorItemProvider != null)
       contractConnectorItemProvider.dispose();
+    if (contextContainerItemProvider != null)
+      contextContainerItemProvider.dispose();
+    if (contextItemProvider != null)
+      contextItemProvider.dispose();
   }
 
 }

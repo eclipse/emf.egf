@@ -16,14 +16,11 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.fcore.Context;
-import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -65,8 +62,21 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addContractPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Contract feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addContractPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Context_contract_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_Context_contract_feature", "_UI_Context_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.CONTEXT__CONTRACT, true, false, true, null, null, null));
   }
 
   /**
@@ -81,8 +91,7 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(FcorePackage.Literals.CONTEXT__VALUES);
-      childrenFeatures.add(FcorePackage.Literals.CONTEXT__CONNECTORS);
+      childrenFeatures.add(FcorePackage.Literals.CONTEXT__TYPE);
     }
     return childrenFeatures;
   }
@@ -136,8 +145,7 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
     updateChildren(notification);
 
     switch (notification.getFeatureID(Context.class)) {
-    case FcorePackage.CONTEXT__VALUES:
-    case FcorePackage.CONTEXT__CONNECTORS:
+    case FcorePackage.CONTEXT__TYPE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -154,10 +162,6 @@ public class ContextItemProvider extends ModelElementItemProvider implements IEd
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__VALUES, FcoreFactory.eINSTANCE.createContractValue()));
-
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__CONNECTORS, FcoreFactory.eINSTANCE.createContractConnector()));
   }
 
 }

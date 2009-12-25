@@ -28,8 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.impl.DomainImpl#getEpackage <em>
- * Epackage</em>}</li>
+ * <li>{@link org.eclipse.egf.model.domain.impl.DomainImpl#getEpackage <em>Epackage</em>}</li>
  * </ul>
  * </p>
  * 
@@ -37,8 +36,8 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  */
 public class DomainImpl extends ModelElementImpl implements Domain {
   /**
-   * A set of bit flags representing the values of boolean attributes and
-   * whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable
+   * features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -48,8 +47,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getEpackage() <em>Epackage</em>}'
-   * reference.
+   * The cached value of the '{@link #getEpackage() <em>Epackage</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 

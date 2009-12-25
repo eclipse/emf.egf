@@ -15,8 +15,8 @@ package org.eclipse.egf.model.fcore.impl;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
-import org.eclipse.egf.model.fcore.ContractValue;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -32,15 +32,35 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getContractContainer <em>Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#isMandatory <em>Mandatory</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getMode <em>Mode</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getDefaultValue <em>Default Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ContractImpl extends ModelElementImpl implements Contract {
+  /**
+   * The default value of the '{@link #isMandatory() <em>Mandatory</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMandatory()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean MANDATORY_EDEFAULT = false;
+
+  /**
+   * The flag representing the value of the '{@link #isMandatory() <em>Mandatory</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isMandatory()
+   * @generated
+   * @ordered
+   */
+  protected static final int MANDATORY_EFLAG = 1 << 0;
+
   /**
    * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -58,7 +78,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * @generated
    * @ordered
    */
-  protected static final int MODE_EFLAG_OFFSET = 0;
+  protected static final int MODE_EFLAG_OFFSET = 1;
 
   /**
    * The flags representing the default value of the '{@link #getMode() <em>Mode</em>}' attribute.
@@ -89,24 +109,14 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   protected static final int MODE_EFLAG = 1 << MODE_EFLAG_OFFSET;
 
   /**
-   * The cached value of the '{@link #getType() <em>Type</em>}' reference.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getType()
    * @generated
    * @ordered
    */
-  protected EClass type;
-
-  /**
-   * The cached value of the '{@link #getDefaultValue() <em>Default Value</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDefaultValue()
-   * @generated
-   * @ordered
-   */
-  protected ContractValue defaultValue;
+  protected Type<?> type;
 
   /**
    * <!-- begin-user-doc -->
@@ -174,6 +184,30 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * <!-- end-user-doc -->
    * @generated
    */
+  public boolean isMandatory() {
+    return (eFlags & MANDATORY_EFLAG) != 0;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setMandatory(boolean newMandatory) {
+    boolean oldMandatory = (eFlags & MANDATORY_EFLAG) != 0;
+    if (newMandatory)
+      eFlags |= MANDATORY_EFLAG;
+    else
+      eFlags &= ~MANDATORY_EFLAG;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT__MANDATORY, oldMandatory, newMandatory));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ContractMode getMode() {
     return MODE_EFLAG_VALUES[(eFlags & MODE_EFLAG) >>> MODE_EFLAG_OFFSET];
   }
@@ -197,15 +231,7 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getType() {
-    if (type != null && type.eIsProxy()) {
-      InternalEObject oldType = (InternalEObject) type;
-      type = (EClass) eResolveProxy(oldType);
-      if (type != oldType) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FcorePackage.CONTRACT__TYPE, oldType, type));
-      }
-    }
+  public Type<?> getType() {
     return type;
   }
 
@@ -214,41 +240,11 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass basicGetType() {
-    return type;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setType(EClass newType) {
-    EClass oldType = type;
+  public NotificationChain basicSetType(Type<?> newType, NotificationChain msgs) {
+    Type<?> oldType = type;
     type = newType;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT__TYPE, oldType, type));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ContractValue getDefaultValue() {
-    return defaultValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetDefaultValue(ContractValue newDefaultValue, NotificationChain msgs) {
-    ContractValue oldDefaultValue = defaultValue;
-    defaultValue = newDefaultValue;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT__DEFAULT_VALUE, oldDefaultValue, newDefaultValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT__TYPE, oldType, newType);
       if (msgs == null)
         msgs = notification;
       else
@@ -262,18 +258,18 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setDefaultValue(ContractValue newDefaultValue) {
-    if (newDefaultValue != defaultValue) {
+  public void setType(Type<?> newType) {
+    if (newType != type) {
       NotificationChain msgs = null;
-      if (defaultValue != null)
-        msgs = ((InternalEObject) defaultValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.CONTRACT__DEFAULT_VALUE, null, msgs);
-      if (newDefaultValue != null)
-        msgs = ((InternalEObject) newDefaultValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FcorePackage.CONTRACT__DEFAULT_VALUE, null, msgs);
-      msgs = basicSetDefaultValue(newDefaultValue, msgs);
+      if (type != null)
+        msgs = ((InternalEObject) type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.CONTRACT__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject) newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FcorePackage.CONTRACT__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT__DEFAULT_VALUE, newDefaultValue, newDefaultValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT__TYPE, newType, newType));
   }
 
   /**
@@ -302,8 +298,8 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     switch (featureID) {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       return basicSetContractContainer(null, msgs);
-    case FcorePackage.CONTRACT__DEFAULT_VALUE:
-      return basicSetDefaultValue(null, msgs);
+    case FcorePackage.CONTRACT__TYPE:
+      return basicSetType(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -332,14 +328,12 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     switch (featureID) {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       return getContractContainer();
+    case FcorePackage.CONTRACT__MANDATORY:
+      return isMandatory();
     case FcorePackage.CONTRACT__MODE:
       return getMode();
     case FcorePackage.CONTRACT__TYPE:
-      if (resolve)
-        return getType();
-      return basicGetType();
-    case FcorePackage.CONTRACT__DEFAULT_VALUE:
-      return getDefaultValue();
+      return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -349,20 +343,21 @@ public class ContractImpl extends ModelElementImpl implements Contract {
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       setContractContainer((ContractContainer) newValue);
       return;
+    case FcorePackage.CONTRACT__MANDATORY:
+      setMandatory((Boolean) newValue);
+      return;
     case FcorePackage.CONTRACT__MODE:
       setMode((ContractMode) newValue);
       return;
     case FcorePackage.CONTRACT__TYPE:
-      setType((EClass) newValue);
-      return;
-    case FcorePackage.CONTRACT__DEFAULT_VALUE:
-      setDefaultValue((ContractValue) newValue);
+      setType((Type<?>) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -379,14 +374,14 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       setContractContainer((ContractContainer) null);
       return;
+    case FcorePackage.CONTRACT__MANDATORY:
+      setMandatory(MANDATORY_EDEFAULT);
+      return;
     case FcorePackage.CONTRACT__MODE:
       setMode(MODE_EDEFAULT);
       return;
     case FcorePackage.CONTRACT__TYPE:
-      setType((EClass) null);
-      return;
-    case FcorePackage.CONTRACT__DEFAULT_VALUE:
-      setDefaultValue((ContractValue) null);
+      setType((Type<?>) null);
       return;
     }
     super.eUnset(featureID);
@@ -402,12 +397,12 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     switch (featureID) {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       return getContractContainer() != null;
+    case FcorePackage.CONTRACT__MANDATORY:
+      return ((eFlags & MANDATORY_EFLAG) != 0) != MANDATORY_EDEFAULT;
     case FcorePackage.CONTRACT__MODE:
       return (eFlags & MODE_EFLAG) != MODE_EFLAG_DEFAULT;
     case FcorePackage.CONTRACT__TYPE:
       return type != null;
-    case FcorePackage.CONTRACT__DEFAULT_VALUE:
-      return defaultValue != null;
     }
     return super.eIsSet(featureID);
   }
@@ -423,7 +418,9 @@ public class ContractImpl extends ModelElementImpl implements Contract {
       return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (mode: "); //$NON-NLS-1$
+    result.append(" (mandatory: "); //$NON-NLS-1$
+    result.append((eFlags & MANDATORY_EFLAG) != 0);
+    result.append(", mode: "); //$NON-NLS-1$
     result.append(MODE_EFLAG_VALUES[(eFlags & MODE_EFLAG) >>> MODE_EFLAG_OFFSET]);
     result.append(')');
     return result.toString();

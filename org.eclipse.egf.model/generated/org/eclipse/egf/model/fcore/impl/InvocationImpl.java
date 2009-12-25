@@ -15,7 +15,7 @@ package org.eclipse.egf.model.fcore.impl;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.fcore.Context;
+import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.emf.common.notify.Notification;
@@ -46,7 +46,7 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
    * @generated
    * @ordered
    */
-  protected Context context;
+  protected ContextContainer context;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,7 +72,7 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
    * <!-- end-user-doc -->
    * @generated
    */
-  public Context getContext() {
+  public ContextContainer getContext() {
     return context;
   }
 
@@ -81,8 +81,8 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetContext(Context newContext, NotificationChain msgs) {
-    Context oldContext = context;
+  public NotificationChain basicSetContext(ContextContainer newContext, NotificationChain msgs) {
+    ContextContainer oldContext = context;
     context = newContext;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION__CONTEXT, oldContext, newContext);
@@ -99,13 +99,13 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setContext(Context newContext) {
+  public void setContext(ContextContainer newContext) {
     if (newContext != context) {
       NotificationChain msgs = null;
       if (context != null)
-        msgs = ((InternalEObject) context).eInverseRemove(this, FcorePackage.CONTEXT__INVOCATION, Context.class, msgs);
+        msgs = ((InternalEObject) context).eInverseRemove(this, FcorePackage.CONTEXT_CONTAINER__INVOCATION, ContextContainer.class, msgs);
       if (newContext != null)
-        msgs = ((InternalEObject) newContext).eInverseAdd(this, FcorePackage.CONTEXT__INVOCATION, Context.class, msgs);
+        msgs = ((InternalEObject) newContext).eInverseAdd(this, FcorePackage.CONTEXT_CONTAINER__INVOCATION, ContextContainer.class, msgs);
       msgs = basicSetContext(newContext, msgs);
       if (msgs != null)
         msgs.dispatch();
@@ -146,7 +146,7 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
     case FcorePackage.INVOCATION__CONTEXT:
       if (context != null)
         msgs = ((InternalEObject) context).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.INVOCATION__CONTEXT, null, msgs);
-      return basicSetContext((Context) otherEnd, msgs);
+      return basicSetContext((ContextContainer) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -188,7 +188,7 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
     case FcorePackage.INVOCATION__CONTEXT:
-      setContext((Context) newValue);
+      setContext((ContextContainer) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -203,7 +203,7 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   public void eUnset(int featureID) {
     switch (featureID) {
     case FcorePackage.INVOCATION__CONTEXT:
-      setContext((Context) null);
+      setContext((ContextContainer) null);
       return;
     }
     super.eUnset(featureID);

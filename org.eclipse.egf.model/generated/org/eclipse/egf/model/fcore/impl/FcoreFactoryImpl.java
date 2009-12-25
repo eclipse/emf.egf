@@ -12,20 +12,16 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.Context;
+import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractConnector;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
-import org.eclipse.egf.model.fcore.ContractValue;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.Task;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -78,22 +74,20 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   @Override
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
-    case FcorePackage.TASK:
-      return createTask();
     case FcorePackage.FACTORY_COMPONENT:
       return createFactoryComponent();
     case FcorePackage.VIEWPOINT_CONTAINER:
       return createViewpointContainer();
-    case FcorePackage.CONTEXT:
-      return createContext();
     case FcorePackage.CONTRACT_CONTAINER:
       return createContractContainer();
     case FcorePackage.CONTRACT:
       return createContract();
-    case FcorePackage.CONTRACT_VALUE:
-      return createContractValue();
     case FcorePackage.CONTRACT_CONNECTOR:
       return createContractConnector();
+    case FcorePackage.CONTEXT_CONTAINER:
+      return createContextContainer();
+    case FcorePackage.CONTEXT:
+      return createContext();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -109,16 +103,8 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     switch (eDataType.getClassifierID()) {
     case FcorePackage.CONTRACT_MODE:
       return createContractModeFromString(eDataType, initialValue);
-    case FcorePackage.IPRODUCTION_CONTEXT:
-      return createIProductionContextFromString(eDataType, initialValue);
-    case FcorePackage.INVOCATION_EXCEPTION:
-      return createInvocationExceptionFromString(eDataType, initialValue);
-    case FcorePackage.IPROGRESS_MONITOR:
-      return createIProgressMonitorFromString(eDataType, initialValue);
     case FcorePackage.URI:
       return createURIFromString(eDataType, initialValue);
-    case FcorePackage.CLAZZ:
-      return createClazzFromString(eDataType, initialValue);
     default:
       throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -134,29 +120,11 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     switch (eDataType.getClassifierID()) {
     case FcorePackage.CONTRACT_MODE:
       return convertContractModeToString(eDataType, instanceValue);
-    case FcorePackage.IPRODUCTION_CONTEXT:
-      return convertIProductionContextToString(eDataType, instanceValue);
-    case FcorePackage.INVOCATION_EXCEPTION:
-      return convertInvocationExceptionToString(eDataType, instanceValue);
-    case FcorePackage.IPROGRESS_MONITOR:
-      return convertIProgressMonitorToString(eDataType, instanceValue);
     case FcorePackage.URI:
       return convertURIToString(eDataType, instanceValue);
-    case FcorePackage.CLAZZ:
-      return convertClazzToString(eDataType, instanceValue);
     default:
       throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Task createTask() {
-    TaskImpl task = new TaskImpl();
-    return task;
   }
 
   /**
@@ -177,6 +145,16 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   public ViewpointContainer createViewpointContainer() {
     ViewpointContainerImpl viewpointContainer = new ViewpointContainerImpl();
     return viewpointContainer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ContextContainer createContextContainer() {
+    ContextContainerImpl contextContainer = new ContextContainerImpl();
+    return contextContainer;
   }
 
   /**
@@ -214,16 +192,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public ContractValue createContractValue() {
-    ContractValueImpl contractValue = new ContractValueImpl();
-    return contractValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ContractConnector createContractConnector() {
     ContractConnectorImpl contractConnector = new ContractConnectorImpl();
     return contractConnector;
@@ -253,60 +221,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
-  public IProductionContext createIProductionContextFromString(EDataType eDataType, String initialValue) {
-    return (IProductionContext) super.createFromString(eDataType, initialValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertIProductionContextToString(EDataType eDataType, Object instanceValue) {
-    return super.convertToString(eDataType, instanceValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public InvocationException createInvocationExceptionFromString(EDataType eDataType, String initialValue) {
-    return (InvocationException) super.createFromString(eDataType, initialValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertInvocationExceptionToString(EDataType eDataType, Object instanceValue) {
-    return super.convertToString(eDataType, instanceValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public IProgressMonitor createIProgressMonitorFromString(EDataType eDataType, String initialValue) {
-    return (IProgressMonitor) super.createFromString(eDataType, initialValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertIProgressMonitorToString(EDataType eDataType, Object instanceValue) {
-    return super.convertToString(eDataType, instanceValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -326,19 +240,11 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
-  public Class createClazzFromString(EDataType eDataType, String initialValue) {
-    return (Class) super.createFromString(eDataType, initialValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertClazzToString(EDataType eDataType, Object instanceValue) {
-    return super.convertToString(eDataType, instanceValue);
+  public Class<?> createClazzFromString(EDataType eDataType, String initialValue) {
+    return (Class<?>) super.createFromString(eDataType, initialValue);
   }
 
   /**

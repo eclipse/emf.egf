@@ -12,12 +12,12 @@
  */
 package org.eclipse.egf.model.domain.util;
 
+import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.DomainValue;
 import org.eclipse.egf.model.domain.DomainViewpoint;
-import org.eclipse.egf.model.fcore.ContextValue;
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.Viewpoint;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.EObject;
  * It provides an adapter <code>createXXX</code> method for each class of the
  * model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.domain.DomainPackage
  * @generated
  */
@@ -39,7 +38,6 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
    * The cached model package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static DomainPackage modelPackage;
@@ -48,7 +46,6 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
    * Creates an instance of the adapter factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public DomainAdapterFactory() {
@@ -63,7 +60,6 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
    * This implementation returns <code>true</code> if the object is either the
    * model's package or is an instance object of the model.
    * <!-- end-user-doc -->
-   * 
    * @return whether this factory is applicable for the type of the object.
    * @generated
    */
@@ -82,7 +78,6 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
    * The switch that delegates to the <code>createXXX</code> methods.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected DomainSwitch<Adapter> modelSwitch = new DomainSwitch<Adapter>() {
@@ -97,8 +92,8 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseDomainValue(DomainValue object) {
-      return createDomainValueAdapter();
+    public Adapter caseDomainType(DomainType object) {
+      return createDomainTypeAdapter();
     }
 
     @Override
@@ -112,8 +107,8 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseContextValue(ContextValue object) {
-      return createContextValueAdapter();
+    public <T extends Object> Adapter caseType(Type<T> object) {
+      return createTypeAdapter();
     }
 
     @Override
@@ -126,9 +121,7 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
    * Creates an adapter for the <code>target</code>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param target
-   *          the object to adapt.
+   * @param target the object to adapt.
    * @return the adapter for the <code>target</code>.
    * @generated
    */
@@ -138,15 +131,13 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.domain.DomainViewpoint <em>Viewpoint</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.DomainViewpoint <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.domain.DomainViewpoint
    * @generated
@@ -156,15 +147,13 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.domain.Domain <em>Domain</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.Domain <em>Domain</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.domain.Domain
    * @generated
@@ -174,33 +163,27 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.domain.DomainValue <em>Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.DomainType <em>Type</em>}'.
    * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
-   * @see org.eclipse.egf.model.domain.DomainValue
+   * @see org.eclipse.egf.model.domain.DomainType
    * @generated
    */
-  public Adapter createDomainValueAdapter() {
+  public Adapter createDomainTypeAdapter() {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.ModelElement
    * @generated
@@ -210,15 +193,13 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.fcore.Viewpoint <em>Viewpoint</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Viewpoint <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.Viewpoint
    * @generated
@@ -228,20 +209,16 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.fcore.ContextValue <em>Context Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Type <em>Type</em>}'.
    * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
-   * @see org.eclipse.egf.model.fcore.ContextValue
+   * @see org.eclipse.egf.model.fcore.Type
    * @generated
    */
-  public Adapter createContextValueAdapter() {
+  public Adapter createTypeAdapter() {
     return null;
   }
 
@@ -250,7 +227,6 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
    * <!-- begin-user-doc -->
    * This default implementation returns null.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @generated
    */

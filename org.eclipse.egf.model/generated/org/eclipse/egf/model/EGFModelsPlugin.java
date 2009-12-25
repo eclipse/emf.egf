@@ -18,6 +18,7 @@ import org.eclipse.egf.model.context.IModelProductionContextFactory;
 import org.eclipse.egf.model.internal.context.ModelProductionContextFactory;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
@@ -59,10 +60,11 @@ public final class EGFModelsPlugin extends EMFPlugin {
    * Create the instance.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   public EGFModelsPlugin() {
-    super(new ResourceLocator[] {});
+    super(new ResourceLocator[] { EcorePlugin.INSTANCE, });
   }
 
   /**
@@ -111,11 +113,14 @@ public final class EGFModelsPlugin extends EMFPlugin {
      * Creates an instance.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @generated NOT
+     * @generated
      */
     public Implementation() {
       super();
+
+      // Remember the static instance.
+      //
+      plugin = this;
     }
 
     /**
@@ -128,7 +133,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
     @Override
     public void start(BundleContext context_p) throws Exception {
       super.start(context_p);
-      plugin = this;
       // Force EGF Core Platform Plugin initialization
       Bundle platformBundle = Platform.getBundle("org.eclipse.egf.core.platform"); //$NON-NLS-1$
       if (platformBundle != null) {
@@ -147,21 +151,6 @@ public final class EGFModelsPlugin extends EMFPlugin {
           logError(e);
         }
       }
-    }
-
-    /**
-     * Stop this bundle.
-     * <!-- begin-user-doc -->
-     * 
-     * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
-     *      <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    @Override
-    public void stop(BundleContext context_p) throws Exception {
-      plugin = null;
-      super.stop(context_p);
     }
 
   }

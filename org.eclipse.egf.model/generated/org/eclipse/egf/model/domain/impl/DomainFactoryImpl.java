@@ -15,7 +15,7 @@ package org.eclipse.egf.model.domain.impl;
 import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.DomainValue;
+import org.eclipse.egf.model.domain.DomainType;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -74,8 +74,8 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
       return createDomainViewpoint();
     case DomainPackage.DOMAIN:
       return createDomain();
-    case DomainPackage.DOMAIN_VALUE:
-      return createDomainValue();
+    case DomainPackage.DOMAIN_TYPE:
+      return createDomainType();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -109,9 +109,9 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
    * 
    * @generated
    */
-  public DomainValue createDomainValue() {
-    DomainValueImpl domainValue = new DomainValueImpl();
-    return domainValue;
+  public DomainType createDomainType() {
+    DomainTypeImpl domainType = new DomainTypeImpl();
+    return domainType;
   }
 
   /**

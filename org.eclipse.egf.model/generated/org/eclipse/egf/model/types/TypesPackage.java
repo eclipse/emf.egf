@@ -12,9 +12,12 @@
  */
 package org.eclipse.egf.model.types;
 
+import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -27,7 +30,6 @@ import org.eclipse.emf.ecore.EPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.types.TypesFactory
  * @model kind="package"
  * @generated
@@ -37,7 +39,6 @@ public interface TypesPackage extends EPackage {
    * The package name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNAME = "types"; //$NON-NLS-1$
@@ -46,7 +47,6 @@ public interface TypesPackage extends EPackage {
    * The package namespace URI.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_URI = "http://www.eclipse.org/egf/1.0.0/types"; //$NON-NLS-1$
@@ -55,7 +55,6 @@ public interface TypesPackage extends EPackage {
    * The package namespace name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_PREFIX = "types"; //$NON-NLS-1$
@@ -64,603 +63,244 @@ public interface TypesPackage extends EPackage {
    * The singleton instance of the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   TypesPackage eINSTANCE = org.eclipse.egf.model.types.impl.TypesPackageImpl.init();
 
   /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.types.impl.TypeElementImpl
-   * <em>Type Element</em>}' class.
+   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.BooleanTypeImpl <em>Boolean Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @see org.eclipse.egf.model.types.impl.TypeElementImpl
-   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeElement()
-   * @generated
-   */
-  int TYPE_ELEMENT = 0;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int TYPE_ELEMENT__ID = 0;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int TYPE_ELEMENT__NAME = 1;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int TYPE_ELEMENT__DESCRIPTION = 2;
-
-  /**
-   * The number of structural features of the '<em>Type Element</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int TYPE_ELEMENT_FEATURE_COUNT = 3;
-
-  /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.types.impl.TypeImpl <em>Type</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @see org.eclipse.egf.model.types.impl.TypeImpl
-   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getType()
-   * @generated
-   */
-  int TYPE = 1;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int TYPE__ID = TYPE_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int TYPE__NAME = TYPE_ELEMENT__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int TYPE__DESCRIPTION = TYPE_ELEMENT__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Type Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int TYPE__TYPE_ID = TYPE_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Type</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int TYPE_FEATURE_COUNT = TYPE_ELEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.types.impl.PrimitiveObjectTypeImpl
-   * <em>Primitive Object Type</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @see org.eclipse.egf.model.types.impl.PrimitiveObjectTypeImpl
-   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getPrimitiveObjectType()
-   * @generated
-   */
-  int PRIMITIVE_OBJECT_TYPE = 2;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int PRIMITIVE_OBJECT_TYPE__ID = TYPE__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int PRIMITIVE_OBJECT_TYPE__NAME = TYPE__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int PRIMITIVE_OBJECT_TYPE__DESCRIPTION = TYPE__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Type Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int PRIMITIVE_OBJECT_TYPE__TYPE_ID = TYPE__TYPE_ID;
-
-  /**
-   * The number of structural features of the '<em>Primitive Object Type</em>'
-   * class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int PRIMITIVE_OBJECT_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.types.impl.BooleanTypeImpl
-   * <em>Boolean Type</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.types.impl.BooleanTypeImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getBooleanType()
    * @generated
    */
-  int BOOLEAN_TYPE = 3;
+  int BOOLEAN_TYPE = 0;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int BOOLEAN_TYPE__ID = PRIMITIVE_OBJECT_TYPE__ID;
+  int BOOLEAN_TYPE__ID = FcorePackage.TYPE_OBJECT__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int BOOLEAN_TYPE__NAME = PRIMITIVE_OBJECT_TYPE__NAME;
+  int BOOLEAN_TYPE__NAME = FcorePackage.TYPE_OBJECT__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int BOOLEAN_TYPE__DESCRIPTION = PRIMITIVE_OBJECT_TYPE__DESCRIPTION;
+  int BOOLEAN_TYPE__DESCRIPTION = FcorePackage.TYPE_OBJECT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Type Id</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int BOOLEAN_TYPE__TYPE_ID = PRIMITIVE_OBJECT_TYPE__TYPE_ID;
+  int BOOLEAN_TYPE__VALUE = FcorePackage.TYPE_OBJECT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Boolean Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int BOOLEAN_TYPE_FEATURE_COUNT = PRIMITIVE_OBJECT_TYPE_FEATURE_COUNT + 0;
+  int BOOLEAN_TYPE_FEATURE_COUNT = FcorePackage.TYPE_OBJECT_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.types.impl.StringTypeImpl
-   * <em>String Type</em>}' class.
+   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.StringTypeImpl <em>String Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.types.impl.StringTypeImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getStringType()
    * @generated
    */
-  int STRING_TYPE = 4;
+  int STRING_TYPE = 2;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.IntegerTypeImpl <em>Integer Type</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.types.impl.IntegerTypeImpl
+   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getIntegerType()
+   * @generated
+   */
+  int INTEGER_TYPE = 1;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int STRING_TYPE__ID = PRIMITIVE_OBJECT_TYPE__ID;
+  int INTEGER_TYPE__ID = FcorePackage.TYPE_OBJECT__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int STRING_TYPE__NAME = PRIMITIVE_OBJECT_TYPE__NAME;
+  int INTEGER_TYPE__NAME = FcorePackage.TYPE_OBJECT__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int STRING_TYPE__DESCRIPTION = PRIMITIVE_OBJECT_TYPE__DESCRIPTION;
+  int INTEGER_TYPE__DESCRIPTION = FcorePackage.TYPE_OBJECT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Type Id</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int STRING_TYPE__TYPE_ID = PRIMITIVE_OBJECT_TYPE__TYPE_ID;
+  int INTEGER_TYPE__VALUE = FcorePackage.TYPE_OBJECT_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Integer Type</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INTEGER_TYPE_FEATURE_COUNT = FcorePackage.TYPE_OBJECT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_TYPE__ID = FcorePackage.TYPE_OBJECT__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_TYPE__NAME = FcorePackage.TYPE_OBJECT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_TYPE__DESCRIPTION = FcorePackage.TYPE_OBJECT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_TYPE__VALUE = FcorePackage.TYPE_OBJECT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>String Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int STRING_TYPE_FEATURE_COUNT = PRIMITIVE_OBJECT_TYPE_FEATURE_COUNT + 0;
+  int STRING_TYPE_FEATURE_COUNT = FcorePackage.TYPE_OBJECT_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.types.impl.ClassTypeImpl <em>Class Type</em>}'
-   * class.
+   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.GeneratorAdapterFactoryTypeImpl <em>Generator Adapter Factory Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @see org.eclipse.egf.model.types.impl.ClassTypeImpl
-   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getClassType()
-   * @generated
-   */
-  int CLASS_TYPE = 5;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int CLASS_TYPE__ID = TYPE__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int CLASS_TYPE__NAME = TYPE__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int CLASS_TYPE__DESCRIPTION = TYPE__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Type Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int CLASS_TYPE__TYPE_ID = TYPE__TYPE_ID;
-
-  /**
-   * The number of structural features of the '<em>Class Type</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int CLASS_TYPE_FEATURE_COUNT = TYPE_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.types.impl.PatternExecutionReporterTypeImpl
-   * <em>Pattern Execution Reporter Type</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @see org.eclipse.egf.model.types.impl.PatternExecutionReporterTypeImpl
-   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getPatternExecutionReporterType()
-   * @generated
-   */
-  int PATTERN_EXECUTION_REPORTER_TYPE = 6;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int PATTERN_EXECUTION_REPORTER_TYPE__ID = CLASS_TYPE__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int PATTERN_EXECUTION_REPORTER_TYPE__NAME = CLASS_TYPE__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int PATTERN_EXECUTION_REPORTER_TYPE__DESCRIPTION = CLASS_TYPE__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Type Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int PATTERN_EXECUTION_REPORTER_TYPE__TYPE_ID = CLASS_TYPE__TYPE_ID;
-
-  /**
-   * The number of structural features of the '
-   * <em>Pattern Execution Reporter Type</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   * @ordered
-   */
-  int PATTERN_EXECUTION_REPORTER_TYPE_FEATURE_COUNT = CLASS_TYPE_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.types.impl.GeneratorAdapterFactoryTypeImpl
-   * <em>Generator Adapter Factory Type</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.types.impl.GeneratorAdapterFactoryTypeImpl
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getGeneratorAdapterFactoryType()
    * @generated
    */
-  int GENERATOR_ADAPTER_FACTORY_TYPE = 7;
+  int GENERATOR_ADAPTER_FACTORY_TYPE = 3;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int GENERATOR_ADAPTER_FACTORY_TYPE__ID = CLASS_TYPE__ID;
+  int GENERATOR_ADAPTER_FACTORY_TYPE__ID = FcorePackage.TYPE_CLASS__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int GENERATOR_ADAPTER_FACTORY_TYPE__NAME = CLASS_TYPE__NAME;
+  int GENERATOR_ADAPTER_FACTORY_TYPE__NAME = FcorePackage.TYPE_CLASS__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int GENERATOR_ADAPTER_FACTORY_TYPE__DESCRIPTION = CLASS_TYPE__DESCRIPTION;
+  int GENERATOR_ADAPTER_FACTORY_TYPE__DESCRIPTION = FcorePackage.TYPE_CLASS__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Type Id</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int GENERATOR_ADAPTER_FACTORY_TYPE__TYPE_ID = CLASS_TYPE__TYPE_ID;
+  int GENERATOR_ADAPTER_FACTORY_TYPE__VALUE = FcorePackage.TYPE_CLASS__VALUE;
 
   /**
-   * The number of structural features of the '
-   * <em>Generator Adapter Factory Type</em>' class.
+   * The number of structural features of the '<em>Generator Adapter Factory Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int GENERATOR_ADAPTER_FACTORY_TYPE_FEATURE_COUNT = CLASS_TYPE_FEATURE_COUNT + 0;
+  int GENERATOR_ADAPTER_FACTORY_TYPE_FEATURE_COUNT = FcorePackage.TYPE_CLASS_FEATURE_COUNT + 0;
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.types.TypeElement <em>Type Element</em>}'.
+   * The meta object id for the '<em>EGenerator Adapter Factory</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @return the meta object for class '<em>Type Element</em>'.
-   * @see org.eclipse.egf.model.types.TypeElement
+   * @see org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory
+   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getEGeneratorAdapterFactory()
    * @generated
    */
-  EClass getTypeElement();
+  int EGENERATOR_ADAPTER_FACTORY = 4;
 
   /**
-   * Returns the meta object for the attribute '
-   * {@link org.eclipse.egf.model.types.TypeElement#getID <em>ID</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.types.BooleanType <em>Boolean Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @return the meta object for the attribute '<em>ID</em>'.
-   * @see org.eclipse.egf.model.types.TypeElement#getID()
-   * @see #getTypeElement()
-   * @generated
-   */
-  EAttribute getTypeElement_ID();
-
-  /**
-   * Returns the meta object for the attribute '
-   * {@link org.eclipse.egf.model.types.TypeElement#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.eclipse.egf.model.types.TypeElement#getName()
-   * @see #getTypeElement()
-   * @generated
-   */
-  EAttribute getTypeElement_Name();
-
-  /**
-   * Returns the meta object for the attribute '
-   * {@link org.eclipse.egf.model.types.TypeElement#getDescription
-   * <em>Description</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @return the meta object for the attribute '<em>Description</em>'.
-   * @see org.eclipse.egf.model.types.TypeElement#getDescription()
-   * @see #getTypeElement()
-   * @generated
-   */
-  EAttribute getTypeElement_Description();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.egf.model.types.Type
-   * <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @return the meta object for class '<em>Type</em>'.
-   * @see org.eclipse.egf.model.types.Type
-   * @generated
-   */
-  EClass getType();
-
-  /**
-   * Returns the meta object for the attribute '
-   * {@link org.eclipse.egf.model.types.Type#getTypeId <em>Type Id</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @return the meta object for the attribute '<em>Type Id</em>'.
-   * @see org.eclipse.egf.model.types.Type#getTypeId()
-   * @see #getType()
-   * @generated
-   */
-  EAttribute getType_TypeId();
-
-  /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.types.PrimitiveObjectType
-   * <em>Primitive Object Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @return the meta object for class '<em>Primitive Object Type</em>'.
-   * @see org.eclipse.egf.model.types.PrimitiveObjectType
-   * @generated
-   */
-  EClass getPrimitiveObjectType();
-
-  /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.types.BooleanType <em>Boolean Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Boolean Type</em>'.
    * @see org.eclipse.egf.model.types.BooleanType
    * @generated
@@ -668,11 +308,20 @@ public interface TypesPackage extends EPackage {
   EClass getBooleanType();
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.types.StringType <em>String Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.BooleanType#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.eclipse.egf.model.types.BooleanType#getValue()
+   * @see #getBooleanType()
+   * @generated
+   */
+  EAttribute getBooleanType_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.types.StringType <em>String Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @return the meta object for class '<em>String Type</em>'.
    * @see org.eclipse.egf.model.types.StringType
    * @generated
@@ -680,50 +329,62 @@ public interface TypesPackage extends EPackage {
   EClass getStringType();
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.types.ClassType <em>Class Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.StringType#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @return the meta object for class '<em>Class Type</em>'.
-   * @see org.eclipse.egf.model.types.ClassType
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.eclipse.egf.model.types.StringType#getValue()
+   * @see #getStringType()
    * @generated
    */
-  EClass getClassType();
+  EAttribute getStringType_Value();
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.types.PatternExecutionReporterType
-   * <em>Pattern Execution Reporter Type</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.types.IntegerType <em>Integer Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @return the meta object for class '<em>Pattern Execution Reporter Type</em>
-   *         '.
-   * @see org.eclipse.egf.model.types.PatternExecutionReporterType
+   * @return the meta object for class '<em>Integer Type</em>'.
+   * @see org.eclipse.egf.model.types.IntegerType
    * @generated
    */
-  EClass getPatternExecutionReporterType();
+  EClass getIntegerType();
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.types.GeneratorAdapterFactoryType
-   * <em>Generator Adapter Factory Type</em>}'.
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.IntegerType#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @return the meta object for class '<em>Generator Adapter Factory Type</em>
-   *         '.
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.eclipse.egf.model.types.IntegerType#getValue()
+   * @see #getIntegerType()
+   * @generated
+   */
+  EAttribute getIntegerType_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.types.GeneratorAdapterFactoryType <em>Generator Adapter Factory Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Generator Adapter Factory Type</em>'.
    * @see org.eclipse.egf.model.types.GeneratorAdapterFactoryType
    * @generated
    */
   EClass getGeneratorAdapterFactoryType();
 
   /**
+   * Returns the meta object for data type '{@link org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory <em>EGenerator Adapter Factory</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>EGenerator Adapter Factory</em>'.
+   * @see org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory
+   * @model instanceClass="org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory" serializeable="false"
+   * @generated
+   */
+  EDataType getEGeneratorAdapterFactory();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the factory that creates the instances of the model.
    * @generated
    */
@@ -739,93 +400,13 @@ public interface TypesPackage extends EPackage {
    * <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   interface Literals {
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.types.impl.TypeElementImpl
-     * <em>Type Element</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.BooleanTypeImpl <em>Boolean Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.types.impl.TypeElementImpl
-     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeElement()
-     * @generated
-     */
-    EClass TYPE_ELEMENT = eINSTANCE.getTypeElement();
-
-    /**
-     * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    EAttribute TYPE_ELEMENT__ID = eINSTANCE.getTypeElement_ID();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    EAttribute TYPE_ELEMENT__NAME = eINSTANCE.getTypeElement_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Description</b></em>' attribute
-     * feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    EAttribute TYPE_ELEMENT__DESCRIPTION = eINSTANCE.getTypeElement_Description();
-
-    /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.types.impl.TypeImpl <em>Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.types.impl.TypeImpl
-     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getType()
-     * @generated
-     */
-    EClass TYPE = eINSTANCE.getType();
-
-    /**
-     * The meta object literal for the '<em><b>Type Id</b></em>' attribute
-     * feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    EAttribute TYPE__TYPE_ID = eINSTANCE.getType_TypeId();
-
-    /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.types.impl.PrimitiveObjectTypeImpl
-     * <em>Primitive Object Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.types.impl.PrimitiveObjectTypeImpl
-     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getPrimitiveObjectType()
-     * @generated
-     */
-    EClass PRIMITIVE_OBJECT_TYPE = eINSTANCE.getPrimitiveObjectType();
-
-    /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.types.impl.BooleanTypeImpl
-     * <em>Boolean Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.types.impl.BooleanTypeImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getBooleanType()
      * @generated
@@ -833,12 +414,17 @@ public interface TypesPackage extends EPackage {
     EClass BOOLEAN_TYPE = eINSTANCE.getBooleanType();
 
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.types.impl.StringTypeImpl
-     * <em>String Type</em>}' class.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
+     * @generated
+     */
+    EAttribute BOOLEAN_TYPE__VALUE = eINSTANCE.getBooleanType_Value();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.StringTypeImpl <em>String Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @see org.eclipse.egf.model.types.impl.StringTypeImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getStringType()
      * @generated
@@ -846,43 +432,50 @@ public interface TypesPackage extends EPackage {
     EClass STRING_TYPE = eINSTANCE.getStringType();
 
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.types.impl.ClassTypeImpl
-     * <em>Class Type</em>}' class.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.types.impl.ClassTypeImpl
-     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getClassType()
      * @generated
      */
-    EClass CLASS_TYPE = eINSTANCE.getClassType();
+    EAttribute STRING_TYPE__VALUE = eINSTANCE.getStringType_Value();
 
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.types.impl.PatternExecutionReporterTypeImpl
-     * <em>Pattern Execution Reporter Type</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.IntegerTypeImpl <em>Integer Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.types.impl.PatternExecutionReporterTypeImpl
-     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getPatternExecutionReporterType()
+     * @see org.eclipse.egf.model.types.impl.IntegerTypeImpl
+     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getIntegerType()
      * @generated
      */
-    EClass PATTERN_EXECUTION_REPORTER_TYPE = eINSTANCE.getPatternExecutionReporterType();
+    EClass INTEGER_TYPE = eINSTANCE.getIntegerType();
 
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.types.impl.GeneratorAdapterFactoryTypeImpl
-     * <em>Generator Adapter Factory Type</em>}' class.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
+     * @generated
+     */
+    EAttribute INTEGER_TYPE__VALUE = eINSTANCE.getIntegerType_Value();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.GeneratorAdapterFactoryTypeImpl <em>Generator Adapter Factory Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
      * @see org.eclipse.egf.model.types.impl.GeneratorAdapterFactoryTypeImpl
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getGeneratorAdapterFactoryType()
      * @generated
      */
     EClass GENERATOR_ADAPTER_FACTORY_TYPE = eINSTANCE.getGeneratorAdapterFactoryType();
+
+    /**
+     * The meta object literal for the '<em>EGenerator Adapter Factory</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory
+     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getEGeneratorAdapterFactory()
+     * @generated
+     */
+    EDataType EGENERATOR_ADAPTER_FACTORY = eINSTANCE.getEGeneratorAdapterFactory();
 
   }
 

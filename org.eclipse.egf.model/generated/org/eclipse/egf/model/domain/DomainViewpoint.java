@@ -19,23 +19,21 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Viewpoint</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.DomainViewpoint#getDomains <em>
- * Domains</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.DomainViewpoint#getDomains <em>Domains</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.domain.DomainPackage#getDomainViewpoint()
  * @model
  * @generated
  */
 public interface DomainViewpoint extends Viewpoint {
   /**
-   * Returns the value of the '<em><b>Domains</b></em>' containment reference
-   * list.
+   * Returns the value of the '<em><b>Domains</b></em>' containment reference list.
    * The list contents are of type {@link org.eclipse.egf.model.domain.Domain}.
    * <!-- begin-user-doc -->
    * <p>
@@ -43,7 +41,6 @@ public interface DomainViewpoint extends Viewpoint {
    * really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Domains</em>' containment reference list.
    * @see org.eclipse.egf.model.domain.DomainPackage#getDomainViewpoint_Domains()
    * @model containment="true"

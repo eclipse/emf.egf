@@ -24,11 +24,11 @@
     <genDataTypes ecoreDataType="Fcore.ecore#//InvocationException"/>
     <genDataTypes ecoreDataType="Fcore.ecore#//IProgressMonitor"/>
     <genDataTypes ecoreDataType="Fcore.ecore#//URI"/>
-    <genDataTypes ecoreDataType="Fcore.ecore#//Clazz"/>
     <genClasses image="false" ecoreClass="Fcore.ecore#//ModelElement">
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/iD"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/description"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Identifier"
+          ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/iD"/>
+      <genFeatures createChild="false" propertyCategory="Identity" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/name"/>
+      <genFeatures createChild="false" propertyCategory="Identity" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/description"/>
       <genOperations ecoreOperation="Fcore.ecore#//ModelElement/getExternalName"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//Activity">
@@ -39,9 +39,6 @@
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//Activity/getSteps"/>
     </genClasses>
-    <genClasses ecoreClass="Fcore.ecore#//Task">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Fcore.ecore#//Task/taskId"/>
-    </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//FactoryComponent">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponent/viewpointContainer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponent/orchestration"/>
@@ -50,7 +47,7 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//ViewpointContainer/factoryComponent"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//ViewpointContainer/viewpoints"/>
       <genOperations ecoreOperation="Fcore.ecore#//ViewpointContainer/getViewpoint">
-        <genParameters ecoreParameter="Fcore.ecore#//ViewpointContainer/getViewpoint/vpClass"/>
+        <genParameters ecoreParameter="Fcore.ecore#//ViewpointContainer/getViewpoint/clazz"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//Viewpoint">
@@ -72,10 +69,17 @@
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//Invocation/getSteps"/>
     </genClasses>
-    <genClasses ecoreClass="Fcore.ecore#//Context">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//Context/invocation"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//Context/values"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//Context/connectors"/>
+    <genClasses image="false" ecoreClass="Fcore.ecore#//Type">
+      <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Type/T"/>
+      <genOperations ecoreOperation="Fcore.ecore#//Type/getType"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Fcore.ecore#//TypeObject">
+      <genTypeParameters ecoreTypeParameter="Fcore.ecore#//TypeObject/T"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Fcore.ecore#//TypeClass">
+      <genTypeParameters ecoreTypeParameter="Fcore.ecore#//TypeClass/T"/>
+      <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
+          ecoreFeature="ecore:EAttribute Fcore.ecore#//TypeClass/value"/>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//ContractContainer">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//ContractContainer/activity"/>
@@ -83,20 +87,26 @@
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//Contract">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//Contract/contractContainer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Fcore.ecore#//Contract/mode"/>
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//Contract/type"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//Contract/defaultValue"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="Fcore.ecore#//ContextValue"/>
-    <genClasses ecoreClass="Fcore.ecore#//ContractValue">
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//ContractValue/contract"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Fcore.ecore#//ContractValue/value"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Fcore.ecore#//ContractValue/pluginId"/>
+      <genFeatures createChild="false" propertyCategory="Type" ecoreFeature="ecore:EAttribute Fcore.ecore#//Contract/mandatory"/>
+      <genFeatures createChild="false" propertyCategory="Type" ecoreFeature="ecore:EAttribute Fcore.ecore#//Contract/mode"/>
+      <genFeatures property="None" children="true" createChild="true" propertyCategory=""
+          ecoreFeature="ecore:EReference Fcore.ecore#//Contract/type"/>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//ContractConnector">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//ContractConnector/context"/>
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//ContractConnector/source"/>
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//ContractConnector/target"/>
+      <genFeatures createChild="false" propertyCategory="Contract" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Fcore.ecore#//ContractConnector/source"/>
+      <genFeatures createChild="false" propertyCategory="Contract" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Fcore.ecore#//ContractConnector/target"/>
+    </genClasses>
+    <genClasses ecoreClass="Fcore.ecore#//ContextContainer">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//ContextContainer/invocation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//ContextContainer/contexts"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//ContextContainer/connectors"/>
+    </genClasses>
+    <genClasses ecoreClass="Fcore.ecore#//Context">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//Context/contract"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//Context/type"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

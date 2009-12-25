@@ -17,30 +17,31 @@ import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Context;
-import org.eclipse.egf.model.fcore.ContextValue;
+import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractConnector;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
-import org.eclipse.egf.model.fcore.ContractValue;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
-import org.eclipse.egf.model.fcore.Task;
+import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.egf.model.fcore.TypeClass;
+import org.eclipse.egf.model.fcore.TypeObject;
 import org.eclipse.egf.model.fcore.Viewpoint;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
-import org.eclipse.egf.model.fcore.util.FcoreValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -64,13 +65,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * @generated
    */
   private EClass activityEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass taskEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -112,6 +106,34 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass typeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeObjectEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeClassEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass contextContainerEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass contextEClass = null;
 
   /**
@@ -127,20 +149,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * @generated
    */
   private EClass contractEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass contextValueEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass contractValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -183,13 +191,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * @generated
    */
   private EDataType uriEDataType = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EDataType clazzEDataType = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -247,13 +248,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     // Initialize created meta-data
     theFcorePackage.initializePackageContents();
-
-    // Register package validator
-    EValidator.Registry.INSTANCE.put(theFcorePackage, new EValidator.Descriptor() {
-      public EValidator getEValidator() {
-        return FcoreValidator.INSTANCE;
-      }
-    });
 
     // Mark meta-data to indicate it can't be changed
     theFcorePackage.freeze();
@@ -315,24 +309,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    */
   public EReference getActivity_ContractContainer() {
     return (EReference) activityEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getTask() {
-    return taskEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getTask_TaskId() {
-    return (EAttribute) taskEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -448,6 +424,78 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getType() {
+    return typeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeObject() {
+    return typeObjectEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeClass() {
+    return typeClassEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTypeClass_Value() {
+    return (EAttribute) typeClassEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getContextContainer() {
+    return contextContainerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getContextContainer_Invocation() {
+    return (EReference) contextContainerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getContextContainer_Contexts() {
+    return (EReference) contextContainerEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getContextContainer_Connectors() {
+    return (EReference) contextContainerEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getContext() {
     return contextEClass;
   }
@@ -457,7 +505,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getContext_Invocation() {
+  public EReference getContext_Contract() {
     return (EReference) contextEClass.getEStructuralFeatures().get(0);
   }
 
@@ -466,17 +514,8 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getContext_Values() {
+  public EReference getContext_Type() {
     return (EReference) contextEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContext_Connectors() {
-    return (EReference) contextEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -529,7 +568,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getContract_Mode() {
+  public EAttribute getContract_Mandatory() {
     return (EAttribute) contractEClass.getEStructuralFeatures().get(1);
   }
 
@@ -538,62 +577,17 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EAttribute getContract_Mode() {
+    return (EAttribute) contractEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EReference getContract_Type() {
-    return (EReference) contractEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContract_DefaultValue() {
     return (EReference) contractEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getContextValue() {
-    return contextValueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getContractValue() {
-    return contractValueEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContractValue_Contract() {
-    return (EReference) contractValueEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getContractValue_Value() {
-    return (EAttribute) contractValueEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getContractValue_PluginId() {
-    return (EAttribute) contractValueEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -682,15 +676,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EDataType getClazz() {
-    return clazzEDataType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public FcoreFactory getFcoreFactory() {
     return (FcoreFactory) getEFactoryInstance();
   }
@@ -723,9 +708,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     activityEClass = createEClass(ACTIVITY);
     createEReference(activityEClass, ACTIVITY__CONTRACT_CONTAINER);
 
-    taskEClass = createEClass(TASK);
-    createEAttribute(taskEClass, TASK__TASK_ID);
-
     factoryComponentEClass = createEClass(FACTORY_COMPONENT);
     createEReference(factoryComponentEClass, FACTORY_COMPONENT__VIEWPOINT_CONTAINER);
     createEReference(factoryComponentEClass, FACTORY_COMPONENT__ORCHESTRATION);
@@ -743,10 +725,12 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     invocationEClass = createEClass(INVOCATION);
     createEReference(invocationEClass, INVOCATION__CONTEXT);
 
-    contextEClass = createEClass(CONTEXT);
-    createEReference(contextEClass, CONTEXT__INVOCATION);
-    createEReference(contextEClass, CONTEXT__VALUES);
-    createEReference(contextEClass, CONTEXT__CONNECTORS);
+    typeEClass = createEClass(TYPE);
+
+    typeObjectEClass = createEClass(TYPE_OBJECT);
+
+    typeClassEClass = createEClass(TYPE_CLASS);
+    createEAttribute(typeClassEClass, TYPE_CLASS__VALUE);
 
     contractContainerEClass = createEClass(CONTRACT_CONTAINER);
     createEReference(contractContainerEClass, CONTRACT_CONTAINER__ACTIVITY);
@@ -754,21 +738,23 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     contractEClass = createEClass(CONTRACT);
     createEReference(contractEClass, CONTRACT__CONTRACT_CONTAINER);
+    createEAttribute(contractEClass, CONTRACT__MANDATORY);
     createEAttribute(contractEClass, CONTRACT__MODE);
     createEReference(contractEClass, CONTRACT__TYPE);
-    createEReference(contractEClass, CONTRACT__DEFAULT_VALUE);
-
-    contextValueEClass = createEClass(CONTEXT_VALUE);
-
-    contractValueEClass = createEClass(CONTRACT_VALUE);
-    createEReference(contractValueEClass, CONTRACT_VALUE__CONTRACT);
-    createEAttribute(contractValueEClass, CONTRACT_VALUE__VALUE);
-    createEAttribute(contractValueEClass, CONTRACT_VALUE__PLUGIN_ID);
 
     contractConnectorEClass = createEClass(CONTRACT_CONNECTOR);
     createEReference(contractConnectorEClass, CONTRACT_CONNECTOR__CONTEXT);
     createEReference(contractConnectorEClass, CONTRACT_CONNECTOR__SOURCE);
     createEReference(contractConnectorEClass, CONTRACT_CONNECTOR__TARGET);
+
+    contextContainerEClass = createEClass(CONTEXT_CONTAINER);
+    createEReference(contextContainerEClass, CONTEXT_CONTAINER__INVOCATION);
+    createEReference(contextContainerEClass, CONTEXT_CONTAINER__CONTEXTS);
+    createEReference(contextContainerEClass, CONTEXT_CONTAINER__CONNECTORS);
+
+    contextEClass = createEClass(CONTEXT);
+    createEReference(contextEClass, CONTEXT__CONTRACT);
+    createEReference(contextEClass, CONTEXT__TYPE);
 
     // Create enums
     contractModeEEnum = createEEnum(CONTRACT_MODE);
@@ -778,7 +764,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     invocationExceptionEDataType = createEDataType(INVOCATION_EXCEPTION);
     iProgressMonitorEDataType = createEDataType(IPROGRESS_MONITOR);
     uriEDataType = createEDataType(URI);
-    clazzEDataType = createEDataType(CLAZZ);
   }
 
   /**
@@ -809,23 +794,39 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
+    ETypeParameter typeEClass_T = addETypeParameter(typeEClass, "T"); //$NON-NLS-1$
+    ETypeParameter typeObjectEClass_T = addETypeParameter(typeObjectEClass, "T"); //$NON-NLS-1$
+    ETypeParameter typeClassEClass_T = addETypeParameter(typeClassEClass, "T"); //$NON-NLS-1$
 
     // Set bounds for type parameters
+    EGenericType g1 = createEGenericType(theEcorePackage.getEJavaObject());
+    typeEClass_T.getEBounds().add(g1);
+    g1 = createEGenericType(theEcorePackage.getEJavaObject());
+    typeObjectEClass_T.getEBounds().add(g1);
+    g1 = createEGenericType(theEcorePackage.getEJavaObject());
+    typeClassEClass_T.getEBounds().add(g1);
 
     // Add supertypes to classes
     activityEClass.getESuperTypes().add(this.getModelElement());
-    taskEClass.getESuperTypes().add(this.getActivity());
     factoryComponentEClass.getESuperTypes().add(this.getActivity());
     viewpointContainerEClass.getESuperTypes().add(this.getModelElement());
     viewpointEClass.getESuperTypes().add(this.getModelElement());
     orchestrationEClass.getESuperTypes().add(this.getModelElement());
     invocationEClass.getESuperTypes().add(this.getModelElement());
-    contextEClass.getESuperTypes().add(this.getModelElement());
+    typeEClass.getESuperTypes().add(this.getModelElement());
+    g1 = createEGenericType(this.getType());
+    EGenericType g2 = createEGenericType(typeObjectEClass_T);
+    g1.getETypeArguments().add(g2);
+    typeObjectEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType(typeClassEClass_T);
+    g1.getETypeArguments().add(g2);
+    typeClassEClass.getEGenericSuperTypes().add(g1);
     contractContainerEClass.getESuperTypes().add(this.getModelElement());
     contractEClass.getESuperTypes().add(this.getModelElement());
-    contextValueEClass.getESuperTypes().add(this.getModelElement());
-    contractValueEClass.getESuperTypes().add(this.getContextValue());
     contractConnectorEClass.getESuperTypes().add(this.getModelElement());
+    contextContainerEClass.getESuperTypes().add(this.getModelElement());
+    contextEClass.getESuperTypes().add(this.getModelElement());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -845,9 +846,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     addEOperation(activityEClass, theEcorePackage.getEInt(), "getSteps", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEAttribute(getTask_TaskId(), theEcorePackage.getEString(), "taskId", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
     initEClass(factoryComponentEClass, FactoryComponent.class, "FactoryComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getFactoryComponent_ViewpointContainer(), this.getViewpointContainer(), this.getViewpointContainer_FactoryComponent(), "viewpointContainer", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getFactoryComponent_Orchestration(), this.getOrchestration(), this.getOrchestration_FactoryComponent(), "orchestration", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -857,7 +855,10 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEReference(getViewpointContainer_Viewpoints(), this.getViewpoint(), this.getViewpoint_ViewerpointContainer(), "viewpoints", null, 0, -1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(viewpointContainerEClass, this.getViewpoint(), "getViewpoint", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, this.getClazz(), "vpClass", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "clazz", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(viewpointEClass, Viewpoint.class, "Viewpoint", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getViewpoint_ViewerpointContainer(), this.getViewpointContainer(), this.getViewpointContainer_Viewpoints(), "viewerpointContainer", null, 1, 1, Viewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -873,7 +874,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEOperation(orchestrationEClass, theEcorePackage.getEInt(), "getSteps", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(invocationEClass, Invocation.class, "Invocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getInvocation_Context(), this.getContext(), this.getContext_Invocation(), "context", null, 0, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getInvocation_Context(), this.getContextContainer(), this.getContextContainer_Invocation(), "context", null, 0, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(invocationEClass, null, "invoke", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
     addEParameter(op, this.getIProductionContext(), "productionContext", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -882,10 +883,18 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     addEOperation(invocationEClass, theEcorePackage.getEInt(), "getSteps", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getContext_Invocation(), this.getInvocation(), this.getInvocation_Context(), "invocation", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContext_Values(), this.getContextValue(), null, "values", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContext_Connectors(), this.getContractConnector(), this.getContractConnector_Context(), "connectors", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+    op = addEOperation(typeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(typeEClass_T);
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(typeObjectEClass, TypeObject.class, "TypeObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+    initEClass(typeClassEClass, TypeClass.class, "TypeClass", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getTypeClass_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TypeClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(contractContainerEClass, ContractContainer.class, "ContractContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getContractContainer_Activity(), this.getActivity(), this.getActivity_ContractContainer(), "activity", null, 1, 1, ContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -893,21 +902,29 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     initEClass(contractEClass, Contract.class, "Contract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getContract_ContractContainer(), this.getContractContainer(), this.getContractContainer_Contracts(), "contractContainer", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getContract_Mandatory(), theEcorePackage.getEBoolean(), "mandatory", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEAttribute(getContract_Mode(), this.getContractMode(), "mode", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContract_Type(), theEcorePackage.getEClass(), null, "type", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContract_DefaultValue(), this.getContractValue(), null, "defaultValue", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    initEClass(contextValueEClass, ContextValue.class, "ContextValue", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-    initEClass(contractValueEClass, ContractValue.class, "ContractValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getContractValue_Contract(), this.getContract(), null, "contract", null, 1, 1, ContractValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEAttribute(getContractValue_Value(), theEcorePackage.getEString(), "value", null, 1, 1, ContractValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEAttribute(getContractValue_PluginId(), theEcorePackage.getEString(), "pluginId", null, 0, 1, ContractValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    initEReference(getContract_Type(), g1, null, "type", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(contractConnectorEClass, ContractConnector.class, "ContractConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getContractConnector_Context(), this.getContext(), this.getContext_Connectors(), "context", null, 0, 1, ContractConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getContractConnector_Context(), this.getContextContainer(), this.getContextContainer_Connectors(), "context", null, 0, 1, ContractConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getContractConnector_Source(), this.getContract(), null, "source", null, 1, 1, ContractConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getContractConnector_Target(), this.getContract(), null, "target", null, 1, 1, ContractConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(contextContainerEClass, ContextContainer.class, "ContextContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getContextContainer_Invocation(), this.getInvocation(), this.getInvocation_Context(), "invocation", null, 0, 1, ContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getContextContainer_Contexts(), this.getContext(), null, "contexts", null, 0, -1, ContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getContextContainer_Connectors(), this.getContractConnector(), this.getContractConnector_Context(), "connectors", null, 0, -1, ContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getContext_Contract(), this.getContract(), null, "contract", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    initEReference(getContext_Type(), g1, null, "type", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     // Initialize enums and add enum literals
     initEEnum(contractModeEEnum, ContractMode.class, "ContractMode"); //$NON-NLS-1$
@@ -915,32 +932,13 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEEnumLiteral(contractModeEEnum, ContractMode.OUT);
 
     // Initialize data types
-    initEDataType(iProductionContextEDataType, IProductionContext.class, "IProductionContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEDataType(invocationExceptionEDataType, InvocationException.class, "InvocationException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEDataType(iProgressMonitorEDataType, IProgressMonitor.class, "IProgressMonitor", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(iProductionContextEDataType, IProductionContext.class, "IProductionContext", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(invocationExceptionEDataType, InvocationException.class, "InvocationException", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(iProgressMonitorEDataType, IProgressMonitor.class, "IProgressMonitor", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEDataType(uriEDataType, org.eclipse.emf.common.util.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEDataType(clazzEDataType, Class.class, "Clazz", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);
-
-    // Create annotations
-    // http://www.eclipse.org/emf/2002/Ecore
-    createEcoreAnnotations();
-  }
-
-  /**
-   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void createEcoreAnnotations() {
-    String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$			
-    addAnnotation(taskEClass, source, new String[] { "constraints", "task" //$NON-NLS-1$ //$NON-NLS-2$
-    });
-    addAnnotation(contractEClass, source, new String[] { "constraints", "type" //$NON-NLS-1$ //$NON-NLS-2$
-    });
   }
 
 } // FcorePackageImpl

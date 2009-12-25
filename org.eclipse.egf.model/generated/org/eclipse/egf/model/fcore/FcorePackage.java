@@ -169,70 +169,6 @@ public interface FcorePackage extends EPackage {
   int ACTIVITY_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.TaskImpl <em>Task</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.fcore.impl.TaskImpl
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getTask()
-   * @generated
-   */
-  int TASK = 2;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK__ID = ACTIVITY__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK__NAME = ACTIVITY__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK__DESCRIPTION = ACTIVITY__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Contract Container</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK__CONTRACT_CONTAINER = ACTIVITY__CONTRACT_CONTAINER;
-
-  /**
-   * The feature id for the '<em><b>Task Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK__TASK_ID = ACTIVITY_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Task</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK_FEATURE_COUNT = ACTIVITY_FEATURE_COUNT + 1;
-
-  /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl <em>Factory Component</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -240,7 +176,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getFactoryComponent()
    * @generated
    */
-  int FACTORY_COMPONENT = 3;
+  int FACTORY_COMPONENT = 2;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -313,7 +249,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getViewpointContainer()
    * @generated
    */
-  int VIEWPOINT_CONTAINER = 4;
+  int VIEWPOINT_CONTAINER = 3;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -377,7 +313,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getViewpoint()
    * @generated
    */
-  int VIEWPOINT = 5;
+  int VIEWPOINT = 4;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -432,7 +368,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getOrchestration()
    * @generated
    */
-  int ORCHESTRATION = 6;
+  int ORCHESTRATION = 5;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -487,7 +423,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocation()
    * @generated
    */
-  int INVOCATION = 7;
+  int INVOCATION = 6;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -535,14 +471,14 @@ public interface FcorePackage extends EPackage {
   int INVOCATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ContextImpl <em>Context</em>}' class.
+   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.TypeImpl <em>Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.fcore.impl.ContextImpl
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContext()
+   * @see org.eclipse.egf.model.fcore.impl.TypeImpl
+   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getType()
    * @generated
    */
-  int CONTEXT = 8;
+  int TYPE = 7;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -551,7 +487,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__ID = MODEL_ELEMENT__ID;
+  int TYPE__ID = MODEL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -560,7 +496,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__NAME = MODEL_ELEMENT__NAME;
+  int TYPE__NAME = MODEL_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -569,43 +505,137 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTEXT__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+  int TYPE__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Invocation</b></em>' container reference.
+   * The number of structural features of the '<em>Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXT__INVOCATION = MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int TYPE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Values</b></em>' containment reference list.
+   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.TypeObjectImpl <em>Type Object</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.fcore.impl.TypeObjectImpl
+   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getTypeObject()
+   * @generated
+   */
+  int TYPE_OBJECT = 8;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXT__VALUES = MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int TYPE_OBJECT__ID = TYPE__ID;
 
   /**
-   * The feature id for the '<em><b>Connectors</b></em>' containment reference list.
+   * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXT__CONNECTORS = MODEL_ELEMENT_FEATURE_COUNT + 2;
+  int TYPE_OBJECT__NAME = TYPE__NAME;
 
   /**
-   * The number of structural features of the '<em>Context</em>' class.
+   * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTEXT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+  int TYPE_OBJECT__DESCRIPTION = TYPE__DESCRIPTION;
+
+  /**
+   * The number of structural features of the '<em>Type Object</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_OBJECT_FEATURE_COUNT = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.TypeClassImpl <em>Type Class</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.fcore.impl.TypeClassImpl
+   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getTypeClass()
+   * @generated
+   */
+  int TYPE_CLASS = 9;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_CLASS__ID = TYPE__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_CLASS__NAME = TYPE__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_CLASS__DESCRIPTION = TYPE__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_CLASS__VALUE = TYPE_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Type Class</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_CLASS_FEATURE_COUNT = TYPE_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl <em>Context Container</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.fcore.impl.ContextContainerImpl
+   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContextContainer()
+   * @generated
+   */
+  int CONTEXT_CONTAINER = 13;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ContextImpl <em>Context</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.fcore.impl.ContextImpl
+   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContext()
+   * @generated
+   */
+  int CONTEXT = 14;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ContractContainerImpl <em>Contract Container</em>}' class.
@@ -615,7 +645,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContractContainer()
    * @generated
    */
-  int CONTRACT_CONTAINER = 9;
+  int CONTRACT_CONTAINER = 10;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -679,7 +709,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContract()
    * @generated
    */
-  int CONTRACT = 10;
+  int CONTRACT = 11;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -718,31 +748,31 @@ public interface FcorePackage extends EPackage {
   int CONTRACT__CONTRACT_CONTAINER = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
+   * The feature id for the '<em><b>Mandatory</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTRACT__MANDATORY = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
    * The feature id for the '<em><b>Mode</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTRACT__MODE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int CONTRACT__MODE = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
-   * The feature id for the '<em><b>Type</b></em>' reference.
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTRACT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Default Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT__DEFAULT_VALUE = MODEL_ELEMENT_FEATURE_COUNT + 3;
+  int CONTRACT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The number of structural features of the '<em>Contract</em>' class.
@@ -754,125 +784,6 @@ public interface FcorePackage extends EPackage {
   int CONTRACT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
   /**
-   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ContextValueImpl <em>Context Value</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.fcore.impl.ContextValueImpl
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContextValue()
-   * @generated
-   */
-  int CONTEXT_VALUE = 11;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTEXT_VALUE__ID = MODEL_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTEXT_VALUE__NAME = MODEL_ELEMENT__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTEXT_VALUE__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
-
-  /**
-   * The number of structural features of the '<em>Context Value</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTEXT_VALUE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ContractValueImpl <em>Contract Value</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.fcore.impl.ContractValueImpl
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContractValue()
-   * @generated
-   */
-  int CONTRACT_VALUE = 12;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_VALUE__ID = CONTEXT_VALUE__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_VALUE__NAME = CONTEXT_VALUE__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_VALUE__DESCRIPTION = CONTEXT_VALUE__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Contract</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_VALUE__CONTRACT = CONTEXT_VALUE_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_VALUE__VALUE = CONTEXT_VALUE_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Plugin Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_VALUE__PLUGIN_ID = CONTEXT_VALUE_FEATURE_COUNT + 2;
-
-  /**
-   * The number of structural features of the '<em>Contract Value</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_VALUE_FEATURE_COUNT = CONTEXT_VALUE_FEATURE_COUNT + 3;
-
-  /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ContractConnectorImpl <em>Contract Connector</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -880,7 +791,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContractConnector()
    * @generated
    */
-  int CONTRACT_CONNECTOR = 13;
+  int CONTRACT_CONNECTOR = 12;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -946,6 +857,123 @@ public interface FcorePackage extends EPackage {
   int CONTRACT_CONNECTOR_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
   /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_CONTAINER__ID = MODEL_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_CONTAINER__NAME = MODEL_ELEMENT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_CONTAINER__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Invocation</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_CONTAINER__INVOCATION = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Contexts</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_CONTAINER__CONTEXTS = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Connectors</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_CONTAINER__CONNECTORS = MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Context Container</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_CONTAINER_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT__ID = MODEL_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT__NAME = MODEL_ELEMENT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Contract</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT__CONTRACT = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Context</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONTEXT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.ContractMode <em>Contract Mode</em>}' enum.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -953,7 +981,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContractMode()
    * @generated
    */
-  int CONTRACT_MODE = 14;
+  int CONTRACT_MODE = 15;
 
   /**
    * The meta object id for the '<em>IProduction Context</em>' data type.
@@ -963,7 +991,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getIProductionContext()
    * @generated
    */
-  int IPRODUCTION_CONTEXT = 15;
+  int IPRODUCTION_CONTEXT = 16;
 
   /**
    * The meta object id for the '<em>Invocation Exception</em>' data type.
@@ -973,7 +1001,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocationException()
    * @generated
    */
-  int INVOCATION_EXCEPTION = 16;
+  int INVOCATION_EXCEPTION = 17;
 
   /**
    * The meta object id for the '<em>IProgress Monitor</em>' data type.
@@ -983,7 +1011,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getIProgressMonitor()
    * @generated
    */
-  int IPROGRESS_MONITOR = 17;
+  int IPROGRESS_MONITOR = 18;
 
   /**
    * The meta object id for the '<em>URI</em>' data type.
@@ -993,17 +1021,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getURI()
    * @generated
    */
-  int URI = 18;
-
-  /**
-   * The meta object id for the '<em>Clazz</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see java.lang.Class
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getClazz()
-   * @generated
-   */
-  int CLAZZ = 19;
+  int URI = 19;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
@@ -1068,27 +1086,6 @@ public interface FcorePackage extends EPackage {
    * @generated
    */
   EReference getActivity_ContractContainer();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.Task <em>Task</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Task</em>'.
-   * @see org.eclipse.egf.model.fcore.Task
-   * @generated
-   */
-  EClass getTask();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.Task#getTaskId <em>Task Id</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Task Id</em>'.
-   * @see org.eclipse.egf.model.fcore.Task#getTaskId()
-   * @see #getTask()
-   * @generated
-   */
-  EAttribute getTask_TaskId();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.FactoryComponent <em>Factory Component</em>}'.
@@ -1218,6 +1215,90 @@ public interface FcorePackage extends EPackage {
   EReference getInvocation_Context();
 
   /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.Type <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type</em>'.
+   * @see org.eclipse.egf.model.fcore.Type
+   * @generated
+   */
+  EClass getType();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.TypeObject <em>Type Object</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type Object</em>'.
+   * @see org.eclipse.egf.model.fcore.TypeObject
+   * @generated
+   */
+  EClass getTypeObject();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.TypeClass <em>Type Class</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Type Class</em>'.
+   * @see org.eclipse.egf.model.fcore.TypeClass
+   * @generated
+   */
+  EClass getTypeClass();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.TypeClass#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.eclipse.egf.model.fcore.TypeClass#getValue()
+   * @see #getTypeClass()
+   * @generated
+   */
+  EAttribute getTypeClass_Value();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ContextContainer <em>Context Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Context Container</em>'.
+   * @see org.eclipse.egf.model.fcore.ContextContainer
+   * @generated
+   */
+  EClass getContextContainer();
+
+  /**
+   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.fcore.ContextContainer#getInvocation <em>Invocation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Invocation</em>'.
+   * @see org.eclipse.egf.model.fcore.ContextContainer#getInvocation()
+   * @see #getContextContainer()
+   * @generated
+   */
+  EReference getContextContainer_Invocation();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.fcore.ContextContainer#getContexts <em>Contexts</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Contexts</em>'.
+   * @see org.eclipse.egf.model.fcore.ContextContainer#getContexts()
+   * @see #getContextContainer()
+   * @generated
+   */
+  EReference getContextContainer_Contexts();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.fcore.ContextContainer#getConnectors <em>Connectors</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Connectors</em>'.
+   * @see org.eclipse.egf.model.fcore.ContextContainer#getConnectors()
+   * @see #getContextContainer()
+   * @generated
+   */
+  EReference getContextContainer_Connectors();
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.Context <em>Context</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1228,37 +1309,26 @@ public interface FcorePackage extends EPackage {
   EClass getContext();
 
   /**
-   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.fcore.Context#getInvocation <em>Invocation</em>}'.
+   * Returns the meta object for the reference '{@link org.eclipse.egf.model.fcore.Context#getContract <em>Contract</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Invocation</em>'.
-   * @see org.eclipse.egf.model.fcore.Context#getInvocation()
+   * @return the meta object for the reference '<em>Contract</em>'.
+   * @see org.eclipse.egf.model.fcore.Context#getContract()
    * @see #getContext()
    * @generated
    */
-  EReference getContext_Invocation();
+  EReference getContext_Contract();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.fcore.Context#getValues <em>Values</em>}'.
+   * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.fcore.Context#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Values</em>'.
-   * @see org.eclipse.egf.model.fcore.Context#getValues()
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see org.eclipse.egf.model.fcore.Context#getType()
    * @see #getContext()
    * @generated
    */
-  EReference getContext_Values();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.fcore.Context#getConnectors <em>Connectors</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Connectors</em>'.
-   * @see org.eclipse.egf.model.fcore.Context#getConnectors()
-   * @see #getContext()
-   * @generated
-   */
-  EReference getContext_Connectors();
+  EReference getContext_Type();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ContractContainer <em>Contract Container</em>}'.
@@ -1314,6 +1384,17 @@ public interface FcorePackage extends EPackage {
   EReference getContract_ContractContainer();
 
   /**
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.Contract#isMandatory <em>Mandatory</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Mandatory</em>'.
+   * @see org.eclipse.egf.model.fcore.Contract#isMandatory()
+   * @see #getContract()
+   * @generated
+   */
+  EAttribute getContract_Mandatory();
+
+  /**
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.Contract#getMode <em>Mode</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1325,79 +1406,15 @@ public interface FcorePackage extends EPackage {
   EAttribute getContract_Mode();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.egf.model.fcore.Contract#getType <em>Type</em>}'.
+   * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.fcore.Contract#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Type</em>'.
+   * @return the meta object for the containment reference '<em>Type</em>'.
    * @see org.eclipse.egf.model.fcore.Contract#getType()
    * @see #getContract()
    * @generated
    */
   EReference getContract_Type();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.fcore.Contract#getDefaultValue <em>Default Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Default Value</em>'.
-   * @see org.eclipse.egf.model.fcore.Contract#getDefaultValue()
-   * @see #getContract()
-   * @generated
-   */
-  EReference getContract_DefaultValue();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ContextValue <em>Context Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Context Value</em>'.
-   * @see org.eclipse.egf.model.fcore.ContextValue
-   * @generated
-   */
-  EClass getContextValue();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ContractValue <em>Contract Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Contract Value</em>'.
-   * @see org.eclipse.egf.model.fcore.ContractValue
-   * @generated
-   */
-  EClass getContractValue();
-
-  /**
-   * Returns the meta object for the reference '{@link org.eclipse.egf.model.fcore.ContractValue#getContract <em>Contract</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Contract</em>'.
-   * @see org.eclipse.egf.model.fcore.ContractValue#getContract()
-   * @see #getContractValue()
-   * @generated
-   */
-  EReference getContractValue_Contract();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.ContractValue#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see org.eclipse.egf.model.fcore.ContractValue#getValue()
-   * @see #getContractValue()
-   * @generated
-   */
-  EAttribute getContractValue_Value();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.ContractValue#getPluginId <em>Plugin Id</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Plugin Id</em>'.
-   * @see org.eclipse.egf.model.fcore.ContractValue#getPluginId()
-   * @see #getContractValue()
-   * @generated
-   */
-  EAttribute getContractValue_PluginId();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ContractConnector <em>Contract Connector</em>}'.
@@ -1458,7 +1475,7 @@ public interface FcorePackage extends EPackage {
    * <!-- end-user-doc -->
    * @return the meta object for data type '<em>IProduction Context</em>'.
    * @see org.eclipse.egf.core.production.context.IProductionContext
-   * @model instanceClass="org.eclipse.egf.core.production.context.IProductionContext"
+   * @model instanceClass="org.eclipse.egf.core.production.context.IProductionContext" serializeable="false"
    * @generated
    */
   EDataType getIProductionContext();
@@ -1469,7 +1486,7 @@ public interface FcorePackage extends EPackage {
    * <!-- end-user-doc -->
    * @return the meta object for data type '<em>Invocation Exception</em>'.
    * @see org.eclipse.egf.core.production.InvocationException
-   * @model instanceClass="org.eclipse.egf.core.production.InvocationException"
+   * @model instanceClass="org.eclipse.egf.core.production.InvocationException" serializeable="false"
    * @generated
    */
   EDataType getInvocationException();
@@ -1480,7 +1497,7 @@ public interface FcorePackage extends EPackage {
    * <!-- end-user-doc -->
    * @return the meta object for data type '<em>IProgress Monitor</em>'.
    * @see org.eclipse.core.runtime.IProgressMonitor
-   * @model instanceClass="org.eclipse.core.runtime.IProgressMonitor"
+   * @model instanceClass="org.eclipse.core.runtime.IProgressMonitor" serializeable="false"
    * @generated
    */
   EDataType getIProgressMonitor();
@@ -1495,17 +1512,6 @@ public interface FcorePackage extends EPackage {
    * @generated
    */
   EDataType getURI();
-
-  /**
-   * Returns the meta object for data type '{@link java.lang.Class <em>Clazz</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>Clazz</em>'.
-   * @see java.lang.Class
-   * @model instanceClass="java.lang.Class"
-   * @generated
-   */
-  EDataType getClazz();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1580,24 +1586,6 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     EReference ACTIVITY__CONTRACT_CONTAINER = eINSTANCE.getActivity_ContractContainer();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.TaskImpl <em>Task</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.fcore.impl.TaskImpl
-     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getTask()
-     * @generated
-     */
-    EClass TASK = eINSTANCE.getTask();
-
-    /**
-     * The meta object literal for the '<em><b>Task Id</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TASK__TASK_ID = eINSTANCE.getTask_TaskId();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl <em>Factory Component</em>}' class.
@@ -1706,6 +1694,78 @@ public interface FcorePackage extends EPackage {
     EReference INVOCATION__CONTEXT = eINSTANCE.getInvocation_Context();
 
     /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.TypeImpl <em>Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.fcore.impl.TypeImpl
+     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getType()
+     * @generated
+     */
+    EClass TYPE = eINSTANCE.getType();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.TypeObjectImpl <em>Type Object</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.fcore.impl.TypeObjectImpl
+     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getTypeObject()
+     * @generated
+     */
+    EClass TYPE_OBJECT = eINSTANCE.getTypeObject();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.TypeClassImpl <em>Type Class</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.fcore.impl.TypeClassImpl
+     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getTypeClass()
+     * @generated
+     */
+    EClass TYPE_CLASS = eINSTANCE.getTypeClass();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TYPE_CLASS__VALUE = eINSTANCE.getTypeClass_Value();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ContextContainerImpl <em>Context Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.fcore.impl.ContextContainerImpl
+     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContextContainer()
+     * @generated
+     */
+    EClass CONTEXT_CONTAINER = eINSTANCE.getContextContainer();
+
+    /**
+     * The meta object literal for the '<em><b>Invocation</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_CONTAINER__INVOCATION = eINSTANCE.getContextContainer_Invocation();
+
+    /**
+     * The meta object literal for the '<em><b>Contexts</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_CONTAINER__CONTEXTS = eINSTANCE.getContextContainer_Contexts();
+
+    /**
+     * The meta object literal for the '<em><b>Connectors</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONTEXT_CONTAINER__CONNECTORS = eINSTANCE.getContextContainer_Connectors();
+
+    /**
      * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ContextImpl <em>Context</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1716,28 +1776,20 @@ public interface FcorePackage extends EPackage {
     EClass CONTEXT = eINSTANCE.getContext();
 
     /**
-     * The meta object literal for the '<em><b>Invocation</b></em>' container reference feature.
+     * The meta object literal for the '<em><b>Contract</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONTEXT__INVOCATION = eINSTANCE.getContext_Invocation();
+    EReference CONTEXT__CONTRACT = eINSTANCE.getContext_Contract();
 
     /**
-     * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference CONTEXT__VALUES = eINSTANCE.getContext_Values();
-
-    /**
-     * The meta object literal for the '<em><b>Connectors</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTEXT__CONNECTORS = eINSTANCE.getContext_Connectors();
+    EReference CONTEXT__TYPE = eINSTANCE.getContext_Type();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ContractContainerImpl <em>Contract Container</em>}' class.
@@ -1784,6 +1836,14 @@ public interface FcorePackage extends EPackage {
     EReference CONTRACT__CONTRACT_CONTAINER = eINSTANCE.getContract_ContractContainer();
 
     /**
+     * The meta object literal for the '<em><b>Mandatory</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONTRACT__MANDATORY = eINSTANCE.getContract_Mandatory();
+
+    /**
      * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1792,64 +1852,12 @@ public interface FcorePackage extends EPackage {
     EAttribute CONTRACT__MODE = eINSTANCE.getContract_Mode();
 
     /**
-     * The meta object literal for the '<em><b>Type</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference CONTRACT__TYPE = eINSTANCE.getContract_Type();
-
-    /**
-     * The meta object literal for the '<em><b>Default Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTRACT__DEFAULT_VALUE = eINSTANCE.getContract_DefaultValue();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ContextValueImpl <em>Context Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.fcore.impl.ContextValueImpl
-     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContextValue()
-     * @generated
-     */
-    EClass CONTEXT_VALUE = eINSTANCE.getContextValue();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ContractValueImpl <em>Contract Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.fcore.impl.ContractValueImpl
-     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContractValue()
-     * @generated
-     */
-    EClass CONTRACT_VALUE = eINSTANCE.getContractValue();
-
-    /**
-     * The meta object literal for the '<em><b>Contract</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTRACT_VALUE__CONTRACT = eINSTANCE.getContractValue_Contract();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONTRACT_VALUE__VALUE = eINSTANCE.getContractValue_Value();
-
-    /**
-     * The meta object literal for the '<em><b>Plugin Id</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONTRACT_VALUE__PLUGIN_ID = eINSTANCE.getContractValue_PluginId();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ContractConnectorImpl <em>Contract Connector</em>}' class.
@@ -1934,16 +1942,6 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     EDataType URI = eINSTANCE.getURI();
-
-    /**
-     * The meta object literal for the '<em>Clazz</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see java.lang.Class
-     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getClazz()
-     * @generated
-     */
-    EDataType CLAZZ = eINSTANCE.getClazz();
 
   }
 

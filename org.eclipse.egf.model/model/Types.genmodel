@@ -10,29 +10,28 @@
     codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
     booleanFlagsField="eFlags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" optimizedHasChildren="true" tableProviders="true" colorProviders="true"
-    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore">
   <foreignModel>Types.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Types" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
-      generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true"
+      generateExampleClass="false" multipleEditorPages="false" childCreationExtenders="true"
       contentTypeIdentifier="" ecorePackage="Types.ecore#/">
-    <genClasses image="false" ecoreClass="Types.ecore#//TypeElement">
-      <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/iD"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/name"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/description"/>
+    <genDataTypes ecoreDataType="Types.ecore#//EGeneratorAdapterFactory"/>
+    <genClasses ecoreClass="Types.ecore#//BooleanType">
+      <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
+          ecoreFeature="ecore:EAttribute Types.ecore#//BooleanType/value"/>
+      <genOperations ecoreOperation="Types.ecore#//BooleanType/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//Type">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Types.ecore#//Type/typeId"/>
-      <genOperations ecoreOperation="Types.ecore#//Type/newInstance">
-        <genParameters ecoreParameter="Types.ecore#//Type/newInstance/pluginId"/>
-        <genParameters ecoreParameter="Types.ecore#//Type/newInstance/value"/>
-      </genOperations>
+    <genClasses ecoreClass="Types.ecore#//IntegerType">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//IntegerType/value"/>
+      <genOperations ecoreOperation="Types.ecore#//IntegerType/getType"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Types.ecore#//PrimitiveObjectType"/>
-    <genClasses ecoreClass="Types.ecore#//BooleanType"/>
-    <genClasses ecoreClass="Types.ecore#//StringType"/>
-    <genClasses image="false" ecoreClass="Types.ecore#//ClassType"/>
-    <genClasses ecoreClass="Types.ecore#//PatternExecutionReporterType"/>
-    <genClasses ecoreClass="Types.ecore#//GeneratorAdapterFactoryType"/>
+    <genClasses ecoreClass="Types.ecore#//StringType">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//StringType/value"/>
+      <genOperations ecoreOperation="Types.ecore#//StringType/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//GeneratorAdapterFactoryType">
+      <genOperations ecoreOperation="Types.ecore#//GeneratorAdapterFactoryType/getType"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

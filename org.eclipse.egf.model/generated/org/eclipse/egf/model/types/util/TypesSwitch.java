@@ -14,16 +14,16 @@ package org.eclipse.egf.model.types.util;
 
 import java.util.List;
 
-import org.eclipse.egf.model.types.BooleanType;
-import org.eclipse.egf.model.types.ClassType;
-import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
-import org.eclipse.egf.model.types.PatternExecutionReporterType;
-import org.eclipse.egf.model.types.PrimitiveObjectType;
+import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.egf.model.fcore.TypeClass;
+import org.eclipse.egf.model.fcore.TypeObject;
+import org.eclipse.egf.model.types.*;
+import org.eclipse.egf.model.types.IntegerType;
 import org.eclipse.egf.model.types.StringType;
-import org.eclipse.egf.model.types.Type;
-import org.eclipse.egf.model.types.TypeElement;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -36,16 +36,14 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.types.TypesPackage
  * @generated
  */
-public class TypesSwitch<T> {
+public class TypesSwitch<T1> {
   /**
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static TypesPackage modelPackage;
@@ -54,7 +52,6 @@ public class TypesSwitch<T> {
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypesSwitch() {
@@ -64,28 +61,24 @@ public class TypesSwitch<T> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a
-   * non null result; it yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  public T doSwitch(EObject theEObject) {
+  public T1 doSwitch(EObject theEObject) {
     return doSwitch(theEObject.eClass(), theEObject);
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a
-   * non null result; it yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  protected T doSwitch(EClass theEClass, EObject theEObject) {
+  protected T1 doSwitch(EClass theEClass, EObject theEObject) {
     if (theEClass.eContainer() == modelPackage) {
       return doSwitch(theEClass.getClassifierID(), theEObject);
     } else {
@@ -95,102 +88,62 @@ public class TypesSwitch<T> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a
-   * non null result; it yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  protected T doSwitch(int classifierID, EObject theEObject) {
+  protected T1 doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
-    case TypesPackage.TYPE_ELEMENT: {
-      TypeElement typeElement = (TypeElement) theEObject;
-      T result = caseTypeElement(typeElement);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.TYPE: {
-      Type type = (Type) theEObject;
-      T result = caseType(type);
-      if (result == null)
-        result = caseTypeElement(type);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.PRIMITIVE_OBJECT_TYPE: {
-      PrimitiveObjectType primitiveObjectType = (PrimitiveObjectType) theEObject;
-      T result = casePrimitiveObjectType(primitiveObjectType);
-      if (result == null)
-        result = caseType(primitiveObjectType);
-      if (result == null)
-        result = caseTypeElement(primitiveObjectType);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
     case TypesPackage.BOOLEAN_TYPE: {
       BooleanType booleanType = (BooleanType) theEObject;
-      T result = caseBooleanType(booleanType);
+      T1 result = caseBooleanType(booleanType);
       if (result == null)
-        result = casePrimitiveObjectType(booleanType);
+        result = caseTypeObject(booleanType);
       if (result == null)
         result = caseType(booleanType);
       if (result == null)
-        result = caseTypeElement(booleanType);
+        result = caseModelElement(booleanType);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case TypesPackage.INTEGER_TYPE: {
+      IntegerType integerType = (IntegerType) theEObject;
+      T1 result = caseIntegerType(integerType);
+      if (result == null)
+        result = caseTypeObject(integerType);
+      if (result == null)
+        result = caseType(integerType);
+      if (result == null)
+        result = caseModelElement(integerType);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
     case TypesPackage.STRING_TYPE: {
       StringType stringType = (StringType) theEObject;
-      T result = caseStringType(stringType);
+      T1 result = caseStringType(stringType);
       if (result == null)
-        result = casePrimitiveObjectType(stringType);
+        result = caseTypeObject(stringType);
       if (result == null)
         result = caseType(stringType);
       if (result == null)
-        result = caseTypeElement(stringType);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.CLASS_TYPE: {
-      ClassType classType = (ClassType) theEObject;
-      T result = caseClassType(classType);
-      if (result == null)
-        result = caseType(classType);
-      if (result == null)
-        result = caseTypeElement(classType);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.PATTERN_EXECUTION_REPORTER_TYPE: {
-      PatternExecutionReporterType patternExecutionReporterType = (PatternExecutionReporterType) theEObject;
-      T result = casePatternExecutionReporterType(patternExecutionReporterType);
-      if (result == null)
-        result = caseClassType(patternExecutionReporterType);
-      if (result == null)
-        result = caseType(patternExecutionReporterType);
-      if (result == null)
-        result = caseTypeElement(patternExecutionReporterType);
+        result = caseModelElement(stringType);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
     case TypesPackage.GENERATOR_ADAPTER_FACTORY_TYPE: {
       GeneratorAdapterFactoryType generatorAdapterFactoryType = (GeneratorAdapterFactoryType) theEObject;
-      T result = caseGeneratorAdapterFactoryType(generatorAdapterFactoryType);
+      T1 result = caseGeneratorAdapterFactoryType(generatorAdapterFactoryType);
       if (result == null)
-        result = caseClassType(generatorAdapterFactoryType);
+        result = caseTypeClass(generatorAdapterFactoryType);
       if (result == null)
         result = caseType(generatorAdapterFactoryType);
       if (result == null)
-        result = caseTypeElement(generatorAdapterFactoryType);
+        result = caseModelElement(generatorAdapterFactoryType);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -201,174 +154,138 @@ public class TypesSwitch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Type Element</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Boolean Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Type Element</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Boolean Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypeElement(TypeElement object) {
+  public T1 caseBooleanType(BooleanType object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>String Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Type</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseType(Type object) {
+  public T1 caseStringType(StringType object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Primitive Object Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Integer Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Primitive Object Type</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Integer Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePrimitiveObjectType(PrimitiveObjectType object) {
+  public T1 caseIntegerType(IntegerType object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Boolean Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Generator Adapter Factory Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Boolean Type</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Generator Adapter Factory Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseBooleanType(BooleanType object) {
+  public T1 caseGeneratorAdapterFactoryType(GeneratorAdapterFactoryType object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>String Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>String Type</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseStringType(StringType object) {
+  public T1 caseModelElement(ModelElement object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Class Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Class Type</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseClassType(ClassType object) {
+  public <T extends Object> T1 caseType(Type<T> object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Pattern Execution Reporter Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type Object</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Pattern Execution Reporter Type</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Object</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T casePatternExecutionReporterType(PatternExecutionReporterType object) {
+  public <T extends Object> T1 caseTypeObject(TypeObject<T> object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>Generator Adapter Factory Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type Class</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>Generator Adapter Factory Type</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Class</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseGeneratorAdapterFactoryType(GeneratorAdapterFactoryType object) {
+  public <T extends Object> T1 caseTypeClass(TypeClass<T> object) {
     return null;
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '
-   * <em>EObject</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch, but this is the last
    * case anyway.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '
-   *         <em>EObject</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated
    */
-  public T defaultCase(EObject object) {
+  public T1 defaultCase(EObject object) {
     return null;
   }
 

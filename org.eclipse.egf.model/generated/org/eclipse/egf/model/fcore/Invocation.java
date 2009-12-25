@@ -35,7 +35,7 @@ import org.eclipse.egf.core.production.context.IProductionContext;
 public interface Invocation extends ModelElement {
   /**
    * Returns the value of the '<em><b>Context</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Context#getInvocation <em>Invocation</em>}'.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ContextContainer#getInvocation <em>Invocation</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Context</em>' containment reference isn't clear,
@@ -43,13 +43,13 @@ public interface Invocation extends ModelElement {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Context</em>' containment reference.
-   * @see #setContext(Context)
+   * @see #setContext(ContextContainer)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocation_Context()
-   * @see org.eclipse.egf.model.fcore.Context#getInvocation
+   * @see org.eclipse.egf.model.fcore.ContextContainer#getInvocation
    * @model opposite="invocation" containment="true"
    * @generated
    */
-  Context getContext();
+  ContextContainer getContext();
 
   /**
    * Sets the value of the '{@link org.eclipse.egf.model.fcore.Invocation#getContext <em>Context</em>}' containment reference.
@@ -59,7 +59,7 @@ public interface Invocation extends ModelElement {
    * @see #getContext()
    * @generated
    */
-  void setContext(Context value);
+  void setContext(ContextContainer value);
 
   /**
    * <!-- begin-user-doc -->

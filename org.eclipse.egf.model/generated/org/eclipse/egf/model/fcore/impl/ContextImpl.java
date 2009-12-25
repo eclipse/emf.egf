@@ -12,23 +12,15 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import java.util.Collection;
-
 import org.eclipse.egf.model.fcore.Context;
-import org.eclipse.egf.model.fcore.ContextValue;
-import org.eclipse.egf.model.fcore.ContractConnector;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -37,9 +29,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getInvocation <em>Invocation</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getValues <em>Values</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getConnectors <em>Connectors</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getContract <em>Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContextImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -47,24 +38,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
  */
 public class ContextImpl extends ModelElementImpl implements Context {
   /**
-   * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
+   * The cached value of the '{@link #getContract() <em>Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValues()
+   * @see #getContract()
    * @generated
    * @ordered
    */
-  protected EList<ContextValue> values;
+  protected Contract contract;
 
   /**
-   * The cached value of the '{@link #getConnectors() <em>Connectors</em>}' containment reference list.
+   * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getConnectors()
+   * @see #getType()
    * @generated
    * @ordered
    */
-  protected EList<ContractConnector> connectors;
+  protected Type<?> type;
 
   /**
    * <!-- begin-user-doc -->
@@ -90,10 +81,17 @@ public class ContextImpl extends ModelElementImpl implements Context {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Invocation getInvocation() {
-    if (eContainerFeatureID() != FcorePackage.CONTEXT__INVOCATION)
-      return null;
-    return (Invocation) eContainer();
+  @SuppressWarnings("unchecked")
+  public Contract getContract() {
+    if (contract != null && contract.eIsProxy()) {
+      InternalEObject oldContract = (InternalEObject) contract;
+      contract = (Contract) eResolveProxy(oldContract);
+      if (contract != oldContract) {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, FcorePackage.CONTEXT__CONTRACT, oldContract, contract));
+      }
+    }
+    return contract;
   }
 
   /**
@@ -101,8 +99,46 @@ public class ContextImpl extends ModelElementImpl implements Context {
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetInvocation(Invocation newInvocation, NotificationChain msgs) {
-    msgs = eBasicSetContainer((InternalEObject) newInvocation, FcorePackage.CONTEXT__INVOCATION, msgs);
+  public Contract basicGetContract() {
+    return contract;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContract(Contract newContract) {
+    Contract oldContract = contract;
+    contract = newContract;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTEXT__CONTRACT, oldContract, contract));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Type<?> getType() {
+    return type;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetType(Type<?> newType, NotificationChain msgs) {
+    Type<?> oldType = type;
+    type = newType;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.CONTEXT__TYPE, oldType, newType);
+      if (msgs == null)
+        msgs = notification;
+      else
+        msgs.add(notification);
+    }
     return msgs;
   }
 
@@ -111,63 +147,18 @@ public class ContextImpl extends ModelElementImpl implements Context {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setInvocation(Invocation newInvocation) {
-    if (newInvocation != eInternalContainer() || (eContainerFeatureID() != FcorePackage.CONTEXT__INVOCATION && newInvocation != null)) {
-      if (EcoreUtil.isAncestor(this, newInvocation))
-        throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+  public void setType(Type<?> newType) {
+    if (newType != type) {
       NotificationChain msgs = null;
-      if (eInternalContainer() != null)
-        msgs = eBasicRemoveFromContainer(msgs);
-      if (newInvocation != null)
-        msgs = ((InternalEObject) newInvocation).eInverseAdd(this, FcorePackage.INVOCATION__CONTEXT, Invocation.class, msgs);
-      msgs = basicSetInvocation(newInvocation, msgs);
+      if (type != null)
+        msgs = ((InternalEObject) type).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.CONTEXT__TYPE, null, msgs);
+      if (newType != null)
+        msgs = ((InternalEObject) newType).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - FcorePackage.CONTEXT__TYPE, null, msgs);
+      msgs = basicSetType(newType, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTEXT__INVOCATION, newInvocation, newInvocation));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<ContextValue> getValues() {
-    if (values == null) {
-      values = new EObjectContainmentEList<ContextValue>(ContextValue.class, this, FcorePackage.CONTEXT__VALUES);
-    }
-    return values;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<ContractConnector> getConnectors() {
-    if (connectors == null) {
-      connectors = new EObjectContainmentWithInverseEList<ContractConnector>(ContractConnector.class, this, FcorePackage.CONTEXT__CONNECTORS, FcorePackage.CONTRACT_CONNECTOR__CONTEXT);
-    }
-    return connectors;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case FcorePackage.CONTEXT__INVOCATION:
-      if (eInternalContainer() != null)
-        msgs = eBasicRemoveFromContainer(msgs);
-      return basicSetInvocation((Invocation) otherEnd, msgs);
-    case FcorePackage.CONTEXT__CONNECTORS:
-      return ((InternalEList<InternalEObject>) (InternalEList<?>) getConnectors()).basicAdd(otherEnd, msgs);
-    }
-    return super.eInverseAdd(otherEnd, featureID, msgs);
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTEXT__TYPE, newType, newType));
   }
 
   /**
@@ -178,12 +169,8 @@ public class ContextImpl extends ModelElementImpl implements Context {
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case FcorePackage.CONTEXT__INVOCATION:
-      return basicSetInvocation(null, msgs);
-    case FcorePackage.CONTEXT__VALUES:
-      return ((InternalEList<?>) getValues()).basicRemove(otherEnd, msgs);
-    case FcorePackage.CONTEXT__CONNECTORS:
-      return ((InternalEList<?>) getConnectors()).basicRemove(otherEnd, msgs);
+    case FcorePackage.CONTEXT__TYPE:
+      return basicSetType(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -194,28 +181,14 @@ public class ContextImpl extends ModelElementImpl implements Context {
    * @generated
    */
   @Override
-  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-    switch (eContainerFeatureID()) {
-    case FcorePackage.CONTEXT__INVOCATION:
-      return eInternalContainer().eInverseRemove(this, FcorePackage.INVOCATION__CONTEXT, Invocation.class, msgs);
-    }
-    return super.eBasicRemoveFromContainerFeature(msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case FcorePackage.CONTEXT__INVOCATION:
-      return getInvocation();
-    case FcorePackage.CONTEXT__VALUES:
-      return getValues();
-    case FcorePackage.CONTEXT__CONNECTORS:
-      return getConnectors();
+    case FcorePackage.CONTEXT__CONTRACT:
+      if (resolve)
+        return getContract();
+      return basicGetContract();
+    case FcorePackage.CONTEXT__TYPE:
+      return getType();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -229,16 +202,11 @@ public class ContextImpl extends ModelElementImpl implements Context {
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case FcorePackage.CONTEXT__INVOCATION:
-      setInvocation((Invocation) newValue);
+    case FcorePackage.CONTEXT__CONTRACT:
+      setContract((Contract) newValue);
       return;
-    case FcorePackage.CONTEXT__VALUES:
-      getValues().clear();
-      getValues().addAll((Collection<? extends ContextValue>) newValue);
-      return;
-    case FcorePackage.CONTEXT__CONNECTORS:
-      getConnectors().clear();
-      getConnectors().addAll((Collection<? extends ContractConnector>) newValue);
+    case FcorePackage.CONTEXT__TYPE:
+      setType((Type<?>) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -252,14 +220,11 @@ public class ContextImpl extends ModelElementImpl implements Context {
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case FcorePackage.CONTEXT__INVOCATION:
-      setInvocation((Invocation) null);
+    case FcorePackage.CONTEXT__CONTRACT:
+      setContract((Contract) null);
       return;
-    case FcorePackage.CONTEXT__VALUES:
-      getValues().clear();
-      return;
-    case FcorePackage.CONTEXT__CONNECTORS:
-      getConnectors().clear();
+    case FcorePackage.CONTEXT__TYPE:
+      setType((Type<?>) null);
       return;
     }
     super.eUnset(featureID);
@@ -273,12 +238,10 @@ public class ContextImpl extends ModelElementImpl implements Context {
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case FcorePackage.CONTEXT__INVOCATION:
-      return getInvocation() != null;
-    case FcorePackage.CONTEXT__VALUES:
-      return values != null && !values.isEmpty();
-    case FcorePackage.CONTEXT__CONNECTORS:
-      return connectors != null && !connectors.isEmpty();
+    case FcorePackage.CONTEXT__CONTRACT:
+      return contract != null;
+    case FcorePackage.CONTEXT__TYPE:
+      return type != null;
     }
     return super.eIsSet(featureID);
   }

@@ -32,15 +32,6 @@ public interface FcoreFactory extends EFactory {
   FcoreFactory eINSTANCE = org.eclipse.egf.model.fcore.impl.FcoreFactoryImpl.init();
 
   /**
-   * Returns a new object of class '<em>Task</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Task</em>'.
-   * @generated
-   */
-  Task createTask();
-
-  /**
    * Returns a new object of class '<em>Factory Component</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -57,6 +48,15 @@ public interface FcoreFactory extends EFactory {
    * @generated
    */
   ViewpointContainer createViewpointContainer();
+
+  /**
+   * Returns a new object of class '<em>Context Container</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Context Container</em>'.
+   * @generated
+   */
+  ContextContainer createContextContainer();
 
   /**
    * Returns a new object of class '<em>Context</em>'.
@@ -84,15 +84,6 @@ public interface FcoreFactory extends EFactory {
    * @generated
    */
   Contract createContract();
-
-  /**
-   * Returns a new object of class '<em>Contract Value</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Contract Value</em>'.
-   * @generated
-   */
-  ContractValue createContractValue();
 
   /**
    * Returns a new object of class '<em>Contract Connector</em>'.

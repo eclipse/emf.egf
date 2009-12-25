@@ -23,8 +23,7 @@ import org.eclipse.emf.ecore.EPackage;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.Domain#getEpackage <em>Epackage</em>}
- * </li>
+ * <li>{@link org.eclipse.egf.model.domain.Domain#getEpackage <em>Epackage</em>}</li>
  * </ul>
  * </p>
  * 
@@ -51,9 +50,8 @@ public interface Domain extends ModelElement {
   EPackage getEpackage();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.domain.Domain#getEpackage <em>Epackage</em>}'
-   * reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.domain.Domain#getEpackage
+   * <em>Epackage</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 

@@ -32,31 +32,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.impl.DomainViewpointImpl#getDomains
- * <em>Domains</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.DomainViewpointImpl#getDomains <em>Domains</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoint {
   /**
-   * A set of bit flags representing the values of boolean attributes and
-   * whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getDomains() <em>Domains</em>}'
-   * containment reference list.
+   * The cached value of the '{@link #getDomains() <em>Domains</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getDomains()
    * @generated
    * @ordered
@@ -66,7 +61,6 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected DomainViewpointImpl() {
@@ -76,7 +70,6 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -87,7 +80,6 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<Domain> getDomains() {
@@ -100,7 +92,6 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -115,7 +106,6 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -130,7 +120,6 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -148,7 +137,6 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -164,7 +152,6 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

@@ -12,7 +12,7 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import org.eclipse.egf.model.fcore.Context;
+import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractConnector;
 import org.eclipse.egf.model.fcore.FcorePackage;
@@ -83,10 +83,10 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
    * <!-- end-user-doc -->
    * @generated
    */
-  public Context getContext() {
+  public ContextContainer getContext() {
     if (eContainerFeatureID() != FcorePackage.CONTRACT_CONNECTOR__CONTEXT)
       return null;
-    return (Context) eContainer();
+    return (ContextContainer) eContainer();
   }
 
   /**
@@ -94,7 +94,7 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetContext(Context newContext, NotificationChain msgs) {
+  public NotificationChain basicSetContext(ContextContainer newContext, NotificationChain msgs) {
     msgs = eBasicSetContainer((InternalEObject) newContext, FcorePackage.CONTRACT_CONNECTOR__CONTEXT, msgs);
     return msgs;
   }
@@ -104,7 +104,7 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setContext(Context newContext) {
+  public void setContext(ContextContainer newContext) {
     if (newContext != eInternalContainer() || (eContainerFeatureID() != FcorePackage.CONTRACT_CONNECTOR__CONTEXT && newContext != null)) {
       if (EcoreUtil.isAncestor(this, newContext))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
@@ -112,7 +112,7 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       if (newContext != null)
-        msgs = ((InternalEObject) newContext).eInverseAdd(this, FcorePackage.CONTEXT__CONNECTORS, Context.class, msgs);
+        msgs = ((InternalEObject) newContext).eInverseAdd(this, FcorePackage.CONTEXT_CONTAINER__CONNECTORS, ContextContainer.class, msgs);
       msgs = basicSetContext(newContext, msgs);
       if (msgs != null)
         msgs.dispatch();
@@ -207,7 +207,7 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
     case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
-      return basicSetContext((Context) otherEnd, msgs);
+      return basicSetContext((ContextContainer) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -235,7 +235,7 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
     case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
-      return eInternalContainer().eInverseRemove(this, FcorePackage.CONTEXT__CONNECTORS, Context.class, msgs);
+      return eInternalContainer().eInverseRemove(this, FcorePackage.CONTEXT_CONTAINER__CONNECTORS, ContextContainer.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
   }
@@ -271,7 +271,7 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
     case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
-      setContext((Context) newValue);
+      setContext((ContextContainer) newValue);
       return;
     case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
       setSource((Contract) newValue);
@@ -292,7 +292,7 @@ public class ContractConnectorImpl extends ModelElementImpl implements ContractC
   public void eUnset(int featureID) {
     switch (featureID) {
     case FcorePackage.CONTRACT_CONNECTOR__CONTEXT:
-      setContext((Context) null);
+      setContext((ContextContainer) null);
       return;
     case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
       setSource((Contract) null);

@@ -17,6 +17,7 @@ Export-Package:
  org.eclipse.egf.model.fcore,
  org.eclipse.egf.model.fcore.impl,
  org.eclipse.egf.model.fcore.util,
+ org.eclipse.egf.model.helper, 
  org.eclipse.egf.model.internal.context; x-friends:="org.eclipse.egf.model.productionplan",    
  org.eclipse.egf.model.mapping,
  org.eclipse.egf.model.mapping.impl,

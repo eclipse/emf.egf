@@ -16,7 +16,6 @@ import org.eclipse.egf.common.activator.EGFEclipsePlugin;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.osgi.framework.BundleContext;
 
 /**
  * This is the central singleton for the Fcore edit plugin.
@@ -27,31 +26,38 @@ import org.osgi.framework.BundleContext;
 public final class EGFModelsEditPlugin extends EMFPlugin {
   /**
    * Keep track of the singleton.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public static final EGFModelsEditPlugin INSTANCE = new EGFModelsEditPlugin();
 
   /**
    * Keep track of the singleton.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   private static Implementation plugin;
 
   /**
    * Create the instance.
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * @generated
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
    */
   public EGFModelsEditPlugin() {
+    // TODO: EMF try to generate a delegated resource locator to the current plugin
+    // however that one should be ignore eg: EGFModelsEditPlugin.INSTANCE is null
+    // super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelsEditPlugin.INSTANCE, });
     super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, });
   }
 
   /**
    * Returns the singleton instance of the Eclipse plugin.
-   * <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @return the singleton instance.
    * @generated
    */
@@ -62,8 +68,8 @@ public final class EGFModelsEditPlugin extends EMFPlugin {
 
   /**
    * Returns the singleton instance of the Eclipse plugin.
-   * <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @return the singleton instance.
    * @generated
    */
@@ -73,45 +79,24 @@ public final class EGFModelsEditPlugin extends EMFPlugin {
 
   /**
    * The actual implementation of the Eclipse <b>Plugin</b>.
-   * <!-- begin-user-doc
-   * --> <!-- end-user-doc -->
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public static class Implementation extends EGFEclipsePlugin {
 
     /**
-     * Creates an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @generated NOT
+     * Creates an instance.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
      */
     public Implementation() {
       super();
-    }
 
-    /**
-     * <!-- begin-user-doc -->
-     * 
-     * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
-     *      <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public void start(BundleContext context_p) throws Exception {
-      super.start(context_p);
+      // Remember the static instance.
+      //
       plugin = this;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * 
-     * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
-     *      <!-- end-user-doc -->
-     * @generated NOT
-     */
-    @Override
-    public void stop(BundleContext context_p) throws Exception {
-      plugin = null;
-      super.stop(context_p);
     }
 
   }

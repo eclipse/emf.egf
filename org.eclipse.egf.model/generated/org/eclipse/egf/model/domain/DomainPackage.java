@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.domain.DomainFactory
  * @model kind="package"
  * @generated
@@ -38,7 +37,6 @@ public interface DomainPackage extends EPackage {
    * The package name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNAME = "domain"; //$NON-NLS-1$
@@ -47,7 +45,6 @@ public interface DomainPackage extends EPackage {
    * The package namespace URI.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_URI = "http://www.eclipse.org/egf/1.0.0/domain"; //$NON-NLS-1$
@@ -56,7 +53,6 @@ public interface DomainPackage extends EPackage {
    * The package namespace name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_PREFIX = "domain"; //$NON-NLS-1$
@@ -65,18 +61,14 @@ public interface DomainPackage extends EPackage {
    * The singleton instance of the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   DomainPackage eINSTANCE = org.eclipse.egf.model.domain.impl.DomainPackageImpl.init();
 
   /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.domain.impl.DomainViewpointImpl
-   * <em>Viewpoint</em>}' class.
+   * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.DomainViewpointImpl <em>Viewpoint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.domain.impl.DomainViewpointImpl
    * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainViewpoint()
    * @generated
@@ -87,7 +79,6 @@ public interface DomainPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -97,7 +88,6 @@ public interface DomainPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -107,29 +97,24 @@ public interface DomainPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int DOMAIN_VIEWPOINT__DESCRIPTION = FcorePackage.VIEWPOINT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Viewerpoint Container</b></em>' container
-   * reference.
+   * The feature id for the '<em><b>Viewerpoint Container</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int DOMAIN_VIEWPOINT__VIEWERPOINT_CONTAINER = FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Domains</b></em>' containment reference
-   * list.
+   * The feature id for the '<em><b>Domains</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -139,19 +124,15 @@ public interface DomainPackage extends EPackage {
    * The number of structural features of the '<em>Viewpoint</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int DOMAIN_VIEWPOINT_FEATURE_COUNT = FcorePackage.VIEWPOINT_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.domain.impl.DomainImpl <em>Domain</em>}'
-   * class.
+   * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.DomainImpl <em>Domain</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.domain.impl.DomainImpl
    * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomain()
    * @generated
@@ -162,7 +143,6 @@ public interface DomainPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -172,7 +152,6 @@ public interface DomainPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -182,7 +161,6 @@ public interface DomainPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -192,7 +170,6 @@ public interface DomainPackage extends EPackage {
    * The feature id for the '<em><b>Epackage</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -202,81 +179,70 @@ public interface DomainPackage extends EPackage {
    * The number of structural features of the '<em>Domain</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int DOMAIN_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.domain.impl.DomainValueImpl <em>Value</em>}'
-   * class.
+   * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.DomainTypeImpl <em>Type</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @see org.eclipse.egf.model.domain.impl.DomainValueImpl
-   * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainValue()
+   * @see org.eclipse.egf.model.domain.impl.DomainTypeImpl
+   * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainType()
    * @generated
    */
-  int DOMAIN_VALUE = 2;
+  int DOMAIN_TYPE = 2;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int DOMAIN_VALUE__ID = FcorePackage.CONTEXT_VALUE__ID;
+  int DOMAIN_TYPE__ID = FcorePackage.TYPE__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int DOMAIN_VALUE__NAME = FcorePackage.CONTEXT_VALUE__NAME;
+  int DOMAIN_TYPE__NAME = FcorePackage.TYPE__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int DOMAIN_VALUE__DESCRIPTION = FcorePackage.CONTEXT_VALUE__DESCRIPTION;
+  int DOMAIN_TYPE__DESCRIPTION = FcorePackage.TYPE__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int DOMAIN_VALUE__DOMAIN = FcorePackage.CONTEXT_VALUE_FEATURE_COUNT + 0;
+  int DOMAIN_TYPE__DOMAIN = FcorePackage.TYPE_FEATURE_COUNT + 0;
 
   /**
-   * The number of structural features of the '<em>Value</em>' class.
+   * The number of structural features of the '<em>Type</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
-  int DOMAIN_VALUE_FEATURE_COUNT = FcorePackage.CONTEXT_VALUE_FEATURE_COUNT + 1;
+  int DOMAIN_TYPE_FEATURE_COUNT = FcorePackage.TYPE_FEATURE_COUNT + 1;
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.domain.DomainViewpoint <em>Viewpoint</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.domain.DomainViewpoint <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Viewpoint</em>'.
    * @see org.eclipse.egf.model.domain.DomainViewpoint
    * @generated
@@ -284,14 +250,10 @@ public interface DomainPackage extends EPackage {
   EClass getDomainViewpoint();
 
   /**
-   * Returns the meta object for the containment reference list '
-   * {@link org.eclipse.egf.model.domain.DomainViewpoint#getDomains
-   * <em>Domains</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.domain.DomainViewpoint#getDomains <em>Domains</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @return the meta object for the containment reference list '
-   *         <em>Domains</em>'.
+   * @return the meta object for the containment reference list '<em>Domains</em>'.
    * @see org.eclipse.egf.model.domain.DomainViewpoint#getDomains()
    * @see #getDomainViewpoint()
    * @generated
@@ -299,11 +261,9 @@ public interface DomainPackage extends EPackage {
   EReference getDomainViewpoint_Domains();
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.domain.Domain <em>Domain</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.domain.Domain <em>Domain</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Domain</em>'.
    * @see org.eclipse.egf.model.domain.Domain
    * @generated
@@ -311,11 +271,9 @@ public interface DomainPackage extends EPackage {
   EClass getDomain();
 
   /**
-   * Returns the meta object for the reference '
-   * {@link org.eclipse.egf.model.domain.Domain#getEpackage <em>Epackage</em>}'.
+   * Returns the meta object for the reference '{@link org.eclipse.egf.model.domain.Domain#getEpackage <em>Epackage</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Epackage</em>'.
    * @see org.eclipse.egf.model.domain.Domain#getEpackage()
    * @see #getDomain()
@@ -324,36 +282,30 @@ public interface DomainPackage extends EPackage {
   EReference getDomain_Epackage();
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.domain.DomainValue <em>Value</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.domain.DomainType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @return the meta object for class '<em>Value</em>'.
-   * @see org.eclipse.egf.model.domain.DomainValue
+   * @return the meta object for class '<em>Type</em>'.
+   * @see org.eclipse.egf.model.domain.DomainType
    * @generated
    */
-  EClass getDomainValue();
+  EClass getDomainType();
 
   /**
-   * Returns the meta object for the reference '
-   * {@link org.eclipse.egf.model.domain.DomainValue#getDomain <em>Domain</em>}
-   * '.
+   * Returns the meta object for the reference '{@link org.eclipse.egf.model.domain.DomainType#getDomain <em>Domain</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Domain</em>'.
-   * @see org.eclipse.egf.model.domain.DomainValue#getDomain()
-   * @see #getDomainValue()
+   * @see org.eclipse.egf.model.domain.DomainType#getDomain()
+   * @see #getDomainType()
    * @generated
    */
-  EReference getDomainValue_Domain();
+  EReference getDomainType_Domain();
 
   /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the factory that creates the instances of the model.
    * @generated
    */
@@ -369,17 +321,13 @@ public interface DomainPackage extends EPackage {
    * <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   interface Literals {
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.domain.impl.DomainViewpointImpl
-     * <em>Viewpoint</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainViewpointImpl <em>Viewpoint</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.domain.impl.DomainViewpointImpl
      * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainViewpoint()
      * @generated
@@ -387,22 +335,17 @@ public interface DomainPackage extends EPackage {
     EClass DOMAIN_VIEWPOINT = eINSTANCE.getDomainViewpoint();
 
     /**
-     * The meta object literal for the '<em><b>Domains</b></em>' containment
-     * reference list feature.
+     * The meta object literal for the '<em><b>Domains</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     EReference DOMAIN_VIEWPOINT__DOMAINS = eINSTANCE.getDomainViewpoint_Domains();
 
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.domain.impl.DomainImpl <em>Domain</em>}'
-     * class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainImpl <em>Domain</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.domain.impl.DomainImpl
      * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomain()
      * @generated
@@ -410,37 +353,30 @@ public interface DomainPackage extends EPackage {
     EClass DOMAIN = eINSTANCE.getDomain();
 
     /**
-     * The meta object literal for the '<em><b>Epackage</b></em>' reference
-     * feature.
+     * The meta object literal for the '<em><b>Epackage</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     EReference DOMAIN__EPACKAGE = eINSTANCE.getDomain_Epackage();
 
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.domain.impl.DomainValueImpl <em>Value</em>}'
-     * class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.domain.impl.DomainTypeImpl <em>Type</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.egf.model.domain.impl.DomainValueImpl
-     * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainValue()
+     * @see org.eclipse.egf.model.domain.impl.DomainTypeImpl
+     * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainType()
      * @generated
      */
-    EClass DOMAIN_VALUE = eINSTANCE.getDomainValue();
+    EClass DOMAIN_TYPE = eINSTANCE.getDomainType();
 
     /**
-     * The meta object literal for the '<em><b>Domain</b></em>' reference
-     * feature.
+     * The meta object literal for the '<em><b>Domain</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
-    EReference DOMAIN_VALUE__DOMAIN = eINSTANCE.getDomainValue_Domain();
+    EReference DOMAIN_TYPE__DOMAIN = eINSTANCE.getDomainType_Domain();
 
   }
 

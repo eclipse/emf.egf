@@ -33,7 +33,7 @@ package org.eclipse.egf.model.fcore;
 public interface ContractConnector extends ModelElement {
   /**
    * Returns the value of the '<em><b>Context</b></em>' container reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Context#getConnectors <em>Connectors</em>}'.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ContextContainer#getConnectors <em>Connectors</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Context</em>' container reference isn't clear,
@@ -41,13 +41,13 @@ public interface ContractConnector extends ModelElement {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Context</em>' container reference.
-   * @see #setContext(Context)
+   * @see #setContext(ContextContainer)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getContractConnector_Context()
-   * @see org.eclipse.egf.model.fcore.Context#getConnectors
+   * @see org.eclipse.egf.model.fcore.ContextContainer#getConnectors
    * @model opposite="connectors" resolveProxies="false" transient="false"
    * @generated
    */
-  Context getContext();
+  ContextContainer getContext();
 
   /**
    * Sets the value of the '{@link org.eclipse.egf.model.fcore.ContractConnector#getContext <em>Context</em>}' container reference.
@@ -57,7 +57,7 @@ public interface ContractConnector extends ModelElement {
    * @see #getContext()
    * @generated
    */
-  void setContext(Context value);
+  void setContext(ContextContainer value);
 
   /**
    * Returns the value of the '<em><b>Source</b></em>' reference.

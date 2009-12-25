@@ -12,25 +12,37 @@
  */
 package org.eclipse.egf.model.types.impl;
 
+import org.eclipse.egf.model.fcore.impl.TypeClassImpl;
+
 import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
 import org.eclipse.egf.model.types.TypesPackage;
+
+import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '
- * <em><b>Generator Adapter Factory Type</b></em>'.
+ * An implementation of the model object '<em><b>Generator Adapter Factory Type</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class GeneratorAdapterFactoryTypeImpl extends ClassTypeImpl implements GeneratorAdapterFactoryType {
+public class GeneratorAdapterFactoryTypeImpl extends TypeClassImpl<GeneratorAdapterFactory> implements GeneratorAdapterFactoryType {
+  /**
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  protected int eFlags = 0;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected GeneratorAdapterFactoryTypeImpl() {
@@ -40,7 +52,6 @@ public class GeneratorAdapterFactoryTypeImpl extends ClassTypeImpl implements Ge
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -48,4 +59,13 @@ public class GeneratorAdapterFactoryTypeImpl extends ClassTypeImpl implements Ge
     return TypesPackage.Literals.GENERATOR_ADAPTER_FACTORY_TYPE;
   }
 
-} // GeneratorAdapterFactoryTypeImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Class<GeneratorAdapterFactory> getType() {
+    return org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.class;
+  }
+
+} //GeneratorAdapterFactoryTypeImpl

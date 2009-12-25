@@ -81,9 +81,9 @@ public interface ViewpointContainer extends ModelElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model vpClassDataType="org.eclipse.egf.model.fcore.Clazz"
+   * @model
    * @generated
    */
-  Viewpoint getViewpoint(Class vpClass);
+  Viewpoint getViewpoint(Class<?> clazz);
 
 } // ViewpointContainer

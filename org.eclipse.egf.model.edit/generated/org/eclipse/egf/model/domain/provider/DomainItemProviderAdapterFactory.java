@@ -20,6 +20,9 @@ import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.util.DomainAdapterFactory;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
 import org.eclipse.egf.model.fcore.Context;
+import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.ContextContainer;
+import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.fcore.util.FcoreSwitch;
@@ -148,26 +151,26 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainValue} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainType} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainValueItemProvider domainValueItemProvider;
+  protected DomainTypeItemProvider domainTypeItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainValue}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createDomainValueAdapter() {
-    if (domainValueItemProvider == null) {
-      domainValueItemProvider = new DomainValueItemProvider(this);
+  public Adapter createDomainTypeAdapter() {
+    if (domainTypeItemProvider == null) {
+      domainTypeItemProvider = new DomainTypeItemProvider(this);
     }
 
-    return domainValueItemProvider;
+    return domainTypeItemProvider;
   }
 
   /**
@@ -273,8 +276,8 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
       domainViewpointItemProvider.dispose();
     if (domainItemProvider != null)
       domainItemProvider.dispose();
-    if (domainValueItemProvider != null)
-      domainValueItemProvider.dispose();
+    if (domainTypeItemProvider != null)
+      domainTypeItemProvider.dispose();
   }
 
   /**
@@ -336,8 +339,20 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        * @generated
        */
       @Override
+      public Object caseContract(Contract object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createDomainType()));
+
+        return null;
+      }
+
+      /**
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @generated
+       */
+      @Override
       public Object caseContext(Context object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__VALUES, DomainFactory.eINSTANCE.createDomainValue()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, DomainFactory.eINSTANCE.createDomainType()));
 
         return null;
       }

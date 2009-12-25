@@ -12,18 +12,18 @@
  */
 package org.eclipse.egf.model.types.util;
 
-import org.eclipse.egf.model.types.BooleanType;
-import org.eclipse.egf.model.types.ClassType;
-import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
-import org.eclipse.egf.model.types.PatternExecutionReporterType;
-import org.eclipse.egf.model.types.PrimitiveObjectType;
+import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.egf.model.fcore.TypeClass;
+import org.eclipse.egf.model.fcore.TypeObject;
+import org.eclipse.egf.model.types.*;
+import org.eclipse.egf.model.types.IntegerType;
 import org.eclipse.egf.model.types.StringType;
-import org.eclipse.egf.model.types.Type;
-import org.eclipse.egf.model.types.TypeElement;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -32,7 +32,6 @@ import org.eclipse.emf.ecore.EObject;
  * It provides an adapter <code>createXXX</code> method for each class of the
  * model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.types.TypesPackage
  * @generated
  */
@@ -41,7 +40,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
    * The cached model package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static TypesPackage modelPackage;
@@ -50,7 +48,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
    * Creates an instance of the adapter factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypesAdapterFactory() {
@@ -65,7 +62,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
    * This implementation returns <code>true</code> if the object is either the
    * model's package or is an instance object of the model.
    * <!-- end-user-doc -->
-   * 
    * @return whether this factory is applicable for the type of the object.
    * @generated
    */
@@ -84,28 +80,17 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
    * The switch that delegates to the <code>createXXX</code> methods.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypesSwitch<Adapter> modelSwitch = new TypesSwitch<Adapter>() {
     @Override
-    public Adapter caseTypeElement(TypeElement object) {
-      return createTypeElementAdapter();
-    }
-
-    @Override
-    public Adapter caseType(Type object) {
-      return createTypeAdapter();
-    }
-
-    @Override
-    public Adapter casePrimitiveObjectType(PrimitiveObjectType object) {
-      return createPrimitiveObjectTypeAdapter();
-    }
-
-    @Override
     public Adapter caseBooleanType(BooleanType object) {
       return createBooleanTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseIntegerType(IntegerType object) {
+      return createIntegerTypeAdapter();
     }
 
     @Override
@@ -114,18 +99,28 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseClassType(ClassType object) {
-      return createClassTypeAdapter();
-    }
-
-    @Override
-    public Adapter casePatternExecutionReporterType(PatternExecutionReporterType object) {
-      return createPatternExecutionReporterTypeAdapter();
-    }
-
-    @Override
     public Adapter caseGeneratorAdapterFactoryType(GeneratorAdapterFactoryType object) {
       return createGeneratorAdapterFactoryTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseModelElement(ModelElement object) {
+      return createModelElementAdapter();
+    }
+
+    @Override
+    public <T extends Object> Adapter caseType(Type<T> object) {
+      return createTypeAdapter();
+    }
+
+    @Override
+    public <T extends Object> Adapter caseTypeObject(TypeObject<T> object) {
+      return createTypeObjectAdapter();
+    }
+
+    @Override
+    public <T extends Object> Adapter caseTypeClass(TypeClass<T> object) {
+      return createTypeClassAdapter();
     }
 
     @Override
@@ -138,9 +133,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
    * Creates an adapter for the <code>target</code>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param target
-   *          the object to adapt.
+   * @param target the object to adapt.
    * @return the adapter for the <code>target</code>.
    * @generated
    */
@@ -150,70 +143,11 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.TypeElement <em>Type Element</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.BooleanType <em>Boolean Type</em>}'.
    * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * 
-   * @return the new adapter.
-   * @see org.eclipse.egf.model.types.TypeElement
-   * @generated
-   */
-  public Adapter createTypeElementAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.Type <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
-   * <!-- end-user-doc -->
-   * 
-   * @return the new adapter.
-   * @see org.eclipse.egf.model.types.Type
-   * @generated
-   */
-  public Adapter createTypeAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.PrimitiveObjectType
-   * <em>Primitive Object Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
-   * <!-- end-user-doc -->
-   * 
-   * @return the new adapter.
-   * @see org.eclipse.egf.model.types.PrimitiveObjectType
-   * @generated
-   */
-  public Adapter createPrimitiveObjectTypeAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.BooleanType <em>Boolean Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
-   * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.types.BooleanType
    * @generated
@@ -223,15 +157,11 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.StringType <em>String Type</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.StringType <em>String Type</em>}'.
    * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.types.StringType
    * @generated
@@ -241,53 +171,25 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.ClassType <em>Class Type</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.IntegerType <em>Integer Type</em>}'.
    * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
-   * @see org.eclipse.egf.model.types.ClassType
+   * @see org.eclipse.egf.model.types.IntegerType
    * @generated
    */
-  public Adapter createClassTypeAdapter() {
+  public Adapter createIntegerTypeAdapter() {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.PatternExecutionReporterType
-   * <em>Pattern Execution Reporter Type</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.GeneratorAdapterFactoryType <em>Generator Adapter Factory Type</em>}'.
    * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * 
-   * @return the new adapter.
-   * @see org.eclipse.egf.model.types.PatternExecutionReporterType
-   * @generated
-   */
-  public Adapter createPatternExecutionReporterTypeAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.GeneratorAdapterFactoryType
-   * <em>Generator Adapter Factory Type</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
-   * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.types.GeneratorAdapterFactoryType
    * @generated
@@ -297,11 +199,66 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.ModelElement
+   * @generated
+   */
+  public Adapter createModelElementAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Type <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.Type
+   * @generated
+   */
+  public Adapter createTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.TypeObject <em>Type Object</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.TypeObject
+   * @generated
+   */
+  public Adapter createTypeObjectAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.TypeClass <em>Type Class</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.TypeClass
+   * @generated
+   */
+  public Adapter createTypeClassAdapter() {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for the default case.
    * <!-- begin-user-doc -->
    * This default implementation returns null.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @generated
    */
