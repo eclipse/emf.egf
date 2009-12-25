@@ -28,6 +28,7 @@ import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternLibrary;
@@ -119,11 +120,26 @@ public class PatternHelper {
         return result;
     }
 
+    /**
+     * Reads all FC models and return the patterns.
+     */
+    public static Set<Pattern> getAllPatterns() {
+        ResourceSet set = new ResourceSetImpl();
+        Set<Pattern> result = new HashSet<Pattern>();
+        IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
+        for (IPlatformFcore platformFcore : platformFcores) {
+            collectPatterns(set, platformFcore.getURI(), null, result);
+        }
+        return result;
+    }
+
     private static void collectPatterns(ResourceSet set, URI uri, Set<String> ids, Set<Pattern> collector) {
         Resource res = ResourceHelper.loadResource(set, uri);
         FCVisitor fcVisitor = new FCVisitor();
-        for (EObject obj : res.getContents())
-            fcVisitor.collect((FactoryComponent) obj, ids, collector);
+        for (EObject obj : res.getContents()) {
+            if (obj instanceof FactoryComponent)
+                fcVisitor.collect((FactoryComponent) obj, ids, collector);
+        }
     }
 
     public static String dropNonWordCharacter(String value) {
@@ -150,7 +166,12 @@ public class PatternHelper {
      */
     private static class FCVisitor {
         public void collect(FactoryComponent fc, final Set<String> ids, final Set<Pattern> collector) {
-            PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
+            ViewpointContainer viewpointContainer = fc.getViewpointContainer();
+            if (viewpointContainer == null || viewpointContainer.getViewpoints().isEmpty())
+                return;
+            PatternViewpoint pvp = (PatternViewpoint) viewpointContainer.getViewpoint(PatternViewpoint.class);
+            if (pvp == null)
+                return;
             new PatternSwitch<String>() {
 
                 @Override
