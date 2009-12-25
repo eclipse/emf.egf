@@ -27,14 +27,14 @@ import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
-import org.eclipse.egf.model.jetpattern.impl.JetEngineImpl;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
-import org.eclipse.egf.pattern.execution.AssemblyHelper;
+import org.eclipse.egf.pattern.engine.AssemblyHelper;
+import org.eclipse.egf.pattern.engine.PatternEngine;
+import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.engine.WorkspaceAndPluginClassLoader;
 import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
-import org.eclipse.egf.pattern.execution.WorkspaceAndPluginClassLoader;
 import org.eclipse.emf.codegen.jet.JETCompiler;
 
 /**
@@ -42,14 +42,15 @@ import org.eclipse.emf.codegen.jet.JETCompiler;
  * 
  *         Temp class ...
  */
-public class JetRunner_to_be_moved_to_model1 extends JetEngineImpl {
+public class JetRunner_to_be_moved_to_model1 extends PatternEngine {
 
     public JetRunner_to_be_moved_to_model1(Pattern pattern) {
         setPattern(pattern);
     }
 
     public void execute(PatternContext context) throws PatternException {
-        if (getPattern() == null)
+        Pattern pattern = getPattern();
+        if (pattern == null)
             throw new IllegalStateException();
         String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
         if (templateClassName == null)
@@ -71,7 +72,8 @@ public class JetRunner_to_be_moved_to_model1 extends JetEngineImpl {
     }
 
     public void translate() throws PatternException {
-        if (getPattern() == null)
+        Pattern pattern = getPattern();
+        if (pattern == null)
             throw new IllegalStateException();
 
         // **************************************************************************
@@ -116,6 +118,7 @@ public class JetRunner_to_be_moved_to_model1 extends JetEngineImpl {
         // add start of class code
         builder.append(content.substring(0, startIndex));
 
+        Pattern pattern = getPattern();
         // add new method call
         builder.append("generate(stringBuffer, ctx");
         if (!getPattern().getAllParameters().isEmpty()) {

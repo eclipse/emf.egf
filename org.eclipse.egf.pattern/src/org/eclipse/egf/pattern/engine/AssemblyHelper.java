@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.execution;
+package org.eclipse.egf.pattern.engine;
 
 import java.io.IOException;
 
@@ -29,7 +29,7 @@ import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;

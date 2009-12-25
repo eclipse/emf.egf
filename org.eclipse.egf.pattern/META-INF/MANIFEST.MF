@@ -19,10 +19,10 @@ Export-Package:
  org.eclipse.egf.pattern,
  org.eclipse.egf.pattern.collector,
  org.eclipse.egf.pattern.ecore,
+ org.eclipse.egf.pattern.engine,
  org.eclipse.egf.pattern.execution,
  org.eclipse.egf.pattern.extension,
  org.eclipse.egf.pattern.query,
  org.eclipse.egf.pattern.strategy,
- org.eclipse.egf.pattern.templates,
- org.eclipse.egf.pattern.translation
+ org.eclipse.egf.pattern.templates
 Bundle-Vendor: %providerName

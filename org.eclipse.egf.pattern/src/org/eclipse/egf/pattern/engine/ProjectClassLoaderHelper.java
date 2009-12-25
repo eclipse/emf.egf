@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.execution;
+package org.eclipse.egf.pattern.engine;
 
 import java.net.MalformedURLException;
 import java.net.URL;

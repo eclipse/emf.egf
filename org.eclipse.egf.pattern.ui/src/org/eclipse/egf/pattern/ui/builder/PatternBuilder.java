@@ -32,9 +32,9 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternConstants;
-import org.eclipse.egf.pattern.PatternHelper;
-import org.eclipse.egf.pattern.PatternHelper.FilenameFormatException;
-import org.eclipse.egf.pattern.translation.TranslationHelper;
+import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.engine.TranslationHelper;
+import org.eclipse.egf.pattern.engine.PatternHelper.FilenameFormatException;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 

@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern;
+package org.eclipse.egf.pattern.engine;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -29,6 +29,9 @@ import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.pattern.PatternConstants;
+import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;

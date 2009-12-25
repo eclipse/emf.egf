@@ -25,9 +25,9 @@ import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.Query;
-import org.eclipse.egf.pattern.ParameterMatcher;
-import org.eclipse.egf.pattern.PatternHelper;
-import org.eclipse.egf.pattern.execution.AssemblyHelper;
+import org.eclipse.egf.pattern.engine.AssemblyHelper;
+import org.eclipse.egf.pattern.engine.ParameterMatcher;
+import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.query.ParameterTypeHelper;
 import org.eclipse.egf.pattern.query.QueryManager;
 

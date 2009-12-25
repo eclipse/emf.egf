@@ -19,10 +19,10 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternEngine;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.PatternHelper;
+import org.eclipse.egf.pattern.engine.PatternEngine;
+import org.eclipse.egf.pattern.engine.PatternHelper;
 
 /**
  * @author Guiu

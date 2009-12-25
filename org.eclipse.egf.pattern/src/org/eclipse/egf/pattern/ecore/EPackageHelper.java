@@ -22,7 +22,7 @@ import java.util.Map;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.execution.ProjectClassLoaderHelper;
+import org.eclipse.egf.pattern.engine.ProjectClassLoaderHelper;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.GenPackage;
 import org.eclipse.emf.common.util.URI;

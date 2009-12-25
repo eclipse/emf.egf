@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.translation;
+package org.eclipse.egf.pattern.engine;
 
 import java.util.ArrayList;
 import java.util.List;

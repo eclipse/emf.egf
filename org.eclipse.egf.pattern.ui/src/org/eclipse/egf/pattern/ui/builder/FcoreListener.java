@@ -30,7 +30,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternConstants;
 import org.eclipse.egf.pattern.collector.PatternCollector;
-import org.eclipse.egf.pattern.translation.TranslationHelper;
+import org.eclipse.egf.pattern.engine.TranslationHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;

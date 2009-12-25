@@ -25,21 +25,21 @@ import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
-import org.eclipse.egf.model.javapattern.impl.JavaEngineImpl;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.PatternPreferences;
-import org.eclipse.egf.pattern.execution.AssemblyHelper;
+import org.eclipse.egf.pattern.engine.AssemblyHelper;
+import org.eclipse.egf.pattern.engine.PatternEngine;
+import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.engine.WorkspaceAndPluginClassLoader;
 import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
-import org.eclipse.egf.pattern.execution.WorkspaceAndPluginClassLoader;
 
 /**
  * @author Guiu
  * 
  *         Temp class ...
  */
-public class JavaRunner_to_be_moved_to_model1 extends JavaEngineImpl {
+public class JavaRunner_to_be_moved_to_model1 extends PatternEngine {
 
     public JavaRunner_to_be_moved_to_model1(Pattern pattern) {
         setPattern(pattern);
@@ -48,7 +48,7 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaEngineImpl {
     public void execute(PatternContext context) throws PatternException {
         if (getPattern() == null)
             throw new IllegalStateException();
-        String templateClassName = JavaNatureHelper.getClassName(pattern);
+        String templateClassName = JavaNatureHelper.getClassName(getPattern());
         if (templateClassName == null)
             throw new IllegalStateException(Messages.assembly_error3);
         try {
@@ -65,18 +65,19 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaEngineImpl {
     }
 
     public void translate() throws PatternException {
-        if (getPattern() == null)
+        Pattern pattern = getPattern();
+        if (pattern == null)
             throw new IllegalStateException();
 
         // **************************************************************************
         // 1 - put together all pt files
-        AssemblyHelper helper = new JavaAssemblyHelper(getPattern());
+        AssemblyHelper helper = new JavaAssemblyHelper(pattern);
         String templatecontent = helper.visit();
 
         // 2 - put the result in the right file
         try {
 
-            IPlatformFcore platformFactoryComponent = PatternHelper.getPlatformFcore(getPattern());
+            IPlatformFcore platformFactoryComponent = PatternHelper.getPlatformFcore(pattern);
             if (platformFactoryComponent == null)
                 throw new PatternException(Messages.bind(Messages.assembly_error4, pattern.getName(), pattern.getID()));
             IProject project = platformFactoryComponent.getPlatformBundle().getProject();
@@ -104,6 +105,7 @@ public class JavaRunner_to_be_moved_to_model1 extends JavaEngineImpl {
         // add start of class code
         builder.append(content.substring(0, startIndex));
 
+        Pattern pattern = getPattern();
         // add new method call
         builder.append("generate(tmpCollector, (PatternContext)argument");
         if (!getPattern().getAllParameters().isEmpty()) {
