@@ -4,9 +4,9 @@
 
 
   <extension
-    point="org.eclipse.egf.core.task"
+    point="org.eclipse.egf.core.invocation"
   >
-    <task
+    <invocation
       id="org.eclipse.egf.example.task.h1.H1.id"    
       class="org.eclipse.egf.example.task.h1.H1"
     />                       

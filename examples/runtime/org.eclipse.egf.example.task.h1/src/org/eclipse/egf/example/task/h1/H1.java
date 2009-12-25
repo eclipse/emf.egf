@@ -3,11 +3,11 @@ package org.eclipse.egf.example.task.h1;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.core.production.invocation.IProduction;
 import org.eclipse.egf.model.productionplan.Task;
+import org.eclipse.egf.productionplan.invocation.IProductionTask;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 
-public class H1 implements IProduction<Task> {
+public class H1 implements IProductionTask {
 
   private Integer quantity;
 
