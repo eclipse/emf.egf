@@ -18,7 +18,7 @@ import java.util.List;
 
 import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
@@ -651,32 +651,32 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
        * @generated
        */
       @Override
-      public Object caseContract(Contract object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createBigDecimalType()));
+      public Object caseActivityContract(ActivityContract object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createBigDecimalType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createBigIntegerType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createBigIntegerType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createBooleanType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createBooleanType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createByteType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createByteType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createCharacterType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createCharacterType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createDateType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createDateType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createDoubleType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createDoubleType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createFloatType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createFloatType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createIntegerType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createIntegerType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createLongType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createLongType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createShortType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createShortType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createStringType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createStringType()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, TypesFactory.eINSTANCE.createGeneratorAdapterFactoryType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createGeneratorAdapterFactoryType()));
 
         return null;
       }

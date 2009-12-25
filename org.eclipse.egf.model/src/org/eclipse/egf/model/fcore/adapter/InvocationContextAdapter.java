@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.model.fcore.adapter;
 
-import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.emf.common.notify.Notification;
@@ -27,9 +27,9 @@ public class InvocationContextAdapter extends AdapterImpl {
 
   private InvocationContext _invocationContext;
 
-  private Contract _contract;
+  private ActivityContract _contract;
 
-  private EStructuralFeature _contractModeFeature = FcorePackage.Literals.CONTRACT__MODE;
+  private EStructuralFeature _contractModeFeature = FcorePackage.Literals.ACTIVITY_CONTRACT__MODE;
 
   private EStructuralFeature _invocationContextModeFeature = FcorePackage.Literals.INVOCATION_CONTEXT__MODE;
 
@@ -58,8 +58,8 @@ public class InvocationContextAdapter extends AdapterImpl {
     if (notification.getFeature() == null || notification.getFeature().equals(_activityContractFeature)) {
       switch (notification.getEventType()) {
       case Notification.RESOLVE:
-        Contract newValue = (Contract) notification.getNewValue();
-        Contract oldValue = (Contract) notification.getOldValue();
+        ActivityContract newValue = (ActivityContract) notification.getNewValue();
+        ActivityContract oldValue = (ActivityContract) notification.getOldValue();
         if (oldValue != null) {
           oldValue.eAdapters().remove(_contractAdapter);
         }

@@ -66,7 +66,8 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.InvocationContextContainer#getInvocation <em>Invocation</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Invocation Context Container</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Invocation Context Container</em>' containment reference isn't
+   * clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
@@ -125,7 +126,7 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @model kind="operation"
    * @generated
    */
-  EList<Contract> getInvocationContracts();
+  <Q extends ActivityContract> EList<Q> getInvocationActivityContracts();
 
   /**
    * <!-- begin-user-doc -->
@@ -133,7 +134,7 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @model
    * @generated
    */
-  EList<Contract> getInvocationContracts(Type<?> type);
+  <Q extends ActivityContract> EList<Q> getInvocationActivityContracts(Type<?> type);
 
   /**
    * <!-- begin-user-doc -->
@@ -141,7 +142,7 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @model
    * @generated
    */
-  EList<Contract> getInvocationContracts(ContractMode mode);
+  <Q extends ActivityContract> EList<Q> getInvocationActivityContracts(ContractMode mode);
 
   /**
    * <!-- begin-user-doc -->
@@ -149,7 +150,7 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @model
    * @generated
    */
-  EList<Contract> getInvocationContracts(Type<?> type, ContractMode mode);
+  <Q extends ActivityContract> EList<Q> getInvocationActivityContracts(Type<?> type, ContractMode mode);
 
   /**
    * <!-- begin-user-doc -->

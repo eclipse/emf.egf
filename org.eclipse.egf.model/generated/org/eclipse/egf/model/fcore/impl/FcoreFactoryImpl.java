@@ -13,10 +13,10 @@
 package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.egf.model.fcore.*;
-import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.FactoryComponentContract;
+import org.eclipse.egf.model.fcore.FactoryComponentContractContainer;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
@@ -78,10 +78,10 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     switch (eClass.getClassifierID()) {
     case FcorePackage.FACTORY_COMPONENT:
       return createFactoryComponent();
-    case FcorePackage.CONTRACT:
-      return createContract();
-    case FcorePackage.CONTRACT_CONTAINER:
-      return createContractContainer();
+    case FcorePackage.FACTORY_COMPONENT_CONTRACT:
+      return createFactoryComponentContract();
+    case FcorePackage.FACTORY_COMPONENT_CONTRACT_CONTAINER:
+      return createFactoryComponentContractContainer();
     case FcorePackage.VIEWPOINT_CONTAINER:
       return createViewpointContainer();
     case FcorePackage.ORCHESTRATION_CONTEXT:
@@ -148,6 +148,26 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
    * <!-- end-user-doc -->
    * @generated
    */
+  public FactoryComponentContract createFactoryComponentContract() {
+    FactoryComponentContractImpl factoryComponentContract = new FactoryComponentContractImpl();
+    return factoryComponentContract;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FactoryComponentContractContainer createFactoryComponentContractContainer() {
+    FactoryComponentContractContainerImpl factoryComponentContractContainer = new FactoryComponentContractContainerImpl();
+    return factoryComponentContractContainer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public ViewpointContainer createViewpointContainer() {
     ViewpointContainerImpl viewpointContainer = new ViewpointContainerImpl();
     return viewpointContainer;
@@ -201,26 +221,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   public InvocationContextContainer createInvocationContextContainer() {
     InvocationContextContainerImpl invocationContextContainer = new InvocationContextContainerImpl();
     return invocationContextContainer;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ContractContainer createContractContainer() {
-    ContractContainerImpl contractContainer = new ContractContainerImpl();
-    return contractContainer;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Contract createContract() {
-    ContractImpl contract = new ContractImpl();
-    return contract;
   }
 
   /**

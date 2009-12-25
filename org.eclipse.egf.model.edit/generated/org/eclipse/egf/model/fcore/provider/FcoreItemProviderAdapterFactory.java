@@ -134,6 +134,52 @@ public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory impleme
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.FactoryComponentContract} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected FactoryComponentContractItemProvider factoryComponentContractItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponentContract}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createFactoryComponentContractAdapter() {
+    if (factoryComponentContractItemProvider == null) {
+      factoryComponentContractItemProvider = new FactoryComponentContractItemProvider(this);
+    }
+
+    return factoryComponentContractItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.FactoryComponentContractContainer} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected FactoryComponentContractContainerItemProvider factoryComponentContractContainerItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponentContractContainer}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createFactoryComponentContractContainerAdapter() {
+    if (factoryComponentContractContainerItemProvider == null) {
+      factoryComponentContractContainerItemProvider = new FactoryComponentContractContainerItemProvider(this);
+    }
+
+    return factoryComponentContractContainerItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ViewpointContainer} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -272,52 +318,6 @@ public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractContainer} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ContractContainerItemProvider contractContainerItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractContainer}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createContractContainerAdapter() {
-    if (contractContainerItemProvider == null) {
-      contractContainerItemProvider = new ContractContainerItemProvider(this);
-    }
-
-    return contractContainerItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Contract} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ContractItemProvider contractItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Contract}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createContractAdapter() {
-    if (contractItemProvider == null) {
-      contractItemProvider = new ContractItemProvider(this);
-    }
-
-    return contractItemProvider;
-  }
-
-  /**
    * This returns the root adapter factory that contains this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -445,10 +445,10 @@ public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory impleme
   public void dispose() {
     if (factoryComponentItemProvider != null)
       factoryComponentItemProvider.dispose();
-    if (contractItemProvider != null)
-      contractItemProvider.dispose();
-    if (contractContainerItemProvider != null)
-      contractContainerItemProvider.dispose();
+    if (factoryComponentContractItemProvider != null)
+      factoryComponentContractItemProvider.dispose();
+    if (factoryComponentContractContainerItemProvider != null)
+      factoryComponentContractContainerItemProvider.dispose();
     if (viewpointContainerItemProvider != null)
       viewpointContainerItemProvider.dispose();
     if (orchestrationContextItemProvider != null)

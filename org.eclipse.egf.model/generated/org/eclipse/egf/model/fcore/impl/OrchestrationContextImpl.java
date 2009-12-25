@@ -14,7 +14,6 @@ package org.eclipse.egf.model.fcore.impl;
 
 import java.util.Collection;
 
-import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.Orchestration;

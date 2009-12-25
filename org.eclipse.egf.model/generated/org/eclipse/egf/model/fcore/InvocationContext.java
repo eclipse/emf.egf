@@ -21,7 +21,7 @@ package org.eclipse.egf.model.fcore;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContext#getInvocationContextContainer <em>Invocation Context Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.InvocationContext#getExposedContract <em>Exposed Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.InvocationContext#getFactoryComponentExposedContract <em>Factory Component Exposed Contract</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContext#getOrchestrationContext <em>Orchestration Context</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContext#getActivityContract <em>Activity Contract</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContext#getType <em>Type</em>}</li>
@@ -63,32 +63,32 @@ public interface InvocationContext extends ModelElement {
   void setInvocationContextContainer(InvocationContextContainer value);
 
   /**
-   * Returns the value of the '<em><b>Exposed Contract</b></em>' reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Contract#getInvocationContexts <em>Invocation Contexts</em>}'.
+   * Returns the value of the '<em><b>Factory Component Exposed Contract</b></em>' reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.FactoryComponentContract#getInvocationContexts <em>Invocation Contexts</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Exposed Contract</em>' reference isn't clear,
+   * If the meaning of the '<em>Factory Component Exposed Contract</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Exposed Contract</em>' reference.
-   * @see #setExposedContract(Contract)
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContext_ExposedContract()
-   * @see org.eclipse.egf.model.fcore.Contract#getInvocationContexts
+   * @return the value of the '<em>Factory Component Exposed Contract</em>' reference.
+   * @see #setFactoryComponentExposedContract(FactoryComponentContract)
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContext_FactoryComponentExposedContract()
+   * @see org.eclipse.egf.model.fcore.FactoryComponentContract#getInvocationContexts
    * @model opposite="invocationContexts" resolveProxies="false"
    * @generated
    */
-  Contract getExposedContract();
+  FactoryComponentContract getFactoryComponentExposedContract();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.InvocationContext#getExposedContract <em>Exposed Contract</em>}' reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.InvocationContext#getFactoryComponentExposedContract <em>Factory Component Exposed Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Exposed Contract</em>' reference.
-   * @see #getExposedContract()
+   * @param value the new value of the '<em>Factory Component Exposed Contract</em>' reference.
+   * @see #getFactoryComponentExposedContract()
    * @generated
    */
-  void setExposedContract(Contract value);
+  void setFactoryComponentExposedContract(FactoryComponentContract value);
 
   /**
    * Returns the value of the '<em><b>Orchestration Context</b></em>' reference.
@@ -127,12 +127,12 @@ public interface InvocationContext extends ModelElement {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Activity Contract</em>' reference.
-   * @see #setActivityContract(Contract)
+   * @see #setActivityContract(ActivityContract)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContext_ActivityContract()
    * @model required="true"
    * @generated
    */
-  Contract getActivityContract();
+  ActivityContract getActivityContract();
 
   /**
    * Sets the value of the '{@link org.eclipse.egf.model.fcore.InvocationContext#getActivityContract <em>Activity Contract</em>}' reference.
@@ -142,7 +142,7 @@ public interface InvocationContext extends ModelElement {
    * @see #getActivityContract()
    * @generated
    */
-  void setActivityContract(Contract value);
+  void setActivityContract(ActivityContract value);
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

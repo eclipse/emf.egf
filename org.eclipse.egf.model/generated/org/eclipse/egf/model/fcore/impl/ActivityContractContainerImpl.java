@@ -12,8 +12,9 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import java.util.List;
+import java.util.Iterator;
 
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ActivityContractContainer;
@@ -26,20 +27,20 @@ import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Activity</b></em>'.
+ * An implementation of the model object '<em><b>Activity Contract Container</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
  *
  * @generated
  */
-public abstract class ActivityImpl extends ModelElementImpl implements Activity {
+public abstract class ActivityContractContainerImpl extends ModelElementImpl implements ActivityContractContainer {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ActivityImpl() {
+  protected ActivityContractContainerImpl() {
     super();
   }
 
@@ -50,7 +51,7 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
    */
   @Override
   protected EClass eStaticClass() {
-    return FcorePackage.Literals.ACTIVITY;
+    return FcorePackage.Literals.ACTIVITY_CONTRACT_CONTAINER;
   }
 
   /**
@@ -58,7 +59,18 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
    * <!-- end-user-doc -->
    * @generated
    */
-  public ActivityContractContainer getActivityContractContainer() {
+  public Activity getActivity() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public <T extends ActivityContract> EList<T> getActivityContracts() {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -71,25 +83,15 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
    * @generated NOT
    */
   @SuppressWarnings("unchecked")
-  public <T extends ActivityContract> EList<T> getActivityContracts() {
-    EList<T> contracts = new UniqueEList<T>();
-    if (getActivityContractContainer() != null) {
-      contracts.addAll((List<T>) getActivityContractContainer().getActivityContracts());
-    }
-    return contracts;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @SuppressWarnings("unchecked")
   public <T extends ActivityContract> EList<T> getActivityContracts(Type<?> type) {
     EList<T> contracts = new UniqueEList<T>();
-    if (getActivityContractContainer() != null) {
-      contracts.addAll((List<T>) getActivityContractContainer().getActivityContracts(type));
+    if (type != null) {
+      for (Iterator<ActivityContract> it = getActivityContracts().iterator(); it.hasNext();) {
+        T contract = (T) it.next();
+        if (contract.getType() != null && ClassHelper.asSubClass(type.getType(), contract.getType().getType())) {
+          contracts.add(contract);
+        }
+      }
     }
     return contracts;
   }
@@ -103,8 +105,17 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
   @SuppressWarnings("unchecked")
   public <T extends ActivityContract> EList<T> getActivityContracts(ContractMode mode) {
     EList<T> contracts = new UniqueEList<T>();
-    if (getActivityContractContainer() != null) {
-      contracts.addAll((List<T>) getActivityContractContainer().getActivityContracts(mode));
+    if (mode != null) {
+      for (Iterator<ActivityContract> it = getActivityContracts().iterator(); it.hasNext();) {
+        T contract = (T) it.next();
+        if (mode == ContractMode.IN && (contract.getMode() == ContractMode.IN || contract.getMode() == ContractMode.IN_OUT)) {
+          contracts.add(contract);
+        } else if (mode == ContractMode.OUT && (contract.getMode() == ContractMode.OUT || contract.getMode() == ContractMode.IN_OUT)) {
+          contracts.add(contract);
+        } else if (mode == ContractMode.IN_OUT) {
+          contracts.add(contract);
+        }
+      }
     }
     return contracts;
   }
@@ -118,10 +129,17 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
   @SuppressWarnings("unchecked")
   public <T extends ActivityContract> EList<T> getActivityContracts(Type<?> type, ContractMode mode) {
     EList<T> contracts = new UniqueEList<T>();
-    if (getActivityContractContainer() != null) {
-      contracts.addAll((List<T>) getActivityContractContainer().getActivityContracts(type, mode));
+    for (Iterator<ActivityContract> it = getActivityContracts(type).iterator(); it.hasNext();) {
+      T contract = (T) it.next();
+      if (mode == ContractMode.IN && (contract.getMode() == ContractMode.IN || contract.getMode() == ContractMode.IN_OUT)) {
+        contracts.add(contract);
+      } else if (mode == ContractMode.OUT && (contract.getMode() == ContractMode.OUT || contract.getMode() == ContractMode.IN_OUT)) {
+        contracts.add(contract);
+      } else if (mode == ContractMode.IN_OUT) {
+        contracts.add(contract);
+      }
     }
     return contracts;
   }
 
-} // ActivityImpl
+} // ActivityContractContainerImpl

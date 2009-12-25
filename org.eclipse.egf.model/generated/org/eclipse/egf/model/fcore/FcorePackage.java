@@ -151,22 +151,132 @@ public interface FcorePackage extends EPackage {
   int ACTIVITY__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Contract Container</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ACTIVITY__CONTRACT_CONTAINER = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
    * The number of structural features of the '<em>Activity</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ACTIVITY_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int ACTIVITY_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ActivityContractImpl <em>Activity Contract</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.fcore.impl.ActivityContractImpl
+   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getActivityContract()
+   * @generated
+   */
+  int ACTIVITY_CONTRACT = 2;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT__ID = MODEL_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT__NAME = MODEL_ELEMENT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Mandatory</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT__MANDATORY = MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Mode</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT__MODE = MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+  /**
+   * The number of structural features of the '<em>Activity Contract</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ActivityContractContainerImpl <em>Activity Contract Container</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.fcore.impl.ActivityContractContainerImpl
+   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getActivityContractContainer()
+   * @generated
+   */
+  int ACTIVITY_CONTRACT_CONTAINER = 3;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT_CONTAINER__ID = MODEL_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT_CONTAINER__NAME = MODEL_ELEMENT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT_CONTAINER__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The number of structural features of the '<em>Activity Contract Container</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACTIVITY_CONTRACT_CONTAINER_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl <em>Factory Component</em>}' class.
@@ -176,7 +286,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getFactoryComponent()
    * @generated
    */
-  int FACTORY_COMPONENT = 2;
+  int FACTORY_COMPONENT = 4;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -206,13 +316,13 @@ public interface FcorePackage extends EPackage {
   int FACTORY_COMPONENT__DESCRIPTION = ACTIVITY__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Contract Container</b></em>' containment reference.
+   * The feature id for the '<em><b>Activity Contract Container</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FACTORY_COMPONENT__CONTRACT_CONTAINER = ACTIVITY__CONTRACT_CONTAINER;
+  int FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER = ACTIVITY_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Viewpoint Container</b></em>' containment reference.
@@ -221,7 +331,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FACTORY_COMPONENT__VIEWPOINT_CONTAINER = ACTIVITY_FEATURE_COUNT + 0;
+  int FACTORY_COMPONENT__VIEWPOINT_CONTAINER = ACTIVITY_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Orchestration</b></em>' containment reference.
@@ -230,7 +340,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FACTORY_COMPONENT__ORCHESTRATION = ACTIVITY_FEATURE_COUNT + 1;
+  int FACTORY_COMPONENT__ORCHESTRATION = ACTIVITY_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Factory Component</em>' class.
@@ -239,7 +349,162 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FACTORY_COMPONENT_FEATURE_COUNT = ACTIVITY_FEATURE_COUNT + 2;
+  int FACTORY_COMPONENT_FEATURE_COUNT = ACTIVITY_FEATURE_COUNT + 3;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractImpl <em>Factory Component Contract</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.fcore.impl.FactoryComponentContractImpl
+   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getFactoryComponentContract()
+   * @generated
+   */
+  int FACTORY_COMPONENT_CONTRACT = 5;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT__ID = ACTIVITY_CONTRACT__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT__NAME = ACTIVITY_CONTRACT__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT__DESCRIPTION = ACTIVITY_CONTRACT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Mandatory</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT__MANDATORY = ACTIVITY_CONTRACT__MANDATORY;
+
+  /**
+   * The feature id for the '<em><b>Mode</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT__MODE = ACTIVITY_CONTRACT__MODE;
+
+  /**
+   * The feature id for the '<em><b>Type</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT__TYPE = ACTIVITY_CONTRACT__TYPE;
+
+  /**
+   * The feature id for the '<em><b>Invocation Contexts</b></em>' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTEXTS = ACTIVITY_CONTRACT_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Activity Contract Container</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT__ACTIVITY_CONTRACT_CONTAINER = ACTIVITY_CONTRACT_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Factory Component Contract</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT_FEATURE_COUNT = ACTIVITY_CONTRACT_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl <em>Factory Component Contract Container</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl
+   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getFactoryComponentContractContainer()
+   * @generated
+   */
+  int FACTORY_COMPONENT_CONTRACT_CONTAINER = 6;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT_CONTAINER__ID = ACTIVITY_CONTRACT_CONTAINER__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT_CONTAINER__NAME = ACTIVITY_CONTRACT_CONTAINER__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT_CONTAINER__DESCRIPTION = ACTIVITY_CONTRACT_CONTAINER__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Activity</b></em>' container reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY = ACTIVITY_CONTRACT_CONTAINER_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Activity Contracts</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY_CONTRACTS = ACTIVITY_CONTRACT_CONTAINER_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Factory Component Contract Container</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_CONTRACT_CONTAINER_FEATURE_COUNT = ACTIVITY_CONTRACT_CONTAINER_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ViewpointContainerImpl <em>Viewpoint Container</em>}' class.
@@ -249,7 +514,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getViewpointContainer()
    * @generated
    */
-  int VIEWPOINT_CONTAINER = 5;
+  int VIEWPOINT_CONTAINER = 7;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ViewpointImpl <em>Viewpoint</em>}' class.
@@ -259,7 +524,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getViewpoint()
    * @generated
    */
-  int VIEWPOINT = 6;
+  int VIEWPOINT = 8;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl <em>Orchestration</em>}' class.
@@ -269,7 +534,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getOrchestration()
    * @generated
    */
-  int ORCHESTRATION = 7;
+  int ORCHESTRATION = 9;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl <em>Orchestration Context</em>}' class.
@@ -279,7 +544,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getOrchestrationContext()
    * @generated
    */
-  int ORCHESTRATION_CONTEXT = 8;
+  int ORCHESTRATION_CONTEXT = 10;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextContainerImpl <em>Orchestration Context Container</em>}' class.
@@ -289,7 +554,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getOrchestrationContextContainer()
    * @generated
    */
-  int ORCHESTRATION_CONTEXT_CONTAINER = 9;
+  int ORCHESTRATION_CONTEXT_CONTAINER = 11;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.InvocationImpl <em>Invocation</em>}' class.
@@ -299,7 +564,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocation()
    * @generated
    */
-  int INVOCATION = 10;
+  int INVOCATION = 12;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl <em>Invocation Context</em>}' class.
@@ -309,7 +574,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocationContext()
    * @generated
    */
-  int INVOCATION_CONTEXT = 11;
+  int INVOCATION_CONTEXT = 13;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.InvocationContextConnectorImpl <em>Invocation Context Connector</em>}' class.
@@ -319,7 +584,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocationContextConnector()
    * @generated
    */
-  int INVOCATION_CONTEXT_CONNECTOR = 12;
+  int INVOCATION_CONTEXT_CONNECTOR = 14;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.InvocationContextContainerImpl <em>Invocation Context Container</em>}' class.
@@ -329,7 +594,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocationContextContainer()
    * @generated
    */
-  int INVOCATION_CONTEXT_CONTAINER = 13;
+  int INVOCATION_CONTEXT_CONTAINER = 15;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.TypeImpl <em>Type</em>}' class.
@@ -339,7 +604,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getType()
    * @generated
    */
-  int TYPE = 14;
+  int TYPE = 16;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.TypeObjectImpl <em>Type Object</em>}' class.
@@ -349,7 +614,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getTypeObject()
    * @generated
    */
-  int TYPE_OBJECT = 15;
+  int TYPE_OBJECT = 17;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.TypeClassImpl <em>Type Class</em>}' class.
@@ -359,162 +624,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getTypeClass()
    * @generated
    */
-  int TYPE_CLASS = 16;
-
-  /**
-   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ContractContainerImpl <em>Contract Container</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.fcore.impl.ContractContainerImpl
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContractContainer()
-   * @generated
-   */
-  int CONTRACT_CONTAINER = 4;
-
-  /**
-   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.ContractImpl <em>Contract</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.fcore.impl.ContractImpl
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContract()
-   * @generated
-   */
-  int CONTRACT = 3;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT__ID = MODEL_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT__NAME = MODEL_ELEMENT__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Contract Container</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT__CONTRACT_CONTAINER = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Invocation Contexts</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT__INVOCATION_CONTEXTS = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The feature id for the '<em><b>Mandatory</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT__MANDATORY = MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>Mode</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT__MODE = MODEL_ELEMENT_FEATURE_COUNT + 3;
-
-  /**
-   * The feature id for the '<em><b>Type</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 4;
-
-  /**
-   * The number of structural features of the '<em>Contract</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_CONTAINER__ID = MODEL_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_CONTAINER__NAME = MODEL_ELEMENT__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_CONTAINER__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Activity</b></em>' container reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_CONTAINER__ACTIVITY = MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-  /**
-   * The feature id for the '<em><b>Contracts</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_CONTAINER__CONTRACTS = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-  /**
-   * The number of structural features of the '<em>Contract Container</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT_CONTAINER_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
+  int TYPE_CLASS = 18;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -895,13 +1005,13 @@ public interface FcorePackage extends EPackage {
   int INVOCATION_CONTEXT__INVOCATION_CONTEXT_CONTAINER = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Exposed Contract</b></em>' reference.
+   * The feature id for the '<em><b>Factory Component Exposed Contract</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INVOCATION_CONTEXT__EXPOSED_CONTRACT = MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Orchestration Context</b></em>' reference.
@@ -1199,7 +1309,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContractMode()
    * @generated
    */
-  int CONTRACT_MODE = 17;
+  int CONTRACT_MODE = 19;
 
   /**
    * The meta object id for the '<em>URI</em>' data type.
@@ -1209,7 +1319,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getURI()
    * @generated
    */
-  int URI = 18;
+  int URI = 20;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
@@ -1265,15 +1375,57 @@ public interface FcorePackage extends EPackage {
   EClass getActivity();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.fcore.Activity#getContractContainer <em>Contract Container</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ActivityContract <em>Activity Contract</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Contract Container</em>'.
-   * @see org.eclipse.egf.model.fcore.Activity#getContractContainer()
-   * @see #getActivity()
+   * @return the meta object for class '<em>Activity Contract</em>'.
+   * @see org.eclipse.egf.model.fcore.ActivityContract
    * @generated
    */
-  EReference getActivity_ContractContainer();
+  EClass getActivityContract();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.ActivityContract#isMandatory <em>Mandatory</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Mandatory</em>'.
+   * @see org.eclipse.egf.model.fcore.ActivityContract#isMandatory()
+   * @see #getActivityContract()
+   * @generated
+   */
+  EAttribute getActivityContract_Mandatory();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.ActivityContract#getMode <em>Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Mode</em>'.
+   * @see org.eclipse.egf.model.fcore.ActivityContract#getMode()
+   * @see #getActivityContract()
+   * @generated
+   */
+  EAttribute getActivityContract_Mode();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.fcore.ActivityContract#getType <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Type</em>'.
+   * @see org.eclipse.egf.model.fcore.ActivityContract#getType()
+   * @see #getActivityContract()
+   * @generated
+   */
+  EReference getActivityContract_Type();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ActivityContractContainer <em>Activity Contract Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Activity Contract Container</em>'.
+   * @see org.eclipse.egf.model.fcore.ActivityContractContainer
+   * @generated
+   */
+  EClass getActivityContractContainer();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.FactoryComponent <em>Factory Component</em>}'.
@@ -1306,6 +1458,81 @@ public interface FcorePackage extends EPackage {
    * @generated
    */
   EReference getFactoryComponent_Orchestration();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.fcore.FactoryComponent#getActivityContractContainer <em>Activity Contract Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Activity Contract Container</em>'.
+   * @see org.eclipse.egf.model.fcore.FactoryComponent#getActivityContractContainer()
+   * @see #getFactoryComponent()
+   * @generated
+   */
+  EReference getFactoryComponent_ActivityContractContainer();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.FactoryComponentContract <em>Factory Component Contract</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Factory Component Contract</em>'.
+   * @see org.eclipse.egf.model.fcore.FactoryComponentContract
+   * @generated
+   */
+  EClass getFactoryComponentContract();
+
+  /**
+   * Returns the meta object for the reference list '{@link org.eclipse.egf.model.fcore.FactoryComponentContract#getInvocationContexts <em>Invocation Contexts</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the reference list '<em>Invocation Contexts</em>'.
+   * @see org.eclipse.egf.model.fcore.FactoryComponentContract#getInvocationContexts()
+   * @see #getFactoryComponentContract()
+   * @generated
+   */
+  EReference getFactoryComponentContract_InvocationContexts();
+
+  /**
+   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.fcore.FactoryComponentContract#getActivityContractContainer <em>Activity Contract Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Activity Contract Container</em>'.
+   * @see org.eclipse.egf.model.fcore.FactoryComponentContract#getActivityContractContainer()
+   * @see #getFactoryComponentContract()
+   * @generated
+   */
+  EReference getFactoryComponentContract_ActivityContractContainer();
+
+  /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.FactoryComponentContractContainer <em>Factory Component Contract Container</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Factory Component Contract Container</em>'.
+   * @see org.eclipse.egf.model.fcore.FactoryComponentContractContainer
+   * @generated
+   */
+  EClass getFactoryComponentContractContainer();
+
+  /**
+   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.fcore.FactoryComponentContractContainer#getActivity <em>Activity</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the container reference '<em>Activity</em>'.
+   * @see org.eclipse.egf.model.fcore.FactoryComponentContractContainer#getActivity()
+   * @see #getFactoryComponentContractContainer()
+   * @generated
+   */
+  EReference getFactoryComponentContractContainer_Activity();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.fcore.FactoryComponentContractContainer#getActivityContracts <em>Activity Contracts</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Activity Contracts</em>'.
+   * @see org.eclipse.egf.model.fcore.FactoryComponentContractContainer#getActivityContracts()
+   * @see #getFactoryComponentContractContainer()
+   * @generated
+   */
+  EReference getFactoryComponentContractContainer_ActivityContracts();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ViewpointContainer <em>Viewpoint Container</em>}'.
@@ -1543,15 +1770,15 @@ public interface FcorePackage extends EPackage {
   EReference getInvocationContext_InvocationContextContainer();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.egf.model.fcore.InvocationContext#getExposedContract <em>Exposed Contract</em>}'.
+   * Returns the meta object for the reference '{@link org.eclipse.egf.model.fcore.InvocationContext#getFactoryComponentExposedContract <em>Factory Component Exposed Contract</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Exposed Contract</em>'.
-   * @see org.eclipse.egf.model.fcore.InvocationContext#getExposedContract()
+   * @return the meta object for the reference '<em>Factory Component Exposed Contract</em>'.
+   * @see org.eclipse.egf.model.fcore.InvocationContext#getFactoryComponentExposedContract()
    * @see #getInvocationContext()
    * @generated
    */
-  EReference getInvocationContext_ExposedContract();
+  EReference getInvocationContext_FactoryComponentExposedContract();
 
   /**
    * Returns the meta object for the reference '{@link org.eclipse.egf.model.fcore.InvocationContext#getOrchestrationContext <em>Orchestration Context</em>}'.
@@ -1725,103 +1952,6 @@ public interface FcorePackage extends EPackage {
   EAttribute getTypeClass_Value();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ContractContainer <em>Contract Container</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Contract Container</em>'.
-   * @see org.eclipse.egf.model.fcore.ContractContainer
-   * @generated
-   */
-  EClass getContractContainer();
-
-  /**
-   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.fcore.ContractContainer#getActivity <em>Activity</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Activity</em>'.
-   * @see org.eclipse.egf.model.fcore.ContractContainer#getActivity()
-   * @see #getContractContainer()
-   * @generated
-   */
-  EReference getContractContainer_Activity();
-
-  /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.fcore.ContractContainer#getContracts <em>Contracts</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Contracts</em>'.
-   * @see org.eclipse.egf.model.fcore.ContractContainer#getContracts()
-   * @see #getContractContainer()
-   * @generated
-   */
-  EReference getContractContainer_Contracts();
-
-  /**
-   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.Contract <em>Contract</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Contract</em>'.
-   * @see org.eclipse.egf.model.fcore.Contract
-   * @generated
-   */
-  EClass getContract();
-
-  /**
-   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.fcore.Contract#getContractContainer <em>Contract Container</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Contract Container</em>'.
-   * @see org.eclipse.egf.model.fcore.Contract#getContractContainer()
-   * @see #getContract()
-   * @generated
-   */
-  EReference getContract_ContractContainer();
-
-  /**
-   * Returns the meta object for the reference list '{@link org.eclipse.egf.model.fcore.Contract#getInvocationContexts <em>Invocation Contexts</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Invocation Contexts</em>'.
-   * @see org.eclipse.egf.model.fcore.Contract#getInvocationContexts()
-   * @see #getContract()
-   * @generated
-   */
-  EReference getContract_InvocationContexts();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.Contract#isMandatory <em>Mandatory</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Mandatory</em>'.
-   * @see org.eclipse.egf.model.fcore.Contract#isMandatory()
-   * @see #getContract()
-   * @generated
-   */
-  EAttribute getContract_Mandatory();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.Contract#getMode <em>Mode</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Mode</em>'.
-   * @see org.eclipse.egf.model.fcore.Contract#getMode()
-   * @see #getContract()
-   * @generated
-   */
-  EAttribute getContract_Mode();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.fcore.Contract#getType <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Type</em>'.
-   * @see org.eclipse.egf.model.fcore.Contract#getType()
-   * @see #getContract()
-   * @generated
-   */
-  EReference getContract_Type();
-
-  /**
    * Returns the meta object for enum '{@link org.eclipse.egf.model.fcore.ContractMode <em>Contract Mode</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1909,12 +2039,48 @@ public interface FcorePackage extends EPackage {
     EClass ACTIVITY = eINSTANCE.getActivity();
 
     /**
-     * The meta object literal for the '<em><b>Contract Container</b></em>' containment reference feature.
+     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ActivityContractImpl <em>Activity Contract</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.fcore.impl.ActivityContractImpl
+     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getActivityContract()
+     * @generated
+     */
+    EClass ACTIVITY_CONTRACT = eINSTANCE.getActivityContract();
+
+    /**
+     * The meta object literal for the '<em><b>Mandatory</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ACTIVITY__CONTRACT_CONTAINER = eINSTANCE.getActivity_ContractContainer();
+    EAttribute ACTIVITY_CONTRACT__MANDATORY = eINSTANCE.getActivityContract_Mandatory();
+
+    /**
+     * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACTIVITY_CONTRACT__MODE = eINSTANCE.getActivityContract_Mode();
+
+    /**
+     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ACTIVITY_CONTRACT__TYPE = eINSTANCE.getActivityContract_Type();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ActivityContractContainerImpl <em>Activity Contract Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.fcore.impl.ActivityContractContainerImpl
+     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getActivityContractContainer()
+     * @generated
+     */
+    EClass ACTIVITY_CONTRACT_CONTAINER = eINSTANCE.getActivityContractContainer();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl <em>Factory Component</em>}' class.
@@ -1941,6 +2107,66 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     EReference FACTORY_COMPONENT__ORCHESTRATION = eINSTANCE.getFactoryComponent_Orchestration();
+
+    /**
+     * The meta object literal for the '<em><b>Activity Contract Container</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER = eINSTANCE.getFactoryComponent_ActivityContractContainer();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractImpl <em>Factory Component Contract</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.fcore.impl.FactoryComponentContractImpl
+     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getFactoryComponentContract()
+     * @generated
+     */
+    EClass FACTORY_COMPONENT_CONTRACT = eINSTANCE.getFactoryComponentContract();
+
+    /**
+     * The meta object literal for the '<em><b>Invocation Contexts</b></em>' reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTEXTS = eINSTANCE.getFactoryComponentContract_InvocationContexts();
+
+    /**
+     * The meta object literal for the '<em><b>Activity Contract Container</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FACTORY_COMPONENT_CONTRACT__ACTIVITY_CONTRACT_CONTAINER = eINSTANCE.getFactoryComponentContract_ActivityContractContainer();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl <em>Factory Component Contract Container</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl
+     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getFactoryComponentContractContainer()
+     * @generated
+     */
+    EClass FACTORY_COMPONENT_CONTRACT_CONTAINER = eINSTANCE.getFactoryComponentContractContainer();
+
+    /**
+     * The meta object literal for the '<em><b>Activity</b></em>' container reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY = eINSTANCE.getFactoryComponentContractContainer_Activity();
+
+    /**
+     * The meta object literal for the '<em><b>Activity Contracts</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY_CONTRACTS = eINSTANCE.getFactoryComponentContractContainer_ActivityContracts();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ViewpointContainerImpl <em>Viewpoint Container</em>}' class.
@@ -2133,12 +2359,12 @@ public interface FcorePackage extends EPackage {
     EReference INVOCATION_CONTEXT__INVOCATION_CONTEXT_CONTAINER = eINSTANCE.getInvocationContext_InvocationContextContainer();
 
     /**
-     * The meta object literal for the '<em><b>Exposed Contract</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Factory Component Exposed Contract</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference INVOCATION_CONTEXT__EXPOSED_CONTRACT = eINSTANCE.getInvocationContext_ExposedContract();
+    EReference INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT = eINSTANCE.getInvocationContext_FactoryComponentExposedContract();
 
     /**
      * The meta object literal for the '<em><b>Orchestration Context</b></em>' reference feature.
@@ -2277,82 +2503,6 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     EAttribute TYPE_CLASS__VALUE = eINSTANCE.getTypeClass_Value();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ContractContainerImpl <em>Contract Container</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.fcore.impl.ContractContainerImpl
-     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContractContainer()
-     * @generated
-     */
-    EClass CONTRACT_CONTAINER = eINSTANCE.getContractContainer();
-
-    /**
-     * The meta object literal for the '<em><b>Activity</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTRACT_CONTAINER__ACTIVITY = eINSTANCE.getContractContainer_Activity();
-
-    /**
-     * The meta object literal for the '<em><b>Contracts</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTRACT_CONTAINER__CONTRACTS = eINSTANCE.getContractContainer_Contracts();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.ContractImpl <em>Contract</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.fcore.impl.ContractImpl
-     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContract()
-     * @generated
-     */
-    EClass CONTRACT = eINSTANCE.getContract();
-
-    /**
-     * The meta object literal for the '<em><b>Contract Container</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTRACT__CONTRACT_CONTAINER = eINSTANCE.getContract_ContractContainer();
-
-    /**
-     * The meta object literal for the '<em><b>Invocation Contexts</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTRACT__INVOCATION_CONTEXTS = eINSTANCE.getContract_InvocationContexts();
-
-    /**
-     * The meta object literal for the '<em><b>Mandatory</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONTRACT__MANDATORY = eINSTANCE.getContract_Mandatory();
-
-    /**
-     * The meta object literal for the '<em><b>Mode</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONTRACT__MODE = eINSTANCE.getContract_Mode();
-
-    /**
-     * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTRACT__TYPE = eINSTANCE.getContract_Type();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.fcore.ContractMode <em>Contract Mode</em>}' enum.

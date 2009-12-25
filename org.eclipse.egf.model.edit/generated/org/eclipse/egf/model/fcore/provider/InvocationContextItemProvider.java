@@ -16,8 +16,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ContractMode;
+import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
@@ -72,7 +73,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addExposedContractPropertyDescriptor(object);
+      addFactoryComponentExposedContractPropertyDescriptor(object);
       addOrchestrationContextPropertyDescriptor(object);
       addActivityContractPropertyDescriptor(object);
       addModePropertyDescriptor(object);
@@ -87,15 +88,15 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * 
    * @generated NOT
    */
-  protected void addExposedContractPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContext_exposedContract_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_InvocationContext_exposedContract_feature", "_UI_InvocationContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.INVOCATION_CONTEXT__EXPOSED_CONTRACT, true, false, true, null, getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
+  protected void addFactoryComponentExposedContractPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContext_factoryComponentExposedContract_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_InvocationContext_factoryComponentExposedContract_feature", "_UI_InvocationContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT, true, false, true, null, getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
         InvocationContext invocationContext = (InvocationContext) current;
-        Collection<Contract> result = new UniqueEList<Contract>();
+        Collection<ActivityContract> result = new UniqueEList<ActivityContract>();
         if (result.contains(null) == false) {
           result.add(null);
         }
@@ -110,21 +111,21 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
         }
         // Retrieve all the typed contracts if available
         if (invocationContext.getMode() == ContractMode.IN) {
-          result.addAll(invocationContext.getFactoryComponent().getContracts(invocationContext.getActivityContract().getType(), ContractMode.IN));
+          result.addAll(invocationContext.getFactoryComponent().getActivityContracts(invocationContext.getActivityContract().getType(), ContractMode.IN));
         } else {
           // In or In_Out Contract should have only one assigned InvocationContext.
-          for (Contract contract : invocationContext.getFactoryComponent().getContracts(invocationContext.getActivityContract().getType(), invocationContext.getMode())) {
-            if (contract.getInvocationContexts().size() == 0) {
-              result.add(contract);
+          for (ActivityContract activityContract : invocationContext.getFactoryComponent().getActivityContracts(invocationContext.getActivityContract().getType(), invocationContext.getMode())) {
+            if (((FactoryComponentContract) activityContract).getInvocationContexts().size() == 0) {
+              result.add(activityContract);
             }
           }
         }
         // If an orchestration context is already assigned, InvocationContext in In_Out mode are
         // only assignable to Out Mode Contract
         if (invocationContext.getOrchestrationContext() != null && invocationContext.getMode() == ContractMode.IN_OUT) {
-          for (Iterator<Contract> it = result.iterator(); it.hasNext();) {
-            Contract contract = it.next();
-            if (contract.getMode() != ContractMode.OUT) {
+          for (Iterator<ActivityContract> it = result.iterator(); it.hasNext();) {
+            ActivityContract activityContract = it.next();
+            if (activityContract.getMode() != ContractMode.OUT) {
               it.remove();
             }
           }
@@ -163,7 +164,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
           return result;
         }
         // InvocationContract already assigned to an exposed contract should in be In_Out mode
-        if (invocationContext.getExposedContract() != null && invocationContext.getMode() != ContractMode.IN_OUT) {
+        if (invocationContext.getFactoryComponentExposedContract() != null && invocationContext.getMode() != ContractMode.IN_OUT) {
           return result;
         }
         // Retrieve all compatible typed OrchestrationContext
@@ -188,31 +189,31 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
         InvocationContext invocationContext = (InvocationContext) current;
-        Collection<Contract> result = new UniqueEList<Contract>();
+        Collection<ActivityContract> result = new UniqueEList<ActivityContract>();
         // Retrieve all the typed contracts if available
         if (invocationContext.getInvocation() != null && invocationContext.getInvocation().getActivity() != null) {
           // Type filtering
           if (invocationContext.getType() != null) {
-            if (invocationContext.getExposedContract() != null) {
-              result.addAll(invocationContext.getInvocation().getActivity().getContracts(invocationContext.getType(), invocationContext.getExposedContract().getMode()));
+            if (invocationContext.getFactoryComponentExposedContract() != null) {
+              result.addAll(invocationContext.getInvocation().getActivity().getActivityContracts(invocationContext.getType(), invocationContext.getFactoryComponentExposedContract().getMode()));
             } else {
-              result.addAll(invocationContext.getInvocation().getActivity().getContracts(invocationContext.getType()));
+              result.addAll(invocationContext.getInvocation().getActivity().getActivityContracts(invocationContext.getType()));
             }
             // Filter all assigned contracts if necessary
             if (result.size() > 0) {
-              for (Contract innerContract : invocationContext.getInvocation().getInvocationContracts(invocationContext.getType())) {
+              for (ActivityContract innerContract : invocationContext.getInvocation().getInvocationActivityContracts(invocationContext.getType())) {
                 result.remove(innerContract);
               }
             }
           } else {
-            if (invocationContext.getExposedContract() != null) {
-              result.addAll(invocationContext.getInvocation().getActivity().getContracts(invocationContext.getExposedContract().getMode()));
+            if (invocationContext.getFactoryComponentExposedContract() != null) {
+              result.addAll(invocationContext.getInvocation().getActivity().getActivityContracts(invocationContext.getFactoryComponentExposedContract().getMode()));
             } else {
-              result.addAll(invocationContext.getInvocation().getActivity().getContracts());
+              result.addAll(invocationContext.getInvocation().getActivity().getActivityContracts());
             }
             // Filter all assigned contracts if necessary
             if (result.size() > 0) {
-              for (Contract innerContract : invocationContext.getInvocation().getInvocationContracts()) {
+              for (ActivityContract innerContract : invocationContext.getInvocation().getInvocationActivityContracts()) {
                 result.remove(innerContract);
               }
             }

@@ -40,11 +40,9 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.OrchestrationContext}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.OrchestrationContext} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class OrchestrationContextItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -52,7 +50,6 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public OrchestrationContextItemProvider(AdapterFactory adapterFactory) {
@@ -63,7 +60,6 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -103,7 +99,7 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
                 // Only In or In_Out mode are assignable in OrchestrationContext
                 // They have an In semantic in this area
                 it.remove();
-              } else if (invocationContext.getExposedContract() != null && invocationContext.getMode() == ContractMode.IN) {
+              } else if (invocationContext.getFactoryComponentExposedContract() != null && invocationContext.getMode() == ContractMode.IN) {
                 // Filter invocation context with In mode already assigned to an contract
                 it.remove();
               }
@@ -125,13 +121,11 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
-   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -146,7 +140,6 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -161,7 +154,6 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * This returns OrchestrationContext.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -173,7 +165,6 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -188,7 +179,6 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -208,7 +198,6 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

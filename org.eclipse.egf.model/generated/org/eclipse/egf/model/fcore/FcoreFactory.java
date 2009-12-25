@@ -41,6 +41,24 @@ public interface FcoreFactory extends EFactory {
   FactoryComponent createFactoryComponent();
 
   /**
+   * Returns a new object of class '<em>Factory Component Contract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Factory Component Contract</em>'.
+   * @generated
+   */
+  FactoryComponentContract createFactoryComponentContract();
+
+  /**
+   * Returns a new object of class '<em>Factory Component Contract Container</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Factory Component Contract Container</em>'.
+   * @generated
+   */
+  FactoryComponentContractContainer createFactoryComponentContractContainer();
+
+  /**
    * Returns a new object of class '<em>Viewpoint Container</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -93,24 +111,6 @@ public interface FcoreFactory extends EFactory {
    * @generated
    */
   InvocationContextContainer createInvocationContextContainer();
-
-  /**
-   * Returns a new object of class '<em>Contract Container</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Contract Container</em>'.
-   * @generated
-   */
-  ContractContainer createContractContainer();
-
-  /**
-   * Returns a new object of class '<em>Contract</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Contract</em>'.
-   * @generated
-   */
-  Contract createContract();
 
   /**
    * Returns the package supported by this factory.

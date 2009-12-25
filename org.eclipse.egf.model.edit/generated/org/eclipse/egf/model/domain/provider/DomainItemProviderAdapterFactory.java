@@ -21,7 +21,7 @@ import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainType;
 import org.eclipse.egf.model.domain.util.DomainAdapterFactory;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
@@ -359,6 +359,19 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        * @generated
        */
       @Override
+      public Object caseActivityContract(ActivityContract object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, DomainFactory.eINSTANCE.createDomainType()));
+
+        return null;
+      }
+
+      /**
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * 
+       * @generated
+       */
+      @Override
       public Object caseViewpointContainer(ViewpointContainer object) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS, DomainFactory.eINSTANCE.createDomainViewpoint()));
 
@@ -397,19 +410,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
             newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
-
-        return null;
-      }
-
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * 
-       * @generated
-       */
-      @Override
-      public Object caseContract(Contract object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createDomainType()));
 
         return null;
       }

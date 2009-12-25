@@ -16,29 +16,33 @@ import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Activity</b></em>'.
+ * A representation of the model object '<em><b>Activity Contract Container</b></em>'.
  * <!-- end-user-doc -->
  *
  *
- * @see org.eclipse.egf.model.fcore.FcorePackage#getActivity()
+ * @see org.eclipse.egf.model.fcore.FcorePackage#getActivityContractContainer()
  * @model abstract="true"
  * @generated
  */
-public interface Activity extends ModelElement {
+public interface ActivityContractContainer extends ModelElement {
   /**
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Activity Contract Container</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Activity</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
    * @model kind="operation"
    * @generated
    */
-  ActivityContractContainer getActivityContractContainer();
+  Activity getActivity();
 
   /**
    * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Activity Contracts</em>' containment reference list isn't clear,
+   * there really should be more of a description here...
+   * </p>
    * <!-- end-user-doc -->
    * @model kind="operation"
    * @generated
@@ -69,4 +73,4 @@ public interface Activity extends ModelElement {
    */
   <T extends ActivityContract> EList<T> getActivityContracts(Type<?> type, ContractMode mode);
 
-} // Activity
+} // ActivityContractContainer

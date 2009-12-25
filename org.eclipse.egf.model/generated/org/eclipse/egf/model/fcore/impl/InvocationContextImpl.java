@@ -12,9 +12,10 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContext;
@@ -37,7 +38,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getInvocationContextContainer <em>Invocation Context Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getExposedContract <em>Exposed Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getFactoryComponentExposedContract <em>Factory Component Exposed Contract</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getOrchestrationContext <em>Orchestration Context</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getActivityContract <em>Activity Contract</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getType <em>Type</em>}</li>
@@ -49,14 +50,14 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class InvocationContextImpl extends ModelElementImpl implements InvocationContext {
   /**
-   * The cached value of the '{@link #getExposedContract() <em>Exposed Contract</em>}' reference.
+   * The cached value of the '{@link #getFactoryComponentExposedContract() <em>Factory Component Exposed Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExposedContract()
+   * @see #getFactoryComponentExposedContract()
    * @generated
    * @ordered
    */
-  protected Contract exposedContract;
+  protected FactoryComponentContract factoryComponentExposedContract;
 
   /**
    * The cached value of the '{@link #getOrchestrationContext() <em>Orchestration Context</em>}' reference.
@@ -76,7 +77,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * @generated
    * @ordered
    */
-  protected Contract activityContract;
+  protected ActivityContract activityContract;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -166,8 +167,8 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * <!-- end-user-doc -->
    * @generated
    */
-  public Contract getExposedContract() {
-    return exposedContract;
+  public FactoryComponentContract getFactoryComponentExposedContract() {
+    return factoryComponentExposedContract;
   }
 
   /**
@@ -175,11 +176,11 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExposedContract(Contract newExposedContract, NotificationChain msgs) {
-    Contract oldExposedContract = exposedContract;
-    exposedContract = newExposedContract;
+  public NotificationChain basicSetFactoryComponentExposedContract(FactoryComponentContract newFactoryComponentExposedContract, NotificationChain msgs) {
+    FactoryComponentContract oldFactoryComponentExposedContract = factoryComponentExposedContract;
+    factoryComponentExposedContract = newFactoryComponentExposedContract;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION_CONTEXT__EXPOSED_CONTRACT, oldExposedContract, newExposedContract);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT, oldFactoryComponentExposedContract, newFactoryComponentExposedContract);
       if (msgs == null)
         msgs = notification;
       else
@@ -193,18 +194,18 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExposedContract(Contract newExposedContract) {
-    if (newExposedContract != exposedContract) {
+  public void setFactoryComponentExposedContract(FactoryComponentContract newFactoryComponentExposedContract) {
+    if (newFactoryComponentExposedContract != factoryComponentExposedContract) {
       NotificationChain msgs = null;
-      if (exposedContract != null)
-        msgs = ((InternalEObject) exposedContract).eInverseRemove(this, FcorePackage.CONTRACT__INVOCATION_CONTEXTS, Contract.class, msgs);
-      if (newExposedContract != null)
-        msgs = ((InternalEObject) newExposedContract).eInverseAdd(this, FcorePackage.CONTRACT__INVOCATION_CONTEXTS, Contract.class, msgs);
-      msgs = basicSetExposedContract(newExposedContract, msgs);
+      if (factoryComponentExposedContract != null)
+        msgs = ((InternalEObject) factoryComponentExposedContract).eInverseRemove(this, FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTEXTS, FactoryComponentContract.class, msgs);
+      if (newFactoryComponentExposedContract != null)
+        msgs = ((InternalEObject) newFactoryComponentExposedContract).eInverseAdd(this, FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTEXTS, FactoryComponentContract.class, msgs);
+      msgs = basicSetFactoryComponentExposedContract(newFactoryComponentExposedContract, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION_CONTEXT__EXPOSED_CONTRACT, newExposedContract, newExposedContract));
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT, newFactoryComponentExposedContract, newFactoryComponentExposedContract));
   }
 
   /**
@@ -258,10 +259,10 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * <!-- end-user-doc -->
    * @generated
    */
-  public Contract getActivityContract() {
+  public ActivityContract getActivityContract() {
     if (activityContract != null && activityContract.eIsProxy()) {
       InternalEObject oldActivityContract = (InternalEObject) activityContract;
-      activityContract = (Contract) eResolveProxy(oldActivityContract);
+      activityContract = (ActivityContract) eResolveProxy(oldActivityContract);
       if (activityContract != oldActivityContract) {
         if (eNotificationRequired())
           eNotify(new ENotificationImpl(this, Notification.RESOLVE, FcorePackage.INVOCATION_CONTEXT__ACTIVITY_CONTRACT, oldActivityContract, activityContract));
@@ -275,7 +276,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * <!-- end-user-doc -->
    * @generated
    */
-  public Contract basicGetActivityContract() {
+  public ActivityContract basicGetActivityContract() {
     return activityContract;
   }
 
@@ -284,8 +285,8 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setActivityContract(Contract newActivityContract) {
-    Contract oldActivityContract = activityContract;
+  public void setActivityContract(ActivityContract newActivityContract) {
+    ActivityContract oldActivityContract = activityContract;
     activityContract = newActivityContract;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION_CONTEXT__ACTIVITY_CONTRACT, oldActivityContract, activityContract));
@@ -401,10 +402,10 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       return basicSetInvocationContextContainer((InvocationContextContainer) otherEnd, msgs);
-    case FcorePackage.INVOCATION_CONTEXT__EXPOSED_CONTRACT:
-      if (exposedContract != null)
-        msgs = ((InternalEObject) exposedContract).eInverseRemove(this, FcorePackage.CONTRACT__INVOCATION_CONTEXTS, Contract.class, msgs);
-      return basicSetExposedContract((Contract) otherEnd, msgs);
+    case FcorePackage.INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT:
+      if (factoryComponentExposedContract != null)
+        msgs = ((InternalEObject) factoryComponentExposedContract).eInverseRemove(this, FcorePackage.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTEXTS, FactoryComponentContract.class, msgs);
+      return basicSetFactoryComponentExposedContract((FactoryComponentContract) otherEnd, msgs);
     case FcorePackage.INVOCATION_CONTEXT__ORCHESTRATION_CONTEXT:
       if (orchestrationContext != null)
         msgs = ((InternalEObject) orchestrationContext).eInverseRemove(this, FcorePackage.ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS, OrchestrationContext.class, msgs);
@@ -423,8 +424,8 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
     switch (featureID) {
     case FcorePackage.INVOCATION_CONTEXT__INVOCATION_CONTEXT_CONTAINER:
       return basicSetInvocationContextContainer(null, msgs);
-    case FcorePackage.INVOCATION_CONTEXT__EXPOSED_CONTRACT:
-      return basicSetExposedContract(null, msgs);
+    case FcorePackage.INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT:
+      return basicSetFactoryComponentExposedContract(null, msgs);
     case FcorePackage.INVOCATION_CONTEXT__ORCHESTRATION_CONTEXT:
       return basicSetOrchestrationContext(null, msgs);
     case FcorePackage.INVOCATION_CONTEXT__TYPE:
@@ -457,8 +458,8 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
     switch (featureID) {
     case FcorePackage.INVOCATION_CONTEXT__INVOCATION_CONTEXT_CONTAINER:
       return getInvocationContextContainer();
-    case FcorePackage.INVOCATION_CONTEXT__EXPOSED_CONTRACT:
-      return getExposedContract();
+    case FcorePackage.INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT:
+      return getFactoryComponentExposedContract();
     case FcorePackage.INVOCATION_CONTEXT__ORCHESTRATION_CONTEXT:
       return getOrchestrationContext();
     case FcorePackage.INVOCATION_CONTEXT__ACTIVITY_CONTRACT:
@@ -484,14 +485,14 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
     case FcorePackage.INVOCATION_CONTEXT__INVOCATION_CONTEXT_CONTAINER:
       setInvocationContextContainer((InvocationContextContainer) newValue);
       return;
-    case FcorePackage.INVOCATION_CONTEXT__EXPOSED_CONTRACT:
-      setExposedContract((Contract) newValue);
+    case FcorePackage.INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT:
+      setFactoryComponentExposedContract((FactoryComponentContract) newValue);
       return;
     case FcorePackage.INVOCATION_CONTEXT__ORCHESTRATION_CONTEXT:
       setOrchestrationContext((OrchestrationContext) newValue);
       return;
     case FcorePackage.INVOCATION_CONTEXT__ACTIVITY_CONTRACT:
-      setActivityContract((Contract) newValue);
+      setActivityContract((ActivityContract) newValue);
       return;
     case FcorePackage.INVOCATION_CONTEXT__TYPE:
       setType((Type<?>) newValue);
@@ -511,14 +512,14 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
     case FcorePackage.INVOCATION_CONTEXT__INVOCATION_CONTEXT_CONTAINER:
       setInvocationContextContainer((InvocationContextContainer) null);
       return;
-    case FcorePackage.INVOCATION_CONTEXT__EXPOSED_CONTRACT:
-      setExposedContract((Contract) null);
+    case FcorePackage.INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT:
+      setFactoryComponentExposedContract((FactoryComponentContract) null);
       return;
     case FcorePackage.INVOCATION_CONTEXT__ORCHESTRATION_CONTEXT:
       setOrchestrationContext((OrchestrationContext) null);
       return;
     case FcorePackage.INVOCATION_CONTEXT__ACTIVITY_CONTRACT:
-      setActivityContract((Contract) null);
+      setActivityContract((ActivityContract) null);
       return;
     case FcorePackage.INVOCATION_CONTEXT__TYPE:
       setType((Type<?>) null);
@@ -537,8 +538,8 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
     switch (featureID) {
     case FcorePackage.INVOCATION_CONTEXT__INVOCATION_CONTEXT_CONTAINER:
       return getInvocationContextContainer() != null;
-    case FcorePackage.INVOCATION_CONTEXT__EXPOSED_CONTRACT:
-      return exposedContract != null;
+    case FcorePackage.INVOCATION_CONTEXT__FACTORY_COMPONENT_EXPOSED_CONTRACT:
+      return factoryComponentExposedContract != null;
     case FcorePackage.INVOCATION_CONTEXT__ORCHESTRATION_CONTEXT:
       return orchestrationContext != null;
     case FcorePackage.INVOCATION_CONTEXT__ACTIVITY_CONTRACT:

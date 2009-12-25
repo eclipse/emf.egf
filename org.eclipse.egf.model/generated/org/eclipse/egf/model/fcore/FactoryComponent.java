@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.egf.model.fcore.FactoryComponent#getActivityContractContainer <em>Activity Contract Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.FactoryComponent#getViewpointContainer <em>Viewpoint Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.FactoryComponent#getOrchestration <em>Orchestration</em>}</li>
  * </ul>
@@ -87,6 +88,34 @@ public interface FactoryComponent extends Activity {
    * @generated
    */
   void setOrchestration(Orchestration value);
+
+  /**
+   * Returns the value of the '<em><b>Activity Contract Container</b></em>' containment reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.FactoryComponentContractContainer#getActivity <em>Activity</em>}'.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Activity Contract Container</em>' containment reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Activity Contract Container</em>' containment reference.
+   * @see #setActivityContractContainer(FactoryComponentContractContainer)
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getFactoryComponent_ActivityContractContainer()
+   * @see org.eclipse.egf.model.fcore.FactoryComponentContractContainer#getActivity
+   * @model opposite="activity" containment="true"
+   * @generated
+   */
+  FactoryComponentContractContainer getActivityContractContainer();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.FactoryComponent#getActivityContractContainer <em>Activity Contract Container</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Activity Contract Container</em>' containment reference.
+   * @see #getActivityContractContainer()
+   * @generated
+   */
+  void setActivityContractContainer(FactoryComponentContractContainer value);
 
   /**
    * <!-- begin-user-doc -->

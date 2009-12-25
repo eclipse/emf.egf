@@ -15,11 +15,13 @@ package org.eclipse.egf.model.fcore.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.FactoryComponentContractContainer;
+
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -35,19 +37,19 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponent} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponentContractContainer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class FactoryComponentItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class FactoryComponentContractContainerItemProvider extends ActivityContractContainerItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public FactoryComponentItemProvider(AdapterFactory adapterFactory) {
+  public FactoryComponentContractContainerItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -78,9 +80,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(FcorePackage.Literals.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER);
-      childrenFeatures.add(FcorePackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER);
-      childrenFeatures.add(FcorePackage.Literals.FACTORY_COMPONENT__ORCHESTRATION);
+      childrenFeatures.add(FcorePackage.Literals.FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY_CONTRACTS);
     }
     return childrenFeatures;
   }
@@ -99,33 +99,27 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   }
 
   /**
-   * This returns FactoryComponent.gif.
+   * This returns FactoryComponentContractContainer.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/FactoryComponent")); //$NON-NLS-1$
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/FactoryComponentContractContainer")); //$NON-NLS-1$
   }
 
   /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * @generated
    */
   @Override
   public String getText(Object object) {
-    String label = ((FactoryComponent) object).getName();
-    if (label == null || label.length() == 0) {
-      label = ((FactoryComponent) object).getID();
-      if (label == null || label.length() == 0) {
-        label = "Unknown"; //$NON-NLS-1$
-      }
-    }
-    return label + " [" + getString("_UI_FactoryComponent_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    String label = ((FactoryComponentContractContainer) object).getName();
+    return label == null || label.length() == 0 ? "[" + getString("_UI_FactoryComponentContractContainer_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_FactoryComponentContractContainer_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -139,10 +133,8 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(FactoryComponent.class)) {
-    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
-    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
-    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+    switch (notification.getFeatureID(FactoryComponentContractContainer.class)) {
+    case FcorePackage.FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY_CONTRACTS:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -160,9 +152,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER, FcoreFactory.eINSTANCE.createFactoryComponentContractContainer()));
-
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, FcoreFactory.eINSTANCE.createViewpointContainer()));
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY_CONTRACTS, FcoreFactory.eINSTANCE.createFactoryComponentContract()));
   }
 
 }

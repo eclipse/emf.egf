@@ -16,9 +16,11 @@ import java.util.List;
 
 import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.ContractContainer;
+import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.fcore.ActivityContractContainer;
 import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.FactoryComponentContract;
+import org.eclipse.egf.model.fcore.FactoryComponentContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContext;
@@ -122,6 +124,24 @@ public class FcoreSwitch<T1> {
         result = defaultCase(theEObject);
       return result;
     }
+    case FcorePackage.ACTIVITY_CONTRACT: {
+      ActivityContract activityContract = (ActivityContract) theEObject;
+      T1 result = caseActivityContract(activityContract);
+      if (result == null)
+        result = caseModelElement(activityContract);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case FcorePackage.ACTIVITY_CONTRACT_CONTAINER: {
+      ActivityContractContainer activityContractContainer = (ActivityContractContainer) theEObject;
+      T1 result = caseActivityContractContainer(activityContractContainer);
+      if (result == null)
+        result = caseModelElement(activityContractContainer);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
     case FcorePackage.FACTORY_COMPONENT: {
       FactoryComponent factoryComponent = (FactoryComponent) theEObject;
       T1 result = caseFactoryComponent(factoryComponent);
@@ -133,20 +153,24 @@ public class FcoreSwitch<T1> {
         result = defaultCase(theEObject);
       return result;
     }
-    case FcorePackage.CONTRACT: {
-      Contract contract = (Contract) theEObject;
-      T1 result = caseContract(contract);
+    case FcorePackage.FACTORY_COMPONENT_CONTRACT: {
+      FactoryComponentContract factoryComponentContract = (FactoryComponentContract) theEObject;
+      T1 result = caseFactoryComponentContract(factoryComponentContract);
       if (result == null)
-        result = caseModelElement(contract);
+        result = caseActivityContract(factoryComponentContract);
+      if (result == null)
+        result = caseModelElement(factoryComponentContract);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
-    case FcorePackage.CONTRACT_CONTAINER: {
-      ContractContainer contractContainer = (ContractContainer) theEObject;
-      T1 result = caseContractContainer(contractContainer);
+    case FcorePackage.FACTORY_COMPONENT_CONTRACT_CONTAINER: {
+      FactoryComponentContractContainer factoryComponentContractContainer = (FactoryComponentContractContainer) theEObject;
+      T1 result = caseFactoryComponentContractContainer(factoryComponentContractContainer);
       if (result == null)
-        result = caseModelElement(contractContainer);
+        result = caseActivityContractContainer(factoryComponentContractContainer);
+      if (result == null)
+        result = caseModelElement(factoryComponentContractContainer);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -299,6 +323,36 @@ public class FcoreSwitch<T1> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Activity Contract</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Activity Contract</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseActivityContract(ActivityContract object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Activity Contract Container</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Activity Contract Container</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseActivityContractContainer(ActivityContractContainer object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Factory Component</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -310,6 +364,36 @@ public class FcoreSwitch<T1> {
    * @generated
    */
   public T1 caseFactoryComponent(FactoryComponent object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Factory Component Contract</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Factory Component Contract</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseFactoryComponentContract(FactoryComponentContract object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Factory Component Contract Container</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Factory Component Contract Container</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseFactoryComponentContractContainer(FactoryComponentContractContainer object) {
     return null;
   }
 
@@ -490,36 +574,6 @@ public class FcoreSwitch<T1> {
    * @generated
    */
   public <T extends Object> T1 caseTypeClass(TypeClass<T> object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Contract Container</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Contract Container</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseContractContainer(ContractContainer object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Contract</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Contract</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseContract(Contract object) {
     return null;
   }
 

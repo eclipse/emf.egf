@@ -14,6 +14,7 @@ package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.FactoryComponentContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.Orchestration;
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getActivityContractContainer <em>Activity Contract Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getViewpointContainer <em>Viewpoint Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getOrchestration <em>Orchestration</em>}</li>
  * </ul>
@@ -42,6 +44,16 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * @generated
  */
 public class FactoryComponentImpl extends ActivityImpl implements FactoryComponent {
+  /**
+   * The cached value of the '{@link #getActivityContractContainer() <em>Activity Contract Container</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getActivityContractContainer()
+   * @generated
+   * @ordered
+   */
+  protected FactoryComponentContractContainer activityContractContainer;
+
   /**
    * The cached value of the '{@link #getViewpointContainer() <em>Viewpoint Container</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -176,6 +188,53 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FactoryComponentContractContainer getActivityContractContainer() {
+    return activityContractContainer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetActivityContractContainer(FactoryComponentContractContainer newActivityContractContainer, NotificationChain msgs) {
+    FactoryComponentContractContainer oldActivityContractContainer = activityContractContainer;
+    activityContractContainer = newActivityContractContainer;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER, oldActivityContractContainer, newActivityContractContainer);
+      if (msgs == null)
+        msgs = notification;
+      else
+        msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setActivityContractContainer(FactoryComponentContractContainer newActivityContractContainer) {
+    if (newActivityContractContainer != activityContractContainer) {
+      NotificationChain msgs = null;
+      if (activityContractContainer != null)
+        msgs = ((InternalEObject) activityContractContainer).eInverseRemove(this, FcorePackage.FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY, FactoryComponentContractContainer.class, msgs);
+      if (newActivityContractContainer != null)
+        msgs = ((InternalEObject) newActivityContractContainer).eInverseAdd(this, FcorePackage.FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY, FactoryComponentContractContainer.class, msgs);
+      msgs = basicSetActivityContractContainer(newActivityContractContainer, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER, newActivityContractContainer, newActivityContractContainer));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
@@ -251,6 +310,10 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      if (activityContractContainer != null)
+        msgs = ((InternalEObject) activityContractContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER, null, msgs);
+      return basicSetActivityContractContainer((FactoryComponentContractContainer) otherEnd, msgs);
     case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
       if (viewpointContainer != null)
         msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, null, msgs);
@@ -271,6 +334,8 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      return basicSetActivityContractContainer(null, msgs);
     case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
       return basicSetViewpointContainer(null, msgs);
     case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
@@ -287,6 +352,8 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      return getActivityContractContainer();
     case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
       return getViewpointContainer();
     case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
@@ -303,6 +370,9 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      setActivityContractContainer((FactoryComponentContractContainer) newValue);
+      return;
     case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
       setViewpointContainer((ViewpointContainer) newValue);
       return;
@@ -321,6 +391,9 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      setActivityContractContainer((FactoryComponentContractContainer) null);
+      return;
     case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
       setViewpointContainer((ViewpointContainer) null);
       return;
@@ -339,6 +412,8 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      return activityContractContainer != null;
     case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
       return viewpointContainer != null;
     case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
