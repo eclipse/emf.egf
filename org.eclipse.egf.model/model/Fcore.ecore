@@ -46,6 +46,25 @@
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContextContainer"
+        eType="#//OrchestrationContextContainer" containment="true" resolveProxies="false"
+        eOpposite="#//OrchestrationContextContainer/orchestration"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrchestrationContextContainer" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" lowerBound="1"
+        eType="#//Orchestration" eOpposite="#//Orchestration/orchestrationContextContainer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrchestrationContext" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" lowerBound="1"
+        eType="#//Contract" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
+        eType="#//Context" resolveProxies="false" eOpposite="#//Context/orchestrationContext"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
+        resolveProxies="false">
+      <eGenericType eClassifier="#//Type">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Invocation" abstract="true" eSuperTypes="#//ModelElement">
     <eTypeParameters name="T">
@@ -109,7 +128,7 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ContractConnector" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="context" eType="#//ContextContainer"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contextContainer" eType="#//ContextContainer"
         resolveProxies="false" eOpposite="#//ContextContainer/connectors"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="#//Contract"/>
@@ -126,7 +145,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
         eType="#//Context" containment="true" resolveProxies="false" eOpposite="#//Context/contextContainer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="connectors" upperBound="-1"
-        eType="#//ContractConnector" containment="true" resolveProxies="false" eOpposite="#//ContractConnector/context"/>
+        eType="#//ContractConnector" containment="true" resolveProxies="false" eOpposite="#//ContractConnector/contextContainer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//ModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -134,8 +153,10 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contextContainer" lowerBound="1"
         eType="#//ContextContainer" resolveProxies="false" eOpposite="#//ContextContainer/contexts"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContract" lowerBound="1"
         eType="#//Contract"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContext" eType="#//OrchestrationContext"
+        eOpposite="#//OrchestrationContext/contexts"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
         resolveProxies="false">
       <eGenericType eClassifier="#//Type">
