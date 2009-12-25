@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <productionplan:Task xmi:version="2.1"
-    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:productionplan="http://www.eclipse.org/egf/1.0.0/productionplan" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
-    name="H1" description="" taskId="org.eclipse.egf.example.task.h1.H1.id"/>
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:productionplan="http://www.eclipse.org/egf/1.0.0/productionplan"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
+    name="H1" description="" taskId="org.eclipse.egf.example.task.h1.H1.id">
+  <contractContainer xmi:id="_sAEVUbpOEd6O-6ob3O13Lw">
+    <contracts xmi:id="_sZPqULpOEd6O-6ob3O13Lw" name="quantity">
+      <type xmi:type="types:IntegerType" xmi:id="_wO9-sLpOEd6O-6ob3O13Lw" value="100"/>
+    </contracts>
+    <contracts xmi:id="_xfSXELpOEd6O-6ob3O13Lw" name="price">
+      <type xmi:type="types:FloatType" xmi:id="_y0EYsLpOEd6O-6ob3O13Lw" value="10.5"/>
+    </contracts>
+    <contracts xmi:id="_2vwLILpOEd6O-6ob3O13Lw" name="amount" mode="OUT">
+      <type xmi:type="types:FloatType" xmi:id="_5M9NYLpOEd6O-6ob3O13Lw"/>
+    </contracts>
+  </contractContainer>
+</productionplan:Task>
