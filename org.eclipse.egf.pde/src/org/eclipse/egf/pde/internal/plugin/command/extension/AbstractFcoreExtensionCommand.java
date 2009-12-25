@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  *******************************************************************************/
-package org.eclipse.egf.pde.internal.plugin.command.fcore;
+package org.eclipse.egf.pde.internal.plugin.command.extension;
 
 import org.eclipse.egf.core.fcore.IFcoreConstants;
 import org.eclipse.egf.pde.plugin.command.AbstractExtensionChangesCommand;

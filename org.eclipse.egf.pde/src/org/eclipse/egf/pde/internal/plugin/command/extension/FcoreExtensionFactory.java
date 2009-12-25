@@ -8,12 +8,10 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.pde.internal.plugin.extension;
+package org.eclipse.egf.pde.internal.plugin.command.extension;
 
-import org.eclipse.egf.pde.internal.plugin.command.fcore.SetFcoreExtensionCommand;
-import org.eclipse.egf.pde.internal.plugin.command.fcore.UnsetFcoreExtensionCommand;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommand;
-import org.eclipse.egf.pde.plugin.extension.IFcoreExtensionFactory;
+import org.eclipse.egf.pde.plugin.command.extension.IFcoreExtensionFactory;
 import org.eclipse.emf.common.util.URI;
 
 /**
@@ -48,14 +46,14 @@ public class FcoreExtensionFactory implements IFcoreExtensionFactory {
   }
 
   /**
-   * @see org.eclipse.egf.pde.plugin.extension.IFcoreExtensionFactory#setFcoreExtension(org.eclipse.emf.common.util.URI)
+   * @see org.eclipse.egf.pde.plugin.command.extension.IFcoreExtensionFactory#setFcoreExtension(org.eclipse.emf.common.util.URI)
    */
   public IPluginChangesCommand setFcoreExtension(URI fcURI_p) {
     return new SetFcoreExtensionCommand(fcURI_p);
   }
 
   /**
-   * @see org.eclipse.egf.pde.plugin.extension.IFcoreExtensionFactory#unsetFcoreExtension(org.eclipse.emf.common.util.URI)
+   * @see org.eclipse.egf.pde.plugin.command.extension.IFcoreExtensionFactory#unsetFcoreExtension(org.eclipse.emf.common.util.URI)
    */
   public IPluginChangesCommand unsetFcoreExtension(URI fcURI_p) {
     return new UnsetFcoreExtensionCommand(fcURI_p);

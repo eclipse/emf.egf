@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  *******************************************************************************/
-package org.eclipse.egf.pde.plugin.extension;
+package org.eclipse.egf.pde.plugin.command.extension;
 
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommand;
 import org.eclipse.emf.common.util.URI;
