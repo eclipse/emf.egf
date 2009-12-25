@@ -32,7 +32,7 @@ public class BundleHelper {
    *          the class name with its package name (dot separated syntax).
    * @param bundle_p
    *          which can load given class name.
-   * @return an instance of given class name or null if instantiation failed.
+   * @return an instance of given class name
    */
   public static Object instantiate(String fullyQualifiedClassName_p, Bundle bundle_p) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
     Object result = null;
@@ -56,8 +56,7 @@ public class BundleHelper {
    *          the class name with its package name (dot separated syntax).
    * @param bundle_p
    *          bundle which can load given class name.
-   * @return loaded Class according to given class name or null if loading
-   *         failed.
+   * @return loaded Class according to given class name
    */
   public static Class<?> loadClass(String fullyQualifiedClassName_p, Bundle bundle_p) throws ClassNotFoundException {
     Class<?> clazz = null;
