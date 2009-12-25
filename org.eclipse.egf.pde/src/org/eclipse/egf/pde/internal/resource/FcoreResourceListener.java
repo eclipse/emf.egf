@@ -36,7 +36,6 @@ import org.eclipse.egf.core.fcore.IFcoreConstants;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
 import org.eclipse.egf.core.fcore.IResourceFcoreListener;
-import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommand;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommandRunner;
@@ -194,7 +193,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
                   }
                 }
               } catch (IllegalArgumentException iae) {
-                EGFPlatformPlugin.getDefault().logError(new String("FcoreResourceListener.resourceChanged(..) _ "), iae); //$NON-NLS-1$
+                EGFPDEPlugin.getDefault().logError(new String("FcoreResourceListener.resourceChanged(..) _ "), iae); //$NON-NLS-1$
               }
             }
           }

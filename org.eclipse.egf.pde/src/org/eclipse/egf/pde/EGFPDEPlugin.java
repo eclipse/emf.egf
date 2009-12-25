@@ -35,6 +35,7 @@ import org.eclipse.egf.pde.internal.FcoreGeneratorHelper;
 import org.eclipse.egf.pde.internal.plugin.command.PluginChangesCommandRunner;
 import org.eclipse.egf.pde.internal.plugin.command.extension.FcoreExtensionFactory;
 import org.eclipse.egf.pde.internal.resource.FcoreResourceListener;
+import org.eclipse.egf.pde.l10n.EGFPDEMessages;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommand;
 import org.eclipse.egf.pde.plugin.command.IPluginChangesCommandRunner;
 import org.eclipse.egf.pde.plugin.command.extension.IFcoreExtensionFactory;
