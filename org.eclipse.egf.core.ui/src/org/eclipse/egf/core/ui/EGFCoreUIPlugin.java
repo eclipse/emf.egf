@@ -31,12 +31,9 @@ public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
    * Returns the currently active window for this workbench (if any). Returns
    * <code>null</code> if there is no active workbench window. Returns
    * <code>null</code> if called from a non-UI thread.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * 
    * @return the active workbench window, or <code>null</code> if there is
    *         no active workbench window or if called from a non-UI thread
-   * @generated NOT
    */
   public static IWorkbenchWindow getActiveWorkbenchWindow() {
     return getDefault().getWorkbench().getActiveWorkbenchWindow();
@@ -44,11 +41,8 @@ public class EGFCoreUIPlugin extends EGFAbstractUIPlugin {
 
   /**
    * Returns the currently active shell for this workbench (if any).
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * 
    * @return the active workbench shell.
-   * @generated NOT
    */
   public static Shell getActiveWorkbenchShell() {
     IWorkbenchWindow window = getActiveWorkbenchWindow();
