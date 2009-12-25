@@ -37,8 +37,10 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.ui.emf.EGFEditUIUtil;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.ResourceHelper;
+import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
@@ -220,8 +222,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   protected ISelectionChangedListener selectionChangedListener;
 
   /**
-   * This keeps track of all the
-   * {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that are
+   * This keeps track of all the {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that
+   * are
    * listening to this editor.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -262,7 +264,6 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
       if (p instanceof ContentOutline) {
         if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
           getActionBarContributor().setActiveEditor(FcoreEditor.this);
-
           setCurrentViewer(contentOutlineViewer);
         }
       } else if (p instanceof PropertySheet) {
@@ -303,26 +304,35 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
 
     public void platformExtensionPointChanged(IPlatformExtensionPointDelta delta) {
 
-      final Collection<Resource> deltaChangedResources = new ArrayList<Resource>();
+      final Collection<Resource> deltaAddedResources = new ArrayList<Resource>();
       final Collection<Resource> deltaRemovedResources = new ArrayList<Resource>();
       ResourceSet resourceSet = editingDomain.getResourceSet();
 
-      // Check if removed platform factory components are applicable to this
-      // editor
+      // Check if removed platform fcores are applicable to this editor
       for (IPlatformExtensionPoint extensionPoint : delta.getRemovedPlatformExtensionPoints(IPlatformFcore.class)) {
-        IPlatformFcore fc = (IPlatformFcore) extensionPoint;
-        Resource resource = resourceSet.getResource(fc.getURI(), false);
+        IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
+        Resource resource = resourceSet.getResource(fcore.getURI(), false);
         if (resource != null) {
           deltaRemovedResources.add(resource);
         }
       }
-      // Check if added platform factory components are applicable to this
-      // editor
+      // Check if added platform factory components are applicable to this editor
       for (IPlatformExtensionPoint extensionPoint : delta.getAddedPlatformExtensionPoints(IPlatformFcore.class)) {
-        IPlatformFcore fc = (IPlatformFcore) extensionPoint;
-        Resource resource = resourceSet.getResource(fc.getURI(), false);
+        IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
+        Resource resource = resourceSet.getResource(fcore.getURI(), false);
         if (resource != null && savedResources.remove(resource) == false) {
-          deltaChangedResources.add(resource);
+          deltaAddedResources.add(resource);
+        }
+      }
+
+      // Check whether or not added resource is a changed resource (target versus workspace fcores)
+      LOOP: for (Iterator<Resource> iter = deltaRemovedResources.iterator(); iter.hasNext();) {
+        Resource removedResource = iter.next();
+        for (Resource addedResource : deltaAddedResources) {
+          if (addedResource.getURI().equals(removedResource.getURI())) {
+            iter.remove();
+            continue LOOP;
+          }
         }
       }
 
@@ -330,17 +340,17 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         getSite().getShell().getDisplay().asyncExec(new Runnable() {
           public void run() {
             removedResources.addAll(deltaRemovedResources);
-            if (!isDirty()) {
+            if (isDirty() == false) {
               getSite().getPage().closeEditor(FcoreEditor.this, false);
             }
           }
         });
       }
 
-      if (deltaChangedResources.isEmpty() == false) {
+      if (deltaAddedResources.isEmpty() == false) {
         getSite().getShell().getDisplay().asyncExec(new Runnable() {
           public void run() {
-            changedResources.addAll(deltaChangedResources);
+            changedResources.addAll(deltaAddedResources);
             if (getSite().getPage().getActiveEditor() == FcoreEditor.this) {
               handleActivate();
             }
@@ -452,26 +462,30 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   protected IResourceChangeListener resourceChangeListener = new IResourceChangeListener() {
     public void resourceChanged(IResourceChangeEvent event) {
       IResourceDelta delta = event.getDelta();
       try {
         class ResourceDeltaVisitor implements IResourceDeltaVisitor {
-          protected ResourceSet resourceSet = editingDomain.getResourceSet();
-          protected Collection<Resource> changedResources = new ArrayList<Resource>();
-          protected Collection<Resource> removedResources = new ArrayList<Resource>();
 
-          public boolean visit(IResourceDelta delta) {
-            if (delta.getResource().getType() == IResource.FILE) {
-              if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED && delta.getFlags() != IResourceDelta.MARKERS) {
-                Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(delta.getFullPath().toString(), true), false);
+          protected ResourceSet resourceSet = editingDomain.getResourceSet();
+          protected Collection<Resource> deltaChangedResources = new ArrayList<Resource>();
+          protected Collection<Resource> deltaRemovedResources = new ArrayList<Resource>();
+
+          public boolean visit(IResourceDelta innerDelta) {
+            if (innerDelta.getResource().getType() == IResource.FILE) {
+              if (innerDelta.getKind() == IResourceDelta.REMOVED || innerDelta.getKind() == IResourceDelta.CHANGED && innerDelta.getFlags() != IResourceDelta.MARKERS) {
+                Resource resource = resourceSet.getResource(URI.createPlatformResourceURI(innerDelta.getFullPath().toString(), true), false);
                 if (resource != null) {
-                  if (delta.getKind() == IResourceDelta.REMOVED) {
-                    removedResources.add(resource);
-                  } else if (!savedResources.remove(resource)) {
-                    changedResources.add(resource);
+                  if (innerDelta.getKind() == IResourceDelta.REMOVED) {
+                    // ignore fcore resources, they are handled by platformListener
+                    if (EGFCorePlugin.getPlatformFcore(resource) == null) {
+                      deltaRemovedResources.add(resource);
+                    }
+                  } else if (savedResources.remove(resource) == false) {
+                    deltaChangedResources.add(resource);
                   }
                 }
               }
@@ -481,11 +495,11 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
           }
 
           public Collection<Resource> getChangedResources() {
-            return changedResources;
+            return deltaChangedResources;
           }
 
           public Collection<Resource> getRemovedResources() {
-            return removedResources;
+            return deltaRemovedResources;
           }
         }
 
@@ -558,34 +572,21 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   protected void handleChangedResources() {
-    if (!changedResources.isEmpty() && (!isDirty() || handleDirtyConflict())) {
+    if (changedResources.isEmpty() == false && (isDirty() == false || handleDirtyConflict())) {
       if (isDirty()) {
         changedResources.addAll(editingDomain.getResourceSet().getResources());
       }
       editingDomain.getCommandStack().flush();
 
-      updateProblemIndication = false;
-      for (Resource resource : changedResources) {
-        if (resource.isLoaded()) {
-          resource.unload();
-          try {
-            resource.load(Collections.EMPTY_MAP);
-          } catch (IOException exception) {
-            if (!resourceToDiagnosticMap.containsKey(resource)) {
-              resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
-            }
-          }
-        }
-      }
+      ResourceHelper.reloadResources(editingDomain.getResourceSet(), changedResources);
 
       if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
         setSelection(StructuredSelection.EMPTY);
       }
 
-      updateProblemIndication = true;
       updateProblemIndication();
     }
   }
@@ -755,11 +756,9 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This returns the editing domain as required by the
-   * {@link IEditingDomainProvider} interface.
-   * This is important for implementing the static methods of
-   * {@link AdapterFactoryEditingDomain} and for supporting
-   * {@link org.eclipse.emf.edit.ui.action.CommandAction}.
+   * This returns the editing domain as required by the {@link IEditingDomainProvider} interface.
+   * This is important for implementing the static methods of {@link AdapterFactoryEditingDomain}
+   * and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -882,8 +881,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This returns the viewer as required by the {@link IViewerProvider}
-   * interface.
+   * This returns the viewer as required by the {@link IViewerProvider} interface.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -1402,7 +1400,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   @Override
   public void init(IEditorSite site, IEditorInput editorInput) {
@@ -1412,6 +1410,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
     site.setSelectionProvider(this);
     site.getPage().addPartListener(partListener);
     ResourcesPlugin.getWorkspace().addResourceChangeListener(resourceChangeListener, IResourceChangeEvent.POST_CHANGE);
+    EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(platformListener);
   }
 
   /**
@@ -1578,13 +1577,14 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   @Override
   public void dispose() {
     updateProblemIndication = false;
 
     ResourcesPlugin.getWorkspace().removeResourceChangeListener(resourceChangeListener);
+    EGFPlatformPlugin.getPlatformManager().removePlatformExtensionPointListener(platformListener);
 
     getSite().getPage().removePartListener(partListener);
 
