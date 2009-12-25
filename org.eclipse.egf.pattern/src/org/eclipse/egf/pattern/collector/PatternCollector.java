@@ -52,7 +52,7 @@ public class PatternCollector extends Collector<Pattern> {
         case PatternPackage.PATTERN:
             final Pattern pattern = (Pattern) source;
             final String id = pattern.getID();
-            if (ids.isEmpty() || (id != null && ids.contains(id)))
+            if (ids == null || ids.isEmpty() || (id != null && ids.contains(id)))
                 result.add(pattern);
             return;
         }

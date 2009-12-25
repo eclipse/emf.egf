@@ -47,7 +47,7 @@ public class PatternLibraryCollector extends Collector<PatternLibrary> {
         case PatternPackage.PATTERN_LIBRARY:
             final PatternLibrary lib = (PatternLibrary) source;
             final String id = lib.getID();
-            if (ids.isEmpty() || (id != null && ids.contains(id)))
+            if (ids == null || ids.isEmpty() || (id != null && ids.contains(id)))
                 result.add(lib);
             for (PatternElement elem : lib.getElements())
                 doCollect(elem, result, ids);
