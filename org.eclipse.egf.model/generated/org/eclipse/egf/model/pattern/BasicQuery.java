@@ -15,14 +15,14 @@ package org.eclipse.egf.model.pattern;
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Basic Query</b></em>'. <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getBasicQuery()
  * @model
  * @generated
  */
 public interface BasicQuery extends Query {
 
-  String TYPE = "type";
+    String TYPE = "type";
 
 } // BasicQuery

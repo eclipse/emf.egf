@@ -24,35 +24,33 @@ import org.eclipse.emf.ecore.EClass;
  * <em><b>Basic Query</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class BasicQueryImpl extends QueryImpl implements BasicQuery {
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected BasicQueryImpl() {
-    super();
-  }
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    protected BasicQueryImpl() {
+        super();
+    }
 
-  @Override
-  public Map<String, String> getQueryContext() {
-    Map<String, String> result = new HashMap<String, String>();
-    result.put(TYPE, getParameter().getType());
-    return result;
-  }
+    @Override
+    public Map<String, String> getQueryContext() {
+        Map<String, String> result = new HashMap<String, String>();
+        result.put(TYPE, getParameter().getType());
+        return result;
+    }
 
-  /**
-   * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return PatternPackage.Literals.BASIC_QUERY;
-  }
+    /**
+     * <!-- begin-user-doc --> <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return PatternPackage.Literals.BASIC_QUERY;
+    }
 
 } // BasicQueryImpl

@@ -13,68 +13,59 @@
 package org.eclipse.egf.model.pattern;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Library</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.PatternLibrary#getElements <em>
- * Elements</em>}</li>
- * <li>
- * {@link org.eclipse.egf.model.pattern.PatternLibrary#getRuntimeOrchestration
- * <em>Runtime Orchestration</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.PatternLibrary#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.PatternLibrary#getSchedulingRules <em>Scheduling Rules</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternLibrary()
  * @model
  * @generated
  */
 public interface PatternLibrary extends PatternElement {
-  /**
-   * Returns the value of the '<em><b>Elements</b></em>' containment reference
-   * list.
-   * The list contents are of type
-   * {@link org.eclipse.egf.model.pattern.PatternElement}.
-   * It is bidirectional and its opposite is '
-   * {@link org.eclipse.egf.model.pattern.PatternElement#getContainer
-   * <em>Container</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Elements</em>' containment reference list isn't
-   * clear, there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * 
-   * @return the value of the '<em>Elements</em>' containment reference list.
-   * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternLibrary_Elements()
-   * @see org.eclipse.egf.model.pattern.PatternElement#getContainer
-   * @model opposite="container" containment="true"
-   * @generated
-   */
-  EList<PatternElement> getElements();
+    /**
+     * Returns the value of the '<em><b>Elements</b></em>' containment reference list.
+     * The list contents are of type {@link org.eclipse.egf.model.pattern.PatternElement}.
+     * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.pattern.PatternElement#getContainer <em>Container</em>}'.
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Elements</em>' containment reference list isn't
+     * clear, there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Elements</em>' containment reference list.
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternLibrary_Elements()
+     * @see org.eclipse.egf.model.pattern.PatternElement#getContainer
+     * @model opposite="container" containment="true"
+     * @generated
+     */
+    EList<PatternElement> getElements();
 
-  /**
-   * Returns the value of the '<em><b>Runtime Orchestration</b></em>' reference
-   * list.
-   * The list contents are of type
-   * {@link org.eclipse.egf.model.pattern.PatternLibrary}.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Runtime Orchestration</em>' reference list isn't
-   * clear, there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * 
-   * @return the value of the '<em>Runtime Orchestration</em>' reference list.
-   * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternLibrary_RuntimeOrchestration()
-   * @model resolveProxies="false"
-   * @generated
-   */
-  EList<PatternLibrary> getRuntimeOrchestration();
+    /**
+     * Returns the value of the '<em><b>Scheduling Rules</b></em>' map.
+     * The key is of type {@link java.lang.String},
+     * and the value is of type list of {@link org.eclipse.egf.model.pattern.PatternElement},
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Scheduling Rules</em>' map isn't clear,
+     * there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Scheduling Rules</em>' map.
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternLibrary_SchedulingRules()
+     * @model mapType="org.eclipse.egf.model.pattern.String2PatternList<org.eclipse.emf.ecore.EString, org.eclipse.egf.model.pattern.PatternElement>"
+     * @generated
+     */
+    EMap<String, EList<PatternElement>> getSchedulingRules();
 
 } // PatternLibrary

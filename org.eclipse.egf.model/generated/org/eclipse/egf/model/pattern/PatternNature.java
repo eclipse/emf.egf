@@ -18,8 +18,8 @@ import org.eclipse.egf.model.fcore.ModelElement;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Nature</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternNature()
  * @model abstract="true"
  * @generated

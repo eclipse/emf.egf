@@ -16,8 +16,8 @@ package org.eclipse.egf.model.pattern;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Custom Query</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getCustomQuery()
  * @model
  * @generated

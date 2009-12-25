@@ -16,8 +16,8 @@ package org.eclipse.egf.model.pattern;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>String Query</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getStringQuery()
  * @model
  * @generated
