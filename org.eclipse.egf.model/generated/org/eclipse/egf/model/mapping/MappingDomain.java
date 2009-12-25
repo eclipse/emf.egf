@@ -18,17 +18,15 @@ import org.eclipse.egf.model.domain.Domain;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Domain</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.mapping.MappingDomain#getSource <em>Source
- * </em>}</li>
- * <li>{@link org.eclipse.egf.model.mapping.MappingDomain#getTarget <em>Target
- * </em>}</li>
+ *   <li>{@link org.eclipse.egf.model.mapping.MappingDomain#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.mapping.MappingDomain#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.mapping.MappingPackage#getMappingDomain()
  * @model
  * @generated
@@ -42,7 +40,6 @@ public interface MappingDomain extends Mapping {
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Source</em>' reference.
    * @see #setSource(Domain)
    * @see org.eclipse.egf.model.mapping.MappingPackage#getMappingDomain_Source()
@@ -52,14 +49,10 @@ public interface MappingDomain extends Mapping {
   Domain getSource();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.mapping.MappingDomain#getSource
-   * <em>Source</em>}' reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.mapping.MappingDomain#getSource <em>Source</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Source</em>' reference.
+   * @param value the new value of the '<em>Source</em>' reference.
    * @see #getSource()
    * @generated
    */
@@ -73,7 +66,6 @@ public interface MappingDomain extends Mapping {
    * should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Target</em>' reference.
    * @see #setTarget(Domain)
    * @see org.eclipse.egf.model.mapping.MappingPackage#getMappingDomain_Target()
@@ -83,14 +75,10 @@ public interface MappingDomain extends Mapping {
   Domain getTarget();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.mapping.MappingDomain#getTarget
-   * <em>Target</em>}' reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.mapping.MappingDomain#getTarget <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Target</em>' reference.
+   * @param value the new value of the '<em>Target</em>' reference.
    * @see #getTarget()
    * @generated
    */

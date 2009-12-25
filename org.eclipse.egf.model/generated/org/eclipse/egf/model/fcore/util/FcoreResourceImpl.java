@@ -17,12 +17,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.uri.ModelSchemeAware;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLParserPool;
@@ -77,7 +75,6 @@ public class FcoreResourceImpl extends XMIResourceImpl {
     super(uri);
     setEncoding("UTF-8"); //$NON-NLS-1$
     setXMIVersion("2.1"); //$NON-NLS-1$
-    setIntrinsicIDToEObjectMap(new HashMap<String, EObject>());
   }
 
   /**
@@ -88,7 +85,7 @@ public class FcoreResourceImpl extends XMIResourceImpl {
    */
   @Override
   protected boolean useIDAttributes() {
-    return true;
+    return false;
   }
 
   /**
@@ -99,19 +96,7 @@ public class FcoreResourceImpl extends XMIResourceImpl {
    */
   @Override
   protected boolean useUUIDs() {
-    return false;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * 
-   * @see {@link org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl#getID(org.eclipse.emf.ecore.EObject)}
-   *      <!-- end-user-doc -->
-   * @generated NOT
-   */
-  @Override
-  public String getID(EObject eObject) {
-    return eObject instanceof ModelElement ? ((ModelElement) eObject).getID() : super.getID(eObject);
+    return true;
   }
 
   /**

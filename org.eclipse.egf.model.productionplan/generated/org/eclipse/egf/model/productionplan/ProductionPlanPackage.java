@@ -78,15 +78,6 @@ public interface ProductionPlanPackage extends EPackage {
   int PRODUCTION_PLAN = 0;
 
   /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRODUCTION_PLAN__ID = FcorePackage.ORCHESTRATION__ID;
-
-  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -142,15 +133,6 @@ public interface ProductionPlanPackage extends EPackage {
   int PRODUCTION_PLAN_INVOCATION = 1;
 
   /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PRODUCTION_PLAN_INVOCATION__ID = FcorePackage.INVOCATION__ID;
-
-  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -204,15 +186,6 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    */
   int FACTORY_COMPONENT_INVOCATION = 2;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FACTORY_COMPONENT_INVOCATION__ID = PRODUCTION_PLAN_INVOCATION__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -276,61 +249,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @see org.eclipse.egf.model.productionplan.impl.ProductionPlanPackageImpl#getTask()
    * @generated
    */
-  int TASK = 3;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK__ID = FcorePackage.ACTIVITY__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK__NAME = FcorePackage.ACTIVITY__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK__DESCRIPTION = FcorePackage.ACTIVITY__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Contract Container</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK__CONTRACT_CONTAINER = FcorePackage.ACTIVITY__CONTRACT_CONTAINER;
-
-  /**
-   * The feature id for the '<em><b>Task Id</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK__TASK_ID = FcorePackage.ACTIVITY_FEATURE_COUNT + 0;
-
-  /**
-   * The number of structural features of the '<em>Task</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK_FEATURE_COUNT = FcorePackage.ACTIVITY_FEATURE_COUNT + 1;
+  int TASK = 4;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.productionplan.impl.TaskInvocationImpl <em>Task Invocation</em>}' class.
@@ -340,16 +259,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @see org.eclipse.egf.model.productionplan.impl.ProductionPlanPackageImpl#getTaskInvocation()
    * @generated
    */
-  int TASK_INVOCATION = 4;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TASK_INVOCATION__ID = PRODUCTION_PLAN_INVOCATION__ID;
+  int TASK_INVOCATION = 3;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -404,6 +314,51 @@ public interface ProductionPlanPackage extends EPackage {
    * @ordered
    */
   int TASK_INVOCATION_FEATURE_COUNT = PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT + 1;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK__NAME = FcorePackage.ACTIVITY__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK__DESCRIPTION = FcorePackage.ACTIVITY__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Contract Container</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK__CONTRACT_CONTAINER = FcorePackage.ACTIVITY__CONTRACT_CONTAINER;
+
+  /**
+   * The feature id for the '<em><b>Task Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK__TASK_ID = FcorePackage.ACTIVITY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Task</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK_FEATURE_COUNT = FcorePackage.ACTIVITY_FEATURE_COUNT + 1;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.productionplan.ProductionPlan <em>Production Plan</em>}'.

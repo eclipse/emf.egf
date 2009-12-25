@@ -18,7 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.model.EGFProductionPlanPlugin;
+import org.eclipse.egf.model.EGFProductionPlanModelPlugin;
 import org.eclipse.egf.model.productionplan.*;
 import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlan;
@@ -156,10 +156,10 @@ public class ProductionPlanValidator extends EObjectValidator {
       return validateProductionPlanInvocation((ProductionPlanInvocation) value, diagnostics, context);
     case ProductionPlanPackage.FACTORY_COMPONENT_INVOCATION:
       return validateFactoryComponentInvocation((FactoryComponentInvocation) value, diagnostics, context);
-    case ProductionPlanPackage.TASK:
-      return validateTask((Task) value, diagnostics, context);
     case ProductionPlanPackage.TASK_INVOCATION:
       return validateTaskInvocation((TaskInvocation) value, diagnostics, context);
+    case ProductionPlanPackage.TASK:
+      return validateTask((Task) value, diagnostics, context);
     default:
       return true;
     }
@@ -254,7 +254,7 @@ public class ProductionPlanValidator extends EObjectValidator {
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return EGFProductionPlanPlugin.INSTANCE;
+    return EGFProductionPlanModelPlugin.INSTANCE;
   }
 
   /**

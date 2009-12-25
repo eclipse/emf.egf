@@ -97,13 +97,13 @@ public class ProductionPlanAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseTask(Task object) {
-      return createTaskAdapter();
+    public Adapter caseTaskInvocation(TaskInvocation object) {
+      return createTaskInvocationAdapter();
     }
 
     @Override
-    public Adapter caseTaskInvocation(TaskInvocation object) {
-      return createTaskInvocationAdapter();
+    public Adapter caseTask(Task object) {
+      return createTaskAdapter();
     }
 
     @Override

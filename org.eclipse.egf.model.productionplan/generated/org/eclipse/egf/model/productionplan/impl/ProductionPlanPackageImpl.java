@@ -274,11 +274,11 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     factoryComponentInvocationEClass = createEClass(FACTORY_COMPONENT_INVOCATION);
     createEReference(factoryComponentInvocationEClass, FACTORY_COMPONENT_INVOCATION__FACTORY_COMPONENT);
 
-    taskEClass = createEClass(TASK);
-    createEAttribute(taskEClass, TASK__TASK_ID);
-
     taskInvocationEClass = createEClass(TASK_INVOCATION);
     createEReference(taskInvocationEClass, TASK_INVOCATION__TASK);
+
+    taskEClass = createEClass(TASK);
+    createEAttribute(taskEClass, TASK__TASK_ID);
   }
 
   /**
@@ -317,8 +317,8 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     productionPlanEClass.getESuperTypes().add(theFcorePackage.getOrchestration());
     productionPlanInvocationEClass.getESuperTypes().add(theFcorePackage.getInvocation());
     factoryComponentInvocationEClass.getESuperTypes().add(this.getProductionPlanInvocation());
-    taskEClass.getESuperTypes().add(theFcorePackage.getActivity());
     taskInvocationEClass.getESuperTypes().add(this.getProductionPlanInvocation());
+    taskEClass.getESuperTypes().add(theFcorePackage.getActivity());
 
     // Initialize classes and features; add operations and parameters
     initEClass(productionPlanEClass, ProductionPlan.class, "ProductionPlan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -330,11 +330,11 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     initEClass(factoryComponentInvocationEClass, FactoryComponentInvocation.class, "FactoryComponentInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getFactoryComponentInvocation_FactoryComponent(), theFcorePackage.getFactoryComponent(), null, "factoryComponent", null, 1, 1, FactoryComponentInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEAttribute(getTask_TaskId(), theEcorePackage.getEString(), "taskId", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
     initEClass(taskInvocationEClass, TaskInvocation.class, "TaskInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getTaskInvocation_Task(), this.getTask(), null, "task", null, 1, 1, TaskInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getTask_TaskId(), theEcorePackage.getEString(), "taskId", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);

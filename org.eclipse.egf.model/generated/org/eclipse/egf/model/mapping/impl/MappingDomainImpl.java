@@ -26,13 +26,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl#getSource
- * <em>Source</em>}</li>
- * <li>{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl#getTarget
- * <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl#getTarget <em>Target</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class MappingDomainImpl extends MappingImpl implements MappingDomain {
@@ -40,7 +38,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
    * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getSource()
    * @generated
    * @ordered
@@ -51,7 +48,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
    * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getTarget()
    * @generated
    * @ordered
@@ -61,7 +57,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected MappingDomainImpl() {
@@ -71,7 +66,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -82,7 +76,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Domain getSource() {
@@ -92,7 +85,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setSource(Domain newSource) {
@@ -105,7 +97,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Domain getTarget() {
@@ -115,7 +106,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setTarget(Domain newTarget) {
@@ -128,7 +118,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -145,7 +134,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -164,7 +152,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -183,7 +170,6 @@ public class MappingDomainImpl extends MappingImpl implements MappingDomain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

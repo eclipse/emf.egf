@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.mapping.MappingFactory
  * @model kind="package"
  * @generated
@@ -38,7 +37,6 @@ public interface MappingPackage extends EPackage {
    * The package name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNAME = "mapping"; //$NON-NLS-1$
@@ -47,7 +45,6 @@ public interface MappingPackage extends EPackage {
    * The package namespace URI.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_URI = "http://www.eclipse.org/egf/1.0.0/mapping"; //$NON-NLS-1$
@@ -56,7 +53,6 @@ public interface MappingPackage extends EPackage {
    * The package namespace name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_PREFIX = "mapping"; //$NON-NLS-1$
@@ -65,18 +61,14 @@ public interface MappingPackage extends EPackage {
    * The singleton instance of the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   MappingPackage eINSTANCE = org.eclipse.egf.model.mapping.impl.MappingPackageImpl.init();
 
   /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.mapping.impl.MappingViewpointImpl
-   * <em>Viewpoint</em>}' class.
+   * The meta object id for the '{@link org.eclipse.egf.model.mapping.impl.MappingViewpointImpl <em>Viewpoint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.mapping.impl.MappingViewpointImpl
    * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMappingViewpoint()
    * @generated
@@ -87,7 +79,6 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -97,7 +88,6 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -107,29 +97,24 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int MAPPING_VIEWPOINT__DESCRIPTION = FcorePackage.VIEWPOINT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Viewerpoint Container</b></em>' container
-   * reference.
+   * The feature id for the '<em><b>Viewerpoint Container</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int MAPPING_VIEWPOINT__VIEWERPOINT_CONTAINER = FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Mappings</b></em>' containment reference
-   * list.
+   * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -139,19 +124,15 @@ public interface MappingPackage extends EPackage {
    * The number of structural features of the '<em>Viewpoint</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int MAPPING_VIEWPOINT_FEATURE_COUNT = FcorePackage.VIEWPOINT_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.mapping.impl.MappingImpl <em>Mapping</em>}'
-   * class.
+   * The meta object id for the '{@link org.eclipse.egf.model.mapping.impl.MappingImpl <em>Mapping</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.mapping.impl.MappingImpl
    * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMapping()
    * @generated
@@ -162,7 +143,6 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -172,7 +152,6 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -182,7 +161,6 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -192,19 +170,15 @@ public interface MappingPackage extends EPackage {
    * The number of structural features of the '<em>Mapping</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int MAPPING_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '
-   * {@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl
-   * <em>Domain</em>}' class.
+   * The meta object id for the '{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl <em>Domain</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.mapping.impl.MappingDomainImpl
    * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMappingDomain()
    * @generated
@@ -215,7 +189,6 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -225,7 +198,6 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -235,7 +207,6 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -245,7 +216,6 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>Source</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -255,7 +225,6 @@ public interface MappingPackage extends EPackage {
    * The feature id for the '<em><b>Target</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -265,18 +234,15 @@ public interface MappingPackage extends EPackage {
    * The number of structural features of the '<em>Domain</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int MAPPING_DOMAIN_FEATURE_COUNT = MAPPING_FEATURE_COUNT + 2;
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.mapping.MappingViewpoint <em>Viewpoint</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.mapping.MappingViewpoint <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Viewpoint</em>'.
    * @see org.eclipse.egf.model.mapping.MappingViewpoint
    * @generated
@@ -284,14 +250,10 @@ public interface MappingPackage extends EPackage {
   EClass getMappingViewpoint();
 
   /**
-   * Returns the meta object for the containment reference list '
-   * {@link org.eclipse.egf.model.mapping.MappingViewpoint#getMappings
-   * <em>Mappings</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.mapping.MappingViewpoint#getMappings <em>Mappings</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @return the meta object for the containment reference list '
-   *         <em>Mappings</em>'.
+   * @return the meta object for the containment reference list '<em>Mappings</em>'.
    * @see org.eclipse.egf.model.mapping.MappingViewpoint#getMappings()
    * @see #getMappingViewpoint()
    * @generated
@@ -299,11 +261,9 @@ public interface MappingPackage extends EPackage {
   EReference getMappingViewpoint_Mappings();
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.mapping.Mapping <em>Mapping</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.mapping.Mapping <em>Mapping</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Mapping</em>'.
    * @see org.eclipse.egf.model.mapping.Mapping
    * @generated
@@ -311,11 +271,9 @@ public interface MappingPackage extends EPackage {
   EClass getMapping();
 
   /**
-   * Returns the meta object for class '
-   * {@link org.eclipse.egf.model.mapping.MappingDomain <em>Domain</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.mapping.MappingDomain <em>Domain</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Domain</em>'.
    * @see org.eclipse.egf.model.mapping.MappingDomain
    * @generated
@@ -323,12 +281,9 @@ public interface MappingPackage extends EPackage {
   EClass getMappingDomain();
 
   /**
-   * Returns the meta object for the reference '
-   * {@link org.eclipse.egf.model.mapping.MappingDomain#getSource
-   * <em>Source</em>}'.
+   * Returns the meta object for the reference '{@link org.eclipse.egf.model.mapping.MappingDomain#getSource <em>Source</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Source</em>'.
    * @see org.eclipse.egf.model.mapping.MappingDomain#getSource()
    * @see #getMappingDomain()
@@ -337,12 +292,9 @@ public interface MappingPackage extends EPackage {
   EReference getMappingDomain_Source();
 
   /**
-   * Returns the meta object for the reference '
-   * {@link org.eclipse.egf.model.mapping.MappingDomain#getTarget
-   * <em>Target</em>}'.
+   * Returns the meta object for the reference '{@link org.eclipse.egf.model.mapping.MappingDomain#getTarget <em>Target</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Target</em>'.
    * @see org.eclipse.egf.model.mapping.MappingDomain#getTarget()
    * @see #getMappingDomain()
@@ -354,7 +306,6 @@ public interface MappingPackage extends EPackage {
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the factory that creates the instances of the model.
    * @generated
    */
@@ -370,17 +321,13 @@ public interface MappingPackage extends EPackage {
    * <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   interface Literals {
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.mapping.impl.MappingViewpointImpl
-     * <em>Viewpoint</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.mapping.impl.MappingViewpointImpl <em>Viewpoint</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.mapping.impl.MappingViewpointImpl
      * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMappingViewpoint()
      * @generated
@@ -388,22 +335,17 @@ public interface MappingPackage extends EPackage {
     EClass MAPPING_VIEWPOINT = eINSTANCE.getMappingViewpoint();
 
     /**
-     * The meta object literal for the '<em><b>Mappings</b></em>' containment
-     * reference list feature.
+     * The meta object literal for the '<em><b>Mappings</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     EReference MAPPING_VIEWPOINT__MAPPINGS = eINSTANCE.getMappingViewpoint_Mappings();
 
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.mapping.impl.MappingImpl <em>Mapping</em>}'
-     * class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.mapping.impl.MappingImpl <em>Mapping</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.mapping.impl.MappingImpl
      * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMapping()
      * @generated
@@ -411,12 +353,9 @@ public interface MappingPackage extends EPackage {
     EClass MAPPING = eINSTANCE.getMapping();
 
     /**
-     * The meta object literal for the '
-     * {@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl
-     * <em>Domain</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl <em>Domain</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.mapping.impl.MappingDomainImpl
      * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMappingDomain()
      * @generated
@@ -424,21 +363,17 @@ public interface MappingPackage extends EPackage {
     EClass MAPPING_DOMAIN = eINSTANCE.getMappingDomain();
 
     /**
-     * The meta object literal for the '<em><b>Source</b></em>' reference
-     * feature.
+     * The meta object literal for the '<em><b>Source</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     EReference MAPPING_DOMAIN__SOURCE = eINSTANCE.getMappingDomain_Source();
 
     /**
-     * The meta object literal for the '<em><b>Target</b></em>' reference
-     * feature.
+     * The meta object literal for the '<em><b>Target</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     EReference MAPPING_DOMAIN__TARGET = eINSTANCE.getMappingDomain_Target();

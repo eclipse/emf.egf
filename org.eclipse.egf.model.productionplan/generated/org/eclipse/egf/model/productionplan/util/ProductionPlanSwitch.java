@@ -129,17 +129,6 @@ public class ProductionPlanSwitch<T> {
         result = defaultCase(theEObject);
       return result;
     }
-    case ProductionPlanPackage.TASK: {
-      Task task = (Task) theEObject;
-      T result = caseTask(task);
-      if (result == null)
-        result = caseActivity(task);
-      if (result == null)
-        result = caseModelElement(task);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
     case ProductionPlanPackage.TASK_INVOCATION: {
       TaskInvocation taskInvocation = (TaskInvocation) theEObject;
       T result = caseTaskInvocation(taskInvocation);
@@ -149,6 +138,17 @@ public class ProductionPlanSwitch<T> {
         result = caseInvocation(taskInvocation);
       if (result == null)
         result = caseModelElement(taskInvocation);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case ProductionPlanPackage.TASK: {
+      Task task = (Task) theEObject;
+      T result = caseTask(task);
+      if (result == null)
+        result = caseActivity(task);
+      if (result == null)
+        result = caseModelElement(task);
       if (result == null)
         result = defaultCase(theEObject);
       return result;

@@ -18,8 +18,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.EGFModelsPlugin;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Context;
@@ -209,10 +207,6 @@ public class FcoreValidator extends EObjectValidator {
       return validateContext((Context) value, diagnostics, context);
     case FcorePackage.CONTRACT_MODE:
       return validateContractMode((ContractMode) value, diagnostics, context);
-    case FcorePackage.IPRODUCTION_CONTEXT:
-      return validateIProductionContext((IProductionContext) value, diagnostics, context);
-    case FcorePackage.INVOCATION_EXCEPTION:
-      return validateInvocationException((InvocationException) value, diagnostics, context);
     case FcorePackage.IPROGRESS_MONITOR:
       return validateIProgressMonitor((IProgressMonitor) value, diagnostics, context);
     case FcorePackage.URI:
@@ -388,26 +382,6 @@ public class FcoreValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateContractMode(ContractMode contractMode, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return true;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public boolean validateIProductionContext(IProductionContext iProductionContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return true;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public boolean validateInvocationException(InvocationException invocationException, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return true;
   }
 

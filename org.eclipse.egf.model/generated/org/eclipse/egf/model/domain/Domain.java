@@ -19,14 +19,14 @@ import org.eclipse.emf.ecore.EPackage;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Domain</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.Domain#getEpackage <em>Epackage</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.Domain#getEpackage <em>Epackage</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.domain.DomainPackage#getDomain()
  * @model
  * @generated
@@ -40,7 +40,6 @@ public interface Domain extends ModelElement {
    * really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Epackage</em>' reference.
    * @see #setEpackage(EPackage)
    * @see org.eclipse.egf.model.domain.DomainPackage#getDomain_Epackage()
@@ -50,13 +49,10 @@ public interface Domain extends ModelElement {
   EPackage getEpackage();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.domain.Domain#getEpackage
-   * <em>Epackage</em>}' reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.domain.Domain#getEpackage <em>Epackage</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Epackage</em>' reference.
+   * @param value the new value of the '<em>Epackage</em>' reference.
    * @see #getEpackage()
    * @generated
    */

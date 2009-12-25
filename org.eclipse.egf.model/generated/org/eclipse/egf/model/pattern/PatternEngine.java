@@ -33,35 +33,35 @@ import org.eclipse.egf.model.fcore.ModelElement;
  * @generated
  */
 public interface PatternEngine extends ModelElement {
-    /**
-     * Returns the value of the '<em><b>Pattern</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Pattern</em>' reference isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Pattern</em>' reference.
-     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternEngine_Pattern()
-     * @model required="true" changeable="false"
-     * @generated
-     */
-    Pattern getPattern();
+  /**
+   * Returns the value of the '<em><b>Pattern</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Pattern</em>' reference isn't clear, there
+   * really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Pattern</em>' reference.
+   * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternEngine_Pattern()
+   * @model required="true" changeable="false"
+   * @generated
+   */
+  Pattern getPattern();
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @model exceptions="org.eclipse.egf.model.pattern.PatternException" contextDataType="org.eclipse.egf.model.pattern.PatternContext" contextRequired="true"
-     * @generated
-     */
-    void execute(PatternContext context) throws PatternException;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="org.eclipse.egf.model.pattern.PatternException" contextDataType="org.eclipse.egf.model.pattern.PatternContext" contextRequired="true"
+   * @generated
+   */
+  void execute(PatternContext context) throws PatternException;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @model exceptions="org.eclipse.egf.model.pattern.PatternException"
-     * @generated
-     */
-    void translate() throws PatternException;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model exceptions="org.eclipse.egf.model.pattern.PatternException"
+   * @generated
+   */
+  void translate() throws PatternException;
 
 } // PatternEngine

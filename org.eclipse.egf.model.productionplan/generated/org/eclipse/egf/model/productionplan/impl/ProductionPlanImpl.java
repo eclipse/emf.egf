@@ -14,13 +14,6 @@ package org.eclipse.egf.model.productionplan.impl;
 
 import java.util.Collection;
 
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.core.runtime.SubMonitor;
-import org.eclipse.egf.core.l10n.EGFCoreMessages;
-import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.fcore.impl.OrchestrationImpl;
 import org.eclipse.egf.model.productionplan.ProductionPlan;
 import org.eclipse.egf.model.productionplan.ProductionPlanInvocation;
@@ -31,7 +24,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -124,44 +116,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
       return ((InternalEList<?>) getProductionPlanInvocations()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-    Assert.isNotNull(productionContext);
-    int steps = getSteps();
-    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, productionContext.getName()), steps * 900);
-    try {
-      for (ProductionPlanInvocation invocation : getProductionPlanInvocations()) {
-        invocation.invoke(productionContext, subMonitor.newChild(900 * invocation.getSteps(), SubMonitor.SUPPRESS_NONE));
-        if (monitor.isCanceled()) {
-          throw new OperationCanceledException();
-        }
-      }
-    } finally {
-      subMonitor.done();
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public int getSteps() {
-    int steps = 0;
-    for (ProductionPlanInvocation invocation : getProductionPlanInvocations()) {
-      steps += invocation.getSteps();
-    }
-    return steps;
   }
 
   /**

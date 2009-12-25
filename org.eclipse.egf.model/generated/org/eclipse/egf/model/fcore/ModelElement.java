@@ -37,16 +37,27 @@ public interface ModelElement extends EObject {
    * Returns the value of the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>ID</em>' attribute isn't clear, there really
-   * should be more of a description here...
+   * If the meaning of the '<em>ID</em>' attribute isn't clear,
+   * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>ID</em>' attribute.
+   * @see #isSetID()
    * @see org.eclipse.egf.model.fcore.FcorePackage#getModelElement_ID()
-   * @model id="true" required="true" transient="true" derived="true" suppressedSetVisibility="true"
+   * @model unsettable="true" transient="true" changeable="false" volatile="true" derived="true"
    * @generated
    */
   String getID();
+
+  /**
+   * Returns whether the value of the '{@link org.eclipse.egf.model.fcore.ModelElement#getID <em>ID</em>}' attribute is set.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return whether the value of the '<em>ID</em>' attribute is set.
+   * @see #getID()
+   * @generated
+   */
+  boolean isSetID();
 
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.

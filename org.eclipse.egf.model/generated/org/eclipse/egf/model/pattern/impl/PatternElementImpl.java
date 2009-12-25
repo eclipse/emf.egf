@@ -37,176 +37,176 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public abstract class PatternElementImpl extends ModelElementImpl implements PatternElement {
-    /**
-     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected int eFlags = 0;
+  /**
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  protected int eFlags = 0;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected PatternElementImpl() {
-        super();
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PatternElementImpl() {
+    super();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return PatternPackage.Literals.PATTERN_ELEMENT;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return PatternPackage.Literals.PATTERN_ELEMENT;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public PatternLibrary getContainer() {
-        if (eContainerFeatureID() != PatternPackage.PATTERN_ELEMENT__CONTAINER)
-            return null;
-        return (PatternLibrary) eContainer();
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public PatternLibrary getContainer() {
+    if (eContainerFeatureID() != PatternPackage.PATTERN_ELEMENT__CONTAINER)
+      return null;
+    return (PatternLibrary) eContainer();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public NotificationChain basicSetContainer(PatternLibrary newContainer, NotificationChain msgs) {
-        msgs = eBasicSetContainer((InternalEObject) newContainer, PatternPackage.PATTERN_ELEMENT__CONTAINER, msgs);
-        return msgs;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetContainer(PatternLibrary newContainer, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject) newContainer, PatternPackage.PATTERN_ELEMENT__CONTAINER, msgs);
+    return msgs;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setContainer(PatternLibrary newContainer) {
-        if (newContainer != eInternalContainer() || (eContainerFeatureID() != PatternPackage.PATTERN_ELEMENT__CONTAINER && newContainer != null)) {
-            if (EcoreUtil.isAncestor(this, newContainer))
-                throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
-            NotificationChain msgs = null;
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            if (newContainer != null)
-                msgs = ((InternalEObject) newContainer).eInverseAdd(this, PatternPackage.PATTERN_LIBRARY__ELEMENTS, PatternLibrary.class, msgs);
-            msgs = basicSetContainer(newContainer, msgs);
-            if (msgs != null)
-                msgs.dispatch();
-        } else if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_ELEMENT__CONTAINER, newContainer, newContainer));
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setContainer(PatternLibrary newContainer) {
+    if (newContainer != eInternalContainer() || (eContainerFeatureID() != PatternPackage.PATTERN_ELEMENT__CONTAINER && newContainer != null)) {
+      if (EcoreUtil.isAncestor(this, newContainer))
+        throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
+      NotificationChain msgs = null;
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      if (newContainer != null)
+        msgs = ((InternalEObject) newContainer).eInverseAdd(this, PatternPackage.PATTERN_LIBRARY__ELEMENTS, PatternLibrary.class, msgs);
+      msgs = basicSetContainer(newContainer, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_ELEMENT__CONTAINER, newContainer, newContainer));
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            if (eInternalContainer() != null)
-                msgs = eBasicRemoveFromContainer(msgs);
-            return basicSetContainer((PatternLibrary) otherEnd, msgs);
-        }
-        return super.eInverseAdd(otherEnd, featureID, msgs);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+      if (eInternalContainer() != null)
+        msgs = eBasicRemoveFromContainer(msgs);
+      return basicSetContainer((PatternLibrary) otherEnd, msgs);
     }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            return basicSetContainer(null, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+      return basicSetContainer(null, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-        switch (eContainerFeatureID()) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN_LIBRARY__ELEMENTS, PatternLibrary.class, msgs);
-        }
-        return super.eBasicRemoveFromContainerFeature(msgs);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+    switch (eContainerFeatureID()) {
+    case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+      return eInternalContainer().eInverseRemove(this, PatternPackage.PATTERN_LIBRARY__ELEMENTS, PatternLibrary.class, msgs);
     }
+    return super.eBasicRemoveFromContainerFeature(msgs);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            return getContainer();
-        }
-        return super.eGet(featureID, resolve, coreType);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+      return getContainer();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            setContainer((PatternLibrary) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+      setContainer((PatternLibrary) newValue);
+      return;
     }
+    super.eSet(featureID, newValue);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            setContainer((PatternLibrary) null);
-            return;
-        }
-        super.eUnset(featureID);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+      setContainer((PatternLibrary) null);
+      return;
     }
+    super.eUnset(featureID);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_ELEMENT__CONTAINER:
-            return getContainer() != null;
-        }
-        return super.eIsSet(featureID);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_ELEMENT__CONTAINER:
+      return getContainer() != null;
     }
+    return super.eIsSet(featureID);
+  }
 
 } // PatternElementImpl

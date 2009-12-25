@@ -12,14 +12,6 @@
  */
 package org.eclipse.egf.model.productionplan.impl;
 
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.egf.core.production.EGFCoreProductionPlugin;
-import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.EGFModelsPlugin;
 import org.eclipse.egf.model.fcore.impl.ActivityImpl;
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 import org.eclipse.egf.model.productionplan.Task;
@@ -108,36 +100,6 @@ public class TaskImpl extends ActivityImpl implements Task {
     taskId = newTaskId;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProductionPlanPackage.TASK__TASK_ID, oldTaskId, taskId));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-    Assert.isNotNull(productionContext);
-    try {
-      EGFCoreProductionPlugin.getProductionTaskInvocationFactory().createProductionTaskInvocation(EGFModelsPlugin.getModelProductionContextFactory().createModelProductionContext(productionContext, this), getTaskId()).invoke(monitor);
-      if (monitor.isCanceled()) {
-        throw new OperationCanceledException();
-      }
-    } catch (CoreException ce) {
-      throw new InvocationException(ce);
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public int getSteps() {
-    return 1;
   }
 
   /**

@@ -984,26 +984,6 @@ public interface FcorePackage extends EPackage {
   int CONTRACT_MODE = 15;
 
   /**
-   * The meta object id for the '<em>IProduction Context</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.core.production.context.IProductionContext
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getIProductionContext()
-   * @generated
-   */
-  int IPRODUCTION_CONTEXT = 16;
-
-  /**
-   * The meta object id for the '<em>Invocation Exception</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.core.production.InvocationException
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocationException()
-   * @generated
-   */
-  int INVOCATION_EXCEPTION = 17;
-
-  /**
    * The meta object id for the '<em>IProgress Monitor</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1011,7 +991,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getIProgressMonitor()
    * @generated
    */
-  int IPROGRESS_MONITOR = 18;
+  int IPROGRESS_MONITOR = 16;
 
   /**
    * The meta object id for the '<em>URI</em>' data type.
@@ -1021,7 +1001,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getURI()
    * @generated
    */
-  int URI = 19;
+  int URI = 17;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
@@ -1470,28 +1450,6 @@ public interface FcorePackage extends EPackage {
   EEnum getContractMode();
 
   /**
-   * Returns the meta object for data type '{@link org.eclipse.egf.core.production.context.IProductionContext <em>IProduction Context</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>IProduction Context</em>'.
-   * @see org.eclipse.egf.core.production.context.IProductionContext
-   * @model instanceClass="org.eclipse.egf.core.production.context.IProductionContext" serializeable="false"
-   * @generated
-   */
-  EDataType getIProductionContext();
-
-  /**
-   * Returns the meta object for data type '{@link org.eclipse.egf.core.production.InvocationException <em>Invocation Exception</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>Invocation Exception</em>'.
-   * @see org.eclipse.egf.core.production.InvocationException
-   * @model instanceClass="org.eclipse.egf.core.production.InvocationException" serializeable="false"
-   * @generated
-   */
-  EDataType getInvocationException();
-
-  /**
    * Returns the meta object for data type '{@link org.eclipse.core.runtime.IProgressMonitor <em>IProgress Monitor</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1902,26 +1860,6 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     EEnum CONTRACT_MODE = eINSTANCE.getContractMode();
-
-    /**
-     * The meta object literal for the '<em>IProduction Context</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.core.production.context.IProductionContext
-     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getIProductionContext()
-     * @generated
-     */
-    EDataType IPRODUCTION_CONTEXT = eINSTANCE.getIProductionContext();
-
-    /**
-     * The meta object literal for the '<em>Invocation Exception</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.core.production.InvocationException
-     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocationException()
-     * @generated
-     */
-    EDataType INVOCATION_EXCEPTION = eINSTANCE.getInvocationException();
 
     /**
      * The meta object literal for the '<em>IProgress Monitor</em>' data type.

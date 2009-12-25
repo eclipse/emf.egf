@@ -15,7 +15,7 @@ package org.eclipse.egf.model.productionplan.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.edit.EGFProductionPlanEditPlugin;
+import org.eclipse.egf.model.edit.EGFProductionPlanModelEditPlugin;
 
 import org.eclipse.egf.model.fcore.provider.OrchestrationItemProvider;
 
@@ -172,7 +172,7 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return EGFProductionPlanEditPlugin.INSTANCE;
+    return EGFProductionPlanModelEditPlugin.INSTANCE;
   }
 
 }

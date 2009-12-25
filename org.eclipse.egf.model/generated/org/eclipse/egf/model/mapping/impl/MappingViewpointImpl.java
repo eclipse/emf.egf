@@ -32,32 +32,26 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.mapping.impl.MappingViewpointImpl#getMappings
- * <em>Mappings</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.mapping.impl.MappingViewpointImpl#getMappings <em>Mappings</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpoint {
   /**
-   * A set of bit flags representing the values of boolean attributes and
-   * whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getMappings() <em>Mappings</em>}'
-   * containment reference list.
+   * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getMappings()
    * @generated
    * @ordered
@@ -67,7 +61,6 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected MappingViewpointImpl() {
@@ -77,7 +70,6 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -88,7 +80,6 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<MappingDomain> getMappings() {
@@ -101,7 +92,6 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -116,7 +106,6 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -131,7 +120,6 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -149,7 +137,6 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -165,7 +152,6 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

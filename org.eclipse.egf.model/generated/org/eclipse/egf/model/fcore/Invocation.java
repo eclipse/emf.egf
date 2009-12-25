@@ -12,10 +12,6 @@
  */
 package org.eclipse.egf.model.fcore;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Invocation</b></em>'.
@@ -60,21 +56,5 @@ public interface Invocation extends ModelElement {
    * @generated
    */
   void setContext(ContextContainer value);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  int getSteps();
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model exceptions="org.eclipse.egf.model.fcore.InvocationException" productionContextDataType="org.eclipse.egf.model.fcore.IProductionContext" monitorDataType="org.eclipse.egf.model.fcore.IProgressMonitor"
-   * @generated
-   */
-  void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException;
 
 } // Invocation

@@ -26,14 +26,14 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
  * <!-- end-user-doc -->
  * @generated
  */
-public final class EGFProductionPlanEditPlugin extends EMFPlugin {
+public final class EGFProductionPlanModelEditPlugin extends EMFPlugin {
   /**
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final EGFProductionPlanEditPlugin INSTANCE = new EGFProductionPlanEditPlugin();
+  public static final EGFProductionPlanModelEditPlugin INSTANCE = new EGFProductionPlanModelEditPlugin();
 
   /**
    * Keep track of the singleton.
@@ -49,7 +49,7 @@ public final class EGFProductionPlanEditPlugin extends EMFPlugin {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EGFProductionPlanEditPlugin() {
+  public EGFProductionPlanModelEditPlugin() {
     super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelsEditPlugin.INSTANCE, });
   }
 

@@ -12,12 +12,6 @@
  */
 package org.eclipse.egf.model.productionplan.impl;
 
-import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.EGFProductionPlanPlugin;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
@@ -106,37 +100,6 @@ public class FactoryComponentInvocationImpl extends ProductionPlanInvocationImpl
     factoryComponent = newFactoryComponent;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, ProductionPlanPackage.FACTORY_COMPONENT_INVOCATION__FACTORY_COMPONENT, oldFactoryComponent, factoryComponent));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-    Assert.isNotNull(productionContext);
-    if (getFactoryComponent() != null) {
-      getFactoryComponent().invoke(EGFProductionPlanPlugin.getPPModelProductionContextFactory().createModelProductionContext(productionContext, this), monitor);
-    }
-    if (monitor.isCanceled()) {
-      throw new OperationCanceledException();
-    }
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  @Override
-  public int getSteps() {
-    if (getFactoryComponent() != null) {
-      return getFactoryComponent().getSteps();
-    }
-    return 0;
   }
 
   /**

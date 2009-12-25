@@ -34,11 +34,9 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.mapping.MappingDomain} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.mapping.MappingDomain} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MappingDomainItemProvider extends MappingItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -46,7 +44,6 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public MappingDomainItemProvider(AdapterFactory adapterFactory) {
@@ -57,7 +54,6 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -75,7 +71,6 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
    * This adds a property descriptor for the Source feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addSourcePropertyDescriptor(Object object) {
@@ -88,7 +83,6 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
    * This adds a property descriptor for the Target feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addTargetPropertyDescriptor(Object object) {
@@ -101,7 +95,6 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
    * This returns MappingDomain.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -113,7 +106,6 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -124,13 +116,10 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
   }
 
   /**
-   * This handles model notifications by calling {@link #updateChildren} to
-   * update any cached
-   * children and by creating a viewer notification, which it passes to
-   * {@link #fireNotifyChanged}.
+   * This handles model notifications by calling {@link #updateChildren} to update any cached
+   * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -147,12 +136,10 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
   }
 
   /**
-   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing
-   * the children
+   * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

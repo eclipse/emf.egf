@@ -32,6 +32,8 @@
       <genOperations ecoreOperation="Pattern.ecore#//Pattern/getMethod">
         <genParameters ecoreParameter="Pattern.ecore#//Pattern/getMethod/name"/>
       </genOperations>
+      <genOperations ecoreOperation="Pattern.ecore#//Pattern/getAllParameters"/>
+      <genOperations ecoreOperation="Pattern.ecore#//Pattern/getAllVariables"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//PatternMethod">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternMethod/pattern"/>
@@ -50,7 +52,7 @@
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//PatternLibrary">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/elements"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/schedulingRules"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/filters"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Pattern.ecore#//PatternElement">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternElement/container"/>
@@ -62,6 +64,7 @@
     <genClasses ecoreClass="Pattern.ecore#//PatternCall">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternCall/parameterMatching"/>
     </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//SuperPatternCall"/>
     <genClasses ecoreClass="Pattern.ecore#//Paramerter2ParameterMap">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Paramerter2ParameterMap/value"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//Paramerter2ParameterMap/key"/>

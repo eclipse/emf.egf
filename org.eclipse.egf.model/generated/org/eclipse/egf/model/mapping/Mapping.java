@@ -18,8 +18,8 @@ import org.eclipse.egf.model.fcore.ModelElement;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Mapping</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.egf.model.mapping.MappingPackage#getMapping()
  * @model abstract="true"
  * @generated

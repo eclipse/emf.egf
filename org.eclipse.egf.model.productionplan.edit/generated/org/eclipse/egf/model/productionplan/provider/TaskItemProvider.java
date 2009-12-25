@@ -17,7 +17,7 @@ import java.util.List;
 
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.task.IPlatformTask;
-import org.eclipse.egf.model.edit.EGFProductionPlanEditPlugin;
+import org.eclipse.egf.model.edit.EGFProductionPlanModelEditPlugin;
 import org.eclipse.egf.model.fcore.provider.ActivityItemProvider;
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 import org.eclipse.egf.model.productionplan.Task;
@@ -162,7 +162,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return EGFProductionPlanEditPlugin.INSTANCE;
+    return EGFProductionPlanModelEditPlugin.INSTANCE;
   }
 
 }

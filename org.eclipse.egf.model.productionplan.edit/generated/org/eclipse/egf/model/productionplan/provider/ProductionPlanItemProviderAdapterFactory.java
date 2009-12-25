@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.edit.EGFProductionPlanEditPlugin;
+import org.eclipse.egf.model.edit.EGFProductionPlanModelEditPlugin;
 
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
@@ -392,7 +392,7 @@ public class ProductionPlanItemProviderAdapterFactory extends ProductionPlanAdap
      * @generated
      */
     public ResourceLocator getResourceLocator() {
-      return EGFProductionPlanEditPlugin.INSTANCE;
+      return EGFProductionPlanModelEditPlugin.INSTANCE;
     }
   }
 

@@ -28,19 +28,17 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.impl.DomainImpl#getEpackage <em>Epackage</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.DomainImpl#getEpackage <em>Epackage</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class DomainImpl extends ModelElementImpl implements Domain {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -50,7 +48,6 @@ public class DomainImpl extends ModelElementImpl implements Domain {
    * The cached value of the '{@link #getEpackage() <em>Epackage</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getEpackage()
    * @generated
    * @ordered
@@ -60,7 +57,6 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected DomainImpl() {
@@ -70,7 +66,6 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -81,7 +76,6 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EPackage getEpackage() {
@@ -99,7 +93,6 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EPackage basicGetEpackage() {
@@ -109,7 +102,6 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setEpackage(EPackage newEpackage) {
@@ -122,7 +114,6 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -139,7 +130,6 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -155,7 +145,6 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -171,7 +160,6 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

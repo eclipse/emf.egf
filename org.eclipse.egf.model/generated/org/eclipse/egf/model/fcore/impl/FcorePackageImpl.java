@@ -13,8 +13,6 @@
 package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Context;
 import org.eclipse.egf.model.fcore.ContextContainer;
@@ -163,20 +161,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * @generated
    */
   private EEnum contractModeEEnum = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EDataType iProductionContextEDataType = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EDataType invocationExceptionEDataType = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -640,24 +624,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EDataType getIProductionContext() {
-    return iProductionContextEDataType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EDataType getInvocationException() {
-    return invocationExceptionEDataType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EDataType getIProgressMonitor() {
     return iProgressMonitorEDataType;
   }
@@ -760,8 +726,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     contractModeEEnum = createEEnum(CONTRACT_MODE);
 
     // Create data types
-    iProductionContextEDataType = createEDataType(IPRODUCTION_CONTEXT);
-    invocationExceptionEDataType = createEDataType(INVOCATION_EXCEPTION);
     iProgressMonitorEDataType = createEDataType(IPROGRESS_MONITOR);
     uriEDataType = createEDataType(URI);
   }
@@ -830,7 +794,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEAttribute(getModelElement_ID(), theEcorePackage.getEString(), "iD", null, 1, 1, ModelElement.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getModelElement_ID(), theEcorePackage.getEString(), "iD", null, 0, 1, ModelElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEAttribute(getModelElement_Name(), theEcorePackage.getEString(), "name", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEAttribute(getModelElement_Description(), theEcorePackage.getEString(), "description", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -838,13 +802,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     initEClass(activityEClass, Activity.class, "Activity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getActivity_ContractContainer(), this.getContractContainer(), this.getContractContainer_Activity(), "contractContainer", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    EOperation op = addEOperation(activityEClass, null, "invoke", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, this.getIProductionContext(), "productionContext", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, this.getIProgressMonitor(), "monitor", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEException(op, this.getInvocationException());
-
-    addEOperation(activityEClass, theEcorePackage.getEInt(), "getSteps", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(factoryComponentEClass, FactoryComponent.class, "FactoryComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getFactoryComponent_ViewpointContainer(), this.getViewpointContainer(), this.getViewpointContainer_FactoryComponent(), "viewpointContainer", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -854,7 +811,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEReference(getViewpointContainer_FactoryComponent(), this.getFactoryComponent(), this.getFactoryComponent_ViewpointContainer(), "factoryComponent", null, 1, 1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getViewpointContainer_Viewpoints(), this.getViewpoint(), this.getViewpoint_ViewerpointContainer(), "viewpoints", null, 0, -1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    op = addEOperation(viewpointContainerEClass, this.getViewpoint(), "getViewpoint", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    EOperation op = addEOperation(viewpointContainerEClass, this.getViewpoint(), "getViewpoint", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
     g1 = createEGenericType(theEcorePackage.getEJavaClass());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
@@ -866,22 +823,8 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEClass(orchestrationEClass, Orchestration.class, "Orchestration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getOrchestration_FactoryComponent(), this.getFactoryComponent(), this.getFactoryComponent_Orchestration(), "factoryComponent", null, 1, 1, Orchestration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    op = addEOperation(orchestrationEClass, null, "invoke", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, this.getIProductionContext(), "productionContext", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, this.getIProgressMonitor(), "monitor", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEException(op, this.getInvocationException());
-
-    addEOperation(orchestrationEClass, theEcorePackage.getEInt(), "getSteps", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
     initEClass(invocationEClass, Invocation.class, "Invocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getInvocation_Context(), this.getContextContainer(), this.getContextContainer_Invocation(), "context", null, 0, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(invocationEClass, null, "invoke", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, this.getIProductionContext(), "productionContext", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, this.getIProgressMonitor(), "monitor", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEException(op, this.getInvocationException());
-
-    addEOperation(invocationEClass, theEcorePackage.getEInt(), "getSteps", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -932,8 +875,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEEnumLiteral(contractModeEEnum, ContractMode.OUT);
 
     // Initialize data types
-    initEDataType(iProductionContextEDataType, IProductionContext.class, "IProductionContext", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEDataType(invocationExceptionEDataType, InvocationException.class, "InvocationException", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEDataType(iProgressMonitorEDataType, IProgressMonitor.class, "IProgressMonitor", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEDataType(uriEDataType, org.eclipse.emf.common.util.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 

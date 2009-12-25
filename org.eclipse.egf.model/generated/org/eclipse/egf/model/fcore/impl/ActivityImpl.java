@@ -12,9 +12,6 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
@@ -111,28 +108,6 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
         msgs.dispatch();
     } else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.ACTIVITY__CONTRACT_CONTAINER, newContractContainer, newContractContainer));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public int getSteps() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
   }
 
   /**

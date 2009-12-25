@@ -69,10 +69,10 @@ public class ProductionPlanFactoryImpl extends EFactoryImpl implements Productio
       return createProductionPlan();
     case ProductionPlanPackage.FACTORY_COMPONENT_INVOCATION:
       return createFactoryComponentInvocation();
-    case ProductionPlanPackage.TASK:
-      return createTask();
     case ProductionPlanPackage.TASK_INVOCATION:
       return createTaskInvocation();
+    case ProductionPlanPackage.TASK:
+      return createTask();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }

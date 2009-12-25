@@ -149,7 +149,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements IEd
     updateChildren(notification);
 
     switch (notification.getFeatureID(ModelElement.class)) {
-    case FcorePackage.MODEL_ELEMENT__ID:
     case FcorePackage.MODEL_ELEMENT__NAME:
     case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));

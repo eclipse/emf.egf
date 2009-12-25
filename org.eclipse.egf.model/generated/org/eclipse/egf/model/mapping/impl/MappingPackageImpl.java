@@ -28,14 +28,12 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass mappingViewpointEClass = null;
@@ -43,7 +41,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass mappingEClass = null;
@@ -51,7 +48,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass mappingDomainEClass = null;
@@ -79,7 +75,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static boolean isInited = false;
@@ -128,7 +123,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getMappingViewpoint() {
@@ -138,7 +132,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getMappingViewpoint_Mappings() {
@@ -148,7 +141,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getMapping() {
@@ -158,7 +150,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getMappingDomain() {
@@ -168,7 +159,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getMappingDomain_Source() {
@@ -178,7 +168,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EReference getMappingDomain_Target() {
@@ -188,7 +177,6 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public MappingFactory getMappingFactory() {
@@ -198,17 +186,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package. This method is
+   * Creates the meta-model objects for the package.  This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void createPackageContents() {
@@ -230,17 +216,15 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model. This
+   * Complete the initialization of the package and its meta-model.  This
    * method is guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void initializePackageContents() {

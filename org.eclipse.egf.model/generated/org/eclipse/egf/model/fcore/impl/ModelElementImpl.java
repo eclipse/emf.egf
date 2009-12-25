@@ -12,15 +12,14 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import org.eclipse.egf.common.helper.IDGeneratorHelper;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,19 +28,22 @@ import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getID <em>ID</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getID <em>ID</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getDescription <em>Description</em>}
+ * </li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class ModelElementImpl extends Container implements ModelElement {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable
+   * features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -51,6 +53,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * The default value of the '{@link #getID() <em>ID</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getID()
    * @generated
    * @ordered
@@ -58,19 +61,10 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   protected static final String ID_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getID()
-   * @generated
-   * @ordered
-   */
-  protected String iD = ID_EDEFAULT;
-
-  /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getName()
    * @generated
    * @ordered
@@ -81,6 +75,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getName()
    * @generated
    * @ordered
@@ -91,6 +86,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDescription()
    * @generated
    * @ordered
@@ -101,6 +97,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDescription()
    * @generated
    * @ordered
@@ -110,6 +107,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ModelElementImpl() {
@@ -119,6 +117,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -133,10 +132,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * @generated NOT
    */
   public String getID() {
-    if (iD == null) {
-      iD = IDGeneratorHelper.generateUID(this);
-    }
-    return iD;
+    return this.eResource() != null && this.eResource() instanceof XMLResource ? ((XMLResource) this.eResource()).getID(this) : null;
   }
 
   /**
@@ -145,31 +141,14 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * 
    * @generated NOT
    */
-  public void setIDGen(String newID) {
-    String oldID = iD;
-    iD = newID;
-    if (eNotificationRequired()) {
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.MODEL_ELEMENT__ID, oldID, iD));
-    }
+  public boolean isSetID() {
+    return getID() != null;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
-   */
-  public void setID(String newID) {
-    Resource eResource = eResource();
-    if (eResource instanceof ResourceImpl) {
-      ((ResourceImpl) eResource).getIntrinsicIDToEObjectMap().clear();
-    }
-    setIDGen(newID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * @generated
    */
   public String getName() {
@@ -179,6 +158,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setName(String newName) {
@@ -191,6 +171,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getDescription() {
@@ -200,6 +181,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setDescription(String newDescription) {
@@ -216,12 +198,13 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * @generated NOT
    */
   public String getExternalName() {
-    return getName() != null && getName().trim().length() != 0 ? getName() : getID();
+    return getName() != null && getName().trim().length() != 0 ? getName() : EcoreUtil.getID(this);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -240,14 +223,12 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case FcorePackage.MODEL_ELEMENT__ID:
-      setID((String) newValue);
-      return;
     case FcorePackage.MODEL_ELEMENT__NAME:
       setName((String) newValue);
       return;
@@ -261,14 +242,12 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case FcorePackage.MODEL_ELEMENT__ID:
-      setID(ID_EDEFAULT);
-      return;
     case FcorePackage.MODEL_ELEMENT__NAME:
       setName(NAME_EDEFAULT);
       return;
@@ -282,13 +261,14 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
     case FcorePackage.MODEL_ELEMENT__ID:
-      return ID_EDEFAULT == null ? iD != null : !ID_EDEFAULT.equals(iD);
+      return isSetID();
     case FcorePackage.MODEL_ELEMENT__NAME:
       return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
@@ -300,6 +280,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -308,9 +289,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
       return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (iD: "); //$NON-NLS-1$
-    result.append(iD);
-    result.append(", name: "); //$NON-NLS-1$
+    result.append(" (name: "); //$NON-NLS-1$
     result.append(name);
     result.append(", description: "); //$NON-NLS-1$
     result.append(description);

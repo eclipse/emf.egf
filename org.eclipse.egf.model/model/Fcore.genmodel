@@ -20,12 +20,10 @@
       <genEnumLiterals ecoreEnumLiteral="Fcore.ecore#//ContractMode/IN"/>
       <genEnumLiterals ecoreEnumLiteral="Fcore.ecore#//ContractMode/OUT"/>
     </genEnums>
-    <genDataTypes ecoreDataType="Fcore.ecore#//IProductionContext"/>
-    <genDataTypes ecoreDataType="Fcore.ecore#//InvocationException"/>
     <genDataTypes ecoreDataType="Fcore.ecore#//IProgressMonitor"/>
     <genDataTypes ecoreDataType="Fcore.ecore#//URI"/>
     <genClasses image="false" ecoreClass="Fcore.ecore#//ModelElement">
-      <genFeatures property="Readonly" createChild="false" propertyCategory="Identifier"
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Identifier"
           ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/iD"/>
       <genFeatures createChild="false" propertyCategory="Identity" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/name"/>
       <genFeatures createChild="false" propertyCategory="Identity" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/description"/>
@@ -33,11 +31,6 @@
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//Activity">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//Activity/contractContainer"/>
-      <genOperations ecoreOperation="Fcore.ecore#//Activity/invoke">
-        <genParameters ecoreParameter="Fcore.ecore#//Activity/invoke/productionContext"/>
-        <genParameters ecoreParameter="Fcore.ecore#//Activity/invoke/monitor"/>
-      </genOperations>
-      <genOperations ecoreOperation="Fcore.ecore#//Activity/getSteps"/>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//FactoryComponent">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponent/viewpointContainer"/>
@@ -55,19 +48,9 @@
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//Orchestration">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//Orchestration/factoryComponent"/>
-      <genOperations ecoreOperation="Fcore.ecore#//Orchestration/invoke">
-        <genParameters ecoreParameter="Fcore.ecore#//Orchestration/invoke/productionContext"/>
-        <genParameters ecoreParameter="Fcore.ecore#//Orchestration/invoke/monitor"/>
-      </genOperations>
-      <genOperations ecoreOperation="Fcore.ecore#//Orchestration/getSteps"/>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//Invocation">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//Invocation/context"/>
-      <genOperations ecoreOperation="Fcore.ecore#//Invocation/invoke">
-        <genParameters ecoreParameter="Fcore.ecore#//Invocation/invoke/productionContext"/>
-        <genParameters ecoreParameter="Fcore.ecore#//Invocation/invoke/monitor"/>
-      </genOperations>
-      <genOperations ecoreOperation="Fcore.ecore#//Invocation/getSteps"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//Type">
       <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Type/T"/>
