@@ -8,16 +8,23 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.context;
+package org.eclipse.egf.core.internal.context;
+
+import org.eclipse.egf.core.context.IContext;
+import org.eclipse.egf.core.context.IContextFactory;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IEGFContextFactory {
+public class ContextFactory implements IContextFactory {
 
-  public IEGFContext createContext(IEGFContext parent);
+  public IContext createContext(IContext parent) {
+    return new Context(parent);
+  }
 
-  public IEGFContext createContext();
+  public IContext createContext() {
+    return new Context();
+  }
 
 }

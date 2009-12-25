@@ -22,9 +22,9 @@ import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.core.context.IEGFContextFactory;
+import org.eclipse.egf.core.context.IContextFactory;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.internal.context.EGFContextFactory;
+import org.eclipse.egf.core.internal.context.ContextFactory;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.task.IPlatformTask;
 import org.eclipse.emf.common.util.URI;
@@ -48,7 +48,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   /**
    * IContextFactory singleton.
    */
-  private static final IEGFContextFactory __contextFactory = new EGFContextFactory();
+  private static final IContextFactory __contextFactory = new ContextFactory();
 
   /**
    * Constant identifying the job family identifier for a background build job.
@@ -76,7 +76,7 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    * 
    * @return the singleton production context factory.
    */
-  public static IEGFContextFactory getContextFactory() {
+  public static IContextFactory getContextFactory() {
     return __contextFactory;
   }
 

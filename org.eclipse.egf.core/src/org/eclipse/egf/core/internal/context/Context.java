@@ -15,32 +15,32 @@ package org.eclipse.egf.core.internal.context;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.egf.core.context.IEGFContext;
+import org.eclipse.egf.core.context.IContext;
 
 /**
  * TODO Ici on ne devrait avoir qu'une pauvre map avec name-valeur. Son
  * initialisation étant à la charge de l'orchestrateur. TODO il faudrait
  * ajoueter un peu de control pour savoir les noms en lecture et ceux en
- * �criture.
+ * écriture.
  * 
  * @author Guiu
  * 
  */
-public class EGFContext implements IEGFContext {
+public class Context implements IContext {
 
-  private IEGFContext _parent;
+  private IContext _parent;
 
   private final Map<String, Object> _data = new HashMap<String, Object>();
 
-  public EGFContext() {
+  public Context() {
     // Nothing to do
   }
 
-  public EGFContext(IEGFContext parent) {
+  public Context(IContext parent) {
     _parent = parent;
   }
 
-  public IEGFContext getParent() {
+  public IContext getParent() {
     return _parent;
   }
 

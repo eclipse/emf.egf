@@ -14,7 +14,7 @@ package org.eclipse.egf.core.context;
  * @author Xavier Maysonnave
  * 
  */
-public interface IEGFContext {
+public interface IContext {
 
   public void setValue(String name, Object value);
 
