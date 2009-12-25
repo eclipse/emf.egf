@@ -20,6 +20,8 @@ import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
 
 public class ModelSchemeAware extends URIHandlerImpl {
 
+    private URI basePluginURI;
+
     @Override
     public URI deresolve(URI uri) {
         if (uri.isPlatformResource()) {
@@ -27,10 +29,18 @@ public class ModelSchemeAware extends URIHandlerImpl {
             if (deresolve.isCurrentDocumentReference())
                 return deresolve;
             return URI.createPlatformPluginURI(uri.toPlatformString(true), true).appendFragment(uri.fragment());
-        } else if (uri.isPlatformPlugin() == false) {
-            return uri.isPlatform() == false || (uri.segmentCount() > 0 && baseURI.segmentCount() > 0 && uri.segment(0).equals(baseURI.segment(0))) ? super.deresolve(uri) : uri;
+        } else if (uri.isPlatformPlugin()) {
+            URI deresolve = uri.deresolve(basePluginURI);
+            if (deresolve.isCurrentDocumentReference())
+                return deresolve;
+            return uri;
         }
-        return uri;
+        return uri.isPlatform() == false || (uri.segmentCount() > 0 && baseURI.segmentCount() > 0 && uri.segment(0).equals(baseURI.segment(0))) ? super.deresolve(uri) : uri;
+    }
+
+    public void setBaseURI(URI uri) {
+        super.setBaseURI(uri);
+        basePluginURI = URI.createPlatformPluginURI(baseURI.toPlatformString(true), true);
     }
 
 }
