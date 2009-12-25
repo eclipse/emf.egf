@@ -15,14 +15,10 @@ package org.eclipse.egf.model.types.impl;
 import java.math.BigInteger;
 
 import org.eclipse.egf.model.fcore.impl.TypeObjectImpl;
-
 import org.eclipse.egf.model.types.BigIntegerType;
 import org.eclipse.egf.model.types.TypesPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -32,17 +28,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.types.impl.BigIntegerTypeImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.BigIntegerTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements BigIntegerType {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable
+   * features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -52,6 +50,7 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -62,6 +61,7 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -71,6 +71,7 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected BigIntegerTypeImpl() {
@@ -80,6 +81,7 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -90,8 +92,10 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
+  @Override
   public BigInteger getValue() {
     return value;
   }
@@ -99,6 +103,7 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setValue(BigInteger newValue) {
@@ -111,8 +116,10 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
+  @Override
   public Class<BigInteger> getType() {
     return java.math.BigInteger.class;
   }
@@ -120,6 +127,7 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -134,6 +142,7 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -149,6 +158,7 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -164,6 +174,7 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -178,6 +189,7 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -192,4 +204,4 @@ public class BigIntegerTypeImpl extends TypeObjectImpl<BigInteger> implements Bi
     return result.toString();
   }
 
-} //BigIntegerTypeImpl
+} // BigIntegerTypeImpl

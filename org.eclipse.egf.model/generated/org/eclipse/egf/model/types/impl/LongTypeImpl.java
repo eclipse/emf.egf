@@ -13,14 +13,10 @@
 package org.eclipse.egf.model.types.impl;
 
 import org.eclipse.egf.model.fcore.impl.TypeObjectImpl;
-
 import org.eclipse.egf.model.types.LongType;
 import org.eclipse.egf.model.types.TypesPackage;
-
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -30,17 +26,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.types.impl.LongTypeImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.LongTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable
+   * features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -50,6 +48,7 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -60,6 +59,7 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -69,6 +69,7 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected LongTypeImpl() {
@@ -78,6 +79,7 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -88,8 +90,10 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
+  @Override
   public Long getValue() {
     return value;
   }
@@ -97,6 +101,7 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setValue(Long newValue) {
@@ -109,8 +114,10 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
+  @Override
   public Class<Long> getType() {
     return java.lang.Long.class;
   }
@@ -118,6 +125,7 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -132,6 +140,7 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -147,6 +156,7 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -162,6 +172,7 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -176,6 +187,7 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -190,4 +202,4 @@ public class LongTypeImpl extends TypeObjectImpl<Long> implements LongType {
     return result.toString();
   }
 
-} //LongTypeImpl
+} // LongTypeImpl

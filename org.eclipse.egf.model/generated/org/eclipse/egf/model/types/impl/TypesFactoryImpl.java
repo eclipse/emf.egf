@@ -12,22 +12,33 @@
  */
 package org.eclipse.egf.model.types.impl;
 
-import org.eclipse.egf.model.types.*;
-
-import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
+import org.eclipse.egf.model.types.BigDecimalType;
+import org.eclipse.egf.model.types.BigIntegerType;
+import org.eclipse.egf.model.types.BooleanType;
+import org.eclipse.egf.model.types.ByteType;
+import org.eclipse.egf.model.types.CharacterType;
+import org.eclipse.egf.model.types.DateType;
+import org.eclipse.egf.model.types.DoubleType;
+import org.eclipse.egf.model.types.FloatType;
+import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
+import org.eclipse.egf.model.types.IntegerType;
+import org.eclipse.egf.model.types.LongType;
+import org.eclipse.egf.model.types.ShortType;
+import org.eclipse.egf.model.types.StringType;
+import org.eclipse.egf.model.types.TypesFactory;
+import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
-
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
-
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
 /**
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
@@ -35,6 +46,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static TypesFactory init() {
@@ -53,6 +65,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypesFactoryImpl() {
@@ -62,6 +75,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -101,6 +115,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -114,6 +129,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -127,6 +143,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public BigDecimalType createBigDecimalType() {
@@ -137,6 +154,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public BigIntegerType createBigIntegerType() {
@@ -147,6 +165,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public BooleanType createBooleanType() {
@@ -157,6 +176,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ByteType createByteType() {
@@ -167,6 +187,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public CharacterType createCharacterType() {
@@ -177,6 +198,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DateType createDateType() {
@@ -187,6 +209,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DoubleType createDoubleType() {
@@ -197,6 +220,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FloatType createFloatType() {
@@ -207,6 +231,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public StringType createStringType() {
@@ -217,6 +242,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public IntegerType createIntegerType() {
@@ -227,6 +253,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public LongType createLongType() {
@@ -237,6 +264,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ShortType createShortType() {
@@ -247,6 +275,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public GeneratorAdapterFactoryType createGeneratorAdapterFactoryType() {
@@ -257,6 +286,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypesPackage getTypesPackage() {
@@ -266,6 +296,7 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @deprecated
    * @generated
    */
@@ -274,4 +305,4 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
     return TypesPackage.eINSTANCE;
   }
 
-} //TypesFactoryImpl
+} // TypesFactoryImpl
