@@ -13,8 +13,8 @@ package org.eclipse.egf.productionplan.context;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.productionplan.Task;
-import org.eclipse.egf.productionplan.internal.context.FactoryComponentInvocationManager;
-import org.eclipse.egf.productionplan.internal.context.TaskInvocationManager;
+import org.eclipse.egf.productionplan.internal.manager.FactoryComponentInvocationManager;
+import org.eclipse.egf.productionplan.internal.manager.TaskInvocationManager;
 import org.osgi.framework.Bundle;
 
 /**

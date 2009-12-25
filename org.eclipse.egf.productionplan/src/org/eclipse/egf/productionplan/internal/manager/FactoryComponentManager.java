@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.productionplan.internal.context;
+package org.eclipse.egf.productionplan.internal.manager;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -42,7 +42,7 @@ public class FactoryComponentManager extends ActivityManager<FactoryComponentInv
 
   public IProductionContext<FactoryComponent> getProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement(), getBundle(), getProjectBundleSession());
+      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement(), getProjectBundleSession());
     }
     return _productionContext;
   }

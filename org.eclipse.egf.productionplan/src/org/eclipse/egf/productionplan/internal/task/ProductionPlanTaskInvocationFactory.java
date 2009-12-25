@@ -10,13 +10,13 @@
  */
 package org.eclipse.egf.productionplan.internal.task;
 
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.invocation.IPlatformInvocation;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
+import org.eclipse.egf.model.EGFProductionPlanModelPlugin;
 import org.eclipse.egf.model.productionplan.Task;
-import org.eclipse.egf.productionplan.internal.invocation.ProductionInvocationTask;
-import org.eclipse.egf.productionplan.invocation.IProductionInvocationTask;
+import org.eclipse.egf.model.productionplan.invocation.IPlatformTaskInvocation;
+import org.eclipse.egf.productionplan.internal.invocation.ProductionTaskInvocation;
+import org.eclipse.egf.productionplan.invocation.IProductionTaskInvocation;
 import org.eclipse.egf.productionplan.task.IProductionPlanTaskInvocationFactory;
 
 /**
@@ -25,12 +25,12 @@ import org.eclipse.egf.productionplan.task.IProductionPlanTaskInvocationFactory;
  */
 public class ProductionPlanTaskInvocationFactory implements IProductionPlanTaskInvocationFactory {
 
-  public IProductionInvocationTask createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, IPlatformInvocation platformInvocation) {
-    return new ProductionInvocationTask(projectBundleSession, context, platformInvocation);
+  public IProductionTaskInvocation createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, IPlatformTaskInvocation platformInvocation) {
+    return new ProductionTaskInvocation(projectBundleSession, context, platformInvocation);
   }
 
-  public IProductionInvocationTask createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, String invocationId) {
-    return new ProductionInvocationTask(projectBundleSession, context, EGFCorePlugin.getPlatformInvocation(invocationId));
+  public IProductionTaskInvocation createInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> context, String invocationId) {
+    return new ProductionTaskInvocation(projectBundleSession, context, EGFProductionPlanModelPlugin.getPlatformTaskInvocation(invocationId));
   }
 
 }

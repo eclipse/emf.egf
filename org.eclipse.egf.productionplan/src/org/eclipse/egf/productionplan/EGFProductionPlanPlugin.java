@@ -4,7 +4,7 @@ import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.productionplan.context.IProductionPlanContextFactory;
 import org.eclipse.egf.productionplan.context.IProductionPlanManagerFactory;
 import org.eclipse.egf.productionplan.internal.context.ProductionPlanContextFactory;
-import org.eclipse.egf.productionplan.internal.context.ProductionPlanFactory;
+import org.eclipse.egf.productionplan.internal.manager.ProductionPlanManagerFactory;
 import org.eclipse.egf.productionplan.internal.task.ProductionPlanTaskInvocationFactory;
 import org.eclipse.egf.productionplan.task.IProductionPlanTaskInvocationFactory;
 import org.osgi.framework.BundleContext;
@@ -64,7 +64,7 @@ public class EGFProductionPlanPlugin extends EGFAbstractPlugin {
    */
   public static IProductionPlanManagerFactory getProductionPlanManagerFactory() {
     if (__productionPlanManagerFactory == null) {
-      __productionPlanManagerFactory = new ProductionPlanFactory();
+      __productionPlanManagerFactory = new ProductionPlanManagerFactory();
     }
     return __productionPlanManagerFactory;
   }

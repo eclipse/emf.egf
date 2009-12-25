@@ -10,11 +10,9 @@
  */
 package org.eclipse.egf.productionplan.internal.context;
 
-import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.internal.context.ProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.ModelElement;
-import org.osgi.framework.Bundle;
 
 /**
  * @author Xavier Maysonnave
@@ -22,23 +20,18 @@ import org.osgi.framework.Bundle;
  */
 public class ModelElementContext<Q extends ModelElement> extends ProductionContext<Q> {
 
-  public ModelElementContext(Q element, Bundle bundle, ProjectBundleSession projectBundleSession) {
-    super(element, bundle, projectBundleSession);
+  private String _name;
+
+  public ModelElementContext(Q element, ProjectBundleSession projectBundleSession) {
+    super(element, projectBundleSession);
   }
 
   @Override
   public String getName() {
-    return getElement().getExternalName() != null ? getElement().getExternalName() : "Unknown"; //$NON-NLS-1$ 
-  }
-
-  @Override
-  protected void addInputData(String name, Class<?> clazz, Object object) throws InvocationException {
-    super.addInputData(name, clazz, object);
-  }
-
-  @Override
-  protected void addOutputData(String name, Class<?> clazz, Object object) throws InvocationException {
-    super.addOutputData(name, clazz, object);
+    if (_name == null) {
+      _name = getElement().getName() != null && getElement().getName().trim().length() != 0 ? getElement().getName().trim() : getElement().getID() != null && getElement().getID().trim().length() != 0 ? getElement().getID().trim() : "Unknown"; //$NON-NLS-1$
+    }
+    return _name;
   }
 
 }

@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.productionplan.internal.context;
+package org.eclipse.egf.productionplan.internal.manager;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
@@ -43,7 +43,7 @@ public class TaskManager extends ActivityManager<TaskInvocationManager, Task> {
 
   public IProductionContext<Task> getProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement(), getBundle(), getProjectBundleSession());
+      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement(), getProjectBundleSession());
     }
     return _productionContext;
   }

@@ -13,7 +13,6 @@ package org.eclipse.egf.productionplan.context;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.ModelElement;
-import org.osgi.framework.Bundle;
 
 /**
  * @author Xavier Maysonnave
@@ -21,6 +20,6 @@ import org.osgi.framework.Bundle;
  */
 public interface IProductionPlanContextFactory {
 
-  public <T extends ModelElement> IProductionContext<T> createContext(T element, Bundle bundle, ProjectBundleSession projectBundleSession);
+  public <T extends ModelElement> IProductionContext<T> createContext(T element, ProjectBundleSession projectBundleSession);
 
 }

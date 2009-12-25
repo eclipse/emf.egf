@@ -18,14 +18,14 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
-import org.eclipse.egf.core.invocation.IPlatformInvocation;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.productionplan.Task;
-import org.eclipse.egf.productionplan.invocation.IProductionInvocationTask;
-import org.eclipse.egf.productionplan.invocation.IProductionTask;
+import org.eclipse.egf.model.productionplan.invocation.IPlatformTaskInvocation;
+import org.eclipse.egf.model.productionplan.invocation.IProductionTask;
+import org.eclipse.egf.productionplan.invocation.IProductionTaskInvocation;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
@@ -35,7 +35,7 @@ import org.osgi.framework.Bundle;
  * 
  * @author Xavier Maysonnave
  */
-public class ProductionInvocationTask implements IProductionInvocationTask {
+public class ProductionTaskInvocation implements IProductionTaskInvocation {
 
   /**
    * ProjectBundleSession
@@ -50,9 +50,9 @@ public class ProductionInvocationTask implements IProductionInvocationTask {
   /**
    * IPlatformTask
    */
-  private IPlatformInvocation _platformInvocation;
+  private IPlatformTaskInvocation _platformInvocation;
 
-  public ProductionInvocationTask(ProjectBundleSession projectBundleSession, IProductionContext<Task> productionContext, IPlatformInvocation platformInvocation) {
+  public ProductionTaskInvocation(ProjectBundleSession projectBundleSession, IProductionContext<Task> productionContext, IPlatformTaskInvocation platformInvocation) {
     Assert.isNotNull(projectBundleSession);
     Assert.isNotNull(productionContext);
     _projectBundleSession = projectBundleSession;
@@ -139,7 +139,7 @@ public class ProductionInvocationTask implements IProductionInvocationTask {
   /**
    * @return the invocation
    */
-  public IPlatformInvocation getPlatformInvocation() {
+  public IPlatformTaskInvocation getPlatformInvocation() {
     return _platformInvocation;
   }
 

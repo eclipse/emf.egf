@@ -17,7 +17,7 @@ import org.eclipse.egf.core.production.InvocationException;
  * @author Xavier Maysonnave
  * 
  */
-public interface IProductionInvocationTask {
+public interface IProductionTaskInvocation {
 
   public void invoke(final IProgressMonitor monitor) throws InvocationException;
 

@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.productionplan.internal.context;
+package org.eclipse.egf.productionplan.internal.manager;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
@@ -31,6 +31,8 @@ public abstract class AbstractManager<Q extends AbstractManager<?, ?>, T extends
   private Q _parent;
 
   private T _element;
+
+  private String _name;
 
   private Bundle _bundle;
 
@@ -68,7 +70,10 @@ public abstract class AbstractManager<Q extends AbstractManager<?, ?>, T extends
   }
 
   public String getName() {
-    return getElement().getExternalName() != null ? getElement().getExternalName() : "Unknown"; //$NON-NLS-1$
+    if (_name == null) {
+      _name = getElement().getName() != null && getElement().getName().trim().length() != 0 ? getElement().getName().trim() : getElement().getID() != null && getElement().getID().trim().length() != 0 ? getElement().getID().trim() : "Unknown"; //$NON-NLS-1$
+    }
+    return _name;
   }
 
   public Bundle getBundle() throws InvocationException {

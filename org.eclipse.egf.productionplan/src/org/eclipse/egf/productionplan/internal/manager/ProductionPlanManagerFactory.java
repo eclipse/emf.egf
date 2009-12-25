@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.productionplan.internal.context;
+package org.eclipse.egf.productionplan.internal.manager;
 
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.model.fcore.FactoryComponent;
@@ -21,7 +21,7 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public class ProductionPlanFactory implements IProductionPlanManagerFactory {
+public class ProductionPlanManagerFactory implements IProductionPlanManagerFactory {
 
   public IProductionPlanManager<FactoryComponentInvocationManager, FactoryComponent> createProductionManager(FactoryComponent factoryComponent) throws InvocationException {
     return new FactoryComponentManager(factoryComponent);

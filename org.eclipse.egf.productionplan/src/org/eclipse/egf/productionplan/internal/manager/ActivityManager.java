@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.productionplan.internal.context;
+package org.eclipse.egf.productionplan.internal.manager;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -24,6 +24,7 @@ import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.TypeObject;
 import org.eclipse.egf.productionplan.EGFProductionPlanPlugin;
+import org.eclipse.egf.productionplan.internal.context.ModelElementContext;
 import org.eclipse.egf.productionplan.l10n.ProductionPlanMessages;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
