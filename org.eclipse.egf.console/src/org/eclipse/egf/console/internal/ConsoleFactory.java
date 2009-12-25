@@ -9,6 +9,7 @@
  * IBM Corporation - initial API and implementation
  * Thales Corporate Services S.A.S
  */
+
 package org.eclipse.egf.console.internal;
 
 import org.eclipse.egf.console.EGFConsolePlugin;
@@ -34,12 +35,11 @@ public class ConsoleFactory implements IConsoleFactory {
       IConsole[] existing = manager.getConsoles();
       boolean exists = false;
       for (int i = 0; i < existing.length; i++) {
-        if (existing[i] instanceof Console) {
-          console = (Console) existing[i];
+        if (console == existing[i]) {
           exists = true;
         }
       }
-      if (exists == false) {
+      if (!exists) {
         manager.addConsoles(new IConsole[] { console });
       }
       manager.showConsoleView(console);
