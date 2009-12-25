@@ -16,10 +16,7 @@ Require-Bundle:
  org.eclipse.search,
  org.eclipse.ui.editors,
  org.eclipse.ui.forms,
- org.eclipse.ui.ide,
- org.eclipse.pde.ui.templates,
- org.eclipse.jdt.launching,
- org.eclipse.ltk.core.refactoring
+ org.eclipse.ui.ide
 Export-Package: 
  org.eclipse.egf.pde,
  org.eclipse.egf.pde.manifest.command,
