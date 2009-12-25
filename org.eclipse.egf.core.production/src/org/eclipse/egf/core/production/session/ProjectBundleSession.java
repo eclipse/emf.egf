@@ -114,14 +114,14 @@ public class ProjectBundleSession {
     if (bundle == null) {
       return null;
     }
-    if ((bundle.getState() & (Bundle.ACTIVE | Bundle.STARTING)) != 0) {
+    if (bundle.getState() == Bundle.ACTIVE || bundle.getState() == Bundle.STARTING) {
       try {
         bundle.stop();
       } catch (Throwable t) {
         throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(CoreProductionMessages.ProjectBundleSession_StoppingFailure, bundle.getSymbolicName()), t));
       }
     }
-    if ((bundle.getState() & (Bundle.INSTALLED | Bundle.RESOLVED)) != 0) {
+    if (bundle.getState() == Bundle.INSTALLED || bundle.getState() == Bundle.RESOLVED) {
       try {
         bundle.uninstall();
       } catch (Throwable t) {
