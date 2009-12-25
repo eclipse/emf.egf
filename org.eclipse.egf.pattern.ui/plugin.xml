@@ -38,6 +38,16 @@
            factory="org.eclipse.egf.pattern.ui.editors.domain.PatternEditingDomainFactory"
            id="org.eclipse.egf.pattern.ui.editors.PatternEditingDomain"/>
   	</extension>
+    <extension
+          id="PatternBuilder"
+          point="org.eclipse.core.resources.builders"
+          name="%EGFPatternBuilder">
+       <builder>
+       		<run
+               class="org.eclipse.egf.pattern.ui.builder.PatternBuilder">
+       		</run>
+       </builder>
+    </extension>
   	
   
   	
