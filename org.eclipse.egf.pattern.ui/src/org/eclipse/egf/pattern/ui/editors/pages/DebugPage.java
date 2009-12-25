@@ -42,7 +42,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
  * @author Thomas Guiu
  * 
  */
-public class OverviewPage extends PatternEditorPage {
+public class DebugPage extends PatternEditorPage {
 
     public static final String ID = "OverviewPage";
 
@@ -50,7 +50,7 @@ public class OverviewPage extends PatternEditorPage {
 
     private Text label;
 
-    public OverviewPage(FormEditor editor) {
+    public DebugPage(FormEditor editor) {
         super(editor, ID, Messages.OverviewPage_title);
 
     }
@@ -82,6 +82,24 @@ public class OverviewPage extends PatternEditorPage {
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         text.setLayoutData(gd);
 
+        label = toolkit.createText(form.getBody(), "", SWT.BORDER);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        label.setLayoutData(gd);
+
+    }
+
+    void bindParentName() {
+        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.MODEL_ELEMENT__NAME);
+        IWidgetValueProperty labelProp = WidgetProperties.text(SWT.Modify);
+        IObservableValue uiObs = labelProp.observeDelayed(400, label);
+        IObservableValue mObs = mprop.observe(getPattern().getSuperPattern());
+        addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+
+            public IStatus validate(Object value) {
+
+                return Status.OK_STATUS;
+            }
+        }), null));
     }
 
     void bindName() {
@@ -102,5 +120,6 @@ public class OverviewPage extends PatternEditorPage {
     @Override
     protected void bind() {
         bindName();
+        bindParentName();
     }
 }
