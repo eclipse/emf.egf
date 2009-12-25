@@ -1,17 +1,17 @@
 /**
  * <copyright>
- *
+ * 
  * Copyright (c) 2005-2007 IBM Corporation and others.
- * All rights reserved.   This program and the accompanying materials
+ * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
- * Contributors: 
- *   IBM - Initial API and implementation
- *
+ * Contributors:
+ * IBM - Initial API and implementation
+ * 
  * </copyright>
- *
+ * 
  * $Id: EditUIUtil.java,v 1.8 2008/05/23 21:49:17 davidms Exp $
  */
 package org.eclipse.egf.common.ui.emf;
@@ -68,11 +68,11 @@ public class EGFEditUIUtil {
     static {
       Class<?> fileRevisionClass = null;
       Method fileRevisionGetURIMethod = null;
-      Bundle bundle = Platform.getBundle("org.eclipse.team.core");
+      Bundle bundle = Platform.getBundle("org.eclipse.team.core"); //$NON-NLS-1$
       if (bundle != null && (bundle.getState() & (Bundle.ACTIVE | Bundle.STARTING | Bundle.RESOLVED)) != 0) {
         try {
-          fileRevisionClass = bundle.loadClass("org.eclipse.team.core.history.IFileRevision");
-          fileRevisionGetURIMethod = fileRevisionClass.getMethod("getURI");
+          fileRevisionClass = bundle.loadClass("org.eclipse.team.core.history.IFileRevision"); //$NON-NLS-1$
+          fileRevisionGetURIMethod = fileRevisionClass.getMethod("getURI"); //$NON-NLS-1$
         } catch (Throwable exeption) {
           // Ignore any exceptions and assume the class isn't available.
         }
