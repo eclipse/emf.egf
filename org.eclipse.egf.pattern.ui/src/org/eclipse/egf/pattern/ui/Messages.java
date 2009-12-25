@@ -32,6 +32,8 @@ public class Messages extends NLS {
     // Specification Page
     public static String SpecificationPage_title;
 
+    public static String input_tooltip;
+
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.ui.PatternUIMessages";//$NON-NLS-1$
     static {
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);
