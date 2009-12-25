@@ -25,7 +25,6 @@ import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.core.context.IContextFactory;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.internal.context.ContextFactory;
-import org.eclipse.egf.core.invocation.IPlatformInvocation;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
@@ -224,37 +223,6 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    */
   public static IPlatformFcore[] getPlatformFcores() {
     return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformFcore.class);
-  }
-
-  /**
-   * Get the IPlatformInvocation for given EMF Resource.
-   * 
-   * @param uri
-   * @return an {@link IPlatformInvocation} instance or null if the
-   *         uri is null or not associated with an
-   *         IPlatformInvocation
-   */
-  public static IPlatformInvocation getPlatformInvocation(String id) {
-    if (id == null || id.trim().length() == 0) {
-      return null;
-    }
-    // locate and return the first associated IPlatformInvocation
-    for (IPlatformInvocation invocation : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformInvocation.class)) {
-      if (invocation.getId().equals(id)) {
-        return invocation;
-      }
-    }
-    // Nothing to retrieve
-    return null;
-  }
-
-  /**
-   * Returns a snapshot of known IPlatformInvocation
-   * 
-   * @return an array of IPlatformInvocation
-   */
-  public static IPlatformInvocation[] getPlatformInvocations() {
-    return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformInvocation.class);
   }
 
   /**

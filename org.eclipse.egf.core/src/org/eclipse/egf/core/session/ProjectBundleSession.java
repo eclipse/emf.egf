@@ -88,7 +88,7 @@ public class ProjectBundleSession {
     try {
       location = "reference:" //$NON-NLS-1$
           + URLDecoder.decode(manifest.getProject().getLocationURI().toURL().toExternalForm(), System.getProperty("file.encoding")); //$NON-NLS-1$
-      bundle = getBundle(location);
+      bundle = getBundleFromItsLocation(location);
     } catch (Throwable t) {
       throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_URLFailure, manifest.getProject().getName()), t));
     }
@@ -297,7 +297,7 @@ public class ProjectBundleSession {
    * @return The bundle corresponding to the given location if any,
    *         <code>null</code> otherwise.
    */
-  private Bundle getBundle(String pluginLocation) {
+  private Bundle getBundleFromItsLocation(String pluginLocation) {
     Bundle[] bundles = _context.getBundles();
     for (int i = 0; i < bundles.length; i++) {
       if (pluginLocation.equals(bundles[i].getLocation())) {
@@ -305,6 +305,26 @@ public class ProjectBundleSession {
       }
     }
     return null;
+  }
+
+  /**
+   * Returns the bundle corresponding to the IProject if any.
+   * 
+   * @param project
+   *          The plug-in ID of the bundle we seek.
+   * @return The bundle corresponding to the given location if any,
+   *         <code>null</code> otherwise.
+   */
+  public Bundle getBundle(String id) throws CoreException {
+    IPluginModelBase model = PluginRegistry.findModel(id);
+    if (model == null) {
+      return null;
+    }
+    Bundle bundle = _projectBundles.get(model);
+    if (bundle == null) {
+      return installBundle(model);
+    }
+    return bundle;
   }
 
   /**

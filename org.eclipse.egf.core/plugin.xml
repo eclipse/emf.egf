@@ -22,12 +22,6 @@
     name="%EGFFcoreExtensionPoint" 
     schema="schema/fcore.exsd"
   />  
-
-  <extension-point 
-    id="invocation" 
-    name="%EGFInvocationExtensionPoint" 
-    schema="schema/invocation.exsd"
-  />
     
   <!-- ================================================================================= -->
   <!-- EGF Platform Manager                                                              -->
@@ -39,11 +33,7 @@
     <manager
       extension="org.eclipse.egf.core.fcore"    
       class="org.eclipse.egf.core.internal.fcore.PlatformFcoreFactory"
-    />
-    <manager
-      extension="org.eclipse.egf.core.invocation"      
-      class="org.eclipse.egf.core.internal.invocation.PlatformInvocationFactory"
-    />             
+    />       
   </extension>  
     
   <!-- ================================================================================= -->
