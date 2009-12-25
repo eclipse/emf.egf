@@ -26,6 +26,8 @@ import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.Viewpoint;
+import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -67,6 +69,17 @@ public class PatternHelper {
 
     public static IPlatformFcore getPlatformFcore(Pattern pattern) {
         return EGFCorePlugin.getPlatformFcore(pattern.eResource());
+    }
+
+    public static String getFactoryConponentName(Pattern pattern) {
+        PatternLibrary container = pattern.getContainer();
+        while (container.getContainer() != null)
+            container = container.getContainer();
+        // TODO: update the model so that the library knows about its viewpoint
+        Viewpoint vp = (Viewpoint) container.eContainer();
+        ViewpointContainer vpc = vp.getViewerpointContainer();
+
+        return vpc.getFactoryComponent().getName();
     }
 
     /**
