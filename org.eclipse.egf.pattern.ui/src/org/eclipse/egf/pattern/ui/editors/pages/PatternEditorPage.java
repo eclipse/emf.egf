@@ -18,6 +18,7 @@ package org.eclipse.egf.pattern.ui.editors.pages;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.ui.editors.PatternEditor;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.FormPage;
@@ -37,7 +38,11 @@ public abstract class PatternEditorPage extends FormPage {
         return ((PatternEditorInput) getEditorInput()).getPattern();
     }
 
-    public TransactionalEditingDomain getEditingDomain() {
+    protected void execute(Command cmd) {
+        getEditingDomain().getCommandStack().execute(cmd);
+    }
+
+    protected TransactionalEditingDomain getEditingDomain() {
         return ((PatternEditor) getEditor()).getEditingDomain();
     }
 

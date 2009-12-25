@@ -15,25 +15,32 @@
 
 package org.eclipse.egf.pattern.ui.editors.pages;
 
+import org.eclipse.core.databinding.DataBindingContext;
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.core.databinding.validation.IValidator;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
+import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
+import org.eclipse.emf.databinding.edit.EMFEditProperties;
+import org.eclipse.emf.databinding.edit.IEMFEditValueProperty;
 import org.eclipse.emf.edit.command.SetCommand;
+import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
+import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.IManagedForm;
-import org.eclipse.ui.forms.SectionPart;
 import org.eclipse.ui.forms.editor.FormEditor;
-import org.eclipse.ui.forms.widgets.ExpandableComposite;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.eclipse.ui.forms.widgets.Section;
 
 /**
  * @author Thomas Guiu
@@ -42,6 +49,8 @@ import org.eclipse.ui.forms.widgets.Section;
 public class OverviewPage extends PatternEditorPage {
 
     public static final String ID = "OverviewPage";
+
+    private final DataBindingContext ctx = new EMFDataBindingContext();
 
     public OverviewPage(FormEditor editor) {
         super(editor, ID, Messages.OverviewPage_title);
@@ -53,7 +62,6 @@ public class OverviewPage extends PatternEditorPage {
         ScrolledForm form = managedForm.getForm();
         form.getBody().setLayout(new GridLayout());
 
-        // form.setText("Hello");
         final Text text = toolkit.createText(form.getBody(), getPattern().getName(), SWT.BORDER);
         text.addModifyListener(new ModifyListener() {
 
@@ -61,23 +69,29 @@ public class OverviewPage extends PatternEditorPage {
                 Pattern pattern = getPattern();
 
                 String text2 = text.getText();
-                Command cmd = SetCommand.create(getEditingDomain(), pattern, FcorePackage.eINSTANCE.getModelElement_Name(), text2);
+                Command cmd = SetCommand.create(getEditingDomain(), pattern, FcorePackage.Literals.MODEL_ELEMENT__NAME, text2);
                 if (cmd.canExecute()) {
-                    getEditingDomain().getCommandStack().execute(cmd);
+                    execute(cmd);
                 }
-                // pattern.setName(text2);
-                // firePropertyChange(IEditorPart.PROP_DIRTY);
             }
+
         });
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         text.setLayoutData(gd);
 
-    }
+        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.MODEL_ELEMENT__NAME);
+        IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
+        IObservableValue uiObs = textProp.observeDelayed(400, text);
+        IObservableValue mObs = mprop.observe(getPattern());
 
-    private void fillBody(IManagedForm managedForm, FormToolkit toolkit) {
-        Composite body = managedForm.getForm().getBody();
-        body.setLayout(new GridLayout());
-        managedForm.addPart(new SectionPart(body, toolkit, Section.DESCRIPTION | ExpandableComposite.TITLE_BAR));
+        ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+
+            public IStatus validate(Object value) {
+
+                return Status.OK_STATUS;
+            }
+        }), null);
+
     }
 
 }
