@@ -10,8 +10,6 @@
  */
 package org.eclipse.egf.core.production.internal.task;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -93,7 +91,7 @@ public class ProductionTaskInvocation implements IProductionTaskInvocation {
    * @param monitor
    * @return true if the execution was successful, false otherwise.
    */
-  public void invoke(final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InvocationException, OperationCanceledException {
+  public void invoke(final IProgressMonitor monitor) throws CoreException, InvocationException {
     SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, _productionContext.getName()), 1000);
     try {
       // Instantiate an ITask object

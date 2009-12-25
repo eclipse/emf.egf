@@ -22,6 +22,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.common.ui.diagnostic.DiagnosticHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.production.InvocationException;
@@ -48,8 +49,10 @@ public class RunActivityAction implements IObjectActionDelegate {
       return;
     }
 
-    // batching changes
-    WorkspaceJob cleanJob = new WorkspaceJob(EGFModelsEditorMessages.GlobalRunActivityAction_label) {
+    final InvocationException[] invocationException = new InvocationException[1];
+
+    // run activity
+    WorkspaceJob activityJob = new WorkspaceJob(EGFModelsEditorMessages.GlobalRunActivityAction_label) {
 
       @Override
       public boolean belongsTo(Object family) {
@@ -70,11 +73,11 @@ public class RunActivityAction implements IObjectActionDelegate {
             if (monitor.isCanceled()) {
               throw new OperationCanceledException();
             }
-          } catch (InvocationException ie) {
+          } catch (final InvocationException ie) {
             if (ie.getCause() instanceof CoreException) {
               throw (CoreException) ie.getCause();
             }
-            throw new CoreException(EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, "RunActivityAction.run(..) _", ie.getCause())); //$NON-NLS-1$
+            invocationException[0] = ie;
           }
         } finally {
           rootContext.dispose();
@@ -83,9 +86,19 @@ public class RunActivityAction implements IObjectActionDelegate {
         return Status.OK_STATUS;
       }
     };
-    cleanJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
-    cleanJob.setUser(true);
-    cleanJob.schedule();
+    activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
+    activityJob.setUser(true);
+    activityJob.schedule();
+
+    try {// block
+      activityJob.join();
+    } catch (InterruptedException e) {
+      // Do nothing
+    }
+
+    if (invocationException[0] != null) {
+      DiagnosticHandler.displayAsyncDiagnostic(EGFModelsEditorPlugin.getActiveWorkbenchShell(), invocationException[0]);
+    }
 
     return;
 

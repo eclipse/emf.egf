@@ -14,7 +14,8 @@ Require-Bundle:
 Export-Package: 
  org.eclipse.egf.core.production,
  org.eclipse.egf.core.production.context,
- org.eclipse.egf.core.production.internal.context; x-friends:="org.eclipse.egf.model, org.eclipse.egf.model.productionplan",  
- org.eclipse.egf.core.production.session, 
+ org.eclipse.egf.core.production.internal.context; x-friends:="org.eclipse.egf.model, org.eclipse.egf.model.productionplan",
+ org.eclipse.egf.core.production.l10n,   
+ org.eclipse.egf.core.production.session,
  org.eclipse.egf.core.production.task
 Bundle-ActivationPolicy: lazy

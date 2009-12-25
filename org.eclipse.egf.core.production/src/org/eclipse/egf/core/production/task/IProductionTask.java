@@ -10,11 +10,8 @@
  */
 package org.eclipse.egf.core.production.task;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 
@@ -29,20 +26,20 @@ public interface IProductionTask {
    * 
    * @param monitor_p
    */
-  public void preExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InvocationException, OperationCanceledException;
+  public void preExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationException;
 
   /**
    * Do execute this task.
    * 
    * @param monitor_p
    */
-  public void doExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InvocationException, OperationCanceledException;
+  public void doExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationException;
 
   /**
    * Post execute this task.
    * 
    * @param monitor_p
    */
-  public void postExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InvocationException, OperationCanceledException;
+  public void postExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationException;
 
 }

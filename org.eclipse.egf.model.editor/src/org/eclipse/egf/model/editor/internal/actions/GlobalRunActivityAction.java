@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.common.ui.diagnostic.DiagnosticHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.ResourceHelper;
@@ -76,7 +77,9 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
       return;
     }
 
-    // batching changes
+    final InvocationException[] invocationException = new InvocationException[1];
+
+    // Run activity
     WorkspaceJob activityJob = new WorkspaceJob(EGFModelsEditorMessages.GlobalRunActivityAction_label) {
 
       @Override
@@ -114,7 +117,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
             if (ie.getCause() instanceof CoreException) {
               throw (CoreException) ie.getCause();
             }
-            throw new CoreException(EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, "RunActivityAction.run(..) _", ie.getCause())); //$NON-NLS-1$
+            invocationException[0] = ie;
           }
         } finally {
           rootContext.dispose();
@@ -126,6 +129,16 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
     activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
     activityJob.setUser(true);
     activityJob.schedule();
+
+    try {// block
+      activityJob.join();
+    } catch (InterruptedException ie) {
+      // Do nothing
+    }
+
+    if (invocationException[0] != null) {
+      DiagnosticHandler.displayAsyncDiagnostic(EGFModelsEditorPlugin.getActiveWorkbenchShell(), invocationException[0]);
+    }
 
     return;
 
