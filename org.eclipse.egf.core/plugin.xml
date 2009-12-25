@@ -28,13 +28,7 @@
     name="%EGFTaskExtensionPoint" 
     schema="schema/task.exsd"
   />
-  
-  <extension-point 
-    id="type" 
-    name="%EGFTypeExtensionPoint" 
-    schema="schema/type.exsd"
-  />    
-  
+    
   <!-- ================================================================================= -->
   <!-- EGF Platform Manager                                                              -->
   <!-- ================================================================================= -->  
@@ -49,11 +43,7 @@
     <manager
       extension="org.eclipse.egf.core.task"      
       class="org.eclipse.egf.core.task.PlatformTaskFactory"
-    />
-    <manager
-      extension="org.eclipse.egf.core.type"      
-      class="org.eclipse.egf.core.type.PlatformTypeFactory"
-    />                       
+    />             
   </extension>  
     
   <!-- ================================================================================= -->

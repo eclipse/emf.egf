@@ -27,7 +27,6 @@ import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.internal.context.EGFContextFactory;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.task.IPlatformTask;
-import org.eclipse.egf.core.type.IPlatformType;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -111,11 +110,10 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   }
 
   /**
-   * Computes a map from <code>platform:/plugin/&lt;plugin-id>/</code>
-   * {@link URI} to <code>platform:/resource/&lt;plugin-location>/</code> URI
+   * Computes a map from <code>platform:/plugin/&lt;plugin-id>/</code> {@link URI} to
+   * <code>platform:/resource/&lt;plugin-location>/</code> URI
    * for each plugin project in the workspace. This allows each plugin from
-   * the runtime to be
-   * {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
+   * the runtime to be {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
    * redirected} to its active version in the workspace.
    * 
    * @return a map from plugin URIs to resource URIs.
@@ -133,8 +131,8 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   }
 
   /**
-   * Computes a map from <code>platform:/resource/&lt;plugin-location>/</code>
-   * {@link URI} to <code>platform:/plugin/&lt;plugin-id>/</code> URI for each
+   * Computes a map from <code>platform:/resource/&lt;plugin-location>/</code> {@link URI} to
+   * <code>platform:/plugin/&lt;plugin-id>/</code> URI for each
    * URI in the collection of the form
    * <code>platform:/plugin/&lt;plugin-id>/...</code>. This allows each plugin
    * to be {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
@@ -257,15 +255,6 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    */
   public static IPlatformTask[] getPlatformTasks() {
     return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformTask.class);
-  }
-
-  /**
-   * Returns a snapshot of known IPlatformType
-   * 
-   * @return an array of IPlatformType
-   */
-  public static IPlatformType[] getPlatformTypes() {
-    return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformType.class);
   }
 
   /**
