@@ -411,26 +411,26 @@ public abstract class PatternFactory {
          */
         // 1 - create default content
         PatternMethod headerMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
-        checkId(headerMethod);
         pattern.getMethods().add(headerMethod);
         pattern.setHeaderMethod(headerMethod);
+        checkId(headerMethod);
         initHeader(headerMethod);
 
         PatternMethod initMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
-        checkId(initMethod);
         pattern.getMethods().add(initMethod);
         pattern.setInitMethod(initMethod);
+        checkId(initMethod);
         initIinit(initMethod);
 
         PatternMethod bodyMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
-        checkId(bodyMethod);
         pattern.getMethods().add(bodyMethod);
+        checkId(initMethod);
         initBody(bodyMethod);
 
         PatternMethod footerMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
-        checkId(footerMethod);
         pattern.getMethods().add(footerMethod);
         pattern.setFooterMethod(footerMethod);
+        checkId(footerMethod);
         initFooter(footerMethod);
 
         // 2 - set up default orchestration
