@@ -251,21 +251,13 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    *         uri is null or not associated with an
    *         IPlatformFcore
    */
-  public static IPlatformTask getPlatformTask(URI uri) {
-    // a URI should be absolute, otherwise we are unable to analyse its
-    // first segment
-    if (uri == null || uri.isRelative()) {
+  public static IPlatformTask getPlatformTask(String id) {
+    if (id == null || id.trim().length() == 0) {
       return null;
     }
-    // Bundle Name
-    String firstSegment = uri.segment(1);
-    if (firstSegment == null || firstSegment.trim().length() == 0) {
-      return null;
-    }
-    firstSegment = firstSegment.trim();
     // locate and return the first associated IPlatformTask
-    for (IPlatformTask task : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(firstSegment, IPlatformTask.class)) {
-      if (task.getURI().equals(uri)) {
+    for (IPlatformTask task : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformTask.class)) {
+      if (task.getId().equals(id)) {
         return task;
       }
     }

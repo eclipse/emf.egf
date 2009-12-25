@@ -92,7 +92,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
         result.add(null);
         // Load type elements in the current resource set
         for (IPlatformTask platformTask : EGFCorePlugin.getPlatformTasks()) {
-          result.add(platformTask.getURI().toString());
+          result.add(platformTask.getId());
         }
         return result;
       }

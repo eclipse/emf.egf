@@ -33,7 +33,7 @@ public final class PlatformTypeFactory implements IPlatformExtensionPointFactory
     if (id == null || id.getValue() == null || id.getValue().trim().length() == 0) {
       return null;
     }
-    return new PlatformType(platformBundle, pluginElement, id.getValue().trim());
+    return new PlatformType(platformBundle, pluginElement, id.getValue());
   }
 
 }

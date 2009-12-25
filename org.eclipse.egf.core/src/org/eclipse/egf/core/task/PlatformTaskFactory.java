@@ -28,11 +28,15 @@ public final class PlatformTaskFactory implements IPlatformExtensionPointFactory
     if (ITaskConstants.TASK_EXTENSION_CHILD.equals(pluginElement.getName()) == false) {
       return null;
     }
+    IPluginAttribute id = pluginElement.getAttribute(ITaskConstants.TASK_ATT_ID);
+    if (id == null || id.getValue() == null || id.getValue().trim().length() == 0) {
+      return null;
+    }
     IPluginAttribute clazz = pluginElement.getAttribute(ITaskConstants.TASK_ATT_CLASS);
     if (clazz == null || clazz.getValue() == null || clazz.getValue().trim().length() == 0) {
       return null;
     }
-    return new PlatformTask(platformBundle, pluginElement, clazz.getValue().trim());
+    return new PlatformTask(platformBundle, pluginElement, id.getValue(), clazz.getValue());
   }
 
 }

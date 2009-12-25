@@ -71,7 +71,7 @@ public class TaskRunner implements ITaskRunner {
     // Load
     Class<?> clazz = null;
     try {
-      clazz = bundle.loadClass(_platformTask.getId());
+      clazz = bundle.loadClass(_platformTask.getClazz());
     } catch (ClassNotFoundException cnfe) {
       throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _platformTask.getId()), cnfe));
     }

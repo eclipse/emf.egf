@@ -32,7 +32,7 @@ public final class PlatformFcoreFactory implements IPlatformExtensionPointFactor
     if (id == null || id.getValue() == null || id.getValue().trim().length() == 0) {
       return null;
     }
-    return new PlatformFcore(platformBundle, pluginElement, id.getValue().trim());
+    return new PlatformFcore(platformBundle, pluginElement, id.getValue());
   }
 
 }

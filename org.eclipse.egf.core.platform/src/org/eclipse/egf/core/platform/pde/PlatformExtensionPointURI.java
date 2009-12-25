@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.common.uri.URIHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IPluginElement;
@@ -21,6 +22,7 @@ public abstract class PlatformExtensionPointURI extends PlatformExtensionPoint i
   public PlatformExtensionPointURI(IPlatformBundle bundle, IPluginElement element, String id) {
     super(bundle, element, id);
     _previousUri = URIHelper.getPlatformURI(bundle.getBundleId(), getId(), false);
+    Assert.isNotNull(_previousUri);
   }
 
   public URI getPreviousURI() {

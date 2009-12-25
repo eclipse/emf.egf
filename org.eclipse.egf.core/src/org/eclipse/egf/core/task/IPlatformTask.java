@@ -15,10 +15,10 @@
  */
 package org.eclipse.egf.core.task;
 
-import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointURI;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 
-public interface IPlatformTask extends IPlatformExtensionPointURI {
+public interface IPlatformTask extends IPlatformExtensionPoint {
 
-  // Nothing to do
+  public String getClazz();
 
 }

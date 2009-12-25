@@ -15,14 +15,24 @@
  */
 package org.eclipse.egf.core.task;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
-import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
+import org.eclipse.egf.core.platform.pde.PlatformExtensionPoint;
 import org.eclipse.pde.core.plugin.IPluginElement;
 
-public final class PlatformTask extends PlatformExtensionPointURI implements IPlatformTask {
+public final class PlatformTask extends PlatformExtensionPoint implements IPlatformTask {
 
-  public PlatformTask(IPlatformBundle bundle, IPluginElement element, String id) {
+  private String _clazz;
+
+  public PlatformTask(IPlatformBundle bundle, IPluginElement element, String id, String clazz) {
     super(bundle, element, id);
+    Assert.isNotNull(clazz);
+    Assert.isLegal(clazz.trim().length() > 0);
+    _clazz = clazz.trim();
+  }
+
+  public String getClazz() {
+    return _clazz;
   }
 
 }

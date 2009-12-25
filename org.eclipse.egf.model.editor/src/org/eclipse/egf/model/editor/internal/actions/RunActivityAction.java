@@ -31,7 +31,6 @@ import org.eclipse.egf.model.editor.internal.dialogs.FcoreSelectionDialog;
 import org.eclipse.egf.model.editor.internal.ui.EGFModelsEditorImages;
 import org.eclipse.egf.model.editor.l10n.EGFModelsEditorMessages;
 import org.eclipse.egf.model.fcore.Task;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -100,17 +99,12 @@ public class RunActivityAction extends Action implements IWorkbenchWindowActionD
           } catch (Throwable t) {
             throw new CoreException(EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, "RunActivityAction.runWithEvent(..) _", t)); //$NON-NLS-1$
           }
-          try {
-            Thread.currentThread().sleep(10000);
-          } catch (InterruptedException ie) {
-            throw new OperationCanceledException();
-          }
           subMonitor.worked(10);
           if (subMonitor.isCanceled()) {
             throw new OperationCanceledException();
           }
           IProductionContext context = EGFCorePlugin.getProductionContextFactory().createProductionContext(null);
-          ITaskRunner runner = EGFCorePlugin.getTaskRunnerFactory().createTaskRunner(context, EGFCorePlugin.getPlatformTask(URI.createURI(task.getTaskId())));
+          ITaskRunner runner = EGFCorePlugin.getTaskRunnerFactory().createTaskRunner(context, EGFCorePlugin.getPlatformTask(task.getTaskId()));
           try {
             runner.execute(subMonitor.newChild(10));
             if (subMonitor.isCanceled()) {

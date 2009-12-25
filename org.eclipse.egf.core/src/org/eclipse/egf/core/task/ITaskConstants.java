@@ -36,6 +36,11 @@ public interface ITaskConstants {
   static final String TASK_EXTENSION_CHILD = TASK_EXTENSION_POINT_ID;
 
   /**
+   * Define a constant for the 'id' attribute.
+   */
+  public static final String TASK_ATT_ID = "id"; //$NON-NLS-1$    
+
+  /**
    * Define a constant for the 'class' attribute.
    */
   public static final String TASK_ATT_CLASS = "class"; //$NON-NLS-1$  
