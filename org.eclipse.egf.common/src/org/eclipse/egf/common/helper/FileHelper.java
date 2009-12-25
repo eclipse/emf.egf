@@ -29,7 +29,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.common.activator.EGFCommonPlugin;
+import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IPluginModelBase;

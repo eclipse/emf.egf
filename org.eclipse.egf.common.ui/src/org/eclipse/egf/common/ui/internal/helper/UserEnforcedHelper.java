@@ -16,7 +16,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.IUserEnforcedHelper;
-import org.eclipse.egf.common.ui.activator.EGFCommonUIPlugin;
+import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;

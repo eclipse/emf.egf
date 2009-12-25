@@ -8,12 +8,13 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.common.activator;
+package org.eclipse.egf.common;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.common.helper.IUserEnforcedHelper;
 import org.eclipse.egf.common.internal.helper.DefaultUserHelper;

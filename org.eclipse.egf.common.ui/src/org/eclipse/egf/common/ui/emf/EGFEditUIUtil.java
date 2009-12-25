@@ -20,7 +20,7 @@ import java.lang.reflect.Method;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.egf.common.ui.activator.EGFCommonUIPlugin;
+import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;

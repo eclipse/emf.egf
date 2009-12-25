@@ -12,7 +12,7 @@ package org.eclipse.egf.common.ui.activator;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.common.activator.EGFCommonPlugin;
+import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.log.IEGFLogger;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
 

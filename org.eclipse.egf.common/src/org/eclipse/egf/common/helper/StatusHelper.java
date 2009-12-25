@@ -23,7 +23,7 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.common.activator.EGFCommonPlugin;
+import org.eclipse.egf.common.EGFCommonPlugin;
 
 
 public class StatusHelper {

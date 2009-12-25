@@ -15,6 +15,7 @@ package org.eclipse.egf.common.activator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.log.IEGFLogger;
 
 /**

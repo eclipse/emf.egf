@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.common.helper;
 
-import org.eclipse.egf.common.activator.EGFCommonPlugin;
+import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;

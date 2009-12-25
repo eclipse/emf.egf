@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.common;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.egf.common.activator.EGFCommonPlugin
+Bundle-Activator: org.eclipse.egf.common.EGFCommonPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5

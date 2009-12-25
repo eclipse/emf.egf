@@ -8,8 +8,9 @@
  *  Contributors:
  *      Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.common.ui.activator;
+package org.eclipse.egf.common.ui;
 
+import org.eclipse.egf.common.ui.activator.EGFAbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 

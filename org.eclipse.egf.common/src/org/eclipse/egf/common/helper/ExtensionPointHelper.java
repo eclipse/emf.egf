@@ -19,7 +19,7 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.egf.common.activator.EGFCommonPlugin;
+import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.osgi.util.NLS;
 
