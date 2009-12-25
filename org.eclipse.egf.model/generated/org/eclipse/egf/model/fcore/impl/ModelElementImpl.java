@@ -15,12 +15,12 @@ package org.eclipse.egf.model.fcore.impl;
 import org.eclipse.egf.common.helper.IDGeneratorHelper;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.egf.model.fcore.util.FcoreResourceImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,19 +29,22 @@ import org.eclipse.emf.ecore.resource.Resource;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getID <em>ID</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getID <em>ID</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getDescription <em>Description</em>}
+ * </li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class ModelElementImpl extends Container implements ModelElement {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable
+   * features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -51,6 +54,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * The default value of the '{@link #getID() <em>ID</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getID()
    * @generated
    * @ordered
@@ -61,6 +65,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getID()
    * @generated
    * @ordered
@@ -71,6 +76,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getName()
    * @generated
    * @ordered
@@ -81,6 +87,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getName()
    * @generated
    * @ordered
@@ -91,6 +98,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDescription()
    * @generated
    * @ordered
@@ -101,6 +109,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDescription()
    * @generated
    * @ordered
@@ -110,6 +119,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ModelElementImpl() {
@@ -119,6 +129,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -161,8 +172,8 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    */
   public void setID(String newID) {
     Resource eResource = eResource();
-    if (eResource instanceof FcoreResourceImpl) {
-      ((FcoreResourceImpl) eResource).getIntrinsicIDToEObjectMap().clear();
+    if (eResource instanceof ResourceImpl) {
+      ((ResourceImpl) eResource).getIntrinsicIDToEObjectMap().clear();
     }
     setIDGen(newID);
   }
@@ -170,6 +181,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getName() {
@@ -179,6 +191,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setName(String newName) {
@@ -191,6 +204,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getDescription() {
@@ -200,6 +214,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setDescription(String newDescription) {
@@ -222,6 +237,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -240,6 +256,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -261,6 +278,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -282,6 +300,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -300,6 +319,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
