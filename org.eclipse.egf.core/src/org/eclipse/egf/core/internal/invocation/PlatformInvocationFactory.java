@@ -8,8 +8,10 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.invocation;
+package org.eclipse.egf.core.internal.invocation;
 
+import org.eclipse.egf.core.invocation.IInvocationConstants;
+import org.eclipse.egf.core.invocation.IPlatformInvocation;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
 import org.eclipse.pde.core.plugin.IPluginAttribute;

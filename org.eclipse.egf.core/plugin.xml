@@ -38,11 +38,11 @@
   >
     <manager
       extension="org.eclipse.egf.core.fcore"    
-      class="org.eclipse.egf.core.fcore.PlatformFcoreFactory"
+      class="org.eclipse.egf.core.internal.fcore.PlatformFcoreFactory"
     />
     <manager
       extension="org.eclipse.egf.core.invocation"      
-      class="org.eclipse.egf.core.invocation.PlatformInvocationFactory"
+      class="org.eclipse.egf.core.internal.invocation.PlatformInvocationFactory"
     />             
   </extension>  
     

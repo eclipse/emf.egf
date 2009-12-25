@@ -13,9 +13,10 @@
  * </copyright>
  * 
  */
-package org.eclipse.egf.core.invocation;
+package org.eclipse.egf.core.internal.invocation;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.egf.core.invocation.IPlatformInvocation;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.PlatformExtensionPoint;
 import org.eclipse.pde.core.plugin.IPluginElement;

@@ -8,10 +8,11 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.session;
+package org.eclipse.egf.core.helper;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
+import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.osgi.framework.Bundle;
 
 /**

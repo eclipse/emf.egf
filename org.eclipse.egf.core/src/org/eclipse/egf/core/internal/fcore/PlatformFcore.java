@@ -13,9 +13,10 @@
  * </copyright>
  * 
  */
-package org.eclipse.egf.core.fcore;
+package org.eclipse.egf.core.internal.fcore;
 
 import org.eclipse.core.runtime.Path;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
 import org.eclipse.pde.core.plugin.IPluginElement;

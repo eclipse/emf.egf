@@ -17,11 +17,11 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.egf.core.helper.BundleSessionHelper;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.core.production.l10n.CoreProductionMessages;
-import org.eclipse.egf.core.session.BundleSessionHelper;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
