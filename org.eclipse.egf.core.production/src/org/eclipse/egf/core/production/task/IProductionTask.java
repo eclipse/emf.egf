@@ -10,7 +10,6 @@
  */
 package org.eclipse.egf.core.production.task;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
@@ -26,20 +25,20 @@ public interface IProductionTask {
    * 
    * @param monitor_p
    */
-  public void preExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationException;
+  public void preExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws InvocationException;
 
   /**
    * Do execute this task.
    * 
    * @param monitor_p
    */
-  public void doExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationException;
+  public void doExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws InvocationException;
 
   /**
    * Post execute this task.
    * 
    * @param monitor_p
    */
-  public void postExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationException;
+  public void postExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws InvocationException;
 
 }

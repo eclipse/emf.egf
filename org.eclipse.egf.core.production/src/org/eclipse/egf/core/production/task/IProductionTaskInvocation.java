@@ -10,7 +10,6 @@
  */
 package org.eclipse.egf.core.production.task;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.production.InvocationException;
 
@@ -20,6 +19,6 @@ import org.eclipse.egf.core.production.InvocationException;
  */
 public interface IProductionTaskInvocation {
 
-  public void invoke(final IProgressMonitor monitor) throws CoreException, InvocationException;
+  public void invoke(final IProgressMonitor monitor) throws InvocationException;
 
 }
