@@ -10,6 +10,8 @@
  */
 package org.eclipse.egf.core.platform.pde;
 
+import java.net.URL;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.osgi.service.resolver.BundleDescription;
 import org.eclipse.pde.core.plugin.IPluginBase;
@@ -36,6 +38,8 @@ public interface IPlatformBundle extends Comparable<IPlatformBundle> {
   public boolean isEmpty();
 
   public String getBundleLocation();
+
+  public URL getBundleURL();
 
   public IPlatformExtensionPoint[] getPlatformExtensionPoints();
 

@@ -34,4 +34,7 @@ public class EGFCoreMessages {
   public static String AbstractTask_errorTaskInstance;
   public static String AbstractTask_errorWorkspaceTaskInstance;
 
+  public static String classloader_errorFindClass;
+  public static String classloader_errorOuptutFolder;
+
 }

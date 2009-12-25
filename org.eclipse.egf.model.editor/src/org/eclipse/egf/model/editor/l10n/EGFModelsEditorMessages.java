@@ -27,12 +27,12 @@ public class EGFModelsEditorMessages {
     NLS.initializeMessages(BUNDLE_NAME, EGFModelsEditorMessages.class);
   }
 
-  public static String RunActivityAction_description;
-  public static String RunActivityAction_tooltip;
-  public static String RunActivityAction_label;
-  public static String RunActivityAction_dialogMessage;
-  public static String RunActivityAction_dialogTitle;
-  public static String RunActivityAction_errorTitle;
-  public static String RunActivityAction_errorMessage;
+  public static String GlobalRunActivityAction_description;
+  public static String GlobalRunActivityAction_tooltip;
+  public static String GlobalRunActivityAction_label;
+  public static String GlobalRunActivityAction_dialogMessage;
+  public static String GlobalRunActivityAction_dialogTitle;
+  public static String GlobalRunActivityAction_errorTitle;
+  public static String GlobalRunActivityAction_errorMessage;
 
 }

@@ -16,16 +16,15 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.context.IProductionContext;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
+import org.eclipse.egf.core.loader.WorkspaceAndPluginClassLoader;
 import org.eclipse.egf.core.task.IPlatformTask;
 import org.eclipse.egf.core.task.IProductionTask;
 import org.eclipse.egf.core.task.ITaskRunner;
 import org.eclipse.osgi.util.NLS;
-import org.osgi.framework.Bundle;
 
 /**
  * This class is responsible to process user defined
@@ -59,27 +58,20 @@ public class TaskRunner implements ITaskRunner {
    * @return the instantiated object or null
    */
   protected IProductionTask createTaskInstance() throws CoreException {
-    // TODO we should support this feature
-    if (_platformTask.getPlatformBundle().isTarget() == false) {
-      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorWorkspaceTaskInstance, _platformTask.getId()), null));
-    }
-    // Retrieve Bundle
-    Bundle bundle = Platform.getBundle(_platformTask.getPlatformBundle().getBundleId());
-    if (bundle == null) {
-      return null;
-    }
-    // Load
+    // Load Class
     Class<?> clazz = null;
     try {
-      clazz = bundle.loadClass(_platformTask.getClazz());
+      clazz = new WorkspaceAndPluginClassLoader(_platformTask.getPlatformBundle()).loadClass(_platformTask.getClazz());
     } catch (ClassNotFoundException cnfe) {
       throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _platformTask.getId()), cnfe));
     }
     // Instantiate
     try {
       return (IProductionTask) clazz.newInstance();
-    } catch (Throwable t) {
-      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _platformTask.getId()), t));
+    } catch (InstantiationException ie) {
+      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _platformTask.getId()), ie));
+    } catch (IllegalAccessException iae) {
+      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _platformTask.getId()), iae));
     }
   }
 

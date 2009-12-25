@@ -16,6 +16,8 @@ package org.eclipse.egf.core.context;
  */
 public interface IProductionContextFactory {
 
+  public IProductionContext createProductionContext();
+
   public IProductionContext createProductionContext(IProductionContext parent);
 
 }

@@ -10,6 +10,8 @@
  */
 package org.eclipse.egf.core.platform.internal.pde;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -18,6 +20,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
@@ -248,6 +251,23 @@ public class PlatformBundle implements IPlatformBundle {
 
   public String getBundleLocation() {
     return getBundleDescription().getLocation();
+  }
+
+  public URL getBundleURL() {
+    // Target Bundle
+    if (isTarget()) {
+      return Platform.getBundle(getBundleId()).getEntry("/"); //$NON-NLS-1$
+    }
+    // Workspace Bundle
+    try {
+      StringBuffer buffer = new StringBuffer("platform:/resource/"); //$NON-NLS-1$
+      buffer.append(getBundleId());
+      buffer.append("/"); //$NON-NLS-1$
+      return new URL(buffer.toString());
+    } catch (MalformedURLException mue) {
+      EGFPlatformPlugin.getDefault().logError(mue);
+    }
+    return null;
   }
 
   @Override

@@ -476,7 +476,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
       LOOP: for (IPlatformExtensionPoint extensionPoint : existingPlatformBundle.getPlatformExtensionPoints(clazz)) {
         // Analyse Platform Bundle
         for (IPlatformExtensionPoint newExtensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
-          if (newExtensionPoint.compareTo(extensionPoint) == 0) {
+          if (newExtensionPoint.getPluginElement().equals(extensionPoint.getPluginElement()) && newExtensionPoint.compareTo(extensionPoint) == 0) {
             continue LOOP;
           }
         }
@@ -516,7 +516,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
       LOOP: for (IPlatformExtensionPoint newExtensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
         // analyse Platform Bundle
         for (IPlatformExtensionPoint extensionPoint : existingPlatformBundle.getPlatformExtensionPoints(clazz)) {
-          if (extensionPoint.compareTo(newExtensionPoint) == 0) {
+          if (newExtensionPoint.getPluginElement().equals(extensionPoint.getPluginElement()) && extensionPoint.compareTo(newExtensionPoint) == 0) {
             continue LOOP;
           }
         }

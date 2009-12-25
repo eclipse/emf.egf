@@ -20,4 +20,8 @@ public interface ITaskRunnerFactory {
 
   public ITaskRunner createTaskRunner(IProductionContext context, IPlatformTask platformTask);
 
+  public ITaskRunner createTaskRunner(IPlatformTask platformTask);
+
+  public ITaskRunner createTaskRunner(String id);
+
 }

@@ -19,6 +19,10 @@ import org.eclipse.egf.core.context.IProductionContextFactory;
  */
 public class ProductionContextFactory implements IProductionContextFactory {
 
+  public IProductionContext createProductionContext() {
+    return new ProductionContext(null);
+  }
+
   public IProductionContext createProductionContext(IProductionContext parent) {
     return new ProductionContext(parent);
   }

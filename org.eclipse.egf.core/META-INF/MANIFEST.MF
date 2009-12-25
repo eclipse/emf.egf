@@ -18,6 +18,7 @@ Export-Package:
  org.eclipse.egf.core.fcore,
  org.eclipse.egf.core.helper,
  org.eclipse.egf.core.l10n,
+ org.eclipse.egf.core.loader, 
  org.eclipse.egf.core.natures,
  org.eclipse.egf.core.task,
  org.eclipse.egf.core.type

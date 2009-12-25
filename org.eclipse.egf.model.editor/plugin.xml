@@ -32,7 +32,7 @@
       name="%_UI_FcoreModelWizard_label"
       class="org.eclipse.egf.model.fcore.presentation.FcoreModelWizard"
       category="org.eclipse.egf.category.wizards"
-      icon="icons/full/obj16/FcoreModelFile.gif"
+      icon="$nl$/icons/full/obj16/FcoreModelFile.gif"
     >
       <description>%_UI_FcoreModelWizard_description</description>
       <selection class="org.eclipse.core.resources.IResource"/>
@@ -49,12 +49,38 @@
     <editor
       id="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentEditorID"
       name="%_UI_FcoreEditor_label"
-      icon="icons/full/obj16/FcoreModelFile.gif"
+      icon="$nl$/icons/full/obj16/FcoreModelFile.gif"
       extensions="fcore"
       class="org.eclipse.egf.model.fcore.presentation.FcoreEditor"
       contributorClass="org.eclipse.egf.model.fcore.presentation.FcoreActionBarContributor"
     />
   </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- popupMenus                                                                        -->
+  <!-- ================================================================================= -->
+  
+  <extension
+    point="org.eclipse.ui.popupMenus"
+  >
+  
+    <objectContribution
+      id="org.eclipse.egf.model.editor.activity.contribution"
+      objectClass="org.eclipse.egf.model.fcore.Activity"
+    >
+    
+      <action
+        class="org.eclipse.egf.model.editor.internal.actions.RunActivityAction"
+        icon="$nl$/icons/full/elcl16/runactivity.gif"
+        id="org.eclipse.egf.model.editor.activity.contribution.action.run.activity"
+        label="%GlobalRunActivityAction_label"
+        enablesFor="1"
+        menubarPath="additions"
+      />
+    
+    </objectContribution>
+  
+  </extension>    
   
   <!-- ================================================================================= -->
   <!-- ActionSets                                                                        -->
@@ -72,14 +98,14 @@
     >
                   
       <action
-        id="org.eclipse.egf.model.editor.run.activity.action"  
+        id="org.eclipse.egf.ui.action.set.global.run.activity.action"  
         toolbarPath="org.eclipse.debug.ui.launchActionSet/debug"         
-        class="org.eclipse.egf.model.editor.internal.actions.RunActivityAction"
+        class="org.eclipse.egf.model.editor.internal.actions.GlobalRunActivityAction"
         definitionId="org.eclipse.egf.model.editor.run.activity"
         icon="$nl$/icons/full/elcl16/runactivity.gif"
-        label="%RunActivityAction_label"
+        label="%GlobalRunActivityAction_label"
         menubarPath="org.eclipse.ui.run/runGroup"
-        tooltip="%RunActivityAction_tooltip"
+        tooltip="%GlobalRunActivityAction_tooltip"
       />
       
     </actionSet>
