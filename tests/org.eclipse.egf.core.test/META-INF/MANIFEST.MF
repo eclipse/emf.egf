@@ -12,6 +12,7 @@ Require-Bundle:
  org.eclipse.ui,
  org.eclipse.core.runtime,
  org.junit,
+ org.eclipse.egf.model.productionplan,
  org.eclipse.egf.productionplan,
  org.eclipse.egf.example.task.h1
 Bundle-ActivationPolicy: lazy

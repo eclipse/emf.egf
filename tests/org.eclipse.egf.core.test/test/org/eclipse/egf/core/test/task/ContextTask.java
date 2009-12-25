@@ -8,24 +8,21 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.test;
+package org.eclipse.egf.core.test.task;
 
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.egf.core.test.model.ModelValidation;
-import org.eclipse.egf.core.test.task.ContextTask;
+import org.eclipse.egf.core.test.context.task.memory.ContextTaskMemory;
+import org.eclipse.egf.core.test.context.task.resource.ContextTaskResource;
 
-/**
- * @author Xavier Maysonnave
- * 
- */
-public class AllTests {
+public class ContextTask extends TestCase {
 
   public static Test suite() {
-    TestSuite suite = new TestSuite("EGF Core Test Suite"); //$NON-NLS-1$
-    suite.addTest(ModelValidation.suite());
-    suite.addTest(ContextTask.suite());
+    TestSuite suite = new TestSuite("EGF Core Context Task Test Suite"); //$NON-NLS-1$
+    suite.addTest(ContextTaskResource.suite());
+    suite.addTest(ContextTaskMemory.suite());
     return suite;
   }
 

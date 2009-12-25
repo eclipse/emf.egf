@@ -8,24 +8,21 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.test;
+package org.eclipse.egf.core.test.model;
 
 import junit.framework.Test;
+import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.egf.core.test.model.ModelValidation;
-import org.eclipse.egf.core.test.task.ContextTask;
+import org.eclipse.egf.core.model.fcore.FcoreContractValidation;
+import org.eclipse.egf.core.model.productionplan.ProductionPlanContextValidation;
 
-/**
- * @author Xavier Maysonnave
- * 
- */
-public class AllTests {
+public class ModelValidation extends TestCase {
 
   public static Test suite() {
-    TestSuite suite = new TestSuite("EGF Core Test Suite"); //$NON-NLS-1$
-    suite.addTest(ModelValidation.suite());
-    suite.addTest(ContextTask.suite());
+    TestSuite suite = new TestSuite("EGF Model Test Suite"); //$NON-NLS-1$
+    suite.addTest(FcoreContractValidation.suite());
+    suite.addTest(ProductionPlanContextValidation.suite());
     return suite;
   }
 
