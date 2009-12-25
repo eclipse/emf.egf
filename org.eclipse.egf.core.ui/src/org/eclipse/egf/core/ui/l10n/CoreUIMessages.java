@@ -29,4 +29,7 @@ public class CoreUIMessages {
 
   public static String ExceptionDialog_seeErrorLogMessage;
 
+  public static String _UI_FcoreSelection_label;
+  public static String _UI_SelectRegisteredFcoreURI;
+
 }
