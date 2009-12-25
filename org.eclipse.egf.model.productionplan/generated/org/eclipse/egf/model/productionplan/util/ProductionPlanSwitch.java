@@ -37,7 +37,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.egf.model.productionplan.ProductionPlanPackage
  * @generated
  */
-public class ProductionPlanSwitch<T> {
+public class ProductionPlanSwitch<T1> {
   /**
    * The cached model package
    * <!-- begin-user-doc -->
@@ -65,7 +65,7 @@ public class ProductionPlanSwitch<T> {
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  public T doSwitch(EObject theEObject) {
+  public T1 doSwitch(EObject theEObject) {
     return doSwitch(theEObject.eClass(), theEObject);
   }
 
@@ -76,7 +76,7 @@ public class ProductionPlanSwitch<T> {
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  protected T doSwitch(EClass theEClass, EObject theEObject) {
+  protected T1 doSwitch(EClass theEClass, EObject theEObject) {
     if (theEClass.eContainer() == modelPackage) {
       return doSwitch(theEClass.getClassifierID(), theEObject);
     } else {
@@ -92,11 +92,11 @@ public class ProductionPlanSwitch<T> {
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  protected T doSwitch(int classifierID, EObject theEObject) {
+  protected T1 doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
     case ProductionPlanPackage.PRODUCTION_PLAN: {
       ProductionPlan productionPlan = (ProductionPlan) theEObject;
-      T result = caseProductionPlan(productionPlan);
+      T1 result = caseProductionPlan(productionPlan);
       if (result == null)
         result = caseOrchestration(productionPlan);
       if (result == null)
@@ -106,8 +106,8 @@ public class ProductionPlanSwitch<T> {
       return result;
     }
     case ProductionPlanPackage.PRODUCTION_PLAN_INVOCATION: {
-      ProductionPlanInvocation productionPlanInvocation = (ProductionPlanInvocation) theEObject;
-      T result = caseProductionPlanInvocation(productionPlanInvocation);
+      ProductionPlanInvocation<?> productionPlanInvocation = (ProductionPlanInvocation<?>) theEObject;
+      T1 result = caseProductionPlanInvocation(productionPlanInvocation);
       if (result == null)
         result = caseInvocation(productionPlanInvocation);
       if (result == null)
@@ -118,7 +118,7 @@ public class ProductionPlanSwitch<T> {
     }
     case ProductionPlanPackage.FACTORY_COMPONENT_INVOCATION: {
       FactoryComponentInvocation factoryComponentInvocation = (FactoryComponentInvocation) theEObject;
-      T result = caseFactoryComponentInvocation(factoryComponentInvocation);
+      T1 result = caseFactoryComponentInvocation(factoryComponentInvocation);
       if (result == null)
         result = caseProductionPlanInvocation(factoryComponentInvocation);
       if (result == null)
@@ -131,7 +131,7 @@ public class ProductionPlanSwitch<T> {
     }
     case ProductionPlanPackage.TASK_INVOCATION: {
       TaskInvocation taskInvocation = (TaskInvocation) theEObject;
-      T result = caseTaskInvocation(taskInvocation);
+      T1 result = caseTaskInvocation(taskInvocation);
       if (result == null)
         result = caseProductionPlanInvocation(taskInvocation);
       if (result == null)
@@ -144,7 +144,7 @@ public class ProductionPlanSwitch<T> {
     }
     case ProductionPlanPackage.TASK: {
       Task task = (Task) theEObject;
-      T result = caseTask(task);
+      T1 result = caseTask(task);
       if (result == null)
         result = caseActivity(task);
       if (result == null)
@@ -169,7 +169,7 @@ public class ProductionPlanSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseProductionPlan(ProductionPlan object) {
+  public T1 caseProductionPlan(ProductionPlan object) {
     return null;
   }
 
@@ -184,7 +184,7 @@ public class ProductionPlanSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseProductionPlanInvocation(ProductionPlanInvocation object) {
+  public <T extends Activity> T1 caseProductionPlanInvocation(ProductionPlanInvocation<T> object) {
     return null;
   }
 
@@ -199,7 +199,7 @@ public class ProductionPlanSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseFactoryComponentInvocation(FactoryComponentInvocation object) {
+  public T1 caseFactoryComponentInvocation(FactoryComponentInvocation object) {
     return null;
   }
 
@@ -214,7 +214,7 @@ public class ProductionPlanSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTask(Task object) {
+  public T1 caseTask(Task object) {
     return null;
   }
 
@@ -229,7 +229,7 @@ public class ProductionPlanSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTaskInvocation(TaskInvocation object) {
+  public T1 caseTaskInvocation(TaskInvocation object) {
     return null;
   }
 
@@ -244,7 +244,7 @@ public class ProductionPlanSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseModelElement(ModelElement object) {
+  public T1 caseModelElement(ModelElement object) {
     return null;
   }
 
@@ -259,7 +259,7 @@ public class ProductionPlanSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseOrchestration(Orchestration object) {
+  public T1 caseOrchestration(Orchestration object) {
     return null;
   }
 
@@ -274,7 +274,7 @@ public class ProductionPlanSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseInvocation(Invocation object) {
+  public <T extends Activity> T1 caseInvocation(Invocation<T> object) {
     return null;
   }
 
@@ -289,7 +289,7 @@ public class ProductionPlanSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseActivity(Activity object) {
+  public T1 caseActivity(Activity object) {
     return null;
   }
 
@@ -304,7 +304,7 @@ public class ProductionPlanSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated
    */
-  public T defaultCase(EObject object) {
+  public T1 defaultCase(EObject object) {
     return null;
   }
 

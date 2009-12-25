@@ -153,7 +153,7 @@ public class ProductionPlanValidator extends EObjectValidator {
     case ProductionPlanPackage.PRODUCTION_PLAN:
       return validateProductionPlan((ProductionPlan) value, diagnostics, context);
     case ProductionPlanPackage.PRODUCTION_PLAN_INVOCATION:
-      return validateProductionPlanInvocation((ProductionPlanInvocation) value, diagnostics, context);
+      return validateProductionPlanInvocation((ProductionPlanInvocation<?>) value, diagnostics, context);
     case ProductionPlanPackage.FACTORY_COMPONENT_INVOCATION:
       return validateFactoryComponentInvocation((FactoryComponentInvocation) value, diagnostics, context);
     case ProductionPlanPackage.TASK_INVOCATION:
@@ -179,7 +179,7 @@ public class ProductionPlanValidator extends EObjectValidator {
    * <!-- end-user-doc -->
    * @generated
    */
-  public boolean validateProductionPlanInvocation(ProductionPlanInvocation productionPlanInvocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateProductionPlanInvocation(ProductionPlanInvocation<?> productionPlanInvocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return validate_EveryDefaultConstraint(productionPlanInvocation, diagnostics, context);
   }
 

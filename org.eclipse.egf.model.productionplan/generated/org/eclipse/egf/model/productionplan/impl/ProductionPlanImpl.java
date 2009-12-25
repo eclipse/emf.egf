@@ -30,10 +30,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * An implementation of the model object '<em><b>Production Plan</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.eclipse.egf.model.productionplan.impl.ProductionPlanImpl#getProductionPlanInvocations <em>Production Plan Invocations</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
@@ -47,16 +43,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
    * @ordered
    */
   protected int eFlags = 0;
-
-  /**
-   * The cached value of the '{@link #getProductionPlanInvocations() <em>Production Plan Invocations</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getProductionPlanInvocations()
-   * @generated
-   * @ordered
-   */
-  protected EList<ProductionPlanInvocation> productionPlanInvocations;
 
   /**
    * <!-- begin-user-doc -->
@@ -75,107 +61,6 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
   @Override
   protected EClass eStaticClass() {
     return ProductionPlanPackage.Literals.PRODUCTION_PLAN;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<ProductionPlanInvocation> getProductionPlanInvocations() {
-    if (productionPlanInvocations == null) {
-      productionPlanInvocations = new EObjectContainmentWithInverseEList<ProductionPlanInvocation>(ProductionPlanInvocation.class, this, ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS, ProductionPlanPackage.PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN);
-    }
-    return productionPlanInvocations;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS:
-      return ((InternalEList<InternalEObject>) (InternalEList<?>) getProductionPlanInvocations()).basicAdd(otherEnd, msgs);
-    }
-    return super.eInverseAdd(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS:
-      return ((InternalEList<?>) getProductionPlanInvocations()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS:
-      return getProductionPlanInvocations();
-    }
-    return super.eGet(featureID, resolve, coreType);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS:
-      getProductionPlanInvocations().clear();
-      getProductionPlanInvocations().addAll((Collection<? extends ProductionPlanInvocation>) newValue);
-      return;
-    }
-    super.eSet(featureID, newValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS:
-      getProductionPlanInvocations().clear();
-      return;
-    }
-    super.eUnset(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case ProductionPlanPackage.PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS:
-      return productionPlanInvocations != null && !productionPlanInvocations.isEmpty();
-    }
-    return super.eIsSet(featureID);
   }
 
 } // ProductionPlanImpl

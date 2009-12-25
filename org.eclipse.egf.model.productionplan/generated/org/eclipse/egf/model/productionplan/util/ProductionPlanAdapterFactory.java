@@ -87,7 +87,7 @@ public class ProductionPlanAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseProductionPlanInvocation(ProductionPlanInvocation object) {
+    public <T extends Activity> Adapter caseProductionPlanInvocation(ProductionPlanInvocation<T> object) {
       return createProductionPlanInvocationAdapter();
     }
 
@@ -117,7 +117,7 @@ public class ProductionPlanAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseInvocation(Invocation object) {
+    public <T extends Activity> Adapter caseInvocation(Invocation<T> object) {
       return createInvocationAdapter();
     }
 

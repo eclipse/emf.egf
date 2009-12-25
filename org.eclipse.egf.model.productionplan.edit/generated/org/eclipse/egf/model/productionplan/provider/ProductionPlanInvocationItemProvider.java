@@ -78,7 +78,7 @@ public class ProductionPlanInvocationItemProvider extends InvocationItemProvider
    */
   @Override
   public String getText(Object object) {
-    String label = ((ProductionPlanInvocation) object).getName();
+    String label = ((ProductionPlanInvocation<?>) object).getName();
     return label == null || label.length() == 0 ? "[" + getString("_UI_ProductionPlanInvocation_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         label + " [" + getString("_UI_ProductionPlanInvocation_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }

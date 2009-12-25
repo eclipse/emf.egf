@@ -19,20 +19,12 @@
   <genPackages prefix="ProductionPlan" basePackage="org.eclipse.egf.model" resource="XMI"
       disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
       childCreationExtenders="true" contentTypeIdentifier="" fileExtensions="pp" ecorePackage="ProductionPlan.ecore#/">
-    <genClasses ecoreClass="ProductionPlan.ecore#//ProductionPlan">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ProductionPlan.ecore#//ProductionPlan/productionPlanInvocations"/>
-    </genClasses>
+    <genClasses ecoreClass="ProductionPlan.ecore#//ProductionPlan"/>
     <genClasses image="false" ecoreClass="ProductionPlan.ecore#//ProductionPlanInvocation">
-      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ProductionPlan.ecore#//ProductionPlanInvocation/productionPlan"/>
+      <genTypeParameters ecoreTypeParameter="ProductionPlan.ecore#//ProductionPlanInvocation/T"/>
     </genClasses>
-    <genClasses ecoreClass="ProductionPlan.ecore#//FactoryComponentInvocation">
-      <genFeatures createChild="false" propertyCategory="Invoke" propertySortChoices="true"
-          ecoreFeature="ecore:EReference ProductionPlan.ecore#//FactoryComponentInvocation/factoryComponent"/>
-    </genClasses>
-    <genClasses ecoreClass="ProductionPlan.ecore#//TaskInvocation">
-      <genFeatures createChild="false" propertyCategory="Invoke" propertySortChoices="true"
-          ecoreFeature="ecore:EReference ProductionPlan.ecore#//TaskInvocation/task"/>
-    </genClasses>
+    <genClasses ecoreClass="ProductionPlan.ecore#//FactoryComponentInvocation"/>
+    <genClasses ecoreClass="ProductionPlan.ecore#//TaskInvocation"/>
     <genClasses ecoreClass="ProductionPlan.ecore#//Task">
       <genFeatures createChild="false" propertyCategory="Implementation" propertySortChoices="true"
           ecoreFeature="ecore:EAttribute ProductionPlan.ecore#//Task/taskId"/>

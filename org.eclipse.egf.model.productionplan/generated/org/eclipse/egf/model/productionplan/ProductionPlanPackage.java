@@ -78,6 +78,15 @@ public interface ProductionPlanPackage extends EPackage {
   int PRODUCTION_PLAN = 0;
 
   /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRODUCTION_PLAN__ID = FcorePackage.ORCHESTRATION__ID;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -105,13 +114,13 @@ public interface ProductionPlanPackage extends EPackage {
   int PRODUCTION_PLAN__FACTORY_COMPONENT = FcorePackage.ORCHESTRATION__FACTORY_COMPONENT;
 
   /**
-   * The feature id for the '<em><b>Production Plan Invocations</b></em>' containment reference list.
+   * The feature id for the '<em><b>Invocations</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS = FcorePackage.ORCHESTRATION_FEATURE_COUNT + 0;
+  int PRODUCTION_PLAN__INVOCATIONS = FcorePackage.ORCHESTRATION__INVOCATIONS;
 
   /**
    * The number of structural features of the '<em>Production Plan</em>' class.
@@ -120,7 +129,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_FEATURE_COUNT = FcorePackage.ORCHESTRATION_FEATURE_COUNT + 1;
+  int PRODUCTION_PLAN_FEATURE_COUNT = FcorePackage.ORCHESTRATION_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.productionplan.impl.ProductionPlanInvocationImpl <em>Invocation</em>}' class.
@@ -131,6 +140,15 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    */
   int PRODUCTION_PLAN_INVOCATION = 1;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRODUCTION_PLAN_INVOCATION__ID = FcorePackage.INVOCATION__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -151,22 +169,31 @@ public interface ProductionPlanPackage extends EPackage {
   int PRODUCTION_PLAN_INVOCATION__DESCRIPTION = FcorePackage.INVOCATION__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Context</b></em>' containment reference.
+   * The feature id for the '<em><b>Orchestration</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_INVOCATION__CONTEXT = FcorePackage.INVOCATION__CONTEXT;
+  int PRODUCTION_PLAN_INVOCATION__ORCHESTRATION = FcorePackage.INVOCATION__ORCHESTRATION;
 
   /**
-   * The feature id for the '<em><b>Production Plan</b></em>' container reference.
+   * The feature id for the '<em><b>Context Container</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN = FcorePackage.INVOCATION_FEATURE_COUNT + 0;
+  int PRODUCTION_PLAN_INVOCATION__CONTEXT_CONTAINER = FcorePackage.INVOCATION__CONTEXT_CONTAINER;
+
+  /**
+   * The feature id for the '<em><b>Activity</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRODUCTION_PLAN_INVOCATION__ACTIVITY = FcorePackage.INVOCATION__ACTIVITY;
 
   /**
    * The number of structural features of the '<em>Invocation</em>' class.
@@ -175,7 +202,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT = FcorePackage.INVOCATION_FEATURE_COUNT + 1;
+  int PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT = FcorePackage.INVOCATION_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.productionplan.impl.FactoryComponentInvocationImpl <em>Factory Component Invocation</em>}' class.
@@ -186,6 +213,15 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    */
   int FACTORY_COMPONENT_INVOCATION = 2;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FACTORY_COMPONENT_INVOCATION__ID = PRODUCTION_PLAN_INVOCATION__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -206,31 +242,31 @@ public interface ProductionPlanPackage extends EPackage {
   int FACTORY_COMPONENT_INVOCATION__DESCRIPTION = PRODUCTION_PLAN_INVOCATION__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Context</b></em>' containment reference.
+   * The feature id for the '<em><b>Orchestration</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FACTORY_COMPONENT_INVOCATION__CONTEXT = PRODUCTION_PLAN_INVOCATION__CONTEXT;
+  int FACTORY_COMPONENT_INVOCATION__ORCHESTRATION = PRODUCTION_PLAN_INVOCATION__ORCHESTRATION;
 
   /**
-   * The feature id for the '<em><b>Production Plan</b></em>' container reference.
+   * The feature id for the '<em><b>Context Container</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FACTORY_COMPONENT_INVOCATION__PRODUCTION_PLAN = PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN;
+  int FACTORY_COMPONENT_INVOCATION__CONTEXT_CONTAINER = PRODUCTION_PLAN_INVOCATION__CONTEXT_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Factory Component</b></em>' reference.
+   * The feature id for the '<em><b>Activity</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FACTORY_COMPONENT_INVOCATION__FACTORY_COMPONENT = PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT + 0;
+  int FACTORY_COMPONENT_INVOCATION__ACTIVITY = PRODUCTION_PLAN_INVOCATION__ACTIVITY;
 
   /**
    * The number of structural features of the '<em>Factory Component Invocation</em>' class.
@@ -239,7 +275,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int FACTORY_COMPONENT_INVOCATION_FEATURE_COUNT = PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT + 1;
+  int FACTORY_COMPONENT_INVOCATION_FEATURE_COUNT = PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.productionplan.impl.TaskImpl <em>Task</em>}' class.
@@ -262,6 +298,15 @@ public interface ProductionPlanPackage extends EPackage {
   int TASK_INVOCATION = 3;
 
   /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK_INVOCATION__ID = PRODUCTION_PLAN_INVOCATION__ID;
+
+  /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -280,31 +325,31 @@ public interface ProductionPlanPackage extends EPackage {
   int TASK_INVOCATION__DESCRIPTION = PRODUCTION_PLAN_INVOCATION__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Context</b></em>' containment reference.
+   * The feature id for the '<em><b>Orchestration</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TASK_INVOCATION__CONTEXT = PRODUCTION_PLAN_INVOCATION__CONTEXT;
+  int TASK_INVOCATION__ORCHESTRATION = PRODUCTION_PLAN_INVOCATION__ORCHESTRATION;
 
   /**
-   * The feature id for the '<em><b>Production Plan</b></em>' container reference.
+   * The feature id for the '<em><b>Context Container</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TASK_INVOCATION__PRODUCTION_PLAN = PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN;
+  int TASK_INVOCATION__CONTEXT_CONTAINER = PRODUCTION_PLAN_INVOCATION__CONTEXT_CONTAINER;
 
   /**
-   * The feature id for the '<em><b>Task</b></em>' reference.
+   * The feature id for the '<em><b>Activity</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TASK_INVOCATION__TASK = PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT + 0;
+  int TASK_INVOCATION__ACTIVITY = PRODUCTION_PLAN_INVOCATION__ACTIVITY;
 
   /**
    * The number of structural features of the '<em>Task Invocation</em>' class.
@@ -313,7 +358,16 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TASK_INVOCATION_FEATURE_COUNT = PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT + 1;
+  int TASK_INVOCATION_FEATURE_COUNT = PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK__ID = FcorePackage.ACTIVITY__ID;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -371,17 +425,6 @@ public interface ProductionPlanPackage extends EPackage {
   EClass getProductionPlan();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.productionplan.ProductionPlan#getProductionPlanInvocations <em>Production Plan Invocations</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Production Plan Invocations</em>'.
-   * @see org.eclipse.egf.model.productionplan.ProductionPlan#getProductionPlanInvocations()
-   * @see #getProductionPlan()
-   * @generated
-   */
-  EReference getProductionPlan_ProductionPlanInvocations();
-
-  /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.productionplan.ProductionPlanInvocation <em>Invocation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -392,17 +435,6 @@ public interface ProductionPlanPackage extends EPackage {
   EClass getProductionPlanInvocation();
 
   /**
-   * Returns the meta object for the container reference '{@link org.eclipse.egf.model.productionplan.ProductionPlanInvocation#getProductionPlan <em>Production Plan</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the container reference '<em>Production Plan</em>'.
-   * @see org.eclipse.egf.model.productionplan.ProductionPlanInvocation#getProductionPlan()
-   * @see #getProductionPlanInvocation()
-   * @generated
-   */
-  EReference getProductionPlanInvocation_ProductionPlan();
-
-  /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.productionplan.FactoryComponentInvocation <em>Factory Component Invocation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -411,17 +443,6 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    */
   EClass getFactoryComponentInvocation();
-
-  /**
-   * Returns the meta object for the reference '{@link org.eclipse.egf.model.productionplan.FactoryComponentInvocation#getFactoryComponent <em>Factory Component</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Factory Component</em>'.
-   * @see org.eclipse.egf.model.productionplan.FactoryComponentInvocation#getFactoryComponent()
-   * @see #getFactoryComponentInvocation()
-   * @generated
-   */
-  EReference getFactoryComponentInvocation_FactoryComponent();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.productionplan.Task <em>Task</em>}'.
@@ -453,17 +474,6 @@ public interface ProductionPlanPackage extends EPackage {
    * @generated
    */
   EClass getTaskInvocation();
-
-  /**
-   * Returns the meta object for the reference '{@link org.eclipse.egf.model.productionplan.TaskInvocation#getTask <em>Task</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Task</em>'.
-   * @see org.eclipse.egf.model.productionplan.TaskInvocation#getTask()
-   * @see #getTaskInvocation()
-   * @generated
-   */
-  EReference getTaskInvocation_Task();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -498,14 +508,6 @@ public interface ProductionPlanPackage extends EPackage {
     EClass PRODUCTION_PLAN = eINSTANCE.getProductionPlan();
 
     /**
-     * The meta object literal for the '<em><b>Production Plan Invocations</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS = eINSTANCE.getProductionPlan_ProductionPlanInvocations();
-
-    /**
      * The meta object literal for the '{@link org.eclipse.egf.model.productionplan.impl.ProductionPlanInvocationImpl <em>Invocation</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -516,14 +518,6 @@ public interface ProductionPlanPackage extends EPackage {
     EClass PRODUCTION_PLAN_INVOCATION = eINSTANCE.getProductionPlanInvocation();
 
     /**
-     * The meta object literal for the '<em><b>Production Plan</b></em>' container reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN = eINSTANCE.getProductionPlanInvocation_ProductionPlan();
-
-    /**
      * The meta object literal for the '{@link org.eclipse.egf.model.productionplan.impl.FactoryComponentInvocationImpl <em>Factory Component Invocation</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -532,14 +526,6 @@ public interface ProductionPlanPackage extends EPackage {
      * @generated
      */
     EClass FACTORY_COMPONENT_INVOCATION = eINSTANCE.getFactoryComponentInvocation();
-
-    /**
-     * The meta object literal for the '<em><b>Factory Component</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FACTORY_COMPONENT_INVOCATION__FACTORY_COMPONENT = eINSTANCE.getFactoryComponentInvocation_FactoryComponent();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.productionplan.impl.TaskImpl <em>Task</em>}' class.
@@ -568,14 +554,6 @@ public interface ProductionPlanPackage extends EPackage {
      * @generated
      */
     EClass TASK_INVOCATION = eINSTANCE.getTaskInvocation();
-
-    /**
-     * The meta object literal for the '<em><b>Task</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TASK_INVOCATION__TASK = eINSTANCE.getTaskInvocation_Task();
 
   }
 

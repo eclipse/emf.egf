@@ -16,10 +16,8 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
-import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -31,8 +29,6 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.egf.model.productionplan.FactoryComponentInvocation} object.
@@ -62,33 +58,8 @@ public class FactoryComponentInvocationItemProvider extends ProductionPlanInvoca
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addFactoryComponentPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Factory Component feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  protected void addFactoryComponentPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FactoryComponentInvocation_factoryComponent_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_FactoryComponentInvocation_factoryComponent_feature", "_UI_FactoryComponentInvocation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        ProductionPlanPackage.Literals.FACTORY_COMPONENT_INVOCATION__FACTORY_COMPONENT, true, false, true, null, getString("_UI_InvokePropertyCategory"), //$NON-NLS-1$
-        null) {
-
-      @Override
-      public Collection<?> getChoiceOfValues(Object current) {
-        FactoryComponentInvocation invocation = (FactoryComponentInvocation) current;
-        Collection<?> result = super.getChoiceOfValues(current);
-        result.remove(invocation.getProductionPlan().getFactoryComponent());
-        return result;
-      }
-
-    });
   }
 
   /**
@@ -125,12 +96,6 @@ public class FactoryComponentInvocationItemProvider extends ProductionPlanInvoca
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
-
-    switch (notification.getFeatureID(FactoryComponentInvocation.class)) {
-    case ProductionPlanPackage.FACTORY_COMPONENT_INVOCATION__FACTORY_COMPONENT:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
-    }
     super.notifyChanged(notification);
   }
 

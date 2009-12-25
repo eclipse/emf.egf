@@ -15,14 +15,9 @@ package org.eclipse.egf.model.productionplan.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.task.IPlatformTask;
-import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 import org.eclipse.egf.model.productionplan.TaskInvocation;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.UniqueEList;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -34,8 +29,6 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.egf.model.productionplan.TaskInvocation} object.
@@ -65,22 +58,8 @@ public class TaskInvocationItemProvider extends ProductionPlanInvocationItemProv
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addTaskPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Task feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addTaskPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TaskInvocation_task_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TaskInvocation_task_feature", "_UI_TaskInvocation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        ProductionPlanPackage.Literals.TASK_INVOCATION__TASK, true, false, true, null, getString("_UI_InvokePropertyCategory"), //$NON-NLS-1$
-        null));
   }
 
   /**
@@ -117,12 +96,6 @@ public class TaskInvocationItemProvider extends ProductionPlanInvocationItemProv
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
-
-    switch (notification.getFeatureID(TaskInvocation.class)) {
-    case ProductionPlanPackage.TASK_INVOCATION__TASK:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
-    }
     super.notifyChanged(notification);
   }
 

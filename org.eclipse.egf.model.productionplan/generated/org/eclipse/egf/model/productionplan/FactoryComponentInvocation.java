@@ -19,42 +19,11 @@ import org.eclipse.egf.model.fcore.FactoryComponent;
  * A representation of the model object '<em><b>Factory Component Invocation</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.egf.model.productionplan.FactoryComponentInvocation#getFactoryComponent <em>Factory Component</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipse.egf.model.productionplan.ProductionPlanPackage#getFactoryComponentInvocation()
  * @model
  * @generated
  */
-public interface FactoryComponentInvocation extends ProductionPlanInvocation {
-  /**
-   * Returns the value of the '<em><b>Factory Component</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Factory Component</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Factory Component</em>' reference.
-   * @see #setFactoryComponent(FactoryComponent)
-   * @see org.eclipse.egf.model.productionplan.ProductionPlanPackage#getFactoryComponentInvocation_FactoryComponent()
-   * @model required="true"
-   * @generated
-   */
-  FactoryComponent getFactoryComponent();
-
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.productionplan.FactoryComponentInvocation#getFactoryComponent <em>Factory Component</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Factory Component</em>' reference.
-   * @see #getFactoryComponent()
-   * @generated
-   */
-  void setFactoryComponent(FactoryComponent value);
+public interface FactoryComponentInvocation extends ProductionPlanInvocation<FactoryComponent> {
 
 } // FactoryComponentInvocation

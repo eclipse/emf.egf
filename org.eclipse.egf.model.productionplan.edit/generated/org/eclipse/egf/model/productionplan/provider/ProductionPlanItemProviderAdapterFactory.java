@@ -21,6 +21,7 @@ import org.eclipse.egf.model.edit.EGFProductionPlanModelEditPlugin;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 
+import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.util.FcoreSwitch;
 
 import org.eclipse.egf.model.productionplan.ProductionPlanFactory;
@@ -305,10 +306,10 @@ public class ProductionPlanItemProviderAdapterFactory extends ProductionPlanAdap
       productionPlanItemProvider.dispose();
     if (factoryComponentInvocationItemProvider != null)
       factoryComponentInvocationItemProvider.dispose();
-    if (taskItemProvider != null)
-      taskItemProvider.dispose();
     if (taskInvocationItemProvider != null)
       taskInvocationItemProvider.dispose();
+    if (taskItemProvider != null)
+      taskItemProvider.dispose();
   }
 
   /**
@@ -360,6 +361,20 @@ public class ProductionPlanItemProviderAdapterFactory extends ProductionPlanAdap
       @Override
       public Object caseFactoryComponent(FactoryComponent object) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__ORCHESTRATION, ProductionPlanFactory.eINSTANCE.createProductionPlan()));
+
+        return null;
+      }
+
+      /**
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * @generated
+       */
+      @Override
+      public Object caseOrchestration(Orchestration object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION__INVOCATIONS, ProductionPlanFactory.eINSTANCE.createFactoryComponentInvocation()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION__INVOCATIONS, ProductionPlanFactory.eINSTANCE.createTaskInvocation()));
 
         return null;
       }

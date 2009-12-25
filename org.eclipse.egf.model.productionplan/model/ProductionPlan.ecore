@@ -3,22 +3,24 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="productionplan"
     nsURI="http://www.eclipse.org/egf/1.0.0/productionplan" nsPrefix="productionplan">
-  <eClassifiers xsi:type="ecore:EClass" name="ProductionPlan" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Orchestration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="productionPlanInvocations"
-        upperBound="-1" eType="#//ProductionPlanInvocation" containment="true" resolveProxies="false"
-        eOpposite="#//ProductionPlanInvocation/productionPlan"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProductionPlan" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Orchestration"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ProductionPlanInvocation" abstract="true">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Activity"/>
+    </eTypeParameters>
+    <eGenericSuperTypes eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Invocation">
+      <eTypeArguments eTypeParameter="#//ProductionPlanInvocation/T"/>
+    </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProductionPlanInvocation" abstract="true"
-      eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Invocation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="productionPlan" lowerBound="1"
-        eType="#//ProductionPlan" resolveProxies="false" eOpposite="#//ProductionPlan/productionPlanInvocations"/>
+  <eClassifiers xsi:type="ecore:EClass" name="FactoryComponentInvocation">
+    <eGenericSuperTypes eClassifier="#//ProductionPlanInvocation">
+      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//FactoryComponent"/>
+    </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FactoryComponentInvocation" eSuperTypes="#//ProductionPlanInvocation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="factoryComponent" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//FactoryComponent"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TaskInvocation" eSuperTypes="#//ProductionPlanInvocation">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="task" lowerBound="1" eType="#//Task"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TaskInvocation">
+    <eGenericSuperTypes eClassifier="#//ProductionPlanInvocation">
+      <eTypeArguments eClassifier="#//Task"/>
+    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Activity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

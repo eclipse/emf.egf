@@ -23,8 +23,10 @@ import org.eclipse.egf.model.productionplan.TaskInvocation;
 import org.eclipse.egf.model.productionplan.util.ProductionPlanValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.ETypeParameter;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
@@ -160,15 +162,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getProductionPlan_ProductionPlanInvocations() {
-    return (EReference) productionPlanEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getProductionPlanInvocation() {
     return productionPlanInvocationEClass;
   }
@@ -178,26 +171,8 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getProductionPlanInvocation_ProductionPlan() {
-    return (EReference) productionPlanInvocationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EClass getFactoryComponentInvocation() {
     return factoryComponentInvocationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getFactoryComponentInvocation_FactoryComponent() {
-    return (EReference) factoryComponentInvocationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -232,15 +207,6 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getTaskInvocation_Task() {
-    return (EReference) taskInvocationEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public ProductionPlanFactory getProductionPlanFactory() {
     return (ProductionPlanFactory) getEFactoryInstance();
   }
@@ -266,16 +232,12 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
 
     // Create classes and their features
     productionPlanEClass = createEClass(PRODUCTION_PLAN);
-    createEReference(productionPlanEClass, PRODUCTION_PLAN__PRODUCTION_PLAN_INVOCATIONS);
 
     productionPlanInvocationEClass = createEClass(PRODUCTION_PLAN_INVOCATION);
-    createEReference(productionPlanInvocationEClass, PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN);
 
     factoryComponentInvocationEClass = createEClass(FACTORY_COMPONENT_INVOCATION);
-    createEReference(factoryComponentInvocationEClass, FACTORY_COMPONENT_INVOCATION__FACTORY_COMPONENT);
 
     taskInvocationEClass = createEClass(TASK_INVOCATION);
-    createEReference(taskInvocationEClass, TASK_INVOCATION__TASK);
 
     taskEClass = createEClass(TASK);
     createEAttribute(taskEClass, TASK__TASK_ID);
@@ -310,28 +272,36 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
+    ETypeParameter productionPlanInvocationEClass_T = addETypeParameter(productionPlanInvocationEClass, "T"); //$NON-NLS-1$
 
     // Set bounds for type parameters
+    EGenericType g1 = createEGenericType(theFcorePackage.getActivity());
+    productionPlanInvocationEClass_T.getEBounds().add(g1);
 
     // Add supertypes to classes
     productionPlanEClass.getESuperTypes().add(theFcorePackage.getOrchestration());
-    productionPlanInvocationEClass.getESuperTypes().add(theFcorePackage.getInvocation());
-    factoryComponentInvocationEClass.getESuperTypes().add(this.getProductionPlanInvocation());
-    taskInvocationEClass.getESuperTypes().add(this.getProductionPlanInvocation());
+    g1 = createEGenericType(theFcorePackage.getInvocation());
+    EGenericType g2 = createEGenericType(productionPlanInvocationEClass_T);
+    g1.getETypeArguments().add(g2);
+    productionPlanInvocationEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getProductionPlanInvocation());
+    g2 = createEGenericType(theFcorePackage.getFactoryComponent());
+    g1.getETypeArguments().add(g2);
+    factoryComponentInvocationEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getProductionPlanInvocation());
+    g2 = createEGenericType(this.getTask());
+    g1.getETypeArguments().add(g2);
+    taskInvocationEClass.getEGenericSuperTypes().add(g1);
     taskEClass.getESuperTypes().add(theFcorePackage.getActivity());
 
     // Initialize classes and features; add operations and parameters
     initEClass(productionPlanEClass, ProductionPlan.class, "ProductionPlan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getProductionPlan_ProductionPlanInvocations(), this.getProductionPlanInvocation(), this.getProductionPlanInvocation_ProductionPlan(), "productionPlanInvocations", null, 0, -1, ProductionPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(productionPlanInvocationEClass, ProductionPlanInvocation.class, "ProductionPlanInvocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getProductionPlanInvocation_ProductionPlan(), this.getProductionPlan(), this.getProductionPlan_ProductionPlanInvocations(), "productionPlan", null, 1, 1, ProductionPlanInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(factoryComponentInvocationEClass, FactoryComponentInvocation.class, "FactoryComponentInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getFactoryComponentInvocation_FactoryComponent(), theFcorePackage.getFactoryComponent(), null, "factoryComponent", null, 1, 1, FactoryComponentInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(taskInvocationEClass, TaskInvocation.class, "TaskInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getTaskInvocation_Task(), this.getTask(), null, "task", null, 1, 1, TaskInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTask_TaskId(), theEcorePackage.getEString(), "taskId", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
