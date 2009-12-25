@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.jet;
+package org.eclipse.egf.pattern.jet.engine;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -35,6 +35,8 @@ import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.engine.WorkspaceAndPluginClassLoader;
 import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
+import org.eclipse.egf.pattern.jet.JetPreferences;
+import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.emf.codegen.jet.JETCompiler;
 
 /**
@@ -42,9 +44,9 @@ import org.eclipse.emf.codegen.jet.JETCompiler;
  * 
  *         Temp class ...
  */
-public class JetRunner_to_be_moved_to_model1 extends PatternEngine {
+public class JetEngine extends PatternEngine {
 
-    public JetRunner_to_be_moved_to_model1(Pattern pattern) {
+    public JetEngine(Pattern pattern) {
         setPattern(pattern);
     }
 

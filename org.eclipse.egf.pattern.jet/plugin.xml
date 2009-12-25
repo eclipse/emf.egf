@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.egf.pattern.extension">
       <flavor
-            class="org.eclipse.egf.pattern.jet.JetPatternExtension">
+            class="org.eclipse.egf.pattern.jet.extension.JetPatternExtension">
       </flavor>
    </extension>
 

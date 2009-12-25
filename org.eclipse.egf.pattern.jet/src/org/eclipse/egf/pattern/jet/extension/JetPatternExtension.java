@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.jet;
+package org.eclipse.egf.pattern.jet.extension;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.PatternException;
@@ -23,6 +23,8 @@ import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
+import org.eclipse.egf.pattern.jet.engine.JetEngine;
+import org.eclipse.egf.pattern.jet.engine.JetNatureHelper;
 
 /**
  * @author Guiu
@@ -55,7 +57,7 @@ public class JetPatternExtension extends PatternExtension {
 
     @Override
     public PatternEngine doCreateRunner(Pattern pattern) {
-        return new JetRunner_to_be_moved_to_model1(pattern);
+        return new JetEngine(pattern);
     }
 
     @Override

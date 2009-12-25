@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.jet;
+package org.eclipse.egf.pattern.jet.engine;
 
 import java.util.Map.Entry;
 
@@ -28,6 +28,7 @@ import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.ParameterMatcher;
 import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.egf.pattern.query.ParameterTypeHelper;
 import org.eclipse.egf.pattern.query.QueryManager;
 

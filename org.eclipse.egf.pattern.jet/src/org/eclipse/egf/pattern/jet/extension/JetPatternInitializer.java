@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.jet;
+package org.eclipse.egf.pattern.jet.extension;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +22,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.extension.TemplateInitializer;
+import org.eclipse.egf.pattern.jet.Activator;
+import org.eclipse.egf.pattern.jet.JetPreferences;
 import org.eclipse.egf.pattern.templates.SimpleEngine;
 
 /**

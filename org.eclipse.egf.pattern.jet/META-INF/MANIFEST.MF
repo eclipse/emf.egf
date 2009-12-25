@@ -14,4 +14,5 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.egf.model.jetpattern
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.eclipse.egf.pattern.jet
+Export-Package: org.eclipse.egf.pattern.jet,
+ org.eclipse.egf.pattern.jet.extension
