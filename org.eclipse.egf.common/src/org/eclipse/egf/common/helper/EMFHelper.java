@@ -10,11 +10,14 @@
  */
 package org.eclipse.egf.common.helper;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
 
@@ -26,6 +29,18 @@ public class EMFHelper {
 
   private EMFHelper() {
     // Prevent instantiation
+  }
+
+  public static IResource getWorkspaceResource(Resource resource) {
+    if (resource == null) {
+      return null;
+    }
+    URI uri = resource.getURI();
+    if (uri.isPlatformResource()) {
+      String platformString = uri.toPlatformString(true);
+      return ResourcesPlugin.getWorkspace().getRoot().findMember(platformString);
+    }
+    return null;
   }
 
   /**

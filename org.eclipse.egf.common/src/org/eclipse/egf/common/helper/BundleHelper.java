@@ -32,43 +32,42 @@ public class BundleHelper {
   /**
    * Instantiate given fully qualified class name using given bundle.
    * 
-   * @param fullyQualifiedClassName_p
-   *          the class name with its package name (dot separated syntax).
-   * @param bundle_p
+   * @param fqcn
+   *          the fully qualified class name with its package name (dot separated syntax).
+   * @param bundle
    *          which can load given class name.
    * @return an instance of given class name
    */
-  public static Object instantiate(String fullyQualifiedClassName_p, Bundle bundle_p) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
-    Object result = null;
+  public static Object instantiate(String fqcn, Bundle bundle) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
     // Precondition.
-    if (bundle_p == null) {
-      return result;
+    if (fqcn == null || bundle == null) {
+      return null;
     }
     // Try loading a class according to the class name.
-    Class<?> clazz = loadClass(fullyQualifiedClassName_p, bundle_p);
+    Class<?> clazz = loadClass(fqcn, bundle);
     // Try instantiating an object of loaded class.
     if (clazz != null) {
-      result = clazz.newInstance();
+      return clazz.newInstance();
     }
-    return result;
+    return null;
   }
 
   /**
    * Load given fully qualified class name using given bundle.
    * 
-   * @param fullyQualifiedClassName_p
-   *          the class name with its package name (dot separated syntax).
-   * @param bundle_p
+   * @param fqcn
+   *          the fully qualified class name with its package name (dot separated syntax).
+   * @param bundle
    *          bundle which can load given class name.
    * @return loaded Class according to given class name
    */
-  public static Class<?> loadClass(String fullyQualifiedClassName_p, Bundle bundle_p) throws ClassNotFoundException {
+  public static Class<?> loadClass(String fqcn, Bundle bundle) throws ClassNotFoundException {
     Class<?> clazz = null;
     // Precondition.
-    if (bundle_p == null) {
+    if (fqcn == null || bundle == null) {
       return clazz;
     }
-    return bundle_p.loadClass(fullyQualifiedClassName_p);
+    return bundle.loadClass(fqcn);
   }
 
   /**
