@@ -9,9 +9,9 @@
    </extension>
 
   <extension
-    point="org.eclipse.egf.core.invocation"
+    point="org.eclipse.egf.model.productionplan.taskInvocation"
   >
-    <invocation
+    <taskInvocation
       id="org.eclipse.egf.example.task.h2.H2.id"    
       class="org.eclipse.egf.example.task.h2.H2"
     />                       

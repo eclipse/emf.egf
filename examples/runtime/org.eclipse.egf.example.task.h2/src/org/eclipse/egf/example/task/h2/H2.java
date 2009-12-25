@@ -5,7 +5,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.productionplan.Task;
-import org.eclipse.egf.productionplan.invocation.IProductionTask;
+import org.eclipse.egf.model.productionplan.invocation.IProductionTask;
 
 public class H2 implements IProductionTask {
 
