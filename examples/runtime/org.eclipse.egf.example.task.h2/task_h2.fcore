@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<productionplan:Task xmi:version="2.1"
-    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:productionplan="http://www.eclipse.org/egf/1.0.0/productionplan" xmi:id="9hT-gKbGEd69ANF1SOWYYg"
-    name="H2" invocationId="org.eclipse.egf.example.task.h2.H2.id"/>
+<fprod:Task xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="9hT-gKbGEd69ANF1SOWYYg"
+    name="H2" invocationId="org.eclipse.egf.example.task.h2.H2"/>

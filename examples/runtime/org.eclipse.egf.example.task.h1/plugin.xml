@@ -4,7 +4,7 @@
 
 
   <extension
-    point="org.eclipse.egf.model.productionplan.taskInvocation"
+    point="org.eclipse.egf.fprod.producer.taskInvocation"
   >
     <taskInvocation
       id="org.eclipse.egf.example.task.h1.H1.id"    
