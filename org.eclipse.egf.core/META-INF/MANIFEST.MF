@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.core; singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.2.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.egf.core.EGFCorePlugin
 Bundle-Vendor: %providerName
@@ -20,6 +20,5 @@ Export-Package:
  org.eclipse.egf.core.internal.context; x-friends:="org.eclipse.egf.core.production", 
  org.eclipse.egf.core.l10n,
  org.eclipse.egf.core.natures,
- org.eclipse.egf.core.task,
- org.eclipse.egf.core.type
+ org.eclipse.egf.core.task
 Bundle-ActivationPolicy: lazy
