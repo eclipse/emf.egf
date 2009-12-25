@@ -1,12 +1,12 @@
 /**
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  */
 package org.eclipse.egf.common.constant;
 
@@ -15,80 +15,85 @@ package org.eclipse.egf.common.constant;
  */
 public interface CharacterConstants {
 
-    /**
-     * Internal Error constant.
-     */
-    public static final int INTERNAL_ERROR = 0;
+  /**
+   * Internal Error constant.
+   */
+  public static final int INTERNAL_ERROR = 0;
 
-    /**
-     * Empty string constant.
-     */
-    public static final String EMPTY_STRING = ""; //$NON-NLS-1$
+  /**
+   * Empty string constant.
+   */
+  public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 
-    /**
-     * TAB character.
-     */
-    public static final char TAB_CHARACTER = '\t';
+  /**
+   * TAB character.
+   */
+  public static final char TAB_CHARACTER = '\t';
 
-    /**
-     * Slash character.
-     */
-    public static final char SLASH_CHARACTER = '/';
+  /**
+   * Slash character.
+   */
+  public static final char SLASH_CHARACTER = '/';
 
-    /**
-     * Dot character.
-     */
-    public static final char DOT_CHARACTER = '.';
+  /**
+   * Dot character.
+   */
+  public static final char DOT_CHARACTER = '.';
 
-    /**
-     * Comma character.
-     */
-    public static final char COMMA_CHARACTER = ',';
+  /**
+   * Dot String.
+   */
+  public static final String DOT_STRING = "."; //$NON-NLS-1$
 
-    /**
-     * Semicolon character.
-     */
-    public static final char SEMICOLON_CHARACTER = ';';
+  /**
+   * Comma character.
+   */
+  public static final char COMMA_CHARACTER = ',';
 
-    /**
-     * Colon character.
-     */
-    public static final char COLON_CHARACTER = ':';
+  /**
+   * Semicolon character.
+   */
+  public static final char SEMICOLON_CHARACTER = ';';
 
-    /**
-     * White space character.
-     */
-    public static final char WHITE_SPACE_CHARACTER = ' ';
+  /**
+   * Colon character.
+   */
+  public static final char COLON_CHARACTER = ':';
 
-    /**
-     * End of line character.
-     */
-    public static final char EOL_CHARACTER = '\n';
+  /**
+   * White space character.
+   */
+  public static final char WHITE_SPACE_CHARACTER = ' ';
 
-    /**
-     * Quote character.
-     */
-    public static final char QUOTE_CHARACTER = '"';
+  /**
+   * End of line character.
+   */
+  public static final char EOL_CHARACTER = '\n';
 
-    /**
-     * Call method prefix, that is go for the parameters (the real prefix being
-     * the method name).
-     */
-    public static final char PARENTHESIS_OPEN_CHARACTER = '(';
+  /**
+   * Quote character.
+   */
+  public static final char QUOTE_CHARACTER = '"';
 
-    /**
-     * Call method suffix, that is, close parameters list, but do not end call.
-     */
-    public static final char PARENTHESIS_CLOSE_CHARACTER = ')';
+  /**
+   * Call method prefix, that is go for the parameters (the real prefix being
+   * the method name).
+   */
+  public static final char PARENTHESIS_OPEN_CHARACTER = '(';
 
-    /**
-     * Underscore character.
-     */
-    public static final char UNDERSCORE_CHARACTER = '_';
+  /**
+   * Call method suffix, that is, close parameters list, but do not end call.
+   */
+  public static final char PARENTHESIS_CLOSE_CHARACTER = ')';
 
-    /**
-     * Line separator.
-     */
-    public static final String LINE_SEPARATOR = System.getProperty("line.separator"); //$NON-NLS-1$ 
+  /**
+   * Underscore character.
+   */
+  public static final char UNDERSCORE_CHARACTER = '_';
+
+  /**
+   * Line separator.
+   */
+  public static final String LINE_SEPARATOR = System.getProperty("line.separator"); //$NON-NLS-1$ 
 
 }

@@ -18,10 +18,10 @@ import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
-import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.activator.EGFCommonPlugin;
 import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @author fournier
@@ -65,9 +65,7 @@ public class ExtensionPointHelper {
    *         none of the extensions contain configuration elements.
    */
   public static IConfigurationElement[] getConfigurationElements(String pluginId_p, String extensionPointId_p) {
-    IExtensionRegistry extensionRegistry = Platform.getExtensionRegistry();
-    IConfigurationElement[] configElements = extensionRegistry.getConfigurationElementsFor(pluginId_p, extensionPointId_p);
-    return configElements;
+    return Platform.getExtensionRegistry().getConfigurationElementsFor(pluginId_p, extensionPointId_p);
   }
 
   /**
@@ -85,7 +83,7 @@ public class ExtensionPointHelper {
    *         could be found with given criteria.
    */
   public static IConfigurationElement[] getConfigurationElements(String pluginId_p, String extensionPointId_p, String extensionDeclaringPluginId_p) {
-    List<IConfigurationElement> resultingElements = new ArrayList<IConfigurationElement>(0);
+    List<IConfigurationElement> resultingElements = new ArrayList<IConfigurationElement>();
     IConfigurationElement[] allElements = getConfigurationElements(pluginId_p, extensionPointId_p);
     for (IConfigurationElement configurationElement : allElements) {
       if (isDeclaredBy(configurationElement, extensionDeclaringPluginId_p)) {
@@ -219,39 +217,34 @@ public class ExtensionPointHelper {
    * @see ATT_CLASS
    */
   public static Object createExecutableExtension(String pluginId_p, String extensionPointId_p, String attributeId_p, String attributeValue_p) {
-    Object object = null;
     IConfigurationElement[] configElements = getConfigurationElements(pluginId_p, extensionPointId_p);
     if (configElements.length == 0) {
-      StringBuffer msg = new StringBuffer("ExtensionPointHelper.createExecutableExtension(..) _ "); //$NON-NLS-1$
-      msg.append("extensionPointId:"); //$NON-NLS-1$
-      msg.append(extensionPointId_p);
-      msg.append(", must exist!"); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().logError(msg.toString());
-    } else {
-      boolean isMatchingImperative = false;
-      // Test if matching is imperative
-      if (attributeId_p != null && attributeValue_p != null) {
-        isMatchingImperative = true;
+      EGFCommonPlugin.getDefault().logError(NLS.bind("ExtensionPointHelper.createExecutableExtension(..) _ extensionPointId ''{0}'' must exist.", extensionPointId_p)); //$NON-NLS-1$
+      return null;
+    }
+    boolean isMatchingImperative = false;
+    // Test if matching is imperative
+    if (attributeId_p != null && attributeValue_p != null) {
+      isMatchingImperative = true;
+    }
+    // Loop over configuration until object is created.
+    for (int i = 0; i < configElements.length; i++) {
+      IConfigurationElement configElement = configElements[i];
+      boolean isExecutableExtensionCreatable = true;
+      if (isMatchingImperative) {
+        // Perform matching on the attribute defined by an
+        // identifier
+        String attributeValue = configElement.getAttribute(attributeId_p);
+        // If different, do not instantiate the object.
+        if (attributeValue_p.equals(attributeValue) == false) {
+          isExecutableExtensionCreatable = false;
+        }
       }
-      // Loop over configuration until object is created.
-      for (int i = 0; i < configElements.length && (null == object); i++) {
-        IConfigurationElement configElement = configElements[i];
-        boolean isExecutableExtensionCreatable = true;
-        if (isMatchingImperative) {
-          // Perform matching on the attribute defined by an
-          // identifier
-          String attributeValue = configElement.getAttribute(attributeId_p);
-          // If different, do not instantiate the object.
-          if (attributeValue_p.equals(attributeValue) == false) {
-            isExecutableExtensionCreatable = false;
-          }
-        }
-        if (isExecutableExtensionCreatable) {
-          object = createInstance(configElement);
-        }
+      if (isExecutableExtensionCreatable) {
+        return createInstance(configElement);
       }
     }
-    return object;
+    return null;
   }
 
   /**
@@ -294,16 +287,12 @@ public class ExtensionPointHelper {
    * @return an Object instance if instantiation is successful; null otherwise.
    */
   public static Object createInstance(IConfigurationElement configurationElement_p, String attributeName_p) {
-    Object typeInstance = null;
     try {
-      typeInstance = configurationElement_p.createExecutableExtension(attributeName_p);
-    } catch (CoreException exception_p) {
-      StringBuffer msg = new StringBuffer("ExtensionPointHelper.createTypeInstance(..) _ "); //$NON-NLS-1$
-      msg.append("Unable to instantiate class type:"); //$NON-NLS-1$
-      msg.append(configurationElement_p.getAttribute(attributeName_p));
-      EGFCommonPlugin.getDefault().logError(msg.toString());
+      return configurationElement_p.createExecutableExtension(attributeName_p);
+    } catch (CoreException ce) {
+      EGFCommonPlugin.getDefault().logError(NLS.bind("ExtensionPointHelper.createInstance(..) _ Unable to instantiate class ''{0}''", configurationElement_p.getAttribute(attributeName_p)), ce); //$NON-NLS-1$
     }
-    return typeInstance;
+    return null;
   }
 
   /**
@@ -316,9 +305,7 @@ public class ExtensionPointHelper {
    * @return the fully qualified extension-point id : <code>'plug-in id.'extension-point id'.
    */
   public static String getExtensionPointId(String hostingPluginId_p, String extensionPointId_p) {
-    StringBuilder result = new StringBuilder(hostingPluginId_p);
-    result.append(CharacterConstants.DOT_CHARACTER).append(extensionPointId_p);
-    return result.toString();
+    return new StringBuilder(hostingPluginId_p).append(CharacterConstants.DOT_STRING).append(extensionPointId_p).toString();
   }
 
   /**
