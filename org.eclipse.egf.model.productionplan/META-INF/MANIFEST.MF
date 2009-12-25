@@ -12,11 +12,13 @@ Export-Package:
  org.eclipse.egf.model,
  org.eclipse.egf.model.productionplan,
  org.eclipse.egf.model.productionplan.impl,
+ org.eclipse.egf.model.productionplan.invocation, 
  org.eclipse.egf.model.productionplan.util
 Require-Bundle: 
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.egf.core;visibility:=reexport,
- org.eclipse.egf.model;visibility:=reexport
+ org.eclipse.egf.model;visibility:=reexport,
+ org.eclipse.egf.core.production
 Bundle-ActivationPolicy: lazy

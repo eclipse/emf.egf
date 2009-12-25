@@ -17,7 +17,6 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.EGFProductionPlanModelPlugin;
 import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlan;
@@ -241,7 +240,7 @@ public class ProductionPlanValidator extends EObjectValidator {
    */
   public boolean validateTask_invocation(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (task.getInvocationId() != null) {
-      if (EGFCorePlugin.getPlatformInvocation(task.getInvocationId()) == null) {
+      if (EGFProductionPlanModelPlugin.getPlatformTaskInvocation(task.getInvocationId()) == null) {
         if (diagnostics != null) {
           diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
               new Object[] { "Invocation Id is unknown.", getObjectLabel(task, context) }, //$NON-NLS-1$

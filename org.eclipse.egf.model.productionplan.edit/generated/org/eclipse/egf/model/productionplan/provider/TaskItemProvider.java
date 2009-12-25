@@ -15,12 +15,12 @@ package org.eclipse.egf.model.productionplan.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.invocation.IPlatformInvocation;
+import org.eclipse.egf.model.EGFProductionPlanModelPlugin;
 import org.eclipse.egf.model.edit.EGFProductionPlanModelEditPlugin;
 import org.eclipse.egf.model.fcore.provider.ActivityItemProvider;
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 import org.eclipse.egf.model.productionplan.Task;
+import org.eclipse.egf.model.productionplan.invocation.IPlatformTaskInvocation;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -92,7 +92,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
       public Collection<?> getChoiceOfValues(Object current) {
         Collection<String> result = new UniqueEList<String>();
         // Load type elements in the current resource set
-        for (IPlatformInvocation platformTask : EGFCorePlugin.getPlatformInvocations()) {
+        for (IPlatformTaskInvocation platformTask : EGFProductionPlanModelPlugin.getPlatformTaskInvocations()) {
           result.add(platformTask.getId());
         }
         if (result.contains(null) == false) {

@@ -38,5 +38,28 @@
       class="org.eclipse.egf.model.productionplan.util.ProductionPlanResourceFactoryImpl"
     />
   </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- Extension Points Definition                                                       -->
+  <!-- ================================================================================= -->
+  
+  <extension-point 
+    id="taskInvocation" 
+    name="%EGFTaskInvocationExtensionPoint" 
+    schema="schema/taskInvocation.exsd"
+  />
+    
+  <!-- ================================================================================= -->
+  <!-- EGF Platform Manager                                                              -->
+  <!-- ================================================================================= -->  
+
+  <extension
+    point="org.eclipse.egf.core.platform.manager"
+  >
+    <manager
+      extension="org.eclipse.egf.model.productionplan.taskInvocation"      
+      class="org.eclipse.egf.model.productionplan.internal.invocation.PlatformTaskInvocationFactory"
+    />             
+  </extension>    
 
 </plugin>
