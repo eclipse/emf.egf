@@ -192,8 +192,13 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
     private void appendQueryCode(StringBuilder localContent, PatternParameter parameter) throws PatternException {
         Query query = parameter.getQuery();
-        if (query == null)
-            throw new PatternException(Messages.bind(Messages.assembly_error9, parameter.getName(), parameter.getID()));
+        if (query == null) {
+            // there is no query, so this pattern can only be called by another
+            // (i.e. it's an entry point in execution)
+            localContent.append("List<Object> ").append(getParameterListName(parameter)).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
+            localContent.append("//this pattern can only be called by another (i.e. it's not an entry point in execution)").append(CharacterConstants.LINE_SEPARATOR);
+            return;
+        }
         localContent.append("queryCtx = new HashMap<String, String>();").append(CharacterConstants.LINE_SEPARATOR);
         if (query.getQueryContext() != null) {
             for (String key : query.getQueryContext().keySet()) {

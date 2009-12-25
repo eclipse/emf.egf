@@ -20,6 +20,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternNature;
+import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
@@ -84,6 +85,12 @@ public abstract class PatternExtension {
      *         problem
      */
     public String canExecute(Pattern pattern) {
+        // todo it should be in a validation rule...
+        for (PatternParameter param : pattern.getAllParameters()) {
+            if (param.getQuery() == null)
+                return Messages.bind(Messages.assembly_error9, param.getName(), param.getID());
+        }
+
         return null; // no problem
     }
 }
