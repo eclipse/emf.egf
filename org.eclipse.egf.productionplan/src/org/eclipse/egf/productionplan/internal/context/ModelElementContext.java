@@ -12,7 +12,9 @@ package org.eclipse.egf.productionplan.internal.context;
 
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.internal.context.ProductionContext;
+import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.osgi.framework.Bundle;
 
 /**
  * @author Xavier Maysonnave
@@ -20,8 +22,8 @@ import org.eclipse.egf.model.fcore.ModelElement;
  */
 public class ModelElementContext<Q extends ModelElement> extends ProductionContext<Q> {
 
-  public ModelElementContext(Q element) {
-    super(element);
+  public ModelElementContext(Q element, Bundle bundle, ProjectBundleSession projectBundleSession) {
+    super(element, bundle, projectBundleSession);
   }
 
   @Override

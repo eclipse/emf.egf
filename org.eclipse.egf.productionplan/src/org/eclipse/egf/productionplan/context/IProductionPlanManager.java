@@ -32,7 +32,7 @@ public interface IProductionPlanManager<Q extends IProductionPlanManager<?, ?>, 
 
   public Q getParent();
 
-  public IProductionContext<T> getProductionContext();
+  public IProductionContext<T> getProductionContext() throws InvocationException;
 
   public Bundle getBundle() throws InvocationException;
 

@@ -41,9 +41,9 @@ public class TaskManager extends ActivityManager<TaskInvocationManager, Task> {
     Assert.isNotNull(task.getInvocationId());
   }
 
-  public IProductionContext<Task> getProductionContext() {
+  public IProductionContext<Task> getProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
+      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement(), getBundle(), getProjectBundleSession());
     }
     return _productionContext;
   }

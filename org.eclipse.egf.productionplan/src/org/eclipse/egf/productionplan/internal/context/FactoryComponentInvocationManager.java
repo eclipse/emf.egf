@@ -29,9 +29,9 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
     super(parent, factoryComponentInvocation);
   }
 
-  public IProductionContext<FactoryComponentInvocation> getProductionContext() {
+  public IProductionContext<FactoryComponentInvocation> getProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
+      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement(), getBundle(), getProjectBundleSession());
     }
     return _productionContext;
   }

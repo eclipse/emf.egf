@@ -29,9 +29,9 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager<Produ
     super(parent, taskInvocation);
   }
 
-  public IProductionContext<TaskInvocation> getProductionContext() {
+  public IProductionContext<TaskInvocation> getProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
+      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement(), getBundle(), getProjectBundleSession());
     }
     return _productionContext;
   }

@@ -40,9 +40,9 @@ public class FactoryComponentManager extends ActivityManager<FactoryComponentInv
     super(parent, factoryComponent);
   }
 
-  public IProductionContext<FactoryComponent> getProductionContext() {
+  public IProductionContext<FactoryComponent> getProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
+      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement(), getBundle(), getProjectBundleSession());
     }
     return _productionContext;
   }
