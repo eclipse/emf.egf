@@ -61,8 +61,6 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//Contract/contractContainer"/>
       <genFeatures notify="false" createChild="false" propertyCategory="Context" propertySortChoices="true"
           ecoreFeature="ecore:EReference Fcore.ecore#//Contract/invocationContexts"/>
-      <genFeatures notify="false" createChild="false" propertyCategory="Context" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Fcore.ecore#//Contract/orchestrationContexts"/>
       <genFeatures createChild="false" propertyCategory="Type" ecoreFeature="ecore:EAttribute Fcore.ecore#//Contract/mandatory"/>
       <genFeatures createChild="false" propertyCategory="Type" ecoreFeature="ecore:EAttribute Fcore.ecore#//Contract/mode"/>
       <genFeatures property="None" children="true" createChild="true" propertyCategory="Default Value"
@@ -105,8 +103,6 @@
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//OrchestrationContext">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//OrchestrationContext/orchestrationContextContainer"/>
-      <genFeatures notify="false" createChild="false" propertyCategory="Context" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Fcore.ecore#//OrchestrationContext/contract"/>
       <genFeatures notify="false" createChild="false" propertyCategory="Invoke" propertySortChoices="true"
           ecoreFeature="ecore:EReference Fcore.ecore#//OrchestrationContext/invocationContexts"/>
       <genFeatures property="None" children="true" createChild="true" propertyCategory="Invoke"

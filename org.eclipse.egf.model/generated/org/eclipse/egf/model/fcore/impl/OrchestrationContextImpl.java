@@ -39,7 +39,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl#getOrchestrationContextContainer <em>Orchestration Context Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl#getContract <em>Contract</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl#getInvocationContexts <em>Invocation Contexts</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl#getType <em>Type</em>}</li>
  * </ul>
@@ -48,16 +47,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class OrchestrationContextImpl extends ModelElementImpl implements OrchestrationContext {
-  /**
-   * The cached value of the '{@link #getContract() <em>Contract</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getContract()
-   * @generated
-   * @ordered
-   */
-  protected Contract contract;
-
   /**
    * The cached value of the '{@link #getInvocationContexts() <em>Invocation Contexts</em>}' reference list.
    * <!-- begin-user-doc -->
@@ -144,52 +133,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
    * <!-- end-user-doc -->
    * @generated
    */
-  public Contract getContract() {
-    return contract;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetContract(Contract newContract, NotificationChain msgs) {
-    Contract oldContract = contract;
-    contract = newContract;
-    if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.ORCHESTRATION_CONTEXT__CONTRACT, oldContract, newContract);
-      if (msgs == null)
-        msgs = notification;
-      else
-        msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setContract(Contract newContract) {
-    if (newContract != contract) {
-      NotificationChain msgs = null;
-      if (contract != null)
-        msgs = ((InternalEObject) contract).eInverseRemove(this, FcorePackage.CONTRACT__ORCHESTRATION_CONTEXTS, Contract.class, msgs);
-      if (newContract != null)
-        msgs = ((InternalEObject) newContract).eInverseAdd(this, FcorePackage.CONTRACT__ORCHESTRATION_CONTEXTS, Contract.class, msgs);
-      msgs = basicSetContract(newContract, msgs);
-      if (msgs != null)
-        msgs.dispatch();
-    } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.ORCHESTRATION_CONTEXT__CONTRACT, newContract, newContract));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EList<InvocationContext> getInvocationContexts() {
     if (invocationContexts == null) {
       invocationContexts = new EObjectWithInverseEList<InvocationContext>(InvocationContext.class, this, FcorePackage.ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS, FcorePackage.INVOCATION_CONTEXT__ORCHESTRATION_CONTEXT);
@@ -269,10 +212,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       return basicSetOrchestrationContextContainer((OrchestrationContextContainer) otherEnd, msgs);
-    case FcorePackage.ORCHESTRATION_CONTEXT__CONTRACT:
-      if (contract != null)
-        msgs = ((InternalEObject) contract).eInverseRemove(this, FcorePackage.CONTRACT__ORCHESTRATION_CONTEXTS, Contract.class, msgs);
-      return basicSetContract((Contract) otherEnd, msgs);
     case FcorePackage.ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS:
       return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocationContexts()).basicAdd(otherEnd, msgs);
     }
@@ -289,8 +228,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
     switch (featureID) {
     case FcorePackage.ORCHESTRATION_CONTEXT__ORCHESTRATION_CONTEXT_CONTAINER:
       return basicSetOrchestrationContextContainer(null, msgs);
-    case FcorePackage.ORCHESTRATION_CONTEXT__CONTRACT:
-      return basicSetContract(null, msgs);
     case FcorePackage.ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS:
       return ((InternalEList<?>) getInvocationContexts()).basicRemove(otherEnd, msgs);
     case FcorePackage.ORCHESTRATION_CONTEXT__TYPE:
@@ -323,8 +260,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
     switch (featureID) {
     case FcorePackage.ORCHESTRATION_CONTEXT__ORCHESTRATION_CONTEXT_CONTAINER:
       return getOrchestrationContextContainer();
-    case FcorePackage.ORCHESTRATION_CONTEXT__CONTRACT:
-      return getContract();
     case FcorePackage.ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS:
       return getInvocationContexts();
     case FcorePackage.ORCHESTRATION_CONTEXT__TYPE:
@@ -344,9 +279,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
     switch (featureID) {
     case FcorePackage.ORCHESTRATION_CONTEXT__ORCHESTRATION_CONTEXT_CONTAINER:
       setOrchestrationContextContainer((OrchestrationContextContainer) newValue);
-      return;
-    case FcorePackage.ORCHESTRATION_CONTEXT__CONTRACT:
-      setContract((Contract) newValue);
       return;
     case FcorePackage.ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS:
       getInvocationContexts().clear();
@@ -370,9 +302,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
     case FcorePackage.ORCHESTRATION_CONTEXT__ORCHESTRATION_CONTEXT_CONTAINER:
       setOrchestrationContextContainer((OrchestrationContextContainer) null);
       return;
-    case FcorePackage.ORCHESTRATION_CONTEXT__CONTRACT:
-      setContract((Contract) null);
-      return;
     case FcorePackage.ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS:
       getInvocationContexts().clear();
       return;
@@ -393,8 +322,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
     switch (featureID) {
     case FcorePackage.ORCHESTRATION_CONTEXT__ORCHESTRATION_CONTEXT_CONTAINER:
       return getOrchestrationContextContainer() != null;
-    case FcorePackage.ORCHESTRATION_CONTEXT__CONTRACT:
-      return contract != null;
     case FcorePackage.ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS:
       return invocationContexts != null && !invocationContexts.isEmpty();
     case FcorePackage.ORCHESTRATION_CONTEXT__TYPE:

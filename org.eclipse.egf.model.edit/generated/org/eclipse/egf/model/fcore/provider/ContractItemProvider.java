@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
@@ -42,6 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.Contract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -49,6 +51,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractItemProvider(AdapterFactory adapterFactory) {
@@ -59,6 +62,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -67,7 +71,6 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
       super.getPropertyDescriptors(object);
 
       addInvocationContextsPropertyDescriptor(object);
-      addOrchestrationContextsPropertyDescriptor(object);
       addMandatoryPropertyDescriptor(object);
       addModePropertyDescriptor(object);
     }
@@ -92,7 +95,8 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
             // Retrieve all the typed contracts if available
             if (contract.getActivity() != null && contract.getActivity() instanceof FactoryComponent) {
               FactoryComponent factoryComponent = (FactoryComponent) contract.getActivity();
-              if (contract.getType() != null) {
+              // Out or In_Out should have only one assigned InvocationContext
+              if (contract.getType() != null && (contract.getMode() == ContractMode.IN || contract.getInvocationContexts().size() == 0)) {
                 result.addAll(factoryComponent.getInvocationContexts(contract.getType(), contract.getMode()));
                 // Filter all assigned invocation context if necessary
                 if (result.size() > 0) {
@@ -113,22 +117,10 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   }
 
   /**
-   * This adds a property descriptor for the Orchestration Contexts feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addOrchestrationContextsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Contract_orchestrationContexts_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_Contract_orchestrationContexts_feature", "_UI_Contract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.CONTRACT__ORCHESTRATION_CONTEXTS, true, false, true, null, getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
-        null));
-  }
-
-  /**
    * This adds a property descriptor for the Mandatory feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addMandatoryPropertyDescriptor(Object object) {
@@ -142,6 +134,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * This adds a property descriptor for the Mode feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addModePropertyDescriptor(Object object) {
@@ -152,11 +145,13 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
+   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -171,6 +166,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -185,6 +181,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * This returns Contract.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -211,6 +208,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -234,6 +232,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

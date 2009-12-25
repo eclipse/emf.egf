@@ -65,23 +65,9 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addContractPropertyDescriptor(object);
       addInvocationContextsPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
-  }
-
-  /**
-   * This adds a property descriptor for the Contract feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addContractPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrchestrationContext_contract_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_OrchestrationContext_contract_feature", "_UI_OrchestrationContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.ORCHESTRATION_CONTEXT__CONTRACT, true, false, true, null, getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
-        null));
   }
 
   /**

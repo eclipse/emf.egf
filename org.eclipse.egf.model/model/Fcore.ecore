@@ -59,7 +59,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Contract" eSuperTypes="#//ModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="MandatoryName UniqueName"/>
+      <details key="constraints" value="MandatoryName UniqueName ContractShouldBeBound OutModeIsRestricted"/>
     </eAnnotations>
     <eOperations name="getActivity" lowerBound="1" eType="#//Activity"/>
     <eOperations name="getContracts" upperBound="-1" eType="#//Contract"/>
@@ -74,8 +74,6 @@
         eType="#//ContractContainer" resolveProxies="false" eOpposite="#//ContractContainer/contracts"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContexts" upperBound="-1"
         eType="#//InvocationContext" resolveProxies="false" eOpposite="#//InvocationContext/exposedContract"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContexts"
-        upperBound="-1" eType="#//OrchestrationContext" resolveProxies="false" eOpposite="#//OrchestrationContext/contract"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mandatory" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="#//ContractMode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
@@ -145,8 +143,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContextContainer"
         lowerBound="1" eType="#//OrchestrationContextContainer" resolveProxies="false"
         eOpposite="#//OrchestrationContextContainer/orchestrationContexts"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" eType="#//Contract"
-        resolveProxies="false" eOpposite="#//Contract/orchestrationContexts"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContexts" lowerBound="1"
         upperBound="-1" eType="#//InvocationContext" resolveProxies="false" eOpposite="#//InvocationContext/orchestrationContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"

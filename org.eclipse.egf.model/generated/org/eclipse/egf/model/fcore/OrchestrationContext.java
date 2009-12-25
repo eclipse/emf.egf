@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.OrchestrationContext#getOrchestrationContextContainer <em>Orchestration Context Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.OrchestrationContext#getContract <em>Contract</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.OrchestrationContext#getInvocationContexts <em>Invocation Contexts</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.OrchestrationContext#getType <em>Type</em>}</li>
  * </ul>
@@ -61,34 +60,6 @@ public interface OrchestrationContext extends ModelElement {
    * @generated
    */
   void setOrchestrationContextContainer(OrchestrationContextContainer value);
-
-  /**
-   * Returns the value of the '<em><b>Contract</b></em>' reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Contract#getOrchestrationContexts <em>Orchestration Contexts</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Contract</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Contract</em>' reference.
-   * @see #setContract(Contract)
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getOrchestrationContext_Contract()
-   * @see org.eclipse.egf.model.fcore.Contract#getOrchestrationContexts
-   * @model opposite="orchestrationContexts" resolveProxies="false"
-   * @generated
-   */
-  Contract getContract();
-
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.OrchestrationContext#getContract <em>Contract</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Contract</em>' reference.
-   * @see #getContract()
-   * @generated
-   */
-  void setContract(Contract value);
 
   /**
    * Returns the value of the '<em><b>Invocation Contexts</b></em>' reference list.

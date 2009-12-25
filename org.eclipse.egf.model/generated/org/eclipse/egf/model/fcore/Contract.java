@@ -24,7 +24,6 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.Contract#getContractContainer <em>Contract Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.Contract#getInvocationContexts <em>Invocation Contexts</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.Contract#getOrchestrationContexts <em>Orchestration Contexts</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.Contract#isMandatory <em>Mandatory</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.Contract#getMode <em>Mode</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.Contract#getType <em>Type</em>}</li>
@@ -32,7 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getContract()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryName UniqueName'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryName UniqueName ContractShouldBeBound OutModeIsRestricted'"
  * @generated
  */
 public interface Contract extends ModelElement {
@@ -81,24 +80,6 @@ public interface Contract extends ModelElement {
    * @generated
    */
   EList<InvocationContext> getInvocationContexts();
-
-  /**
-   * Returns the value of the '<em><b>Orchestration Contexts</b></em>' reference list.
-   * The list contents are of type {@link org.eclipse.egf.model.fcore.OrchestrationContext}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.OrchestrationContext#getContract <em>Contract</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Orchestration Contexts</em>' reference list isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Orchestration Contexts</em>' reference list.
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getContract_OrchestrationContexts()
-   * @see org.eclipse.egf.model.fcore.OrchestrationContext#getContract
-   * @model opposite="contract" resolveProxies="false"
-   * @generated
-   */
-  EList<OrchestrationContext> getOrchestrationContexts();
 
   /**
    * Returns the value of the '<em><b>Mandatory</b></em>' attribute.

@@ -427,22 +427,13 @@ public interface FcorePackage extends EPackage {
   int CONTRACT__INVOCATION_CONTEXTS = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
-   * The feature id for the '<em><b>Orchestration Contexts</b></em>' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CONTRACT__ORCHESTRATION_CONTEXTS = MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-  /**
    * The feature id for the '<em><b>Mandatory</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CONTRACT__MANDATORY = MODEL_ELEMENT_FEATURE_COUNT + 3;
+  int CONTRACT__MANDATORY = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The feature id for the '<em><b>Mode</b></em>' attribute.
@@ -451,7 +442,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTRACT__MODE = MODEL_ELEMENT_FEATURE_COUNT + 4;
+  int CONTRACT__MODE = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -460,7 +451,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTRACT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 5;
+  int CONTRACT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 4;
 
   /**
    * The number of structural features of the '<em>Contract</em>' class.
@@ -469,7 +460,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CONTRACT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 6;
+  int CONTRACT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 5;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -724,22 +715,13 @@ public interface FcorePackage extends EPackage {
   int ORCHESTRATION_CONTEXT__ORCHESTRATION_CONTEXT_CONTAINER = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>Contract</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ORCHESTRATION_CONTEXT__CONTRACT = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-  /**
    * The feature id for the '<em><b>Invocation Contexts</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS = MODEL_ELEMENT_FEATURE_COUNT + 2;
+  int ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -748,7 +730,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ORCHESTRATION_CONTEXT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 3;
+  int ORCHESTRATION_CONTEXT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Orchestration Context</em>' class.
@@ -757,7 +739,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ORCHESTRATION_CONTEXT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 4;
+  int ORCHESTRATION_CONTEXT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -1443,17 +1425,6 @@ public interface FcorePackage extends EPackage {
   EReference getOrchestrationContext_OrchestrationContextContainer();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.egf.model.fcore.OrchestrationContext#getContract <em>Contract</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Contract</em>'.
-   * @see org.eclipse.egf.model.fcore.OrchestrationContext#getContract()
-   * @see #getOrchestrationContext()
-   * @generated
-   */
-  EReference getOrchestrationContext_Contract();
-
-  /**
    * Returns the meta object for the reference list '{@link org.eclipse.egf.model.fcore.OrchestrationContext#getInvocationContexts <em>Invocation Contexts</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1818,17 +1789,6 @@ public interface FcorePackage extends EPackage {
   EReference getContract_InvocationContexts();
 
   /**
-   * Returns the meta object for the reference list '{@link org.eclipse.egf.model.fcore.Contract#getOrchestrationContexts <em>Orchestration Contexts</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the reference list '<em>Orchestration Contexts</em>'.
-   * @see org.eclipse.egf.model.fcore.Contract#getOrchestrationContexts()
-   * @see #getContract()
-   * @generated
-   */
-  EReference getContract_OrchestrationContexts();
-
-  /**
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.Contract#isMandatory <em>Mandatory</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2077,14 +2037,6 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     EReference ORCHESTRATION_CONTEXT__ORCHESTRATION_CONTEXT_CONTAINER = eINSTANCE.getOrchestrationContext_OrchestrationContextContainer();
-
-    /**
-     * The meta object literal for the '<em><b>Contract</b></em>' reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ORCHESTRATION_CONTEXT__CONTRACT = eINSTANCE.getOrchestrationContext_Contract();
 
     /**
      * The meta object literal for the '<em><b>Invocation Contexts</b></em>' reference list feature.
@@ -2377,14 +2329,6 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     EReference CONTRACT__INVOCATION_CONTEXTS = eINSTANCE.getContract_InvocationContexts();
-
-    /**
-     * The meta object literal for the '<em><b>Orchestration Contexts</b></em>' reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONTRACT__ORCHESTRATION_CONTEXTS = eINSTANCE.getContract_OrchestrationContexts();
 
     /**
      * The meta object literal for the '<em><b>Mandatory</b></em>' attribute feature.

@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -96,7 +97,16 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
         // Retrieve all the typed contracts if available
         if (invocationContext.getFactoryComponent() != null) {
           if (invocationContext.getActivityContract() != null && invocationContext.getActivityContract().getType() != null) {
-            result.addAll(invocationContext.getFactoryComponent().getContracts(invocationContext.getActivityContract().getType(), invocationContext.getMode()));
+            if (invocationContext.getMode() == ContractMode.IN) {
+              result.addAll(invocationContext.getFactoryComponent().getContracts(invocationContext.getActivityContract().getType(), ContractMode.IN));
+            } else {
+              // In or In_Out Contract should have only one assigned InvocationContext.
+              for (Contract contract : invocationContext.getFactoryComponent().getContracts(invocationContext.getActivityContract().getType(), invocationContext.getMode())) {
+                if (contract.getInvocationContexts().size() == 0) {
+                  result.add(contract);
+                }
+              }
+            }
           }
         }
         if (result.contains(null) == false) {
