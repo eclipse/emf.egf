@@ -20,7 +20,6 @@ import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
@@ -28,8 +27,6 @@ import org.eclipse.emf.databinding.edit.IEMFEditValueProperty;
 import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Text;
@@ -61,27 +58,7 @@ public class OverviewPage extends PatternEditorPage {
         form.getBody().setLayout(new GridLayout());
 
         text = toolkit.createText(form.getBody(), getPattern().getName(), SWT.BORDER);
-        text.addModifyListener(new ModifyListener() {
-
-            public void modifyText(ModifyEvent e) {
-                Pattern pattern = getPattern();// pattern.eResource()
-                // System.out.println("pattern = " + pattern + "\tresource = " +
-                // pattern.eResource());
-                // System.out.println("Parent is " + pattern.getSuperPattern()
-                // == null ? "none" : pattern.getSuperPattern().getName()));
-                System.out.println("Parent = " + pattern.getSuperPattern() + "\t");
-                String text2 = text.getText();
-                // Command cmd = SetCommand.create(getEditingDomain(), pattern,
-                // FcorePackage.Literals.MODEL_ELEMENT__NAME, text2);
-                // if (cmd.canExecute()) {
-                // execute(cmd);
-                // }
-            }
-
-        });
-        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-        text.setLayoutData(gd);
-
+        text.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
     }
 
     void bindName() {
