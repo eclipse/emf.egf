@@ -1,0 +1,20 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.core.producer;singleton:=true
+Bundle-Version: 0.2.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.core.producer.EGFCoreProducerPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.egf.common;visibility:=reexport,
+ org.eclipse.egf.core;visibility:=reexport 
+Export-Package: 
+ org.eclipse.egf.core.producer,
+ org.eclipse.egf.core.producer.context,
+ org.eclipse.egf.core.producer.internal.context;x-friends:="org.eclipse.egf.producer",
+ org.eclipse.egf.core.producer.l10n,
+ org.eclipse.egf.core.producer.manager
+Bundle-ActivationPolicy: lazy
