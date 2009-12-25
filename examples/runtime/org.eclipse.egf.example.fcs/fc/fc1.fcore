@@ -4,8 +4,8 @@
     xmlns:productionplan="http://www.eclipse.org/egf/1.0.0/productionplan" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="Ko39UWVuEd64TpQQ4RciWw"
     name="FC1">
   <contractContainer xmi:id="_SmBtAL-2Ed6E7J0w9U7NFQ">
-    <contracts xmi:id="_S7e_oL-2Ed6E7J0w9U7NFQ" name="amount" contexts="#_IDAaML-2Ed6E7J0w9U7NFQ"
-        mode="Out">
+    <contracts xmi:id="_S7e_oL-2Ed6E7J0w9U7NFQ" name="amount" invocationContexts="#_IDAaML-2Ed6E7J0w9U7NFQ"
+        mode="Out" contexts="#_IDAaML-2Ed6E7J0w9U7NFQ">
       <type xmi:type="types:FloatType" xmi:id="_MZ2CIb-3Ed61q9pxr2iF9w"/>
     </contracts>
   </contractContainer>
@@ -21,8 +21,9 @@
         <invocationContexts xmi:id="_IDAaML-2Ed6E7J0w9U7NFQ" name="amount" exposedContract="#_S7e_oL-2Ed6E7J0w9U7NFQ"
             activityContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"
             targetContract="#_S7e_oL-2Ed6E7J0w9U7NFQ" sourceContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw">
-          <type xmi:type="types:FloatType" xmi:id="_K4D7wL-2Ed6E7J0w9U7NFQ" value="102.0"/>
+          <type xmi:type="types:FloatType" xmi:id="_G_GdoL_sEd6_9NPuh1PsnA"/>
         </invocationContexts>
+        <invocationContexts xmi:id="_GpyuQb_nEd6gHIEE-OJ_Mw"/>
       </invocationContextContainer>
       <contextContainer xmi:id="_NfMZcb1uEd6L64nruTjndQ">
         <contexts xmi:id="_ODs0sL1uEd6L64nruTjndQ" name="amount" contract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw">
