@@ -16,10 +16,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.core.production.l10n.CoreProductionMessages;
+import org.eclipse.egf.core.session.BundleSessionHelper;
+import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.osgi.util.NLS;
+import org.osgi.framework.Bundle;
 
 /**
  * 
@@ -75,17 +80,37 @@ public abstract class ProductionContext<Q extends Object> implements IProduction
 
   private Q _element;
 
+  private Bundle _bundle;
+
+  private ProjectBundleSession _projectBundleSession;
+
   private final Map<String, Data> _inputDatas = new HashMap<String, Data>();
 
   private final Map<String, Data> _outputDatas = new HashMap<String, Data>();
 
-  public ProductionContext(Q element) {
+  public ProductionContext(Q element, Bundle bundle, ProjectBundleSession projectBundleSession) {
     Assert.isNotNull(element);
+    Assert.isNotNull(bundle);
+    Assert.isNotNull(projectBundleSession);
     _element = element;
+    _bundle = bundle;
+    _projectBundleSession = projectBundleSession;
   }
 
   public Q getElement() {
     return _element;
+  }
+
+  public Bundle getBundle() {
+    return _bundle;
+  }
+
+  public Bundle getBundle(IPlatformExtensionPoint platformExtensionPoint) throws InvocationException {
+    try {
+      return BundleSessionHelper.getBundle(_projectBundleSession, platformExtensionPoint);
+    } catch (CoreException ce) {
+      throw new InvocationException(ce);
+    }
   }
 
   public void reset() {

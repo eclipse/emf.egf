@@ -10,7 +10,9 @@
  */
 package org.eclipse.egf.core.production.context;
 
+import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.production.InvocationException;
+import org.osgi.framework.Bundle;
 
 /**
  * @author Xavier Maysonnave
@@ -21,6 +23,10 @@ public interface IProductionContext<Q extends Object> {
   public String getName();
 
   public Q getElement();
+
+  public Bundle getBundle();
+
+  public Bundle getBundle(IPlatformExtensionPoint platformExtensionPoint) throws InvocationException;
 
   public void reset();
 
