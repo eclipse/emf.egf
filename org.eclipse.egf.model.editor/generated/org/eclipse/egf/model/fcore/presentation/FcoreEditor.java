@@ -305,6 +305,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
 
       final Collection<Resource> deltaChangedResources = new ArrayList<Resource>();
       final Collection<Resource> deltaRemovedResources = new ArrayList<Resource>();
+      final boolean[] conflict = new boolean[] { false };
       ResourceSet resourceSet = editingDomain.getResourceSet();
 
       // Check if removed platform fcores are applicable to this editor
@@ -312,6 +313,10 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
         Resource resource = resourceSet.getResource(fcore.getURI(), false);
         if (resource != null) {
+          // If a removed workspace fcore is detected we position the conflict stack flag
+          if (fcore.getPlatformBundle().isTarget() == false) {
+            conflict[0] = true;
+          }
           deltaRemovedResources.add(resource);
         }
       }
@@ -328,8 +333,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
       if (deltaRemovedResources.isEmpty() == false) {
         getSite().getShell().getDisplay().asyncExec(new Runnable() {
           public void run() {
-            removedResources.addAll(deltaRemovedResources);
-            if (isDirty() == false) {
+            if (isDirty() == false && conflict[0]) {
               getSite().getPage().closeEditor(FcoreEditor.this, false);
             }
           }
@@ -339,17 +343,19 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
       if (deltaChangedResources.isEmpty() == false) {
         getSite().getShell().getDisplay().asyncExec(new Runnable() {
           public void run() {
-            changedResources.addAll(deltaChangedResources);
-            // TODO: we don't know yet how to deal with changed resource
-            // especially with the command stack
-            // no choice, if the editor is dirty we should cancel everything
-            if (isDirty()) {
-              getSite().getPage().closeEditor(FcoreEditor.this, false);
+            if (conflict[0]) {
+              if (isDirty()) {
+                deltaChangedResources.addAll(editingDomain.getResourceSet().getResources());
+              }
+              editingDomain.getCommandStack().flush();
             }
-            // Refresh the editors
-            if (getSite().getPage().getActiveEditor() == FcoreEditor.this) {
-              handleActivate();
+            updateProblemIndication = false;
+            ResourceHelper.reloadResources(editingDomain.getResourceSet(), deltaChangedResources);
+            if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
+              setSelection(StructuredSelection.EMPTY);
             }
+            updateProblemIndication = true;
+            updateProblemIndication();
           }
         });
       }
@@ -501,18 +507,18 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
         delta.accept(visitor);
 
-        if (!visitor.getRemovedResources().isEmpty()) {
+        if (visitor.getRemovedResources().isEmpty() == false) {
           getSite().getShell().getDisplay().asyncExec(new Runnable() {
             public void run() {
               removedResources.addAll(visitor.getRemovedResources());
-              if (!isDirty()) {
+              if (isDirty() == false) {
                 getSite().getPage().closeEditor(FcoreEditor.this, false);
               }
             }
           });
         }
 
-        if (!visitor.getChangedResources().isEmpty()) {
+        if (visitor.getChangedResources().isEmpty() == false) {
           getSite().getShell().getDisplay().asyncExec(new Runnable() {
             public void run() {
               changedResources.addAll(visitor.getChangedResources());
