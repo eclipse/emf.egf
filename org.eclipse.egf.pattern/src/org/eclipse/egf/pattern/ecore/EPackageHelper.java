@@ -40,114 +40,114 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
  * 
  * TODO Une fois terminée, cette classe devrait pltot se trouver dans core ou
  * platform <br>
- * TODO lire les point extension du workspace pour trouver les modeles<br>
+ * TODO revoir l'utilisation de ProjectClassLoaderHelper <br>
  * 
  * @author Thomas Guiu
  * 
  */
 public class EPackageHelper {
-  public static final String INSTANCE_FIELD_NAME = "eINSTANCE";
+    public static final String INSTANCE_FIELD_NAME = "eINSTANCE";
 
-  public static final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
-  private static final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
+    public static final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
+    private static final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
 
-  public static String getBasePackage(EPackage ePackage) {
-    String name = nsuri2basePackage.get(ePackage.getNsURI());
-    if (name != null)
-      return name;
-    String nsURI = ePackage.getNsURI();
-    URI uri = EcorePlugin.getEPackageNsURIToGenModelLocationMap().get(nsURI);
-    Resource res = loadResource(uri);
-    for (EObject obj : res.getContents()) {
-      if (obj instanceof GenModel) {
-        GenModel genModel = (GenModel) obj;
-        for (GenPackage gPack : genModel.getGenPackages()) {
-          EPackage ecorePackage = gPack.getEcorePackage();
-          if (ePackage.getName().equals(ecorePackage.getName()) && ePackage.getNsPrefix().equals(ecorePackage.getNsPrefix()) && ePackage.getNsURI().equals(ecorePackage.getNsURI())) {
-            nsuri2basePackage.put(ePackage.getNsURI(), gPack.getBasePackage());
-            return gPack.getBasePackage();
-          }
+    public static String getBasePackage(EPackage ePackage) {
+        String name = nsuri2basePackage.get(ePackage.getNsURI());
+        if (name != null)
+            return name;
+        String nsURI = ePackage.getNsURI();
+        URI uri = EcorePlugin.getEPackageNsURIToGenModelLocationMap().get(nsURI);
+        Resource res = loadResource(uri);
+        for (EObject obj : res.getContents()) {
+            if (obj instanceof GenModel) {
+                GenModel genModel = (GenModel) obj;
+                for (GenPackage gPack : genModel.getGenPackages()) {
+                    EPackage ecorePackage = gPack.getEcorePackage();
+                    if (ePackage.getName().equals(ecorePackage.getName()) && ePackage.getNsPrefix().equals(ecorePackage.getNsPrefix()) && ePackage.getNsURI().equals(ecorePackage.getNsURI())) {
+                        nsuri2basePackage.put(ePackage.getNsURI(), gPack.getBasePackage());
+                        return gPack.getBasePackage();
+                    }
+                }
+            }
         }
-      }
+
+        return null;
     }
 
-    return null;
-  }
+    public static void unregisterPackage(IProject project, String classname) throws RegistrationException {
+        try {
+            Class<?> loadClass = ProjectClassLoaderHelper.getProjectClassLoader(project).loadClass(classname);
+            Field declaredField = loadClass.getDeclaredField(INSTANCE_FIELD_NAME);
 
-  public static void unregisterPackage(IProject project, String classname) throws RegistrationException {
-    try {
-      Class<?> loadClass = ProjectClassLoaderHelper.getProjectClassLoader(project).loadClass(classname);
-      Field declaredField = loadClass.getDeclaredField(INSTANCE_FIELD_NAME);
+            EPackage ePackage = (EPackage) declaredField.get(null);
+            String nsURI = ePackage.getNsURI();
+            REGISTRY.remove(nsURI);
+            nsuri2basePackage.remove(nsURI);
+        } catch (Exception e) {
+            throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
+        }
 
-      EPackage ePackage = (EPackage) declaredField.get(null);
-      String nsURI = ePackage.getNsURI();
-      REGISTRY.remove(nsURI);
-      nsuri2basePackage.remove(nsURI);
-    } catch (Exception e) {
-      throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
     }
 
-  }
+    /**
+     * This method will be used by the workspace resource listener
+     */
+    public static void registerPackage(IProject project, String classname) throws RegistrationException {
+        try {
+            Class<?> loadClass = ProjectClassLoaderHelper.getProjectClassLoader(project).loadClass(classname);
+            Field declaredField = loadClass.getDeclaredField(INSTANCE_FIELD_NAME);
 
-  /**
-   * This method will be used by the workspace resource listener
-   */
-  public static void registerPackage(IProject project, String classname) throws RegistrationException {
-    try {
-      Class<?> loadClass = ProjectClassLoaderHelper.getProjectClassLoader(project).loadClass(classname);
-      Field declaredField = loadClass.getDeclaredField(INSTANCE_FIELD_NAME);
+            EPackage ePackage = (EPackage) declaredField.get(null);
+            String nsURI = ePackage.getNsURI();
+            REGISTRY.put(nsURI, new Descriptor(ePackage));
 
-      EPackage ePackage = (EPackage) declaredField.get(null);
-      String nsURI = ePackage.getNsURI();
-      REGISTRY.put(nsURI, new Descriptor(ePackage));
-
-      // computing basePackage
-      int index = classname.lastIndexOf(ePackage.getName());
-      if (index == -1)
-        throw new IllegalStateException();
-      if (index == 0)
-        nsuri2basePackage.put(nsURI, "");
-      else
-        // to remove the last dot
-        nsuri2basePackage.put(nsURI, classname.substring(index - 1));
-    } catch (Exception e) {
-      throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
-    }
-  }
-
-  public static class RegistrationException extends Exception {
-    private static final long serialVersionUID = 1L;
-
-    private RegistrationException(String message, Throwable cause) {
-      super(message, cause);
-    }
-  }
-
-  private static Resource loadResource(URI uri) {
-    // TODO it may be interesting to keep loaded resources for future
-    // uses ... however, workspace resources may change.
-    ResourceSetImpl set = new ResourceSetImpl();
-    Resource res = ResourceHelper.loadResource(set, uri);
-    return res;
-  }
-
-  private static class Descriptor implements EPackage.Descriptor {
-    private EPackage epackage;
-
-    public Descriptor(EPackage ePackage) {
-      super();
-      this.epackage = ePackage;
+            // computing basePackage
+            int index = classname.lastIndexOf(ePackage.getName());
+            if (index == -1)
+                throw new IllegalStateException();
+            if (index == 0)
+                nsuri2basePackage.put(nsURI, "");
+            else
+                // to remove the last dot
+                nsuri2basePackage.put(nsURI, classname.substring(index - 1));
+        } catch (Exception e) {
+            throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
+        }
     }
 
-    public EFactory getEFactory() {
+    public static class RegistrationException extends Exception {
+        private static final long serialVersionUID = 1L;
 
-      return epackage.getEFactoryInstance();
+        private RegistrationException(String message, Throwable cause) {
+            super(message, cause);
+        }
     }
 
-    public EPackage getEPackage() {
-
-      return epackage;
+    private static Resource loadResource(URI uri) {
+        // TODO it may be interesting to keep loaded resources for future
+        // uses ... however, workspace resources may change.
+        ResourceSetImpl set = new ResourceSetImpl();
+        Resource res = ResourceHelper.loadResource(set, uri);
+        return res;
     }
 
-  }
+    private static class Descriptor implements EPackage.Descriptor {
+        private EPackage epackage;
+
+        public Descriptor(EPackage ePackage) {
+            super();
+            this.epackage = ePackage;
+        }
+
+        public EFactory getEFactory() {
+
+            return epackage.getEFactoryInstance();
+        }
+
+        public EPackage getEPackage() {
+
+            return epackage;
+        }
+
+    }
 }
