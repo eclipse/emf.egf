@@ -11,7 +11,6 @@
 package org.eclipse.egf.core.production.context;
 
 import org.eclipse.egf.core.production.InvocationException;
-import org.osgi.framework.Bundle;
 
 /**
  * @author Xavier Maysonnave
@@ -23,7 +22,7 @@ public interface IProductionContext<Q extends Object> {
 
   public Q getElement();
 
-  public void init(Bundle bundle) throws InvocationException;
+  public void reset();
 
   public Class<?> getInputValueType(String name) throws InvocationException;
 

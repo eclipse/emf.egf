@@ -20,7 +20,6 @@ import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.core.production.l10n.CoreProductionMessages;
 import org.eclipse.osgi.util.NLS;
-import org.osgi.framework.Bundle;
 
 /**
  * 
@@ -89,7 +88,7 @@ public abstract class ProductionContext<Q extends Object> implements IProduction
     return _element;
   }
 
-  public void init(Bundle bundle) throws InvocationException {
+  public void reset() {
     _inputDatas.clear();
     _outputDatas.clear();
   }

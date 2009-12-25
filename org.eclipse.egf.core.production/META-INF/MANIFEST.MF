@@ -15,8 +15,6 @@ Export-Package:
  org.eclipse.egf.core.production,
  org.eclipse.egf.core.production.context,
  org.eclipse.egf.core.production.internal.context;x-friends:="org.eclipse.egf.productionplan",
- org.eclipse.egf.core.production.internal.invocation;x-friends:="org.eclipse.egf.productionplan",
- org.eclipse.egf.core.production.invocation,
  org.eclipse.egf.core.production.l10n
 Bundle-ActivationPolicy: lazy
 Eclipse-ExtensibleAPI: true
