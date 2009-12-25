@@ -10,10 +10,15 @@
  */
 package org.eclipse.egf.core.helper;
 
+import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+
 import org.eclipse.core.resources.IResource;
 import org.eclipse.egf.common.uri.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 
@@ -57,6 +62,42 @@ public class ResourceHelper {
     resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
     // Load or create
     return resourceSet.getResource(uri, true);
+  }
+
+  public static void loadResource(Resource resource) throws IOException {
+    if (resource == null) {
+      return;
+    }
+    if (resource.getResourceSet() != null) {
+      // Clear the previous URIConverter content
+      resource.getResourceSet().getURIConverter().getURIMap().clear();
+      // Assign a fresh platform aware URIConverter
+      resource.getResourceSet().getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    }
+    // Load
+    resource.load(Collections.EMPTY_MAP);
+  }
+
+  public static void reloadResources(ResourceSet resourceSet, Collection<Resource> resources) {
+    if (resourceSet == null || resources == null || resources.size() == 0) {
+      return;
+    }
+    Collection<URI> uris = new UniqueEList<URI>(resources.size());
+    // Unload resources and store URIs
+    for (Resource resource : resources) {
+      URI uri = resource.getURI();
+      uris.add(uri);
+      resource.unload();
+      resourceSet.getResources().remove(resource);
+    }
+    // Clear the previous URIConverter content
+    resourceSet.getURIConverter().getURIMap().clear();
+    // Assign a fresh platform aware URIConverter
+    resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    // Load Resource
+    for (URI uri : uris) {
+      resourceSet.getResource(uri, true);
+    }
   }
 
 }
