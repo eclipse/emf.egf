@@ -39,6 +39,7 @@ import org.eclipse.egf.pattern.ui.editors.pages.PatternEditorPage;
 import org.eclipse.egf.pattern.ui.editors.pages.SpecificationPage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
@@ -56,7 +57,7 @@ import org.eclipse.ui.forms.editor.IFormPage;
  * @author Thomas Guiu
  * 
  */
-public class PatternEditor extends FormEditor implements ResourceUser {
+public class PatternEditor extends FormEditor implements ResourceUser, IEditingDomainProvider {
 
     protected IUndoContext undoContext;
     protected Resource resource;
