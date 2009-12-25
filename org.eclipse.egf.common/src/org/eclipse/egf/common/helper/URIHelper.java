@@ -8,13 +8,11 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.common.uri;
+package org.eclipse.egf.common.helper;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 

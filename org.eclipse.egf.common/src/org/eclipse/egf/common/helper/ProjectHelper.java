@@ -10,11 +10,14 @@
  */
 package org.eclipse.egf.common.helper;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -26,18 +29,21 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.common.generator.IEgfGeneratorConstants;
+import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.emf.codegen.ecore.Generator;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 
@@ -191,32 +197,58 @@ public class ProjectHelper {
     return result;
   }
 
+  public static ClassLoader getProjectClassLoader(IProject project) throws CoreException {
+    return new URLClassLoader(asURL(project), ProjectHelper.class.getClassLoader());
+  }
+
   /**
-   * Create a new class loader for a java project, son of specified parent class
-   * loader.
+   * This will return the set of output folders name for the given
+   * project.
+   * <p>
+   * For example, if a project has a source folder "src" with its output folder
+   * set as "bin" and a source
+   * folder "src-gen" with its output folder set as "bin-gen", this will return
+   * a LinkedHashSet containing
+   * both "bin" and "bin-gen".
+   * </p>
    * 
-   * @param javaProject_p
-   * @param parentClassLoader_p
-   * @return null if one of the parameter is null or no extra dependency was
-   *         found in the java project
-   * @throws Exception
+   * @param project
+   *          The project we seek the output folders of.
+   * @return The set of output folders name for the given (java) project.
    */
-  public static ClassLoader getClassLoaderFor(IJavaProject javaProject_p, ClassLoader parentClassLoader_p) throws Exception {
-    URLClassLoader result = null;
-    // Preconditions.
-    if (javaProject_p == null || parentClassLoader_p == null) {
-      return result;
+  public static Set<String> getOutputFolders(IProject project) throws CoreException {
+    Set<String> classpathEntries = new LinkedHashSet<String>();
+    IJavaProject javaProject = JavaCore.create(project);
+    if (javaProject.exists() == false) {
+      return classpathEntries;
     }
-    // Create the class loader.
-    URL[] classPathEntries = getProjectDependencies(javaProject_p);
-    // No dependency available, it is likely nothing is to be done.
-    // Should an error have happened, it would have been thrown as an exception.
-    if (classPathEntries.length == 0) {
-      return result;
+    try {
+      for (IClasspathEntry entry : javaProject.getResolvedClasspath(true)) {
+        if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
+          IPath output = entry.getOutputLocation();
+          if (output != null) {
+            classpathEntries.add(output.removeFirstSegments(1).toString());
+          }
+        }
+      }
+      classpathEntries.add(javaProject.getOutputLocation().removeFirstSegments(1).toString());
+    } catch (Throwable t) {
+      throw new CoreException(EGFCommonPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCommonMessages.ProjectHelper_AnalysingFailure, project.getName()), t));
     }
-    // Use pattern plugin classloader as parent one.
-    result = new URLClassLoader(classPathEntries, parentClassLoader_p);
-    return result;
+    return classpathEntries;
+  }
+
+  private static URL[] asURL(IProject project) throws CoreException {
+    Set<String> outputFolders = getOutputFolders(project);
+    List<URL> urls = new ArrayList<URL>(outputFolders.size());
+    for (String outputFolder : outputFolders) {
+      try {
+        urls.add(new URL("file", null, outputFolder)); //$NON-NLS-1$
+      } catch (MalformedURLException mue) {
+        throw new CoreException(EGFCommonPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCommonMessages.ProjectHelper_AnalysingFailure, project.getName()), mue));
+      }
+    }
+    return urls.toArray(new URL[urls.size()]);
   }
 
   /**
