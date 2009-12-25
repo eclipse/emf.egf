@@ -46,6 +46,53 @@ public abstract class PatternFactory {
     public static final String FOOTER_METHOD_NAME = "footer";
     public static final String BODY_METHOD_NAME = "body";
 
+    public void createDebugPattern13(PatternLibrary lib) {
+        Pattern p1 = createPattern(lib, "Pattern UN");
+        Pattern p2 = createPattern(lib, "Pattern DEUX");
+        Pattern p3 = createPattern(lib, "Pattern TROIS");
+
+        p2.setSuperPattern(p1);
+        p3.setSuperPattern(p1);
+
+        PatternMethod method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method1.setName("run1");
+        p1.getMethods().add(method1);
+        method1.setPatternFilePath(createURI(method1));
+
+        MethodCall methodCall1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
+        methodCall1.setCalled(method1);
+        p1.getOrchestration().add(methodCall1);
+
+        // P2 overrides method run1
+        method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method1.setName("run1");
+        p2.getMethods().add(method1);
+        method1.setPatternFilePath(createURI(method1));
+        p2.getOrchestration().clear();
+
+        // P3 overrides the orchestration
+        p3.getOrchestration().clear();
+        // TODO... need to add a superPatternCall
+    }
+
+    public void createDebugPattern12(PatternLibrary lib) {
+        Pattern p1 = createPattern(lib, "Pattern UN");
+        Pattern p2 = createPattern(lib, "Pattern DEUX");
+        Pattern p3 = createPattern(lib, "Pattern TROIS");
+
+        PatternMethod method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method1.setName("run1");
+        p1.getMethods().add(method1);
+        method1.setPatternFilePath(createURI(method1));
+
+        MethodCall methodCall1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
+        methodCall1.setCalled(method1);
+        p1.getOrchestration().add(methodCall1);
+
+        p2.setSuperPattern(p1);
+        p3.setSuperPattern(p2);
+    }
+
     public void createDebugPattern11(PatternLibrary lib) {
         Pattern p1 = createPattern(lib, "Pattern UN");
         Pattern p2 = createPattern(lib, "Pattern DEUX");
