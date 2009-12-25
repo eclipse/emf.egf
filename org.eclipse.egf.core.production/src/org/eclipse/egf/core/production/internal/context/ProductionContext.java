@@ -15,12 +15,14 @@ package org.eclipse.egf.core.production.internal.context;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.core.production.context.IProductionFeedContext;
 import org.eclipse.egf.core.production.l10n.CoreProductionMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.osgi.util.NLS;
@@ -31,7 +33,7 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ProductionContext<Q extends Object> implements IProductionContext<Q> {
+public abstract class ProductionContext<Q extends Object> implements IProductionContext<Q>, IProductionFeedContext {
 
   private class Data {
 
@@ -80,20 +82,16 @@ public abstract class ProductionContext<Q extends Object> implements IProduction
 
   private Q _element;
 
-  private Bundle _bundle;
-
   private ProjectBundleSession _projectBundleSession;
 
   private final Map<String, Data> _inputDatas = new HashMap<String, Data>();
 
   private final Map<String, Data> _outputDatas = new HashMap<String, Data>();
 
-  public ProductionContext(Q element, Bundle bundle, ProjectBundleSession projectBundleSession) {
+  public ProductionContext(Q element, ProjectBundleSession projectBundleSession) {
     Assert.isNotNull(element);
-    Assert.isNotNull(bundle);
     Assert.isNotNull(projectBundleSession);
     _element = element;
-    _bundle = bundle;
     _projectBundleSession = projectBundleSession;
   }
 
@@ -101,8 +99,20 @@ public abstract class ProductionContext<Q extends Object> implements IProduction
     return _element;
   }
 
-  public Bundle getBundle() {
-    return _bundle;
+  public Bundle getBundle(String id) throws InvocationException {
+    try {
+      return _projectBundleSession.getBundle(id);
+    } catch (CoreException ce) {
+      throw new InvocationException(ce);
+    }
+  }
+
+  public Bundle getBundle(IProject project) throws InvocationException {
+    try {
+      return _projectBundleSession.getBundle(project);
+    } catch (CoreException ce) {
+      throw new InvocationException(ce);
+    }
   }
 
   public Bundle getBundle(IPlatformExtensionPoint platformExtensionPoint) throws InvocationException {
@@ -120,11 +130,11 @@ public abstract class ProductionContext<Q extends Object> implements IProduction
 
   public abstract String getName();
 
-  protected void addInputData(String name, Class<?> clazz, Object object) throws InvocationException {
+  public void addInputData(String name, Class<?> clazz, Object object) throws InvocationException {
     _inputDatas.put(name, new Data(name, clazz, object));
   }
 
-  protected void addOutputData(String name, Class<?> clazz, Object object) throws InvocationException {
+  public void addOutputData(String name, Class<?> clazz, Object object) throws InvocationException {
     _outputDatas.put(name, new Data(name, clazz, object));
   }
 
