@@ -8,24 +8,25 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.model.productionplan;
+package org.eclipse.egf.core.model.fprod;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.InvocationContextContainer;
-import org.eclipse.egf.model.productionplan.ProductionPlan;
-import org.eclipse.egf.model.productionplan.ProductionPlanFactory;
-import org.eclipse.egf.model.productionplan.Task;
-import org.eclipse.egf.model.productionplan.TaskInvocation;
+import org.eclipse.egf.model.fprod.FprodFactory;
+import org.eclipse.egf.model.fprod.FprodPackage;
+import org.eclipse.egf.model.fprod.ProductionPlan;
+import org.eclipse.egf.model.fprod.Task;
+import org.eclipse.egf.model.fprod.TaskContract;
+import org.eclipse.egf.model.fprod.TaskContractContainer;
+import org.eclipse.egf.model.fprod.TaskInvocation;
 import org.eclipse.egf.model.types.FloatType;
 import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
 import org.eclipse.egf.model.types.IntegerType;
@@ -33,65 +34,65 @@ import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.util.Diagnostician;
 
-public class ProductionPlanContextValidation extends TestCase {
+public class FprodContextValidation extends TestCase {
 
   public static Test suite() {
-    return new TestSuite(ProductionPlanContextValidation.class);
+    return new TestSuite(FprodContextValidation.class);
   }
 
   public void testInContextName() throws Exception {
 
     // Task Definition
 
-    Task task = ProductionPlanFactory.eINSTANCE.createTask();
-    task.setInvocationId("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
+    Task task = FprodFactory.eINSTANCE.createTask();
+    task.setValue("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
 
-    ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
-    task.eSet(FcorePackage.Literals.CONTRACT__CONTRACT_CONTAINER, contracts);
+    TaskContractContainer contracts = FprodFactory.eINSTANCE.createTaskContractContainer();
+    task.eSet(FprodPackage.Literals.TASK__ACTIVITY_CONTRACT_CONTAINER, contracts);
 
-    Contract quantity = FcoreFactory.eINSTANCE.createContract();
+    TaskContract quantity = FprodFactory.eINSTANCE.createTaskContract();
     quantity.setName("quantity"); //$NON-NLS-1$
     quantity.setMode(ContractMode.IN);
-    contracts.getContracts().add(quantity);
+    contracts.getActivityContracts().add(quantity);
 
     IntegerType quantityType = TypesFactory.eINSTANCE.createIntegerType();
     quantityType.setValue(100);
-    quantity.eSet(FcorePackage.Literals.CONTRACT__TYPE, quantityType);
+    quantity.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, quantityType);
 
-    Contract taskContractPrice = FcoreFactory.eINSTANCE.createContract();
+    TaskContract taskContractPrice = FprodFactory.eINSTANCE.createTaskContract();
     taskContractPrice.setName("price"); //$NON-NLS-1$
     taskContractPrice.setMode(ContractMode.IN);
-    contracts.getContracts().add(taskContractPrice);
+    contracts.getActivityContracts().add(taskContractPrice);
 
     FloatType taskContractPriceType = TypesFactory.eINSTANCE.createFloatType();
     taskContractPriceType.setValue(new Float("10.5")); //$NON-NLS-1$    
-    taskContractPrice.eSet(FcorePackage.Literals.CONTRACT__TYPE, taskContractPriceType);
+    taskContractPrice.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, taskContractPriceType);
 
-    Contract taskContractAmount = FcoreFactory.eINSTANCE.createContract();
+    TaskContract taskContractAmount = FprodFactory.eINSTANCE.createTaskContract();
     taskContractAmount.setName("amount"); //$NON-NLS-1$
     taskContractAmount.setMode(ContractMode.OUT);
-    contracts.getContracts().add(taskContractAmount);
+    contracts.getActivityContracts().add(taskContractAmount);
 
     FloatType taskContractAmountType = TypesFactory.eINSTANCE.createFloatType();
-    taskContractAmount.eSet(FcorePackage.Literals.CONTRACT__TYPE, taskContractAmountType);
+    taskContractAmount.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, taskContractAmountType);
 
-    Contract generatorAdapterFactory = FcoreFactory.eINSTANCE.createContract();
+    TaskContract generatorAdapterFactory = FprodFactory.eINSTANCE.createTaskContract();
     generatorAdapterFactory.setName("generatorAdapterFactory"); //$NON-NLS-1$
     generatorAdapterFactory.setMode(ContractMode.OUT);
-    contracts.getContracts().add(generatorAdapterFactory);
+    contracts.getActivityContracts().add(generatorAdapterFactory);
 
     GeneratorAdapterFactoryType generatorAdapterFactoryType = TypesFactory.eINSTANCE.createGeneratorAdapterFactoryType();
     generatorAdapterFactoryType.setValue("org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"); //$NON-NLS-1$
-    generatorAdapterFactory.eSet(FcorePackage.Literals.CONTRACT__TYPE, generatorAdapterFactoryType);
+    generatorAdapterFactory.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, generatorAdapterFactoryType);
 
     // Factory Component Definition
 
     FactoryComponent factoryComponent = FcoreFactory.eINSTANCE.createFactoryComponent();
 
-    ProductionPlan productionPlan = ProductionPlanFactory.eINSTANCE.createProductionPlan();
+    ProductionPlan productionPlan = FprodFactory.eINSTANCE.createProductionPlan();
     factoryComponent.eSet(FcorePackage.Literals.FACTORY_COMPONENT__ORCHESTRATION, productionPlan);
 
-    TaskInvocation taskInvocation = ProductionPlanFactory.eINSTANCE.createTaskInvocation();
+    TaskInvocation taskInvocation = FprodFactory.eINSTANCE.createTaskInvocation();
     productionPlan.getInvocations().add(taskInvocation);
 
     InvocationContextContainer contexts = FcoreFactory.eINSTANCE.createInvocationContextContainer();
@@ -124,55 +125,55 @@ public class ProductionPlanContextValidation extends TestCase {
 
     // Task Definition
 
-    Task task = ProductionPlanFactory.eINSTANCE.createTask();
-    task.setInvocationId("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
+    Task task = FprodFactory.eINSTANCE.createTask();
+    task.setValue("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
 
-    ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
-    task.eSet(FcorePackage.Literals.CONTRACT__CONTRACT_CONTAINER, contracts);
+    TaskContractContainer contracts = FprodFactory.eINSTANCE.createTaskContractContainer();
+    task.eSet(FprodPackage.Literals.TASK__ACTIVITY_CONTRACT_CONTAINER, contracts);
 
-    Contract taskContractquantity = FcoreFactory.eINSTANCE.createContract();
+    TaskContract taskContractquantity = FprodFactory.eINSTANCE.createTaskContract();
     taskContractquantity.setName("quantity"); //$NON-NLS-1$
     taskContractquantity.setMode(ContractMode.IN);
-    contracts.getContracts().add(taskContractquantity);
+    contracts.getActivityContracts().add(taskContractquantity);
 
     IntegerType taskContractQuantityType = TypesFactory.eINSTANCE.createIntegerType();
     taskContractQuantityType.setValue(100);
-    taskContractquantity.eSet(FcorePackage.Literals.CONTRACT__TYPE, taskContractQuantityType);
+    taskContractquantity.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, taskContractQuantityType);
 
-    Contract taskContractPrice = FcoreFactory.eINSTANCE.createContract();
+    TaskContract taskContractPrice = FprodFactory.eINSTANCE.createTaskContract();
     taskContractPrice.setName("price"); //$NON-NLS-1$
     taskContractPrice.setMode(ContractMode.IN);
-    contracts.getContracts().add(taskContractPrice);
+    contracts.getActivityContracts().add(taskContractPrice);
 
     FloatType taskContractPriceType = TypesFactory.eINSTANCE.createFloatType();
     taskContractPriceType.setValue(new Float("10.5")); //$NON-NLS-1$    
-    taskContractPrice.eSet(FcorePackage.Literals.CONTRACT__TYPE, taskContractPriceType);
+    taskContractPrice.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, taskContractPriceType);
 
-    Contract taskContractAmount = FcoreFactory.eINSTANCE.createContract();
+    TaskContract taskContractAmount = FprodFactory.eINSTANCE.createTaskContract();
     taskContractAmount.setName("amount"); //$NON-NLS-1$
     taskContractAmount.setMode(ContractMode.OUT);
-    contracts.getContracts().add(taskContractAmount);
+    contracts.getActivityContracts().add(taskContractAmount);
 
     FloatType taskContractAmountType = TypesFactory.eINSTANCE.createFloatType();
-    taskContractAmount.eSet(FcorePackage.Literals.CONTRACT__TYPE, taskContractAmountType);
+    taskContractAmount.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, taskContractAmountType);
 
-    Contract generatorAdapterFactory = FcoreFactory.eINSTANCE.createContract();
+    TaskContract generatorAdapterFactory = FprodFactory.eINSTANCE.createTaskContract();
     generatorAdapterFactory.setName("generatorAdapterFactory"); //$NON-NLS-1$
     generatorAdapterFactory.setMode(ContractMode.OUT);
-    contracts.getContracts().add(generatorAdapterFactory);
+    contracts.getActivityContracts().add(generatorAdapterFactory);
 
     GeneratorAdapterFactoryType generatorAdapterFactoryType = TypesFactory.eINSTANCE.createGeneratorAdapterFactoryType();
     generatorAdapterFactoryType.setValue("org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"); //$NON-NLS-1$
-    generatorAdapterFactory.eSet(FcorePackage.Literals.CONTRACT__TYPE, generatorAdapterFactoryType);
+    generatorAdapterFactory.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, generatorAdapterFactoryType);
 
     // Factory Component Definition
 
     FactoryComponent factoryComponent = FcoreFactory.eINSTANCE.createFactoryComponent();
 
-    ProductionPlan productionPlan = ProductionPlanFactory.eINSTANCE.createProductionPlan();
+    ProductionPlan productionPlan = FprodFactory.eINSTANCE.createProductionPlan();
     factoryComponent.eSet(FcorePackage.Literals.FACTORY_COMPONENT__ORCHESTRATION, productionPlan);
 
-    TaskInvocation taskInvocation = ProductionPlanFactory.eINSTANCE.createTaskInvocation();
+    TaskInvocation taskInvocation = FprodFactory.eINSTANCE.createTaskInvocation();
     productionPlan.getInvocations().add(taskInvocation);
 
     InvocationContextContainer contexts = FcoreFactory.eINSTANCE.createInvocationContextContainer();
