@@ -24,8 +24,6 @@ import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -61,22 +59,17 @@ public class OpenPatternDebugAction implements IObjectActionDelegate {
         try {
             IFile file = (IFile) selection.getFirstElement();
             URI uri = URIHelper.getPlatformURI(file.getFullPath());
-            ResourceSetImpl set = new ResourceSetImpl();
             TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.eclipse.egf.pattern.ui.editors.PatternEditingDomain");
 
-            // editingDomain.getResourceSet().getURIConverter().getURIMap().clear();
-            // editingDomain.getResourceSet().getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
-
             Resource res = editingDomain.getResourceSet().getResource(uri, true);
-            // Resource res1 = ResourceHelper.loadResource(set, uri);
 
             FactoryComponent fc = (FactoryComponent) res.getContents().get(0);
             PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
             PatternLibrary patternLibrary = pvp.getLibraries().get(0);
 
             Pattern pattern = (Pattern) patternLibrary.getElements().get(0);
-            URI uri2 = EcoreUtil.getURI(pattern);
-            PatternEditorInput input = new PatternEditorInput(res, uri2.fragment());
+            // URI uri2 = EcoreUtil.getURI(pattern);
+            PatternEditorInput input = new PatternEditorInput(res, pattern.getID());
 
             targetPart.getSite().getPage().openEditor(input, "org.eclipse.egf.pattern.ui.editors.PatternEditor");
         } catch (PartInitException e) {

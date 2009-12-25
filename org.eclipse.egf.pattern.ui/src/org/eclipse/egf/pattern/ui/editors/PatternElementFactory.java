@@ -16,6 +16,9 @@
 package org.eclipse.egf.pattern.ui.editors;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.IElementFactory;
 import org.eclipse.ui.IMemento;
 
@@ -26,9 +29,18 @@ import org.eclipse.ui.IMemento;
 public class PatternElementFactory implements IElementFactory {
 
     public IAdaptable createElement(IMemento memento) {
+        final String patternId = memento.getString(PatternEditorInput.PATTERN_ID);
+        final String resourceURI = memento.getString(PatternEditorInput.RESSOURCE_URI);
         // TODO charger la resource et trouver le bon pattern, toutes les info
         // sont dans le memento
-        return null;
+        URI uri = URI.createURI(resourceURI);
+        TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.eclipse.egf.pattern.ui.editors.PatternEditingDomain");
+
+        Resource res = editingDomain.getResourceSet().getResource(uri, true);
+        return new PatternEditorInput(res, patternId);
+        // final Pattern collect =
+        // PatternCollector.INSTANCE.collect(res.getContents(), patternId);
+        // return null;
     }
 
 }
