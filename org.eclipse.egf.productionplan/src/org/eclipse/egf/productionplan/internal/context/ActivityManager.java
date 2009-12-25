@@ -67,7 +67,7 @@ public abstract class ActivityManager<Q extends ProductionPlanInvocationManager<
       return;
     }
     // Get Context
-    ModelElementContext<T> productionContext = getProductionContext();
+    ModelElementContext<T> productionContext = (ModelElementContext<T>) getProductionContext();
     // Reset Context
     productionContext.reset();
     // Init Contracts

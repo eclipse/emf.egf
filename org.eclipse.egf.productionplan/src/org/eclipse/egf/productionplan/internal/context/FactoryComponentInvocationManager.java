@@ -13,6 +13,7 @@ package org.eclipse.egf.productionplan.internal.context;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.production.InvocationException;
+import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
 import org.eclipse.egf.productionplan.EGFProductionPlanPlugin;
 
@@ -28,11 +29,11 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
     super(parent, factoryComponentInvocation);
   }
 
-  public ModelElementContext<FactoryComponentInvocation> getProductionContext() {
-    if (_modelElementContext == null) {
-      _modelElementContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
+  public IProductionContext<FactoryComponentInvocation> getProductionContext() {
+    if (_productionContext == null) {
+      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
     }
-    return _modelElementContext;
+    return _productionContext;
   }
 
   public FactoryComponentManager getFactoryComponentManager() throws InvocationException {

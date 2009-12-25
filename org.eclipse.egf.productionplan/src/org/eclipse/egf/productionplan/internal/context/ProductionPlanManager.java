@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.production.InvocationException;
+import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlan;
@@ -42,11 +43,11 @@ public class ProductionPlanManager extends AbstractManager<FactoryComponentManag
     getProductionContext().reset();
   }
 
-  public ModelElementContext<ProductionPlan> getProductionContext() {
-    if (_modelElementContext == null) {
-      _modelElementContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
+  public IProductionContext<ProductionPlan> getProductionContext() {
+    if (_productionContext == null) {
+      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
     }
-    return _modelElementContext;
+    return _productionContext;
   }
 
   private Map<Invocation<?>, ProductionPlanInvocationManager<?, ?>> getProductionPlanManagers() throws InvocationException {

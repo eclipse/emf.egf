@@ -41,11 +41,11 @@ public class TaskManager extends ActivityManager<TaskInvocationManager, Task> {
     Assert.isNotNull(task.getInvocationId());
   }
 
-  public ModelElementContext<Task> getProductionContext() {
-    if (_modelElementContext == null) {
-      _modelElementContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
+  public IProductionContext<Task> getProductionContext() {
+    if (_productionContext == null) {
+      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
     }
-    return _modelElementContext;
+    return _productionContext;
   }
 
   public int getSteps() throws InvocationException {

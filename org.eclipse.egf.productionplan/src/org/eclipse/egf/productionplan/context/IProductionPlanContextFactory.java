@@ -10,8 +10,8 @@
  */
 package org.eclipse.egf.productionplan.context;
 
+import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.egf.productionplan.internal.context.ModelElementContext;
 
 /**
  * @author Xavier Maysonnave
@@ -19,6 +19,6 @@ import org.eclipse.egf.productionplan.internal.context.ModelElementContext;
  */
 public interface IProductionPlanContextFactory {
 
-  public <T extends ModelElement> ModelElementContext<T> createContext(T element);
+  public <T extends ModelElement> IProductionContext<T> createContext(T element);
 
 }

@@ -12,8 +12,8 @@ package org.eclipse.egf.productionplan.context;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.production.InvocationException;
+import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.egf.productionplan.internal.context.ModelElementContext;
 import org.osgi.framework.Bundle;
 
 /**
@@ -32,7 +32,7 @@ public interface IProductionPlanManager<Q extends IProductionPlanManager<?, ?>, 
 
   public Q getParent();
 
-  public ModelElementContext<T> getProductionContext();
+  public IProductionContext<T> getProductionContext();
 
   public Bundle getBundle() throws InvocationException;
 

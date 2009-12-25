@@ -36,7 +36,7 @@ public abstract class AbstractManager<Q extends AbstractManager<?, ?>, T extends
 
   private ProjectBundleSession _projectBundleSession;
 
-  protected ModelElementContext<T> _modelElementContext;
+  protected IProductionContext<T> _productionContext;
 
   protected IPlatformFcore _platformFcore;
 
