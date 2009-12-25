@@ -14,12 +14,27 @@ package org.eclipse.egf.model.fcore.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.preferences.IEGFModelConstants;
+import org.eclipse.egf.core.session.ProjectBundleSession;
+import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.emf.edit.ui.action.ControlAction;
 import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.emf.edit.ui.action.CreateSiblingAction;
@@ -38,6 +53,7 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.SubContributionItem;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -247,7 +263,57 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
   public FcoreActionBarContributor() {
     super(ADDITIONS_LAST_STYLE);
     loadResourceAction = new FcoreLoadResourceAction();
-    validateAction = new ValidateAction();
+    validateAction = new ValidateAction() {
+      /**
+       * This simply execute the command.
+       */
+      @Override
+      protected Diagnostic validate(IProgressMonitor progressMonitor) {
+        int selectionSize = selectedObjects.size();
+        int count = selectionSize;
+        for (EObject eObject : selectedObjects) {
+          for (Iterator<?> i = eObject.eAllContents(); i.hasNext(); i.next()) {
+            ++count;
+          }
+        }
+
+        progressMonitor.beginTask("", count); //$NON-NLS-1$
+
+        AdapterFactory adapterFactory = domain instanceof AdapterFactoryEditingDomain ? ((AdapterFactoryEditingDomain) domain).getAdapterFactory() : null;
+        Diagnostician diagnostician = createDiagnostician(adapterFactory, progressMonitor);
+
+        BasicDiagnostic diagnostic;
+        if (selectionSize == 1) {
+          diagnostic = diagnostician.createDefaultDiagnostic(selectedObjects.get(0));
+        } else {
+          diagnostic = new BasicDiagnostic(EObjectValidator.DIAGNOSTIC_SOURCE, 0, EMFEditUIPlugin.INSTANCE.getString("_UI_DiagnosisOfNObjects_message", new String[] { Integer.toString(selectionSize) }), //$NON-NLS-1$
+              selectedObjects.toArray());
+        }
+        Map<Object, Object> context = diagnostician.createDefaultContext();
+        // Preferences
+        IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
+        if (store.getBoolean(IEGFModelConstants.VALIDATE_TYPES)) {
+          context.put(IEGFModelConstants.VALIDATE_TYPES, Boolean.TRUE);
+        } else {
+          context.put(IEGFModelConstants.VALIDATE_TYPES, Boolean.FALSE);
+        }
+        // Bundle Session
+        ProjectBundleSession session = new ProjectBundleSession(EGFModelsEditorPlugin.getPlugin().getBundle().getBundleContext());
+        context.put(ProjectBundleSession.PROJECT_BUNDLE_SESSION, session);
+        for (EObject eObject : selectedObjects) {
+          progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[] { diagnostician.getObjectLabel(eObject) })); //$NON-NLS-1$
+          diagnostician.validate(eObject, diagnostic, context);
+        }
+        // Dispose Session
+        try {
+          session.dispose();
+        } catch (CoreException ce) {
+          EGFModelsEditorPlugin.getPlugin().logError(ce);
+        }
+        return diagnostic;
+      }
+
+    };
     controlAction = new ControlAction();
   }
 
