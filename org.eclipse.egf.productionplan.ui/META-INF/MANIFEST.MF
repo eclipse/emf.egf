@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.productionplan.ui;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.productionplan.ui.ProductionPlanUIPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.ui,
+ org.eclipse.egf.common.ui,
+ org.eclipse.egf.core.ui,
+ org.eclipse.egf.productionplan
+Bundle-ActivationPolicy: lazy
