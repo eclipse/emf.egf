@@ -25,8 +25,6 @@ public class Messages extends NLS {
 
     public static String translation_job_label;
 
-    public static String strategy_error1;
-
     // Initializer
     public static String initializer_error1;
     public static String initializer_error2;
@@ -73,6 +71,11 @@ public class Messages extends NLS {
     // epackage registry
     public static String registration_error2;
     public static String registration_error1;
+
+    // strategies
+    public static String strategy_error3;
+    public static String strategy_error2;
+    public static String strategy_error1;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.PatternMessages";//$NON-NLS-1$
     static {
