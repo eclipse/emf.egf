@@ -140,13 +140,14 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
     String label = ((Contract) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_Contract_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_Contract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    return label == null || label.length() == 0 ? "[" + ((Contract) object).getMode().getLiteral() + " " + getString("_UI_Contract_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        label + " [" + ((Contract) object).getMode().getLiteral() + " " + getString("_UI_Contract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
   }
 
   /**
