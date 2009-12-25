@@ -8,12 +8,12 @@
         mode="Out" contexts="#_IDAaML-2Ed6E7J0w9U7NFQ">
       <type xmi:type="types:FloatType" xmi:id="_MZ2CIb-3Ed61q9pxr2iF9w" value="100.0"/>
     </contracts>
-    <contracts xmi:id="_4Ke4AcGGEd6J9q_tyBw-Jw" name="price" invocationContexts="#_GpyuQb_nEd6gHIEE-OJ_Mw">
-      <type xmi:type="types:FloatType" xmi:id="_QoSqsMGHEd6J9q_tyBw-Jw"/>
-    </contracts>
     <contracts xmi:id="_VCrLUMGHEd6J9q_tyBw-Jw" name="generatorAdapterFactory" invocationContexts="#_OFjvMcE6Ed6V0bQCG8R7ug"
         mode="Out">
       <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="_VssYsMGHEd6J9q_tyBw-Jw"/>
+    </contracts>
+    <contracts xmi:id="_1SUNMcLoEd6YQfrk65kDFw" name="price" invocationContexts="#_GpyuQb_nEd6gHIEE-OJ_Mw">
+      <type xmi:type="types:FloatType" xmi:id="_BV5T0MLpEd6YQfrk65kDFw" value="11.0"/>
     </contracts>
   </contractContainer>
   <orchestration xmi:type="productionplan:ProductionPlan" xmi:id="4w2VoabFEd692t-PG4ogiQ">
@@ -23,7 +23,7 @@
         <invocationContexts xmi:id="_IDAaML-2Ed6E7J0w9U7NFQ" name="amount" exposedContract="#_S7e_oL-2Ed6E7J0w9U7NFQ"
             activityContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"
             targetContract="#_S7e_oL-2Ed6E7J0w9U7NFQ" sourceContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"/>
-        <invocationContexts xmi:id="_GpyuQb_nEd6gHIEE-OJ_Mw" name="price" exposedContract="#_4Ke4AcGGEd6J9q_tyBw-Jw"
+        <invocationContexts xmi:id="_GpyuQb_nEd6gHIEE-OJ_Mw" name="price" exposedContract="#_1SUNMcLoEd6YQfrk65kDFw"
             activityContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_xfSXELpOEd6O-6ob3O13Lw"/>
         <invocationContexts xmi:id="_OFjvMcE6Ed6V0bQCG8R7ug" name="generatorAdapterFactory"
             exposedContract="#_VCrLUMGHEd6J9q_tyBw-Jw" activityContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_PFOYwbshEd6hlL3ru-eQtQ"/>
