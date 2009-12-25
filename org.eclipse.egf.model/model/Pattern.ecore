@@ -70,6 +70,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterMatching" upperBound="-1"
         eType="#//Paramerter2ParameterMap" containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SuperPatternCall" eSuperTypes="#//AbstractPatternCall"/>
   <eClassifiers xsi:type="ecore:EClass" name="Paramerter2ParameterMap" instanceClassName="java.util.Map$Entry">
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//PatternParameter"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="key" eType="#//PatternParameter"

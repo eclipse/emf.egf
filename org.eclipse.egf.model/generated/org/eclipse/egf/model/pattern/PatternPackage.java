@@ -632,7 +632,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getCall()
      * @generated
      */
-    int CALL = 10;
+    int CALL = 11;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' container reference.
@@ -660,7 +660,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getAbstractPatternCall()
      * @generated
      */
-    int ABSTRACT_PATTERN_CALL = 13;
+    int ABSTRACT_PATTERN_CALL = 14;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' container reference.
@@ -736,6 +736,43 @@ public interface PatternPackage extends EPackage {
     int PATTERN_CALL_FEATURE_COUNT = ABSTRACT_PATTERN_CALL_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.SuperPatternCallImpl <em>Super Pattern Call</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.SuperPatternCallImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getSuperPatternCall()
+     * @generated
+     */
+    int SUPER_PATTERN_CALL = 9;
+
+    /**
+     * The feature id for the '<em><b>Pattern</b></em>' container reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUPER_PATTERN_CALL__PATTERN = ABSTRACT_PATTERN_CALL__PATTERN;
+
+    /**
+     * The feature id for the '<em><b>Called</b></em>' reference.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUPER_PATTERN_CALL__CALLED = ABSTRACT_PATTERN_CALL__CALLED;
+
+    /**
+     * The number of structural features of the '<em>Super Pattern Call</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int SUPER_PATTERN_CALL_FEATURE_COUNT = ABSTRACT_PATTERN_CALL_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl <em>Paramerter2 Parameter Map</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -743,7 +780,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getParamerter2ParameterMap()
      * @generated
      */
-    int PARAMERTER2_PARAMETER_MAP = 9;
+    int PARAMERTER2_PARAMETER_MAP = 10;
 
     /**
      * The feature id for the '<em><b>Value</b></em>' reference.
@@ -780,7 +817,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getMethodCall()
      * @generated
      */
-    int METHOD_CALL = 11;
+    int METHOD_CALL = 12;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' container reference.
@@ -817,7 +854,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternVariable()
      * @generated
      */
-    int PATTERN_VARIABLE = 12;
+    int PATTERN_VARIABLE = 13;
 
     /**
      * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -872,7 +909,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternInjectedCall()
      * @generated
      */
-    int PATTERN_INJECTED_CALL = 14;
+    int PATTERN_INJECTED_CALL = 15;
 
     /**
      * The feature id for the '<em><b>Pattern</b></em>' container reference.
@@ -918,7 +955,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getQuery()
      * @generated
      */
-    int QUERY = 15;
+    int QUERY = 16;
 
     /**
      * The feature id for the '<em><b>Parameter</b></em>' container reference.
@@ -955,7 +992,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getBasicQuery()
      * @generated
      */
-    int BASIC_QUERY = 16;
+    int BASIC_QUERY = 17;
 
     /**
      * The feature id for the '<em><b>Parameter</b></em>' container reference.
@@ -992,7 +1029,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getStringQuery()
      * @generated
      */
-    int STRING_QUERY = 17;
+    int STRING_QUERY = 18;
 
     /**
      * The feature id for the '<em><b>Parameter</b></em>' container reference.
@@ -1029,7 +1066,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getCustomQuery()
      * @generated
      */
-    int CUSTOM_QUERY = 18;
+    int CUSTOM_QUERY = 19;
 
     /**
      * The feature id for the '<em><b>Parameter</b></em>' container reference.
@@ -1066,7 +1103,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getString2PatternList()
      * @generated
      */
-    int STRING2_PATTERN_LIST = 19;
+    int STRING2_PATTERN_LIST = 20;
 
     /**
      * The feature id for the '<em><b>Key</b></em>' attribute.
@@ -1103,7 +1140,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
      */
-    int PATTERN_CONTEXT = 20;
+    int PATTERN_CONTEXT = 21;
 
     /**
      * The meta object id for the '<em>Exception</em>' data type.
@@ -1113,7 +1150,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated
      */
-    int PATTERN_EXCEPTION = 21;
+    int PATTERN_EXCEPTION = 22;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -1413,6 +1450,16 @@ public interface PatternPackage extends EPackage {
      * @generated
      */
     EReference getPatternCall_ParameterMatching();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.SuperPatternCall <em>Super Pattern Call</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Super Pattern Call</em>'.
+     * @see org.eclipse.egf.model.pattern.SuperPatternCall
+     * @generated
+     */
+    EClass getSuperPatternCall();
 
     /**
      * Returns the meta object for class '{@link java.util.Map.Entry <em>Paramerter2 Parameter Map</em>}'.
@@ -1935,6 +1982,16 @@ public interface PatternPackage extends EPackage {
          * @generated
          */
         EReference PATTERN_CALL__PARAMETER_MATCHING = eINSTANCE.getPatternCall_ParameterMatching();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.SuperPatternCallImpl <em>Super Pattern Call</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.SuperPatternCallImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getSuperPatternCall()
+         * @generated
+         */
+        EClass SUPER_PATTERN_CALL = eINSTANCE.getSuperPatternCall();
 
         /**
          * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl <em>Paramerter2 Parameter Map</em>}' class.

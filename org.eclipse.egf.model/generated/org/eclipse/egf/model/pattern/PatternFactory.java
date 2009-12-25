@@ -86,6 +86,15 @@ public interface PatternFactory extends EFactory {
     PatternCall createPatternCall();
 
     /**
+     * Returns a new object of class '<em>Super Pattern Call</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Super Pattern Call</em>'.
+     * @generated
+     */
+    SuperPatternCall createSuperPatternCall();
+
+    /**
      * Returns a new object of class '<em>Method Call</em>'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

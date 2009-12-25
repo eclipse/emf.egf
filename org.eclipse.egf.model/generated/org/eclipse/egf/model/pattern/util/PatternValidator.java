@@ -177,6 +177,8 @@ public class PatternValidator extends EObjectValidator {
             return validatePatternNature((PatternNature) value, diagnostics, context);
         case PatternPackage.PATTERN_CALL:
             return validatePatternCall((PatternCall) value, diagnostics, context);
+        case PatternPackage.SUPER_PATTERN_CALL:
+            return validateSuperPatternCall((SuperPatternCall) value, diagnostics, context);
         case PatternPackage.PARAMERTER2_PARAMETER_MAP:
             return validateParamerter2ParameterMap((Map.Entry<?, ?>) value, diagnostics, context);
         case PatternPackage.CALL:
@@ -331,6 +333,15 @@ public class PatternValidator extends EObjectValidator {
      */
     public boolean validatePatternCall(PatternCall patternCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(patternCall, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateSuperPatternCall(SuperPatternCall superPatternCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(superPatternCall, diagnostics, context);
     }
 
     /**

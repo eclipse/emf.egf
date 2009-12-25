@@ -200,6 +200,17 @@ public class PatternSwitch<T> {
                 result = defaultCase(theEObject);
             return result;
         }
+        case PatternPackage.SUPER_PATTERN_CALL: {
+            SuperPatternCall superPatternCall = (SuperPatternCall) theEObject;
+            T result = caseSuperPatternCall(superPatternCall);
+            if (result == null)
+                result = caseAbstractPatternCall(superPatternCall);
+            if (result == null)
+                result = caseCall(superPatternCall);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
         case PatternPackage.PARAMERTER2_PARAMETER_MAP: {
             @SuppressWarnings("unchecked")
             Map.Entry<PatternParameter, PatternParameter> paramerter2ParameterMap = (Map.Entry<PatternParameter, PatternParameter>) theEObject;
@@ -432,6 +443,21 @@ public class PatternSwitch<T> {
      * @generated
      */
     public T casePatternCall(PatternCall object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Super Pattern Call</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Super Pattern Call</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseSuperPatternCall(SuperPatternCall object) {
         return null;
     }
 

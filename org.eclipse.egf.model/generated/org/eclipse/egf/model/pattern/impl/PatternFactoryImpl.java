@@ -92,6 +92,8 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
             return createPatternViewpoint();
         case PatternPackage.PATTERN_CALL:
             return createPatternCall();
+        case PatternPackage.SUPER_PATTERN_CALL:
+            return createSuperPatternCall();
         case PatternPackage.PARAMERTER2_PARAMETER_MAP:
             return (EObject) createParamerter2ParameterMap();
         case PatternPackage.METHOD_CALL:
@@ -197,6 +199,16 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     public PatternCall createPatternCall() {
         PatternCallImpl patternCall = new PatternCallImpl();
         return patternCall;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public SuperPatternCall createSuperPatternCall() {
+        SuperPatternCallImpl superPatternCall = new SuperPatternCallImpl();
+        return superPatternCall;
     }
 
     /**

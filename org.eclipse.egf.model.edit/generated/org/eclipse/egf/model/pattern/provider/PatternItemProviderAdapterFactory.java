@@ -239,6 +239,29 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.SuperPatternCall} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected SuperPatternCallItemProvider superPatternCallItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.SuperPatternCall}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createSuperPatternCallAdapter() {
+        if (superPatternCallItemProvider == null) {
+            superPatternCallItemProvider = new SuperPatternCallItemProvider(this);
+        }
+
+        return superPatternCallItemProvider;
+    }
+
+    /**
      * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -533,6 +556,8 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             patternViewpointItemProvider.dispose();
         if (patternCallItemProvider != null)
             patternCallItemProvider.dispose();
+        if (superPatternCallItemProvider != null)
+            superPatternCallItemProvider.dispose();
         if (paramerter2ParameterMapItemProvider != null)
             paramerter2ParameterMapItemProvider.dispose();
         if (methodCallItemProvider != null)

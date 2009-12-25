@@ -37,6 +37,7 @@ import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.model.pattern.StringQuery;
+import org.eclipse.egf.model.pattern.SuperPatternCall;
 import org.eclipse.egf.model.pattern.util.PatternValidator;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -108,6 +109,13 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * @generated
      */
     private EClass patternCallEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass superPatternCallEClass = null;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -487,6 +495,15 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getSuperPatternCall() {
+        return superPatternCallEClass;
+    }
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
@@ -747,6 +764,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         patternCallEClass = createEClass(PATTERN_CALL);
         createEReference(patternCallEClass, PATTERN_CALL__PARAMETER_MATCHING);
 
+        superPatternCallEClass = createEClass(SUPER_PATTERN_CALL);
+
         paramerter2ParameterMapEClass = createEClass(PARAMERTER2_PARAMETER_MAP);
         createEReference(paramerter2ParameterMapEClass, PARAMERTER2_PARAMETER_MAP__VALUE);
         createEReference(paramerter2ParameterMapEClass, PARAMERTER2_PARAMETER_MAP__KEY);
@@ -826,6 +845,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         patternViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
         patternNatureEClass.getESuperTypes().add(theFcorePackage.getModelElement());
         patternCallEClass.getESuperTypes().add(this.getAbstractPatternCall());
+        superPatternCallEClass.getESuperTypes().add(this.getAbstractPatternCall());
         methodCallEClass.getESuperTypes().add(this.getCall());
         patternVariableEClass.getESuperTypes().add(theFcorePackage.getModelElement());
         abstractPatternCallEClass.getESuperTypes().add(this.getCall());
@@ -883,6 +903,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
         initEClass(patternCallEClass, PatternCall.class, "PatternCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getPatternCall_ParameterMatching(), this.getParamerter2ParameterMap(), null, "parameterMatching", null, 0, -1, PatternCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        initEClass(superPatternCallEClass, SuperPatternCall.class, "SuperPatternCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
         initEClass(paramerter2ParameterMapEClass, Map.Entry.class, "Paramerter2ParameterMap", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getParamerter2ParameterMap_Value(), this.getPatternParameter(), null, "value", null, 0, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

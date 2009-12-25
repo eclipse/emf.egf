@@ -145,6 +145,11 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
+        public Adapter caseSuperPatternCall(SuperPatternCall object) {
+            return createSuperPatternCallAdapter();
+        }
+
+        @Override
         public Adapter caseParamerter2ParameterMap(Map.Entry<PatternParameter, PatternParameter> object) {
             return createParamerter2ParameterMapAdapter();
         }
@@ -369,6 +374,20 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createPatternCallAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.SuperPatternCall <em>Super Pattern Call</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.SuperPatternCall
+     * @generated
+     */
+    public Adapter createSuperPatternCallAdapter() {
         return null;
     }
 
