@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.context.IProductionContext;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
-import org.eclipse.egf.core.loader.WorkspaceAndPluginClassLoader;
+import org.eclipse.egf.core.loader.ProjectClassLoader;
 import org.eclipse.egf.core.task.IPlatformTask;
 import org.eclipse.egf.core.task.IProductionTask;
 import org.eclipse.egf.core.task.ITaskRunner;
@@ -61,7 +61,7 @@ public class TaskRunner implements ITaskRunner {
     // Load Class
     Class<?> clazz = null;
     try {
-      clazz = new WorkspaceAndPluginClassLoader(_platformTask.getPlatformBundle()).loadClass(_platformTask.getClazz());
+      clazz = new ProjectClassLoader(_platformTask.getPlatformBundle()).loadClass(_platformTask.getClazz());
     } catch (ClassNotFoundException cnfe) {
       throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _platformTask.getId()), cnfe));
     }

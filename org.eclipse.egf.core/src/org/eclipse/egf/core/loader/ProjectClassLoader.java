@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
  */
-
 package org.eclipse.egf.core.loader;
 
 import java.net.MalformedURLException;
@@ -38,13 +35,13 @@ import org.osgi.framework.Bundle;
  * @author Guiu
  * 
  */
-public class WorkspaceAndPluginClassLoader extends ClassLoader {
+public class ProjectClassLoader extends ClassLoader {
 
   private final IPlatformBundle _platformBundle;
 
   private final ProjectClassLoaderRegistry _registry = new ProjectClassLoaderRegistry();
 
-  public WorkspaceAndPluginClassLoader(IPlatformBundle platformBundle) {
+  public ProjectClassLoader(IPlatformBundle platformBundle) {
     _platformBundle = platformBundle;
   }
 
