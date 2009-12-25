@@ -41,4 +41,15 @@ public class EGFCoreMessages {
 
   public static String URLBundleProjectClassLoader_errorClasspath;
 
+  public static String ProjectBundleSession_IllegalBundleState;
+  public static String ProjectBundleSession_InstallationFailure;
+  public static String ProjectBundleSession_BundleClassInstantiationFailure;
+  public static String ProjectBundleSession_UninstallationFailure;
+  public static String ProjectBundleSession_LoadFailure;
+  public static String ProjectBundleSession_AnalysingFailure;
+  public static String ProjectBundleSession_URLFailure;
+  public static String ProjectBundleSession_StoppingFailure;
+
+  public static String Production_Unknown_Bundle;
+
 }
