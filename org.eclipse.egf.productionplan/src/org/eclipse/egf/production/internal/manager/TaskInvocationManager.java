@@ -8,37 +8,46 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.productionplan.internal.manager;
+package org.eclipse.egf.production.internal.manager;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.productionplan.TaskInvocation;
+import org.eclipse.egf.productionplan.EGFProductionPlanPlugin;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class TaskInvocationManager extends ProductionPlanInvocationManager {
+public class TaskInvocationManager extends ProductionPlanInvocationManager<ProductionPlanManager, TaskInvocation> {
 
-  public TaskInvocationManager(TaskInvocation taskInvocation) {
-    super(taskInvocation);
+  private TaskManager _taskManager;
+
+  public TaskInvocationManager(ProductionPlanManager parent, TaskInvocation taskInvocation) throws InvocationException {
+    super(parent, taskInvocation);
   }
 
-  public TaskInvocationManager(IProductionContext productionContext, TaskInvocation taskInvocation) {
-    super(productionContext, taskInvocation);
-  }
-
-  protected TaskInvocation getTaskInvocation() {
-    return (TaskInvocation) getProductionPlanInvocation();
-  }
-
-  public TaskManager getTaskManager() {
-    if (getTaskInvocation().getTask() != null) {
-      return new TaskManager(getProductionContext(), getTaskInvocation().getTask());
+  public IProductionContext<TaskInvocation> getProductionContext() {
+    if (_productionContext == null) {
+      _productionContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createContext(getElement());
     }
-    return null;
+    return _productionContext;
+  }
+
+  public TaskManager getTaskManager() throws InvocationException {
+    if (_taskManager == null && getElement().getActivity() != null) {
+      _taskManager = new TaskManager(this, getElement().getActivity());
+    }
+    return _taskManager;
+  }
+
+  public int getSteps() throws InvocationException {
+    if (getTaskManager() != null) {
+      return getTaskManager().getSteps();
+    }
+    return 0;
   }
 
   @Override

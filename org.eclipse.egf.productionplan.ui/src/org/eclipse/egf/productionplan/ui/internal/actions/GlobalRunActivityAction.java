@@ -18,25 +18,26 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.diagnostic.DiagnosticHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.productionplan.Task;
 import org.eclipse.egf.productionplan.EGFProductionPlanPlugin;
 import org.eclipse.egf.productionplan.manager.IProductionPlanManager;
-import org.eclipse.egf.productionplan.manager.TickManager;
 import org.eclipse.egf.productionplan.ui.ProductionPlanUIPlugin;
 import org.eclipse.egf.productionplan.ui.internal.ui.ProductionPlanUIImages;
 import org.eclipse.egf.productionplan.ui.l10n.ProductionPlanUIMessages;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -63,7 +64,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
   }
 
   @Override
-  public void runWithEvent(Event e) {
+  public void runWithEvent(Event event) {
 
     FcoreSelectionDialog dialog = new FcoreSelectionDialog(ProductionPlanUIPlugin.getActiveWorkbenchShell(), false);
     dialog.setTitle(ProductionPlanUIMessages.GlobalRunActivityAction_dialogTitle);
@@ -94,7 +95,8 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         Activity activity = null;
         // Load Resource
         try {
-          Resource resource = ResourceHelper.loadResource(new ResourceSetImpl(), ((IPlatformFcore) fcores[0]).getURI());
+          ResourceSet resourceSet = new ResourceSetImpl();
+          Resource resource = ResourceHelper.loadResource(resourceSet, ((IPlatformFcore) fcores[0]).getURI());
           EObject eObject = resource.getContents().get(0);
           if (eObject instanceof Activity == false) {
             return Status.OK_STATUS;
@@ -103,14 +105,29 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         } catch (Throwable t) {
           throw new CoreException(ProductionPlanUIPlugin.getDefault().newStatus(IStatus.ERROR, "GlobalRunActivityAction.runWithEvent(..) _", t)); //$NON-NLS-1$
         }
-        IProductionContext rootContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createProductionPlanContext(activity);
-        IProductionPlanManager production = EGFProductionPlanPlugin.getProductionPlanActivityFactory().createProductionPlanManager(rootContext, activity);
-        int ticks = TickManager.getTicks(activity);
-        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, rootContext.getName()), (900 * ticks) + 100);
+        IProductionPlanManager<?, ?> production = null;
+        int ticks = 0;
+        try {
+          if (activity instanceof FactoryComponent) {
+            production = EGFProductionPlanPlugin.getProductionPlanManagerFactory().createProductionManager((FactoryComponent) activity);
+          } else if (activity instanceof Task) {
+            production = EGFProductionPlanPlugin.getProductionPlanManagerFactory().createProductionManager((Task) activity);
+          } else {
+            return Status.OK_STATUS;
+          }
+          ticks = production.getSteps();
+        } catch (InvocationException ie) {
+          if (ie.getCause() instanceof CoreException) {
+            throw (CoreException) ie.getCause();
+          }
+          invocationException[0] = ie;
+          return Status.OK_STATUS;
+        }
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, production.getName()), (900 * ticks) + 100);
         try {
           try {
             if (ProductionPlanUIPlugin.getDefault().isDebugging()) {
-              ProductionPlanUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EcoreUtil.getURI(activity).toString(), ticks)); //$NON-NLS-1$
+              ProductionPlanUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", activity.getExternalName(), ticks)); //$NON-NLS-1$
             }
             production.invoke(subMonitor.newChild(900 * ticks, SubMonitor.SUPPRESS_NONE));
             if (monitor.isCanceled()) {
@@ -121,9 +138,10 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
               throw (CoreException) ie.getCause();
             }
             invocationException[0] = ie;
+          } catch (Throwable t) {
+            throw new CoreException(ProductionPlanUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
           }
         } finally {
-          rootContext.dispose();
           subMonitor.done();
         }
         return Status.OK_STATUS;

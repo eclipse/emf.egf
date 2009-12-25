@@ -1,10 +1,12 @@
 package org.eclipse.egf.productionplan;
 
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
+import org.eclipse.egf.production.internal.context.ProductionPlanContextFactory;
+import org.eclipse.egf.production.internal.manager.ProductionPlanFactory;
 import org.eclipse.egf.productionplan.context.IProductionPlanContextFactory;
-import org.eclipse.egf.productionplan.internal.context.ProductionPlanContextFactory;
-import org.eclipse.egf.productionplan.internal.manager.ProductionPlanActivityFactory;
-import org.eclipse.egf.productionplan.manager.IProductionPlanActivityFactory;
+import org.eclipse.egf.productionplan.internal.task.ProductionPlanTaskInvocationFactory;
+import org.eclipse.egf.productionplan.manager.IProductionPlanManagerFactory;
+import org.eclipse.egf.productionplan.task.IProductionPlanTaskInvocationFactory;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -25,7 +27,12 @@ public class EGFProductionPlanPlugin extends EGFAbstractPlugin {
   /**
    * IProductionPlanActivityFactory singleton.
    */
-  private static IProductionPlanActivityFactory __productionPlanActivityFactory;
+  private static IProductionPlanManagerFactory __productionPlanManagerFactory;
+
+  /**
+   * IProductionPlanTaskInvocationFactory singleton.
+   */
+  private static IProductionPlanTaskInvocationFactory __productionPlanTaskInvocationFactory;
 
   /**
    * (non-Javadoc)
@@ -51,15 +58,27 @@ public class EGFProductionPlanPlugin extends EGFAbstractPlugin {
   }
 
   /**
-   * Returns the singleton instance of the IProductionPlanActivityFactory.
+   * Returns the singleton instance of the IProductionPlanManagerFactory.
    * 
-   * @return the singleton production plan context factory.
+   * @return the singleton production plan manager factory.
    */
-  public static IProductionPlanActivityFactory getProductionPlanActivityFactory() {
-    if (__productionPlanActivityFactory == null) {
-      __productionPlanActivityFactory = new ProductionPlanActivityFactory();
+  public static IProductionPlanManagerFactory getProductionPlanManagerFactory() {
+    if (__productionPlanManagerFactory == null) {
+      __productionPlanManagerFactory = new ProductionPlanFactory();
     }
-    return __productionPlanActivityFactory;
+    return __productionPlanManagerFactory;
+  }
+
+  /**
+   * Returns the singleton instance of the IProductionPlanTaskInvocationFactory.
+   * 
+   * @return the singleton task runner factory.
+   */
+  public static IProductionPlanTaskInvocationFactory getProductionPlanTaskInvocationFactory() {
+    if (__productionPlanTaskInvocationFactory == null) {
+      __productionPlanTaskInvocationFactory = new ProductionPlanTaskInvocationFactory();
+    }
+    return __productionPlanTaskInvocationFactory;
   }
 
   /**

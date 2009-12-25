@@ -11,9 +11,11 @@
 package org.eclipse.egf.productionplan.context;
 
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlan;
-import org.eclipse.egf.model.productionplan.ProductionPlanInvocation;
+import org.eclipse.egf.model.productionplan.Task;
+import org.eclipse.egf.model.productionplan.TaskInvocation;
 
 /**
  * @author Xavier Maysonnave
@@ -21,16 +23,14 @@ import org.eclipse.egf.model.productionplan.ProductionPlanInvocation;
  */
 public interface IProductionPlanContextFactory {
 
-  public IProductionContext createProductionPlanContext(IProductionContext parent, Activity activity);
+  public IProductionContext<FactoryComponent> createContext(FactoryComponent factoryComponent);
 
-  public IProductionContext createProductionPlanContext(Activity activity);
+  public IProductionContext<Task> createContext(Task task);
 
-  public IProductionContext createProductionPlanContext(IProductionContext parent, ProductionPlan productionPlan);
+  public IProductionContext<ProductionPlan> createContext(ProductionPlan productionPlan);
 
-  public IProductionContext createProductionPlanContext(ProductionPlan productionPlan);
+  public IProductionContext<FactoryComponentInvocation> createContext(FactoryComponentInvocation factoryComponentInvocation);
 
-  public IProductionContext createProductionPlanContext(IProductionContext parent, ProductionPlanInvocation invocation);
-
-  public IProductionContext createProductionPlanContext(ProductionPlanInvocation invocation);
+  public IProductionContext<TaskInvocation> createContext(TaskInvocation taskInvocation);
 
 }

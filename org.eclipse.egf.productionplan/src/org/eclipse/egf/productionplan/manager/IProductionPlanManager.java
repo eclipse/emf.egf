@@ -13,14 +13,28 @@ package org.eclipse.egf.productionplan.manager;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
+import org.eclipse.egf.model.fcore.ModelElement;
+import org.osgi.framework.Bundle;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IProductionPlanManager {
+public interface IProductionPlanManager<Q extends IProductionPlanManager<?, ?>, T extends ModelElement> {
 
-  public IProductionContext getProductionContext();
+  public String getName();
+
+  public void reset() throws InvocationException;
+
+  public int getSteps() throws InvocationException;
+
+  public T getElement();
+
+  public Q getParent();
+
+  public IProductionContext<T> getProductionContext();
+
+  public Bundle getBundle() throws InvocationException;
 
   public void invoke(IProgressMonitor monitor) throws InvocationException;
 

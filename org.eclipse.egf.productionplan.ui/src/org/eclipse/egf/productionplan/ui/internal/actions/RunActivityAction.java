@@ -22,18 +22,21 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.diagnostic.DiagnosticHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.helper.EObjectHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.production.InvocationException;
-import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.productionplan.Task;
 import org.eclipse.egf.productionplan.EGFProductionPlanPlugin;
 import org.eclipse.egf.productionplan.manager.IProductionPlanManager;
-import org.eclipse.egf.productionplan.manager.TickManager;
 import org.eclipse.egf.productionplan.ui.ProductionPlanUIPlugin;
 import org.eclipse.egf.productionplan.ui.l10n.ProductionPlanUIMessages;
-import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -51,6 +54,8 @@ public class RunActivityAction implements IObjectActionDelegate {
       return;
     }
 
+    ResourceSet resourceSet = new ResourceSetImpl();
+    final Activity activity = (Activity) EObjectHelper.loadEObject(resourceSet, _activity);
     final InvocationException[] invocationException = new InvocationException[1];
 
     // run activity
@@ -63,14 +68,29 @@ public class RunActivityAction implements IObjectActionDelegate {
 
       @Override
       public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-        IProductionContext rootContext = EGFProductionPlanPlugin.getProductionPlanContextFactory().createProductionPlanContext(_activity);
-        IProductionPlanManager production = EGFProductionPlanPlugin.getProductionPlanActivityFactory().createProductionPlanManager(rootContext, _activity);
-        int ticks = TickManager.getTicks(_activity);
-        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, rootContext.getName()), (900 * ticks) + 100);
+        IProductionPlanManager<?, ?> production = null;
+        int ticks = 0;
+        try {
+          if (activity instanceof FactoryComponent) {
+            production = EGFProductionPlanPlugin.getProductionPlanManagerFactory().createProductionManager((FactoryComponent) activity);
+          } else if (activity instanceof Task) {
+            production = EGFProductionPlanPlugin.getProductionPlanManagerFactory().createProductionManager((Task) activity);
+          } else {
+            return Status.OK_STATUS;
+          }
+          ticks = production.getSteps();
+        } catch (InvocationException ie) {
+          if (ie.getCause() instanceof CoreException) {
+            throw (CoreException) ie.getCause();
+          }
+          invocationException[0] = ie;
+          return Status.OK_STATUS;
+        }
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, production.getName()), (900 * ticks) + 100);
         try {
           try {
             if (ProductionPlanUIPlugin.getDefault().isDebugging()) {
-              ProductionPlanUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EcoreUtil.getURI(_activity).toString(), ticks)); //$NON-NLS-1$
+              ProductionPlanUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", _activity.getExternalName(), ticks)); //$NON-NLS-1$
             }
             production.invoke(subMonitor.newChild(900 * ticks, SubMonitor.SUPPRESS_NONE));
             if (monitor.isCanceled()) {
@@ -81,9 +101,10 @@ public class RunActivityAction implements IObjectActionDelegate {
               throw (CoreException) ie.getCause();
             }
             invocationException[0] = ie;
+          } catch (Throwable t) {
+            throw new CoreException(ProductionPlanUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
           }
         } finally {
-          rootContext.dispose();
           subMonitor.done();
         }
         return Status.OK_STATUS;
