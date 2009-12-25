@@ -15,12 +15,21 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.log.IEGFLogger;
 import org.eclipse.emf.common.ui.EclipseUIPlugin;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
 public class EGFEclipseUIPlugin extends EclipseUIPlugin {
+
+  /**
+   * Returns the workbench display to be used.
+   */
+  public static Display getWorkbenchDisplay() {
+    return PlatformUI.getWorkbench().getDisplay();
+  }
 
   /**
    * Log Object
