@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.productionplan.util;
 
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
@@ -96,6 +97,11 @@ public class ProductionPlanAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
+    public Adapter caseTask(Task object) {
+      return createTaskAdapter();
+    }
+
+    @Override
     public Adapter caseTaskInvocation(TaskInvocation object) {
       return createTaskInvocationAdapter();
     }
@@ -113,6 +119,11 @@ public class ProductionPlanAdapterFactory extends AdapterFactoryImpl {
     @Override
     public Adapter caseInvocation(Invocation object) {
       return createInvocationAdapter();
+    }
+
+    @Override
+    public Adapter caseActivity(Activity object) {
+      return createActivityAdapter();
     }
 
     @Override
@@ -177,6 +188,20 @@ public class ProductionPlanAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.productionplan.Task <em>Task</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.productionplan.Task
+   * @generated
+   */
+  public Adapter createTaskAdapter() {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.productionplan.TaskInvocation <em>Task Invocation</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -229,6 +254,20 @@ public class ProductionPlanAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createInvocationAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Activity <em>Activity</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.Activity
+   * @generated
+   */
+  public Adapter createActivityAdapter() {
     return null;
   }
 

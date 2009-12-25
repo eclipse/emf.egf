@@ -25,10 +25,16 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference ProductionPlan.ecore#//ProductionPlanInvocation/productionPlan"/>
     </genClasses>
     <genClasses ecoreClass="ProductionPlan.ecore#//FactoryComponentInvocation">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProductionPlan.ecore#//FactoryComponentInvocation/factoryComponent"/>
+      <genFeatures createChild="false" propertyCategory="Invoke" propertySortChoices="true"
+          ecoreFeature="ecore:EReference ProductionPlan.ecore#//FactoryComponentInvocation/factoryComponent"/>
+    </genClasses>
+    <genClasses ecoreClass="ProductionPlan.ecore#//Task">
+      <genFeatures createChild="false" propertyCategory="Implementation" propertySortChoices="true"
+          ecoreFeature="ecore:EAttribute ProductionPlan.ecore#//Task/taskId"/>
     </genClasses>
     <genClasses ecoreClass="ProductionPlan.ecore#//TaskInvocation">
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference ProductionPlan.ecore#//TaskInvocation/task"/>
+      <genFeatures createChild="false" propertyCategory="Invoke" propertySortChoices="true"
+          ecoreFeature="ecore:EReference ProductionPlan.ecore#//TaskInvocation/task"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

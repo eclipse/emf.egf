@@ -50,6 +50,15 @@ public interface ProductionPlanFactory extends EFactory {
   FactoryComponentInvocation createFactoryComponentInvocation();
 
   /**
+   * Returns a new object of class '<em>Task</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Task</em>'.
+   * @generated
+   */
+  Task createTask();
+
+  /**
    * Returns a new object of class '<em>Task Invocation</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

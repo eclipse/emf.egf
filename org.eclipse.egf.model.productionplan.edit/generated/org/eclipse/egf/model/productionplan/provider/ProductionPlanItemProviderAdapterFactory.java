@@ -157,6 +157,29 @@ public class ProductionPlanItemProviderAdapterFactory extends ProductionPlanAdap
   }
 
   /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.productionplan.Task} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected TaskItemProvider taskItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.productionplan.Task}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createTaskAdapter() {
+    if (taskItemProvider == null) {
+      taskItemProvider = new TaskItemProvider(this);
+    }
+
+    return taskItemProvider;
+  }
+
+  /**
    * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.productionplan.TaskInvocation} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -282,6 +305,8 @@ public class ProductionPlanItemProviderAdapterFactory extends ProductionPlanAdap
       productionPlanItemProvider.dispose();
     if (factoryComponentInvocationItemProvider != null)
       factoryComponentInvocationItemProvider.dispose();
+    if (taskItemProvider != null)
+      taskItemProvider.dispose();
     if (taskInvocationItemProvider != null)
       taskInvocationItemProvider.dispose();
   }

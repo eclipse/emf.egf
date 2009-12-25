@@ -69,6 +69,8 @@ public class ProductionPlanFactoryImpl extends EFactoryImpl implements Productio
       return createProductionPlan();
     case ProductionPlanPackage.FACTORY_COMPONENT_INVOCATION:
       return createFactoryComponentInvocation();
+    case ProductionPlanPackage.TASK:
+      return createTask();
     case ProductionPlanPackage.TASK_INVOCATION:
       return createTaskInvocation();
     default:
@@ -94,6 +96,16 @@ public class ProductionPlanFactoryImpl extends EFactoryImpl implements Productio
   public FactoryComponentInvocation createFactoryComponentInvocation() {
     FactoryComponentInvocationImpl factoryComponentInvocation = new FactoryComponentInvocationImpl();
     return factoryComponentInvocation;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Task createTask() {
+    TaskImpl task = new TaskImpl();
+    return task;
   }
 
   /**

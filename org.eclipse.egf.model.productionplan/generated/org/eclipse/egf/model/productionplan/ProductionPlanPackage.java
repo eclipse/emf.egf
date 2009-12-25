@@ -14,6 +14,7 @@ package org.eclipse.egf.model.productionplan;
 
 import org.eclipse.egf.model.fcore.FcorePackage;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -268,6 +269,70 @@ public interface ProductionPlanPackage extends EPackage {
   int FACTORY_COMPONENT_INVOCATION_FEATURE_COUNT = PRODUCTION_PLAN_INVOCATION_FEATURE_COUNT + 1;
 
   /**
+   * The meta object id for the '{@link org.eclipse.egf.model.productionplan.impl.TaskImpl <em>Task</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.productionplan.impl.TaskImpl
+   * @see org.eclipse.egf.model.productionplan.impl.ProductionPlanPackageImpl#getTask()
+   * @generated
+   */
+  int TASK = 3;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK__ID = FcorePackage.ACTIVITY__ID;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK__NAME = FcorePackage.ACTIVITY__NAME;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK__DESCRIPTION = FcorePackage.ACTIVITY__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Contract Container</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK__CONTRACT_CONTAINER = FcorePackage.ACTIVITY__CONTRACT_CONTAINER;
+
+  /**
+   * The feature id for the '<em><b>Task Id</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK__TASK_ID = FcorePackage.ACTIVITY_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Task</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TASK_FEATURE_COUNT = FcorePackage.ACTIVITY_FEATURE_COUNT + 1;
+
+  /**
    * The meta object id for the '{@link org.eclipse.egf.model.productionplan.impl.TaskInvocationImpl <em>Task Invocation</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -275,7 +340,7 @@ public interface ProductionPlanPackage extends EPackage {
    * @see org.eclipse.egf.model.productionplan.impl.ProductionPlanPackageImpl#getTaskInvocation()
    * @generated
    */
-  int TASK_INVOCATION = 3;
+  int TASK_INVOCATION = 4;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -404,6 +469,27 @@ public interface ProductionPlanPackage extends EPackage {
   EReference getFactoryComponentInvocation_FactoryComponent();
 
   /**
+   * Returns the meta object for class '{@link org.eclipse.egf.model.productionplan.Task <em>Task</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Task</em>'.
+   * @see org.eclipse.egf.model.productionplan.Task
+   * @generated
+   */
+  EClass getTask();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.productionplan.Task#getTaskId <em>Task Id</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Task Id</em>'.
+   * @see org.eclipse.egf.model.productionplan.Task#getTaskId()
+   * @see #getTask()
+   * @generated
+   */
+  EAttribute getTask_TaskId();
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.productionplan.TaskInvocation <em>Task Invocation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -499,6 +585,24 @@ public interface ProductionPlanPackage extends EPackage {
      * @generated
      */
     EReference FACTORY_COMPONENT_INVOCATION__FACTORY_COMPONENT = eINSTANCE.getFactoryComponentInvocation_FactoryComponent();
+
+    /**
+     * The meta object literal for the '{@link org.eclipse.egf.model.productionplan.impl.TaskImpl <em>Task</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.productionplan.impl.TaskImpl
+     * @see org.eclipse.egf.model.productionplan.impl.ProductionPlanPackageImpl#getTask()
+     * @generated
+     */
+    EClass TASK = eINSTANCE.getTask();
+
+    /**
+     * The meta object literal for the '<em><b>Task Id</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TASK__TASK_ID = eINSTANCE.getTask_TaskId();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.productionplan.impl.TaskInvocationImpl <em>Task Invocation</em>}' class.

@@ -12,8 +12,6 @@
  */
 package org.eclipse.egf.model.productionplan;
 
-import org.eclipse.egf.model.fcore.Task;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Task Invocation</b></em>'.

@@ -13,49 +13,69 @@
 package org.eclipse.egf.model.productionplan.impl;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.egf.core.production.EGFCoreProductionPlugin;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
-import org.eclipse.egf.model.EGFProductionPlanPlugin;
+import org.eclipse.egf.model.EGFModelsPlugin;
+import org.eclipse.egf.model.fcore.impl.ActivityImpl;
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 import org.eclipse.egf.model.productionplan.Task;
-import org.eclipse.egf.model.productionplan.TaskInvocation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Task Invocation</b></em>'.
+ * An implementation of the model object '<em><b>Task</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.productionplan.impl.TaskInvocationImpl#getTask <em>Task</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.productionplan.impl.TaskImpl#getTaskId <em>Task Id</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements TaskInvocation {
+public class TaskImpl extends ActivityImpl implements Task {
   /**
-   * The cached value of the '{@link #getTask() <em>Task</em>}' reference.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getTask()
    * @generated
    * @ordered
    */
-  protected Task task;
+  protected int eFlags = 0;
+
+  /**
+   * The default value of the '{@link #getTaskId() <em>Task Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTaskId()
+   * @generated
+   * @ordered
+   */
+  protected static final String TASK_ID_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getTaskId() <em>Task Id</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getTaskId()
+   * @generated
+   * @ordered
+   */
+  protected String taskId = TASK_ID_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected TaskInvocationImpl() {
+  protected TaskImpl() {
     super();
   }
 
@@ -66,7 +86,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
    */
   @Override
   protected EClass eStaticClass() {
-    return ProductionPlanPackage.Literals.TASK_INVOCATION;
+    return ProductionPlanPackage.Literals.TASK;
   }
 
   /**
@@ -74,16 +94,8 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public Task getTask() {
-    if (task != null && task.eIsProxy()) {
-      InternalEObject oldTask = (InternalEObject) task;
-      task = (Task) eResolveProxy(oldTask);
-      if (task != oldTask) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, ProductionPlanPackage.TASK_INVOCATION__TASK, oldTask, task));
-      }
-    }
-    return task;
+  public String getTaskId() {
+    return taskId;
   }
 
   /**
@@ -91,20 +103,11 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public Task basicGetTask() {
-    return task;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setTask(Task newTask) {
-    Task oldTask = task;
-    task = newTask;
+  public void setTaskId(String newTaskId) {
+    String oldTaskId = taskId;
+    taskId = newTaskId;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, ProductionPlanPackage.TASK_INVOCATION__TASK, oldTask, task));
+      eNotify(new ENotificationImpl(this, Notification.SET, ProductionPlanPackage.TASK__TASK_ID, oldTaskId, taskId));
   }
 
   /**
@@ -116,11 +119,13 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   @Override
   public void invoke(IProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
     Assert.isNotNull(productionContext);
-    if (getTask() != null) {
-      getTask().invoke(EGFProductionPlanPlugin.getPPModelProductionContextFactory().createModelProductionContext(productionContext, this), monitor);
-    }
-    if (monitor.isCanceled()) {
-      throw new OperationCanceledException();
+    try {
+      EGFCoreProductionPlugin.getProductionTaskInvocationFactory().createProductionTaskInvocation(EGFModelsPlugin.getModelProductionContextFactory().createModelProductionContext(productionContext, this), getTaskId()).invoke(monitor);
+      if (monitor.isCanceled()) {
+        throw new OperationCanceledException();
+      }
+    } catch (CoreException ce) {
+      throw new InvocationException(ce);
     }
   }
 
@@ -132,10 +137,7 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
    */
   @Override
   public int getSteps() {
-    if (getTask() != null) {
-      return getTask().getSteps();
-    }
-    return 0;
+    return 1;
   }
 
   /**
@@ -146,10 +148,8 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case ProductionPlanPackage.TASK_INVOCATION__TASK:
-      if (resolve)
-        return getTask();
-      return basicGetTask();
+    case ProductionPlanPackage.TASK__TASK_ID:
+      return getTaskId();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -162,8 +162,8 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case ProductionPlanPackage.TASK_INVOCATION__TASK:
-      setTask((Task) newValue);
+    case ProductionPlanPackage.TASK__TASK_ID:
+      setTaskId((String) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -177,8 +177,8 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case ProductionPlanPackage.TASK_INVOCATION__TASK:
-      setTask((Task) null);
+    case ProductionPlanPackage.TASK__TASK_ID:
+      setTaskId(TASK_ID_EDEFAULT);
       return;
     }
     super.eUnset(featureID);
@@ -192,10 +192,27 @@ public class TaskInvocationImpl extends ProductionPlanInvocationImpl implements 
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case ProductionPlanPackage.TASK_INVOCATION__TASK:
-      return task != null;
+    case ProductionPlanPackage.TASK__TASK_ID:
+      return TASK_ID_EDEFAULT == null ? taskId != null : !TASK_ID_EDEFAULT.equals(taskId);
     }
     return super.eIsSet(featureID);
   }
 
-} // TaskInvocationImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString() {
+    if (eIsProxy())
+      return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (taskId: "); //$NON-NLS-1$
+    result.append(taskId);
+    result.append(')');
+    return result.toString();
+  }
+
+} // TaskImpl

@@ -18,10 +18,15 @@ import org.eclipse.egf.model.productionplan.ProductionPlan;
 import org.eclipse.egf.model.productionplan.ProductionPlanFactory;
 import org.eclipse.egf.model.productionplan.ProductionPlanInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
+import org.eclipse.egf.model.productionplan.Task;
 import org.eclipse.egf.model.productionplan.TaskInvocation;
+import org.eclipse.egf.model.productionplan.util.ProductionPlanValidator;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -51,6 +56,13 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
    * @generated
    */
   private EClass factoryComponentInvocationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass taskEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -119,6 +131,13 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     // Initialize created meta-data
     theProductionPlanPackage.initializePackageContents();
 
+    // Register package validator
+    EValidator.Registry.INSTANCE.put(theProductionPlanPackage, new EValidator.Descriptor() {
+      public EValidator getEValidator() {
+        return ProductionPlanValidator.INSTANCE;
+      }
+    });
+
     // Mark meta-data to indicate it can't be changed
     theProductionPlanPackage.freeze();
 
@@ -186,6 +205,24 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
    * <!-- end-user-doc -->
    * @generated
    */
+  public EClass getTask() {
+    return taskEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTask_TaskId() {
+    return (EAttribute) taskEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getTaskInvocation() {
     return taskInvocationEClass;
   }
@@ -237,6 +274,9 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     factoryComponentInvocationEClass = createEClass(FACTORY_COMPONENT_INVOCATION);
     createEReference(factoryComponentInvocationEClass, FACTORY_COMPONENT_INVOCATION__FACTORY_COMPONENT);
 
+    taskEClass = createEClass(TASK);
+    createEAttribute(taskEClass, TASK__TASK_ID);
+
     taskInvocationEClass = createEClass(TASK_INVOCATION);
     createEReference(taskInvocationEClass, TASK_INVOCATION__TASK);
   }
@@ -267,6 +307,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
 
     // Obtain other dependent packages
     FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
+    EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
 
@@ -276,6 +317,7 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     productionPlanEClass.getESuperTypes().add(theFcorePackage.getOrchestration());
     productionPlanInvocationEClass.getESuperTypes().add(theFcorePackage.getInvocation());
     factoryComponentInvocationEClass.getESuperTypes().add(this.getProductionPlanInvocation());
+    taskEClass.getESuperTypes().add(theFcorePackage.getActivity());
     taskInvocationEClass.getESuperTypes().add(this.getProductionPlanInvocation());
 
     // Initialize classes and features; add operations and parameters
@@ -288,11 +330,30 @@ public class ProductionPlanPackageImpl extends EPackageImpl implements Productio
     initEClass(factoryComponentInvocationEClass, FactoryComponentInvocation.class, "FactoryComponentInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getFactoryComponentInvocation_FactoryComponent(), theFcorePackage.getFactoryComponent(), null, "factoryComponent", null, 1, 1, FactoryComponentInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+    initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getTask_TaskId(), theEcorePackage.getEString(), "taskId", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
     initEClass(taskInvocationEClass, TaskInvocation.class, "TaskInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getTaskInvocation_Task(), theFcorePackage.getTask(), null, "task", null, 1, 1, TaskInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getTaskInvocation_Task(), this.getTask(), null, "task", null, 1, 1, TaskInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);
+
+    // Create annotations
+    // http://www.eclipse.org/emf/2002/Ecore
+    createEcoreAnnotations();
+  }
+
+  /**
+   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void createEcoreAnnotations() {
+    String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
+    addAnnotation(taskEClass, source, new String[] { "constraints", "task" //$NON-NLS-1$ //$NON-NLS-2$
+    });
   }
 
 } // ProductionPlanPackageImpl

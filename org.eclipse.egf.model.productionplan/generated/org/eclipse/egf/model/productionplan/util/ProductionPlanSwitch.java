@@ -14,6 +14,7 @@ package org.eclipse.egf.model.productionplan.util;
 
 import java.util.List;
 
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
@@ -128,6 +129,17 @@ public class ProductionPlanSwitch<T> {
         result = defaultCase(theEObject);
       return result;
     }
+    case ProductionPlanPackage.TASK: {
+      Task task = (Task) theEObject;
+      T result = caseTask(task);
+      if (result == null)
+        result = caseActivity(task);
+      if (result == null)
+        result = caseModelElement(task);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
     case ProductionPlanPackage.TASK_INVOCATION: {
       TaskInvocation taskInvocation = (TaskInvocation) theEObject;
       T result = caseTaskInvocation(taskInvocation);
@@ -192,6 +204,21 @@ public class ProductionPlanSwitch<T> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Task</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Task</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTask(Task object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Task Invocation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -248,6 +275,21 @@ public class ProductionPlanSwitch<T> {
    * @generated
    */
   public T caseInvocation(Invocation object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Activity</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Activity</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseActivity(Activity object) {
     return null;
   }
 
