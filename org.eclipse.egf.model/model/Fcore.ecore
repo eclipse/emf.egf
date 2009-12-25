@@ -126,6 +126,14 @@
       </eParameters>
       <eParameters name="mode" eType="#//ContractMode"/>
     </eOperations>
+    <eOperations name="getOrchestrationContexts" upperBound="-1" eType="#//OrchestrationContext"/>
+    <eOperations name="getOrchestrationContexts" upperBound="-1" eType="#//OrchestrationContext">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="factoryComponent" lowerBound="1"
         eType="#//FactoryComponent" resolveProxies="false" eOpposite="#//FactoryComponent/orchestration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContextContainer"

@@ -13,16 +13,17 @@
 package org.eclipse.egf.model.fcore.provider;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -35,12 +36,15 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.OrchestrationContext} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.OrchestrationContext}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class OrchestrationContextItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -48,6 +52,7 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public OrchestrationContextItemProvider(AdapterFactory adapterFactory) {
@@ -58,6 +63,7 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -74,21 +80,58 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * This adds a property descriptor for the Invocation Contexts feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   protected void addInvocationContextsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrchestrationContext_invocationContexts_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrchestrationContext_invocationContexts_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_OrchestrationContext_invocationContexts_feature", "_UI_OrchestrationContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FcorePackage.Literals.ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS, true, false, true, null, getString("_UI_InvokePropertyCategory"), //$NON-NLS-1$
-        null));
+        null) {
+      @Override
+      public Collection<?> getChoiceOfValues(Object current) {
+        OrchestrationContext orchestrationContext = (OrchestrationContext) current;
+        Collection<InvocationContext> result = new UniqueEList<InvocationContext>();
+        if (orchestrationContext.getType() != null) {
+          // Retrieve all the InvocationContexts based on their types and mode
+          result.addAll(orchestrationContext.getOrchestration().getInvocationContexts(orchestrationContext.getType()));
+          if (result.size() > 0) {
+            // Filter
+            for (Iterator<InvocationContext> it = result.iterator(); it.hasNext();) {
+              InvocationContext invocationContext = it.next();
+              if (invocationContext.getMode() == ContractMode.OUT) {
+                // Only In or In_Out mode are assignable in OrchestrationContext
+                // They have an In semantic in this area
+                it.remove();
+              } else if (invocationContext.getExposedContract() != null && invocationContext.getMode() == ContractMode.IN) {
+                // Filter invocation context with In mode already assigned to an contract
+                it.remove();
+              }
+            }
+            // Filter invocation context already assigned to an OrchestrationContext
+            for (OrchestrationContext innerOrchestrationContext : orchestrationContext.getOrchestrationContextContainer().getOrchestrationContexts()) {
+              if (orchestrationContext == innerOrchestrationContext) {
+                continue;
+              }
+              for (InvocationContext invocationContext : innerOrchestrationContext.getInvocationContexts()) {
+                result.remove(invocationContext);
+              }
+            }
+          }
+        }
+        return result;
+      }
+    });
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
+   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -103,6 +146,7 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -117,6 +161,7 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * This returns OrchestrationContext.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -128,6 +173,7 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -142,6 +188,7 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -161,6 +208,7 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

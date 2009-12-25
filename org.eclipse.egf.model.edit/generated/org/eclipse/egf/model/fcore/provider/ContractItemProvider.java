@@ -13,6 +13,7 @@
 package org.eclipse.egf.model.fcore.provider;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.egf.model.fcore.Contract;
@@ -92,22 +93,34 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
           public Collection<?> getChoiceOfValues(Object current) {
             Contract contract = (Contract) current;
             Collection<InvocationContext> result = new UniqueEList<InvocationContext>();
-            // Retrieve all the typed contracts if available
-            if (contract.getActivity() != null && contract.getActivity() instanceof FactoryComponent) {
-              FactoryComponent factoryComponent = (FactoryComponent) contract.getActivity();
-              // Out or In_Out should have only one assigned InvocationContext
-              if (contract.getType() != null && (contract.getMode() == ContractMode.IN || contract.getInvocationContexts().size() == 0)) {
-                result.addAll(factoryComponent.getInvocationContexts(contract.getType(), contract.getMode()));
-                // Filter all assigned invocation context if necessary
-                if (result.size() > 0) {
-                  for (Contract innerContract : factoryComponent.getContracts(contract.getType(), contract.getMode())) {
-                    if (contract == innerContract) {
-                      continue;
-                    }
-                    for (InvocationContext invocationContext : contract.getInvocationContexts()) {
-                      result.remove(invocationContext);
-                    }
-                  }
+            // Nothing to retrieve
+            if (contract.getType() == null || contract.getActivity() == null || contract.getActivity() instanceof FactoryComponent == false) {
+              return result;
+            }
+            FactoryComponent factoryComponent = (FactoryComponent) contract.getActivity();
+            // Out or In_Out should have only one assigned InvocationContext
+            if (contract.getMode() != ContractMode.IN && contract.getInvocationContexts().size() != 0) {
+              return result;
+            }
+            // Retrieve all the InvocationContexts based on their types and mode
+            result.addAll(factoryComponent.getInvocationContexts(contract.getType(), contract.getMode()));
+            if (result.size() > 0) {
+              // Filter invocation context already assigned to an orchestration context
+              for (Iterator<InvocationContext> it = result.iterator(); it.hasNext();) {
+                InvocationContext invocationContext = it.next();
+                // an In_Out could either be in an orchestration context with an In semantic and
+                // in a Contract with an Out semantic but not both
+                if (invocationContext.getOrchestrationContext() != null && contract.getMode() != ContractMode.OUT) {
+                  it.remove();
+                }
+              }
+              // Filter invocation context already assigned to a contract
+              for (Contract innerContract : factoryComponent.getContracts(contract.getType(), contract.getMode())) {
+                if (contract == innerContract) {
+                  continue;
+                }
+                for (InvocationContext invocationContext : contract.getInvocationContexts()) {
+                  result.remove(invocationContext);
                 }
               }
             }

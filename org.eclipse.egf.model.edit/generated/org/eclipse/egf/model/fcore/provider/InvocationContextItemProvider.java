@@ -13,12 +13,14 @@
 package org.eclipse.egf.model.fcore.provider;
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -94,23 +96,39 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
       public Collection<?> getChoiceOfValues(Object current) {
         InvocationContext invocationContext = (InvocationContext) current;
         Collection<Contract> result = new UniqueEList<Contract>();
+        if (result.contains(null) == false) {
+          result.add(null);
+        }
+        // Nothing to retrieve
+        if (invocationContext.getFactoryComponent() == null || invocationContext.getActivityContract() == null || invocationContext.getActivityContract().getType() == null) {
+          return result;
+        }
+        // If an orchestration context is already assigned, InvocationContext in In mode are not
+        // assignable
+        if (invocationContext.getOrchestrationContext() != null && invocationContext.getMode() == ContractMode.IN) {
+          return result;
+        }
         // Retrieve all the typed contracts if available
-        if (invocationContext.getFactoryComponent() != null) {
-          if (invocationContext.getActivityContract() != null && invocationContext.getActivityContract().getType() != null) {
-            if (invocationContext.getMode() == ContractMode.IN) {
-              result.addAll(invocationContext.getFactoryComponent().getContracts(invocationContext.getActivityContract().getType(), ContractMode.IN));
-            } else {
-              // In or In_Out Contract should have only one assigned InvocationContext.
-              for (Contract contract : invocationContext.getFactoryComponent().getContracts(invocationContext.getActivityContract().getType(), invocationContext.getMode())) {
-                if (contract.getInvocationContexts().size() == 0) {
-                  result.add(contract);
-                }
-              }
+        if (invocationContext.getMode() == ContractMode.IN) {
+          result.addAll(invocationContext.getFactoryComponent().getContracts(invocationContext.getActivityContract().getType(), ContractMode.IN));
+        } else {
+          // In or In_Out Contract should have only one assigned InvocationContext.
+          for (Contract contract : invocationContext.getFactoryComponent().getContracts(invocationContext.getActivityContract().getType(), invocationContext.getMode())) {
+            if (contract.getInvocationContexts().size() == 0) {
+              result.add(contract);
             }
           }
         }
-        if (result.contains(null) == false) {
-          result.add(null);
+        // If an orchestration context is already assigned, InvocationContext in In_Out mode are
+        // only assignable to Out Mode Contract
+        if (invocationContext.getOrchestrationContext() != null && invocationContext.getMode() == ContractMode.IN_OUT) {
+          for (Iterator<Contract> it = result.iterator(); it.hasNext();) {
+            Contract contract = it.next();
+            if (contract.getMode() != ContractMode.OUT) {
+              it.remove();
+            }
+          }
+          return result;
         }
         return result;
       }
@@ -122,13 +140,37 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   protected void addOrchestrationContextPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContext_orchestrationContext_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContext_orchestrationContext_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_InvocationContext_orchestrationContext_feature", "_UI_InvocationContext_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FcorePackage.Literals.INVOCATION_CONTEXT__ORCHESTRATION_CONTEXT, true, false, true, null, getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
-        null));
+        null) {
+      @Override
+      public Collection<?> getChoiceOfValues(Object current) {
+        InvocationContext invocationContext = (InvocationContext) current;
+        Collection<OrchestrationContext> result = new UniqueEList<OrchestrationContext>();
+        if (result.contains(null) == false) {
+          result.add(null);
+        }
+        // Nothing to retrieve
+        if (invocationContext.getFactoryComponent() == null || invocationContext.getFactoryComponent().getOrchestration() == null || invocationContext.getActivityContract() == null || invocationContext.getActivityContract().getType() == null) {
+          return result;
+        }
+        // InvocationContext in Out mode are not assignable
+        if (invocationContext.getMode() == ContractMode.OUT) {
+          return result;
+        }
+        // InvocationContract already assigned to an exposed contract should in be In_Out mode
+        if (invocationContext.getExposedContract() != null && invocationContext.getMode() != ContractMode.IN_OUT) {
+          return result;
+        }
+        // Retrieve all compatible typed OrchestrationContext
+        result.addAll(invocationContext.getFactoryComponent().getOrchestration().getOrchestrationContexts(invocationContext.getActivityContract().getType()));
+        return result;
+      }
+    });
   }
 
   /**

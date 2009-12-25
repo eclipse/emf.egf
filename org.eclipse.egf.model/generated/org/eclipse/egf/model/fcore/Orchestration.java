@@ -139,4 +139,20 @@ public interface Orchestration extends ModelElement {
    */
   EList<InvocationContext> getInvocationContexts(Type<?> type, ContractMode mode);
 
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  EList<OrchestrationContext> getOrchestrationContexts();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<OrchestrationContext> getOrchestrationContexts(Type<?> type);
+
 } // Orchestration

@@ -100,6 +100,10 @@
         <genParameters ecoreParameter="Fcore.ecore#//Orchestration/getInvocationContexts.3/type"/>
         <genParameters ecoreParameter="Fcore.ecore#//Orchestration/getInvocationContexts.3/mode"/>
       </genOperations>
+      <genOperations ecoreOperation="Fcore.ecore#//Orchestration/getOrchestrationContexts"/>
+      <genOperations ecoreOperation="Fcore.ecore#//Orchestration/getOrchestrationContexts.1">
+        <genParameters ecoreParameter="Fcore.ecore#//Orchestration/getOrchestrationContexts.1/type"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//OrchestrationContext">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//OrchestrationContext/orchestrationContextContainer"/>
