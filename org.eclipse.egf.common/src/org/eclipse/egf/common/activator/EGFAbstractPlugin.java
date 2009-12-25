@@ -29,7 +29,7 @@ public abstract class EGFAbstractPlugin extends Plugin {
   /**
    * Extension point "egf_logger" short id.
    */
-  protected static final String EXTENSION_POINT_LOGGER = "logger"; //$NON-NLS-1$ 
+  protected static final String EXTENSION_POINT_SHORT_ID_LOGGER = "logger"; //$NON-NLS-1$ 
 
   /**
    * Log Status
