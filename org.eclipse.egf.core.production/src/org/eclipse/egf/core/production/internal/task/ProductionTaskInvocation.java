@@ -91,11 +91,16 @@ public class ProductionTaskInvocation implements IProductionTaskInvocation {
    * @param monitor
    * @return true if the execution was successful, false otherwise.
    */
-  public void invoke(final IProgressMonitor monitor) throws CoreException, InvocationException {
+  public void invoke(final IProgressMonitor monitor) throws InvocationException {
     SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, _productionContext.getName()), 1000);
     try {
       // Instantiate an ITask object
-      IProductionTask task = createProductionTaskInstance();
+      IProductionTask task = null;
+      try {
+        task = createProductionTaskInstance();
+      } catch (CoreException ce) {
+        throw new InvocationException(ce);
+      }
       if (task == null) {
         return;
       }
