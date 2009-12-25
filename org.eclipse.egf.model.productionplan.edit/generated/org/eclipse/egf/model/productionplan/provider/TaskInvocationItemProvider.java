@@ -74,26 +74,13 @@ public class TaskInvocationItemProvider extends ProductionPlanInvocationItemProv
    * This adds a property descriptor for the Task feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * @generated
    */
   protected void addTaskPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TaskInvocation_task_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TaskInvocation_task_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_TaskInvocation_task_feature", "_UI_TaskInvocation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         ProductionPlanPackage.Literals.TASK_INVOCATION__TASK, true, false, true, null, getString("_UI_InvokePropertyCategory"), //$NON-NLS-1$
-        null) {
-      @Override
-      public Collection<?> getChoiceOfValues(Object current) {
-        Collection<String> result = new UniqueEList<String>();
-        // add a null value to reset an existing value
-        result.add(null);
-        // Load type elements in the current resource set
-        for (IPlatformTask platformTask : EGFCorePlugin.getPlatformTasks()) {
-          result.add(platformTask.getId());
-        }
-        return result;
-      }
-    });
+        null));
   }
 
   /**

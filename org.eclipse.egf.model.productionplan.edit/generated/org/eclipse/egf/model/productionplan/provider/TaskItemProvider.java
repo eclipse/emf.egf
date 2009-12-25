@@ -15,18 +15,16 @@ package org.eclipse.egf.model.productionplan.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.task.IPlatformTask;
 import org.eclipse.egf.model.edit.EGFProductionPlanEditPlugin;
-
 import org.eclipse.egf.model.fcore.provider.ActivityItemProvider;
-
 import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 import org.eclipse.egf.model.productionplan.Task;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -79,13 +77,26 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This adds a property descriptor for the Task Id feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   protected void addTaskIdPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_taskId_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_taskId_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_Task_taskId_feature", "_UI_Task_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         ProductionPlanPackage.Literals.TASK__TASK_ID, true, false, true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_ImplementationPropertyCategory"), //$NON-NLS-1$
-        null));
+        null) {
+      @Override
+      public Collection<?> getChoiceOfValues(Object current) {
+        Collection<String> result = new UniqueEList<String>();
+        // add a null value to reset an existing value
+        result.add(null);
+        // Load type elements in the current resource set
+        for (IPlatformTask platformTask : EGFCorePlugin.getPlatformTasks()) {
+          result.add(platformTask.getId());
+        }
+        return result;
+      }
+    });
   }
 
   /**
