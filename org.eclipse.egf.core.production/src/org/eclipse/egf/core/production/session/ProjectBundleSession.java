@@ -106,7 +106,7 @@ public class ProjectBundleSession {
     }
     refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
     if (EGFCoreProductionPlugin.getDefault().isDebugging()) {
-      EGFCoreProductionPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
+      EGFCoreProductionPlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
     }
     return bundle;
   }
@@ -116,14 +116,14 @@ public class ProjectBundleSession {
     if (bundle == null) {
       return null;
     }
-    if (bundle.getState() == Bundle.ACTIVE || bundle.getState() == Bundle.STARTING) {
+    if ((bundle.getState() & (Bundle.ACTIVE | Bundle.STARTING)) != 0) {
       try {
         bundle.stop();
       } catch (Throwable t) {
         throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(CoreProductionMessages.ProjectBundleSession_StoppingFailure, bundle.getSymbolicName()), t));
       }
     }
-    if (bundle.getState() == Bundle.INSTALLED || bundle.getState() == Bundle.RESOLVED) {
+    if ((bundle.getState() & (Bundle.INSTALLED | Bundle.RESOLVED)) != 0) {
       try {
         bundle.uninstall();
       } catch (Throwable t) {
@@ -386,7 +386,7 @@ public class ProjectBundleSession {
       try {
         uninstallBundle(bundle);
         if (EGFCoreProductionPlugin.getDefault().isDebugging()) {
-          EGFCoreProductionPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
+          EGFCoreProductionPlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
         }
       } catch (BundleException be) {
         throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(CoreProductionMessages.ProjectBundleSession_UninstallationFailure, bundle.getSymbolicName()), be));
@@ -397,7 +397,7 @@ public class ProjectBundleSession {
       Bundle installed = installBundle(bundle.getLocation());
       refreshPackages(new Bundle[] { installed });
       if (EGFCoreProductionPlugin.getDefault().isDebugging()) {
-        EGFCoreProductionPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}'' is installed.", installed.getSymbolicName())); //$NON-NLS-1$
+        EGFCoreProductionPlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is installed.", installed.getSymbolicName())); //$NON-NLS-1$
       }
     }
     // Final
