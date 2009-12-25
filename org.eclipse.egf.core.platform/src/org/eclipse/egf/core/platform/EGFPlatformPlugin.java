@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.core.platform;
 
-import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Method;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
@@ -20,9 +20,11 @@ import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.core.platform.internal.pde.IManagerConstants;
 import org.eclipse.egf.core.platform.internal.pde.PlatformManager;
+import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
 import org.eclipse.egf.core.platform.pde.IPlatformManager;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.pde.core.plugin.IPluginElement;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -85,19 +87,8 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
           getDefault().logInfo(NLS.bind("extension ''{0}''", extension), 1); //$NON-NLS-1$
           continue;
         }
-        // Check Interfaces
-        Class<?> key = null;
-        LOOP: for (Type type : factory.getClass().getGenericInterfaces()) {
-          if (type instanceof ParameterizedType) {
-            ParameterizedType parameterizedType = (ParameterizedType) type;
-            for (Type innerType : parameterizedType.getActualTypeArguments()) {
-              if (innerType instanceof Class<?>) {
-                key = (Class<?>) innerType;
-                break LOOP;
-              }
-            }
-          }
-        }
+        // Fetch Returned Types from Factory
+        Class<?> key = fetchReturnedTypeFromFactory(((IPlatformExtensionPointFactory<?>) factory).getClass());
         if (__interfaces.get(key) != null) {
           getDefault().logError(NLS.bind("Duplicate Interface {0}", key.getClass().getName())); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
@@ -117,6 +108,22 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
    */
   public EGFPlatformPlugin() {
     super();
+  }
+
+  public static Class<?> fetchReturnedTypeFromFactory(Class<?> factory) {
+    Method method = null;
+    try {
+      method = factory.getDeclaredMethod("createExtensionPoint", IPlatformBundle.class, IPluginElement.class); //$NON-NLS-1$
+    } catch (NoSuchMethodException nsme) {
+      // Just Ignore
+    }
+    if (method != null) {
+      Type type = method.getGenericReturnType();
+      if (type instanceof Class<?>) {
+        return (Class<?>) type;
+      }
+    }
+    return null;
   }
 
   /**

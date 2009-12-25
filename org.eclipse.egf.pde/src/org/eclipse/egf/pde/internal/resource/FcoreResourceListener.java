@@ -326,7 +326,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
     for (URI uri : uris) {
       EGFPDEPlugin.getDefault().logWarning(uri.toString(), 1);
       if (delta != null) {
-        EGFPDEPlugin.getDefault().logWarning("From: " + delta.getMovedFromResourceFcore(uri), 2); //$NON-NLS-1$
+        EGFPDEPlugin.getDefault().logInfo("From: " + delta.getMovedFromResourceFcore(uri), 2); //$NON-NLS-1$
       }
     }
   }

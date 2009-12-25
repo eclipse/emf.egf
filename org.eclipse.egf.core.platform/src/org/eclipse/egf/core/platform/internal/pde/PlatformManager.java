@@ -11,8 +11,6 @@
 package org.eclipse.egf.core.platform.internal.pde;
 
 import java.lang.reflect.Array;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -62,19 +60,9 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
       for (String extensionPoint : EGFPlatformPlugin.getDefault().getPlatform().keySet()) {
         // Factory
         IPlatformExtensionPointFactory<?> factory = (IPlatformExtensionPointFactory<?>) ExtensionPointHelper.createInstance(EGFPlatformPlugin.getDefault().getPlatform().get(extensionPoint), IManagerConstants.MANAGER_ATT_FACTORY);
-        // Key
-        Class<?> key = null;
-        LOOP: for (Type type : factory.getClass().getGenericInterfaces()) {
-          if (type instanceof ParameterizedType) {
-            ParameterizedType parameterizedType = (ParameterizedType) type;
-            for (Type innerType : parameterizedType.getActualTypeArguments()) {
-              if (innerType instanceof Class<?>) {
-                key = (Class<?>) innerType;
-                break LOOP;
-              }
-            }
-          }
-        }
+        // Fetch Returned Types from Factory
+        Class<?> key = EGFPlatformPlugin.fetchReturnedTypeFromFactory(((IPlatformExtensionPointFactory<?>) factory).getClass());
+        // Store it
         _extensionPoints.put(extensionPoint, (Class<? extends IPlatformExtensionPoint>) key);
       }
     }
