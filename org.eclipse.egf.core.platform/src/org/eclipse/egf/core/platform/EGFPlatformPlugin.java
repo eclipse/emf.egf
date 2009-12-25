@@ -136,7 +136,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
    */
   @Override
   public void stop(BundleContext context) throws Exception {
-    // Stop our PlatformManager
+    // Dispose PlatformManager
     PlatformManager.getInstance().dispose();
     // Final steps
     _plugin = null;

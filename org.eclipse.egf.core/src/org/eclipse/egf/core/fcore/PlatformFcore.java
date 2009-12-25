@@ -20,7 +20,7 @@ import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
 import org.eclipse.pde.core.plugin.IPluginElement;
 
-public class PlatformFcore extends PlatformExtensionPointURI implements IPlatformFcore {
+public final class PlatformFcore extends PlatformExtensionPointURI implements IPlatformFcore {
 
   private String _name;
 

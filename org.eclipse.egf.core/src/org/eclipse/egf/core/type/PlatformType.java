@@ -19,7 +19,7 @@ import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.PlatformExtensionPointURI;
 import org.eclipse.pde.core.plugin.IPluginElement;
 
-public class PlatformType extends PlatformExtensionPointURI implements IPlatformType {
+public final class PlatformType extends PlatformExtensionPointURI implements IPlatformType {
 
   protected PlatformType(IPlatformBundle bundle, IPluginElement element, String id) {
     super(bundle, element, id);
