@@ -29,4 +29,6 @@ public class EGFCommonMessages {
 
   public static String URI_errorInstance;
 
+  public static String Exception_unexpectedException;
+
 }
