@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.eclipse.egf.pde;singleton:=true
+Bundle-SymbolicName: org.eclipse.egf.core.pde;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.egf.pde.EGFPDEPlugin
+Bundle-Activator: org.eclipse.egf.core.pde.EGFPDEPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
@@ -18,9 +18,9 @@ Require-Bundle:
  org.eclipse.ui.forms,
  org.eclipse.ui.ide
 Export-Package: 
- org.eclipse.egf.pde,
- org.eclipse.egf.pde.manifest.command,
- org.eclipse.egf.pde.plugin.command,
- org.eclipse.egf.pde.plugin.command.extension,
- org.eclipse.egf.pde.util
+ org.eclipse.egf.core.pde,
+ org.eclipse.egf.core.pde.extension,
+ org.eclipse.egf.core.pde.manifest,
+ org.eclipse.egf.core.pde.plugin,
+ org.eclipse.egf.core.pde.util
 Bundle-ActivationPolicy: lazy
