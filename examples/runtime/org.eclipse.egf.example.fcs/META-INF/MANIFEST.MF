@@ -5,3 +5,5 @@ Bundle-SymbolicName: org.eclipse.egf.example.fcs;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
+Bundle-ClassPath: .
+Bundle-ActivationPolicy: lazy

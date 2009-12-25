@@ -6,24 +6,27 @@
   <contractContainer xmi:id="_SmBtAL-2Ed6E7J0w9U7NFQ">
     <contracts xmi:id="_S7e_oL-2Ed6E7J0w9U7NFQ" name="amount" invocationContexts="#_IDAaML-2Ed6E7J0w9U7NFQ"
         mode="Out" contexts="#_IDAaML-2Ed6E7J0w9U7NFQ">
-      <type xmi:type="types:FloatType" xmi:id="_MZ2CIb-3Ed61q9pxr2iF9w"/>
+      <type xmi:type="types:FloatType" xmi:id="_MZ2CIb-3Ed61q9pxr2iF9w" value="100.0"/>
+    </contracts>
+    <contracts xmi:id="_4Ke4AcGGEd6J9q_tyBw-Jw" name="price" invocationContexts="#_GpyuQb_nEd6gHIEE-OJ_Mw">
+      <type xmi:type="types:FloatType" xmi:id="_QoSqsMGHEd6J9q_tyBw-Jw"/>
+    </contracts>
+    <contracts xmi:id="_VCrLUMGHEd6J9q_tyBw-Jw" name="generatorAdapterFactory" invocationContexts="#_OFjvMcE6Ed6V0bQCG8R7ug"
+        mode="Out">
+      <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="_VssYsMGHEd6J9q_tyBw-Jw"/>
     </contracts>
   </contractContainer>
   <orchestration xmi:type="productionplan:ProductionPlan" xmi:id="4w2VoabFEd692t-PG4ogiQ">
-    <orchestrationContextContainer xmi:id="_vThWwL-3Ed61q9pxr2iF9w">
-      <orchestrationContexts xmi:id="_xba3YL-3Ed61q9pxr2iF9w" name="amount">
-        <type xmi:type="types:FloatType" xmi:id="_yIbHUL-3Ed61q9pxr2iF9w" value="105.0"/>
-      </orchestrationContexts>
-    </orchestrationContextContainer>
     <invocations xmi:type="productionplan:TaskInvocation" xmi:id="tKWXIabGEd69ANF1SOWYYg"
         name="Call H1" activity="productionplan:Task platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
       <invocationContextContainer xmi:id="_GuhTgb-2Ed6E7J0w9U7NFQ">
         <invocationContexts xmi:id="_IDAaML-2Ed6E7J0w9U7NFQ" name="amount" exposedContract="#_S7e_oL-2Ed6E7J0w9U7NFQ"
             activityContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"
-            targetContract="#_S7e_oL-2Ed6E7J0w9U7NFQ" sourceContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw">
-          <type xmi:type="types:FloatType" xmi:id="_G_GdoL_sEd6_9NPuh1PsnA"/>
-        </invocationContexts>
-        <invocationContexts xmi:id="_GpyuQb_nEd6gHIEE-OJ_Mw"/>
+            targetContract="#_S7e_oL-2Ed6E7J0w9U7NFQ" sourceContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"/>
+        <invocationContexts xmi:id="_GpyuQb_nEd6gHIEE-OJ_Mw" name="price" exposedContract="#_4Ke4AcGGEd6J9q_tyBw-Jw"
+            activityContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_xfSXELpOEd6O-6ob3O13Lw"/>
+        <invocationContexts xmi:id="_OFjvMcE6Ed6V0bQCG8R7ug" name="generatorAdapterFactory"
+            exposedContract="#_VCrLUMGHEd6J9q_tyBw-Jw" activityContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_PFOYwbshEd6hlL3ru-eQtQ"/>
       </invocationContextContainer>
       <contextContainer xmi:id="_NfMZcb1uEd6L64nruTjndQ">
         <contexts xmi:id="_ODs0sL1uEd6L64nruTjndQ" name="amount" contract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw">

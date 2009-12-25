@@ -7,7 +7,10 @@
     <contracts xmi:id="_sZPqULpOEd6O-6ob3O13Lw" name="quantity">
       <type xmi:type="types:IntegerType" xmi:id="_wO9-sLpOEd6O-6ob3O13Lw" value="100"/>
     </contracts>
-    <contracts xmi:id="_xfSXELpOEd6O-6ob3O13Lw" name="price">
+    <contracts xmi:id="_5TrVYMBtEd60u-W6Ywx4cQ" name="rebate">
+      <type xmi:type="types:FloatType" xmi:id="_7dzqoMBtEd60u-W6Ywx4cQ" value="5.0"/>
+    </contracts>
+    <contracts xmi:id="_xfSXELpOEd6O-6ob3O13Lw" name="price" mode="In_Out">
       <type xmi:type="types:FloatType" xmi:id="_y0EYsLpOEd6O-6ob3O13Lw" value="10.5"/>
     </contracts>
     <contracts xmi:id="_2vwLILpOEd6O-6ob3O13Lw" name="amount" mode="Out">
