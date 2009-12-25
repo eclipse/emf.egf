@@ -17,4 +17,3 @@ Export-Package:
  org.eclipse.egf.core.production.internal.context;x-friends:="org.eclipse.egf.productionplan",
  org.eclipse.egf.core.production.l10n
 Bundle-ActivationPolicy: lazy
-Eclipse-ExtensibleAPI: true
