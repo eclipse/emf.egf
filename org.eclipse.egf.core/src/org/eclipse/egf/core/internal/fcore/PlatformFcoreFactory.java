@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.core.internal.fcore;
 
-import org.eclipse.egf.core.fcore.IFcoreConstants;
+import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
@@ -27,10 +27,10 @@ public final class PlatformFcoreFactory implements IPlatformExtensionPointFactor
     if (pluginElement == null) {
       return null;
     }
-    if (IFcoreConstants.FCORE_EXTENSION_CHILD.equals(pluginElement.getName()) == false) {
+    if (IPlatformFcoreConstants.FCORE_EXTENSION_CHILD.equals(pluginElement.getName()) == false) {
       return null;
     }
-    IPluginAttribute id = pluginElement.getAttribute(IFcoreConstants.FCORE_ATT_ID);
+    IPluginAttribute id = pluginElement.getAttribute(IPlatformFcoreConstants.FCORE_ATT_ID);
     if (id == null || id.getValue() == null || id.getValue().trim().length() == 0) {
       return null;
     }

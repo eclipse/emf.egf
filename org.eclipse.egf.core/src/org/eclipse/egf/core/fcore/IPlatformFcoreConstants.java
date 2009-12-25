@@ -17,7 +17,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
  * Defines all constants related to a Fcore into extension point
  * declaration.
  */
-public interface IFcoreConstants {
+public interface IPlatformFcoreConstants {
 
   /**
    * Define a constant for the Fcore extension-point id.
