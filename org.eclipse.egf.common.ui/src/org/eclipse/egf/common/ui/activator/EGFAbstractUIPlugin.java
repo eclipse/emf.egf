@@ -32,7 +32,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
  */
 public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
 
-  private static final String ICONS_PATH = "$nl$/icons/"; //$NON-NLS-1$  
+  private static final String ICONS_PATH = "$nl$/icons/full/"; //$NON-NLS-1$ 
 
   /**
    * Returns the workbench display to be used.
