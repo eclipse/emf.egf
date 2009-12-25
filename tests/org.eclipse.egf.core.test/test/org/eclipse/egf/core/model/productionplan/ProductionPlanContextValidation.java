@@ -14,14 +14,14 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.egf.model.fcore.Context;
-import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.InvocationContextContainer;
 import org.eclipse.egf.model.productionplan.ProductionPlan;
 import org.eclipse.egf.model.productionplan.ProductionPlanFactory;
 import org.eclipse.egf.model.productionplan.Task;
@@ -94,24 +94,24 @@ public class ProductionPlanContextValidation extends TestCase {
     TaskInvocation taskInvocation = ProductionPlanFactory.eINSTANCE.createTaskInvocation();
     productionPlan.getInvocations().add(taskInvocation);
 
-    ContextContainer contexts = FcoreFactory.eINSTANCE.createContextContainer();
-    taskInvocation.eSet(FcorePackage.Literals.INVOCATION__CONTEXT_CONTAINER, contexts);
+    InvocationContextContainer contexts = FcoreFactory.eINSTANCE.createInvocationContextContainer();
+    taskInvocation.eSet(FcorePackage.Literals.INVOCATION__INVOCATION_CONTEXT_CONTAINER, contexts);
 
-    Context taskInvocationQuantity1 = FcoreFactory.eINSTANCE.createContext();
+    InvocationContext taskInvocationQuantity1 = FcoreFactory.eINSTANCE.createInvocationContext();
     taskInvocationQuantity1.setName("quantity"); //$NON-NLS-1$
-    taskInvocationQuantity1.eSet(FcorePackage.Literals.CONTEXT__CONTRACT, quantity);
-    contexts.getContexts().add(taskInvocationQuantity1);
+    taskInvocationQuantity1.eSet(FcorePackage.Literals.INVOCATION_CONTEXT__ACTIVITY_CONTRACT, quantity);
+    contexts.getInvocationContexts().add(taskInvocationQuantity1);
 
     IntegerType taskInvocationQuantityType1 = TypesFactory.eINSTANCE.createIntegerType();
-    taskInvocationQuantity1.eSet(FcorePackage.Literals.CONTEXT__TYPE, taskInvocationQuantityType1);
+    taskInvocationQuantity1.eSet(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, taskInvocationQuantityType1);
 
-    Context taskInvocationQuantity2 = FcoreFactory.eINSTANCE.createContext();
+    InvocationContext taskInvocationQuantity2 = FcoreFactory.eINSTANCE.createInvocationContext();
     taskInvocationQuantity2.setName("quantity"); //$NON-NLS-1$
-    taskInvocationQuantity2.eSet(FcorePackage.Literals.CONTEXT__CONTRACT, quantity);
-    contexts.getContexts().add(taskInvocationQuantity2);
+    taskInvocationQuantity2.eSet(FcorePackage.Literals.INVOCATION_CONTEXT__ACTIVITY_CONTRACT, quantity);
+    contexts.getInvocationContexts().add(taskInvocationQuantity2);
 
     IntegerType taskInvocationQuantityType2 = TypesFactory.eINSTANCE.createIntegerType();
-    taskInvocationQuantity2.eSet(FcorePackage.Literals.CONTEXT__TYPE, taskInvocationQuantityType2);
+    taskInvocationQuantity2.eSet(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, taskInvocationQuantityType2);
 
     Diagnostician diagnostician = new Diagnostician();
     Diagnostic diagnostic = diagnostician.validate(contexts);
@@ -175,24 +175,24 @@ public class ProductionPlanContextValidation extends TestCase {
     TaskInvocation taskInvocation = ProductionPlanFactory.eINSTANCE.createTaskInvocation();
     productionPlan.getInvocations().add(taskInvocation);
 
-    ContextContainer contexts = FcoreFactory.eINSTANCE.createContextContainer();
-    taskInvocation.eSet(FcorePackage.Literals.INVOCATION__CONTEXT_CONTAINER, contexts);
+    InvocationContextContainer contexts = FcoreFactory.eINSTANCE.createInvocationContextContainer();
+    taskInvocation.eSet(FcorePackage.Literals.INVOCATION__INVOCATION_CONTEXT_CONTAINER, contexts);
 
-    Context taskInvocationAmount1 = FcoreFactory.eINSTANCE.createContext();
+    InvocationContext taskInvocationAmount1 = FcoreFactory.eINSTANCE.createInvocationContext();
     taskInvocationAmount1.setName("amount"); //$NON-NLS-1$
-    taskInvocationAmount1.eSet(FcorePackage.Literals.CONTEXT__CONTRACT, taskContractAmount);
-    contexts.getContexts().add(taskInvocationAmount1);
+    taskInvocationAmount1.eSet(FcorePackage.Literals.INVOCATION_CONTEXT__ACTIVITY_CONTRACT, taskContractAmount);
+    contexts.getInvocationContexts().add(taskInvocationAmount1);
 
     FloatType taskInvocationAmountType1 = TypesFactory.eINSTANCE.createFloatType();
-    taskInvocationAmount1.eSet(FcorePackage.Literals.CONTEXT__TYPE, taskInvocationAmountType1);
+    taskInvocationAmount1.eSet(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, taskInvocationAmountType1);
 
-    Context taskInvocationAmount2 = FcoreFactory.eINSTANCE.createContext();
+    InvocationContext taskInvocationAmount2 = FcoreFactory.eINSTANCE.createInvocationContext();
     taskInvocationAmount2.setName("amount"); //$NON-NLS-1$
-    taskInvocationAmount2.eSet(FcorePackage.Literals.CONTEXT__CONTRACT, taskContractAmount);
-    contexts.getContexts().add(taskInvocationAmount2);
+    taskInvocationAmount2.eSet(FcorePackage.Literals.INVOCATION_CONTEXT__ACTIVITY_CONTRACT, taskContractAmount);
+    contexts.getInvocationContexts().add(taskInvocationAmount2);
 
     FloatType taskInvocationAmountType2 = TypesFactory.eINSTANCE.createFloatType();
-    taskInvocationAmount2.eSet(FcorePackage.Literals.CONTEXT__TYPE, taskInvocationAmountType2);
+    taskInvocationAmount2.eSet(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, taskInvocationAmountType2);
 
     Diagnostician diagnostician = new Diagnostician();
     Diagnostic diagnostic = diagnostician.validate(contexts);
