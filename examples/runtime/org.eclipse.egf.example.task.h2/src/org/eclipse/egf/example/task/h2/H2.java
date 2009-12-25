@@ -13,8 +13,8 @@ public class H2 implements IProduction<Task> {
     EGFCorePlugin.getDefault().logInfo("preExecute H2"); //$NON-NLS-1$
   }
 
-  public void doExecute(final IProductionContext<Task> productionContext, final IProgressMonitor monitor_p) throws InvocationException {	  	 
-    EGFCorePlugin.getDefault().logInfo("doExecute H2"); //$NON-NLS-1$	  		  
+  public void doExecute(final IProductionContext<Task> productionContext, final IProgressMonitor monitor_p) throws InvocationException {
+    throw new InvocationException("I'm a task who raised an exception"); //$NON-NLS-1$
   }
 
   public void postExecute(final IProductionContext<Task> productionContext, final IProgressMonitor monitor_p) throws InvocationException {

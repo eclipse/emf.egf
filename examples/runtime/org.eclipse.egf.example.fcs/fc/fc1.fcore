@@ -3,13 +3,16 @@
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
     xmlns:productionplan="http://www.eclipse.org/egf/1.0.0/productionplan" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="Ko39UWVuEd64TpQQ4RciWw"
     name="FC1">
-  <orchestration xmi:type="productionplan:ProductionPlan"
-      xmi:id="4w2VoabFEd692t-PG4ogiQ">
-    <invocations xmi:type="productionplan:FactoryComponentInvocation"
-        xmi:id="ID2loKbGEd692t-PG4ogiQ"
+  <orchestration xmi:type="productionplan:ProductionPlan" xmi:id="4w2VoabFEd692t-PG4ogiQ">
+    <invocations xmi:type="productionplan:FactoryComponentInvocation" xmi:id="ID2loKbGEd692t-PG4ogiQ"
         name="Call FC2" activity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.example.fcs/fc/fc2.fcore#6yt_IWV8Ed6WjOtbZOwqNA"/>
     <invocations xmi:type="productionplan:TaskInvocation" xmi:id="tKWXIabGEd69ANF1SOWYYg"
         name="Call H1" activity="productionplan:Task platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
+      <contextContainer xmi:id="_NfMZcb1uEd6L64nruTjndQ">
+        <contexts xmi:id="_ODs0sL1uEd6L64nruTjndQ" name="amount" contract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw">
+          <type xmi:type="types:FloatType" xmi:id="_JvKn8b1vEd6Ms8nPFuxVXQ"/>
+        </contexts>
+      </contextContainer>
       <context xmi:id="8pk-QbW5Ed6bBu86-Jm4Pw">
         <values xmi:type="types:EStringContextValue" xmi:id="ctxTgLW6Ed6ODKFvfXZLHg"/>
       </context>

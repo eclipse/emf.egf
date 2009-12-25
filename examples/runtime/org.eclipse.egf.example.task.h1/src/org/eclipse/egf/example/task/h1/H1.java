@@ -5,19 +5,29 @@ import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.core.production.invocation.IProduction;
 import org.eclipse.egf.model.productionplan.Task;
+import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 
 public class H1 implements IProduction<Task> {
 
-  public void preExecute(final IProductionContext<Task> productionContext, final IProgressMonitor monitor_p) throws InvocationException {
-    Activator.getDefault().logInfo("preExecute Modified H1"); //$NON-NLS-1$
+  private Integer quantity;
+
+  private Float price;
+
+  private Float amount;
+
+  public void preExecute(final IProductionContext<Task> context, final IProgressMonitor monitor_p) throws InvocationException {
+    quantity = context.getInputValue("quantity", Integer.class); //$NON-NLS-1$
+    price = context.getInputValue("price", Float.class); //$NON-NLS-1$
+    context.getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class); //$NON-NLS-1$   
   }
 
-  public void doExecute(final IProductionContext<Task> productionContext, final IProgressMonitor monitor_p) throws InvocationException {
-    throw new InvocationException("I'm a task who raised an exception"); //$NON-NLS-1$
+  public void doExecute(final IProductionContext<Task> context, final IProgressMonitor monitor_p) throws InvocationException {
+    amount = quantity * price;
   }
 
-  public void postExecute(final IProductionContext<Task> productionContext, final IProgressMonitor monitor_p) throws InvocationException {
-    Activator.getDefault().logInfo("postExecute Modified H1"); //$NON-NLS-1$	  		  
+  public void postExecute(final IProductionContext<Task> context, final IProgressMonitor monitor_p) throws InvocationException {
+    context.setOutputValue("amount", amount); //$NON-NLS-1$       
+    context.setOutputValue("generatorAdapterFactory", new GenModelGeneratorAdapterFactory()); //$NON-NLS-1$
   }
 
 }
