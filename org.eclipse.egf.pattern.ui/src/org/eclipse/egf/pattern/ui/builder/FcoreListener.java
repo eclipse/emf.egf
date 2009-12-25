@@ -16,8 +16,6 @@
 package org.eclipse.egf.pattern.ui.builder;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -26,12 +24,12 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
 import org.eclipse.egf.core.fcore.IResourceFcoreListener;
-import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.PatternHelper;
-import org.eclipse.egf.pattern.execution.TranslationHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 /**
@@ -43,46 +41,54 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
  */
 public class FcoreListener implements IResourceFcoreListener {
 
-  public static final FcoreListener INSTANCE = new FcoreListener();
+    public static final FcoreListener INSTANCE = new FcoreListener();
 
-  public void fcoreChanged(IResourceFcoreDelta delta) {
-    Set<Pattern> patterns = new HashSet<Pattern>();
-    for (URI uri : delta.getChangedResourceFcores()) {
-      patterns.addAll(PatternHelper.getPatterns(uri));
+    public void fcoreChanged(IResourceFcoreDelta delta) {
+        translate(delta.getChangedResourceFcores());
     }
-    translate(patterns);
-  }
 
-  private void translate(final Set<Pattern> patterns) {
-    if (patterns.isEmpty())
-      return;
-    Job job = new Job(Messages.translation_job_label) {
+    private void translate(final URI[] uris) {
+        if (uris == null || uris.length == 0)
+            return;
+        Job job = new Job(Messages.translation_job_label) {
 
-      @Override
-      protected IStatus run(IProgressMonitor monitor) {
-        try {
-          new WorkspaceModifyOperation() {
             @Override
-            protected void execute(IProgressMonitor innerMonitor) throws CoreException, InvocationTargetException, InterruptedException {
-              try {
-                innerMonitor.beginTask(Messages.translation_job_label, patterns.size());
-                TranslationHelper.translate(patterns);
-              } catch (Exception e) {
-                throw new InvocationTargetException(e);
-              }
+            protected IStatus run(IProgressMonitor monitor) {
+                try {
+                    new WorkspaceModifyOperation() {
+                        @Override
+                        protected void execute(IProgressMonitor innerMonitor) throws CoreException, InvocationTargetException, InterruptedException {
+                            ResourceSet set = new ResourceSetImpl();
+                            try {
+                                innerMonitor.beginTask(Messages.translation_job_label, uris.length);
+                                // List<PatternElement> list = new
+                                // ArrayList<PatternElement>();
+                                // for (URI uri : uris) {
+                                // Resource res =
+                                // ResourceHelper.loadResource(set, uri);
+                                // for (EObject obj : res.getContents())
+                                // {
+                                // }
+                                // }
+                            } catch (Exception e) {
+                                throw new InvocationTargetException(e);
+                            } finally {
+                                for (Resource res : set.getResources())
+                                    res.unload();
+                            }
+                        }
+                    }.run(monitor);
+                } catch (InvocationTargetException e) {
+                    Activator.getDefault().logError(e.getTargetException());
+                } catch (InterruptedException e) {
+                    Activator.getDefault().logError(e);
+                }
+                return Status.OK_STATUS;
             }
-          }.run(monitor);
-        } catch (InvocationTargetException e) {
-          Activator.getDefault().logError(e.getTargetException());
-        } catch (InterruptedException e) {
-          Activator.getDefault().logError(e);
-        }
-        return Status.OK_STATUS;
-      }
 
-    };
-    job.schedule();
+        };
+        job.schedule();
 
-  }
+    }
 
 }
