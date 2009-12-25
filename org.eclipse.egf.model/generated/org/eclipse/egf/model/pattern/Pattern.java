@@ -245,4 +245,12 @@ public interface Pattern extends PatternElement {
      */
     PatternMethod getMethod(String name);
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     * @generated
+     */
+    EList<PatternParameter> getAllParameters();
+
 } // Pattern
