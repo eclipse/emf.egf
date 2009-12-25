@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.fcore;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Factory Component</b></em>'.
@@ -85,5 +87,21 @@ public interface FactoryComponent extends Activity {
    * @generated
    */
   void setOrchestration(Orchestration value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  EList<InvocationContext> getInvocationContexts();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<InvocationContext> getInvocationContexts(Type<?> type);
 
 } // FactoryComponent

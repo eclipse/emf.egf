@@ -27,19 +27,17 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.impl.DomainTypeImpl#getDomain <em>Domain</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.DomainTypeImpl#getDomain <em>Domain</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -49,7 +47,6 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getDomain()
    * @generated
    * @ordered
@@ -59,7 +56,6 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected DomainTypeImpl() {
@@ -69,7 +65,6 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -80,7 +75,6 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Domain getDomain() {
@@ -90,7 +84,6 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setDomain(Domain newDomain) {
@@ -103,7 +96,6 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Class<Domain> getType() {
@@ -113,7 +105,6 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -128,7 +119,6 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -144,7 +134,6 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -160,7 +149,6 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

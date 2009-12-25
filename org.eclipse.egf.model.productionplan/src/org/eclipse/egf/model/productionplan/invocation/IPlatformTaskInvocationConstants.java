@@ -17,7 +17,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
  * Defines all constants related to a Task Invocation into extension point
  * declaration.
  */
-public interface ITaskInvocationConstants {
+public interface IPlatformTaskInvocationConstants {
 
   /**
    * Define a constant for the TaskInvocation extension-point id.

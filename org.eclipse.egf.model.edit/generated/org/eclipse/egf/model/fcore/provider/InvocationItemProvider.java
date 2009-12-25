@@ -109,7 +109,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(FcorePackage.Literals.INVOCATION__CONTEXT_CONTAINER);
+      childrenFeatures.add(FcorePackage.Literals.INVOCATION__INVOCATION_CONTEXT_CONTAINER);
     }
     return childrenFeatures;
   }
@@ -163,7 +163,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
     updateChildren(notification);
 
     switch (notification.getFeatureID(Invocation.class)) {
-    case FcorePackage.INVOCATION__CONTEXT_CONTAINER:
+    case FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -181,7 +181,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION__CONTEXT_CONTAINER, FcoreFactory.eINSTANCE.createContextContainer()));
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION__INVOCATION_CONTEXT_CONTAINER, FcoreFactory.eINSTANCE.createInvocationContextContainer()));
   }
 
 }

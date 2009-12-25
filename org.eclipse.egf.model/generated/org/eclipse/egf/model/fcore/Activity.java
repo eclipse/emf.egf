@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.fcore;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Activity</b></em>'.
@@ -56,5 +58,21 @@ public interface Activity extends ModelElement {
    * @generated
    */
   void setContractContainer(ContractContainer value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  EList<Contract> getContracts();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<Contract> getContracts(Type<?> type);
 
 } // Activity

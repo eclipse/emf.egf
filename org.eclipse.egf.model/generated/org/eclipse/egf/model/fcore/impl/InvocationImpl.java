@@ -12,13 +12,20 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.ContextContainer;
+import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.InvocationContextContainer;
 import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -31,29 +38,34 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getOrchestration <em>Orchestration</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getContextContainer <em>Context Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getActivity <em>Activity</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getOrchestration
+ * <em>Orchestration</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvocationContextContainer
+ * <em>Invocation Context Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class InvocationImpl<T extends Activity> extends ModelElementImpl implements Invocation<T> {
   /**
-   * The cached value of the '{@link #getContextContainer() <em>Context Container</em>}' containment reference.
+   * The cached value of the '{@link #getInvocationContextContainer() <em>Invocation Context
+   * Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getContextContainer()
+   * 
+   * @see #getInvocationContextContainer()
    * @generated
    * @ordered
    */
-  protected ContextContainer contextContainer;
+  protected InvocationContextContainer invocationContextContainer;
 
   /**
    * The cached value of the '{@link #getActivity() <em>Activity</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getActivity()
    * @generated
    * @ordered
@@ -63,6 +75,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected InvocationImpl() {
@@ -72,6 +85,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -82,6 +96,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Orchestration getOrchestration() {
@@ -93,6 +108,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetOrchestration(Orchestration newOrchestration, NotificationChain msgs) {
@@ -103,6 +119,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setOrchestration(Orchestration newOrchestration) {
@@ -124,22 +141,24 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public ContextContainer getContextContainer() {
-    return contextContainer;
+  public InvocationContextContainer getInvocationContextContainer() {
+    return invocationContextContainer;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public NotificationChain basicSetContextContainer(ContextContainer newContextContainer, NotificationChain msgs) {
-    ContextContainer oldContextContainer = contextContainer;
-    contextContainer = newContextContainer;
+  public NotificationChain basicSetInvocationContextContainer(InvocationContextContainer newInvocationContextContainer, NotificationChain msgs) {
+    InvocationContextContainer oldInvocationContextContainer = invocationContextContainer;
+    invocationContextContainer = newInvocationContextContainer;
     if (eNotificationRequired()) {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION__CONTEXT_CONTAINER, oldContextContainer, newContextContainer);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER, oldInvocationContextContainer, newInvocationContextContainer);
       if (msgs == null)
         msgs = notification;
       else
@@ -151,25 +170,27 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public void setContextContainer(ContextContainer newContextContainer) {
-    if (newContextContainer != contextContainer) {
+  public void setInvocationContextContainer(InvocationContextContainer newInvocationContextContainer) {
+    if (newInvocationContextContainer != invocationContextContainer) {
       NotificationChain msgs = null;
-      if (contextContainer != null)
-        msgs = ((InternalEObject) contextContainer).eInverseRemove(this, FcorePackage.CONTEXT_CONTAINER__INVOCATION, ContextContainer.class, msgs);
-      if (newContextContainer != null)
-        msgs = ((InternalEObject) newContextContainer).eInverseAdd(this, FcorePackage.CONTEXT_CONTAINER__INVOCATION, ContextContainer.class, msgs);
-      msgs = basicSetContextContainer(newContextContainer, msgs);
+      if (invocationContextContainer != null)
+        msgs = ((InternalEObject) invocationContextContainer).eInverseRemove(this, FcorePackage.INVOCATION_CONTEXT_CONTAINER__INVOCATION, InvocationContextContainer.class, msgs);
+      if (newInvocationContextContainer != null)
+        msgs = ((InternalEObject) newInvocationContextContainer).eInverseAdd(this, FcorePackage.INVOCATION_CONTEXT_CONTAINER__INVOCATION, InvocationContextContainer.class, msgs);
+      msgs = basicSetInvocationContextContainer(newInvocationContextContainer, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION__CONTEXT_CONTAINER, newContextContainer, newContextContainer));
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER, newInvocationContextContainer, newInvocationContextContainer));
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -188,6 +209,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public T basicGetActivity() {
@@ -197,6 +219,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setActivity(T newActivity) {
@@ -209,6 +232,134 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public FactoryComponent getFactoryComponent() {
+    if (getOrchestration() != null) {
+      return getOrchestration().getFactoryComponent();
+    }
+    return null;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getActivityContracts() {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    if (getActivity() != null && getActivity().getContractContainer() != null && getActivity().getContractContainer().getContracts() != null) {
+      contracts.addAll(getActivity().getContractContainer().getContracts());
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getActivityContracts(Type<?> type) {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    if (type != null) {
+      for (Contract innerContract : getActivityContracts()) {
+        if (innerContract.getType() != null && ClassHelper.asSubClass(type.getType(), innerContract.getType().getType())) {
+          contracts.add(innerContract);
+        }
+      }
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getInvocationContracts() {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    if (getInvocationContextContainer() != null && getInvocationContextContainer().getInvocationContexts() != null) {
+      for (InvocationContext invocationContext : getInvocationContextContainer().getInvocationContexts()) {
+        contracts.add(invocationContext.getActivityContract());
+      }
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getInvocationContracts(Type<?> type) {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    if (type != null) {
+      for (Contract innerContract : getInvocationContracts()) {
+        if (innerContract.getType() != null && ClassHelper.asSubClass(type.getType(), innerContract.getType().getType())) {
+          contracts.add(innerContract);
+        }
+      }
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getExposedContracts() {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    if (getInvocationContextContainer() != null && getInvocationContextContainer().getInvocationContexts() != null) {
+      for (InvocationContext invocationContext : getInvocationContextContainer().getInvocationContexts()) {
+        contracts.add(invocationContext.getExposedContract());
+      }
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<InvocationContext> getInvocationContexts() {
+    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
+    if (getInvocationContextContainer() != null && getInvocationContextContainer().getInvocationContexts() != null) {
+      invocationContexts.addAll(getInvocationContextContainer().getInvocationContexts());
+    }
+    return invocationContexts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<InvocationContext> getInvocationContexts(Type<?> innerType) {
+    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
+    if (innerType != null) {
+      for (InvocationContext innerInvocationContext : getInvocationContexts()) {
+        if (innerInvocationContext.getType() != null && ClassHelper.asSubClass(innerType.getType(), innerInvocationContext.getType().getType())) {
+          invocationContexts.add(innerInvocationContext);
+        }
+      }
+    }
+    return invocationContexts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -218,10 +369,10 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       return basicSetOrchestration((Orchestration) otherEnd, msgs);
-    case FcorePackage.INVOCATION__CONTEXT_CONTAINER:
-      if (contextContainer != null)
-        msgs = ((InternalEObject) contextContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.INVOCATION__CONTEXT_CONTAINER, null, msgs);
-      return basicSetContextContainer((ContextContainer) otherEnd, msgs);
+    case FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER:
+      if (invocationContextContainer != null)
+        msgs = ((InternalEObject) invocationContextContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER, null, msgs);
+      return basicSetInvocationContextContainer((InvocationContextContainer) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -229,6 +380,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -236,8 +388,8 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
     switch (featureID) {
     case FcorePackage.INVOCATION__ORCHESTRATION:
       return basicSetOrchestration(null, msgs);
-    case FcorePackage.INVOCATION__CONTEXT_CONTAINER:
-      return basicSetContextContainer(null, msgs);
+    case FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER:
+      return basicSetInvocationContextContainer(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -245,6 +397,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -259,6 +412,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -266,8 +420,8 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
     switch (featureID) {
     case FcorePackage.INVOCATION__ORCHESTRATION:
       return getOrchestration();
-    case FcorePackage.INVOCATION__CONTEXT_CONTAINER:
-      return getContextContainer();
+    case FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER:
+      return getInvocationContextContainer();
     case FcorePackage.INVOCATION__ACTIVITY:
       if (resolve)
         return getActivity();
@@ -279,6 +433,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -288,8 +443,8 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
     case FcorePackage.INVOCATION__ORCHESTRATION:
       setOrchestration((Orchestration) newValue);
       return;
-    case FcorePackage.INVOCATION__CONTEXT_CONTAINER:
-      setContextContainer((ContextContainer) newValue);
+    case FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER:
+      setInvocationContextContainer((InvocationContextContainer) newValue);
       return;
     case FcorePackage.INVOCATION__ACTIVITY:
       setActivity((T) newValue);
@@ -301,6 +456,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -309,8 +465,8 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
     case FcorePackage.INVOCATION__ORCHESTRATION:
       setOrchestration((Orchestration) null);
       return;
-    case FcorePackage.INVOCATION__CONTEXT_CONTAINER:
-      setContextContainer((ContextContainer) null);
+    case FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER:
+      setInvocationContextContainer((InvocationContextContainer) null);
       return;
     case FcorePackage.INVOCATION__ACTIVITY:
       setActivity((T) null);
@@ -322,6 +478,7 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -329,8 +486,8 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
     switch (featureID) {
     case FcorePackage.INVOCATION__ORCHESTRATION:
       return getOrchestration() != null;
-    case FcorePackage.INVOCATION__CONTEXT_CONTAINER:
-      return contextContainer != null;
+    case FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER:
+      return invocationContextContainer != null;
     case FcorePackage.INVOCATION__ACTIVITY:
       return activity != null;
     }

@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.EGFProductionPlanModelPlugin;
+import org.eclipse.egf.model.productionplan.*;
 import org.eclipse.egf.model.productionplan.FactoryComponentInvocation;
 import org.eclipse.egf.model.productionplan.ProductionPlan;
 import org.eclipse.egf.model.productionplan.ProductionPlanInvocation;
@@ -42,7 +43,6 @@ import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.productionplan.ProductionPlanPackage
  * @generated
  */
@@ -51,17 +51,14 @@ public class ProductionPlanValidator extends EObjectValidator {
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static final ProductionPlanValidator INSTANCE = new ProductionPlanValidator();
 
   /**
-   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.emf.common.util.Diagnostic#getSource()
    * @see org.eclipse.emf.common.util.Diagnostic#getCode()
    * @generated
@@ -69,21 +66,17 @@ public class ProductionPlanValidator extends EObjectValidator {
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.productionplan"; //$NON-NLS-1$
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants in a derived class.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
@@ -92,7 +85,6 @@ public class ProductionPlanValidator extends EObjectValidator {
    * Model Validation Service interface for batch validation of EMF elements.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private final IBatchValidator batchValidator;
@@ -101,7 +93,6 @@ public class ProductionPlanValidator extends EObjectValidator {
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ProductionPlanValidator() {
@@ -116,7 +107,6 @@ public class ProductionPlanValidator extends EObjectValidator {
    * Returns the package of this validator switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -127,7 +117,6 @@ public class ProductionPlanValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -138,10 +127,10 @@ public class ProductionPlanValidator extends EObjectValidator {
     // no point in validating if we can't report results
     if (diagnostics != null) {
       // if EMF Mode Validation Service already covered the sub-tree,
-      // which it does for efficient computation and error reporting,
-      // then don't repeat (the Diagnostician does the recursion
-      // externally). If there is no context map, then we can't
-      // help it
+      //    which it does for efficient computation and error reporting,
+      //    then don't repeat (the Diagnostician does the recursion
+      //    externally).  If there is no context map, then we can't
+      //    help it
       if (hasProcessed(eObject, context) == false) {
         status = batchValidator.validate(eObject, new NullProgressMonitor());
         processed(eObject, context, status);
@@ -155,7 +144,6 @@ public class ProductionPlanValidator extends EObjectValidator {
    * Calls <code>validateXXX</code> for the corresponding classifier of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -179,7 +167,6 @@ public class ProductionPlanValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateProductionPlan(ProductionPlan productionPlan, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -189,7 +176,6 @@ public class ProductionPlanValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateProductionPlanInvocation(ProductionPlanInvocation<?> productionPlanInvocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -199,7 +185,6 @@ public class ProductionPlanValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateFactoryComponentInvocation(FactoryComponentInvocation factoryComponentInvocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -209,7 +194,6 @@ public class ProductionPlanValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateTask(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -255,7 +239,6 @@ public class ProductionPlanValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateTaskInvocation(TaskInvocation taskInvocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -263,11 +246,9 @@ public class ProductionPlanValidator extends EObjectValidator {
   }
 
   /**
-   * Returns the resource locator that will be used to fetch messages for this validator's
-   * diagnostics.
+   * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -279,12 +260,9 @@ public class ProductionPlanValidator extends EObjectValidator {
    * If we have a context map, record this object's <code>status</code> in it
    * so that we will know later that we have processed it and its sub-tree.
    * 
-   * @param eObject
-   *          an element that we have validated
-   * @param context
-   *          the context (may be <code>null</code>)
-   * @param status
-   *          the element's validation status
+   * @param eObject an element that we have validated
+   * @param context the context (may be <code>null</code>)
+   * @param status the element's validation status
    *          <!-- begin-user-doc -->
    *          <!-- end-user-doc -->
    * @generated
@@ -297,16 +275,14 @@ public class ProductionPlanValidator extends EObjectValidator {
 
   /**
    * Determines whether we have processed this <code>eObject</code> before,
-   * by automatic recursion of the EMF Model Validation Service. This is
+   * by automatic recursion of the EMF Model Validation Service.  This is
    * only possible if we do, indeed, have a context.
    * 
-   * @param eObject
-   *          an element to be validated (we hope not)
-   * @param context
-   *          the context (may be <code>null</code>)
+   * @param eObject an element to be validated (we hope not)
+   * @param context the context (may be <code>null</code>)
    * @return <code>true</code> if the context is not <code>null</code> and
-   *         the <code>eObject</code> or one of its containers has already been
-   *         validated; <code>false</code>, otherwise
+   *     the <code>eObject</code> or one of its containers has already been
+   *     validated;  <code>false</code>, otherwise
    *         <!-- begin-user-doc -->
    *         <!-- end-user-doc -->
    * @generated
@@ -330,10 +306,8 @@ public class ProductionPlanValidator extends EObjectValidator {
   /**
    * Converts a status result from the EMF validation service to diagnostics.
    * 
-   * @param status
-   *          the EMF validation service's status result
-   * @param diagnostics
-   *          a diagnostic chain to accumulate results on
+   * @param status the EMF validation service's status result
+   * @param diagnostics a diagnostic chain to accumulate results on
    *          <!-- begin-user-doc -->
    *          <!-- end-user-doc -->
    * @generated

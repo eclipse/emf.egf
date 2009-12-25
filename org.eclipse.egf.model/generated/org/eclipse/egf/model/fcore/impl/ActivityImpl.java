@@ -12,11 +12,16 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -108,6 +113,38 @@ public abstract class ActivityImpl extends ModelElementImpl implements Activity 
         msgs.dispatch();
     } else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.ACTIVITY__CONTRACT_CONTAINER, newContractContainer, newContractContainer));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getContracts() {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    if (getContractContainer() != null && getContractContainer().getContracts() != null) {
+      contracts.addAll(getContractContainer().getContracts());
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getContracts(Type<?> type) {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    if (type != null) {
+      for (Contract innerContract : getContracts()) {
+        if (innerContract.getType() != null && ClassHelper.asSubClass(type.getType(), innerContract.getType().getType())) {
+          contracts.add(innerContract);
+        }
+      }
+    }
+    return contracts;
   }
 
   /**

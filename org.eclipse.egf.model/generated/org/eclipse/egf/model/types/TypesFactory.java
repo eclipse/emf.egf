@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.types.TypesPackage
  * @generated
  */
@@ -28,7 +27,6 @@ public interface TypesFactory extends EFactory {
    * The singleton instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   TypesFactory eINSTANCE = org.eclipse.egf.model.types.impl.TypesFactoryImpl.init();
@@ -37,7 +35,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Big Decimal Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Big Decimal Type</em>'.
    * @generated
    */
@@ -47,7 +44,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Big Integer Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Big Integer Type</em>'.
    * @generated
    */
@@ -57,7 +53,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Boolean Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Boolean Type</em>'.
    * @generated
    */
@@ -67,7 +62,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Byte Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Byte Type</em>'.
    * @generated
    */
@@ -77,7 +71,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Character Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Character Type</em>'.
    * @generated
    */
@@ -87,7 +80,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Date Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Date Type</em>'.
    * @generated
    */
@@ -97,7 +89,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Double Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Double Type</em>'.
    * @generated
    */
@@ -107,7 +98,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Float Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Float Type</em>'.
    * @generated
    */
@@ -117,7 +107,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>String Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>String Type</em>'.
    * @generated
    */
@@ -127,7 +116,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Integer Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Integer Type</em>'.
    * @generated
    */
@@ -137,7 +125,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Long Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Long Type</em>'.
    * @generated
    */
@@ -147,7 +134,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Short Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Short Type</em>'.
    * @generated
    */
@@ -157,7 +143,6 @@ public interface TypesFactory extends EFactory {
    * Returns a new object of class '<em>Generator Adapter Factory Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return a new object of class '<em>Generator Adapter Factory Type</em>'.
    * @generated
    */
@@ -167,7 +152,6 @@ public interface TypesFactory extends EFactory {
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the package supported by this factory.
    * @generated
    */

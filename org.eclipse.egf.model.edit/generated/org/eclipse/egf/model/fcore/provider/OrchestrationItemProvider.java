@@ -15,6 +15,7 @@ package org.eclipse.egf.model.fcore.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -77,6 +78,7 @@ public class OrchestrationItemProvider extends ModelElementItemProvider implemen
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
+      childrenFeatures.add(FcorePackage.Literals.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER);
       childrenFeatures.add(FcorePackage.Literals.ORCHESTRATION__INVOCATIONS);
     }
     return childrenFeatures;
@@ -120,6 +122,7 @@ public class OrchestrationItemProvider extends ModelElementItemProvider implemen
     updateChildren(notification);
 
     switch (notification.getFeatureID(Orchestration.class)) {
+    case FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER:
     case FcorePackage.ORCHESTRATION__INVOCATIONS:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
@@ -137,6 +140,8 @@ public class OrchestrationItemProvider extends ModelElementItemProvider implemen
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER, FcoreFactory.eINSTANCE.createOrchestrationContextContainer()));
   }
 
 }

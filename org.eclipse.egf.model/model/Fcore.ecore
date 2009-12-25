@@ -4,21 +4,70 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fcore"
     nsURI="http://www.eclipse.org/egf/1.0.0/fcore" nsPrefix="fcore">
   <eClassifiers xsi:type="ecore:EClass" name="ModelElement" abstract="true">
-    <eOperations name="getExternalName" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="iD" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
         changeable="false" volatile="true" transient="true" unsettable="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Activity" abstract="true" eSuperTypes="#//ModelElement">
+    <eOperations name="getContracts" upperBound="-1" eType="#//Contract"/>
+    <eOperations name="getContracts" upperBound="-1" eType="#//Contract">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="contractContainer" eType="#//ContractContainer"
         containment="true" resolveProxies="false" eOpposite="#//ContractContainer/activity"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FactoryComponent" eSuperTypes="#//Activity">
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext"/>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewpointContainer" eType="#//ViewpointContainer"
         containment="true" resolveProxies="false" eOpposite="#//ViewpointContainer/factoryComponent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" eType="#//Orchestration"
         containment="true" resolveProxies="false" eOpposite="#//Orchestration/factoryComponent"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Contract" eSuperTypes="#//ModelElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UniqueContractName"/>
+    </eAnnotations>
+    <eOperations name="getActivity" lowerBound="1" eType="#//Activity"/>
+    <eOperations name="getContracts" upperBound="-1" eType="#//Contract"/>
+    <eOperations name="getContracts" upperBound="-1" eType="#//Contract">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contractContainer" lowerBound="1"
+        eType="#//ContractContainer" resolveProxies="false" eOpposite="#//ContractContainer/contracts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContexts" upperBound="-1"
+        eType="#//InvocationContext" resolveProxies="false" eOpposite="#//InvocationContext/exposedContract"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContexts"
+        upperBound="-1" eType="#//OrchestrationContext" resolveProxies="false" eOpposite="#//OrchestrationContext/contract"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mandatory" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="#//ContractMode"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
+        resolveProxies="false">
+      <eGenericType eClassifier="#//Type">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ContractContainer" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
+        eType="#//Activity" resolveProxies="false" eOpposite="#//Activity/contractContainer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contracts" upperBound="-1"
+        eType="#//Contract" containment="true" resolveProxies="false" eOpposite="#//Contract/contractContainer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ViewpointContainer" eSuperTypes="#//ModelElement">
     <eOperations name="getViewpoint" eType="#//Viewpoint">
@@ -38,27 +87,35 @@
         eType="#//ViewpointContainer" resolveProxies="false" eOpposite="#//ViewpointContainer/viewpoints"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Orchestration" abstract="true" eSuperTypes="#//ModelElement">
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext"/>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="factoryComponent" lowerBound="1"
         eType="#//FactoryComponent" resolveProxies="false" eOpposite="#//FactoryComponent/orchestration"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="invocations" upperBound="-1"
-        containment="true" resolveProxies="false" eOpposite="#//Invocation/orchestration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContextContainer"
+        eType="#//OrchestrationContextContainer" containment="true" resolveProxies="false"
+        eOpposite="#//OrchestrationContextContainer/orchestration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocations" lowerBound="1"
+        upperBound="-1" containment="true" resolveProxies="false" eOpposite="#//Invocation/orchestration">
       <eGenericType eClassifier="#//Invocation">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContextContainer"
-        eType="#//OrchestrationContextContainer" containment="true" resolveProxies="false"
-        eOpposite="#//OrchestrationContextContainer/orchestration"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OrchestrationContextContainer" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" lowerBound="1"
-        eType="#//Orchestration" eOpposite="#//Orchestration/orchestrationContextContainer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrchestrationContext" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" lowerBound="1"
-        eType="#//Contract" resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
-        eType="#//Context" resolveProxies="false" eOpposite="#//Context/orchestrationContext"/>
+    <eOperations name="getOrchestration" lowerBound="1" eType="#//Orchestration"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContextContainer"
+        lowerBound="1" eType="#//OrchestrationContextContainer" resolveProxies="false"
+        eOpposite="#//OrchestrationContextContainer/orchestrationContexts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="contract" eType="#//Contract"
+        resolveProxies="false" eOpposite="#//Contract/orchestrationContexts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContexts" lowerBound="1"
+        upperBound="-1" eType="#//InvocationContext" resolveProxies="false" eOpposite="#//InvocationContext/orchestrationContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
         resolveProxies="false">
       <eGenericType eClassifier="#//Type">
@@ -66,17 +123,108 @@
       </eGenericType>
     </eStructuralFeatures>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OrchestrationContextContainer" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" lowerBound="1"
+        eType="#//Orchestration" eOpposite="#//Orchestration/orchestrationContextContainer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContexts"
+        lowerBound="1" upperBound="-1" eType="#//OrchestrationContext" containment="true"
+        eOpposite="#//OrchestrationContext/orchestrationContextContainer"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Invocation" abstract="true" eSuperTypes="#//ModelElement">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Activity"/>
     </eTypeParameters>
+    <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="#//Contract"/>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="#//Contract">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getInvocationContracts" upperBound="-1" eType="#//Contract"/>
+    <eOperations name="getInvocationContracts" upperBound="-1" eType="#//Contract">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getExposedContracts" upperBound="-1" eType="#//Contract"/>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext"/>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" lowerBound="1"
         eType="#//Orchestration" resolveProxies="false" eOpposite="#//Orchestration/invocations"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contextContainer" eType="#//ContextContainer"
-        containment="true" resolveProxies="false" eOpposite="#//ContextContainer/invocation"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContextContainer"
+        eType="#//InvocationContextContainer" containment="true" resolveProxies="false"
+        eOpposite="#//InvocationContextContainer/invocation"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1">
       <eGenericType eTypeParameter="#//Invocation/T"/>
     </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvocationContext" eSuperTypes="#//ModelElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidContext UniqueContextName ValidSourceContract ValidExposedContract"/>
+    </eAnnotations>
+    <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
+    <eOperations name="getInvocation" lowerBound="1">
+      <eGenericType eClassifier="#//Invocation">
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext"/>
+    <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
+      <eParameters name="type">
+        <eGenericType eClassifier="#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContextContainer"
+        lowerBound="1" eType="#//InvocationContextContainer" resolveProxies="false"
+        eOpposite="#//InvocationContextContainer/invocationContexts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exposedContract" eType="#//Contract"
+        resolveProxies="false" eOpposite="#//Contract/invocationContexts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContext" eType="#//OrchestrationContext"
+        resolveProxies="false" eOpposite="#//OrchestrationContext/invocationContexts"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activityContract" lowerBound="1"
+        eType="#//Contract"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
+        resolveProxies="false">
+      <eGenericType eClassifier="#//Type">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvocationContextConnector" eSuperTypes="#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContextContainer"
+        lowerBound="1" eType="#//InvocationContextContainer" resolveProxies="false"
+        eOpposite="#//InvocationContextContainer/invocationContextConnectors"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="sourceInvocationContext"
+        lowerBound="1" eType="#//InvocationContext"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="targetInvocationContext"
+        lowerBound="1" eType="#//InvocationContext"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InvocationContextContainer" eSuperTypes="#//ModelElement">
+    <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocation" lowerBound="1"
+        resolveProxies="false" eOpposite="#//Invocation/invocationContextContainer">
+      <eGenericType eClassifier="#//Invocation">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContexts" upperBound="-1"
+        eType="#//InvocationContext" containment="true" resolveProxies="false" eOpposite="#//InvocationContext/invocationContextContainer"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContextConnectors"
+        upperBound="-1" eType="#//InvocationContextConnector" containment="true" resolveProxies="false"
+        eOpposite="#//InvocationContextConnector/invocationContextContainer"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//ModelElement">
     <eTypeParameters name="T">
@@ -106,67 +254,10 @@
       <eTypeArguments eTypeParameter="#//TypeClass/T"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContractContainer" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
-        eType="#//Activity" resolveProxies="false" eOpposite="#//Activity/contractContainer"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contracts" upperBound="-1"
-        eType="#//Contract" containment="true" resolveProxies="false" eOpposite="#//Contract/contractContainer"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Contract" eSuperTypes="#//ModelElement">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniqueContractName"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contractContainer" lowerBound="1"
-        eType="#//ContractContainer" resolveProxies="false" eOpposite="#//ContractContainer/contracts"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mandatory" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="#//ContractMode"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
-        resolveProxies="false">
-      <eGenericType eClassifier="#//Type">
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContractConnector" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contextContainer" eType="#//ContextContainer"
-        resolveProxies="false" eOpposite="#//ContextContainer/connectors"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
-        eType="#//Contract"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="target" lowerBound="1"
-        eType="#//Contract"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ContextContainer" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="invocation" resolveProxies="false"
-        eOpposite="#//Invocation/contextContainer">
-      <eGenericType eClassifier="#//Invocation">
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contexts" upperBound="-1"
-        eType="#//Context" containment="true" resolveProxies="false" eOpposite="#//Context/contextContainer"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="connectors" upperBound="-1"
-        eType="#//ContractConnector" containment="true" resolveProxies="false" eOpposite="#//ContractConnector/contextContainer"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Context" eSuperTypes="#//ModelElement">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniqueContextName ValidContract"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="contextContainer" lowerBound="1"
-        eType="#//ContextContainer" resolveProxies="false" eOpposite="#//ContextContainer/contexts"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContract" lowerBound="1"
-        eType="#//Contract"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContext" eType="#//OrchestrationContext"
-        eOpposite="#//OrchestrationContext/contexts"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
-        resolveProxies="false">
-      <eGenericType eClassifier="#//Type">
-        <eTypeArguments/>
-      </eGenericType>
-    </eStructuralFeatures>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ContractMode">
     <eLiterals name="In" literal="In"/>
     <eLiterals name="Out" value="1" literal="Out"/>
+    <eLiterals name="In_Out" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="URI" instanceClassName="org.eclipse.emf.common.util.URI"/>
 </ecore:EPackage>

@@ -179,16 +179,6 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public String getExternalName() {
-    return getName() != null && getName().trim().length() != 0 ? getName() : getID() != null ? getID() : "Unknown"; //$NON-NLS-1$
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * @generated
    */
   @Override

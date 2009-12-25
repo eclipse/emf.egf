@@ -13,13 +13,19 @@
 package org.eclipse.egf.model.fcore.impl;
 
 import java.util.Collection;
+
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fcore.OrchestrationContextContainer;
+import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -35,6 +41,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent <em>Factory Component</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getOrchestrationContextContainer <em>Orchestration Context Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getInvocations <em>Invocations</em>}</li>
  * </ul>
  * </p>
@@ -42,6 +49,16 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public abstract class OrchestrationImpl extends ModelElementImpl implements Orchestration {
+  /**
+   * The cached value of the '{@link #getOrchestrationContextContainer() <em>Orchestration Context Container</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOrchestrationContextContainer()
+   * @generated
+   * @ordered
+   */
+  protected OrchestrationContextContainer orchestrationContextContainer;
+
   /**
    * The cached value of the '{@link #getInvocations() <em>Invocations</em>}' containment reference list.
    * <!-- begin-user-doc -->
@@ -130,6 +147,86 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
    * <!-- end-user-doc -->
    * @generated
    */
+  public OrchestrationContextContainer getOrchestrationContextContainer() {
+    return orchestrationContextContainer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetOrchestrationContextContainer(OrchestrationContextContainer newOrchestrationContextContainer, NotificationChain msgs) {
+    OrchestrationContextContainer oldOrchestrationContextContainer = orchestrationContextContainer;
+    orchestrationContextContainer = newOrchestrationContextContainer;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER, oldOrchestrationContextContainer, newOrchestrationContextContainer);
+      if (msgs == null)
+        msgs = notification;
+      else
+        msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setOrchestrationContextContainer(OrchestrationContextContainer newOrchestrationContextContainer) {
+    if (newOrchestrationContextContainer != orchestrationContextContainer) {
+      NotificationChain msgs = null;
+      if (orchestrationContextContainer != null)
+        msgs = ((InternalEObject) orchestrationContextContainer).eInverseRemove(this, FcorePackage.ORCHESTRATION_CONTEXT_CONTAINER__ORCHESTRATION, OrchestrationContextContainer.class, msgs);
+      if (newOrchestrationContextContainer != null)
+        msgs = ((InternalEObject) newOrchestrationContextContainer).eInverseAdd(this, FcorePackage.ORCHESTRATION_CONTEXT_CONTAINER__ORCHESTRATION, OrchestrationContextContainer.class, msgs);
+      msgs = basicSetOrchestrationContextContainer(newOrchestrationContextContainer, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER, newOrchestrationContextContainer, newOrchestrationContextContainer));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<InvocationContext> getInvocationContexts() {
+    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
+    if (getInvocations() != null) {
+      for (Invocation<?> invocation : getInvocations()) {
+        invocationContexts.addAll(invocation.getInvocationContexts());
+      }
+    }
+    return invocationContexts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<InvocationContext> getInvocationContexts(Type<?> innerType) {
+    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
+    if (innerType != null) {
+      for (InvocationContext innerInvocationContext : getInvocationContexts()) {
+        if (innerInvocationContext.getType() != null && ClassHelper.asSubClass(innerType.getType(), innerInvocationContext.getType().getType())) {
+          invocationContexts.add(innerInvocationContext);
+        }
+      }
+    }
+    return invocationContexts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -138,6 +235,10 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       return basicSetFactoryComponent((FactoryComponent) otherEnd, msgs);
+    case FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER:
+      if (orchestrationContextContainer != null)
+        msgs = ((InternalEObject) orchestrationContextContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER, null, msgs);
+      return basicSetOrchestrationContextContainer((OrchestrationContextContainer) otherEnd, msgs);
     case FcorePackage.ORCHESTRATION__INVOCATIONS:
       return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocations()).basicAdd(otherEnd, msgs);
     }
@@ -154,6 +255,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     switch (featureID) {
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       return basicSetFactoryComponent(null, msgs);
+    case FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER:
+      return basicSetOrchestrationContextContainer(null, msgs);
     case FcorePackage.ORCHESTRATION__INVOCATIONS:
       return ((InternalEList<?>) getInvocations()).basicRemove(otherEnd, msgs);
     }
@@ -184,6 +287,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     switch (featureID) {
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       return getFactoryComponent();
+    case FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER:
+      return getOrchestrationContextContainer();
     case FcorePackage.ORCHESTRATION__INVOCATIONS:
       return getInvocations();
     }
@@ -201,6 +306,9 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     switch (featureID) {
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       setFactoryComponent((FactoryComponent) newValue);
+      return;
+    case FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER:
+      setOrchestrationContextContainer((OrchestrationContextContainer) newValue);
       return;
     case FcorePackage.ORCHESTRATION__INVOCATIONS:
       getInvocations().clear();
@@ -221,6 +329,9 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       setFactoryComponent((FactoryComponent) null);
       return;
+    case FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER:
+      setOrchestrationContextContainer((OrchestrationContextContainer) null);
+      return;
     case FcorePackage.ORCHESTRATION__INVOCATIONS:
       getInvocations().clear();
       return;
@@ -238,6 +349,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
     switch (featureID) {
     case FcorePackage.ORCHESTRATION__FACTORY_COMPONENT:
       return getFactoryComponent() != null;
+    case FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER:
+      return orchestrationContextContainer != null;
     case FcorePackage.ORCHESTRATION__INVOCATIONS:
       return invocations != null && !invocations.isEmpty();
     }

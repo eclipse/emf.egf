@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.types.impl;
 
+import org.eclipse.egf.model.types.*;
 import org.eclipse.egf.model.types.BigDecimalType;
 import org.eclipse.egf.model.types.BigIntegerType;
 import org.eclipse.egf.model.types.BooleanType;
@@ -38,7 +39,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
@@ -46,7 +46,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static TypesFactory init() {
@@ -65,7 +64,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypesFactoryImpl() {
@@ -75,7 +73,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -115,7 +112,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -129,7 +125,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -143,7 +138,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public BigDecimalType createBigDecimalType() {
@@ -154,7 +148,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public BigIntegerType createBigIntegerType() {
@@ -165,7 +158,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public BooleanType createBooleanType() {
@@ -176,7 +168,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ByteType createByteType() {
@@ -187,7 +178,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public CharacterType createCharacterType() {
@@ -198,7 +188,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public DateType createDateType() {
@@ -209,7 +198,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public DoubleType createDoubleType() {
@@ -220,7 +208,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FloatType createFloatType() {
@@ -231,7 +218,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public StringType createStringType() {
@@ -242,7 +228,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public IntegerType createIntegerType() {
@@ -253,7 +238,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public LongType createLongType() {
@@ -264,7 +248,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ShortType createShortType() {
@@ -275,7 +258,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public GeneratorAdapterFactoryType createGeneratorAdapterFactoryType() {
@@ -286,7 +268,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypesPackage getTypesPackage() {
@@ -296,7 +277,6 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @deprecated
    * @generated
    */

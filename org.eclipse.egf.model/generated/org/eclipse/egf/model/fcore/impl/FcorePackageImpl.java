@@ -13,18 +13,20 @@
 package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.Context;
-import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.ContractConnector;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.InvocationContextConnector;
+import org.eclipse.egf.model.fcore.InvocationContextContainer;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fcore.OrchestrationContext;
+import org.eclipse.egf.model.fcore.OrchestrationContextContainer;
 import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.TypeObject;
@@ -98,7 +100,42 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass orchestrationContextEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass orchestrationContextContainerEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass invocationEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass invocationContextEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass invocationContextConnectorEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass invocationContextContainerEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -126,20 +163,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass contextContainerEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass contextEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass contractContainerEClass = null;
 
   /**
@@ -148,13 +171,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * @generated
    */
   private EClass contractEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass contractConnectorEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -392,7 +408,88 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * @generated
    */
   public EReference getOrchestration_Invocations() {
+    return (EReference) orchestrationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrchestration_OrchestrationContextContainer() {
     return (EReference) orchestrationEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOrchestrationContext() {
+    return orchestrationContextEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrchestrationContext_OrchestrationContextContainer() {
+    return (EReference) orchestrationContextEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrchestrationContext_Contract() {
+    return (EReference) orchestrationContextEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrchestrationContext_InvocationContexts() {
+    return (EReference) orchestrationContextEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrchestrationContext_Type() {
+    return (EReference) orchestrationContextEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOrchestrationContextContainer() {
+    return orchestrationContextContainerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrchestrationContextContainer_Orchestration() {
+    return (EReference) orchestrationContextContainerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getOrchestrationContextContainer_OrchestrationContexts() {
+    return (EReference) orchestrationContextContainerEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -418,7 +515,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getInvocation_ContextContainer() {
+  public EReference getInvocation_InvocationContextContainer() {
     return (EReference) invocationEClass.getEStructuralFeatures().get(1);
   }
 
@@ -429,6 +526,132 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    */
   public EReference getInvocation_Activity() {
     return (EReference) invocationEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getInvocationContext() {
+    return invocationContextEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContext_InvocationContextContainer() {
+    return (EReference) invocationContextEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContext_ExposedContract() {
+    return (EReference) invocationContextEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContext_OrchestrationContext() {
+    return (EReference) invocationContextEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContext_ActivityContract() {
+    return (EReference) invocationContextEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContext_Type() {
+    return (EReference) invocationContextEClass.getEStructuralFeatures().get(4);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getInvocationContextConnector() {
+    return invocationContextConnectorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContextConnector_InvocationContextContainer() {
+    return (EReference) invocationContextConnectorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContextConnector_SourceInvocationContext() {
+    return (EReference) invocationContextConnectorEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContextConnector_TargetInvocationContext() {
+    return (EReference) invocationContextConnectorEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getInvocationContextContainer() {
+    return invocationContextContainerEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContextContainer_Invocation() {
+    return (EReference) invocationContextContainerEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContextContainer_InvocationContexts() {
+    return (EReference) invocationContextContainerEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getInvocationContextContainer_InvocationContextConnectors() {
+    return (EReference) invocationContextContainerEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -465,78 +688,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    */
   public EAttribute getTypeClass_Value() {
     return (EAttribute) typeClassEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getContextContainer() {
-    return contextContainerEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContextContainer_Invocation() {
-    return (EReference) contextContainerEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContextContainer_Contexts() {
-    return (EReference) contextContainerEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContextContainer_Connectors() {
-    return (EReference) contextContainerEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getContext() {
-    return contextEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContext_ContextContainer() {
-    return (EReference) contextEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContext_Contract() {
-    return (EReference) contextEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContext_Type() {
-    return (EReference) contextEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -589,8 +740,26 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getContract_InvocationContexts() {
+    return (EReference) contractEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getContract_OrchestrationContexts() {
+    return (EReference) contractEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getContract_Mandatory() {
-    return (EAttribute) contractEClass.getEStructuralFeatures().get(1);
+    return (EAttribute) contractEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -599,7 +768,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * @generated
    */
   public EAttribute getContract_Mode() {
-    return (EAttribute) contractEClass.getEStructuralFeatures().get(2);
+    return (EAttribute) contractEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -608,43 +777,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * @generated
    */
   public EReference getContract_Type() {
-    return (EReference) contractEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getContractConnector() {
-    return contractConnectorEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContractConnector_Context() {
-    return (EReference) contractConnectorEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContractConnector_Source() {
-    return (EReference) contractConnectorEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getContractConnector_Target() {
-    return (EReference) contractConnectorEClass.getEStructuralFeatures().get(2);
+    return (EReference) contractEClass.getEStructuralFeatures().get(5);
   }
 
   /**
@@ -706,6 +839,18 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     createEReference(factoryComponentEClass, FACTORY_COMPONENT__VIEWPOINT_CONTAINER);
     createEReference(factoryComponentEClass, FACTORY_COMPONENT__ORCHESTRATION);
 
+    contractEClass = createEClass(CONTRACT);
+    createEReference(contractEClass, CONTRACT__CONTRACT_CONTAINER);
+    createEReference(contractEClass, CONTRACT__INVOCATION_CONTEXTS);
+    createEReference(contractEClass, CONTRACT__ORCHESTRATION_CONTEXTS);
+    createEAttribute(contractEClass, CONTRACT__MANDATORY);
+    createEAttribute(contractEClass, CONTRACT__MODE);
+    createEReference(contractEClass, CONTRACT__TYPE);
+
+    contractContainerEClass = createEClass(CONTRACT_CONTAINER);
+    createEReference(contractContainerEClass, CONTRACT_CONTAINER__ACTIVITY);
+    createEReference(contractContainerEClass, CONTRACT_CONTAINER__CONTRACTS);
+
     viewpointContainerEClass = createEClass(VIEWPOINT_CONTAINER);
     createEReference(viewpointContainerEClass, VIEWPOINT_CONTAINER__FACTORY_COMPONENT);
     createEReference(viewpointContainerEClass, VIEWPOINT_CONTAINER__VIEWPOINTS);
@@ -715,12 +860,40 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     orchestrationEClass = createEClass(ORCHESTRATION);
     createEReference(orchestrationEClass, ORCHESTRATION__FACTORY_COMPONENT);
+    createEReference(orchestrationEClass, ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER);
     createEReference(orchestrationEClass, ORCHESTRATION__INVOCATIONS);
+
+    orchestrationContextEClass = createEClass(ORCHESTRATION_CONTEXT);
+    createEReference(orchestrationContextEClass, ORCHESTRATION_CONTEXT__ORCHESTRATION_CONTEXT_CONTAINER);
+    createEReference(orchestrationContextEClass, ORCHESTRATION_CONTEXT__CONTRACT);
+    createEReference(orchestrationContextEClass, ORCHESTRATION_CONTEXT__INVOCATION_CONTEXTS);
+    createEReference(orchestrationContextEClass, ORCHESTRATION_CONTEXT__TYPE);
+
+    orchestrationContextContainerEClass = createEClass(ORCHESTRATION_CONTEXT_CONTAINER);
+    createEReference(orchestrationContextContainerEClass, ORCHESTRATION_CONTEXT_CONTAINER__ORCHESTRATION);
+    createEReference(orchestrationContextContainerEClass, ORCHESTRATION_CONTEXT_CONTAINER__ORCHESTRATION_CONTEXTS);
 
     invocationEClass = createEClass(INVOCATION);
     createEReference(invocationEClass, INVOCATION__ORCHESTRATION);
-    createEReference(invocationEClass, INVOCATION__CONTEXT_CONTAINER);
+    createEReference(invocationEClass, INVOCATION__INVOCATION_CONTEXT_CONTAINER);
     createEReference(invocationEClass, INVOCATION__ACTIVITY);
+
+    invocationContextEClass = createEClass(INVOCATION_CONTEXT);
+    createEReference(invocationContextEClass, INVOCATION_CONTEXT__INVOCATION_CONTEXT_CONTAINER);
+    createEReference(invocationContextEClass, INVOCATION_CONTEXT__EXPOSED_CONTRACT);
+    createEReference(invocationContextEClass, INVOCATION_CONTEXT__ORCHESTRATION_CONTEXT);
+    createEReference(invocationContextEClass, INVOCATION_CONTEXT__ACTIVITY_CONTRACT);
+    createEReference(invocationContextEClass, INVOCATION_CONTEXT__TYPE);
+
+    invocationContextConnectorEClass = createEClass(INVOCATION_CONTEXT_CONNECTOR);
+    createEReference(invocationContextConnectorEClass, INVOCATION_CONTEXT_CONNECTOR__INVOCATION_CONTEXT_CONTAINER);
+    createEReference(invocationContextConnectorEClass, INVOCATION_CONTEXT_CONNECTOR__SOURCE_INVOCATION_CONTEXT);
+    createEReference(invocationContextConnectorEClass, INVOCATION_CONTEXT_CONNECTOR__TARGET_INVOCATION_CONTEXT);
+
+    invocationContextContainerEClass = createEClass(INVOCATION_CONTEXT_CONTAINER);
+    createEReference(invocationContextContainerEClass, INVOCATION_CONTEXT_CONTAINER__INVOCATION);
+    createEReference(invocationContextContainerEClass, INVOCATION_CONTEXT_CONTAINER__INVOCATION_CONTEXTS);
+    createEReference(invocationContextContainerEClass, INVOCATION_CONTEXT_CONTAINER__INVOCATION_CONTEXT_CONNECTORS);
 
     typeEClass = createEClass(TYPE);
 
@@ -728,31 +901,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     typeClassEClass = createEClass(TYPE_CLASS);
     createEAttribute(typeClassEClass, TYPE_CLASS__VALUE);
-
-    contractContainerEClass = createEClass(CONTRACT_CONTAINER);
-    createEReference(contractContainerEClass, CONTRACT_CONTAINER__ACTIVITY);
-    createEReference(contractContainerEClass, CONTRACT_CONTAINER__CONTRACTS);
-
-    contractEClass = createEClass(CONTRACT);
-    createEReference(contractEClass, CONTRACT__CONTRACT_CONTAINER);
-    createEAttribute(contractEClass, CONTRACT__MANDATORY);
-    createEAttribute(contractEClass, CONTRACT__MODE);
-    createEReference(contractEClass, CONTRACT__TYPE);
-
-    contractConnectorEClass = createEClass(CONTRACT_CONNECTOR);
-    createEReference(contractConnectorEClass, CONTRACT_CONNECTOR__CONTEXT);
-    createEReference(contractConnectorEClass, CONTRACT_CONNECTOR__SOURCE);
-    createEReference(contractConnectorEClass, CONTRACT_CONNECTOR__TARGET);
-
-    contextContainerEClass = createEClass(CONTEXT_CONTAINER);
-    createEReference(contextContainerEClass, CONTEXT_CONTAINER__INVOCATION);
-    createEReference(contextContainerEClass, CONTEXT_CONTAINER__CONTEXTS);
-    createEReference(contextContainerEClass, CONTEXT_CONTAINER__CONNECTORS);
-
-    contextEClass = createEClass(CONTEXT);
-    createEReference(contextEClass, CONTEXT__CONTEXT_CONTAINER);
-    createEReference(contextEClass, CONTEXT__CONTRACT);
-    createEReference(contextEClass, CONTEXT__TYPE);
 
     // Create enums
     contractModeEEnum = createEEnum(CONTRACT_MODE);
@@ -807,10 +955,17 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     // Add supertypes to classes
     activityEClass.getESuperTypes().add(this.getModelElement());
     factoryComponentEClass.getESuperTypes().add(this.getActivity());
+    contractEClass.getESuperTypes().add(this.getModelElement());
+    contractContainerEClass.getESuperTypes().add(this.getModelElement());
     viewpointContainerEClass.getESuperTypes().add(this.getModelElement());
     viewpointEClass.getESuperTypes().add(this.getModelElement());
     orchestrationEClass.getESuperTypes().add(this.getModelElement());
+    orchestrationContextEClass.getESuperTypes().add(this.getModelElement());
+    orchestrationContextContainerEClass.getESuperTypes().add(this.getModelElement());
     invocationEClass.getESuperTypes().add(this.getModelElement());
+    invocationContextEClass.getESuperTypes().add(this.getModelElement());
+    invocationContextConnectorEClass.getESuperTypes().add(this.getModelElement());
+    invocationContextContainerEClass.getESuperTypes().add(this.getModelElement());
     typeEClass.getESuperTypes().add(this.getModelElement());
     g1 = createEGenericType(this.getType());
     EGenericType g2 = createEGenericType(typeObjectEClass_T);
@@ -820,11 +975,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     g2 = createEGenericType(typeClassEClass_T);
     g1.getETypeArguments().add(g2);
     typeClassEClass.getEGenericSuperTypes().add(g1);
-    contractContainerEClass.getESuperTypes().add(this.getModelElement());
-    contractEClass.getESuperTypes().add(this.getModelElement());
-    contractConnectorEClass.getESuperTypes().add(this.getModelElement());
-    contextContainerEClass.getESuperTypes().add(this.getModelElement());
-    contextEClass.getESuperTypes().add(this.getModelElement());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -832,20 +982,59 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEAttribute(getModelElement_Name(), theEcorePackage.getEString(), "name", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEAttribute(getModelElement_Description(), theEcorePackage.getEString(), "description", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    addEOperation(modelElementEClass, theEcorePackage.getEString(), "getExternalName", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
     initEClass(activityEClass, Activity.class, "Activity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getActivity_ContractContainer(), this.getContractContainer(), this.getContractContainer_Activity(), "contractContainer", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(activityEClass, this.getContract(), "getContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    EOperation op = addEOperation(activityEClass, this.getContract(), "getContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(factoryComponentEClass, FactoryComponent.class, "FactoryComponent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getFactoryComponent_ViewpointContainer(), this.getViewpointContainer(), this.getViewpointContainer_FactoryComponent(), "viewpointContainer", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getFactoryComponent_Orchestration(), this.getOrchestration(), this.getOrchestration_FactoryComponent(), "orchestration", null, 0, 1, FactoryComponent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
+    addEOperation(factoryComponentEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(factoryComponentEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(contractEClass, Contract.class, "Contract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getContract_ContractContainer(), this.getContractContainer(), this.getContractContainer_Contracts(), "contractContainer", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getContract_InvocationContexts(), this.getInvocationContext(), this.getInvocationContext_ExposedContract(), "invocationContexts", null, 0, -1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getContract_OrchestrationContexts(), this.getOrchestrationContext(), this.getOrchestrationContext_Contract(), "orchestrationContexts", null, 0, -1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getContract_Mandatory(), theEcorePackage.getEBoolean(), "mandatory", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getContract_Mode(), this.getContractMode(), "mode", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    initEReference(getContract_Type(), g1, null, "type", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(contractEClass, this.getActivity(), "getActivity", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(contractEClass, this.getContract(), "getContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(contractEClass, this.getContract(), "getContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(contractContainerEClass, ContractContainer.class, "ContractContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getContractContainer_Activity(), this.getActivity(), this.getActivity_ContractContainer(), "activity", null, 1, 1, ContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getContractContainer_Contracts(), this.getContract(), this.getContract_ContractContainer(), "contracts", null, 0, -1, ContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
     initEClass(viewpointContainerEClass, ViewpointContainer.class, "ViewpointContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getViewpointContainer_FactoryComponent(), this.getFactoryComponent(), this.getFactoryComponent_ViewpointContainer(), "factoryComponent", null, 1, 1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getViewpointContainer_Viewpoints(), this.getViewpoint(), this.getViewpoint_ViewerpointContainer(), "viewpoints", null, 0, -1, ViewpointContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    EOperation op = addEOperation(viewpointContainerEClass, this.getViewpoint(), "getViewpoint", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    op = addEOperation(viewpointContainerEClass, this.getViewpoint(), "getViewpoint", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
     g1 = createEGenericType(theEcorePackage.getEJavaClass());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
@@ -856,16 +1045,109 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     initEClass(orchestrationEClass, Orchestration.class, "Orchestration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getOrchestration_FactoryComponent(), this.getFactoryComponent(), this.getFactoryComponent_Orchestration(), "factoryComponent", null, 1, 1, Orchestration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getOrchestration_OrchestrationContextContainer(), this.getOrchestrationContextContainer(), this.getOrchestrationContextContainer_Orchestration(), "orchestrationContextContainer", null, 0, 1, Orchestration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     g1 = createEGenericType(this.getInvocation());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
-    initEReference(getOrchestration_Invocations(), g1, this.getInvocation_Orchestration(), "invocations", null, 0, -1, Orchestration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getOrchestration_Invocations(), g1, this.getInvocation_Orchestration(), "invocations", null, 1, -1, Orchestration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(orchestrationEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(orchestrationEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(orchestrationContextEClass, OrchestrationContext.class, "OrchestrationContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getOrchestrationContext_OrchestrationContextContainer(), this.getOrchestrationContextContainer(), this.getOrchestrationContextContainer_OrchestrationContexts(), "orchestrationContextContainer", null, 1, 1, OrchestrationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getOrchestrationContext_Contract(), this.getContract(), this.getContract_OrchestrationContexts(), "contract", null, 0, 1, OrchestrationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getOrchestrationContext_InvocationContexts(), this.getInvocationContext(), this.getInvocationContext_OrchestrationContext(), "invocationContexts", null, 1, -1, OrchestrationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    initEReference(getOrchestrationContext_Type(), g1, null, "type", null, 1, 1, OrchestrationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(orchestrationContextEClass, this.getOrchestration(), "getOrchestration", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(orchestrationContextContainerEClass, OrchestrationContextContainer.class, "OrchestrationContextContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getOrchestrationContextContainer_Orchestration(), this.getOrchestration(), this.getOrchestration_OrchestrationContextContainer(), "orchestration", null, 1, 1, OrchestrationContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getOrchestrationContextContainer_OrchestrationContexts(), this.getOrchestrationContext(), this.getOrchestrationContext_OrchestrationContextContainer(), "orchestrationContexts", null, 1, -1, OrchestrationContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(invocationEClass, Invocation.class, "Invocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getInvocation_Orchestration(), this.getOrchestration(), this.getOrchestration_Invocations(), "orchestration", null, 1, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getInvocation_ContextContainer(), this.getContextContainer(), this.getContextContainer_Invocation(), "contextContainer", null, 0, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getInvocation_InvocationContextContainer(), this.getInvocationContextContainer(), this.getInvocationContextContainer_Invocation(), "invocationContextContainer", null, 0, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     g1 = createEGenericType(invocationEClass_T);
     initEReference(getInvocation_Activity(), g1, null, "activity", null, 1, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(invocationEClass, this.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(invocationEClass, this.getContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(invocationEClass, this.getContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(invocationEClass, this.getContract(), "getInvocationContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(invocationEClass, this.getContract(), "getInvocationContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(invocationEClass, this.getContract(), "getExposedContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(invocationEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(invocationEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(invocationContextEClass, InvocationContext.class, "InvocationContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getInvocationContext_InvocationContextContainer(), this.getInvocationContextContainer(), this.getInvocationContextContainer_InvocationContexts(), "invocationContextContainer", null, 1, 1, InvocationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getInvocationContext_ExposedContract(), this.getContract(), this.getContract_InvocationContexts(), "exposedContract", null, 0, 1, InvocationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getInvocationContext_OrchestrationContext(), this.getOrchestrationContext(), this.getOrchestrationContext_InvocationContexts(), "orchestrationContext", null, 0, 1, InvocationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getInvocationContext_ActivityContract(), this.getContract(), null, "activityContract", null, 1, 1, InvocationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    initEReference(getInvocationContext_Type(), g1, null, "type", null, 1, 1, InvocationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(invocationContextEClass, this.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(invocationContextEClass, null, "getInvocation", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getInvocation());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    addEOperation(invocationContextEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(invocationContextEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(invocationContextConnectorEClass, InvocationContextConnector.class, "InvocationContextConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getInvocationContextConnector_InvocationContextContainer(), this.getInvocationContextContainer(), this.getInvocationContextContainer_InvocationContextConnectors(), "invocationContextContainer", null, 1, 1, InvocationContextConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getInvocationContextConnector_SourceInvocationContext(), this.getInvocationContext(), null, "sourceInvocationContext", null, 1, 1, InvocationContextConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getInvocationContextConnector_TargetInvocationContext(), this.getInvocationContext(), null, "targetInvocationContext", null, 1, 1, InvocationContextConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(invocationContextContainerEClass, InvocationContextContainer.class, "InvocationContextContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    g1 = createEGenericType(this.getInvocation());
+    g2 = createEGenericType();
+    g1.getETypeArguments().add(g2);
+    initEReference(getInvocationContextContainer_Invocation(), g1, this.getInvocation_InvocationContextContainer(), "invocation", null, 1, 1, InvocationContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getInvocationContextContainer_InvocationContexts(), this.getInvocationContext(), this.getInvocationContext_InvocationContextContainer(), "invocationContexts", null, 0, -1, InvocationContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getInvocationContextContainer_InvocationContextConnectors(), this.getInvocationContextConnector(), this.getInvocationContextConnector_InvocationContextContainer(), "invocationContextConnectors", null, 0, -1, InvocationContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(invocationContextContainerEClass, this.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -882,44 +1164,11 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEClass(typeClassEClass, TypeClass.class, "TypeClass", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeClass_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TypeClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(contractContainerEClass, ContractContainer.class, "ContractContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getContractContainer_Activity(), this.getActivity(), this.getActivity_ContractContainer(), "activity", null, 1, 1, ContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContractContainer_Contracts(), this.getContract(), this.getContract_ContractContainer(), "contracts", null, 0, -1, ContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    initEClass(contractEClass, Contract.class, "Contract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getContract_ContractContainer(), this.getContractContainer(), this.getContractContainer_Contracts(), "contractContainer", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEAttribute(getContract_Mandatory(), theEcorePackage.getEBoolean(), "mandatory", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEAttribute(getContract_Mode(), this.getContractMode(), "mode", null, 0, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
-    g2 = createEGenericType();
-    g1.getETypeArguments().add(g2);
-    initEReference(getContract_Type(), g1, null, "type", null, 1, 1, Contract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    initEClass(contractConnectorEClass, ContractConnector.class, "ContractConnector", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getContractConnector_Context(), this.getContextContainer(), this.getContextContainer_Connectors(), "context", null, 0, 1, ContractConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContractConnector_Source(), this.getContract(), null, "source", null, 1, 1, ContractConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContractConnector_Target(), this.getContract(), null, "target", null, 1, 1, ContractConnector.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    initEClass(contextContainerEClass, ContextContainer.class, "ContextContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    g1 = createEGenericType(this.getInvocation());
-    g2 = createEGenericType();
-    g1.getETypeArguments().add(g2);
-    initEReference(getContextContainer_Invocation(), g1, this.getInvocation_ContextContainer(), "invocation", null, 0, 1, ContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContextContainer_Contexts(), this.getContext(), this.getContext_ContextContainer(), "contexts", null, 0, -1, ContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContextContainer_Connectors(), this.getContractConnector(), this.getContractConnector_Context(), "connectors", null, 0, -1, ContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getContext_ContextContainer(), this.getContextContainer(), this.getContextContainer_Contexts(), "contextContainer", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getContext_Contract(), this.getContract(), null, "contract", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
-    g2 = createEGenericType();
-    g1.getETypeArguments().add(g2);
-    initEReference(getContext_Type(), g1, null, "type", null, 1, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
     // Initialize enums and add enum literals
     initEEnum(contractModeEEnum, ContractMode.class, "ContractMode"); //$NON-NLS-1$
     addEEnumLiteral(contractModeEEnum, ContractMode.IN);
     addEEnumLiteral(contractModeEEnum, ContractMode.OUT);
+    addEEnumLiteral(contractModeEEnum, ContractMode.IN_OUT);
 
     // Initialize data types
     initEDataType(uriEDataType, org.eclipse.emf.common.util.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -942,7 +1191,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
     addAnnotation(contractEClass, source, new String[] { "constraints", "UniqueContractName" //$NON-NLS-1$ //$NON-NLS-2$
     });
-    addAnnotation(contextEClass, source, new String[] { "constraints", "UniqueContextName ValidContract" //$NON-NLS-1$ //$NON-NLS-2$
+    addAnnotation(invocationContextEClass, source, new String[] { "constraints", "ValidContext UniqueContextName ValidSourceContract ValidExposedContract" //$NON-NLS-1$ //$NON-NLS-2$
     });
   }
 

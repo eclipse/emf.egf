@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.fcore;
 
+import org.eclipse.emf.common.util.EList;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Invocation</b></em>'.
@@ -21,7 +23,7 @@ package org.eclipse.egf.model.fcore;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.Invocation#getOrchestration <em>Orchestration</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.Invocation#getContextContainer <em>Context Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.Invocation#getInvocationContextContainer <em>Invocation Context Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.Invocation#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
@@ -60,32 +62,32 @@ public interface Invocation<T extends Activity> extends ModelElement {
   void setOrchestration(Orchestration value);
 
   /**
-   * Returns the value of the '<em><b>Context Container</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.ContextContainer#getInvocation <em>Invocation</em>}'.
+   * Returns the value of the '<em><b>Invocation Context Container</b></em>' containment reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.InvocationContextContainer#getInvocation <em>Invocation</em>}'.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Context Container</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Invocation Context Container</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Context Container</em>' containment reference.
-   * @see #setContextContainer(ContextContainer)
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocation_ContextContainer()
-   * @see org.eclipse.egf.model.fcore.ContextContainer#getInvocation
+   * @return the value of the '<em>Invocation Context Container</em>' containment reference.
+   * @see #setInvocationContextContainer(InvocationContextContainer)
+   * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocation_InvocationContextContainer()
+   * @see org.eclipse.egf.model.fcore.InvocationContextContainer#getInvocation
    * @model opposite="invocation" containment="true"
    * @generated
    */
-  ContextContainer getContextContainer();
+  InvocationContextContainer getInvocationContextContainer();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Invocation#getContextContainer <em>Context Container</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fcore.Invocation#getInvocationContextContainer <em>Invocation Context Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Context Container</em>' containment reference.
-   * @see #getContextContainer()
+   * @param value the new value of the '<em>Invocation Context Container</em>' containment reference.
+   * @see #getInvocationContextContainer()
    * @generated
    */
-  void setContextContainer(ContextContainer value);
+  void setInvocationContextContainer(InvocationContextContainer value);
 
   /**
    * Returns the value of the '<em><b>Activity</b></em>' reference.
@@ -108,5 +110,69 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @generated
    */
   void setActivity(T value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  FactoryComponent getFactoryComponent();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  EList<Contract> getActivityContracts();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<Contract> getActivityContracts(Type<?> type);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  EList<Contract> getInvocationContracts();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<Contract> getInvocationContracts(Type<?> type);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  EList<Contract> getExposedContracts();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  EList<InvocationContext> getInvocationContexts();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<InvocationContext> getInvocationContexts(Type<?> type);
 
 } // Invocation

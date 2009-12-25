@@ -22,6 +22,7 @@ import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.diagnostic.DiagnosticHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.helper.EObjectHelper;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.production.InvocationException;
@@ -127,7 +128,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         try {
           try {
             if (ProductionPlanUIPlugin.getDefault().isDebugging()) {
-              ProductionPlanUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", activity.getExternalName(), ticks)); //$NON-NLS-1$
+              ProductionPlanUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EObjectHelper.getText(activity), ticks)); //$NON-NLS-1$
             }
             production.invoke(subMonitor.newChild(900 * ticks, SubMonitor.SUPPRESS_NONE));
             if (monitor.isCanceled()) {

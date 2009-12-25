@@ -157,49 +157,118 @@ public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContextContainer} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.OrchestrationContext} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ContextContainerItemProvider contextContainerItemProvider;
+  protected OrchestrationContextItemProvider orchestrationContextItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContextContainer}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.OrchestrationContext}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createContextContainerAdapter() {
-    if (contextContainerItemProvider == null) {
-      contextContainerItemProvider = new ContextContainerItemProvider(this);
+  public Adapter createOrchestrationContextAdapter() {
+    if (orchestrationContextItemProvider == null) {
+      orchestrationContextItemProvider = new OrchestrationContextItemProvider(this);
     }
 
-    return contextContainerItemProvider;
+    return orchestrationContextItemProvider;
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.Context} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.OrchestrationContextContainer} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ContextItemProvider contextItemProvider;
+  protected OrchestrationContextContainerItemProvider orchestrationContextContainerItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.Context}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.OrchestrationContextContainer}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createContextAdapter() {
-    if (contextItemProvider == null) {
-      contextItemProvider = new ContextItemProvider(this);
+  public Adapter createOrchestrationContextContainerAdapter() {
+    if (orchestrationContextContainerItemProvider == null) {
+      orchestrationContextContainerItemProvider = new OrchestrationContextContainerItemProvider(this);
     }
 
-    return contextItemProvider;
+    return orchestrationContextContainerItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.InvocationContext} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected InvocationContextItemProvider invocationContextItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.InvocationContext}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createInvocationContextAdapter() {
+    if (invocationContextItemProvider == null) {
+      invocationContextItemProvider = new InvocationContextItemProvider(this);
+    }
+
+    return invocationContextItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.InvocationContextConnector} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected InvocationContextConnectorItemProvider invocationContextConnectorItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.InvocationContextConnector}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createInvocationContextConnectorAdapter() {
+    if (invocationContextConnectorItemProvider == null) {
+      invocationContextConnectorItemProvider = new InvocationContextConnectorItemProvider(this);
+    }
+
+    return invocationContextConnectorItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.InvocationContextContainer} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected InvocationContextContainerItemProvider invocationContextContainerItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.InvocationContextContainer}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createInvocationContextContainerAdapter() {
+    if (invocationContextContainerItemProvider == null) {
+      invocationContextContainerItemProvider = new InvocationContextContainerItemProvider(this);
+    }
+
+    return invocationContextContainerItemProvider;
   }
 
   /**
@@ -246,29 +315,6 @@ public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory impleme
     }
 
     return contractItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fcore.ContractConnector} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ContractConnectorItemProvider contractConnectorItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fcore.ContractConnector}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createContractConnectorAdapter() {
-    if (contractConnectorItemProvider == null) {
-      contractConnectorItemProvider = new ContractConnectorItemProvider(this);
-    }
-
-    return contractConnectorItemProvider;
   }
 
   /**
@@ -399,18 +445,22 @@ public class FcoreItemProviderAdapterFactory extends FcoreAdapterFactory impleme
   public void dispose() {
     if (factoryComponentItemProvider != null)
       factoryComponentItemProvider.dispose();
-    if (viewpointContainerItemProvider != null)
-      viewpointContainerItemProvider.dispose();
-    if (contractContainerItemProvider != null)
-      contractContainerItemProvider.dispose();
     if (contractItemProvider != null)
       contractItemProvider.dispose();
-    if (contractConnectorItemProvider != null)
-      contractConnectorItemProvider.dispose();
-    if (contextContainerItemProvider != null)
-      contextContainerItemProvider.dispose();
-    if (contextItemProvider != null)
-      contextItemProvider.dispose();
+    if (contractContainerItemProvider != null)
+      contractContainerItemProvider.dispose();
+    if (viewpointContainerItemProvider != null)
+      viewpointContainerItemProvider.dispose();
+    if (orchestrationContextItemProvider != null)
+      orchestrationContextItemProvider.dispose();
+    if (orchestrationContextContainerItemProvider != null)
+      orchestrationContextContainerItemProvider.dispose();
+    if (invocationContextItemProvider != null)
+      invocationContextItemProvider.dispose();
+    if (invocationContextConnectorItemProvider != null)
+      invocationContextConnectorItemProvider.dispose();
+    if (invocationContextContainerItemProvider != null)
+      invocationContextContainerItemProvider.dispose();
   }
 
 }

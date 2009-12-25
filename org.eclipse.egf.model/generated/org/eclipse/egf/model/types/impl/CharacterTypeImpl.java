@@ -26,19 +26,17 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.types.impl.CharacterTypeImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.types.impl.CharacterTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class CharacterTypeImpl extends TypeObjectImpl<Character> implements CharacterType {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -48,7 +46,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -59,7 +56,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -69,7 +65,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected CharacterTypeImpl() {
@@ -79,7 +74,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -90,7 +84,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -101,7 +94,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setValue(Character newValue) {
@@ -114,7 +106,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -125,7 +116,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -140,7 +130,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -156,7 +145,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -172,7 +160,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -187,7 +174,6 @@ public class CharacterTypeImpl extends TypeObjectImpl<Character> implements Char
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

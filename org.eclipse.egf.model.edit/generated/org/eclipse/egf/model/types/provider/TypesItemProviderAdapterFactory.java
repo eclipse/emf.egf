@@ -16,10 +16,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-import org.eclipse.egf.model.fcore.Context;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.fcore.util.FcoreSwitch;
 import org.eclipse.egf.model.types.BigDecimalType;
 import org.eclipse.egf.model.types.BigIntegerType;
@@ -611,22 +613,6 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
      * @generated
      */
     protected static class CreationSwitch extends FcoreSwitch<Object> {
-      /**
-       * Check sub type
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * 
-       * @generated NOT
-       */
-      private boolean checkClass(Class<?> clazz, Class<?> type) {
-        // Type Checking
-        try {
-          clazz.asSubclass(type);
-        } catch (ClassCastException cce) {
-          return false;
-        }
-        return true;
-      }
 
       /**
        * The child descriptors being populated.
@@ -697,6 +683,43 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
 
       /**
        * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * 
+       * @generated
+       */
+      @Override
+      public Object caseOrchestrationContext(OrchestrationContext object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createBigDecimalType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createBigIntegerType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createBooleanType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createByteType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createCharacterType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createDateType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createDoubleType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createFloatType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createIntegerType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createLongType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createShortType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createStringType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createGeneratorAdapterFactoryType()));
+
+        return null;
+      }
+
+      /**
+       * <!-- begin-user-doc -->
        * TODO: this method should be generated to filter type according to their respective contract
        * settings.
        * <!-- end-user-doc -->
@@ -704,96 +727,96 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
        * @generated NOT
        */
       @Override
-      public Object caseContext(Context object) {
+      public Object caseInvocationContext(InvocationContext object) {
 
         {
           BigDecimalType type = TypesFactory.eINSTANCE.createBigDecimalType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           BigIntegerType type = TypesFactory.eINSTANCE.createBigIntegerType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           BooleanType type = TypesFactory.eINSTANCE.createBooleanType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           ByteType type = TypesFactory.eINSTANCE.createByteType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           CharacterType type = TypesFactory.eINSTANCE.createCharacterType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           DateType type = TypesFactory.eINSTANCE.createDateType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           DoubleType type = TypesFactory.eINSTANCE.createDoubleType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           FloatType type = TypesFactory.eINSTANCE.createFloatType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           IntegerType type = TypesFactory.eINSTANCE.createIntegerType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           LongType type = TypesFactory.eINSTANCE.createLongType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           ShortType type = TypesFactory.eINSTANCE.createShortType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           StringType type = TypesFactory.eINSTANCE.createStringType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 
         {
           GeneratorAdapterFactoryType type = TypesFactory.eINSTANCE.createGeneratorAdapterFactoryType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
           }
         }
 

@@ -47,7 +47,15 @@ public enum ContractMode implements Enumerator {
    * @generated
    * @ordered
    */
-  OUT(1, "Out", "Out"); //$NON-NLS-1$ //$NON-NLS-2$
+  OUT(1, "Out", "Out"), /**
+                         * The '<em><b>In Out</b></em>' literal object.
+                         * <!-- begin-user-doc -->
+                         * <!-- end-user-doc -->
+                         * @see #IN_OUT_VALUE
+                         * @generated
+                         * @ordered
+                         */
+  IN_OUT(2, "In_Out", "In_Out"); //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * The '<em><b>In</b></em>' literal value.
@@ -80,12 +88,27 @@ public enum ContractMode implements Enumerator {
   public static final int OUT_VALUE = 1;
 
   /**
+   * The '<em><b>In Out</b></em>' literal value.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of '<em><b>In Out</b></em>' literal object isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @see #IN_OUT
+   * @model name="In_Out"
+   * @generated
+   * @ordered
+   */
+  public static final int IN_OUT_VALUE = 2;
+
+  /**
    * An array of all the '<em><b>Contract Mode</b></em>' enumerators.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private static final ContractMode[] VALUES_ARRAY = new ContractMode[] { IN, OUT, };
+  private static final ContractMode[] VALUES_ARRAY = new ContractMode[] { IN, OUT, IN_OUT, };
 
   /**
    * A public read-only list of all the '<em><b>Contract Mode</b></em>' enumerators.
@@ -139,6 +162,8 @@ public enum ContractMode implements Enumerator {
       return IN;
     case OUT_VALUE:
       return OUT;
+    case IN_OUT_VALUE:
+      return IN_OUT;
     }
     return null;
   }

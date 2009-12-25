@@ -16,13 +16,15 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainType;
 import org.eclipse.egf.model.domain.util.DomainAdapterFactory;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-import org.eclipse.egf.model.fcore.Context;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.fcore.util.FcoreSwitch;
 import org.eclipse.emf.common.notify.Adapter;
@@ -321,23 +323,6 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      */
     protected static class CreationSwitch extends FcoreSwitch<Object> {
       /**
-       * Check sub type
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * 
-       * @generated NOT
-       */
-      private boolean checkClass(Class<?> clazz, Class<?> type) {
-        // Type Checking
-        try {
-          clazz.asSubclass(type);
-        } catch (ClassCastException cce) {
-          return false;
-        }
-        return true;
-      }
-
-      /**
        * The child descriptors being populated.
        * <!-- begin-user-doc -->
        * <!-- end-user-doc -->
@@ -387,8 +372,26 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        * @generated
        */
       @Override
-      public Object caseContract(Contract object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createDomainType()));
+      public Object caseOrchestrationContext(OrchestrationContext object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, DomainFactory.eINSTANCE.createDomainType()));
+
+        return null;
+      }
+
+      /**
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * 
+       * @generated NOT
+       */
+      @Override
+      public Object caseInvocationContext(InvocationContext object) {
+        {
+          DomainType type = DomainFactory.eINSTANCE.createDomainType();
+          if (object.getActivityContract() == null || object.getActivityContract().getType() == null || ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+          }
+        }
 
         return null;
       }
@@ -400,14 +403,8 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        * @generated
        */
       @Override
-      public Object caseContext(Context object) {
-
-        {
-          DomainType type = DomainFactory.eINSTANCE.createDomainType();
-          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
-          }
-        }
+      public Object caseContract(Contract object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createDomainType()));
 
         return null;
       }

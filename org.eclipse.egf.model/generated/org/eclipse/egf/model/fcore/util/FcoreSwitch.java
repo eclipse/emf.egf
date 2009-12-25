@@ -14,17 +14,20 @@ package org.eclipse.egf.model.fcore.util;
 
 import java.util.List;
 
+import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.Context;
-import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.ContractConnector;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.InvocationContextConnector;
+import org.eclipse.egf.model.fcore.InvocationContextContainer;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fcore.OrchestrationContext;
+import org.eclipse.egf.model.fcore.OrchestrationContextContainer;
 import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.TypeObject;
@@ -43,7 +46,6 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.fcore.FcorePackage
  * @generated
  */
@@ -52,7 +54,6 @@ public class FcoreSwitch<T1> {
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static FcorePackage modelPackage;
@@ -61,7 +62,6 @@ public class FcoreSwitch<T1> {
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FcoreSwitch() {
@@ -71,11 +71,9 @@ public class FcoreSwitch<T1> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
@@ -84,11 +82,9 @@ public class FcoreSwitch<T1> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
@@ -102,11 +98,9 @@ public class FcoreSwitch<T1> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
@@ -139,6 +133,24 @@ public class FcoreSwitch<T1> {
         result = defaultCase(theEObject);
       return result;
     }
+    case FcorePackage.CONTRACT: {
+      Contract contract = (Contract) theEObject;
+      T1 result = caseContract(contract);
+      if (result == null)
+        result = caseModelElement(contract);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case FcorePackage.CONTRACT_CONTAINER: {
+      ContractContainer contractContainer = (ContractContainer) theEObject;
+      T1 result = caseContractContainer(contractContainer);
+      if (result == null)
+        result = caseModelElement(contractContainer);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
     case FcorePackage.VIEWPOINT_CONTAINER: {
       ViewpointContainer viewpointContainer = (ViewpointContainer) theEObject;
       T1 result = caseViewpointContainer(viewpointContainer);
@@ -166,11 +178,56 @@ public class FcoreSwitch<T1> {
         result = defaultCase(theEObject);
       return result;
     }
+    case FcorePackage.ORCHESTRATION_CONTEXT: {
+      OrchestrationContext orchestrationContext = (OrchestrationContext) theEObject;
+      T1 result = caseOrchestrationContext(orchestrationContext);
+      if (result == null)
+        result = caseModelElement(orchestrationContext);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case FcorePackage.ORCHESTRATION_CONTEXT_CONTAINER: {
+      OrchestrationContextContainer orchestrationContextContainer = (OrchestrationContextContainer) theEObject;
+      T1 result = caseOrchestrationContextContainer(orchestrationContextContainer);
+      if (result == null)
+        result = caseModelElement(orchestrationContextContainer);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
     case FcorePackage.INVOCATION: {
       Invocation<?> invocation = (Invocation<?>) theEObject;
       T1 result = caseInvocation(invocation);
       if (result == null)
         result = caseModelElement(invocation);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case FcorePackage.INVOCATION_CONTEXT: {
+      InvocationContext invocationContext = (InvocationContext) theEObject;
+      T1 result = caseInvocationContext(invocationContext);
+      if (result == null)
+        result = caseModelElement(invocationContext);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case FcorePackage.INVOCATION_CONTEXT_CONNECTOR: {
+      InvocationContextConnector invocationContextConnector = (InvocationContextConnector) theEObject;
+      T1 result = caseInvocationContextConnector(invocationContextConnector);
+      if (result == null)
+        result = caseModelElement(invocationContextConnector);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case FcorePackage.INVOCATION_CONTEXT_CONTAINER: {
+      InvocationContextContainer invocationContextContainer = (InvocationContextContainer) theEObject;
+      T1 result = caseInvocationContextContainer(invocationContextContainer);
+      if (result == null)
+        result = caseModelElement(invocationContextContainer);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -206,51 +263,6 @@ public class FcoreSwitch<T1> {
         result = defaultCase(theEObject);
       return result;
     }
-    case FcorePackage.CONTRACT_CONTAINER: {
-      ContractContainer contractContainer = (ContractContainer) theEObject;
-      T1 result = caseContractContainer(contractContainer);
-      if (result == null)
-        result = caseModelElement(contractContainer);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case FcorePackage.CONTRACT: {
-      Contract contract = (Contract) theEObject;
-      T1 result = caseContract(contract);
-      if (result == null)
-        result = caseModelElement(contract);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case FcorePackage.CONTRACT_CONNECTOR: {
-      ContractConnector contractConnector = (ContractConnector) theEObject;
-      T1 result = caseContractConnector(contractConnector);
-      if (result == null)
-        result = caseModelElement(contractConnector);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case FcorePackage.CONTEXT_CONTAINER: {
-      ContextContainer contextContainer = (ContextContainer) theEObject;
-      T1 result = caseContextContainer(contextContainer);
-      if (result == null)
-        result = caseModelElement(contextContainer);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case FcorePackage.CONTEXT: {
-      Context context = (Context) theEObject;
-      T1 result = caseContext(context);
-      if (result == null)
-        result = caseModelElement(context);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
     default:
       return defaultCase(theEObject);
     }
@@ -262,9 +274,7 @@ public class FcoreSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -279,9 +289,7 @@ public class FcoreSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Activity</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -296,9 +304,7 @@ public class FcoreSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Factory Component</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -313,9 +319,7 @@ public class FcoreSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Viewpoint Container</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -330,9 +334,7 @@ public class FcoreSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -347,9 +349,7 @@ public class FcoreSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Orchestration</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -359,14 +359,42 @@ public class FcoreSwitch<T1> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Orchestration Context</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Orchestration Context</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseOrchestrationContext(OrchestrationContext object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Orchestration Context Container</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Orchestration Context Container</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseOrchestrationContextContainer(OrchestrationContextContainer object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Invocation</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Invocation</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -376,14 +404,57 @@ public class FcoreSwitch<T1> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Invocation Context</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Invocation Context</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseInvocationContext(InvocationContext object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Invocation Context Connector</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Invocation Context Connector</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseInvocationContextConnector(InvocationContextConnector object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Invocation Context Container</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Invocation Context Container</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseInvocationContextContainer(InvocationContextContainer object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -398,9 +469,7 @@ public class FcoreSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type Object</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -415,9 +484,7 @@ public class FcoreSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type Class</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -427,48 +494,12 @@ public class FcoreSwitch<T1> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Context Container</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Context Container</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseContextContainer(ContextContainer object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Context</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Context</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseContext(Context object) {
-    return null;
-  }
-
-  /**
    * Returns the result of interpreting the object as an instance of '<em>Contract Container</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Contract Container</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -483,31 +514,12 @@ public class FcoreSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Contract</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
   public T1 caseContract(Contract object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Contract Connector</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Contract Connector</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseContractConnector(ContractConnector object) {
     return null;
   }
 
@@ -518,9 +530,7 @@ public class FcoreSwitch<T1> {
    * returning a non-null result will terminate the switch, but this is the last
    * case anyway.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated

@@ -82,6 +82,8 @@ public abstract class ActivityManager<Q extends ProductionPlanInvocationManager<
         if (contract.getMode() == ContractMode.IN) {
           productionContext.addInputData(contract.getName(), contract.getType().getType(), contract.getType().getValue());
         } else if (contract.getMode() == ContractMode.OUT) {
+          productionContext.addOutputData(contract.getName(), contract.getType().getType(), null);
+        } else if (contract.getMode() == ContractMode.IN_OUT) {
           productionContext.addOutputData(contract.getName(), contract.getType().getType(), contract.getType().getValue());
         }
         // Class
@@ -94,6 +96,8 @@ public abstract class ActivityManager<Q extends ProductionPlanInvocationManager<
           if (contract.getMode() == ContractMode.IN) {
             productionContext.addInputData(contract.getName(), contract.getType().getType(), object);
           } else if (contract.getMode() == ContractMode.OUT) {
+            productionContext.addOutputData(contract.getName(), contract.getType().getType(), null);
+          } else if (contract.getMode() == ContractMode.IN_OUT) {
             productionContext.addOutputData(contract.getName(), contract.getType().getType(), object);
           }
         } catch (Throwable t) {

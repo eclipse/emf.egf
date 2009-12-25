@@ -12,17 +12,20 @@
  */
 package org.eclipse.egf.model.fcore.util;
 
+import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.Context;
-import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.ContractConnector;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.InvocationContextConnector;
+import org.eclipse.egf.model.fcore.InvocationContextContainer;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fcore.OrchestrationContext;
+import org.eclipse.egf.model.fcore.OrchestrationContextContainer;
 import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.TypeObject;
@@ -39,7 +42,6 @@ import org.eclipse.emf.ecore.EObject;
  * It provides an adapter <code>createXXX</code> method for each class of the
  * model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.fcore.FcorePackage
  * @generated
  */
@@ -48,7 +50,6 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
    * The cached model package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static FcorePackage modelPackage;
@@ -57,7 +58,6 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
    * Creates an instance of the adapter factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FcoreAdapterFactory() {
@@ -72,7 +72,6 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
    * This implementation returns <code>true</code> if the object is either the
    * model's package or is an instance object of the model.
    * <!-- end-user-doc -->
-   * 
    * @return whether this factory is applicable for the type of the object.
    * @generated
    */
@@ -91,7 +90,6 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
    * The switch that delegates to the <code>createXXX</code> methods.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected FcoreSwitch<Adapter> modelSwitch = new FcoreSwitch<Adapter>() {
@@ -111,6 +109,16 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
+    public Adapter caseContract(Contract object) {
+      return createContractAdapter();
+    }
+
+    @Override
+    public Adapter caseContractContainer(ContractContainer object) {
+      return createContractContainerAdapter();
+    }
+
+    @Override
     public Adapter caseViewpointContainer(ViewpointContainer object) {
       return createViewpointContainerAdapter();
     }
@@ -126,8 +134,33 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
+    public Adapter caseOrchestrationContext(OrchestrationContext object) {
+      return createOrchestrationContextAdapter();
+    }
+
+    @Override
+    public Adapter caseOrchestrationContextContainer(OrchestrationContextContainer object) {
+      return createOrchestrationContextContainerAdapter();
+    }
+
+    @Override
     public <T extends Activity> Adapter caseInvocation(Invocation<T> object) {
       return createInvocationAdapter();
+    }
+
+    @Override
+    public Adapter caseInvocationContext(InvocationContext object) {
+      return createInvocationContextAdapter();
+    }
+
+    @Override
+    public Adapter caseInvocationContextConnector(InvocationContextConnector object) {
+      return createInvocationContextConnectorAdapter();
+    }
+
+    @Override
+    public Adapter caseInvocationContextContainer(InvocationContextContainer object) {
+      return createInvocationContextContainerAdapter();
     }
 
     @Override
@@ -146,31 +179,6 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseContractContainer(ContractContainer object) {
-      return createContractContainerAdapter();
-    }
-
-    @Override
-    public Adapter caseContract(Contract object) {
-      return createContractAdapter();
-    }
-
-    @Override
-    public Adapter caseContractConnector(ContractConnector object) {
-      return createContractConnectorAdapter();
-    }
-
-    @Override
-    public Adapter caseContextContainer(ContextContainer object) {
-      return createContextContainerAdapter();
-    }
-
-    @Override
-    public Adapter caseContext(Context object) {
-      return createContextAdapter();
-    }
-
-    @Override
     public Adapter defaultCase(EObject object) {
       return createEObjectAdapter();
     }
@@ -180,9 +188,7 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
    * Creates an adapter for the <code>target</code>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param target
-   *          the object to adapt.
+   * @param target the object to adapt.
    * @return the adapter for the <code>target</code>.
    * @generated
    */
@@ -192,15 +198,13 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement
-   * <em>Model Element</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.ModelElement
    * @generated
@@ -210,15 +214,13 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Activity
-   * <em>Activity</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Activity <em>Activity</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.Activity
    * @generated
@@ -228,15 +230,13 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.fcore.FactoryComponent <em>Factory Component</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.FactoryComponent <em>Factory Component</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.FactoryComponent
    * @generated
@@ -246,15 +246,13 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.fcore.ViewpointContainer <em>Viewpoint Container</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ViewpointContainer <em>Viewpoint Container</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.ViewpointContainer
    * @generated
@@ -264,15 +262,13 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Viewpoint
-   * <em>Viewpoint</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Viewpoint <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.Viewpoint
    * @generated
@@ -282,15 +278,13 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Orchestration
-   * <em>Orchestration</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Orchestration <em>Orchestration</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.Orchestration
    * @generated
@@ -300,15 +294,41 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Invocation
-   * <em>Invocation</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.OrchestrationContext <em>Orchestration Context</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.OrchestrationContext
+   * @generated
+   */
+  public Adapter createOrchestrationContextAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.OrchestrationContextContainer <em>Orchestration Context Container</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.OrchestrationContextContainer
+   * @generated
+   */
+  public Adapter createOrchestrationContextContainerAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Invocation <em>Invocation</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.Invocation
    * @generated
@@ -318,13 +338,53 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Type
-   * <em>Type</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.InvocationContext <em>Invocation Context</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * 
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.InvocationContext
+   * @generated
+   */
+  public Adapter createInvocationContextAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.InvocationContextConnector <em>Invocation Context Connector</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.InvocationContextConnector
+   * @generated
+   */
+  public Adapter createInvocationContextConnectorAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.InvocationContextContainer <em>Invocation Context Container</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.InvocationContextContainer
+   * @generated
+   */
+  public Adapter createInvocationContextContainerAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Type <em>Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.Type
    * @generated
@@ -334,13 +394,11 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.TypeObject
-   * <em>Type Object</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.TypeObject <em>Type Object</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.TypeObject
    * @generated
@@ -350,13 +408,11 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.TypeClass
-   * <em>Type Class</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.TypeClass <em>Type Class</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.TypeClass
    * @generated
@@ -366,49 +422,13 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.fcore.ContextContainer <em>Context Container</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * 
-   * @return the new adapter.
-   * @see org.eclipse.egf.model.fcore.ContextContainer
-   * @generated
-   */
-  public Adapter createContextContainerAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Context
-   * <em>Context</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ContractContainer <em>Contract Container</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
-   * @return the new adapter.
-   * @see org.eclipse.egf.model.fcore.Context
-   * @generated
-   */
-  public Adapter createContextAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.fcore.ContractContainer <em>Contract Container</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
-   * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.ContractContainer
    * @generated
@@ -418,15 +438,13 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Contract
-   * <em>Contract</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Contract <em>Contract</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.Contract
    * @generated
@@ -436,29 +454,10 @@ public class FcoreAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.fcore.ContractConnector <em>Contract Connector</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore
-   * cases;
-   * it's useful to ignore a case when inheritance will catch all the cases
-   * anyway.
-   * <!-- end-user-doc -->
-   * 
-   * @return the new adapter.
-   * @see org.eclipse.egf.model.fcore.ContractConnector
-   * @generated
-   */
-  public Adapter createContractConnectorAdapter() {
-    return null;
-  }
-
-  /**
    * Creates a new adapter for the default case.
    * <!-- begin-user-doc -->
    * This default implementation returns null.
    * <!-- end-user-doc -->
-   * 
    * @return the new adapter.
    * @generated
    */

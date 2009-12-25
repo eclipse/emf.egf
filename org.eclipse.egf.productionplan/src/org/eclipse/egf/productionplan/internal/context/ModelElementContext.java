@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.productionplan.internal.context;
 
+import org.eclipse.egf.core.helper.EObjectHelper;
 import org.eclipse.egf.core.production.internal.context.ProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.ModelElement;
@@ -20,18 +21,13 @@ import org.eclipse.egf.model.fcore.ModelElement;
  */
 public class ModelElementContext<Q extends ModelElement> extends ProductionContext<Q> {
 
-  private String _name;
-
   public ModelElementContext(Q element, ProjectBundleSession projectBundleSession) {
     super(element, projectBundleSession);
   }
 
   @Override
   public String getName() {
-    if (_name == null) {
-      _name = getElement().getName() != null && getElement().getName().trim().length() != 0 ? getElement().getName().trim() : getElement().getID() != null && getElement().getID().trim().length() != 0 ? getElement().getID().trim() : "Unknown"; //$NON-NLS-1$
-    }
-    return _name;
+    return EObjectHelper.getText(getElement());
   }
 
 }

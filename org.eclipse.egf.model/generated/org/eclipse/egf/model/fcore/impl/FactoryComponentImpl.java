@@ -14,10 +14,14 @@ package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -166,6 +170,34 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
         msgs.dispatch();
     } else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, newOrchestration, newOrchestration));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<InvocationContext> getInvocationContexts() {
+    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
+    if (getOrchestration() != null) {
+      return getOrchestration().getInvocationContexts();
+    }
+    return invocationContexts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<InvocationContext> getInvocationContexts(Type<?> innerType) {
+    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
+    if (innerType != null && getOrchestration() != null) {
+      return getOrchestration().getInvocationContexts(innerType);
+    }
+    return invocationContexts;
   }
 
   /**

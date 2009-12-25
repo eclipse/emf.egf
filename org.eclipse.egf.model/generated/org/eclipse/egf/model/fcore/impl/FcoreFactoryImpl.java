@@ -13,15 +13,17 @@
 package org.eclipse.egf.model.fcore.impl;
 
 import org.eclipse.egf.model.fcore.*;
-import org.eclipse.egf.model.fcore.Context;
-import org.eclipse.egf.model.fcore.ContextContainer;
 import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.ContractConnector;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.InvocationContextConnector;
+import org.eclipse.egf.model.fcore.InvocationContextContainer;
+import org.eclipse.egf.model.fcore.OrchestrationContext;
+import org.eclipse.egf.model.fcore.OrchestrationContextContainer;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -76,18 +78,22 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     switch (eClass.getClassifierID()) {
     case FcorePackage.FACTORY_COMPONENT:
       return createFactoryComponent();
-    case FcorePackage.VIEWPOINT_CONTAINER:
-      return createViewpointContainer();
-    case FcorePackage.CONTRACT_CONTAINER:
-      return createContractContainer();
     case FcorePackage.CONTRACT:
       return createContract();
-    case FcorePackage.CONTRACT_CONNECTOR:
-      return createContractConnector();
-    case FcorePackage.CONTEXT_CONTAINER:
-      return createContextContainer();
-    case FcorePackage.CONTEXT:
-      return createContext();
+    case FcorePackage.CONTRACT_CONTAINER:
+      return createContractContainer();
+    case FcorePackage.VIEWPOINT_CONTAINER:
+      return createViewpointContainer();
+    case FcorePackage.ORCHESTRATION_CONTEXT:
+      return createOrchestrationContext();
+    case FcorePackage.ORCHESTRATION_CONTEXT_CONTAINER:
+      return createOrchestrationContextContainer();
+    case FcorePackage.INVOCATION_CONTEXT:
+      return createInvocationContext();
+    case FcorePackage.INVOCATION_CONTEXT_CONNECTOR:
+      return createInvocationContextConnector();
+    case FcorePackage.INVOCATION_CONTEXT_CONTAINER:
+      return createInvocationContextContainer();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -152,9 +158,9 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public ContextContainer createContextContainer() {
-    ContextContainerImpl contextContainer = new ContextContainerImpl();
-    return contextContainer;
+  public OrchestrationContext createOrchestrationContext() {
+    OrchestrationContextImpl orchestrationContext = new OrchestrationContextImpl();
+    return orchestrationContext;
   }
 
   /**
@@ -162,9 +168,39 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public Context createContext() {
-    ContextImpl context = new ContextImpl();
-    return context;
+  public OrchestrationContextContainer createOrchestrationContextContainer() {
+    OrchestrationContextContainerImpl orchestrationContextContainer = new OrchestrationContextContainerImpl();
+    return orchestrationContextContainer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InvocationContext createInvocationContext() {
+    InvocationContextImpl invocationContext = new InvocationContextImpl();
+    return invocationContext;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InvocationContextConnector createInvocationContextConnector() {
+    InvocationContextConnectorImpl invocationContextConnector = new InvocationContextConnectorImpl();
+    return invocationContextConnector;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InvocationContextContainer createInvocationContextContainer() {
+    InvocationContextContainerImpl invocationContextContainer = new InvocationContextContainerImpl();
+    return invocationContextContainer;
   }
 
   /**
@@ -185,16 +221,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
   public Contract createContract() {
     ContractImpl contract = new ContractImpl();
     return contract;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ContractConnector createContractConnector() {
-    ContractConnectorImpl contractConnector = new ContractConnectorImpl();
-    return contractConnector;
   }
 
   /**

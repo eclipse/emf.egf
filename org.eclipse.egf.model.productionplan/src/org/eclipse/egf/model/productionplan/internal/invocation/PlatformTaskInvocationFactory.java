@@ -12,7 +12,7 @@ package org.eclipse.egf.model.productionplan.internal.invocation;
 
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
-import org.eclipse.egf.model.productionplan.invocation.ITaskInvocationConstants;
+import org.eclipse.egf.model.productionplan.invocation.IPlatformTaskInvocationConstants;
 import org.eclipse.egf.model.productionplan.invocation.IPlatformTaskInvocation;
 import org.eclipse.pde.core.plugin.IPluginAttribute;
 import org.eclipse.pde.core.plugin.IPluginElement;
@@ -27,14 +27,14 @@ public final class PlatformTaskInvocationFactory implements IPlatformExtensionPo
     if (pluginElement == null) {
       return null;
     }
-    if (ITaskInvocationConstants.TASK_INVOCATION_EXTENSION_CHILD.equals(pluginElement.getName()) == false) {
+    if (IPlatformTaskInvocationConstants.TASK_INVOCATION_EXTENSION_CHILD.equals(pluginElement.getName()) == false) {
       return null;
     }
-    IPluginAttribute id = pluginElement.getAttribute(ITaskInvocationConstants.INVOCATION_ATT_ID);
+    IPluginAttribute id = pluginElement.getAttribute(IPlatformTaskInvocationConstants.INVOCATION_ATT_ID);
     if (id == null || id.getValue() == null || id.getValue().trim().length() == 0) {
       return null;
     }
-    IPluginAttribute clazz = pluginElement.getAttribute(ITaskInvocationConstants.INVOCATION_ATT_CLASS);
+    IPluginAttribute clazz = pluginElement.getAttribute(IPlatformTaskInvocationConstants.INVOCATION_ATT_CLASS);
     if (clazz == null || clazz.getValue() == null || clazz.getValue().trim().length() == 0) {
       return null;
     }

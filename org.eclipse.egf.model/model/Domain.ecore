@@ -9,14 +9,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Domain" eSuperTypes="Fcore.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="epackage" lowerBound="1"
-        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
+        eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DomainType">
     <eOperations name="getType">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return org.eclipse.egf.model.domain.Domain.class;"/>
       </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
+      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
         <eTypeArguments eClassifier="#//Domain"/>
       </eGenericType>
     </eOperations>

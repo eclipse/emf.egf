@@ -12,17 +12,27 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import java.util.Collection;
+
+import org.eclipse.egf.common.helper.ClassHelper;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -32,6 +42,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getContractContainer <em>Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getInvocationContexts <em>Invocation Contexts</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getOrchestrationContexts <em>Orchestration Contexts</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#isMandatory <em>Mandatory</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getMode <em>Mode</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ContractImpl#getType <em>Type</em>}</li>
@@ -41,6 +53,26 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * @generated
  */
 public class ContractImpl extends ModelElementImpl implements Contract {
+  /**
+   * The cached value of the '{@link #getInvocationContexts() <em>Invocation Contexts</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getInvocationContexts()
+   * @generated
+   * @ordered
+   */
+  protected EList<InvocationContext> invocationContexts;
+
+  /**
+   * The cached value of the '{@link #getOrchestrationContexts() <em>Orchestration Contexts</em>}' reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOrchestrationContexts()
+   * @generated
+   * @ordered
+   */
+  protected EList<OrchestrationContext> orchestrationContexts;
+
   /**
    * The default value of the '{@link #isMandatory() <em>Mandatory</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -99,14 +131,14 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   private static final ContractMode[] MODE_EFLAG_VALUES = ContractMode.values();
 
   /**
-   * The flag representing the value of the '{@link #getMode() <em>Mode</em>}' attribute.
+   * The flags representing the value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getMode()
    * @generated
    * @ordered
    */
-  protected static final int MODE_EFLAG = 1 << MODE_EFLAG_OFFSET;
+  protected static final int MODE_EFLAG = 0x3 << MODE_EFLAG_OFFSET;
 
   /**
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
@@ -177,6 +209,30 @@ public class ContractImpl extends ModelElementImpl implements Contract {
         msgs.dispatch();
     } else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT__CONTRACT_CONTAINER, newContractContainer, newContractContainer));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<InvocationContext> getInvocationContexts() {
+    if (invocationContexts == null) {
+      invocationContexts = new EObjectWithInverseEList<InvocationContext>(InvocationContext.class, this, FcorePackage.CONTRACT__INVOCATION_CONTEXTS, FcorePackage.INVOCATION_CONTEXT__EXPOSED_CONTRACT);
+    }
+    return invocationContexts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<OrchestrationContext> getOrchestrationContexts() {
+    if (orchestrationContexts == null) {
+      orchestrationContexts = new EObjectWithInverseEList<OrchestrationContext>(OrchestrationContext.class, this, FcorePackage.CONTRACT__ORCHESTRATION_CONTEXTS, FcorePackage.ORCHESTRATION_CONTEXT__CONTRACT);
+    }
+    return orchestrationContexts;
   }
 
   /**
@@ -275,8 +331,54 @@ public class ContractImpl extends ModelElementImpl implements Contract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public Activity getActivity() {
+    if (getContractContainer() != null) {
+      return getContractContainer().getActivity();
+    }
+    return null;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getContracts() {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    if (getContractContainer() != null && getContractContainer().getContracts() != null) {
+      contracts.addAll(getContractContainer().getContracts());
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<Contract> getContracts(Type<?> innerType) {
+    EList<Contract> contracts = new UniqueEList<Contract>();
+    if (innerType != null) {
+      for (Contract innerContract : getContracts()) {
+        if (innerContract.getType() != null && ClassHelper.asSubClass(innerType.getType(), innerContract.getType().getType())) {
+          contracts.add(innerContract);
+        }
+      }
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -284,6 +386,10 @@ public class ContractImpl extends ModelElementImpl implements Contract {
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
       return basicSetContractContainer((ContractContainer) otherEnd, msgs);
+    case FcorePackage.CONTRACT__INVOCATION_CONTEXTS:
+      return ((InternalEList<InternalEObject>) (InternalEList<?>) getInvocationContexts()).basicAdd(otherEnd, msgs);
+    case FcorePackage.CONTRACT__ORCHESTRATION_CONTEXTS:
+      return ((InternalEList<InternalEObject>) (InternalEList<?>) getOrchestrationContexts()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -298,6 +404,10 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     switch (featureID) {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       return basicSetContractContainer(null, msgs);
+    case FcorePackage.CONTRACT__INVOCATION_CONTEXTS:
+      return ((InternalEList<?>) getInvocationContexts()).basicRemove(otherEnd, msgs);
+    case FcorePackage.CONTRACT__ORCHESTRATION_CONTEXTS:
+      return ((InternalEList<?>) getOrchestrationContexts()).basicRemove(otherEnd, msgs);
     case FcorePackage.CONTRACT__TYPE:
       return basicSetType(null, msgs);
     }
@@ -328,6 +438,10 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     switch (featureID) {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       return getContractContainer();
+    case FcorePackage.CONTRACT__INVOCATION_CONTEXTS:
+      return getInvocationContexts();
+    case FcorePackage.CONTRACT__ORCHESTRATION_CONTEXTS:
+      return getOrchestrationContexts();
     case FcorePackage.CONTRACT__MANDATORY:
       return isMandatory();
     case FcorePackage.CONTRACT__MODE:
@@ -349,6 +463,14 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     switch (featureID) {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       setContractContainer((ContractContainer) newValue);
+      return;
+    case FcorePackage.CONTRACT__INVOCATION_CONTEXTS:
+      getInvocationContexts().clear();
+      getInvocationContexts().addAll((Collection<? extends InvocationContext>) newValue);
+      return;
+    case FcorePackage.CONTRACT__ORCHESTRATION_CONTEXTS:
+      getOrchestrationContexts().clear();
+      getOrchestrationContexts().addAll((Collection<? extends OrchestrationContext>) newValue);
       return;
     case FcorePackage.CONTRACT__MANDATORY:
       setMandatory((Boolean) newValue);
@@ -374,6 +496,12 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       setContractContainer((ContractContainer) null);
       return;
+    case FcorePackage.CONTRACT__INVOCATION_CONTEXTS:
+      getInvocationContexts().clear();
+      return;
+    case FcorePackage.CONTRACT__ORCHESTRATION_CONTEXTS:
+      getOrchestrationContexts().clear();
+      return;
     case FcorePackage.CONTRACT__MANDATORY:
       setMandatory(MANDATORY_EDEFAULT);
       return;
@@ -397,6 +525,10 @@ public class ContractImpl extends ModelElementImpl implements Contract {
     switch (featureID) {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       return getContractContainer() != null;
+    case FcorePackage.CONTRACT__INVOCATION_CONTEXTS:
+      return invocationContexts != null && !invocationContexts.isEmpty();
+    case FcorePackage.CONTRACT__ORCHESTRATION_CONTEXTS:
+      return orchestrationContexts != null && !orchestrationContexts.isEmpty();
     case FcorePackage.CONTRACT__MANDATORY:
       return ((eFlags & MANDATORY_EFLAG) != 0) != MANDATORY_EDEFAULT;
     case FcorePackage.CONTRACT__MODE:

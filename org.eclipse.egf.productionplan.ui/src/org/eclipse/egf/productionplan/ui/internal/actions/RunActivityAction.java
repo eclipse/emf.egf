@@ -90,7 +90,7 @@ public class RunActivityAction implements IObjectActionDelegate {
         try {
           try {
             if (ProductionPlanUIPlugin.getDefault().isDebugging()) {
-              ProductionPlanUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", _activity.getExternalName(), ticks)); //$NON-NLS-1$
+              ProductionPlanUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EObjectHelper.getText(activity), ticks)); //$NON-NLS-1$
             }
             production.invoke(subMonitor.newChild(900 * ticks, SubMonitor.SUPPRESS_NONE));
             if (monitor.isCanceled()) {

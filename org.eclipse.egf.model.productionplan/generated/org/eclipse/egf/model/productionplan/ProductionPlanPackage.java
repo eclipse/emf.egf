@@ -121,6 +121,15 @@ public interface ProductionPlanPackage extends EPackage {
   int PRODUCTION_PLAN__INVOCATIONS = FcorePackage.ORCHESTRATION__INVOCATIONS;
 
   /**
+   * The feature id for the '<em><b>Orchestration Context Container</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRODUCTION_PLAN__ORCHESTRATION_CONTEXT_CONTAINER = FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER;
+
+  /**
    * The number of structural features of the '<em>Production Plan</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -176,13 +185,13 @@ public interface ProductionPlanPackage extends EPackage {
   int PRODUCTION_PLAN_INVOCATION__ORCHESTRATION = FcorePackage.INVOCATION__ORCHESTRATION;
 
   /**
-   * The feature id for the '<em><b>Context Container</b></em>' containment reference.
+   * The feature id for the '<em><b>Invocation Context Container</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PRODUCTION_PLAN_INVOCATION__CONTEXT_CONTAINER = FcorePackage.INVOCATION__CONTEXT_CONTAINER;
+  int PRODUCTION_PLAN_INVOCATION__INVOCATION_CONTEXT_CONTAINER = FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER;
 
   /**
    * The feature id for the '<em><b>Activity</b></em>' reference.
@@ -249,13 +258,13 @@ public interface ProductionPlanPackage extends EPackage {
   int FACTORY_COMPONENT_INVOCATION__ORCHESTRATION = PRODUCTION_PLAN_INVOCATION__ORCHESTRATION;
 
   /**
-   * The feature id for the '<em><b>Context Container</b></em>' containment reference.
+   * The feature id for the '<em><b>Invocation Context Container</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FACTORY_COMPONENT_INVOCATION__CONTEXT_CONTAINER = PRODUCTION_PLAN_INVOCATION__CONTEXT_CONTAINER;
+  int FACTORY_COMPONENT_INVOCATION__INVOCATION_CONTEXT_CONTAINER = PRODUCTION_PLAN_INVOCATION__INVOCATION_CONTEXT_CONTAINER;
 
   /**
    * The feature id for the '<em><b>Activity</b></em>' reference.
@@ -332,13 +341,13 @@ public interface ProductionPlanPackage extends EPackage {
   int TASK_INVOCATION__ORCHESTRATION = PRODUCTION_PLAN_INVOCATION__ORCHESTRATION;
 
   /**
-   * The feature id for the '<em><b>Context Container</b></em>' containment reference.
+   * The feature id for the '<em><b>Invocation Context Container</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TASK_INVOCATION__CONTEXT_CONTAINER = PRODUCTION_PLAN_INVOCATION__CONTEXT_CONTAINER;
+  int TASK_INVOCATION__INVOCATION_CONTEXT_CONTAINER = PRODUCTION_PLAN_INVOCATION__INVOCATION_CONTEXT_CONTAINER;
 
   /**
    * The feature id for the '<em><b>Activity</b></em>' reference.

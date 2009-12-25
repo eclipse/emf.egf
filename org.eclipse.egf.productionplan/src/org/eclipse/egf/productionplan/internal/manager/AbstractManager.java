@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
+import org.eclipse.egf.core.helper.EObjectHelper;
 import org.eclipse.egf.core.production.InvocationException;
 import org.eclipse.egf.core.production.context.IProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
@@ -31,8 +32,6 @@ public abstract class AbstractManager<Q extends AbstractManager<?, ?>, T extends
   private Q _parent;
 
   private T _element;
-
-  private String _name;
 
   private Bundle _bundle;
 
@@ -70,10 +69,7 @@ public abstract class AbstractManager<Q extends AbstractManager<?, ?>, T extends
   }
 
   public String getName() {
-    if (_name == null) {
-      _name = getElement().getName() != null && getElement().getName().trim().length() != 0 ? getElement().getName().trim() : getElement().getID() != null && getElement().getID().trim().length() != 0 ? getElement().getID().trim() : "Unknown"; //$NON-NLS-1$
-    }
-    return _name;
+    return EObjectHelper.getText(getElement());
   }
 
   public Bundle getBundle() throws InvocationException {

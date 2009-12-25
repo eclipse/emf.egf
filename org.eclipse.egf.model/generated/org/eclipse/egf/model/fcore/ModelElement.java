@@ -111,12 +111,4 @@ public interface ModelElement extends EObject {
    */
   void setDescription(String value);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  String getExternalName();
-
 } // ModelElement

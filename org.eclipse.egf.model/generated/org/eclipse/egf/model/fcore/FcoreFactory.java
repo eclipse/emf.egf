@@ -50,22 +50,49 @@ public interface FcoreFactory extends EFactory {
   ViewpointContainer createViewpointContainer();
 
   /**
-   * Returns a new object of class '<em>Context Container</em>'.
+   * Returns a new object of class '<em>Orchestration Context</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Context Container</em>'.
+   * @return a new object of class '<em>Orchestration Context</em>'.
    * @generated
    */
-  ContextContainer createContextContainer();
+  OrchestrationContext createOrchestrationContext();
 
   /**
-   * Returns a new object of class '<em>Context</em>'.
+   * Returns a new object of class '<em>Orchestration Context Container</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Context</em>'.
+   * @return a new object of class '<em>Orchestration Context Container</em>'.
    * @generated
    */
-  Context createContext();
+  OrchestrationContextContainer createOrchestrationContextContainer();
+
+  /**
+   * Returns a new object of class '<em>Invocation Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Invocation Context</em>'.
+   * @generated
+   */
+  InvocationContext createInvocationContext();
+
+  /**
+   * Returns a new object of class '<em>Invocation Context Connector</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Invocation Context Connector</em>'.
+   * @generated
+   */
+  InvocationContextConnector createInvocationContextConnector();
+
+  /**
+   * Returns a new object of class '<em>Invocation Context Container</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Invocation Context Container</em>'.
+   * @generated
+   */
+  InvocationContextContainer createInvocationContextContainer();
 
   /**
    * Returns a new object of class '<em>Contract Container</em>'.
@@ -84,15 +111,6 @@ public interface FcoreFactory extends EFactory {
    * @generated
    */
   Contract createContract();
-
-  /**
-   * Returns a new object of class '<em>Contract Connector</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Contract Connector</em>'.
-   * @generated
-   */
-  ContractConnector createContractConnector();
 
   /**
    * Returns the package supported by this factory.

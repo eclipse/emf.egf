@@ -16,9 +16,12 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -66,10 +69,67 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addInvocationContextsPropertyDescriptor(object);
+      addOrchestrationContextsPropertyDescriptor(object);
       addMandatoryPropertyDescriptor(object);
       addModePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Invocation Contexts feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected void addInvocationContextsPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Contract_invocationContexts_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_Contract_invocationContexts_feature", "_UI_Contract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.CONTRACT__INVOCATION_CONTEXTS, true, false, true, null, null, null) {
+      @Override
+      public Collection<?> getChoiceOfValues(Object current) {
+        Contract contract = (Contract) current;
+        Collection<InvocationContext> result = new UniqueEList<InvocationContext>();
+        // Retrieve all the typed contracts if available
+        if (contract.getActivity() != null && contract.getActivity() instanceof FactoryComponent) {
+          FactoryComponent factoryComponent = (FactoryComponent) contract.getActivity();
+          if (contract.getType() != null) {
+            result.addAll(factoryComponent.getInvocationContexts(contract.getType()));
+            // Filter all assigned invocation context if necessary
+            if (result.size() > 0) {
+              for (Contract innerContract : factoryComponent.getContracts(contract.getType())) {
+                if (contract == innerContract) {
+                  continue;
+                }
+                for (InvocationContext invocationContext : contract.getInvocationContexts()) {
+                  result.remove(invocationContext);
+                }
+              }
+            }
+          }
+        }
+        if (result.contains(null) == false) {
+          result.add(null);
+        }
+        return result;
+      }
+    });
+  }
+
+  /**
+   * This adds a property descriptor for the Orchestration Contexts feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected void addOrchestrationContextsPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Contract_orchestrationContexts_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_Contract_orchestrationContexts_feature", "_UI_Contract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.CONTRACT__ORCHESTRATION_CONTEXTS, true, false, true, null, getString("_UI_ContextPropertyCategory"), //$NON-NLS-1$
+        null));
   }
 
   /**

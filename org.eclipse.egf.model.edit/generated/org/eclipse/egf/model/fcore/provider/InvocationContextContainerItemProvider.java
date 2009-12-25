@@ -15,13 +15,15 @@ package org.eclipse.egf.model.fcore.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.ContractConnector;
+import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContextContainer;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -36,19 +38,19 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.ContractConnector} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContextContainer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class ContractConnectorItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class InvocationContextContainerItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public ContractConnectorItemProvider(AdapterFactory adapterFactory) {
+  public InvocationContextContainerItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -63,47 +65,50 @@ public class ContractConnectorItemProvider extends ModelElementItemProvider impl
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addSourcePropertyDescriptor(object);
-      addTargetPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Source feature.
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addSourcePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ContractConnector_source_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_ContractConnector_source_feature", "_UI_ContractConnector_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.CONTRACT_CONNECTOR__SOURCE, true, false, true, null, getString("_UI_ContractPropertyCategory"), //$NON-NLS-1$
-        null));
+  @Override
+  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+    if (childrenFeatures == null) {
+      super.getChildrenFeatures(object);
+      childrenFeatures.add(FcorePackage.Literals.INVOCATION_CONTEXT_CONTAINER__INVOCATION_CONTEXTS);
+      childrenFeatures.add(FcorePackage.Literals.INVOCATION_CONTEXT_CONTAINER__INVOCATION_CONTEXT_CONNECTORS);
+    }
+    return childrenFeatures;
   }
 
   /**
-   * This adds a property descriptor for the Target feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addTargetPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ContractConnector_target_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_ContractConnector_target_feature", "_UI_ContractConnector_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.CONTRACT_CONNECTOR__TARGET, true, false, true, null, getString("_UI_ContractPropertyCategory"), //$NON-NLS-1$
-        null));
+  @Override
+  protected EStructuralFeature getChildFeature(Object object, Object child) {
+    // Check the type of the specified child object and return the proper feature to use for
+    // adding (see {@link AddCommand}) it as a child.
+
+    return super.getChildFeature(object, child);
   }
 
   /**
-   * This returns ContractConnector.gif.
+   * This returns InvocationContextContainer.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/ContractConnector")); //$NON-NLS-1$
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/InvocationContextContainer")); //$NON-NLS-1$
   }
 
   /**
@@ -114,9 +119,9 @@ public class ContractConnectorItemProvider extends ModelElementItemProvider impl
    */
   @Override
   public String getText(Object object) {
-    String label = ((ContractConnector) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_ContractConnector_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_ContractConnector_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    String label = ((InvocationContextContainer) object).getName();
+    return label == null || label.length() == 0 ? "[" + getString("_UI_InvocationContextContainer_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_InvocationContextContainer_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -130,10 +135,10 @@ public class ContractConnectorItemProvider extends ModelElementItemProvider impl
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
 
-    switch (notification.getFeatureID(ContractConnector.class)) {
-    case FcorePackage.CONTRACT_CONNECTOR__SOURCE:
-    case FcorePackage.CONTRACT_CONNECTOR__TARGET:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+    switch (notification.getFeatureID(InvocationContextContainer.class)) {
+    case FcorePackage.INVOCATION_CONTEXT_CONTAINER__INVOCATION_CONTEXTS:
+    case FcorePackage.INVOCATION_CONTEXT_CONTAINER__INVOCATION_CONTEXT_CONNECTORS:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
     super.notifyChanged(notification);
@@ -149,6 +154,10 @@ public class ContractConnectorItemProvider extends ModelElementItemProvider impl
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT_CONTAINER__INVOCATION_CONTEXTS, FcoreFactory.eINSTANCE.createInvocationContext()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT_CONTAINER__INVOCATION_CONTEXT_CONNECTORS, FcoreFactory.eINSTANCE.createInvocationContextConnector()));
   }
 
 }
