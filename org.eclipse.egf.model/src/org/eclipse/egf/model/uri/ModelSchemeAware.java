@@ -18,20 +18,19 @@ package org.eclipse.egf.model.uri;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl;
 
-
 public class ModelSchemeAware extends URIHandlerImpl {
-  
-  @Override
-  public URI deresolve(URI uri) {
-    if (uri.isPlatformResource()) {
-      return URI.createPlatformPluginURI(uri.toPlatformString(true), true).appendFragment(uri.fragment());
-    } else if (uri.isPlatformPlugin() == false) {   
-      return 
-          uri.isPlatform() == false || (uri.segmentCount() > 0 && baseURI.segmentCount() > 0 && uri.segment(0).equals(baseURI.segment(0))) 
-        ? super.deresolve(uri) 
-        : uri;    
+
+    @Override
+    public URI deresolve(URI uri) {
+        if (uri.isPlatformResource()) {
+            URI deresolve = uri.deresolve(baseURI);
+            if (deresolve.isCurrentDocumentReference())
+                return deresolve;
+            return URI.createPlatformPluginURI(uri.toPlatformString(true), true).appendFragment(uri.fragment());
+        } else if (uri.isPlatformPlugin() == false) {
+            return uri.isPlatform() == false || (uri.segmentCount() > 0 && baseURI.segmentCount() > 0 && uri.segment(0).equals(baseURI.segment(0))) ? super.deresolve(uri) : uri;
+        }
+        return uri;
     }
-    return uri;
-  }  
-  
+
 }
