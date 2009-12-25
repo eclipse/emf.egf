@@ -59,7 +59,16 @@ public class RegistryReader {
     if (projects.isEmpty())
       return;
     try {
-      IType ePackageType = projects.get(0).findType("org.eclipse.emf.ecore.EPackage");
+      IType ePackageType = null;
+      for (IJavaProject javaProject : projects) {
+        ePackageType = javaProject.findType("org.eclipse.emf.ecore.EPackage"); //$NON-NLS-1$
+        if (ePackageType != null) {
+          break;
+        }
+      }
+      if (ePackageType == null) {
+        return;
+      }
       IJavaSearchScope scope = SearchEngine.createJavaSearchScope(projects.toArray(new IJavaProject[projects.size()]), IJavaSearchScope.SOURCES);
       SearchPattern pattern = SearchPattern.createPattern(ePackageType, IJavaSearchConstants.IMPLEMENTORS);
       SearchRequestor requestor = new SearchRequestor() {
@@ -83,6 +92,4 @@ public class RegistryReader {
     }
   }
 
-  public static void main(String[] args) {
-  }
 }
