@@ -77,6 +77,9 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
       // Get EGF logger extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFCommonPlugin.getDefault().getPluginID(), EXTENSION_POINT_SHORT_ID_LOGGER)) {
         Object object = ExtensionPointHelper.createInstance(configurationElement);
+        if (object == null) {
+          continue;
+        }
         // Make sure this is the correct resulting type.
         if (object instanceof IEGFLoggerFactory == false) {
           getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
