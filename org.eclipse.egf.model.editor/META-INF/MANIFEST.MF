@@ -18,6 +18,7 @@ Require-Bundle:
  org.eclipse.egf.core, 
  org.eclipse.egf.core.ui,
  org.eclipse.egf.model.edit,
+ org.eclipse.egf.pde,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit.ui,
  org.eclipse.ui.ide,

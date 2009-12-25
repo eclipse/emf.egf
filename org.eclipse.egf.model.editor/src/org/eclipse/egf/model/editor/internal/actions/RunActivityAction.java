@@ -10,9 +10,9 @@
  *******************************************************************************/
 package org.eclipse.egf.model.editor.internal.actions;
 
-import org.eclipse.egf.editor.internal.ui.EGFModelsEditorImages;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.editor.internal.dialogs.FcoreSelectionDialog;
+import org.eclipse.egf.model.editor.internal.ui.EGFModelsEditorImages;
 import org.eclipse.egf.model.editor.l10n.EGFModelsEditorMessages;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
