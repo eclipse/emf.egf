@@ -13,18 +13,18 @@
  * </copyright>
  * 
  */
-package org.eclipse.egf.core.task;
+package org.eclipse.egf.core.invocation;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.PlatformExtensionPoint;
 import org.eclipse.pde.core.plugin.IPluginElement;
 
-public final class PlatformTask extends PlatformExtensionPoint implements IPlatformTask {
+public final class PlatformInvocation extends PlatformExtensionPoint implements IPlatformInvocation {
 
   private String _clazz;
 
-  public PlatformTask(IPlatformBundle bundle, IPluginElement element, String id, String clazz) {
+  public PlatformInvocation(IPlatformBundle bundle, IPluginElement element, String id, String clazz) {
     super(bundle, element, id);
     Assert.isNotNull(clazz);
     Assert.isLegal(clazz.trim().length() > 0);

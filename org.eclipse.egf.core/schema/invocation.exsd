@@ -3,10 +3,10 @@
 <schema targetNamespace="org.eclipse.egf.core" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appInfo>
-         <meta.schema plugin="org.eclipse.egf.core" id="task" name="EGF Core Task"/>
+         <meta.schema plugin="org.eclipse.egf.core" id="invocation" name="EGF Core Invocation"/>
       </appInfo>
       <documentation>
-         Exposes EGF Core Tasks.
+         Exposes EGF Core Invocations.
       </documentation>
    </annotation>
 
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="task" minOccurs="0" maxOccurs="unbounded"/>
+            <element ref="invocation" minOccurs="0" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -50,7 +50,7 @@
       </complexType>
    </element>
 
-   <element name="task">
+   <element name="invocation">
       <complexType>
          <sequence minOccurs="1" maxOccurs="unbounded">
          </sequence>
@@ -68,10 +68,10 @@
             <annotation>
                <documentation>
                   The implementation of the expected services.
-Must implement IProductionTask interface (either directly or not).
+Must implement IProductionInvocation interface (either directly or not).
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.egf.core.task.IProductionTask"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.egf.core.invocation.IProductionInvocation"/>
                </appInfo>
             </annotation>
          </attribute>

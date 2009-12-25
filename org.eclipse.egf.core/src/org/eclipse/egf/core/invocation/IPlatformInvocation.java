@@ -13,11 +13,11 @@
  * </copyright>
  * 
  */
-package org.eclipse.egf.core.task;
+package org.eclipse.egf.core.invocation;
 
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 
-public interface IPlatformTask extends IPlatformExtensionPoint {
+public interface IPlatformInvocation extends IPlatformExtensionPoint {
 
   public String getClazz();
 

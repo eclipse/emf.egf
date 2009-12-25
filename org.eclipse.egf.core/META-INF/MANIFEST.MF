@@ -17,9 +17,9 @@ Export-Package:
  org.eclipse.egf.core.context,
  org.eclipse.egf.core.fcore,
  org.eclipse.egf.core.helper,
- org.eclipse.egf.core.internal.context; x-friends:="org.eclipse.egf.core.production", 
+ org.eclipse.egf.core.internal.context;x-friends:="org.eclipse.egf.core.production",
+ org.eclipse.egf.core.invocation,
  org.eclipse.egf.core.l10n,
  org.eclipse.egf.core.natures,
- org.eclipse.egf.core.session,
- org.eclipse.egf.core.task
+ org.eclipse.egf.core.session
 Bundle-ActivationPolicy: lazy

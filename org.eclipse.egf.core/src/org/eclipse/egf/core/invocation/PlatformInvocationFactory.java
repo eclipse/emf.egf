@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.task;
+package org.eclipse.egf.core.invocation;
 
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
@@ -19,24 +19,24 @@ import org.eclipse.pde.core.plugin.IPluginElement;
  * @author Xavier Maysonnave
  * 
  */
-public final class PlatformTaskFactory implements IPlatformExtensionPointFactory<IPlatformTask> {
+public final class PlatformInvocationFactory implements IPlatformExtensionPointFactory<IPlatformInvocation> {
 
-  public IPlatformTask createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement) {
+  public IPlatformInvocation createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement) {
     if (pluginElement == null) {
       return null;
     }
-    if (ITaskConstants.TASK_EXTENSION_CHILD.equals(pluginElement.getName()) == false) {
+    if (IInvocationConstants.INVOCATION_EXTENSION_CHILD.equals(pluginElement.getName()) == false) {
       return null;
     }
-    IPluginAttribute id = pluginElement.getAttribute(ITaskConstants.TASK_ATT_ID);
+    IPluginAttribute id = pluginElement.getAttribute(IInvocationConstants.INVOCATION_ATT_ID);
     if (id == null || id.getValue() == null || id.getValue().trim().length() == 0) {
       return null;
     }
-    IPluginAttribute clazz = pluginElement.getAttribute(ITaskConstants.TASK_ATT_CLASS);
+    IPluginAttribute clazz = pluginElement.getAttribute(IInvocationConstants.INVOCATION_ATT_CLASS);
     if (clazz == null || clazz.getValue() == null || clazz.getValue().trim().length() == 0) {
       return null;
     }
-    return new PlatformTask(platformBundle, pluginElement, id.getValue(), clazz.getValue());
+    return new PlatformInvocation(platformBundle, pluginElement, id.getValue(), clazz.getValue());
   }
 
 }

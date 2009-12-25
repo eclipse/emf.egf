@@ -25,8 +25,8 @@ import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.core.context.IContextFactory;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.internal.context.ContextFactory;
+import org.eclipse.egf.core.invocation.IPlatformInvocation;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
-import org.eclipse.egf.core.task.IPlatformTask;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -227,21 +227,21 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   }
 
   /**
-   * Get the IPlatformTask for given EMF Resource.
+   * Get the IPlatformInvocation for given EMF Resource.
    * 
    * @param uri
-   * @return an {@link IPlatformTask} instance or null if the
+   * @return an {@link IPlatformInvocation} instance or null if the
    *         uri is null or not associated with an
-   *         IPlatformFcore
+   *         IPlatformInvocation
    */
-  public static IPlatformTask getPlatformTask(String id) {
+  public static IPlatformInvocation getPlatformInvocation(String id) {
     if (id == null || id.trim().length() == 0) {
       return null;
     }
-    // locate and return the first associated IPlatformTask
-    for (IPlatformTask task : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformTask.class)) {
-      if (task.getId().equals(id)) {
-        return task;
+    // locate and return the first associated IPlatformInvocation
+    for (IPlatformInvocation invocation : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformInvocation.class)) {
+      if (invocation.getId().equals(id)) {
+        return invocation;
       }
     }
     // Nothing to retrieve
@@ -249,12 +249,12 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   }
 
   /**
-   * Returns a snapshot of known IPlatformTask
+   * Returns a snapshot of known IPlatformInvocation
    * 
-   * @return an array of IPlatformTask
+   * @return an array of IPlatformInvocation
    */
-  public static IPlatformTask[] getPlatformTasks() {
-    return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformTask.class);
+  public static IPlatformInvocation[] getPlatformInvocations() {
+    return EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(IPlatformInvocation.class);
   }
 
   /**
