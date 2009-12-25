@@ -10,7 +10,7 @@
  *     Thales Corporate Services S.A.S
  */
 
-package org.eclipse.egf.console;
+package org.eclipse.egf.console.internal;
 
 import java.util.HashMap;
 import java.util.Iterator;

@@ -6,7 +6,7 @@
     point="org.eclipse.egf.common.logger"
   >
     <logger
-      class="org.eclipse.egf.console.Console"
+      class="org.eclipse.egf.console.internal.Console"
     />
   </extension>
 
@@ -81,7 +81,7 @@
     >
       <enablement>
         <instanceof 
-          value="org.eclipse.egf.console.Console"
+          value="org.eclipse.egf.console.internal.Console"
         />
       </enablement>
     </consolePageParticipant>

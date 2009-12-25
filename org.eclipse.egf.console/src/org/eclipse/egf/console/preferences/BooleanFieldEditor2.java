@@ -6,16 +6,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     IBM Corporation - initial API and implementation
- *     Thales Corporate Services S.A.S
+ * IBM Corporation - initial API and implementation
+ * Thales Corporate Services S.A.S
  */
-
 package org.eclipse.egf.console.preferences;
 
 import org.eclipse.jface.preference.BooleanFieldEditor;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-
 
 /**
  * A boolean field editor that provides access to this editors boolean
@@ -26,7 +24,8 @@ public class BooleanFieldEditor2 extends BooleanFieldEditor {
   private Button _changeControl;
 
   /**
-   * @see BooleanFieldEditor#BooleanFieldEditor(java.lang.String, java.lang.String, int, org.eclipse.swt.widgets.Composite)
+   * @see BooleanFieldEditor#BooleanFieldEditor(java.lang.String,
+   *      java.lang.String, int, org.eclipse.swt.widgets.Composite)
    */
   public BooleanFieldEditor2(String name, String labelText, int style, Composite parent) {
     super(name, labelText, style, parent);

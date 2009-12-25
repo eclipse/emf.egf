@@ -9,7 +9,6 @@
  * IBM Corporation - initial API and implementation
  * Thales Corporate Services S.A.S
  */
-
 package org.eclipse.egf.console.internal;
 
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
@@ -30,11 +29,8 @@ public class ConsolePreferenceInitializer extends AbstractPreferenceInitializer 
     super();
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @seeorg.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#
-   * initializeDefaultPreferences()
+  /**
+   * @see org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer#initializeDefaultPreferences()
    */
   @Override
   public void initializeDefaultPreferences() {

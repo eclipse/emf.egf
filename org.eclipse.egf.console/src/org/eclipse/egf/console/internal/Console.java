@@ -9,17 +9,14 @@
  * IBM Corporation - initial API and implementation
  * Thales Corporate Services S.A.S
  */
-
-package org.eclipse.egf.console;
+package org.eclipse.egf.console.internal;
 
 import java.lang.reflect.InvocationTargetException;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.common.log.IEGFLogger;
-import org.eclipse.egf.console.internal.ConsoleDocument;
-import org.eclipse.egf.console.internal.ConsoleFactory;
-import org.eclipse.egf.console.internal.IEGFConsoleConstants;
+import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.console.l10n.ConsoleMessages;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
@@ -80,7 +77,6 @@ public class Console extends MessageConsole implements IPropertyChangeListener, 
       format = new SimpleDateFormat(ConsoleMessages.Console_resultTimeFormat);
     } catch (RuntimeException e) {
       // This can happen if the bundle contains an invalid format
-      //
       format = new SimpleDateFormat("'(took 'm:ss.SSS')')"); //$NON-NLS-1$
     }
     TIME_FORMAT = format;
@@ -212,7 +208,7 @@ public class Console extends MessageConsole implements IPropertyChangeListener, 
     initWrapSetting();
 
     // Ensure that initialization occurs in the ui thread
-    EGFConsolePlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+    EGFConsolePlugin.getStandardDisplay().asyncExec(new Runnable() {
 
       public void run() {
         JFaceResources.getFontRegistry().addListener(Console.this);
@@ -291,16 +287,13 @@ public class Console extends MessageConsole implements IPropertyChangeListener, 
       if (_visible) {
         switch (type) {
         case ConsoleDocument.ERROR:
-          buffer.append(line);
-          getErrorStream().println(buffer.toString());
+          getErrorStream().println(buffer.toString() + line);
           break;
         case ConsoleDocument.INFO:
-          buffer.append(line);
-          getInfoStream().println(buffer.toString());
+          getInfoStream().println(buffer.toString() + line);
           break;
         case ConsoleDocument.WARNING:
-          buffer.append(line);
-          getWarningStream().println(buffer.toString());
+          getWarningStream().println(buffer.toString() + line);
           break;
         }
       } else {

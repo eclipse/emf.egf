@@ -14,7 +14,6 @@ package org.eclipse.egf.console.internal;
 
 import java.util.StringTokenizer;
 
-import org.eclipse.egf.console.Console;
 import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.console.util.ConsoleUtil;
 import org.eclipse.emf.common.util.URI;

@@ -6,20 +6,16 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     IBM Corporation - initial API and implementation
- *     Thales Corporate Services S.A.S
+ * IBM Corporation - initial API and implementation
+ * Thales Corporate Services S.A.S
  */
-
 package org.eclipse.egf.console.internal;
 
+import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.ui.console.ConsolePlugin;
 import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleFactory;
 import org.eclipse.ui.console.IConsoleManager;
-
-import org.eclipse.egf.console.Console;
-import org.eclipse.egf.console.EGFConsolePlugin;
-
 
 public class ConsoleFactory implements IConsoleFactory {
 
@@ -38,12 +34,13 @@ public class ConsoleFactory implements IConsoleFactory {
       IConsole[] existing = manager.getConsoles();
       boolean exists = false;
       for (int i = 0; i < existing.length; i++) {
-        if (console == existing[i]) {
+        if (existing[i] instanceof Console) {
+          console = (Console) existing[i];
           exists = true;
         }
       }
-      if (!exists) {
-        manager.addConsoles(new IConsole []{ console });
+      if (exists == false) {
+        manager.addConsoles(new IConsole[] { console });
       }
       manager.showConsoleView(console);
     }
@@ -53,7 +50,7 @@ public class ConsoleFactory implements IConsoleFactory {
     IConsoleManager manager = ConsolePlugin.getDefault().getConsoleManager();
     Console console = EGFConsolePlugin.getConsole();
     if (console != null) {
-      manager.removeConsoles(new IConsole []{ console });
+      manager.removeConsoles(new IConsole[] { console });
       ConsolePlugin.getDefault().getConsoleManager().addConsoleListener(console.new MyLifecycle());
     }
   }

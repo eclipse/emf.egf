@@ -9,14 +9,14 @@
  * IBM Corporation - initial API and implementation
  * Thales Corporate Services S.A.S
  */
-
 package org.eclipse.egf.console;
 
 import org.eclipse.egf.common.ui.activator.EGFAbstractUIPlugin;
+import org.eclipse.egf.console.internal.ColorManager;
+import org.eclipse.egf.console.internal.Console;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -35,10 +35,16 @@ public class EGFConsolePlugin extends EGFAbstractUIPlugin {
   }
 
   /**
-   * Returns the workbench display to be used.
+   * Returns the standard display to be used. The method first checks, if
+   * the thread calling this method has an associated display. If so, this
+   * display is returned. Otherwise the method returns the default display.
    */
-  public static Display getWorkbenchDisplay() {
-    return PlatformUI.getWorkbench().getDisplay();
+  public static Display getStandardDisplay() {
+    Display display = Display.getCurrent();
+    if (display == null) {
+      display = Display.getDefault();
+    }
+    return display;
   }
 
   private Console _console;
@@ -58,9 +64,6 @@ public class EGFConsolePlugin extends EGFAbstractUIPlugin {
     return _console;
   }
 
-  /**
-   * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-   */
   @Override
   public void start(BundleContext context) throws Exception {
     super.start(context);
@@ -69,18 +72,21 @@ public class EGFConsolePlugin extends EGFAbstractUIPlugin {
       _console = new Console();
     } catch (RuntimeException re) {
       // Don't let the console bring down UI
-      logError("Errors occurred starting the console", re); //$NON-NLS-1$
+      logError("Errors occurred starting the EGF console", re); //$NON-NLS-1$
     }
   }
 
-  /**
-   * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-   */
   @Override
   public void stop(BundleContext context) throws Exception {
-    ColorManager.getDefault().dispose();
-    __plugin = null;
-    super.stop(context);
+    try {
+      ColorManager.getDefault().dispose();
+      if (_console != null) {
+        _console.shutdown();
+      }
+      __plugin = null;
+    } finally {
+      super.stop(context);
+    }
   }
 
   /**

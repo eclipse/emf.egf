@@ -6,10 +6,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     IBM Corporation - initial API and implementation
- *     Thales Corporate Services S.A.S
+ * IBM Corporation - initial API and implementation
+ * Thales Corporate Services S.A.S
  */
-
 package org.eclipse.egf.console.internal;
 
 import org.eclipse.ui.IActionBars;
@@ -17,7 +16,6 @@ import org.eclipse.ui.console.IConsole;
 import org.eclipse.ui.console.IConsoleConstants;
 import org.eclipse.ui.console.IConsolePageParticipant;
 import org.eclipse.ui.part.IPageBookViewPage;
-
 
 public class ConsolePageParticipant implements IConsolePageParticipant {
 
@@ -34,7 +32,7 @@ public class ConsolePageParticipant implements IConsolePageParticipant {
   }
 
   public void activated() {
-    // Nothing to do	  
+    // Nothing to do
   }
 
   public void deactivated() {

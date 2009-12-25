@@ -9,7 +9,6 @@
  * IBM Corporation - initial API and implementation
  * Thales Corporate Services S.A.S
  */
-
 package org.eclipse.egf.console.l10n;
 
 import org.eclipse.osgi.util.NLS;

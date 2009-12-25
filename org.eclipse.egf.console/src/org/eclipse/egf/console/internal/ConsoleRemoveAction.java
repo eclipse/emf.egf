@@ -6,17 +6,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     IBM Corporation - initial API and implementation
- *     Thales Corporate Services S.A.S
+ * IBM Corporation - initial API and implementation
+ * Thales Corporate Services S.A.S
  */
-
 package org.eclipse.egf.console.internal;
-
-import org.eclipse.jface.action.Action;
 
 import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.console.l10n.ConsoleMessages;
-
+import org.eclipse.jface.action.Action;
 
 public class ConsoleRemoveAction extends Action {
 

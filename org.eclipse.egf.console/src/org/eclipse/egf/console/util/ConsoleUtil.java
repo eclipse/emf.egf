@@ -6,10 +6,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     IBM Corporation - initial API and implementation
- *     Thales Corporate Services S.A.S
+ * IBM Corporation - initial API and implementation
+ * Thales Corporate Services S.A.S
  */
-
 package org.eclipse.egf.console.util;
 
 import java.lang.reflect.Method;
