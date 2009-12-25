@@ -39,6 +39,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.Contract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -46,6 +47,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractItemProvider(AdapterFactory adapterFactory) {
@@ -56,6 +58,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -73,6 +76,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * This adds a property descriptor for the Mandatory feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addMandatoryPropertyDescriptor(Object object) {
@@ -86,6 +90,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * This adds a property descriptor for the Mode feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addModePropertyDescriptor(Object object) {
@@ -96,11 +101,13 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
+   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -115,6 +122,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -129,6 +137,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * This returns Contract.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -146,8 +155,8 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
   @Override
   public String getText(Object object) {
     String label = ((Contract) object).getName();
-    return label == null || label.length() == 0 ? "[" + ((Contract) object).getMode().getLiteral() + " " + getString("_UI_Contract_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-        label + " [" + ((Contract) object).getMode().getLiteral() + " " + getString("_UI_Contract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+    return label == null || label.length() == 0 ? "[" + ((Contract) object).getMode().getLiteral() + "] [" + getString("_UI_Contract_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        label + " [" + ((Contract) object).getMode().getLiteral() + "] [" + getString("_UI_Contract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
   }
 
   /**
@@ -155,6 +164,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -178,6 +188,7 @@ public class ContractItemProvider extends ModelElementItemProvider implements IE
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
