@@ -1,12 +1,12 @@
 /**
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  */
 package org.eclipse.egf.pde.internal.plugin.command;
 
@@ -16,10 +16,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.egf.common.activator.EGFCommonPlugin;
-import org.eclipse.egf.common.helper.IUserEnforcedHelper;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.eclipse.egf.pde.internal.FcoreGeneratorHelper;
@@ -62,11 +59,6 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
    * 3.2 level compliance of plugin.xml
    */
   private static final String PLUGIN_VERSION_3_2 = "3.2"; //$NON-NLS-1$
-
-  /**
-   * Get the user enforced helper.
-   */
-  static final IUserEnforcedHelper USER_ENFORCED_HELPER = EGFCommonPlugin.getDefault().getUserEnforcedHelper();
 
   /**
    * @see org.eclipse.egf.pde.plugin.command.IPluginChangesCommandRunner#performChangesOnPlugin(java.lang.String,
@@ -186,14 +178,6 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
     final Display display = getDisplay();
     display.syncExec(new Runnable() {
       public void run() {
-        // Check if the file is not in read-only mode.
-        IStatus status = USER_ENFORCED_HELPER.makeFileWritable(file, display);
-        if (status.getSeverity() != IStatus.OK) {
-          StringBuffer msg = new StringBuffer("PluginChangesCommandRunner.modifyExistingPlugin(..) _ "); //$NON-NLS-1$
-          msg.append(file.getName() + " file is read only, changes are impossible."); //$NON-NLS-1$
-          EGFPDEPlugin.getDefault().logError(msg.toString());
-          return;
-        }
         // Create an update operation that deals with modifying extensions.
         ModelModification updateOperation = new ModelModification(file) {
           @Override
