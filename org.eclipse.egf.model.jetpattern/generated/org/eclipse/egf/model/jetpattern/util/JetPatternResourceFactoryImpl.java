@@ -26,26 +26,26 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * @generated
  */
 public class JetPatternResourceFactoryImpl extends ResourceFactoryImpl {
-  /**
-   * Creates an instance of the resource factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public JetPatternResourceFactoryImpl() {
-    super();
-  }
+    /**
+     * Creates an instance of the resource factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public JetPatternResourceFactoryImpl() {
+        super();
+    }
 
-  /**
-   * Creates an instance of the resource.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Resource createResource(URI uri) {
-    Resource result = new JetPatternResourceImpl(uri);
-    return result;
-  }
+    /**
+     * Creates an instance of the resource.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Resource createResource(URI uri) {
+        Resource result = new JetPatternResourceImpl(uri);
+        return result;
+    }
 
 } //JetPatternResourceFactoryImpl

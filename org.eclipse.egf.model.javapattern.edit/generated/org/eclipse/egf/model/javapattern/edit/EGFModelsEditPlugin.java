@@ -27,75 +27,75 @@ import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
  * @generated
  */
 public final class EGFModelsEditPlugin extends EMFPlugin {
-  /**
-   * Keep track of the singleton.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public static final EGFModelsEditPlugin INSTANCE = new EGFModelsEditPlugin();
-
-  /**
-   * Keep track of the singleton.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private static Implementation plugin;
-
-  /**
-   * Create the instance.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EGFModelsEditPlugin() {
-    super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, org.eclipse.egf.model.edit.EGFModelsEditPlugin.INSTANCE, });
-  }
-
-  /**
-   * Returns the singleton instance of the Eclipse plugin.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the singleton instance.
-   * @generated
-   */
-  @Override
-  public ResourceLocator getPluginResourceLocator() {
-    return plugin;
-  }
-
-  /**
-   * Returns the singleton instance of the Eclipse plugin.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the singleton instance.
-   * @generated
-   */
-  public static Implementation getPlugin() {
-    return plugin;
-  }
-
-  /**
-   * The actual implementation of the Eclipse <b>Plugin</b>.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public static class Implementation extends EGFEclipsePlugin {
     /**
-     * Creates an instance.
+     * Keep track of the singleton.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public Implementation() {
-      super();
+    public static final EGFModelsEditPlugin INSTANCE = new EGFModelsEditPlugin();
 
-      // Remember the static instance.
-      //
-      plugin = this;
+    /**
+     * Keep track of the singleton.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private static Implementation plugin;
+
+    /**
+     * Create the instance.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EGFModelsEditPlugin() {
+        super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, org.eclipse.egf.model.edit.EGFModelsEditPlugin.INSTANCE, });
     }
-  }
+
+    /**
+     * Returns the singleton instance of the Eclipse plugin.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the singleton instance.
+     * @generated
+     */
+    @Override
+    public ResourceLocator getPluginResourceLocator() {
+        return plugin;
+    }
+
+    /**
+     * Returns the singleton instance of the Eclipse plugin.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the singleton instance.
+     * @generated
+     */
+    public static Implementation getPlugin() {
+        return plugin;
+    }
+
+    /**
+     * The actual implementation of the Eclipse <b>Plugin</b>.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static class Implementation extends EGFEclipsePlugin {
+        /**
+         * Creates an instance.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        public Implementation() {
+            super();
+
+            // Remember the static instance.
+            //
+            plugin = this;
+        }
+    }
 
 }

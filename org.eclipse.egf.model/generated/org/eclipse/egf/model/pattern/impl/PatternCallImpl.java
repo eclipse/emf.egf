@@ -37,121 +37,121 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class PatternCallImpl extends AbstractPatternCallImpl implements PatternCall {
-  /**
-   * The cached value of the '{@link #getParameterMatching() <em>Parameter Matching</em>}' map.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getParameterMatching()
-   * @generated
-   * @ordered
-   */
-  protected EMap<PatternParameter, PatternParameter> parameterMatching;
+    /**
+     * The cached value of the '{@link #getParameterMatching() <em>Parameter Matching</em>}' map.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getParameterMatching()
+     * @generated
+     * @ordered
+     */
+    protected EMap<PatternParameter, PatternParameter> parameterMatching;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PatternCallImpl() {
-    super();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return PatternPackage.Literals.PATTERN_CALL;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EMap<PatternParameter, PatternParameter> getParameterMatching() {
-    if (parameterMatching == null) {
-      parameterMatching = new EcoreEMap<PatternParameter, PatternParameter>(PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP, Paramerter2ParameterMapImpl.class, this, PatternPackage.PATTERN_CALL__PARAMETER_MATCHING);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternCallImpl() {
+        super();
     }
-    return parameterMatching;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-    switch (featureID) {
-    case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
-      return ((InternalEList<?>) getParameterMatching()).basicRemove(otherEnd, msgs);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return PatternPackage.Literals.PATTERN_CALL;
     }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
-      if (coreType)
-        return getParameterMatching();
-      else
-        return getParameterMatching().map();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EMap<PatternParameter, PatternParameter> getParameterMatching() {
+        if (parameterMatching == null) {
+            parameterMatching = new EcoreEMap<PatternParameter, PatternParameter>(PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP, Paramerter2ParameterMapImpl.class, this, PatternPackage.PATTERN_CALL__PARAMETER_MATCHING);
+        }
+        return parameterMatching;
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
-      ((EStructuralFeature.Setting) getParameterMatching()).set(newValue);
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+        switch (featureID) {
+        case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
+            return ((InternalEList<?>) getParameterMatching()).basicRemove(otherEnd, msgs);
+        }
+        return super.eInverseRemove(otherEnd, featureID, msgs);
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
-      getParameterMatching().clear();
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+        case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
+            if (coreType)
+                return getParameterMatching();
+            else
+                return getParameterMatching().map();
+        }
+        return super.eGet(featureID, resolve, coreType);
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
-      return parameterMatching != null && !parameterMatching.isEmpty();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+        case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
+            ((EStructuralFeature.Setting) getParameterMatching()).set(newValue);
+            return;
+        }
+        super.eSet(featureID, newValue);
     }
-    return super.eIsSet(featureID);
-  }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+        case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
+            getParameterMatching().clear();
+            return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+        case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
+            return parameterMatching != null && !parameterMatching.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } // PatternCallImpl

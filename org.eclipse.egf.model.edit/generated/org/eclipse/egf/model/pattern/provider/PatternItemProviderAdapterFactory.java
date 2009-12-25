@@ -57,608 +57,608 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * @generated
  */
 public class PatternItemProviderAdapterFactory extends PatternAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
-  /**
-   * This keeps track of the root adapter factory that delegates to this adapter factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected ComposedAdapterFactory parentAdapterFactory;
-
-  /**
-   * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected IChangeNotifier changeNotifier = new ChangeNotifier();
-
-  /**
-   * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected Collection<Object> supportedTypes = new ArrayList<Object>();
-
-  /**
-   * This constructs an instance.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PatternItemProviderAdapterFactory() {
-    supportedTypes.add(IEditingDomainItemProvider.class);
-    supportedTypes.add(IStructuredItemContentProvider.class);
-    supportedTypes.add(ITreeItemContentProvider.class);
-    supportedTypes.add(IItemLabelProvider.class);
-    supportedTypes.add(IItemPropertySource.class);
-    supportedTypes.add(ITableItemLabelProvider.class);
-    supportedTypes.add(ITableItemColorProvider.class);
-    supportedTypes.add(ITableItemFontProvider.class);
-    supportedTypes.add(IItemColorProvider.class);
-    supportedTypes.add(IItemFontProvider.class);
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.Pattern} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PatternItemProvider patternItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.Pattern}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPatternAdapter() {
-    if (patternItemProvider == null) {
-      patternItemProvider = new PatternItemProvider(this);
-    }
-
-    return patternItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternMethod} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PatternMethodItemProvider patternMethodItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternMethod}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPatternMethodAdapter() {
-    if (patternMethodItemProvider == null) {
-      patternMethodItemProvider = new PatternMethodItemProvider(this);
-    }
-
-    return patternMethodItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternParameter} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PatternParameterItemProvider patternParameterItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternParameter}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPatternParameterAdapter() {
-    if (patternParameterItemProvider == null) {
-      patternParameterItemProvider = new PatternParameterItemProvider(this);
-    }
-
-    return patternParameterItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternLibrary} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PatternLibraryItemProvider patternLibraryItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternLibrary}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPatternLibraryAdapter() {
-    if (patternLibraryItemProvider == null) {
-      patternLibraryItemProvider = new PatternLibraryItemProvider(this);
-    }
-
-    return patternLibraryItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternViewpoint} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PatternViewpointItemProvider patternViewpointItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternViewpoint}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPatternViewpointAdapter() {
-    if (patternViewpointItemProvider == null) {
-      patternViewpointItemProvider = new PatternViewpointItemProvider(this);
-    }
-
-    return patternViewpointItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternCall} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PatternCallItemProvider patternCallItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternCall}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPatternCallAdapter() {
-    if (patternCallItemProvider == null) {
-      patternCallItemProvider = new PatternCallItemProvider(this);
-    }
-
-    return patternCallItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.SuperPatternCall} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected SuperPatternCallItemProvider superPatternCallItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.SuperPatternCall}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createSuperPatternCallAdapter() {
-    if (superPatternCallItemProvider == null) {
-      superPatternCallItemProvider = new SuperPatternCallItemProvider(this);
-    }
-
-    return superPatternCallItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected Paramerter2ParameterMapItemProvider paramerter2ParameterMapItemProvider;
-
-  /**
-   * This creates an adapter for a {@link java.util.Map.Entry}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createParamerter2ParameterMapAdapter() {
-    if (paramerter2ParameterMapItemProvider == null) {
-      paramerter2ParameterMapItemProvider = new Paramerter2ParameterMapItemProvider(this);
-    }
-
-    return paramerter2ParameterMapItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.MethodCall} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected MethodCallItemProvider methodCallItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.MethodCall}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createMethodCallAdapter() {
-    if (methodCallItemProvider == null) {
-      methodCallItemProvider = new MethodCallItemProvider(this);
-    }
-
-    return methodCallItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternVariable} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PatternVariableItemProvider patternVariableItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternVariable}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPatternVariableAdapter() {
-    if (patternVariableItemProvider == null) {
-      patternVariableItemProvider = new PatternVariableItemProvider(this);
-    }
-
-    return patternVariableItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternInjectedCall} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PatternInjectedCallItemProvider patternInjectedCallItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternInjectedCall}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createPatternInjectedCallAdapter() {
-    if (patternInjectedCallItemProvider == null) {
-      patternInjectedCallItemProvider = new PatternInjectedCallItemProvider(this);
-    }
-
-    return patternInjectedCallItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.BasicQuery} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected BasicQueryItemProvider basicQueryItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.BasicQuery}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createBasicQueryAdapter() {
-    if (basicQueryItemProvider == null) {
-      basicQueryItemProvider = new BasicQueryItemProvider(this);
-    }
-
-    return basicQueryItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.StringQuery} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected StringQueryItemProvider stringQueryItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.StringQuery}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createStringQueryAdapter() {
-    if (stringQueryItemProvider == null) {
-      stringQueryItemProvider = new StringQueryItemProvider(this);
-    }
-
-    return stringQueryItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.CustomQuery} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected CustomQueryItemProvider customQueryItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.pattern.CustomQuery}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createCustomQueryAdapter() {
-    if (customQueryItemProvider == null) {
-      customQueryItemProvider = new CustomQueryItemProvider(this);
-    }
-
-    return customQueryItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected String2PatternListItemProvider string2PatternListItemProvider;
-
-  /**
-   * This creates an adapter for a {@link java.util.Map.Entry}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createString2PatternListAdapter() {
-    if (string2PatternListItemProvider == null) {
-      string2PatternListItemProvider = new String2PatternListItemProvider(this);
-    }
-
-    return string2PatternListItemProvider;
-  }
-
-  /**
-   * This returns the root adapter factory that contains this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ComposeableAdapterFactory getRootAdapterFactory() {
-    return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
-  }
-
-  /**
-   * This sets the composed adapter factory that contains this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
-    this.parentAdapterFactory = parentAdapterFactory;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean isFactoryForType(Object type) {
-    return supportedTypes.contains(type) || super.isFactoryForType(type);
-  }
-
-  /**
-   * This implementation substitutes the factory itself as the key for the adapter.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter adapt(Notifier notifier, Object type) {
-    return super.adapt(notifier, this);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object adapt(Object object, Object type) {
-    if (isFactoryForType(type)) {
-      Object adapter = super.adapt(object, type);
-      if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
-        return adapter;
-      }
-    }
-
-    return null;
-  }
-
-  /**
-   * This adds a listener.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void addListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.addListener(notifyChangedListener);
-  }
-
-  /**
-   * This removes a listener.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void removeListener(INotifyChangedListener notifyChangedListener) {
-    changeNotifier.removeListener(notifyChangedListener);
-  }
-
-  /**
-   * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void fireNotifyChanged(Notification notification) {
-    changeNotifier.fireNotifyChanged(notification);
-
-    if (parentAdapterFactory != null) {
-      parentAdapterFactory.fireNotifyChanged(notification);
-    }
-  }
-
-  /**
-   * This disposes all of the item providers created by this factory. 
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void dispose() {
-    if (patternItemProvider != null)
-      patternItemProvider.dispose();
-    if (patternMethodItemProvider != null)
-      patternMethodItemProvider.dispose();
-    if (patternParameterItemProvider != null)
-      patternParameterItemProvider.dispose();
-    if (patternLibraryItemProvider != null)
-      patternLibraryItemProvider.dispose();
-    if (patternViewpointItemProvider != null)
-      patternViewpointItemProvider.dispose();
-    if (patternCallItemProvider != null)
-      patternCallItemProvider.dispose();
-    if (superPatternCallItemProvider != null)
-      superPatternCallItemProvider.dispose();
-    if (paramerter2ParameterMapItemProvider != null)
-      paramerter2ParameterMapItemProvider.dispose();
-    if (methodCallItemProvider != null)
-      methodCallItemProvider.dispose();
-    if (patternVariableItemProvider != null)
-      patternVariableItemProvider.dispose();
-    if (patternInjectedCallItemProvider != null)
-      patternInjectedCallItemProvider.dispose();
-    if (basicQueryItemProvider != null)
-      basicQueryItemProvider.dispose();
-    if (stringQueryItemProvider != null)
-      stringQueryItemProvider.dispose();
-    if (customQueryItemProvider != null)
-      customQueryItemProvider.dispose();
-    if (string2PatternListItemProvider != null)
-      string2PatternListItemProvider.dispose();
-  }
-
-  /**
-   * A child creation extender for the {@link FcorePackage}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public static class FcoreChildCreationExtender implements IChildCreationExtender {
     /**
-     * The switch for creating child descriptors specific to each extended class.
+     * This keeps track of the root adapter factory that delegates to this adapter factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected static class CreationSwitch extends FcoreSwitch<Object> {
-      /**
-       * The child descriptors being populated.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected List<Object> newChildDescriptors;
+    protected ComposedAdapterFactory parentAdapterFactory;
 
-      /**
-       * The domain in which to create the children.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected EditingDomain editingDomain;
+    /**
+     * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected IChangeNotifier changeNotifier = new ChangeNotifier();
 
-      /**
-       * Creates the a switch for populating child descriptors in the given domain.
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
-        this.newChildDescriptors = newChildDescriptors;
-        this.editingDomain = editingDomain;
-      }
+    /**
+     * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      @Override
-      public Object caseViewpointContainer(ViewpointContainer object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS, PatternFactory.eINSTANCE.createPatternViewpoint()));
+    /**
+     * This constructs an instance.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public PatternItemProviderAdapterFactory() {
+        supportedTypes.add(IEditingDomainItemProvider.class);
+        supportedTypes.add(IStructuredItemContentProvider.class);
+        supportedTypes.add(ITreeItemContentProvider.class);
+        supportedTypes.add(IItemLabelProvider.class);
+        supportedTypes.add(IItemPropertySource.class);
+        supportedTypes.add(ITableItemLabelProvider.class);
+        supportedTypes.add(ITableItemColorProvider.class);
+        supportedTypes.add(ITableItemFontProvider.class);
+        supportedTypes.add(IItemColorProvider.class);
+        supportedTypes.add(IItemFontProvider.class);
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.Pattern} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternItemProvider patternItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.Pattern}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternAdapter() {
+        if (patternItemProvider == null) {
+            patternItemProvider = new PatternItemProvider(this);
+        }
+
+        return patternItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternMethod} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternMethodItemProvider patternMethodItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternMethod}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternMethodAdapter() {
+        if (patternMethodItemProvider == null) {
+            patternMethodItemProvider = new PatternMethodItemProvider(this);
+        }
+
+        return patternMethodItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternParameter} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternParameterItemProvider patternParameterItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternParameter}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternParameterAdapter() {
+        if (patternParameterItemProvider == null) {
+            patternParameterItemProvider = new PatternParameterItemProvider(this);
+        }
+
+        return patternParameterItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternLibrary} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternLibraryItemProvider patternLibraryItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternLibrary}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternLibraryAdapter() {
+        if (patternLibraryItemProvider == null) {
+            patternLibraryItemProvider = new PatternLibraryItemProvider(this);
+        }
+
+        return patternLibraryItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternViewpoint} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternViewpointItemProvider patternViewpointItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternViewpoint}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternViewpointAdapter() {
+        if (patternViewpointItemProvider == null) {
+            patternViewpointItemProvider = new PatternViewpointItemProvider(this);
+        }
+
+        return patternViewpointItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternCall} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternCallItemProvider patternCallItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternCall}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternCallAdapter() {
+        if (patternCallItemProvider == null) {
+            patternCallItemProvider = new PatternCallItemProvider(this);
+        }
+
+        return patternCallItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.SuperPatternCall} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected SuperPatternCallItemProvider superPatternCallItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.SuperPatternCall}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createSuperPatternCallAdapter() {
+        if (superPatternCallItemProvider == null) {
+            superPatternCallItemProvider = new SuperPatternCallItemProvider(this);
+        }
+
+        return superPatternCallItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected Paramerter2ParameterMapItemProvider paramerter2ParameterMapItemProvider;
+
+    /**
+     * This creates an adapter for a {@link java.util.Map.Entry}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createParamerter2ParameterMapAdapter() {
+        if (paramerter2ParameterMapItemProvider == null) {
+            paramerter2ParameterMapItemProvider = new Paramerter2ParameterMapItemProvider(this);
+        }
+
+        return paramerter2ParameterMapItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.MethodCall} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected MethodCallItemProvider methodCallItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.MethodCall}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createMethodCallAdapter() {
+        if (methodCallItemProvider == null) {
+            methodCallItemProvider = new MethodCallItemProvider(this);
+        }
+
+        return methodCallItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternVariable} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternVariableItemProvider patternVariableItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternVariable}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternVariableAdapter() {
+        if (patternVariableItemProvider == null) {
+            patternVariableItemProvider = new PatternVariableItemProvider(this);
+        }
+
+        return patternVariableItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternInjectedCall} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternInjectedCallItemProvider patternInjectedCallItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternInjectedCall}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternInjectedCallAdapter() {
+        if (patternInjectedCallItemProvider == null) {
+            patternInjectedCallItemProvider = new PatternInjectedCallItemProvider(this);
+        }
+
+        return patternInjectedCallItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.BasicQuery} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BasicQueryItemProvider basicQueryItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.BasicQuery}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createBasicQueryAdapter() {
+        if (basicQueryItemProvider == null) {
+            basicQueryItemProvider = new BasicQueryItemProvider(this);
+        }
+
+        return basicQueryItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.StringQuery} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected StringQueryItemProvider stringQueryItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.StringQuery}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createStringQueryAdapter() {
+        if (stringQueryItemProvider == null) {
+            stringQueryItemProvider = new StringQueryItemProvider(this);
+        }
+
+        return stringQueryItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.CustomQuery} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected CustomQueryItemProvider customQueryItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.CustomQuery}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createCustomQueryAdapter() {
+        if (customQueryItemProvider == null) {
+            customQueryItemProvider = new CustomQueryItemProvider(this);
+        }
+
+        return customQueryItemProvider;
+    }
+
+    /**
+     * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected String2PatternListItemProvider string2PatternListItemProvider;
+
+    /**
+     * This creates an adapter for a {@link java.util.Map.Entry}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createString2PatternListAdapter() {
+        if (string2PatternListItemProvider == null) {
+            string2PatternListItemProvider = new String2PatternListItemProvider(this);
+        }
+
+        return string2PatternListItemProvider;
+    }
+
+    /**
+     * This returns the root adapter factory that contains this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public ComposeableAdapterFactory getRootAdapterFactory() {
+        return parentAdapterFactory == null ? this : parentAdapterFactory.getRootAdapterFactory();
+    }
+
+    /**
+     * This sets the composed adapter factory that contains this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
+        this.parentAdapterFactory = parentAdapterFactory;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean isFactoryForType(Object type) {
+        return supportedTypes.contains(type) || super.isFactoryForType(type);
+    }
+
+    /**
+     * This implementation substitutes the factory itself as the key for the adapter.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter adapt(Notifier notifier, Object type) {
+        return super.adapt(notifier, this);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object adapt(Object object, Object type) {
+        if (isFactoryForType(type)) {
+            Object adapter = super.adapt(object, type);
+            if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
+                return adapter;
+            }
+        }
 
         return null;
-      }
-
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
-      protected CommandParameter createChildParameter(Object feature, Object child) {
-        return new CommandParameter(null, feature, child);
-      }
-
     }
 
     /**
+     * This adds a listener.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
-      ArrayList<Object> result = new ArrayList<Object>();
-      new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
-      return result;
+    public void addListener(INotifyChangedListener notifyChangedListener) {
+        changeNotifier.addListener(notifyChangedListener);
     }
 
     /**
+     * This removes a listener.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    public ResourceLocator getResourceLocator() {
-      return EGFModelsEditPlugin.INSTANCE;
+    public void removeListener(INotifyChangedListener notifyChangedListener) {
+        changeNotifier.removeListener(notifyChangedListener);
     }
-  }
+
+    /**
+     * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void fireNotifyChanged(Notification notification) {
+        changeNotifier.fireNotifyChanged(notification);
+
+        if (parentAdapterFactory != null) {
+            parentAdapterFactory.fireNotifyChanged(notification);
+        }
+    }
+
+    /**
+     * This disposes all of the item providers created by this factory. 
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public void dispose() {
+        if (patternItemProvider != null)
+            patternItemProvider.dispose();
+        if (patternMethodItemProvider != null)
+            patternMethodItemProvider.dispose();
+        if (patternParameterItemProvider != null)
+            patternParameterItemProvider.dispose();
+        if (patternLibraryItemProvider != null)
+            patternLibraryItemProvider.dispose();
+        if (patternViewpointItemProvider != null)
+            patternViewpointItemProvider.dispose();
+        if (patternCallItemProvider != null)
+            patternCallItemProvider.dispose();
+        if (superPatternCallItemProvider != null)
+            superPatternCallItemProvider.dispose();
+        if (paramerter2ParameterMapItemProvider != null)
+            paramerter2ParameterMapItemProvider.dispose();
+        if (methodCallItemProvider != null)
+            methodCallItemProvider.dispose();
+        if (patternVariableItemProvider != null)
+            patternVariableItemProvider.dispose();
+        if (patternInjectedCallItemProvider != null)
+            patternInjectedCallItemProvider.dispose();
+        if (basicQueryItemProvider != null)
+            basicQueryItemProvider.dispose();
+        if (stringQueryItemProvider != null)
+            stringQueryItemProvider.dispose();
+        if (customQueryItemProvider != null)
+            customQueryItemProvider.dispose();
+        if (string2PatternListItemProvider != null)
+            string2PatternListItemProvider.dispose();
+    }
+
+    /**
+     * A child creation extender for the {@link FcorePackage}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public static class FcoreChildCreationExtender implements IChildCreationExtender {
+        /**
+         * The switch for creating child descriptors specific to each extended class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        protected static class CreationSwitch extends FcoreSwitch<Object> {
+            /**
+             * The child descriptors being populated.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            protected List<Object> newChildDescriptors;
+
+            /**
+             * The domain in which to create the children.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            protected EditingDomain editingDomain;
+
+            /**
+             * Creates the a switch for populating child descriptors in the given domain.
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            CreationSwitch(List<Object> newChildDescriptors, EditingDomain editingDomain) {
+                this.newChildDescriptors = newChildDescriptors;
+                this.editingDomain = editingDomain;
+            }
+
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            @Override
+            public Object caseViewpointContainer(ViewpointContainer object) {
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS, PatternFactory.eINSTANCE.createPatternViewpoint()));
+
+                return null;
+            }
+
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            protected CommandParameter createChildParameter(Object feature, Object child) {
+                return new CommandParameter(null, feature, child);
+            }
+
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
+            ArrayList<Object> result = new ArrayList<Object>();
+            new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
+            return result;
+        }
+
+        /**
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        public ResourceLocator getResourceLocator() {
+            return EGFModelsEditPlugin.INSTANCE;
+        }
+    }
 
 }

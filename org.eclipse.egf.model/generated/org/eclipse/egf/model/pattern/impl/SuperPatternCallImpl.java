@@ -27,36 +27,36 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class SuperPatternCallImpl extends AbstractPatternCallImpl implements SuperPatternCall {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected SuperPatternCallImpl() {
-    super();
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected SuperPatternCallImpl() {
+        super();
+    }
 
-  @Override
-  public Pattern getCalled() {
-    if (getPattern().getSuperPattern() == null)
-      throw new IllegalStateException();
-    return getPattern().getSuperPattern();
-  }
+    @Override
+    public Pattern getCalled() {
+        if (getPattern().getSuperPattern() == null)
+            throw new IllegalStateException();
+        return getPattern().getSuperPattern();
+    }
 
-  @Override
-  public void setCalled(Pattern newCalled) {
+    @Override
+    public void setCalled(Pattern newCalled) {
 
-    throw new IllegalStateException();
-  }
+        throw new IllegalStateException();
+    }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return PatternPackage.Literals.SUPER_PATTERN_CALL;
-  }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return PatternPackage.Literals.SUPER_PATTERN_CALL;
+    }
 
 } // SuperPatternCallImpl

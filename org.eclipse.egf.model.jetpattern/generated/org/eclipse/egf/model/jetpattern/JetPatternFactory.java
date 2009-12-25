@@ -23,39 +23,30 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface JetPatternFactory extends EFactory {
-  /**
-   * The singleton instance of the factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  JetPatternFactory eINSTANCE = org.eclipse.egf.model.jetpattern.impl.JetPatternFactoryImpl.init();
+    /**
+     * The singleton instance of the factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    JetPatternFactory eINSTANCE = org.eclipse.egf.model.jetpattern.impl.JetPatternFactoryImpl.init();
 
-  /**
-   * Returns a new object of class '<em>Jet Nature</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Jet Nature</em>'.
-   * @generated
-   */
-  JetNature createJetNature();
+    /**
+     * Returns a new object of class '<em>Jet Nature</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Jet Nature</em>'.
+     * @generated
+     */
+    JetNature createJetNature();
 
-  /**
-   * Returns a new object of class '<em>Jet Engine</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Jet Engine</em>'.
-   * @generated
-   */
-  JetEngine createJetEngine();
-
-  /**
-   * Returns the package supported by this factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the package supported by this factory.
-   * @generated
-   */
-  JetPatternPackage getJetPatternPackage();
+    /**
+     * Returns the package supported by this factory.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the package supported by this factory.
+     * @generated
+     */
+    JetPatternPackage getJetPatternPackage();
 
 } //JetPatternFactory
