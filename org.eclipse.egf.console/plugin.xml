@@ -1,108 +1,75 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.2"?>
-<plugin> 
+<?eclipse version="3.0"?>
+<!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+ 
+<plugin>
 
-  <extension
-    point="org.eclipse.egf.common.logger"
-  >
-    <logger
-      class="org.eclipse.egf.console.internal.EGFLoggerFactory"
-    />
-  </extension>
-
-  <extension
-    point="org.eclipse.ui.themes"
-  >
+  <!-- ================================================================================= -->
+  <!-- Extension Points Definition                                                       -->
+  <!-- ================================================================================= -->
   
-    <themeElementCategory 
-      label="%consolePresentation.label" 
-      id="org.eclipse.egf.presentation.themes"
-    />
-    
-    <fontDefinition
-      defaultsTo="org.eclipse.jface.textfont"
-      label="%ConsoleFont.label"
-      categoryId="org.eclipse.egf.presentation.themes"
-      id="org.eclipse.egf.presentation.font"
-    >
-      <description>%ConsoleFont.description</description>
-    </fontDefinition>
-    
-  </extension>
+  <extension-point 
+    id="fcore" 
+    name="%EGFFcoreExtensionPoint" 
+    schema="schema/fcore.exsd"
+  />  
+
+  <extension-point 
+    id="task" 
+    name="%EGFTaskExtensionPoint" 
+    schema="schema/task.exsd"
+  />
+  
+  <extension-point 
+    id="type" 
+    name="%EGFTypeExtensionPoint" 
+    schema="schema/type.exsd"
+  />    
+  
+  <!-- ================================================================================= -->
+  <!-- EGF Platform Manager                                                              -->
+  <!-- ================================================================================= -->  
 
   <extension
-    point="org.eclipse.ui.keywords"
+    point="org.eclipse.egf.core.platform.manager"
   >
-    <keyword
-      label="%egf.preferences.keyword.general"
-      id="org.eclipse.egf.general"
-    />  
-  </extension>
-    
-  <extension 
-    point="org.eclipse.core.runtime.preferences"
-  >
-    <initializer 
-      class="org.eclipse.egf.console.internal.ConsolePreferenceInitializer"
+    <manager
+      extension="org.eclipse.egf.core.fcore"    
+      class="org.eclipse.egf.core.fcore.PlatformFcoreFactory"
     />
+    <manager
+      extension="org.eclipse.egf.core.task"      
+      class="org.eclipse.egf.core.task.PlatformTaskFactory"
+    />
+    <manager
+      extension="org.eclipse.egf.core.type"      
+      class="org.eclipse.egf.core.type.PlatformTypeFactory"
+    />                       
   </extension>  
-  
+    
+  <!-- ================================================================================= -->
+  <!-- Natures                                                                           -->
+  <!-- ================================================================================= -->
+
   <extension
-    point="org.eclipse.ui.preferencePages"
+    point="org.eclipse.core.resources.natures"  
+    id="FcoreNature"
+    name="%EGFFcoreNature"
   >
-    <page
-      name="%Console"
-      class="org.eclipse.egf.console.preferences.EGFPreferencePage"
-      category="org.eclipse.egf.preferences"      
-      id="org.eclipse.egf.console.preferences.EGFPreferencePage"
-    >
-      <keywordReference 
-        id="org.eclipse.egf.general"
+    <runtime>
+      <run
+        class="org.eclipse.egf.core.internal.natures.FcoreProject"
       />
-    </page>
+    </runtime>
   </extension>  
-  
-  <extension
-    point="org.eclipse.ui.console.consoleFactories"
-  >
-    <consoleFactory
-      label="%EGF"
-      icon="$nl$/icons/eview16/console_view.gif"
-      class="org.eclipse.egf.console.internal.ConsoleFactory"
-    />
-  </extension>
-  
-  <extension
-    point="org.eclipse.ui.console.consolePageParticipants"
-  >
-    <consolePageParticipant
-      class="org.eclipse.egf.console.internal.ConsolePageParticipant"
-      id="org.eclipse.egf.console.internal.ConsolePageParticipant"
-    >
-      <enablement>
-        <instanceof 
-          value="org.eclipse.egf.console.internal.Console"
-        />
-      </enablement>
-    </consolePageParticipant>
-  </extension>
-  
-  <extension
-    point="org.eclipse.ui.console.consolePatternMatchListeners"
-  >
-    <consolePatternMatchListener
-      class="org.eclipse.egf.console.internal.ConsoleLineNotifier"
-      id="org.eclipse.egf.console.internal.ConsoleLineNotifier"
-      qualifier=".+"
-      regex=".+"
-    >
-      <enablement>
-        <test
-          property="org.eclipse.ui.console.consoleTypeTest"
-          value="%EGF"
-        />
-      </enablement>
-    </consolePatternMatchListener>
-  </extension>  
-  
-</plugin>  
+
+</plugin>
