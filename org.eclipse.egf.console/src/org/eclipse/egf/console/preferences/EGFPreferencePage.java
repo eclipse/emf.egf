@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.console.preferences;
 
+import org.eclipse.egf.common.ui.fields.BooleanFieldEditor2;
 import org.eclipse.egf.console.EGFConsolePlugin;
 import org.eclipse.egf.console.internal.IEGFConsoleConstants;
 import org.eclipse.egf.console.l10n.ConsoleMessages;
