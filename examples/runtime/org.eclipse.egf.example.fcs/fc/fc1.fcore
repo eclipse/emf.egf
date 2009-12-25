@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fcore:FactoryComponent xmi:version="2.1"
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
-    xmlns:productionplan="http://www.eclipse.org/egf/1.0.0/productionplan" xmi:id="FactoryComponent_xqb6kbdCEd6AWpPtW_wFiQ"
+    xmlns:productionplan="http://www.eclipse.org/egf/1.0.0/productionplan" xmi:id="xqb6kbdCEd6AWpPtW_wFiQ"
     name="FC1">
-  <orchestration xmi:type="productionplan:ProductionPlan" xmi:id="ProductionPlan_xqb6krdCEd6AWpPtW_wFiQ">
+  <orchestration xmi:type="productionplan:ProductionPlan" xmi:id="xqb6krdCEd6AWpPtW_wFiQ">
     <productionPlanInvocations xmi:type="productionplan:FactoryComponentInvocation"
-        xmi:id="FactoryComponentInvocation_xqb6k7dCEd6AWpPtW_wFiQ" name="Call FC2"
-        factoryComponent="platform:/plugin/org.eclipse.egf.example.fcs/fc/fc2.fcore#FactoryComponent_yn-g4LdCEd6AWpPtW_wFiQ"/>
-    <productionPlanInvocations xmi:type="productionplan:TaskInvocation" xmi:id="TaskInvocation_xqb6lLdCEd6AWpPtW_wFiQ"
-        name="Call H1" task="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#Task_1Zvd4LdCEd6AWpPtW_wFiQ"/>
+        xmi:id="xqb6k7dCEd6AWpPtW_wFiQ" name="Call FC2"
+        factoryComponent="platform:/plugin/org.eclipse.egf.example.fcs/fc/fc2.fcore#yn-g4LdCEd6AWpPtW_wFiQ"/>
+    <productionPlanInvocations xmi:type="productionplan:TaskInvocation" xmi:id="xqb6lLdCEd6AWpPtW_wFiQ"
+        name="Call H1" task="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ"/>
   </orchestration>
 </fcore:FactoryComponent>
