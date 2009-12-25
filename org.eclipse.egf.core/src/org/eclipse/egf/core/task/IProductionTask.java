@@ -12,20 +12,15 @@ package org.eclipse.egf.core.task;
 
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.context.IProductionContext;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface ITask {
-
-  /**
-   * Task Id
-   * 
-   * @return The current Task Id
-   */
-  public String getTaskId();
+public interface IProductionTask {
 
   /**
    * Pre execute this task.
@@ -33,7 +28,7 @@ public interface ITask {
    * @param monitor_p
    * @return true if the execution was successful, false otherwise.
    */
-  public boolean preExecute(final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException;
+  public boolean preExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException;
 
   /**
    * Do execute this task.
@@ -41,7 +36,7 @@ public interface ITask {
    * @param monitor_p
    * @return true if the execution was successful, false otherwise.
    */
-  public boolean doExecute(final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException;
+  public boolean doExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException;
 
   /**
    * Post execute this task.
@@ -49,6 +44,6 @@ public interface ITask {
    * @param monitor_p
    * @return true if the execution was successful, false otherwise.
    */
-  public boolean postExecute(final IProgressMonitor monitor_p) throws InvocationTargetException, InterruptedException;
+  public boolean postExecute(final IProductionContext productionContext, final IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException;
 
 }

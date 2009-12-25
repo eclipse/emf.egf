@@ -44,15 +44,15 @@
   >
     <manager
       extension="org.eclipse.egf.core.fcore"    
-      factory="org.eclipse.egf.core.fcore.PlatformFcoreFactory"
+      class="org.eclipse.egf.core.fcore.PlatformFcoreFactory"
     />
     <manager
       extension="org.eclipse.egf.core.task"      
-      factory="org.eclipse.egf.core.task.PlatformTaskFactory"
+      class="org.eclipse.egf.core.task.PlatformTaskFactory"
     />
     <manager
       extension="org.eclipse.egf.core.type"      
-      factory="org.eclipse.egf.core.type.PlatformTypeFactory"
+      class="org.eclipse.egf.core.type.PlatformTypeFactory"
     />                       
   </extension>  
     

@@ -38,7 +38,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.common.ui.emf.EGFEditUIUtil;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.fcore.ResourceHelper;
+import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;

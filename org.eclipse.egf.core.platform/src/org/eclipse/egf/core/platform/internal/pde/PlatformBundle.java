@@ -45,11 +45,11 @@ public class PlatformBundle implements IPlatformBundle {
       _extensionPointFactories = new HashMap<Class<? extends IPlatformExtensionPoint>, IPlatformExtensionPointFactory<? extends IPlatformExtensionPoint>>();
       for (String extensionPoint : EGFPlatformPlugin.getDefault().getPlatform().keySet()) {
         // Factory
-        IPlatformExtensionPointFactory<?> factory = (IPlatformExtensionPointFactory<?>) ExtensionPointHelper.createInstance(EGFPlatformPlugin.getDefault().getPlatform().get(extensionPoint), IManagerConstants.MANAGER_ATT_FACTORY);
+        IPlatformExtensionPointFactory<?> clazz = (IPlatformExtensionPointFactory<?>) ExtensionPointHelper.createInstance(EGFPlatformPlugin.getDefault().getPlatform().get(extensionPoint), IManagerConstants.MANAGER_ATT_CLASS);
         // Fetch Returned Types from Factory
-        Class<?> key = EGFPlatformPlugin.fetchReturnedTypeFromFactory(((IPlatformExtensionPointFactory<?>) factory).getClass());
+        Class<?> key = EGFPlatformPlugin.fetchReturnedTypeFromFactory(((IPlatformExtensionPointFactory<?>) clazz).getClass());
         // Store it
-        _extensionPointFactories.put((Class<? extends IPlatformExtensionPoint>) key, (IPlatformExtensionPointFactory<?>) factory);
+        _extensionPointFactories.put((Class<? extends IPlatformExtensionPoint>) key, (IPlatformExtensionPointFactory<?>) clazz);
       }
     }
     return _extensionPointFactories;

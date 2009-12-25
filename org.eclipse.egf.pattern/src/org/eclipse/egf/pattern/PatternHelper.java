@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.fcore.ResourceHelper;
+import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.pattern.Pattern;

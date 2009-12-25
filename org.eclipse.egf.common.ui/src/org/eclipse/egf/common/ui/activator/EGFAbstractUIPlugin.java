@@ -28,7 +28,7 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 /**
  * Base class for plug-ins that integrate with the Eclipse platform UI.<br>
  * 
- * @author fournier
+ * @author Xavier Maysonnave
  */
 public abstract class EGFAbstractUIPlugin extends AbstractUIPlugin {
 

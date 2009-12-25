@@ -31,7 +31,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.core.fcore.ResourceHelper;
+import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.fcore.FcoreFactory;

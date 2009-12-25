@@ -16,6 +16,10 @@
 
 <plugin>
 
+  <!-- ================================================================================= -->
+  <!-- Wizards                                                                           -->
+  <!-- ================================================================================= -->
+
   <extension 
     point="org.eclipse.ui.newWizards"
   >
@@ -34,6 +38,10 @@
       <selection class="org.eclipse.core.resources.IResource"/>
     </wizard>
   </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- Editors                                                                           -->
+  <!-- ================================================================================= -->  
 
   <extension 
     point="org.eclipse.ui.editors"
@@ -46,6 +54,74 @@
       class="org.eclipse.egf.model.fcore.presentation.FcoreEditor"
       contributorClass="org.eclipse.egf.model.fcore.presentation.FcoreActionBarContributor"
     />
+  </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- ActionSets                                                                        -->
+  <!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.ui.actionSets"
+  >
+  
+    <actionSet
+      label="%EGFActionSet_label"
+      description="%EGFActionSet_description"
+      visible="false"
+      id="org.eclipse.egf.ui.action.set"
+    >
+                  
+      <action
+        id="org.eclipse.egf.model.editor.run.activity.action"  
+        toolbarPath="org.eclipse.debug.ui.launchActionSet/debug"         
+        class="org.eclipse.egf.model.editor.internal.actions.RunActivityAction"
+        definitionId="org.eclipse.egf.model.editor.run.activity"
+        icon="$nl$/icons/full/elcl16/runactivity.gif"
+        label="%RunActivityAction_label"
+        menubarPath="org.eclipse.ui.run/runGroup"
+        tooltip="%RunActivityAction_tooltip"
+      />
+      
+    </actionSet>
+    
+  </extension>
+  
+  <extension
+    point="org.eclipse.ui.commands"
+  >
+    
+  <!-- ================================================================================= -->
+  <!-- Command Run                                                                       -->
+  <!-- ================================================================================= -->
+    
+    <command
+      name="%ActionDefinition_runActivity_name"
+      description="%ActionDefinition_runActivity_description"
+      categoryId="org.eclipse.debug.ui.category.run"
+      id="org.eclipse.egf.model.editor.run.activity"
+    />
+      
+  </extension>  
+  
+  <extension
+    point="org.eclipse.ui.bindings"
+  >
+  
+  <!-- ================================================================================= -->
+  <!-- win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-                                        -->
+  <!-- carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL                                     -->  
+  <!-- ================================================================================= -->  
+  
+  <!-- ================================================================================= -->
+  <!-- Key Run                                                                           -->
+  <!-- ================================================================================= -->
+     
+    <key
+      sequence="M1+M2+V"
+      commandId="org.eclipse.egf.model.editor.run.activity"
+      schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+    />
+            
   </extension>
 
 </plugin>

@@ -21,7 +21,7 @@ import org.eclipse.pde.core.plugin.IPluginElement;
 
 public final class PlatformType extends PlatformExtensionPointURI implements IPlatformType {
 
-  protected PlatformType(IPlatformBundle bundle, IPluginElement element, String id) {
+  public PlatformType(IPlatformBundle bundle, IPluginElement element, String id) {
     super(bundle, element, id);
   }
 

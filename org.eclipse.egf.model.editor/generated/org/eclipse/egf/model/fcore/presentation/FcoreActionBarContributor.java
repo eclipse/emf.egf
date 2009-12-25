@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
-import org.eclipse.egf.model.fcore.dialogs.FcoreSelectionDialog;
+import org.eclipse.egf.model.editor.internal.dialogs.FcoreSelectionDialog;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -37,6 +37,7 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.SubContributionItem;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
@@ -109,13 +110,16 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
         browseRegisteredFCsButton.addSelectionListener(new SelectionAdapter() {
           @Override
           public void widgetSelected(SelectionEvent event) {
-            FcoreSelectionDialog registeredFCDialog = new FcoreSelectionDialog(getShell(), true);
-            registeredFCDialog.open();
-            Object[] result = registeredFCDialog.getResult();
-            if (result != null) {
+            FcoreSelectionDialog dialog = new FcoreSelectionDialog(getShell(), true);
+            int result = dialog.open();
+            if (result != IDialogConstants.OK_ID) {
+              return;
+            }
+            Object[] fcores = dialog.getResult();
+            if (fcores != null) {
               StringBuffer uris = new StringBuffer();
-              for (int i = 0, length = result.length; i < length; i++) {
-                uris.append(result[i]);
+              for (int i = 0, length = fcores.length; i < length; i++) {
+                uris.append(fcores[i]);
                 uris.append("  "); //$NON-NLS-1$
               }
               uriField.setText((uriField.getText() + "  " + uris.toString()).trim()); //$NON-NLS-1$

@@ -41,8 +41,8 @@ public interface IManagerConstants {
   public static final String MANAGER_ATT_EXTENSION = "extension"; //$NON-NLS-1$
 
   /**
-   * Define a constant for the 'factory' attribute.
+   * Define a constant for the 'class' attribute.
    */
-  public static final String MANAGER_ATT_FACTORY = "factory"; //$NON-NLS-1$  
+  public static final String MANAGER_ATT_CLASS = "class"; //$NON-NLS-1$  
 
 }

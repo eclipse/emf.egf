@@ -1,5 +1,4 @@
 /**
- * <copyright>
  * 
  * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
@@ -10,9 +9,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
- * </copyright>
  */
-
 package org.eclipse.egf.common.activator;
 
 import org.eclipse.core.runtime.IStatus;

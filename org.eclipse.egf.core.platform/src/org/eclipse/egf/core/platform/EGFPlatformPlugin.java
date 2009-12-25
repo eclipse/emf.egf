@@ -79,30 +79,36 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
           continue;
         }
         // Check factory
-        Object factory = ExtensionPointHelper.createInstance(configurationElement, IManagerConstants.MANAGER_ATT_FACTORY);
-        if (factory == null || factory instanceof IPlatformExtensionPointFactory<?> == false) {
-          if (factory != null) {
-            getDefault().logError(NLS.bind("Wrong Class {0}", factory.getClass().getName())); //$NON-NLS-1$
-            getDefault().logInfo("Class should be an implementation of ''org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory''.", 1); //$NON-NLS-1$
-            getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
-            getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
-            getDefault().logInfo(NLS.bind("extension ''{0}''", extension), 1); //$NON-NLS-1$
-          }
+        Object object = ExtensionPointHelper.createInstance(configurationElement, IManagerConstants.MANAGER_ATT_CLASS);
+        if (object == null) {
           continue;
         }
-        // Fetch Returned Types from Factory
-        Class<?> key = fetchReturnedTypeFromFactory(((IPlatformExtensionPointFactory<?>) factory).getClass());
-        if (key == null || __interfaces.get(key) != null) {
-          if (key != null) {
-            getDefault().logError(NLS.bind("Duplicate Interface {0}", key.getClass().getName())); //$NON-NLS-1$
-            getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
-            getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
-          }
+        if (object instanceof IPlatformExtensionPointFactory<?> == false) {
+          getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
+          getDefault().logInfo("Class should be an implementation of ''org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory''.", 1); //$NON-NLS-1$
+          getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
+          getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
+          getDefault().logInfo(NLS.bind("extension ''{0}''", extension), 1); //$NON-NLS-1$
+          continue;
+        }
+        // Fetch Returned Types from Class
+        Class<?> key = fetchReturnedTypeFromFactory(object.getClass());
+        if (key == null) {
+          getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$          
+          getDefault().logInfo("Unable to find ''createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement)'' method."); //$NON-NLS-1$
+          getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
+          getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
+          continue;
+        }
+        if (__interfaces.get(key) != null) {
+          getDefault().logError(NLS.bind("Duplicate Interface {0}", key.getClass().getName())); //$NON-NLS-1$
+          getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
+          getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
           continue;
         }
         // Register
         __managers.put(extension, configurationElement);
-        __interfaces.put(factory.getClass().getName(), key);
+        __interfaces.put(object.getClass().getName(), key);
       }
     }
     return __managers;
@@ -117,7 +123,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
 
   @SuppressWarnings("unchecked")
   public static Class<? extends IPlatformExtensionPoint> fetchReturnedTypeFromFactory(Class<?> factory) {
-    Class<IPlatformExtensionPoint> clazz = null;
+    Class<? extends IPlatformExtensionPoint> clazz = null;
     Method method = null;
     try {
       method = factory.getDeclaredMethod("createExtensionPoint", IPlatformBundle.class, IPluginElement.class); //$NON-NLS-1$
@@ -125,11 +131,18 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
       // Just Ignore
     }
     if (method != null) {
-      Type type = method.getGenericReturnType();
+      Type type = null;
       try {
-        clazz = (Class<IPlatformExtensionPoint>) type;
-      } catch (ClassCastException cce) {
-        // Just Ignore
+        type = method.getGenericReturnType();
+      } catch (Throwable t) {
+        // Just ignore
+      }
+      if (type != null) {
+        try {
+          clazz = (Class<? extends IPlatformExtensionPoint>) type;
+        } catch (ClassCastException cce) {
+          // Just Ignore
+        }
       }
     }
     return clazz;

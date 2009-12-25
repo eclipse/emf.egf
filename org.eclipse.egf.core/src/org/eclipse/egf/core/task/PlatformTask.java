@@ -21,7 +21,7 @@ import org.eclipse.pde.core.plugin.IPluginElement;
 
 public final class PlatformTask extends PlatformExtensionPointURI implements IPlatformTask {
 
-  protected PlatformTask(IPlatformBundle bundle, IPluginElement element, String id) {
+  public PlatformTask(IPlatformBundle bundle, IPluginElement element, String id) {
     super(bundle, element, id);
   }
 

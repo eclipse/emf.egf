@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.fcore;
+package org.eclipse.egf.core.helper;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.egf.common.uri.URIHelper;

@@ -64,7 +64,7 @@
                </appInfo>
             </annotation>
          </attribute>
-         <attribute name="factory" type="string" use="required">
+         <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   The implementation of the expected services.

@@ -16,6 +16,8 @@ import org.eclipse.egf.common.ui.activator.EGFEclipseUIPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchWindow;
 
 /**
  * This is the central singleton for the Fcore editor plugin.
@@ -80,6 +82,38 @@ public final class EGFModelsEditorPlugin extends EMFPlugin {
   }
 
   /**
+   * 
+   * Returns the currently active window for this workbench (if any). Returns
+   * <code>null</code> if there is no active workbench window. Returns
+   * <code>null</code> if called from a non-UI thread.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @return the active workbench window, or <code>null</code> if there is
+   *         no active workbench window or if called from a non-UI thread
+   * @generated NOT
+   */
+  public static IWorkbenchWindow getActiveWorkbenchWindow() {
+    return getPlugin().getWorkbench().getActiveWorkbenchWindow();
+  }
+
+  /**
+   * Returns the currently active shell for this workbench (if any).
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @return the active workbench shell.
+   * @generated NOT
+   */
+  public static Shell getActiveWorkbenchShell() {
+    IWorkbenchWindow window = getActiveWorkbenchWindow();
+    if (window != null) {
+      return window.getShell();
+    }
+    return null;
+  }
+
+  /**
    * The actual implementation of the Eclipse <b>Plugin</b>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -101,6 +135,7 @@ public final class EGFModelsEditorPlugin extends EMFPlugin {
       //
       plugin = this;
     }
+
   }
 
 }

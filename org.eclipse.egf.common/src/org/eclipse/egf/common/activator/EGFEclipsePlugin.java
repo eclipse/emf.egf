@@ -40,23 +40,24 @@ public class EGFEclipsePlugin extends EclipsePlugin {
 
   public void log(Object logEntry, int nesting, boolean appendLogger) {
     IStatus status;
-    if (logEntry instanceof IStatus) {
-      status = (IStatus) logEntry;
+    Object innerLogEntry = logEntry;
+    if (innerLogEntry instanceof IStatus) {
+      status = (IStatus) innerLogEntry;
       logStatus(status, nesting, appendLogger);
     } else {
-      if (logEntry == null) {
-        logEntry = new RuntimeException(getString("_UI_NullLogEntry_exception", true)).fillInStackTrace();
+      if (innerLogEntry == null) {
+        innerLogEntry = new RuntimeException(getString("_UI_NullLogEntry_exception", true)).fillInStackTrace(); //$NON-NLS-1$
       }
 
-      if (logEntry instanceof Throwable) {
-        Throwable throwable = (Throwable) logEntry;
+      if (innerLogEntry instanceof Throwable) {
+        Throwable throwable = (Throwable) innerLogEntry;
 
         // System.err.println("Logged throwable: --------------------");
         // throwable.printStackTrace();
 
         String message = throwable.getLocalizedMessage();
         if (message == null) {
-          message = "";
+          message = ""; //$NON-NLS-1$
         }
 
         status = new Status(IStatus.WARNING, getBundle().getSymbolicName(), 0, message, throwable);
@@ -64,7 +65,7 @@ public class EGFEclipsePlugin extends EclipsePlugin {
       } else {
         // System.err.println("Logged throwable: --------------------");
         // throwable.printStackTrace();
-        status = new Status(IStatus.WARNING, getBundle().getSymbolicName(), 0, logEntry.toString(), null);
+        status = new Status(IStatus.WARNING, getBundle().getSymbolicName(), 0, innerLogEntry.toString(), null);
         logStatus(status, nesting, appendLogger);
       }
     }

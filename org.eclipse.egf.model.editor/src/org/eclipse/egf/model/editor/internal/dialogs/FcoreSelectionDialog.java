@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.model.fcore.dialogs;
+package org.eclipse.egf.model.editor.internal.dialogs;
 
 import java.util.Comparator;
 
@@ -20,6 +20,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -28,6 +29,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IMemento;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 
 /**
@@ -37,6 +39,45 @@ import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
 
   private static final String DIALOG_SETTINGS = "org.eclipse.egf.model.fcore.presentation.FcoreSelectionDialog"; //$NON-NLS-1$
+
+  /**
+   * <code>ResourceSelectionHistory</code> provides behavior specific to
+   * resources - storing and restoring <code>IResource</code>s state
+   * to/from XML (memento).
+   */
+  private class FcoreSelectionHistory extends SelectionHistory {
+
+    private static final String TAG_URI = "path"; //$NON-NLS-1$    
+
+    @Override
+    protected Object restoreItemFromMemento(IMemento memento) {
+      // Get the IPlatformFcore URI
+      String tag = memento.getString(TAG_URI);
+      if (tag == null) {
+        return null;
+      }
+      URI uri = null;
+      try {
+        uri = URI.createURI(tag);
+      } catch (IllegalArgumentException iae) {
+        return null;
+      }
+      // TODO: We should have an index to improve such settings
+      for (IPlatformFcore fcore : EGFCorePlugin.getPlatformFcores()) {
+        if (fcore.getURI().equals(uri)) {
+          return fcore;
+        }
+      }
+      return null;
+    }
+
+    @Override
+    protected void storeItemToMemento(Object item, IMemento memento) {
+      IPlatformFcore fcore = (IPlatformFcore) item;
+      memento.putString(TAG_URI, fcore.getURI().toString());
+    }
+
+  }
 
   private class FcoreSearchItemsFilter extends ItemsFilter {
     @Override
@@ -120,6 +161,7 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
 
   public FcoreSelectionDialog(Shell parentShell, IPlatformFcore[] factoryComponents, boolean multipleSelection) {
     super(parentShell, multipleSelection);
+    setSelectionHistory(new FcoreSelectionHistory());
     _fcores = factoryComponents;
     setTitle(EGFModelsEditorPlugin.INSTANCE.getString("_UI_FcoreSelection_label")); //$NON-NLS-1$
     setMessage(EGFModelsEditorPlugin.INSTANCE.getString("_UI_SelectRegisteredFcoreURI")); //$NON-NLS-1$

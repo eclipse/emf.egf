@@ -59,9 +59,9 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
       _extensionPoints = new HashMap<String, Class<? extends IPlatformExtensionPoint>>();
       for (String extensionPoint : EGFPlatformPlugin.getDefault().getPlatform().keySet()) {
         // Factory
-        IPlatformExtensionPointFactory<?> factory = (IPlatformExtensionPointFactory<?>) ExtensionPointHelper.createInstance(EGFPlatformPlugin.getDefault().getPlatform().get(extensionPoint), IManagerConstants.MANAGER_ATT_FACTORY);
+        IPlatformExtensionPointFactory<?> clazz = (IPlatformExtensionPointFactory<?>) ExtensionPointHelper.createInstance(EGFPlatformPlugin.getDefault().getPlatform().get(extensionPoint), IManagerConstants.MANAGER_ATT_CLASS);
         // Fetch Returned Types from Factory
-        Class<?> key = EGFPlatformPlugin.fetchReturnedTypeFromFactory(((IPlatformExtensionPointFactory<?>) factory).getClass());
+        Class<?> key = EGFPlatformPlugin.fetchReturnedTypeFromFactory(((IPlatformExtensionPointFactory<?>) clazz).getClass());
         // Store it
         _extensionPoints.put(extensionPoint, (Class<? extends IPlatformExtensionPoint>) key);
       }
