@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.domain.DomainFactory;
+import org.eclipse.egf.model.domain.DomainType;
 import org.eclipse.egf.model.domain.util.DomainAdapterFactory;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
 import org.eclipse.egf.model.fcore.Context;
@@ -320,6 +321,23 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      */
     protected static class CreationSwitch extends FcoreSwitch<Object> {
       /**
+       * Check sub type
+       * <!-- begin-user-doc -->
+       * <!-- end-user-doc -->
+       * 
+       * @generated NOT
+       */
+      private boolean checkClass(Class<?> clazz, Class<?> type) {
+        // Type Checking
+        try {
+          clazz.asSubclass(type);
+        } catch (ClassCastException cce) {
+          return false;
+        }
+        return true;
+      }
+
+      /**
        * The child descriptors being populated.
        * <!-- begin-user-doc -->
        * <!-- end-user-doc -->
@@ -383,7 +401,13 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        */
       @Override
       public Object caseContext(Context object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, DomainFactory.eINSTANCE.createDomainType()));
+
+        {
+          DomainType type = DomainFactory.eINSTANCE.createDomainType();
+          if (object.getContract() == null || object.getContract().getType() == null || checkClass(type.getType(), object.getContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTEXT__TYPE, type));
+          }
+        }
 
         return null;
       }
