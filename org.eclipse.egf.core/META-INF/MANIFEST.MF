@@ -21,5 +21,6 @@ Export-Package:
  org.eclipse.egf.core.internal.context;x-friends:="org.eclipse.egf.core.production",
  org.eclipse.egf.core.l10n,
  org.eclipse.egf.core.natures,
+ org.eclipse.egf.core.preferences, 
  org.eclipse.egf.core.session
 Bundle-ActivationPolicy: lazy
