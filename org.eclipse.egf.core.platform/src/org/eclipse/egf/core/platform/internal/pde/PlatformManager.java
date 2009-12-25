@@ -503,7 +503,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
         // should we remove extensionPoint ?
         for (IPlatformExtensionPoint newExtensionPoint : newPlatformBundle.getPlatformExtensionPoints(clazz)) {
           // TODO: PluginElement equals bug
-          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=290393
+          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
           try {
             if (extensionPoint.getPluginElement().equals(newExtensionPoint.getPluginElement())) {
               continue LOOP;
@@ -549,7 +549,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
         // should we add newExtensionPoint ?
         for (IPlatformExtensionPoint extensionPoint : existingPlatformBundle.getPlatformExtensionPoints(clazz)) {
           // TODO: PluginElement equals bug
-          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=290393
+          // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
           if (extensionPoint.getPluginElement().equals(newExtensionPoint.getPluginElement())) {
             continue LOOP;
           }
