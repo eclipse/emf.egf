@@ -1,17 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.2"?>
+<?eclipse version="3.4"?>
 <plugin>
 
-  <extension
-    point="org.eclipse.core.resources.builders"  
-    id="PatternBuilder"
-    name="%EGFPatternBuilder"
-  >
-    <builder>
-      <run
-        class="org.eclipse.egf.pattern.ui.builder.PatternBuilder"
-      />
-    </builder>
-  </extension>
+	<extension
+         point="org.eclipse.ui.editors">
+    	<editor
+            name="%patternEditorLabel"
+            extensions="fcore"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.egf.pattern.ui.editors.PatternEditorContributor"
+            class="org.eclipse.egf.pattern.ui.editors.PatternEditor"
+            id="org.eclipse.egf.pattern.ui.editors.PatternEditor">
+      	</editor>
+   	</extension>
 
+   	<extension
+         point="org.eclipse.ui.popupMenus">
+      	<objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="test.contribution1">
+        	<action
+               label="Open Pattern"
+               class="org.eclipse.egf.pattern.ui.editors.actions.OpenPatternDebugAction"
+               enablesFor="1"
+               id="test.open.pattern">
+         	</action>
+		</objectContribution>
+   	</extension>
+   
+   	<extension point="org.eclipse.ui.elementFactories">
+   		<factory id="org.eclipse.egf.pattern.ui.pattern.factory.id" class="org.eclipse.egf.pattern.ui.editors.PatternElementFactory" /> 
+ 	</extension>
+   
+    <extension
+        point="org.eclipse.emf.transaction.editingDomains">
+    	<editingDomain
+           factory="org.eclipse.egf.pattern.ui.editors.domain.PatternEditingDomainFactory"
+           id="org.eclipse.egf.pattern.ui.editors.PatternEditingDomain"/>
+  	</extension>
+   
 </plugin>

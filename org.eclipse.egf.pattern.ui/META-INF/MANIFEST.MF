@@ -11,9 +11,17 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
  org.eclipse.core.runtime,
  org.eclipse.ui,
- org.eclipse.ui.ide, 
+ org.eclipse.ui.ide,
  org.eclipse.egf.common.ui,
- org.eclipse.egf.core.pde, 
- org.eclipse.egf.pattern
+ org.eclipse.egf.core.pde,
+ org.eclipse.egf.pattern,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.forms,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.workspace,
+ org.eclipse.emf.databinding,
+ org.eclipse.core.databinding.beans,
+ org.eclipse.core.databinding.property,
+ org.eclipse.jface.databinding
 Bundle-ActivationPolicy: lazy
 
