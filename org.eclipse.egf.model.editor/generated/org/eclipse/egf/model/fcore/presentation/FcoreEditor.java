@@ -46,8 +46,9 @@ import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
+import org.eclipse.egf.model.productionplan.provider.ProductionPlanItemProviderAdapterFactory;
+import org.eclipse.egf.model.resource.ModelResourceItemProviderAdapterFactory;
 import org.eclipse.egf.model.types.provider.TypesItemProviderAdapterFactory;
-import org.eclipse.egf.provider.resource.EGFResourceItemProviderAdapterFactory;
 import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandStack;
@@ -138,8 +139,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
  */
 public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
   /**
-   * This keeps track of the editing domain that is used to track all changes to
-   * the model.
+   * This keeps track of the editing domain that is used to track all changes to the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -203,8 +203,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   protected TreeViewer selectionViewer;
 
   /**
-   * This keeps track of the active content viewer, which may be either one of
-   * the viewers in the pages or the content outline viewer.
+   * This keeps track of the active content viewer, which may be either one of the viewers in the
+   * pages or the content outline viewer.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -223,8 +223,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
 
   /**
    * This keeps track of all the {@link org.eclipse.jface.viewers.ISelectionChangedListener}s that
-   * are
-   * listening to this editor.
+   * are listening to this editor.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -242,8 +241,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   protected ISelection editorSelection = StructuredSelection.EMPTY;
 
   /**
-   * The MarkerHelper is responsible for creating workspace resource markers
-   * presented
+   * The MarkerHelper is responsible for creating workspace resource markers presented
    * in Eclipse's Problems View.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -264,6 +262,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
       if (p instanceof ContentOutline) {
         if (((ContentOutline) p).getCurrentPage() == contentOutlinePage) {
           getActionBarContributor().setActiveEditor(FcoreEditor.this);
+
           setCurrentViewer(contentOutlineViewer);
         }
       } else if (p instanceof PropertySheet) {
@@ -405,8 +404,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   protected boolean updateProblemIndication = true;
 
   /**
-   * Adapter used to update the problem indication when resources are demanded
-   * loaded.
+   * Adapter used to update the problem indication when resources are demanded loaded.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -584,8 +582,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * Updates the problems indication with the information described in the
-   * specified diagnostic.
+   * Updates the problems indication with the information described in the specified diagnostic.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -670,7 +667,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
     //
     adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
-    adapterFactory.addAdapterFactory(new EGFResourceItemProviderAdapterFactory());
+    adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
+    adapterFactory.addAdapterFactory(new ProductionPlanItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
@@ -735,8 +733,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
     if (theSelection != null && !theSelection.isEmpty()) {
       Runnable runnable = new Runnable() {
         public void run() {
-          // Try to select the items in the current content viewer of the
-          // editor.
+          // Try to select the items in the current content viewer of the editor.
           //
           if (currentViewer != null) {
             currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
@@ -826,8 +823,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This makes sure that one content viewer, either for the current page or the
-   * outline view, if it has focus,
+   * This makes sure that one content viewer, either for the current page or the outline view, if it
+   * has focus,
    * is the current one.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -884,8 +881,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This creates a context menu for the viewer and adds a listener as well
-   * registering the menu for extension.
+   * This creates a context menu for the viewer and adds a listener as well registering the menu for
+   * extension.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -936,8 +933,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * Returns a diagnostic describing the errors and warnings listed in the
-   * resource
+   * Returns a diagnostic describing the errors and warnings listed in the resource
    * and the specified exception (if any).
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1191,8 +1187,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This deals with how we want selection in the outliner to affect the other
-   * views.
+   * This deals with how we want selection in the outliner to affect the other views.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -1220,8 +1215,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This is for implementing {@link IEditorPart} and simply tests the command
-   * stack.
+   * This is for implementing {@link IEditorPart} and simply tests the command stack.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -1233,8 +1227,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This is for implementing {@link IEditorPart} and simply saves the model
-   * file.
+   * This is for implementing {@link IEditorPart} and simply saves the model file.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -1247,8 +1240,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
     final Map<Object, Object> saveOptions = new HashMap<Object, Object>();
     saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 
-    // Do the work within an operation because this is a long running activity
-    // that modifies the workbench.
+    // Do the work within an operation because this is a long running activity that modifies the
+    // workbench.
     //
     WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
       // This is the method that gets invoked when the operation runs.
@@ -1295,10 +1288,9 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This returns whether something has been persisted to the URI of the
-   * specified resource.
-   * The implementation uses the URI converter from the editor's resource set to
-   * try to open an input stream.
+   * This returns whether something has been persisted to the URI of the specified resource.
+   * The implementation uses the URI converter from the editor's resource set to try to open an
+   * input stream.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -1439,8 +1431,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to
-   * return this editor's overall selection.
+   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to return this editor's
+   * overall selection.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -1451,8 +1443,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set
-   * this editor's overall selection.
+   * This implements {@link org.eclipse.jface.viewers.ISelectionProvider} to set this editor's
+   * overall selection.
    * Calling this result will notify the listeners.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1524,8 +1516,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   }
 
   /**
-   * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill
-   * the context menus with contributions from the Edit menu.
+   * This implements {@link org.eclipse.jface.action.IMenuListener} to help fill the context menus
+   * with contributions from the Edit menu.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 

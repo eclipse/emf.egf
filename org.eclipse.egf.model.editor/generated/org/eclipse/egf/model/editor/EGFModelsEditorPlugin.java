@@ -13,6 +13,8 @@
 package org.eclipse.egf.model.editor;
 
 import org.eclipse.egf.common.ui.activator.EGFEclipseUIPlugin;
+import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
+import org.eclipse.egf.model.edit.EGFProductionPlanEditPlugin;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
@@ -50,10 +52,10 @@ public final class EGFModelsEditorPlugin extends EMFPlugin {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   public EGFModelsEditorPlugin() {
-    super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, });
+    super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelsEditPlugin.INSTANCE, EGFProductionPlanEditPlugin.INSTANCE, });
   }
 
   /**

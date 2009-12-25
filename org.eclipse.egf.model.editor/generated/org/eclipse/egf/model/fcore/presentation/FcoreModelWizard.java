@@ -33,10 +33,11 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.pde.EGFPDEPlugin;
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.productionplan.ProductionPlanFactory;
+import org.eclipse.egf.model.productionplan.ProductionPlanPackage;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -107,6 +108,15 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
   protected FcorePackage fcorePackage = FcorePackage.eINSTANCE;
 
   /**
+   * This caches an instance of the model package.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected ProductionPlanPackage productionPlanPackage = ProductionPlanPackage.eINSTANCE;
+
+  /**
    * This caches an instance of the model factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -114,6 +124,15 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * @generated
    */
   protected FcoreFactory fcoreFactory = fcorePackage.getFcoreFactory();
+
+  /**
+   * This caches an instance of the model factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected ProductionPlanFactory productionPlanFactory = productionPlanPackage.getProductionPlanFactory();
 
   /**
    * This is the file creation page.
@@ -134,8 +153,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
   protected FcoreModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
   /**
-   * Remember the selection during initialization for populating the default
-   * container.
+   * Remember the selection during initialization for populating the default container.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -186,7 +204,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     if (initialObjectNames == null) {
       initialObjectNames = new ArrayList<String>();
       initialObjectNames.add(fcorePackage.getFactoryComponent().getName());
-      initialObjectNames.add(fcorePackage.getTask().getName());
+      initialObjectNames.add(productionPlanPackage.getTask().getName());
       Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
     }
     return initialObjectNames;
@@ -197,12 +215,15 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   protected EObject createInitialModel() {
     EClass eClass = (EClass) fcorePackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-    EObject rootObject = fcoreFactory.create(eClass);
-    return rootObject;
+    if (eClass == null) {
+      eClass = (EClass) productionPlanPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+      return productionPlanFactory.create(eClass);
+    }
+    return fcoreFactory.create(eClass);
   }
 
   /**
@@ -526,11 +547,11 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
-     * @generated
+     * @generated NOT
      */
     protected String getLabel(String typeName) {
       try {
-        return EGFModelsEditPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
+        return EGFModelsEditorPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
       } catch (MissingResourceException mre) {
         EGFModelsEditorPlugin.INSTANCE.log(mre);
       }
@@ -572,8 +593,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     newFileCreationPage.setFileName(EGFModelsEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0)); //$NON-NLS-1$ //$NON-NLS-2$
     addPage(newFileCreationPage);
 
-    // Try and get the resource selection to determine a current directory for
-    // the file dialog.
+    // Try and get the resource selection to determine a current directory for the file dialog.
     //
     if (selection != null && !selection.isEmpty()) {
       // Get the resource...
