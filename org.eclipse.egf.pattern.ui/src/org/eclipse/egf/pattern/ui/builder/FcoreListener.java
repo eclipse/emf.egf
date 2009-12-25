@@ -30,7 +30,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternHelper;
 import org.eclipse.egf.pattern.execution.TranslationHelper;
-import org.eclipse.egf.pattern.ui.EGFPatternUIPlugin;
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
@@ -73,9 +73,9 @@ public class FcoreListener implements IResourceFcoreListener {
             }
           }.run(monitor);
         } catch (InvocationTargetException e) {
-          EGFPatternUIPlugin.getDefault().logError(e.getTargetException());
+          Activator.getDefault().logError(e.getTargetException());
         } catch (InterruptedException e) {
-          EGFPatternUIPlugin.getDefault().logError(e);
+          Activator.getDefault().logError(e);
         }
         return Status.OK_STATUS;
       }
