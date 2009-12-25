@@ -21,16 +21,8 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.core.search.IJavaSearchConstants;
-import org.eclipse.jdt.core.search.IJavaSearchScope;
-import org.eclipse.jdt.core.search.SearchEngine;
-import org.eclipse.jdt.core.search.SearchMatch;
-import org.eclipse.jdt.core.search.SearchParticipant;
-import org.eclipse.jdt.core.search.SearchPattern;
-import org.eclipse.jdt.core.search.SearchRequestor;
-import org.eclipse.jdt.core.search.TypeDeclarationMatch;
-import org.eclipse.jdt.internal.core.search.JavaSearchParticipant;
 
 /**
  * @author Xavier Maysonnave
@@ -65,26 +57,30 @@ public class TypeClassHelper {
       if (classType == null) {
         return result;
       }
-      IJavaSearchScope scope = SearchEngine.createHierarchyScope(classType);
-      SearchPattern pattern = SearchPattern.createPattern(classType, IJavaSearchConstants.IMPLEMENTORS);
-      SearchRequestor requestor = new SearchRequestor() {
-        @Override
-        public void acceptSearchMatch(SearchMatch match) throws CoreException {
-          if (match instanceof TypeDeclarationMatch) {
-            TypeDeclarationMatch typeMatch = (TypeDeclarationMatch) match;
-            IType type = (IType) typeMatch.getElement();
-            // Binary Types, non interface and non abstract are processed
-            if (type.getClassFile() != null && Flags.isInterface(type.getFlags()) == false && Flags.isAbstract(type.getFlags()) == false) {
-              String bundleId = BundleHelper.getBundleId(type.getJavaProject().getProject());
-              // type should be contained in a bundle
-              if (bundleId != null) {
-                result.add(type.getFullyQualifiedName());
-              }
-            }
+      // Current
+      // public, non interface and non abstract are processed
+      if (Flags.isPublic(classType.getFlags()) && Flags.isInterface(classType.getFlags()) == false && Flags.isAbstract(classType.getFlags()) == false) {
+        String bundleId = BundleHelper.getBundleId(classType.getJavaProject().getProject());
+        // type should be contained in a bundle
+        if (bundleId != null) {
+          result.add(classType.getFullyQualifiedName());
+        }
+      }
+      // Hierarchy
+      ITypeHierarchy typeHierarchy = classType.newTypeHierarchy(javaProject, new NullProgressMonitor());
+      if (typeHierarchy == null) {
+        return result;
+      }
+      for (IType type : typeHierarchy.getAllSubtypes(classType)) {
+        // public, non interface and non abstract are processed
+        if (Flags.isPublic(classType.getFlags()) && Flags.isInterface(type.getFlags()) == false && Flags.isAbstract(type.getFlags()) == false) {
+          String bundleId = BundleHelper.getBundleId(type.getJavaProject().getProject());
+          // type should be contained in a bundle
+          if (bundleId != null) {
+            result.add(type.getFullyQualifiedName());
           }
         }
-      };
-      new SearchEngine().search(pattern, new SearchParticipant[] { new JavaSearchParticipant() }, scope, requestor, new NullProgressMonitor());
+      }
     } catch (Exception e) {
       EGFModelsPlugin.getPlugin().logError(e);
     }
