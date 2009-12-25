@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 
 /**
- * TODO we need to manage ecore models from the workspace.
  * 
  * @author Thomas Guiu
  * 
