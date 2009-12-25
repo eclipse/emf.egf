@@ -70,6 +70,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         content.append("<%");
         if (call.getParameterMatching().isEmpty()) {
+            // TODO add support for inherited parameters
             // try to match parameters
             ParameterMatcher matcher = ParameterMatcher.create(call.getPattern(), pattern);
             if (!matcher.matches())
@@ -79,6 +80,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
                 content.append(ParameterTypeHelper.INSTANCE.getTypeLiteral(key.getType())).append(" ").append(called).append(" = ").append(matcher.getMatching().get(key).getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
             }
         } else {
+            // TODO add support for inherited parameters
             for (Entry<PatternParameter, PatternParameter> binding : call.getParameterMatching()) {
                 String called = PatternHelper.uniqueName(binding.getKey());
                 content.append(ParameterTypeHelper.INSTANCE.getTypeLiteral(binding.getKey().getType())).append(" ").append(called).append(" = ").append(binding.getValue().getName()).append(";").append(CharacterConstants.LINE_SEPARATOR);
