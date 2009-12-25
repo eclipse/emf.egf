@@ -11,8 +11,8 @@
 package org.eclipse.egf.pattern.ui;
 
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
+import org.eclipse.egf.core.pde.EGFPDEPlugin;
 import org.eclipse.egf.pattern.ui.builder.FcoreListener;
-import org.eclipse.egf.pde.EGFPDEPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
