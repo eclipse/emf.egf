@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.query;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +35,15 @@ public interface QueryManager {
     Helper INSTANCE = new Helper();
 
     public class Helper {
+
+        public List<String> getAvailableQueries() {
+            List<String> queries = new ArrayList<String>(50);
+            for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
+                queries.add(kind.getId());
+            }
+            return queries;
+        }
+
         public String getQueryManagerClassName(String queryID) throws PatternException {
             if (queryID == null || "".equals(queryID))
                 throw new PatternException(Messages.query_error2);
