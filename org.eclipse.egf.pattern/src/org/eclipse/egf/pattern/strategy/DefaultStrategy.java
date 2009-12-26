@@ -34,6 +34,7 @@ public class DefaultStrategy extends AbstractStrategy {
 
     public void execute(PatternContext context, Object parameter) throws PatternException, MissingExtensionException {
         LinkedHashSet<Pattern> result = new LinkedHashSet<Pattern>();
+        // to replace libraries by their contents
         PatternCollector.INSTANCE.collect(patternElements, result);
         doExecute(result, context);
     }
