@@ -13,14 +13,20 @@
 package org.eclipse.egf.model.fcore.impl;
 
 import java.util.Collection;
+import java.util.Iterator;
 
+import org.eclipse.egf.common.helper.ClassHelper;
+import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.FactoryComponentContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -35,18 +41,23 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl#getActivity <em>Activity</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl#getActivityContracts <em>Activity Contracts</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl#getActivity
+ * <em>Activity</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl#getActivityContracts
+ * <em>Activity Contracts</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FactoryComponentContractContainerImpl extends ActivityContractContainerImpl implements FactoryComponentContractContainer {
   /**
-   * The cached value of the '{@link #getActivityContracts() <em>Activity Contracts</em>}' containment reference list.
+   * The cached value of the '{@link #getActivityContracts() <em>Activity Contracts</em>}'
+   * containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getActivityContracts()
    * @generated
    * @ordered
@@ -56,6 +67,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected FactoryComponentContractContainerImpl() {
@@ -65,6 +77,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -76,7 +89,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   @Override
   public FactoryComponent getActivity() {
@@ -88,6 +101,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetActivity(FactoryComponent newActivity, NotificationChain msgs) {
@@ -98,6 +112,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setActivity(FactoryComponent newActivity) {
@@ -120,7 +135,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   @SuppressWarnings("unchecked")
   @Override
@@ -134,6 +149,73 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(Type<?> type) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (type != null) {
+      for (Iterator<FactoryComponentContract> it = getActivityContracts().iterator(); it.hasNext();) {
+        FactoryComponentContract contract = it.next();
+        if (contract.getType() != null && ClassHelper.asSubClass(type.getType(), contract.getType().getType())) {
+          contracts.add(contract);
+        }
+      }
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(ContractMode mode) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (mode != null) {
+      for (Iterator<FactoryComponentContract> it = getActivityContracts().iterator(); it.hasNext();) {
+        FactoryComponentContract contract = it.next();
+        if (mode == ContractMode.IN && (contract.getMode() == ContractMode.IN || contract.getMode() == ContractMode.IN_OUT)) {
+          contracts.add(contract);
+        } else if (mode == ContractMode.OUT && (contract.getMode() == ContractMode.OUT || contract.getMode() == ContractMode.IN_OUT)) {
+          contracts.add(contract);
+        } else if (mode == ContractMode.IN_OUT) {
+          contracts.add(contract);
+        }
+      }
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    for (Iterator<ActivityContract> it = getActivityContracts(type).iterator(); it.hasNext();) {
+      ActivityContract contract = it.next();
+      if (mode == ContractMode.IN && (contract.getMode() == ContractMode.IN || contract.getMode() == ContractMode.IN_OUT)) {
+        contracts.add(contract);
+      } else if (mode == ContractMode.OUT && (contract.getMode() == ContractMode.OUT || contract.getMode() == ContractMode.IN_OUT)) {
+        contracts.add(contract);
+      } else if (mode == ContractMode.IN_OUT) {
+        contracts.add(contract);
+      }
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -153,6 +235,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -169,6 +252,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -183,6 +267,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -199,6 +284,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -219,6 +305,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -237,6 +324,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

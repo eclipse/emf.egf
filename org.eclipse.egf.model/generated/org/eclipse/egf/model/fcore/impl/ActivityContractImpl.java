@@ -12,8 +12,6 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import java.util.List;
-
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ActivityContractContainer;
@@ -23,7 +21,6 @@ import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -258,61 +255,45 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * @generated
    */
-  @SuppressWarnings("unchecked")
-  public <T extends ActivityContract> EList<T> getActivityContracts() {
-    EList<T> contracts = new UniqueEList<T>();
-    if (getActivityContractContainer() != null) {
-      contracts.addAll((List<T>) getActivityContractContainer().getActivityContracts());
-    }
-    return contracts;
+  public <T extends ActivityContract> EList<ActivityContract> getActivityContracts() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * @generated
    */
-  @SuppressWarnings("unchecked")
-  public <T extends ActivityContract> EList<T> getActivityContracts(Type<?> innerType) {
-    EList<T> contracts = new UniqueEList<T>();
-    if (getActivityContractContainer() != null) {
-      contracts.addAll((List<T>) getActivityContractContainer().getActivityContracts(innerType));
-    }
-    return contracts;
+  public EList<ActivityContract> getActivityContracts(Type<?> type) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * @generated
    */
-  @SuppressWarnings("unchecked")
-  public <T extends ActivityContract> EList<T> getActivityContracts(ContractMode mode) {
-    EList<T> contracts = new UniqueEList<T>();
-    if (getActivityContractContainer() != null) {
-      contracts.addAll((List<T>) getActivityContractContainer().getActivityContracts(mode));
-    }
-    return contracts;
+  public EList<ActivityContract> getActivityContracts(ContractMode mode) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * @generated
    */
-  @SuppressWarnings("unchecked")
-  public <T extends ActivityContract> EList<T> getActivityContracts(Type<?> innerType, ContractMode mode) {
-    EList<T> contracts = new UniqueEList<T>();
-    if (getActivityContractContainer() != null) {
-      contracts.addAll((List<T>) getActivityContractContainer().getActivityContracts(innerType, mode));
-    }
-    return contracts;
+  public EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode) {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**

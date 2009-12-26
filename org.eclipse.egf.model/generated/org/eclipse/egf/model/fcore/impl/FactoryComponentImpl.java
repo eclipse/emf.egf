@@ -12,8 +12,10 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.FactoryComponentContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
@@ -35,19 +37,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getActivityContractContainer <em>Activity Contract Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getViewpointContainer <em>Viewpoint Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getOrchestration <em>Orchestration</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getActivityContractContainer
+ * <em>Activity Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getViewpointContainer
+ * <em>Viewpoint Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getOrchestration
+ * <em>Orchestration</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FactoryComponentImpl extends ActivityImpl implements FactoryComponent {
   /**
-   * The cached value of the '{@link #getActivityContractContainer() <em>Activity Contract Container</em>}' containment reference.
+   * The cached value of the '{@link #getActivityContractContainer() <em>Activity Contract
+   * Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getActivityContractContainer()
    * @generated
    * @ordered
@@ -55,9 +62,11 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   protected FactoryComponentContractContainer activityContractContainer;
 
   /**
-   * The cached value of the '{@link #getViewpointContainer() <em>Viewpoint Container</em>}' containment reference.
+   * The cached value of the '{@link #getViewpointContainer() <em>Viewpoint Container</em>}'
+   * containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getViewpointContainer()
    * @generated
    * @ordered
@@ -65,9 +74,11 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   protected ViewpointContainer viewpointContainer;
 
   /**
-   * The cached value of the '{@link #getOrchestration() <em>Orchestration</em>}' containment reference.
+   * The cached value of the '{@link #getOrchestration() <em>Orchestration</em>}' containment
+   * reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getOrchestration()
    * @generated
    * @ordered
@@ -77,6 +88,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected FactoryComponentImpl() {
@@ -86,6 +98,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -96,6 +109,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ViewpointContainer getViewpointContainer() {
@@ -105,6 +119,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetViewpointContainer(ViewpointContainer newViewpointContainer, NotificationChain msgs) {
@@ -123,6 +138,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setViewpointContainer(ViewpointContainer newViewpointContainer) {
@@ -142,6 +158,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Orchestration getOrchestration() {
@@ -151,6 +168,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetOrchestration(Orchestration newOrchestration, NotificationChain msgs) {
@@ -169,6 +187,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setOrchestration(Orchestration newOrchestration) {
@@ -188,9 +207,9 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  @Override
   public FactoryComponentContractContainer getActivityContractContainer() {
     return activityContractContainer;
   }
@@ -198,6 +217,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetActivityContractContainer(FactoryComponentContractContainer newActivityContractContainer, NotificationChain msgs) {
@@ -216,6 +236,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setActivityContractContainer(FactoryComponentContractContainer newActivityContractContainer) {
@@ -238,6 +259,67 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
    * 
    * @generated NOT
    */
+  @SuppressWarnings("unchecked")
+  @Override
+  public EList<FactoryComponentContract> getActivityContracts() {
+    EList<FactoryComponentContract> contracts = new UniqueEList<FactoryComponentContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts();
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(Type<?> innerType) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts(innerType);
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(ContractMode mode) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts(mode);
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(Type<?> innerType, ContractMode mode) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts(innerType, mode);
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
   public EList<InvocationContext> getInvocationContexts() {
     EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
     if (getOrchestration() != null) {
@@ -252,7 +334,8 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
    * 
    * @generated NOT
    */
-  public EList<InvocationContext> getInvocationContexts(Type<?> innerType) {
+  @SuppressWarnings("unchecked")
+  public EList<InvocationContext> getInvocationContexts(Type innerType) {
     EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
     if (innerType != null && getOrchestration() != null) {
       return getOrchestration().getInvocationContexts(innerType);
@@ -288,7 +371,8 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
    * 
    * @generated NOT
    */
-  public EList<InvocationContext> getInvocationContexts(Type<?> type, ContractMode mode) {
+  @SuppressWarnings("unchecked")
+  public EList<InvocationContext> getInvocationContexts(Type type, ContractMode mode) {
     EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
     for (InvocationContext innerInvocationContext : getInvocationContexts(type)) {
       if (mode == ContractMode.IN && (innerInvocationContext.getMode() == ContractMode.IN || innerInvocationContext.getMode() == ContractMode.IN_OUT)) {
@@ -305,6 +389,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -329,6 +414,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -347,6 +433,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -365,6 +452,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -386,6 +474,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -407,6 +496,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

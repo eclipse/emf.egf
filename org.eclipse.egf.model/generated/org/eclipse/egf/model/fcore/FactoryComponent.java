@@ -90,6 +90,40 @@ public interface FactoryComponent extends Activity {
   void setOrchestration(Orchestration value);
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  EList<FactoryComponentContract> getActivityContracts();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<ActivityContract> getActivityContracts(Type<?> type);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  EList<ActivityContract> getActivityContracts(ContractMode mode);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode);
+
+  /**
    * Returns the value of the '<em><b>Activity Contract Container</b></em>' containment reference.
    * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.FactoryComponentContractContainer#getActivity <em>Activity</em>}'.
    * <!-- begin-user-doc -->

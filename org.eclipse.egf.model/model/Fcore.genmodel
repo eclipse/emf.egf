@@ -29,22 +29,18 @@
       <genFeatures createChild="false" propertyCategory="Identity" ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/description"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//Activity">
-      <genOperations ecoreOperation="Fcore.ecore#//Activity/getActivityContractContainer"/>
       <genOperations ecoreOperation="Fcore.ecore#//Activity/getActivityContracts">
         <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Activity/getActivityContracts/T"/>
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//Activity/getActivityContracts.1">
         <genParameters ecoreParameter="Fcore.ecore#//Activity/getActivityContracts.1/type"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Activity/getActivityContracts.1/T"/>
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//Activity/getActivityContracts.2">
         <genParameters ecoreParameter="Fcore.ecore#//Activity/getActivityContracts.2/mode"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Activity/getActivityContracts.2/T"/>
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//Activity/getActivityContracts.3">
         <genParameters ecoreParameter="Fcore.ecore#//Activity/getActivityContracts.3/type"/>
         <genParameters ecoreParameter="Fcore.ecore#//Activity/getActivityContracts.3/mode"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Activity/getActivityContracts.3/T"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//ActivityContract">
@@ -58,16 +54,13 @@
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//ActivityContract/getActivityContracts.1">
         <genParameters ecoreParameter="Fcore.ecore#//ActivityContract/getActivityContracts.1/type"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//ActivityContract/getActivityContracts.1/T"/>
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//ActivityContract/getActivityContracts.2">
         <genParameters ecoreParameter="Fcore.ecore#//ActivityContract/getActivityContracts.2/mode"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//ActivityContract/getActivityContracts.2/T"/>
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//ActivityContract/getActivityContracts.3">
         <genParameters ecoreParameter="Fcore.ecore#//ActivityContract/getActivityContracts.3/type"/>
         <genParameters ecoreParameter="Fcore.ecore#//ActivityContract/getActivityContracts.3/mode"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//ActivityContract/getActivityContracts.3/T"/>
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//ActivityContractContainer">
@@ -77,22 +70,30 @@
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//ActivityContractContainer/getActivityContracts.1">
         <genParameters ecoreParameter="Fcore.ecore#//ActivityContractContainer/getActivityContracts.1/type"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//ActivityContractContainer/getActivityContracts.1/T"/>
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//ActivityContractContainer/getActivityContracts.2">
         <genParameters ecoreParameter="Fcore.ecore#//ActivityContractContainer/getActivityContracts.2/mode"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//ActivityContractContainer/getActivityContracts.2/T"/>
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//ActivityContractContainer/getActivityContracts.3">
         <genParameters ecoreParameter="Fcore.ecore#//ActivityContractContainer/getActivityContracts.3/type"/>
         <genParameters ecoreParameter="Fcore.ecore#//ActivityContractContainer/getActivityContracts.3/mode"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//ActivityContractContainer/getActivityContracts.3/T"/>
       </genOperations>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//FactoryComponent">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponent/activityContractContainer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponent/viewpointContainer"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponent/orchestration"/>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getActivityContracts"/>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getActivityContracts.1">
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponent/getActivityContracts.1/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getActivityContracts.2">
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponent/getActivityContracts.2/mode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getActivityContracts.3">
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponent/getActivityContracts.3/type"/>
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponent/getActivityContracts.3/mode"/>
+      </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getInvocationContexts"/>
       <genOperations ecoreOperation="Fcore.ecore#//FactoryComponent/getInvocationContexts.1">
         <genParameters ecoreParameter="Fcore.ecore#//FactoryComponent/getInvocationContexts.1/type"/>
@@ -109,10 +110,31 @@
       <genFeatures notify="false" createChild="false" propertyCategory="Context" propertySortChoices="true"
           ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponentContract/invocationContexts"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponentContract/activityContractContainer"/>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponentContract/getActivityContracts"/>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponentContract/getActivityContracts.1">
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponentContract/getActivityContracts.1/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponentContract/getActivityContracts.2">
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponentContract/getActivityContracts.2/mode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponentContract/getActivityContracts.3">
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponentContract/getActivityContracts.3/type"/>
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponentContract/getActivityContracts.3/mode"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//FactoryComponentContractContainer">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponentContractContainer/activity"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//FactoryComponentContractContainer/activityContracts"/>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponentContractContainer/getActivityContracts">
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponentContractContainer/getActivityContracts/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponentContractContainer/getActivityContracts.1">
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponentContractContainer/getActivityContracts.1/mode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fcore.ecore#//FactoryComponentContractContainer/getActivityContracts.2">
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponentContractContainer/getActivityContracts.2/type"/>
+        <genParameters ecoreParameter="Fcore.ecore#//FactoryComponentContractContainer/getActivityContracts.2/mode"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//ViewpointContainer">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//ViewpointContainer/factoryComponent"/>
@@ -163,21 +185,16 @@
       <genFeatures notify="false" createChild="false" propertyCategory="Invoke" propertySortChoices="true"
           ecoreFeature="ecore:EReference Fcore.ecore#//Invocation/activity"/>
       <genOperations ecoreOperation="Fcore.ecore#//Invocation/getFactoryComponent"/>
-      <genOperations ecoreOperation="Fcore.ecore#//Invocation/getInvocationActivityContracts">
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Invocation/getInvocationActivityContracts/Q"/>
-      </genOperations>
+      <genOperations ecoreOperation="Fcore.ecore#//Invocation/getInvocationActivityContracts"/>
       <genOperations ecoreOperation="Fcore.ecore#//Invocation/getInvocationActivityContracts.1">
         <genParameters ecoreParameter="Fcore.ecore#//Invocation/getInvocationActivityContracts.1/type"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Invocation/getInvocationActivityContracts.1/Q"/>
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//Invocation/getInvocationActivityContracts.2">
         <genParameters ecoreParameter="Fcore.ecore#//Invocation/getInvocationActivityContracts.2/mode"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Invocation/getInvocationActivityContracts.2/Q"/>
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//Invocation/getInvocationActivityContracts.3">
         <genParameters ecoreParameter="Fcore.ecore#//Invocation/getInvocationActivityContracts.3/type"/>
         <genParameters ecoreParameter="Fcore.ecore#//Invocation/getInvocationActivityContracts.3/mode"/>
-        <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Invocation/getInvocationActivityContracts.3/Q"/>
       </genOperations>
       <genOperations ecoreOperation="Fcore.ecore#//Invocation/getInvocationContexts"/>
       <genOperations ecoreOperation="Fcore.ecore#//Invocation/getInvocationContexts.1">

@@ -212,7 +212,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
    * 
    * @generated NOT
    */
-  public EList<InvocationContext> getInvocationContexts(Type<?> type) {
+  @SuppressWarnings("unchecked")
+  public EList<InvocationContext> getInvocationContexts(Type type) {
     EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
     if (type != null) {
       for (InvocationContext innerInvocationContext : getInvocationContexts()) {
@@ -252,7 +253,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
    * 
    * @generated NOT
    */
-  public EList<InvocationContext> getInvocationContexts(Type<?> type, ContractMode mode) {
+  @SuppressWarnings("unchecked")
+  public EList<InvocationContext> getInvocationContexts(Type type, ContractMode mode) {
     EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
     for (InvocationContext innerInvocationContext : getInvocationContexts(type)) {
       if (mode == ContractMode.IN && (innerInvocationContext.getMode() == ContractMode.IN || innerInvocationContext.getMode() == ContractMode.IN_OUT)) {

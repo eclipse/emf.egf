@@ -39,23 +39,19 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getOrchestration
- * <em>Orchestration</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvocationContextContainer
- * <em>Invocation Context Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getActivity <em>Activity</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getOrchestration <em>Orchestration</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvocationContextContainer <em>Invocation Context Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getActivity <em>Activity</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class InvocationImpl<T extends Activity> extends ModelElementImpl implements Invocation<T> {
   /**
-   * The cached value of the '{@link #getInvocationContextContainer() <em>Invocation Context
-   * Container</em>}' containment reference.
+   * The cached value of the '{@link #getInvocationContextContainer() <em>Invocation Context Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getInvocationContextContainer()
    * @generated
    * @ordered
@@ -66,7 +62,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
    * The cached value of the '{@link #getActivity() <em>Activity</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getActivity()
    * @generated
    * @ordered
@@ -76,7 +71,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected InvocationImpl() {
@@ -86,7 +80,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -97,7 +90,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Orchestration getOrchestration() {
@@ -109,7 +101,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetOrchestration(Orchestration newOrchestration, NotificationChain msgs) {
@@ -120,7 +111,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setOrchestration(Orchestration newOrchestration) {
@@ -142,7 +132,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public InvocationContextContainer getInvocationContextContainer() {
@@ -152,7 +141,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetInvocationContextContainer(InvocationContextContainer newInvocationContextContainer, NotificationChain msgs) {
@@ -171,7 +159,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setInvocationContextContainer(InvocationContextContainer newInvocationContextContainer) {
@@ -191,7 +178,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -210,7 +196,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public T basicGetActivity() {
@@ -220,7 +205,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setActivity(T newActivity) {
@@ -249,13 +233,12 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
    * 
    * @generated NOT
    */
-  @SuppressWarnings("unchecked")
-  public <Q extends ActivityContract> EList<Q> getInvocationActivityContracts() {
-    EList<Q> contracts = new UniqueEList<Q>();
+  public EList<ActivityContract> getInvocationActivityContracts() {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
     if (getInvocationContextContainer() != null && getInvocationContextContainer().getInvocationContexts() != null) {
       for (InvocationContext invocationContext : getInvocationContextContainer().getInvocationContexts()) {
         if (invocationContext.getActivityContract() != null) {
-          contracts.add((Q) invocationContext.getActivityContract());
+          contracts.add(invocationContext.getActivityContract());
         }
       }
     }
@@ -268,13 +251,12 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
    * 
    * @generated NOT
    */
-  @SuppressWarnings("unchecked")
-  public <Q extends ActivityContract> EList<Q> getInvocationActivityContracts(Type<?> type) {
-    EList<Q> contracts = new UniqueEList<Q>();
+  public EList<ActivityContract> getInvocationActivityContracts(Type<?> type) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
     if (type != null) {
       for (ActivityContract contract : getInvocationActivityContracts()) {
         if (contract.getType() != null && ClassHelper.asSubClass(type.getType(), contract.getType().getType())) {
-          contracts.add((Q) contract);
+          contracts.add(contract);
         }
       }
     }
@@ -287,17 +269,16 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
    * 
    * @generated NOT
    */
-  @SuppressWarnings("unchecked")
-  public <Q extends ActivityContract> EList<Q> getInvocationActivityContracts(ContractMode mode) {
-    EList<Q> contracts = new UniqueEList<Q>();
+  public EList<ActivityContract> getInvocationActivityContracts(ContractMode mode) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
     if (mode != null) {
       for (ActivityContract contract : getInvocationActivityContracts()) {
         if (mode == ContractMode.IN && (contract.getMode() == ContractMode.IN || contract.getMode() == ContractMode.IN_OUT)) {
-          contracts.add((Q) contract);
+          contracts.add(contract);
         } else if (mode == ContractMode.OUT && (contract.getMode() == ContractMode.OUT || contract.getMode() == ContractMode.IN_OUT)) {
-          contracts.add((Q) contract);
+          contracts.add(contract);
         } else if (mode == ContractMode.IN_OUT) {
-          contracts.add((Q) contract);
+          contracts.add(contract);
         }
       }
     }
@@ -310,16 +291,15 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
    * 
    * @generated NOT
    */
-  @SuppressWarnings("unchecked")
-  public <Q extends ActivityContract> EList<Q> getInvocationActivityContracts(Type<?> type, ContractMode mode) {
-    EList<Q> contracts = new UniqueEList<Q>();
+  public EList<ActivityContract> getInvocationActivityContracts(Type<?> type, ContractMode mode) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
     for (ActivityContract contract : getInvocationActivityContracts(type)) {
       if (mode == ContractMode.IN && (contract.getMode() == ContractMode.IN || contract.getMode() == ContractMode.IN_OUT)) {
-        contracts.add((Q) contract);
+        contracts.add(contract);
       } else if (mode == ContractMode.OUT && (contract.getMode() == ContractMode.OUT || contract.getMode() == ContractMode.IN_OUT)) {
-        contracts.add((Q) contract);
+        contracts.add(contract);
       } else if (mode == ContractMode.IN_OUT) {
-        contracts.add((Q) contract);
+        contracts.add(contract);
       }
     }
     return contracts;
@@ -345,7 +325,8 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
    * 
    * @generated NOT
    */
-  public EList<InvocationContext> getInvocationContexts(Type<?> innerType) {
+  @SuppressWarnings("unchecked")
+  public EList<InvocationContext> getInvocationContexts(Type innerType) {
     EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
     if (innerType != null) {
       for (InvocationContext innerInvocationContext : getInvocationContexts()) {
@@ -385,7 +366,8 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
    * 
    * @generated NOT
    */
-  public EList<InvocationContext> getInvocationContexts(Type<?> type, ContractMode mode) {
+  @SuppressWarnings("unchecked")
+  public EList<InvocationContext> getInvocationContexts(Type type, ContractMode mode) {
     EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
     for (InvocationContext innerInvocationContext : getInvocationContexts(type)) {
       if (mode == ContractMode.IN && (innerInvocationContext.getMode() == ContractMode.IN || innerInvocationContext.getMode() == ContractMode.IN_OUT)) {
@@ -402,7 +384,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -423,7 +404,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -440,7 +420,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -455,7 +434,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -476,7 +454,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -499,7 +476,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -521,7 +497,6 @@ public abstract class InvocationImpl<T extends Activity> extends ModelElementImp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

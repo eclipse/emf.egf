@@ -81,6 +81,38 @@ public interface FactoryComponentContract extends ActivityContract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  EList<FactoryComponentContract> getActivityContracts();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<ActivityContract> getActivityContracts(Type<?> type);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<ActivityContract> getActivityContracts(ContractMode mode);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * 
    * @model kind="operation" required="true"
    * @generated NOT

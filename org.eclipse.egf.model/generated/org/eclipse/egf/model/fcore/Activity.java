@@ -25,17 +25,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface Activity extends ModelElement {
-  /**
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Activity Contract Container</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  ActivityContractContainer getActivityContractContainer();
 
   /**
    * <!-- begin-user-doc -->
@@ -43,7 +32,7 @@ public interface Activity extends ModelElement {
    * @model kind="operation"
    * @generated
    */
-  <T extends ActivityContract> EList<T> getActivityContracts();
+  <T extends ActivityContract> EList<ActivityContract> getActivityContracts();
 
   /**
    * <!-- begin-user-doc -->
@@ -51,7 +40,7 @@ public interface Activity extends ModelElement {
    * @model
    * @generated
    */
-  <T extends ActivityContract> EList<T> getActivityContracts(Type<?> type);
+  EList<ActivityContract> getActivityContracts(Type<?> type);
 
   /**
    * <!-- begin-user-doc -->
@@ -59,7 +48,7 @@ public interface Activity extends ModelElement {
    * @model
    * @generated
    */
-  <T extends ActivityContract> EList<T> getActivityContracts(ContractMode mode);
+  EList<ActivityContract> getActivityContracts(ContractMode mode);
 
   /**
    * <!-- begin-user-doc -->
@@ -67,6 +56,6 @@ public interface Activity extends ModelElement {
    * @model
    * @generated
    */
-  <T extends ActivityContract> EList<T> getActivityContracts(Type<?> type, ContractMode mode);
+  EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode);
 
 } // Activity

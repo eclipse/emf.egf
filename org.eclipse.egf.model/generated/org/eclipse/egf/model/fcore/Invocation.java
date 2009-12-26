@@ -126,7 +126,7 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @model kind="operation"
    * @generated
    */
-  <Q extends ActivityContract> EList<Q> getInvocationActivityContracts();
+  EList<ActivityContract> getInvocationActivityContracts();
 
   /**
    * <!-- begin-user-doc -->
@@ -134,7 +134,7 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @model
    * @generated
    */
-  <Q extends ActivityContract> EList<Q> getInvocationActivityContracts(Type<?> type);
+  EList<ActivityContract> getInvocationActivityContracts(Type<?> type);
 
   /**
    * <!-- begin-user-doc -->
@@ -142,7 +142,7 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @model
    * @generated
    */
-  <Q extends ActivityContract> EList<Q> getInvocationActivityContracts(ContractMode mode);
+  EList<ActivityContract> getInvocationActivityContracts(ContractMode mode);
 
   /**
    * <!-- begin-user-doc -->
@@ -150,7 +150,7 @@ public interface Invocation<T extends Activity> extends ModelElement {
    * @model
    * @generated
    */
-  <Q extends ActivityContract> EList<Q> getInvocationActivityContracts(Type<?> type, ContractMode mode);
+  EList<ActivityContract> getInvocationActivityContracts(Type<?> type, ContractMode mode);
 
   /**
    * <!-- begin-user-doc -->

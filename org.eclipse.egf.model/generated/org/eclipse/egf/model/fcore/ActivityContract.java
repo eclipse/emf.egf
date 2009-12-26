@@ -137,7 +137,7 @@ public interface ActivityContract extends ModelElement {
    * @model kind="operation"
    * @generated
    */
-  <T extends ActivityContract> EList<T> getActivityContracts();
+  <T extends ActivityContract> EList<ActivityContract> getActivityContracts();
 
   /**
    * <!-- begin-user-doc -->
@@ -145,7 +145,7 @@ public interface ActivityContract extends ModelElement {
    * @model
    * @generated
    */
-  <T extends ActivityContract> EList<T> getActivityContracts(Type<?> type);
+  EList<ActivityContract> getActivityContracts(Type<?> type);
 
   /**
    * <!-- begin-user-doc -->
@@ -153,7 +153,7 @@ public interface ActivityContract extends ModelElement {
    * @model
    * @generated
    */
-  <T extends ActivityContract> EList<T> getActivityContracts(ContractMode mode);
+  EList<ActivityContract> getActivityContracts(ContractMode mode);
 
   /**
    * <!-- begin-user-doc -->
@@ -161,6 +161,6 @@ public interface ActivityContract extends ModelElement {
    * @model
    * @generated
    */
-  <T extends ActivityContract> EList<T> getActivityContracts(Type<?> type, ContractMode mode);
+  EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode);
 
 } // ActivityContract
