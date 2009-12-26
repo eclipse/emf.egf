@@ -17,7 +17,10 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.fcore.util.FcoreSwitch;
 import org.eclipse.egf.model.pattern.PatternFactory;
@@ -446,6 +449,29 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.PatternExecutionReporterType} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected PatternExecutionReporterTypeItemProvider patternExecutionReporterTypeItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.PatternExecutionReporterType}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createPatternExecutionReporterTypeAdapter() {
+        if (patternExecutionReporterTypeItemProvider == null) {
+            patternExecutionReporterTypeItemProvider = new PatternExecutionReporterTypeItemProvider(this);
+        }
+
+        return patternExecutionReporterTypeItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -574,6 +600,8 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             customQueryItemProvider.dispose();
         if (string2PatternListItemProvider != null)
             string2PatternListItemProvider.dispose();
+        if (patternExecutionReporterTypeItemProvider != null)
+            patternExecutionReporterTypeItemProvider.dispose();
     }
 
     /**
@@ -623,8 +651,44 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
              * @generated
              */
             @Override
+            public Object caseActivityContract(ActivityContract object) {
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, PatternFactory.eINSTANCE.createPatternExecutionReporterType()));
+
+                return null;
+            }
+
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            @Override
             public Object caseViewpointContainer(ViewpointContainer object) {
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.VIEWPOINT_CONTAINER__VIEWPOINTS, PatternFactory.eINSTANCE.createPatternViewpoint()));
+
+                return null;
+            }
+
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            @Override
+            public Object caseOrchestrationContext(OrchestrationContext object) {
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, PatternFactory.eINSTANCE.createPatternExecutionReporterType()));
+
+                return null;
+            }
+
+            /**
+             * <!-- begin-user-doc -->
+             * <!-- end-user-doc -->
+             * @generated
+             */
+            @Override
+            public Object caseInvocationContext(InvocationContext object) {
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, PatternFactory.eINSTANCE.createPatternExecutionReporterType()));
 
                 return null;
             }
