@@ -319,6 +319,7 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
     updateChildren(notification);
 
     switch (notification.getFeatureID(InvocationContext.class)) {
+    case FcorePackage.INVOCATION_CONTEXT__ACTIVITY_CONTRACT:
     case FcorePackage.INVOCATION_CONTEXT__MODE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
