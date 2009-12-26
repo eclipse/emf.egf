@@ -16,8 +16,11 @@ import java.util.List;
 
 import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.Domain;
+import org.eclipse.egf.model.domain.DomainEPackage;
+import org.eclipse.egf.model.domain.DomainEPackageType;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.DomainType;
+import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.DomainURIType;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Type;
@@ -115,13 +118,46 @@ public class DomainSwitch<T1> {
         result = defaultCase(theEObject);
       return result;
     }
-    case DomainPackage.DOMAIN_TYPE: {
-      DomainType domainType = (DomainType) theEObject;
-      T1 result = caseDomainType(domainType);
+    case DomainPackage.DOMAIN_EPACKAGE: {
+      DomainEPackage domainEPackage = (DomainEPackage) theEObject;
+      T1 result = caseDomainEPackage(domainEPackage);
       if (result == null)
-        result = caseType(domainType);
+        result = caseDomain(domainEPackage);
       if (result == null)
-        result = caseModelElement(domainType);
+        result = caseModelElement(domainEPackage);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case DomainPackage.DOMAIN_EPACKAGE_TYPE: {
+      DomainEPackageType domainEPackageType = (DomainEPackageType) theEObject;
+      T1 result = caseDomainEPackageType(domainEPackageType);
+      if (result == null)
+        result = caseType(domainEPackageType);
+      if (result == null)
+        result = caseModelElement(domainEPackageType);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case DomainPackage.DOMAIN_URI: {
+      DomainURI domainURI = (DomainURI) theEObject;
+      T1 result = caseDomainURI(domainURI);
+      if (result == null)
+        result = caseDomain(domainURI);
+      if (result == null)
+        result = caseModelElement(domainURI);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case DomainPackage.DOMAIN_URI_TYPE: {
+      DomainURIType domainURIType = (DomainURIType) theEObject;
+      T1 result = caseDomainURIType(domainURIType);
+      if (result == null)
+        result = caseType(domainURIType);
+      if (result == null)
+        result = caseModelElement(domainURIType);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -162,17 +198,62 @@ public class DomainSwitch<T1> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>EPackage</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+   * @return the result of interpreting the object as an instance of '<em>EPackage</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T1 caseDomainType(DomainType object) {
+  public T1 caseDomainEPackage(DomainEPackage object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>EPackage Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>EPackage Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseDomainEPackageType(DomainEPackageType object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>URI</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>URI</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseDomainURI(DomainURI object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>URI Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>URI Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseDomainURIType(DomainURIType object) {
     return null;
   }
 

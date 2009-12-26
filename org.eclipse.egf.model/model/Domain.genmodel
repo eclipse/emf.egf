@@ -20,15 +20,27 @@
     <genClasses ecoreClass="Domain.ecore#//DomainViewpoint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domain.ecore#//DomainViewpoint/domains"/>
     </genClasses>
-    <genClasses ecoreClass="Domain.ecore#//Domain">
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Domain.ecore#//Domain/ePackage"/>
-    </genClasses>
-    <genClasses ecoreClass="Domain.ecore#//DomainType">
+    <genClasses image="false" ecoreClass="Domain.ecore#//Domain"/>
+    <genClasses ecoreClass="Domain.ecore#//DomainEPackage">
       <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Domain.ecore#//DomainType/domain"/>
+          ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackage/ePackage"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//DomainEPackageType">
+      <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackageType/value"/>
       <genFeatures property="Readonly" createChild="false" propertyCategory="Value"
-          ecoreFeature="ecore:EReference Domain.ecore#//DomainType/ePackage"/>
-      <genOperations ecoreOperation="Domain.ecore#//DomainType/getType"/>
+          ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackageType/ePackage"/>
+      <genOperations ecoreOperation="Domain.ecore#//DomainEPackageType/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//DomainURI">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Domain.ecore#//DomainURI/uri"/>
+    </genClasses>
+    <genClasses ecoreClass="Domain.ecore#//DomainURIType">
+      <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Domain.ecore#//DomainURIType/value"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Value"
+          ecoreFeature="ecore:EAttribute Domain.ecore#//DomainURIType/uri"/>
+      <genOperations ecoreOperation="Domain.ecore#//DomainURIType/getType"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

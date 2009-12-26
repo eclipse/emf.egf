@@ -17,8 +17,9 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.common.helper.ClassHelper;
+import org.eclipse.egf.model.domain.DomainEPackageType;
 import org.eclipse.egf.model.domain.DomainFactory;
-import org.eclipse.egf.model.domain.DomainType;
+import org.eclipse.egf.model.domain.DomainURIType;
 import org.eclipse.egf.model.domain.util.DomainAdapterFactory;
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
 import org.eclipse.egf.model.fcore.ActivityContract;
@@ -129,49 +130,95 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.Domain} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainEPackage} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainItemProvider domainItemProvider;
+  protected DomainEPackageItemProvider domainEPackageItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.Domain}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainEPackage}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createDomainAdapter() {
-    if (domainItemProvider == null) {
-      domainItemProvider = new DomainItemProvider(this);
+  public Adapter createDomainEPackageAdapter() {
+    if (domainEPackageItemProvider == null) {
+      domainEPackageItemProvider = new DomainEPackageItemProvider(this);
     }
 
-    return domainItemProvider;
+    return domainEPackageItemProvider;
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainType} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainEPackageType} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DomainTypeItemProvider domainTypeItemProvider;
+  protected DomainEPackageTypeItemProvider domainEPackageTypeItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainType}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainEPackageType}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createDomainTypeAdapter() {
-    if (domainTypeItemProvider == null) {
-      domainTypeItemProvider = new DomainTypeItemProvider(this);
+  public Adapter createDomainEPackageTypeAdapter() {
+    if (domainEPackageTypeItemProvider == null) {
+      domainEPackageTypeItemProvider = new DomainEPackageTypeItemProvider(this);
     }
 
-    return domainTypeItemProvider;
+    return domainEPackageTypeItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainURI} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected DomainURIItemProvider domainURIItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainURI}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createDomainURIAdapter() {
+    if (domainURIItemProvider == null) {
+      domainURIItemProvider = new DomainURIItemProvider(this);
+    }
+
+    return domainURIItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.domain.DomainURIType} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected DomainURITypeItemProvider domainURITypeItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.domain.DomainURIType}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Adapter createDomainURITypeAdapter() {
+    if (domainURITypeItemProvider == null) {
+      domainURITypeItemProvider = new DomainURITypeItemProvider(this);
+    }
+
+    return domainURITypeItemProvider;
   }
 
   /**
@@ -275,10 +322,14 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
   public void dispose() {
     if (domainViewpointItemProvider != null)
       domainViewpointItemProvider.dispose();
-    if (domainItemProvider != null)
-      domainItemProvider.dispose();
-    if (domainTypeItemProvider != null)
-      domainTypeItemProvider.dispose();
+    if (domainEPackageItemProvider != null)
+      domainEPackageItemProvider.dispose();
+    if (domainEPackageTypeItemProvider != null)
+      domainEPackageTypeItemProvider.dispose();
+    if (domainURIItemProvider != null)
+      domainURIItemProvider.dispose();
+    if (domainURITypeItemProvider != null)
+      domainURITypeItemProvider.dispose();
   }
 
   /**
@@ -329,7 +380,9 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        */
       @Override
       public Object caseActivityContract(ActivityContract object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, DomainFactory.eINSTANCE.createDomainType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, DomainFactory.eINSTANCE.createDomainEPackageType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, DomainFactory.eINSTANCE.createDomainURIType()));
 
         return null;
       }
@@ -353,7 +406,9 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        */
       @Override
       public Object caseOrchestrationContext(OrchestrationContext object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, DomainFactory.eINSTANCE.createDomainType()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, DomainFactory.eINSTANCE.createDomainEPackageType()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, DomainFactory.eINSTANCE.createDomainURIType()));
 
         return null;
       }
@@ -372,9 +427,16 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
         }
 
         {
-          DomainType type = DomainFactory.eINSTANCE.createDomainType();
+          DomainEPackageType type = DomainFactory.eINSTANCE.createDomainEPackageType();
           if (ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
             newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+          }
+        }
+
+        {
+          DomainURIType uriType = DomainFactory.eINSTANCE.createDomainURIType();
+          if (ClassHelper.asSubClass(uriType.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, uriType));
           }
         }
 

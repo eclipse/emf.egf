@@ -1,0 +1,73 @@
+/**
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ */
+package org.eclipse.model.domain.adapter;
+
+import org.eclipse.egf.model.domain.DomainPackage;
+import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.DomainURIType;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+/**
+ * @author Xavier Maysonnave
+ * 
+ */
+public class DomainURITypeAdapter extends AdapterImpl {
+
+  private DomainURIType _domainURIType;
+
+  private EStructuralFeature _domainURIFeature = DomainPackage.Literals.DOMAIN_URI__URI;
+
+  private EStructuralFeature _domainTypeURIFeature = DomainPackage.Literals.DOMAIN_URI_TYPE__URI;
+
+  private EStructuralFeature _domainFeature = DomainPackage.Literals.DOMAIN_URI_TYPE__VALUE;
+
+  private AdapterImpl _domainURIAdapter = new AdapterImpl() {
+    @Override
+    public void notifyChanged(Notification msg) {
+      if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_domainURIFeature)) {
+        _domainURIType.eNotify(new ENotificationImpl((InternalEObject) _domainURIType, Notification.SET, _domainTypeURIFeature, null, _domainURIType.eGet(_domainTypeURIFeature, true)));
+      } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
+        _domainURIType.eNotify(new ENotificationImpl((InternalEObject) _domainURIType, Notification.SET, _domainFeature, null, null));
+      }
+    }
+  };
+
+  public DomainURITypeAdapter(DomainURIType domainURIType) {
+    super();
+    _domainURIType = domainURIType;
+    _domainURIType.eAdapters().add(this);
+  }
+
+  @Override
+  public void notifyChanged(Notification notification) {
+    if (notification.getFeature() == null || notification.getFeature().equals(_domainFeature)) {
+      switch (notification.getEventType()) {
+      case Notification.SET:
+        DomainURI newValue = (DomainURI) notification.getNewValue();
+        DomainURI oldValue = (DomainURI) notification.getOldValue();
+        if (oldValue != null) {
+          oldValue.eAdapters().remove(_domainURIAdapter);
+        }
+        if (newValue != null) {
+          newValue.eAdapters().add(_domainURIAdapter);
+        }
+        break;
+      default:
+        return; // No notification
+      }
+    }
+  }
+
+}

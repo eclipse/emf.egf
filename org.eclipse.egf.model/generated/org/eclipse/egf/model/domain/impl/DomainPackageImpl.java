@@ -13,12 +13,16 @@
 package org.eclipse.egf.model.domain.impl;
 
 import org.eclipse.egf.model.domain.Domain;
+import org.eclipse.egf.model.domain.DomainEPackage;
+import org.eclipse.egf.model.domain.DomainEPackageType;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.DomainType;
+import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.DomainURIType;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.egf.model.domain.util.DomainValidator;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
@@ -54,7 +58,28 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass domainTypeEClass = null;
+  private EClass domainEPackageEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass domainEPackageTypeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass domainURIEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass domainURITypeEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -160,8 +185,8 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_EPackage() {
-    return (EReference) domainEClass.getEStructuralFeatures().get(0);
+  public EClass getDomainEPackage() {
+    return domainEPackageEClass;
   }
 
   /**
@@ -169,8 +194,8 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getDomainType() {
-    return domainTypeEClass;
+  public EReference getDomainEPackage_EPackage() {
+    return (EReference) domainEPackageEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -178,8 +203,8 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomainType_Domain() {
-    return (EReference) domainTypeEClass.getEStructuralFeatures().get(0);
+  public EClass getDomainEPackageType() {
+    return domainEPackageTypeEClass;
   }
 
   /**
@@ -187,8 +212,62 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomainType_EPackage() {
-    return (EReference) domainTypeEClass.getEStructuralFeatures().get(1);
+  public EReference getDomainEPackageType_Value() {
+    return (EReference) domainEPackageTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDomainEPackageType_EPackage() {
+    return (EReference) domainEPackageTypeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDomainURI() {
+    return domainURIEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDomainURI_Uri() {
+    return (EAttribute) domainURIEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getDomainURIType() {
+    return domainURITypeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDomainURIType_Value() {
+    return (EReference) domainURITypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getDomainURIType_Uri() {
+    return (EAttribute) domainURITypeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -224,11 +303,20 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     createEReference(domainViewpointEClass, DOMAIN_VIEWPOINT__DOMAINS);
 
     domainEClass = createEClass(DOMAIN);
-    createEReference(domainEClass, DOMAIN__EPACKAGE);
 
-    domainTypeEClass = createEClass(DOMAIN_TYPE);
-    createEReference(domainTypeEClass, DOMAIN_TYPE__DOMAIN);
-    createEReference(domainTypeEClass, DOMAIN_TYPE__EPACKAGE);
+    domainEPackageEClass = createEClass(DOMAIN_EPACKAGE);
+    createEReference(domainEPackageEClass, DOMAIN_EPACKAGE__EPACKAGE);
+
+    domainEPackageTypeEClass = createEClass(DOMAIN_EPACKAGE_TYPE);
+    createEReference(domainEPackageTypeEClass, DOMAIN_EPACKAGE_TYPE__VALUE);
+    createEReference(domainEPackageTypeEClass, DOMAIN_EPACKAGE_TYPE__EPACKAGE);
+
+    domainURIEClass = createEClass(DOMAIN_URI);
+    createEAttribute(domainURIEClass, DOMAIN_URI__URI);
+
+    domainURITypeEClass = createEClass(DOMAIN_URI_TYPE);
+    createEReference(domainURITypeEClass, DOMAIN_URI_TYPE__VALUE);
+    createEAttribute(domainURITypeEClass, DOMAIN_URI_TYPE__URI);
   }
 
   /**
@@ -266,25 +354,46 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     // Add supertypes to classes
     domainViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
     domainEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+    domainEPackageEClass.getESuperTypes().add(this.getDomain());
     EGenericType g1 = createEGenericType(theFcorePackage.getType());
     EGenericType g2 = createEGenericType(this.getDomain());
     g1.getETypeArguments().add(g2);
-    domainTypeEClass.getEGenericSuperTypes().add(g1);
+    domainEPackageTypeEClass.getEGenericSuperTypes().add(g1);
+    domainURIEClass.getESuperTypes().add(this.getDomain());
+    g1 = createEGenericType(theFcorePackage.getType());
+    g2 = createEGenericType(this.getDomainURI());
+    g1.getETypeArguments().add(g2);
+    domainURITypeEClass.getEGenericSuperTypes().add(g1);
 
     // Initialize classes and features; add operations and parameters
     initEClass(domainViewpointEClass, DomainViewpoint.class, "DomainViewpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getDomainViewpoint_Domains(), this.getDomain(), null, "domains", null, 0, -1, DomainViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getDomain_EPackage(), theEcorePackage.getEPackage(), null, "ePackage", null, 1, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEClass(domainEClass, Domain.class, "Domain", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-    initEClass(domainTypeEClass, DomainType.class, "DomainType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getDomainType_Domain(), this.getDomain(), null, "domain", null, 0, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getDomainType_EPackage(), theEcorePackage.getEPackage(), null, "ePackage", null, 0, 1, DomainType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEClass(domainEPackageEClass, DomainEPackage.class, "DomainEPackage", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getDomainEPackage_EPackage(), theEcorePackage.getEPackage(), null, "ePackage", null, 1, 1, DomainEPackage.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    EOperation op = addEOperation(domainTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    initEClass(domainEPackageTypeEClass, DomainEPackageType.class, "DomainEPackageType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getDomainEPackageType_Value(), this.getDomainEPackage(), null, "value", null, 0, 1, DomainEPackageType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getDomainEPackageType_EPackage(), theEcorePackage.getEPackage(), null, "ePackage", null, 0, 1, DomainEPackageType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    EOperation op = addEOperation(domainEPackageTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
     g1 = createEGenericType(theEcorePackage.getEJavaClass());
     g2 = createEGenericType(this.getDomain());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(domainURIEClass, DomainURI.class, "DomainURI", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getDomainURI_Uri(), theFcorePackage.getURI(), "uri", null, 1, 1, DomainURI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(domainURITypeEClass, DomainURIType.class, "DomainURIType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getDomainURIType_Value(), this.getDomainURI(), null, "value", null, 0, 1, DomainURIType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getDomainURIType_Uri(), theFcorePackage.getURI(), "uri", null, 0, 1, DomainURIType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(domainURITypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(this.getDomainURI());
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
 
@@ -304,7 +413,9 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
    */
   protected void createEcoreAnnotations() {
     String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-    addAnnotation(domainEClass, source, new String[] { "constraints", "ValidPackage" //$NON-NLS-1$ //$NON-NLS-2$
+    addAnnotation(domainEPackageEClass, source, new String[] { "constraints", "ValidPackage" //$NON-NLS-1$ //$NON-NLS-2$
+    });
+    addAnnotation(domainURIEClass, source, new String[] { "constraints", "ValidURI" //$NON-NLS-1$ //$NON-NLS-2$
     });
   }
 

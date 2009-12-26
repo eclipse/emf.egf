@@ -92,8 +92,23 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseDomainType(DomainType object) {
-      return createDomainTypeAdapter();
+    public Adapter caseDomainEPackage(DomainEPackage object) {
+      return createDomainEPackageAdapter();
+    }
+
+    @Override
+    public Adapter caseDomainEPackageType(DomainEPackageType object) {
+      return createDomainEPackageTypeAdapter();
+    }
+
+    @Override
+    public Adapter caseDomainURI(DomainURI object) {
+      return createDomainURIAdapter();
+    }
+
+    @Override
+    public Adapter caseDomainURIType(DomainURIType object) {
+      return createDomainURITypeAdapter();
     }
 
     @Override
@@ -163,16 +178,58 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.DomainType <em>Type</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.DomainEPackage <em>EPackage</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.eclipse.egf.model.domain.DomainType
+   * @see org.eclipse.egf.model.domain.DomainEPackage
    * @generated
    */
-  public Adapter createDomainTypeAdapter() {
+  public Adapter createDomainEPackageAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.DomainEPackageType <em>EPackage Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.domain.DomainEPackageType
+   * @generated
+   */
+  public Adapter createDomainEPackageTypeAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.DomainURI <em>URI</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.domain.DomainURI
+   * @generated
+   */
+  public Adapter createDomainURIAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.domain.DomainURIType <em>URI Type</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.domain.DomainURIType
+   * @generated
+   */
+  public Adapter createDomainURITypeAdapter() {
     return null;
   }
 

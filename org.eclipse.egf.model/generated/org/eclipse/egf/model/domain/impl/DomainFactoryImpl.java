@@ -12,11 +12,12 @@
  */
 package org.eclipse.egf.model.domain.impl;
 
-import org.eclipse.egf.model.domain.*;
-import org.eclipse.egf.model.domain.Domain;
+import org.eclipse.egf.model.domain.DomainEPackage;
+import org.eclipse.egf.model.domain.DomainEPackageType;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainPackage;
-import org.eclipse.egf.model.domain.DomainType;
+import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.DomainURIType;
 import org.eclipse.egf.model.domain.DomainViewpoint;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -28,6 +29,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
@@ -35,6 +37,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static DomainFactory init() {
@@ -53,6 +56,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainFactoryImpl() {
@@ -62,6 +66,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -69,10 +74,14 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
     switch (eClass.getClassifierID()) {
     case DomainPackage.DOMAIN_VIEWPOINT:
       return createDomainViewpoint();
-    case DomainPackage.DOMAIN:
-      return createDomain();
-    case DomainPackage.DOMAIN_TYPE:
-      return createDomainType();
+    case DomainPackage.DOMAIN_EPACKAGE:
+      return createDomainEPackage();
+    case DomainPackage.DOMAIN_EPACKAGE_TYPE:
+      return createDomainEPackageType();
+    case DomainPackage.DOMAIN_URI:
+      return createDomainURI();
+    case DomainPackage.DOMAIN_URI_TYPE:
+      return createDomainURIType();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -81,6 +90,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainViewpoint createDomainViewpoint() {
@@ -91,26 +101,51 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public Domain createDomain() {
-    DomainImpl domain = new DomainImpl();
-    return domain;
+  public DomainEPackage createDomainEPackage() {
+    DomainEPackageImpl domainEPackage = new DomainEPackageImpl();
+    return domainEPackage;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  public DomainType createDomainType() {
-    DomainTypeImpl domainType = new DomainTypeImpl();
-    return domainType;
+  public DomainEPackageType createDomainEPackageType() {
+    DomainEPackageTypeImpl domainEPackageType = new DomainEPackageTypeImpl();
+    return domainEPackageType;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public DomainURI createDomainURI() {
+    DomainURIImpl domainURI = new DomainURIImpl();
+    return domainURI;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public DomainURIType createDomainURIType() {
+    DomainURITypeImpl domainURIType = new DomainURITypeImpl();
+    return domainURIType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainPackage getDomainPackage() {
@@ -120,6 +155,7 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @deprecated
    * @generated
    */
