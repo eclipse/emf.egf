@@ -22,20 +22,20 @@ import org.osgi.framework.Bundle;
  */
 public interface IProducerManager {
 
-  public int getSteps() throws InvocationException;
+  public Object getElement();
 
   public IProducerManager getParent();
 
-  public Object getElement();
+  public IProductionContext<?> getProductionContext();
 
   public ProjectBundleSession getProjectBundleSession();
-
-  public IProductionContext<?> getProductionContext();
 
   public Bundle getBundle() throws InvocationException;
 
   public void prepare() throws InvocationException;
 
   public void invoke(IProgressMonitor monitor) throws InvocationException;
+
+  public int getSteps() throws InvocationException;
 
 }

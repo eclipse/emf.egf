@@ -22,4 +22,8 @@ public class MissingExtensionException extends Exception {
     super(message);
   }
 
+  public MissingExtensionException(String message, Throwable t) {
+    super(message, t);
+  }
+
 }
