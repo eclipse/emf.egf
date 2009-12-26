@@ -46,6 +46,20 @@ public abstract class PatternFactory {
     public static final String FOOTER_METHOD_NAME = "footer";
     public static final String BODY_METHOD_NAME = "body";
 
+    public void createDebugPatternUC5(PatternLibrary lib) {
+        Pattern p1 = createPattern(lib, "Pattern UN");
+
+        PatternVariable var1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternVariable();
+        var1.setName("myVar");
+        var1.setType("String");
+        p1.getVariables().add(var1);
+
+        PatternMethod method1 = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
+        method1.setName("My_Method_1");
+        p1.getMethods().add(method1);
+        method1.setPatternFilePath(createURI(method1));
+    }
+
     public void createDebugPatternUC4(PatternLibrary lib) {
         Pattern parentPattern = createPattern(lib, "Pattern UN");
         Pattern childPattern = createPattern(lib, "Pattern DEUX");
