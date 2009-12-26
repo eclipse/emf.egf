@@ -32,6 +32,42 @@ public interface TypesFactory extends EFactory {
   TypesFactory eINSTANCE = org.eclipse.egf.model.types.impl.TypesFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Type Collection</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Collection</em>'.
+   * @generated
+   */
+  TypeCollection createTypeCollection();
+
+  /**
+   * Returns a new object of class '<em>Type List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type List</em>'.
+   * @generated
+   */
+  TypeList createTypeList();
+
+  /**
+   * Returns a new object of class '<em>Type Set</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Set</em>'.
+   * @generated
+   */
+  TypeSet createTypeSet();
+
+  /**
+   * Returns a new object of class '<em>Type Map</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Map</em>'.
+   * @generated
+   */
+  TypeMap createTypeMap();
+
+  /**
    * Returns a new object of class '<em>Big Decimal Type</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

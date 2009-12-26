@@ -24,7 +24,7 @@ import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
-import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
+import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -114,7 +114,7 @@ public class ContextTaskResource extends TestCase {
 
     ITaskManager manager = TaskManagerFactory.createProductionManager(task);
 
-    GenModelGeneratorAdapterFactory defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class); //$NON-NLS-1$
+    GeneratorAdapterFactory defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$
 
     try {
       manager.invoke(new NullProgressMonitor());
@@ -122,7 +122,7 @@ public class ContextTaskResource extends TestCase {
       fail(ie.getMessage());
     }
 
-    assertNotSame(manager.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
+    assertNotSame(manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
 
   }
 

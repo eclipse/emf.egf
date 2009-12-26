@@ -14,7 +14,6 @@ package org.eclipse.egf.model.types.impl;
 
 import java.util.Date;
 
-import org.eclipse.egf.model.fcore.impl.TypeObjectImpl;
 import org.eclipse.egf.model.types.DateType;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.notify.Notification;
@@ -28,26 +27,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.types.impl.DateTypeImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.DateTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  protected int eFlags = 0;
-
-  /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -58,6 +49,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -67,6 +59,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected DateTypeImpl() {
@@ -76,6 +69,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -86,6 +80,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -96,6 +91,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setValue(Date newValue) {
@@ -108,6 +104,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -118,6 +115,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -132,6 +130,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -147,6 +146,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -162,6 +162,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -176,6 +177,7 @@ public class DateTypeImpl extends TypeObjectImpl<Date> implements DateType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

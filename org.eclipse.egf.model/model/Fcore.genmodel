@@ -178,6 +178,11 @@
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//OrchestrationContextContainer/orchestration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//OrchestrationContextContainer/orchestrationContexts"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="Fcore.ecore#//Type">
+      <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Type/T"/>
+      <genOperations ecoreOperation="Fcore.ecore#//Type/getType"/>
+      <genOperations ecoreOperation="Fcore.ecore#//Type/getValue"/>
+    </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//Invocation">
       <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Invocation/T"/>
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//Invocation/orchestration"/>
@@ -233,19 +238,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContextContainer/invocationContexts"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContextContainer/invocationContextConnectors"/>
       <genOperations ecoreOperation="Fcore.ecore#//InvocationContextContainer/getFactoryComponent"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="Fcore.ecore#//Type">
-      <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Type/T"/>
-      <genOperations ecoreOperation="Fcore.ecore#//Type/getType"/>
-      <genOperations ecoreOperation="Fcore.ecore#//Type/getValue"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="Fcore.ecore#//TypeObject">
-      <genTypeParameters ecoreTypeParameter="Fcore.ecore#//TypeObject/T"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="Fcore.ecore#//TypeClass">
-      <genTypeParameters ecoreTypeParameter="Fcore.ecore#//TypeClass/T"/>
-      <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
-          ecoreFeature="ecore:EAttribute Fcore.ecore#//TypeClass/value"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

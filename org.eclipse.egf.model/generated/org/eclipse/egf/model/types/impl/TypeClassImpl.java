@@ -10,15 +10,13 @@
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
-package org.eclipse.egf.model.fcore.impl;
+package org.eclipse.egf.model.types.impl;
 
-import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.TypeClass;
-
+import org.eclipse.egf.model.fcore.impl.TypeImpl;
+import org.eclipse.egf.model.types.TypeClass;
+import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EClass;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
@@ -28,17 +26,29 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.TypeClassImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.TypeClassImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class TypeClassImpl<T extends Object> extends TypeImpl<T> implements TypeClass<T> {
   /**
+   * A set of bit flags representing the values of boolean attributes and whether unsettable
+   * features have been set.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   * @ordered
+   */
+  protected int eFlags = 0;
+
+  /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -49,6 +59,7 @@ public abstract class TypeClassImpl<T extends Object> extends TypeImpl<T> implem
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -58,6 +69,7 @@ public abstract class TypeClassImpl<T extends Object> extends TypeImpl<T> implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TypeClassImpl() {
@@ -67,16 +79,18 @@ public abstract class TypeClassImpl<T extends Object> extends TypeImpl<T> implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   protected EClass eStaticClass() {
-    return FcorePackage.Literals.TYPE_CLASS;
+    return TypesPackage.Literals.TYPE_CLASS;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getValue() {
@@ -86,24 +100,26 @@ public abstract class TypeClassImpl<T extends Object> extends TypeImpl<T> implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setValue(String newValue) {
     String oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.TYPE_CLASS__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, TypesPackage.TYPE_CLASS__VALUE, oldValue, value));
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case FcorePackage.TYPE_CLASS__VALUE:
+    case TypesPackage.TYPE_CLASS__VALUE:
       return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -112,12 +128,13 @@ public abstract class TypeClassImpl<T extends Object> extends TypeImpl<T> implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case FcorePackage.TYPE_CLASS__VALUE:
+    case TypesPackage.TYPE_CLASS__VALUE:
       setValue((String) newValue);
       return;
     }
@@ -127,12 +144,13 @@ public abstract class TypeClassImpl<T extends Object> extends TypeImpl<T> implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case FcorePackage.TYPE_CLASS__VALUE:
+    case TypesPackage.TYPE_CLASS__VALUE:
       setValue(VALUE_EDEFAULT);
       return;
     }
@@ -142,12 +160,13 @@ public abstract class TypeClassImpl<T extends Object> extends TypeImpl<T> implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case FcorePackage.TYPE_CLASS__VALUE:
+    case TypesPackage.TYPE_CLASS__VALUE:
       return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
@@ -156,6 +175,7 @@ public abstract class TypeClassImpl<T extends Object> extends TypeImpl<T> implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -170,4 +190,4 @@ public abstract class TypeClassImpl<T extends Object> extends TypeImpl<T> implem
     return result.toString();
   }
 
-} //TypeClassImpl
+} // TypeClassImpl

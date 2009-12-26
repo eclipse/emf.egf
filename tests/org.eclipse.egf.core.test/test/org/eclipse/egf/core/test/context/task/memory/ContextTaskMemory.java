@@ -33,6 +33,7 @@ import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
+import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 
 public class ContextTaskMemory extends TestCase {
@@ -103,7 +104,7 @@ public class ContextTaskMemory extends TestCase {
 
     ITaskManager manager = TaskManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
 
-    GenModelGeneratorAdapterFactory defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class); //$NON-NLS-1$
+    GeneratorAdapterFactory defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$
 
     try {
       manager.invoke(new NullProgressMonitor());

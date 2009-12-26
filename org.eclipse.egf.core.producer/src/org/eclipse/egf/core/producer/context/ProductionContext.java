@@ -196,7 +196,7 @@ public abstract class ProductionContext<T extends Object> implements IProduction
     return valueType;
   }
 
-  public <R extends Object> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
+  public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
     // Usual Tests
     if (key == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
@@ -240,7 +240,7 @@ public abstract class ProductionContext<T extends Object> implements IProduction
     return valueType;
   }
 
-  public <R extends Object> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
+  public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
     // Usual Tests
     if (key == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
@@ -264,8 +264,8 @@ public abstract class ProductionContext<T extends Object> implements IProduction
     return _outputDatas.keySet();
   }
 
-  protected <R extends Object> R getValue(Object key, Class<R> clazz, Data data) throws InvocationException {
-    if (ClassHelper.asSubClass(clazz, data.getType()) == false) {
+  protected <R> R getValue(Object key, Class<R> clazz, Data data) throws InvocationException {
+    if (ClassHelper.asSubClass(data.getType(), clazz) == false) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EObjectHelper.getText(key), clazz.getName(), getName() }));
     }
     try {

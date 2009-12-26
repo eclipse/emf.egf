@@ -18,12 +18,12 @@ import java.util.List;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.egf.common.helper.TypeClassHelper;
 import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
 import org.eclipse.egf.model.fcore.provider.ActivityItemProvider;
 import org.eclipse.egf.model.fprod.FprodFactory;
 import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.Task;
-import org.eclipse.egf.model.helper.TypeClassHelper;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;

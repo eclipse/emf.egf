@@ -17,6 +17,34 @@
       generateExampleClass="false" multipleEditorPages="false" childCreationExtenders="true"
       contentTypeIdentifier="" ecorePackage="Types.ecore#/">
     <genDataTypes ecoreDataType="Types.ecore#//EGeneratorAdapterFactory"/>
+    <genDataTypes ecoreDataType="Types.ecore#//Collection">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//Collection/E"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="Types.ecore#//List">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//List/E"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="Types.ecore#//Set">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//Set/E"/>
+    </genDataTypes>
+    <genClasses image="false" ecoreClass="Types.ecore#//TypeObject">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeObject/T"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Types.ecore#//TypeClass">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeClass/T"/>
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeClass/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeCollection">
+      <genOperations ecoreOperation="Types.ecore#//TypeCollection/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeList">
+      <genOperations ecoreOperation="Types.ecore#//TypeList/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeSet">
+      <genOperations ecoreOperation="Types.ecore#//TypeSet/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeMap">
+      <genOperations ecoreOperation="Types.ecore#//TypeMap/getType"/>
+    </genClasses>
     <genClasses ecoreClass="Types.ecore#//BigDecimalType">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Types.ecore#//BigDecimalType/value"/>
       <genOperations ecoreOperation="Types.ecore#//BigDecimalType/getType"/>

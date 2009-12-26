@@ -12,7 +12,6 @@
  */
 package org.eclipse.egf.model.types.impl;
 
-import org.eclipse.egf.model.fcore.impl.TypeObjectImpl;
 import org.eclipse.egf.model.types.IntegerType;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.notify.Notification;
@@ -26,26 +25,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.types.impl.IntegerTypeImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.IntegerTypeImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerType {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  protected int eFlags = 0;
-
-  /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -55,6 +46,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -64,6 +56,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected IntegerTypeImpl() {
@@ -73,6 +66,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -83,6 +77,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -93,6 +88,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setValue(Integer newValue) {
@@ -105,6 +101,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -115,6 +112,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -129,6 +127,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -144,6 +143,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -159,6 +159,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -173,6 +174,7 @@ public class IntegerTypeImpl extends TypeObjectImpl<Integer> implements IntegerT
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

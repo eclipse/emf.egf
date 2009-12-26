@@ -12,6 +12,9 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;

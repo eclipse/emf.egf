@@ -12,22 +12,20 @@
  */
 package org.eclipse.egf.model.types;
 
-import org.eclipse.egf.model.fcore.TypeObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Byte Type</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.types.ByteType#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.ByteType#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.egf.model.types.TypesPackage#getByteType()
- * @model superTypes="org.eclipse.egf.model.fcore.TypeObject<org.eclipse.emf.ecore.EByteObject>"
+ * @model superTypes="org.eclipse.egf.model.types.TypeObject<org.eclipse.emf.ecore.EByteObject>"
  * @generated
  */
 public interface ByteType extends TypeObject<Byte> {
@@ -39,6 +37,7 @@ public interface ByteType extends TypeObject<Byte> {
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(Byte)
    * @see org.eclipse.egf.model.types.TypesPackage#getByteType_Value()
@@ -48,10 +47,13 @@ public interface ByteType extends TypeObject<Byte> {
   Byte getValue();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.types.ByteType#getValue <em>Value</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.egf.model.types.ByteType#getValue <em>Value</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
+   * 
+   * @param value
+   *          the new value of the '<em>Value</em>' attribute.
    * @see #getValue()
    * @generated
    */
@@ -60,7 +62,9 @@ public interface ByteType extends TypeObject<Byte> {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @model kind="operation" required="true"
+   *        
    *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.lang.Byte.class;'"
    * @generated
    */

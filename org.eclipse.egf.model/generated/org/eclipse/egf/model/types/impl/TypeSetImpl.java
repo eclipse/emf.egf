@@ -10,39 +10,53 @@
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
-package org.eclipse.egf.model.fcore.impl;
+package org.eclipse.egf.model.types.impl;
 
-import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.TypeObject;
+import java.util.Set;
+
+import org.eclipse.egf.model.types.TypeSet;
+import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Type Object</b></em>'.
+ * An implementation of the model object '<em><b>Type Set</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
-public abstract class TypeObjectImpl<T extends Object> extends TypeImpl<T> implements TypeObject<T> {
+public class TypeSetImpl extends TypeClassImpl<Set> implements TypeSet {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
-  protected TypeObjectImpl() {
+  protected TypeSetImpl() {
     super();
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   protected EClass eStaticClass() {
-    return FcorePackage.Literals.TYPE_OBJECT;
+    return TypesPackage.Literals.TYPE_SET;
   }
 
-} // TypeObjectImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public Class<Set> getType() {
+    return java.util.Set.class;
+  }
+
+} // TypeSetImpl

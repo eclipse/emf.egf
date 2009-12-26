@@ -73,7 +73,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
   }
 
   @Override
-  public <R extends Object> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
+  public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
     // It could be a String in this context
     if (key != null && key instanceof String) {
       return super.getInputValue(key, clazz);
@@ -127,7 +127,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
   }
 
   @Override
-  public <R extends Object> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
+  public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
     // It could be a String in this context
     if (key != null && key instanceof String) {
       return super.getOutputValue(key, clazz);

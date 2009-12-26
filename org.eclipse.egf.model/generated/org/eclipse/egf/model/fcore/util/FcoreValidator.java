@@ -36,11 +36,8 @@ import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.fcore.OrchestrationContextContainer;
 import org.eclipse.egf.model.fcore.Type;
-import org.eclipse.egf.model.fcore.TypeClass;
-import org.eclipse.egf.model.fcore.TypeObject;
 import org.eclipse.egf.model.fcore.Viewpoint;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
-import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -203,6 +200,8 @@ public class FcoreValidator extends EObjectValidator {
       return validateOrchestrationContext((OrchestrationContext) value, diagnostics, context);
     case FcorePackage.ORCHESTRATION_CONTEXT_CONTAINER:
       return validateOrchestrationContextContainer((OrchestrationContextContainer) value, diagnostics, context);
+    case FcorePackage.TYPE:
+      return validateType((Type<?>) value, diagnostics, context);
     case FcorePackage.INVOCATION:
       return validateInvocation((Invocation<?>) value, diagnostics, context);
     case FcorePackage.INVOCATION_CONTEXT:
@@ -211,12 +210,6 @@ public class FcoreValidator extends EObjectValidator {
       return validateInvocationContextConnector((InvocationContextConnector) value, diagnostics, context);
     case FcorePackage.INVOCATION_CONTEXT_CONTAINER:
       return validateInvocationContextContainer((InvocationContextContainer) value, diagnostics, context);
-    case FcorePackage.TYPE:
-      return validateType((Type<?>) value, diagnostics, context);
-    case FcorePackage.TYPE_OBJECT:
-      return validateTypeObject((TypeObject<?>) value, diagnostics, context);
-    case FcorePackage.TYPE_CLASS:
-      return validateTypeClass((TypeClass<?>) value, diagnostics, context);
     case FcorePackage.CONTRACT_MODE:
       return validateContractMode((ContractMode) value, diagnostics, context);
     case FcorePackage.URI:
@@ -369,7 +362,41 @@ public class FcoreValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateOrchestrationContext(OrchestrationContext orchestrationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(orchestrationContext, diagnostics, context);
+    boolean result = validate_EveryMultiplicityConforms(orchestrationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(orchestrationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(orchestrationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(orchestrationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(orchestrationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(orchestrationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(orchestrationContext, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateOrchestrationContext_UselessOrchestrationContext(orchestrationContext, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * Validates the UselessOrchestrationContext constraint of '<em>Orchestration Context</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateOrchestrationContext_UselessOrchestrationContext(OrchestrationContext orchestrationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (orchestrationContext.getInvocationContexts() == null || orchestrationContext.getInvocationContexts().size() < 2) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "Useless OrchestrationContext. It should contain at least two InvocationContext to be useful.", getObjectLabel(orchestrationContext, context) }, //$NON-NLS-1$
+            new Object[] { orchestrationContext }, context));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -379,7 +406,42 @@ public class FcoreValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateOrchestrationContextContainer(OrchestrationContextContainer orchestrationContextContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(orchestrationContextContainer, diagnostics, context);
+    boolean result = validate_EveryMultiplicityConforms(orchestrationContextContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(orchestrationContextContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(orchestrationContextContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(orchestrationContextContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(orchestrationContextContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(orchestrationContextContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(orchestrationContextContainer, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateOrchestrationContextContainer_UselessOrchestrationContextContainer(orchestrationContextContainer, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * Validates the UselessOrchestrationContextContainer constraint of '<em>Orchestration Context
+   * Container</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateOrchestrationContextContainer_UselessOrchestrationContextContainer(OrchestrationContextContainer orchestrationContextContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (orchestrationContextContainer.getOrchestrationContexts() == null || orchestrationContextContainer.getOrchestrationContexts().size() == 0) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "Useless OrchestrationContextContainer. It should contain at least one InvocationContext to be useful.", getObjectLabel(orchestrationContextContainer, context) }, //$NON-NLS-1$
+            new Object[] { orchestrationContextContainer }, context));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -600,146 +662,6 @@ public class FcoreValidator extends EObjectValidator {
    */
   public boolean validateType(Type<?> type, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return validate_EveryDefaultConstraint(type, diagnostics, context);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public boolean validateTypeObject(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(typeObject, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(typeObject, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(typeObject, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(typeObject, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(typeObject, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(typeObject, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(typeObject, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeObject, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(typeObject, diagnostics, context);
-    return result;
-  }
-
-  /**
-   * Validates the LoadableValue constraint of '<em>Type Object</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public boolean validateTypeObject_LoadableValue(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (typeObject.getValue() == null) {
-      return true;
-    }
-    // Loadable Value
-    if (ValidationHelper.isLoadableClass(typeObject, typeObject.getValue().getClass().getName(), context) == false) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Unable to load Value.", getObjectLabel(typeObject, context) }, //$NON-NLS-1$
-            new Object[] { typeObject }, context));
-      }
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * Validates the ValidValue constraint of '<em>Type Object</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public boolean validateTypeObject_ValidValue(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (typeObject.getValue() == null) {
-      return true;
-    }
-    // Valid Value
-    if (ValidationHelper.isValidClass(typeObject, typeObject.getType(), typeObject.getValue().getClass().getName(), context) == false) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Value Type mismatch.", getObjectLabel(typeObject, context) }, //$NON-NLS-1$
-            new Object[] { typeObject }, context));
-      }
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public boolean validateTypeClass(TypeClass<?> typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateTypeClass_LoadableValue(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateTypeClass_ValidValue(typeClass, diagnostics, context);
-    return result;
-  }
-
-  /**
-   * Validates the LoadableValue constraint of '<em>Type Class</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public boolean validateTypeClass_LoadableValue(TypeClass<?> typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    // Loadable Value
-    if (ValidationHelper.isLoadableClass(typeClass, typeClass.getValue(), context) == false) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Unable to load Value.", getObjectLabel(typeClass, context) }, //$NON-NLS-1$
-            new Object[] { typeClass }, context));
-      }
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * Validates the ValidValue constraint of '<em>Type Class</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public boolean validateTypeClass_ValidValue(TypeClass<?> typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    // Valid Value
-    if (ValidationHelper.isValidClass(typeClass, typeClass.getType(), typeClass.getValue(), context) == false) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Value Type mismatch.", getObjectLabel(typeClass, context) }, //$NON-NLS-1$
-            new Object[] { typeClass }, context));
-      }
-      return false;
-    }
-    return true;
   }
 
   /**

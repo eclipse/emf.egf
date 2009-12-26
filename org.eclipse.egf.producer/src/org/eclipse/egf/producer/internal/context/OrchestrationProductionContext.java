@@ -75,7 +75,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
   }
 
   @Override
-  public <R extends Object> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
+  public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
     // Locate an OrchestrationContext, it could be null, just do it for type checking
     OrchestrationContext orchestrationContext = getOrchestrationContext(key, getElement().getOrchestrationContexts());
     InvocationContext invocationContext = (InvocationContext) key;
@@ -116,7 +116,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
   }
 
   @Override
-  public <R extends Object> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
+  public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
     // Locate an OrchestrationContext, it should be null, just do it for type checking
     getOrchestrationContext(key, getElement().getOrchestrationContexts());
     InvocationContext invocationContext = (InvocationContext) key;

@@ -28,7 +28,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getOrchestrationContextContainer()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UselessOrchestrationContextContainer'"
  * @generated
  */
 public interface OrchestrationContextContainer extends ModelElement {
@@ -73,7 +73,7 @@ public interface OrchestrationContextContainer extends ModelElement {
    * @return the value of the '<em>Orchestration Contexts</em>' containment reference list.
    * @see org.eclipse.egf.model.fcore.FcorePackage#getOrchestrationContextContainer_OrchestrationContexts()
    * @see org.eclipse.egf.model.fcore.OrchestrationContext#getOrchestrationContextContainer
-   * @model opposite="orchestrationContextContainer" containment="true" required="true"
+   * @model opposite="orchestrationContextContainer" containment="true"
    * @generated
    */
   EList<OrchestrationContext> getOrchestrationContexts();

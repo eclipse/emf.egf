@@ -29,7 +29,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getOrchestrationContext()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UselessOrchestrationContext'"
  * @generated
  */
 public interface OrchestrationContext extends ModelElement {
@@ -74,7 +74,7 @@ public interface OrchestrationContext extends ModelElement {
    * @return the value of the '<em>Invocation Contexts</em>' reference list.
    * @see org.eclipse.egf.model.fcore.FcorePackage#getOrchestrationContext_InvocationContexts()
    * @see org.eclipse.egf.model.fcore.InvocationContext#getOrchestrationContext
-   * @model opposite="orchestrationContext" resolveProxies="false" lower="2"
+   * @model opposite="orchestrationContext" resolveProxies="false"
    * @generated
    */
   EList<InvocationContext> getInvocationContexts();

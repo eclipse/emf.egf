@@ -69,7 +69,7 @@ public class RegistryReader {
       if (ePackageType == null) {
         return;
       }
-      IJavaSearchScope scope = SearchEngine.createJavaSearchScope(projects.toArray(new IJavaProject[projects.size()]), IJavaSearchScope.SOURCES);
+      IJavaSearchScope scope = SearchEngine.createJavaSearchScope(projects.toArray(new IJavaProject[projects.size()]), IJavaSearchScope.SOURCES | IJavaSearchScope.APPLICATION_LIBRARIES | IJavaSearchScope.REFERENCED_PROJECTS | IJavaSearchScope.REFERENCED_PROJECTS);
       SearchPattern pattern = SearchPattern.createPattern(ePackageType, IJavaSearchConstants.IMPLEMENTORS);
       SearchRequestor requestor = new SearchRequestor() {
 

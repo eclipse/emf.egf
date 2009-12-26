@@ -36,6 +36,10 @@ import org.eclipse.egf.model.types.IntegerType;
 import org.eclipse.egf.model.types.LongType;
 import org.eclipse.egf.model.types.ShortType;
 import org.eclipse.egf.model.types.StringType;
+import org.eclipse.egf.model.types.TypeCollection;
+import org.eclipse.egf.model.types.TypeList;
+import org.eclipse.egf.model.types.TypeMap;
+import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.model.types.util.TypesAdapterFactory;
 import org.eclipse.emf.common.notify.Adapter;
@@ -121,6 +125,110 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
     supportedTypes.add(ITableItemFontProvider.class);
     supportedTypes.add(IItemColorProvider.class);
     supportedTypes.add(IItemFontProvider.class);
+  }
+
+  /**
+   * This keeps track of the one adapter used for all
+   * {@link org.eclipse.egf.model.types.TypeCollection} instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected TypeCollectionItemProvider typeCollectionItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.TypeCollection}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Adapter createTypeCollectionAdapter() {
+    if (typeCollectionItemProvider == null) {
+      typeCollectionItemProvider = new TypeCollectionItemProvider(this);
+    }
+
+    return typeCollectionItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.TypeList}
+   * instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected TypeListItemProvider typeListItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.TypeList}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Adapter createTypeListAdapter() {
+    if (typeListItemProvider == null) {
+      typeListItemProvider = new TypeListItemProvider(this);
+    }
+
+    return typeListItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.TypeSet}
+   * instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected TypeSetItemProvider typeSetItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.TypeSet}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Adapter createTypeSetAdapter() {
+    if (typeSetItemProvider == null) {
+      typeSetItemProvider = new TypeSetItemProvider(this);
+    }
+
+    return typeSetItemProvider;
+  }
+
+  /**
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.TypeMap}
+   * instances.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected TypeMapItemProvider typeMapItemProvider;
+
+  /**
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.TypeMap}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Adapter createTypeMapAdapter() {
+    if (typeMapItemProvider == null) {
+      typeMapItemProvider = new TypeMapItemProvider(this);
+    }
+
+    return typeMapItemProvider;
   }
 
   /**
@@ -569,6 +677,14 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
    * @generated
    */
   public void dispose() {
+    if (typeCollectionItemProvider != null)
+      typeCollectionItemProvider.dispose();
+    if (typeListItemProvider != null)
+      typeListItemProvider.dispose();
+    if (typeSetItemProvider != null)
+      typeSetItemProvider.dispose();
+    if (typeMapItemProvider != null)
+      typeMapItemProvider.dispose();
     if (bigDecimalTypeItemProvider != null)
       bigDecimalTypeItemProvider.dispose();
     if (bigIntegerTypeItemProvider != null)
@@ -652,6 +768,14 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
        */
       @Override
       public Object caseActivityContract(ActivityContract object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeCollection()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeList()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeSet()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeMap()));
+
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createBigDecimalType()));
 
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createBigIntegerType()));
@@ -689,6 +813,14 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
        */
       @Override
       public Object caseOrchestrationContext(OrchestrationContext object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createTypeCollection()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createTypeList()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createTypeSet()));
+
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createTypeMap()));
+
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createBigDecimalType()));
 
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, TypesFactory.eINSTANCE.createBigIntegerType()));
@@ -731,6 +863,34 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
 
         if (object.getActivityContract() == null || object.getActivityContract().getType() == null) {
           return null;
+        }
+
+        {
+          TypeCollection type = TypesFactory.eINSTANCE.createTypeCollection();
+          if (ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+          }
+        }
+
+        {
+          TypeList type = TypesFactory.eINSTANCE.createTypeList();
+          if (ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+          }
+        }
+
+        {
+          TypeSet type = TypesFactory.eINSTANCE.createTypeSet();
+          if (ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+          }
+        }
+
+        {
+          TypeMap type = TypesFactory.eINSTANCE.createTypeMap();
+          if (ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+          }
         }
 
         {

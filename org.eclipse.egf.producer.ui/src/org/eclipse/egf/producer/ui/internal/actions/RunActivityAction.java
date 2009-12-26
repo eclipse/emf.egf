@@ -117,7 +117,7 @@ public class RunActivityAction implements IObjectActionDelegate {
           try {
             try {
               if (EGFProducerUIPlugin.getDefault().isDebugging()) {
-                EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EObjectHelper.getText(_activity), ticks)); //$NON-NLS-1$
+                EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EObjectHelper.getText(_activity), ticks[0])); //$NON-NLS-1$
               }
               activityManager[0].invoke(subMonitor.newChild(900 * ticks[0], SubMonitor.SUPPRESS_NONE));
               if (monitor.isCanceled()) {

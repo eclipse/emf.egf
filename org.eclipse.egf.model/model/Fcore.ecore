@@ -258,12 +258,15 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrchestrationContext" eSuperTypes="#//ModelElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UselessOrchestrationContext"/>
+    </eAnnotations>
     <eOperations name="getOrchestration" lowerBound="1" eType="#//Orchestration"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContextContainer"
         lowerBound="1" eType="#//OrchestrationContextContainer" resolveProxies="false"
         eOpposite="#//OrchestrationContextContainer/orchestrationContexts"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContexts" lowerBound="2"
-        upperBound="-1" eType="#//InvocationContext" resolveProxies="false" eOpposite="#//InvocationContext/orchestrationContext"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContexts" upperBound="-1"
+        eType="#//InvocationContext" resolveProxies="false" eOpposite="#//InvocationContext/orchestrationContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
         resolveProxies="false">
       <eGenericType eClassifier="#//Type">
@@ -272,11 +275,24 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrchestrationContextContainer" eSuperTypes="#//ModelElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="UselessOrchestrationContextContainer"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" lowerBound="1"
         eType="#//Orchestration" eOpposite="#//Orchestration/orchestrationContextContainer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContexts"
-        lowerBound="1" upperBound="-1" eType="#//OrchestrationContext" containment="true"
-        eOpposite="#//OrchestrationContext/orchestrationContextContainer"/>
+        upperBound="-1" eType="#//OrchestrationContext" containment="true" eOpposite="#//OrchestrationContext/orchestrationContextContainer"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//ModelElement">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+    </eTypeParameters>
+    <eOperations name="getType" lowerBound="1">
+      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
+        <eTypeArguments eTypeParameter="#//Type/T"/>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getValue" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Invocation" abstract="true" eSuperTypes="#//ModelElement">
     <eTypeParameters name="T">
@@ -380,40 +396,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContextConnectors"
         upperBound="-1" eType="#//InvocationContextConnector" containment="true" resolveProxies="false"
         eOpposite="#//InvocationContextConnector/invocationContextContainer"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//ModelElement">
-    <eTypeParameters name="T">
-      <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
-    </eTypeParameters>
-    <eOperations name="getType" lowerBound="1">
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eTypeParameter="#//Type/T"/>
-      </eGenericType>
-    </eOperations>
-    <eOperations name="getValue" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeObject" abstract="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="LoadableValue ValidValue"/>
-    </eAnnotations>
-    <eTypeParameters name="T">
-      <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
-    </eTypeParameters>
-    <eGenericSuperTypes eClassifier="#//Type">
-      <eTypeArguments eTypeParameter="#//TypeObject/T"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeClass" abstract="true">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="LoadableValue ValidValue"/>
-    </eAnnotations>
-    <eTypeParameters name="T">
-      <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
-    </eTypeParameters>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eGenericSuperTypes eClassifier="#//Type">
-      <eTypeArguments eTypeParameter="#//TypeClass/T"/>
-    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="ContractMode">
     <eLiterals name="In" literal="In"/>

@@ -12,6 +12,9 @@
  */
 package org.eclipse.egf.model.types.impl;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 import org.eclipse.egf.model.types.*;
 import org.eclipse.egf.model.types.BigDecimalType;
 import org.eclipse.egf.model.types.BigIntegerType;
@@ -78,6 +81,14 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   @Override
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
+    case TypesPackage.TYPE_COLLECTION:
+      return createTypeCollection();
+    case TypesPackage.TYPE_LIST:
+      return createTypeList();
+    case TypesPackage.TYPE_SET:
+      return createTypeSet();
+    case TypesPackage.TYPE_MAP:
+      return createTypeMap();
     case TypesPackage.BIG_DECIMAL_TYPE:
       return createBigDecimalType();
     case TypesPackage.BIG_INTEGER_TYPE:
@@ -117,6 +128,12 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
+    case TypesPackage.COLLECTION:
+      return createCollectionFromString(eDataType, initialValue);
+    case TypesPackage.LIST:
+      return createListFromString(eDataType, initialValue);
+    case TypesPackage.SET:
+      return createSetFromString(eDataType, initialValue);
     default:
       throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -130,9 +147,55 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
+    case TypesPackage.COLLECTION:
+      return convertCollectionToString(eDataType, instanceValue);
+    case TypesPackage.LIST:
+      return convertListToString(eDataType, instanceValue);
+    case TypesPackage.SET:
+      return convertSetToString(eDataType, instanceValue);
     default:
       throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeCollection createTypeCollection() {
+    TypeCollectionImpl typeCollection = new TypeCollectionImpl();
+    return typeCollection;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeList createTypeList() {
+    TypeListImpl typeList = new TypeListImpl();
+    return typeList;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeSet createTypeSet() {
+    TypeSetImpl typeSet = new TypeSetImpl();
+    return typeSet;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TypeMap createTypeMap() {
+    TypeMapImpl typeMap = new TypeMapImpl();
+    return typeMap;
   }
 
   /**
@@ -263,6 +326,60 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   public GeneratorAdapterFactoryType createGeneratorAdapterFactoryType() {
     GeneratorAdapterFactoryTypeImpl generatorAdapterFactoryType = new GeneratorAdapterFactoryTypeImpl();
     return generatorAdapterFactoryType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Collection<?> createCollectionFromString(EDataType eDataType, String initialValue) {
+    return (Collection<?>) super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertCollectionToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public List<?> createListFromString(EDataType eDataType, String initialValue) {
+    return (List<?>) super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertListToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Set<?> createSetFromString(EDataType eDataType, String initialValue) {
+    return (Set<?>) super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertSetToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(instanceValue);
   }
 
   /**

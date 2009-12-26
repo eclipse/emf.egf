@@ -10,20 +10,16 @@
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
-package org.eclipse.egf.model.fcore.provider;
+package org.eclipse.egf.model.types.provider;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.TypeClass;
-import org.eclipse.egf.model.helper.TypeClassHelper;
+import org.eclipse.egf.model.types.TypeMap;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -35,25 +31,21 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.TypeClass} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.types.TypeMap} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class TypeClassItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class TypeMapItemProvider extends TypeClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public TypeClassItemProvider(AdapterFactory adapterFactory) {
+  public TypeMapItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -61,7 +53,6 @@ public class TypeClassItemProvider extends TypeItemProvider implements IEditingD
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -69,51 +60,32 @@ public class TypeClassItemProvider extends TypeItemProvider implements IEditingD
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addValuePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Value feature.
+   * This returns TypeMap.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * @generated
    */
-  protected void addValuePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeClass_value_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypeClass_value_feature", "_UI_TypeClass_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.TYPE_CLASS__VALUE, true, false, true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_ValuePropertyCategory"), //$NON-NLS-1$
-        null) {
-      @Override
-      public Collection<String> getChoiceOfValues(Object innerObject) {
-        TypeClass<?> typeClass = (TypeClass<?>) innerObject;
-        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(typeClass.eResource().getURI().segment(1));
-        if (project == null) {
-          return Collections.<String> emptyList();
-        }
-        Collection<String> result = TypeClassHelper.getClassHierarchyAsString(project, typeClass.getType());
-        if (result.contains(null) == false) {
-          result.add(null);
-        }
-        return result;
-      }
-    });
+  @Override
+  public Object getImage(Object object) {
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/TypeMap")); //$NON-NLS-1$
   }
 
   /**
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public String getText(Object object) {
-    String label = ((TypeClass<?>) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_TypeClass_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_TypeClass_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    String label = ((TypeMap) object).getName();
+    return label == null || label.length() == 0 ? "[" + getString("_UI_TypeMap_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_TypeMap_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -121,18 +93,11 @@ public class TypeClassItemProvider extends TypeItemProvider implements IEditingD
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
-
-    switch (notification.getFeatureID(TypeClass.class)) {
-    case FcorePackage.TYPE_CLASS__VALUE:
-      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-      return;
-    }
     super.notifyChanged(notification);
   }
 
@@ -141,7 +106,6 @@ public class TypeClassItemProvider extends TypeItemProvider implements IEditingD
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

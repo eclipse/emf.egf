@@ -12,22 +12,20 @@
  */
 package org.eclipse.egf.model.types;
 
-import org.eclipse.egf.model.fcore.TypeObject;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Integer Type</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.types.IntegerType#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.IntegerType#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.egf.model.types.TypesPackage#getIntegerType()
- * @model superTypes="org.eclipse.egf.model.fcore.TypeObject<org.eclipse.emf.ecore.EIntegerObject>"
+ * @model superTypes="org.eclipse.egf.model.types.TypeObject<org.eclipse.emf.ecore.EIntegerObject>"
  * @generated
  */
 public interface IntegerType extends TypeObject<Integer> {
@@ -40,6 +38,7 @@ public interface IntegerType extends TypeObject<Integer> {
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(Integer)
    * @see org.eclipse.egf.model.types.TypesPackage#getIntegerType_Value()
@@ -49,10 +48,13 @@ public interface IntegerType extends TypeObject<Integer> {
   Integer getValue();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.types.IntegerType#getValue <em>Value</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.egf.model.types.IntegerType#getValue <em>Value</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' attribute.
+   * 
+   * @param value
+   *          the new value of the '<em>Value</em>' attribute.
    * @see #getValue()
    * @generated
    */
@@ -61,7 +63,9 @@ public interface IntegerType extends TypeObject<Integer> {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @model kind="operation" required="true"
+   *        
    *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.lang.Integer.class;'"
    * @generated
    */

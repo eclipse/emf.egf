@@ -59,7 +59,7 @@ public abstract class ActivityProductionContext extends ModelElementProductionCo
   }
 
   @Override
-  public <R extends Object> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
+  public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
     // Looking for an ActivityContract
     ActivityContract activityContract = getActivityContract(key, getInputValueKeys());
     // Unknown ActivityContract
@@ -83,7 +83,7 @@ public abstract class ActivityProductionContext extends ModelElementProductionCo
   }
 
   @Override
-  public <R extends Object> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
+  public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
     // Looking for an ActivityContract
     ActivityContract activityContract = getActivityContract(key, getOutputValueKeys());
     // Unknown ActivityContract

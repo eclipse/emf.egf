@@ -75,7 +75,7 @@ public abstract class InvocationProductionContext extends ModelElementProduction
   }
 
   @Override
-  public <R extends Object> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
+  public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
     // Locate an InvocationContext
     InvocationContext invocationContext = getInvocationContext(key, getElement().getInvocationContexts(ContractMode.IN));
     // Unknown ActivityContract
@@ -125,7 +125,7 @@ public abstract class InvocationProductionContext extends ModelElementProduction
   }
 
   @Override
-  public <R extends Object> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
+  public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
     // Locate an InvocationContext
     InvocationContext invocationContext = getInvocationContext(key, getElement().getInvocationContexts(ContractMode.OUT));
     // Unknown ActivityContract

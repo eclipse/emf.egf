@@ -39,13 +39,13 @@ public interface IProductionContext<T extends Object> {
 
   public Class<?> getInputValueType(Object key) throws InvocationException;
 
-  public <R extends Object> R getInputValue(Object key, Class<R> clazz) throws InvocationException;
+  public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException;
 
   public Collection<T> getInputValueKeys() throws InvocationException;
 
   public Class<?> getOutputValueType(Object key) throws InvocationException;
 
-  public <R extends Object> R getOutputValue(Object key, Class<R> clazz) throws InvocationException;
+  public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException;
 
   public Collection<T> getOutputValueKeys() throws InvocationException;
 

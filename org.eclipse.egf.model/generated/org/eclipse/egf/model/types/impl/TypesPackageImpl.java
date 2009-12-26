@@ -12,6 +12,9 @@
  */
 package org.eclipse.egf.model.types.impl;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.types.BigDecimalType;
 import org.eclipse.egf.model.types.BigIntegerType;
@@ -26,8 +29,15 @@ import org.eclipse.egf.model.types.IntegerType;
 import org.eclipse.egf.model.types.LongType;
 import org.eclipse.egf.model.types.ShortType;
 import org.eclipse.egf.model.types.StringType;
+import org.eclipse.egf.model.types.TypeClass;
+import org.eclipse.egf.model.types.TypeCollection;
+import org.eclipse.egf.model.types.TypeList;
+import org.eclipse.egf.model.types.TypeMap;
+import org.eclipse.egf.model.types.TypeObject;
+import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.model.types.TypesPackage;
+import org.eclipse.egf.model.types.util.TypesValidator;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -35,6 +45,8 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.ETypeParameter;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -45,6 +57,48 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeObjectEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeClassEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeCollectionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeListEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeSetEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeMapEClass = null;
+
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -144,6 +198,27 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   private EDataType eGeneratorAdapterFactoryEDataType = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType collectionEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType listEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EDataType setEDataType = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -199,12 +274,82 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     // Initialize created meta-data
     theTypesPackage.initializePackageContents();
 
+    // Register package validator
+    EValidator.Registry.INSTANCE.put(theTypesPackage, new EValidator.Descriptor() {
+      public EValidator getEValidator() {
+        return TypesValidator.INSTANCE;
+      }
+    });
+
     // Mark meta-data to indicate it can't be changed
     theTypesPackage.freeze();
 
     // Update the registry and return the package
     EPackage.Registry.INSTANCE.put(TypesPackage.eNS_URI, theTypesPackage);
     return theTypesPackage;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeObject() {
+    return typeObjectEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeClass() {
+    return typeClassEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTypeClass_Value() {
+    return (EAttribute) typeClassEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeCollection() {
+    return typeCollectionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeList() {
+    return typeListEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeSet() {
+    return typeSetEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeMap() {
+    return typeMapEClass;
   }
 
   /**
@@ -446,6 +591,33 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EDataType getCollection() {
+    return collectionEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EDataType getList() {
+    return listEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EDataType getSet() {
+    return setEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public TypesFactory getTypesFactory() {
     return (TypesFactory) getEFactoryInstance();
   }
@@ -470,6 +642,19 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     isCreated = true;
 
     // Create classes and their features
+    typeObjectEClass = createEClass(TYPE_OBJECT);
+
+    typeClassEClass = createEClass(TYPE_CLASS);
+    createEAttribute(typeClassEClass, TYPE_CLASS__VALUE);
+
+    typeCollectionEClass = createEClass(TYPE_COLLECTION);
+
+    typeListEClass = createEClass(TYPE_LIST);
+
+    typeSetEClass = createEClass(TYPE_SET);
+
+    typeMapEClass = createEClass(TYPE_MAP);
+
     bigDecimalTypeEClass = createEClass(BIG_DECIMAL_TYPE);
     createEAttribute(bigDecimalTypeEClass, BIG_DECIMAL_TYPE__VALUE);
 
@@ -510,6 +695,9 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
     // Create data types
     eGeneratorAdapterFactoryEDataType = createEDataType(EGENERATOR_ADAPTER_FACTORY);
+    collectionEDataType = createEDataType(COLLECTION);
+    listEDataType = createEDataType(LIST);
+    setEDataType = createEDataType(SET);
   }
 
   /**
@@ -537,72 +725,142 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     setNsURI(eNS_URI);
 
     // Obtain other dependent packages
-    FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
     EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+    FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
 
     // Create type parameters
+    ETypeParameter typeObjectEClass_T = addETypeParameter(typeObjectEClass, "T"); //$NON-NLS-1$
+    ETypeParameter typeClassEClass_T = addETypeParameter(typeClassEClass, "T"); //$NON-NLS-1$
+    addETypeParameter(collectionEDataType, "E"); //$NON-NLS-1$
+    addETypeParameter(listEDataType, "E"); //$NON-NLS-1$
+    addETypeParameter(setEDataType, "E"); //$NON-NLS-1$
 
     // Set bounds for type parameters
+    EGenericType g1 = createEGenericType(theEcorePackage.getEJavaObject());
+    typeObjectEClass_T.getEBounds().add(g1);
+    g1 = createEGenericType(theEcorePackage.getEJavaObject());
+    typeClassEClass_T.getEBounds().add(g1);
 
     // Add supertypes to classes
-    EGenericType g1 = createEGenericType(theFcorePackage.getTypeObject());
-    EGenericType g2 = createEGenericType(theEcorePackage.getEBigDecimal());
+    g1 = createEGenericType(theFcorePackage.getType());
+    EGenericType g2 = createEGenericType(typeObjectEClass_T);
+    g1.getETypeArguments().add(g2);
+    typeObjectEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(theFcorePackage.getType());
+    g2 = createEGenericType(typeClassEClass_T);
+    g1.getETypeArguments().add(g2);
+    typeClassEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeClass());
+    g2 = createEGenericType(this.getCollection());
+    g1.getETypeArguments().add(g2);
+    typeCollectionEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeClass());
+    g2 = createEGenericType(this.getList());
+    g1.getETypeArguments().add(g2);
+    typeListEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeClass());
+    g2 = createEGenericType(this.getSet());
+    g1.getETypeArguments().add(g2);
+    typeSetEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeClass());
+    g2 = createEGenericType(theEcorePackage.getEMap());
+    g1.getETypeArguments().add(g2);
+    typeMapEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEBigDecimal());
     g1.getETypeArguments().add(g2);
     bigDecimalTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getEBigInteger());
     g1.getETypeArguments().add(g2);
     bigIntegerTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(ecorePackage.getEBooleanObject());
     g1.getETypeArguments().add(g2);
     booleanTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getEByteObject());
     g1.getETypeArguments().add(g2);
     byteTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getECharacterObject());
     g1.getETypeArguments().add(g2);
     characterTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getEDate());
     g1.getETypeArguments().add(g2);
     dateTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getEDoubleObject());
     g1.getETypeArguments().add(g2);
     doubleTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getEFloatObject());
     g1.getETypeArguments().add(g2);
     floatTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getEIntegerObject());
     g1.getETypeArguments().add(g2);
     integerTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getELongObject());
     g1.getETypeArguments().add(g2);
     longTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getEShortObject());
     g1.getETypeArguments().add(g2);
     shortTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeObject());
+    g1 = createEGenericType(this.getTypeObject());
     g2 = createEGenericType(theEcorePackage.getEString());
     g1.getETypeArguments().add(g2);
     stringTypeEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(theFcorePackage.getTypeClass());
+    g1 = createEGenericType(this.getTypeClass());
     g2 = createEGenericType(this.getEGeneratorAdapterFactory());
     g1.getETypeArguments().add(g2);
     generatorAdapterFactoryTypeEClass.getEGenericSuperTypes().add(g1);
 
     // Initialize classes and features; add operations and parameters
+    initEClass(typeObjectEClass, TypeObject.class, "TypeObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+    initEClass(typeClassEClass, TypeClass.class, "TypeClass", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getTypeClass_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TypeClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    initEClass(typeCollectionEClass, TypeCollection.class, "TypeCollection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+    EOperation op = addEOperation(typeCollectionEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(this.getCollection());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(typeListEClass, TypeList.class, "TypeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+    op = addEOperation(typeListEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(this.getList());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(typeSetEClass, TypeSet.class, "TypeSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+    op = addEOperation(typeSetEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(this.getSet());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
+    initEClass(typeMapEClass, TypeMap.class, "TypeMap", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+    op = addEOperation(typeMapEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(theEcorePackage.getEJavaClass());
+    g2 = createEGenericType(theEcorePackage.getEMap());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
+
     initEClass(bigDecimalTypeEClass, BigDecimalType.class, "BigDecimalType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getBigDecimalType_Value(), theEcorePackage.getEBigDecimal(), "value", null, 0, 1, BigDecimalType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    EOperation op = addEOperation(bigDecimalTypeEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    op = addEOperation(bigDecimalTypeEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
     g1 = createEGenericType(theEcorePackage.getEJavaClass());
     g2 = createEGenericType(theEcorePackage.getEBigDecimal());
     g1.getETypeArguments().add(g2);
@@ -717,9 +975,30 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
     // Initialize data types
     initEDataType(eGeneratorAdapterFactoryEDataType, GeneratorAdapterFactory.class, "EGeneratorAdapterFactory", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(collectionEDataType, Collection.class, "Collection", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(listEDataType, List.class, "List", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(setEDataType, Set.class, "Set", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);
+
+    // Create annotations
+    // http://www.eclipse.org/emf/2002/Ecore
+    createEcoreAnnotations();
+  }
+
+  /**
+   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void createEcoreAnnotations() {
+    String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
+    addAnnotation(typeObjectEClass, source, new String[] { "constraints", "LoadableValue ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
+    });
+    addAnnotation(typeClassEClass, source, new String[] { "constraints", "LoadableValue ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
+    });
   }
 
 } // TypesPackageImpl
