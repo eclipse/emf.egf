@@ -829,7 +829,7 @@ public class FcoreValidator extends EObjectValidator {
     if (invocationContext.getMode() == ContractMode.IN_OUT) {
       // Default value for IN_OUT apply either assigned OrchestrationContext (for IN Mode)
       // and FactoryComponentExposedContract (for OUT Mode) but not both
-      if (invocationContext.getOrchestrationContext() != null && invocationContext.getFactoryComponentExposedContract() != null) {
+      if (invocationContext.getOrchestrationContext() != null && invocationContext.getFactoryComponentExposedContract() != null && invocationContext.getType() != null) {
         valid = false;
       }
     } else if (invocationContext.getType() != null) {
