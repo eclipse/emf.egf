@@ -280,6 +280,11 @@ public class ProjectBundleSession {
     if (model == null) {
       return null;
     }
+    // Check if we face a non workspace model
+    if (model.getUnderlyingResource() != null) {
+      return Platform.getBundle(BundleHelper.getBundleId(model));
+    }
+    // Workspace model
     Bundle bundle = _projectBundles.get(model);
     if (bundle == null) {
       return installBundle(model);
