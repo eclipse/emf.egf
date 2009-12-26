@@ -33,4 +33,6 @@ public class EGFCommonMessages {
 
   public static String ProjectHelper_AnalysingFailure;
 
+  public static String TypeClassHelper_classHierachy_JobName;
+
 }
