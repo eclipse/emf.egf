@@ -102,7 +102,7 @@ public class RunActivityAction implements IObjectActionDelegate {
         try {
           EMFValidator validator = new EMFValidator(activityManager[0].getTopElements());
           Diagnostic diagnostic = validator.validate();
-          if (diagnostic != Diagnostic.OK_INSTANCE) {
+          if (diagnostic.getCode() != Diagnostic.OK) {
             return;
           }
         } catch (InvocationException ie) {
