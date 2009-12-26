@@ -30,7 +30,7 @@ import org.eclipse.ui.IPersistableElement;
  */
 
 public class PatternEditorInput implements IEditorInput {
-    public static final String PATTERN_ID = "id";
+    public static final String PATTERN_ID = "patternId";
     public static final String RESSOURCE_URI = "uri";
 
     private final PatternPersistableElement persistable = new PatternPersistableElement();

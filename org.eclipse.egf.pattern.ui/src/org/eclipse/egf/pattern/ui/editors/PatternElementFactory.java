@@ -30,17 +30,17 @@ public class PatternElementFactory implements IElementFactory {
 
     public IAdaptable createElement(IMemento memento) {
         final String patternId = memento.getString(PatternEditorInput.PATTERN_ID);
+        final String patternMethodId = memento.getString(PatternMethodEditorInput.PATTERN_METHOD_ID);
         final String resourceURI = memento.getString(PatternEditorInput.RESSOURCE_URI);
-        // TODO charger la resource et trouver le bon pattern, toutes les info
-        // sont dans le memento
         URI uri = URI.createURI(resourceURI);
         TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.eclipse.egf.pattern.ui.editors.PatternEditingDomain");
 
         Resource res = editingDomain.getResourceSet().getResource(uri, true);
-        return new PatternEditorInput(res, patternId);
-        // final Pattern collect =
-        // PatternCollector.INSTANCE.collect(res.getContents(), patternId);
-        // return null;
+        if (patternId != null)
+            return new PatternEditorInput(res, patternId);
+        if (patternMethodId != null)
+            return new PatternMethodEditorInput(res, patternMethodId);
+        throw new IllegalStateException();
     }
 
 }
