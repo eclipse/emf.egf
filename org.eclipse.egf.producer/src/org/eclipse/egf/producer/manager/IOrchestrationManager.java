@@ -8,22 +8,21 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.ui;
+package org.eclipse.egf.producer.manager;
+
+import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IEGFCoreUIImages {
+public interface IOrchestrationManager extends IModelElementManager {
 
-  /**
-   * Identifies a Fcore resource.
-   */
-  public final String IMG_FACTORY_COMPONENT = "obj16/Fcore.gif"; //$NON-NLS-1$
+  public Orchestration getElement();
 
-  /**
-   * Identifies a mandatory field.
-   */
-  public final String IMG_MANDATORY = "ovr/Mandatory.gif"; //$NON-NLS-1$    
+  public IFactoryComponentManager getParent();
+
+  public IOrchestrationProductionContext getProductionContext();
 
 }

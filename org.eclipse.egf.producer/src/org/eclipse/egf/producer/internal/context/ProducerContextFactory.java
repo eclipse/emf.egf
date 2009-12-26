@@ -12,6 +12,7 @@ package org.eclipse.egf.producer.internal.context;
 
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
 
 /**
  * @author Xavier Maysonnave
@@ -25,7 +26,7 @@ public class ProducerContextFactory {
 
   // FactoryComponent
 
-  public static FactoryComponentProductionContext createContext(FactoryComponent element, ProjectBundleSession projectBundleSession) {
+  public static IFactoryComponentProductionContext createContext(FactoryComponent element, ProjectBundleSession projectBundleSession) {
     return new FactoryComponentProductionContext(element, projectBundleSession);
   }
 

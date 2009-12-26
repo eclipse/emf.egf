@@ -8,22 +8,19 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.ui;
+package org.eclipse.egf.fprod.producer.manager;
+
+import org.eclipse.egf.fprod.producer.context.ITaskInvocationProductionContext;
+import org.eclipse.egf.model.fprod.TaskInvocation;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IEGFCoreUIImages {
+public interface ITaskInvocationManager extends IProductionPlanInvocationManager {
 
-  /**
-   * Identifies a Fcore resource.
-   */
-  public final String IMG_FACTORY_COMPONENT = "obj16/Fcore.gif"; //$NON-NLS-1$
+  public TaskInvocation getElement();
 
-  /**
-   * Identifies a mandatory field.
-   */
-  public final String IMG_MANDATORY = "ovr/Mandatory.gif"; //$NON-NLS-1$    
+  public ITaskInvocationProductionContext getProductionContext();
 
 }

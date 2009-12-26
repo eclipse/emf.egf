@@ -11,10 +11,11 @@
 package org.eclipse.egf.fprod.producer.internal.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.fprod.producer.context.IProductionPlanInvocationProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.ProductionPlanInvocationProductionContext;
+import org.eclipse.egf.fprod.producer.manager.IProductionPlanManager;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.egf.producer.internal.manager.InvocationManager;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 
 /**
  * @author Xavier Maysonnave
@@ -22,7 +23,7 @@ import org.eclipse.egf.producer.manager.IModelElementProducerManager;
  */
 public abstract class ProductionPlanInvocationManager extends InvocationManager {
 
-  public ProductionPlanInvocationManager(IModelElementProducerManager<?> parent, ProductionPlanInvocation<?> productionPlanInvocation) throws InvocationException {
+  public ProductionPlanInvocationManager(IProductionPlanManager parent, ProductionPlanInvocation<?> productionPlanInvocation) throws InvocationException {
     super(parent, productionPlanInvocation);
   }
 
@@ -32,6 +33,16 @@ public abstract class ProductionPlanInvocationManager extends InvocationManager 
   }
 
   @Override
-  public abstract ProductionPlanInvocationProductionContext getInternalProductionContext() throws InvocationException;
+  public IProductionPlanInvocationProductionContext getProductionContext() {
+    return (IProductionPlanInvocationProductionContext) super.getProductionContext();
+  }
+
+  @Override
+  public IProductionPlanManager getParent() {
+    return (IProductionPlanManager) super.getParent();
+  }
+
+  @Override
+  protected abstract ProductionPlanInvocationProductionContext getInternalProductionContext() throws InvocationException;
 
 }

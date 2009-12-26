@@ -22,7 +22,7 @@ import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.producer.context.IInvocationProductionContext;
-import org.eclipse.egf.producer.context.IModelElementProductionContext;
+import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -35,13 +35,18 @@ public abstract class InvocationProductionContext extends ModelElementProduction
     super(element, projectBundleSession);
   }
 
-  public InvocationProductionContext(IModelElementProductionContext<?> parent, Invocation<?> element, ProjectBundleSession projectBundleSession) {
+  public InvocationProductionContext(IOrchestrationProductionContext parent, Invocation<?> element, ProjectBundleSession projectBundleSession) {
     super(parent, element, projectBundleSession);
   }
 
   @Override
   public Invocation<?> getElement() {
     return (Invocation<?>) super.getElement();
+  }
+
+  @Override
+  public IOrchestrationProductionContext getParent() {
+    return (IOrchestrationProductionContext) super.getParent();
   }
 
   @Override

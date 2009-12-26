@@ -10,20 +10,19 @@
  */
 package org.eclipse.egf.producer.manager;
 
-import org.eclipse.egf.core.producer.manager.IProducerManager;
-import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.egf.producer.context.IModelElementProductionContext;
+import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.producer.context.IActivityProductionContext;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IModelElementProducerManager<T extends ModelElement> extends IProducerManager {
+public interface IActivityManager extends IModelElementManager {
 
-  public String getName();
+  public Activity getElement();
 
-  public IModelElementProductionContext<T> getProductionContext();
+  public IInvocationManager getParent();
 
-  public IModelElementProducerManager<?> getParent();
+  public IActivityProductionContext getProductionContext();
 
 }

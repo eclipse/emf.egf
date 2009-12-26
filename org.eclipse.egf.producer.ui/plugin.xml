@@ -40,6 +40,29 @@
     
     </objectContribution>
   
+  </extension>  
+  
+  <!-- ================================================================================= -->
+  <!-- decorators                                                                        -->
+  <!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.ui.decorators"
+  >
+    <decorator
+      class="org.eclipse.egf.producer.ui.decorators.MandatoryLabelDecorator"
+      id="org.eclipse.egf.producer.ui.decorators.mandatorylabeldecorator"
+      label="%activityContractMandatory_Label"
+      lightweight="true"
+      location="TOP_LEFT"
+      state="true"
+    >
+      <enablement>
+        <objectClass
+          name="org.eclipse.egf.model.fcore.ActivityContract"
+        />
+      </enablement>
+    </decorator>
   </extension>    
   
   <!-- ================================================================================= -->

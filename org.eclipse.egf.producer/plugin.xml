@@ -18,32 +18,32 @@
   <!-- ================================================================================= -->
   
   <extension-point 
-    id="activity" 
-    name="%EGFActivityExtensionPoint" 
-    schema="schema/activity.exsd"
+    id="activityManagerProducer" 
+    name="%EGFActivityManagerProducerExtensionPoint" 
+    schema="schema/activityManagerProducer.exsd"
   />
   
   <extension-point 
-    id="activityProductionContext" 
-    name="%EGFActivityProductionContextExtensionPoint" 
-    schema="schema/activityProductionContext.exsd"
+    id="activityProductionContextProducer" 
+    name="%EGFActivityProductionContextProducerExtensionPoint" 
+    schema="schema/activityProductionContextProducer.exsd"
   />  
   
   <extension-point 
-    id="orchestration" 
-    name="%EGFOrchestrationExtensionPoint" 
-    schema="schema/orchestration.exsd"
+    id="orchestrationManagerProducer" 
+    name="%EGFOrchestrationManagerProducerExtensionPoint" 
+    schema="schema/orchestrationManagerProducer.exsd"
   />   
   
   <!-- ================================================================================= -->
-  <!-- Activity Producer                                                                 -->
+  <!-- Activity Manager Producer                                                         -->
   <!-- ================================================================================= -->
    
   <extension
-    point="org.eclipse.egf.producer.activity"
+    point="org.eclipse.egf.producer.activityManagerProducer"
   >
-    <activity
-      class="org.eclipse.egf.producer.activity.FactoryComponentProducer"
+    <activityManagerProducer
+      class="org.eclipse.egf.producer.internal.manager.FactoryComponentManagerProducer"
     />
   </extension>          
       

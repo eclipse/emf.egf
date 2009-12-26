@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.egf.model.producer" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.egf.model.producer" id="activity" name="Activity Producer"/>
+         <meta.schema plugin="org.eclipse.egf.model.producer" id="activityManagerProducer" name="Activity Producer"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="activity"/>
+            <element ref="activityManagerProducer"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,16 +47,16 @@
       </complexType>
    </element>
 
-   <element name="activity">
+   <element name="activityManagerProducer">
       <complexType>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   The implementation of the expected services.
-Must subclass ActivityProducer.
+Must subclass ActivityManagerProducer.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.egf.producer.activity.ActivityProducer:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.egf.producer.manager.ActivityManagerProducer:"/>
                </appinfo>
             </annotation>
          </attribute>

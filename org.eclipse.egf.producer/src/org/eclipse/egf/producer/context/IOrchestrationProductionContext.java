@@ -21,4 +21,6 @@ public interface IOrchestrationProductionContext extends IModelElementProduction
 
   public Orchestration getElement();
 
+  public IFactoryComponentProductionContext getParent();
+
 }

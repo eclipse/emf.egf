@@ -8,12 +8,11 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.producer.internal.manager;
+package org.eclipse.egf.producer.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.FactoryComponent;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
+import org.eclipse.egf.producer.internal.manager.FactoryComponentManager;
 import org.osgi.framework.Bundle;
 
 /**
@@ -22,11 +21,15 @@ import org.osgi.framework.Bundle;
  */
 public class FactoryComponentManagerFactory {
 
-  public IModelElementProducerManager<ActivityContract> createProductionManager(FactoryComponent factoryComponent) throws InvocationException {
+  private FactoryComponentManagerFactory() {
+    // Prevent Instantiation
+  }
+
+  public static IFactoryComponentManager createProductionManager(FactoryComponent factoryComponent) throws InvocationException {
     return new FactoryComponentManager(factoryComponent);
   }
 
-  public IModelElementProducerManager<ActivityContract> createProductionManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
+  public static IFactoryComponentManager createProductionManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
     return new FactoryComponentManager(bundle, factoryComponent);
   }
 

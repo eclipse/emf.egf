@@ -19,7 +19,7 @@ import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.producer.context.IActivityProductionContext;
-import org.eclipse.egf.producer.context.IModelElementProductionContext;
+import org.eclipse.egf.producer.context.IInvocationProductionContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -32,13 +32,18 @@ public abstract class ActivityProductionContext extends ModelElementProductionCo
     super(element, projectBundleSession);
   }
 
-  public ActivityProductionContext(IModelElementProductionContext<?> parent, Activity element, ProjectBundleSession projectBundleSession) {
+  public ActivityProductionContext(IInvocationProductionContext parent, Activity element, ProjectBundleSession projectBundleSession) {
     super(parent, element, projectBundleSession);
   }
 
   @Override
   public Activity getElement() {
     return (Activity) super.getElement();
+  }
+
+  @Override
+  public IInvocationProductionContext getParent() {
+    return (IInvocationProductionContext) super.getParent();
   }
 
   @Override

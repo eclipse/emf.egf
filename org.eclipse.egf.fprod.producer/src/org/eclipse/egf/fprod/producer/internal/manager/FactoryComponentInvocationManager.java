@@ -13,27 +13,34 @@ package org.eclipse.egf.fprod.producer.internal.manager;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.fprod.producer.context.IFactoryComponentInvocationProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.FactoryComponentInvocationProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
+import org.eclipse.egf.fprod.producer.manager.IFactoryComponentInvocationManager;
+import org.eclipse.egf.fprod.producer.manager.IProductionPlanManager;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
 import org.eclipse.egf.producer.internal.manager.FactoryComponentManager;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class FactoryComponentInvocationManager extends ProductionPlanInvocationManager {
+public class FactoryComponentInvocationManager extends ProductionPlanInvocationManager implements IFactoryComponentInvocationManager {
 
   private FactoryComponentManager _factoryComponentManager;
 
-  public FactoryComponentInvocationManager(IModelElementProducerManager<?> parent, FactoryComponentInvocation factoryComponentInvocation) throws InvocationException {
+  public FactoryComponentInvocationManager(IProductionPlanManager parent, FactoryComponentInvocation factoryComponentInvocation) throws InvocationException {
     super(parent, factoryComponentInvocation);
   }
 
   @Override
   public FactoryComponentInvocation getElement() {
     return (FactoryComponentInvocation) super.getElement();
+  }
+
+  @Override
+  public IFactoryComponentInvocationProductionContext getProductionContext() {
+    return (IFactoryComponentInvocationProductionContext) super.getProductionContext();
   }
 
   @Override

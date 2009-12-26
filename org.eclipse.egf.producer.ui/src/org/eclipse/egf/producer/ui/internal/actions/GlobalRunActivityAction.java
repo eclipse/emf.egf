@@ -30,8 +30,8 @@ import org.eclipse.egf.core.producer.MissingExtensionException;
 import org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.activity.ActivityProducer;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
+import org.eclipse.egf.producer.manager.ActivityManagerProducer;
+import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
 import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
@@ -107,19 +107,19 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         } catch (Throwable t) {
           throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, "GlobalRunActivityAction.runWithEvent(..) _", t)); //$NON-NLS-1$
         }
-        IModelElementProducerManager production = null;
+        IActivityManager activityManager = null;
         int ticks = 0;
         try {
           // Locate a Producer
-          ActivityProducer producer = null;
+          ActivityManagerProducer producer = null;
           try {
-            producer = EGFProducerPlugin.getActivityProducer(activity);
+            producer = EGFProducerPlugin.getActivityManagerProducer(activity);
           } catch (MissingExtensionException mee) {
             throw new InvocationException(mee);
           }
           // Create a Manager
-          production = producer.createManager(activity);
-          ticks = production.getSteps();
+          activityManager = producer.createActivityManager(activity);
+          ticks = activityManager.getSteps();
         } catch (InvocationException ie) {
           if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
             throw (CoreException) ie.getCause();
@@ -127,13 +127,13 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
           invocationException[0] = ie;
           return Status.OK_STATUS;
         }
-        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, production.getName()), (900 * ticks) + 100);
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, activityManager.getName()), (900 * ticks) + 100);
         try {
           try {
             if (EGFProducerUIPlugin.getDefault().isDebugging()) {
               EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EObjectHelper.getText(activity), ticks)); //$NON-NLS-1$
             }
-            production.invoke(subMonitor.newChild(900 * ticks, SubMonitor.SUPPRESS_NONE));
+            activityManager.invoke(subMonitor.newChild(900 * ticks, SubMonitor.SUPPRESS_NONE));
             if (monitor.isCanceled()) {
               throw new OperationCanceledException();
             }

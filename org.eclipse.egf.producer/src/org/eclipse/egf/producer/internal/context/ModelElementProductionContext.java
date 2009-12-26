@@ -31,6 +31,11 @@ public abstract class ModelElementProductionContext<T extends ModelElement> exte
   }
 
   @Override
+  public String getName() {
+    return EObjectHelper.getText(getElement());
+  }
+
+  @Override
   public ModelElement getElement() {
     return (ModelElement) super.getElement();
   }
@@ -38,11 +43,6 @@ public abstract class ModelElementProductionContext<T extends ModelElement> exte
   @Override
   public IModelElementProductionContext<?> getParent() {
     return (IModelElementProductionContext<?>) super.getParent();
-  }
-
-  @Override
-  public String getName() {
-    return EObjectHelper.getText(getElement());
   }
 
 }

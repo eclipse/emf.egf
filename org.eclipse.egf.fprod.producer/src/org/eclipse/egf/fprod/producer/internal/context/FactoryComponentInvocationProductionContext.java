@@ -12,8 +12,8 @@ package org.eclipse.egf.fprod.producer.internal.context;
 
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.fprod.producer.context.IFactoryComponentInvocationProductionContext;
+import org.eclipse.egf.fprod.producer.context.IProductionPlanProductionContext;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
-import org.eclipse.egf.producer.context.IModelElementProductionContext;
 
 /**
  * @author Xavier Maysonnave
@@ -25,7 +25,7 @@ public class FactoryComponentInvocationProductionContext extends ProductionPlanI
     super(element, projectBundleSession);
   }
 
-  public FactoryComponentInvocationProductionContext(IModelElementProductionContext<?> parent, FactoryComponentInvocation element, ProjectBundleSession projectBundleSession) {
+  public FactoryComponentInvocationProductionContext(IProductionPlanProductionContext parent, FactoryComponentInvocation element, ProjectBundleSession projectBundleSession) {
     super(parent, element, projectBundleSession);
   }
 

@@ -8,12 +8,11 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.fprod.producer.internal.manager;
+package org.eclipse.egf.fprod.producer.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.fprod.producer.internal.manager.TaskManager;
 import org.eclipse.egf.model.fprod.Task;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.osgi.framework.Bundle;
 
 /**
@@ -22,11 +21,15 @@ import org.osgi.framework.Bundle;
  */
 public class TaskManagerFactory {
 
-  public IModelElementProducerManager<ActivityContract> createProductionManager(Task task) throws InvocationException {
+  private TaskManagerFactory() {
+    // Prevent Instantiation
+  }
+
+  public static ITaskManager createProductionManager(Task task) throws InvocationException {
     return new TaskManager(task);
   }
 
-  public IModelElementProducerManager<ActivityContract> createProductionManager(Bundle bundle, Task task) throws InvocationException {
+  public static ITaskManager createProductionManager(Bundle bundle, Task task) throws InvocationException {
     return new TaskManager(bundle, task);
   }
 

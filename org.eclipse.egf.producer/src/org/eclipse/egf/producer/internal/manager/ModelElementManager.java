@@ -24,7 +24,7 @@ import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.IModelElementProductionContext;
 import org.eclipse.egf.producer.internal.context.ModelElementProductionContext;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
+import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
@@ -32,19 +32,19 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ModelElementManager<T extends ModelElement> implements IModelElementProducerManager<T> {
+public abstract class ModelElementManager implements IModelElementManager {
 
   private ModelElement _element;
+
+  protected IModelElementManager _parent;
+
+  protected IModelElementProductionContext<?> _productionContext;
 
   private Bundle _bundle;
 
   private ProjectBundleSession _projectBundleSession;
 
   private IPlatformFcore _platformFcore;
-
-  protected IModelElementProducerManager<?> _parent;
-
-  protected ModelElementProductionContext<T> _productionContext;
 
   public ModelElementManager(ModelElement element) throws InvocationException {
     Assert.isNotNull(element);
@@ -64,7 +64,7 @@ public abstract class ModelElementManager<T extends ModelElement> implements IMo
     prepare();
   }
 
-  public ModelElementManager(IModelElementProducerManager<?> parent, ModelElement element) throws InvocationException {
+  public ModelElementManager(IModelElementManager parent, ModelElement element) throws InvocationException {
     Assert.isNotNull(parent);
     Assert.isNotNull(element);
     _parent = parent;
@@ -80,15 +80,15 @@ public abstract class ModelElementManager<T extends ModelElement> implements IMo
     return _element;
   }
 
-  public IModelElementProductionContext<T> getProductionContext() {
+  public IModelElementProductionContext<?> getProductionContext() {
     return _productionContext;
   }
 
-  public IModelElementProducerManager<?> getParent() {
+  public IModelElementManager getParent() {
     return _parent;
   }
 
-  protected abstract ModelElementProductionContext<T> getInternalProductionContext() throws InvocationException;
+  protected abstract ModelElementProductionContext<?> getInternalProductionContext() throws InvocationException;
 
   public String getName() {
     return EObjectHelper.getText(getElement());

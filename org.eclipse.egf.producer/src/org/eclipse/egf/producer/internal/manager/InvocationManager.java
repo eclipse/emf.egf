@@ -21,17 +21,19 @@ import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.TypeObject;
 import org.eclipse.egf.producer.EGFProducerPlugin;
+import org.eclipse.egf.producer.context.IInvocationProductionContext;
 import org.eclipse.egf.producer.internal.context.InvocationProductionContext;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
+import org.eclipse.egf.producer.manager.IInvocationManager;
+import org.eclipse.egf.producer.manager.IOrchestrationManager;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public abstract class InvocationManager extends ModelElementManager<InvocationContext> {
+public abstract class InvocationManager extends ModelElementManager implements IInvocationManager {
 
-  public InvocationManager(IModelElementProducerManager<?> parent, Invocation<?> invocation) throws InvocationException {
+  public InvocationManager(IOrchestrationManager parent, Invocation<?> invocation) throws InvocationException {
     super(parent, invocation);
   }
 
@@ -41,7 +43,17 @@ public abstract class InvocationManager extends ModelElementManager<InvocationCo
   }
 
   @Override
-  public abstract InvocationProductionContext getInternalProductionContext() throws InvocationException;
+  public IInvocationProductionContext getProductionContext() {
+    return (IInvocationProductionContext) super.getProductionContext();
+  }
+
+  @Override
+  public IOrchestrationManager getParent() {
+    return (IOrchestrationManager) super.getParent();
+  }
+
+  @Override
+  protected abstract InvocationProductionContext getInternalProductionContext() throws InvocationException;
 
   @Override
   public void prepare() throws InvocationException {

@@ -19,7 +19,7 @@ import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
-import org.eclipse.egf.producer.context.IModelElementProductionContext;
+import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
 import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
 import org.eclipse.osgi.util.NLS;
 
@@ -33,13 +33,18 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     super(element, projectBundleSession);
   }
 
-  public OrchestrationProductionContext(IModelElementProductionContext<?> parent, Orchestration element, ProjectBundleSession projectBundleSession) {
+  public OrchestrationProductionContext(IFactoryComponentProductionContext parent, Orchestration element, ProjectBundleSession projectBundleSession) {
     super(parent, element, projectBundleSession);
   }
 
   @Override
   public Orchestration getElement() {
     return (Orchestration) super.getElement();
+  }
+
+  @Override
+  public IFactoryComponentProductionContext getParent() {
+    return (IFactoryComponentProductionContext) super.getParent();
   }
 
   @Override
@@ -52,14 +57,14 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // and in an FactoryComponent Contract
     if (invocationContext.getFactoryComponentExposedContract() != null) {
       if (getParent() != null) {
-        valueType = getParent().getInputValueType(invocationContext.getFactoryComponentExposedContract().getName());
+        valueType = getParent().getInputValueType(invocationContext);
       }
     } else {
       // Shouldn't be null at this stage
       if (orchestrationContext == null) {
         throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
       }
-      // Looking for local Value Type
+      // Looking for a local Value Type
       Data data = _inputDatas.get(orchestrationContext);
       if (data != null) {
         valueType = data.getType();
@@ -78,14 +83,14 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // and in an FactoryComponent Contract
     if (invocationContext.getFactoryComponentExposedContract() != null) {
       if (getParent() != null) {
-        value = getParent().getInputValue(invocationContext.getFactoryComponentExposedContract().getName(), clazz);
+        value = getParent().getInputValue(invocationContext, clazz);
       }
     } else {
       // Shouldn't be null at this stage
       if (orchestrationContext == null) {
         throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
       }
-      // Looking for local value
+      // Looking for a local value
       Data data = _inputDatas.get(orchestrationContext);
       if (data != null) {
         value = getValue(orchestrationContext, clazz, data);
@@ -103,7 +108,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // Always propagate, OrchestrationContext doesn't hold Output Values
     if (invocationContext.getFactoryComponentExposedContract() != null) {
       if (getParent() != null) {
-        valueType = getParent().getOutputValueType(invocationContext.getFactoryComponentExposedContract().getName());
+        valueType = getParent().getOutputValueType(invocationContext);
       }
     }
     return valueType;
@@ -118,7 +123,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // Always propagate, OrchestrationContext doesn't hold Output Values
     if (invocationContext.getFactoryComponentExposedContract() != null) {
       if (getParent() != null) {
-        value = getParent().getOutputValue(invocationContext.getFactoryComponentExposedContract().getName(), clazz);
+        value = getParent().getOutputValue(invocationContext, clazz);
       }
     }
     return value;
@@ -132,7 +137,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // Always propagate, OrchestrationContext doesn't hold Output Values
     if (invocationContext.getFactoryComponentExposedContract() != null) {
       if (getParent() != null) {
-        getParent().setOutputValue(invocationContext.getFactoryComponentExposedContract().getName(), value);
+        getParent().setOutputValue(invocationContext, value);
       }
     }
   }

@@ -11,12 +11,16 @@
 package org.eclipse.egf.fprod.producer.internal.context;
 
 import org.eclipse.egf.core.session.ProjectBundleSession;
+import org.eclipse.egf.fprod.producer.context.IFactoryComponentInvocationProductionContext;
+import org.eclipse.egf.fprod.producer.context.IProductionPlanProductionContext;
+import org.eclipse.egf.fprod.producer.context.ITaskInvocationProductionContext;
+import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.model.fprod.TaskInvocation;
-import org.eclipse.egf.producer.context.IModelElementProductionContext;
+import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
 import org.eclipse.egf.producer.internal.context.FactoryComponentProductionContext;
 
 /**
@@ -31,35 +35,35 @@ public class FprodProducerContextFactory {
 
   // FactoryComponent
 
-  public static FactoryComponentProductionContext createContext(IModelElementProductionContext<?> parent, FactoryComponent element, ProjectBundleSession projectBundleSession) {
+  public static IFactoryComponentProductionContext createContext(IFactoryComponentInvocationProductionContext parent, FactoryComponent element, ProjectBundleSession projectBundleSession) {
     return new FactoryComponentProductionContext(parent, element, projectBundleSession);
   }
 
   // Task
 
-  public static TaskProductionContext createContext(Task element, ProjectBundleSession projectBundleSession) {
+  public static ITaskProductionContext createContext(Task element, ProjectBundleSession projectBundleSession) {
     return new TaskProductionContext(element, projectBundleSession);
   }
 
-  public static TaskProductionContext createContext(IModelElementProductionContext<?> parent, Task element, ProjectBundleSession projectBundleSession) {
+  public static ITaskProductionContext createContext(ITaskInvocationProductionContext parent, Task element, ProjectBundleSession projectBundleSession) {
     return new TaskProductionContext(parent, element, projectBundleSession);
   }
 
   // ProductionPlan
 
-  public static ProductionPlanProductionContext createContext(IModelElementProductionContext<?> parent, ProductionPlan element, ProjectBundleSession projectBundleSession) {
+  public static IProductionPlanProductionContext createContext(IFactoryComponentProductionContext parent, ProductionPlan element, ProjectBundleSession projectBundleSession) {
     return new ProductionPlanProductionContext(parent, element, projectBundleSession);
   }
 
   // FactoryComponentInvocation
 
-  public static FactoryComponentInvocationProductionContext createContext(IModelElementProductionContext<?> parent, FactoryComponentInvocation element, ProjectBundleSession projectBundleSession) {
+  public static IFactoryComponentInvocationProductionContext createContext(IProductionPlanProductionContext parent, FactoryComponentInvocation element, ProjectBundleSession projectBundleSession) {
     return new FactoryComponentInvocationProductionContext(parent, element, projectBundleSession);
   }
 
   // TaskInvocation
 
-  public static TaskInvocationProductionContext createContext(IModelElementProductionContext<?> parent, TaskInvocation element, ProjectBundleSession projectBundleSession) {
+  public static ITaskInvocationProductionContext createContext(IProductionPlanProductionContext parent, TaskInvocation element, ProjectBundleSession projectBundleSession) {
     return new TaskInvocationProductionContext(parent, element, projectBundleSession);
   }
 

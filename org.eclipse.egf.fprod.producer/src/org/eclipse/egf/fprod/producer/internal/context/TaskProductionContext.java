@@ -13,7 +13,7 @@ package org.eclipse.egf.fprod.producer.internal.context;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.fprod.Task;
-import org.eclipse.egf.producer.context.IModelElementProductionContext;
+import org.eclipse.egf.producer.context.IInvocationProductionContext;
 import org.eclipse.egf.producer.internal.context.ActivityProductionContext;
 
 /**
@@ -26,7 +26,7 @@ public class TaskProductionContext extends ActivityProductionContext implements 
     super(element, projectBundleSession);
   }
 
-  public TaskProductionContext(IModelElementProductionContext<?> parent, Task element, ProjectBundleSession projectBundleSession) {
+  public TaskProductionContext(IInvocationProductionContext parent, Task element, ProjectBundleSession projectBundleSession) {
     super(parent, element, projectBundleSession);
   }
 

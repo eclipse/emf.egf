@@ -3,7 +3,7 @@
 <schema targetNamespace="org.eclipse.egf.model.producer" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.eclipse.egf.model.producer" id="orchestration" name="Orchestration Producer"/>
+         <meta.schema plugin="org.eclipse.egf.model.producer" id="activityProductionContextProducer" name="Activity Production Context Producer"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -18,7 +18,7 @@
       </annotation>
       <complexType>
          <sequence>
-            <element ref="orchestration"/>
+            <element ref="activityProductionContextProducer"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -47,16 +47,16 @@
       </complexType>
    </element>
 
-   <element name="orchestration">
+   <element name="activityProductionContextProducer">
       <complexType>
          <attribute name="class" type="string" use="required">
             <annotation>
                <documentation>
                   The implementation of the expected services.
-Must subclass OrchestrationProducer.
+Must subclass ActivityProductionContextProducer.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.eclipse.egf.producer.orchestration.OrchestrationProducer:"/>
+                  <meta.attribute kind="java" basedOn="org.eclipse.egf.producer.context.ActivityProductionContextProducer:"/>
                </appinfo>
             </annotation>
          </attribute>

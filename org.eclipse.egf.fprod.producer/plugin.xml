@@ -24,14 +24,14 @@
   />
       
   <!-- ================================================================================= -->
-  <!-- Activity Producer                                                                 -->
+  <!-- Activity Manager Producer                                                         -->
   <!-- ================================================================================= -->
   
   <extension
-    point="org.eclipse.egf.producer.activity"
+    point="org.eclipse.egf.producer.activityManagerProducer"
   >
-    <activity
-      class="org.eclipse.egf.fprod.producer.activity.TaskProducer"
+    <activityManagerProducer
+      class="org.eclipse.egf.fprod.producer.internal.manager.TaskManagerProducer"
     />
   </extension>
   
@@ -41,30 +41,30 @@
   <!-- ================================================================================= -->
   
   <extension
-    point="org.eclipse.egf.producer.activityProductionContext"
+    point="org.eclipse.egf.producer.activityProductionContextProducer"
   >
-    <activityProductionContext
-      class="org.eclipse.egf.fprod.producer.activity.FactoryComponentProductionContextProducer"
+    <activityProductionContextProducer
+      class="org.eclipse.egf.fprod.producer.internal.context.FactoryComponentProductionContextProducer"
     />
   </extension>    
   
   <extension
-    point="org.eclipse.egf.producer.activityProductionContext"
+    point="org.eclipse.egf.producer.activityProductionContextProducer"
   >
-    <activityProductionContext
-      class="org.eclipse.egf.fprod.producer.activity.TaskProductionContextProducer"
+    <activityProductionContextProducer
+      class="org.eclipse.egf.fprod.producer.internal.context.TaskProductionContextProducer"
     />
   </extension>  
      
   <!-- ================================================================================= -->
-  <!-- Orchestration Producer                                                            -->
+  <!-- Orchestration Manager Producer                                                    -->
   <!-- ================================================================================= -->  
   
   <extension
-    point="org.eclipse.egf.producer.orchestration"
+    point="org.eclipse.egf.producer.orchestrationManagerProducer"
   >
-    <orchestration
-      class="org.eclipse.egf.fprod.producer.orchestration.ProductionPlanProducer"
+    <orchestrationManagerProducer
+      class="org.eclipse.egf.fprod.producer.internal.manager.ProductionPlanManagerProducer"
     />
   </extension>       
     

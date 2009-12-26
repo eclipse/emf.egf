@@ -16,6 +16,6 @@ Export-Package:
  org.eclipse.egf.fprod.producer,
  org.eclipse.egf.fprod.producer.context, 
  org.eclipse.egf.fprod.producer.invocation,
- org.eclipse.egf.fprod.producer.orchestration,
+ org.eclipse.egf.fprod.producer.manager, 
  org.eclipse.egf.fprod.producer.task  
 Bundle-ActivationPolicy: lazy

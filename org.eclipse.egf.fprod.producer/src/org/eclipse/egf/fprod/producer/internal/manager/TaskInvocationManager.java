@@ -13,26 +13,33 @@ package org.eclipse.egf.fprod.producer.internal.manager;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.fprod.producer.context.ITaskInvocationProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
 import org.eclipse.egf.fprod.producer.internal.context.TaskInvocationProductionContext;
+import org.eclipse.egf.fprod.producer.manager.IProductionPlanManager;
+import org.eclipse.egf.fprod.producer.manager.ITaskInvocationManager;
 import org.eclipse.egf.model.fprod.TaskInvocation;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class TaskInvocationManager extends ProductionPlanInvocationManager {
+public class TaskInvocationManager extends ProductionPlanInvocationManager implements ITaskInvocationManager {
 
   private TaskManager _taskManager;
 
-  public TaskInvocationManager(IModelElementProducerManager<?> parent, TaskInvocation taskInvocation) throws InvocationException {
+  public TaskInvocationManager(IProductionPlanManager parent, TaskInvocation taskInvocation) throws InvocationException {
     super(parent, taskInvocation);
   }
 
   @Override
   public TaskInvocation getElement() {
     return (TaskInvocation) super.getElement();
+  }
+
+  @Override
+  public ITaskInvocationProductionContext getProductionContext() {
+    return (ITaskInvocationProductionContext) super.getProductionContext();
   }
 
   @Override

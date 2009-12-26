@@ -29,13 +29,13 @@ public class ProducerMessages {
 
   public static String ActivityManager_fcore_activity;
 
-  public static String Activity_extension_error;
-  public static String Activity_type_error;
+  public static String ActivityManagerProducer_extension_error;
+  public static String ActivityManagerProducer_type_error;
 
-  public static String ActivityProductionContext_extension_error;
-  public static String ActivityProductionContext_type_error;
+  public static String ActivityProductionContextProducer_extension_error;
+  public static String ActivityProductionContextProducer_type_error;
 
-  public static String Orchestration_extension_error;
-  public static String Orchestration_type_error;
+  public static String OrchestrationManagerProducer_extension_error;
+  public static String OrchestrationManagerProducer_type_error;
 
 }

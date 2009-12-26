@@ -21,8 +21,10 @@ import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.TypeObject;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.internal.context.ModelElementProductionContext;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
+import org.eclipse.egf.producer.context.IActivityProductionContext;
+import org.eclipse.egf.producer.internal.context.ActivityProductionContext;
+import org.eclipse.egf.producer.manager.IActivityManager;
+import org.eclipse.egf.producer.manager.IInvocationManager;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
@@ -30,7 +32,7 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ActivityManager extends ModelElementManager<ActivityContract> {
+public abstract class ActivityManager extends ModelElementManager implements IActivityManager {
 
   public ActivityManager(Activity activity) throws InvocationException {
     super(activity);
@@ -40,7 +42,7 @@ public abstract class ActivityManager extends ModelElementManager<ActivityContra
     super(bundle, activity);
   }
 
-  public ActivityManager(IModelElementProducerManager<?> parent, Activity activity) throws InvocationException {
+  public ActivityManager(IInvocationManager parent, Activity activity) throws InvocationException {
     super(parent, activity);
   }
 
@@ -50,9 +52,22 @@ public abstract class ActivityManager extends ModelElementManager<ActivityContra
   }
 
   @Override
+  public IActivityProductionContext getProductionContext() {
+    return (IActivityProductionContext) super.getProductionContext();
+  }
+
+  @Override
+  public IInvocationManager getParent() {
+    return (IInvocationManager) super.getParent();
+  }
+
+  @Override
+  protected abstract ActivityProductionContext getInternalProductionContext() throws InvocationException;
+
+  @Override
   public void prepare() throws InvocationException {
     // Get Context
-    ModelElementProductionContext<ActivityContract> context = getInternalProductionContext();
+    ActivityProductionContext context = getInternalProductionContext();
     // Clear Context
     context.clear();
     // Set Context
