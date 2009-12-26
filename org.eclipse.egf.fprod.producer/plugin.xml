@@ -34,15 +34,7 @@
       class="org.eclipse.egf.fprod.producer.activity.TaskProducer"
     />
   </extension> 
-   
-  <extension
-    point="org.eclipse.egf.producer.activity"
-  >
-    <activity
-      class="org.eclipse.egf.fprod.producer.activity.FactoryComponentProducer"
-    />
-  </extension>
-  
+     
   <!-- ================================================================================= -->
   <!-- Orchestration Producer                                                            -->
   <!-- ================================================================================= -->  

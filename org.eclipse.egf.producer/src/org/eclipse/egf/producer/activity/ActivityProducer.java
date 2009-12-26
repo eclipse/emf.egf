@@ -36,8 +36,6 @@ public abstract class ActivityProducer {
 
   protected abstract IModelElementProducerManager doCreateManager(Bundle bundle, Activity activity) throws InvocationException;
 
-  protected abstract IModelElementProducerManager doCreateManager(IModelElementProducerManager parent, Activity activity) throws InvocationException;
-
   public IModelElementProducerManager createManager(Activity activity) throws InvocationException {
     if (matchNature(activity) == false) {
       throw new InvocationException(NLS.bind(ProducerMessages.Activity_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
@@ -50,13 +48,6 @@ public abstract class ActivityProducer {
       throw new InvocationException(NLS.bind(ProducerMessages.Activity_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
     }
     return doCreateManager(bundle, activity);
-  }
-
-  public IModelElementProducerManager createManager(IModelElementProducerManager parent, Activity activity) throws InvocationException {
-    if (matchNature(activity) == false) {
-      throw new InvocationException(NLS.bind(ProducerMessages.Activity_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
-    }
-    return doCreateManager(parent, activity);
   }
 
   public boolean matchNature(Activity activity) {

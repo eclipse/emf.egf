@@ -16,8 +16,9 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.IFactoryComponentInvocationProductionContext;
 import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.FactoryComponentInvocationProductionContext;
-import org.eclipse.egf.fprod.producer.internal.context.ProducerContextFactory;
+import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
+import org.eclipse.egf.producer.internal.manager.FactoryComponentManager;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 
 /**
@@ -45,7 +46,7 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
   @Override
   public FactoryComponentInvocationProductionContext getInternalProductionContext() {
     if (_productionContext == null) {
-      _productionContext = ProducerContextFactory.createContext((IProductionPlanProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
+      _productionContext = FprodProducerContextFactory.createContext((IProductionPlanProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
     }
     return (FactoryComponentInvocationProductionContext) _productionContext;
   }

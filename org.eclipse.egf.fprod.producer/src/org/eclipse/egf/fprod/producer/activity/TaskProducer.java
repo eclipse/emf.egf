@@ -44,9 +44,4 @@ public class TaskProducer extends ActivityProducer {
     return _manager.createProductionManager(bundle, (Task) activity);
   }
 
-  @Override
-  protected IModelElementProducerManager doCreateManager(IModelElementProducerManager parent, Activity activity) throws InvocationException {
-    return _manager.createProductionManager(parent, (Task) activity);
-  }
-
 }

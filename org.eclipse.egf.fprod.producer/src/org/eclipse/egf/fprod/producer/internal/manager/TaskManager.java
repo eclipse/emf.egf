@@ -17,7 +17,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.EGFFprodProducerPlugin;
 import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
-import org.eclipse.egf.fprod.producer.internal.context.ProducerContextFactory;
+import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
 import org.eclipse.egf.fprod.producer.internal.context.TaskProductionContext;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.producer.internal.manager.ActivityManager;
@@ -58,7 +58,7 @@ public class TaskManager extends ActivityManager {
   @Override
   public TaskProductionContext getInternalProductionContext() {
     if (_productionContext == null) {
-      _productionContext = ProducerContextFactory.createContext(getElement(), getProjectBundleSession());
+      _productionContext = FprodProducerContextFactory.createContext(getElement(), getProjectBundleSession());
     }
     return (TaskProductionContext) _productionContext;
   }

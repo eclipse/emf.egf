@@ -26,17 +26,13 @@ import org.eclipse.egf.producer.internal.context.FactoryComponentProductionConte
  * @author Xavier Maysonnave
  * 
  */
-public class ProducerContextFactory {
+public class FprodProducerContextFactory {
 
-  private ProducerContextFactory() {
+  private FprodProducerContextFactory() {
     // Prevent Instantiation
   }
 
   // FactoryComponent
-
-  public static FactoryComponentProductionContext createContext(FactoryComponent element, ProjectBundleSession projectBundleSession) {
-    return new FactoryComponentProductionContext(element, projectBundleSession);
-  }
 
   public static FactoryComponentProductionContext createContext(IFactoryComponentInvocationProductionContext parent, FactoryComponent element, ProjectBundleSession projectBundleSession) {
     return new FactoryComponentProductionContext(parent, element, projectBundleSession);

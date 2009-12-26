@@ -29,8 +29,4 @@ public class TaskManagerFactory {
     return new TaskManager(bundle, task);
   }
 
-  public IModelElementProducerManager createProductionManager(IModelElementProducerManager parent, Task task) throws InvocationException {
-    return new TaskManager(parent, task);
-  }
-
 }

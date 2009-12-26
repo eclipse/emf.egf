@@ -15,7 +15,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
 import org.eclipse.egf.fprod.producer.ITaskInvocationProductionContext;
-import org.eclipse.egf.fprod.producer.internal.context.ProducerContextFactory;
+import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
 import org.eclipse.egf.fprod.producer.internal.context.TaskInvocationProductionContext;
 import org.eclipse.egf.model.fprod.TaskInvocation;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
@@ -45,7 +45,7 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager {
   @Override
   public TaskInvocationProductionContext getInternalProductionContext() {
     if (_productionContext == null) {
-      _productionContext = ProducerContextFactory.createContext((IProductionPlanProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
+      _productionContext = FprodProducerContextFactory.createContext((IProductionPlanProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
     }
     return (TaskInvocationProductionContext) _productionContext;
   }

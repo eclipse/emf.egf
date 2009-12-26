@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
-import org.eclipse.egf.fprod.producer.internal.context.ProducerContextFactory;
+import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
 import org.eclipse.egf.fprod.producer.internal.context.ProductionPlanProductionContext;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
@@ -55,7 +55,7 @@ public class ProductionPlanManager extends OrchestrationManager {
   @Override
   public ProductionPlanProductionContext getInternalProductionContext() {
     if (_productionContext == null) {
-      _productionContext = ProducerContextFactory.createContext((IFactoryComponentProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
+      _productionContext = FprodProducerContextFactory.createContext((IFactoryComponentProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
     }
     return (ProductionPlanProductionContext) _productionContext;
   }
