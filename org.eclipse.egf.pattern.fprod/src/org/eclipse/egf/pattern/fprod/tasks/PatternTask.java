@@ -27,7 +27,7 @@ public class PatternTask extends AbstractPatternTask {
         try {
             PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
             String reason = extension.canExecute(pattern);
-            PatternContext ctx = new PatternContext();
+            PatternContext ctx = createPatternContext(context);
 
             readContext(context, ctx);
 
@@ -48,10 +48,4 @@ public class PatternTask extends AbstractPatternTask {
     public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
         pattern = null;
     }
-
-    @Override
-    protected String getCurrentBundleId() throws InvocationException {
-        return PatternHelper.getPlatformFcore(pattern).getPlatformBundle().getBundleId();
-    }
-
 }

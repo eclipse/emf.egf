@@ -33,7 +33,6 @@ import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.java.Messages;
-import org.osgi.framework.Bundle;
 
 /**
  * @author Guiu
@@ -42,8 +41,8 @@ import org.osgi.framework.Bundle;
  */
 public class JavaEngine extends PatternEngine {
 
-    public JavaEngine(Pattern pattern) {
-        setPattern(pattern);
+    public JavaEngine(Pattern pattern) throws PatternException {
+        super(pattern);
     }
 
     public void execute(PatternContext context) throws PatternException {
@@ -54,12 +53,14 @@ public class JavaEngine extends PatternEngine {
             throw new IllegalStateException(Messages.assembly_error3);
         try {
 
-            Class<?> templateClass = ((Bundle) context.getValue(PatternContext.BUNDLE)).loadClass(templateClassName);
+            Class<?> templateClass = context.getBundle(getBundleId()).loadClass(templateClassName);
             Method method = templateClass.getMethod("generate", Object.class);
             Object template = templateClass.newInstance();
             method.invoke(template, context);
         } catch (InvocationTargetException e) {
             throw new PatternException(e.getCause());
+        } catch (PatternException e) {
+            throw e;
         } catch (Exception e) {
             throw new PatternException(e);
         }

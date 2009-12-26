@@ -56,7 +56,7 @@ public class JetPatternExtension extends PatternExtension {
     }
 
     @Override
-    public PatternEngine doCreateRunner(Pattern pattern) {
+    public PatternEngine doCreateRunner(Pattern pattern) throws PatternException {
         return new JetEngine(pattern);
     }
 

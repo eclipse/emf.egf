@@ -37,6 +37,7 @@ public class Messages extends NLS {
     public static String classloader_error1;
     public static String classloader_error2;
     public static String classloader_error3;
+    public static String classloader_error4;
 
     // file helper
     public static String fileHelper_error1;

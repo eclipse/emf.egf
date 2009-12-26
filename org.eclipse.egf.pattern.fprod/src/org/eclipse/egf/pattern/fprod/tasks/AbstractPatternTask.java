@@ -4,8 +4,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
+import org.eclipse.egf.model.BundleAccessor;
 import org.eclipse.egf.model.PatternContext;
+import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.fcore.ActivityContract;
+import org.osgi.framework.Bundle;
 
 public abstract class AbstractPatternTask implements ITaskProduction {
 
@@ -25,15 +28,27 @@ public abstract class AbstractPatternTask implements ITaskProduction {
     }
 
     protected void readContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
-        String bundleId = getCurrentBundleId();
-        ctx.setValue(PatternContext.BUNDLE, context.getBundle(bundleId));
         for (ActivityContract ac : context.getInputValueKeys()) {
             ctx.setValue(ac.getName(), context.getInputValue(ac.getName(), ac.getType().getType()));
         }
     }
 
-    // TODO faire mieux: ça aurait été sympa que le ITaskProductionContext me
-    // donne direct le bundle courant ... on vire cette method et ses surcharges
-    protected abstract String getCurrentBundleId() throws InvocationException;
+    protected PatternContext createPatternContext(final ITaskProductionContext prodCtx) {
+        return new PatternContext(new BundleAccessor() {
+
+            @Override
+            public Bundle getBundle(String id) throws PatternException {
+
+                try {
+                    return prodCtx.getBundle(id);
+                } catch (InvocationException e) {
+                    // TODO on devrait pouvoir mieux gérer les exceptions,
+                    // là on empile .. ce serait mieux de transmettre
+                    // l'exception originale
+                    throw new PatternException(e);
+                }
+            }
+        });
+    }
 
 }

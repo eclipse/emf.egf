@@ -51,7 +51,7 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
             throw new InvocationException(Messages.taskInvocation_error3);
 
         try {
-            PatternContext ctx = new PatternContext();
+            PatternContext ctx = createPatternContext(context);
             readContext(context, ctx);
             strategy.setPatternElements(patterns);
             strategy.execute(ctx, parameter);
@@ -66,12 +66,4 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
     public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
         parameter = null;
     }
-
-    @Override
-    protected String getCurrentBundleId() throws InvocationException {
-        if (patterns.isEmpty())
-            throw new InvocationException(Messages.taskInvocation_error3);
-        return PatternHelper.getPlatformFcore(patterns.get(0)).getPlatformBundle().getBundleId();
-    }
-
 }

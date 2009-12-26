@@ -41,7 +41,7 @@ public class JavaPatternExtension extends PatternExtension {
     }
 
     @Override
-    public PatternEngine doCreateRunner(Pattern pattern) {
+    public PatternEngine doCreateRunner(Pattern pattern) throws PatternException {
         return new JavaEngine(pattern);
     }
 

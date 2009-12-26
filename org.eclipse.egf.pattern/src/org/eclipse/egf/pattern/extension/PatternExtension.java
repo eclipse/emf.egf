@@ -37,7 +37,7 @@ public abstract class PatternExtension {
 
     public abstract PatternFactory getFactory();
 
-    protected abstract PatternEngine doCreateRunner(Pattern pattern);
+    protected abstract PatternEngine doCreateRunner(Pattern pattern) throws PatternException;
 
     public PatternEngine createEngine(Pattern pattern) throws PatternException {
         if (!matchNature(pattern))

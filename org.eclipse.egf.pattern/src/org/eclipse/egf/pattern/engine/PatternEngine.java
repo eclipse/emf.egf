@@ -18,6 +18,7 @@ package org.eclipse.egf.pattern.engine;
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.pattern.Messages;
 
 /**
  * @author Thomas Guiu
@@ -25,7 +26,15 @@ import org.eclipse.egf.model.pattern.Pattern;
  */
 public abstract class PatternEngine {
 
-    private Pattern pattern;
+    private final Pattern pattern;
+    private final String bundleId;
+
+    public PatternEngine(Pattern pattern) throws PatternException {
+        this.pattern = pattern;
+        bundleId = PatternHelper.getPlatformFcore(pattern).getPlatformBundle().getBundleId();
+        if (bundleId == null)
+            throw new PatternException(Messages.classloader_error4);
+    }
 
     public abstract void execute(PatternContext context) throws PatternException;
 
@@ -35,8 +44,7 @@ public abstract class PatternEngine {
         return pattern;
     }
 
-    protected void setPattern(Pattern pattern) {
-        this.pattern = pattern;
+    protected String getBundleId() {
+        return bundleId;
     }
-
 }

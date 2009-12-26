@@ -18,6 +18,8 @@ package org.eclipse.egf.model;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.osgi.framework.Bundle;
+
 /**
  * TODO Ici on ne devrait avoir qu'une pauvre map avec name-valeur. Son
  * initialisation étant à la charge de l'orchestrateur. TODO il faudrait ajouetr
@@ -27,13 +29,13 @@ import java.util.Map;
  * @author Guiu
  * 
  */
-public class PatternContext {
+public class PatternContext implements BundleAccessor {
 
     /**
      * Key to manage the patter execution reporter.
      */
     public static final String PATTERN_REPORTER = "internal.pattern.reporter";
-    public static final String BUNDLE = "internal.pattern.bundle";
+    public static final String BUNDLE_ID = "internal.pattern.bundleId";
 
     /**
      * key to manage the context injected to a pattern.
@@ -47,11 +49,16 @@ public class PatternContext {
 
     private PatternContext parent;
     private final Map<String, Object> data = new HashMap<String, Object>();
+    private final BundleAccessor accessor;
 
-    public PatternContext() {
+    public PatternContext(BundleAccessor accessor) {
+        if (accessor == null)
+            throw new IllegalArgumentException();
+        this.accessor = accessor;
     }
 
     public PatternContext(PatternContext parent) {
+        this((BundleAccessor) parent);
         this.parent = parent;
     }
 
@@ -69,6 +76,11 @@ public class PatternContext {
         if (data.containsKey(name))
             return data.get(name);
         return parent == null ? null : parent.getValue(name);
+    }
+
+    public Bundle getBundle(String id) throws PatternException {
+
+        return accessor.getBundle(id);
     }
 
 }
