@@ -6,7 +6,7 @@
   <activityContractContainer xmi:id="_SmBtAL-2Ed6E7J0w9U7NFQ">
     <activityContracts xmi:id="_S7e_oL-2Ed6E7J0w9U7NFQ" name="amount" mode="Out" invocationContexts="#_IDAaML-2Ed6E7J0w9U7NFQ"
         contexts="#_IDAaML-2Ed6E7J0w9U7NFQ">
-      <type xmi:type="types:FloatType" xmi:id="_MZ2CIb-3Ed61q9pxr2iF9w" value="100.0"/>
+      <type xmi:type="types:FloatType" xmi:id="_o0esoNBTEd67h-iKUQB4KA"/>
     </activityContracts>
     <activityContracts xmi:id="_1SUNMcLoEd6YQfrk65kDFw" name="price" invocationContexts="#_GpyuQb_nEd6gHIEE-OJ_Mw">
       <type xmi:type="types:FloatType" xmi:id="_BV5T0MLpEd6YQfrk65kDFw" value="11.0"/>
@@ -29,7 +29,9 @@
         activity="fprod:Task platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
       <invocationContextContainer xmi:id="_GuhTgb-2Ed6E7J0w9U7NFQ">
         <invocationContexts xmi:id="_bu7G8MVjEd6ngr_25dSdnQ" name="quantity" orchestrationContext="#_uNn24MVjEd6ngr_25dSdnQ"
-            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_sZPqULpOEd6O-6ob3O13Lw"/>
+            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_sZPqULpOEd6O-6ob3O13Lw">
+          <type xmi:type="types:IntegerType" xmi:id="_hkAvsdBTEd67h-iKUQB4KA" value="10"/>
+        </invocationContexts>
         <invocationContexts xmi:id="_4qwyMdA6Ed6FD_8N74-4WA" name="stock" orchestrationContext="#_uNn24MVjEd6ngr_25dSdnQ"
             activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_Z65BAdA5Ed6LbMEN-DBMtQ"/>
         <invocationContexts xmi:id="_Ltj4QNA8Ed6uEZYKLg-jOQ" name="rebate" factoryComponentExposedContract="#_S6wewNA8Ed6uEZYKLg-jOQ"

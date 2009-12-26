@@ -17,7 +17,7 @@
       <type xmi:type="types:FloatType" xmi:id="_y0EYsLpOEd6O-6ob3O13Lw" value="10.5"/>
     </activityContracts>
     <activityContracts xmi:id="_2vwLILpOEd6O-6ob3O13Lw" name="amount" mode="Out">
-      <type xmi:type="types:FloatType" xmi:id="_5M9NYLpOEd6O-6ob3O13Lw"/>
+      <type xmi:type="types:FloatType" xmi:id="_5M9NYLpOEd6O-6ob3O13Lw" value="10.0"/>
     </activityContracts>
     <activityContracts xmi:id="_PFOYwbshEd6hlL3ru-eQtQ" name="generatorAdapterFactory"
         mode="Out">
