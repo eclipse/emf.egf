@@ -55,11 +55,18 @@ public class EObjectHelper {
    * display in error messages. If no suitable factory is registered, then
    * the EMF reflective item provider is used.
    * 
-   * @param eObject
+   * @param object
    *          the model element for which to get text
    * @return the corresponding text
    */
-  public static String getText(EObject eObject) {
+  public static String getText(Object object) {
+    if (object == null || object instanceof EObject == false) {
+      if (object == null) {
+        return null;
+      }
+      return object.toString();
+    }
+    EObject eObject = (EObject) object;
     IItemLabelProvider provider = (IItemLabelProvider) factory.adapt(eObject, IItemLabelProvider.class);
     if (provider == null) {
       // for backward compatibility, try looking in the resource set
