@@ -32,18 +32,18 @@ public class PatternTask implements ITaskProduction {
             PatternContext ctx = new PatternContext();
 
             for (ActivityContract ac : context.getInputValueKeys()) {
-                ac.toString();
-                System.out.println(ac.getName());
+                ctx.setValue(ac.getName(), context.getInputValue(ac.getName(), ac.getType().getType()));
             }
-            // TODO init du pattern Context: lecture des input/inout depuis le
-            // productionCtx et ajout dans patternCtx
+
             if (reason == null)
                 extension.createEngine(pattern).execute(ctx);
             else
                 throw new InvocationException(reason);
-            // TODO récupération des résultat de l'exec du pattern Context:
-            // lecture des inout/out depuis le patternCtx et ajout dans
-            // productionCtx
+
+            for (ActivityContract ac : context.getOutputValueKeys()) {
+                context.setOutputValue(ac.getName(), ctx.getValue(ac.getName()));
+            }
+
         } catch (MissingExtensionException e) {
             throw new InvocationException(e);
         } catch (PatternException e) {
