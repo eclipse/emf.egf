@@ -95,7 +95,7 @@ public class ProjectBundleSession {
       checkDependencies(base);
       bundle = installBundle(location);
       IProject project = base.getUnderlyingResource().getProject();
-      setBundleClasspath(project, bundle);
+      addOutputFoldersToBundleClasspath(project, bundle);
       _projectBundles.put(base, bundle);
       bundles.add(bundle);
     }
@@ -232,22 +232,21 @@ public class ProjectBundleSession {
    *          The equinox bundle which classpath is to reflect an eclipse
    *          development plugin.
    */
-  private void setBundleClasspath(IProject plugin, Bundle bundle) throws CoreException {
-    Set<String> classpathEntries = ProjectHelper.getOutputFolders(plugin);
+  private void addOutputFoldersToBundleClasspath(IProject plugin, Bundle bundle) throws CoreException {
+    Set<String> outputFolders = ProjectHelper.getOutputFolders(plugin);
     BaseData bundleData = (BaseData) ((AbstractBundle) bundle).getBundleData();
-    if (classpathEntries.size() == 1) {
-      bundleData.setClassPathString(classpathEntries.iterator().next());
+    StringBuilder classpath = new StringBuilder();
+    if (outputFolders.size() == 0) {
+      classpath.append("."); //$NON-NLS-1$
     } else {
-      StringBuilder classpath = new StringBuilder();
-      Iterator<String> entryIterator = classpathEntries.iterator();
-      while (entryIterator.hasNext()) {
-        classpath.append(entryIterator.next());
-        if (entryIterator.hasNext()) {
-          classpath.append(',');
+      for (Iterator<String> it = outputFolders.iterator(); it.hasNext();) {
+        if (classpath.length() > 0) {
+          classpath.append(","); //$NON-NLS-1$ 
         }
+        classpath.append(it.next());
       }
-      bundleData.setClassPathString(classpath.toString());
     }
+    bundleData.setClassPathString(classpath.toString());
   }
 
   /**
