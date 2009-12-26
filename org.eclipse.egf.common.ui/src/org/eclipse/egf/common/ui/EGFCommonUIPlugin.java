@@ -46,7 +46,12 @@ public class EGFCommonUIPlugin extends EGFAbstractUIPlugin {
    */
   public static Shell getActiveWorkbenchShell() {
     IWorkbenchWindow window = getActiveWorkbenchWindow();
-    if (window != null) {
+    if (window == null) {
+      IWorkbenchWindow[] windows = getDefault().getWorkbench().getWorkbenchWindows();
+      if (windows.length > 0) {
+        return windows[0].getShell();
+      }
+    } else {
       return window.getShell();
     }
     return null;
