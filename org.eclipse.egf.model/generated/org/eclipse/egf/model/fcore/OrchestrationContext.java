@@ -74,7 +74,7 @@ public interface OrchestrationContext extends ModelElement {
    * @return the value of the '<em>Invocation Contexts</em>' reference list.
    * @see org.eclipse.egf.model.fcore.FcorePackage#getOrchestrationContext_InvocationContexts()
    * @see org.eclipse.egf.model.fcore.InvocationContext#getOrchestrationContext
-   * @model opposite="orchestrationContext" resolveProxies="false" required="true"
+   * @model opposite="orchestrationContext" resolveProxies="false" lower="2"
    * @generated
    */
   EList<InvocationContext> getInvocationContexts();

@@ -1227,7 +1227,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     initEClass(orchestrationContextEClass, OrchestrationContext.class, "OrchestrationContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getOrchestrationContext_OrchestrationContextContainer(), this.getOrchestrationContextContainer(), this.getOrchestrationContextContainer_OrchestrationContexts(), "orchestrationContextContainer", null, 1, 1, OrchestrationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getOrchestrationContext_InvocationContexts(), this.getInvocationContext(), this.getInvocationContext_OrchestrationContext(), "invocationContexts", null, 1, -1, OrchestrationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getOrchestrationContext_InvocationContexts(), this.getInvocationContext(), this.getInvocationContext_OrchestrationContext(), "invocationContexts", null, 2, -1, OrchestrationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     g1 = createEGenericType(this.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
