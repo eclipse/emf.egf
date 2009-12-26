@@ -67,9 +67,11 @@ public class MethodTableCellModifier implements ICellModifier {
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
                 patternMethodel.setName(text);
+                tableViewer.refresh();
             }
         };
         editingDomain.getCommandStack().execute(cmd);
+        
     }
 
 }

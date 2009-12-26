@@ -1,3 +1,18 @@
+/**
+ * <copyright>
+ *
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
+ * 
+ * </copyright>
+ */
+
 package org.eclipse.egf.pattern.ui.editors.dialogs;
 
 import java.util.ArrayList;
@@ -41,7 +56,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
 public class EcoreModelSelectionDialog extends LoadResourceDialog {
     protected Set<EPackage> registeredPackages = new LinkedHashSet<EPackage>();
-    
+
     public EcoreModelSelectionDialog(Shell parent, EditingDomain domain) {
         super(parent, domain);
     }
@@ -141,82 +156,66 @@ public class EcoreModelSelectionDialog extends LoadResourceDialog {
                 }
             }
         });
-        
-        
+
     }
-    
-    public static class RegisteredPackageDialog extends ElementListSelectionDialog
-    {
-      protected boolean isDevelopmentTimeVersion = true;
 
-      public RegisteredPackageDialog(Shell parent)
-      {
-        super
-          (parent, 
-           new LabelProvider()
-           {
-             @Override
-            public Image getImage(Object element)
-             {
-               return ExtendedImageRegistry.getInstance().getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EPackage"));
-             }
-           });
-        
-        setMultipleSelection(true);
-        setMessage(EcoreEditorPlugin.INSTANCE.getString("_UI_SelectRegisteredPackageURI"));
-        setFilter("*");
-        setTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_PackageSelection_label"));
-      }
-      
-      public boolean isDevelopmentTimeVersion()
-      {
-        return isDevelopmentTimeVersion;
-      }
-      
-      protected void updateElements()
-      {
-        if (isDevelopmentTimeVersion)
-        {
-          Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
-          Object [] result = ePackageNsURItoGenModelLocationMap.keySet().toArray(new Object[ePackageNsURItoGenModelLocationMap.size()]);
-          Arrays.sort(result);
-          setListElements(result);
+    public static class RegisteredPackageDialog extends ElementListSelectionDialog {
+        protected boolean isDevelopmentTimeVersion = true;
+
+        public RegisteredPackageDialog(Shell parent) {
+            super(parent, new LabelProvider() {
+                @Override
+                public Image getImage(Object element) {
+                    return ExtendedImageRegistry.getInstance().getImage(EcoreEditPlugin.INSTANCE.getImage("full/obj16/EPackage"));
+                }
+            });
+
+            setMultipleSelection(true);
+            setMessage(EcoreEditorPlugin.INSTANCE.getString("_UI_SelectRegisteredPackageURI"));
+            setFilter("*");
+            setTitle(EcoreEditorPlugin.INSTANCE.getString("_UI_PackageSelection_label"));
         }
-        else
-        {
-          Object [] result = EPackage.Registry.INSTANCE.keySet().toArray(new Object[EPackage.Registry.INSTANCE.size()]);
-          Arrays.sort(result);
-          setListElements(result);
+
+        public boolean isDevelopmentTimeVersion() {
+            return isDevelopmentTimeVersion;
         }
-      }
 
-      @Override
-      protected Control createDialogArea(Composite parent)
-      {
-        Composite result = (Composite)super.createDialogArea(parent);
-        Composite buttonGroup = new Composite(result, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        layout.numColumns = 2;
-        buttonGroup.setLayout(layout);
-        final Button developmentTimeVersionButton = new Button(buttonGroup, SWT.RADIO);
-        developmentTimeVersionButton.addSelectionListener
-          (new SelectionAdapter() 
-           {
-             @Override
-             public void widgetSelected(SelectionEvent event)
-             {
-               isDevelopmentTimeVersion = developmentTimeVersionButton.getSelection();
-               updateElements();
-             }
-           });
-        developmentTimeVersionButton.setText(EcoreEditorPlugin.INSTANCE.getString("_UI_DevelopmentTimeVersion_label"));
-        Button runtimeTimeVersionButton = new Button(buttonGroup, SWT.RADIO);
-        runtimeTimeVersionButton.setText(EcoreEditorPlugin.INSTANCE.getString("_UI_RuntimeVersion_label"));
-        developmentTimeVersionButton.setSelection(true);
+        protected void updateElements() {
+            if (isDevelopmentTimeVersion) {
+                Map<String, URI> ePackageNsURItoGenModelLocationMap = EcorePlugin.getEPackageNsURIToGenModelLocationMap();
+                Object[] result = ePackageNsURItoGenModelLocationMap.keySet().toArray(new Object[ePackageNsURItoGenModelLocationMap.size()]);
+                Arrays.sort(result);
+                setListElements(result);
+            } else {
+                Object[] result = EPackage.Registry.INSTANCE.keySet().toArray(new Object[EPackage.Registry.INSTANCE.size()]);
+                Arrays.sort(result);
+                setListElements(result);
+            }
+        }
 
-        updateElements();
+        @Override
+        protected Control createDialogArea(Composite parent) {
+            Composite result = (Composite) super.createDialogArea(parent);
+            Composite buttonGroup = new Composite(result, SWT.NONE);
+            GridLayout layout = new GridLayout();
+            layout.numColumns = 2;
+            buttonGroup.setLayout(layout);
+            final Button developmentTimeVersionButton = new Button(buttonGroup, SWT.RADIO);
+            developmentTimeVersionButton.addSelectionListener(new SelectionAdapter() {
+                @Override
+                public void widgetSelected(SelectionEvent event) {
+                    isDevelopmentTimeVersion = developmentTimeVersionButton.getSelection();
+                    updateElements();
+                }
+            });
+            developmentTimeVersionButton.setText(EcoreEditorPlugin.INSTANCE.getString("_UI_DevelopmentTimeVersion_label"));
+            Button runtimeTimeVersionButton = new Button(buttonGroup, SWT.RADIO);
+            runtimeTimeVersionButton.setText(EcoreEditorPlugin.INSTANCE.getString("_UI_RuntimeVersion_label"));
+            developmentTimeVersionButton.setSelection(true);
 
-        return result;
-      }
+            updateElements();
+
+            return result;
+        }
     }
 }

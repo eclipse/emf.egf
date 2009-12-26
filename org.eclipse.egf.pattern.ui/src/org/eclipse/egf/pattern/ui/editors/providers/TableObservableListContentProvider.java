@@ -33,7 +33,7 @@ public class TableObservableListContentProvider extends ObservableListContentPro
 
     public TableObservableListContentProvider(TableViewer tableViewer) {
         this.tableViewer = tableViewer;
-        addRemoveAdapter();
+        removeAdapter();
     }
 
     final AdapterImpl refresher = new AdapterImpl() {
@@ -56,7 +56,7 @@ public class TableObservableListContentProvider extends ObservableListContentPro
         return elements;
     }
 
-    private void addRemoveAdapter() {
+    private void removeAdapter() {
         tableViewer.getTable().addDisposeListener(new DisposeListener() {
 
             public void widgetDisposed(DisposeEvent e) {

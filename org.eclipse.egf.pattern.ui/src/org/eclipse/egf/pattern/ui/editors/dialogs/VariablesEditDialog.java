@@ -1,5 +1,23 @@
+/**
+ * <copyright>
+ *
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
+ * 
+ * </copyright>
+ */
+
 package org.eclipse.egf.pattern.ui.editors.dialogs;
 
+import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
@@ -17,11 +35,14 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.SelectionStatusDialog;
 
-public class VariablesEditDialog extends ParametersEditDialog {
+@SuppressWarnings("restriction")
+public class VariablesEditDialog extends SelectionStatusDialog {
 
     private Text nameText;
 
@@ -36,8 +57,26 @@ public class VariablesEditDialog extends ParametersEditDialog {
     private TransactionalEditingDomain editingDomain;
 
     public VariablesEditDialog(Shell shell, Object selectItem, TransactionalEditingDomain editingDomain) {
-        super(shell, selectItem, editingDomain);
+        super(shell);
         this.editingDomain = editingDomain;
+        setDefaultValue(selectItem);
+    }
+
+    private void setDefaultValue(Object selectItem) {
+        if (selectItem instanceof PatternVariable) {
+            PatternVariable PatternVariable = (PatternVariable) selectItem;
+            type = PatternVariable.getType();
+            setValue(PatternVariable);
+        } else if (selectItem instanceof PatternParameter) {
+            PatternParameter patternParameter = (PatternParameter) selectItem;
+            type = patternParameter.getType();
+            setValue(patternParameter);
+        }
+    }
+
+    private void setValue(ModelElement selection) {
+        name = selection.getName();
+        typeName = ParametersTableLabelProvider.getType(type);
     }
 
     protected Control createDialogArea(Composite parent) {
@@ -76,7 +115,7 @@ public class VariablesEditDialog extends ParametersEditDialog {
         typeButton.setText(Messages.ParametersEditDialog_Browse);
         typeButton.addSelectionListener(new SelectionListener() {
             public void widgetSelected(SelectionEvent e) {
-                OpenTypeWizard wizard = new OpenTypeWizard(editingDomain, typeText.getText());
+                OpenTypeWizard wizard = new OpenTypeWizard(editingDomain, type);
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 int returnValue = dialog.open();
@@ -102,4 +141,23 @@ public class VariablesEditDialog extends ParametersEditDialog {
         });
         return dialogArea;
     }
+
+    public static Label createLabel(Composite parent, String content) {
+        Label label = new Label(parent, SWT.NONE);
+        label.setText(content);
+        return label;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    @Override
+    protected void computeResult() {
+    }
+
 }

@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
+import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -31,14 +32,24 @@ import org.eclipse.swt.widgets.Label;
  */
 public class ChooseKindPage extends WizardPage {
 
-    private int kind = 0;// 0:metodCall 1:patternCall 2:patternInjectedCall 3:superPatternCall
-    
-    private int defaultKind;
-    
-    public ChooseKindPage(ISelection selection, int defaultKind) {
-        super("ChooseKind");
-        setTitle("ChooseKind");
-        setDescription("Choose a kind of call.");
+    private CallTypeEnum selectedKind;
+
+    private CallTypeEnum defaultKind = CallTypeEnum.Add;
+
+    private Button methodCall;
+
+    private Button patternCall;
+
+    private Button patternInjectedCall;
+
+    private Button superPatternCall;
+
+    private Label label;
+
+    public ChooseKindPage(ISelection selection, CallTypeEnum defaultKind) {
+        super(Messages.ChooseKindPage_title);
+        setTitle(Messages.ChooseKindPage_title);
+        setDescription(Messages.ChooseKindPage_description);
         this.defaultKind = defaultKind;
     }
 
@@ -47,83 +58,92 @@ public class ChooseKindPage extends WizardPage {
         GridLayout layout = new GridLayout();
         container.setLayout(layout);
 
-        Label label = new Label(container, SWT.NONE);
-        label.setText("Please to choose the kind of call:");
+        label = new Label(container, SWT.NONE);
+        label.setText(Messages.ChooseKindPage_label_text);
 
-        Button metodCall = new Button(container, SWT.RADIO);
-        metodCall.setText("metodCall");
-        metodCall.addSelectionListener(new SelectionListener() {
+        methodCall = new Button(container, SWT.RADIO);
+        methodCall.setText(Messages.ChooseKindPage_radio_methodCall);
+        methodCall.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                kind = 0;
+                selectedKind = CallTypeEnum.METHOD_CALL;
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
 
-        Button patternCall = new Button(container, SWT.RADIO);
-        patternCall.setText("patternCall");
+        patternCall = new Button(container, SWT.RADIO);
+        patternCall.setText(Messages.ChooseKindPage_radio_patternCall);
         patternCall.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                kind = 1;
+                selectedKind = CallTypeEnum.PATTERN_CALL;
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
 
-        Button patternInjectedCall = new Button(container, SWT.RADIO);
-        patternInjectedCall.setText("patternInjectedCall");
+        patternInjectedCall = new Button(container, SWT.RADIO);
+        patternInjectedCall.setText(Messages.ChooseKindPage_radio_patternInjectedCall);
         patternInjectedCall.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                kind = 2;
+                selectedKind = CallTypeEnum.PATTERNINJECTED_CALL;
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
 
-        Button superPatternCall = new Button(container, SWT.RADIO);
-        superPatternCall.setText("superPatternCall");
+        superPatternCall = new Button(container, SWT.RADIO);
+        superPatternCall.setText(Messages.ChooseKindPage_radio_superPatternCall);
         superPatternCall.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                kind = 3;
+                selectedKind = CallTypeEnum.SUPERPATTERN_CALL;
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
 
-        if(defaultKind!= -1){
-            metodCall.setEnabled(false);
-            patternCall.setEnabled(false);
-            patternInjectedCall.setEnabled(false);
-            superPatternCall.setEnabled(false);
-            kind = defaultKind;
-            switch (kind) {
-            case 0:
-                metodCall.setFocus();
-                break;
-            case 1:
-                patternCall.setFocus();
-                break;
-            case 2:
-                patternInjectedCall.setFocus();
-                break;
-            case 3:
-                superPatternCall.setFocus();
-                break;
-            }
-        }
+        setDefaultSelection();
+
         setControl(container);
     }
 
-    public int getKind() {
-        return kind;
+    /**
+     * If to edit the call, get the default selection of kind of call.
+     */
+    private void setDefaultSelection() {
+        if (defaultKind != CallTypeEnum.Add) {
+            label.setEnabled(false);
+            methodCall.setEnabled(false);
+            patternCall.setEnabled(false);
+            patternInjectedCall.setEnabled(false);
+            superPatternCall.setEnabled(false);
+            selectedKind = defaultKind;
+            switch (selectedKind) {
+            case METHOD_CALL:
+                methodCall.setSelection(true);
+                break;
+            case PATTERN_CALL:
+                patternCall.setSelection(true);
+                break;
+            case PATTERNINJECTED_CALL:
+                patternInjectedCall.setSelection(true);
+                break;
+            case SUPERPATTERN_CALL:
+                superPatternCall.setSelection(true);
+                break;
+            }
+        }
+    }
+
+    public CallTypeEnum getKind() {
+        return selectedKind;
     }
 
 }

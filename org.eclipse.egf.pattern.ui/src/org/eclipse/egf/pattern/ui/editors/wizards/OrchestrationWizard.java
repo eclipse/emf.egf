@@ -16,6 +16,7 @@ package org.eclipse.egf.pattern.ui.editors.wizards;
 
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseCallPage;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseKindPage;
 import org.eclipse.jface.viewers.ISelection;
@@ -40,16 +41,19 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
 
     private Call selectCall;
 
-    private int defaultKind;
+    private CallTypeEnum defaultKind;
+
+    private Object eidtItem;
 
     /**
      * Constructor for MyWizard.
      */
-    public OrchestrationWizard(Pattern pattern, int defaultKind) {
+    public OrchestrationWizard(Pattern pattern, CallTypeEnum defaultKind, Object eidtItem) {
         super();
         setNeedsProgressMonitor(true);
         this.pattern = pattern;
         this.defaultKind = defaultKind;
+        this.eidtItem = eidtItem;
     }
 
     /**
@@ -58,9 +62,9 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
     public void addPages() {
         // Set the window's title label
         setWindowTitle("Orchestration");
-        chooseKindPage = new ChooseKindPage(selection,defaultKind);
+        chooseKindPage = new ChooseKindPage(selection, defaultKind);
         addPage(chooseKindPage);
-        chooseCallPage = new ChooseCallPage(pattern, selection);
+        chooseCallPage = new ChooseCallPage(pattern, selection, eidtItem);
         addPage(chooseCallPage);
     }
 

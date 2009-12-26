@@ -12,6 +12,7 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.providers;
 
 import org.eclipse.egf.model.pattern.MethodCall;
@@ -24,13 +25,14 @@ import org.eclipse.egf.model.pattern.SuperPatternCall;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * @author xrchen
  * 
  */
-public class OrchestrationTableLabelProvider implements ITableLabelProvider {
+public class OrchestrationTableLabelProvider extends LabelProvider implements ITableLabelProvider {
 
     public Image getColumnImage(Object element, int columnIndex) {
         if (element instanceof MethodCall)
@@ -48,20 +50,20 @@ public class OrchestrationTableLabelProvider implements ITableLabelProvider {
         if (element instanceof MethodCall) {
             MethodCall methodCall = (MethodCall) element;
             PatternMethod patternMethod = methodCall.getCalled();
-            return patternMethod.getName() + " - [MethodCall]";
+            return (patternMethod == null ? "" : patternMethod.getName()) + " - [MethodCall]";
         } else if (element instanceof PatternCall) {
             PatternCall patternCall = (PatternCall) element;
-            Pattern patten = patternCall.getCalled();
-            return patten.getName() + " - [PatternCall]";
+            Pattern pattern = patternCall.getCalled();
+            return (pattern == null ? "" : pattern.getName()) + " - [PatternCall]";
         } else if (element instanceof PatternInjectedCall) {
             PatternInjectedCall patternInjectedCall = (PatternInjectedCall) element;
             Pattern pattern = patternInjectedCall.getCalled();
             PatternVariable patternVariable = patternInjectedCall.getContext();
-            return pattern.getName() + patternVariable.getName() + " - [PatternInjectedCall]";
+            return (pattern == null ? "" : pattern.getName() + patternVariable.getName()) + " - [PatternInjectedCall]";
         } else if (element instanceof SuperPatternCall) {
             SuperPatternCall superPatternCall = (SuperPatternCall) element;
             Pattern superPattern = superPatternCall.getCalled();
-            return superPattern.getName() + " - [SuperPatternCall]";
+            return (superPattern == null ? "" : superPattern.getName()) + " - [SuperPatternCall]";
         }
         return "";
     }

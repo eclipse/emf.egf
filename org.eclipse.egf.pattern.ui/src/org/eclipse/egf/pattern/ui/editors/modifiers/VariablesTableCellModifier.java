@@ -81,6 +81,7 @@ public class VariablesTableCellModifier implements ICellModifier {
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
                 patternVariable.setName(text);
+                tableViewer.refresh();
             }
         };
         editingDomain.getCommandStack().execute(cmd);

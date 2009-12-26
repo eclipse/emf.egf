@@ -72,7 +72,7 @@ public class Messages extends NLS {
 
     public static String ImplementationPage_methAdd_dialog_title;
 
-    public static String ImplementationPage_methEidt_dialog_title;
+    public static String ImplementationPage_methEdit_dialog_title;
 
     public static String ImplementationPage_methSection_label;
 
@@ -118,6 +118,36 @@ public class Messages extends NLS {
     public static String SpecificationPage_patternSection_title;
 
     public static String SpecificationPage_patternSection_type_label;
+
+    // ChooseCall Page
+    public static String ChooseCallPage_description;
+
+    public static String ChooseCallPage_label_text;
+
+    public static String ChooseCallPage_methodCall_title;
+
+    public static String ChooseCallPage_patternCall_title;
+
+    public static String ChooseCallPage_patternInjectCall_title;
+
+    public static String ChooseCallPage_superPatternCall_title;
+
+    public static String ChooseCallPage_title;
+
+    // ChooseKind Page
+    public static String ChooseKindPage_description;
+
+    public static String ChooseKindPage_label_text;
+
+    public static String ChooseKindPage_radio_methodCall;
+
+    public static String ChooseKindPage_radio_patternCall;
+
+    public static String ChooseKindPage_radio_patternInjectedCall;
+
+    public static String ChooseKindPage_radio_superPatternCall;
+
+    public static String ChooseKindPage_title;
 
     // ChooseType Page
     public static String ChooseTypePage_choose_model_button_title;

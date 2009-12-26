@@ -40,7 +40,7 @@ import org.eclipse.egf.pattern.query.QueryManager;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ParametersEditDialog;
-import org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectiondialog;
+import org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.modifiers.ParametersTableCellModifier;
 import org.eclipse.egf.pattern.ui.editors.providers.ComboListLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
@@ -220,7 +220,7 @@ public class SpecificationPage extends PatternEditorPage {
         browse.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                PatternSelectiondialog dialog = new PatternSelectiondialog(new Shell(), getParentPattern(), getParentName());
+                PatternSelectionDialog dialog = new PatternSelectionDialog(new Shell(), getParentPattern(), getParentName());
                 dialog.setTitle(Messages.SpecificationPage_browse_dialog_title);
                 if (dialog.open() == Window.OK) {
                     final Pattern parent = dialog.getParent();
@@ -487,17 +487,19 @@ public class SpecificationPage extends PatternEditorPage {
             public void widgetSelected(SelectionEvent e) {
                 ISelection selection = tableViewer.getSelection();
                 final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
-
-                final ParametersEditDialog dialog = new ParametersEditDialog(new Shell(), selectItem, getEditingDomain());
-                dialog.setTitle(Messages.SpecificationPage_parametersEditDialog_title);
-                if (dialog.open() == Window.OK) {
-                    TransactionalEditingDomain editingDomain = getEditingDomain();
-                    RecordingCommand cmd = new RecordingCommand(editingDomain) {
-                        protected void doExecute() {
-                            executeParameterEdit(dialog, selectItem);
-                        }
-                    };
-                    editingDomain.getCommandStack().execute(cmd);
+                if (selectItem instanceof PatternParameter) {
+                    PatternParameter patternParameter = (PatternParameter) selectItem;
+                    final ParametersEditDialog dialog = new ParametersEditDialog(new Shell(), patternParameter, getEditingDomain());
+                    dialog.setTitle(Messages.SpecificationPage_parametersEditDialog_title);
+                    if (dialog.open() == Window.OK) {
+                        TransactionalEditingDomain editingDomain = getEditingDomain();
+                        RecordingCommand cmd = new RecordingCommand(editingDomain) {
+                            protected void doExecute() {
+                                executeParameterEdit(dialog, selectItem);
+                            }
+                        };
+                        editingDomain.getCommandStack().execute(cmd);
+                    }
                 }
             }
 
@@ -573,7 +575,14 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     private void setButtonsStatus() {
-        int index = tableViewer.getTable().getSelectionIndex();
+        int selectIndex = tableViewer.getTable().getSelectionIndex();
+        if (selectIndex == -1) {
+            edit.setEnabled(false);
+            remove.setEnabled(false);
+            up.setEnabled(false);
+            down.setEnabled(false);
+            return;
+        }
         int length = tableViewer.getTable().getItemCount();
         if (length > 0) {
             remove.setEnabled(true);
@@ -582,12 +591,12 @@ public class SpecificationPage extends PatternEditorPage {
             remove.setEnabled(false);
             edit.setEnabled(false);
         }
-        if (index <= 0) {
+        if (selectIndex <= 0) {
             up.setEnabled(false);
         } else {
             up.setEnabled(true);
         }
-        if ((index + 1) == length) {
+        if ((selectIndex + 1) == length) {
             down.setEnabled(false);
         } else {
             down.setEnabled(true);

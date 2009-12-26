@@ -32,6 +32,7 @@ import org.eclipse.egf.model.pattern.SuperPatternCall;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
+import org.eclipse.egf.pattern.ui.editors.dialogs.VariablesEditDialog;
 import org.eclipse.egf.pattern.ui.editors.modifiers.MethodTableCellModifier;
 import org.eclipse.egf.pattern.ui.editors.modifiers.VariablesTableCellModifier;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
@@ -41,6 +42,7 @@ import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider
 import org.eclipse.egf.pattern.ui.editors.providers.TableObservableListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.OrchestrationWizard;
+import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.IEMFListProperty;
@@ -91,6 +93,7 @@ import org.eclipse.ui.forms.widgets.Section;
  * @author Thomas Guiu
  * 
  */
+@SuppressWarnings("restriction")
 public class ImplementationPage extends PatternEditorPage {
     public static final String ID = "ImplementationPage"; //$NON-NLS-1$
 
@@ -124,10 +127,10 @@ public class ImplementationPage extends PatternEditorPage {
 
     private PatternMethod dropEntry;
 
-    private int dragIndex;
+    private int dragIndex = -1;
 
     private boolean isChangeOder;
-    
+
     private static final String VARIABLE_NAME_DEFAULT_VALUE = "variable"; //$NON-NLS-1$
 
     private static final String VARIABLE_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
@@ -186,12 +189,11 @@ public class ImplementationPage extends PatternEditorPage {
         initMethodsTableEditor();
 
         methodsTableViewer.setContentProvider(new TableObservableListContentProvider(methodsTableViewer));
-        methodsTableViewer.setLabelProvider(new MethodLabelProvider(getParentMethods()));
 
         methodsTableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
             public void doubleClick(DoubleClickEvent event) {
-                // TODO
+                // TODO: open a method editor.
             }
         });
         methodsTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -228,7 +230,6 @@ public class ImplementationPage extends PatternEditorPage {
         nameEditor = new ComboBoxViewerCellEditor(methodsTableViewer.getTable(), SWT.READ_ONLY);
         nameEditor.setLabelProvider(new LabelProvider());
         nameEditor.setContenProvider(new CommonListContentProvider());
-        nameEditor.setInput(getParentMethods());
 
         methodsTableViewer.setCellEditors(new CellEditor[] { nameEditor });
         methodsTableViewer.setCellModifier(new MethodTableCellModifier(getEditingDomain(), methodsTableViewer));
@@ -277,7 +278,7 @@ public class ImplementationPage extends PatternEditorPage {
                     }
                 }
                 MethodAddOrEditDialog dialog = new MethodAddOrEditDialog(new Shell(), getParentMethods(), selectName);
-                dialog.setTitle(Messages.ImplementationPage_methEidt_dialog_title);
+                dialog.setTitle(Messages.ImplementationPage_methEdit_dialog_title);
                 if (dialog.open() == Window.OK) {
                     executeMethodsEdit(dialog.getName());
                 }
@@ -306,6 +307,12 @@ public class ImplementationPage extends PatternEditorPage {
      * Set the Methods section's button status.
      */
     private void setMethodsButtonsStatus() {
+        int selectIndex = methodsTableViewer.getTable().getSelectionIndex();
+        if (selectIndex == -1) {
+            methodsRemove.setEnabled(false);
+            methodsEdit.setEnabled(false);
+            return;
+        }
         int length = methodsTableViewer.getTable().getItemCount();
         if (length > 0) {
             methodsRemove.setEnabled(true);
@@ -330,16 +337,9 @@ public class ImplementationPage extends PatternEditorPage {
                 }
             };
             editingDomain.getCommandStack().execute(cmd);
-
-            final EList<PatternMethod> allVariables = pattern.getMethods();
-            int len = allVariables.size();
-            if (index < len) {
-                methodsTableViewer.getTable().setSelection(index);
-            } else if (index >= len) {
-                methodsTableViewer.getTable().setSelection(index - 1);
-            }
+            EList<PatternMethod> allVariables = pattern.getMethods();
+            setDefaultSelection(allVariables, methodsTableViewer, index);
         }
-
         setMethodsButtonsStatus();
     }
 
@@ -360,13 +360,12 @@ public class ImplementationPage extends PatternEditorPage {
 
     protected void executeMethodsEdit(final String name) {
         int index = methodsTableViewer.getTable().getSelectionIndex();
-        final String oldName = ((PatternMethod) (methodsTableViewer.getElementAt(index))).getName();
+        final PatternMethod editPatternMethod = (PatternMethod) (methodsTableViewer.getElementAt(index));
         // Execute edit.
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
-                PatternMethod method = getPattern().getMethod(oldName);
-                method.setName(name);
+                editPatternMethod.setName(name);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
@@ -459,11 +458,9 @@ public class ImplementationPage extends PatternEditorPage {
      * rows.
      */
     protected void executeChangeOrder(Object currentTarget) {
-        Object currentSource = orchestrationTableViewer.getElementAt(dragIndex);
         EList<Call> orchestration = getPattern().getOrchestration();
         int targetIndex = 0;
         int index = 0;
-        List<Call> orchestrationNew = new ArrayList<Call>();
         if (currentTarget == null) {
             targetIndex = orchestrationTableViewer.getTable().getItemCount() - 1;
             currentTarget = orchestrationTableViewer.getElementAt(targetIndex);
@@ -476,22 +473,23 @@ public class ImplementationPage extends PatternEditorPage {
                 index++;
             }
         }
-        for (int i = 0; i < orchestration.size(); i++) {
-            if (i == targetIndex) {
-                if (targetIndex > dragIndex) {
-                    orchestrationNew.add((Call) currentTarget);
-                    orchestrationNew.add((Call) currentSource);
-                } else {
-                    orchestrationNew.add((Call) currentSource);
-                    orchestrationNew.add((Call) currentTarget);
-                }
-            } else if (i != dragIndex) {
-                orchestrationNew.add(orchestration.get(i));
-            }
-        }
-        updateOrchestration(orchestrationNew);
+        updateOrchestration(orchestration, targetIndex);
         orchestrationTableViewer.getTable().setSelection(targetIndex);
         setOrchestrationButtonsStatus();
+    }
+
+    /**
+     * Refresh the pattern's Orchestration after change orchestrationTableViewer
+     * order's.
+     */
+    private void updateOrchestration(final EList<Call> orchestration, final int targetIndex) {
+        TransactionalEditingDomain editingDomain = getEditingDomain();
+        RecordingCommand cmd = new RecordingCommand(editingDomain) {
+            protected void doExecute() {
+                orchestration.move(targetIndex, dragIndex);
+            }
+        };
+        editingDomain.getCommandStack().execute(cmd);
     }
 
     /**
@@ -549,7 +547,7 @@ public class ImplementationPage extends PatternEditorPage {
         orchestrationAdd.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), -1);
+                OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), CallTypeEnum.Add, null);
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 int returnValue = dialog.open();
@@ -571,17 +569,17 @@ public class ImplementationPage extends PatternEditorPage {
                 int index = orchestrationTableViewer.getTable().getSelectionIndex();
                 Object selectItem = orchestrationTableViewer.getElementAt(index);
 
-                int kind = -1;
+                CallTypeEnum kind = CallTypeEnum.Add;
                 if (selectItem instanceof MethodCall) {
-                    kind = 0;
+                    kind = CallTypeEnum.METHOD_CALL;
                 } else if (selectItem instanceof PatternCall) {
-                    kind = 1;
+                    kind = CallTypeEnum.PATTERN_CALL;
                 } else if (selectItem instanceof PatternInjectedCall) {
-                    kind = 2;
+                    kind = CallTypeEnum.PATTERNINJECTED_CALL;
                 } else if (selectItem instanceof SuperPatternCall) {
-                    kind = 3;
+                    kind = CallTypeEnum.SUPERPATTERN_CALL;
                 }
-                OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), kind);
+                OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), kind, selectItem);
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 int returnValue = dialog.open();
@@ -647,6 +645,7 @@ public class ImplementationPage extends PatternEditorPage {
         editingDomain.getCommandStack().execute(cmd);
         int len = getPattern().getOrchestration().size();
         orchestrationTableViewer.getTable().setSelection(len - 1);
+        setOrchestrationButtonsStatus();
     }
 
     protected void exectuteOrchestrationEdit(final Call selectCall, final Object selectItem) {
@@ -657,7 +656,9 @@ public class ImplementationPage extends PatternEditorPage {
                     int modifyIndex = getPattern().getOrchestration().indexOf(selectItem);
                     if (modifyIndex >= 0) {
                         getPattern().getOrchestration().set(modifyIndex, selectCall);
+                        orchestrationTableViewer.getTable().setSelection(modifyIndex);
                     }
+                    setOrchestrationButtonsStatus();
                 }
             }
         };
@@ -665,66 +666,51 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     protected void executeOrchestrationUpOrDown(int num) {
-        int oldIndex = orchestrationTableViewer.getTable().getSelectionIndex();
-        int newIndex = oldIndex + num;
+        final int oldIndex = orchestrationTableViewer.getTable().getSelectionIndex();
+        final int newIndex = oldIndex + num;
+        final EList<Call> orchestration = getPattern().getOrchestration();
 
-        List<Call> orchestrationNew = new ArrayList<Call>();
-        EList<Call> orchestration = getPattern().getOrchestration();
-        for (int i = 0; i < orchestration.size(); i++) {
-            if (i == newIndex) {
-                orchestrationNew.add(orchestration.get(oldIndex));
-            } else if (i == oldIndex) {
-                orchestrationNew.add(orchestration.get(newIndex));
-            } else {
-                orchestrationNew.add(orchestration.get(i));
+        TransactionalEditingDomain editingDomain = getEditingDomain();
+        RecordingCommand cmd = new RecordingCommand(editingDomain) {
+            protected void doExecute() {
+                orchestration.move(newIndex, oldIndex);
             }
-        }
-
-        updateOrchestration(orchestrationNew);
+        };
+        editingDomain.getCommandStack().execute(cmd);
 
         orchestrationTableViewer.getTable().setSelection(newIndex);
         setOrchestrationButtonsStatus();
     }
 
-    /**
-     * Refresh the pattern's Orchestration after change orchestrationTableViewer
-     * order's.
-     */
-    private void updateOrchestration(final List<Call> orchestrationNew) {
-        TransactionalEditingDomain editingDomain = getEditingDomain();
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            protected void doExecute() {
-                getPattern().getOrchestration().removeAll(getPattern().getOrchestration());
-                getPattern().getOrchestration().addAll(orchestrationNew);
-            }
-        };
-        editingDomain.getCommandStack().execute(cmd);
-    }
-
     protected void exectueOrchestrationRemove() {
         int index = orchestrationTableViewer.getTable().getSelectionIndex();
-        final Object selectItem = orchestrationTableViewer.getElementAt(index);
-        TransactionalEditingDomain editingDomain = getEditingDomain();
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            protected void doExecute() {
-                if (selectItem instanceof Call) {
-                    getPattern().getOrchestration().remove(selectItem);
+        if (index >= 0) {
+            final Object selectItem = orchestrationTableViewer.getElementAt(index);
+            TransactionalEditingDomain editingDomain = getEditingDomain();
+            RecordingCommand cmd = new RecordingCommand(editingDomain) {
+                protected void doExecute() {
+                    if (selectItem instanceof Call) {
+                        getPattern().getOrchestration().remove(selectItem);
+                    }
                 }
-            }
-        };
-        editingDomain.getCommandStack().execute(cmd);
-
-        int len = getPattern().getOrchestration().size();
-        if (index < len) {
-            orchestrationTableViewer.getTable().setSelection(index);
-        } else if (index >= len) {
-            orchestrationTableViewer.getTable().setSelection(index - 1);
+            };
+            editingDomain.getCommandStack().execute(cmd);
+            EList<Call> orchestration = getPattern().getOrchestration();
+            setDefaultSelection(orchestration, orchestrationTableViewer, index);
         }
         setOrchestrationButtonsStatus();
     }
 
     private void setOrchestrationButtonsStatus() {
-        int index = orchestrationTableViewer.getTable().getSelectionIndex();
+        int selectIndex = orchestrationTableViewer.getTable().getSelectionIndex();
+        if (selectIndex == -1) {
+            orchestrationRemove.setEnabled(false);
+            orchestrationEdit.setEnabled(false);
+            orchestrationUp.setEnabled(false);
+            orchestrationDown.setEnabled(false);
+            return;
+        }
+
         int length = orchestrationTableViewer.getTable().getItemCount();
         if (length > 0) {
             orchestrationRemove.setEnabled(true);
@@ -733,12 +719,12 @@ public class ImplementationPage extends PatternEditorPage {
             orchestrationRemove.setEnabled(false);
             orchestrationEdit.setEnabled(false);
         }
-        if (index <= 0) {
+        if (selectIndex <= 0) {
             orchestrationUp.setEnabled(false);
         } else {
             orchestrationUp.setEnabled(true);
         }
-        if ((index + 1) == length) {
+        if ((selectIndex + 1) == length) {
             orchestrationDown.setEnabled(false);
         } else {
             orchestrationDown.setEnabled(true);
@@ -782,7 +768,7 @@ public class ImplementationPage extends PatternEditorPage {
         initVariablesTableEditor();
         variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));
         variablesTableViewer.setLabelProvider(new ParametersTableLabelProvider());
-        
+
     }
 
     private void initVariablesTableEditor() {
@@ -811,7 +797,7 @@ public class ImplementationPage extends PatternEditorPage {
         };
         variablesTableViewer.setCellEditors(new CellEditor[] { nameEditor, typeEditor });
         variablesTableViewer.setCellModifier(new VariablesTableCellModifier(getEditingDomain(), variablesTableViewer));
-        
+
         variablesTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
@@ -876,24 +862,24 @@ public class ImplementationPage extends PatternEditorPage {
         variablesEdit.setLayoutData(gd);
         variablesEdit.setEnabled(false);
         variablesEdit.addSelectionListener(new SelectionListener() {
-            
+
             public void widgetSelected(SelectionEvent e) {
-//                ISelection selection = variablesTableViewer.getSelection();
-//                final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
-//                final VariablesEditDialog dialog = new VariablesEditDialog(new Shell(), selectItem, getEditingDomain());
-//                dialog.setTitle("Edit Variable");
-//                if (dialog.open() == Window.OK) {
-//                    TransactionalEditingDomain editingDomain = getEditingDomain();
-//                    RecordingCommand cmd = new RecordingCommand(editingDomain) {
-//                        protected void doExecute() {
-//                            //executeParameterEdit(dialog, selectItem);
-//                        }
-//                    };
-//                    editingDomain.getCommandStack().execute(cmd);
-//                    variablesTableViewer.refresh();
-//                }
+                ISelection selection = variablesTableViewer.getSelection();
+                final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
+                final VariablesEditDialog dialog = new VariablesEditDialog(new Shell(), selectItem, getEditingDomain());
+                dialog.setTitle("Edit Variable");
+                if (dialog.open() == Window.OK) {
+                    TransactionalEditingDomain editingDomain = getEditingDomain();
+                    RecordingCommand cmd = new RecordingCommand(editingDomain) {
+                        protected void doExecute() {
+                            executeVariableEdit(dialog, selectItem);
+                        }
+                    };
+                    editingDomain.getCommandStack().execute(cmd);
+                    variablesTableViewer.refresh();
+                }
             }
-            
+
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
@@ -916,6 +902,13 @@ public class ImplementationPage extends PatternEditorPage {
      * Set the Variables section's button status.
      */
     private void setVariablesButtonsStatus() {
+        int selectIndex = variablesTableViewer.getTable().getSelectionIndex();
+        if (selectIndex == -1) {
+            variablesRemove.setEnabled(false);
+            variablesEdit.setEnabled(false);
+            return;
+        }
+
         int length = variablesTableViewer.getTable().getItemCount();
         if (length > 0) {
             variablesRemove.setEnabled(true);
@@ -938,37 +931,43 @@ public class ImplementationPage extends PatternEditorPage {
             }
         };
         editingDomain.getCommandStack().execute(cmd);
-        
+
         EList<PatternVariable> allVariables = pattern.getAllVariables();
         int len = allVariables.size();
         variablesTableViewer.getTable().setSelection(len - 1);
         setVariablesButtonsStatus();
     }
 
-    protected void executeVariablesRemove() {
-        final int index = variablesTableViewer.getTable().getSelectionIndex();
-        final Pattern pattern = getPattern();
-        final EList<PatternVariable> allParameters = pattern.getAllVariables();
+    private void executeVariableEdit(VariablesEditDialog dialog, Object selectItem) {
+        String newName = dialog.getName();
+        String newType = dialog.getType();
 
-        ISelection selection = variablesTableViewer.getSelection();
-        final Object[] removeThem = ((IStructuredSelection) selection).toArray();
-        TransactionalEditingDomain editingDomain = getEditingDomain();
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            protected void doExecute() {
-                for (Object object : removeThem) {
-                    if (object instanceof PatternVariable) {
-                        pattern.getVariables().remove(object);
+        if (selectItem instanceof PatternVariable) {
+            PatternVariable item = (PatternVariable) selectItem;
+            item.setName(newName);
+            item.setType(newType);
+        }
+    }
+
+    protected void executeVariablesRemove() {
+        int index = variablesTableViewer.getTable().getSelectionIndex();
+        if (index >= 0) {
+            final Pattern pattern = getPattern();
+            ISelection selection = variablesTableViewer.getSelection();
+            final Object[] removeThem = ((IStructuredSelection) selection).toArray();
+            TransactionalEditingDomain editingDomain = getEditingDomain();
+            RecordingCommand cmd = new RecordingCommand(editingDomain) {
+                protected void doExecute() {
+                    for (Object object : removeThem) {
+                        if (object instanceof PatternVariable) {
+                            pattern.getVariables().remove(object);
+                        }
                     }
                 }
-            }
-        };
-        editingDomain.getCommandStack().execute(cmd);
-
-        int len = allParameters.size();
-        if (index < len) {
-            variablesTableViewer.getTable().setSelection(index);
-        } else if (index >= len) {
-            variablesTableViewer.getTable().setSelection(index - 1);
+            };
+            editingDomain.getCommandStack().execute(cmd);
+            EList<PatternVariable> allParameters = pattern.getAllVariables();
+            setDefaultSelection(allParameters, variablesTableViewer, index);
         }
         setVariablesButtonsStatus();
     }
@@ -1006,6 +1005,18 @@ public class ImplementationPage extends PatternEditorPage {
         return parentMethods;
     }
 
+    /**
+     * Set default selection after remove operation.
+     */
+    private void setDefaultSelection(EList<?> model, TableViewer tableViewer, int index) {
+        int len = model.size();
+        if (index < len) {
+            tableViewer.getTable().setSelection(index);
+        } else if (index >= len) {
+            tableViewer.getTable().setSelection(index - 1);
+        }
+    }
+
     @Override
     protected void bind() {
         addBinding(null);
@@ -1018,7 +1029,12 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     void bindMethodsTable(Pattern pattern) {
+        if (nameEditor != null) {
+            nameEditor.setInput(getParentMethods());
+        }
         if (methodsTableViewer != null) {
+            methodsTableViewer.setInput(null);
+            methodsTableViewer.setLabelProvider(new MethodLabelProvider(getParentMethods()));
             IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__METHODS);
             IObservableList observe = input.observe(pattern);
             methodsTableViewer.setInput(observe);

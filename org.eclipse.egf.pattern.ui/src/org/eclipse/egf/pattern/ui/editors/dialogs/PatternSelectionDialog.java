@@ -51,7 +51,7 @@ import org.eclipse.swt.widgets.Text;
  * @author xrchen
  * 
  */
-public class PatternSelectiondialog extends PatternElementSelectionDialog {
+public class PatternSelectionDialog extends PatternElementSelectionDialog {
 
     private Pattern parent;
 
@@ -65,7 +65,7 @@ public class PatternSelectiondialog extends PatternElementSelectionDialog {
 
     private List<Pattern> patternList;
 
-    public PatternSelectiondialog(Shell shell, Pattern parent, String parentName) {
+    public PatternSelectionDialog(Shell shell, Pattern parent, String parentName) {
         super(shell);
         this.parent = parent;
         this.parentName = parentName;
