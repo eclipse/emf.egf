@@ -3,6 +3,7 @@ package PACKAGE;
 import java.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.egf.model.PatternContext;
+import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 
 public class CLASS {
