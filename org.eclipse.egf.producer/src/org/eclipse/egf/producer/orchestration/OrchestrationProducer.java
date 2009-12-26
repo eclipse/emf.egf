@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.osgi.util.NLS;
 
@@ -27,13 +27,13 @@ import org.eclipse.osgi.util.NLS;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class OrchestrationProducer<T extends Orchestration> {
+public abstract class OrchestrationProducer {
 
-  public abstract T getOrchestration();
+  public abstract Orchestration getOrchestration();
 
-  protected abstract IModelProducerManager<T> doCreateManager(IModelProducerManager<?> parent, T orchestration) throws InvocationException;
+  protected abstract IModelElementProducerManager doCreateManager(IModelElementProducerManager parent, Orchestration orchestration) throws InvocationException;
 
-  public IModelProducerManager<T> createManager(IModelProducerManager<?> parent, T orchestration) throws InvocationException {
+  public IModelElementProducerManager createManager(IModelElementProducerManager parent, Orchestration orchestration) throws InvocationException {
     if (matchNature(orchestration) == false) {
       throw new InvocationException(NLS.bind(ProducerMessages.Orchestration_type_error, getOrchestration().eClass().getName(), orchestration.eClass().getName()));
     }

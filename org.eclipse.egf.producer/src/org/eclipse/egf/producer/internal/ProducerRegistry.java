@@ -15,8 +15,6 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
-import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.activity.ActivityProducer;
 import org.eclipse.egf.producer.orchestration.OrchestrationProducer;
@@ -46,12 +44,12 @@ public class ProducerRegistry {
   /**
    * EGF Registered Activity Producers.
    */
-  private static Map<String, ActivityProducer<Activity>> __activityProducers;
+  private static Map<String, ActivityProducer> __activityProducers;
 
   /**
    * EGF Registered Orchestration Producers.
    */
-  private static Map<String, OrchestrationProducer<Orchestration>> __orchestrationProducers;
+  private static Map<String, OrchestrationProducer> __orchestrationProducers;
 
   public static String getName(EObject eObject) {
     return eObject.eClass().getName();
@@ -62,11 +60,10 @@ public class ProducerRegistry {
    * 
    * @return an empty map if none could be found.
    */
-  @SuppressWarnings("unchecked")
-  public static Map<String, ActivityProducer<Activity>> getActivityProducers() {
+  public static Map<String, ActivityProducer> getActivityProducers() {
     // Lazy loading. Search for the implementation.
     if (__activityProducers == null) {
-      __activityProducers = new HashMap<String, ActivityProducer<Activity>>();
+      __activityProducers = new HashMap<String, ActivityProducer>();
       // Get ActivityProducer extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFProducerPlugin.getDefault().getPluginID(), EXTENSION_POINT_SHORT_ID_ACTIVITY)) {
         Object object = ExtensionPointHelper.createInstance(configurationElement);
@@ -74,14 +71,14 @@ public class ProducerRegistry {
           continue;
         }
         // Make sure this is the correct resulting type.
-        if (object instanceof ActivityProducer<?> == false) {
+        if (object instanceof ActivityProducer == false) {
           EGFProducerPlugin.getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
           EGFProducerPlugin.getDefault().logInfo(NLS.bind("This Class should be a sub-type of ''{0}''.", ActivityProducer.class.getName()), 1); //$NON-NLS-1$
           EGFProducerPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
           EGFProducerPlugin.getDefault().logInfo(NLS.bind("Extension-point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           continue;
         }
-        __activityProducers.put(getName(((ActivityProducer<Activity>) object).getActivity()), (ActivityProducer<Activity>) object);
+        __activityProducers.put(getName(((ActivityProducer) object).getActivity()), (ActivityProducer) object);
       }
     }
     return __activityProducers;
@@ -92,11 +89,10 @@ public class ProducerRegistry {
    * 
    * @return an empty map if none could be found.
    */
-  @SuppressWarnings("unchecked")
-  public static Map<String, OrchestrationProducer<Orchestration>> getOrchestrationProducers() {
+  public static Map<String, OrchestrationProducer> getOrchestrationProducers() {
     // Lazy loading. Search for the implementation.
     if (__orchestrationProducers == null) {
-      __orchestrationProducers = new HashMap<String, OrchestrationProducer<Orchestration>>();
+      __orchestrationProducers = new HashMap<String, OrchestrationProducer>();
       // Get ActivityProducer extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFProducerPlugin.getDefault().getPluginID(), EXTENSION_POINT_SHORT_ID_ORCHESTRATION)) {
         Object object = ExtensionPointHelper.createInstance(configurationElement);
@@ -104,14 +100,14 @@ public class ProducerRegistry {
           continue;
         }
         // Make sure this is the correct resulting type.
-        if (object instanceof OrchestrationProducer<?> == false) {
+        if (object instanceof OrchestrationProducer == false) {
           EGFProducerPlugin.getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
           EGFProducerPlugin.getDefault().logInfo(NLS.bind("This Class should be a sub-type of ''{0}''.", OrchestrationProducer.class.getName()), 1); //$NON-NLS-1$
           EGFProducerPlugin.getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
           EGFProducerPlugin.getDefault().logInfo(NLS.bind("Extension-point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           continue;
         }
-        __orchestrationProducers.put(getName(((OrchestrationProducer<Orchestration>) object).getOrchestration()), (OrchestrationProducer<Orchestration>) object);
+        __orchestrationProducers.put(getName(((OrchestrationProducer) object).getOrchestration()), (OrchestrationProducer) object);
       }
     }
     return __orchestrationProducers;

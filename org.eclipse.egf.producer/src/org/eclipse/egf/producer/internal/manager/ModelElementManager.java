@@ -12,61 +12,83 @@ package org.eclipse.egf.producer.internal.manager;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
 import org.eclipse.egf.core.helper.EObjectHelper;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.context.IModelElementProductionContext;
+import org.eclipse.egf.producer.internal.context.ModelElementProductionContext;
+import org.eclipse.egf.producer.l10n.ProducerMessages;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
+import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public abstract class AbstractManager<T extends ModelElement> implements IModelProducerManager<T> {
+public abstract class ModelElementManager implements IModelElementProducerManager {
 
-  private IModelProducerManager<?> _parent;
-
-  private T _element;
+  private ModelElement _element;
 
   private Bundle _bundle;
 
   private ProjectBundleSession _projectBundleSession;
 
-  protected IProductionContext<T> _productionContext;
+  private IPlatformFcore _platformFcore;
 
-  protected IPlatformFcore _platformFcore;
+  protected IModelElementProducerManager _parent;
 
-  public AbstractManager(T element) {
+  protected ModelElementProductionContext<?> _productionContext;
+
+  public ModelElementManager(ModelElement element) throws InvocationException {
     Assert.isNotNull(element);
     _element = element;
+    _platformFcore = EGFCorePlugin.getPlatformFcore(element.eResource());
+    if (_platformFcore == null) {
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ActivityManager_fcore_activity, getName()), null)));
+    }
+    prepare();
   }
 
-  public AbstractManager(Bundle bundle, T element) {
+  public ModelElementManager(Bundle bundle, ModelElement element) throws InvocationException {
     Assert.isNotNull(bundle);
     Assert.isNotNull(element);
     _bundle = bundle;
     _element = element;
+    prepare();
   }
 
-  public AbstractManager(IModelProducerManager<?> parent, T element) {
+  public ModelElementManager(IModelElementProducerManager parent, ModelElement element) throws InvocationException {
     Assert.isNotNull(parent);
     Assert.isNotNull(element);
     _parent = parent;
     _element = element;
+    _platformFcore = EGFCorePlugin.getPlatformFcore(element.eResource());
+    if (_platformFcore == null) {
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ActivityManager_fcore_activity, getName()), null)));
+    }
+    prepare();
   }
 
-  public T getElement() {
+  public ModelElement getElement() {
     return _element;
   }
 
-  public IModelProducerManager<?> getParent() {
+  public IModelElementProducerManager getParent() {
     return _parent;
   }
+
+  public IModelElementProductionContext<?> getProductionContext() {
+    return _productionContext;
+  }
+
+  protected abstract ModelElementProductionContext<?> getInternalProductionContext();
 
   public String getName() {
     return EObjectHelper.getText(getElement());
@@ -97,6 +119,10 @@ public abstract class AbstractManager<T extends ModelElement> implements IModelP
       _projectBundleSession = new ProjectBundleSession(EGFProducerPlugin.getDefault().getBundle().getBundleContext());
     }
     return _projectBundleSession;
+  }
+
+  public void prepare() throws InvocationException {
+    getProductionContext().clear();
   }
 
   protected void dispose() throws CoreException {

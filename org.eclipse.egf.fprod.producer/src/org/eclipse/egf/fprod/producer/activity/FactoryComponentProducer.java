@@ -11,10 +11,10 @@
 package org.eclipse.egf.fprod.producer.activity;
 
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.fprod.producer.internal.manager.TaskManagerFactory;
+import org.eclipse.egf.fprod.producer.internal.manager.FactoryComponentManagerFactory;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fprod.FprodFactory;
-import org.eclipse.egf.model.fprod.Task;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.producer.activity.ActivityProducer;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.osgi.framework.Bundle;
@@ -23,30 +23,30 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public class TaskProducer extends ActivityProducer {
+public class FactoryComponentProducer extends ActivityProducer {
 
-  private static final Task __task = FprodFactory.eINSTANCE.createTask();
+  private static final FactoryComponent __factoryComponent = FcoreFactory.eINSTANCE.createFactoryComponent();
 
-  private final TaskManagerFactory _manager = new TaskManagerFactory();
+  private final FactoryComponentManagerFactory _manager = new FactoryComponentManagerFactory();
 
   @Override
-  public Task getActivity() {
-    return __task;
+  public FactoryComponent getActivity() {
+    return __factoryComponent;
   }
 
   @Override
   protected IModelElementProducerManager doCreateManager(Activity activity) throws InvocationException {
-    return _manager.createProductionManager((Task) activity);
+    return _manager.createProductionManager((FactoryComponent) activity);
   }
 
   @Override
   protected IModelElementProducerManager doCreateManager(Bundle bundle, Activity activity) throws InvocationException {
-    return _manager.createProductionManager(bundle, (Task) activity);
+    return _manager.createProductionManager(bundle, (FactoryComponent) activity);
   }
 
   @Override
   protected IModelElementProducerManager doCreateManager(IModelElementProducerManager parent, Activity activity) throws InvocationException {
-    return _manager.createProductionManager(parent, (Task) activity);
+    return _manager.createProductionManager(parent, (FactoryComponent) activity);
   }
 
 }

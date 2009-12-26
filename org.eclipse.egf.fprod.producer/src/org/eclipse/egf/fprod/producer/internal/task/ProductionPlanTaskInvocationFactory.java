@@ -10,11 +10,10 @@
  */
 package org.eclipse.egf.fprod.producer.internal.task;
 
-import org.eclipse.egf.core.producer.context.IProductionContext;
+import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.fprod.producer.internal.invocation.ProductionTaskInvocation;
-import org.eclipse.egf.fprod.producer.invocation.IProductionTaskInvocation;
+import org.eclipse.egf.fprod.producer.invocation.ITaskProductionInvocation;
 import org.eclipse.egf.fprod.producer.task.IProductionPlanTaskInvocationFactory;
-import org.eclipse.egf.model.fprod.Task;
 import org.osgi.framework.Bundle;
 
 /**
@@ -23,7 +22,7 @@ import org.osgi.framework.Bundle;
  */
 public class ProductionPlanTaskInvocationFactory implements IProductionPlanTaskInvocationFactory {
 
-  public IProductionTaskInvocation createInvocation(Bundle bundle, IProductionContext<Task> context, String value) {
+  public ITaskProductionInvocation createInvocation(Bundle bundle, ITaskProductionContext context, String value) {
     return new ProductionTaskInvocation(bundle, context, value);
   }
 

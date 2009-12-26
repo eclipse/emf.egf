@@ -13,28 +13,41 @@ package org.eclipse.egf.fprod.producer.internal.manager;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.core.producer.context.IProductionContext;
+import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
+import org.eclipse.egf.fprod.producer.ITaskInvocationProductionContext;
+import org.eclipse.egf.fprod.producer.internal.context.ProducerContextFactory;
+import org.eclipse.egf.fprod.producer.internal.context.TaskInvocationProductionContext;
 import org.eclipse.egf.model.fprod.TaskInvocation;
-import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class TaskInvocationManager extends ProductionPlanInvocationManager<TaskInvocation> {
+public class TaskInvocationManager extends ProductionPlanInvocationManager {
 
   private TaskManager _taskManager;
 
-  public TaskInvocationManager(IModelProducerManager<?> parent, TaskInvocation taskInvocation) throws InvocationException {
+  public TaskInvocationManager(IModelElementProducerManager parent, TaskInvocation taskInvocation) throws InvocationException {
     super(parent, taskInvocation);
   }
 
-  public IProductionContext<TaskInvocation> getProductionContext() throws InvocationException {
+  @Override
+  public TaskInvocation getElement() {
+    return (TaskInvocation) super.getElement();
+  }
+
+  @Override
+  public ITaskInvocationProductionContext getProductionContext() {
+    return getInternalProductionContext();
+  }
+
+  @Override
+  public TaskInvocationProductionContext getInternalProductionContext() {
     if (_productionContext == null) {
-      _productionContext = EGFProducerPlugin.getProducerContextFactory().createContext(getElement(), getProjectBundleSession());
+      _productionContext = ProducerContextFactory.createContext((IProductionPlanProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
     }
-    return _productionContext;
+    return (TaskInvocationProductionContext) _productionContext;
   }
 
   public TaskManager getTaskManager() throws InvocationException {
@@ -51,7 +64,6 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager<TaskI
     return 0;
   }
 
-  @Override
   public void invoke(IProgressMonitor monitor) throws InvocationException {
     TaskManager taskManager = getTaskManager();
     if (taskManager != null) {

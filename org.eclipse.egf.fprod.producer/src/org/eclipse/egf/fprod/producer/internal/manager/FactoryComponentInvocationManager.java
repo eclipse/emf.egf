@@ -13,29 +13,41 @@ package org.eclipse.egf.fprod.producer.internal.manager;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.core.producer.context.IProductionContext;
+import org.eclipse.egf.fprod.producer.IFactoryComponentInvocationProductionContext;
+import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
+import org.eclipse.egf.fprod.producer.internal.context.FactoryComponentInvocationProductionContext;
+import org.eclipse.egf.fprod.producer.internal.context.ProducerContextFactory;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
-import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.internal.manager.FactoryComponentManager;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class FactoryComponentInvocationManager extends ProductionPlanInvocationManager<FactoryComponentInvocation> {
+public class FactoryComponentInvocationManager extends ProductionPlanInvocationManager {
 
   private FactoryComponentManager _factoryComponentManager;
 
-  public FactoryComponentInvocationManager(IModelProducerManager<?> parent, FactoryComponentInvocation factoryComponentInvocation) throws InvocationException {
+  public FactoryComponentInvocationManager(IModelElementProducerManager parent, FactoryComponentInvocation factoryComponentInvocation) throws InvocationException {
     super(parent, factoryComponentInvocation);
   }
 
-  public IProductionContext<FactoryComponentInvocation> getProductionContext() throws InvocationException {
+  @Override
+  public FactoryComponentInvocation getElement() {
+    return (FactoryComponentInvocation) super.getElement();
+  }
+
+  @Override
+  public IFactoryComponentInvocationProductionContext getProductionContext() {
+    return getInternalProductionContext();
+  }
+
+  @Override
+  public FactoryComponentInvocationProductionContext getInternalProductionContext() {
     if (_productionContext == null) {
-      _productionContext = EGFProducerPlugin.getProducerContextFactory().createContext(getElement(), getProjectBundleSession());
+      _productionContext = ProducerContextFactory.createContext((IProductionPlanProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
     }
-    return _productionContext;
+    return (FactoryComponentInvocationProductionContext) _productionContext;
   }
 
   public FactoryComponentManager getFactoryComponentManager() throws InvocationException {
@@ -52,7 +64,6 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
     return 0;
   }
 
-  @Override
   public void invoke(IProgressMonitor monitor) throws InvocationException {
     FactoryComponentManager factoryComponentManager = getFactoryComponentManager();
     if (factoryComponentManager != null) {

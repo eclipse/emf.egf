@@ -15,19 +15,20 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.fprod.producer.EGFFprodProducerPlugin;
+import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
+import org.eclipse.egf.fprod.producer.internal.context.ProducerContextFactory;
+import org.eclipse.egf.fprod.producer.internal.context.TaskProductionContext;
 import org.eclipse.egf.model.fprod.Task;
-import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.internal.manager.ActivityManager;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.osgi.framework.Bundle;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class TaskManager extends ActivityManager<Task> {
+public class TaskManager extends ActivityManager {
 
   public TaskManager(Task task) throws InvocationException {
     super(task);
@@ -39,16 +40,27 @@ public class TaskManager extends ActivityManager<Task> {
     Assert.isNotNull(task.getValue());
   }
 
-  public TaskManager(IModelProducerManager<?> parent, Task task) throws InvocationException {
+  public TaskManager(IModelElementProducerManager parent, Task task) throws InvocationException {
     super(parent, task);
     Assert.isNotNull(task.getValue());
   }
 
-  public IProductionContext<Task> getProductionContext() throws InvocationException {
+  @Override
+  public Task getElement() {
+    return (Task) super.getElement();
+  }
+
+  @Override
+  public ITaskProductionContext getProductionContext() {
+    return getInternalProductionContext();
+  }
+
+  @Override
+  public TaskProductionContext getInternalProductionContext() {
     if (_productionContext == null) {
-      _productionContext = EGFProducerPlugin.getProducerContextFactory().createContext(getElement(), getProjectBundleSession());
+      _productionContext = ProducerContextFactory.createContext(getElement(), getProjectBundleSession());
     }
-    return _productionContext;
+    return (TaskProductionContext) _productionContext;
   }
 
   public int getSteps() throws InvocationException {
@@ -58,11 +70,10 @@ public class TaskManager extends ActivityManager<Task> {
     return 0;
   }
 
-  @Override
   public void invoke(IProgressMonitor monitor) throws InvocationException {
     try {
-      IProductionContext<Task> productionContext = getProductionContext();
-      EGFFprodProducerPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getBundle(), productionContext, getElement().getValue()).invoke(monitor);
+      TaskProductionContext taskProductionContext = getInternalProductionContext();
+      EGFFprodProducerPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getBundle(), taskProductionContext, getElement().getValue()).invoke(monitor);
       if (monitor.isCanceled()) {
         throw new OperationCanceledException();
       }

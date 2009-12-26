@@ -10,24 +10,17 @@
  */
 package org.eclipse.egf.producer.context;
 
-import org.eclipse.egf.core.helper.EObjectHelper;
-import org.eclipse.egf.core.producer.internal.context.ProductionContext;
-import org.eclipse.egf.core.session.ProjectBundleSession;
+import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.model.fcore.ModelElement;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class ModelElementContext<Q extends ModelElement> extends ProductionContext<Q> {
+public interface IModelElementProductionContext<T extends ModelElement> extends IProductionContext<T> {
 
-  public ModelElementContext(Q element, ProjectBundleSession projectBundleSession) {
-    super(element, projectBundleSession);
-  }
+  public ModelElement getElement();
 
-  @Override
-  public String getName() {
-    return EObjectHelper.getText(getElement());
-  }
+  public IModelElementProductionContext<?> getParent();
 
 }

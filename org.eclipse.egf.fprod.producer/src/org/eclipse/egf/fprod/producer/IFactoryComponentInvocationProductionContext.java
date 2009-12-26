@@ -8,17 +8,18 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.producer.manager;
+package org.eclipse.egf.fprod.producer;
 
-import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IOrchestrationManagerFactory<T extends Orchestration> {
+public interface IFactoryComponentInvocationProductionContext extends IProductionPlanInvocationProductionContext {
 
-  public IModelProducerManager<T> createProductionManager(IModelProducerManager<?> parent, T orchestration) throws InvocationException;
+  public FactoryComponentInvocation getElement();
+
+  public IProductionPlanProductionContext getParent();
 
 }

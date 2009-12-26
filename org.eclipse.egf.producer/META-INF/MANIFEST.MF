@@ -14,7 +14,8 @@ Require-Bundle:
 Export-Package: 
  org.eclipse.egf.producer,
  org.eclipse.egf.producer.activity,
- org.eclipse.egf.producer.context,
+ org.eclipse.egf.producer.context, 
+ org.eclipse.egf.producer.internal.context;x-friends:="org.eclipse.egf.fprod.producer", 
  org.eclipse.egf.producer.internal.manager;x-friends:="org.eclipse.egf.fprod.producer",
  org.eclipse.egf.producer.manager,
  org.eclipse.egf.producer.orchestration

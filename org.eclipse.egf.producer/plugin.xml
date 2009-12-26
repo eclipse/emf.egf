@@ -27,18 +27,6 @@
     id="orchestration" 
     name="%EGFOrchestrationExtensionPoint" 
     schema="schema/orchestration.exsd"
-  />    
-  
-  <!-- ================================================================================= -->
-  <!-- Activity Producer                                                                 -->
-  <!-- ================================================================================= -->  
-  
-  <extension
-    point="org.eclipse.egf.producer.activity"
-  >
-    <activity
-      class="org.eclipse.egf.producer.activity.FactoryComponentProducer"
-    />
-  </extension>   
-    
+  />           
+      
 </plugin>

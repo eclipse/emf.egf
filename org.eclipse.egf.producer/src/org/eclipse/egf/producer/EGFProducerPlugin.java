@@ -7,9 +7,7 @@ import org.eclipse.egf.core.producer.MissingExtensionException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.producer.activity.ActivityProducer;
-import org.eclipse.egf.producer.context.IProducerContextFactory;
 import org.eclipse.egf.producer.internal.ProducerRegistry;
-import org.eclipse.egf.producer.internal.context.ProducerContextFactory;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.orchestration.OrchestrationProducer;
 import org.eclipse.osgi.util.NLS;
@@ -19,11 +17,6 @@ import org.osgi.framework.BundleContext;
  * The activator class controls the plug-in life cycle
  */
 public class EGFProducerPlugin extends EGFAbstractPlugin {
-
-  /**
-   * IProducerContextFactory singleton.
-   */
-  private static IProducerContextFactory __producerContextFactory;
 
   // The shared instance
   private static EGFProducerPlugin __plugin;
@@ -60,25 +53,13 @@ public class EGFProducerPlugin extends EGFAbstractPlugin {
   }
 
   /**
-   * Returns the singleton instance of the IProducerContextFactory.
-   * 
-   * @return the singleton producer context factory.
-   */
-  public static IProducerContextFactory getProducerContextFactory() {
-    if (__producerContextFactory == null) {
-      __producerContextFactory = new ProducerContextFactory();
-    }
-    return __producerContextFactory;
-  }
-
-  /**
    * Returns an ActivityProducer based on a Fcore model Activity.
    * 
    * @return an ActivityProducer
    */
-  public static ActivityProducer<Activity> getActivityProducer(Activity activity) throws MissingExtensionException {
-    Map<String, ActivityProducer<Activity>> producers = ProducerRegistry.getActivityProducers();
-    ActivityProducer<Activity> producer = producers.get(ProducerRegistry.getName(activity));
+  public static ActivityProducer getActivityProducer(Activity activity) throws MissingExtensionException {
+    Map<String, ActivityProducer> producers = ProducerRegistry.getActivityProducers();
+    ActivityProducer producer = producers.get(ProducerRegistry.getName(activity));
     if (producer == null) {
       throw new MissingExtensionException(NLS.bind(ProducerMessages.Activity_extension_error, ProducerRegistry.getName(activity)));
     }
@@ -91,9 +72,9 @@ public class EGFProducerPlugin extends EGFAbstractPlugin {
    * 
    * @return an OrchestrationProducer
    */
-  public static OrchestrationProducer<Orchestration> getOrchestrationProducer(Orchestration orchestration) throws MissingExtensionException {
-    Map<String, OrchestrationProducer<Orchestration>> producers = ProducerRegistry.getOrchestrationProducers();
-    OrchestrationProducer<Orchestration> producer = producers.get(ProducerRegistry.getName(orchestration));
+  public static OrchestrationProducer getOrchestrationProducer(Orchestration orchestration) throws MissingExtensionException {
+    Map<String, OrchestrationProducer> producers = ProducerRegistry.getOrchestrationProducers();
+    OrchestrationProducer producer = producers.get(ProducerRegistry.getName(orchestration));
     if (producer == null) {
       throw new MissingExtensionException(NLS.bind(ProducerMessages.Orchestration_extension_error, ProducerRegistry.getName(orchestration)));
     }

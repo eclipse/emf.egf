@@ -18,43 +18,51 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.core.producer.context.IProductionContext;
+import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
+import org.eclipse.egf.fprod.producer.internal.context.ProducerContextFactory;
+import org.eclipse.egf.fprod.producer.internal.context.ProductionPlanProductionContext;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.TaskInvocation;
-import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.internal.manager.AbstractManager;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
+import org.eclipse.egf.producer.internal.manager.OrchestrationManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class ProductionPlanManager extends AbstractManager<ProductionPlan> {
+public class ProductionPlanManager extends OrchestrationManager {
 
-  private Map<Invocation<?>, ProductionPlanInvocationManager<?>> _managers;
+  private Map<Invocation<?>, ProductionPlanInvocationManager> _managers;
 
-  public ProductionPlanManager(IModelProducerManager<?> parent, ProductionPlan productionPlan) throws InvocationException {
+  public ProductionPlanManager(IModelElementProducerManager parent, ProductionPlan productionPlan) throws InvocationException {
     super(parent, productionPlan);
-    init();
   }
 
-  public void init() throws InvocationException {
-    getProductionContext().reset();
+  @Override
+  public IProductionPlanProductionContext getProductionContext() {
+    return getInternalProductionContext();
   }
 
-  public IProductionContext<ProductionPlan> getProductionContext() throws InvocationException {
+  @Override
+  public ProductionPlan getElement() {
+    return (ProductionPlan) super.getElement();
+  }
+
+  @Override
+  public ProductionPlanProductionContext getInternalProductionContext() {
     if (_productionContext == null) {
-      _productionContext = EGFProducerPlugin.getProducerContextFactory().createContext(getElement(), getProjectBundleSession());
+      _productionContext = ProducerContextFactory.createContext((IFactoryComponentProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
     }
-    return _productionContext;
+    return (ProductionPlanProductionContext) _productionContext;
   }
 
-  private Map<Invocation<?>, ProductionPlanInvocationManager<?>> getProductionPlanManagers() throws InvocationException {
+  private Map<Invocation<?>, ProductionPlanInvocationManager> getProductionPlanManagers() throws InvocationException {
     if (_managers == null && getElement().getInvocations() != null) {
-      _managers = new HashMap<Invocation<?>, ProductionPlanInvocationManager<?>>(getElement().getInvocations().size());
+      _managers = new HashMap<Invocation<?>, ProductionPlanInvocationManager>(getElement().getInvocations().size());
       for (Invocation<?> invocation : getElement().getInvocations()) {
         if (invocation instanceof FactoryComponentInvocation) {
           _managers.put(invocation, new FactoryComponentInvocationManager(this, (FactoryComponentInvocation) invocation));
@@ -68,9 +76,9 @@ public class ProductionPlanManager extends AbstractManager<ProductionPlan> {
 
   public int getSteps() throws InvocationException {
     int steps = 0;
-    Map<Invocation<?>, ProductionPlanInvocationManager<?>> managers = getProductionPlanManagers();
+    Map<Invocation<?>, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
     if (managers != null) {
-      for (ProductionPlanInvocationManager<?> invocation : managers.values()) {
+      for (ProductionPlanInvocationManager invocation : managers.values()) {
         steps += invocation.getSteps();
       }
     }
@@ -78,12 +86,12 @@ public class ProductionPlanManager extends AbstractManager<ProductionPlan> {
   }
 
   public void invoke(IProgressMonitor monitor) throws InvocationException {
-    Map<Invocation<?>, ProductionPlanInvocationManager<?>> managers = getProductionPlanManagers();
+    Map<Invocation<?>, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
     if (managers != null) {
       int steps = getSteps();
       SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), steps * 900);
       try {
-        for (ProductionPlanInvocationManager<?> invocation : managers.values()) {
+        for (ProductionPlanInvocationManager invocation : managers.values()) {
           invocation.invoke(subMonitor.newChild(900 * invocation.getSteps(), SubMonitor.SUPPRESS_NONE));
           if (monitor.isCanceled()) {
             throw new OperationCanceledException();

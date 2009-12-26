@@ -8,17 +8,19 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.producer.internal.manager;
+package org.eclipse.egf.fprod.producer.internal.manager;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.core.producer.context.IProductionContext;
+import org.eclipse.egf.fprod.producer.internal.context.ProducerContextFactory;
 import org.eclipse.egf.model.fcore.FactoryComponent;
-import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
+import org.eclipse.egf.producer.internal.context.FactoryComponentProductionContext;
+import org.eclipse.egf.producer.internal.manager.ActivityManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.egf.producer.orchestration.OrchestrationProducer;
 import org.osgi.framework.Bundle;
 
@@ -26,9 +28,9 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public class FactoryComponentManager extends ActivityManager<FactoryComponent> {
+public class FactoryComponentManager extends ActivityManager {
 
-  private IModelProducerManager<Orchestration> _orchestrationManager;
+  private IModelElementProducerManager _orchestrationManager;
 
   public FactoryComponentManager(FactoryComponent factoryComponent) throws InvocationException {
     super(factoryComponent);
@@ -38,20 +40,31 @@ public class FactoryComponentManager extends ActivityManager<FactoryComponent> {
     super(bundle, factoryComponent);
   }
 
-  public FactoryComponentManager(IModelProducerManager<?> parent, FactoryComponent factoryComponent) throws InvocationException {
+  public FactoryComponentManager(IModelElementProducerManager parent, FactoryComponent factoryComponent) throws InvocationException {
     super(parent, factoryComponent);
   }
 
-  public IProductionContext<FactoryComponent> getProductionContext() throws InvocationException {
-    if (_productionContext == null) {
-      _productionContext = EGFProducerPlugin.getProducerContextFactory().createContext(getElement(), getProjectBundleSession());
-    }
-    return _productionContext;
+  @Override
+  public FactoryComponent getElement() {
+    return (FactoryComponent) super.getElement();
   }
 
-  public IModelProducerManager<Orchestration> getOrchestrationManager() throws InvocationException {
+  @Override
+  public IFactoryComponentProductionContext getProductionContext() {
+    return getInternalProductionContext();
+  }
+
+  @Override
+  public FactoryComponentProductionContext getInternalProductionContext() {
+    if (_productionContext == null) {
+      _productionContext = ProducerContextFactory.createContext(getElement(), getProjectBundleSession());
+    }
+    return (FactoryComponentProductionContext) _productionContext;
+  }
+
+  public IModelElementProducerManager getOrchestrationManager() throws InvocationException {
     if (_orchestrationManager == null && getElement().getOrchestration() != null) {
-      OrchestrationProducer<Orchestration> producer = null;
+      OrchestrationProducer producer = null;
       try {
         producer = EGFProducerPlugin.getOrchestrationProducer(getElement().getOrchestration());
       } catch (Exception e) {
@@ -69,9 +82,8 @@ public class FactoryComponentManager extends ActivityManager<FactoryComponent> {
     return 0;
   }
 
-  @Override
   public void invoke(IProgressMonitor monitor) throws InvocationException {
-    IModelProducerManager<Orchestration> orchestrationManager = getOrchestrationManager();
+    IModelElementProducerManager orchestrationManager = getOrchestrationManager();
     if (orchestrationManager != null) {
       try {
         orchestrationManager.invoke(monitor);

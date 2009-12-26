@@ -12,16 +12,15 @@ package org.eclipse.egf.fprod.producer.internal.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fprod.ProductionPlan;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
-import org.eclipse.egf.producer.manager.IOrchestrationManagerFactory;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class ProductionPlanManagerFactory implements IOrchestrationManagerFactory<ProductionPlan> {
+public class ProductionPlanManagerFactory {
 
-  public IModelProducerManager<ProductionPlan> createProductionManager(IModelProducerManager<?> parent, ProductionPlan productionPlan) throws InvocationException {
+  public IModelElementProducerManager createProductionManager(IModelElementProducerManager parent, ProductionPlan productionPlan) throws InvocationException {
     return new ProductionPlanManager(parent, productionPlan);
   }
 

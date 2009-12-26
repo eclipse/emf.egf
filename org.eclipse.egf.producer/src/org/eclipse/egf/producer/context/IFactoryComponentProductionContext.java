@@ -8,17 +8,18 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.fprod.producer.invocation;
+package org.eclipse.egf.producer.context;
 
-import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.model.fcore.FactoryComponent;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IProductionTaskInvocation {
+public interface IFactoryComponentProductionContext extends IActivityProductionContext {
 
-  public void invoke(final IProgressMonitor monitor) throws InvocationException;
+  public FactoryComponent getElement();
+
+  public IInvocationProductionContext getParent();
 
 }

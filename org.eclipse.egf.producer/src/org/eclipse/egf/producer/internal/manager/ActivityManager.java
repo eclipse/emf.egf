@@ -11,22 +11,18 @@
 package org.eclipse.egf.producer.internal.manager;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ActivityContract;
-import org.eclipse.egf.model.fcore.ActivityContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.TypeObject;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.context.ModelElementContext;
-import org.eclipse.egf.producer.l10n.ProducerMessages;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.internal.context.ActivityProductionContext;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
@@ -34,59 +30,49 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ActivityManager<T extends Activity> extends AbstractManager<T> {
+public abstract class ActivityManager extends ModelElementManager {
 
-  public ActivityManager(T activity) throws InvocationException {
+  public ActivityManager(Activity activity) throws InvocationException {
     super(activity);
-    _platformFcore = EGFCorePlugin.getPlatformFcore(activity.eResource());
-    if (_platformFcore == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ActivityManager_fcore_activity, getName()), null)));
-    }
-    init();
   }
 
-  public ActivityManager(Bundle bundle, T activity) throws InvocationException {
+  public ActivityManager(Bundle bundle, Activity activity) throws InvocationException {
     super(bundle, activity);
-    init();
   }
 
-  public ActivityManager(IModelProducerManager<?> parent, T activity) throws InvocationException {
+  public ActivityManager(IModelElementProducerManager parent, Activity activity) throws InvocationException {
     super(parent, activity);
-    _platformFcore = EGFCorePlugin.getPlatformFcore(activity.eResource());
-    if (_platformFcore == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ActivityManager_fcore_activity, getName()), null)));
-    }
-    init();
   }
 
-  public void init() throws InvocationException {
-    // Usuals tests
-    if (getElement().getActivityContractContainer() == null) {
-      return;
-    }
-    ActivityContractContainer contracts = getElement().getActivityContractContainer();
-    if (contracts.getActivityContracts() == null) {
-      return;
-    }
+  @Override
+  public Activity getElement() {
+    return (Activity) super.getElement();
+  }
+
+  @Override
+  protected abstract ActivityProductionContext getInternalProductionContext();
+
+  @Override
+  public void prepare() throws InvocationException {
     // Get Context
-    ModelElementContext<T> productionContext = (ModelElementContext<T>) getProductionContext();
-    // Reset Context
-    productionContext.reset();
-    // Init Contracts
-    for (ActivityContract contract : contracts.getActivityContracts()) {
-      // Should not happen
-      if (contract.getType() == null || contract.getName() == null) {
+    ActivityProductionContext context = getInternalProductionContext();
+    // Clear Context
+    context.clear();
+    // Set Context
+    for (ActivityContract contract : getElement().getActivityContracts()) {
+      // Should not happen, anyway ignore
+      if (contract.getType() == null) {
         continue;
       }
-      // Instance
+      // Object
       if (contract.getType() instanceof TypeObject<?>) {
         if (contract.getMode() == ContractMode.IN) {
-          productionContext.addInputData(contract.getName(), contract.getType().getType(), contract.getType().getValue());
+          context.addInputData(contract, contract.getType().getType(), contract.getType().getValue());
         } else if (contract.getMode() == ContractMode.OUT) {
-          productionContext.addOutputData(contract.getName(), contract.getType().getType(), null);
+          context.addOutputData(contract, contract.getType().getType(), null);
         } else if (contract.getMode() == ContractMode.IN_OUT) {
-          productionContext.addInputData(contract.getName(), contract.getType().getType(), contract.getType().getValue());
-          productionContext.addOutputData(contract.getName(), contract.getType().getType(), contract.getType().getValue());
+          context.addInputData(contract, contract.getType().getType(), contract.getType().getValue());
+          context.addOutputData(contract, contract.getType().getType(), contract.getType().getValue());
         }
         // Class
       } else if (contract.getType() instanceof TypeClass<?>) {
@@ -101,12 +87,12 @@ public abstract class ActivityManager<T extends Activity> extends AbstractManage
             }
           }
           if (contract.getMode() == ContractMode.IN) {
-            productionContext.addInputData(contract.getName(), contract.getType().getType(), object);
+            context.addInputData(contract, contract.getType().getType(), object);
           } else if (contract.getMode() == ContractMode.OUT) {
-            productionContext.addOutputData(contract.getName(), contract.getType().getType(), null);
+            context.addOutputData(contract, contract.getType().getType(), null);
           } else if (contract.getMode() == ContractMode.IN_OUT) {
-            productionContext.addInputData(contract.getName(), contract.getType().getType(), object);
-            productionContext.addOutputData(contract.getName(), contract.getType().getType(), object);
+            context.addInputData(contract, contract.getType().getType(), object);
+            context.addOutputData(contract, contract.getType().getType(), object);
           }
         } catch (Throwable t) {
           throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, contract.getType().getValue()), t)));
@@ -114,7 +100,5 @@ public abstract class ActivityManager<T extends Activity> extends AbstractManage
       }
     }
   }
-
-  public abstract void invoke(IProgressMonitor monitor) throws InvocationException;
 
 }

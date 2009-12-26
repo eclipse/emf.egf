@@ -31,7 +31,7 @@ import org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.activity.ActivityProducer;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
 import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
@@ -48,6 +48,7 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.ui.IActionDelegate2;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
+import org.eclipse.ui.progress.IProgressConstants;
 
 public class GlobalRunActivityAction extends Action implements IWorkbenchWindowActionDelegate, IActionDelegate2 {
 
@@ -106,11 +107,11 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         } catch (Throwable t) {
           throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, "GlobalRunActivityAction.runWithEvent(..) _", t)); //$NON-NLS-1$
         }
-        IModelProducerManager<Activity> production = null;
+        IModelElementProducerManager production = null;
         int ticks = 0;
         try {
           // Locate a Producer
-          ActivityProducer<Activity> producer = null;
+          ActivityProducer producer = null;
           try {
             producer = EGFProducerPlugin.getActivityProducer(activity);
           } catch (MissingExtensionException mee) {
@@ -120,7 +121,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
           production = producer.createManager(activity);
           ticks = production.getSteps();
         } catch (InvocationException ie) {
-          if (ie.getCause() instanceof CoreException) {
+          if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
             throw (CoreException) ie.getCause();
           }
           invocationException[0] = ie;
@@ -137,7 +138,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
               throw new OperationCanceledException();
             }
           } catch (InvocationException ie) {
-            if (ie.getCause() instanceof CoreException) {
+            if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
               throw (CoreException) ie.getCause();
             }
             invocationException[0] = ie;
@@ -151,6 +152,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
       }
     };
     activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
+    activityJob.setProperty(IProgressConstants.ICON_PROPERTY, ProducerUIImages.EGF_RUN_ACTIVITY);
     activityJob.setUser(true);
     activityJob.schedule();
 

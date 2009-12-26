@@ -32,8 +32,9 @@ import org.eclipse.egf.core.producer.MissingExtensionException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.activity.ActivityProducer;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
+import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -43,6 +44,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.progress.IProgressConstants;
 
 public class RunActivityAction implements IObjectActionDelegate {
 
@@ -68,11 +70,11 @@ public class RunActivityAction implements IObjectActionDelegate {
 
       @Override
       public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-        IModelProducerManager<Activity> production = null;
+        IModelElementProducerManager production = null;
         int ticks = 0;
         try {
           // Locate a Producer
-          ActivityProducer<Activity> producer = null;
+          ActivityProducer producer = null;
           try {
             producer = EGFProducerPlugin.getActivityProducer(activity);
           } catch (MissingExtensionException mee) {
@@ -82,7 +84,7 @@ public class RunActivityAction implements IObjectActionDelegate {
           production = producer.createManager(activity);
           ticks = production.getSteps();
         } catch (InvocationException ie) {
-          if (ie.getCause() instanceof CoreException) {
+          if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
             throw (CoreException) ie.getCause();
           }
           invocationException[0] = ie;
@@ -99,10 +101,11 @@ public class RunActivityAction implements IObjectActionDelegate {
               throw new OperationCanceledException();
             }
           } catch (final InvocationException ie) {
-            if (ie.getCause() instanceof CoreException) {
+            if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
               throw (CoreException) ie.getCause();
             }
-            invocationException[0] = ie;
+            throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, ie));
+            // invocationException[0] = ie;
           } catch (Throwable t) {
             throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
           }
@@ -113,6 +116,7 @@ public class RunActivityAction implements IObjectActionDelegate {
       }
     };
     activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
+    activityJob.setProperty(IProgressConstants.ICON_PROPERTY, ProducerUIImages.EGF_RUN_ACTIVITY);
     activityJob.setUser(true);
     activityJob.schedule();
 

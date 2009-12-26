@@ -8,19 +8,17 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.producer.manager;
+package org.eclipse.egf.fprod.producer.invocation;
 
-import org.eclipse.egf.core.producer.manager.IProducerManager;
-import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.producer.InvocationException;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IModelProducerManager<T extends ModelElement> extends IProducerManager<T> {
+public interface ITaskProductionInvocation {
 
-  public String getName();
-
-  public IModelProducerManager<?> getParent();
+  public void invoke(final IProgressMonitor monitor) throws InvocationException;
 
 }

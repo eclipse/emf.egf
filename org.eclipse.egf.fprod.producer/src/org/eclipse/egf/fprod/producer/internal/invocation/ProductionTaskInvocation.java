@@ -20,20 +20,19 @@ import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.core.producer.context.IProductionContext;
-import org.eclipse.egf.fprod.producer.invocation.IProductionTaskInvocation;
-import org.eclipse.egf.model.fprod.Task;
-import org.eclipse.egf.model.fprod.task.IProductionTask;
+import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
+import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
+import org.eclipse.egf.fprod.producer.invocation.ITaskProductionInvocation;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
 /**
  * This class is responsible to process user defined
- * {@link org.eclipse.egf.productionplan.invocation.IProductionTaskInvocation}.
+ * {@link org.eclipse.egf.ITaskProductionInvocation.invocation.IProductionTaskInvocation}.
  * 
  * @author Xavier Maysonnave
  */
-public class ProductionTaskInvocation implements IProductionTaskInvocation {
+public class ProductionTaskInvocation implements ITaskProductionInvocation {
 
   /**
    * Bundle
@@ -41,20 +40,20 @@ public class ProductionTaskInvocation implements IProductionTaskInvocation {
   private Bundle _bundle;
 
   /**
-   * IProductionContext
+   * ITaskProductionContext
    */
-  private IProductionContext<Task> _productionContext;
+  private ITaskProductionContext _taskProductionContext;
 
   /**
    * IProductionTask
    */
   private String _value;
 
-  public ProductionTaskInvocation(Bundle bundle, IProductionContext<Task> productionContext, String value) {
+  public ProductionTaskInvocation(Bundle bundle, ITaskProductionContext taskProductionContext, String value) {
     Assert.isNotNull(bundle);
-    Assert.isNotNull(productionContext);
+    Assert.isNotNull(taskProductionContext);
     _bundle = bundle;
-    _productionContext = productionContext;
+    _taskProductionContext = taskProductionContext;
     _value = value;
   }
 
@@ -64,15 +63,15 @@ public class ProductionTaskInvocation implements IProductionTaskInvocation {
    * @param monitor_p
    * @return the instantiated object or null
    */
-  protected IProductionTask createProductionInvocationInstance() throws CoreException {
-    IProductionTask productionTask = null;
+  protected ITaskProduction createProductionInvocationInstance() throws CoreException {
+    ITaskProduction productionTask = null;
     // Nothing to do
     if (_value == null) {
       return null;
     }
     // Load Class and instantiate
     try {
-      productionTask = (IProductionTask) BundleHelper.instantiate(_value.trim(), _bundle);
+      productionTask = (ITaskProduction) BundleHelper.instantiate(_value.trim(), _bundle);
     } catch (ClassNotFoundException cnfe) {
       throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _value), cnfe));
     } catch (InstantiationException ie) {
@@ -90,10 +89,10 @@ public class ProductionTaskInvocation implements IProductionTaskInvocation {
    * @return true if the execution was successful, false otherwise.
    */
   public void invoke(final IProgressMonitor monitor) throws InvocationException {
-    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, _productionContext.getName()), 1000);
+    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, _taskProductionContext.getName()), 1000);
     try {
       // Instantiate an IProductionTask object
-      IProductionTask task = null;
+      ITaskProduction task = null;
       try {
         task = createProductionInvocationInstance();
       } catch (CoreException ce) {
@@ -107,19 +106,19 @@ public class ProductionTaskInvocation implements IProductionTaskInvocation {
         throw new OperationCanceledException();
       }
       // PreExecute
-      task.preExecute(_productionContext, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+      task.preExecute(_taskProductionContext, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
       subMonitor.worked(100);
       if (monitor.isCanceled()) {
         throw new OperationCanceledException();
       }
       // DoExecute
-      task.doExecute(_productionContext, subMonitor.newChild(700, SubMonitor.SUPPRESS_NONE));
+      task.doExecute(_taskProductionContext, subMonitor.newChild(700, SubMonitor.SUPPRESS_NONE));
       subMonitor.worked(700);
       if (monitor.isCanceled()) {
         throw new OperationCanceledException();
       }
       // PostExecute
-      task.postExecute(_productionContext, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+      task.postExecute(_taskProductionContext, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
       subMonitor.worked(100);
       if (monitor.isCanceled()) {
         throw new OperationCanceledException();

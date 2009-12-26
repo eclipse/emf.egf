@@ -10,27 +10,34 @@
  */
 package org.eclipse.egf.fprod.producer.internal.manager;
 
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.fprod.producer.IProductionPlanInvocationProductionContext;
+import org.eclipse.egf.fprod.producer.internal.context.ProductionPlanInvocationProductionContext;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
-import org.eclipse.egf.producer.internal.manager.AbstractManager;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.internal.manager.InvocationManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ProductionPlanInvocationManager<T extends ProductionPlanInvocation<?>> extends AbstractManager<T> {
+public abstract class ProductionPlanInvocationManager extends InvocationManager {
 
-  public ProductionPlanInvocationManager(IModelProducerManager<?> parent, T productionPlanInvocation) throws InvocationException {
+  public ProductionPlanInvocationManager(IModelElementProducerManager parent, ProductionPlanInvocation<?> productionPlanInvocation) throws InvocationException {
     super(parent, productionPlanInvocation);
-    init();
   }
 
-  public void init() throws InvocationException {
-    getProductionContext().reset();
+  @Override
+  public IProductionPlanInvocationProductionContext getProductionContext() {
+    return getInternalProductionContext();
   }
 
-  public abstract void invoke(IProgressMonitor monitor) throws InvocationException;
+  @Override
+  public ProductionPlanInvocation<?> getElement() {
+    return (ProductionPlanInvocation<?>) super.getElement();
+  }
+
+  @Override
+  public abstract ProductionPlanInvocationProductionContext getInternalProductionContext();
 
 }

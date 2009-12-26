@@ -12,25 +12,24 @@ package org.eclipse.egf.fprod.producer.internal.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fprod.Task;
-import org.eclipse.egf.producer.manager.IActivityManagerFactory;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.osgi.framework.Bundle;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class TaskManagerFactory implements IActivityManagerFactory<Task> {
+public class TaskManagerFactory {
 
-  public IModelProducerManager<Task> createProductionManager(Task task) throws InvocationException {
+  public IModelElementProducerManager createProductionManager(Task task) throws InvocationException {
     return new TaskManager(task);
   }
 
-  public IModelProducerManager<Task> createProductionManager(Bundle bundle, Task task) throws InvocationException {
+  public IModelElementProducerManager createProductionManager(Bundle bundle, Task task) throws InvocationException {
     return new TaskManager(bundle, task);
   }
 
-  public IModelProducerManager<Task> createProductionManager(IModelProducerManager<?> parent, Task task) throws InvocationException {
+  public IModelElementProducerManager createProductionManager(IModelElementProducerManager parent, Task task) throws InvocationException {
     return new TaskManager(parent, task);
   }
 
