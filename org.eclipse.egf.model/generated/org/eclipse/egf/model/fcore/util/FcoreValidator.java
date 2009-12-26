@@ -475,10 +475,6 @@ public class FcoreValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(invocationContext, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateInvocationContext_MandatoryName(invocationContext, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateInvocationContext_UniqueName(invocationContext, diagnostics, context);
-    if (result || diagnostics != null)
       result &= validateInvocationContext_ValidActivityContract(invocationContext, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateInvocationContext_ValidActivityContractType(invocationContext, diagnostics, context);
@@ -493,63 +489,6 @@ public class FcoreValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validateInvocationContext_UselessType(invocationContext, diagnostics, context);
     return result;
-  }
-
-  /**
-   * Validates the MandatoryName constraint of '<em>Invocation Context</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public boolean validateInvocationContext_MandatoryName(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (invocationContext.getName() == null || invocationContext.getName().trim().length() == 0) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "InvocationContext Name is mandatory", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
-            new Object[] { invocationContext }, context));
-      }
-      return false;
-    }
-    return true;
-  }
-
-  /**
-   * Validates the UniqueName constraint of '<em>Invocation Context</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public boolean validateInvocationContext_UniqueName(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    // Verify if name is unique in its invocation context container
-    if (invocationContext.getName() == null || invocationContext.getInvocation() == null || invocationContext.getActivityContract() == null) {
-      return true;
-    }
-    boolean collapse = false;
-    for (InvocationContext innerInvocationContext : invocationContext.getInvocation().getInvocationContexts()) {
-      if (innerInvocationContext == invocationContext || innerInvocationContext.getMode() == null) {
-        continue;
-      }
-      // Ignore exclusive conditions
-      if ((invocationContext.getMode() == ContractMode.IN && innerInvocationContext.getMode() == ContractMode.OUT) || (invocationContext.getMode() == ContractMode.OUT && innerInvocationContext.getMode() == ContractMode.IN)) {
-        continue;
-      }
-      // Collapse
-      if (invocationContext.getName().equals(innerInvocationContext.getName())) {
-        collapse = true;
-        break;
-      }
-    }
-    if (collapse) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "InvocationContext Name should be unique in its Context Container.", getObjectLabel(invocationContext, context) }, //$NON-NLS-1$
-            new Object[] { invocationContext }, context));
-      }
-      return false;
-    }
-    return true;
   }
 
   /**

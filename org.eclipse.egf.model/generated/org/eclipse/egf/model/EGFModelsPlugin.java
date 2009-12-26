@@ -22,7 +22,7 @@ import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
 /**
- * This is the central singleton for the Domain model plugin.
+ * This is the central singleton for the Fcore model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated

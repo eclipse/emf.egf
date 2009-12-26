@@ -30,7 +30,7 @@ package org.eclipse.egf.model.fcore;
  * </p>
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContext()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryName UniqueName ValidActivityContract ValidActivityContractType ValidContext ValidExposedContract ValidExposedContractType MandatoryTypeValue UselessType'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidActivityContract ValidActivityContractType ValidContext ValidExposedContract ValidExposedContractType MandatoryTypeValue UselessType'"
  * @generated
  */
 public interface InvocationContext extends ModelElement {

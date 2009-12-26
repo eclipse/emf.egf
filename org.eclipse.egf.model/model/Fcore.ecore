@@ -348,7 +348,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvocationContext" eSuperTypes="#//ModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="MandatoryName UniqueName ValidActivityContract ValidActivityContractType ValidContext ValidExposedContract ValidExposedContractType MandatoryTypeValue UselessType"/>
+      <details key="constraints" value="ValidActivityContract ValidActivityContractType ValidContext ValidExposedContract ValidExposedContractType MandatoryTypeValue UselessType"/>
     </eAnnotations>
     <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
     <eOperations name="getInvocation" lowerBound="1">
