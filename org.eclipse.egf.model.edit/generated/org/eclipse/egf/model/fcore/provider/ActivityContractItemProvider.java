@@ -127,14 +127,13 @@ public class ActivityContractItemProvider extends ModelElementItemProvider imple
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * @generated
    */
   @Override
   public String getText(Object object) {
     String label = ((ActivityContract) object).getName();
-    return label == null || label.length() == 0 ? "[" + ((ActivityContract) object).getMode().getLiteral() + "] [" + getString("_UI_ActivityContract_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-        label + " [" + ((ActivityContract) object).getMode().getLiteral() + "] [" + getString("_UI_ActivityContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+    return label == null || label.length() == 0 ? "[" + getString("_UI_ActivityContract_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        label + " [" + getString("_UI_ActivityContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**

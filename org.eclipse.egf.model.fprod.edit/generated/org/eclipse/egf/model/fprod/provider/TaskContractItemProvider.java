@@ -16,12 +16,9 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.fcore.provider.ActivityContractItemProvider;
-
 import org.eclipse.egf.model.fprod.TaskContract;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -38,6 +35,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fprod.TaskContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TaskContractItemProvider extends ActivityContractItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -45,6 +43,7 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TaskContractItemProvider(AdapterFactory adapterFactory) {
@@ -55,6 +54,7 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -70,6 +70,7 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * This returns TaskContract.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -81,13 +82,30 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((TaskContract) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_TaskContract_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_TaskContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    TaskContract contract = (TaskContract) object;
+    String label = contract.getName();
+    String mode = null;
+    if (contract.getMode() != null) {
+      mode = "[" + contract.getMode().getLiteral() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+    }
+    if (label == null || label.length() == 0) {
+      label = "[" + getString("_UI_TaskContract_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      if (mode != null) {
+        label = mode + " " + label; //$NON-NLS-1$
+      }
+    } else {
+      if (mode != null) {
+        label = label + " " + mode + " [" + getString("_UI_TaskContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+      } else {
+        label = label + " [" + getString("_UI_TaskContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      }
+    }
+    return label;
   }
 
   /**
@@ -95,6 +113,7 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -108,6 +127,7 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
