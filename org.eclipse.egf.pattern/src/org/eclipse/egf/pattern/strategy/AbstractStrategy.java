@@ -35,7 +35,7 @@ public abstract class AbstractStrategy implements Strategy {
 
     protected PatternElement[] patternElements;
 
-    public void setPatterns(List<PatternElement> patterns) {
+    public void setPatternElements(List<PatternElement> patterns) {
         this.patternElements = (PatternElement[]) patterns.toArray(new PatternElement[patterns.size()]);
     }
 

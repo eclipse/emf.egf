@@ -17,7 +17,7 @@ import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionExcepti
 
 public interface Strategy {
 
-    public void setPatterns(List<PatternElement> patterns);
+    public void setPatternElements(List<PatternElement> patterns);
 
     public void execute(PatternContext context, Object parameter) throws PatternException, MissingExtensionException;
 
