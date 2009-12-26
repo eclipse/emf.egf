@@ -17,7 +17,6 @@ package org.eclipse.egf.model.pattern;
 
 import java.util.Map;
 
-import org.eclipse.egf.model.PatternContext;
 
 /**
  * @author Guiu

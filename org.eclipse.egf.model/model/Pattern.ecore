@@ -56,8 +56,8 @@
         eType="#//PatternLibrary" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternNature" abstract="true" eSuperTypes="Fcore.ecore#//ModelElement"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="PatternContext" instanceClassName="org.eclipse.egf.model.PatternContext"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="PatternException" instanceClassName="org.eclipse.egf.model.PatternException"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="PatternContext" instanceClassName="org.eclipse.egf.model.pattern.PatternContext"/>
+  <eClassifiers xsi:type="ecore:EDataType" name="PatternException" instanceClassName="org.eclipse.egf.model.pattern.PatternException"/>
   <eClassifiers xsi:type="ecore:EClass" name="PatternCall" eSuperTypes="#//AbstractPatternCall">
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameterMatching" upperBound="-1"
         eType="#//Paramerter2ParameterMap" containment="true"/>

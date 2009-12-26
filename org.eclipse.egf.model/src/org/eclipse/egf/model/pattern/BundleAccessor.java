@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.model;
+package org.eclipse.egf.model.pattern;
 
 import org.osgi.framework.Bundle;
 

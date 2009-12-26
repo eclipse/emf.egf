@@ -14,8 +14,6 @@ package org.eclipse.egf.model.pattern.impl;
 
 import java.util.Map;
 
-import org.eclipse.egf.model.PatternContext;
-import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.*;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.egf.model.pattern.BasicQuery;
@@ -23,6 +21,8 @@ import org.eclipse.egf.model.pattern.CustomQuery;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
+import org.eclipse.egf.model.pattern.PatternContext;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternLibrary;

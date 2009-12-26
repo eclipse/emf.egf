@@ -18,8 +18,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.EGFModelsPlugin;
-import org.eclipse.egf.model.PatternContext;
-import org.eclipse.egf.model.PatternException;
+import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.Call;
@@ -27,7 +26,9 @@ import org.eclipse.egf.model.pattern.CustomQuery;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
+import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternElement;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.egf.model.pattern.PatternExecutionReporterType;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
@@ -67,18 +68,13 @@ public class PatternValidator extends EObjectValidator {
     /**
      * The cached model package
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public static final PatternValidator INSTANCE = new PatternValidator();
 
     /**
-     * A constant for the
-     * {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-     * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes}
-     * from this package.
+     * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @see org.eclipse.emf.common.util.Diagnostic#getSource()
      * @see org.eclipse.emf.common.util.Diagnostic#getCode()
      * @generated
@@ -86,21 +82,17 @@ public class PatternValidator extends EObjectValidator {
     public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.pattern"; //$NON-NLS-1$
 
     /**
-     * A constant with a fixed name that can be used as the base value for
-     * additional hand written constants.
+     * A constant with a fixed name that can be used as the base value for additional hand written constants.
      * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @generated
      */
     private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
     /**
-     * A constant with a fixed name that can be used as the base value for
-     * additional hand written constants in a derived class.
+     * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
      * <!-- begin-user-doc
      * --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
@@ -108,7 +100,6 @@ public class PatternValidator extends EObjectValidator {
     /**
      * Model Validation Service interface for batch validation of EMF elements.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     private final IBatchValidator batchValidator;
@@ -117,7 +108,6 @@ public class PatternValidator extends EObjectValidator {
      * The cached base package validator.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected TypesValidator typesValidator;
@@ -126,7 +116,6 @@ public class PatternValidator extends EObjectValidator {
      * Creates an instance of the switch.
      * <!-- begin-user-doc --> <!--
      * end-user-doc -->
-     * 
      * @generated
      */
     public PatternValidator() {
@@ -142,7 +131,6 @@ public class PatternValidator extends EObjectValidator {
      * Returns the package of this validator switch.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -152,7 +140,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -163,10 +150,10 @@ public class PatternValidator extends EObjectValidator {
         // no point in validating if we can't report results
         if (diagnostics != null) {
             // if EMF Mode Validation Service already covered the sub-tree,
-            // which it does for efficient computation and error reporting,
-            // then don't repeat (the Diagnostician does the recursion
-            // externally). If there is no context map, then we can't
-            // help it
+            //    which it does for efficient computation and error reporting,
+            //    then don't repeat (the Diagnostician does the recursion
+            //    externally).  If there is no context map, then we can't
+            //    help it
             if (hasProcessed(eObject, context) == false) {
                 status = batchValidator.validate(eObject, new NullProgressMonitor());
                 processed(eObject, context, status);
@@ -177,10 +164,8 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * Calls <code>validateXXX</code> for the corresponding classifier of the
-     * model.
+     * Calls <code>validateXXX</code> for the corresponding classifier of the model.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -241,7 +226,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePattern(Pattern pattern, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -303,7 +287,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternMethod(PatternMethod patternMethod, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -312,7 +295,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternParameter(PatternParameter patternParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -321,7 +303,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternLibrary(PatternLibrary patternLibrary, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -330,7 +311,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternElement(PatternElement patternElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -339,7 +319,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternViewpoint(PatternViewpoint patternViewpoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -348,7 +327,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternNature(PatternNature patternNature, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -357,7 +335,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternCall(PatternCall patternCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -367,7 +344,6 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateSuperPatternCall(SuperPatternCall superPatternCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -376,7 +352,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateParamerter2ParameterMap(Map.Entry<?, ?> paramerter2ParameterMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -385,7 +360,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateCall(Call call, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -394,7 +368,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateMethodCall(MethodCall methodCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -403,7 +376,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternVariable(PatternVariable patternVariable, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -412,7 +384,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateAbstractPatternCall(AbstractPatternCall abstractPatternCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -421,7 +392,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternInjectedCall(PatternInjectedCall patternInjectedCall, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -430,7 +400,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateQuery(Query query, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -439,7 +408,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateBasicQuery(BasicQuery basicQuery, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -448,7 +416,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateStringQuery(StringQuery stringQuery, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -457,7 +424,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateCustomQuery(CustomQuery customQuery, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -467,7 +433,6 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateString2PatternList(Map.Entry<?, ?> string2PatternList, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -477,7 +442,6 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternExecutionReporterType(PatternExecutionReporterType patternExecutionReporterType, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -503,7 +467,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternContext(PatternContext patternContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -512,7 +475,6 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validatePatternException(PatternException patternException, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -522,7 +484,6 @@ public class PatternValidator extends EObjectValidator {
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public boolean validateEPatternExecutionReporter(PatternExecutionReporter ePatternExecutionReporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -530,10 +491,8 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
-     * Returns the resource locator that will be used to fetch messages for this
-     * validator's diagnostics.
+     * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
      * <!-- begin-user-doc --> <!-- end-user-doc -->
-     * 
      * @generated
      */
     @Override
@@ -545,12 +504,9 @@ public class PatternValidator extends EObjectValidator {
      * If we have a context map, record this object's <code>status</code> in it
      * so that we will know later that we have processed it and its sub-tree.
      * 
-     * @param eObject
-     *            an element that we have validated
-     * @param context
-     *            the context (may be <code>null</code>)
-     * @param status
-     *            the element's validation status
+     * @param eObject an element that we have validated
+     * @param context the context (may be <code>null</code>)
+     * @param status the element's validation status
      *            <!-- begin-user-doc --> <!--
      *            end-user-doc -->
      * @generated
@@ -563,17 +519,14 @@ public class PatternValidator extends EObjectValidator {
 
     /**
      * Determines whether we have processed this <code>eObject</code> before,
-     * by automatic recursion of the EMF Model Validation Service. This is
+     * by automatic recursion of the EMF Model Validation Service.  This is
      * only possible if we do, indeed, have a context.
      * 
-     * @param eObject
-     *            an element to be validated (we hope not)
-     * @param context
-     *            the context (may be <code>null</code>)
+     * @param eObject an element to be validated (we hope not)
+     * @param context the context (may be <code>null</code>)
      * @return <code>true</code> if the context is not <code>null</code> and
-     *         the <code>eObject</code> or one of its containers has already
-     *         been
-     *         validated; <code>false</code>, otherwise
+     *     the <code>eObject</code> or one of its containers has already been
+     *     validated;  <code>false</code>, otherwise
      *         <!-- begin-user-doc -->
      *         <!-- end-user-doc -->
      * @generated

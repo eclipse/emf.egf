@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.model;
+package org.eclipse.egf.model.pattern;
 
 import java.util.HashMap;
 import java.util.Map;
