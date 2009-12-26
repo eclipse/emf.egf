@@ -47,22 +47,22 @@ public class EMFHelper {
    * Get root package for given one.<br>
    * Root package being the eldest parent package.
    * 
-   * @param package_p
+   * @param ePackage
    * @return
    */
-  public static EPackage getRootPackage(EPackage package_p) {
-    if (package_p == null) {
+  public static EPackage getRootPackage(EPackage ePackage) {
+    if (ePackage == null) {
       EGFCommonPlugin.getDefault().logWarning("Unable to solve a Root EPackage for a null EPackage"); //$NON-NLS-1$
       return null;
     }
     EPackage result = null;
-    EPackage rootPackage = package_p;
+    EPackage rootPackage = ePackage;
     while (rootPackage != null) {
       result = rootPackage;
       rootPackage = result.getESuperPackage();
     }
     if (result == null) {
-      EGFCommonPlugin.getDefault().logWarning(NLS.bind("Unable to solve a Root EPackage for {0}", package_p)); //$NON-NLS-1$
+      EGFCommonPlugin.getDefault().logWarning(NLS.bind("Unable to solve a Root EPackage for {0}", ePackage)); //$NON-NLS-1$
     }
     return result;
   }
@@ -71,36 +71,34 @@ public class EMFHelper {
    * Get static ecore package from serialized one.<br>
    * That implies that the corresponding ecore model has been generated once.
    * 
-   * @param serializedPackage_p
+   * @param ePackage
    * @return null if no generated package could be found.
    */
-  public static EPackage getStaticPackage(EPackage serializedPackage_p) {
-    EPackage staticPackageInstance = null;
+  public static EPackage getStaticPackage(EPackage ePackage) {
+    EPackage ePackageStatic = null;
     // Get the equivalent from the Global EPackage registry.
-    //
     Object staticPackage = null;
-    if (serializedPackage_p != null && serializedPackage_p.getNsURI() != null) {
-      staticPackage = EPackage.Registry.INSTANCE.get(serializedPackage_p.getNsURI());
+    if (ePackage != null && ePackage.getNsURI() != null) {
+      staticPackage = EPackage.Registry.INSTANCE.get(ePackage.getNsURI());
     }
     if (staticPackage != null) {
       if (staticPackage instanceof EPackage) {
-        staticPackageInstance = (EPackage) staticPackage;
+        ePackageStatic = (EPackage) staticPackage;
       } else if (staticPackage instanceof EPackage.Descriptor) {
-        staticPackageInstance = ((EPackage.Descriptor) staticPackage).getEPackage();
+        ePackageStatic = ((EPackage.Descriptor) staticPackage).getEPackage();
       }
     } else {
-      if (serializedPackage_p != null) {
-        EGFCommonPlugin.getDefault().logWarning(NLS.bind("Unable to get static EPackage for {0}", serializedPackage_p)); //$NON-NLS-1$
+      if (ePackage != null) {
+        EGFCommonPlugin.getDefault().logWarning(NLS.bind("Unable to get static EPackage for {0}", ePackage)); //$NON-NLS-1$
       } else {
         EGFCommonPlugin.getDefault().logWarning("Unable to get static EPackage"); //$NON-NLS-1$          
       }
-      staticPackageInstance = serializedPackage_p;
+      ePackageStatic = ePackage;
     }
-    return staticPackageInstance;
+    return ePackageStatic;
   }
 
-  public static EClassifier solveAgainstStaticPackage(EClassifier eClassifier_p) {
-    EClassifier eClassifier = eClassifier_p;
+  public static EClassifier solveAgainstStaticPackage(EClassifier eClassifier) {
     if (eClassifier == null) {
       return null;
     }
@@ -121,18 +119,17 @@ public class EMFHelper {
     return eClassifier;
   }
 
-  public static EObject solveAgainstStaticPackage(EPackage package_p, EObject eObject_p) {
-    EObject eObject = eObject_p;
-    if (eObject_p == null) {
+  public static EObject solveAgainstStaticPackage(EPackage ePackage, EObject eObject) {
+    if (eObject == null) {
       return null;
     }
-    EPackage ePackage = getStaticPackage(getRootPackage(package_p));
-    if (ePackage != null && ePackage.eResource() != null) {
+    EPackage solvedEPackage = getStaticPackage(getRootPackage(ePackage));
+    if (solvedEPackage != null && solvedEPackage.eResource() != null) {
       URI uri = EcoreUtil.getURI(eObject);
       if (uri == null) {
         return eObject;
       }
-      EObject solvedEObject = ePackage.eResource().getEObject(uri.fragment());
+      EObject solvedEObject = solvedEPackage.eResource().getEObject(uri.fragment());
       if (solvedEObject != null) {
         return solvedEObject;
       }

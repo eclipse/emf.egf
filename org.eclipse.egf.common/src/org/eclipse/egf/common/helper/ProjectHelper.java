@@ -80,24 +80,24 @@ public class ProjectHelper {
    * <code>ResourcesPlugin.getWorkspace().getRoot().getProject(projectName_p)</code>
    * is invoked as result.
    * 
-   * @param projectName_p
+   * @param pluginId
    *          A project name that points to a plug-in in the workspace.
    * @return
    */
-  public static IProject getProject(String projectName_p) {
+  public static IProject getProject(String pluginId) {
     // Precondition.
-    if (projectName_p == null) {
+    if (pluginId == null) {
       return null;
     }
     // Get model base from project name.
-    IPluginModelBase modelBase = PluginRegistry.findModel(projectName_p);
+    IPluginModelBase modelBase = PluginRegistry.findModel(pluginId);
     // Precondition.
     // Warning : fix for the Eclipse platform bug that consists in having PDE in
     // a weird state
     // regarding in-development plug-ins from launching platform as deployed
     // ones in current one.
     if (modelBase == null) {
-      return ResourcesPlugin.getWorkspace().getRoot().getProject(projectName_p);
+      return ResourcesPlugin.getWorkspace().getRoot().getProject(pluginId);
     }
     return getProject(modelBase);
   }
@@ -105,17 +105,16 @@ public class ProjectHelper {
   /**
    * Get the IProject for specified plug-in model.
    * 
-   * @param pluginModelBase_p
+   * @param base
    * @return null if the plug-in is not in the workspace.
    */
-  public static IProject getProject(IPluginModelBase pluginModelBase_p) {
+  public static IProject getProject(IPluginModelBase base) {
     // Precondition.
-    if (pluginModelBase_p == null) {
+    if (base == null) {
       return null;
     }
-    IResource underlyingResource = pluginModelBase_p.getUnderlyingResource();
+    IResource underlyingResource = base.getUnderlyingResource();
     if (underlyingResource != null) {
-      // Retrieve project from the model.
       return underlyingResource.getProject();
     }
     return null;

@@ -13,6 +13,7 @@ package org.eclipse.egf.common;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
@@ -76,7 +77,12 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
       __egfLoggers = new ArrayList<IEGFLogger>();
       // Get EGF logger extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFCommonPlugin.getDefault().getPluginID(), EXTENSION_POINT_SHORT_ID_LOGGER)) {
-        Object object = ExtensionPointHelper.createInstance(configurationElement);
+        Object object = null;
+        try {
+          object = ExtensionPointHelper.createInstance(configurationElement);
+        } catch (CoreException ce) {
+          getDefault().logError(ce);
+        }
         if (object == null) {
           continue;
         }

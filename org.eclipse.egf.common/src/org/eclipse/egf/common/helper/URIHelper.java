@@ -12,6 +12,7 @@ package org.eclipse.egf.common.helper;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
@@ -41,7 +42,7 @@ public class URIHelper {
     if (path == null || path.segmentCount() < 2) {
       return null;
     }
-    IProject project = ProjectHelper.getProject(path.segment(0));
+    IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0));
     if (project == null) {
       return null;
     }

@@ -12,6 +12,7 @@ package org.eclipse.egf.common.helper;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.ModelEntry;
@@ -133,9 +134,9 @@ public class BundleHelper {
   }
 
   /**
-   * Get the plug-in model base for given project.
+   * Get the plug-in model base for given path.
    * 
-   * @param project_p
+   * @param path
    * @return an {@link IPluginModelBase} instance or null if the project is not
    *         a plug-in.
    */
@@ -143,13 +144,13 @@ public class BundleHelper {
     if (path == null || path.segmentCount() < 2) {
       return null;
     }
-    return getPluginModelBase(ProjectHelper.getProject(path.segment(0)));
+    return getPluginModelBase(ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0)));
   }
 
   /**
-   * Get the plug-in model base for given project.
+   * Get the plug-in model base for given resource.
    * 
-   * @param project_p
+   * @param resource
    * @return an {@link IPluginModelBase} instance or null if the project is not
    *         a plug-in.
    */
@@ -163,7 +164,7 @@ public class BundleHelper {
   /**
    * Get the plug-in model base for given project.
    * 
-   * @param project_p
+   * @param project
    * @return an {@link IPluginModelBase} instance or null if the project is not
    *         a plug-in.
    */
