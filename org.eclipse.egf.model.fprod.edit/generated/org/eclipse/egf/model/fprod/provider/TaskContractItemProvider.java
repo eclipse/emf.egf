@@ -35,7 +35,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fprod.TaskContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TaskContractItemProvider extends ActivityContractItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -43,7 +42,6 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TaskContractItemProvider(AdapterFactory adapterFactory) {
@@ -54,7 +52,6 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -70,7 +67,6 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * This returns TaskContract.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -113,7 +109,6 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -127,7 +122,6 @@ public class TaskContractItemProvider extends ActivityContractItemProvider imple
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

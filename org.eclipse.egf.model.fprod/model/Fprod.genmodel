@@ -26,7 +26,8 @@
     <genClasses ecoreClass="Fprod.ecore#//TaskInvocation"/>
     <genClasses ecoreClass="Fprod.ecore#//Task">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fprod.ecore#//Task/activityContractContainer"/>
-      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Fprod.ecore#//Task/value"/>
+      <genFeatures createChild="false" propertyCategory="Task Production" propertySortChoices="true"
+          ecoreFeature="ecore:EAttribute Fprod.ecore#//Task/value"/>
       <genOperations ecoreOperation="Fprod.ecore#//Task/getActivityContracts"/>
       <genOperations ecoreOperation="Fprod.ecore#//Task/getActivityContracts.1">
         <genParameters ecoreParameter="Fprod.ecore#//Task/getActivityContracts.1/type"/>
