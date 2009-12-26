@@ -16,7 +16,6 @@
 package org.eclipse.egf.pattern.ui.editors.pages;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,11 +41,11 @@ import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ParametersEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectiondialog;
-import org.eclipse.egf.pattern.ui.editors.modifiers.ParameterTableCellModifier;
+import org.eclipse.egf.pattern.ui.editors.modifiers.ParametersTableCellModifier;
 import org.eclipse.egf.pattern.ui.editors.providers.ComboListLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
-import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
+import org.eclipse.egf.pattern.ui.editors.providers.TableObservableListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -371,11 +370,9 @@ public class SpecificationPage extends PatternEditorPage {
             tableColumn.setText(colNames[i]);
         }
         initTableEditor();
-        tableViewer.setContentProvider(new ParametersTableContentProvider(tableViewer));
+        tableViewer.setContentProvider(new TableObservableListContentProvider(tableViewer));
         tableViewer.setLabelProvider(new ParametersTableLabelProvider());
-        IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__PARAMETERS);
-        IObservableList observe = input.observe(getPattern());
-        tableViewer.setInput(observe);
+
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
@@ -501,7 +498,6 @@ public class SpecificationPage extends PatternEditorPage {
                         }
                     };
                     editingDomain.getCommandStack().execute(cmd);
-                    tableViewer.refresh();
                 }
             }
 
@@ -553,6 +549,12 @@ public class SpecificationPage extends PatternEditorPage {
         String newName = dialog.getName();
         String newType = dialog.getType();
         String newQuey = dialog.getQuery();
+
+        QueryKind queryKind = QueryManager.INSTANCE.getQueryKindByName(newQuey);
+        if (queryKind != null) {
+            newQuey = queryKind.getId();
+        }
+
         if (selectItem instanceof PatternParameter) {
             PatternParameter item = (PatternParameter) selectItem;
             item.setName(newName);
@@ -604,10 +606,8 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     protected void exectueRemove() {
-        final int index = tableViewer.getTable().getSelectionIndex();
+        int index = tableViewer.getTable().getSelectionIndex();
         final Pattern pattern = getPattern();
-        final EList<PatternParameter> allParameters = pattern.getAllParameters();
-
         ISelection selection = tableViewer.getSelection();
         final Object[] removeThem = ((IStructuredSelection) selection).toArray();
         TransactionalEditingDomain editingDomain = getEditingDomain();
@@ -622,10 +622,11 @@ public class SpecificationPage extends PatternEditorPage {
         };
         editingDomain.getCommandStack().execute(cmd);
 
+        EList<PatternParameter> allParameters = pattern.getAllParameters();
         int len = allParameters.size();
-        if (index + 1 < len) {
+        if (index < len) {
             tableViewer.getTable().setSelection(index);
-        } else if (index + 1 >= len) {
+        } else if (index >= len) {
             tableViewer.getTable().setSelection(index - 1);
         }
         setButtonsStatus();
@@ -636,8 +637,6 @@ public class SpecificationPage extends PatternEditorPage {
      */
     protected void executeAdd() {
         final Pattern pattern = getPattern();
-        final EList<PatternParameter> allParameters = pattern.getAllParameters();
-
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
@@ -648,8 +647,10 @@ public class SpecificationPage extends PatternEditorPage {
             }
         };
         editingDomain.getCommandStack().execute(cmd);
+
+        EList<PatternParameter> allParameters = pattern.getAllParameters();
         int len = allParameters.size();
-        tableViewer.getTable().setSelection(len);
+        tableViewer.getTable().setSelection(len - 1);
         setButtonsStatus();
     }
 
@@ -714,9 +715,9 @@ public class SpecificationPage extends PatternEditorPage {
         queryEditor = new ComboBoxViewerCellEditor(tableViewer.getTable(), SWT.NONE);
         queryEditor.setLabelProvider(new ComboListLabelProvider());
         queryEditor.setContenProvider(new CommonListContentProvider());
-        getQueryComboList();
+        setComboViewerInput();
         tableViewer.setCellEditors(new CellEditor[] { nameEditor, typeEditor, queryEditor });
-        ParameterTableCellModifier modifier = new ParameterTableCellModifier(getEditingDomain(), tableViewer);
+        ParametersTableCellModifier modifier = new ParametersTableCellModifier(getEditingDomain(), tableViewer);
         tableViewer.setCellModifier(modifier);
     }
 
@@ -737,20 +738,66 @@ public class SpecificationPage extends PatternEditorPage {
         }
     }
 
-    private void getQueryComboList() {
-        List<String> comboList = getComboList();
-        queryEditor.setInput(comboList);
+    private void setComboViewerInput() {
+        List availableQueries = QueryManager.INSTANCE.getAvailableQueries();
+        availableQueries.add(0, "");
+        queryEditor.setInput(availableQueries);
     }
 
-    private List<String> getComboList() {
-        List<String> comboList = new ArrayList<String>();
-        List<QueryKind> availableQueries = QueryManager.INSTANCE.getAvailableQueries();
-        for (QueryKind kind : availableQueries) {
-            comboList.add(kind.getName());
+    /**
+     * Get the type of selected pattern parameter.
+     */
+    private String getSelectItemType() {
+        int selectionIndex = tableViewer.getTable().getSelectionIndex();
+        Object selectItem = tableViewer.getElementAt(selectionIndex);
+        if (selectItem instanceof PatternParameter) {
+            return ((PatternParameter) selectItem).getType();
         }
-        Collections.sort(comboList);
-        comboList.add(0, NO_QUERY_VALUE);
-        return comboList;
+        return "";
+    }
+
+    @Override
+    protected void bind() {
+        bindParent();
+        bindNature();
+        bindTableViewer();
+    }
+
+    void bindParent() {
+        if (getPattern() == null) {
+            return;
+        }
+        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__SUPER_PATTERN);
+        IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
+        IObservableValue uiObs = textProp.observeDelayed(400, parentText);
+        IObservableValue mObs = mprop.observe(getPattern());
+
+        UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+            public IStatus validate(Object value) {
+
+                return Status.OK_STATUS;
+            }
+
+        });
+        UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
+        modelToTarget.setConverter(new IConverter() {
+            public Object getToType() {
+                return String.class;
+            }
+
+            public Object getFromType() {
+                return EReference.class;
+            }
+
+            public Object convert(Object fromObject) {
+                if (fromObject == null || !(fromObject instanceof Pattern)) {
+                    return ""; //$NON-NLS-1$
+                }
+                return ((Pattern) fromObject).getName();
+            }
+        });
+
+        addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
     }
 
     void bindNature() {
@@ -790,59 +837,13 @@ public class SpecificationPage extends PatternEditorPage {
         addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
     }
 
-    /**
-     * Get the type of selected pattern parameter.
-     */
-    private String getSelectItemType() {
-        int selectionIndex = tableViewer.getTable().getSelectionIndex();
-        Object selectItem = tableViewer.getElementAt(selectionIndex);
-        if (selectItem instanceof PatternParameter) {
-            return ((PatternParameter) selectItem).getType();
+    private void bindTableViewer() {
+        Pattern pattern = getPattern();
+        if (pattern != null && tableViewer != null) {
+            IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__PARAMETERS);
+            IObservableList observe = input.observe(pattern);
+            tableViewer.setInput(observe);
         }
-        return "";
-    }
-
-    @Override
-    protected void bind() {
-        bindParent();
-        bindNature();
-    }
-
-    void bindParent() {
-        if (getPattern() == null) {
-            return;
-        }
-        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__SUPER_PATTERN);
-        IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
-        IObservableValue uiObs = textProp.observeDelayed(400, parentText);
-        IObservableValue mObs = mprop.observe(getPattern());
-
-        UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
-            public IStatus validate(Object value) {
-
-                return Status.OK_STATUS;
-            }
-
-        });
-        UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
-        modelToTarget.setConverter(new IConverter() {
-            public Object getToType() {
-                return String.class;
-            }
-
-            public Object getFromType() {
-                return EReference.class;
-            }
-
-            public Object convert(Object fromObject) {
-                if (fromObject == null || !(fromObject instanceof Pattern)) {
-                    return ""; //$NON-NLS-1$
-                }
-                return ((Pattern) fromObject).getName();
-            }
-        });
-
-        addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
     }
 
     private static String getName(PatternNature nature) {

@@ -1,11 +1,5 @@
 package org.eclipse.egf.pattern.ui.editors.dialogs;
 
-import java.util.List;
-
-import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.model.pattern.Query;
-import org.eclipse.egf.pattern.query.QueryKind;
-import org.eclipse.egf.pattern.query.QueryManager;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
@@ -21,23 +15,17 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.SelectionStatusDialog;
 
-@SuppressWarnings("restriction")
-public class ParametersEditDialog extends SelectionStatusDialog {
+public class VariablesEditDialog extends ParametersEditDialog {
 
     private Text nameText;
 
     private Text typeText;
-
-    private Combo queryCombo;
 
     private String name;
 
@@ -45,29 +33,11 @@ public class ParametersEditDialog extends SelectionStatusDialog {
 
     private String type;
 
-    private String query;
-
     private TransactionalEditingDomain editingDomain;
 
-    public ParametersEditDialog(Shell shell, Object selectItem, TransactionalEditingDomain editingDomain) {
-        super(shell);
+    public VariablesEditDialog(Shell shell, Object selectItem, TransactionalEditingDomain editingDomain) {
+        super(shell, selectItem, editingDomain);
         this.editingDomain = editingDomain;
-        if (selectItem instanceof PatternParameter) {
-            PatternParameter selection = (PatternParameter) selectItem;
-            name = selection.getName();
-            type = selection.getType();
-            typeName = ParametersTableLabelProvider.getType(type);
-            Query itemQuery = selection.getQuery();
-            query = itemQuery == null ? "" : itemQuery.getExtensionId(); //$NON-NLS-1$
-            QueryKind queryKind = QueryManager.INSTANCE.getQueryKind(query);
-            if (queryKind != null) {
-                query = queryKind.getName();
-            }
-        }
-    }
-
-    @Override
-    protected void computeResult() {
     }
 
     protected Control createDialogArea(Composite parent) {
@@ -130,49 +100,6 @@ public class ParametersEditDialog extends SelectionStatusDialog {
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
-
-        createLabel(dialogArea, Messages.ParametersEditDialog_Query);
-        queryCombo = new Combo(dialogArea, SWT.NONE | SWT.READ_ONLY);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.horizontalSpan = 2;
-        queryCombo.setLayoutData(gd);
-        queryCombo.add(query);
-        setQueryComboList(queryCombo, query);
-        queryCombo.addModifyListener(new ModifyListener() {
-
-            public void modifyText(ModifyEvent e) {
-                query = queryCombo.getText();
-            }
-        });
-        queryCombo.select(0);
         return dialogArea;
-    }
-
-    protected Label createLabel(Composite parent, String content) {
-        Label label = new Label(parent, SWT.NONE);
-        label.setText(content);
-        return label;
-    }
-
-    private void setQueryComboList(Combo combo, String query) {
-        List<QueryKind> availableQueries = QueryManager.INSTANCE.getAvailableQueries();
-        for (QueryKind kind : availableQueries) {
-            String name = kind.getName();
-            if (!name.equals(query)) {
-                combo.add(name);
-            }
-        }
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public String getQuery() {
-        return query;
     }
 }

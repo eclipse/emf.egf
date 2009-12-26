@@ -36,6 +36,24 @@ public interface QueryManager {
 
     public class Helper {
 
+        public QueryKind getQueryKindByName(String name) {
+            for (QueryKind queryKind : getAvailableQueries()) {
+                if (name.equals(queryKind.getName())) {
+                    return queryKind;
+                }
+            }
+            return null;
+        }
+
+        public QueryKind getQueryKind(String id) {
+            for (QueryKind queryKind : getAvailableQueries()) {
+                if (id.equals(queryKind.getId())) {
+                    return queryKind;
+                }
+            }
+            return null;
+        }
+
         public List<QueryKind> getAvailableQueries() {
             List<QueryKind> queries = new ArrayList<QueryKind>(50);
             for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {

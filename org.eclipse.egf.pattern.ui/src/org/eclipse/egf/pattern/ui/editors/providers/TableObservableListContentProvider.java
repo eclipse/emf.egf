@@ -1,3 +1,18 @@
+/**
+ * <copyright>
+ *
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
+ * 
+ * </copyright>
+ */
+
 package org.eclipse.egf.pattern.ui.editors.providers;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -9,10 +24,14 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.TableItem;
 
-public class ParametersTableContentProvider extends ObservableListContentProvider {
+/**
+ * @author xrchen
+ * 
+ */
+public class TableObservableListContentProvider extends ObservableListContentProvider {
     private TableViewer tableViewer;
 
-    public ParametersTableContentProvider(TableViewer tableViewer) {
+    public TableObservableListContentProvider(TableViewer tableViewer) {
         this.tableViewer = tableViewer;
         addRemoveAdapter();
     }
@@ -44,7 +63,7 @@ public class ParametersTableContentProvider extends ObservableListContentProvide
                 TableItem[] items = tableViewer.getTable().getItems();
                 for (TableItem item : items) {
                     Object object = item.getData();
-                    if (object instanceof EObject&& ((EObject) object).eAdapters().contains(refresher)) {
+                    if (object instanceof EObject && ((EObject) object).eAdapters().contains(refresher)) {
                         ((EObject) object).eAdapters().remove(refresher);
                     }
                 }

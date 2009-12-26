@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.wizards;
 
+import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.dialogs.JavaTypeSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseTypePage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -83,7 +84,7 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
      */
     public void addPages() {
         // set the window's title label
-        setWindowTitle("Parameter type selection");
+        setWindowTitle(Messages.OpenTypeWizard_window_title);
         chooseTypePage = new ChooseTypePage(selection, editingDomain, type);
         addPage(chooseTypePage);
     }

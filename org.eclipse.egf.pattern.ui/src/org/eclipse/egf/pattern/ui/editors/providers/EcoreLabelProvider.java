@@ -15,44 +15,60 @@
 
 package org.eclipse.egf.pattern.ui.editors.providers;
 
-import org.eclipse.egf.pattern.query.QueryKind;
+import org.eclipse.egf.pattern.ui.ImageShop;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * @author xrchen
  * 
  */
-public class ComboListLabelProvider implements ILabelProvider {
+public class EcoreLabelProvider implements ITableLabelProvider, ILabelProvider {
 
-    public Image getImage(Object element) {
+    public Image getColumnImage(Object element, int columnIndex) {
+        if (element instanceof EPackage)
+            return ImageShop.get(ImageShop.IMG_TREE_MODE);
+        if (element instanceof EObject)
+            return ImageShop.get(ImageShop.IMG_CATEGORY_OBJ);
+
         return null;
     }
 
-    public String getText(Object element) {
-        if(element instanceof QueryKind){
-            return ((QueryKind)element).getName();
+    public String getColumnText(Object element, int columnIndex) {
+        if (element instanceof ENamedElement) {
+            ENamedElement eNamedElement = (ENamedElement) element;
+            return eNamedElement.getName();
         }
         return "";
     }
 
     public void addListener(ILabelProviderListener listener) {
-
     }
 
     public void dispose() {
-
     }
 
     public boolean isLabelProperty(Object element, String property) {
-        // TODO Auto-generated method stub
+
         return false;
     }
 
     public void removeListener(ILabelProviderListener listener) {
-        // TODO Auto-generated method stub
+    }
 
+    public Image getImage(Object element) {
+
+        return getColumnImage(element, 0);
+    }
+
+    public String getText(Object element) {
+
+        return getColumnText(element, 0);
     }
 
 }

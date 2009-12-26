@@ -23,6 +23,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
     public static String Editor_wrong_input;
+    
     // Overview Page
     public static String OverviewPage_title;
 
@@ -118,6 +119,19 @@ public class Messages extends NLS {
 
     public static String SpecificationPage_patternSection_type_label;
 
+    // ChooseType Page
+    public static String ChooseTypePage_choose_model_button_title;
+    
+    public static String ChooseTypePage_coreTypeTabItem_title;
+    
+    public static String ChooseTypePage_description;
+
+    public static String ChooseTypePage_ecore_file;
+    
+    public static String ChooseTypePage_javaTypeTabItem_title;
+    
+    public static String ChooseTypePage_title;
+    
     // ContainerLibrarySelection Dialog
     public static String ContainerLibrarySelectionDialog_dialogArea_label;
 
@@ -136,8 +150,11 @@ public class Messages extends NLS {
     public static String PatternSelectiondialog_dialogArea_label;
 
     public static String PatternSelectiondialog_pattern_label;
+    
+    // OpenType Page
+    public static String OpenTypeWizard_window_title;
+    
     // Common
-
     public static String common_mark1;
 
     public static String common_mark2;

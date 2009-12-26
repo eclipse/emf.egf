@@ -12,10 +12,14 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.providers;
 
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.Query;
+import org.eclipse.egf.pattern.query.QueryKind;
+import org.eclipse.egf.pattern.query.QueryManager;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -43,7 +47,24 @@ public class ParametersTableLabelProvider extends LabelProvider implements ITabl
                 return getType(patternParameter.getType());
             case 2:
                 Query query = patternParameter.getQuery();
-                return query == null ? "" : query.getExtensionId();
+                if (query != null) {
+                    String extensionId = query.getExtensionId();
+                    QueryKind queryKind = QueryManager.INSTANCE.getQueryKind(extensionId);
+                    String queryKindName = queryKind == null ? null : queryKind.getName();
+                    if (queryKindName != null) {
+                        return queryKindName;
+                    }
+                    return extensionId == null ? "" : extensionId;
+                }
+                return "";
+            }
+        } else if (element instanceof PatternVariable) {
+            PatternVariable patternVariable = (PatternVariable) element;
+            switch (columnIndex) {
+            case 0:
+                return patternVariable.getName();
+            case 1:
+                return getType(patternVariable.getType());
             }
         }
         return "";
@@ -88,4 +109,5 @@ public class ParametersTableLabelProvider extends LabelProvider implements ITabl
         }
         return mark2Index;
     }
+
 }

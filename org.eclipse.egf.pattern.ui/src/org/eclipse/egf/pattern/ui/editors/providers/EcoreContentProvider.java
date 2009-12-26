@@ -1,12 +1,14 @@
 package org.eclipse.egf.pattern.ui.editors.providers;
 
-import org.eclipse.egf.pattern.ui.editors.models.EcoreType;
-import org.eclipse.egf.pattern.ui.editors.models.EcoreTypeStructure;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
-public class EcoreTypeChooseContentProvider implements ITreeContentProvider {
+public class EcoreContentProvider implements ITreeContentProvider {
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
     }
 
@@ -14,17 +16,11 @@ public class EcoreTypeChooseContentProvider implements ITreeContentProvider {
     }
 
     public Object[] getElements(Object inputElement) {
-        if (inputElement instanceof EcoreTypeStructure) {
-            return ((EcoreTypeStructure) inputElement).getEcoreTypes().toArray();
-        }
-        return null;
+        return getChildren(inputElement);
     }
 
     public boolean hasChildren(Object element) {
-        if (element instanceof EcoreType) {
-            return ((EcoreType)element).getUnderlings().size() > 0;
-        }
-        return false;
+        return getChildren(element).length > 0;
     }
 
     public Object getParent(Object element) {
@@ -35,9 +31,16 @@ public class EcoreTypeChooseContentProvider implements ITreeContentProvider {
     }
 
     public Object[] getChildren(Object parentElement) {
-        if (parentElement instanceof EcoreType) {
-            return ((EcoreType)parentElement).getUnderlings().toArray();
-        } 
+        if (parentElement instanceof Resource) {
+            Resource res = (Resource) parentElement;
+            return res.getContents().toArray();
+        }
+        if (parentElement instanceof List<?>)
+            return ((List<?>) parentElement).toArray();
+        if (parentElement instanceof EPackage) {
+            EPackage ePack = (EPackage) parentElement;
+            return ePack.getEClassifiers().toArray();
+        }
         return new Object[0];
     }
 }

@@ -12,10 +12,12 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.modifiers;
 
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
+import org.eclipse.egf.pattern.query.QueryKind;
 import org.eclipse.egf.pattern.ui.editors.pages.SpecificationPage;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -24,13 +26,17 @@ import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.TableItem;
 
-public class ParameterTableCellModifier implements ICellModifier {
+/**
+ * @author xrchen
+ * 
+ */
+public class ParametersTableCellModifier implements ICellModifier {
 
     private TransactionalEditingDomain editingDomain;
 
     private TableViewer tableViewer;
 
-    public ParameterTableCellModifier(TransactionalEditingDomain editingDomain, TableViewer tableViewer) {
+    public ParametersTableCellModifier(TransactionalEditingDomain editingDomain, TableViewer tableViewer) {
         this.editingDomain = editingDomain;
         this.tableViewer = tableViewer;
     }
@@ -73,7 +79,12 @@ public class ParameterTableCellModifier implements ICellModifier {
         if (element instanceof TableItem) {
             element = ((TableItem) element).getData();
         }
-        String text = (value.toString()).trim();
+        String text = "";
+        if (value instanceof QueryKind) {
+            text = ((QueryKind) value).getId();
+        } else {
+            text = (value.toString()).trim();
+        }
         PatternParameter patternParameter = (PatternParameter) element;
         if ((SpecificationPage.NAME_COLUMN_ID).equals(property)) {
             executeModify(0, patternParameter, text);
