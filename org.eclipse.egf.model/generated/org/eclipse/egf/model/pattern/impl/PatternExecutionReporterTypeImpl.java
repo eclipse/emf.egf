@@ -12,11 +12,11 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.fcore.impl.TypeClassImpl;
-
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.egf.model.pattern.PatternExecutionReporterType;
 import org.eclipse.egf.model.pattern.PatternPackage;
+
+import org.eclipse.egf.model.types.impl.TypeClassImpl;
 
 import org.eclipse.emf.ecore.EClass;
 

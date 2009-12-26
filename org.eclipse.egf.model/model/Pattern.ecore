@@ -117,7 +117,7 @@
         <eTypeArguments eClassifier="#//EPatternExecutionReporter"/>
       </eGenericType>
     </eOperations>
-    <eGenericSuperTypes eClassifier="ecore:EClass Fcore.ecore#//TypeClass">
+    <eGenericSuperTypes eClassifier="ecore:EClass Types.ecore#//TypeClass">
       <eTypeArguments eClassifier="#//EPatternExecutionReporter"/>
     </eGenericSuperTypes>
   </eClassifiers>

@@ -16,16 +16,11 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-
-import org.eclipse.egf.model.fcore.provider.TypeClassItemProvider;
-
 import org.eclipse.egf.model.pattern.PatternExecutionReporterType;
-
+import org.eclipse.egf.model.types.provider.TypeClassItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -39,9 +34,11 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.PatternExecutionReporterType} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.egf.model.pattern.PatternExecutionReporterType} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PatternExecutionReporterTypeItemProvider extends TypeClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -49,6 +46,7 @@ public class PatternExecutionReporterTypeItemProvider extends TypeClassItemProvi
      * This constructs an instance from a factory and a notifier.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public PatternExecutionReporterTypeItemProvider(AdapterFactory adapterFactory) {
@@ -59,6 +57,7 @@ public class PatternExecutionReporterTypeItemProvider extends TypeClassItemProvi
      * This returns the property descriptors for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -74,6 +73,7 @@ public class PatternExecutionReporterTypeItemProvider extends TypeClassItemProvi
      * This returns PatternExecutionReporterType.gif.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -85,6 +85,7 @@ public class PatternExecutionReporterTypeItemProvider extends TypeClassItemProvi
      * This returns the label text for the adapted class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -95,10 +96,13 @@ public class PatternExecutionReporterTypeItemProvider extends TypeClassItemProvi
     }
 
     /**
-     * This handles model notifications by calling {@link #updateChildren} to update any cached
-     * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+     * This handles model notifications by calling {@link #updateChildren} to
+     * update any cached
+     * children and by creating a viewer notification, which it passes to
+     * {@link #fireNotifyChanged}.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -108,10 +112,12 @@ public class PatternExecutionReporterTypeItemProvider extends TypeClassItemProvi
     }
 
     /**
-     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+     * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s
+     * describing the children
      * that can be created under this object.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -123,6 +129,7 @@ public class PatternExecutionReporterTypeItemProvider extends TypeClassItemProvi
      * Return the resource locator for this item provider's resources.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override

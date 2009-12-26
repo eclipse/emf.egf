@@ -12,7 +12,7 @@
  */
 package org.eclipse.egf.model.pattern;
 
-import org.eclipse.egf.model.fcore.TypeClass;
+import org.eclipse.egf.model.types.TypeClass;
 
 /**
  * <!-- begin-user-doc -->
@@ -21,7 +21,7 @@ import org.eclipse.egf.model.fcore.TypeClass;
  *
  *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternExecutionReporterType()
- * @model superTypes="org.eclipse.egf.model.fcore.TypeClass<org.eclipse.egf.model.pattern.EPatternExecutionReporter>"
+ * @model superTypes="org.eclipse.egf.model.types.TypeClass<org.eclipse.egf.model.pattern.EPatternExecutionReporter>"
  * @generated
  */
 public interface PatternExecutionReporterType extends TypeClass<PatternExecutionReporter> {
