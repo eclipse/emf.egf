@@ -27,13 +27,45 @@
     <genClasses ecoreClass="Fprod.ecore#//Task">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fprod.ecore#//Task/activityContractContainer"/>
       <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Fprod.ecore#//Task/value"/>
+      <genOperations ecoreOperation="Fprod.ecore#//Task/getActivityContracts"/>
+      <genOperations ecoreOperation="Fprod.ecore#//Task/getActivityContracts.1">
+        <genParameters ecoreParameter="Fprod.ecore#//Task/getActivityContracts.1/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//Task/getActivityContracts.2">
+        <genParameters ecoreParameter="Fprod.ecore#//Task/getActivityContracts.2/mode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//Task/getActivityContracts.3">
+        <genParameters ecoreParameter="Fprod.ecore#//Task/getActivityContracts.3/type"/>
+        <genParameters ecoreParameter="Fprod.ecore#//Task/getActivityContracts.3/mode"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Fprod.ecore#//TaskContract">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fprod.ecore#//TaskContract/activityContractContainer"/>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContract/getActivityContracts"/>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContract/getActivityContracts.1">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContract/getActivityContracts.1/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContract/getActivityContracts.2">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContract/getActivityContracts.2/mode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContract/getActivityContracts.3">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContract/getActivityContracts.3/type"/>
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContract/getActivityContracts.3/mode"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Fprod.ecore#//TaskContractContainer">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fprod.ecore#//TaskContractContainer/activity"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fprod.ecore#//TaskContractContainer/activityContracts"/>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContractContainer/getActivityContracts">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContractContainer/getActivityContracts/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContractContainer/getActivityContracts.1">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContractContainer/getActivityContracts.1/mode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContractContainer/getActivityContracts.2">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContractContainer/getActivityContracts.2/type"/>
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContractContainer/getActivityContracts.2/mode"/>
+      </genOperations>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

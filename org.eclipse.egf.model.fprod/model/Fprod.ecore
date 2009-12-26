@@ -26,16 +26,72 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="LoadableValue ValidValue"/>
     </eAnnotations>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="#//TaskContract"/>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
+      <eParameters name="type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
+      <eParameters name="mode" eType="ecore:EEnum ../../org.eclipse.egf.model/model/Fcore.ecore#//ContractMode"/>
+    </eOperations>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
+      <eParameters name="type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="mode" eType="ecore:EEnum ../../org.eclipse.egf.model/model/Fcore.ecore#//ContractMode"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activityContractContainer"
         eType="#//TaskContractContainer" containment="true" resolveProxies="false"
         eOpposite="#//TaskContractContainer/activity"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaskContract" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
+    <eOperations name="getActivityContracts" upperBound="-1" eType="#//TaskContract"/>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
+      <eParameters name="type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
+      <eParameters name="mode" eType="ecore:EEnum ../../org.eclipse.egf.model/model/Fcore.ecore#//ContractMode"/>
+    </eOperations>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
+      <eParameters name="type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="mode" eType="ecore:EEnum ../../org.eclipse.egf.model/model/Fcore.ecore#//ContractMode"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activityContractContainer"
         lowerBound="1" eType="#//TaskContractContainer" eOpposite="#//TaskContractContainer/activityContracts"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaskContractContainer" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContractContainer">
+    <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
+      <eParameters name="type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+    </eOperations>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
+      <eParameters name="mode" eType="ecore:EEnum ../../org.eclipse.egf.model/model/Fcore.ecore#//ContractMode"/>
+    </eOperations>
+    <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
+      <eParameters name="type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+          <eTypeArguments/>
+        </eGenericType>
+      </eParameters>
+      <eParameters name="mode" eType="ecore:EEnum ../../org.eclipse.egf.model/model/Fcore.ecore#//ContractMode"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
         eType="#//Task" eOpposite="#//Task/activityContractContainer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activityContracts" lowerBound="1"

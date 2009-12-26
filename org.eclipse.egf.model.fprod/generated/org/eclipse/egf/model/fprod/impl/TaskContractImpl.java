@@ -12,6 +12,9 @@
  */
 package org.eclipse.egf.model.fprod.impl;
 
+import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.fcore.ContractMode;
+import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.impl.ActivityContractImpl;
 import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.Task;
@@ -19,6 +22,8 @@ import org.eclipse.egf.model.fprod.TaskContract;
 import org.eclipse.egf.model.fprod.TaskContractContainer;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -31,17 +36,20 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fprod.impl.TaskContractImpl#getActivityContractContainer <em>Activity Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fprod.impl.TaskContractImpl#getActivityContractContainer
+ * <em>Activity Contract Container</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TaskContractImpl extends ActivityContractImpl implements TaskContract {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable
+   * features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -50,6 +58,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TaskContractImpl() {
@@ -59,6 +68,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -83,6 +93,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -95,6 +106,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetActivityContractContainer(TaskContractContainer newActivityContractContainer, NotificationChain msgs) {
@@ -105,6 +117,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setActivityContractContainer(TaskContractContainer newActivityContractContainer) {
@@ -126,6 +139,68 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public EList<TaskContract> getActivityContracts() {
+    EList<TaskContract> contracts = new UniqueEList<TaskContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts();
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(Type<?> innerType) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts(innerType);
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(ContractMode mode) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts(mode);
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(Type<?> innerType, ContractMode mode) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts(innerType, mode);
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -142,6 +217,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -156,6 +232,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -170,6 +247,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -184,6 +262,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -199,6 +278,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -214,6 +294,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

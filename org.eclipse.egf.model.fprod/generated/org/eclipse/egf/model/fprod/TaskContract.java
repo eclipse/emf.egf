@@ -13,6 +13,9 @@
 package org.eclipse.egf.model.fprod;
 
 import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.fcore.ContractMode;
+import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -58,6 +61,38 @@ public interface TaskContract extends ActivityContract {
    * @generated
    */
   void setActivityContractContainer(TaskContractContainer value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation"
+   * @generated
+   */
+  EList<TaskContract> getActivityContracts();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<ActivityContract> getActivityContracts(Type<?> type);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<ActivityContract> getActivityContracts(ContractMode mode);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode);
 
   /**
    * <!-- begin-user-doc -->
