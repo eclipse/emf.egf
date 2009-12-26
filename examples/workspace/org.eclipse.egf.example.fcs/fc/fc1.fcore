@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="Ko39UWVuEd64TpQQ4RciWw"
+    name="FC1">
+  <activityContractContainer xmi:id="_SmBtAL-2Ed6E7J0w9U7NFQ">
+    <activityContracts xmi:id="_S7e_oL-2Ed6E7J0w9U7NFQ" name="amount" mode="Out" invocationContexts="#_IDAaML-2Ed6E7J0w9U7NFQ"
+        contexts="#_IDAaML-2Ed6E7J0w9U7NFQ">
+      <type xmi:type="types:FloatType" xmi:id="_MZ2CIb-3Ed61q9pxr2iF9w" value="100.0"/>
+    </activityContracts>
+    <activityContracts xmi:id="_1SUNMcLoEd6YQfrk65kDFw" name="price" invocationContexts="#_GpyuQb_nEd6gHIEE-OJ_Mw">
+      <type xmi:type="types:FloatType" xmi:id="_BV5T0MLpEd6YQfrk65kDFw" value="11.0"/>
+    </activityContracts>
+    <activityContracts xmi:id="_5siVYMnxEd62uJjVIIL53A" name="generatorAdapterFactory"
+        mode="Out" invocationContexts="#_HzSEYciDEd6oON34eIZwow">
+      <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="_7EKPoMnxEd62uJjVIIL53A"/>
+    </activityContracts>
+    <activityContracts xmi:id="_S6wewNA8Ed6uEZYKLg-jOQ" name="rebate" mode="Out" invocationContexts="#_Ltj4QNA8Ed6uEZYKLg-jOQ">
+      <type xmi:type="types:FloatType" xmi:id="_U2lSQNA8Ed6uEZYKLg-jOQ"/>
+    </activityContracts>
+  </activityContractContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="4w2VoabFEd692t-PG4ogiQ">
+    <orchestrationContextContainer xmi:id="_I6TxYcVjEd6ngr_25dSdnQ">
+      <orchestrationContexts xmi:id="_uNn24MVjEd6ngr_25dSdnQ" name="stock" invocationContexts="#_bu7G8MVjEd6ngr_25dSdnQ #_4qwyMdA6Ed6FD_8N74-4WA">
+        <type xmi:type="types:IntegerType" xmi:id="_wKWpUMVjEd6ngr_25dSdnQ" value="10"/>
+      </orchestrationContexts>
+    </orchestrationContextContainer>
+    <invocations xmi:type="fprod:TaskInvocation" xmi:id="tKWXIabGEd69ANF1SOWYYg" name="Call H1"
+        activity="fprod:Task platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
+      <invocationContextContainer xmi:id="_GuhTgb-2Ed6E7J0w9U7NFQ">
+        <invocationContexts xmi:id="_bu7G8MVjEd6ngr_25dSdnQ" name="quantity" orchestrationContext="#_uNn24MVjEd6ngr_25dSdnQ"
+            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_sZPqULpOEd6O-6ob3O13Lw"/>
+        <invocationContexts xmi:id="_4qwyMdA6Ed6FD_8N74-4WA" name="stock" orchestrationContext="#_uNn24MVjEd6ngr_25dSdnQ"
+            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_Z65BAdA5Ed6LbMEN-DBMtQ"/>
+        <invocationContexts xmi:id="_Ltj4QNA8Ed6uEZYKLg-jOQ" name="rebate" factoryComponentExposedContract="#_S6wewNA8Ed6uEZYKLg-jOQ"
+            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_E11LcdA8Ed6uEZYKLg-jOQ">
+          <type xmi:type="types:FloatType" xmi:id="_LcHM0dBFEd6W8qZFaW7NMw"/>
+        </invocationContexts>
+        <invocationContexts xmi:id="_GpyuQb_nEd6gHIEE-OJ_Mw" name="price" factoryComponentExposedContract="#_1SUNMcLoEd6YQfrk65kDFw"
+            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_xfSXELpOEd6O-6ob3O13Lw"
+            exposedContract="#_1SUNMcLoEd6YQfrk65kDFw"/>
+        <invocationContexts xmi:id="_IDAaML-2Ed6E7J0w9U7NFQ" name="amount" factoryComponentExposedContract="#_S7e_oL-2Ed6E7J0w9U7NFQ"
+            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"
+            exposedContract="#_S7e_oL-2Ed6E7J0w9U7NFQ" targetContract="#_S7e_oL-2Ed6E7J0w9U7NFQ"
+            sourceContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"/>
+        <invocationContexts xmi:id="_HzSEYciDEd6oON34eIZwow" name="generatorAdapterFactory"
+            factoryComponentExposedContract="#_5siVYMnxEd62uJjVIIL53A" activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_PFOYwbshEd6hlL3ru-eQtQ"/>
+      </invocationContextContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>
