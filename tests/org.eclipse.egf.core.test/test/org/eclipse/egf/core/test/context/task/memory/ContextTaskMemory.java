@@ -17,7 +17,6 @@ import junit.framework.TestSuite;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
-import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fprod.FprodFactory;
@@ -31,7 +30,7 @@ import org.eclipse.egf.model.types.IntegerType;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.activity.ActivityProducer;
-import org.eclipse.egf.producer.manager.IModelProducerManager;
+import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 
 public class ContextTaskMemory extends TestCase {
@@ -45,9 +44,9 @@ public class ContextTaskMemory extends TestCase {
     Task task = FprodFactory.eINSTANCE.createTask();
     task.setValue("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
 
-    ActivityProducer<Activity> producer = EGFProducerPlugin.getActivityProducer(task);
+    ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
 
-    IModelProducerManager<Activity> production = producer.createManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
+    IModelElementProducerManager production = producer.createManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
     try {
       production.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
@@ -100,9 +99,9 @@ public class ContextTaskMemory extends TestCase {
     generatorAdapterFactoryType.setValue("org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"); //$NON-NLS-1$
     generatorAdapterFactory.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, generatorAdapterFactoryType);
 
-    ActivityProducer<Activity> producer = EGFProducerPlugin.getActivityProducer(task);
+    ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
 
-    IModelProducerManager<Activity> production = producer.createManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
+    IModelElementProducerManager production = producer.createManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
 
     GenModelGeneratorAdapterFactory defaultValue = production.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class); //$NON-NLS-1$
 
