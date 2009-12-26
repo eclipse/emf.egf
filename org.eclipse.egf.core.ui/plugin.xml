@@ -11,6 +11,10 @@
  -->
 
 <plugin>
+
+  <!-- ================================================================================= -->
+  <!-- Keywords                                                                          -->
+  <!-- ================================================================================= -->
   
   <extension
     point="org.eclipse.ui.keywords"
@@ -20,20 +24,48 @@
       id="org.eclipse.egf.general"
     />  
   </extension>  
+  
+  <!-- ================================================================================= -->
+  <!-- Preference Page                                                                   -->
+  <!-- ================================================================================= -->  
     
   <extension
     point="org.eclipse.ui.preferencePages"
   >
     <page
-      class="org.eclipse.egf.core.ui.preferences.EGFGeneralPreferencePage"
-      id="org.eclipse.egf.preferences"
-      name="%egf.preferences.general"
+      name="%egf.preferences.general"    
+      class="org.eclipse.egf.core.ui.internal.preferences.EGFGeneralPreferencePage"
+      id="org.eclipse.egf.core.ui.preferences.general"
+    >
+      <keywordReference 
+        id="org.eclipse.egf.general"
+      />
+    </page> 
+    <page
+      name="%egf.preferences.model"
+      class="org.eclipse.egf.core.ui.internal.preferences.EGFModelPreferencePage"
+      category="org.eclipse.egf.core.ui.preferences.general"      
+      id="org.eclipse.egf.core.ui.preferences.model"
+    >
+      <keywordReference 
+        id="org.eclipse.egf.general"
+      />
+    </page>       
+    <page
+      name="%egf.preferences.production"
+      class="org.eclipse.egf.core.ui.internal.preferences.EGFProductionPreferencePage"
+      category="org.eclipse.egf.core.ui.preferences.general"      
+      id="org.eclipse.egf.core.ui.preferences.production"
     >
       <keywordReference 
         id="org.eclipse.egf.general"
       />
     </page>    
   </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- Preferences Initializer                                                           -->
+  <!-- ================================================================================= -->  
   
   <extension 
     point="org.eclipse.core.runtime.preferences"
@@ -42,20 +74,5 @@
       class="org.eclipse.egf.core.ui.internal.preferences.ModelPreferenceInitializer"
     />
   </extension>  
-  
-  <extension
-    point="org.eclipse.ui.preferencePages"
-  >
-    <page
-      name="%Model"
-      class="org.eclipse.egf.core.ui.preferences.EGFModelPreferencePage"
-      category="org.eclipse.egf.preferences"      
-      id="org.eclipse.egf.core.ui.preferences.EGFModelPreferencePage"
-    >
-      <keywordReference 
-        id="org.eclipse.egf.general"
-      />
-    </page>
-  </extension>    
-    
+      
 </plugin>

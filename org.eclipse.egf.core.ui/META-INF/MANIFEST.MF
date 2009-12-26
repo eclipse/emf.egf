@@ -14,5 +14,5 @@ Require-Bundle:
 Export-Package: 
  org.eclipse.egf.core.ui,
  org.eclipse.egf.core.ui.dialogs,
- org.eclipse.egf.core.ui.preferences
+ org.eclipse.egf.core.ui.l10n
 Bundle-ActivationPolicy: lazy

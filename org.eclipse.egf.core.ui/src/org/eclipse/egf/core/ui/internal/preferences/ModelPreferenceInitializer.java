@@ -14,6 +14,7 @@ package org.eclipse.egf.core.ui.internal.preferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
+import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
 
 /**
@@ -33,6 +34,7 @@ public class ModelPreferenceInitializer extends AbstractPreferenceInitializer {
   public void initializeDefaultPreferences() {
     final IPreferenceStore prefs = EGFCoreUIPlugin.getDefault().getPreferenceStore();
     prefs.setDefault(IEGFModelConstants.VALIDATE_TYPES, true);
+    prefs.setDefault(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH, MessageDialogWithToggle.PROMPT);
   }
 
 }

@@ -32,7 +32,22 @@ public class CoreUIMessages {
   public static String _UI_FcoreSelection_label;
   public static String _UI_SelectRegisteredFcoreURI;
 
-  public static String EGFModelPreferencePage_General;
+  public static String EGFGeneralPreferencePage_Title;
+  public static String EGFGeneralPreferencePage_Description;
+
+  public static String EGFModelPreferencePage_Title;
+  public static String EGFModelPreferencePage_Description;
+  public static String EGFModelPreferencePage_Validate;
   public static String EGFModelPreferencePage_Validate_Types;
+
+  public static String EGFProductionPreferencePage_Title;
+  public static String EGFProductionPreferencePage_Description;
+  public static String EGFProductionPreferencePage_Validate;
+  public static String EGFProductionPreferencePage_Validate_Always;
+  public static String EGFProductionPreferencePage_Validate_Never;
+  public static String EGFProductionPreferencePage_Validate_Prompt;
+
+  public static String ValidateDialog_Title;
+  public static String ValidateDialog_Always_Validate;
 
 }
