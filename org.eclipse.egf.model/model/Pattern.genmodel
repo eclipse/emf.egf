@@ -18,6 +18,7 @@
       childCreationExtenders="true" contentTypeIdentifier="" ecorePackage="Pattern.ecore#/">
     <genDataTypes ecoreDataType="Pattern.ecore#//PatternContext"/>
     <genDataTypes ecoreDataType="Pattern.ecore#//PatternException"/>
+    <genDataTypes ecoreDataType="Pattern.ecore#//EPatternExecutionReporter"/>
     <genClasses ecoreClass="Pattern.ecore#//Pattern">
       <genFeatures createChild="false" propertyCategory="" propertySortChoices="true"
           ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/headerMethod"/>
@@ -42,13 +43,6 @@
     <genClasses ecoreClass="Pattern.ecore#//PatternParameter">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EAttribute Pattern.ecore#//PatternParameter/type"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternParameter/query"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="Pattern.ecore#//PatternEngine">
-      <genFeatures property="Readonly" notify="false" createChild="false" ecoreFeature="ecore:EReference Pattern.ecore#//PatternEngine/pattern"/>
-      <genOperations ecoreOperation="Pattern.ecore#//PatternEngine/execute">
-        <genParameters ecoreParameter="Pattern.ecore#//PatternEngine/execute/context"/>
-      </genOperations>
-      <genOperations ecoreOperation="Pattern.ecore#//PatternEngine/translate"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//PatternLibrary">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//PatternLibrary/elements"/>
@@ -95,6 +89,9 @@
     <genClasses ecoreClass="Pattern.ecore#//String2PatternList">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Pattern.ecore#//String2PatternList/key"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//String2PatternList/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//PatternExecutionReporterType">
+      <genOperations ecoreOperation="Pattern.ecore#//PatternExecutionReporterType/getType"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -18,6 +18,7 @@ package org.eclipse.egf.pattern.execution;
 import java.util.Map;
 
 import org.eclipse.egf.model.PatternContext;
+import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
 /**
  * @author Thomas Guiu

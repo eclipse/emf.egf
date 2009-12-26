@@ -1078,6 +1078,61 @@ public interface PatternPackage extends EPackage {
     int STRING2_PATTERN_LIST_FEATURE_COUNT = 2;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternExecutionReporterTypeImpl <em>Execution Reporter Type</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.PatternExecutionReporterTypeImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternExecutionReporterType()
+     * @generated
+     */
+    int PATTERN_EXECUTION_REPORTER_TYPE = 20;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_EXECUTION_REPORTER_TYPE__ID = FcorePackage.TYPE_CLASS__ID;
+
+    /**
+     * The feature id for the '<em><b>Name</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_EXECUTION_REPORTER_TYPE__NAME = FcorePackage.TYPE_CLASS__NAME;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_EXECUTION_REPORTER_TYPE__DESCRIPTION = FcorePackage.TYPE_CLASS__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_EXECUTION_REPORTER_TYPE__VALUE = FcorePackage.TYPE_CLASS__VALUE;
+
+    /**
+     * The number of structural features of the '<em>Execution Reporter Type</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int PATTERN_EXECUTION_REPORTER_TYPE_FEATURE_COUNT = FcorePackage.TYPE_CLASS_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '<em>Context</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1085,7 +1140,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
      */
-    int PATTERN_CONTEXT = 20;
+    int PATTERN_CONTEXT = 21;
 
     /**
      * The meta object id for the '<em>Exception</em>' data type.
@@ -1095,7 +1150,17 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated
      */
-    int PATTERN_EXCEPTION = 21;
+    int PATTERN_EXCEPTION = 22;
+
+    /**
+     * The meta object id for the '<em>EPattern Execution Reporter</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.PatternExecutionReporter
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getEPatternExecutionReporter()
+     * @generated
+     */
+    int EPATTERN_EXECUTION_REPORTER = 23;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -1611,6 +1676,16 @@ public interface PatternPackage extends EPackage {
     EReference getString2PatternList_Value();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternExecutionReporterType <em>Execution Reporter Type</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Execution Reporter Type</em>'.
+     * @see org.eclipse.egf.model.pattern.PatternExecutionReporterType
+     * @generated
+     */
+    EClass getPatternExecutionReporterType();
+
+    /**
      * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1642,6 +1717,17 @@ public interface PatternPackage extends EPackage {
      * @generated
      */
     EDataType getPatternException();
+
+    /**
+     * Returns the meta object for data type '{@link org.eclipse.egf.model.pattern.PatternExecutionReporter <em>EPattern Execution Reporter</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for data type '<em>EPattern Execution Reporter</em>'.
+     * @see org.eclipse.egf.model.pattern.PatternExecutionReporter
+     * @model instanceClass="org.eclipse.egf.model.pattern.PatternExecutionReporter"
+     * @generated
+     */
+    EDataType getEPatternExecutionReporter();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -2090,6 +2176,16 @@ public interface PatternPackage extends EPackage {
         EReference STRING2_PATTERN_LIST__VALUE = eINSTANCE.getString2PatternList_Value();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternExecutionReporterTypeImpl <em>Execution Reporter Type</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.PatternExecutionReporterTypeImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternExecutionReporterType()
+         * @generated
+         */
+        EClass PATTERN_EXECUTION_REPORTER_TYPE = eINSTANCE.getPatternExecutionReporterType();
+
+        /**
          * The meta object literal for the '<em><b>Value</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2116,6 +2212,16 @@ public interface PatternPackage extends EPackage {
          * @generated
          */
         EDataType PATTERN_EXCEPTION = eINSTANCE.getPatternException();
+
+        /**
+         * The meta object literal for the '<em>EPattern Execution Reporter</em>' data type.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.PatternExecutionReporter
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getEPatternExecutionReporter()
+         * @generated
+         */
+        EDataType EPATTERN_EXECUTION_REPORTER = eINSTANCE.getEPatternExecutionReporter();
 
     }
 

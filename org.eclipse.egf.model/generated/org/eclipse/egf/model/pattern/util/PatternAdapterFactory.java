@@ -15,7 +15,10 @@ package org.eclipse.egf.model.pattern.util;
 import java.util.Map;
 
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.Viewpoint;
+import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.Call;
@@ -47,7 +50,6 @@ import org.eclipse.emf.ecore.EObject;
  * It provides an adapter <code>createXXX</code> method for each class of the
  * model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.pattern.PatternPackage
  * @generated
  */
@@ -56,7 +58,6 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * The cached model package.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected static PatternPackage modelPackage;
@@ -65,7 +66,6 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * Creates an instance of the adapter factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     public PatternAdapterFactory() {
@@ -80,7 +80,6 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * This implementation returns <code>true</code> if the object is either the
      * model's package or is an instance object of the model.
      * <!-- end-user-doc -->
-     * 
      * @return whether this factory is applicable for the type of the object.
      * @generated
      */
@@ -99,7 +98,6 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * The switch that delegates to the <code>createXXX</code> methods.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     protected PatternSwitch<Adapter> modelSwitch = new PatternSwitch<Adapter>() {
@@ -204,6 +202,11 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
+        public Adapter casePatternExecutionReporterType(PatternExecutionReporterType object) {
+            return createPatternExecutionReporterTypeAdapter();
+        }
+
+        @Override
         public Adapter caseModelElement(ModelElement object) {
             return createModelElementAdapter();
         }
@@ -211,6 +214,16 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         @Override
         public Adapter caseViewpoint(Viewpoint object) {
             return createViewpointAdapter();
+        }
+
+        @Override
+        public <T extends Object> Adapter caseType(Type<T> object) {
+            return createTypeAdapter();
+        }
+
+        @Override
+        public <T extends Object> Adapter caseTypeClass(TypeClass<T> object) {
+            return createTypeClassAdapter();
         }
 
         @Override
@@ -223,9 +236,7 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * Creates an adapter for the <code>target</code>.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
-     * @param target
-     *            the object to adapt.
+     * @param target the object to adapt.
      * @return the adapter for the <code>target</code>.
      * @generated
      */
@@ -235,15 +246,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.Pattern
      * @generated
@@ -253,15 +262,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.PatternMethod <em>Method</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternMethod <em>Method</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.PatternMethod
      * @generated
@@ -271,16 +278,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.PatternParameter <em>Parameter</em>}
-     * '.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternParameter <em>Parameter</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.PatternParameter
      * @generated
@@ -290,15 +294,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.PatternLibrary <em>Library</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternLibrary <em>Library</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.PatternLibrary
      * @generated
@@ -308,15 +310,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.PatternElement <em>Element</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternElement <em>Element</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.PatternElement
      * @generated
@@ -326,16 +326,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.PatternViewpoint <em>Viewpoint</em>}
-     * '.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternViewpoint <em>Viewpoint</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.PatternViewpoint
      * @generated
@@ -345,15 +342,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.PatternNature <em>Nature</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternNature <em>Nature</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.PatternNature
      * @generated
@@ -363,15 +358,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.PatternCall <em>Call</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternCall <em>Call</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.PatternCall
      * @generated
@@ -381,16 +374,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.SuperPatternCall
-     * <em>Super Pattern Call</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.SuperPatternCall <em>Super Pattern Call</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.SuperPatternCall
      * @generated
@@ -400,15 +390,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link java.util.Map.Entry
-     * <em>Paramerter2 Parameter Map</em>}'.
+     * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>Paramerter2 Parameter Map</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see java.util.Map.Entry
      * @generated
@@ -418,15 +406,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.Call <em>Call</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.Call <em>Call</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.Call
      * @generated
@@ -436,15 +422,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.MethodCall <em>Method Call</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.MethodCall <em>Method Call</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.MethodCall
      * @generated
@@ -454,15 +438,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.PatternVariable <em>Variable</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternVariable <em>Variable</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.PatternVariable
      * @generated
@@ -472,16 +454,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.AbstractPatternCall
-     * <em>Abstract Pattern Call</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.AbstractPatternCall <em>Abstract Pattern Call</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.AbstractPatternCall
      * @generated
@@ -491,16 +470,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.PatternInjectedCall
-     * <em>Injected Call</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternInjectedCall <em>Injected Call</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.PatternInjectedCall
      * @generated
@@ -510,15 +486,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.Query <em>Query</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.Query <em>Query</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.Query
      * @generated
@@ -528,15 +502,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.BasicQuery <em>Basic Query</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.BasicQuery <em>Basic Query</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.BasicQuery
      * @generated
@@ -546,15 +518,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.StringQuery <em>String Query</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.StringQuery <em>String Query</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.StringQuery
      * @generated
@@ -564,15 +534,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.pattern.CustomQuery <em>Custom Query</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.CustomQuery <em>Custom Query</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.pattern.CustomQuery
      * @generated
@@ -582,15 +550,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '{@link java.util.Map.Entry
-     * <em>String2 Pattern List</em>}'.
+     * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>String2 Pattern List</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see java.util.Map.Entry
      * @generated
@@ -600,15 +566,27 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternExecutionReporterType <em>Execution Reporter Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.PatternExecutionReporterType
+     * @generated
+     */
+    public Adapter createPatternExecutionReporterTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.fcore.ModelElement
      * @generated
@@ -618,15 +596,13 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
-     * Creates a new adapter for an object of class '
-     * {@link org.eclipse.egf.model.fcore.Viewpoint <em>Viewpoint</em>}'.
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Viewpoint <em>Viewpoint</em>}'.
      * <!-- begin-user-doc -->
      * This default implementation returns null so that we can easily ignore
      * cases;
      * it's useful to ignore a case when inheritance will catch all the cases
      * anyway.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @see org.eclipse.egf.model.fcore.Viewpoint
      * @generated
@@ -636,11 +612,38 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Type <em>Type</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.fcore.Type
+     * @generated
+     */
+    public Adapter createTypeAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.TypeClass <em>Type Class</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.fcore.TypeClass
+     * @generated
+     */
+    public Adapter createTypeClassAdapter() {
+        return null;
+    }
+
+    /**
      * Creates a new adapter for the default case.
      * <!-- begin-user-doc -->
      * This default implementation returns null.
      * <!-- end-user-doc -->
-     * 
      * @return the new adapter.
      * @generated
      */

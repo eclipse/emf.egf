@@ -149,6 +149,15 @@ public interface PatternFactory extends EFactory {
     CustomQuery createCustomQuery();
 
     /**
+     * Returns a new object of class '<em>Execution Reporter Type</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Execution Reporter Type</em>'.
+     * @generated
+     */
+    PatternExecutionReporterType createPatternExecutionReporterType();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
