@@ -19,9 +19,9 @@ import org.eclipse.swt.widgets.Shell;
  * @author Xavier Maysonnave
  * 
  */
-public class DiagnosticHandler {
+public class ThrowableHandler {
 
-  private DiagnosticHandler() {
+  private ThrowableHandler() {
     // Prevent Instantiation
   }
 

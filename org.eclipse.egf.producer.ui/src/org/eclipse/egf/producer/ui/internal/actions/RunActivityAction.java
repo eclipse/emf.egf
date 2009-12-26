@@ -24,8 +24,8 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
-import org.eclipse.egf.common.ui.diagnostic.DiagnosticHandler;
 import org.eclipse.egf.common.ui.diagnostic.EMFValidator;
+import org.eclipse.egf.common.ui.diagnostic.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
@@ -102,7 +102,7 @@ public class RunActivityAction implements IObjectActionDelegate {
         try {
           EMFValidator validator = new EMFValidator(activityManager[0].getTopElements());
           Diagnostic diagnostic = validator.validate();
-          if (diagnostic.getCode() != Diagnostic.OK) {
+          if (diagnostic.getSeverity() != Diagnostic.OK) {
             return;
           }
         } catch (InvocationException ie) {
@@ -124,13 +124,13 @@ public class RunActivityAction implements IObjectActionDelegate {
         @Override
         public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
           // Invoke
-          SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, activityManager[0].getName()), (900 * ticks[0]));
+          SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, activityManager[0].getName()), (1000 * ticks[0]));
           try {
             try {
               if (EGFProducerUIPlugin.getDefault().isDebugging()) {
                 EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EMFHelper.getText(_activity), ticks[0])); //$NON-NLS-1$
               }
-              activityManager[0].invoke(subMonitor.newChild(900 * ticks[0], SubMonitor.SUPPRESS_NONE));
+              activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
               if (monitor.isCanceled()) {
                 throw new OperationCanceledException();
               }
@@ -162,7 +162,8 @@ public class RunActivityAction implements IObjectActionDelegate {
     }
 
     if (throwable[0] != null) {
-      DiagnosticHandler.displayAsyncDiagnostic(EGFProducerUIPlugin.getActiveWorkbenchShell(), throwable[0]);
+      EGFProducerUIPlugin.getDefault().logError(throwable[0]);
+      ThrowableHandler.displayAsyncDiagnostic(EGFProducerUIPlugin.getActiveWorkbenchShell(), throwable[0]);
     }
 
     return;

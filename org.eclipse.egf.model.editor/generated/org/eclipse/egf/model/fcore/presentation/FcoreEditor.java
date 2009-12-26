@@ -36,7 +36,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.egf.common.ui.emf.EGFEditUIUtil;
+import org.eclipse.egf.common.ui.emf.EMFEditUIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.ResourceHelper;
@@ -951,7 +951,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * @generated NOT
    */
   public void createModel() {
-    URI uri = EGFEditUIUtil.getURI(getEditorInput());
+    URI uri = EMFEditUIHelper.getURI(getEditorInput());
     Exception exception = null;
     Resource resource = null;
     try {

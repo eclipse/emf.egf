@@ -25,15 +25,20 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
+import org.eclipse.egf.common.ui.emf.EMFEditUIHelper;
 import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -42,6 +47,8 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation;
 import org.eclipse.ui.part.ISetSelectionTarget;
@@ -155,9 +162,9 @@ public class EMFValidator {
     }
 
     if (result == Window.OK) {
-      if (!diagnostic.getChildren().isEmpty()) {
+      if (diagnostic.getChildren().isEmpty() == false) {
         List<?> data = (diagnostic.getChildren().get(0)).getData();
-        if (!data.isEmpty() && data.get(0) instanceof EObject) {
+        if (data.isEmpty() == false && data.get(0) instanceof EObject) {
           Object part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
           if (part instanceof ISetSelectionTarget) {
             ((ISetSelectionTarget) part).selectReveal(new StructuredSelection(data.get(0)));
@@ -165,6 +172,17 @@ public class EMFValidator {
             Viewer viewer = ((IViewerProvider) part).getViewer();
             if (viewer != null) {
               viewer.setSelection(new StructuredSelection(data.get(0)), true);
+            }
+          } else {
+            URI uri = EcoreUtil.getURI((EObject) data.get(0));
+            try {
+              IEditorPart editorPart = EMFEditUIHelper.openEditor(uri);
+              if (editorPart != null && editorPart instanceof IEditingDomainProvider) {
+                EMFEditUIHelper.setSelectionToViewer(editorPart, uri);
+              }
+            } catch (PartInitException pie) {
+              EGFCommonUIPlugin.getDefault().logError(pie);
+              ThrowableHandler.displayAsyncDiagnostic(EGFCommonUIPlugin.getActiveWorkbenchShell(), pie);
             }
           }
         }
