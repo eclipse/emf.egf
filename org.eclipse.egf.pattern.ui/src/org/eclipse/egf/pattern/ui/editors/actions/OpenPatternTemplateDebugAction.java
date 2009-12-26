@@ -38,7 +38,7 @@ import org.eclipse.ui.PartInitException;
  * 
  */
 
-public class OpenPatternDebugAction implements IObjectActionDelegate {
+public class OpenPatternTemplateDebugAction implements IObjectActionDelegate {
 
     protected IStructuredSelection selection;
 
@@ -69,7 +69,7 @@ public class OpenPatternDebugAction implements IObjectActionDelegate {
             // URI uri2 = EcoreUtil.getURI(pattern);
             PatternEditorInput input = new PatternEditorInput(res, pattern.getID());
 
-            targetPart.getSite().getPage().openEditor(input, "org.eclipse.egf.pattern.ui.editors.PatternEditor");
+            targetPart.getSite().getPage().openEditor(input, "org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor");
         } catch (PartInitException e) {
             e.printStackTrace();
 

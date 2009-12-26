@@ -12,7 +12,24 @@
             class="org.eclipse.egf.pattern.ui.editors.PatternEditor"
             id="org.eclipse.egf.pattern.ui.editors.PatternEditor">
       	</editor>
+      	<editor
+            name="%patternTemplateEditorLabel"
+            extensions="fcore"
+            icon="icons/sample.gif"
+            contributorClass="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditorContributor"
+            class="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor"
+            id="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor">
+      	</editor>
+      	
    	</extension>
+
+	<extension point="org.eclipse.ui.editors.documentProviders"> 
+	    <provider 
+	        inputTypes="org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput" 
+	        class="org.eclipse.ui.editors.text.FileDocumentProvider" 
+	        id="org.eclipse.egf.pattern.ui.editors.PatternMethodDocumentProvider"> 
+	    </provider> 
+	</extension>
 
    	<extension
          point="org.eclipse.ui.popupMenus">
@@ -24,6 +41,16 @@
                class="org.eclipse.egf.pattern.ui.editors.actions.OpenPatternDebugAction"
                enablesFor="1"
                id="test.open.pattern">
+         	</action>
+		</objectContribution>
+       	<objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="test.contribution1">
+        	<action
+               label="Open Templates"
+               class="org.eclipse.egf.pattern.ui.editors.actions.OpenPatternTemplateDebugAction"
+               enablesFor="1"
+               id="test.open.pattern.template">
          	</action>
 		</objectContribution>
    	</extension>
