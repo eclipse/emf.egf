@@ -20,6 +20,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
@@ -49,7 +50,12 @@ public class PlatformBundle implements IPlatformBundle {
       _extensionPointFactories = new HashMap<Class<? extends IPlatformExtensionPoint>, IPlatformExtensionPointFactory<? extends IPlatformExtensionPoint>>();
       for (String extensionPoint : EGFPlatformPlugin.getDefault().getPlatform().keySet()) {
         // Factory
-        IPlatformExtensionPointFactory<?> clazz = (IPlatformExtensionPointFactory<?>) ExtensionPointHelper.createInstance(EGFPlatformPlugin.getDefault().getPlatform().get(extensionPoint), IManagerConstants.MANAGER_ATT_CLASS);
+        IPlatformExtensionPointFactory<?> clazz = null;
+        try {
+          clazz = (IPlatformExtensionPointFactory<?>) ExtensionPointHelper.createInstance(EGFPlatformPlugin.getDefault().getPlatform().get(extensionPoint), IManagerConstants.MANAGER_ATT_CLASS);
+        } catch (CoreException ce) {
+          EGFPlatformPlugin.getDefault().logError(ce);
+        }
         if (clazz == null) {
           continue;
         }

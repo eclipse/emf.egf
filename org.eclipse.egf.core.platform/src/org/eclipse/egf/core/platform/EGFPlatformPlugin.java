@@ -15,6 +15,7 @@ import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
@@ -79,13 +80,18 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
           continue;
         }
         // Check factory
-        Object object = ExtensionPointHelper.createInstance(configurationElement, IManagerConstants.MANAGER_ATT_CLASS);
+        Object object = null;
+        try {
+          object = ExtensionPointHelper.createInstance(configurationElement, IManagerConstants.MANAGER_ATT_CLASS);
+        } catch (CoreException ce) {
+          getDefault().logError(ce);
+        }
         if (object == null) {
           continue;
         }
         if (object instanceof IPlatformExtensionPointFactory<?> == false) {
           getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
-          getDefault().logInfo("Class should be an implementation of ''org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory''.", 1); //$NON-NLS-1$
+          getDefault().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", IPlatformExtensionPointFactory.class.getName()), 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("extension ''{0}''", extension), 1); //$NON-NLS-1$
