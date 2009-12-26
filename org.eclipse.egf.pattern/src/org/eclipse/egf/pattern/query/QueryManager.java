@@ -36,10 +36,10 @@ public interface QueryManager {
 
     public class Helper {
 
-        public List<String> getAvailableQueries() {
-            List<String> queries = new ArrayList<String>(50);
+        public List<QueryKind> getAvailableQueries() {
+            List<QueryKind> queries = new ArrayList<QueryKind>(50);
             for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
-                queries.add(kind.getId());
+                queries.add(kind);
             }
             return queries;
         }

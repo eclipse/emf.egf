@@ -107,14 +107,14 @@ public class PatternHelper {
         return getPatterns(project, ids);
     }
 
-    //TODO quick implementation ...
+    // TODO quick implementation ...
     public static Pattern getPattern(String id) {
-    	for (Pattern p : getAllPatterns())
-    		if (p.getID().equals(id))
-    			return p;
-    	return null;
+        for (Pattern p : getAllPatterns())
+            if (p.getID().equals(id))
+                return p;
+        return null;
     }
-    
+
     public static Set<Pattern> getPatterns(URI uri) {
         Set<Pattern> result = new HashSet<Pattern>();
         collectPatterns(uri, PatternCollector.EMPTY_ID_SET, result);

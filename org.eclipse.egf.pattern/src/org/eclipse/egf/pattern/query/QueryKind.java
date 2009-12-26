@@ -23,4 +23,6 @@ import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointURI;
  */
 public interface QueryKind extends IPlatformExtensionPointURI {
     String getClassName();
+
+    String getName();
 }

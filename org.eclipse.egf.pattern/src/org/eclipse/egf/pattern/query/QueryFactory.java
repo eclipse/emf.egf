@@ -29,26 +29,35 @@ public class QueryFactory implements IPlatformExtensionPointFactory<QueryKind> {
 
     private static final String ID_ATTR = "id";
     private static final String CLASS_ATTR = "class";
+    private static final String NAME_ATTR = "name";
 
     public QueryKind createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement) {
 
         IPluginAttribute idAttr = pluginElement.getAttribute(ID_ATTR);
         IPluginAttribute classAttr = pluginElement.getAttribute(CLASS_ATTR);
-        return new QueryKindImpl(platformBundle, pluginElement, idAttr.getValue(), classAttr.getValue());
+        IPluginAttribute nameAttr = pluginElement.getAttribute(NAME_ATTR);
+        return new QueryKindImpl(platformBundle, pluginElement, idAttr.getValue(), classAttr.getValue(), nameAttr.getValue());
     }
 
     private static class QueryKindImpl extends PlatformExtensionPointURI implements QueryKind {
 
         private final String className;
+        private final String name;
 
-        public QueryKindImpl(IPlatformBundle bundle, IPluginElement element, String id, String className) {
+        public QueryKindImpl(IPlatformBundle bundle, IPluginElement element, String id, String className, String name) {
             super(bundle, element, id);
             this.className = className;
+            this.name = name;
         }
 
         public String getClassName() {
 
             return className;
+        }
+
+        public String getName() {
+
+            return name;
         }
 
     }
