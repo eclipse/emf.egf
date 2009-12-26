@@ -14,6 +14,8 @@
  */
 package org.eclipse.egf.pattern.ui.editors.dialogs;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
@@ -21,8 +23,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Messages;
-import org.eclipse.egf.pattern.ui.editors.models.ContainerLibraryEntry;
-import org.eclipse.egf.pattern.ui.editors.models.ContainerLibrarysModel;
 import org.eclipse.egf.pattern.ui.editors.providers.ContainerLibraryContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ContainerLibraryLabelProvider;
 import org.eclipse.jdt.core.JavaCore;
@@ -58,20 +58,20 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
 
     private PatternLibrary patternLibrary;
 
-    private ContainerLibrarysModel containerLibrarysModel;
-    
     private String librayName;
 
-    public ContainerLibrarySelectionDialog(Shell shell,PatternLibrary patternLibrary) {
+    private List<PatternLibrary> containerLibrarys;
+
+    public ContainerLibrarySelectionDialog(Shell shell, PatternLibrary patternLibrary) {
         super(shell);
         this.patternLibrary = patternLibrary;
-        if(patternLibrary!=null){
+        if (patternLibrary != null) {
             librayName = patternLibrary.getName();
         }
     }
 
     protected Control createDialogArea(Composite parent) {
-        containerLibrarysModel = getContainerLibraryList();
+        containerLibrarys = getContainerLibraryList();
         checkContainerExist(librayName);
 
         Composite dialogArea = (Composite) super.createDialogArea(parent);
@@ -94,7 +94,7 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
         text.addModifyListener(new ModifyListener() {
 
             public void modifyText(ModifyEvent e) {
-                ContainerLibrarysModel listAreaDisplay = getListAreaDisplay(text.getText());
+                List<PatternLibrary> listAreaDisplay = getListAreaDisplay(text.getText());
                 tableViewer.setInput(listAreaDisplay);
                 checkContainerExist(text.getText());
                 getSelectDefault(listAreaDisplay);
@@ -119,21 +119,21 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
 
         tableViewer.setLabelProvider(new ContainerLibraryLabelProvider());
         tableViewer.setContentProvider(new ContainerLibraryContentProvider());
-        ContainerLibrarysModel listAreaDisplay = getListAreaDisplay(librayName);
+        List<PatternLibrary> listAreaDisplay = getListAreaDisplay(librayName);
         tableViewer.setInput(listAreaDisplay);
         getSelectDefault(listAreaDisplay);
 
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
             public void selectionChanged(SelectionChangedEvent event) {
                 IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-                if (selection.getFirstElement() instanceof ContainerLibraryEntry) {
-                    patternLibrary = ((ContainerLibraryEntry) selection.getFirstElement()).getContainer();
+                if (selection.getFirstElement() instanceof PatternLibrary) {
+                    patternLibrary = (PatternLibrary) selection.getFirstElement();
                 }
             }
         });
-        
+
         tableViewer.addDoubleClickListener(new IDoubleClickListener() {
-            
+
             public void doubleClick(DoubleClickEvent event) {
                 okPressed();
             }
@@ -144,49 +144,42 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
     /**
      * Get all the library containers.
      */
-    private ContainerLibrarysModel getContainerLibraryList() {
-        containerLibrarysModel = new ContainerLibrarysModel();
+    private List<PatternLibrary> getContainerLibraryList() {
+        containerLibrarys = new ArrayList<PatternLibrary>();
         Set<PatternLibrary> allLibrarys = PatternHelper.getAllLibraries();
         for (PatternLibrary library : allLibrarys) {
-            String factoryConponentName = PatternHelper.getFactoryConponentName(library);
-            ContainerLibraryEntry entry = new ContainerLibraryEntry(library, factoryConponentName);
-            containerLibrarysModel.add(entry);
+            containerLibrarys.add(library);
         }
-        return containerLibrarysModel;
+        return containerLibrarys;
     }
 
     private void checkContainerExist(String name) {
         IStatus fLastStatusErr = new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, "", null);
         IStatus fLastStatusOk = new Status(IStatus.OK, Policy.JFACE, IStatus.OK, Util.ZERO_LENGTH_STRING, null);
-        if (getListAreaDisplay(name).elements().length > 0) {
+        if (getListAreaDisplay(name).size() > 0) {
             updateStatus(fLastStatusOk);
             return;
         }
         updateStatus(fLastStatusErr);
     }
 
-    private ContainerLibrarysModel getListAreaDisplay(String name) {
-        ContainerLibrarysModel containerLibrarysModelNew = new ContainerLibrarysModel();
-        Object[] containerLibraryEntrys = containerLibrarysModel.elements();
-        for (Object containerLibraryEntry : containerLibraryEntrys) {
-            if (containerLibraryEntry instanceof ContainerLibraryEntry) {
-                ContainerLibraryEntry entry = (ContainerLibraryEntry) containerLibraryEntry;
-                String content = entry.getContainer().getName() + Messages.common_mark1 + entry.getFactoryConponentName() + Messages.common_mark2; //$NON-NLS-1$ //$NON-NLS-2$
-                if (searchContainer(content, name)) {
-                    containerLibrarysModelNew.add(entry);
-                }
+    private List<PatternLibrary> getListAreaDisplay(String name) {
+        List<PatternLibrary> containerLibrarysNew = new ArrayList<PatternLibrary>();
+        for (PatternLibrary containerLibrary : containerLibrarys) {
+            if (searchContainer(containerLibrary.getName(), name)) {
+                containerLibrarysNew.add(containerLibrary);
             }
         }
-        return containerLibrarysModelNew;
+        return containerLibrarysNew;
     }
 
-    private void getSelectDefault(ContainerLibrarysModel model) {
+    private void getSelectDefault(List<PatternLibrary> model) {
         Object selectEntry = selectDefault(model, tableViewer);
-        if (selectEntry instanceof ContainerLibraryEntry) {
-            patternLibrary = ((ContainerLibraryEntry) selectEntry).getContainer();
+        if (selectEntry instanceof PatternLibrary) {
+            patternLibrary = (PatternLibrary) selectEntry;
         }
     }
-    
+
     public PatternLibrary getLibraryContainer() {
         return patternLibrary;
     }

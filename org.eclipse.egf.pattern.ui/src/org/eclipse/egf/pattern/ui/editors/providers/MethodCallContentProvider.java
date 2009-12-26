@@ -12,7 +12,6 @@
  * 
  * </copyright>
  */
-
 package org.eclipse.egf.pattern.ui.editors.providers;
 
 import java.util.List;
@@ -24,20 +23,20 @@ import org.eclipse.jface.viewers.Viewer;
  * @author xrchen
  * 
  */
-public class PatternSelectionContentProvider implements IStructuredContentProvider {
+public class MethodCallContentProvider implements IStructuredContentProvider {
 
     public Object[] getElements(Object inputElement) {
-        if (inputElement instanceof List<?>){
-            List<?> patterns = (List<?>)inputElement;
-            return patterns.toArray();
-        }
+        if (inputElement instanceof List<?>)
+            return ((List<?>) inputElement).toArray();
         return null;
     }
 
     public void dispose() {
+
     }
 
     public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+        viewer.refresh();
     }
 
 }

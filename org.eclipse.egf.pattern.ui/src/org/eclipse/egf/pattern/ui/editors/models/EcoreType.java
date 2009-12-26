@@ -12,6 +12,7 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.models;
 
 import java.util.Vector;
@@ -20,29 +21,36 @@ import java.util.Vector;
  * @author xrchen
  * 
  */
-public class CommonModel extends CommonElement {
-    @SuppressWarnings("unchecked")
-    private Vector content;
-
-    @SuppressWarnings("unchecked")
-    public CommonModel() {
-        content = new Vector();
+public class EcoreType {
+    private String type;
+    
+    private EcoreType parent;
+    
+    private Vector underlings;
+    
+    public EcoreType(String type){
+        this.type = type;
     }
 
-    @SuppressWarnings("unchecked")
-    public void add(Object element) {
-        content.add(element);
-        if (element instanceof CommonElement) {
-            ((CommonElement) element).setParent(this);
-        }
+    public String getType() {
+        return type;
     }
 
-    public void remove(Object element) {
-        content.remove(element);
+    public void setType(String type) {
+        this.type = type;
     }
 
-    public Object[] elements() {
-        return content.toArray();
+    public EcoreType getParent() {
+        return parent;
     }
 
+    public void setParent(EcoreType parent) {
+        this.parent = parent;
+    }
+    
+    public Vector getUnderlings() {
+        if(underlings == null)
+            underlings = new Vector();
+        return underlings;
+    }   
 }

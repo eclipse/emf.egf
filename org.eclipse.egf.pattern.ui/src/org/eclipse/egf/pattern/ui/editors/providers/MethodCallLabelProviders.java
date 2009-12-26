@@ -15,9 +15,9 @@
 package org.eclipse.egf.pattern.ui.editors.providers;
 
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.ui.ImageShop;
-import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -26,34 +26,39 @@ import org.eclipse.swt.graphics.Image;
  * @author xrchen
  * 
  */
-public class PatternSelectionLabelProvider implements ITableLabelProvider {
+public class MethodCallLabelProviders implements ITableLabelProvider {
 
     public Image getColumnImage(Object element, int columnIndex) {
-
-        return ImageShop.get(ImageShop.IMG_INNERCLASS_PUBLIC_OBJ);
+        return null;
     }
 
     public String getColumnText(Object element, int columnIndex) {
-        Pattern pattern = (Pattern) element;
-        switch (columnIndex) {
-        case 0:
-            return pattern.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(pattern) + Messages.common_mark2;
-        }
+        if (element instanceof PatternMethod)
+            return ((PatternMethod) element).getName();
+        if (element instanceof Pattern)
+            return ((Pattern) element).getName();
+        else if (element instanceof PatternParameter)
+            return ((PatternParameter) element).getName();
+        else if (element instanceof PatternVariable)
+            return ((PatternVariable) element).getName();
         return "";
     }
 
     public void addListener(ILabelProviderListener listener) {
+
     }
 
     public void dispose() {
+
     }
 
     public boolean isLabelProperty(Object element, String property) {
-
         return false;
     }
 
     public void removeListener(ILabelProviderListener listener) {
+        // TODO Auto-generated method stub
+
     }
 
 }

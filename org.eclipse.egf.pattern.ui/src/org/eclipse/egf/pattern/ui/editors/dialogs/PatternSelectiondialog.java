@@ -14,6 +14,8 @@
  */
 package org.eclipse.egf.pattern.ui.editors.dialogs;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
@@ -21,8 +23,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Messages;
-import org.eclipse.egf.pattern.ui.editors.models.PatternEntry;
-import org.eclipse.egf.pattern.ui.editors.models.PatternsModel;
 import org.eclipse.egf.pattern.ui.editors.providers.PatternSelectionContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.PatternSelectionLabelProvider;
 import org.eclipse.jdt.core.JavaCore;
@@ -57,13 +57,13 @@ public class PatternSelectiondialog extends PatternElementSelectionDialog {
 
     private String parentName;
 
-    private PatternsModel patternsModel;
-
     private TableViewer tableViewer;
 
     private Text text;
-    
+
     private Text statusLine;
+
+    private List<Pattern> patternList;
 
     public PatternSelectiondialog(Shell shell, Pattern parent, String parentName) {
         super(shell);
@@ -72,7 +72,7 @@ public class PatternSelectiondialog extends PatternElementSelectionDialog {
     }
 
     protected Control createDialogArea(Composite parent) {
-        patternsModel = getPatternsList();
+        patternList = getPatternsList();
         checkPatternExist(parentName);
 
         Composite dialogArea = (Composite) super.createDialogArea(parent);
@@ -95,7 +95,7 @@ public class PatternSelectiondialog extends PatternElementSelectionDialog {
         text.addModifyListener(new ModifyListener() {
 
             public void modifyText(ModifyEvent e) {
-                PatternsModel listAreaDisplay = getListAreaDisplay(text.getText());
+                List<Pattern> listAreaDisplay = getListAreaDisplay(text.getText());
                 tableViewer.setInput(listAreaDisplay);
                 parentName = text.getText();
                 checkPatternExist(text.getText());
@@ -131,24 +131,24 @@ public class PatternSelectiondialog extends PatternElementSelectionDialog {
 
         tableViewer.setLabelProvider(new PatternSelectionLabelProvider());
         tableViewer.setContentProvider(new PatternSelectionContentProvider());
-        PatternsModel listAreaDisplay = getListAreaDisplay(parentName);
+        List<Pattern> listAreaDisplay = getListAreaDisplay(parentName);
         tableViewer.setInput(listAreaDisplay);
         getSelectDefault(listAreaDisplay);
 
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
             public void selectionChanged(SelectionChangedEvent event) {
                 IStructuredSelection selection = (IStructuredSelection) event.getSelection();
-                if (selection.getFirstElement() instanceof PatternEntry) {
-                    parent = ((PatternEntry) selection.getFirstElement()).getPattern();
-                    parentName = ((PatternEntry) selection.getFirstElement()).getName();
+                if (selection.getFirstElement() instanceof Pattern) {
+                    parent = (Pattern) selection.getFirstElement();
+                    parentName = parent.getName();
                     String statusContent = PatternHelper.getPlatformFcore(parent).getName();
                     statusLine.setText(statusContent);
                 }
             }
         });
-        
+
         tableViewer.addDoubleClickListener(new IDoubleClickListener() {
-            
+
             public void doubleClick(DoubleClickEvent event) {
                 okPressed();
             }
@@ -156,46 +156,44 @@ public class PatternSelectiondialog extends PatternElementSelectionDialog {
 
     }
 
-    private PatternsModel getPatternsList() {
+    private List<Pattern> getPatternsList() {
+        patternList = new ArrayList<Pattern>();
         Set<Pattern> patterns = PatternHelper.getAllPatterns();
-        patternsModel = new PatternsModel();
         for (Pattern pattern : patterns) {
-            String patternDescrip = pattern.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(pattern) + Messages.common_mark2;
-            PatternEntry entry = new PatternEntry(pattern, patternDescrip, pattern.getName());
-            patternsModel.add(entry);
+            patternList.add(pattern);
         }
-        return patternsModel;
+        return patternList;
     }
 
-    private PatternsModel getListAreaDisplay(String name) {
-        PatternsModel patternsModelNew = new PatternsModel();
-        Object[] patternEntrys = patternsModel.elements();
-        for (Object patternEntry : patternEntrys) {
-            if (patternEntry instanceof PatternEntry) {
-                String content = ((PatternEntry) patternEntry).getDescription();
+    private List<Pattern> getListAreaDisplay(String name) {
+        List<Pattern> patternsListNew = new ArrayList<Pattern>();
+        for (Object patternEntry : patternList) {
+            if (patternEntry instanceof Pattern) {
+                Pattern pattern = (Pattern) patternEntry;
+                String content = pattern.getName();
                 if (searchContainer(content, name)) {
-                    patternsModelNew.add(patternEntry);
+                    patternsListNew.add(pattern);
                 }
             }
         }
-        return patternsModelNew;
+        return patternsListNew;
     }
 
     private void checkPatternExist(String name) {
         IStatus fLastStatusErr = new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, "", null);
         IStatus fLastStatusOk = new Status(IStatus.OK, Policy.JFACE, IStatus.OK, Util.ZERO_LENGTH_STRING, null);
-        if (getListAreaDisplay(name).elements().length > 0) {
+        if (getListAreaDisplay(name).size() > 0) {
             updateStatus(fLastStatusOk);
             return;
         }
         updateStatus(fLastStatusErr);
     }
 
-    private void getSelectDefault(PatternsModel model) {
+    private void getSelectDefault(List<Pattern> model) {
         Object selectEntry = selectDefault(model, tableViewer);
-        if (selectEntry instanceof PatternEntry) {
-            parent = ((PatternEntry) selectEntry).getPattern();
-            parentName = ((PatternEntry) selectEntry).getName();
+        if (selectEntry instanceof Pattern) {
+            parent = (Pattern) selectEntry;
+            parentName = parent.getName();
         }
     }
 

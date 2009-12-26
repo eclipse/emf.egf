@@ -39,7 +39,9 @@ public class ImageShop {
     public static final String IMG_KIND_PATTERNCALL_OBJ = ICON_PATH + "kind_patternCall_obj.gif";
     public static final String IMG_KIND_PATTERNINJECTEDCALL_OBJ = ICON_PATH + "kind_patternInjectedCall_obj.gif";
     public static final String IMG_KIND_SUPERPATTERNCALL_OBJ = ICON_PATH + "kind_superPatternCall_obj.gif";
-    public static final String IMG_OVER_OBJ = ICON_PATH + "over_obj.gif";;
+    public static final String IMG_OVER_OBJ = ICON_PATH + "over_obj.gif";
+    public static final String IMG_CATEGORY_OBJ = ICON_PATH + "category_obj.gif";
+    public static final String IMG_TREE_MODE = ICON_PATH + "tree_mode.gif";
 
     public static Image get(String imageFilePath) {
         ImageDescriptor imageDesc = getImageDescriptor(imageFilePath);

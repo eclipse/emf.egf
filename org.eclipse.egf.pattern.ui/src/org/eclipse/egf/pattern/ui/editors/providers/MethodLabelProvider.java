@@ -14,10 +14,12 @@
  */
 package org.eclipse.egf.pattern.ui.editors.providers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.ImageShop;
-import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -26,19 +28,35 @@ import org.eclipse.swt.graphics.Image;
  * @author xrchen
  * 
  */
-public class PatternSelectionLabelProvider implements ITableLabelProvider {
+public class MethodLabelProvider implements ITableLabelProvider {
+
+    private List<String> parentMethods;
+
+    public MethodLabelProvider(List<String> parentMethods) {
+        this.parentMethods = parentMethods;
+    }
 
     public Image getColumnImage(Object element, int columnIndex) {
 
-        return ImageShop.get(ImageShop.IMG_INNERCLASS_PUBLIC_OBJ);
+        if (element instanceof PatternMethod)
+            if (isOverride(element))
+                return ImageShop.get(ImageShop.IMG_INNERCLASS_DEFAULT_OBJ);
+        return null;
+    }
+
+    private boolean isOverride(Object element) {
+        for(String parentMethod : parentMethods){
+            String elementName = ((PatternMethod)element).getName();
+            if(elementName.equals(parentMethod)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public String getColumnText(Object element, int columnIndex) {
-        Pattern pattern = (Pattern) element;
-        switch (columnIndex) {
-        case 0:
-            return pattern.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(pattern) + Messages.common_mark2;
-        }
+        if (element instanceof PatternMethod)
+            return ((PatternMethod) element).getName();
         return "";
     }
 
@@ -55,5 +73,4 @@ public class PatternSelectionLabelProvider implements ITableLabelProvider {
 
     public void removeListener(ILabelProviderListener listener) {
     }
-
 }

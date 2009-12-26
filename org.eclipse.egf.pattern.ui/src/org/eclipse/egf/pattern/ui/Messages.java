@@ -22,9 +22,8 @@ import org.eclipse.osgi.util.NLS;
  * 
  */
 public class Messages extends NLS {
-    // Overview Page
     public static String Editor_wrong_input;
-
+    // Overview Page
     public static String OverviewPage_title;
 
     public static String OverviewPage_button_browse;
@@ -101,11 +100,15 @@ public class Messages extends NLS {
 
     public static String SpecificationPage_button_up;
 
+    public static String SpecificationPage_default_name;
+
     public static String SpecificationPage_inherSection_discrip_label;
 
     public static String SpecificationPage_inherSection_parent_label;
 
     public static String SpecificationPage_inherSection_title;
+
+    public static String SpecificationPage_parametersEditDialog_title;
 
     public static String SpecificationPage_paraSection_discrip_label;
 
@@ -122,6 +125,15 @@ public class Messages extends NLS {
 
     public static String ContainerLibrarySelectionDialog_pattern_label;
 
+    // ParametersEdit Dialog
+    public static String ParametersEditDialog_Browse;
+    
+    public static String ParametersEditDialog_Name;
+    
+    public static String ParametersEditDialog_Query;
+    
+    public static String ParametersEditDialog_Type;
+    
     // PatternSelection Dialog
     public static String PatternSelectiondialog_dialogArea_label;
 

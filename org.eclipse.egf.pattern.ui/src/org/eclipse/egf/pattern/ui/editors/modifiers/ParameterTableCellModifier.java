@@ -1,0 +1,134 @@
+/**
+ * <copyright>
+ *
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
+ * 
+ * </copyright>
+ */
+package org.eclipse.egf.pattern.ui.editors.modifiers;
+
+import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.Query;
+import org.eclipse.egf.pattern.ui.editors.editor.QueryComboBoxViewerCellEditor;
+import org.eclipse.egf.pattern.ui.editors.models.ComboListEntry;
+import org.eclipse.egf.pattern.ui.editors.pages.SpecificationPage;
+import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ICellModifier;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.widgets.TableItem;
+
+public class ParameterTableCellModifier implements ICellModifier {
+
+    private TransactionalEditingDomain editingDomain;
+    
+    private TableViewer tableViewer;
+
+    public ParameterTableCellModifier(TransactionalEditingDomain editingDomain,TableViewer tableViewer) {
+        this.editingDomain = editingDomain;
+        this.tableViewer = tableViewer;
+    }
+
+    public boolean canModify(Object element, String property) {
+        if ((SpecificationPage.NAME_COLUMN_ID).equals(property)) {
+            return true;
+        } else if ((SpecificationPage.TYPE_COLUMN_ID).equals(property)) {
+            return true;
+        } else if ((SpecificationPage.QUERY_COLUMN_ID).equals(property)) {
+            return true;
+        }
+        return false;
+    }
+
+    public Object getValue(Object element, String property) {
+        if ((SpecificationPage.NAME_COLUMN_ID).equals(property)) {
+            if (element instanceof PatternParameter) {
+                return ((PatternParameter) element).getName();
+            }
+        } else if ((SpecificationPage.TYPE_COLUMN_ID).equals(property)) {
+            if (element instanceof PatternParameter) {
+                String type = ((PatternParameter) element).getType();
+                return ParametersTableLabelProvider.getType(type);
+            }
+        } else if ((SpecificationPage.QUERY_COLUMN_ID).equals(property)) {
+            if (element instanceof PatternParameter) {
+                Query patternQuery = ((PatternParameter) element).getQuery();
+                String query = patternQuery == null ? "" : patternQuery.getExtensionId();
+                return new ComboListEntry(query);
+            }
+        }
+        return null;
+    }
+
+    public void modify(Object element, String property, Object value) {
+        if (value == null)
+            return;
+        tableViewer.refresh();
+        if (element instanceof TableItem) {
+            element = ((TableItem) element).getData();
+        }
+        String text = (value.toString()).trim();
+        PatternParameter patternParameter = (PatternParameter) element;
+        if ((SpecificationPage.NAME_COLUMN_ID).equals(property)) {
+            executeModify(0, patternParameter, text);
+        } else if ((SpecificationPage.TYPE_COLUMN_ID).equals(property)) {
+            executeModify(1, patternParameter, text);
+        } else if ((SpecificationPage.QUERY_COLUMN_ID).equals(property)) {
+            executeModify(2, patternParameter, text);
+        }
+    }
+
+    private void executeModify(final int setFlag, final PatternParameter patternParameter, final String text) {
+        RecordingCommand cmd = new RecordingCommand(editingDomain) {
+            protected void doExecute() {
+                switch (setFlag) {
+                case 0:
+                    patternParameter.setName(text);
+                    break;
+                case 1:
+                    patternParameter.setType(text);
+                    break;
+                case 2:
+                    modifyQuery(patternParameter, text);
+                    break;
+                default:
+                    return;
+                }
+            }
+        };
+        editingDomain.getCommandStack().execute(cmd);
+    }
+    
+    protected void modifyQuery(PatternParameter patternParameter, String text) {
+        Query query = patternParameter.getQuery();
+        String SelectedValue = "";
+        if (QueryComboBoxViewerCellEditor.getSelectedValue() != null) {
+            SelectedValue = (QueryComboBoxViewerCellEditor.getSelectedValue()).toString();
+            if (SelectedValue != null && !("".equals(SelectedValue))) {
+                if (query == null && (SelectedValue != null && !"".equals(SelectedValue))) {
+                    Query createBasicQuery = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery();
+                    createBasicQuery.setExtensionId(SelectedValue);
+                    patternParameter.setQuery(createBasicQuery);
+                } else if (SelectedValue != null && !"".equals(SelectedValue)) {
+                    query.setExtensionId(SelectedValue);
+                }
+            }
+        } else {
+            if (query == null && (text != null && !"".equals(text))) {
+                Query createBasicQuery = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery();
+                createBasicQuery.setExtensionId(text);
+                patternParameter.setQuery(createBasicQuery);
+            } else if (text != null || !"".equals(text)) {
+                query.setExtensionId(text);
+            }
+        }
+    }
+}

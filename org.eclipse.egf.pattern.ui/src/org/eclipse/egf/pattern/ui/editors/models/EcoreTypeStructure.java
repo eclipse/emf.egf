@@ -12,12 +12,22 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.models;
 
 /**
  * @author xrchen
  * 
  */
-public class ContainerLibrarysModel extends CommonModel {
+public class EcoreTypeStructure {
 
+    private EcoreType ecoreType;
+    
+    public EcoreTypeStructure(EcoreType ecoreType){
+        this.ecoreType = ecoreType;
+    }
+    
+    public EcoreType getEcoreType() {
+        return ecoreType;
+    }
 }

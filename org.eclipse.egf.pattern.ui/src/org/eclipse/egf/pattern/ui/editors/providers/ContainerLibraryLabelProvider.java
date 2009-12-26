@@ -14,8 +14,10 @@
  */
 package org.eclipse.egf.pattern.ui.editors.providers;
 
+import org.eclipse.egf.model.pattern.PatternLibrary;
+import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.ImageShop;
-import org.eclipse.egf.pattern.ui.editors.models.ContainerLibraryEntry;
+import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -27,15 +29,15 @@ import org.eclipse.swt.graphics.Image;
 public class ContainerLibraryLabelProvider implements ITableLabelProvider {
 
     public Image getColumnImage(Object element, int columnIndex) {
-        
+
         return ImageShop.get(ImageShop.IMG_INNERCLASS_PUBLIC_OBJ);
     }
 
     public String getColumnText(Object element, int columnIndex) {
-        
-        if (element instanceof ContainerLibraryEntry) {
-            ContainerLibraryEntry libraryEntry = (ContainerLibraryEntry) element;
-            return libraryEntry.getContainer().getName()+" - ["+libraryEntry.getFactoryConponentName()+"]";
+
+        if (element instanceof PatternLibrary) {
+            PatternLibrary libraryEntry = (PatternLibrary) element;
+            return (libraryEntry.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(libraryEntry) + Messages.common_mark2);
         }
         return "";
     }
@@ -47,7 +49,7 @@ public class ContainerLibraryLabelProvider implements ITableLabelProvider {
     }
 
     public boolean isLabelProperty(Object element, String property) {
-        
+
         return false;
     }
 

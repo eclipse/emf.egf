@@ -12,9 +12,11 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.providers;
 
-import org.eclipse.egf.pattern.ui.editors.models.ContainerLibrarysModel;
+import java.util.List;
+
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
@@ -25,9 +27,10 @@ import org.eclipse.jface.viewers.Viewer;
 public class ContainerLibraryContentProvider implements IStructuredContentProvider {
 
     public Object[] getElements(Object inputElement) {
-        
-        if (inputElement instanceof ContainerLibrarysModel)
-            return ((ContainerLibrarysModel) inputElement).elements();
+        if (inputElement instanceof List<?>) {
+            List<?> patternLibrarys = (List<?>) inputElement;
+            return patternLibrarys.toArray();
+        }
         return null;
     }
 
