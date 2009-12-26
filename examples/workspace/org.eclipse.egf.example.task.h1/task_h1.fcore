@@ -24,5 +24,8 @@
       <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="_PsaUkLshEd6hlL3ru-eQtQ"
           value="org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"/>
     </activityContracts>
+    <activityContracts xmi:id="_TX0todXAEd6mBObdoXlr9g" name="parameters" mode="In_Out">
+      <type xmi:type="types:TypeCollection" xmi:id="_UtguMNXAEd6mBObdoXlr9g" value="java.util.ArrayList"/>
+    </activityContracts>
   </activityContractContainer>
 </fprod:Task>
