@@ -33,6 +33,7 @@ public class PatternContext {
      * Key to manage the patter execution reporter.
      */
     public static final String PATTERN_REPORTER = "internal.pattern.reporter";
+    public static final String BUNDLE = "internal.pattern.bundle";
 
     /**
      * key to manage the context injected to a pattern.

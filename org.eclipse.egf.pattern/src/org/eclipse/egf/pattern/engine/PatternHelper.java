@@ -72,7 +72,7 @@ public class PatternHelper {
         return buf.deleteCharAt(buf.length() - 1).toString();
     }
 
-    public static IPlatformFcore getPlatformFcore(Pattern pattern) {
+    public static IPlatformFcore getPlatformFcore(PatternElement pattern) {
         return EGFCorePlugin.getPlatformFcore(pattern.eResource());
     }
 

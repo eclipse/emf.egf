@@ -33,11 +33,11 @@ import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.engine.WorkspaceAndPluginClassLoader;
 import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.jet.JetPreferences;
 import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.emf.codegen.jet.JETCompiler;
+import org.osgi.framework.Bundle;
 
 /**
  * @author Guiu
@@ -58,11 +58,10 @@ public class JetEngine extends PatternEngine {
             throw new IllegalStateException(Messages.assembly_error1);
 
         try {
-            Class<?> templateClass = new WorkspaceAndPluginClassLoader(PatternHelper.getPlatformFcore(getPattern())).loadClass(templateClassName);
+            Class<?> templateClass = ((Bundle) context.getValue(PatternContext.BUNDLE)).loadClass(templateClassName);
             Method method = templateClass.getMethod(JetAssemblyHelper.GENERATE_METHOD, Object.class);
             Object template = templateClass.newInstance();
             // the pattern is executed but we don't care about the result.
-            // TODO initialiser le context
             method.invoke(template, context);
         } catch (InvocationTargetException e) {
             throw new PatternException(e.getCause());
