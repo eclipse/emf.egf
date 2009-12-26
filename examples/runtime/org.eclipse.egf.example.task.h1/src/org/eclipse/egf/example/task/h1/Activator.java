@@ -1,22 +1,15 @@
 package org.eclipse.egf.example.task.h1;
 
-import org.eclipse.egf.common.ui.activator.EGFAbstractUIPlugin;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends EGFAbstractUIPlugin {
+public class Activator extends EGFAbstractPlugin {
 
   // The shared instance
   private static Activator plugin;
-
-  /**
-   * The constructor
-   */
-  public Activator() {
-  }
 
   /*
    * (non-Javadoc)
@@ -45,9 +38,7 @@ public class Activator extends EGFAbstractUIPlugin {
    */
   @Override
   public void stop(BundleContext context) throws Exception {
-    if (PlatformUI.isWorkbenchRunning()) {
-      logInfo("org.eclipse.egf.example.task.h1 is stopping"); //$NON-NLS-1$
-    }
+    logInfo("org.eclipse.egf.example.task.h1 is stopping"); //$NON-NLS-1$
     plugin = null;
     super.stop(context);
   }
