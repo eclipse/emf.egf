@@ -14,7 +14,7 @@ import junit.framework.Test;
 import junit.framework.TestSuite;
 
 import org.eclipse.egf.core.test.factorycomponent.ContextFactoryComponent;
-import org.eclipse.egf.core.test.model.ModelValidation;
+import org.eclipse.egf.core.test.model.validation.ModelValidation;
 import org.eclipse.egf.core.test.task.ContextTask;
 
 /**

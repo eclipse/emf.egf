@@ -8,14 +8,14 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.test.model;
+package org.eclipse.egf.core.test.model.validation;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.egf.core.model.fcore.FcoreContractValidation;
-import org.eclipse.egf.core.model.fprod.FprodContextValidation;
+import org.eclipse.egf.core.test.model.validation.fcore.FcoreContractValidation;
+import org.eclipse.egf.core.test.model.validation.fprod.FprodContextValidation;
 
 public class ModelValidation extends TestCase {
 

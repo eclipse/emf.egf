@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.model.fcore;
+package org.eclipse.egf.core.test.model.validation.fcore;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

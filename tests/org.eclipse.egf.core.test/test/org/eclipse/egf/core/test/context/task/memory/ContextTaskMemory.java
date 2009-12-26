@@ -17,7 +17,8 @@ import junit.framework.TestSuite;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
-import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.fprod.producer.manager.ITaskManager;
+import org.eclipse.egf.fprod.producer.manager.TaskManagerFactory;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fprod.FprodFactory;
@@ -30,8 +31,8 @@ import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
 import org.eclipse.egf.model.types.IntegerType;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.activity.ActivityProducer;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
+import org.eclipse.egf.producer.manager.ActivityManagerProducer;
+import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 
 public class ContextTaskMemory extends TestCase {
@@ -43,13 +44,13 @@ public class ContextTaskMemory extends TestCase {
   public void testContractH1() throws Exception {
 
     Task task = FprodFactory.eINSTANCE.createTask();
-    task.setValue("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
+    task.setValue("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
 
-    ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
+    ActivityManagerProducer producer = EGFProducerPlugin.getActivityManagerProducer(task);
 
-    IModelElementProducerManager<ActivityContract> production = producer.createManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
+    IActivityManager manager = producer.createActivityManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
     try {
-      production.invoke(new NullProgressMonitor());
+      manager.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
       return;
     }
@@ -61,7 +62,7 @@ public class ContextTaskMemory extends TestCase {
   public void testOutputContractClassNotTheSameH1() throws Exception {
 
     Task task = FprodFactory.eINSTANCE.createTask();
-    task.setValue("org.eclipse.egf.example.task.h1.H1.id"); //$NON-NLS-1$
+    task.setValue("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
 
     TaskContractContainer contracts = FprodFactory.eINSTANCE.createTaskContractContainer();
     task.eSet(FprodPackage.Literals.TASK__ACTIVITY_CONTRACT_CONTAINER, contracts);
@@ -100,19 +101,17 @@ public class ContextTaskMemory extends TestCase {
     generatorAdapterFactoryType.setValue("org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"); //$NON-NLS-1$
     generatorAdapterFactory.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, generatorAdapterFactoryType);
 
-    ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
+    ITaskManager manager = TaskManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
 
-    IModelElementProducerManager<ActivityContract> production = producer.createManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
-
-    GenModelGeneratorAdapterFactory defaultValue = production.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class); //$NON-NLS-1$
+    GenModelGeneratorAdapterFactory defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class); //$NON-NLS-1$
 
     try {
-      production.invoke(new NullProgressMonitor());
+      manager.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
       return;
     }
 
-    assertNotSame(production.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
+    assertNotSame(manager.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
 
   }
 }

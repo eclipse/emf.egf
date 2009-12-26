@@ -17,11 +17,13 @@ import junit.framework.TestSuite;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.fprod.producer.manager.ITaskManager;
+import org.eclipse.egf.fprod.producer.manager.TaskManagerFactory;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.activity.ActivityProducer;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
+import org.eclipse.egf.producer.manager.ActivityManagerProducer;
+import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -45,19 +47,19 @@ public class ContextTaskResource extends TestCase {
     Resource resource = ResourceHelper.loadResource(resourceSet, uri);
     assertNotNull(NLS.bind("Unable to load Resource ''{0}''", uri.toString()), resource); //$NON-NLS-1$
 
-    // Fetch Task
+    // Fetch Activity
     EObject eObject = resource.getContents().get(0);
-    assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Task); //$NON-NLS-1$
+    assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Activity); //$NON-NLS-1$
 
-    // Invoke Task
-    Task task = (Task) eObject;
+    // Invoke Activity
+    Activity activity = (Activity) eObject;
 
-    ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
+    ActivityManagerProducer producer = EGFProducerPlugin.getActivityManagerProducer(activity);
 
-    IModelElementProducerManager<ActivityContract> production = producer.createManager(task);
+    IActivityManager manager = producer.createActivityManager(activity);
 
     try {
-      production.invoke(new NullProgressMonitor());
+      manager.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
       fail(ie.getMessage());
     }
@@ -80,16 +82,15 @@ public class ContextTaskResource extends TestCase {
     // Invoke Task
     Task task = (Task) eObject;
 
-    ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
+    ITaskManager manager = TaskManagerFactory.createProductionManager(task);
 
-    IModelElementProducerManager<ActivityContract> production = producer.createManager(task);
     try {
-      production.invoke(new NullProgressMonitor());
+      manager.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
       fail(ie.getMessage());
     }
 
-    Float amount = production.getProductionContext().getOutputValue("amount", Float.class); //$NON-NLS-1$
+    Float amount = manager.getProductionContext().getOutputValue("amount", Float.class); //$NON-NLS-1$
 
     assertEquals(new Float("1050"), amount); //$NON-NLS-1$
 
@@ -111,19 +112,17 @@ public class ContextTaskResource extends TestCase {
     // Invoke Task
     Task task = (Task) eObject;
 
-    ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
+    ITaskManager manager = TaskManagerFactory.createProductionManager(task);
 
-    IModelElementProducerManager<ActivityContract> production = producer.createManager(task);
-
-    GenModelGeneratorAdapterFactory defaultValue = production.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class); //$NON-NLS-1$
+    GenModelGeneratorAdapterFactory defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class); //$NON-NLS-1$
 
     try {
-      production.invoke(new NullProgressMonitor());
+      manager.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
       fail(ie.getMessage());
     }
 
-    assertNotSame(production.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
+    assertNotSame(manager.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
 
   }
 

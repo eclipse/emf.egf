@@ -17,11 +17,13 @@ import junit.framework.TestSuite;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.activity.ActivityProducer;
-import org.eclipse.egf.producer.manager.IModelElementProducerManager;
+import org.eclipse.egf.producer.manager.ActivityManagerProducer;
+import org.eclipse.egf.producer.manager.FactoryComponentManagerFactory;
+import org.eclipse.egf.producer.manager.IActivityManager;
+import org.eclipse.egf.producer.manager.IFactoryComponentManager;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -44,19 +46,19 @@ public class ContextFactoryComponentResource extends TestCase {
     Resource resource = ResourceHelper.loadResource(resourceSet, uri);
     assertNotNull(NLS.bind("Unable to load Resource ''{0}''", uri.toString()), resource); //$NON-NLS-1$
 
-    // Fetch FactoryComponent
+    // Fetch Activity
     EObject eObject = resource.getContents().get(0);
-    assertTrue(NLS.bind("We Expected to find an ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof FactoryComponent); //$NON-NLS-1$
+    assertTrue(NLS.bind("We Expected to find an ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Activity); //$NON-NLS-1$
 
-    // Invoke FactoryComponent
-    FactoryComponent fc = (FactoryComponent) eObject;
+    // Invoke Activity
+    Activity activity = (Activity) eObject;
 
-    ActivityProducer producer = EGFProducerPlugin.getActivityProducer(fc);
+    ActivityManagerProducer producer = EGFProducerPlugin.getActivityManagerProducer(activity);
 
-    IModelElementProducerManager<ActivityContract> production = producer.createManager(fc);
+    IActivityManager manager = producer.createActivityManager(activity);
 
     try {
-      production.invoke(new NullProgressMonitor());
+      manager.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
       fail(ie.getMessage());
     }
@@ -79,16 +81,14 @@ public class ContextFactoryComponentResource extends TestCase {
     // Invoke FactoryComponent
     FactoryComponent fc = (FactoryComponent) eObject;
 
-    ActivityProducer producer = EGFProducerPlugin.getActivityProducer(fc);
-
-    IModelElementProducerManager<ActivityContract> production = producer.createManager(fc);
+    IFactoryComponentManager manager = FactoryComponentManagerFactory.createProductionManager(fc);
     try {
-      production.invoke(new NullProgressMonitor());
+      manager.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
       fail(ie.getMessage());
     }
 
-    Float amount = production.getProductionContext().getOutputValue("amount", Float.class); //$NON-NLS-1$
+    Float amount = manager.getProductionContext().getOutputValue("amount", Float.class); //$NON-NLS-1$
 
     assertEquals(new Float("110"), amount); //$NON-NLS-1$
 
