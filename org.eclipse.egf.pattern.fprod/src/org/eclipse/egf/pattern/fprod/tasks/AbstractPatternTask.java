@@ -25,9 +25,15 @@ public abstract class AbstractPatternTask implements ITaskProduction {
     }
 
     protected void readContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
+        String bundleId = getCurrentBundleId();
+        ctx.setValue(PatternContext.BUNDLE, context.getBundle(bundleId));
         for (ActivityContract ac : context.getInputValueKeys()) {
             ctx.setValue(ac.getName(), context.getInputValue(ac.getName(), ac.getType().getType()));
         }
     }
+
+    // TODO faire mieux: ça aurait été sympa que le ITaskProductionContext me
+    // donne direct le bundle courant ... on vire cette method et ses surcharges
+    protected abstract String getCurrentBundleId() throws InvocationException;
 
 }

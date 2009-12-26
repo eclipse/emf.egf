@@ -49,4 +49,9 @@ public class PatternTask extends AbstractPatternTask {
         pattern = null;
     }
 
+    @Override
+    protected String getCurrentBundleId() throws InvocationException {
+        return PatternHelper.getPlatformFcore(pattern).getPlatformBundle().getBundleId();
+    }
+
 }
