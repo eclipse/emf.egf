@@ -104,8 +104,7 @@ public class RunActivityAction implements IObjectActionDelegate {
             if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
               throw (CoreException) ie.getCause();
             }
-            throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, ie));
-            // invocationException[0] = ie;
+            invocationException[0] = ie;
           } catch (Throwable t) {
             throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
           }
