@@ -16,8 +16,10 @@
 package org.eclipse.egf.pattern.engine;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
@@ -36,6 +38,7 @@ import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.PatternConstants;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.collector.PatternCollector;
+import org.eclipse.egf.pattern.collector.PatternElementCollector;
 import org.eclipse.egf.pattern.collector.PatternLibraryCollector;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -119,6 +122,26 @@ public class PatternHelper {
         Set<Pattern> result = new HashSet<Pattern>();
         collectPatterns(uri, PatternCollector.EMPTY_ID_SET, result);
         return result;
+    }
+
+    public static Map<String, PatternElement> getPatternElements(Set<String> ids) {
+        Set<PatternElement> result = new HashSet<PatternElement>(200);
+        IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
+        final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
+        for (IPlatformFcore platformFcore : platformFcores) {
+            URI uri = platformFcore.getURI();
+            try {
+                Resource res = editingDomain.getResourceSet().getResource(uri, true);
+                PatternElementCollector.INSTANCE.collect(res.getContents(), result, PatternCollector.EMPTY_ID_SET);
+            } catch (Exception e) {
+                org.eclipse.egf.pattern.Activator.getDefault().logError(Messages.bind(Messages.collect_error2, uri.toString()), e);
+            }
+        }
+        Map<String, PatternElement> map = new HashMap<String, PatternElement>(200);
+        for (PatternElement pe : result) {
+            map.put(pe.getID(), pe);
+        }
+        return map;
     }
 
     /**
