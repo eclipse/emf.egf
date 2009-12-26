@@ -27,6 +27,34 @@ public class URIHelper {
     // Prevent Instantiation
   }
 
+  public static final URI PLATFORM_PLUGIN_URI = URI.createURI("platform:/plugin/"); //$NON-NLS-1$
+
+  public static final URI PLATFORM_RESOURCE_URI = URI.createURI("platform:/resource/"); //$NON-NLS-1$
+
+  public static URI getPlatformPluginURI(URI uri) {
+    if (uri == null) {
+      return null;
+    }
+    if (uri.isRelative()) {
+      return URI.createPlatformPluginURI(uri.toString(), false);
+    } else if (uri.isPlatformResource()) {
+      return uri.replacePrefix(PLATFORM_RESOURCE_URI, PLATFORM_PLUGIN_URI);
+    }
+    return uri;
+  }
+
+  public static URI getPlatformResourceURI(URI uri) {
+    if (uri == null) {
+      return null;
+    }
+    if (uri.isRelative()) {
+      return URI.createPlatformResourceURI(uri.toString(), false);
+    } else if (uri.isPlatformResource()) {
+      return uri.replacePrefix(PLATFORM_PLUGIN_URI, PLATFORM_RESOURCE_URI);
+    }
+    return uri;
+  }
+
   public static URI getPlatformURI(IPluginModelBase model, String value) {
     if (model == null || value == null || value.trim().length() == 0) {
       return null;
