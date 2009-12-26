@@ -1,6 +1,8 @@
 package org.eclipse.egf.example.task.h1;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
+import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -38,7 +40,10 @@ public class Activator extends EGFAbstractPlugin {
    */
   @Override
   public void stop(BundleContext context) throws Exception {
-    logInfo("org.eclipse.egf.example.task.h1 is stopping"); //$NON-NLS-1$
+    Bundle bundle = Platform.getBundle("org.eclipse.swt"); //$NON-NLS-1$
+    if (bundle.getState() == Bundle.ACTIVE) {
+      logInfo("org.eclipse.egf.example.task.h1 is stopping"); //$NON-NLS-1$
+    }
     plugin = null;
     super.stop(context);
   }

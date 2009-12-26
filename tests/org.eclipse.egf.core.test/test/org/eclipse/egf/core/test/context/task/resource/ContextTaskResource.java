@@ -17,7 +17,7 @@ import junit.framework.TestSuite;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.activity.ActivityProducer;
@@ -47,14 +47,14 @@ public class ContextTaskResource extends TestCase {
 
     // Fetch Task
     EObject eObject = resource.getContents().get(0);
-    assertTrue(NLS.bind("We Expected to find an ''Activity'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Activity); //$NON-NLS-1$
+    assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Task); //$NON-NLS-1$
 
     // Invoke Task
     Task task = (Task) eObject;
 
     ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
 
-    IModelElementProducerManager production = producer.createManager(task);
+    IModelElementProducerManager<ActivityContract> production = producer.createManager(task);
 
     try {
       production.invoke(new NullProgressMonitor());
@@ -82,7 +82,7 @@ public class ContextTaskResource extends TestCase {
 
     ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
 
-    IModelElementProducerManager production = producer.createManager(task);
+    IModelElementProducerManager<ActivityContract> production = producer.createManager(task);
     try {
       production.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
@@ -113,7 +113,7 @@ public class ContextTaskResource extends TestCase {
 
     ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
 
-    IModelElementProducerManager production = producer.createManager(task);
+    IModelElementProducerManager<ActivityContract> production = producer.createManager(task);
 
     GenModelGeneratorAdapterFactory defaultValue = production.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class); //$NON-NLS-1$
 

@@ -17,6 +17,7 @@ import junit.framework.TestSuite;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fprod.FprodFactory;
@@ -46,7 +47,7 @@ public class ContextTaskMemory extends TestCase {
 
     ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
 
-    IModelElementProducerManager production = producer.createManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
+    IModelElementProducerManager<ActivityContract> production = producer.createManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
     try {
       production.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
@@ -101,7 +102,7 @@ public class ContextTaskMemory extends TestCase {
 
     ActivityProducer producer = EGFProducerPlugin.getActivityProducer(task);
 
-    IModelElementProducerManager production = producer.createManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
+    IModelElementProducerManager<ActivityContract> production = producer.createManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
 
     GenModelGeneratorAdapterFactory defaultValue = production.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class); //$NON-NLS-1$
 
