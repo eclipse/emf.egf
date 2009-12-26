@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.egf.common.helper.ProjectHelper;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
 import org.eclipse.egf.model.fcore.provider.ActivityItemProvider;
 import org.eclipse.egf.model.fprod.FprodFactory;
@@ -93,7 +93,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
       @Override
       public Collection<String> getChoiceOfValues(Object innerObject) {
         Task task = (Task) innerObject;
-        IProject project = ProjectHelper.getProject(task.eResource().getURI().segment(1));
+        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(task.eResource().getURI().segment(1));
         if (project == null) {
           return Collections.<String> emptyList();
         }

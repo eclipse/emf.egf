@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.fcore.provider;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -26,6 +27,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
+import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -40,9 +42,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponentContract} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.egf.model.fcore.FactoryComponentContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FactoryComponentContractItemProvider extends ActivityContractItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -50,6 +54,7 @@ public class FactoryComponentContractItemProvider extends ActivityContractItemPr
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponentContractItemProvider(AdapterFactory adapterFactory) {
@@ -60,6 +65,7 @@ public class FactoryComponentContractItemProvider extends ActivityContractItemPr
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -127,11 +133,18 @@ public class FactoryComponentContractItemProvider extends ActivityContractItemPr
    * This returns FactoryComponentContract.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/FactoryComponentContract")); //$NON-NLS-1$
+    FactoryComponentContract contract = (FactoryComponentContract) object;
+    List<Object> images = new ArrayList<Object>(2);
+    images.add(getResourceLocator().getImage("full/obj16/FactoryComponentContract")); //$NON-NLS-1$
+    if (contract.isMandatory()) {
+      images.add(getResourceLocator().getImage("full/ovr/Mandatory")); //$NON-NLS-1$
+    }
+    return new ComposedImage(images);
   }
 
   /**
@@ -169,6 +182,7 @@ public class FactoryComponentContractItemProvider extends ActivityContractItemPr
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -182,6 +196,7 @@ public class FactoryComponentContractItemProvider extends ActivityContractItemPr
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

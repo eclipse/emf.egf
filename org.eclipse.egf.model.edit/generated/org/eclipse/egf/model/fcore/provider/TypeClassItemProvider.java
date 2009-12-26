@@ -17,7 +17,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.egf.common.helper.ProjectHelper;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.helper.TypeClassHelper;
@@ -42,6 +42,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.TypeClass} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypeClassItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -49,6 +50,7 @@ public class TypeClassItemProvider extends TypeItemProvider implements IEditingD
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypeClassItemProvider(AdapterFactory adapterFactory) {
@@ -59,6 +61,7 @@ public class TypeClassItemProvider extends TypeItemProvider implements IEditingD
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -86,7 +89,7 @@ public class TypeClassItemProvider extends TypeItemProvider implements IEditingD
       @Override
       public Collection<String> getChoiceOfValues(Object innerObject) {
         TypeClass<?> typeClass = (TypeClass<?>) innerObject;
-        IProject project = ProjectHelper.getProject(typeClass.eResource().getURI().segment(1));
+        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(typeClass.eResource().getURI().segment(1));
         if (project == null) {
           return Collections.<String> emptyList();
         }
@@ -103,6 +106,7 @@ public class TypeClassItemProvider extends TypeItemProvider implements IEditingD
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -117,6 +121,7 @@ public class TypeClassItemProvider extends TypeItemProvider implements IEditingD
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -136,6 +141,7 @@ public class TypeClassItemProvider extends TypeItemProvider implements IEditingD
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
