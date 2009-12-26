@@ -79,8 +79,8 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
     int steps = 0;
     Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
     if (managers != null) {
-      for (IProductionPlanInvocationManager invocation : managers.values()) {
-        steps += invocation.getSteps();
+      for (Invocation<?> invocation : getElement().getInvocations()) {
+        steps += managers.get(invocation).getSteps();
       }
     }
     return steps;
@@ -92,8 +92,9 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
       int steps = getSteps();
       SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), steps * 900);
       try {
-        for (IProductionPlanInvocationManager invocation : managers.values()) {
-          invocation.invoke(subMonitor.newChild(900 * invocation.getSteps(), SubMonitor.SUPPRESS_NONE));
+        for (Invocation<?> invocation : getElement().getInvocations()) {
+          IProductionPlanInvocationManager manager = managers.get(invocation);
+          manager.invoke(subMonitor.newChild(900 * manager.getSteps(), SubMonitor.SUPPRESS_NONE));
           if (monitor.isCanceled()) {
             throw new OperationCanceledException();
           }
