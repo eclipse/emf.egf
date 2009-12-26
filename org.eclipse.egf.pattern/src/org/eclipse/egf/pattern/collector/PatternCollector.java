@@ -20,6 +20,7 @@ import java.util.Set;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Viewpoint;
+import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternLibrary;
@@ -39,8 +40,11 @@ public class PatternCollector extends Collector<Pattern> {
         if (FcorePackage.eINSTANCE.equals(source.eClass().getEPackage())) {
             switch (source.eClass().getClassifierID()) {
             case FcorePackage.FACTORY_COMPONENT:
-                for (Viewpoint viewpoint : ((FactoryComponent) source).getViewpointContainer().getViewpoints())
-                    doCollect(viewpoint, result, ids);
+                ViewpointContainer viewpointContainer = ((FactoryComponent) source).getViewpointContainer();
+                if (viewpointContainer != null) {
+                    for (Viewpoint viewpoint : viewpointContainer.getViewpoints())
+                        doCollect(viewpoint, result, ids);
+                }
                 return;
             }
         }
