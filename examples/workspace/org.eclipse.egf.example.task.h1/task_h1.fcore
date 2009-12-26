@@ -3,17 +3,24 @@
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
     name="H1" description="" value="org.eclipse.egf.example.task.h1.H1">
-  <activityContractContainer xmi:type="fprod:TaskContractContainer" xmi:id="_sAEVUbpOEd6O-6ob3O13Lw">
-    <activityContracts xmi:type="fprod:TaskContract" xmi:id="_sZPqULpOEd6O-6ob3O13Lw" name="quantity">
+  <activityContractContainer xmi:id="_sAEVUbpOEd6O-6ob3O13Lw">
+    <activityContracts xmi:id="_Z65BAdA5Ed6LbMEN-DBMtQ" name="stock">
+      <type xmi:type="types:IntegerType" xmi:id="_a-1xUNA5Ed6LbMEN-DBMtQ" value="100"/>
+    </activityContracts>
+    <activityContracts xmi:id="_sZPqULpOEd6O-6ob3O13Lw" name="quantity">
       <type xmi:type="types:IntegerType" xmi:id="_wO9-sLpOEd6O-6ob3O13Lw" value="100"/>
     </activityContracts>
-    <activityContracts xmi:type="fprod:TaskContract" xmi:id="_xfSXELpOEd6O-6ob3O13Lw" name="price">
+    <activityContracts xmi:id="_E11LcdA8Ed6uEZYKLg-jOQ" name="rebate" mode="In_Out">
+      <type xmi:type="types:FloatType" xmi:id="_GkZmENA8Ed6uEZYKLg-jOQ" value="5.0"/>
+    </activityContracts>
+    <activityContracts xmi:id="_xfSXELpOEd6O-6ob3O13Lw" name="price">
       <type xmi:type="types:FloatType" xmi:id="_y0EYsLpOEd6O-6ob3O13Lw" value="10.5"/>
     </activityContracts>
-    <activityContracts xmi:type="fprod:TaskContract" xmi:id="_2vwLILpOEd6O-6ob3O13Lw" name="amount" mode="Out">
+    <activityContracts xmi:id="_2vwLILpOEd6O-6ob3O13Lw" name="amount" mode="Out">
       <type xmi:type="types:FloatType" xmi:id="_5M9NYLpOEd6O-6ob3O13Lw"/>
     </activityContracts>
-    <activityContracts xmi:type="fprod:TaskContract" xmi:id="_PFOYwbshEd6hlL3ru-eQtQ" name="generatorAdapterFactory" mode="Out">
+    <activityContracts xmi:id="_PFOYwbshEd6hlL3ru-eQtQ" name="generatorAdapterFactory"
+        mode="Out">
       <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="_PsaUkLshEd6hlL3ru-eQtQ"
           value="org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"/>
     </activityContracts>
