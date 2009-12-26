@@ -8,10 +8,8 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.internal.context;
+package org.eclipse.egf.core.context;
 
-import org.eclipse.egf.core.context.IContext;
-import org.eclipse.egf.core.context.IContextFactory;
 
 /**
  * @author Xavier Maysonnave

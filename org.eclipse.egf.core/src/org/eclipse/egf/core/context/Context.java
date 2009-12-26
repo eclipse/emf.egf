@@ -10,12 +10,11 @@
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
-package org.eclipse.egf.core.internal.context;
+package org.eclipse.egf.core.context;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.egf.core.context.IContext;
 
 /**
  * TODO Ici on ne devrait avoir qu'une pauvre map avec name-valeur. Son
