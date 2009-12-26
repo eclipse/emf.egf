@@ -18,6 +18,9 @@
         mode="Out" invocationContexts="#_HzSEYciDEd6oON34eIZwow">
       <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="_7EKPoMnxEd62uJjVIIL53A"/>
     </activityContracts>
+    <activityContracts xmi:id="_aZgPYNW6Ed6dzvinGX1cMA" name="parameters" invocationContexts="#_OHww8NW6Ed6dzvinGX1cMA">
+      <type xmi:type="types:TypeList" xmi:id="_ceRjgNW6Ed6dzvinGX1cMA"/>
+    </activityContracts>
   </activityContractContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="4w2VoabFEd692t-PG4ogiQ">
     <invocations xmi:type="fprod:TaskInvocation" xmi:id="tKWXIabGEd69ANF1SOWYYg" name="Call H1"
@@ -40,6 +43,8 @@
             sourceContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"/>
         <invocationContexts xmi:id="_HzSEYciDEd6oON34eIZwow" name="generatorAdapterFactory"
             factoryComponentExposedContract="#_5siVYMnxEd62uJjVIIL53A" activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_PFOYwbshEd6hlL3ru-eQtQ"/>
+        <invocationContexts xmi:id="_OHww8NW6Ed6dzvinGX1cMA" name="parameters" factoryComponentExposedContract="#_aZgPYNW6Ed6dzvinGX1cMA"
+            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_l2A5kdT3Ed6Pk6ruhJpBtQ"/>
       </invocationContextContainer>
     </invocations>
     <invocations xmi:type="fprod:FactoryComponentInvocation" xmi:id="ID2loKbGEd692t-PG4ogiQ"

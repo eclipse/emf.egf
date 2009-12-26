@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fprod:Task xmi:version="2.1"
-    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
-    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
     name="H1" description="" value="org.eclipse.egf.example.task.h1.H1">
   <activityContractContainer xmi:id="_sAEVUbpOEd6O-6ob3O13Lw" name="">
     <activityContracts xmi:id="_sZPqULpOEd6O-6ob3O13Lw" name="quantity">
@@ -20,6 +20,10 @@
         mode="Out">
       <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="_PsaUkLshEd6hlL3ru-eQtQ"
           value="org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"/>
+    </activityContracts>
+    <activityContracts xmi:id="_l2A5kdT3Ed6Pk6ruhJpBtQ" name="parameters">
+      <type xmi:type="types:TypeCollection" xmi:id="_D-EkIdW6Ed6dzvinGX1cMA" value="java.util.ArrayList"/>
+      <type xmi:type="fcore:TypeCollection" xmi:id="_ciOTkdWzEd6Xeu_yN5Vc3g" value="java.util.ArrayList"/>
     </activityContracts>
   </activityContractContainer>
 </fprod:Task>
