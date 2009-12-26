@@ -18,4 +18,6 @@ public interface IEGFModelConstants {
 
   public static final String VALIDATE_TYPES = "org.eclipse.egf.core.model.validate.types"; //$NON-NLS-1$  
 
+  public static final String VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH = "org.eclipse.egf.core.validate.model.instances.before.launch"; //$NON-NLS-1$
+
 }
