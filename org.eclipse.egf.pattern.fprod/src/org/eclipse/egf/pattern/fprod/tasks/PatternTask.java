@@ -3,10 +3,8 @@ package org.eclipse.egf.pattern.fprod.tasks;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
-import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
 import org.eclipse.egf.model.PatternContext;
 import org.eclipse.egf.model.PatternException;
-import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
@@ -14,7 +12,7 @@ import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.fprod.Messages;
 
-public class PatternTask implements ITaskProduction {
+public class PatternTask extends AbstractPatternTask {
 
     private Pattern pattern;
 
@@ -31,18 +29,14 @@ public class PatternTask implements ITaskProduction {
             String reason = extension.canExecute(pattern);
             PatternContext ctx = new PatternContext();
 
-            for (ActivityContract ac : context.getInputValueKeys()) {
-                ctx.setValue(ac.getName(), context.getInputValue(ac.getName(), ac.getType().getType()));
-            }
+            readContext(context, ctx);
 
             if (reason == null)
                 extension.createEngine(pattern).execute(ctx);
             else
                 throw new InvocationException(reason);
 
-            for (ActivityContract ac : context.getOutputValueKeys()) {
-                context.setOutputValue(ac.getName(), ctx.getValue(ac.getName()));
-            }
+            writeContext(context, ctx);
 
         } catch (MissingExtensionException e) {
             throw new InvocationException(e);

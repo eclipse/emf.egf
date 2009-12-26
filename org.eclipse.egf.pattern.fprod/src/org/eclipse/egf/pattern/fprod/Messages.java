@@ -27,6 +27,10 @@ public class Messages extends NLS {
 
     public static String Missing_pattern_error1;
 
+    public static String taskInvocation_error1;
+    public static String taskInvocation_error2;
+    public static String taskInvocation_error3;
+
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.fprod.PatternFprodMessages";//$NON-NLS-1$
     static {
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);
