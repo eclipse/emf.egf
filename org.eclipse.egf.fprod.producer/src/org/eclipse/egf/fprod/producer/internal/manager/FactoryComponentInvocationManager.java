@@ -13,8 +13,6 @@ package org.eclipse.egf.fprod.producer.internal.manager;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.fprod.producer.IFactoryComponentInvocationProductionContext;
-import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.FactoryComponentInvocationProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
@@ -29,7 +27,7 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
 
   private FactoryComponentManager _factoryComponentManager;
 
-  public FactoryComponentInvocationManager(IModelElementProducerManager parent, FactoryComponentInvocation factoryComponentInvocation) throws InvocationException {
+  public FactoryComponentInvocationManager(IModelElementProducerManager<?> parent, FactoryComponentInvocation factoryComponentInvocation) throws InvocationException {
     super(parent, factoryComponentInvocation);
   }
 
@@ -39,14 +37,9 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
   }
 
   @Override
-  public IFactoryComponentInvocationProductionContext getProductionContext() {
-    return getInternalProductionContext();
-  }
-
-  @Override
-  public FactoryComponentInvocationProductionContext getInternalProductionContext() {
+  public FactoryComponentInvocationProductionContext getInternalProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = FprodProducerContextFactory.createContext((IProductionPlanProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
+      _productionContext = FprodProducerContextFactory.createContext(getParent().getProductionContext(), getElement(), getProjectBundleSession());
     }
     return (FactoryComponentInvocationProductionContext) _productionContext;
   }

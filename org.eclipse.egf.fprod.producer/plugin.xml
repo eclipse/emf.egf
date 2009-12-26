@@ -33,7 +33,28 @@
     <activity
       class="org.eclipse.egf.fprod.producer.activity.TaskProducer"
     />
-  </extension> 
+  </extension>
+  
+  
+  <!-- ================================================================================= -->
+  <!-- Activity Production Context Producer                                              -->
+  <!-- ================================================================================= -->
+  
+  <extension
+    point="org.eclipse.egf.producer.activityProductionContext"
+  >
+    <activityProductionContext
+      class="org.eclipse.egf.fprod.producer.activity.FactoryComponentProductionContextProducer"
+    />
+  </extension>    
+  
+  <extension
+    point="org.eclipse.egf.producer.activityProductionContext"
+  >
+    <activityProductionContext
+      class="org.eclipse.egf.fprod.producer.activity.TaskProductionContextProducer"
+    />
+  </extension>  
      
   <!-- ================================================================================= -->
   <!-- Orchestration Producer                                                            -->

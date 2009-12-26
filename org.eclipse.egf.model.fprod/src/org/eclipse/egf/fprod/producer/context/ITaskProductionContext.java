@@ -12,7 +12,6 @@ package org.eclipse.egf.fprod.producer.context;
 
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.producer.context.IActivityProductionContext;
-import org.eclipse.egf.producer.context.IInvocationProductionContext;
 
 /**
  * @author Xavier Maysonnave
@@ -21,7 +20,5 @@ import org.eclipse.egf.producer.context.IInvocationProductionContext;
 public interface ITaskProductionContext extends IActivityProductionContext {
 
   public Task getElement();
-
-  public IInvocationProductionContext getParent();
 
 }

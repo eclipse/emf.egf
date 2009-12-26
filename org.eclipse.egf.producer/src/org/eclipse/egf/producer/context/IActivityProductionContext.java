@@ -21,6 +21,4 @@ public interface IActivityProductionContext extends IModelElementProductionConte
 
   public Activity getElement();
 
-  public IInvocationProductionContext getParent();
-
 }

@@ -12,6 +12,7 @@ package org.eclipse.egf.producer.activity;
 
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.producer.internal.manager.FactoryComponentManagerFactory;
@@ -34,12 +35,12 @@ public class FactoryComponentProducer extends ActivityProducer {
   }
 
   @Override
-  protected IModelElementProducerManager doCreateManager(Activity activity) throws InvocationException {
+  protected IModelElementProducerManager<ActivityContract> doCreateManager(Activity activity) throws InvocationException {
     return _manager.createProductionManager((FactoryComponent) activity);
   }
 
   @Override
-  protected IModelElementProducerManager doCreateManager(Bundle bundle, Activity activity) throws InvocationException {
+  protected IModelElementProducerManager<ActivityContract> doCreateManager(Bundle bundle, Activity activity) throws InvocationException {
     return _manager.createProductionManager(bundle, (FactoryComponent) activity);
   }
 

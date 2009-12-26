@@ -32,6 +32,9 @@ public class ProducerMessages {
   public static String Activity_extension_error;
   public static String Activity_type_error;
 
+  public static String ActivityProductionContext_extension_error;
+  public static String ActivityProductionContext_type_error;
+
   public static String Orchestration_extension_error;
   public static String Orchestration_type_error;
 

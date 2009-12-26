@@ -11,9 +11,9 @@
 package org.eclipse.egf.fprod.producer.internal.context;
 
 import org.eclipse.egf.core.session.ProjectBundleSession;
-import org.eclipse.egf.fprod.producer.IProductionPlanInvocationProductionContext;
-import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
+import org.eclipse.egf.fprod.producer.context.IProductionPlanInvocationProductionContext;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
+import org.eclipse.egf.producer.context.IModelElementProductionContext;
 import org.eclipse.egf.producer.internal.context.InvocationProductionContext;
 
 /**
@@ -26,18 +26,13 @@ public abstract class ProductionPlanInvocationProductionContext extends Invocati
     super(element, projectBundleSession);
   }
 
-  public ProductionPlanInvocationProductionContext(IProductionPlanProductionContext parent, ProductionPlanInvocation<?> element, ProjectBundleSession projectBundleSession) {
+  public ProductionPlanInvocationProductionContext(IModelElementProductionContext<?> parent, ProductionPlanInvocation<?> element, ProjectBundleSession projectBundleSession) {
     super(parent, element, projectBundleSession);
   }
 
   @Override
   public ProductionPlanInvocation<?> getElement() {
     return (ProductionPlanInvocation<?>) super.getElement();
-  }
-
-  @Override
-  public IProductionPlanProductionContext getParent() {
-    return (IProductionPlanProductionContext) _parent;
   }
 
 }

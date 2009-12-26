@@ -11,6 +11,7 @@
 package org.eclipse.egf.producer.internal.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.osgi.framework.Bundle;
@@ -21,11 +22,11 @@ import org.osgi.framework.Bundle;
  */
 public class FactoryComponentManagerFactory {
 
-  public IModelElementProducerManager createProductionManager(FactoryComponent factoryComponent) throws InvocationException {
+  public IModelElementProducerManager<ActivityContract> createProductionManager(FactoryComponent factoryComponent) throws InvocationException {
     return new FactoryComponentManager(factoryComponent);
   }
 
-  public IModelElementProducerManager createProductionManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
+  public IModelElementProducerManager<ActivityContract> createProductionManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
     return new FactoryComponentManager(bundle, factoryComponent);
   }
 

@@ -16,10 +16,11 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.EGFFprodProducerPlugin;
-import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
 import org.eclipse.egf.fprod.producer.internal.context.TaskProductionContext;
 import org.eclipse.egf.model.fprod.Task;
+import org.eclipse.egf.producer.EGFProducerPlugin;
+import org.eclipse.egf.producer.activity.ActivityProductionContextProducer;
 import org.eclipse.egf.producer.internal.manager.ActivityManager;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.osgi.framework.Bundle;
@@ -40,7 +41,7 @@ public class TaskManager extends ActivityManager {
     Assert.isNotNull(task.getValue());
   }
 
-  public TaskManager(IModelElementProducerManager parent, Task task) throws InvocationException {
+  public TaskManager(IModelElementProducerManager<?> parent, Task task) throws InvocationException {
     super(parent, task);
     Assert.isNotNull(task.getValue());
   }
@@ -51,14 +52,19 @@ public class TaskManager extends ActivityManager {
   }
 
   @Override
-  public ITaskProductionContext getProductionContext() {
-    return getInternalProductionContext();
-  }
-
-  @Override
-  public TaskProductionContext getInternalProductionContext() {
+  public TaskProductionContext getInternalProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = FprodProducerContextFactory.createContext(getElement(), getProjectBundleSession());
+      if (getParent() != null) {
+        ActivityProductionContextProducer<?> producer = null;
+        try {
+          producer = EGFProducerPlugin.getActivityProductionContextProducer(getParent().getProductionContext());
+        } catch (Exception e) {
+          throw new InvocationException(e);
+        }
+        _productionContext = producer.createActivityProductionContext(getParent().getProductionContext(), getElement(), getProjectBundleSession());
+      } else {
+        _productionContext = FprodProducerContextFactory.createContext(getElement(), getProjectBundleSession());
+      }
     }
     return (TaskProductionContext) _productionContext;
   }

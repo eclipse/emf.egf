@@ -13,6 +13,7 @@ package org.eclipse.egf.fprod.producer.orchestration;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.internal.manager.ProductionPlanManagerFactory;
 import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.fprod.FprodFactory;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
@@ -34,7 +35,7 @@ public class ProductionPlanProducer extends OrchestrationProducer {
   }
 
   @Override
-  protected IModelElementProducerManager doCreateManager(IModelElementProducerManager parent, Orchestration orchestration) throws InvocationException {
+  protected IModelElementProducerManager<OrchestrationContext> doCreateManager(IModelElementProducerManager<?> parent, Orchestration orchestration) throws InvocationException {
     return _manager.createProductionManager(parent, (ProductionPlan) orchestration);
   }
 }

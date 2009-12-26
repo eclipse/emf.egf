@@ -20,6 +20,4 @@ public interface IFactoryComponentProductionContext extends IActivityProductionC
 
   public FactoryComponent getElement();
 
-  public IInvocationProductionContext getParent();
-
 }

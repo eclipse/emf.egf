@@ -18,14 +18,12 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
 import org.eclipse.egf.fprod.producer.internal.context.ProductionPlanProductionContext;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.TaskInvocation;
-import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
 import org.eclipse.egf.producer.internal.manager.OrchestrationManager;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.osgi.util.NLS;
@@ -38,13 +36,8 @@ public class ProductionPlanManager extends OrchestrationManager {
 
   private Map<Invocation<?>, ProductionPlanInvocationManager> _managers;
 
-  public ProductionPlanManager(IModelElementProducerManager parent, ProductionPlan productionPlan) throws InvocationException {
+  public ProductionPlanManager(IModelElementProducerManager<?> parent, ProductionPlan productionPlan) throws InvocationException {
     super(parent, productionPlan);
-  }
-
-  @Override
-  public IProductionPlanProductionContext getProductionContext() {
-    return getInternalProductionContext();
   }
 
   @Override
@@ -53,9 +46,9 @@ public class ProductionPlanManager extends OrchestrationManager {
   }
 
   @Override
-  public ProductionPlanProductionContext getInternalProductionContext() {
+  public ProductionPlanProductionContext getInternalProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = FprodProducerContextFactory.createContext((IFactoryComponentProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
+      _productionContext = FprodProducerContextFactory.createContext(getParent().getProductionContext(), getElement(), getProjectBundleSession());
     }
     return (ProductionPlanProductionContext) _productionContext;
   }

@@ -16,7 +16,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
+import org.eclipse.egf.producer.activity.ActivityProductionContextProducer;
 import org.eclipse.egf.producer.internal.context.FactoryComponentProductionContext;
 import org.eclipse.egf.producer.internal.context.ProducerContextFactory;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
@@ -29,7 +29,7 @@ import org.osgi.framework.Bundle;
  */
 public class FactoryComponentManager extends ActivityManager {
 
-  private IModelElementProducerManager _orchestrationManager;
+  private IModelElementProducerManager<?> _orchestrationManager;
 
   public FactoryComponentManager(FactoryComponent factoryComponent) throws InvocationException {
     super(factoryComponent);
@@ -39,7 +39,7 @@ public class FactoryComponentManager extends ActivityManager {
     super(bundle, factoryComponent);
   }
 
-  public FactoryComponentManager(IModelElementProducerManager parent, FactoryComponent factoryComponent) throws InvocationException {
+  public FactoryComponentManager(IModelElementProducerManager<?> parent, FactoryComponent factoryComponent) throws InvocationException {
     super(parent, factoryComponent);
   }
 
@@ -49,19 +49,24 @@ public class FactoryComponentManager extends ActivityManager {
   }
 
   @Override
-  public IFactoryComponentProductionContext getProductionContext() {
-    return getInternalProductionContext();
-  }
-
-  @Override
-  public FactoryComponentProductionContext getInternalProductionContext() {
+  public FactoryComponentProductionContext getInternalProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = ProducerContextFactory.createContext(getElement(), getProjectBundleSession());
+      if (getParent() != null) {
+        ActivityProductionContextProducer<?> producer = null;
+        try {
+          producer = EGFProducerPlugin.getActivityProductionContextProducer(getParent().getProductionContext());
+        } catch (Exception e) {
+          throw new InvocationException(e);
+        }
+        _productionContext = producer.createActivityProductionContext(getParent().getProductionContext(), getElement(), getProjectBundleSession());
+      } else {
+        _productionContext = ProducerContextFactory.createContext(getElement(), getProjectBundleSession());
+      }
     }
     return (FactoryComponentProductionContext) _productionContext;
   }
 
-  public IModelElementProducerManager getOrchestrationManager() throws InvocationException {
+  public IModelElementProducerManager<?> getOrchestrationManager() throws InvocationException {
     if (_orchestrationManager == null && getElement().getOrchestration() != null) {
       OrchestrationProducer producer = null;
       try {
@@ -82,7 +87,7 @@ public class FactoryComponentManager extends ActivityManager {
   }
 
   public void invoke(IProgressMonitor monitor) throws InvocationException {
-    IModelElementProducerManager orchestrationManager = getOrchestrationManager();
+    IModelElementProducerManager<?> orchestrationManager = getOrchestrationManager();
     if (orchestrationManager != null) {
       try {
         orchestrationManager.invoke(monitor);

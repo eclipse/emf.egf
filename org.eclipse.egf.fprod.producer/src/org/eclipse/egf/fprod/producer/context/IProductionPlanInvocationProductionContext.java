@@ -8,18 +8,17 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.fprod.producer;
+package org.eclipse.egf.fprod.producer.context;
 
-import org.eclipse.egf.model.fprod.TaskInvocation;
+import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
+import org.eclipse.egf.producer.context.IInvocationProductionContext;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface ITaskInvocationProductionContext extends IProductionPlanInvocationProductionContext {
+public interface IProductionPlanInvocationProductionContext extends IInvocationProductionContext {
 
-  public TaskInvocation getElement();
-
-  public IProductionPlanProductionContext getParent();
+  public ProductionPlanInvocation<?> getElement();
 
 }

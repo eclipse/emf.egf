@@ -7,7 +7,9 @@ import org.eclipse.egf.core.producer.MissingExtensionException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.producer.activity.ActivityProducer;
-import org.eclipse.egf.producer.internal.ProducerRegistry;
+import org.eclipse.egf.producer.activity.ActivityProductionContextProducer;
+import org.eclipse.egf.producer.context.IModelElementProductionContext;
+import org.eclipse.egf.producer.internal.regisrtry.ProducerRegistry;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.orchestration.OrchestrationProducer;
 import org.eclipse.osgi.util.NLS;
@@ -62,6 +64,22 @@ public class EGFProducerPlugin extends EGFAbstractPlugin {
     ActivityProducer producer = producers.get(ProducerRegistry.getName(activity));
     if (producer == null) {
       throw new MissingExtensionException(NLS.bind(ProducerMessages.Activity_extension_error, ProducerRegistry.getName(activity)));
+    }
+    return producer;
+
+  }
+
+  /**
+   * Returns an ActivityProductionContextProducer based on a parent
+   * IModelElementProductionContext<?>.
+   * 
+   * @return an ActivityProductionContextProducer
+   */
+  public static ActivityProductionContextProducer<?> getActivityProductionContextProducer(IModelElementProductionContext<?> parentProductionContext) throws MissingExtensionException {
+    Map<Class<IModelElementProductionContext<?>>, ActivityProductionContextProducer<?>> producers = ProducerRegistry.getActivityProductionContextProducers();
+    ActivityProductionContextProducer<?> producer = producers.get(parentProductionContext.getClass());
+    if (producer == null) {
+      throw new MissingExtensionException(NLS.bind(ProducerMessages.ActivityProductionContext_extension_error, ProducerRegistry.getName(parentProductionContext)));
     }
     return producer;
 

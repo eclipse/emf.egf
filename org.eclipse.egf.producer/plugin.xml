@@ -24,6 +24,12 @@
   />
   
   <extension-point 
+    id="activityProductionContext" 
+    name="%EGFActivityProductionContextExtensionPoint" 
+    schema="schema/activityProductionContext.exsd"
+  />  
+  
+  <extension-point 
     id="orchestration" 
     name="%EGFOrchestrationExtensionPoint" 
     schema="schema/orchestration.exsd"

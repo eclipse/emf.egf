@@ -21,6 +21,4 @@ public interface IInvocationProductionContext extends IModelElementProductionCon
 
   public Invocation<?> getElement();
 
-  public IOrchestrationProductionContext getParent();
-
 }

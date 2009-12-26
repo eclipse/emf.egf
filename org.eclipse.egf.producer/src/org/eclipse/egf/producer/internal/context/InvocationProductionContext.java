@@ -22,7 +22,7 @@ import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.producer.context.IInvocationProductionContext;
-import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
+import org.eclipse.egf.producer.context.IModelElementProductionContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -35,18 +35,13 @@ public abstract class InvocationProductionContext extends ModelElementProduction
     super(element, projectBundleSession);
   }
 
-  public InvocationProductionContext(IOrchestrationProductionContext parent, Invocation<?> element, ProjectBundleSession projectBundleSession) {
+  public InvocationProductionContext(IModelElementProductionContext<?> parent, Invocation<?> element, ProjectBundleSession projectBundleSession) {
     super(parent, element, projectBundleSession);
   }
 
   @Override
   public Invocation<?> getElement() {
     return (Invocation<?>) super.getElement();
-  }
-
-  @Override
-  public IOrchestrationProductionContext getParent() {
-    return (IOrchestrationProductionContext) super.getParent();
   }
 
   @Override
@@ -164,9 +159,10 @@ public abstract class InvocationProductionContext extends ModelElementProduction
       }
     }
     // Fetch available data
-    Data data = _outputDatas.get(key);
+    Data data = _outputDatas.get(invocationContext);
+    // It could be null at this step.
     if (data == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EObjectHelper.getText(key), getName()));
+      return;
     }
     // null value is a valid value
     if (value != null && (ClassHelper.asSubClass(value.getClass(), data.getType()) == false || data.getType().isInstance(value) == false)) {

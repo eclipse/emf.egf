@@ -20,7 +20,6 @@ import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.TypeObject;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
 import org.eclipse.egf.producer.internal.context.OrchestrationProductionContext;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.osgi.util.NLS;
@@ -29,15 +28,10 @@ import org.eclipse.osgi.util.NLS;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class OrchestrationManager extends ModelElementManager {
+public abstract class OrchestrationManager extends ModelElementManager<OrchestrationContext> {
 
-  public OrchestrationManager(IModelElementProducerManager parent, Orchestration orchestration) throws InvocationException {
+  public OrchestrationManager(IModelElementProducerManager<?> parent, Orchestration orchestration) throws InvocationException {
     super(parent, orchestration);
-  }
-
-  @Override
-  public IOrchestrationProductionContext getProductionContext() {
-    return getInternalProductionContext();
   }
 
   @Override
@@ -46,7 +40,7 @@ public abstract class OrchestrationManager extends ModelElementManager {
   }
 
   @Override
-  public abstract OrchestrationProductionContext getInternalProductionContext();
+  public abstract OrchestrationProductionContext getInternalProductionContext() throws InvocationException;
 
   @Override
   public void prepare() throws InvocationException {

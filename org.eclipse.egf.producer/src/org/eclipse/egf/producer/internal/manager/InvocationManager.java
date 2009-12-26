@@ -21,7 +21,6 @@ import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.TypeObject;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.context.IInvocationProductionContext;
 import org.eclipse.egf.producer.internal.context.InvocationProductionContext;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.osgi.util.NLS;
@@ -30,15 +29,10 @@ import org.eclipse.osgi.util.NLS;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class InvocationManager extends ModelElementManager {
+public abstract class InvocationManager extends ModelElementManager<InvocationContext> {
 
-  public InvocationManager(IModelElementProducerManager parent, Invocation<?> invocation) throws InvocationException {
+  public InvocationManager(IModelElementProducerManager<?> parent, Invocation<?> invocation) throws InvocationException {
     super(parent, invocation);
-  }
-
-  @Override
-  public IInvocationProductionContext getProductionContext() {
-    return getInternalProductionContext();
   }
 
   @Override
@@ -47,7 +41,7 @@ public abstract class InvocationManager extends ModelElementManager {
   }
 
   @Override
-  public abstract InvocationProductionContext getInternalProductionContext();
+  public abstract InvocationProductionContext getInternalProductionContext() throws InvocationException;
 
   @Override
   public void prepare() throws InvocationException {

@@ -13,8 +13,6 @@ package org.eclipse.egf.fprod.producer.internal.manager;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
-import org.eclipse.egf.fprod.producer.ITaskInvocationProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
 import org.eclipse.egf.fprod.producer.internal.context.TaskInvocationProductionContext;
 import org.eclipse.egf.model.fprod.TaskInvocation;
@@ -28,7 +26,7 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager {
 
   private TaskManager _taskManager;
 
-  public TaskInvocationManager(IModelElementProducerManager parent, TaskInvocation taskInvocation) throws InvocationException {
+  public TaskInvocationManager(IModelElementProducerManager<?> parent, TaskInvocation taskInvocation) throws InvocationException {
     super(parent, taskInvocation);
   }
 
@@ -38,14 +36,9 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager {
   }
 
   @Override
-  public ITaskInvocationProductionContext getProductionContext() {
-    return getInternalProductionContext();
-  }
-
-  @Override
-  public TaskInvocationProductionContext getInternalProductionContext() {
+  public TaskInvocationProductionContext getInternalProductionContext() throws InvocationException {
     if (_productionContext == null) {
-      _productionContext = FprodProducerContextFactory.createContext((IProductionPlanProductionContext) getParent().getProductionContext(), getElement(), getProjectBundleSession());
+      _productionContext = FprodProducerContextFactory.createContext(getParent().getProductionContext(), getElement(), getProjectBundleSession());
     }
     return (TaskInvocationProductionContext) _productionContext;
   }

@@ -13,6 +13,7 @@ package org.eclipse.egf.fprod.producer.activity;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.internal.manager.TaskManagerFactory;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fprod.FprodFactory;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.producer.activity.ActivityProducer;
@@ -35,12 +36,12 @@ public class TaskProducer extends ActivityProducer {
   }
 
   @Override
-  protected IModelElementProducerManager doCreateManager(Activity activity) throws InvocationException {
+  protected IModelElementProducerManager<ActivityContract> doCreateManager(Activity activity) throws InvocationException {
     return _manager.createProductionManager((Task) activity);
   }
 
   @Override
-  protected IModelElementProducerManager doCreateManager(Bundle bundle, Activity activity) throws InvocationException {
+  protected IModelElementProducerManager<ActivityContract> doCreateManager(Bundle bundle, Activity activity) throws InvocationException {
     return _manager.createProductionManager(bundle, (Task) activity);
   }
 

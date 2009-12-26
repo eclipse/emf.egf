@@ -11,6 +11,7 @@
 package org.eclipse.egf.fprod.producer.internal.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.osgi.framework.Bundle;
@@ -21,11 +22,11 @@ import org.osgi.framework.Bundle;
  */
 public class TaskManagerFactory {
 
-  public IModelElementProducerManager createProductionManager(Task task) throws InvocationException {
+  public IModelElementProducerManager<ActivityContract> createProductionManager(Task task) throws InvocationException {
     return new TaskManager(task);
   }
 
-  public IModelElementProducerManager createProductionManager(Bundle bundle, Task task) throws InvocationException {
+  public IModelElementProducerManager<ActivityContract> createProductionManager(Bundle bundle, Task task) throws InvocationException {
     return new TaskManager(bundle, task);
   }
 

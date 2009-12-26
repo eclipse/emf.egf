@@ -19,8 +19,7 @@ import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
-import org.eclipse.egf.producer.context.IActivityProductionContext;
-import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
+import org.eclipse.egf.producer.context.IModelElementProductionContext;
 import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
 import org.eclipse.osgi.util.NLS;
 
@@ -34,18 +33,13 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     super(element, projectBundleSession);
   }
 
-  public OrchestrationProductionContext(IActivityProductionContext parent, Orchestration element, ProjectBundleSession projectBundleSession) {
+  public OrchestrationProductionContext(IModelElementProductionContext<?> parent, Orchestration element, ProjectBundleSession projectBundleSession) {
     super(parent, element, projectBundleSession);
   }
 
   @Override
   public Orchestration getElement() {
     return (Orchestration) super.getElement();
-  }
-
-  @Override
-  public IFactoryComponentProductionContext getParent() {
-    return (IFactoryComponentProductionContext) super.getParent();
   }
 
   @Override
@@ -58,7 +52,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // and in an FactoryComponent Contract
     if (invocationContext.getFactoryComponentExposedContract() != null) {
       if (getParent() != null) {
-        valueType = getParent().getInputValueType(invocationContext);
+        valueType = getParent().getInputValueType(invocationContext.getFactoryComponentExposedContract().getName());
       }
     } else {
       // Shouldn't be null at this stage
@@ -84,7 +78,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // and in an FactoryComponent Contract
     if (invocationContext.getFactoryComponentExposedContract() != null) {
       if (getParent() != null) {
-        value = getParent().getInputValue(invocationContext, clazz);
+        value = getParent().getInputValue(invocationContext.getFactoryComponentExposedContract().getName(), clazz);
       }
     } else {
       // Shouldn't be null at this stage
@@ -109,7 +103,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // Always propagate, OrchestrationContext doesn't hold Output Values
     if (invocationContext.getFactoryComponentExposedContract() != null) {
       if (getParent() != null) {
-        valueType = getParent().getOutputValueType(invocationContext);
+        valueType = getParent().getOutputValueType(invocationContext.getFactoryComponentExposedContract().getName());
       }
     }
     return valueType;
@@ -124,7 +118,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // Always propagate, OrchestrationContext doesn't hold Output Values
     if (invocationContext.getFactoryComponentExposedContract() != null) {
       if (getParent() != null) {
-        value = getParent().getOutputValue(invocationContext, clazz);
+        value = getParent().getOutputValue(invocationContext.getFactoryComponentExposedContract().getName(), clazz);
       }
     }
     return value;
@@ -138,7 +132,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // Always propagate, OrchestrationContext doesn't hold Output Values
     if (invocationContext.getFactoryComponentExposedContract() != null) {
       if (getParent() != null) {
-        getParent().setOutputValue(invocationContext, value);
+        getParent().setOutputValue(invocationContext.getFactoryComponentExposedContract().getName(), value);
       }
     }
   }

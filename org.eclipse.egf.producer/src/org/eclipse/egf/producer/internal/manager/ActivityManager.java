@@ -21,7 +21,7 @@ import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.TypeClass;
 import org.eclipse.egf.model.fcore.TypeObject;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.internal.context.ActivityProductionContext;
+import org.eclipse.egf.producer.internal.context.ModelElementProductionContext;
 import org.eclipse.egf.producer.manager.IModelElementProducerManager;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
@@ -30,7 +30,7 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ActivityManager extends ModelElementManager {
+public abstract class ActivityManager extends ModelElementManager<ActivityContract> {
 
   public ActivityManager(Activity activity) throws InvocationException {
     super(activity);
@@ -40,7 +40,7 @@ public abstract class ActivityManager extends ModelElementManager {
     super(bundle, activity);
   }
 
-  public ActivityManager(IModelElementProducerManager parent, Activity activity) throws InvocationException {
+  public ActivityManager(IModelElementProducerManager<?> parent, Activity activity) throws InvocationException {
     super(parent, activity);
   }
 
@@ -50,12 +50,9 @@ public abstract class ActivityManager extends ModelElementManager {
   }
 
   @Override
-  protected abstract ActivityProductionContext getInternalProductionContext();
-
-  @Override
   public void prepare() throws InvocationException {
     // Get Context
-    ActivityProductionContext context = getInternalProductionContext();
+    ModelElementProductionContext<ActivityContract> context = getInternalProductionContext();
     // Clear Context
     context.clear();
     // Set Context

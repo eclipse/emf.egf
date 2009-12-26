@@ -11,9 +11,9 @@
 package org.eclipse.egf.fprod.producer.internal.context;
 
 import org.eclipse.egf.core.session.ProjectBundleSession;
-import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
-import org.eclipse.egf.fprod.producer.ITaskInvocationProductionContext;
+import org.eclipse.egf.fprod.producer.context.ITaskInvocationProductionContext;
 import org.eclipse.egf.model.fprod.TaskInvocation;
+import org.eclipse.egf.producer.context.IModelElementProductionContext;
 
 /**
  * @author Xavier Maysonnave
@@ -25,18 +25,13 @@ public class TaskInvocationProductionContext extends ProductionPlanInvocationPro
     super(element, projectBundleSession);
   }
 
-  public TaskInvocationProductionContext(IProductionPlanProductionContext parent, TaskInvocation element, ProjectBundleSession projectBundleSession) {
+  public TaskInvocationProductionContext(IModelElementProductionContext<?> parent, TaskInvocation element, ProjectBundleSession projectBundleSession) {
     super(parent, element, projectBundleSession);
   }
 
   @Override
   public TaskInvocation getElement() {
     return (TaskInvocation) super.getElement();
-  }
-
-  @Override
-  public IProductionPlanProductionContext getParent() {
-    return (IProductionPlanProductionContext) _parent;
   }
 
 }

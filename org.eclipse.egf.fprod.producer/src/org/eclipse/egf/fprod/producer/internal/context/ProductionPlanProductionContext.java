@@ -11,9 +11,9 @@
 package org.eclipse.egf.fprod.producer.internal.context;
 
 import org.eclipse.egf.core.session.ProjectBundleSession;
-import org.eclipse.egf.fprod.producer.IProductionPlanProductionContext;
+import org.eclipse.egf.fprod.producer.context.IProductionPlanProductionContext;
 import org.eclipse.egf.model.fprod.ProductionPlan;
-import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
+import org.eclipse.egf.producer.context.IModelElementProductionContext;
 import org.eclipse.egf.producer.internal.context.OrchestrationProductionContext;
 
 /**
@@ -26,7 +26,7 @@ public class ProductionPlanProductionContext extends OrchestrationProductionCont
     super(element, projectBundleSession);
   }
 
-  public ProductionPlanProductionContext(IFactoryComponentProductionContext parent, ProductionPlan element, ProjectBundleSession projectBundleSession) {
+  public ProductionPlanProductionContext(IModelElementProductionContext<?> parent, ProductionPlan element, ProjectBundleSession projectBundleSession) {
     super(parent, element, projectBundleSession);
   }
 

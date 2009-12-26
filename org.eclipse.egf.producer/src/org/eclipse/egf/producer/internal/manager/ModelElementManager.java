@@ -32,7 +32,7 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ModelElementManager implements IModelElementProducerManager {
+public abstract class ModelElementManager<T extends ModelElement> implements IModelElementProducerManager<T> {
 
   private ModelElement _element;
 
@@ -42,9 +42,9 @@ public abstract class ModelElementManager implements IModelElementProducerManage
 
   private IPlatformFcore _platformFcore;
 
-  protected IModelElementProducerManager _parent;
+  protected IModelElementProducerManager<?> _parent;
 
-  protected ModelElementProductionContext<?> _productionContext;
+  protected ModelElementProductionContext<T> _productionContext;
 
   public ModelElementManager(ModelElement element) throws InvocationException {
     Assert.isNotNull(element);
@@ -64,7 +64,7 @@ public abstract class ModelElementManager implements IModelElementProducerManage
     prepare();
   }
 
-  public ModelElementManager(IModelElementProducerManager parent, ModelElement element) throws InvocationException {
+  public ModelElementManager(IModelElementProducerManager<?> parent, ModelElement element) throws InvocationException {
     Assert.isNotNull(parent);
     Assert.isNotNull(element);
     _parent = parent;
@@ -80,15 +80,15 @@ public abstract class ModelElementManager implements IModelElementProducerManage
     return _element;
   }
 
-  public IModelElementProducerManager getParent() {
-    return _parent;
-  }
-
-  public IModelElementProductionContext<?> getProductionContext() {
+  public IModelElementProductionContext<T> getProductionContext() {
     return _productionContext;
   }
 
-  protected abstract ModelElementProductionContext<?> getInternalProductionContext();
+  public IModelElementProducerManager<?> getParent() {
+    return _parent;
+  }
+
+  protected abstract ModelElementProductionContext<T> getInternalProductionContext() throws InvocationException;
 
   public String getName() {
     return EObjectHelper.getText(getElement());
