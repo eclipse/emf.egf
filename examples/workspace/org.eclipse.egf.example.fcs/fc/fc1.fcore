@@ -29,9 +29,7 @@
         activity="fprod:Task platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
       <invocationContextContainer xmi:id="_GuhTgb-2Ed6E7J0w9U7NFQ">
         <invocationContexts xmi:id="_bu7G8MVjEd6ngr_25dSdnQ" name="quantity" orchestrationContext="#_uNn24MVjEd6ngr_25dSdnQ"
-            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_sZPqULpOEd6O-6ob3O13Lw">
-          <type xmi:type="types:IntegerType" xmi:id="_hkAvsdBTEd67h-iKUQB4KA" value="10"/>
-        </invocationContexts>
+            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_sZPqULpOEd6O-6ob3O13Lw"/>
         <invocationContexts xmi:id="_4qwyMdA6Ed6FD_8N74-4WA" name="stock" orchestrationContext="#_uNn24MVjEd6ngr_25dSdnQ"
             activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_Z65BAdA5Ed6LbMEN-DBMtQ"/>
         <invocationContexts xmi:id="_Ltj4QNA8Ed6uEZYKLg-jOQ" name="rebate" factoryComponentExposedContract="#_S6wewNA8Ed6uEZYKLg-jOQ"
