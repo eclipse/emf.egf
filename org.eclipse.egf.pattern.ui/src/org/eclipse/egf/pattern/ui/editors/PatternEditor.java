@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.PatternConstants;
 import org.eclipse.egf.pattern.ui.Activator;
+import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.domain.ResourceLoadedListener;
 import org.eclipse.egf.pattern.ui.editors.domain.ResourceLoadedListener.ResourceListener;
 import org.eclipse.egf.pattern.ui.editors.domain.ResourceLoadedListener.ResourceUser;
@@ -117,7 +118,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
      */
     public void init(IEditorSite site, IEditorInput editorInput) throws PartInitException {
         if (!(editorInput instanceof PatternEditorInput))
-            throw new PartInitException("Invalid Input: Must be PatternEditorInput");
+            throw new PartInitException(Messages.Editor_wrong_input);
 
         super.init(site, editorInput);
         ResourceLoadedListener.RESOURCE_MANAGER.addObserver(this);
