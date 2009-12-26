@@ -69,7 +69,7 @@ public class ParameterTableCellModifier implements ICellModifier {
     public void modify(Object element, String property, Object value) {
         if (value == null)
             return;
-        
+
         if (element instanceof TableItem) {
             element = ((TableItem) element).getData();
         }
@@ -92,7 +92,6 @@ public class ParameterTableCellModifier implements ICellModifier {
                     patternParameter.setName(text);
                     break;
                 case 1:
-                    patternParameter.setType(text);
                     break;
                 case 2:
                     modifyQuery(patternParameter, text);
@@ -108,14 +107,14 @@ public class ParameterTableCellModifier implements ICellModifier {
 
     protected void modifyQuery(PatternParameter patternParameter, String text) {
         Query query = patternParameter.getQuery();
-        if (text != null ) {
+        if (text != null) {
             if (query == null && (text != null && !"".equals(text))) {
                 Query createBasicQuery = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery();
                 createBasicQuery.setExtensionId(text);
                 patternParameter.setQuery(createBasicQuery);
             } else if (text != null && !"".equals(text)) {
                 query.setExtensionId(text);
-            } else if("".equals(text)){
+            } else if ("".equals(text)) {
                 patternParameter.setQuery(null);
             }
         }

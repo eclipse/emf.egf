@@ -15,13 +15,24 @@
 
 package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.editors.dialogs.JavaTypeSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.EcoreModelSelectionDialog;
+import org.eclipse.egf.pattern.ui.editors.models.EcoreType;
 import org.eclipse.egf.pattern.ui.editors.models.EcoreTypeStructure;
 import org.eclipse.egf.pattern.ui.editors.providers.EcoreTypeChooseContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.TypeChooseLabelProvider;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcoreFactory;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -66,11 +77,24 @@ public class ChooseTypePage extends WizardPage {
 
     private TreeViewer ecoreTypeTreeViewer;
 
+    private List<String> types;
+
+    private EcoreTypeStructure input;
+
+    private List<EcoreType> parents;
+
+    private String type;
+
+    private static final String PARAMETER_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass";
+
+    private static final String PARAMETER_Parent_TYPE_DEFAULT_VALUE = "ecore";
+
     public ChooseTypePage(ISelection selection, TransactionalEditingDomain editingDomain, String type) {
         super("Type selection");
         setTitle("Type selection");
         setDescription("Select a type in the following list of available types");
         this.editingDomain = editingDomain;
+        this.type = type;
     }
 
     public void createControl(Composite parent) {
@@ -79,6 +103,31 @@ public class ChooseTypePage extends WizardPage {
         container.setLayout(layout);
         createTabFolder(container);
         setControl(container);
+        getDefaultTypes();
+    }
+
+    /**
+     * Get the types of default model.
+     */
+    private void getDefaultTypes() {
+        if (!"".equals(type) && type != null) {
+            int index = type.indexOf("#//");
+            if (index != -1) {
+                String nsURI = type.substring(0, index);
+                parents = new ArrayList<EcoreType>();
+                types = new ArrayList<String>();
+                EPackage ePackage = EPackage.Registry.INSTANCE.getEPackage(nsURI);
+                if (ePackage != null) {
+                    getPackageTypes(ePackage);
+                    input = new EcoreTypeStructure(parents);
+                    ecoreTypeTreeViewer.setInput(input);
+                    ecoreTypeTreeViewer.expandAll();
+                    return;
+                }
+            }
+            ecoreTypeTreeViewer.setInput(getEcoreTypes());
+            ecoreTypeTreeViewer.expandAll();
+        }
     }
 
     private void createTabFolder(Composite container) {
@@ -99,7 +148,7 @@ public class ChooseTypePage extends WizardPage {
         javaTypeTabItem.setImage(ImageShop.get(ImageShop.IMG_CLASS_OBJ));
 
         Composite compositeJavaType = new Composite(tabFolder, SWT.NONE);
-        dialog = new JavaTypeSelectionDialog(compositeJavaType.getShell(),getWizard());
+        dialog = new JavaTypeSelectionDialog(compositeJavaType.getShell(), getWizard());
         compositeJavaType.setLayout(new GridLayout());
         dialog.createPage(compositeJavaType);
         compositeJavaType.addDisposeListener(new DisposeListener() {
@@ -138,13 +187,7 @@ public class ChooseTypePage extends WizardPage {
         ecoreTypeTreeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
-                ISelection selection = ecoreTypeTreeViewer.getSelection();
-                final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
-                if (selectItem instanceof EObject) {
-                    String classDescription = ((EObject) selectItem).getClass().toString();
-                    int length = classDescription.length();
-                    chooseType = classDescription.substring(classDescription.lastIndexOf(".")+1,length-4);
-                }
+                getSelectionType();
             }
         });
 
@@ -164,34 +207,100 @@ public class ChooseTypePage extends WizardPage {
         button.setText("Choose model...");
         button.addListener(SWT.Selection, new Listener() {
             public void handleEvent(Event event) {
+                getSelectionType();
                 EcoreModelSelectionDialog chooseModelDialog = new EcoreModelSelectionDialog(compositeEcoreType.getShell(), editingDomain);
                 if (chooseModelDialog.open() == Window.OK) {
                     String returnUri = chooseModelDialog.getURIText();
                     searchTypeModel(returnUri);
+                    ecoreTypeTreeViewer.expandAll();
                 }
             }
         });
     }
 
-    /**
-     * Get the platform and find all the types from it.
-     */
-    private void searchTypeModelInPackage(String path, EcoreTypeStructure input) {
-        try {
-            Resource res = editingDomain.loadResource(path);
-            input.addResource(res);
-        } catch (Exception e) {
-            e.printStackTrace();
+    private void getSelectionType() {
+        ISelection selection = ecoreTypeTreeViewer.getSelection();
+        Object selectItem = ((IStructuredSelection) selection).getFirstElement();
+        if (selectItem instanceof EcoreType) {
+            chooseType = ((EcoreType) selectItem).getType();
         }
     }
 
     protected void searchTypeModel(String returnUri) {
         String[] uris = returnUri.split("  ");
-        EcoreTypeStructure input = new EcoreTypeStructure();
+        parents = new ArrayList<EcoreType>();
         for (String uri : uris) {
-            searchTypeModelInPackage(uri, input);
+            searchTypeModelInPackage(uri);
         }
+        input = new EcoreTypeStructure(parents);
         ecoreTypeTreeViewer.setInput(input);
+    }
+
+    /**
+     * Get all the types from file.
+     */
+    private void searchTypeModelInPackage(String path) {
+        try {
+            Resource resource = editingDomain.loadResource(path);
+            getAllTypesInFile(resource);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getAllTypesInFile(Resource resource) {
+        EList<EObject> contents = resource.getContents();
+        types = new ArrayList<String>();
+        for (EObject eObject : contents) {
+            if (eObject instanceof EPackage) {
+                EPackage aPackage = ((EPackage) eObject);
+                getPackageTypes(aPackage);
+            }
+        }
+    }
+
+    private void getPackageTypes(EPackage aPackage) {
+        // Get the parent type.
+        String nsURI = aPackage.getNsURI();
+        EcoreType parent = new EcoreType(aPackage.getName(), nsURI);
+
+        // Get the sub types.
+        EList<EPackage> eSubpackages = aPackage.getESubpackages();
+        for (EPackage eSubpackage : eSubpackages) {
+            EList<EClassifier> subEClassifiers = eSubpackage.getEClassifiers();
+            getTypesUnderPackage(subEClassifiers);
+        }
+        EList<EClassifier> eClassifiers = aPackage.getEClassifiers();
+        getTypesUnderPackage(eClassifiers);
+
+        // Add children to the parent.
+        for (String type : types) {
+            EcoreType child = new EcoreType(type, nsURI);
+            child.setParent(parent);
+            parent.getUnderlings().add(child);
+        }
+        parents.add(parent);
+    }
+
+    private void getTypesUnderPackage(EList<EClassifier> eClassifiers) {
+        for (EClassifier eClassifier : eClassifiers) {
+            if (eClassifier instanceof ENamedElement) {
+                ENamedElement eNamedElement = (ENamedElement) eClassifier;
+                EClass eClass = eNamedElement.eClass();
+                String name = eClass.getName();
+                if (!isDuplicateType(name)) {
+                    types.add(name);
+                }
+            }
+        }
+    }
+
+    private boolean isDuplicateType(String name) {
+        for (String type : types) {
+            if (name.equals(type))
+                return true;
+        }
+        return false;
     }
 
     /**
@@ -204,6 +313,64 @@ public class ChooseTypePage extends WizardPage {
         if (index != -1)
             return type.substring(index + 1);
         return type;
+    }
+
+    private EcoreTypeStructure getEcoreTypes() {
+        EPackage ecorePackage = EcoreFactory.eINSTANCE.getEcorePackage();
+        EcoreFactory.eINSTANCE.getEAnnotations();
+        EList<EClassifier> eClassifiers = ecorePackage.getEClassifiers();
+        EcoreType parent = new EcoreType(PARAMETER_Parent_TYPE_DEFAULT_VALUE, PARAMETER_TYPE_DEFAULT_VALUE);
+        for (EClassifier eClassifier : eClassifiers) {
+            int id = eClassifier.getClassifierID();
+            if (isValidClassifier(id)) {
+                EcoreType child = new EcoreType(eClassifier.getName(), PARAMETER_TYPE_DEFAULT_VALUE);
+                child.setParent(parent);
+                parent.getUnderlings().add(child);
+            }
+        }
+        List<EcoreType> parents = new ArrayList<EcoreType>();
+        parents.add(parent);
+        return new EcoreTypeStructure(parents);
+    }
+
+    /**
+     * Check the class whether is a valid classifier
+     */
+    private boolean isValidClassifier(int id) {
+        switch (id) {
+        case EcorePackage.EATTRIBUTE:
+            return true;
+        case EcorePackage.EANNOTATION:
+            return true;
+        case EcorePackage.ECLASS:
+            return true;
+        case EcorePackage.EDATA_TYPE:
+            return true;
+        case EcorePackage.EENUM:
+            return true;
+        case EcorePackage.EENUM_LITERAL:
+            return true;
+        case EcorePackage.EFACTORY:
+            return true;
+        case EcorePackage.EOBJECT:
+            return true;
+        case EcorePackage.EOPERATION:
+            return true;
+        case EcorePackage.EPACKAGE:
+            return true;
+        case EcorePackage.EPARAMETER:
+            return true;
+        case EcorePackage.EREFERENCE:
+            return true;
+        case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY:
+            return true;
+        case EcorePackage.EGENERIC_TYPE:
+            return true;
+        case EcorePackage.ETYPE_PARAMETER:
+            return true;
+        default:
+            return false;
+        }
     }
 
     public String getType() {

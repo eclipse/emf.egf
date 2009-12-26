@@ -23,7 +23,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Messages;
-import org.eclipse.egf.pattern.ui.editors.providers.PatternSelectionContentProvider;
+import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.PatternSelectionLabelProvider;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.util.Policy;
@@ -130,7 +130,7 @@ public class PatternSelectiondialog extends PatternElementSelectionDialog {
         tableViewer = new TableViewer(listTable);
 
         tableViewer.setLabelProvider(new PatternSelectionLabelProvider());
-        tableViewer.setContentProvider(new PatternSelectionContentProvider());
+        tableViewer.setContentProvider(new CommonListContentProvider());
         List<Pattern> listAreaDisplay = getListAreaDisplay(parentName);
         tableViewer.setInput(listAreaDisplay);
         getSelectDefault(listAreaDisplay);

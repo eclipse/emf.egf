@@ -21,7 +21,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.internal.core.BinaryType;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -30,13 +29,14 @@ import org.eclipse.ui.IWorkbench;
  * @author xrchen
  * 
  */
+@SuppressWarnings("restriction")
 public class OpenTypeWizard extends Wizard implements INewWizard {
 
     private ChooseTypePage chooseTypePage;
 
     private ISelection selection;
 
-    private String selectType;
+    private Object selectType;
 
     private TransactionalEditingDomain editingDomain;
 
@@ -61,7 +61,8 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
             }
             result = page.getResult();
             if (result[0] instanceof BinaryType) {
-                selectType = ((BinaryType) result[0]).getElementName();
+                selectType = (BinaryType) result[0];
+                System.out.println(selectType);
             }
         }
         return true;
@@ -87,7 +88,7 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
         addPage(chooseTypePage);
     }
 
-    public String getSelectType() {
+    public Object getSelectType() {
         return selectType;
     }
 

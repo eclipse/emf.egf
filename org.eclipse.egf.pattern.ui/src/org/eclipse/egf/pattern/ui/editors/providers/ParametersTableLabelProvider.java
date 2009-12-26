@@ -43,7 +43,7 @@ public class ParametersTableLabelProvider extends LabelProvider implements ITabl
                 return getType(patternParameter.getType());
             case 2:
                 Query query = patternParameter.getQuery();
-                return query == null ? "" : getQuery(query.getExtensionId());
+                return query == null ? "" : query.getExtensionId();
             }
         }
         return "";
@@ -67,34 +67,25 @@ public class ParametersTableLabelProvider extends LabelProvider implements ITabl
      * Drop any package or uri information of the type.
      */
     public static String getType(String type) {
-        String newType;
-
         if (type == null || type.isEmpty() || "".equals(type))
             return "";
-        int index = type.lastIndexOf("/");
+        int mark1Index = type.lastIndexOf("$");
+        int mark2Index = type.lastIndexOf(".");
+        int mark3 = type.lastIndexOf("//");
+        int mark3Index = mark3 == -1 ? -1 : mark3 + 1;
+        int index = getIndex(mark1Index, mark2Index, mark3Index);
         if (index != -1) {
-            newType = type.substring(index + 1);
-            int lastIndex = newType.lastIndexOf(".");
-            if (index != -1) {
-                return newType.substring(lastIndex + 1);
-            }
-            return newType;
-        } else {
-            int lastIndex = type.lastIndexOf(".");
-            if (index != -1) {
-                return type.substring(lastIndex + 1);
-            }
+            return type.substring(index + 1);
         }
         return type;
     }
 
-    private static String getQuery(Object selectedValue) {
-        String value = selectedValue.toString();
-        if (value == null || value.isEmpty() || "".equals(value))
-            return "";
-        int index = value.lastIndexOf(".");
-        if (index != -1)
-            return value.substring(index + 1);
-        return value;
+    private static int getIndex(int mark1Index, int mark2Index, int mark3Index) {
+        if (mark1Index > 0) {
+            return mark1Index;
+        } else if (mark3Index > 0) {
+            return mark3Index;
+        }
+        return mark2Index;
     }
 }

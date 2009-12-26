@@ -12,6 +12,7 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.ImageShop;
-import org.eclipse.egf.pattern.ui.editors.providers.MethodCallContentProvider;
+import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.MethodCallLabelProviders;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -126,7 +127,7 @@ public class ChooseCallPage extends WizardPage {
         tableColumn.setWidth(500);
         parentTableViewer = new TableViewer(listTable);
         parentTableViewer.setLabelProvider(new MethodCallLabelProviders());
-        parentTableViewer.setContentProvider(new MethodCallContentProvider());
+        parentTableViewer.setContentProvider(new CommonListContentProvider());
         parentTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
@@ -165,7 +166,7 @@ public class ChooseCallPage extends WizardPage {
         childTableViewer = new TableViewer(listTable);
 
         childTableViewer.setLabelProvider(new MethodCallLabelProviders());
-        childTableViewer.setContentProvider(new MethodCallContentProvider());
+        childTableViewer.setContentProvider(new CommonListContentProvider());
         childTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
