@@ -78,7 +78,8 @@ public class ActivityContractItemProvider extends ModelElementItemProvider imple
   protected void addMandatoryPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActivityContract_mandatory_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_ActivityContract_mandatory_feature", "_UI_ActivityContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.ACTIVITY_CONTRACT__MANDATORY, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+        FcorePackage.Literals.ACTIVITY_CONTRACT__MANDATORY, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, getString("_UI_BehaviourPropertyCategory"), //$NON-NLS-1$
+        null));
   }
 
   /**
@@ -90,7 +91,8 @@ public class ActivityContractItemProvider extends ModelElementItemProvider imple
   protected void addModePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_ActivityContract_mode_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_ActivityContract_mode_feature", "_UI_ActivityContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.ACTIVITY_CONTRACT__MODE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        FcorePackage.Literals.ACTIVITY_CONTRACT__MODE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_BehaviourPropertyCategory"), //$NON-NLS-1$
+        null));
   }
 
   /**

@@ -44,8 +44,8 @@
       </genOperations>
     </genClasses>
     <genClasses image="false" ecoreClass="Fcore.ecore#//ActivityContract">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Fcore.ecore#//ActivityContract/mandatory"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Fcore.ecore#//ActivityContract/mode"/>
+      <genFeatures createChild="false" propertyCategory="Behaviour" ecoreFeature="ecore:EAttribute Fcore.ecore#//ActivityContract/mandatory"/>
+      <genFeatures createChild="false" propertyCategory="Behaviour" ecoreFeature="ecore:EAttribute Fcore.ecore#//ActivityContract/mode"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//ActivityContract/type"/>
       <genOperations ecoreOperation="Fcore.ecore#//ActivityContract/getActivity"/>
       <genOperations ecoreOperation="Fcore.ecore#//ActivityContract/getActivityContractContainer"/>

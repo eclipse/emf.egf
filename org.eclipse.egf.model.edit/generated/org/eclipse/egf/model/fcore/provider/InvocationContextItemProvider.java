@@ -42,11 +42,9 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContext}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContext} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class InvocationContextItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -54,7 +52,6 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public InvocationContextItemProvider(AdapterFactory adapterFactory) {
@@ -65,7 +62,6 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -231,7 +227,6 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * This adds a property descriptor for the Mode feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addModePropertyDescriptor(Object object) {
@@ -242,13 +237,11 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
-   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -263,7 +256,6 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -278,7 +270,6 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * This returns InvocationContext.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -321,7 +312,6 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -345,7 +335,6 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
