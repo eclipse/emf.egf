@@ -4,10 +4,10 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
-import org.eclipse.egf.model.BundleAccessor;
-import org.eclipse.egf.model.PatternContext;
-import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.pattern.BundleAccessor;
+import org.eclipse.egf.model.pattern.PatternContext;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.osgi.framework.Bundle;
 
 public abstract class AbstractPatternTask implements ITaskProduction {

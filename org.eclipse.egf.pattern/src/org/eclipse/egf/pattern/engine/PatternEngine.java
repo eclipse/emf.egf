@@ -15,9 +15,9 @@
 
 package org.eclipse.egf.pattern.engine;
 
-import org.eclipse.egf.model.PatternContext;
-import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternContext;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.pattern.Messages;
 
 /**

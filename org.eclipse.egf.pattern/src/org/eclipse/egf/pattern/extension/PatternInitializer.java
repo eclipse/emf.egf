@@ -18,11 +18,11 @@ package org.eclipse.egf.pattern.extension;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
+import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.emf.common.util.URI;
 
 /**
@@ -53,7 +53,7 @@ public abstract class PatternInitializer {
             else
                 content = getDefaultContent(method);
             try {
-                FileHelper_to_be_upgraded.setContent(outputFile, content == null ? "" : content);
+                FileHelper.setContent(outputFile, content == null ? "" : content);
             } catch (CoreException e) {
                 throw new PatternException(e);
 

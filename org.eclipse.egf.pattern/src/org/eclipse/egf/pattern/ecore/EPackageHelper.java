@@ -109,7 +109,7 @@ public class EPackageHelper {
                 nsuri2basePackage.put(nsURI, "");
             else
                 // to remove the last dot
-                nsuri2basePackage.put(nsURI, classname.substring(index - 1));
+                nsuri2basePackage.put(nsURI, classname.substring(0, index - 1));
         } catch (Exception e) {
             throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
         }

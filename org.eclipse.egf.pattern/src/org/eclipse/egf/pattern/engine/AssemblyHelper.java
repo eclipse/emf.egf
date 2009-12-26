@@ -20,16 +20,16 @@ import java.io.IOException;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.common.helper.ObjectHolder;
-import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
+import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -183,7 +183,7 @@ public abstract class AssemblyHelper {
     private String getMethodContent(PatternMethod object) throws PatternException {
         URI uri = object.getPatternFilePath();
         try {
-            return FileHelper_to_be_upgraded.getContent(PatternHelper.getPlatformFcore(object.getPattern()), uri);
+            return FileHelper.getContent(PatternHelper.getPlatformFcore(object.getPattern()), uri);
         } catch (CoreException e) {
             throw new PatternException(e);
         } catch (IOException e) {

@@ -18,9 +18,9 @@ package org.eclipse.egf.pattern.jet.engine;
 import java.util.Map.Entry;
 
 import org.eclipse.egf.common.constant.CharacterConstants;
-import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
@@ -30,7 +30,6 @@ import org.eclipse.egf.pattern.engine.ParameterMatcher;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.egf.pattern.query.ParameterTypeHelper;
-import org.eclipse.egf.pattern.query.QueryManager;
 
 /**
  * @author Thomas Guiu
@@ -207,7 +206,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
         }
 
         localContent.append("List<Object> ").append(getParameterListName(parameter)).append(" = ");
-        localContent.append("new ").append(QueryManager.INSTANCE.getQueryManagerClassName(query.getExtensionId())).append("().executeQuery(queryCtx, ctx);").append(CharacterConstants.LINE_SEPARATOR);
+        localContent.append("QueryHelper.load(ctx, \"").append(query.getExtensionId()).append("\").executeQuery(queryCtx, ctx);").append(CharacterConstants.LINE_SEPARATOR);
     }
 
 }

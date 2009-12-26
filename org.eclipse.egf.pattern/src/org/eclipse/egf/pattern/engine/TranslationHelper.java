@@ -19,10 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;

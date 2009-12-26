@@ -23,7 +23,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.pattern.PatternPreferences;
-import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
+import org.eclipse.egf.pattern.utils.FileHelper;
 
 /**
  * This is a quick 'template engine' used for initialization of the contents of
@@ -40,7 +40,7 @@ public class SimpleEngine extends TemplateEngine {
 
     public String process(Templates template, Map<String, String> context) throws CoreException, IOException {
         IPath path = new Path(PatternPreferences.getTemplatesFolderName()).append(template.getTemplateName()).addFileExtension(getExtension());
-        String content = FileHelper_to_be_upgraded.getContent(getPluginId(), getProject(), path);
+        String content = FileHelper.getContent(getPluginId(), getProject(), path);
         if (content == null)
             return null;
         for (String key : context.keySet()) {

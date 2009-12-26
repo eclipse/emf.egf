@@ -25,17 +25,17 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.common.constant.CharacterConstants;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.model.PatternContext;
-import org.eclipse.egf.model.PatternException;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternContext;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.execution.FileHelper_to_be_upgraded;
 import org.eclipse.egf.pattern.jet.JetPreferences;
 import org.eclipse.egf.pattern.jet.Messages;
+import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.emf.codegen.jet.JETCompiler;
 
 /**
@@ -100,7 +100,7 @@ public class JetEngine extends PatternEngine {
             IProject project = platformFcore.getPlatformBundle().getProject();
             if (project == null)
                 throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getName(), pattern.getID()));
-            FileHelper_to_be_upgraded.setContent(project.getFile(outputPath), getContent(new String(outStream.toByteArray())));
+            FileHelper.setContent(project.getFile(outputPath), getContent(new String(outStream.toByteArray())));
 
         } catch (PatternException e) {
             throw e;

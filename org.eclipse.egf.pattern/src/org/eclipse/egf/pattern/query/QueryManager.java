@@ -20,8 +20,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
-import org.eclipse.egf.model.PatternContext;
-import org.eclipse.egf.model.PatternException;
+import org.eclipse.egf.model.pattern.PatternContext;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.pattern.Messages;
 
 /**
@@ -35,6 +35,15 @@ public interface QueryManager {
     Helper INSTANCE = new Helper();
 
     public class Helper {
+
+        public QueryManager loadQuery(String id) {
+            QueryKind queryKind = getQueryKind(id);
+            if (queryKind == null)
+                throw new IllegalStateException(Messages.query_error6);
+            // queryKind.getPlatformBundle().
+
+            return null;
+        }
 
         public QueryKind getQueryKindByName(String name) {
             for (QueryKind queryKind : getAvailableQueries()) {
