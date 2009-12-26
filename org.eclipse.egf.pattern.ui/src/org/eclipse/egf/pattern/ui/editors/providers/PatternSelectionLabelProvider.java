@@ -37,7 +37,7 @@ public class PatternSelectionLabelProvider implements ITableLabelProvider {
         Pattern pattern = (Pattern) element;
         switch (columnIndex) {
         case 0:
-            return pattern.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(pattern) + Messages.common_mark2;
+            return pattern.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(pattern) + Messages.common_mark2 + " - " + pattern.eResource().getURI();
         }
         return "";
     }
