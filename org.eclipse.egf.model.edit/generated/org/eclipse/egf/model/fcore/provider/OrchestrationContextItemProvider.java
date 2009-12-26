@@ -109,8 +109,7 @@ public class OrchestrationContextItemProvider extends ModelElementItemProvider i
                   // Filter invocation context with In mode is already assigned to an In exposed
                   // contract
                   it.remove();
-                }
-                if (exposedMode != ContractMode.OUT) {
+                } else if (exposedMode != ContractMode.OUT) {
                   // Filter invocation context with In_Out mode is already assigned to an In or
                   // In_Out contract
                   it.remove();
