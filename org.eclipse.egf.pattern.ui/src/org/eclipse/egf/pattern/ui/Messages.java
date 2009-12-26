@@ -100,8 +100,6 @@ public class Messages extends NLS {
 
     public static String SpecificationPage_button_up;
 
-    public static String SpecificationPage_default_name;
-
     public static String SpecificationPage_inherSection_discrip_label;
 
     public static String SpecificationPage_inherSection_parent_label;
@@ -127,13 +125,13 @@ public class Messages extends NLS {
 
     // ParametersEdit Dialog
     public static String ParametersEditDialog_Browse;
-    
+
     public static String ParametersEditDialog_Name;
-    
+
     public static String ParametersEditDialog_Query;
-    
+
     public static String ParametersEditDialog_Type;
-    
+
     // PatternSelection Dialog
     public static String PatternSelectiondialog_dialogArea_label;
 

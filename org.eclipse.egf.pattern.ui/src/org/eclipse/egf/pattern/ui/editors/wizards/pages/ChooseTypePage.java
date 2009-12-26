@@ -15,23 +15,26 @@
 
 package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
-import org.eclipse.egf.pattern.ui.editors.models.EcoreType;
+import org.eclipse.egf.pattern.ui.ImageShop;
+import org.eclipse.egf.pattern.ui.editors.dialogs.JavaTypeSelectionDialog;
+import org.eclipse.egf.pattern.ui.editors.dialogs.EcoreModelSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.models.EcoreTypeStructure;
 import org.eclipse.egf.pattern.ui.editors.providers.EcoreTypeChooseContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.TypeChooseLabelProvider;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClassifier;
-import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EcoreFactory;
-import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.window.Window;
+import org.eclipse.jface.wizard.IWizard;
+import org.eclipse.jface.wizard.IWizardContainer;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
@@ -46,7 +49,6 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
-import org.eclipse.swt.widgets.TreeItem;
 
 /**
  * @author xrchen
@@ -56,13 +58,15 @@ public class ChooseTypePage extends WizardPage {
 
     private String chooseType;
 
-    private ChooseJavaTypePage page;
+    private JavaTypeSelectionDialog dialog;
 
     private TabFolder tabFolder;
 
     private TransactionalEditingDomain editingDomain;
 
-    public ChooseTypePage(ISelection selection, TransactionalEditingDomain editingDomain) {
+    private TreeViewer ecoreTypeTreeViewer;
+
+    public ChooseTypePage(ISelection selection, TransactionalEditingDomain editingDomain, String type) {
         super("Type selection");
         setTitle("Type selection");
         setDescription("Select a type in the following list of available types");
@@ -84,6 +88,7 @@ public class ChooseTypePage extends WizardPage {
 
         TabItem coreTypeTabItem = new TabItem(tabFolder, SWT.NONE);
         coreTypeTabItem.setText("Ecore type");
+        coreTypeTabItem.setImage(ImageShop.get(ImageShop.IMG_CATEGORY_OBJ));
 
         Composite compositeCoreType = new Composite(tabFolder, SWT.NONE);
         createEcoreType(compositeCoreType);
@@ -91,14 +96,15 @@ public class ChooseTypePage extends WizardPage {
 
         TabItem javaTypeTabItem = new TabItem(tabFolder, SWT.NONE);
         javaTypeTabItem.setText("Java type");
+        javaTypeTabItem.setImage(ImageShop.get(ImageShop.IMG_CLASS_OBJ));
 
         Composite compositeJavaType = new Composite(tabFolder, SWT.NONE);
-        page = new ChooseJavaTypePage(compositeJavaType.getShell());
+        dialog = new JavaTypeSelectionDialog(compositeJavaType.getShell(),getWizard());
         compositeJavaType.setLayout(new GridLayout());
-        page.createPage(compositeJavaType);
+        dialog.createPage(compositeJavaType);
         compositeJavaType.addDisposeListener(new DisposeListener() {
             public void widgetDisposed(DisposeEvent e) {
-                page.close();
+                dialog.close();
             }
         });
         javaTypeTabItem.setControl(compositeJavaType);
@@ -126,17 +132,30 @@ public class ChooseTypePage extends WizardPage {
         TreeColumn treeColumn = new TreeColumn(tree, SWT.NONE);
         treeColumn.setWidth(500);
 
-        final TreeViewer ecoreTypeTreeViewer = new TreeViewer(tree);
+        ecoreTypeTreeViewer = new TreeViewer(tree);
         ecoreTypeTreeViewer.setLabelProvider(new TypeChooseLabelProvider());
         ecoreTypeTreeViewer.setContentProvider(new EcoreTypeChooseContentProvider());
-        ecoreTypeTreeViewer.setInput(getEcoreTypes());
         ecoreTypeTreeViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
                 ISelection selection = ecoreTypeTreeViewer.getSelection();
                 final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
-                if (selectItem instanceof EcoreType) {
-                    chooseType = ((EcoreType) selectItem).getType();
+                if (selectItem instanceof EObject) {
+                    String classDescription = ((EObject) selectItem).getClass().toString();
+                    int length = classDescription.length();
+                    chooseType = classDescription.substring(classDescription.lastIndexOf(".")+1,length-4);
+                }
+            }
+        });
+
+        ecoreTypeTreeViewer.addDoubleClickListener(new IDoubleClickListener() {
+
+            public void doubleClick(DoubleClickEvent event) {
+                IWizard wizard = getWizard();
+                wizard.performFinish();
+                IWizardContainer wizardContainer = wizard.getContainer();
+                if (wizardContainer instanceof WizardDialog) {
+                    ((WizardDialog) wizardContainer).close();
                 }
             }
         });
@@ -145,101 +164,34 @@ public class ChooseTypePage extends WizardPage {
         button.setText("Choose model...");
         button.addListener(SWT.Selection, new Listener() {
             public void handleEvent(Event event) {
-                ChooseModelPage chooseModelPage = new ChooseModelPage(compositeEcoreType.getShell(), editingDomain);
-                if (chooseModelPage.open() == Window.OK) {
-                    chooseType = chooseModelPage.getURIText();
-                    String type = getType(chooseType);
-                    findEcoreTypeInTree(type);
-                }
-            }
-
-            private void findEcoreTypeInTree(String type) {
-                TreeItem itemParent = ecoreTypeTreeViewer.getTree().getItem(0);
-                if (itemParent.getText().equals(type)) {
-                    ecoreTypeTreeViewer.getTree().setSelection(itemParent);
-                    return;
-                }
-                int len = ecoreTypeTreeViewer.getTree().getItems()[0].getItemCount();
-                for (int i = 0; i < len; i++) {
-                    TreeItem itemChild = ecoreTypeTreeViewer.getTree().getItem(0).getItem(i);
-                    if (itemChild.getText().equals(type)) {
-                        ecoreTypeTreeViewer.getTree().setSelection(itemChild);
-                        return;
-                    }
-
+                EcoreModelSelectionDialog chooseModelDialog = new EcoreModelSelectionDialog(compositeEcoreType.getShell(), editingDomain);
+                if (chooseModelDialog.open() == Window.OK) {
+                    String returnUri = chooseModelDialog.getURIText();
+                    searchTypeModel(returnUri);
                 }
             }
         });
-        selectDefault(ecoreTypeTreeViewer);
-    }
-
-    private EcoreTypeStructure getEcoreTypes() {
-        EPackage ecorePackage = EcoreFactory.eINSTANCE.getEcorePackage();
-        EcoreFactory.eINSTANCE.getEAnnotations();
-        EList<EClassifier> eClassifiers = ecorePackage.getEClassifiers();
-        EcoreType parent = new EcoreType("ecore");
-        for (EClassifier eClassifier : eClassifiers) {
-            int id = eClassifier.getClassifierID();
-            if (isValidClassifier(id)) {
-                EcoreType child = new EcoreType(eClassifier.getName());
-                child.setParent(parent);
-                parent.getUnderlings().add(child);
-            }
-        }
-        return new EcoreTypeStructure(parent);
     }
 
     /**
-     * Check the class whether is a valid classifier
+     * Get the platform and find all the types from it.
      */
-    private boolean isValidClassifier(int id) {
-        switch (id) {
-        case EcorePackage.EATTRIBUTE:
-            return true;
-        case EcorePackage.EANNOTATION:
-            return true;
-        case EcorePackage.ECLASS:
-            return true;
-        case EcorePackage.EDATA_TYPE:
-            return true;
-        case EcorePackage.EENUM:
-            return true;
-        case EcorePackage.EENUM_LITERAL:
-            return true;
-        case EcorePackage.EFACTORY:
-            return true;
-        case EcorePackage.EOBJECT:
-            return true;
-        case EcorePackage.EOPERATION:
-            return true;
-        case EcorePackage.EPACKAGE:
-            return true;
-        case EcorePackage.EPARAMETER:
-            return true;
-        case EcorePackage.EREFERENCE:
-            return true;
-        case EcorePackage.ESTRING_TO_STRING_MAP_ENTRY:
-            return true;
-        case EcorePackage.EGENERIC_TYPE:
-            return true;
-        case EcorePackage.ETYPE_PARAMETER:
-            return true;
-        default:
-            return false;
+    private void searchTypeModelInPackage(String path, EcoreTypeStructure input) {
+        try {
+            Resource res = editingDomain.loadResource(path);
+            input.addResource(res);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
-    /**
-     * Make EcoreType list area's first element selected.
-     */
-    private void selectDefault(TreeViewer ecoreTypeTreeViewer) {
-        Object input = ecoreTypeTreeViewer.getInput();
-        if (input instanceof EcoreTypeStructure) {
-            Object parent = ((EcoreTypeStructure) input).getEcoreType();
-            if (parent != null) {
-                ecoreTypeTreeViewer.setSelection(new StructuredSelection(parent));
-            }
+    protected void searchTypeModel(String returnUri) {
+        String[] uris = returnUri.split("  ");
+        EcoreTypeStructure input = new EcoreTypeStructure();
+        for (String uri : uris) {
+            searchTypeModelInPackage(uri, input);
         }
+        ecoreTypeTreeViewer.setInput(input);
     }
 
     /**
@@ -258,8 +210,8 @@ public class ChooseTypePage extends WizardPage {
         return chooseType;
     }
 
-    public ChooseJavaTypePage getJavaTypePage() {
-        return page;
+    public JavaTypeSelectionDialog getJavaTypePage() {
+        return dialog;
     }
 
     public boolean isInCoreTab() {

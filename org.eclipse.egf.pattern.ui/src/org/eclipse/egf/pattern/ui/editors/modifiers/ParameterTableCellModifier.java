@@ -16,8 +16,6 @@ package org.eclipse.egf.pattern.ui.editors.modifiers;
 
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
-import org.eclipse.egf.pattern.ui.editors.editor.QueryComboBoxViewerCellEditor;
-import org.eclipse.egf.pattern.ui.editors.models.ComboListEntry;
 import org.eclipse.egf.pattern.ui.editors.pages.SpecificationPage;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -29,10 +27,10 @@ import org.eclipse.swt.widgets.TableItem;
 public class ParameterTableCellModifier implements ICellModifier {
 
     private TransactionalEditingDomain editingDomain;
-    
+
     private TableViewer tableViewer;
 
-    public ParameterTableCellModifier(TransactionalEditingDomain editingDomain,TableViewer tableViewer) {
+    public ParameterTableCellModifier(TransactionalEditingDomain editingDomain, TableViewer tableViewer) {
         this.editingDomain = editingDomain;
         this.tableViewer = tableViewer;
     }
@@ -62,7 +60,7 @@ public class ParameterTableCellModifier implements ICellModifier {
             if (element instanceof PatternParameter) {
                 Query patternQuery = ((PatternParameter) element).getQuery();
                 String query = patternQuery == null ? "" : patternQuery.getExtensionId();
-                return new ComboListEntry(query);
+                return query;
             }
         }
         return null;
@@ -71,7 +69,7 @@ public class ParameterTableCellModifier implements ICellModifier {
     public void modify(Object element, String property, Object value) {
         if (value == null)
             return;
-        tableViewer.refresh();
+        
         if (element instanceof TableItem) {
             element = ((TableItem) element).getData();
         }
@@ -102,32 +100,23 @@ public class ParameterTableCellModifier implements ICellModifier {
                 default:
                     return;
                 }
+                tableViewer.refresh();
             }
         };
         editingDomain.getCommandStack().execute(cmd);
     }
-    
+
     protected void modifyQuery(PatternParameter patternParameter, String text) {
         Query query = patternParameter.getQuery();
-        String SelectedValue = "";
-        if (QueryComboBoxViewerCellEditor.getSelectedValue() != null) {
-            SelectedValue = (QueryComboBoxViewerCellEditor.getSelectedValue()).toString();
-            if (SelectedValue != null && !("".equals(SelectedValue))) {
-                if (query == null && (SelectedValue != null && !"".equals(SelectedValue))) {
-                    Query createBasicQuery = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery();
-                    createBasicQuery.setExtensionId(SelectedValue);
-                    patternParameter.setQuery(createBasicQuery);
-                } else if (SelectedValue != null && !"".equals(SelectedValue)) {
-                    query.setExtensionId(SelectedValue);
-                }
-            }
-        } else {
+        if (text != null ) {
             if (query == null && (text != null && !"".equals(text))) {
                 Query createBasicQuery = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createBasicQuery();
                 createBasicQuery.setExtensionId(text);
                 patternParameter.setQuery(createBasicQuery);
-            } else if (text != null || !"".equals(text)) {
+            } else if (text != null && !"".equals(text)) {
                 query.setExtensionId(text);
+            } else if("".equals(text)){
+                patternParameter.setQuery(null);
             }
         }
     }

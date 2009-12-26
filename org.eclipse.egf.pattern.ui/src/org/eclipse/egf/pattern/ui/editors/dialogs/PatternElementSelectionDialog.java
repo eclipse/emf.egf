@@ -27,7 +27,7 @@ public class PatternElementSelectionDialog extends SelectionStatusDialog {
         if (regex.isEmpty() || regex == null)
             return true;
         try {
-            Matcher matcher = Pattern.compile(regex).matcher(content);
+            Matcher matcher = Pattern.compile(regex.toLowerCase()).matcher(content.toLowerCase());
             if (matcher.find()) {
                 return true;
             } else {

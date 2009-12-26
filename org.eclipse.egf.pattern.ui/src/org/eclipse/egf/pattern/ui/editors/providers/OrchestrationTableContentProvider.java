@@ -12,13 +12,29 @@
  * 
  * </copyright>
  */
-
 package org.eclipse.egf.pattern.ui.editors.providers;
+
+import java.util.Collection;
+
+import org.eclipse.jface.viewers.Viewer;
 
 /**
  * @author xrchen
  * 
  */
-public class MethodCallContentProvider extends CommonListContentProvider {
+public class OrchestrationTableContentProvider extends MethodCallContentProvider {
+    public Object[] getElements(Object inputElement) {
+        if (inputElement instanceof Collection<?>){
+            return ((Collection<?>)inputElement).toArray(new Object[0]);
+        }
+        return null;
+    }
 
+    public void dispose() {
+
+    }
+
+    public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+        viewer.refresh();
+    }
 }

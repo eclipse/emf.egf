@@ -15,19 +15,31 @@
 
 package org.eclipse.egf.pattern.ui.editors.models;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.eclipse.emf.ecore.resource.Resource;
+
 /**
  * @author xrchen
  * 
  */
 public class EcoreTypeStructure {
 
-    private EcoreType ecoreType;
+    private Resource resource;
     
-    public EcoreTypeStructure(EcoreType ecoreType){
-        this.ecoreType = ecoreType;
+    private List<Resource> resources = new ArrayList<Resource>();
+
+    public List<Resource> getResources() {
+        return resources;
     }
-    
-    public EcoreType getEcoreType() {
-        return ecoreType;
+
+    public Resource getResource() {
+        return resource;
+    }
+
+    public void addResource(Resource resource) {
+        this.resource = resource;
+        resources.add(resource);
     }
 }

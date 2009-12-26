@@ -16,36 +16,31 @@
 package org.eclipse.egf.pattern.ui.editors.pages;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import org.eclipse.swt.widgets.TableColumn;
 
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.IValidator;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
-import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.query.QueryKind;
+import org.eclipse.egf.pattern.query.QueryManager;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ParametersEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectiondialog;
-import org.eclipse.egf.pattern.ui.editors.editor.QueryComboBoxViewerCellEditor;
 import org.eclipse.egf.pattern.ui.editors.modifiers.ParameterTableCellModifier;
 import org.eclipse.egf.pattern.ui.editors.providers.ComboListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ComboListLabelProvider;
@@ -97,6 +92,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.FormColors;
@@ -138,11 +134,13 @@ public class SpecificationPage extends PatternEditorPage {
 
     public static final String QUERY_COLUMN_ID = "Query"; //$NON-NLS-1$
 
+    private static final String NO_QUERY_VALUE = ""; //$NON-NLS-1$
+    private static final String PARAMETER_NAME_DEFAULT_VALUE = "parameter"; //$NON-NLS-1$
+    private static final String PARAMETER_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
+
     private int dragIndex = -1;
 
     private ComboBoxViewerCellEditor queryEditor;
-
-    private ParameterTableCellModifier modifier;
 
     public SpecificationPage(FormEditor editor) {
         super(editor, ID, Messages.SpecificationPage_title);
@@ -374,7 +372,6 @@ public class SpecificationPage extends PatternEditorPage {
         tableViewer.setLabelProvider(new ParametersTableLabelProvider());
         IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__PARAMETERS);
         tableViewer.setInput(input.observe(getPattern()));
-
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
@@ -558,7 +555,7 @@ public class SpecificationPage extends PatternEditorPage {
             item.setType(newType);
             if (item.getQuery() != null) {
                 item.getQuery().setExtensionId(newQuey);
-            } else if (!"".equals(newQuey)) {
+            } else if (!NO_QUERY_VALUE.equals(newQuey)) { //$NON-NLS-1$
                 Query query = PatternFactory.eINSTANCE.createBasicQuery();
                 query.setExtensionId(newQuey);
                 item.setQuery(query);
@@ -592,15 +589,10 @@ public class SpecificationPage extends PatternEditorPage {
      * Get all the natures.
      */
     private static Map<PatternNature, PatternExtension> getNatures() {
+
         Map<PatternNature, PatternExtension> result = new HashMap<PatternNature, PatternExtension>();
-        for (IConfigurationElement element : Platform.getExtensionRegistry().getConfigurationElementsFor(PatternExtension.EXTENSION_ID)) {
-            try {
-                PatternExtension pe = (PatternExtension) element.createExecutableExtension("class"); //$NON-NLS-1$
-                result.put(pe.getNature(), pe);
-            } catch (CoreException e) {
-                Activator.getDefault().logError(e);
-            }
-        }
+        for (PatternExtension ext : ExtensionHelper.getExtensions().values())
+            result.put(ext.getNature(), ext);
         return result;
     }
 
@@ -643,7 +635,8 @@ public class SpecificationPage extends PatternEditorPage {
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
                 PatternParameter newPatternParameter = PatternFactory.eINSTANCE.createPatternParameter();
-                newPatternParameter.setName(Messages.SpecificationPage_default_name);
+                newPatternParameter.setName(PARAMETER_NAME_DEFAULT_VALUE);
+                newPatternParameter.setType(PARAMETER_TYPE_DEFAULT_VALUE);
                 pattern.getParameters().add(newPatternParameter);
             }
         };
@@ -694,13 +687,13 @@ public class SpecificationPage extends PatternEditorPage {
 
             @Override
             protected Object openDialogBox(Control cellEditorWindow) {
-                OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain());
+                OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType());
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 int returnValue = dialog.open();
                 if (Window.OK == returnValue) {
                     final String selectType = wizard.getSelectType();
-                    if (selectType != null && !"".equals(selectType)) {
+                    if (selectType != null && !"".equals(selectType)) { //$NON-NLS-1$
                         ISelection selection = tableViewer.getSelection();
                         final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
                         if (selectItem instanceof PatternParameter) {
@@ -718,12 +711,12 @@ public class SpecificationPage extends PatternEditorPage {
                 return null;
             }
         };
-        queryEditor = new QueryComboBoxViewerCellEditor(tableViewer.getTable(), SWT.READ_ONLY);
+        queryEditor = new ComboBoxViewerCellEditor(tableViewer.getTable(), SWT.NONE);
         queryEditor.setLabelProvider(new ComboListLabelProvider());
         queryEditor.setContenProvider(new ComboListContentProvider());
         getQueryComboList();
         tableViewer.setCellEditors(new CellEditor[] { nameEditor, typeEditor, queryEditor });
-        modifier = new ParameterTableCellModifier(getEditingDomain(), tableViewer);
+        ParameterTableCellModifier modifier = new ParameterTableCellModifier(getEditingDomain(), tableViewer);
         tableViewer.setCellModifier(modifier);
     }
 
@@ -734,14 +727,12 @@ public class SpecificationPage extends PatternEditorPage {
 
     private List<String> getComboList() {
         List<String> comboList = new ArrayList<String>();
-        // for (PatternParameter parameter : getPattern().getAllParameters()) {
-        // Query query = parameter.getQuery();
-        // comboList.add(new ComboListEntry(query == null ? "" :
-        // query.getExtensionId()));
-        // }
-        for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
-            comboList.add(kind.getId());
+        List<QueryKind> availableQueries = QueryManager.INSTANCE.getAvailableQueries();
+        for (QueryKind kind : availableQueries) {
+            comboList.add(kind.getName());
         }
+        Collections.sort(comboList);
+        comboList.add(0, NO_QUERY_VALUE);
         return comboList;
     }
 
@@ -817,6 +808,18 @@ public class SpecificationPage extends PatternEditorPage {
         });
 
         addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
+    }
+
+    /**
+     * Get the type of selected pattern parameter.
+     */
+    private String getSelectItemType() {
+        int selectionIndex = tableViewer.getTable().getSelectionIndex();
+        Object selectItem = tableViewer.getElementAt(selectionIndex);
+        if (selectItem instanceof PatternParameter) {
+            return ((PatternParameter) selectItem).getType();
+        }
+        return "";
     }
 
     @Override

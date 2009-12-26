@@ -42,6 +42,7 @@ public class ImageShop {
     public static final String IMG_OVER_OBJ = ICON_PATH + "over_obj.gif";
     public static final String IMG_CATEGORY_OBJ = ICON_PATH + "category_obj.gif";
     public static final String IMG_TREE_MODE = ICON_PATH + "tree_mode.gif";
+	public static final String IMG_CLASS_OBJ = ICON_PATH + "class_obj.gif";
 
     public static Image get(String imageFilePath) {
         ImageDescriptor imageDesc = getImageDescriptor(imageFilePath);

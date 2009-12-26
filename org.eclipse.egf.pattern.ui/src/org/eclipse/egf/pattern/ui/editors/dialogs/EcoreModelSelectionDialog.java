@@ -1,4 +1,4 @@
-package org.eclipse.egf.pattern.ui.editors.wizards.pages;
+package org.eclipse.egf.pattern.ui.editors.dialogs;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,10 +39,10 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 
-public class ChooseModelPage extends LoadResourceDialog {
+public class EcoreModelSelectionDialog extends LoadResourceDialog {
     protected Set<EPackage> registeredPackages = new LinkedHashSet<EPackage>();
     
-    public ChooseModelPage(Shell parent, EditingDomain domain) {
+    public EcoreModelSelectionDialog(Shell parent, EditingDomain domain) {
         super(parent, domain);
     }
 
@@ -122,7 +122,8 @@ public class ChooseModelPage extends LoadResourceDialog {
                         for (Resource resource : resourceSet.getResources()) {
                             for (EPackage ePackage : getAllPackages(resource)) {
                                 if (nsURIs.contains(ePackage.getNsURI())) {
-                                    uris.append(resource.getURI());
+                                    URI resourceUri = resource.getURI();
+                                    uris.append(resourceUri);
                                     uris.append("  ");
                                     break;
                                 }

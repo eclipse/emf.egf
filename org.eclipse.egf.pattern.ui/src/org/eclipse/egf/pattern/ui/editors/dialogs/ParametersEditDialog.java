@@ -40,7 +40,7 @@ public class ParametersEditDialog extends SelectionStatusDialog {
     private String type;
 
     private String query;
-    
+
     private TransactionalEditingDomain editingDomain;
 
     public ParametersEditDialog(Shell shell, Object selectItem, TransactionalEditingDomain editingDomain) {
@@ -97,29 +97,29 @@ public class ParametersEditDialog extends SelectionStatusDialog {
         typeButton.setLayoutData(gd);
         typeButton.setText(Messages.ParametersEditDialog_Browse);
         typeButton.addSelectionListener(new SelectionListener() {
-            
+
             public void widgetSelected(SelectionEvent e) {
-                OpenTypeWizard wizard = new OpenTypeWizard(editingDomain);
+                OpenTypeWizard wizard = new OpenTypeWizard(editingDomain, typeText.getText());
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 int returnValue = dialog.open();
                 if (Window.OK == returnValue) {
                     typeText.setText(wizard.getSelectType());
                 }
-                
+
             }
-            
+
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
 
         createLabel(dialogArea, Messages.ParametersEditDialog_Query);
-        queryCombo = new Combo(dialogArea, SWT.NONE | SWT.READ_ONLY);
+        queryCombo = new Combo(dialogArea, SWT.NONE);
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalSpan = 2;
         queryCombo.setLayoutData(gd);
         queryCombo.add(query);
-        setQueryComboList(queryCombo,query);
+        setQueryComboList(queryCombo, query);
         queryCombo.addModifyListener(new ModifyListener() {
 
             public void modifyText(ModifyEvent e) {
@@ -136,15 +136,15 @@ public class ParametersEditDialog extends SelectionStatusDialog {
         return label;
     }
 
-    private void setQueryComboList(Combo combo,String query) {
+    private void setQueryComboList(Combo combo, String query) {
         for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {
             String id = kind.getId();
-            if(!id.equals(query)){
+            if (!id.equals(query)) {
                 combo.add(id);
             }
         }
     }
-    
+
     public String getName() {
         return name;
     }

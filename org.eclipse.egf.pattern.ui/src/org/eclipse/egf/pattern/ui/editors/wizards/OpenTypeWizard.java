@@ -15,12 +15,13 @@
 
 package org.eclipse.egf.pattern.ui.editors.wizards;
 
-import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseJavaTypePage;
+import org.eclipse.egf.pattern.ui.editors.dialogs.JavaTypeSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseTypePage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.internal.core.BinaryType;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -39,13 +40,16 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
 
     private TransactionalEditingDomain editingDomain;
 
-    public OpenTypeWizard(TransactionalEditingDomain editingDomain) {
+    private String type;
+
+    public OpenTypeWizard(TransactionalEditingDomain editingDomain, String type) {
         this.editingDomain = editingDomain;
+        this.type = type;
     }
 
     @Override
     public boolean performFinish() {
-        ChooseJavaTypePage page = chooseTypePage.getJavaTypePage();
+        JavaTypeSelectionDialog page = chooseTypePage.getJavaTypePage();
         if (chooseTypePage.isInCoreTab()) {
             if (chooseTypePage.getType() != null) {
                 selectType = chooseTypePage.getType();
@@ -79,7 +83,7 @@ public class OpenTypeWizard extends Wizard implements INewWizard {
     public void addPages() {
         // set the window's title label
         setWindowTitle("Parameter type selection");
-        chooseTypePage = new ChooseTypePage(selection, editingDomain);
+        chooseTypePage = new ChooseTypePage(selection, editingDomain, type);
         addPage(chooseTypePage);
     }
 

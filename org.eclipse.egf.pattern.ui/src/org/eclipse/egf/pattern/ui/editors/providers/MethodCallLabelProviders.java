@@ -16,7 +16,6 @@ package org.eclipse.egf.pattern.ui.editors.providers;
 
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
@@ -37,8 +36,6 @@ public class MethodCallLabelProviders implements ITableLabelProvider {
             return ((PatternMethod) element).getName();
         if (element instanceof Pattern)
             return ((Pattern) element).getName();
-        else if (element instanceof PatternParameter)
-            return ((PatternParameter) element).getName();
         else if (element instanceof PatternVariable)
             return ((PatternVariable) element).getName();
         return "";

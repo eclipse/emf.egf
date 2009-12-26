@@ -12,12 +12,11 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.providers;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -45,9 +44,9 @@ public class MethodLabelProvider implements ITableLabelProvider {
     }
 
     private boolean isOverride(Object element) {
-        for(String parentMethod : parentMethods){
-            String elementName = ((PatternMethod)element).getName();
-            if(elementName.equals(parentMethod)){
+        for (String parentMethod : parentMethods) {
+            String elementName = ((PatternMethod) element).getName();
+            if (elementName.equals(parentMethod)) {
                 return true;
             }
         }

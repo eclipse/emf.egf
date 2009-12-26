@@ -15,10 +15,29 @@
 
 package org.eclipse.egf.pattern.ui.editors.providers;
 
+import java.util.List;
+
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.Viewer;
+
 /**
  * @author xrchen
  * 
  */
-public class MethodCallContentProvider extends CommonListContentProvider {
+public class CommonListContentProvider implements IStructuredContentProvider {
+
+    public Object[] getElements(Object inputElement) {
+        if (inputElement instanceof List<?>)
+            return ((List<?>) inputElement).toArray();
+        return null;
+    }
+
+    public void dispose() {
+
+    }
+
+    public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+        viewer.refresh();
+    }
 
 }
