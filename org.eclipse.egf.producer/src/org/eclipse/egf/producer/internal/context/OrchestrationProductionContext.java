@@ -16,6 +16,7 @@ import org.eclipse.egf.core.helper.EObjectHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
+import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
@@ -56,7 +57,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // Always propagate, An InvocationContext shouldn't be in an OrchestrationContext
     // and in an FactoryComponent Contract
     if (invocationContext.getFactoryComponentExposedContract() != null) {
-      if (getParent() != null) {
+      if (getParent() != null && invocationContext.getFactoryComponentExposedContract().getMode() != ContractMode.OUT) {
         valueType = getParent().getInputValueType(invocationContext);
       }
     } else {
@@ -82,7 +83,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     // Always propagate, An InvocationContext shouldn't be in an OrchestrationContext
     // and in an FactoryComponent Contract
     if (invocationContext.getFactoryComponentExposedContract() != null) {
-      if (getParent() != null) {
+      if (getParent() != null && invocationContext.getFactoryComponentExposedContract().getMode() != ContractMode.OUT) {
         value = getParent().getInputValue(invocationContext, clazz);
       }
     } else {
@@ -107,7 +108,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     Class<?> valueType = null;
     // Always propagate, OrchestrationContext doesn't hold Output Values
     if (invocationContext.getFactoryComponentExposedContract() != null) {
-      if (getParent() != null) {
+      if (getParent() != null && invocationContext.getFactoryComponentExposedContract().getMode() != ContractMode.IN) {
         valueType = getParent().getOutputValueType(invocationContext);
       }
     }
@@ -122,7 +123,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     R value = null;
     // Always propagate, OrchestrationContext doesn't hold Output Values
     if (invocationContext.getFactoryComponentExposedContract() != null) {
-      if (getParent() != null) {
+      if (getParent() != null && invocationContext.getFactoryComponentExposedContract().getMode() != ContractMode.IN) {
         value = getParent().getOutputValue(invocationContext, clazz);
       }
     }
@@ -136,7 +137,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
     InvocationContext invocationContext = (InvocationContext) key;
     // Always propagate, OrchestrationContext doesn't hold Output Values
     if (invocationContext.getFactoryComponentExposedContract() != null) {
-      if (getParent() != null) {
+      if (getParent() != null && invocationContext.getFactoryComponentExposedContract().getMode() != ContractMode.IN) {
         getParent().setOutputValue(invocationContext, value);
       }
     }
