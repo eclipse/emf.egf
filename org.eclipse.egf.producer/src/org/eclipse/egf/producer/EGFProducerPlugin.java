@@ -9,7 +9,7 @@ import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.producer.activity.ActivityProducer;
 import org.eclipse.egf.producer.activity.ActivityProductionContextProducer;
 import org.eclipse.egf.producer.context.IModelElementProductionContext;
-import org.eclipse.egf.producer.internal.regisrtry.ProducerRegistry;
+import org.eclipse.egf.producer.internal.registry.ProducerRegistry;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.orchestration.OrchestrationProducer;
 import org.eclipse.osgi.util.NLS;

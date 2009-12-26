@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.producer.internal.regisrtry;
+package org.eclipse.egf.producer.internal.registry;
 
 import java.util.HashMap;
 import java.util.Map;
