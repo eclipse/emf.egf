@@ -265,7 +265,10 @@ public abstract class ProductionContext<T extends Object> implements IProduction
   }
 
   protected <R> R getValue(Object key, Class<R> clazz, Data data) throws InvocationException {
-    if (ClassHelper.asSubClass(data.getType(), clazz) == false) {
+    if (data == null || data.getValue() == null) {
+      return null;
+    }
+    if (ClassHelper.asSubClass(data.getValue().getClass(), clazz) == false) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EObjectHelper.getText(key), clazz.getName(), getName() }));
     }
     try {
