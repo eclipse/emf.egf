@@ -10,15 +10,23 @@
  */
 package org.eclipse.egf.common.helper;
 
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.common.EGFCommonPlugin;
+import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -26,6 +34,11 @@ import org.eclipse.osgi.util.NLS;
  * 
  */
 public class EMFHelper {
+
+  // back-up for unregistered packages
+  private static AdapterFactory __defaultFactory = new ReflectiveItemProviderAdapterFactory();
+
+  private static AdapterFactory __factory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 
   private EMFHelper() {
     // Prevent instantiation
@@ -137,6 +150,78 @@ public class EMFHelper {
       EGFCommonPlugin.getDefault().logWarning(NLS.bind("Unable to solve EObject {0} against its static EPackage", eObject)); //$NON-NLS-1$
     }
     return eObject;
+  }
+
+  /**
+   * Obtains a textual representation of the specified model element, as for
+   * display in error messages. If no suitable factory is registered, then
+   * the EMF reflective item provider is used.
+   * 
+   * @param object
+   *          the model element for which to get text
+   * @return the corresponding text
+   */
+  public static String getText(Object object) {
+    if (object == null || object instanceof EObject == false) {
+      if (object == null) {
+        return null;
+      }
+      return object.toString();
+    }
+    EObject eObject = (EObject) object;
+    IItemLabelProvider provider = (IItemLabelProvider) __factory.adapt(eObject, IItemLabelProvider.class);
+    if (provider == null) {
+      // for backward compatibility, try looking in the resource set
+      provider = (IItemLabelProvider) getRegisteredAdapter(eObject, IItemLabelProvider.class);
+    }
+    if (provider == null) {
+      provider = (IItemLabelProvider) __defaultFactory.adapt(eObject, IItemLabelProvider.class);
+    }
+    String result = provider.getText(eObject);
+    if (result != null) {
+      // don't want leading or trailing blanks in messages
+      result = result.trim();
+    }
+    return result;
+  }
+
+  /**
+   * Similar to the {@link EcoreUtil#getRegisteredAdapter(EObject, Object)} method, attempts to
+   * adapt the given <code>eObject</code> to the
+   * specified <code>type</code> using adapter factories registered on its
+   * resource set. The difference is, that this method anticipates that
+   * adapter factories from multiple disjoint metamodels may be registered,
+   * that adapt different kinds of objects to the same types. This method
+   * will try them all until it either gets a successful adaptation or runs
+   * out of factories.
+   * 
+   * @param eObject
+   *          the model element to adapt
+   * @param type
+   *          indicates the type of adapter to obtain
+   * @return the available registered adapter, or <code>null</code> if no
+   *         suitable adapter factory is found
+   */
+  private static Object getRegisteredAdapter(EObject eObject, Object type) {
+    Object result = EcoreUtil.getExistingAdapter(eObject, type);
+    if (result == null) {
+      Resource resource = eObject.eResource();
+      if (resource != null) {
+        ResourceSet resourceSet = resource.getResourceSet();
+        if (resourceSet != null) {
+          List<AdapterFactory> factories = resourceSet.getAdapterFactories();
+          // iterate only as long as we don't find an adapter factory
+          // that successfully adapted the eObject
+          for (Iterator<AdapterFactory> iter = factories.iterator(); iter.hasNext() && (result == null);) {
+            AdapterFactory next = iter.next();
+            if (next.isFactoryForType(type)) {
+              result = next.adapt(eObject, type);
+            }
+          }
+        }
+      }
+    }
+    return result;
   }
 
 }
