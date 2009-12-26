@@ -13,10 +13,10 @@ package org.eclipse.egf.producer.internal.manager;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
-import org.eclipse.egf.core.helper.EObjectHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.ModelElement;
@@ -91,7 +91,7 @@ public abstract class ModelElementManager implements IModelElementManager {
   protected abstract ModelElementProductionContext<?> getInternalProductionContext() throws InvocationException;
 
   public String getName() {
-    return EObjectHelper.getText(getElement());
+    return EMFHelper.getText(getElement());
   }
 
   public Bundle getBundle() throws InvocationException {

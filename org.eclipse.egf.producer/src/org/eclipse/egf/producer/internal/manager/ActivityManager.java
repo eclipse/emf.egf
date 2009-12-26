@@ -19,7 +19,6 @@ import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.types.TypeClass;
-import org.eclipse.egf.model.types.TypeObject;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.IActivityProductionContext;
 import org.eclipse.egf.producer.internal.context.ActivityProductionContext;
@@ -76,18 +75,8 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
       if (contract.getType() == null) {
         continue;
       }
-      // Object
-      if (contract.getType() instanceof TypeObject<?>) {
-        if (contract.getMode() == ContractMode.IN) {
-          context.addInputData(contract, contract.getType().getType(), contract.getType().getValue());
-        } else if (contract.getMode() == ContractMode.OUT) {
-          context.addOutputData(contract, contract.getType().getType(), null);
-        } else if (contract.getMode() == ContractMode.IN_OUT) {
-          context.addInputData(contract, contract.getType().getType(), contract.getType().getValue());
-          context.addOutputData(contract, contract.getType().getType(), contract.getType().getValue());
-        }
-        // Class
-      } else if (contract.getType() instanceof TypeClass<?>) {
+      // Class
+      if (contract.getType() instanceof TypeClass<?>) {
         try {
           Object object = null;
           // Should we instantiate value
@@ -108,6 +97,15 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
           }
         } catch (Throwable t) {
           throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, contract.getType().getValue()), t)));
+        }
+      } else {
+        if (contract.getMode() == ContractMode.IN) {
+          context.addInputData(contract, contract.getType().getType(), contract.getType().getValue());
+        } else if (contract.getMode() == ContractMode.OUT) {
+          context.addOutputData(contract, contract.getType().getType(), null);
+        } else if (contract.getMode() == ContractMode.IN_OUT) {
+          context.addInputData(contract, contract.getType().getType(), contract.getType().getValue());
+          context.addOutputData(contract, contract.getType().getType(), contract.getType().getValue());
         }
       }
     }

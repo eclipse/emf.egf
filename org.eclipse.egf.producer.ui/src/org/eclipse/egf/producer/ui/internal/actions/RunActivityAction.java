@@ -22,10 +22,11 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.diagnostic.DiagnosticHandler;
+import org.eclipse.egf.common.ui.diagnostic.EMFValidator;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.helper.EObjectHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -39,6 +40,7 @@ import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
 import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -97,6 +99,15 @@ public class RunActivityAction implements IObjectActionDelegate {
           }
         }
         // doValidation();
+        try {
+          EMFValidator validator = new EMFValidator(activityManager[0].getTopElements());
+          Diagnostic diagnostic = validator.validate();
+          if (diagnostic != Diagnostic.OK_INSTANCE) {
+            return;
+          }
+        } catch (InvocationException ie) {
+          throwable[0] = ie;
+        }
       }
     }
 
@@ -117,7 +128,7 @@ public class RunActivityAction implements IObjectActionDelegate {
           try {
             try {
               if (EGFProducerUIPlugin.getDefault().isDebugging()) {
-                EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EObjectHelper.getText(_activity), ticks[0])); //$NON-NLS-1$
+                EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EMFHelper.getText(_activity), ticks[0])); //$NON-NLS-1$
               }
               activityManager[0].invoke(subMonitor.newChild(900 * ticks[0], SubMonitor.SUPPRESS_NONE));
               if (monitor.isCanceled()) {

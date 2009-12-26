@@ -18,7 +18,6 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.types.TypeClass;
-import org.eclipse.egf.model.types.TypeObject;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
 import org.eclipse.egf.producer.internal.context.OrchestrationProductionContext;
@@ -66,11 +65,8 @@ public abstract class OrchestrationManager extends ModelElementManager implement
       if (orchestrationContext.getType() == null) {
         continue;
       }
-      // Object
-      if (orchestrationContext.getType() instanceof TypeObject<?>) {
-        context.addInputData(orchestrationContext, orchestrationContext.getType().getType(), orchestrationContext.getType().getValue());
-        // Class
-      } else if (orchestrationContext.getType() instanceof TypeClass<?>) {
+      // Class
+      if (orchestrationContext.getType() instanceof TypeClass<?>) {
         try {
           Object object = null;
           // Should we instantiate value
@@ -85,6 +81,8 @@ public abstract class OrchestrationManager extends ModelElementManager implement
         } catch (Throwable t) {
           throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, orchestrationContext.getType().getValue()), t)));
         }
+      } else {
+        context.addInputData(orchestrationContext, orchestrationContext.getType().getType(), orchestrationContext.getType().getValue());
       }
     }
   }

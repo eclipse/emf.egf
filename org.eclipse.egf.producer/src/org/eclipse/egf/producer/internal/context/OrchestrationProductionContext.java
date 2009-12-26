@@ -12,7 +12,7 @@ package org.eclipse.egf.producer.internal.context;
 
 import java.util.Collection;
 
-import org.eclipse.egf.core.helper.EObjectHelper;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
@@ -149,7 +149,7 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
     }
     if (key instanceof InvocationContext == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContext.class.getName(), EObjectHelper.getText(key), key.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContext.class.getName(), EMFHelper.getText(key), key.getClass().getName(), getName() }));
     }
     // Locate OrchestrationContext
     OrchestrationContext orchestrationContext = null;

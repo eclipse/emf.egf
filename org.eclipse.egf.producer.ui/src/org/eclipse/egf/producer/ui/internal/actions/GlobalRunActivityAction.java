@@ -18,11 +18,11 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.diagnostic.DiagnosticHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.helper.EObjectHelper;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -131,7 +131,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         try {
           try {
             if (EGFProducerUIPlugin.getDefault().isDebugging()) {
-              EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EObjectHelper.getText(activity), ticks)); //$NON-NLS-1$
+              EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EMFHelper.getText(activity), ticks)); //$NON-NLS-1$
             }
             activityManager.invoke(subMonitor.newChild(900 * ticks, SubMonitor.SUPPRESS_NONE));
             if (monitor.isCanceled()) {

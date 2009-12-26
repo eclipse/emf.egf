@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.producer.internal.context;
 
-import org.eclipse.egf.core.helper.EObjectHelper;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.context.ProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.ModelElement;
@@ -32,7 +32,7 @@ public abstract class ModelElementProductionContext<T extends ModelElement> exte
 
   @Override
   public String getName() {
-    return EObjectHelper.getText(getElement());
+    return EMFHelper.getText(getElement());
   }
 
   @Override

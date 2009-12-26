@@ -13,7 +13,7 @@ package org.eclipse.egf.producer.internal.context;
 import java.util.Collection;
 
 import org.eclipse.egf.common.helper.ClassHelper;
-import org.eclipse.egf.core.helper.EObjectHelper;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
@@ -171,7 +171,7 @@ public abstract class InvocationProductionContext extends ModelElementProduction
     }
     // null value is a valid value
     if (value != null && (ClassHelper.asSubClass(value.getClass(), data.getType()) == false || data.getType().isInstance(value) == false)) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EObjectHelper.getText(key), value.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EMFHelper.getText(key), value.getClass().getName(), getName() }));
     }
     // Set local value
     data.setValue(value);
@@ -183,7 +183,7 @@ public abstract class InvocationProductionContext extends ModelElementProduction
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
     }
     if (key instanceof ActivityContract == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { ActivityContract.class.getName(), EObjectHelper.getText(key), key.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { ActivityContract.class.getName(), EMFHelper.getText(key), key.getClass().getName(), getName() }));
     }
     // Locate InvocationContext
     InvocationContext invocationContext = null;

@@ -13,7 +13,7 @@ package org.eclipse.egf.producer.internal.context;
 import java.util.Collection;
 
 import org.eclipse.egf.common.helper.ClassHelper;
-import org.eclipse.egf.core.helper.EObjectHelper;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
@@ -55,7 +55,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     ActivityContract activityContract = getFactoryComponentContract(key, getElement().getActivityContracts(ContractMode.IN));
     // ActivityContract should be known at this stage
     if (activityContract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EObjectHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     Class<?> valueType = null;
     // Looking for Parent Value Type if available
@@ -82,7 +82,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     ActivityContract activityContract = getFactoryComponentContract(key, getElement().getActivityContracts(ContractMode.IN));
     // ActivityContract should be known at this stage
     if (activityContract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EObjectHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     R value = null;
     // Looking for Parent Value if available
@@ -109,7 +109,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     ActivityContract activityContract = getFactoryComponentContract(key, getElement().getActivityContracts(ContractMode.OUT));
     // ActivityContract should be known at this stage
     if (activityContract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EObjectHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     Class<?> valueType = null;
     // Looking for Parent Value Type if available
@@ -136,7 +136,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     ActivityContract activityContract = getFactoryComponentContract(key, getElement().getActivityContracts(ContractMode.OUT));
     // ActivityContract should be known at this stage
     if (activityContract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EObjectHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     R value = null;
     // Looking for Parent Value if available
@@ -163,7 +163,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     ActivityContract activityContract = getFactoryComponentContract(key, getElement().getActivityContracts(ContractMode.OUT));
     // ActivityContract should be known at this stage
     if (activityContract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EObjectHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     // Propagate Value to parent if necessary
     if (getParent() != null) {
@@ -172,11 +172,11 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     // Fetch available data
     Data data = _outputDatas.get(activityContract);
     if (data == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EObjectHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     // null value is a valid value
     if (value != null && (ClassHelper.asSubClass(value.getClass(), data.getType()) == false || data.getType().isInstance(value) == false)) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EObjectHelper.getText(key), value.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EMFHelper.getText(key), value.getClass().getName(), getName() }));
     }
     // Set local value
     data.setValue(value);
@@ -188,7 +188,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
     }
     if (key instanceof InvocationContext == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContext.class.getName(), EObjectHelper.getText(key), key.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContext.class.getName(), EMFHelper.getText(key), key.getClass().getName(), getName() }));
     }
     // Locate FactoryComponentContract
     FactoryComponentContract factoryComponentContract = null;

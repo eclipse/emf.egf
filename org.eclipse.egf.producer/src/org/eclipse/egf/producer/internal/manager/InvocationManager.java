@@ -19,7 +19,6 @@ import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.types.TypeClass;
-import org.eclipse.egf.model.types.TypeObject;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.IInvocationProductionContext;
 import org.eclipse.egf.producer.internal.context.InvocationProductionContext;
@@ -67,18 +66,8 @@ public abstract class InvocationManager extends ModelElementManager implements I
       if (invocationContext.getType() == null || invocationContext.getActivityContract() == null) {
         continue;
       }
-      // Object
-      if (invocationContext.getType() instanceof TypeObject<?>) {
-        if (invocationContext.getMode() == ContractMode.IN) {
-          context.addInputData(invocationContext, invocationContext.getType().getType(), invocationContext.getType().getValue());
-        } else if (invocationContext.getMode() == ContractMode.OUT) {
-          context.addOutputData(invocationContext, invocationContext.getType().getType(), null);
-        } else if (invocationContext.getMode() == ContractMode.IN_OUT) {
-          context.addInputData(invocationContext, invocationContext.getType().getType(), invocationContext.getType().getValue());
-          context.addOutputData(invocationContext, invocationContext.getType().getType(), invocationContext.getType().getValue());
-        }
-        // Class
-      } else if (invocationContext.getType() instanceof TypeClass<?>) {
+      // Class
+      if (invocationContext.getType() instanceof TypeClass<?>) {
         try {
           Object object = null;
           // Should we instantiate value
@@ -99,6 +88,15 @@ public abstract class InvocationManager extends ModelElementManager implements I
           }
         } catch (Throwable t) {
           throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, invocationContext.getType().getValue()), t)));
+        }
+      } else {
+        if (invocationContext.getMode() == ContractMode.IN) {
+          context.addInputData(invocationContext, invocationContext.getType().getType(), invocationContext.getType().getValue());
+        } else if (invocationContext.getMode() == ContractMode.OUT) {
+          context.addOutputData(invocationContext, invocationContext.getType().getType(), null);
+        } else if (invocationContext.getMode() == ContractMode.IN_OUT) {
+          context.addInputData(invocationContext, invocationContext.getType().getType(), invocationContext.getType().getValue());
+          context.addOutputData(invocationContext, invocationContext.getType().getType(), invocationContext.getType().getValue());
         }
       }
     }

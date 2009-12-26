@@ -20,8 +20,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.helper.ClassHelper;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
-import org.eclipse.egf.core.helper.EObjectHelper;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
@@ -55,7 +55,7 @@ public abstract class ProductionContext<T extends Object> implements IProduction
       _clazz = clazz;
       // null value is a valid value
       if (value != null && _clazz.isInstance(value) == false) {
-        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { _clazz.getName(), EObjectHelper.getText(_key), value.getClass().getName(), getName() }));
+        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { _clazz.getName(), EMFHelper.getText(_key), value.getClass().getName(), getName() }));
       }
       _value = value;
     }
@@ -71,7 +71,7 @@ public abstract class ProductionContext<T extends Object> implements IProduction
     public void setValue(Object value) throws InvocationException {
       // null value is a valid value
       if (value != null && _clazz.isInstance(value) == false) {
-        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { _clazz.getName(), EObjectHelper.getText(_key), value.getClass().getName(), getName() }));
+        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { _clazz.getName(), EMFHelper.getText(_key), value.getClass().getName(), getName() }));
       }
       _value = value;
     }
@@ -144,13 +144,13 @@ public abstract class ProductionContext<T extends Object> implements IProduction
 
   public void addInputData(T key, Class<?> clazz, Object object) throws InvocationException {
     if (_inputDatas.put(key, new Data(key, clazz, object)) != null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EObjectHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EMFHelper.getText(key), getName()));
     }
   }
 
   public void addOutputData(T key, Class<?> clazz, Object object) throws InvocationException {
     if (_outputDatas.put(key, new Data(key, clazz, object)) != null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EObjectHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EMFHelper.getText(key), getName()));
     }
   }
 
@@ -166,11 +166,11 @@ public abstract class ProductionContext<T extends Object> implements IProduction
     // Fetch available data
     Data data = _outputDatas.get(key);
     if (data == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EObjectHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     // null value is a valid value
     if (value != null && (ClassHelper.asSubClass(value.getClass(), data.getType()) == false || data.getType().isInstance(value) == false)) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EObjectHelper.getText(key), value.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EMFHelper.getText(key), value.getClass().getName(), getName() }));
     }
     // Set local value
     data.setValue(value);
@@ -269,7 +269,7 @@ public abstract class ProductionContext<T extends Object> implements IProduction
       return null;
     }
     if (ClassHelper.asSubClass(data.getValue().getClass(), clazz) == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EObjectHelper.getText(key), clazz.getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EMFHelper.getText(key), clazz.getName(), getName() }));
     }
     try {
       return clazz.cast(data.getValue());

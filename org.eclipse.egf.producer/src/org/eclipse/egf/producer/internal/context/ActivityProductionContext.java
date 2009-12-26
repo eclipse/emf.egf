@@ -12,7 +12,7 @@ package org.eclipse.egf.producer.internal.context;
 
 import java.util.Collection;
 
-import org.eclipse.egf.core.helper.EObjectHelper;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
@@ -112,7 +112,7 @@ public abstract class ActivityProductionContext extends ModelElementProductionCo
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_name, getName()));
     }
     if (key instanceof String == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { String.class.getName(), EObjectHelper.getText(key), key.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { String.class.getName(), EMFHelper.getText(key), key.getClass().getName(), getName() }));
     }
     String innerName = ((String) key).trim();
     if (innerName.length() == 0) {
