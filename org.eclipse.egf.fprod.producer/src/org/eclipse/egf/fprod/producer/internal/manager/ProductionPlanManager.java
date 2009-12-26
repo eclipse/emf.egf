@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.fprod.producer.internal.manager;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,12 +24,14 @@ import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFacto
 import org.eclipse.egf.fprod.producer.internal.context.ProductionPlanProductionContext;
 import org.eclipse.egf.fprod.producer.manager.IProductionPlanInvocationManager;
 import org.eclipse.egf.fprod.producer.manager.IProductionPlanManager;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.TaskInvocation;
 import org.eclipse.egf.producer.internal.manager.OrchestrationManager;
 import org.eclipse.egf.producer.manager.IFactoryComponentManager;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -84,6 +87,17 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
       }
     }
     return steps;
+  }
+
+  public Collection<Activity> getTopElements() throws InvocationException {
+    Collection<Activity> activities = new UniqueEList<Activity>();
+    Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
+    if (managers != null) {
+      for (Invocation<?> invocation : getElement().getInvocations()) {
+        activities.addAll(managers.get(invocation).getTopElements());
+      }
+    }
+    return activities;
   }
 
   public void invoke(IProgressMonitor monitor) throws InvocationException {

@@ -10,6 +10,8 @@
  */
 package org.eclipse.egf.fprod.producer.internal.manager;
 
+import java.util.Collection;
+
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -18,7 +20,9 @@ import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFacto
 import org.eclipse.egf.fprod.producer.internal.context.TaskInvocationProductionContext;
 import org.eclipse.egf.fprod.producer.manager.IProductionPlanManager;
 import org.eclipse.egf.fprod.producer.manager.ITaskInvocationManager;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fprod.TaskInvocation;
+import org.eclipse.emf.common.util.UniqueEList;
 
 /**
  * @author Xavier Maysonnave
@@ -62,6 +66,14 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager imple
       return getTaskManager().getSteps();
     }
     return 0;
+  }
+
+  public Collection<Activity> getTopElements() throws InvocationException {
+    Collection<Activity> activities = new UniqueEList<Activity>();
+    if (getTaskManager() != null) {
+      activities.addAll(getTaskManager().getTopElements());
+    }
+    return activities;
   }
 
   public void invoke(IProgressMonitor monitor) throws InvocationException {

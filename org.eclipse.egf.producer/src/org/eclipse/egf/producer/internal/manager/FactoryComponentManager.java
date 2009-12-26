@@ -10,10 +10,13 @@
  */
 package org.eclipse.egf.producer.internal.manager;
 
+import java.util.Collection;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.ActivityProductionContextProducer;
@@ -24,6 +27,7 @@ import org.eclipse.egf.producer.manager.IFactoryComponentManager;
 import org.eclipse.egf.producer.manager.IInvocationManager;
 import org.eclipse.egf.producer.manager.IOrchestrationManager;
 import org.eclipse.egf.producer.manager.OrchestrationManagerProducer;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.osgi.framework.Bundle;
 
 /**
@@ -85,6 +89,15 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
       _orchestrationManager = producer.createOrchestrationManager(this, getElement().getOrchestration());
     }
     return _orchestrationManager;
+  }
+
+  public Collection<Activity> getTopElements() throws InvocationException {
+    Collection<Activity> activities = new UniqueEList<Activity>();
+    activities.add(getElement());
+    if (getOrchestrationManager() != null) {
+      activities.addAll(getOrchestrationManager().getTopElements());
+    }
+    return activities;
   }
 
   public int getSteps() throws InvocationException {

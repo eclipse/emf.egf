@@ -10,6 +10,8 @@
  */
 package org.eclipse.egf.fprod.producer.internal.manager;
 
+import java.util.Collection;
+
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -20,11 +22,13 @@ import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
 import org.eclipse.egf.fprod.producer.internal.context.TaskProductionContext;
 import org.eclipse.egf.fprod.producer.manager.ITaskManager;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.ActivityProductionContextProducer;
 import org.eclipse.egf.producer.internal.manager.ActivityManager;
 import org.eclipse.egf.producer.internal.manager.InvocationManager;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.osgi.framework.Bundle;
 
 /**
@@ -81,6 +85,12 @@ public class TaskManager extends ActivityManager implements ITaskManager {
       return 1;
     }
     return 0;
+  }
+
+  public Collection<Activity> getTopElements() throws InvocationException {
+    Collection<Activity> activities = new UniqueEList<Activity>();
+    activities.add(getElement());
+    return activities;
   }
 
   public void invoke(IProgressMonitor monitor) throws InvocationException {

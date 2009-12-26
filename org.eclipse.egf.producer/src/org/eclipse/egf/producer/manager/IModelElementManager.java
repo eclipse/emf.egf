@@ -10,7 +10,11 @@
  */
 package org.eclipse.egf.producer.manager;
 
+import java.util.Collection;
+
+import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.manager.IProducerManager;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.producer.context.IModelElementProductionContext;
 
@@ -27,5 +31,7 @@ public interface IModelElementManager extends IProducerManager {
   public IModelElementManager getParent();
 
   public IModelElementProductionContext<?> getProductionContext();
+
+  public Collection<Activity> getTopElements() throws InvocationException;
 
 }
