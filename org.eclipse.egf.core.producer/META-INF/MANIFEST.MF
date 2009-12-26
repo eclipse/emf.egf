@@ -14,7 +14,6 @@ Require-Bundle:
 Export-Package: 
  org.eclipse.egf.core.producer,
  org.eclipse.egf.core.producer.context,
- org.eclipse.egf.core.producer.internal.context;x-friends:="org.eclipse.egf.producer",
  org.eclipse.egf.core.producer.l10n,
  org.eclipse.egf.core.producer.manager
 Bundle-ActivationPolicy: lazy

@@ -20,21 +20,21 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public interface IProducerManager<T extends Object> {
-
-  public void init() throws InvocationException;
+public interface IProducerManager {
 
   public int getSteps() throws InvocationException;
 
-  public IProducerManager<?> getParent();
+  public IProducerManager getParent();
 
-  public T getElement();
+  public Object getElement();
 
   public ProjectBundleSession getProjectBundleSession();
 
-  public IProductionContext<T> getProductionContext() throws InvocationException;
+  public IProductionContext<?> getProductionContext();
 
   public Bundle getBundle() throws InvocationException;
+
+  public void prepare() throws InvocationException;
 
   public void invoke(IProgressMonitor monitor) throws InvocationException;
 

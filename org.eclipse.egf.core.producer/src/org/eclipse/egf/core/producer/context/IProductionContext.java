@@ -10,6 +10,8 @@
  */
 package org.eclipse.egf.core.producer.context;
 
+import java.util.Collection;
+
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -19,11 +21,13 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public interface IProductionContext<Q extends Object> {
+public interface IProductionContext<T extends Object> {
 
   public String getName();
 
-  public Q getElement();
+  public Object getElement();
+
+  public IProductionContext<?> getParent();
 
   public Bundle getBundle(String id) throws InvocationException;
 
@@ -31,16 +35,20 @@ public interface IProductionContext<Q extends Object> {
 
   public Bundle getBundle(IPlatformExtensionPoint platformExtensionPoint) throws InvocationException;
 
-  public void reset();
+  public void clear();
 
-  public Class<?> getInputValueType(String name) throws InvocationException;
+  public Class<?> getInputValueType(Object key) throws InvocationException;
 
-  public <T extends Object> T getInputValue(String name, Class<T> clazz) throws InvocationException;
+  public <R extends Object> R getInputValue(Object key, Class<R> clazz) throws InvocationException;
 
-  public Class<?> getOutputValueType(String name) throws InvocationException;
+  public Collection<T> getInputValueKeys() throws InvocationException;
 
-  public <T extends Object> T getOutputValue(String name, Class<T> clazz) throws InvocationException;
+  public Class<?> getOutputValueType(Object key) throws InvocationException;
 
-  public void setOutputValue(String name, Object value) throws InvocationException;
+  public <R extends Object> R getOutputValue(Object key, Class<R> clazz) throws InvocationException;
+
+  public Collection<T> getOutputValueKeys() throws InvocationException;
+
+  public void setOutputValue(Object key, Object value) throws InvocationException;
 
 }

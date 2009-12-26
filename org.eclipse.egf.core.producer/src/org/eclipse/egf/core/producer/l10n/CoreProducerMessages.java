@@ -26,9 +26,13 @@ public class CoreProducerMessages {
   }
 
   public static String ProductionContext_null_name;
+  public static String ProductionContext_null_key;
   public static String ProductionContext_null_class;
   public static String ProductionContext_emtpy_name;
-  public static String ProductionContext_wrong_value_type;
-  public static String ProductionContext_unknown_value;
+  public static String ProductionContext_wrong_type;
+  public static String ProductionContext_unknown_name;
+  public static String ProductionContext_unknown_key;
+  public static String ProductionContext_non_unique_name;
+  public static String ProductionContext_non_unique_key;
 
 }
