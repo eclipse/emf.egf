@@ -13,6 +13,7 @@
 package org.eclipse.egf.model.domain;
 
 import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.emf.ecore.EPackage;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,6 +24,7 @@ import org.eclipse.egf.model.fcore.Type;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.domain.DomainType#getDomain <em>Domain</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.DomainType#getEPackage <em>EPackage</em>}</li>
  * </ul>
  * </p>
  *
@@ -42,7 +44,7 @@ public interface DomainType extends Type<Domain> {
    * @return the value of the '<em>Domain</em>' reference.
    * @see #setDomain(Domain)
    * @see org.eclipse.egf.model.domain.DomainPackage#getDomainType_Domain()
-   * @model resolveProxies="false" required="true"
+   * @model resolveProxies="false"
    * @generated
    */
   Domain getDomain();
@@ -56,6 +58,32 @@ public interface DomainType extends Type<Domain> {
    * @generated
    */
   void setDomain(Domain value);
+
+  /**
+   * Returns the value of the '<em><b>EPackage</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>EPackage</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>EPackage</em>' reference.
+   * @see #isSetEPackage()
+   * @see org.eclipse.egf.model.domain.DomainPackage#getDomainType_EPackage()
+   * @model resolveProxies="false" unsettable="true" transient="true" changeable="false" volatile="true" derived="true"
+   * @generated
+   */
+  EPackage getEPackage();
+
+  /**
+   * Returns whether the value of the '{@link org.eclipse.egf.model.domain.DomainType#getEPackage <em>EPackage</em>}' reference is set.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return whether the value of the '<em>EPackage</em>' reference is set.
+   * @see #getEPackage()
+   * @generated
+   */
+  boolean isSetEPackage();
 
   /**
    * <!-- begin-user-doc -->

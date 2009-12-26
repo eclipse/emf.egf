@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.domain.impl.DomainImpl#getEpackage <em>Epackage</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.DomainImpl#getEPackage <em>EPackage</em>}</li>
  * </ul>
  * </p>
  *
@@ -45,14 +45,14 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getEpackage() <em>Epackage</em>}' reference.
+   * The cached value of the '{@link #getEPackage() <em>EPackage</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getEpackage()
+   * @see #getEPackage()
    * @generated
    * @ordered
    */
-  protected EPackage epackage;
+  protected EPackage ePackage;
 
   /**
    * <!-- begin-user-doc -->
@@ -78,16 +78,16 @@ public class DomainImpl extends ModelElementImpl implements Domain {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EPackage getEpackage() {
-    if (epackage != null && epackage.eIsProxy()) {
-      InternalEObject oldEpackage = (InternalEObject) epackage;
-      epackage = (EPackage) eResolveProxy(oldEpackage);
-      if (epackage != oldEpackage) {
+  public EPackage getEPackage() {
+    if (ePackage != null && ePackage.eIsProxy()) {
+      InternalEObject oldEPackage = (InternalEObject) ePackage;
+      ePackage = (EPackage) eResolveProxy(oldEPackage);
+      if (ePackage != oldEPackage) {
         if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, DomainPackage.DOMAIN__EPACKAGE, oldEpackage, epackage));
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, DomainPackage.DOMAIN__EPACKAGE, oldEPackage, ePackage));
       }
     }
-    return epackage;
+    return ePackage;
   }
 
   /**
@@ -95,8 +95,8 @@ public class DomainImpl extends ModelElementImpl implements Domain {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EPackage basicGetEpackage() {
-    return epackage;
+  public EPackage basicGetEPackage() {
+    return ePackage;
   }
 
   /**
@@ -104,11 +104,11 @@ public class DomainImpl extends ModelElementImpl implements Domain {
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setEpackage(EPackage newEpackage) {
-    EPackage oldEpackage = epackage;
-    epackage = newEpackage;
+  public void setEPackage(EPackage newEPackage) {
+    EPackage oldEPackage = ePackage;
+    ePackage = newEPackage;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.DOMAIN__EPACKAGE, oldEpackage, epackage));
+      eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.DOMAIN__EPACKAGE, oldEPackage, ePackage));
   }
 
   /**
@@ -121,8 +121,8 @@ public class DomainImpl extends ModelElementImpl implements Domain {
     switch (featureID) {
     case DomainPackage.DOMAIN__EPACKAGE:
       if (resolve)
-        return getEpackage();
-      return basicGetEpackage();
+        return getEPackage();
+      return basicGetEPackage();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -136,7 +136,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
     case DomainPackage.DOMAIN__EPACKAGE:
-      setEpackage((EPackage) newValue);
+      setEPackage((EPackage) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -151,7 +151,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   public void eUnset(int featureID) {
     switch (featureID) {
     case DomainPackage.DOMAIN__EPACKAGE:
-      setEpackage((EPackage) null);
+      setEPackage((EPackage) null);
       return;
     }
     super.eUnset(featureID);
@@ -166,7 +166,7 @@ public class DomainImpl extends ModelElementImpl implements Domain {
   public boolean eIsSet(int featureID) {
     switch (featureID) {
     case DomainPackage.DOMAIN__EPACKAGE:
-      return epackage != null;
+      return ePackage != null;
     }
     return super.eIsSet(featureID);
   }

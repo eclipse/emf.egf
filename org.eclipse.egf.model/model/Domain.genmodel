@@ -21,12 +21,13 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Domain.ecore#//DomainViewpoint/domains"/>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//Domain">
-      <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Domain.ecore#//Domain/epackage"/>
+      <genFeatures createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Domain.ecore#//Domain/ePackage"/>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//DomainType">
       <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
           ecoreFeature="ecore:EReference Domain.ecore#//DomainType/domain"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Value"
+          ecoreFeature="ecore:EReference Domain.ecore#//DomainType/ePackage"/>
       <genOperations ecoreOperation="Domain.ecore#//DomainType/getType"/>
     </genClasses>
   </genPackages>

@@ -22,6 +22,8 @@ import org.eclipse.egf.model.fcore.provider.ModelElementItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -35,6 +37,7 @@ import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.Domain} object.
@@ -64,7 +67,7 @@ public class DomainItemProvider extends ModelElementItemProvider implements IEdi
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addEpackagePropertyDescriptor(object);
+      addEPackagePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -73,13 +76,28 @@ public class DomainItemProvider extends ModelElementItemProvider implements IEdi
    * This adds a property descriptor for the Epackage feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
-  protected void addEpackagePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Domain_epackage_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_Domain_epackage_feature", "_UI_Domain_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+  protected void addEPackagePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Domain_ePackage_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_Domain_ePackage_feature", "_UI_Domain_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         DomainPackage.Literals.DOMAIN__EPACKAGE, true, false, true, null, getString("_UI_ValuePropertyCategory"), //$NON-NLS-1$
-        null));
+        null) {
+      @Override
+      public Collection<EPackage> getChoiceOfValues(Object innerObject) {
+        Collection<EPackage> result = new UniqueEList<EPackage>();
+        for (Object ePackage : EPackage.Registry.INSTANCE.values()) {
+          if (ePackage instanceof EPackage) {
+            result.add((EPackage) ePackage);
+          }
+        }
+        if (result.contains(null) == false) {
+          result.add(null);
+        }
+        return result;
+      }
+    });
   }
 
   /**
@@ -97,13 +115,30 @@ public class DomainItemProvider extends ModelElementItemProvider implements IEdi
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((Domain) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_Domain_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_Domain_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    Domain domain = (Domain) object;
+    String label = domain.getName();
+    String nsuri = null;
+    if (domain.getEPackage() != null) {
+      nsuri = "[" + domain.getEPackage().getNsURI() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+    }
+    if (label == null || label.length() == 0) {
+      label = "[" + getString("_UI_Domain_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      if (nsuri != null) {
+        label = nsuri + " " + label; //$NON-NLS-1$
+      }
+    } else {
+      if (nsuri != null) {
+        label = label + " " + nsuri + " [" + getString("_UI_Domain_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+      } else {
+        label = label + " [" + getString("_UI_Domain_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      }
+    }
+    return label;
   }
 
   /**

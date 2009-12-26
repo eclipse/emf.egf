@@ -17,16 +17,11 @@ import java.util.List;
 
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainType;
-
 import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-
 import org.eclipse.egf.model.fcore.provider.TypeItemProvider;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -70,6 +65,7 @@ public class DomainTypeItemProvider extends TypeItemProvider implements IEditing
       super.getPropertyDescriptors(object);
 
       addDomainPropertyDescriptor(object);
+      addEPackagePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -88,6 +84,19 @@ public class DomainTypeItemProvider extends TypeItemProvider implements IEditing
   }
 
   /**
+   * This adds a property descriptor for the EPackage feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void addEPackagePropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainType_ePackage_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_DomainType_ePackage_feature", "_UI_DomainType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        DomainPackage.Literals.DOMAIN_TYPE__EPACKAGE, false, false, false, null, getString("_UI_ValuePropertyCategory"), //$NON-NLS-1$
+        null));
+  }
+
+  /**
    * This returns DomainType.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -102,13 +111,30 @@ public class DomainTypeItemProvider extends TypeItemProvider implements IEditing
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((DomainType) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_DomainType_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_DomainType_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    DomainType domainType = (DomainType) object;
+    String label = domainType.getName();
+    String nsuri = null;
+    if (domainType.getEPackage() != null) {
+      nsuri = "[" + domainType.getEPackage().getNsURI() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+    }
+    if (label == null || label.length() == 0) {
+      label = "[" + getString("_UI_DomainType_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      if (nsuri != null) {
+        label = nsuri + " " + label; //$NON-NLS-1$
+      }
+    } else {
+      if (nsuri != null) {
+        label = label + " " + nsuri + " [" + getString("_UI_DomainType_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+      } else {
+        label = label + " [" + getString("_UI_DomainType_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      }
+    }
+    return label;
   }
 
   /**
@@ -124,6 +150,7 @@ public class DomainTypeItemProvider extends TypeItemProvider implements IEditing
 
     switch (notification.getFeatureID(DomainType.class)) {
     case DomainPackage.DOMAIN_TYPE__DOMAIN:
+    case DomainPackage.DOMAIN_TYPE__EPACKAGE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }

@@ -8,7 +8,10 @@
         eType="#//Domain" containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Domain" eSuperTypes="Fcore.ecore#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="epackage" lowerBound="1"
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="ValidPackage"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ePackage" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DomainType">
@@ -20,8 +23,11 @@
         <eTypeArguments eClassifier="#//Domain"/>
       </eGenericType>
     </eOperations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="domain" lowerBound="1"
-        eType="#//Domain" resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="domain" eType="#//Domain"
+        resolveProxies="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ePackage" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
+        changeable="false" volatile="true" transient="true" unsettable="true" derived="true"
+        resolveProxies="false"/>
     <eGenericSuperTypes eClassifier="ecore:EClass Fcore.ecore#//Type">
       <eTypeArguments eClassifier="#//Domain"/>
     </eGenericSuperTypes>

@@ -18,7 +18,9 @@ import org.eclipse.egf.model.domain.DomainType;
 import org.eclipse.egf.model.fcore.impl.TypeImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.model.domain.adapter.DomainTypeAdapter;
 
 /**
  * <!-- begin-user-doc -->
@@ -28,6 +30,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.domain.impl.DomainTypeImpl#getDomain <em>Domain</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.DomainTypeImpl#getEPackage <em>EPackage</em>}</li>
  * </ul>
  * </p>
  *
@@ -56,10 +59,12 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   protected DomainTypeImpl() {
     super();
+    new DomainTypeAdapter(this);
   }
 
   /**
@@ -96,8 +101,35 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EPackage getEPackage() {
+    if (getDomain() != null) {
+      return getDomain().getEPackage();
+    }
+    return null;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean isSetEPackage() {
+    if (getDomain() != null) {
+      return getDomain().getEPackage() != null;
+    }
+    return false;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
+  @Override
   public Class<Domain> getType() {
     return org.eclipse.egf.model.domain.Domain.class;
   }
@@ -112,6 +144,8 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
     switch (featureID) {
     case DomainPackage.DOMAIN_TYPE__DOMAIN:
       return getDomain();
+    case DomainPackage.DOMAIN_TYPE__EPACKAGE:
+      return getEPackage();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -156,6 +190,8 @@ public class DomainTypeImpl extends TypeImpl<Domain> implements DomainType {
     switch (featureID) {
     case DomainPackage.DOMAIN_TYPE__DOMAIN:
       return domain != null;
+    case DomainPackage.DOMAIN_TYPE__EPACKAGE:
+      return isSetEPackage();
     }
     return super.eIsSet(featureID);
   }

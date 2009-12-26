@@ -17,12 +17,14 @@ import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainType;
 import org.eclipse.egf.model.domain.DomainViewpoint;
+import org.eclipse.egf.model.domain.util.DomainValidator;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
@@ -111,6 +113,13 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     // Initialize created meta-data
     theDomainPackage.initializePackageContents();
 
+    // Register package validator
+    EValidator.Registry.INSTANCE.put(theDomainPackage, new EValidator.Descriptor() {
+      public EValidator getEValidator() {
+        return DomainValidator.INSTANCE;
+      }
+    });
+
     // Mark meta-data to indicate it can't be changed
     theDomainPackage.freeze();
 
@@ -151,7 +160,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getDomain_Epackage() {
+  public EReference getDomain_EPackage() {
     return (EReference) domainEClass.getEStructuralFeatures().get(0);
   }
 
@@ -171,6 +180,15 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
    */
   public EReference getDomainType_Domain() {
     return (EReference) domainTypeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getDomainType_EPackage() {
+    return (EReference) domainTypeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -210,6 +228,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
 
     domainTypeEClass = createEClass(DOMAIN_TYPE);
     createEReference(domainTypeEClass, DOMAIN_TYPE__DOMAIN);
+    createEReference(domainTypeEClass, DOMAIN_TYPE__EPACKAGE);
   }
 
   /**
@@ -257,10 +276,11 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     initEReference(getDomainViewpoint_Domains(), this.getDomain(), null, "domains", null, 0, -1, DomainViewpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(domainEClass, Domain.class, "Domain", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getDomain_Epackage(), theEcorePackage.getEPackage(), null, "epackage", null, 1, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getDomain_EPackage(), theEcorePackage.getEPackage(), null, "ePackage", null, 1, 1, Domain.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(domainTypeEClass, DomainType.class, "DomainType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getDomainType_Domain(), this.getDomain(), null, "domain", null, 1, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getDomainType_Domain(), this.getDomain(), null, "domain", null, 0, 1, DomainType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getDomainType_EPackage(), theEcorePackage.getEPackage(), null, "ePackage", null, 0, 1, DomainType.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     EOperation op = addEOperation(domainTypeEClass, null, "getType", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
     g1 = createEGenericType(theEcorePackage.getEJavaClass());
@@ -270,6 +290,22 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
 
     // Create resource
     createResource(eNS_URI);
+
+    // Create annotations
+    // http://www.eclipse.org/emf/2002/Ecore
+    createEcoreAnnotations();
+  }
+
+  /**
+   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void createEcoreAnnotations() {
+    String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
+    addAnnotation(domainEClass, source, new String[] { "constraints", "ValidPackage" //$NON-NLS-1$ //$NON-NLS-2$
+    });
   }
 
 } // DomainPackageImpl
