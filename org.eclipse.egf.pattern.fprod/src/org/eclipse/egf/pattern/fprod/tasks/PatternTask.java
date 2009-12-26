@@ -17,7 +17,7 @@ public class PatternTask extends AbstractPatternTask {
     private Pattern pattern;
 
     public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
-        String patternId = context.getInputValue("patternId", String.class); //$NON-NLS-1$
+        String patternId = context.getInputValue(PatternContext.PATTERN_ID, String.class); //$NON-NLS-1$
         pattern = PatternHelper.getPattern(patternId);
         if (pattern == null)
             throw new InvocationException(Messages.bind(Messages.Missing_pattern_error1, patternId));
