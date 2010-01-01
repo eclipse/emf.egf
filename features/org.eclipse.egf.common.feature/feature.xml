@@ -38,6 +38,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.jdt" version="3.5.1.r351_v20090810-0600-7r88FEoFI0WTo6Az-1qFRHm37ChJ" match="compatible"/>      
       <import feature="org.eclipse.pde" version="3.5.1.R35x_v20090811-7Z7_F9zFDX-aT6Ywvh8_S93" match="compatible"/>      
       <import feature="org.eclipse.emf.common.ui" version="2.5.0.v200906151043" match="compatible"/>            
+      <import feature="org.eclipse.emf.codegen" version="2.5.0.v200906151043" match="compatible"/>      
       <import feature="org.eclipse.emf.edit" version="2.5.0.v200906151043" match="compatible"/>      
       <import feature="org.eclipse.emf.edit.ui" version="2.5.0.v200906151043" match="compatible"/>      
    </requires>
