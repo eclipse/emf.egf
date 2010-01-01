@@ -24,12 +24,12 @@
       <type xmi:type="types:TypeList" xmi:id="_js_lQNXAEd6mBObdoXlr9g"/>
     </activityContracts>
     <activityContracts xmi:id="_LCgnUNgXEd6eJbYEYJAYWw" name="fcore" invocationContexts="#_Pnj8UNqHEd6xR_hM8cx7GA">
-      <type xmi:type="domain:DomainEPackageType" xmi:id="_L9heENgXEd6eJbYEYJAYWw"
-          name="fcore" value="#_IlmgAdgXEd6eJbYEYJAYWw"/>
+      <type xmi:type="domain:DomainEPackageType" xmi:id="_U3jScdqLEd6V9pdModnIUQ"
+          name="fcore" domain="#_IlmgAdgXEd6eJbYEYJAYWw"/>
     </activityContracts>
     <activityContracts xmi:id="_zb0TwNgfEd6na6OAqTVobQ" name="fc1" invocationContexts="#_WXZRYNqHEd6xR_hM8cx7GA">
       <type xmi:type="domain:DomainURIType" xmi:id="_HB5igdggEd6uy82Dcq20PA" name="fc1"
-          value="#_J1bPgdgfEd6na6OAqTVobQ"/>
+          domain="#_J1bPgdgfEd6na6OAqTVobQ"/>
     </activityContracts>
   </activityContractContainer>
   <viewpointContainer xmi:id="_iBhWMdgWEd6Q4-VfEsR1iA">
