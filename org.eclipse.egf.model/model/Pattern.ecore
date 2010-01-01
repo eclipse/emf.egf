@@ -12,6 +12,7 @@
     </eOperations>
     <eOperations name="getAllParameters" upperBound="-1" eType="#//PatternParameter"/>
     <eOperations name="getAllVariables" upperBound="-1" eType="#//PatternVariable"/>
+    <eOperations name="getAllMethods" upperBound="-1" eType="#//PatternMethod"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="headerMethod" lowerBound="1"
         eType="#//PatternMethod" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"

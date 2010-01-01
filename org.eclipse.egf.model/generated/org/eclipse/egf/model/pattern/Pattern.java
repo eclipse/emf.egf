@@ -261,4 +261,12 @@ public interface Pattern extends PatternElement {
      */
     EList<PatternVariable> getAllVariables();
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model kind="operation"
+     * @generated
+     */
+    EList<PatternMethod> getAllMethods();
+
 } // Pattern
