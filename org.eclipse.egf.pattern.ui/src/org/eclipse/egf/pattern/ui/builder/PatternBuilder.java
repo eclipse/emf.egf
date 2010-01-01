@@ -35,8 +35,6 @@ import org.eclipse.egf.pattern.PatternConstants;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.engine.TranslationHelper;
 import org.eclipse.egf.pattern.engine.PatternHelper.FilenameFormatException;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
 
 /**
  * Performs pattern translation each time a pt file is changed.
@@ -64,7 +62,8 @@ public class PatternBuilder extends IncrementalProjectBuilder {
 
         checkCancellation(monitor);
 
-        Set<Pattern> patterns = PatternHelper.getPatterns(getProject(), patternIds);
+        PatternHelper helper = PatternHelper.createCollector();
+        Set<Pattern> patterns = helper.getPatterns(getProject(), patternIds);
         if (patternIds != null && patterns.size() != patternIds.size())
             Activator.getDefault().logWarning(Messages.PatternBuilding_warning);
         try {
@@ -73,12 +72,8 @@ public class PatternBuilder extends IncrementalProjectBuilder {
             // log the error instead of throwing a CoreException
             Activator.getDefault().logError(Messages.PatternBuilding_Failed, e);
         } finally {
-            if (!patterns.isEmpty()) {
-                ResourceSet set = patterns.iterator().next().eResource().getResourceSet();
-                for (Resource res : set.getResources())
-                    res.unload();
-                patterns.clear();
-            }
+            helper.clear();
+            patterns.clear();
         }
         return null;
     }

@@ -467,8 +467,10 @@ public class SpecificationPage extends PatternEditorPage {
         GridData gd = new GridData();
         gd.widthHint = 65;
 
-        add = toolkit.createButton(buttons, Messages.SpecificationPage_button_add, SWT.PUSH);
+        add = toolkit.createButton(buttons, "", SWT.PUSH);
         add.setLayoutData(gd);
+        add.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
+        add.setToolTipText(Messages.SpecificationPage_button_add);
         add.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -479,9 +481,11 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        edit = toolkit.createButton(buttons, Messages.SpecificationPage_button_edit, SWT.PUSH);
+        edit = toolkit.createButton(buttons, "", SWT.PUSH);
         edit.setLayoutData(gd);
         edit.setEnabled(false);
+        edit.setImage(ImageShop.get(ImageShop.IMG_EDIT_OBJ));
+        edit.setToolTipText(Messages.SpecificationPage_button_edit);
         edit.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -507,9 +511,11 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        remove = toolkit.createButton(buttons, Messages.SpecificationPage_button_remove, SWT.PUSH);
+        remove = toolkit.createButton(buttons, "", SWT.PUSH);
         remove.setLayoutData(gd);
         remove.setEnabled(false);
+        remove.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+        remove.setToolTipText(Messages.SpecificationPage_button_remove);
         remove.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -520,9 +526,11 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        up = toolkit.createButton(buttons, Messages.SpecificationPage_button_up, SWT.PUSH);
+        up = toolkit.createButton(buttons, "", SWT.PUSH);
         up.setLayoutData(gd);
         up.setEnabled(false);
+        up.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
+        up.setToolTipText(Messages.SpecificationPage_button_up);
         up.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -533,9 +541,11 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        down = toolkit.createButton(buttons, Messages.SpecificationPage_button_down, SWT.PUSH);
+        down = toolkit.createButton(buttons, "", SWT.PUSH);
         down.setLayoutData(gd);
         down.setEnabled(false);
+        down.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
+        down.setToolTipText(Messages.SpecificationPage_button_down);
         down.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {

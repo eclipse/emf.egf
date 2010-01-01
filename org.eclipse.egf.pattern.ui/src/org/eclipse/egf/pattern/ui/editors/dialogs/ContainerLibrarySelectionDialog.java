@@ -146,7 +146,7 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
      */
     private List<PatternLibrary> getContainerLibraryList() {
         containerLibrarys = new ArrayList<PatternLibrary>();
-        Set<PatternLibrary> allLibrarys = PatternHelper.getAllLibraries();
+        Set<PatternLibrary> allLibrarys = PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllLibraries();
         for (PatternLibrary library : allLibrarys) {
             containerLibrarys.add(library);
         }

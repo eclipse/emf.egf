@@ -27,6 +27,7 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.ObjectUndoContext;
 import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.PatternConstants;
 import org.eclipse.egf.pattern.ui.Activator;
@@ -38,6 +39,8 @@ import org.eclipse.egf.pattern.ui.editors.pages.ImplementationPage;
 import org.eclipse.egf.pattern.ui.editors.pages.OverviewPage;
 import org.eclipse.egf.pattern.ui.editors.pages.PatternEditorPage;
 import org.eclipse.egf.pattern.ui.editors.pages.SpecificationPage;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -81,6 +84,16 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
     };
     private final List<PatternEditorPage> pages = new ArrayList<PatternEditorPage>();
 
+    // The adapter is for refreshing the editor title while the name of pattern
+    // has been changed.
+    AdapterImpl refresher = new AdapterImpl() {
+        public void notifyChanged(Notification msg) {
+            if (FcorePackage.Literals.MODEL_ELEMENT__NAME.equals(msg.getFeature())) {
+                setPartName((String) msg.getNewValue());
+            }
+        }
+    };
+
     public PatternEditor() {
         initializeEditingDomain();
     }
@@ -122,6 +135,28 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
         super.init(site, editorInput);
         ResourceLoadedListener.RESOURCE_MANAGER.addObserver(this);
+        addPatternChangeAdapter();
+    }
+
+    /**
+     * While the name of the pattern has been changed, refresh the editor title.
+     */
+    private void addPatternChangeAdapter() {
+        Pattern pattern = getPattern();
+        if (pattern != null) {
+            pattern.eAdapters().add(refresher);
+            setPartName(pattern.getName());
+        }
+    }
+
+    /**
+     * Remove the Adapter add for refreshing the editor title
+     */
+    private void removePatternChangeAdapter() {
+        Pattern pattern = getPattern();
+        if (pattern != null && pattern.eAdapters().contains(refresher)) {
+            pattern.eAdapters().remove(refresher);
+        }
     }
 
     @Override
@@ -140,6 +175,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
     public boolean isDirty() {
         // We track the last operation executed before save was
         // performed
+        // setPartName(getPattern().getName());
         IUndoableOperation op = getOperationHistory().getUndoOperation(undoContext);
         return op != savedOperation;
     }
@@ -182,6 +218,8 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         // getResource().unload();
         // editingDomain.getResourceSet().getResources().remove(getResource());
         ResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
+
+        removePatternChangeAdapter();
 
         super.dispose();
     }

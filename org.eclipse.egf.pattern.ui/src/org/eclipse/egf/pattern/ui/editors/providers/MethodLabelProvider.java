@@ -36,11 +36,11 @@ public class MethodLabelProvider implements ITableLabelProvider {
     }
 
     public Image getColumnImage(Object element, int columnIndex) {
-
         if (element instanceof PatternMethod)
             if (isOverride(element))
-                return ImageShop.get(ImageShop.IMG_INNERCLASS_DEFAULT_OBJ);
-        return null;
+                return ImageShop.get(ImageShop.IMG_METHOD_OVERRIDE);
+
+        return ImageShop.get(ImageShop.IMG_METHOD);
     }
 
     private boolean isOverride(Object element) {

@@ -37,8 +37,8 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -158,7 +158,7 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
 
     private List<Pattern> getPatternsList() {
         patternList = new ArrayList<Pattern>();
-        Set<Pattern> patterns = PatternHelper.getAllPatterns();
+        Set<Pattern> patterns = PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllPatterns();
         for (Pattern pattern : patterns) {
             patternList.add(pattern);
         }

@@ -34,8 +34,6 @@ public class ChooseKindPage extends WizardPage {
 
     private CallTypeEnum selectedKind;
 
-    private CallTypeEnum defaultKind = CallTypeEnum.Add;
-
     private Button methodCall;
 
     private Button patternCall;
@@ -46,11 +44,10 @@ public class ChooseKindPage extends WizardPage {
 
     private Label label;
 
-    public ChooseKindPage(ISelection selection, CallTypeEnum defaultKind) {
+    public ChooseKindPage(ISelection selection) {
         super(Messages.ChooseKindPage_title);
         setTitle(Messages.ChooseKindPage_title);
         setDescription(Messages.ChooseKindPage_description);
-        this.defaultKind = defaultKind;
     }
 
     public void createControl(Composite parent) {
@@ -63,6 +60,8 @@ public class ChooseKindPage extends WizardPage {
 
         methodCall = new Button(container, SWT.RADIO);
         methodCall.setText(Messages.ChooseKindPage_radio_methodCall);
+        selectedKind = CallTypeEnum.METHOD_CALL;
+        methodCall.setSelection(true);
         methodCall.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -109,37 +108,7 @@ public class ChooseKindPage extends WizardPage {
             }
         });
 
-        setDefaultSelection();
-
         setControl(container);
-    }
-
-    /**
-     * If to edit the call, get the default selection of kind of call.
-     */
-    private void setDefaultSelection() {
-        if (defaultKind != CallTypeEnum.Add) {
-            label.setEnabled(false);
-            methodCall.setEnabled(false);
-            patternCall.setEnabled(false);
-            patternInjectedCall.setEnabled(false);
-            superPatternCall.setEnabled(false);
-            selectedKind = defaultKind;
-            switch (selectedKind) {
-            case METHOD_CALL:
-                methodCall.setSelection(true);
-                break;
-            case PATTERN_CALL:
-                patternCall.setSelection(true);
-                break;
-            case PATTERNINJECTED_CALL:
-                patternInjectedCall.setSelection(true);
-                break;
-            case SUPERPATTERN_CALL:
-                superPatternCall.setSelection(true);
-                break;
-            }
-        }
     }
 
     public CallTypeEnum getKind() {

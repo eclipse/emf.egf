@@ -62,8 +62,10 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
     public void addPages() {
         // Set the window's title label
         setWindowTitle("Orchestration");
-        chooseKindPage = new ChooseKindPage(selection, defaultKind);
-        addPage(chooseKindPage);
+        if (defaultKind.equals(CallTypeEnum.Add)) {
+            chooseKindPage = new ChooseKindPage(selection);
+            addPage(chooseKindPage);
+        }
         chooseCallPage = new ChooseCallPage(pattern, selection, eidtItem);
         addPage(chooseCallPage);
     }
@@ -93,5 +95,9 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
      */
     public Call getSelectCall() {
         return selectCall;
+    }
+    
+    public CallTypeEnum getDefaultKind(){
+        return defaultKind;
     }
 }

@@ -92,13 +92,21 @@ public class MethodAddOrEditDialog extends SelectionStatusDialog {
                 updateStatus(fLastStatusOk);
             }
         });
+
+        checkRenameEnable();
+
         return dialogArea;
+    }
+
+    private void checkRenameEnable() {
+        if ("header".equals(oldName) || "init".equals(oldName) || "footer".equals(oldName)) {
+            combo.setEnabled(false);
+        }
     }
 
     @Override
     protected void computeResult() {
         // TODO Auto-generated method stub
-
     }
 
     public String getName() {

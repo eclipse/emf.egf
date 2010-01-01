@@ -29,11 +29,12 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.SuperPatternCall;
 import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.dialogs.PatternElementSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
-import org.eclipse.egf.pattern.ui.editors.providers.MethodCallLabelProviders;
+import org.eclipse.egf.pattern.ui.editors.providers.MethodLabelProvider;
+import org.eclipse.egf.pattern.ui.editors.providers.PatternSelectionLabelProvider;
+import org.eclipse.egf.pattern.ui.editors.wizards.OrchestrationWizard;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -71,8 +72,6 @@ public class ChooseCallPage extends WizardPage {
 
     private TableViewer childTableViewer;
 
-    private List<?> childTableInput;
-
     private Call selectCall;
 
     private Label title;
@@ -83,9 +82,6 @@ public class ChooseCallPage extends WizardPage {
 
     private Object eidtItem;
 
-    // Record the table item's index which should set up a decoration.
-    private List<Integer> docoIndex;
-
     public ChooseCallPage(Pattern pattern, ISelection selection, Object eidtItem) {
         super(Messages.ChooseCallPage_title);
         setTitle(Messages.ChooseCallPage_title);
@@ -95,11 +91,11 @@ public class ChooseCallPage extends WizardPage {
     }
 
     public void createControl(Composite parent) {
-        createMethodCall(parent);
+        createCallControl(parent);
         setPageComplete(false);
     }
 
-    private void createMethodCall(Composite parent) {
+    private void createCallControl(Composite parent) {
         Composite container = new Composite(parent, SWT.NONE);
         GridLayout layout = new GridLayout();
         container.setLayout(layout);
@@ -108,12 +104,12 @@ public class ChooseCallPage extends WizardPage {
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         title.setLayoutData(gd);
 
-        createListArea(container);
-        createVarParaArea(container);
+        createPatternsMethodsArea(container);
+        createVariablesArea(container);
         setControl(container);
     }
 
-    private void createListArea(Composite container) {
+    private void createPatternsMethodsArea(Composite container) {
         text = new Text(container, SWT.BORDER);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.widthHint = 550;
@@ -124,7 +120,6 @@ public class ChooseCallPage extends WizardPage {
                 if (selectKind != CallTypeEnum.SUPERPATTERN_CALL) {
                     checkListAreaExist(text.getText());
                 }
-                childTableViewer.setInput(null);
             }
         });
         Label label = new Label(container, SWT.NONE);
@@ -132,22 +127,22 @@ public class ChooseCallPage extends WizardPage {
 
         Table listTable = new Table(container, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
         gd = new GridData(GridData.FILL_BOTH);
+        gd.heightHint = 60;
         listTable.setLayoutData(gd);
 
         TableColumn tableColumn = new TableColumn(listTable, SWT.NONE);
         tableColumn.setWidth(500);
         parentTableViewer = new TableViewer(listTable);
-        parentTableViewer.setLabelProvider(new MethodCallLabelProviders());
         parentTableViewer.setContentProvider(new CommonListContentProvider());
         parentTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
+                checkParentTableSelect();
                 if (selectKind == CallTypeEnum.PATTERNINJECTED_CALL) {
-                    getChildTableInput();
-                } else {
-                    setPageComplete(true);
+                    if (isPageComplete()) {
+                        checkChildTableSelect();
+                    }
                 }
-                getSelectionContent();
             }
         });
 
@@ -159,42 +154,37 @@ public class ChooseCallPage extends WizardPage {
                     getWizard().performFinish();
                     WizardDialog wizardDialog = (WizardDialog) (getWizard().getContainer());
                     wizardDialog.close();
+                } else {
+                    checkChildTableSelect();
+                    PatterninjectedCallDoubleClick();
                 }
             }
         });
     }
 
-    protected void getChildTableInput() {
-        int index = parentTableViewer.getTable().getSelectionIndex();
-        if (index >= 0) {
-            Object selectItem = parentTableViewer.getElementAt(index);
-            if (selectItem instanceof Pattern) {
-                childTableInput = getVariables((Pattern) selectItem);
-                childTableViewer.setInput(childTableInput);
-            }
-        }
-    }
-
-    private void createVarParaArea(Composite container) {
+    private void createVariablesArea(Composite container) {
         varParaLabel = new Label(container, SWT.NONE);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         varParaLabel.setLayoutData(gd);
+        varParaLabel.setText(Messages.ChooseCallPage_patternInjectCall_title);
 
         Table listTable = new Table(container, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
         gd = new GridData(GridData.FILL_BOTH);
+        gd.heightHint = 60;
         listTable.setLayoutData(gd);
 
         TableColumn tableColumn = new TableColumn(listTable, SWT.NONE);
         tableColumn.setWidth(500);
         childTableViewer = new TableViewer(listTable);
-
-        childTableViewer.setLabelProvider(new MethodCallLabelProviders());
+        childTableViewer.setLabelProvider(new PatternSelectionLabelProvider());
         childTableViewer.setContentProvider(new CommonListContentProvider());
         childTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
-                setPageComplete(true);
-                getSelectionContent();
+                checkChildTableSelect();
+                if (isPageComplete()) {
+                    checkParentTableSelect();
+                }
             }
         });
 
@@ -202,13 +192,24 @@ public class ChooseCallPage extends WizardPage {
 
             public void doubleClick(DoubleClickEvent event) {
                 if (selectKind == CallTypeEnum.PATTERNINJECTED_CALL) {
-                    getSelectionContent();
-                    getWizard().performFinish();
-                    WizardDialog wizardDialog = (WizardDialog) (getWizard().getContainer());
-                    wizardDialog.close();
+                    checkParentTableSelect();
+                    PatterninjectedCallDoubleClick();
                 }
             }
         });
+    }
+
+    /**
+     * Get the double click information while the call type is
+     * PATTERNINJECTED_CALL.
+     */
+    private void PatterninjectedCallDoubleClick() {
+        if (isPageComplete()) {
+            getSelectionContent();
+            getWizard().performFinish();
+            WizardDialog wizardDialog = (WizardDialog) (getWizard().getContainer());
+            wizardDialog.close();
+        }
     }
 
     /**
@@ -250,7 +251,7 @@ public class ChooseCallPage extends WizardPage {
                     parentTableViewer.getTable().select(i);
                     setTextValue(called);
                     if (selectKind == CallTypeEnum.METHOD_CALL || selectKind == CallTypeEnum.PATTERN_CALL) {
-                        setPageComplete(true);
+                        checkParentTableSelect();
                         return;
                     } else if (selectKind == CallTypeEnum.PATTERNINJECTED_CALL) {
                         setChildTableSelectValue(called, context);
@@ -278,17 +279,13 @@ public class ChooseCallPage extends WizardPage {
      * Select the default context in child table if has been found.
      */
     private void setChildTableSelectValue(Object called, Object context) {
-        if (called instanceof Pattern) {
-            List<PatternVariable> variables = getVariables((Pattern) called);
-            childTableViewer.setInput(variables);
-        }
         if (context != null) {
             TableItem[] childItems = childTableViewer.getTable().getItems();
             for (int i = 0; i < childItems.length; i++) {
                 Object currentData = childItems[i].getData();
                 if (currentData.equals(context)) {
                     childTableViewer.getTable().select(i);
-                    setPageComplete(true);
+                    checkChildTableSelect();
                     return;
                 }
             }
@@ -300,7 +297,11 @@ public class ChooseCallPage extends WizardPage {
      */
     public void setVisible(boolean visible) {
         if (visible) {
-            selectKind = ((ChooseKindPage) getPreviousPage()).getKind();
+            if (getPreviousPage() != null) {
+                selectKind = ((ChooseKindPage) getPreviousPage()).getKind();
+            } else {
+                selectKind = ((OrchestrationWizard) getWizard()).getDefaultKind();
+            }
             updateTable(selectKind);
         }
         super.setVisible(visible);
@@ -313,87 +314,131 @@ public class ChooseCallPage extends WizardPage {
     private void updateTable(CallTypeEnum kind) {
         if (kind == CallTypeEnum.METHOD_CALL) {
             if (kind != oldKind) {
+                parentTableViewer.setLabelProvider(new MethodLabelProvider(getParentMethods()));
                 updateTableInput(getMethods(), null, true, false);
-                setDecoration();
             }
             title.setText(Messages.ChooseCallPage_methodCall_title);
-            varParaLabel.setText(""); //$NON-NLS-1$
-        } else if (kind == CallTypeEnum.PATTERN_CALL) {
+        } else {
+            parentTableViewer.setLabelProvider(new PatternSelectionLabelProvider());
+        }
+
+        if (kind == CallTypeEnum.PATTERN_CALL) {
             if (kind != oldKind) {
                 updateTableInput(getPatterns(), null, true, false);
             }
             title.setText(Messages.ChooseCallPage_patternCall_title);
-            varParaLabel.setText(""); //$NON-NLS-1$
-        } else if (kind == CallTypeEnum.PATTERNINJECTED_CALL) {
+        }
+
+        if (kind == CallTypeEnum.PATTERNINJECTED_CALL) {
             if (kind != oldKind) {
-                updateTableInput(getPatterns(), null, true, true);
+                updateTableInput(getPatterns(), getVariables(pattern), true, true);
             }
             title.setText(Messages.ChooseCallPage_patternCall_title);
-            varParaLabel.setText(Messages.ChooseCallPage_patternInjectCall_title);
-        } else if (kind == CallTypeEnum.SUPERPATTERN_CALL) {
+        }
+
+        if (kind == CallTypeEnum.SUPERPATTERN_CALL) {
             updateTableInput(null, null, false, false);
             if (kind != oldKind) {
                 title.setText(Messages.ChooseCallPage_superPatternCall_title);
-                varParaLabel.setText(""); //$NON-NLS-1$
             }
         }
         oldKind = kind;
     }
 
+    private void redrawControl(boolean exclude) {
+        Table table = childTableViewer.getTable();
+        GridData tableLayoutData = (GridData) table.getLayoutData();
+        tableLayoutData.exclude = exclude;
+        table.getParent().layout();
+
+        GridData labelLayoutData = (GridData) varParaLabel.getLayoutData();
+        labelLayoutData.exclude = exclude;
+        varParaLabel.getParent().layout();
+    }
+
+    /**
+     * Get the pattern's parent methods.
+     */
+    private List<String> getParentMethods() {
+        List<String> parentMethods = new ArrayList<String>();
+        Pattern parent = pattern == null ? null : pattern.getSuperPattern();
+        if (parent != null) {
+            for (PatternMethod patternMethod : parent.getMethods()) {
+                String name = patternMethod.getName();
+                parentMethods.add(name);
+            }
+        }
+        return parentMethods;
+    }
+
+    /**
+     * While change the call type,update the table input.
+     */
     private void updateTableInput(List<?> parentTableInput, List<?> childTableInput, boolean parentTableEnable, boolean childTableEnable) {
         parentTableViewer.setInput(null);
         parentTableViewer.setInput(parentTableInput);
-        if (selectKind != CallTypeEnum.PATTERNINJECTED_CALL) {
-            childTableViewer.setInput(childTableInput);
-        }
+        childTableViewer.setInput(childTableInput);
         parentTableViewer.getTable().setEnabled(parentTableEnable);
         childTableViewer.getTable().setEnabled(childTableEnable);
+        redrawControl(!childTableEnable);
         text.setText(""); //$NON-NLS-1$
-        setPageComplete(false);
+        if (selectKind == CallTypeEnum.PATTERNINJECTED_CALL) {
+            checkChildTableSelect();
+        }
+        checkParentTableSelect();
     }
 
-    private void setDecoration() {
-        if (docoIndex != null) {
-            for (int i = 0; i < docoIndex.size(); i++) {
-                parentTableViewer.getTable().getItem(docoIndex.get(i)).setImage(ImageShop.get(ImageShop.IMG_OVER_OBJ));
-            }
+    private void checkParentTableSelect() {
+        int selectionIndex = parentTableViewer.getTable().getSelectionIndex();
+        if (selectionIndex == -1) {
+            String errorMessage = Messages.ChooseCallPage_no_call_selected_error_message;
+            updateMessage(errorMessage);
+        } else {
+            updateMessage(null);
+        }
+    }
+
+    private void checkChildTableSelect() {
+        int selectionIndex = childTableViewer.getTable().getSelectionIndex();
+        if (selectionIndex == -1) {
+            String errorMessage = Messages.ChooseCallPage_no_variable_selected_error_message;
+            updateMessage(errorMessage);
+        } else {
+            updateMessage(null);
+        }
+    }
+
+    private void updateMessage(String message) {
+        setMessage(message, 3);
+        if ("".equals(message) || message == null) { //$NON-NLS-1$
+            getSelectionContent();
+            setPageComplete(true);
+        } else {
+            setPageComplete(false);
         }
     }
 
     private List<PatternMethod> getMethods() {
         List<PatternMethod> parentMethods = new ArrayList<PatternMethod>();
-        docoIndex = new ArrayList<Integer>();
-        int index = 0;
         for (PatternMethod method : pattern.getMethods()) {
-            parentMethods.add(method);
-            index++;
-        }
-        Pattern parent = pattern.getSuperPattern();
-        if (parent != null) {
-            for (PatternMethod parentMethod : parent.getMethods()) {
-                parentMethods.add(parentMethod);
-                docoIndex.add(index);
-                index++;
+            String name = method.getName();
+            if (!(Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name))) {
+                parentMethods.add(method);
             }
         }
         return parentMethods;
     }
 
     private List<Pattern> getPatterns() {
-        Set<Pattern> patterns = PatternHelper.getAllPatterns();
+        Set<Pattern> patterns = PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllPatterns();
         List<Pattern> parentMethods = new ArrayList<Pattern>();
         parentMethods.addAll(patterns);
         return parentMethods;
     }
 
-    private List<PatternVariable> getVariables(Pattern parent) {
-        List<PatternVariable> variables = new ArrayList<PatternVariable>();
-        EList<PatternVariable> allVariables = parent.getAllVariables();
-
-        if (parent != null && allVariables != null) {
-            variables.addAll(allVariables);
-        }
-        return variables;
+    private List<PatternVariable> getVariables(Pattern pattern) {
+        EList<PatternVariable> allVariables = pattern.getAllVariables();
+        return allVariables;
     }
 
     private void checkListAreaExist(String name) {
@@ -421,8 +466,8 @@ public class ChooseCallPage extends WizardPage {
             return null;
         }
         List callsNew = new ArrayList();
-        if (!"".equals(name)) {
-            String currentName = "";
+        if (!"".equals(name)) { //$NON-NLS-1$
+            String currentName = ""; //$NON-NLS-1$
             for (Object currentItemData : input) {
                 if (selectKind == CallTypeEnum.METHOD_CALL) {
                     if (currentItemData instanceof PatternMethod) {

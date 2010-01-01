@@ -31,8 +31,10 @@ import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.SuperPatternCall;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.ui.editors.actions.OpenPatternTemplateDebugAction;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.VariablesEditDialog;
+import org.eclipse.egf.pattern.ui.editors.editor.MethodsComboBoxViewerCellEditor;
 import org.eclipse.egf.pattern.ui.editors.modifiers.MethodTableCellModifier;
 import org.eclipse.egf.pattern.ui.editors.modifiers.VariablesTableCellModifier;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
@@ -49,8 +51,10 @@ import org.eclipse.emf.databinding.IEMFListProperty;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.internal.core.BinaryType;
+import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.jface.viewers.ColumnWeightData;
 import org.eclipse.jface.viewers.ComboBoxViewerCellEditor;
 import org.eclipse.jface.viewers.DialogCellEditor;
 import org.eclipse.jface.viewers.DoubleClickEvent;
@@ -111,6 +115,8 @@ public class ImplementationPage extends PatternEditorPage {
 
     private Button methodsRemove;
 
+    private Button methodsOpenTemplate;
+
     private Button orchestrationEdit;
 
     private Button orchestrationRemove;
@@ -137,7 +143,6 @@ public class ImplementationPage extends PatternEditorPage {
 
     public ImplementationPage(FormEditor editor) {
         super(editor, ID, Messages.ImplementationPage_title);
-
     }
 
     @Override
@@ -152,21 +157,34 @@ public class ImplementationPage extends PatternEditorPage {
         form.setImage(ImageShop.get(ImageShop.IMG_PLUGIN_MF_OBJ));
         form.setText(Messages.ImplementationPage_title);
 
-        createMethodsSection(toolkit, form);
-        createOrchestrationSection(toolkit, form);
-        createVariablesSection(toolkit, form);
+        Composite containerLeft = createComposite(toolkit, form);
+        createMethodsSection(toolkit, containerLeft);
+        createVariablesSection(toolkit, containerLeft);
+
+        Composite containerRight = createComposite(toolkit, form);
+        createOrchestrationSection(toolkit, containerRight);
 
         form.reflow(true);
     }
 
-    private void createMethodsSection(FormToolkit toolkit, ScrolledForm form) {
-        Section methSection = toolkit.createSection(form.getBody(), Section.TITLE_BAR);
+    private Composite createComposite(FormToolkit toolkit, ScrolledForm form) {
+        Composite composite = toolkit.createComposite(form.getBody(), SWT.NONE);
+        GridLayout layout = new GridLayout(1, true);
+        composite.setLayout(layout);
+        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
+        composite.setLayoutData(gd);
+        return composite;
+    }
+
+    private void createMethodsSection(FormToolkit toolkit, Composite composite) {
+
+        Section methSection = toolkit.createSection(composite, Section.TITLE_BAR);
         methSection.setText(Messages.ImplementationPage_Methods);
         GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
         methSection.setLayoutData(gd);
 
         String label = Messages.ImplementationPage_methSection_label;
-        Composite methods = createLabel(toolkit, methSection, label);
+        Composite methods = createComposite(toolkit, methSection, label);
 
         createMethodsTable(toolkit, methods);
         createMethodsButtons(toolkit, methods);
@@ -193,7 +211,7 @@ public class ImplementationPage extends PatternEditorPage {
         methodsTableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
             public void doubleClick(DoubleClickEvent event) {
-                // TODO: open a method editor.
+                OpenPatternTemplate();
             }
         });
         methodsTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -227,7 +245,7 @@ public class ImplementationPage extends PatternEditorPage {
 
     private void initMethodsTableEditor() {
         methodsTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID });
-        nameEditor = new ComboBoxViewerCellEditor(methodsTableViewer.getTable(), SWT.READ_ONLY);
+        nameEditor = new MethodsComboBoxViewerCellEditor(methodsTableViewer.getTable(), getEditingDomain(), methodsTableViewer);
         nameEditor.setLabelProvider(new LabelProvider());
         nameEditor.setContenProvider(new CommonListContentProvider());
 
@@ -245,9 +263,11 @@ public class ImplementationPage extends PatternEditorPage {
 
         GridData gd = new GridData();
         gd.widthHint = 65;
-        Button methAdd = toolkit.createButton(buttons, Messages.ImplementationPage_button_add, SWT.PUSH);
-        methAdd.setLayoutData(gd);
-        methAdd.addSelectionListener(new SelectionListener() {
+        Button methodsAdd = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        methodsAdd.setLayoutData(gd);
+        methodsAdd.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
+        methodsAdd.setToolTipText(Messages.ImplementationPage_button_add);
+        methodsAdd.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
                 MethodAddOrEditDialog dialog = new MethodAddOrEditDialog(new Shell(), getParentMethods(), ""); //$NON-NLS-1$
@@ -263,15 +283,17 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        methodsEdit = toolkit.createButton(buttons, Messages.ImplementationPage_button_edit, SWT.PUSH);
+        methodsEdit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         methodsEdit.setLayoutData(gd);
         methodsEdit.setEnabled(false);
+        methodsEdit.setImage(ImageShop.get(ImageShop.IMG_EDIT_OBJ));
+        methodsEdit.setToolTipText(Messages.ImplementationPage_button_edit);
         methodsEdit.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
                 int index = methodsTableViewer.getTable().getSelectionIndex();
                 String selectName = ""; //$NON-NLS-1$
-                if (index > 0) {
+                if (index >= 0) {
                     Object entry = methodsTableViewer.getElementAt(index);
                     if (entry instanceof PatternMethod) {
                         selectName = ((PatternMethod) entry).getName();
@@ -289,13 +311,30 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        methodsRemove = toolkit.createButton(buttons, Messages.ImplementationPage_button_remove, SWT.PUSH);
+        methodsRemove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         methodsRemove.setLayoutData(gd);
         methodsRemove.setEnabled(false);
+        methodsRemove.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+        methodsRemove.setToolTipText(Messages.ImplementationPage_button_remove);
         methodsRemove.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
                 executeMethodsRemove();
+            }
+
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
+        methodsOpenTemplate = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        methodsOpenTemplate.setLayoutData(gd);
+        methodsOpenTemplate.setEnabled(false);
+        methodsOpenTemplate.setImage(ImageShop.get(ImageShop.IMG_METHOD_CONTENT_EDIT));
+        methodsOpenTemplate.setToolTipText(Messages.ImplementationPage_button_methodsOpenTemplate);
+        methodsOpenTemplate.addSelectionListener(new SelectionListener() {
+
+            public void widgetSelected(SelectionEvent e) {
+                OpenPatternTemplate();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -311,15 +350,12 @@ public class ImplementationPage extends PatternEditorPage {
         if (selectIndex == -1) {
             methodsRemove.setEnabled(false);
             methodsEdit.setEnabled(false);
+            methodsOpenTemplate.setEnabled(false);
             return;
-        }
-        int length = methodsTableViewer.getTable().getItemCount();
-        if (length > 0) {
-            methodsRemove.setEnabled(true);
-            methodsEdit.setEnabled(true);
         } else {
-            methodsRemove.setEnabled(false);
-            methodsEdit.setEnabled(false);
+            methodsRemove.setEnabled(true);
+            methodsOpenTemplate.setEnabled(true);
+            methodsEdit.setEnabled(true);
         }
     }
 
@@ -371,14 +407,27 @@ public class ImplementationPage extends PatternEditorPage {
         editingDomain.getCommandStack().execute(cmd);
     }
 
-    private void createOrchestrationSection(FormToolkit toolkit, ScrolledForm form) {
-        Section orchSection = toolkit.createSection(form.getBody(), Section.TITLE_BAR);
+    /**
+     * tO open a pattern template editor.
+     */
+    private void OpenPatternTemplate() {
+        OpenPatternTemplateDebugAction action = new OpenPatternTemplateDebugAction();
+        ISelection selection = methodsTableViewer.getSelection();
+        if (selection != null) {
+            action.selectionChanged(null, selection);
+            action.run(null);
+        }
+    }
+
+    private void createOrchestrationSection(FormToolkit toolkit, Composite composite) {
+        Section orchSection = toolkit.createSection(composite, Section.TITLE_BAR);
         orchSection.setText(Messages.ImplementationPage_orchSection_title);
+
         GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
         orchSection.setLayoutData(gd);
 
         String label = Messages.ImplementationPage_orchSection_label;
-        Composite orchestration = createLabel(toolkit, orchSection, label);
+        Composite orchestration = createComposite(toolkit, orchSection, label);
 
         createOrchestrationTable(toolkit, orchestration);
         createOrchestrationButtons(toolkit, orchestration);
@@ -387,16 +436,22 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void createOrchestrationTable(FormToolkit toolkit, Composite orchestration) {
-        Table table = toolkit.createTable(orchestration, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
-
+        Composite tableComp = new Composite(orchestration, SWT.NONE);
+        TableColumnLayout layout = new TableColumnLayout();
+        tableComp.setLayout(layout);
         GridData gd = new GridData(GridData.FILL_BOTH);
+        tableComp.setLayoutData(gd);
+
+        Table table = toolkit.createTable(tableComp, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+
+        gd = new GridData(GridData.FILL_BOTH);
         gd.verticalIndent = 10;
         gd.horizontalIndent = 10;
         gd.widthHint = 100;
         table.setLayoutData(gd);
         orchestrationTableViewer = new TableViewer(table);
         TableColumn tableColumn = new TableColumn(table, SWT.NONE);
-        tableColumn.setWidth(400);
+        layout.setColumnData(tableColumn, new ColumnWeightData(230, true));
 
         orchestrationTableViewer.setContentProvider(new TableObservableListContentProvider(orchestrationTableViewer));
         orchestrationTableViewer.setLabelProvider(new OrchestrationTableLabelProvider());
@@ -404,6 +459,12 @@ public class ImplementationPage extends PatternEditorPage {
 
             public void selectionChanged(SelectionChangedEvent event) {
                 setOrchestrationButtonsStatus();
+            }
+        });
+        orchestrationTableViewer.addDoubleClickListener(new IDoubleClickListener() {
+
+            public void doubleClick(DoubleClickEvent event) {
+                openOrchestrationWizard();
             }
         });
         addDragDrop();
@@ -436,7 +497,7 @@ public class ImplementationPage extends PatternEditorPage {
 
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
                 if (!isChangeOder) {
-                    return checkDuplicate();
+                    return checkDropSupport();
                 }
                 return true;
             }
@@ -493,20 +554,15 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     /**
-     * While drop the method from methTableViewer to orchTableViewer,check
-     * whether the method already exist in orchTableViewer.
+     * While drag the method from methTableViewer to orchTableViewer,check
+     * whether the method is header/init/footer methods.
      */
-    protected boolean checkDuplicate() {
+    protected boolean checkDropSupport() {
         int index = methodsTableViewer.getTable().getSelectionIndex();
-        PatternMethod drop = (PatternMethod) methodsTableViewer.getElementAt(index);
-        for (Object call : getPattern().getOrchestration()) {
-            if (call instanceof MethodCall) {
-                MethodCall methodCall = (MethodCall) call;
-                PatternMethod target = methodCall.getCalled();
-                if (drop.equals(target)) {
-                    return false;
-                }
-            }
+        PatternMethod drag = (PatternMethod) methodsTableViewer.getElementAt(index);
+        String name = drag.getName();
+        if (Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name)) {
+            return false;
         }
         return true;
     }
@@ -542,8 +598,10 @@ public class ImplementationPage extends PatternEditorPage {
         GridData gd = new GridData();
         gd.widthHint = 65;
 
-        Button orchestrationAdd = toolkit.createButton(buttons, Messages.ImplementationPage_button_add, SWT.PUSH);
+        Button orchestrationAdd = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         orchestrationAdd.setLayoutData(gd);
+        orchestrationAdd.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
+        orchestrationAdd.setToolTipText(Messages.ImplementationPage_button_add);
         orchestrationAdd.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -560,42 +618,26 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        orchestrationEdit = toolkit.createButton(buttons, Messages.ImplementationPage_button_edit, SWT.PUSH);
+        orchestrationEdit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         orchestrationEdit.setLayoutData(gd);
         orchestrationEdit.setEnabled(false);
+        orchestrationEdit.setImage(ImageShop.get(ImageShop.IMG_EDIT_OBJ));
+        orchestrationEdit.setToolTipText(Messages.ImplementationPage_button_edit);
         orchestrationEdit.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                int index = orchestrationTableViewer.getTable().getSelectionIndex();
-                Object selectItem = orchestrationTableViewer.getElementAt(index);
-
-                CallTypeEnum kind = CallTypeEnum.Add;
-                if (selectItem instanceof MethodCall) {
-                    kind = CallTypeEnum.METHOD_CALL;
-                } else if (selectItem instanceof PatternCall) {
-                    kind = CallTypeEnum.PATTERN_CALL;
-                } else if (selectItem instanceof PatternInjectedCall) {
-                    kind = CallTypeEnum.PATTERNINJECTED_CALL;
-                } else if (selectItem instanceof SuperPatternCall) {
-                    kind = CallTypeEnum.SUPERPATTERN_CALL;
-                }
-                OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), kind, selectItem);
-                wizard.init(PlatformUI.getWorkbench(), null);
-                WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
-                int returnValue = dialog.open();
-                if (Window.OK == returnValue) {
-                    final Call selectCall = wizard.getSelectCall();
-                    exectuteOrchestrationEdit(selectCall, selectItem);
-                }
+                openOrchestrationWizard();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
 
-        orchestrationRemove = toolkit.createButton(buttons, Messages.ImplementationPage_button_remove, SWT.PUSH);
+        orchestrationRemove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         orchestrationRemove.setLayoutData(gd);
         orchestrationRemove.setEnabled(false);
+        orchestrationRemove.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+        orchestrationRemove.setToolTipText(Messages.ImplementationPage_button_remove);
         orchestrationRemove.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -606,9 +648,11 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        orchestrationUp = toolkit.createButton(buttons, Messages.ImplementationPage_button_up, SWT.PUSH);
+        orchestrationUp = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         orchestrationUp.setLayoutData(gd);
         orchestrationUp.setEnabled(false);
+        orchestrationUp.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
+        orchestrationUp.setToolTipText(Messages.ImplementationPage_button_up);
         orchestrationUp.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -619,9 +663,11 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        orchestrationDown = toolkit.createButton(buttons, Messages.ImplementationPage_button_down, SWT.PUSH);
+        orchestrationDown = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         orchestrationDown.setLayoutData(gd);
         orchestrationDown.setEnabled(false);
+        orchestrationDown.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
+        orchestrationDown.setToolTipText(Messages.ImplementationPage_button_down);
         orchestrationDown.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -631,6 +677,33 @@ public class ImplementationPage extends PatternEditorPage {
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
+    }
+
+    /**
+     * To open the Orchestration wizard.
+     */
+    private void openOrchestrationWizard() {
+        int index = orchestrationTableViewer.getTable().getSelectionIndex();
+        Object selectItem = orchestrationTableViewer.getElementAt(index);
+
+        CallTypeEnum kind = CallTypeEnum.Add;
+        if (selectItem instanceof MethodCall) {
+            kind = CallTypeEnum.METHOD_CALL;
+        } else if (selectItem instanceof PatternCall) {
+            kind = CallTypeEnum.PATTERN_CALL;
+        } else if (selectItem instanceof PatternInjectedCall) {
+            kind = CallTypeEnum.PATTERNINJECTED_CALL;
+        } else if (selectItem instanceof SuperPatternCall) {
+            kind = CallTypeEnum.SUPERPATTERN_CALL;
+        }
+        OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), kind, selectItem);
+        wizard.init(PlatformUI.getWorkbench(), null);
+        WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
+        int returnValue = dialog.open();
+        if (Window.OK == returnValue) {
+            final Call selectCall = wizard.getSelectCall();
+            exectuteOrchestrationEdit(selectCall, selectItem);
+        }
     }
 
     protected void exectuteOrchestrationAdd(OrchestrationWizard wizard) {
@@ -731,14 +804,14 @@ public class ImplementationPage extends PatternEditorPage {
         }
     }
 
-    private void createVariablesSection(FormToolkit toolkit, ScrolledForm form) {
-        Section varSection = toolkit.createSection(form.getBody(), Section.TITLE_BAR);
+    private void createVariablesSection(FormToolkit toolkit, Composite composite) {
+        Section varSection = toolkit.createSection(composite, Section.TITLE_BAR);
         varSection.setText(Messages.ImplementationPage_varSection_title);
         GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
         varSection.setLayoutData(gd);
 
         String label = Messages.ImplementationPage_varSection_label;
-        Composite variables = createLabel(toolkit, varSection, label);
+        Composite variables = createComposite(toolkit, varSection, label);
 
         createVariablesTable(toolkit, variables);
         createVariablesButtons(toolkit, variables);
@@ -832,7 +905,7 @@ public class ImplementationPage extends PatternEditorPage {
         if (selectItem instanceof PatternVariable) {
             return ((PatternVariable) selectItem).getType();
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
     /**
@@ -846,8 +919,10 @@ public class ImplementationPage extends PatternEditorPage {
         GridData gd = new GridData();
         gd.widthHint = 65;
 
-        Button variablesAdd = toolkit.createButton(buttons, Messages.ImplementationPage_button_add, SWT.PUSH);
+        Button variablesAdd = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         variablesAdd.setLayoutData(gd);
+        variablesAdd.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
+        variablesAdd.setToolTipText(Messages.ImplementationPage_button_add);
         variablesAdd.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -858,16 +933,18 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        variablesEdit = toolkit.createButton(buttons, Messages.ImplementationPage_button_edit, SWT.PUSH);
+        variablesEdit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         variablesEdit.setLayoutData(gd);
         variablesEdit.setEnabled(false);
+        variablesEdit.setImage(ImageShop.get(ImageShop.IMG_EDIT_OBJ));
+        variablesEdit.setToolTipText(Messages.ImplementationPage_button_edit);
         variablesEdit.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
                 ISelection selection = variablesTableViewer.getSelection();
                 final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
                 final VariablesEditDialog dialog = new VariablesEditDialog(new Shell(), selectItem, getEditingDomain());
-                dialog.setTitle("Edit Variable");
+                dialog.setTitle("Edit Variable"); //$NON-NLS-1$
                 if (dialog.open() == Window.OK) {
                     TransactionalEditingDomain editingDomain = getEditingDomain();
                     RecordingCommand cmd = new RecordingCommand(editingDomain) {
@@ -884,9 +961,11 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        variablesRemove = toolkit.createButton(buttons, Messages.ImplementationPage_button_remove, SWT.PUSH);
+        variablesRemove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         variablesRemove.setLayoutData(gd);
         variablesRemove.setEnabled(false);
+        variablesRemove.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+        variablesRemove.setToolTipText(Messages.ImplementationPage_button_remove);
         variablesRemove.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -972,7 +1051,7 @@ public class ImplementationPage extends PatternEditorPage {
         setVariablesButtonsStatus();
     }
 
-    private Composite createLabel(FormToolkit toolkit, Section section, String label) {
+    private Composite createComposite(FormToolkit toolkit, Section section, String label) {
         Composite container = toolkit.createComposite(section, SWT.NONE);
 
         GridLayout layout = new GridLayout();
@@ -1056,5 +1135,4 @@ public class ImplementationPage extends PatternEditorPage {
             variablesTableViewer.setInput(observe);
         }
     }
-
 }

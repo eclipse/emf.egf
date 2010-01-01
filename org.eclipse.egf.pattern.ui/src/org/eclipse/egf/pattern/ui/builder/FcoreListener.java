@@ -28,13 +28,10 @@ import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
 import org.eclipse.egf.core.fcore.IResourceFcoreListener;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.PatternConstants;
-import org.eclipse.egf.pattern.collector.PatternCollector;
+import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.engine.TranslationHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 
 /**
@@ -64,18 +61,18 @@ public class FcoreListener implements IResourceFcoreListener {
                         @Override
                         protected void execute(IProgressMonitor innerMonitor) throws CoreException, InvocationTargetException, InterruptedException {
                             Set<Pattern> patterns = new HashSet<Pattern>();
+                            PatternHelper patternCollector = PatternHelper.createCollector();
                             try {
                                 innerMonitor.beginTask(Messages.translation_job_label, uris.length);
-                                for (URI uri : uris) {
-                                    final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
-                                    Resource res = editingDomain.getResourceSet().getResource(uri, true);
-                                    PatternCollector.INSTANCE.collect(res.getContents(), patterns);
-                                }
+                                for (URI uri : uris)
+                                    patterns.addAll(patternCollector.getPatterns(uri));
+
                                 new TranslationHelper().translate(patterns);
                             } catch (Exception e) {
                                 throw new InvocationTargetException(e);
                             } finally {
                                 patterns.clear();
+                                patternCollector.clear();
                             }
                         }
                     }.run(monitor);

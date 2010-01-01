@@ -22,6 +22,10 @@ import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.TableItem;
 
+/**
+ * @author xrchen
+ * 
+ */
 public class MethodTableCellModifier implements ICellModifier {
 
     private TransactionalEditingDomain editingDomain;
@@ -35,7 +39,8 @@ public class MethodTableCellModifier implements ICellModifier {
 
     public boolean canModify(Object element, String property) {
         if ((ImplementationPage.NAME_COLUMN_ID).equals(property)) {
-            return true;
+            if (element instanceof PatternMethod)
+                return !isRenameDisable((PatternMethod) element);
         }
         return false;
     }
@@ -63,15 +68,25 @@ public class MethodTableCellModifier implements ICellModifier {
         }
     }
 
-    private void executeModify(final String text, final PatternMethod patternMethodel) {
+    private void executeModify(final String text, final PatternMethod patternMethod) {
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
-                patternMethodel.setName(text);
+                patternMethod.setName(text);
                 tableViewer.refresh();
             }
         };
         editingDomain.getCommandStack().execute(cmd);
-        
+
     }
 
+    /**
+     * Return whether the method can not rename.
+     */
+    public static boolean isRenameDisable(PatternMethod element) {
+        String name = element.getName();
+        if ("header".equals(name) || "init".equals(name) || "footer".equals(name)) {
+            return true;
+        }
+        return false;
+    }
 }

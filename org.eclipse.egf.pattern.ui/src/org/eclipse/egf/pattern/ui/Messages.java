@@ -64,9 +64,17 @@ public class Messages extends NLS {
 
     public static String ImplementationPage_button_edit;
 
+    public static String ImplementationPage_button_methodsOpenTemplate;
+
     public static String ImplementationPage_button_remove;
 
     public static String ImplementationPage_button_up;
+
+    public static String ImplementationPage_footer;
+
+    public static String ImplementationPage_header;
+
+    public static String ImplementationPage_init;
 
     public static String ImplementationPage_Methods;
 
@@ -125,6 +133,10 @@ public class Messages extends NLS {
     public static String ChooseCallPage_label_text;
 
     public static String ChooseCallPage_methodCall_title;
+
+    public static String ChooseCallPage_no_call_selected_error_message;
+
+    public static String ChooseCallPage_no_variable_selected_error_message;
 
     public static String ChooseCallPage_patternCall_title;
 
