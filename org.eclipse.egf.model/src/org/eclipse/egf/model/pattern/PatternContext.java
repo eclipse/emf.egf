@@ -37,7 +37,6 @@ public class PatternContext implements BundleAccessor {
     public static final String PATTERN_REPORTER = "pattern.execution.reporter";
 
     public static final String PATTERN_ID = "pattern.id";
-    public static final String BUNDLE_ID = "internal.pattern.bundleId";
 
     /**
      * key to manage the context injected to a pattern.
@@ -47,7 +46,7 @@ public class PatternContext implements BundleAccessor {
     /**
      * key to manage the object collection to perform queries on.
      */
-    public static final String DOMAIN_OBJECTS = "internal.domain.objects";
+    public static final String DOMAIN_OBJECTS = "domain";
 
     private PatternContext parent;
     private final Map<String, Object> data = new HashMap<String, Object>();
