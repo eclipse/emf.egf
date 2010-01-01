@@ -45,19 +45,24 @@ http://www.eclipse.org/legal/epl-v10.html
     version="0.0.0"
   />
   
+  <includes
+    id="org.eclipse.egf.common.ui"
+    version="0.0.0"
+  />
+    
   <includes 
-    id="org.eclipse.egf.core" 
+    id="org.eclipse.egf.core"
     version="0.0.0"
   />
   
-  <includes 
-    id="org.eclipse.egf.model" 
+  <includes
+    id="org.eclipse.egf.model"
     version="0.0.0"
   />
   
-  <includes 
-    id="org.eclipse.egf.producer" 
+  <includes
+    id="org.eclipse.egf.producer"
     version="0.0.0"
   />
-     
+
 </feature>
