@@ -24,8 +24,8 @@ import org.eclipse.emf.ecore.EPackage;
  * <p>
  * The following features are supported:
  * <ul>
+ *   <li>{@link org.eclipse.egf.model.domain.DomainEPackageType#getDomain <em>Domain</em>}</li>
  *   <li>{@link org.eclipse.egf.model.domain.DomainEPackageType#getValue <em>Value</em>}</li>
- *   <li>{@link org.eclipse.egf.model.domain.DomainEPackageType#getEPackage <em>EPackage</em>}</li>
  * </ul>
  * </p>
  *
@@ -33,7 +33,33 @@ import org.eclipse.emf.ecore.EPackage;
  * @model
  * @generated
  */
-public interface DomainEPackageType extends Type<Domain> {
+public interface DomainEPackageType extends Type<EPackage> {
+  /**
+   * Returns the value of the '<em><b>Domain</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Domain</em>' reference isn't clear,
+   * there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Domain</em>' reference.
+   * @see #setDomain(DomainEPackage)
+   * @see org.eclipse.egf.model.domain.DomainPackage#getDomainEPackageType_Domain()
+   * @model resolveProxies="false"
+   * @generated
+   */
+  DomainEPackage getDomain();
+
+  /**
+   * Sets the value of the '{@link org.eclipse.egf.model.domain.DomainEPackageType#getDomain <em>Domain</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Domain</em>' reference.
+   * @see #getDomain()
+   * @generated
+   */
+  void setDomain(DomainEPackage value);
+
   /**
    * Returns the value of the '<em><b>Value</b></em>' reference.
    * <!-- begin-user-doc -->
@@ -43,56 +69,19 @@ public interface DomainEPackageType extends Type<Domain> {
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' reference.
-   * @see #setValue(DomainEPackage)
    * @see org.eclipse.egf.model.domain.DomainPackage#getDomainEPackageType_Value()
-   * @model resolveProxies="false"
+   * @model transient="true" changeable="false" volatile="true" derived="true"
    * @generated
    */
-  DomainEPackage getValue();
-
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.domain.DomainEPackageType#getValue <em>Value</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Value</em>' reference.
-   * @see #getValue()
-   * @generated
-   */
-  void setValue(DomainEPackage value);
-
-  /**
-   * Returns the value of the '<em><b>EPackage</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>EPackage</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>EPackage</em>' reference.
-   * @see #isSetEPackage()
-   * @see org.eclipse.egf.model.domain.DomainPackage#getDomainEPackageType_EPackage()
-   * @model unsettable="true" transient="true" changeable="false" volatile="true" derived="true"
-   * @generated
-   */
-  EPackage getEPackage();
-
-  /**
-   * Returns whether the value of the '{@link org.eclipse.egf.model.domain.DomainEPackageType#getEPackage <em>EPackage</em>}' reference is set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return whether the value of the '<em>EPackage</em>' reference is set.
-   * @see #getEPackage()
-   * @generated
-   */
-  boolean isSetEPackage();
+  EPackage getValue();
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.egf.model.domain.Domain.class;'"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.emf.ecore.EPackage.class;'"
    * @generated
    */
-  Class<Domain> getType();
+  Class<EPackage> getType();
 
 } // DomainEPackageType

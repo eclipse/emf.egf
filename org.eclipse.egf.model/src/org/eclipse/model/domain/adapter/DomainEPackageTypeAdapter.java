@@ -29,9 +29,9 @@ public class DomainEPackageTypeAdapter extends AdapterImpl {
 
   private EStructuralFeature _domainEPackageFeature = DomainPackage.Literals.DOMAIN_EPACKAGE__EPACKAGE;
 
-  private EStructuralFeature _domainTypeEPackageFeature = DomainPackage.Literals.DOMAIN_EPACKAGE_TYPE__EPACKAGE;
+  private EStructuralFeature _domainTypeEPackageFeature = DomainPackage.Literals.DOMAIN_EPACKAGE_TYPE__VALUE;
 
-  private EStructuralFeature _domainFeature = DomainPackage.Literals.DOMAIN_EPACKAGE_TYPE__VALUE;
+  private EStructuralFeature _domainFeature = DomainPackage.Literals.DOMAIN_EPACKAGE_TYPE__DOMAIN;
 
   private AdapterImpl _domainEPackageAdapter = new AdapterImpl() {
     @Override

@@ -26,10 +26,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.impl.DomainURIImpl#getUri <em>Uri</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.DomainURIImpl#getUri <em>Uri</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class DomainURIImpl extends DomainImpl implements DomainURI {
@@ -37,7 +37,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
    * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getUri()
    * @generated
    * @ordered
@@ -48,7 +47,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
    * The cached value of the '{@link #getUri() <em>Uri</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getUri()
    * @generated
    * @ordered
@@ -58,7 +56,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected DomainURIImpl() {
@@ -68,7 +65,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -79,7 +75,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public URI getUri() {
@@ -89,7 +84,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setUri(URI newUri) {
@@ -102,7 +96,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -117,7 +110,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -133,7 +125,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -149,7 +140,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -164,7 +154,6 @@ public class DomainURIImpl extends DomainImpl implements DomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

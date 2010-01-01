@@ -26,20 +26,20 @@
           ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackage/ePackage"/>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//DomainEPackageType">
+      <genFeatures notify="false" createChild="false" propertyCategory="Domain" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackageType/domain"/>
       <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
           ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackageType/value"/>
-      <genFeatures property="Readonly" createChild="false" propertyCategory="Value"
-          ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackageType/ePackage"/>
       <genOperations ecoreOperation="Domain.ecore#//DomainEPackageType/getType"/>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//DomainURI">
       <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Domain.ecore#//DomainURI/uri"/>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//DomainURIType">
+      <genFeatures notify="false" createChild="false" propertyCategory="Domain" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Domain.ecore#//DomainURIType/domain"/>
       <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Domain.ecore#//DomainURIType/value"/>
-      <genFeatures property="Readonly" createChild="false" propertyCategory="Value"
-          ecoreFeature="ecore:EAttribute Domain.ecore#//DomainURIType/uri"/>
+          ecoreFeature="ecore:EAttribute Domain.ecore#//DomainURIType/value"/>
       <genOperations ecoreOperation="Domain.ecore#//DomainURIType/getType"/>
     </genClasses>
   </genPackages>

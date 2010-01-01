@@ -29,9 +29,9 @@ public class DomainURITypeAdapter extends AdapterImpl {
 
   private EStructuralFeature _domainURIFeature = DomainPackage.Literals.DOMAIN_URI__URI;
 
-  private EStructuralFeature _domainTypeURIFeature = DomainPackage.Literals.DOMAIN_URI_TYPE__URI;
+  private EStructuralFeature _domainTypeURIFeature = DomainPackage.Literals.DOMAIN_URI_TYPE__VALUE;
 
-  private EStructuralFeature _domainFeature = DomainPackage.Literals.DOMAIN_URI_TYPE__VALUE;
+  private EStructuralFeature _domainFeature = DomainPackage.Literals.DOMAIN_URI_TYPE__DOMAIN;
 
   private AdapterImpl _domainURIAdapter = new AdapterImpl() {
     @Override

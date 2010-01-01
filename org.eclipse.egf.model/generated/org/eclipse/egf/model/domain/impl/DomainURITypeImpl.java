@@ -29,14 +29,14 @@ import org.eclipse.model.domain.adapter.DomainURITypeAdapter;
  * <p>
  * The following features are implemented:
  * <ul>
+ * <li>{@link org.eclipse.egf.model.domain.impl.DomainURITypeImpl#getDomain <em>Domain</em>}</li>
  * <li>{@link org.eclipse.egf.model.domain.impl.DomainURITypeImpl#getValue <em>Value</em>}</li>
- * <li>{@link org.eclipse.egf.model.domain.impl.DomainURITypeImpl#getUri <em>Uri</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIType {
+public class DomainURITypeImpl extends TypeImpl<URI> implements DomainURIType {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable
    * features have been set.
@@ -49,7 +49,18 @@ public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIT
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
+   * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @see #getDomain()
+   * @generated
+   * @ordered
+   */
+  protected DomainURI domain;
+
+  /**
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -57,18 +68,7 @@ public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIT
    * @generated
    * @ordered
    */
-  protected DomainURI value;
-
-  /**
-   * The default value of the '{@link #getUri() <em>Uri</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @see #getUri()
-   * @generated
-   * @ordered
-   */
-  protected static final URI URI_EDEFAULT = null;
+  protected static final URI VALUE_EDEFAULT = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -98,9 +98,8 @@ public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIT
    * 
    * @generated
    */
-  @Override
-  public DomainURI getValue() {
-    return value;
+  public DomainURI getDomain() {
+    return domain;
   }
 
   /**
@@ -109,11 +108,11 @@ public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIT
    * 
    * @generated
    */
-  public void setValue(DomainURI newValue) {
-    DomainURI oldValue = value;
-    value = newValue;
+  public void setDomain(DomainURI newDomain) {
+    DomainURI oldDomain = domain;
+    domain = newDomain;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.DOMAIN_URI_TYPE__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.DOMAIN_URI_TYPE__DOMAIN, oldDomain, domain));
   }
 
   /**
@@ -122,9 +121,10 @@ public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIT
    * 
    * @generated NOT
    */
-  public URI getUri() {
-    if (getValue() != null) {
-      return getValue().getUri();
+  @Override
+  public URI getValue() {
+    if (getDomain() != null) {
+      return getDomain().getUri();
     }
     return null;
   }
@@ -136,8 +136,8 @@ public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIT
    * @generated
    */
   @Override
-  public Class<DomainURI> getType() {
-    return org.eclipse.egf.model.domain.DomainURI.class;
+  public Class<URI> getType() {
+    return org.eclipse.emf.common.util.URI.class;
   }
 
   /**
@@ -149,10 +149,10 @@ public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIT
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+    case DomainPackage.DOMAIN_URI_TYPE__DOMAIN:
+      return getDomain();
     case DomainPackage.DOMAIN_URI_TYPE__VALUE:
       return getValue();
-    case DomainPackage.DOMAIN_URI_TYPE__URI:
-      return getUri();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -166,8 +166,8 @@ public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIT
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case DomainPackage.DOMAIN_URI_TYPE__VALUE:
-      setValue((DomainURI) newValue);
+    case DomainPackage.DOMAIN_URI_TYPE__DOMAIN:
+      setDomain((DomainURI) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -182,8 +182,8 @@ public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIT
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case DomainPackage.DOMAIN_URI_TYPE__VALUE:
-      setValue((DomainURI) null);
+    case DomainPackage.DOMAIN_URI_TYPE__DOMAIN:
+      setDomain((DomainURI) null);
       return;
     }
     super.eUnset(featureID);
@@ -198,10 +198,10 @@ public class DomainURITypeImpl extends TypeImpl<DomainURI> implements DomainURIT
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+    case DomainPackage.DOMAIN_URI_TYPE__DOMAIN:
+      return domain != null;
     case DomainPackage.DOMAIN_URI_TYPE__VALUE:
-      return value != null;
-    case DomainPackage.DOMAIN_URI_TYPE__URI:
-      return URI_EDEFAULT == null ? getUri() != null : !URI_EDEFAULT.equals(getUri());
+      return VALUE_EDEFAULT == null ? getValue() != null : !VALUE_EDEFAULT.equals(getValue());
     }
     return super.eIsSet(featureID);
   }

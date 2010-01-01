@@ -69,10 +69,24 @@ public class DomainURITypeItemProvider extends TypeItemProvider implements IEdit
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addDomainPropertyDescriptor(object);
       addValuePropertyDescriptor(object);
-      addUriPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Domain feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected void addDomainPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainURIType_domain_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_DomainURIType_domain_feature", "_UI_DomainURIType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        DomainPackage.Literals.DOMAIN_URI_TYPE__DOMAIN, true, false, true, null, getString("_UI_DomainPropertyCategory"), //$NON-NLS-1$
+        null));
   }
 
   /**
@@ -85,21 +99,7 @@ public class DomainURITypeItemProvider extends TypeItemProvider implements IEdit
   protected void addValuePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainURIType_value_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_DomainURIType_value_feature", "_UI_DomainURIType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        DomainPackage.Literals.DOMAIN_URI_TYPE__VALUE, true, false, true, null, getString("_UI_ValuePropertyCategory"), //$NON-NLS-1$
-        null));
-  }
-
-  /**
-   * This adds a property descriptor for the Uri feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected void addUriPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainURIType_uri_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_DomainURIType_uri_feature", "_UI_DomainURIType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        DomainPackage.Literals.DOMAIN_URI_TYPE__URI, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_ValuePropertyCategory"), //$NON-NLS-1$
+        DomainPackage.Literals.DOMAIN_URI_TYPE__VALUE, true, false, true, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_ValuePropertyCategory"), //$NON-NLS-1$
         null));
   }
 
@@ -127,8 +127,8 @@ public class DomainURITypeItemProvider extends TypeItemProvider implements IEdit
     DomainURIType domainEPackageType = (DomainURIType) object;
     String label = domainEPackageType.getName();
     String nsuri = null;
-    if (domainEPackageType.getUri() != null) {
-      nsuri = "[" + domainEPackageType.getUri() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+    if (domainEPackageType.getValue() != null) {
+      nsuri = "[" + domainEPackageType.getValue() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }
     if (label == null || label.length() == 0) {
       label = "[" + getString("_UI_DomainURIType_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -159,7 +159,6 @@ public class DomainURITypeItemProvider extends TypeItemProvider implements IEdit
 
     switch (notification.getFeatureID(DomainURIType.class)) {
     case DomainPackage.DOMAIN_URI_TYPE__VALUE:
-    case DomainPackage.DOMAIN_URI_TYPE__URI:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }

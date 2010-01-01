@@ -37,9 +37,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.DomainEPackageType} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.DomainEPackageType}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DomainEPackageTypeItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -47,6 +49,7 @@ public class DomainEPackageTypeItemProvider extends TypeItemProvider implements 
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainEPackageTypeItemProvider(AdapterFactory adapterFactory) {
@@ -57,6 +60,7 @@ public class DomainEPackageTypeItemProvider extends TypeItemProvider implements 
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -64,16 +68,31 @@ public class DomainEPackageTypeItemProvider extends TypeItemProvider implements 
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
+      addDomainPropertyDescriptor(object);
       addValuePropertyDescriptor(object);
-      addEPackagePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
+  }
+
+  /**
+   * This adds a property descriptor for the Domain feature.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected void addDomainPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainEPackageType_domain_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_DomainEPackageType_domain_feature", "_UI_DomainEPackageType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        DomainPackage.Literals.DOMAIN_EPACKAGE_TYPE__DOMAIN, true, false, true, null, getString("_UI_DomainPropertyCategory"), //$NON-NLS-1$
+        null));
   }
 
   /**
    * This adds a property descriptor for the Value feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addValuePropertyDescriptor(Object object) {
@@ -84,22 +103,10 @@ public class DomainEPackageTypeItemProvider extends TypeItemProvider implements 
   }
 
   /**
-   * This adds a property descriptor for the EPackage feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addEPackagePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainEPackageType_ePackage_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_DomainEPackageType_ePackage_feature", "_UI_DomainEPackageType_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        DomainPackage.Literals.DOMAIN_EPACKAGE_TYPE__EPACKAGE, false, false, false, null, getString("_UI_ValuePropertyCategory"), //$NON-NLS-1$
-        null));
-  }
-
-  /**
    * This returns DomainEPackageType.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -119,8 +126,8 @@ public class DomainEPackageTypeItemProvider extends TypeItemProvider implements 
     DomainEPackageType domainEPackageType = (DomainEPackageType) object;
     String label = domainEPackageType.getName();
     String nsuri = null;
-    if (domainEPackageType.getEPackage() != null) {
-      nsuri = "[" + domainEPackageType.getEPackage().getNsURI() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+    if (domainEPackageType.getValue() != null) {
+      nsuri = "[" + domainEPackageType.getValue().getNsURI() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }
     if (label == null || label.length() == 0) {
       label = "[" + getString("_UI_DomainEPackageType_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
@@ -142,6 +149,7 @@ public class DomainEPackageTypeItemProvider extends TypeItemProvider implements 
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -150,7 +158,6 @@ public class DomainEPackageTypeItemProvider extends TypeItemProvider implements 
 
     switch (notification.getFeatureID(DomainEPackageType.class)) {
     case DomainPackage.DOMAIN_EPACKAGE_TYPE__VALUE:
-    case DomainPackage.DOMAIN_EPACKAGE_TYPE__EPACKAGE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }
@@ -162,6 +169,7 @@ public class DomainEPackageTypeItemProvider extends TypeItemProvider implements 
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -173,6 +181,7 @@ public class DomainEPackageTypeItemProvider extends TypeItemProvider implements 
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

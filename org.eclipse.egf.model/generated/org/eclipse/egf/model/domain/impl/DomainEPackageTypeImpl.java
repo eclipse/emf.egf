@@ -12,7 +12,6 @@
  */
 package org.eclipse.egf.model.domain.impl;
 
-import org.eclipse.egf.model.domain.Domain;
 import org.eclipse.egf.model.domain.DomainEPackage;
 import org.eclipse.egf.model.domain.DomainEPackageType;
 import org.eclipse.egf.model.domain.DomainPackage;
@@ -20,6 +19,7 @@ import org.eclipse.egf.model.fcore.impl.TypeImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.model.domain.adapter.DomainEPackageTypeAdapter;
 
@@ -30,15 +30,15 @@ import org.eclipse.model.domain.adapter.DomainEPackageTypeAdapter;
  * <p>
  * The following features are implemented:
  * <ul>
+ * <li>{@link org.eclipse.egf.model.domain.impl.DomainEPackageTypeImpl#getDomain <em>Domain</em>}
+ * </li>
  * <li>{@link org.eclipse.egf.model.domain.impl.DomainEPackageTypeImpl#getValue <em>Value</em>}</li>
- * <li>{@link org.eclipse.egf.model.domain.impl.DomainEPackageTypeImpl#getEPackage
- * <em>EPackage</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class DomainEPackageTypeImpl extends TypeImpl<Domain> implements DomainEPackageType {
+public class DomainEPackageTypeImpl extends TypeImpl<EPackage> implements DomainEPackageType {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable
    * features have been set.
@@ -51,15 +51,15 @@ public class DomainEPackageTypeImpl extends TypeImpl<Domain> implements DomainEP
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' reference.
+   * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @see #getValue()
+   * @see #getDomain()
    * @generated
    * @ordered
    */
-  protected DomainEPackage value;
+  protected DomainEPackage domain;
 
   /**
    * <!-- begin-user-doc -->
@@ -89,9 +89,8 @@ public class DomainEPackageTypeImpl extends TypeImpl<Domain> implements DomainEP
    * 
    * @generated
    */
-  @Override
-  public DomainEPackage getValue() {
-    return value;
+  public DomainEPackage getDomain() {
+    return domain;
   }
 
   /**
@@ -100,11 +99,23 @@ public class DomainEPackageTypeImpl extends TypeImpl<Domain> implements DomainEP
    * 
    * @generated
    */
-  public void setValue(DomainEPackage newValue) {
-    DomainEPackage oldValue = value;
-    value = newValue;
+  public void setDomain(DomainEPackage newDomain) {
+    DomainEPackage oldDomain = domain;
+    domain = newDomain;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.DOMAIN_EPACKAGE_TYPE__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.DOMAIN_EPACKAGE_TYPE__DOMAIN, oldDomain, domain));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public EPackage getValue() {
+    EPackage value = basicGetValue();
+    return value != null && value.eIsProxy() ? (EPackage) eResolveProxy((InternalEObject) value) : value;
   }
 
   /**
@@ -113,9 +124,9 @@ public class DomainEPackageTypeImpl extends TypeImpl<Domain> implements DomainEP
    * 
    * @generated NOT
    */
-  public EPackage getEPackage() {
-    if (getValue() != null) {
-      return getValue().getEPackage();
+  public EPackage basicGetValue() {
+    if (getDomain() != null) {
+      return getDomain().getEPackage();
     }
     return null;
   }
@@ -126,35 +137,9 @@ public class DomainEPackageTypeImpl extends TypeImpl<Domain> implements DomainEP
    * 
    * @generated
    */
-  public EPackage basicGetEPackage() {
-    // TODO: implement this method to return the 'EPackage' reference
-    // -> do not perform proxy resolution
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public boolean isSetEPackage() {
-    if (getValue() != null) {
-      return getValue().getEPackage() != null;
-    }
-    return false;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
   @Override
-  public Class<Domain> getType() {
-    return org.eclipse.egf.model.domain.Domain.class;
+  public Class<EPackage> getType() {
+    return org.eclipse.emf.ecore.EPackage.class;
   }
 
   /**
@@ -166,12 +151,12 @@ public class DomainEPackageTypeImpl extends TypeImpl<Domain> implements DomainEP
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
+    case DomainPackage.DOMAIN_EPACKAGE_TYPE__DOMAIN:
+      return getDomain();
     case DomainPackage.DOMAIN_EPACKAGE_TYPE__VALUE:
-      return getValue();
-    case DomainPackage.DOMAIN_EPACKAGE_TYPE__EPACKAGE:
       if (resolve)
-        return getEPackage();
-      return basicGetEPackage();
+        return getValue();
+      return basicGetValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -185,8 +170,8 @@ public class DomainEPackageTypeImpl extends TypeImpl<Domain> implements DomainEP
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case DomainPackage.DOMAIN_EPACKAGE_TYPE__VALUE:
-      setValue((DomainEPackage) newValue);
+    case DomainPackage.DOMAIN_EPACKAGE_TYPE__DOMAIN:
+      setDomain((DomainEPackage) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -201,8 +186,8 @@ public class DomainEPackageTypeImpl extends TypeImpl<Domain> implements DomainEP
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case DomainPackage.DOMAIN_EPACKAGE_TYPE__VALUE:
-      setValue((DomainEPackage) null);
+    case DomainPackage.DOMAIN_EPACKAGE_TYPE__DOMAIN:
+      setDomain((DomainEPackage) null);
       return;
     }
     super.eUnset(featureID);
@@ -217,10 +202,10 @@ public class DomainEPackageTypeImpl extends TypeImpl<Domain> implements DomainEP
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
+    case DomainPackage.DOMAIN_EPACKAGE_TYPE__DOMAIN:
+      return domain != null;
     case DomainPackage.DOMAIN_EPACKAGE_TYPE__VALUE:
-      return value != null;
-    case DomainPackage.DOMAIN_EPACKAGE_TYPE__EPACKAGE:
-      return isSetEPackage();
+      return basicGetValue() != null;
     }
     return super.eIsSet(featureID);
   }
