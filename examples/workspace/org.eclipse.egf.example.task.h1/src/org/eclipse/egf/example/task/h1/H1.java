@@ -35,10 +35,10 @@ public class H1 implements ITaskProduction {
   public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
     context.setOutputValue("amount", _amount); //$NON-NLS-1$  		  
     context.setOutputValue("generatorAdapterFactory", new GenModelGeneratorAdapterFactory()); //$NON-NLS-1$
-    Collection<String> parameters = new ArrayList<String>();
-    parameters.add("param1"); //$NON-NLS-1$
-    parameters.add("param2"); //$NON-NLS-1$
-    context.setOutputValue("parameters", parameters); //$NON-NLS-1$
+    _parameters = new ArrayList<String>();
+    _parameters.add("param1"); //$NON-NLS-1$
+    _parameters.add("param2"); //$NON-NLS-1$
+    context.setOutputValue("parameters", _parameters); //$NON-NLS-1$
   }
 
 }
