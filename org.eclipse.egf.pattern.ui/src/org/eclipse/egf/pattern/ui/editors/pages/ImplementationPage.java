@@ -29,9 +29,10 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.SuperPatternCall;
+import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
-import org.eclipse.egf.pattern.ui.editors.actions.OpenPatternTemplateDebugAction;
+import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.VariablesEditDialog;
 import org.eclipse.egf.pattern.ui.editors.editor.MethodsComboBoxViewerCellEditor;
@@ -70,6 +71,7 @@ import org.eclipse.jface.viewers.ViewerDropAdapter;
 import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CCombo;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
@@ -211,13 +213,16 @@ public class ImplementationPage extends PatternEditorPage {
         methodsTableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
             public void doubleClick(DoubleClickEvent event) {
-                OpenPatternTemplate();
+                openPatternTemplate();
             }
         });
         methodsTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
                 setMethodsButtonsStatus();
+                CCombo control = (CCombo) nameEditor.getControl();
+                if (control != null && !control.isDisposed())
+                    control.setText(""); //$NON-NLS-1$
             }
         });
 
@@ -245,7 +250,7 @@ public class ImplementationPage extends PatternEditorPage {
 
     private void initMethodsTableEditor() {
         methodsTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID });
-        nameEditor = new MethodsComboBoxViewerCellEditor(methodsTableViewer.getTable(), getEditingDomain(), methodsTableViewer);
+        nameEditor = new MethodsComboBoxViewerCellEditor(methodsTableViewer.getTable(), getEditingDomain(), methodsTableViewer, this);
         nameEditor.setLabelProvider(new LabelProvider());
         nameEditor.setContenProvider(new CommonListContentProvider());
 
@@ -334,7 +339,7 @@ public class ImplementationPage extends PatternEditorPage {
         methodsOpenTemplate.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                OpenPatternTemplate();
+                openPatternTemplate();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -353,9 +358,14 @@ public class ImplementationPage extends PatternEditorPage {
             methodsOpenTemplate.setEnabled(false);
             return;
         } else {
+            PatternMethod selectMethod = (PatternMethod) (methodsTableViewer.getElementAt(selectIndex));
+            if (MethodTableCellModifier.isRenameDisable(selectMethod)) {
+                methodsEdit.setEnabled(false);
+            } else {
+                methodsEdit.setEnabled(true);
+            }
             methodsRemove.setEnabled(true);
             methodsOpenTemplate.setEnabled(true);
-            methodsEdit.setEnabled(true);
         }
     }
 
@@ -387,6 +397,7 @@ public class ImplementationPage extends PatternEditorPage {
                 newMethod.setName(name);
                 newMethod.setPattern(getPattern());
                 getPattern().getMethods().add(newMethod);
+                newMethod.setPatternFilePath(PatternHelper.Filename.computeFileURI(newMethod));
             }
         };
         editingDomain.getCommandStack().execute(cmd);
@@ -410,13 +421,15 @@ public class ImplementationPage extends PatternEditorPage {
     /**
      * tO open a pattern template editor.
      */
-    private void OpenPatternTemplate() {
-        OpenPatternTemplateDebugAction action = new OpenPatternTemplateDebugAction();
+    private void openPatternTemplate() {
+        Pattern pattern = getPattern();
         ISelection selection = methodsTableViewer.getSelection();
-        if (selection != null) {
-            action.selectionChanged(null, selection);
-            action.run(null);
+        String methodId = null;
+        if (selection != null && !selection.isEmpty()) {
+            PatternMethod method = (PatternMethod) ((IStructuredSelection) selection).getFirstElement();
+            methodId = method.getID();
         }
+        PatternTemplateEditor.openEditor(getEditorSite().getPage(), pattern, methodId);
     }
 
     private void createOrchestrationSection(FormToolkit toolkit, Composite composite) {
@@ -1134,5 +1147,9 @@ public class ImplementationPage extends PatternEditorPage {
             IObservableList observe = input.observe(pattern);
             variablesTableViewer.setInput(observe);
         }
+    }
+
+    public Button getEditButton() {
+        return methodsEdit;
     }
 }

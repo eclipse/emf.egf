@@ -23,6 +23,7 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.SuperPatternCall;
 import org.eclipse.egf.pattern.ui.ImageShop;
+import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -50,22 +51,22 @@ public class OrchestrationTableLabelProvider extends LabelProvider implements IT
         if (element instanceof MethodCall) {
             MethodCall methodCall = (MethodCall) element;
             PatternMethod patternMethod = methodCall.getCalled();
-            return (patternMethod == null ? "" : patternMethod.getName()) + " - [MethodCall]";
+            return (patternMethod == null ? "" : patternMethod.getName()) + Messages.OrchestrationTableLabelProvider_MethodCall; //$NON-NLS-1$
         } else if (element instanceof PatternCall) {
             PatternCall patternCall = (PatternCall) element;
             Pattern pattern = patternCall.getCalled();
-            return (pattern == null ? "" : pattern.getName()) + " - [PatternCall]";
+            return (pattern == null ? "" : pattern.getName()) + Messages.OrchestrationTableLabelProvider_PatternCall; //$NON-NLS-1$
         } else if (element instanceof PatternInjectedCall) {
             PatternInjectedCall patternInjectedCall = (PatternInjectedCall) element;
             Pattern pattern = patternInjectedCall.getCalled();
             PatternVariable patternVariable = patternInjectedCall.getContext();
-            return (pattern == null ? "" : pattern.getName() + patternVariable.getName()) + " - [PatternInjectedCall]";
+            return (pattern == null ? "" : pattern.getName() + patternVariable.getName()) + Messages.OrchestrationTableLabelProvider_PatternInjectedCall; //$NON-NLS-1$
         } else if (element instanceof SuperPatternCall) {
             SuperPatternCall superPatternCall = (SuperPatternCall) element;
             Pattern superPattern = superPatternCall.getCalled();
-            return (superPattern == null ? "" : superPattern.getName()) + " - [SuperPatternCall]";
+            return (superPattern == null ? "" : superPattern.getName()) + Messages.OrchestrationTableLabelProvider_SuperPatternCall; //$NON-NLS-1$
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
     public void addListener(ILabelProviderListener listener) {

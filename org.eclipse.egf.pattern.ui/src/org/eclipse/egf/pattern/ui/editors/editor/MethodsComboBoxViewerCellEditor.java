@@ -19,6 +19,8 @@ import java.text.MessageFormat;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.ui.editors.pages.ImplementationPage;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ComboBoxViewerCellEditor;
@@ -44,6 +46,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.TraverseEvent;
 import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
@@ -64,10 +67,19 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
 
     TableViewer tableViewer;
 
-    public MethodsComboBoxViewerCellEditor(Composite parent, TransactionalEditingDomain editingDomain, TableViewer tableViewer) {
+    ImplementationPage implementationPage;
+
+    CCombo comboBox;
+
+    boolean isModify = false;
+
+    boolean changeSelection = false;
+
+    public MethodsComboBoxViewerCellEditor(Composite parent, TransactionalEditingDomain editingDomain, TableViewer tableViewer, ImplementationPage implementationPage) {
         super(parent);
         this.editingDomain = editingDomain;
         this.tableViewer = tableViewer;
+        this.implementationPage = implementationPage;
     }
 
     /*
@@ -75,7 +87,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      */
     protected Control createControl(Composite parent) {
         super.createControl(parent);
-        final CCombo comboBox = new CCombo(parent, getStyle());
+        comboBox = new CCombo(parent, getStyle());
         comboBox.setFont(parent.getFont());
         viewer = new ComboViewer(comboBox);
 
@@ -112,7 +124,25 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
         comboBox.addFocusListener(new FocusAdapter() {
             public void focusLost(FocusEvent e) {
                 MethodsComboBoxViewerCellEditor.this.focusLost();
-                executeModifyMethod(comboBox.getText());
+                String text = comboBox.getText();
+                executeModifyMethod(text);
+                isModify = false;
+            }
+        });
+
+        comboBox.addModifyListener(new ModifyListener() {
+
+            public void modifyText(ModifyEvent e) {
+                String text = comboBox.getText();
+                isModify = true;
+                Button editButton = implementationPage.getEditButton();
+                if (editButton != null && !editButton.isDisposed()) {
+                    if (Messages.ImplementationPage_header.equals(text) || Messages.ImplementationPage_init.equals(text) || Messages.ImplementationPage_footer.equals(text)) {
+                        editButton.setEnabled(false);
+                    } else {
+                        editButton.setEnabled(true);
+                    }
+                }
             }
         });
 
@@ -123,7 +153,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
      * Update the method name while modify the comBox.
      */
     private void executeModifyMethod(final String newName) {
-        if (newName != null && !"".equals(newName)) {
+        if (newName != null && !"".equals(newName) && isModify) {
             int selectionIndex = tableViewer.getTable().getSelectionIndex();
             final PatternMethod method = (PatternMethod) tableViewer.getElementAt(selectionIndex);
             RecordingCommand cmd = new RecordingCommand(editingDomain) {
@@ -187,9 +217,27 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
         selectedValue = value;
         if (value == null) {
             viewer.setSelection(StructuredSelection.EMPTY);
+            changeSelection = true;
         } else {
-            viewer.setSelection(new StructuredSelection(value));
+            if (isIncomboBoxlist(value)) {
+                viewer.setSelection(new StructuredSelection(value));
+                changeSelection = true;
+            } else {
+                changeSelection = false;
+            }
         }
+    }
+
+    /**
+     * Return whether the value is in the list of comboBox.
+     */
+    private boolean isIncomboBoxlist(Object value) {
+        String[] items = comboBox.getItems();
+        for (String item : items) {
+            if (item.equals(value))
+                return true;
+        }
+        return false;
     }
 
     /**
@@ -234,7 +282,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
         ISelection selection = viewer.getSelection();
         if (selection.isEmpty()) {
             selectedValue = null;
-        } else {
+        } else if (changeSelection) {
             selectedValue = ((IStructuredSelection) selection).getFirstElement();
         }
 
@@ -248,6 +296,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
         }
 
         fireApplyEditorValue();
+
         deactivate();
     }
 

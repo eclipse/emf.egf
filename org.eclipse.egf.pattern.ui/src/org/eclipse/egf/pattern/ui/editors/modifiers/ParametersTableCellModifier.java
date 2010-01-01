@@ -20,9 +20,7 @@ import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.query.QueryKind;
 import org.eclipse.egf.pattern.ui.editors.pages.SpecificationPage;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.TableItem;
 
@@ -30,15 +28,10 @@ import org.eclipse.swt.widgets.TableItem;
  * @author xrchen
  * 
  */
-public class ParametersTableCellModifier implements ICellModifier {
-
-    private TransactionalEditingDomain editingDomain;
-
-    private TableViewer tableViewer;
+public class ParametersTableCellModifier extends EditingDomainCellModifier {
 
     public ParametersTableCellModifier(TransactionalEditingDomain editingDomain, TableViewer tableViewer) {
-        this.editingDomain = editingDomain;
-        this.tableViewer = tableViewer;
+        super(editingDomain, tableViewer);
     }
 
     public boolean canModify(Object element, String property) {
@@ -96,12 +89,11 @@ public class ParametersTableCellModifier implements ICellModifier {
     }
 
     private void executeModify(final int setFlag, final PatternParameter patternParameter, final String text) {
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            protected void doExecute() {
+        Runnable cmd = new Runnable() {
+            public void run() {
                 switch (setFlag) {
                 case 0:
                     patternParameter.setName(text);
-                    break;
                 case 1:
                     break;
                 case 2:
@@ -110,10 +102,9 @@ public class ParametersTableCellModifier implements ICellModifier {
                 default:
                     return;
                 }
-                tableViewer.refresh();
             }
         };
-        editingDomain.getCommandStack().execute(cmd);
+       doModify(cmd);
     }
 
     protected void modifyQuery(PatternParameter patternParameter, String text) {

@@ -16,6 +16,7 @@ package org.eclipse.egf.pattern.ui.editors.wizards;
 
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseCallPage;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseKindPage;
@@ -61,7 +62,7 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
      */
     public void addPages() {
         // Set the window's title label
-        setWindowTitle("Orchestration");
+        setWindowTitle(Messages.OrchestrationWizard_title);
         if (defaultKind.equals(CallTypeEnum.Add)) {
             chooseKindPage = new ChooseKindPage(selection);
             addPage(chooseKindPage);

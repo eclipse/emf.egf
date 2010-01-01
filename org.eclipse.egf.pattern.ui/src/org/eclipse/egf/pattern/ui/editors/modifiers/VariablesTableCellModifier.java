@@ -17,9 +17,7 @@ package org.eclipse.egf.pattern.ui.editors.modifiers;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.ui.editors.pages.ImplementationPage;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.TableItem;
 
@@ -27,15 +25,10 @@ import org.eclipse.swt.widgets.TableItem;
  * @author xrchen
  * 
  */
-public class VariablesTableCellModifier implements ICellModifier {
-
-    private TransactionalEditingDomain editingDomain;
-
-    private TableViewer tableViewer;
+public class VariablesTableCellModifier extends EditingDomainCellModifier {
 
     public VariablesTableCellModifier(TransactionalEditingDomain editingDomain, TableViewer tableViewer) {
-        this.editingDomain = editingDomain;
-        this.tableViewer = tableViewer;
+        super(editingDomain, tableViewer);
     }
 
     public boolean canModify(Object element, String property) {
@@ -72,18 +65,17 @@ public class VariablesTableCellModifier implements ICellModifier {
         if (element instanceof PatternVariable) {
             PatternVariable patternVariable = (PatternVariable) element;
             if ((ImplementationPage.NAME_COLUMN_ID).equals(property)) {
-                executeModifyName(patternVariable, text);
+                executeModify(patternVariable, text);
             }
         }
     }
 
-    private void executeModifyName(final PatternVariable patternVariable, final String text) {
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            protected void doExecute() {
+    private void executeModify(final PatternVariable patternVariable, final String text) {
+        Runnable cmd = new Runnable() {
+            public void run() {
                 patternVariable.setName(text);
-                tableViewer.refresh();
             }
         };
-        editingDomain.getCommandStack().execute(cmd);
+        doModify(cmd);
     }
 }

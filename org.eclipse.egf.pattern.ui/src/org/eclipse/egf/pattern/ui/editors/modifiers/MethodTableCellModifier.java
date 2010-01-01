@@ -15,10 +15,9 @@
 package org.eclipse.egf.pattern.ui.editors.modifiers;
 
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.pages.ImplementationPage;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.jface.viewers.ICellModifier;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.TableItem;
 
@@ -26,15 +25,10 @@ import org.eclipse.swt.widgets.TableItem;
  * @author xrchen
  * 
  */
-public class MethodTableCellModifier implements ICellModifier {
-
-    private TransactionalEditingDomain editingDomain;
-
-    private TableViewer tableViewer;
+public class MethodTableCellModifier extends EditingDomainCellModifier {
 
     public MethodTableCellModifier(TransactionalEditingDomain editingDomain, TableViewer tableViewer) {
-        this.editingDomain = editingDomain;
-        this.tableViewer = tableViewer;
+        super(editingDomain, tableViewer);
     }
 
     public boolean canModify(Object element, String property) {
@@ -69,14 +63,12 @@ public class MethodTableCellModifier implements ICellModifier {
     }
 
     private void executeModify(final String text, final PatternMethod patternMethod) {
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            protected void doExecute() {
+        Runnable runnable = new Runnable() {
+            public void run() {
                 patternMethod.setName(text);
-                tableViewer.refresh();
             }
         };
-        editingDomain.getCommandStack().execute(cmd);
-
+        doModify(runnable);
     }
 
     /**
@@ -84,7 +76,7 @@ public class MethodTableCellModifier implements ICellModifier {
      */
     public static boolean isRenameDisable(PatternMethod element) {
         String name = element.getName();
-        if ("header".equals(name) || "init".equals(name) || "footer".equals(name)) {
+        if (Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name)) {
             return true;
         }
         return false;

@@ -420,10 +420,13 @@ public class ChooseCallPage extends WizardPage {
 
     private List<PatternMethod> getMethods() {
         List<PatternMethod> parentMethods = new ArrayList<PatternMethod>();
-        for (PatternMethod method : pattern.getMethods()) {
-            String name = method.getName();
-            if (!(Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name))) {
-                parentMethods.add(method);
+        EList<PatternMethod> allMethods = pattern.getAllMethods();
+        if (allMethods != null) {
+            for (PatternMethod method : allMethods) {
+                String name = method.getName();
+                if (!(Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name))) {
+                    parentMethods.add(method);
+                }
             }
         }
         return parentMethods;

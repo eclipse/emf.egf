@@ -88,6 +88,8 @@ public class Messages extends NLS {
 
     public static String ImplementationPage_orchSection_title;
 
+    public static String ImplementationPage_split_mark;
+
     public static String ImplementationPage_varSection_label;
 
     public static String ImplementationPage_varSection_title;
@@ -195,6 +197,16 @@ public class Messages extends NLS {
     
     // OpenType Page
     public static String OpenTypeWizard_window_title;
+
+    public static String OrchestrationTableLabelProvider_MethodCall;
+
+    public static String OrchestrationTableLabelProvider_PatternCall;
+
+    public static String OrchestrationTableLabelProvider_PatternInjectedCall;
+
+    public static String OrchestrationTableLabelProvider_SuperPatternCall;
+
+    public static String OrchestrationWizard_title;
     
     // Common
     public static String common_mark1;
