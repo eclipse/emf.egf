@@ -153,9 +153,9 @@ public class EMFHelper {
   }
 
   /**
-   * Obtains a textual representation of the specified model element, as for
-   * display in error messages. If no suitable factory is registered, then
-   * the EMF reflective item provider is used.
+   * Obtains a textual representation of the specified object, as for
+   * display in messages. If no suitable factory is registered for model element,
+   * then the EMF reflective item provider is used.
    * 
    * @param object
    *          the model element for which to get text
@@ -183,6 +183,30 @@ public class EMFHelper {
       result = result.trim();
     }
     return result;
+  }
+
+  /**
+   * Obtains an IItemLabelProvider of the specified model element, as for
+   * display in messages. If no suitable factory is registered, then
+   * the EMF reflective item provider is used.
+   * 
+   * @param eObject
+   *          the model element for which to get text
+   * @return the corresponding text
+   */
+  public static IItemLabelProvider getItemLabelProvider(EObject eObject) {
+    if (eObject == null) {
+      return null;
+    }
+    IItemLabelProvider provider = (IItemLabelProvider) __factory.adapt(eObject, IItemLabelProvider.class);
+    if (provider == null) {
+      // for backward compatibility, try looking in the resource set
+      provider = (IItemLabelProvider) getRegisteredAdapter(eObject, IItemLabelProvider.class);
+    }
+    if (provider == null) {
+      provider = (IItemLabelProvider) __defaultFactory.adapt(eObject, IItemLabelProvider.class);
+    }
+    return provider;
   }
 
   /**
