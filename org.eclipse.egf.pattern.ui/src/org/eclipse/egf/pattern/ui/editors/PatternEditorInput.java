@@ -47,6 +47,10 @@ public class PatternEditorInput implements IEditorInput {
         return true;
     }
 
+    public boolean isReadOnly() {
+        return false;
+    }
+
     public Pattern getPattern() {
         return (Pattern) resource.getEObject(fragment);
     }
