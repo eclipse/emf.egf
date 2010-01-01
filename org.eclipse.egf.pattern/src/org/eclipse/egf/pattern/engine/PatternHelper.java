@@ -42,6 +42,8 @@ import org.eclipse.egf.pattern.collector.PatternElementCollector;
 import org.eclipse.egf.pattern.collector.PatternLibraryCollector;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
@@ -49,6 +51,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
  * 
  */
 public class PatternHelper {
+
+    private final ResourceSet resourceSet;
 
     /**
      * This method returns a string from the libraries who contain the pattern.
@@ -97,41 +101,27 @@ public class PatternHelper {
         return fcore.getPlatformBundle().getProject();
     }
 
-    /**
-     * Reads FC models from the given project and return the pattern with the
-     * given id if any. <br/>
-     * TODO à supprimer car inutilisé
-     */
-    public static Set<Pattern> getPatterns(IProject project, String id) {
-        if (id == null)
-            throw new IllegalArgumentException();
-        HashSet<String> ids = new HashSet<String>();
-        ids.add(id);
-        return getPatterns(project, ids);
-    }
-
     // TODO quick implementation ...
-    public static Pattern getPattern(String id) {
+    public Pattern getPattern(String id) {
         for (Pattern p : getAllPatterns())
             if (p.getID().equals(id))
                 return p;
         return null;
     }
 
-    public static Set<Pattern> getPatterns(URI uri) {
+    public Set<Pattern> getPatterns(URI uri) {
         Set<Pattern> result = new HashSet<Pattern>();
         collectPatterns(uri, PatternCollector.EMPTY_ID_SET, result);
         return result;
     }
 
-    public static Map<String, PatternElement> getPatternElements(Set<String> ids) {
+    public Map<String, PatternElement> getPatternElements(Set<String> ids) {
         Set<PatternElement> result = new HashSet<PatternElement>(200);
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
-        final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
         for (IPlatformFcore platformFcore : platformFcores) {
             URI uri = platformFcore.getURI();
             try {
-                Resource res = editingDomain.getResourceSet().getResource(uri, true);
+                Resource res = resourceSet.getResource(uri, true);
                 PatternElementCollector.INSTANCE.collect(res.getContents(), result, PatternCollector.EMPTY_ID_SET);
             } catch (Exception e) {
                 org.eclipse.egf.pattern.Activator.getDefault().logError(Messages.bind(Messages.collect_error2, uri.toString()), e);
@@ -148,7 +138,9 @@ public class PatternHelper {
      * Reads FC models from the given project and return the patterns with the
      * given ids if any. If the ids set is null all patterns are returned.
      */
-    public static Set<Pattern> getPatterns(IProject project, Set<String> ids) {
+    public Set<Pattern> getPatterns(IProject project, Set<String> ids) {
+        if (ids == null)
+            ids = new HashSet<String>();
         Set<Pattern> result = new HashSet<Pattern>();
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores(project);
         for (IPlatformFcore platformFcore : platformFcores) {
@@ -160,7 +152,7 @@ public class PatternHelper {
     /**
      * Reads all FC models and return the patterns.
      */
-    public static Set<Pattern> getAllPatterns() {
+    public Set<Pattern> getAllPatterns() {
         Set<Pattern> result = new HashSet<Pattern>(200);
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
         for (IPlatformFcore platformFcore : platformFcores) {
@@ -177,14 +169,13 @@ public class PatternHelper {
     /**
      * Reads all FC models and return the pattern libraries.
      */
-    public static Set<PatternLibrary> getAllLibraries() {
+    public Set<PatternLibrary> getAllLibraries() {
         Set<PatternLibrary> result = new HashSet<PatternLibrary>(200);
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
-        final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
         for (IPlatformFcore platformFcore : platformFcores) {
             URI uri = platformFcore.getURI();
             try {
-                Resource res = editingDomain.getResourceSet().getResource(uri, true);
+                Resource res = resourceSet.getResource(uri, true);
                 PatternLibraryCollector.INSTANCE.collect(res.getContents(), result, PatternCollector.EMPTY_ID_SET);
             } catch (Exception e) {
                 org.eclipse.egf.pattern.Activator.getDefault().logError(Messages.bind(Messages.collect_error2, uri.toString()), e);
@@ -193,9 +184,8 @@ public class PatternHelper {
         return result;
     }
 
-    private static void collectPatterns(URI uri, Set<String> ids, Set<Pattern> collector) {
-        final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
-        Resource res = editingDomain.getResourceSet().getResource(uri, true);
+    private void collectPatterns(URI uri, Set<String> ids, Set<Pattern> collector) {
+        Resource res = resourceSet.getResource(uri, true);
         PatternCollector.INSTANCE.collect(res.getContents(), collector, ids);
     }
 
@@ -211,7 +201,30 @@ public class PatternHelper {
         return parameter.getName() + "Parameter";
     }
 
-    private PatternHelper() {
+    public void clear() {
+        for (Resource res : resourceSet.getResources())
+            res.unload();
+        resourceSet.getResources().clear();
+    }
+
+    private PatternHelper(TransactionalEditingDomain domain) {
+        this(domain.getResourceSet());
+    }
+
+    private PatternHelper(ResourceSet resourceSet) {
+        this.resourceSet = resourceSet;
+    }
+
+    public static final PatternHelper TRANSACTIONNAL_COLLECTOR = new PatternHelper(TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID));
+
+    public static final PatternHelper createCollector() {
+        ResourceSetImpl set = new ResourceSetImpl();
+        // Clear the previous URIConverter content
+        set.getURIConverter().getURIMap().clear();
+        // Assign a fresh platform aware URIConverter
+        set.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+
+        return new PatternHelper(set);
     }
 
     public static class FilenameFormatException extends Exception {
@@ -256,4 +269,5 @@ public class PatternHelper {
         private Filename() {
         }
     }
+
 }
