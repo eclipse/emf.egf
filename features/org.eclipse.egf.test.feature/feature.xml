@@ -29,7 +29,6 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
 
-   <includes id="org.eclipse.egf.test.source" version="0.0.0"/>
    <includes id="org.eclipse.egf.sdk" version="0.0.0"/>
 
    <requires>
