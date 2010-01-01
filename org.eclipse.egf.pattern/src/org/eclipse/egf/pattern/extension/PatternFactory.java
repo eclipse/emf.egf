@@ -402,7 +402,7 @@ public abstract class PatternFactory {
         pattern.setName(patternName);
         if (lib != null)
             lib.getElements().add(pattern);
-        checkId(pattern);
+        // checkId(pattern);
         addNature(pattern);
 
         /*
@@ -510,8 +510,9 @@ public abstract class PatternFactory {
      * @param element
      */
     private void checkId(ModelElement element) {
-        if (element.getID() == null || "".equals(element.getID()))
-            throw new IllegalStateException();
+        // ID are set when the element is added to a resource.
+        // if (element.getID() == null || "".equals(element.getID()))
+        // throw new IllegalStateException();
     }
 
 }

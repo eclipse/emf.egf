@@ -120,6 +120,8 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
     }
 
     public static void openEditor(IWorkbenchPage page, Pattern pattern, String methodId) {
+        if (page == null)
+            throw new IllegalArgumentException();
         if (pattern == null)
             throw new IllegalArgumentException();
 

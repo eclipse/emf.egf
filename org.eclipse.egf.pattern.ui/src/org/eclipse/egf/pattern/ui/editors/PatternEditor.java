@@ -52,9 +52,11 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.IFormPage;
+import org.eclipse.ui.ide.IDE;
 
 /**
  * 
@@ -239,7 +241,6 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
                     // add our undo context to populate our undo menu
                     operation.addContext(undoContext);
-
                     getSite().getShell().getDisplay().asyncExec(new Runnable() {
                         public void run() {
                             firePropertyChange(IEditorPart.PROP_DIRTY);
@@ -280,6 +281,21 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
     public ResourceListener getListener() {
 
         return resourceListener;
+    }
+
+    public static void openEditor(IWorkbenchPage page, Pattern pattern) {
+        if (page == null)
+            throw new IllegalArgumentException();
+        if (pattern == null)
+            throw new IllegalArgumentException();
+
+        Resource resource = pattern.eResource();
+        try {
+            PatternEditorInput input = new PatternEditorInput(resource, pattern.getID());
+            PatternEditor editor = (PatternEditor) IDE.openEditor(page, input, "org.eclipse.egf.pattern.ui.editors.PatternEditor");
+        } catch (PartInitException e) {
+            e.printStackTrace();
+        }
     }
 
 }
