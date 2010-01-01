@@ -14,9 +14,7 @@ Require-Bundle:
  org.eclipse.jdt.core;visibility:=reexport,
  org.eclipse.pde.core;visibility:=reexport, 
  org.eclipse.emf.edit;visibility:=reexport, 
- org.eclipse.emf.codegen.ecore;visibility:=reexport,
- org.apache.ant;visibility:=reexport,
- org.eclipse.ant.core;visibility:=reexport 
+ org.eclipse.emf.codegen.ecore;visibility:=reexport
 Export-Package: 
  org.eclipse.egf.common,
  org.eclipse.egf.common.activator,
