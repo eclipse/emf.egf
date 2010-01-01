@@ -37,7 +37,6 @@ import org.eclipse.pde.core.plugin.IPluginElement;
 import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginObject;
-import org.eclipse.pde.internal.ui.PDELabelProvider;
 import org.osgi.framework.Bundle;
 
 public class PlatformBundle implements IPlatformBundle {
@@ -312,7 +311,7 @@ public class PlatformBundle implements IPlatformBundle {
     String version = pluginBase.getVersion();
     StringBuilder text = new StringBuilder("Id: "); //$NON-NLS-1$
     if (version != null && version.length() > 0) {
-      text.append(id).append(" ").append(PDELabelProvider.formatVersion(pluginBase.getVersion())); //$NON-NLS-1$
+      text.append(id).append(" ").append(pluginBase.getVersion()); //$NON-NLS-1$
     } else {
       text.append(id);
     }
