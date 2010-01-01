@@ -300,6 +300,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
         // Bundle Session
         ProjectBundleSession session = new ProjectBundleSession(EGFModelsEditorPlugin.getPlugin().getBundle().getBundleContext());
         context.put(ProjectBundleSession.PROJECT_BUNDLE_SESSION, session);
+        // Validation
         for (EObject eObject : selectedObjects) {
           progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[] { diagnostician.getObjectLabel(eObject) })); //$NON-NLS-1$
           diagnostician.validate(eObject, diagnostic, context);
