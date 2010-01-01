@@ -15,6 +15,7 @@
 package org.eclipse.egf.pattern.ui.editors.providers;
 
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
@@ -29,15 +30,23 @@ import org.eclipse.swt.graphics.Image;
 public class PatternSelectionLabelProvider implements ITableLabelProvider {
 
     public Image getColumnImage(Object element, int columnIndex) {
-
-        return ImageShop.get(ImageShop.IMG_INNERCLASS_PUBLIC_OBJ);
+        if (element instanceof Pattern) {
+            return ImageShop.get(ImageShop.IMG_INNERCLASS_PUBLIC_OBJ);
+        } else if (element instanceof PatternVariable) {
+            return ImageShop.get(ImageShop.IMG_VARIABLE);
+        }
+        return null;
     }
 
     public String getColumnText(Object element, int columnIndex) {
-        Pattern pattern = (Pattern) element;
-        switch (columnIndex) {
-        case 0:
-            return pattern.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(pattern) + Messages.common_mark2 + " - " + pattern.eResource().getURI();
+        if (element instanceof Pattern) {
+            Pattern pattern = (Pattern) element;
+            switch (columnIndex) {
+            case 0:
+                return pattern.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(pattern) + Messages.common_mark2 + " - " + pattern.eResource().getURI();
+            }
+        } else if (element instanceof PatternVariable) {
+            return ((PatternVariable) element).getName();
         }
         return "";
     }
