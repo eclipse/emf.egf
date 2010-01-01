@@ -32,10 +32,12 @@ public interface IProducerManager {
 
   public Bundle getBundle() throws InvocationException;
 
-  public void prepare() throws InvocationException;
+  public void initializeContext() throws InvocationException;
 
   public void invoke(IProgressMonitor monitor) throws InvocationException;
 
   public int getSteps() throws InvocationException;
+
+  public void dispose() throws InvocationException;
 
 }
