@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fprod:Task xmi:version="2.1"
-    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
-    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
     name="H1" description="" value="org.eclipse.egf.example.task.h1.H1">
   <activityContractContainer xmi:id="_sAEVUbpOEd6O-6ob3O13Lw">
     <activityContracts xmi:id="_Z65BAdA5Ed6LbMEN-DBMtQ" name="stock">
@@ -13,7 +13,7 @@
     <activityContracts xmi:id="_E11LcdA8Ed6uEZYKLg-jOQ" name="rebate" mode="In_Out">
       <type xmi:type="types:FloatType" xmi:id="_GkZmENA8Ed6uEZYKLg-jOQ" value="5.0"/>
     </activityContracts>
-    <activityContracts xmi:id="_xfSXELpOEd6O-6ob3O13Lw" name="price">
+    <activityContracts xmi:id="_xfSXELpOEd6O-6ob3O13Lw" name="price" description="">
       <type xmi:type="types:FloatType" xmi:id="_y0EYsLpOEd6O-6ob3O13Lw" value="10.5"/>
     </activityContracts>
     <activityContracts xmi:id="_2vwLILpOEd6O-6ob3O13Lw" name="amount" mode="Out">
@@ -26,6 +26,12 @@
     </activityContracts>
     <activityContracts xmi:id="_TX0todXAEd6mBObdoXlr9g" name="parameters" mode="In_Out">
       <type xmi:type="types:TypeCollection" xmi:id="_UtguMNXAEd6mBObdoXlr9g" value="java.util.ArrayList"/>
+    </activityContracts>
+    <activityContracts xmi:id="_M2YOIdqHEd6xR_hM8cx7GA" name="model">
+      <type xmi:type="domain:DomainEPackageType" xmi:id="_OvOmINqHEd6xR_hM8cx7GA"/>
+    </activityContracts>
+    <activityContracts xmi:id="_TwNMsNqHEd6xR_hM8cx7GA" name="reference">
+      <type xmi:type="domain:DomainURIType" xmi:id="_VFI_UNqHEd6xR_hM8cx7GA"/>
     </activityContracts>
   </activityContractContainer>
 </fprod:Task>

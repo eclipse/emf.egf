@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fcore:FactoryComponent xmi:version="2.1"
-    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
-    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="Ko39UWVuEd64TpQQ4RciWw"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="Ko39UWVuEd64TpQQ4RciWw"
     name="FC1">
   <activityContractContainer xmi:id="_SmBtAL-2Ed6E7J0w9U7NFQ">
     <activityContracts xmi:id="_S7e_oL-2Ed6E7J0w9U7NFQ" name="amount" mode="Out" invocationContexts="#_IDAaML-2Ed6E7J0w9U7NFQ"
@@ -22,7 +23,23 @@
         invocationContexts="#_aC43cNXAEd6mBObdoXlr9g">
       <type xmi:type="types:TypeList" xmi:id="_js_lQNXAEd6mBObdoXlr9g"/>
     </activityContracts>
+    <activityContracts xmi:id="_LCgnUNgXEd6eJbYEYJAYWw" name="fcore" invocationContexts="#_Pnj8UNqHEd6xR_hM8cx7GA">
+      <type xmi:type="domain:DomainEPackageType" xmi:id="_L9heENgXEd6eJbYEYJAYWw"
+          name="fcore" value="#_IlmgAdgXEd6eJbYEYJAYWw"/>
+    </activityContracts>
+    <activityContracts xmi:id="_zb0TwNgfEd6na6OAqTVobQ" name="fc1" invocationContexts="#_WXZRYNqHEd6xR_hM8cx7GA">
+      <type xmi:type="domain:DomainURIType" xmi:id="_HB5igdggEd6uy82Dcq20PA" name="fc1"
+          value="#_J1bPgdgfEd6na6OAqTVobQ"/>
+    </activityContracts>
   </activityContractContainer>
+  <viewpointContainer xmi:id="_iBhWMdgWEd6Q4-VfEsR1iA">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_iiANENgWEd6Q4-VfEsR1iA">
+      <domains xmi:type="domain:DomainEPackage" xmi:id="_IlmgAdgXEd6eJbYEYJAYWw" name="fcore"
+          ePackage="http://www.eclipse.org/egf/1.0.0/fcore#/"/>
+      <domains xmi:type="domain:DomainURI" xmi:id="_J1bPgdgfEd6na6OAqTVobQ" name="fc1"
+          uri="platform:/resource/org.eclipse.egf.examples.fcs/fc/fc1.fcore"/>
+    </viewpoints>
+  </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="4w2VoabFEd692t-PG4ogiQ">
     <orchestrationContextContainer xmi:id="_I6TxYcVjEd6ngr_25dSdnQ">
       <orchestrationContexts xmi:id="_uNn24MVjEd6ngr_25dSdnQ" name="stock" invocationContexts="#_bu7G8MVjEd6ngr_25dSdnQ #_4qwyMdA6Ed6FD_8N74-4WA">
@@ -51,6 +68,10 @@
             factoryComponentExposedContract="#_5siVYMnxEd62uJjVIIL53A" activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_PFOYwbshEd6hlL3ru-eQtQ"/>
         <invocationContexts xmi:id="_aC43cNXAEd6mBObdoXlr9g" name="parameters" factoryComponentExposedContract="#_ih5EENXAEd6mBObdoXlr9g"
             activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_TX0todXAEd6mBObdoXlr9g"/>
+        <invocationContexts xmi:id="_Pnj8UNqHEd6xR_hM8cx7GA" name="model" factoryComponentExposedContract="#_LCgnUNgXEd6eJbYEYJAYWw"
+            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_M2YOIdqHEd6xR_hM8cx7GA"/>
+        <invocationContexts xmi:id="_WXZRYNqHEd6xR_hM8cx7GA" name="reference" factoryComponentExposedContract="#_zb0TwNgfEd6na6OAqTVobQ"
+            activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_TwNMsNqHEd6xR_hM8cx7GA"/>
       </invocationContextContainer>
     </invocations>
   </orchestration>
