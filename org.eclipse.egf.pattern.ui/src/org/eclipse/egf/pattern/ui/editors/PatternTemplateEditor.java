@@ -24,9 +24,12 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.ide.IDE;
@@ -60,6 +63,10 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
     protected void createPages() {
         for (PatternMethod method : getPattern().getMethods())
             createPage(method);
+    }
+
+    public IEditorPart getEditorPart(String methodId) {
+        return editors.get(methodId);
     }
 
     public void doSave(IProgressMonitor monitor) {
@@ -103,6 +110,27 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
         if (input == null)
             throw new IllegalStateException();
         return input.getPattern();
+    }
+
+    public void setActiveEditor(String methodId) {
+        IEditorPart editorPart = getEditorPart(methodId);
+        if (editorPart != null) {
+            super.setActiveEditor(editorPart);
+        }
+    }
+
+    public static void openEditor(IWorkbenchPage page, Pattern pattern, String methodId) {
+        if (pattern == null)
+            throw new IllegalArgumentException();
+
+        Resource resource = pattern.eResource();
+        try {
+            PatternEditorInput input = new PatternEditorInput(resource, pattern.getID());
+            PatternTemplateEditor editor = (PatternTemplateEditor) IDE.openEditor(page, input, "org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor");
+            editor.setActiveEditor(methodId);
+        } catch (PartInitException e) {
+            e.printStackTrace();
+        }
     }
 
 }

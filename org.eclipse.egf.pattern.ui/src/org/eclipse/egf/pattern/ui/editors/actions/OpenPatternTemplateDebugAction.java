@@ -20,9 +20,8 @@ import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
-import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternViewpoint;
-import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
+import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -31,7 +30,6 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.PartInitException;
 
 /**
  * 
@@ -55,35 +53,16 @@ public class OpenPatternTemplateDebugAction implements IObjectActionDelegate {
     }
 
     public void run(IAction action) {
-        try {
-            URI uri;
-            Pattern pattern;
-            Resource res;
-            Object firstElement = selection.getFirstElement();
-            TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.eclipse.egf.pattern.ui.editors.PatternEditingDomain");
-            if (firstElement instanceof PatternMethod) {
-                PatternMethod patternMethod = (PatternMethod) firstElement;
-                uri = patternMethod.getPatternFilePath();
-                res = editingDomain.getResourceSet().getResource(uri, true);
-                pattern = patternMethod.getPattern();
-                // TODO
-            } else {
-                IFile file = (IFile) firstElement;
-                uri = URIHelper.getPlatformURI(file.getFullPath());
-                res = editingDomain.getResourceSet().getResource(uri, true);
-                FactoryComponent fc = (FactoryComponent) res.getContents().get(0);
-                PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
-                PatternLibrary patternLibrary = pvp.getLibraries().get(0);
-
-                pattern = (Pattern) patternLibrary.getElements().get(0);
-            }
-            // URI uri2 = EcoreUtil.getURI(pattern);
-            PatternEditorInput input = new PatternEditorInput(res, pattern.getID());
-
-            targetPart.getSite().getPage().openEditor(input, "org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor");
-        } catch (PartInitException e) {
-            e.printStackTrace();
-
-        }
+        Object firstElement = selection.getFirstElement();
+        TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.eclipse.egf.pattern.ui.editors.PatternEditingDomain");
+        IFile file = (IFile) firstElement;
+        URI uri = URIHelper.getPlatformURI(file.getFullPath());
+        Resource res = editingDomain.getResourceSet().getResource(uri, true);
+        FactoryComponent fc = (FactoryComponent) res.getContents().get(0);
+        PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
+        PatternLibrary patternLibrary = pvp.getLibraries().get(0);
+        Pattern pattern = (Pattern) patternLibrary.getElements().get(0);
+        PatternTemplateEditor.openEditor(targetPart.getSite().getPage(), pattern, null);
     }
+
 }
