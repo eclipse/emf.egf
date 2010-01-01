@@ -13,7 +13,8 @@ public class FilterStrategyTask extends AbstractStrategyTask {
         super(new FilterStrategy());
     }
 
-    public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+    public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
+        super.preExecute(context, monitor);
         parameter = context.getInputValue(FILTER_NAME_PARAMETER, String.class);
     }
 }

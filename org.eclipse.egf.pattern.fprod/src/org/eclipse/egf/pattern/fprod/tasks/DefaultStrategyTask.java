@@ -11,8 +11,8 @@ public class DefaultStrategyTask extends AbstractStrategyTask {
         super(new DefaultStrategy());
     }
 
-    public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
-        super.preExecute(context, monitor_p);
+    public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
+        super.preExecute(context, monitor);
         parameter = this; // must be non null
     }
 }

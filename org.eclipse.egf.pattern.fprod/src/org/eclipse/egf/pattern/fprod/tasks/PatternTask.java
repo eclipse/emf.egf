@@ -6,7 +6,6 @@ import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
@@ -16,14 +15,14 @@ public class PatternTask extends AbstractPatternTask {
 
     private Pattern pattern;
 
-    public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+    public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
         String patternId = context.getInputValue(PatternContext.PATTERN_ID, String.class); //$NON-NLS-1$
-        pattern = PatternHelper.getPattern(patternId);
+        pattern = helper.getPattern(patternId);
         if (pattern == null)
             throw new InvocationException(Messages.bind(Messages.Missing_pattern_error1, patternId));
     }
 
-    public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+    public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
         try {
             PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
             String reason = extension.canExecute(pattern);
@@ -45,7 +44,8 @@ public class PatternTask extends AbstractPatternTask {
         }
     }
 
-    public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+    public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
+        super.postExecute(context, monitor);
         pattern = null;
     }
 }

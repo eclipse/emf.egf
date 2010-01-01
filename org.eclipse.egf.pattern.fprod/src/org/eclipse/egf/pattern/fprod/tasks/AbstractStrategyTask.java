@@ -13,7 +13,6 @@ import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.fprod.Messages;
 import org.eclipse.egf.pattern.strategy.Strategy;
@@ -29,13 +28,14 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
         this.strategy = strategy;
     }
 
-    public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+    public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
         // WORKAROUND how to read an array ?
         String ids = context.getInputValue(PATTERN_IDS_PARAMETER, String.class);
         String[] idArray = ids.split(", ");
         Set<String> idSet = new HashSet<String>();
         idSet.addAll(Arrays.asList(idArray));
-        Map<String, PatternElement> patternElements = PatternHelper.getPatternElements(idSet);
+
+        Map<String, PatternElement> patternElements = helper.getPatternElements(idSet);
         for (String id : idArray) {
             PatternElement pe = patternElements.get(id);
             if (pe != null)
@@ -43,7 +43,7 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
         }
     }
 
-    public final void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+    public final void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
         if (parameter == null)
             throw new InvocationException(Messages.taskInvocation_error1);
         if (patterns.isEmpty())
@@ -63,7 +63,8 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
         }
     }
 
-    public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+    public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
+        super.postExecute(context, monitor);
         parameter = null;
     }
 }
