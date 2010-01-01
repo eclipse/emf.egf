@@ -28,10 +28,10 @@
       <type xmi:type="types:TypeCollection" xmi:id="_UtguMNXAEd6mBObdoXlr9g" value="java.util.ArrayList"/>
     </activityContracts>
     <activityContracts xmi:id="_M2YOIdqHEd6xR_hM8cx7GA" name="model">
-      <type xmi:type="domain:DomainEPackageType" xmi:id="_OvOmINqHEd6xR_hM8cx7GA"/>
+      <type xmi:type="domain:DomainEPackageType" xmi:id="_sbQNUNqLEd6V9pdModnIUQ"/>
     </activityContracts>
     <activityContracts xmi:id="_TwNMsNqHEd6xR_hM8cx7GA" name="reference">
-      <type xmi:type="domain:DomainURIType" xmi:id="_VFI_UNqHEd6xR_hM8cx7GA"/>
+      <type xmi:type="domain:DomainURIType" xmi:id="_rF3uwNqLEd6V9pdModnIUQ"/>
     </activityContracts>
   </activityContractContainer>
 </fprod:Task>
