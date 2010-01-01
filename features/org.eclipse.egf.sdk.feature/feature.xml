@@ -27,13 +27,11 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%EMFUpdateSiteName" url="http://download.eclipse.org/modeling/emf/updates/"/>
       <discovery label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
-
-   <requires>
-      <import feature="org.eclipse.egf.common" version="0.0.0" match="compatible"/>
-      <import feature="org.eclipse.egf.core" version="0.0.0" match="compatible"/>
-      <import feature="org.eclipse.egf.model" version="0.0.0" match="compatible"/>
-      <import feature="org.eclipse.egf.producer" version="0.0.0" match="compatible"/>
-      <import feature="org.eclipse.egf.test" version="0.0.0" match="compatible"/>                        
-   </requires>
+   
+   <includes id="org.eclipse.egf.common" version="0.0.0"/>
+   <includes id="org.eclipse.egf.core" version="0.0.0"/>
+   <includes id="org.eclipse.egf.model" version="0.0.0"/>
+   <includes id="org.eclipse.egf.producer" version="0.0.0"/>
+   <includes id="org.eclipse.egf.test" version="0.0.0"/>
 
 </feature>

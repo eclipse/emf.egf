@@ -30,10 +30,7 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <includes id="org.eclipse.egf.core.source" version="0.0.0"/>
-
-   <requires>
-      <import feature="org.eclipse.egf.common" version="0.0.0" match="compatible"/>
-   </requires>
+   <includes id="org.eclipse.egf.common" version="0.0.0"/>   
 
    <plugin
          id="org.eclipse.egf.core"

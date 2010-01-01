@@ -30,9 +30,9 @@ http://www.eclipse.org/legal/epl-v10.html
    </url>
 
    <includes id="org.eclipse.egf.model.source" version="0.0.0"/>
+   <includes id="org.eclipse.egf.core" version="0.0.0"/>   
 
    <requires>
-      <import feature="org.eclipse.egf.core" version="0.0.0" match="compatible"/>
       <import feature="org.eclipse.emf.ecore" version="2.5.0.v200906151043" match="compatible"/>      
       <import feature="org.eclipse.emf.ecore.edit" version="2.5.0.v200906151043" match="compatible"/>      
       <import feature="org.eclipse.emf.edit.ui" version="2.5.0.v200906151043" match="compatible"/>      
