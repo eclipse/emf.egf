@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.engine;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -62,26 +63,27 @@ public class TranslationHelper {
 
     private List<Pattern> getOrderedList(Set<Pattern> patterns) {
         List<Pattern> result = new ArrayList<Pattern>(patterns.size());
-
+        Set<Pattern> visited = new HashSet<Pattern>(100);
         for (Pattern p : patterns) {
-            addRequirements(p, result, patterns);
+            addRequirements(p, result, patterns, visited);
         }
-
+        visited.clear();
         return result;
     }
 
-    private void addRequirements(Pattern pattern, List<Pattern> result, Set<Pattern> allPatterns) {
-        if (result.contains(pattern))
+    private void addRequirements(Pattern pattern, List<Pattern> result, Set<Pattern> allPatterns, Set<Pattern> visited) {
+        if (visited.contains(pattern))
             return;
+        visited.add(pattern);
 
         Pattern superPattern = pattern.getSuperPattern();
         if (superPattern != null)
-            addRequirements(superPattern, result, allPatterns);
+            addRequirements(superPattern, result, allPatterns, visited);
 
         // list dependencies
         for (Call call : pattern.getOrchestration()) {
             if (call instanceof AbstractPatternCall) {
-                addRequirements(((AbstractPatternCall) call).getCalled(), result, allPatterns);
+                addRequirements(((AbstractPatternCall) call).getCalled(), result, allPatterns, visited);
             }
         }
         if (allPatterns.contains(pattern))
