@@ -39,7 +39,7 @@ import org.eclipse.ui.dialogs.SelectionStatusDialog;
  */
 public class MethodAddOrEditDialog extends SelectionStatusDialog {
 
-    private List<String> parentMethods;
+    private List<String> parentMethodNames;
 
     private Combo combo;
 
@@ -49,12 +49,11 @@ public class MethodAddOrEditDialog extends SelectionStatusDialog {
 
     public MethodAddOrEditDialog(Shell shell, List<String> parentMethods, String oldName) {
         super(shell);
-        this.parentMethods = parentMethods;
+        this.parentMethodNames = parentMethods;
         this.oldName = oldName;
     }
 
     protected Control createDialogArea(Composite parent) {
-
         final IStatus fLastStatusOk = new Status(IStatus.OK, Policy.JFACE, IStatus.OK, Util.ZERO_LENGTH_STRING, null);
         final IStatus fLastStatusErr = new Status(IStatus.ERROR, JavaCore.PLUGIN_ID, -1, "", null);
         updateStatus(fLastStatusErr);
@@ -65,9 +64,9 @@ public class MethodAddOrEditDialog extends SelectionStatusDialog {
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         combo.setLayoutData(gd);
         combo.setText(oldName);
-        if (parentMethods != null) {
-            for (String parentMethod : parentMethods) {
-                combo.add(parentMethod);
+        if (parentMethodNames != null) {
+            for (String parentMethodName : parentMethodNames) {
+                combo.add(parentMethodName);
             }
         }
         combo.addSelectionListener(new SelectionListener() {

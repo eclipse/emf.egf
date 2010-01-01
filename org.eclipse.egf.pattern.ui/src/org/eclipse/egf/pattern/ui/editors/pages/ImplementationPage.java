@@ -15,7 +15,6 @@
 
 package org.eclipse.egf.pattern.ui.editors.pages;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.list.IObservableList;
@@ -32,6 +31,7 @@ import org.eclipse.egf.model.pattern.SuperPatternCall;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.VariablesEditDialog;
@@ -56,7 +56,6 @@ import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.ColumnWeightData;
-import org.eclipse.jface.viewers.ComboBoxViewerCellEditor;
 import org.eclipse.jface.viewers.DialogCellEditor;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -131,7 +130,7 @@ public class ImplementationPage extends PatternEditorPage {
 
     private Button variablesRemove;
 
-    private ComboBoxViewerCellEditor nameEditor;
+    private MethodsComboBoxViewerCellEditor nameEditor;
 
     private PatternMethod dropEntry;
 
@@ -221,8 +220,10 @@ public class ImplementationPage extends PatternEditorPage {
             public void selectionChanged(SelectionChangedEvent event) {
                 setMethodsButtonsStatus();
                 CCombo control = (CCombo) nameEditor.getControl();
-                if (control != null && !control.isDisposed())
-                    control.setText(""); //$NON-NLS-1$
+                if (control != null && !control.isDisposed()) {
+                    PatternMethod selectItem = getmethodsSelectItem();
+                    control.setText(selectItem == null ? "" : selectItem.getName()); //$NON-NLS-1$
+                }
             }
         });
 
@@ -237,8 +238,7 @@ public class ImplementationPage extends PatternEditorPage {
 
             public void dragSetData(DragSourceEvent event) {
                 if (methodsTableViewer.getSelection() != null) {
-                    int Index = methodsTableViewer.getTable().getSelectionIndex();
-                    dropEntry = (PatternMethod) methodsTableViewer.getElementAt(Index);
+                    dropEntry = getmethodsSelectItem();
                 }
             }
 
@@ -275,7 +275,8 @@ public class ImplementationPage extends PatternEditorPage {
         methodsAdd.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                MethodAddOrEditDialog dialog = new MethodAddOrEditDialog(new Shell(), getParentMethods(), ""); //$NON-NLS-1$
+                Pattern parent = getPatternParent();
+                MethodAddOrEditDialog dialog = new MethodAddOrEditDialog(new Shell(), PatternUIHelper.getUseablePatternMethodsNameList(parent), ""); //$NON-NLS-1$
                 dialog.setTitle(Messages.ImplementationPage_methAdd_dialog_title);
                 if (dialog.open() == Window.OK) {
                     executeMethodsAdd(dialog.getName());
@@ -304,7 +305,8 @@ public class ImplementationPage extends PatternEditorPage {
                         selectName = ((PatternMethod) entry).getName();
                     }
                 }
-                MethodAddOrEditDialog dialog = new MethodAddOrEditDialog(new Shell(), getParentMethods(), selectName);
+                Pattern parent = getPatternParent();
+                MethodAddOrEditDialog dialog = new MethodAddOrEditDialog(new Shell(), PatternUIHelper.getUseablePatternMethodsNameList(parent), selectName);
                 dialog.setTitle(Messages.ImplementationPage_methEdit_dialog_title);
                 if (dialog.open() == Window.OK) {
                     executeMethodsEdit(dialog.getName());
@@ -922,6 +924,18 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     /**
+     * Get the methodsTableViewer's selected item.
+     */
+    protected PatternMethod getmethodsSelectItem() {
+        int selectionIndex = methodsTableViewer.getTable().getSelectionIndex();
+        Object selectItem = methodsTableViewer.getElementAt(selectionIndex);
+        if (selectItem instanceof PatternMethod) {
+            return (PatternMethod) selectItem;
+        }
+        return null; //$NON-NLS-1$
+    }
+
+    /**
      * Create the Variables section's buttons.
      */
     private void createVariablesButtons(FormToolkit toolkit, Composite variables) {
@@ -1083,21 +1097,6 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     /**
-     * Get the pattern's parent methods.
-     */
-    private List<String> getParentMethods() {
-        List<String> parentMethods = new ArrayList<String>();
-        Pattern parent = getPattern() == null ? null : getPattern().getSuperPattern();
-        if (parent != null) {
-            for (PatternMethod patternMethod : parent.getMethods()) {
-                String name = patternMethod.getName();
-                parentMethods.add(name);
-            }
-        }
-        return parentMethods;
-    }
-
-    /**
      * Set default selection after remove operation.
      */
     private void setDefaultSelection(EList<?> model, TableViewer tableViewer, int index) {
@@ -1122,11 +1121,12 @@ public class ImplementationPage extends PatternEditorPage {
 
     void bindMethodsTable(Pattern pattern) {
         if (nameEditor != null) {
-            nameEditor.setInput(getParentMethods());
+            List<String> useablePatternMethods = PatternUIHelper.getUseablePatternMethodsNameList(getPatternParent());
+            nameEditor.setInput(useablePatternMethods);
         }
         if (methodsTableViewer != null) {
             methodsTableViewer.setInput(null);
-            methodsTableViewer.setLabelProvider(new MethodLabelProvider(getParentMethods()));
+            methodsTableViewer.setLabelProvider(new MethodLabelProvider(PatternUIHelper.getPatternParentMethodsNameList(getPattern())));
             IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__METHODS);
             IObservableList observe = input.observe(pattern);
             methodsTableViewer.setInput(observe);
@@ -1151,5 +1151,10 @@ public class ImplementationPage extends PatternEditorPage {
 
     public Button getEditButton() {
         return methodsEdit;
+    }
+    
+    private Pattern getPatternParent(){
+        Pattern pattern = getPattern();
+        return pattern == null ? null : pattern.getSuperPattern();
     }
 }

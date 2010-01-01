@@ -239,8 +239,10 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        Button removeParent = toolkit.createButton(buttons, Messages.SpecificationPage_button_remove, SWT.PUSH);
+        Button removeParent = toolkit.createButton(buttons, "", SWT.PUSH);
         removeParent.setLayoutData(gd);
+        removeParent.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+        removeParent.setToolTipText(Messages.SpecificationPage_button_remove);
         removeParent.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {

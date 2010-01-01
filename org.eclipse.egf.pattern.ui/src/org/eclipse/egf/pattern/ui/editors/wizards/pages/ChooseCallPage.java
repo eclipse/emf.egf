@@ -15,8 +15,10 @@
 
 package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
+import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 import org.eclipse.egf.model.pattern.Call;
@@ -30,6 +32,8 @@ import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.SuperPatternCall;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.ui.PatternUIHelper;
+import org.eclipse.egf.pattern.ui.editors.dialogs.ParameterMatchingDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.PatternElementSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.MethodLabelProvider;
@@ -42,15 +46,21 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
@@ -80,6 +90,14 @@ public class ChooseCallPage extends WizardPage {
 
     private Label varParaLabel;
 
+    private Composite parameterMatchArea;
+
+    private Button matchingCheckBox;
+
+    private Text matchingText;
+
+    private Button matchingButton;
+
     private Object eidtItem;
 
     public ChooseCallPage(Pattern pattern, ISelection selection, Object eidtItem) {
@@ -97,6 +115,7 @@ public class ChooseCallPage extends WizardPage {
 
     private void createCallControl(Composite parent) {
         Composite container = new Composite(parent, SWT.NONE);
+        container.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL));
         GridLayout layout = new GridLayout();
         container.setLayout(layout);
 
@@ -106,7 +125,46 @@ public class ChooseCallPage extends WizardPage {
 
         createPatternsMethodsArea(container);
         createVariablesArea(container);
+        createParameterMatchArea(container);
         setControl(container);
+    }
+
+    private void createParameterMatchArea(Composite container) {
+        parameterMatchArea = new Composite(container, SWT.NONE);
+        GridLayout layout = new GridLayout(3, false);
+        parameterMatchArea.setLayout(layout);
+        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+        parameterMatchArea.setLayoutData(gd);
+
+        matchingCheckBox = new Button(parameterMatchArea, SWT.CHECK);
+        matchingCheckBox.addSelectionListener(new SelectionListener() {
+            
+            public void widgetSelected(SelectionEvent e) {
+                checkMatchingClick();
+            }
+            
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
+        matchingText = new Text(parameterMatchArea, SWT.BORDER);
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        matchingText.setLayoutData(gd);
+
+        matchingButton = new Button(parameterMatchArea, SWT.PUSH);
+        gd = new GridData(GridData.HORIZONTAL_ALIGN_END);
+        matchingButton.setLayoutData(gd);
+        matchingButton.setText(Messages.ChooseCallPage_parameter_matching_button);
+        matchingButton.addSelectionListener(new SelectionListener() {
+
+            public void widgetSelected(SelectionEvent e) {
+                ParameterMatchingDialog dialog = new ParameterMatchingDialog(new Shell());
+                dialog.open();
+            }
+
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
     }
 
     private void createPatternsMethodsArea(Composite container) {
@@ -314,7 +372,8 @@ public class ChooseCallPage extends WizardPage {
     private void updateTable(CallTypeEnum kind) {
         if (kind == CallTypeEnum.METHOD_CALL) {
             if (kind != oldKind) {
-                parentTableViewer.setLabelProvider(new MethodLabelProvider(getParentMethods()));
+                parentTableViewer.setLabelProvider(new MethodLabelProvider(PatternUIHelper.getPatternParentMethodsNameList(pattern)));
+                parentTableViewer.setSorter(new ViewerSorter(Collator.getInstance(Locale.ENGLISH)));
                 updateTableInput(getMethods(), null, true, false);
             }
             title.setText(Messages.ChooseCallPage_methodCall_title);
@@ -346,29 +405,35 @@ public class ChooseCallPage extends WizardPage {
     }
 
     private void redrawControl(boolean exclude) {
+        GridData labelLayoutData = (GridData) varParaLabel.getLayoutData();
+        labelLayoutData.exclude = exclude;
+        varParaLabel.setVisible(!exclude);
+
         Table table = childTableViewer.getTable();
         GridData tableLayoutData = (GridData) table.getLayoutData();
         tableLayoutData.exclude = exclude;
-        table.getParent().layout();
+        table.setVisible(!exclude);
 
-        GridData labelLayoutData = (GridData) varParaLabel.getLayoutData();
-        labelLayoutData.exclude = exclude;
-        varParaLabel.getParent().layout();
+        GridData areaLayoutData = (GridData) parameterMatchArea.getLayoutData();
+        if (!(selectKind == CallTypeEnum.PATTERN_CALL)) {
+            areaLayoutData.exclude = true;
+            parameterMatchArea.setVisible(false);
+        } else {
+            areaLayoutData.exclude = false;
+            parameterMatchArea.setVisible(true);
+        }
+
+        layout(table);
     }
 
-    /**
-     * Get the pattern's parent methods.
-     */
-    private List<String> getParentMethods() {
-        List<String> parentMethods = new ArrayList<String>();
-        Pattern parent = pattern == null ? null : pattern.getSuperPattern();
-        if (parent != null) {
-            for (PatternMethod patternMethod : parent.getMethods()) {
-                String name = patternMethod.getName();
-                parentMethods.add(name);
-            }
+    private void layout(Control control) {
+        if (control == null || control.isDisposed()) {
+            return;
         }
-        return parentMethods;
+        if (control instanceof Composite) {
+            ((Composite) control).layout();
+        }
+        layout(control.getParent());
     }
 
     /**
@@ -393,9 +458,12 @@ public class ChooseCallPage extends WizardPage {
         if (selectionIndex == -1) {
             String errorMessage = Messages.ChooseCallPage_no_call_selected_error_message;
             updateMessage(errorMessage);
+            matchingCheckBox.setEnabled(false);
         } else {
             updateMessage(null);
+            matchingCheckBox.setEnabled(true);
         }
+        checkMatchingClick();
     }
 
     private void checkChildTableSelect() {
@@ -406,6 +474,19 @@ public class ChooseCallPage extends WizardPage {
         } else {
             updateMessage(null);
         }
+    }
+
+    private void checkMatchingClick(){
+        if(matchingCheckBox.isEnabled()&&matchingCheckBox.getSelection()){
+            setParameterMatchAreaEnabled(true);
+        }else{
+            setParameterMatchAreaEnabled(false);
+        }
+    }
+
+    private void setParameterMatchAreaEnabled(boolean enabled) {
+        matchingText.setEnabled(enabled);
+        matchingButton.setEnabled(enabled);
     }
 
     private void updateMessage(String message) {
@@ -419,17 +500,7 @@ public class ChooseCallPage extends WizardPage {
     }
 
     private List<PatternMethod> getMethods() {
-        List<PatternMethod> parentMethods = new ArrayList<PatternMethod>();
-        EList<PatternMethod> allMethods = pattern.getAllMethods();
-        if (allMethods != null) {
-            for (PatternMethod method : allMethods) {
-                String name = method.getName();
-                if (!(Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name))) {
-                    parentMethods.add(method);
-                }
-            }
-        }
-        return parentMethods;
+        return PatternUIHelper.getUseablePatternMethods(pattern);
     }
 
     private List<Pattern> getPatterns() {

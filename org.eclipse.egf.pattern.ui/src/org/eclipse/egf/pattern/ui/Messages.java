@@ -140,6 +140,8 @@ public class Messages extends NLS {
 
     public static String ChooseCallPage_no_variable_selected_error_message;
 
+    public static String ChooseCallPage_parameter_matching_button;
+
     public static String ChooseCallPage_patternCall_title;
 
     public static String ChooseCallPage_patternInjectCall_title;

@@ -19,15 +19,15 @@ import java.util.List;
 
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.ImageShop;
-import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * @author xrchen
  * 
  */
-public class MethodLabelProvider implements ITableLabelProvider {
+public class MethodLabelProvider extends LabelProvider implements ITableLabelProvider{
 
     private List<String> parentMethods;
 
@@ -58,18 +58,9 @@ public class MethodLabelProvider implements ITableLabelProvider {
             return ((PatternMethod) element).getName();
         return "";
     }
-
-    public void addListener(ILabelProviderListener listener) {
+    
+    public String getText(Object element) {
+        return getColumnText(element, 0);
     }
-
-    public void dispose() {
-    }
-
-    public boolean isLabelProperty(Object element, String property) {
-
-        return false;
-    }
-
-    public void removeListener(ILabelProviderListener listener) {
-    }
+    
 }
