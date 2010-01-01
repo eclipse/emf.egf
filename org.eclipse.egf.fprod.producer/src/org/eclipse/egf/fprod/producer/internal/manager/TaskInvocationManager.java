@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.fprod.producer.internal.manager;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
@@ -61,6 +61,22 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager imple
     return _taskManager;
   }
 
+  @Override
+  public void dispose() throws InvocationException {
+    super.dispose();
+    if (getTaskManager() != null) {
+      getTaskManager().dispose();
+    }
+  }
+
+  @Override
+  public void initializeContext() throws InvocationException {
+    super.initializeContext();
+    if (getTaskManager() != null) {
+      getTaskManager().initializeContext();
+    }
+  }
+
   public int getSteps() throws InvocationException {
     if (getTaskManager() != null) {
       return getTaskManager().getSteps();
@@ -68,8 +84,8 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager imple
     return 0;
   }
 
-  public Collection<Activity> getTopElements() throws InvocationException {
-    Collection<Activity> activities = new UniqueEList<Activity>();
+  public List<Activity> getTopElements() throws InvocationException {
+    List<Activity> activities = new UniqueEList<Activity>();
     if (getTaskManager() != null) {
       activities.addAll(getTaskManager().getTopElements());
     }

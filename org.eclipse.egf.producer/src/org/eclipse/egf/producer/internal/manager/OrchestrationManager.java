@@ -54,7 +54,7 @@ public abstract class OrchestrationManager extends ModelElementManager implement
   protected abstract OrchestrationProductionContext getInternalProductionContext() throws InvocationException;
 
   @Override
-  public void prepare() throws InvocationException {
+  public void initializeContext() throws InvocationException {
     // Get Context
     OrchestrationProductionContext context = getInternalProductionContext();
     // Clear Context

@@ -10,7 +10,7 @@
  */
 package org.eclipse.egf.fprod.producer.internal.manager;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
@@ -62,6 +62,22 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
     return _factoryComponentManager;
   }
 
+  @Override
+  public void dispose() throws InvocationException {
+    super.dispose();
+    if (getFactoryComponentManager() != null) {
+      getFactoryComponentManager().dispose();
+    }
+  }
+
+  @Override
+  public void initializeContext() throws InvocationException {
+    super.initializeContext();
+    if (getFactoryComponentManager() != null) {
+      getFactoryComponentManager().initializeContext();
+    }
+  }
+
   public int getSteps() throws InvocationException {
     if (getFactoryComponentManager() != null) {
       return getFactoryComponentManager().getSteps();
@@ -69,8 +85,8 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
     return 0;
   }
 
-  public Collection<Activity> getTopElements() throws InvocationException {
-    Collection<Activity> activities = new UniqueEList<Activity>();
+  public List<Activity> getTopElements() throws InvocationException {
+    List<Activity> activities = new UniqueEList<Activity>();
     if (getFactoryComponentManager() != null) {
       activities.addAll(getFactoryComponentManager().getTopElements());
     }

@@ -37,7 +37,7 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
     super(activity);
   }
 
-  public ActivityManager(Bundle bundle, Activity activity) throws InvocationException {
+  public ActivityManager(Bundle bundle, Activity activity) {
     super(bundle, activity);
   }
 
@@ -64,7 +64,7 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
   protected abstract ActivityProductionContext getInternalProductionContext() throws InvocationException;
 
   @Override
-  public void prepare() throws InvocationException {
+  public void initializeContext() throws InvocationException {
     // Get Context
     ActivityProductionContext context = getInternalProductionContext();
     // Clear Context

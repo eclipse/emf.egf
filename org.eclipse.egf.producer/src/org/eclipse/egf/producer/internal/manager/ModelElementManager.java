@@ -53,15 +53,13 @@ public abstract class ModelElementManager implements IModelElementManager {
     if (_platformFcore == null) {
       throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ActivityManager_fcore_activity, getName()), null)));
     }
-    prepare();
   }
 
-  public ModelElementManager(Bundle bundle, ModelElement element) throws InvocationException {
+  public ModelElementManager(Bundle bundle, ModelElement element) {
     Assert.isNotNull(bundle);
     Assert.isNotNull(element);
     _bundle = bundle;
     _element = element;
-    prepare();
   }
 
   public ModelElementManager(IModelElementManager parent, ModelElement element) throws InvocationException {
@@ -73,7 +71,6 @@ public abstract class ModelElementManager implements IModelElementManager {
     if (_platformFcore == null) {
       throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ActivityManager_fcore_activity, getName()), null)));
     }
-    prepare();
   }
 
   public ModelElement getElement() {
@@ -121,14 +118,15 @@ public abstract class ModelElementManager implements IModelElementManager {
     return _projectBundleSession;
   }
 
-  public void prepare() throws InvocationException {
-    getProductionContext().clear();
-  }
+  public abstract void initializeContext() throws InvocationException;
 
-  protected void dispose() throws CoreException {
+  public void dispose() throws InvocationException {
     if (_projectBundleSession != null) {
-      _projectBundleSession.dispose();
-      _projectBundleSession = null;
+      try {
+        _projectBundleSession.dispose();
+      } catch (CoreException ce) {
+        throw new InvocationException(ce);
+      }
     }
   }
 

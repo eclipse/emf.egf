@@ -10,6 +10,9 @@
  *******************************************************************************/
 package org.eclipse.egf.producer.ui.internal.actions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
@@ -20,7 +23,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
-import org.eclipse.egf.common.ui.diagnostic.EMFValidator;
 import org.eclipse.egf.common.ui.diagnostic.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
@@ -30,13 +32,14 @@ import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.MissingExtensionException;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
+import org.eclipse.egf.core.ui.diagnostic.EGFValidator;
 import org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog;
-import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
+import org.eclipse.egf.producer.ui.internal.dialogs.ActivitySelectionDialog;
 import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -47,7 +50,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
@@ -59,6 +61,11 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.progress.IProgressConstants;
 
 public class GlobalRunActivityAction extends Action implements IWorkbenchWindowActionDelegate, IActionDelegate2 {
+
+  /**
+   * Activities to validate (if any)
+   */
+  private List<Activity> _validates = null;
 
   public GlobalRunActivityAction() {
     super();
@@ -75,6 +82,8 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
 
   @Override
   public void runWithEvent(Event event) {
+
+    _validates = null;
 
     // 1 - Fcore Selection
     FcoreSelectionDialog fcoreDialog = new FcoreSelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), false);
@@ -126,30 +135,22 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
 
     // 4 - Validation
     if (throwable[0] == null) {
-      IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
-      String validate = store.getString(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH);
-      if (validate.equals(MessageDialogWithToggle.NEVER) == false) {
-        if (validate.equals(MessageDialogWithToggle.PROMPT)) {
-          MessageDialog dialog = new MessageDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), CoreUIMessages.ValidateDialog_Title, null, CoreUIMessages.ValidateDialog_Always_Validate, MessageDialog.QUESTION_WITH_CANCEL, new String[] { CoreUIMessages.EGFProductionPreferencePage_Validate_Always, CoreUIMessages.EGFProductionPreferencePage_Validate_Prompt, IDialogConstants.CANCEL_LABEL }, 0);
-          int ret = dialog.open();
-          if (ret == 0) {
-            store.setValue(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH, MessageDialogWithToggle.ALWAYS);
-          } else if (ret == 1) {
-            store.setValue(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH, MessageDialogWithToggle.PROMPT);
-          } else {
-            return;
-          }
+      try {
+        IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
+        String validate = store.getString(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH);
+        int status = showValidateDialog(activityManager[0].getTopElements(), validate.equals(MessageDialogWithToggle.NEVER) == false, validate.equals(MessageDialogWithToggle.PROMPT));
+        if (status != IDialogConstants.OK_ID) {
+          return;
         }
-        // doValidation();
-        try {
-          EMFValidator validator = new EMFValidator(activityManager[0].getTopElements());
+        if (_validates != null && _validates.size() != 0) {
+          EGFValidator validator = new EGFValidator(activityManager[0].getTopElements());
           Diagnostic diagnostic = validator.validate();
-          if (diagnostic.getSeverity() != Diagnostic.OK) {
+          if (diagnostic.getSeverity() == Diagnostic.ERROR) {
             return;
           }
-        } catch (InvocationException ie) {
-          throwable[0] = ie;
         }
+      } catch (InvocationException ie) {
+        throwable[0] = ie;
       }
     }
 
@@ -172,7 +173,8 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
               if (EGFProducerUIPlugin.getDefault().isDebugging()) {
                 EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EMFHelper.getText(activity), ticks)); //$NON-NLS-1$
               }
-              activityManager[0].invoke(subMonitor.newChild((1000 * ticks[0]), SubMonitor.SUPPRESS_NONE));
+              activityManager[0].initializeContext();
+              activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
               if (monitor.isCanceled()) {
                 throw new OperationCanceledException();
               }
@@ -183,6 +185,17 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
               throwable[0] = ie;
             } catch (Throwable t) {
               throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
+            } finally {
+              try {
+                activityManager[0].dispose();
+              } catch (InvocationException ie) {
+                if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
+                  throw (CoreException) ie.getCause();
+                }
+                throwable[0] = ie;
+              } catch (Throwable t) {
+                throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
+              }
             }
           } finally {
             subMonitor.done();
@@ -205,11 +218,30 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
 
     if (throwable[0] != null) {
       EGFProducerUIPlugin.getDefault().logError(throwable[0]);
-      ThrowableHandler.displayAsyncDiagnostic(EGFProducerUIPlugin.getActiveWorkbenchShell(), throwable[0]);
+      ThrowableHandler.displayAsyncDiagnostic(EGFProducerUIPlugin.getActiveWorkbenchShell(), throwable[0], EGFProducerUIPlugin.getDefault().getPluginID());
     }
 
     return;
 
+  }
+
+  private int showValidateDialog(List<Activity> activities, boolean validate, boolean prompt) {
+    if (validate) {
+      if (prompt && activities != null && activities.size() > 0) {
+        ActivitySelectionDialog dialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), activities);
+        if (dialog.open() == IDialogConstants.CANCEL_ID) {
+          return IDialogConstants.CANCEL_ID;
+        }
+        Object[] objects = dialog.getResult();
+        _validates = new ArrayList<Activity>(objects.length);
+        for (int i = 0; i < objects.length; i++) {
+          _validates.add((Activity) objects[i]);
+        }
+      } else {
+        _validates = activities;
+      }
+    }
+    return IDialogConstants.OK_ID;
   }
 
   // ---- IWorkbenchWindowActionDelegate

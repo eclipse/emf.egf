@@ -10,8 +10,8 @@
  */
 package org.eclipse.egf.fprod.producer.internal.manager;
 
-import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -78,6 +78,28 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
     return _managers;
   }
 
+  @Override
+  public void dispose() throws InvocationException {
+    super.dispose();
+    Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
+    if (managers != null) {
+      for (Invocation<?> invocation : getElement().getInvocations()) {
+        managers.get(invocation).dispose();
+      }
+    }
+  }
+
+  @Override
+  public void initializeContext() throws InvocationException {
+    super.initializeContext();
+    Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
+    if (managers != null) {
+      for (Invocation<?> invocation : getElement().getInvocations()) {
+        managers.get(invocation).initializeContext();
+      }
+    }
+  }
+
   public int getSteps() throws InvocationException {
     int steps = 0;
     Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
@@ -89,8 +111,8 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
     return steps;
   }
 
-  public Collection<Activity> getTopElements() throws InvocationException {
-    Collection<Activity> activities = new UniqueEList<Activity>();
+  public List<Activity> getTopElements() throws InvocationException {
+    List<Activity> activities = new UniqueEList<Activity>();
     Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
     if (managers != null) {
       for (Invocation<?> invocation : getElement().getInvocations()) {

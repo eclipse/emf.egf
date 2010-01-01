@@ -10,10 +10,9 @@
  */
 package org.eclipse.egf.fprod.producer.internal.manager;
 
-import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.core.runtime.Assert;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -42,7 +41,7 @@ public class TaskManager extends ActivityManager implements ITaskManager {
     Assert.isNotNull(task.getValue());
   }
 
-  public TaskManager(Bundle bundle, Task task) throws InvocationException {
+  public TaskManager(Bundle bundle, Task task) {
     super(bundle, task);
     Assert.isNotNull(task.getValue());
   }
@@ -80,6 +79,16 @@ public class TaskManager extends ActivityManager implements ITaskManager {
     return (TaskProductionContext) _productionContext;
   }
 
+  @Override
+  public void dispose() throws InvocationException {
+    super.dispose();
+  }
+
+  @Override
+  public void initializeContext() throws InvocationException {
+    super.initializeContext();
+  }
+
   public int getSteps() throws InvocationException {
     if (getElement().getValue() != null) {
       return 1;
@@ -87,27 +96,18 @@ public class TaskManager extends ActivityManager implements ITaskManager {
     return 0;
   }
 
-  public Collection<Activity> getTopElements() throws InvocationException {
-    Collection<Activity> activities = new UniqueEList<Activity>();
+  public List<Activity> getTopElements() throws InvocationException {
+    List<Activity> activities = new UniqueEList<Activity>();
     activities.add(getElement());
     return activities;
   }
 
   public void invoke(IProgressMonitor monitor) throws InvocationException {
-    try {
-      TaskProductionContext taskProductionContext = getInternalProductionContext();
-      EGFFprodProducerPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getBundle(), taskProductionContext, getElement().getValue()).invoke(monitor);
-      if (monitor.isCanceled()) {
-        throw new OperationCanceledException();
-      }
-    } finally {
-      if (getParent() == null) {
-        try {
-          dispose();
-        } catch (CoreException ce) {
-          throw new InvocationException(ce);
-        }
-      }
+    // Invoke
+    TaskProductionContext taskProductionContext = getInternalProductionContext();
+    EGFFprodProducerPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getBundle(), taskProductionContext, getElement().getValue()).invoke(monitor);
+    if (monitor.isCanceled()) {
+      throw new OperationCanceledException();
     }
   }
 

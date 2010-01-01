@@ -29,7 +29,7 @@ public class FactoryComponentManagerFactory {
     return new FactoryComponentManager(factoryComponent);
   }
 
-  public static IFactoryComponentManager createProductionManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
+  public static IFactoryComponentManager createProductionManager(Bundle bundle, FactoryComponent factoryComponent) {
     return new FactoryComponentManager(bundle, factoryComponent);
   }
 

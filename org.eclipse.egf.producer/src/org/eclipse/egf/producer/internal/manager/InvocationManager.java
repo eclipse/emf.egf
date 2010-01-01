@@ -55,7 +55,7 @@ public abstract class InvocationManager extends ModelElementManager implements I
   protected abstract InvocationProductionContext getInternalProductionContext() throws InvocationException;
 
   @Override
-  public void prepare() throws InvocationException {
+  public void initializeContext() throws InvocationException {
     // Get Context
     InvocationProductionContext context = getInternalProductionContext();
     // Clear Context

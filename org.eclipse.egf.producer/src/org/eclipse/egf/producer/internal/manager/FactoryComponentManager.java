@@ -10,9 +10,8 @@
  */
 package org.eclipse.egf.producer.internal.manager;
 
-import java.util.Collection;
+import java.util.List;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -42,7 +41,7 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
     super(factoryComponent);
   }
 
-  public FactoryComponentManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
+  public FactoryComponentManager(Bundle bundle, FactoryComponent factoryComponent) {
     super(bundle, factoryComponent);
   }
 
@@ -91,13 +90,29 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
     return _orchestrationManager;
   }
 
-  public Collection<Activity> getTopElements() throws InvocationException {
-    Collection<Activity> activities = new UniqueEList<Activity>();
+  public List<Activity> getTopElements() throws InvocationException {
+    List<Activity> activities = new UniqueEList<Activity>();
     activities.add(getElement());
     if (getOrchestrationManager() != null) {
       activities.addAll(getOrchestrationManager().getTopElements());
     }
     return activities;
+  }
+
+  @Override
+  public void dispose() throws InvocationException {
+    super.dispose();
+    if (getOrchestrationManager() != null) {
+      getOrchestrationManager().dispose();
+    }
+  }
+
+  @Override
+  public void initializeContext() throws InvocationException {
+    super.initializeContext();
+    if (getOrchestrationManager() != null) {
+      getOrchestrationManager().initializeContext();
+    }
   }
 
   public int getSteps() throws InvocationException {
@@ -110,19 +125,10 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
   public void invoke(IProgressMonitor monitor) throws InvocationException {
     IOrchestrationManager orchestrationManager = getOrchestrationManager();
     if (orchestrationManager != null) {
-      try {
-        orchestrationManager.invoke(monitor);
-        if (monitor.isCanceled()) {
-          throw new OperationCanceledException();
-        }
-      } finally {
-        if (getParent() == null) {
-          try {
-            dispose();
-          } catch (CoreException ce) {
-            throw new InvocationException(ce);
-          }
-        }
+      // Invoke
+      orchestrationManager.invoke(monitor);
+      if (monitor.isCanceled()) {
+        throw new OperationCanceledException();
       }
     }
   }
