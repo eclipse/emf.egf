@@ -390,8 +390,8 @@ public class FcoreValidator extends EObjectValidator {
   public boolean validateOrchestrationContext_UselessOrchestrationContext(OrchestrationContext orchestrationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (orchestrationContext.getInvocationContexts() == null || orchestrationContext.getInvocationContexts().size() < 2) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Useless OrchestrationContext. It should contain at least two InvocationContext to be useful.", getObjectLabel(orchestrationContext, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "Useless OrchestrationContext. This OrchestrationContext could be directly defined in an InvocationContext.", getObjectLabel(orchestrationContext, context) }, //$NON-NLS-1$
             new Object[] { orchestrationContext }, context));
       }
       return false;
