@@ -60,7 +60,7 @@ public class OrchestrationTableLabelProvider extends LabelProvider implements IT
             PatternInjectedCall patternInjectedCall = (PatternInjectedCall) element;
             Pattern pattern = patternInjectedCall.getCalled();
             PatternVariable patternVariable = patternInjectedCall.getContext();
-            return (pattern == null ? "" : pattern.getName() + patternVariable.getName()) + Messages.OrchestrationTableLabelProvider_PatternInjectedCall; //$NON-NLS-1$
+            return (pattern == null ? "" : pattern.getName() + " -> " + patternVariable.getName()) + Messages.OrchestrationTableLabelProvider_PatternInjectedCall; //$NON-NLS-1$
         } else if (element instanceof SuperPatternCall) {
             SuperPatternCall superPatternCall = (SuperPatternCall) element;
             Pattern superPattern = superPatternCall.getCalled();
