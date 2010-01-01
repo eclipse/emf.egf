@@ -47,7 +47,7 @@ public class CoreUIMessages {
   public static String EGFProductionPreferencePage_Validate_Never;
   public static String EGFProductionPreferencePage_Validate_Prompt;
 
-  public static String ValidateDialog_Title;
-  public static String ValidateDialog_Always_Validate;
+  public static String AbstractCheckboxSelectionDialog_Select;
+  public static String AbstractCheckboxSelectionDialog_Deselect;
 
 }
