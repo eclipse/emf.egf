@@ -73,7 +73,7 @@ public class EMFEditUIHelper {
       }
     } catch (Exception e) {
       EGFCommonUIPlugin.getDefault().logError("IEditingDomainProvider.setSelectionToViewer", e); //$NON-NLS-1$
-      ThrowableHandler.displayAsyncDiagnostic(EGFCommonUIPlugin.getActiveWorkbenchShell(), e);
+      ThrowableHandler.displayAsyncDiagnostic(EGFCommonUIPlugin.getActiveWorkbenchShell(), e, EGFCommonUIPlugin.getDefault().getPluginID());
     }
   }
 

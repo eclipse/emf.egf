@@ -10,9 +10,12 @@
  */
 package org.eclipse.egf.common.ui.diagnostic;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
-import org.eclipse.jface.dialogs.IDialogConstants;
-import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.egf.common.ui.l10n.EGFCommonUIMessages;
+import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.swt.widgets.Shell;
 
 /**
@@ -25,15 +28,29 @@ public class ThrowableHandler {
     // Prevent Instantiation
   }
 
-  public static void displayAsyncDiagnostic(final Shell shell, final Throwable throwable) {
+  public static void displayAsyncDiagnostic(final Shell shell, final Throwable throwable, final String pluginID) {
+    if (throwable == null) {
+      return;
+    }
+    final String id = pluginID != null ? pluginID : EGFCommonUIPlugin.getDefault().getPluginID();
     if (EGFCommonUIPlugin.getWorkbenchDisplay() != null) {
       EGFCommonUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
         public void run() {
-          MessageDialog dialog = new MessageDialog(shell, throwable.getClass().getSimpleName(), null, throwable.getMessage(), MessageDialog.ERROR, new String[] { IDialogConstants.OK_LABEL }, 0);
-          dialog.open();
+          IStatus status;
+          String message = throwable.getMessage() != null ? throwable.getMessage() : throwable.toString();
+          if (throwable instanceof CoreException) {
+            status = ((CoreException) throwable).getStatus();
+            // if the 'message' resource string and the IStatus' message are the same,
+            // don't show both in the dialog
+            if (status != null && message.equals(status.getMessage())) {
+              message = null;
+            }
+          } else {
+            status = new Status(IStatus.ERROR, id, 0, EGFCommonUIMessages.Unexpected_Error, throwable);
+          }
+          ErrorDialog.openError(shell, EGFCommonUIMessages.ThrowableHandler_Title, message, status);
         }
       });
     }
   }
-
 }
