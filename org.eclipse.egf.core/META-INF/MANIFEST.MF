@@ -10,9 +10,9 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
  org.eclipse.emf.edit, 
+ org.eclipse.pde.core;visibility:=reexport, 
  org.eclipse.egf.common;visibility:=reexport,
- org.eclipse.egf.core.platform;visibility:=reexport,
- org.eclipse.pde.core;visibility:=reexport 
+ org.eclipse.egf.core.platform;visibility:=reexport 
 Export-Package: 
  org.eclipse.egf.core,
  org.eclipse.egf.core.context,
