@@ -8,7 +8,7 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.core.test.model.validation.fcore;
+package org.eclipse.egf.core.test.model.validation.fprod;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
@@ -26,10 +26,10 @@ import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.util.Diagnostician;
 
-public class FcoreContractValidation extends TestCase {
+public class FprodContractValidation extends TestCase {
 
   public static Test suite() {
-    return new TestSuite(FcoreContractValidation.class);
+    return new TestSuite(FprodContractValidation.class);
   }
 
   public void testInContractName() throws Exception {

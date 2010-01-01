@@ -18,7 +18,7 @@ import junit.framework.TestSuite;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.helper.ResourceHelper;
-import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.core.test.EGFCoreTestPlugin;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.producer.EGFProducerPlugin;
@@ -50,7 +50,7 @@ public class ContextFactoryComponentResource extends TestCase {
 
     // Fetch Activity
     EObject eObject = resource.getContents().get(0);
-    assertTrue(NLS.bind("We Expected to find an ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Activity); //$NON-NLS-1$
+    assertTrue(NLS.bind("We Expected to find a ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Activity); //$NON-NLS-1$
 
     // Invoke Activity
     Activity activity = (Activity) eObject;
@@ -60,9 +60,20 @@ public class ContextFactoryComponentResource extends TestCase {
     IActivityManager manager = producer.createActivityManager(activity);
 
     try {
+      manager.initializeContext();
       manager.invoke(new NullProgressMonitor());
-    } catch (InvocationException ie) {
-      fail(ie.getMessage());
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
+      return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
   }
@@ -78,16 +89,27 @@ public class ContextFactoryComponentResource extends TestCase {
 
     // Fetch FactoryComponent
     EObject eObject = resource.getContents().get(0);
-    assertTrue(NLS.bind("We Expected to find an ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof FactoryComponent); //$NON-NLS-1$
+    assertTrue(NLS.bind("We Expected to find a ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof FactoryComponent); //$NON-NLS-1$
 
     // Invoke FactoryComponent
     FactoryComponent fc = (FactoryComponent) eObject;
 
     IFactoryComponentManager manager = FactoryComponentManagerFactory.createProductionManager(fc);
     try {
+      manager.initializeContext();
       manager.invoke(new NullProgressMonitor());
-    } catch (InvocationException ie) {
-      fail(ie.getMessage());
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
+      return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
     Float amount = manager.getProductionContext().getOutputValue("amount", Float.class); //$NON-NLS-1$
@@ -108,16 +130,27 @@ public class ContextFactoryComponentResource extends TestCase {
 
     // Fetch FactoryComponent
     EObject eObject = resource.getContents().get(0);
-    assertTrue(NLS.bind("We Expected to find an ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof FactoryComponent); //$NON-NLS-1$
+    assertTrue(NLS.bind("We Expected to find a ''FactoryComponent'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof FactoryComponent); //$NON-NLS-1$
 
     // Invoke FactoryComponent
     FactoryComponent fc = (FactoryComponent) eObject;
 
     IFactoryComponentManager manager = FactoryComponentManagerFactory.createProductionManager(fc);
     try {
+      manager.initializeContext();
       manager.invoke(new NullProgressMonitor());
-    } catch (InvocationException ie) {
-      fail(ie.getMessage());
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
+      return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
     Collection<String> parameters = manager.getProductionContext().getOutputValue("parameters", Collection.class); //$NON-NLS-1$

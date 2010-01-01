@@ -29,6 +29,7 @@ import org.eclipse.egf.model.fprod.TaskContractContainer;
 import org.eclipse.egf.model.types.FloatType;
 import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
 import org.eclipse.egf.model.types.IntegerType;
+import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
@@ -51,9 +52,22 @@ public class ContextTaskMemory extends TestCase {
 
     IActivityManager manager = producer.createActivityManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
     try {
+      manager.initializeContext();
       manager.invoke(new NullProgressMonitor());
     } catch (InvocationException ie) {
       return;
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
+      return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
     fail("InvocationException is expected"); //$NON-NLS-1$
@@ -86,10 +100,20 @@ public class ContextTaskMemory extends TestCase {
     priceType.setValue(new Float("10.5")); //$NON-NLS-1$    
     price.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, priceType);
 
+    TaskContract parameters = FprodFactory.eINSTANCE.createTaskContract();
+    parameters.setName("parameters"); //$NON-NLS-1$
+    parameters.setMode(ContractMode.IN_OUT);
+    contracts.getActivityContracts().add(parameters);
+
+    TypeCollection parametersType = TypesFactory.eINSTANCE.createTypeCollection();
+    parametersType.setValue("java.util.ArrayList"); //$NON-NLS-1$
+    parameters.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, parametersType);
+
     TaskContract amount = FprodFactory.eINSTANCE.createTaskContract();
     amount.setName("amount"); //$NON-NLS-1$
     amount.setMode(ContractMode.OUT);
     contracts.getActivityContracts().add(amount);
+
     FloatType amountType = TypesFactory.eINSTANCE.createFloatType();
     amount.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, amountType);
 
@@ -104,12 +128,24 @@ public class ContextTaskMemory extends TestCase {
 
     ITaskManager manager = TaskManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
 
-    GeneratorAdapterFactory defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$
+    GeneratorAdapterFactory defaultValue = null;
 
     try {
+      manager.initializeContext();
+      defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$      
       manager.invoke(new NullProgressMonitor());
-    } catch (InvocationException ie) {
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
       return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
     assertNotSame(manager.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$

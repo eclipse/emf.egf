@@ -14,15 +14,13 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
-import org.eclipse.egf.core.test.model.validation.fcore.FcoreContractValidation;
-import org.eclipse.egf.core.test.model.validation.fprod.FprodContextValidation;
+import org.eclipse.egf.core.test.model.validation.fprod.FprodContractValidation;
 
 public class ModelValidation extends TestCase {
 
   public static Test suite() {
     TestSuite suite = new TestSuite("EGF Model Test Suite"); //$NON-NLS-1$
-    suite.addTest(FcoreContractValidation.suite());
-    suite.addTest(FprodContextValidation.suite());
+    suite.addTest(FprodContractValidation.suite());
     return suite;
   }
 

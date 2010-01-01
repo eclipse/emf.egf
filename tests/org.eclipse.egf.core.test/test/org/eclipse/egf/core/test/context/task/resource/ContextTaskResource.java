@@ -16,7 +16,7 @@ import junit.framework.TestSuite;
 
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.helper.ResourceHelper;
-import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.core.test.EGFCoreTestPlugin;
 import org.eclipse.egf.fprod.producer.manager.ITaskManager;
 import org.eclipse.egf.fprod.producer.manager.TaskManagerFactory;
 import org.eclipse.egf.model.fcore.Activity;
@@ -59,9 +59,20 @@ public class ContextTaskResource extends TestCase {
     IActivityManager manager = producer.createActivityManager(activity);
 
     try {
+      manager.initializeContext();
       manager.invoke(new NullProgressMonitor());
-    } catch (InvocationException ie) {
-      fail(ie.getMessage());
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
+      return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
   }
@@ -85,9 +96,20 @@ public class ContextTaskResource extends TestCase {
     ITaskManager manager = TaskManagerFactory.createProductionManager(task);
 
     try {
+      manager.initializeContext();
       manager.invoke(new NullProgressMonitor());
-    } catch (InvocationException ie) {
-      fail(ie.getMessage());
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
+      return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
     Float amount = manager.getProductionContext().getOutputValue("amount", Float.class); //$NON-NLS-1$
@@ -114,12 +136,24 @@ public class ContextTaskResource extends TestCase {
 
     ITaskManager manager = TaskManagerFactory.createProductionManager(task);
 
-    GeneratorAdapterFactory defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$
+    GeneratorAdapterFactory defaultValue = null;
 
     try {
+      manager.initializeContext();
+      defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$
       manager.invoke(new NullProgressMonitor());
-    } catch (InvocationException ie) {
-      fail(ie.getMessage());
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
+      return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
     assertNotSame(manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
