@@ -349,11 +349,12 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
           // Due to PDE bug notification we need to handle notification in a weird way
           // // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
           // See PlatformManager for more informations
-          for (IPlatformFcore innerFcore : fcores) {
+          LOOP: for (Iterator<IPlatformFcore> it = fcores.iterator(); it.hasNext();) {
+            IPlatformFcore innerFcore = it.next();
             if (innerFcore.equals(fcore)) {
-              fcores.remove(innerFcore);
+              it.remove();
               fcores.add(fcore);
-              continue;
+              break LOOP;
             }
             deltaChangedResources.add(resource);
           }
