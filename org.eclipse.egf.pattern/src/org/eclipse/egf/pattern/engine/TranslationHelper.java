@@ -49,7 +49,6 @@ public class TranslationHelper {
             for (Pattern p : patterns) {
                 PatternExtension extension = ExtensionHelper.getExtension(p.getNature());
                 String reason = extension.canTranslate(p);
-                System.out.println("Translate " + p.getName());
                 if (reason == null)
                     extension.createEngine(p).translate();
                 else
