@@ -186,12 +186,12 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
 
   public FcoreSelectionDialog(Shell parentShell, IPlatformFcore[] factoryComponents, boolean multipleSelection) {
     super(parentShell, multipleSelection);
-    setSelectionHistory(new FcoreSelectionHistory());
     _fcores = factoryComponents;
     setTitle(CoreUIMessages._UI_FcoreSelection_label);
     setMessage(CoreUIMessages._UI_SelectRegisteredFcoreURI);
     setListLabelProvider(_labelProvider);
     setDetailsLabelProvider(_detailsLabelProvider);
+    setSelectionHistory(new FcoreSelectionHistory());
   }
 
   private static IPlatformFcore[] getElements() {
