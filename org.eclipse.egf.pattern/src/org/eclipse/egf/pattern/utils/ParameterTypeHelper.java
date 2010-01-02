@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.query;
+package org.eclipse.egf.pattern.utils;
 
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.ecore.EPackageHelper;

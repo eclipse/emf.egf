@@ -28,15 +28,35 @@ import org.eclipse.egf.pattern.Messages;
  * @author Thomas Guiu
  * 
  */
-public interface QueryManager {
+public interface IQuery {
 
-    List<Object> executeQuery(Map<String, String> queryContext, PatternContext context);
+    List<Object> execute(ParameterDescription parameter, Map<String, String> queryCtx, PatternContext context);
 
     Helper INSTANCE = new Helper();
 
+    public class ParameterDescription {
+        private String name;
+        private String type;
+
+        public ParameterDescription(String name, String type) {
+            super();
+            this.name = name;
+            this.type = type;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+    }
+
     public class Helper {
 
-        public QueryManager loadQuery(String id) {
+        public IQuery loadQuery(String id) {
             QueryKind queryKind = getQueryKind(id);
             if (queryKind == null)
                 throw new IllegalStateException(Messages.query_error6);
@@ -71,7 +91,7 @@ public interface QueryManager {
             return queries;
         }
 
-        public String getQueryManagerClassName(String queryID) throws PatternException {
+        public String getQueryClassName(String queryID) throws PatternException {
             if (queryID == null || "".equals(queryID))
                 throw new PatternException(Messages.query_error2);
             for (QueryKind kind : EGFPlatformPlugin.getPlatformManager().getPlatformExtensionPoints(QueryKind.class)) {

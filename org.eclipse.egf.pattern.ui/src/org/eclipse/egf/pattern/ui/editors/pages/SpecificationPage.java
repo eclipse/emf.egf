@@ -35,7 +35,7 @@ import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.query.QueryKind;
-import org.eclipse.egf.pattern.query.QueryManager;
+import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
@@ -583,7 +583,7 @@ public class SpecificationPage extends PatternEditorPage {
         String newType = dialog.getType();
         String newQuey = dialog.getQuery();
 
-        QueryKind queryKind = QueryManager.INSTANCE.getQueryKindByName(newQuey);
+        QueryKind queryKind = IQuery.INSTANCE.getQueryKindByName(newQuey);
         if (queryKind != null) {
             newQuey = queryKind.getId();
         }
@@ -780,7 +780,7 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     private void setComboViewerInput() {
-        List availableQueries = QueryManager.INSTANCE.getAvailableQueries();
+        List availableQueries = IQuery.INSTANCE.getAvailableQueries();
         availableQueries.add(0, ""); //$NON-NLS-1$
         queryEditor.setInput(availableQueries);
     }

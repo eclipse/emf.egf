@@ -20,9 +20,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.pattern.Messages;
+import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.query.conditions.eobjects.EObjectTypeRelationCondition;
@@ -36,10 +36,10 @@ import org.eclipse.emf.query.statements.WHERE;
  * @author Thomas Guiu
  * 
  */
-public class BasicQueryDelegate implements QueryManager {
+public class BasicQueryDelegate implements IQuery {
 
-    public List<Object> executeQuery(Map<String, String> queryContext, PatternContext context) {
-        String type = queryContext.get(BasicQuery.TYPE);
+    public List<Object> execute(ParameterDescription parameter, Map<String, String> queryCtx, PatternContext context) {
+        String type = parameter.getType();
         Object loadClass = ParameterTypeHelper.INSTANCE.loadClass(type);
         if (!(loadClass instanceof EClass))
             throw new IllegalStateException(Messages.query_error1);

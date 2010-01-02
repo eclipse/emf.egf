@@ -103,6 +103,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(CharacterConstants.LINE_SEPARATOR);
         content.append("StringBuilder collector = new StringBuilder(2000);").append(CharacterConstants.LINE_SEPARATOR);
         content.append("StringBuilder tmpCollector = new StringBuilder(2000);").append(CharacterConstants.LINE_SEPARATOR);
+        content.append("IQuery.ParameterDescription paramDesc = null;").append(CharacterConstants.LINE_SEPARATOR);
         content.append("Map<String, String> queryCtx = null;").append(CharacterConstants.LINE_SEPARATOR);
         content.append("PatternExecutionReporter reporter = (PatternExecutionReporter)ctx.getValue(PatternContext.PATTERN_REPORTER);").append(CharacterConstants.LINE_SEPARATOR);
         content.append("if (reporter == null) reporter = new ConsoleReporter();").append(CharacterConstants.LINE_SEPARATOR);
@@ -183,6 +184,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
             localContent.append("//this pattern can only be called by another (i.e. it's not an entry point in execution)").append(CharacterConstants.LINE_SEPARATOR);
             return;
         }
+        localContent.append("paramDesc = new IQuery.ParameterDescription(\"").append(parameter.getName()).append("\", \"").append(parameter.getType()).append("\");").append(CharacterConstants.LINE_SEPARATOR);
         localContent.append("queryCtx = new HashMap<String, String>();").append(CharacterConstants.LINE_SEPARATOR);
         if (query != null && query.getQueryContext() != null) {
             for (String key : query.getQueryContext().keySet()) {
@@ -191,11 +193,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         }
 
         localContent.append("List<Object> ").append(getParameterListName(parameter)).append(" = ");
-
-        if (query == null)
-            localContent.append("new ArrayList<Object>()");
-        else
-            localContent.append("QueryHelper.load(ctx, \"").append(query.getExtensionId()).append("\").executeQuery(queryCtx, ctx);").append(CharacterConstants.LINE_SEPARATOR);
+        localContent.append("QueryHelper.load(ctx, \"").append(query.getExtensionId()).append("\").execute(paramDesc, queryCtx, ctx);").append(CharacterConstants.LINE_SEPARATOR);
     }
 
 }

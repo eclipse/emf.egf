@@ -18,7 +18,7 @@ package org.eclipse.egf.pattern.execution;
 import org.eclipse.egf.model.pattern.BundleAccessor;
 import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.query.QueryKind;
-import org.eclipse.egf.pattern.query.QueryManager;
+import org.eclipse.egf.pattern.query.IQuery;
 import org.osgi.framework.Bundle;
 
 /**
@@ -26,12 +26,12 @@ import org.osgi.framework.Bundle;
  * 
  */
 public class QueryHelper {
-    public static QueryManager load(BundleAccessor accessor, String queryId) {
+    public static IQuery load(BundleAccessor accessor, String queryId) {
         try {
-            QueryKind queryKind = QueryManager.INSTANCE.getQueryKind(queryId);
+            QueryKind queryKind = IQuery.INSTANCE.getQueryKind(queryId);
             Bundle bundle = accessor.getBundle(queryKind.getPlatformBundle().getBundleId());
-            Class loadClass = bundle.loadClass(QueryManager.INSTANCE.getQueryManagerClassName(queryId));
-            return (QueryManager) loadClass.newInstance();
+            Class loadClass = bundle.loadClass(IQuery.INSTANCE.getQueryClassName(queryId));
+            return (IQuery) loadClass.newInstance();
         } catch (Exception e) {
             Activator.getDefault().logError(e);
             throw new QueryException(e);

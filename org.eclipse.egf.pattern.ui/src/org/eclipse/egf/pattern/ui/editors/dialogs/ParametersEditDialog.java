@@ -21,7 +21,7 @@ import java.util.List;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.query.QueryKind;
-import org.eclipse.egf.pattern.query.QueryManager;
+import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.SWT;
@@ -52,7 +52,7 @@ public class ParametersEditDialog extends VariablesEditDialog {
     private void setDefaultQuery(PatternParameter selectItem) {
         Query itemQuery = selectItem.getQuery();
         query = itemQuery == null ? "" : itemQuery.getExtensionId(); //$NON-NLS-1$
-        QueryKind queryKind = QueryManager.INSTANCE.getQueryKind(query);
+        QueryKind queryKind = IQuery.INSTANCE.getQueryKind(query);
         if (queryKind != null) {
             query = queryKind.getName();
         }
@@ -82,7 +82,7 @@ public class ParametersEditDialog extends VariablesEditDialog {
     }
 
     private void setQueryComboList(Combo combo, String query) {
-        List<QueryKind> availableQueries = QueryManager.INSTANCE.getAvailableQueries();
+        List<QueryKind> availableQueries = IQuery.INSTANCE.getAvailableQueries();
         for (QueryKind kind : availableQueries) {
             String name = kind.getName();
             if (!name.equals(query)) {

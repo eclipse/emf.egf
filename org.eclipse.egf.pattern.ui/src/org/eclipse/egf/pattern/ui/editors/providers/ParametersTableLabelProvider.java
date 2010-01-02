@@ -20,7 +20,7 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.query.QueryKind;
-import org.eclipse.egf.pattern.query.QueryManager;
+import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -50,7 +50,7 @@ public class ParametersTableLabelProvider extends LabelProvider implements ITabl
                 Query query = patternParameter.getQuery();
                 if (query != null) {
                     String extensionId = query.getExtensionId();
-                    QueryKind queryKind = QueryManager.INSTANCE.getQueryKind(extensionId);
+                    QueryKind queryKind = IQuery.INSTANCE.getQueryKind(extensionId);
                     String queryKindName = queryKind == null ? null : queryKind.getName();
                     if (queryKindName != null) {
                         return queryKindName;
