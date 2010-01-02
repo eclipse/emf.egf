@@ -128,7 +128,7 @@ public abstract class ModelElementManager implements IModelElementManager {
     } else {
       message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, getElement().eClass().getName());
     }
-    return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, null);
+    return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, new Object[] { getElement() });
   }
 
   public Diagnostic canInvoke() throws InvocationException {
