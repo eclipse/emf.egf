@@ -325,29 +325,32 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
   @Override
   protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
-    for (IPlatformFcore fc : EGFCorePlugin.getPlatformFcores()) {
-      // Load Fcore
-      Resource resource = _resourceSet.getResource(fc.getURI(), true);
-      // Analyse top contents for Activities
-      for (EObject eObject : resource.getContents()) {
-        // Ignore current
-        if (_activity != null && EcoreUtil.getURI(_activity).equals(EcoreUtil.getURI(eObject))) {
-          continue;
-        }
-        // Process
-        try {
-          if (_clazz != null) {
-            eObject.eClass().getInstanceClass().asSubclass(_clazz);
+    try {
+      for (IPlatformFcore fc : EGFCorePlugin.getPlatformFcores()) {
+        // Load Fcore
+        Resource resource = _resourceSet.getResource(fc.getURI(), true);
+        // Analyse top contents for Activities
+        for (EObject eObject : resource.getContents()) {
+          // Ignore current
+          if (_activity != null && EcoreUtil.getURI(_activity).equals(EcoreUtil.getURI(eObject))) {
+            continue;
           }
-          contentProvider.add(eObject, itemsFilter);
-        } catch (ClassCastException cce) {
-          // Ignore
-          continue;
+          // Process
+          try {
+            if (_clazz != null) {
+              eObject.eClass().getInstanceClass().asSubclass(_clazz);
+            }
+            contentProvider.add(eObject, itemsFilter);
+          } catch (ClassCastException cce) {
+            // Ignore
+            continue;
+          }
         }
+        progressMonitor.worked(1);
       }
-      progressMonitor.worked(1);
+    } finally {
+      progressMonitor.done();
     }
-    progressMonitor.done();
   }
 
   @Override
