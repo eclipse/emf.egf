@@ -44,7 +44,11 @@ public class BasicQueryDelegate implements IQuery {
         if (!(loadClass instanceof EClass))
             throw new IllegalStateException(Messages.query_error1);
 
-        SELECT query = new SELECT(new FROM((Collection<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS)), new WHERE(new EObjectTypeRelationCondition((EClass) loadClass, TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)));
+        Collection<EObject> domain = (Collection<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS);
+        if (domain == null)
+            throw new IllegalStateException(Messages.query_error8);
+
+        SELECT query = new SELECT(new FROM(domain), new WHERE(new EObjectTypeRelationCondition((EClass) loadClass, TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)));
         IQueryResult result = query.execute();
         if (result.getException() != null)
             throw new IllegalStateException(result.getException());

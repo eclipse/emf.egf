@@ -73,6 +73,7 @@ public class Messages extends NLS {
     public static String query_error5;
     public static String query_error6;
     public static String query_error7;
+    public static String query_error8;
 
     // epackage registry
     public static String registration_error2;
