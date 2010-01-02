@@ -97,29 +97,23 @@ public class FcoreGeneratorHelper {
   }
 
   /**
-   * Add the standard dependencies in given plug-in manifest. See {@link #getStandardDependencies()}
-   * .
+   * Add Fcore dependency in given plug-in manifest. See {@link #getEGFCoreDependency()} .
    * 
    * @param pluginId_p
    * @param optional_p
    */
-  public static void addStandardFcoreDependencies(String pluginId_p, boolean optional_p) {
-    // Add dependencies on bootstrap factory component plug-in and pattern
-    // plug-in for given plug-in.
-    String[] dependencies = getStandardDependencies();
-    IPluginChangesCommand commandsOnManifest = ManifestChangeCommandFactory.setRequiredPlugins(dependencies, optional_p);
+  public static void addStandardFcoreDependency(String pluginId_p, boolean optional_p) {
+    // Add standard Fcore dependency.
+    IPluginChangesCommand commandsOnManifest = ManifestChangeCommandFactory.setRequiredPlugins(getEGFCoreDependency(), optional_p);
     EGFPDEPlugin.getPluginChangesCommandRunner().performChangesOnManifest(pluginId_p, Collections.singletonList(commandsOnManifest));
   }
 
   /**
-   * Return the standard dependencies for a factory component.<br>
-   * Default dependencies are <code>org.eclipse.egf.core</code> plug-in and
-   * <code>org.eclipse.egf.pattern</code> plug-in
+   * Return the EGF Core dependency for a Fcore.<br>
    * 
    * @return
    */
-  public static String[] getStandardDependencies() {
-    String[] dependencies = { EGFCorePlugin.getDefault().getPluginID() };
-    return dependencies;
+  public static String[] getEGFCoreDependency() {
+    return new String[] { EGFCorePlugin.getDefault().getPluginID() };
   }
 }

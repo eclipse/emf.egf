@@ -78,10 +78,8 @@ public class EMFEditUIHelper {
       IStatus status = null;
       if (e instanceof CoreException) {
         status = ((CoreException) e).getStatus();
-        EGFCommonUIPlugin.getDefault().log(status);
       } else {
         status = EGFCommonUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, e);
-        EGFCommonUIPlugin.getDefault().log(status);
       }
       StatusManager.getManager().handle(status, StatusManager.SHOW);
     }

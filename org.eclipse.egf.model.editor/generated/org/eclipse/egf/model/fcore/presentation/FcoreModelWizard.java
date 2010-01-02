@@ -28,9 +28,12 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.common.helper.BundleHelper;
+import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.pde.EGFPDEPlugin;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
@@ -46,7 +49,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -66,11 +68,11 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
+import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
  * This is a simple wizard for creating a new model file.
@@ -264,8 +266,14 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
             Map<Object, Object> options = new HashMap<Object, Object>();
             options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
             resource.save(options);
-          } catch (Exception e) {
-            EGFModelsEditorPlugin.getPlugin().log(e);
+          } catch (Throwable t) {
+            IStatus status = null;
+            if (t instanceof CoreException) {
+              status = ((CoreException) t).getStatus();
+            } else {
+              status = EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t);
+            }
+            StatusManager.getManager().handle(status, StatusManager.SHOW);
           } finally {
             progressMonitor.done();
           }
@@ -292,9 +300,14 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
       //
       try {
         page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
-      } catch (PartInitException exception) {
-        MessageDialog.openError(workbenchWindow.getShell(), EGFModelsEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), //$NON-NLS-1$ 
-            exception.getMessage());
+      } catch (Throwable t) {
+        IStatus status = null;
+        if (t instanceof CoreException) {
+          status = ((CoreException) t).getStatus();
+        } else {
+          status = EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, EGFModelsEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), t); //$NON-NLS-1$
+        }
+        StatusManager.getManager().handle(status, StatusManager.SHOW);
         return false;
       }
 

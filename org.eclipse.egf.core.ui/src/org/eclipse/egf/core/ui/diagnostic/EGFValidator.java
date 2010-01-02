@@ -52,7 +52,6 @@ import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation;
 import org.eclipse.ui.part.ISetSelectionTarget;
@@ -191,10 +190,8 @@ public class EGFValidator {
               if (editorPart != null && editorPart instanceof IEditingDomainProvider) {
                 EMFEditUIHelper.setSelectionToViewer(editorPart, uri);
               }
-            } catch (PartInitException pie) {
-              IStatus status = EGFCoreUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, pie);
-              EGFCoreUIPlugin.getDefault().log(status);
-              StatusManager.getManager().handle(status, StatusManager.SHOW);
+            } catch (Exception e) {
+              StatusManager.getManager().handle(EGFCoreUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, e), StatusManager.SHOW);
             }
           }
         }

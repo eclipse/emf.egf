@@ -201,12 +201,10 @@ public class RunActivityAction implements IObjectActionDelegate {
       IStatus status = null;
       if (throwable[0] instanceof CoreException) {
         status = ((CoreException) throwable[0]).getStatus();
-        EGFProducerUIPlugin.getDefault().log(status);
       } else if (throwable[0] instanceof InvocationException) {
         status = EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, InvocationException.class.getSimpleName(), throwable[0]);
       } else {
         status = EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, throwable[0]);
-        EGFProducerUIPlugin.getDefault().log(status);
       }
       StatusManager.getManager().handle(status, StatusManager.SHOW);
     } else if (invokeDiag[0] != null && invokeDiag[0].getSeverity() != Diagnostic.OK) {
