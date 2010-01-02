@@ -66,8 +66,33 @@ http://www.eclipse.org/legal/epl-v10.html
   />
   
   <includes
-    id="org.eclipse.egf.producer"
+    id="org.eclipse.egf.model.edit"
     version="0.0.0"
   />
+  
+  <includes
+    id="org.eclipse.egf.producer"
+    version="0.0.0"
+  />    
+
+  <includes
+    id="org.eclipse.egf.producer.ui"
+    version="0.0.0"
+  />
+
+  <includes
+    id="org.eclipse.egf.model.fprod"
+    version="0.0.0"
+  />
+  
+  <includes
+    id="org.eclipse.egf.model.fprod.edit"
+    version="0.0.0"
+  />  
+  
+  <includes
+    id="org.eclipse.egf.model.ui"
+    version="0.0.0"
+  />  
 
 </feature>

@@ -29,7 +29,7 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
 
-   <includes id="org.eclipse.egf.producer" version="0.0.0"/>
+   <includes id="org.eclipse.egf" version="0.0.0"/>
 
    <requires>
       <import plugin="org.junit" version="3.8.2.v20090203-1005" match="compatible"/>      
