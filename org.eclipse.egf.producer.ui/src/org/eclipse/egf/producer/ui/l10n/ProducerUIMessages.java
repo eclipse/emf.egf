@@ -36,7 +36,7 @@ public class ProducerUIMessages {
   public static String ActivitySelectionDialog_Select;
   public static String ActivitySelectionDialog_Always_Validate;
 
-  public static String _UI_CanInvokeProblems_title;
-  public static String _UI_CanInvokeProblems_message;
+  public static String _UI_CantInvokeProblems_title;
+  public static String _UI_CantInvokeProblems_message;
 
 }

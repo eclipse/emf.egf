@@ -120,7 +120,7 @@ public abstract class ModelElementManager implements IModelElementManager {
     return _projectBundleSession;
   }
 
-  public Diagnostic canInvoke() throws InvocationException {
+  public Diagnostic canInvokeElement() throws InvocationException {
     String message = null;
     if (getElement().getName() != null && getElement().getName().trim().length() != 0) {
       message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, getElement().getName());
@@ -128,6 +128,10 @@ public abstract class ModelElementManager implements IModelElementManager {
       message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, getElement().eClass().getName());
     }
     return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, null);
+  }
+
+  public Diagnostic canInvoke() throws InvocationException {
+    return canInvokeElement();
   }
 
   public abstract void initializeContext() throws InvocationException;

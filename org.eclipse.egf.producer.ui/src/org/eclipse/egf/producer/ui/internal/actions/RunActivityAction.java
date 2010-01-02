@@ -102,8 +102,8 @@ public class RunActivityAction implements IObjectActionDelegate {
         }
         if (_validates != null && _validates.size() != 0) {
           EGFValidator validator = new EGFValidator(activityManager[0].getActivities());
-          Diagnostic diagnostic = validator.validate();
-          if (diagnostic.getSeverity() != Diagnostic.OK) {
+          Diagnostic validationDiag = validator.validate();
+          if (validationDiag.getSeverity() != Diagnostic.OK) {
             return;
           }
         }
@@ -115,21 +115,25 @@ public class RunActivityAction implements IObjectActionDelegate {
     // 3 - canInvoke
     if (throwable[0] == null) {
       try {
-        final Diagnostic diagnostic = activityManager[0].canInvoke();
-        if (diagnostic.getSeverity() != Diagnostic.OK) {
+        final Diagnostic preInvokeDiag = activityManager[0].canInvoke();
+        if (preInvokeDiag.getSeverity() != Diagnostic.OK) {
           if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
             EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
               public void run() {
-                EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CanInvokeProblems_title, ProducerUIMessages._UI_CanInvokeProblems_message, diagnostic);
+                EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CantInvokeProblems_title, ProducerUIMessages._UI_CantInvokeProblems_message, preInvokeDiag);
               }
             });
           }
-          return;
+          if (preInvokeDiag.getSeverity() == Diagnostic.ERROR) {
+            return;
+          }
         }
       } catch (InvocationException ie) {
         throwable[0] = ie;
       }
     }
+
+    final Diagnostic[] invokeDiag = new Diagnostic[1];
 
     // 4 - Run activity
     if (throwable[0] == null) {
@@ -151,7 +155,7 @@ public class RunActivityAction implements IObjectActionDelegate {
                 EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EMFHelper.getText(_activity), ticks[0])); //$NON-NLS-1$
               }
               activityManager[0].initializeContext();
-              activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
+              invokeDiag[0] = activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
               if (monitor.isCanceled()) {
                 throw new OperationCanceledException();
               }
@@ -196,6 +200,14 @@ public class RunActivityAction implements IObjectActionDelegate {
     if (throwable[0] != null) {
       EGFProducerUIPlugin.getDefault().logError(throwable[0]);
       ThrowableHandler.displayAsyncDiagnostic(EGFProducerUIPlugin.getActiveWorkbenchShell(), throwable[0], EGFProducerUIPlugin.getDefault().getPluginID());
+    } else if (invokeDiag[0] != null && invokeDiag[0].getSeverity() != Diagnostic.OK) {
+      if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
+        EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+          public void run() {
+            EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CantInvokeProblems_title, ProducerUIMessages._UI_CantInvokeProblems_message, invokeDiag[0]);
+          }
+        });
+      }
     }
 
     return;

@@ -93,7 +93,7 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
 
   @Override
   public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvoke();
+    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvokeElement();
     Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
     if (managers != null) {
       for (Invocation<?> invocation : getElement().getInvocations()) {
@@ -136,23 +136,32 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
     return activities;
   }
 
-  public void invoke(IProgressMonitor monitor) throws InvocationException {
-    Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
-    if (managers != null) {
-      int steps = getSteps();
-      SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), steps * 900);
-      try {
-        for (Invocation<?> invocation : getElement().getInvocations()) {
-          IProductionPlanInvocationManager manager = managers.get(invocation);
-          manager.invoke(subMonitor.newChild(900 * manager.getSteps(), SubMonitor.SUPPRESS_NONE));
-          if (monitor.isCanceled()) {
-            throw new OperationCanceledException();
+  public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
+    BasicDiagnostic diagnostic = (BasicDiagnostic) canInvokeElement();
+    if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+      Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
+      if (managers != null) {
+        int steps = getSteps();
+        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), steps * 900);
+        try {
+          for (Invocation<?> invocation : getElement().getInvocations()) {
+            IProductionPlanInvocationManager manager = managers.get(invocation);
+            Diagnostic innerDiagnostic = manager.invoke(subMonitor.newChild(900 * manager.getSteps(), SubMonitor.SUPPRESS_NONE));
+            diagnostic.add(innerDiagnostic);
+            // Stop if any invocation diagnosis error are raised
+            if (innerDiagnostic.getSeverity() == Diagnostic.ERROR) {
+              break;
+            }
+            if (monitor.isCanceled()) {
+              throw new OperationCanceledException();
+            }
           }
+        } finally {
+          subMonitor.done();
         }
-      } finally {
-        subMonitor.done();
       }
     }
+    return diagnostic;
   }
 
 }

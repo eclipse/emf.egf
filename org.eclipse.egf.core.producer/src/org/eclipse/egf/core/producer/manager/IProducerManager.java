@@ -27,6 +27,8 @@ public interface IProducerManager {
 
   public IProducerManager getParent();
 
+  public Diagnostic canInvokeElement() throws InvocationException;
+
   public Diagnostic canInvoke() throws InvocationException;
 
   public IProductionContext<?> getProductionContext();
@@ -37,7 +39,7 @@ public interface IProducerManager {
 
   public void initializeContext() throws InvocationException;
 
-  public void invoke(IProgressMonitor monitor) throws InvocationException;
+  public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException;
 
   public int getSteps() throws InvocationException;
 

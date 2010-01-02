@@ -110,13 +110,15 @@ public class TaskManager extends ActivityManager implements ITaskManager {
     return activities;
   }
 
-  public void invoke(IProgressMonitor monitor) throws InvocationException {
-    // Invoke
-    TaskProductionContext taskProductionContext = getInternalProductionContext();
-    EGFFprodProducerPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getBundle(), taskProductionContext, getElement().getValue()).invoke(monitor);
-    if (monitor.isCanceled()) {
-      throw new OperationCanceledException();
+  public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
+    BasicDiagnostic diagnostic = (BasicDiagnostic) canInvokeElement();
+    if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+      EGFFprodProducerPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement().getValue()).invoke(monitor);
+      if (monitor.isCanceled()) {
+        throw new OperationCanceledException();
+      }
     }
+    return diagnostic;
   }
 
 }
