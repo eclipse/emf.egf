@@ -11,6 +11,7 @@
 package org.eclipse.egf.core.helper;
 
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -26,7 +27,14 @@ public class EObjectHelper {
   }
 
   public static EObject loadEObject(ResourceSet resourceSet, EObject eObject) {
-    if (resourceSet == null || eObject == null || EcoreUtil.getURI(eObject) == null) {
+    if (resourceSet == null || eObject == null) {
+      return null;
+    }
+    return loadEObject(resourceSet, EcoreUtil.getURI(eObject));
+  }
+
+  public static EObject loadEObject(ResourceSet resourceSet, URI uri) {
+    if (resourceSet == null || uri == null) {
       return null;
     }
     // Clear the previous URIConverter content
@@ -34,7 +42,7 @@ public class EObjectHelper {
     // Assign a fresh platform aware URIConverter
     resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
     // Load
-    return resourceSet.getEObject(EcoreUtil.getURI(eObject), true);
+    return resourceSet.getEObject(uri, true);
   }
 
 }
