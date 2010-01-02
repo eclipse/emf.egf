@@ -50,7 +50,10 @@ public abstract class PlatformExtensionPoint implements IPlatformExtensionPoint 
     if (this.equals(platformExtensionPoint)) {
       return 0;
     }
-    return toString().compareTo(platformExtensionPoint.toString());
+    if (platformExtensionPoint.getPlatformBundle().compareTo(getPlatformBundle()) == 0) {
+      return toString().compareTo(platformExtensionPoint.toString());
+    }
+    return 1;
   }
 
   @Override

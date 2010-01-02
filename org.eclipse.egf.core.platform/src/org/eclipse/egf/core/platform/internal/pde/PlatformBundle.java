@@ -94,10 +94,16 @@ public class PlatformBundle implements IPlatformBundle {
     if (this.equals(model)) {
       return 0;
     }
-    if (isTarget() == model.isTarget()) {
-      return 0;
+    if (isTarget() && model.isTarget()) {
+      if (getBundle().equals(model.getBundle())) {
+        return 0;
+      }
+      return -1;
     }
-    if (isTarget() == false) {
+    if (isTarget() == false && model.isTarget() == false) {
+      if (getProject().equals(model.getProject())) {
+        return 0;
+      }
       return -1;
     }
     return 1;

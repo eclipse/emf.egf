@@ -251,13 +251,19 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
           // Get Object Model
           EObject rootObject = createInitialModel();
           // Initialize Bundle and JavaProject if necessary
-          IRunnableWithProgress convertOperation;
-          convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false) {
+          IRunnableWithProgress convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false) {
             @Override
             public List<String> addDependencies() {
               List<String> dependencies = new ArrayList<String>(1);
               dependencies.add("org.eclipse.egf.model.fprod"); //$NON-NLS-1$
               return dependencies;
+            }
+
+            @Override
+            public List<String> addSourceFolders() {
+              List<String> sourceFolders = new ArrayList<String>(1);
+              sourceFolders.add("src"); //$NON-NLS-1$
+              return sourceFolders;
             }
           };
           // Synchronous operation

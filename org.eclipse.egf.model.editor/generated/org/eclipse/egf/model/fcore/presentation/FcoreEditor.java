@@ -45,6 +45,7 @@ import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.egf.model.editor.adapter.EGFAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
@@ -63,6 +64,7 @@ import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
@@ -256,6 +258,17 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
   protected MarkerHelper markerHelper = new EditUIMarkerHelper();
 
   /**
+   * The MarkerHelper is responsible for creating workspace resource markers
+   * presented
+   * in Eclipse's Problems View.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected List<IPlatformFcore> fcores = new UniqueEList<IPlatformFcore>();
+
+  /**
    * This listens for when the outline becomes active
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -333,7 +346,15 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
         Resource resource = resourceSet.getResource(fcore.getURI(), false);
         if (resource != null && deltaRemovedResources.remove(resource) == true) {
-          deltaChangedResources.add(resource);
+          // Due to PDE bug notification we need to handle notification in a weird way
+          // // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
+          // See PlatformManager for more informations
+          for (IPlatformFcore innerFcore : fcores) {
+            if (innerFcore.compareTo(fcore) == 0) {
+              continue;
+            }
+            deltaChangedResources.add(resource);
+          }
         }
       }
 
@@ -439,7 +460,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
     @Override
@@ -450,13 +471,18 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         case Resource.RESOURCE__ERRORS:
         case Resource.RESOURCE__WARNINGS: {
           Resource resource = (Resource) notification.getNotifier();
+          // Load tracking
+          IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
+          if (fcore != null) {
+            fcores.add(fcore);
+          }
+          // Problem
           Diagnostic diagnostic = analyzeResourceProblems(resource, null);
           if (diagnostic.getSeverity() != Diagnostic.OK) {
             resourceToDiagnosticMap.put(resource, diagnostic);
           } else {
             resourceToDiagnosticMap.remove(resource);
           }
-
           if (updateProblemIndication) {
             getSite().getShell().getDisplay().asyncExec(new Runnable() {
               public void run() {
@@ -964,12 +990,16 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
       exception = e;
       resource = editingDomain.getResourceSet().getResource(uri, false);
     }
-
+    IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
+    if (fcore != null) {
+      fcores.add(fcore);
+    }
     Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
     if (diagnostic.getSeverity() != Diagnostic.OK) {
       resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
     }
     editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
+    editingDomain.getResourceSet().eAdapters().add(new EGFAdapter(getSite()));
   }
 
   /**
@@ -1012,7 +1042,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
 
     // Only creates the other pages if there is something that can be edited
     //
-    if (!getEditingDomain().getResourceSet().getResources().isEmpty()) {
+    if (getEditingDomain().getResourceSet().getResources().isEmpty() == false) {
       // Create a page for the selection tree view.
       //
       Tree tree = new Tree(getContainer(), SWT.MULTI);
