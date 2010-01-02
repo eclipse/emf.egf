@@ -13,6 +13,7 @@ package org.eclipse.egf.core.ui.dialogs;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.internal.ui.util.StringMatcher;
+import org.eclipse.jdt.ui.dialogs.ITypeInfoFilterExtension;
 
 public class TypeInfoFilter {
 
@@ -133,12 +134,17 @@ public class TypeInfoFilter {
 
   private final String fText;
 
+  private final ITypeInfoFilterExtension fFilterExtension;
+
+  private final TypeInfoRequestorAdapter fAdapter = new TypeInfoRequestorAdapter();
+
   private final PatternMatcher fPackageMatcher;
 
   private final PatternMatcher fNameMatcher;
 
-  public TypeInfoFilter(String text) {
+  public TypeInfoFilter(String text, ITypeInfoFilterExtension extension) {
     fText = text;
+    fFilterExtension = extension;
     int index = text.lastIndexOf("."); //$NON-NLS-1$
     if (index == -1) {
       fNameMatcher = new PatternMatcher(text);
@@ -239,17 +245,25 @@ public class TypeInfoFilter {
   }
 
   public boolean matchesCachedResult(IType type) {
-    if (matchesPackage(type) == false) {
+    if ((matchesPackage(type) && matchesFilterExtension(type)) == false) {
       return false;
     }
     return matchesName(type);
   }
 
   public boolean matchesHistoryElement(IType type) {
-    if ((matchesPackage(type) == false)) {
+    if ((matchesPackage(type) && matchesFilterExtension(type)) == false) {
       return false;
     }
     return matchesName(type);
+  }
+
+  public boolean matchesFilterExtension(IType type) {
+    if (fFilterExtension == null) {
+      return true;
+    }
+    fAdapter.setMatch(type);
+    return fFilterExtension.select(fAdapter);
   }
 
   private boolean matchesName(IType type) {

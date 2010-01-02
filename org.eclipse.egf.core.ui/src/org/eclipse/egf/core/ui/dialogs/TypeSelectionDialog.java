@@ -37,6 +37,7 @@ import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.search.SearchPattern;
+import org.eclipse.jdt.internal.corext.util.TypeFilter;
 import org.eclipse.jdt.internal.ui.JavaUIMessages;
 import org.eclipse.jdt.internal.ui.preferences.TypeFilterPreferencePage;
 import org.eclipse.jdt.internal.ui.viewsupport.BasicElementLabels;
@@ -45,7 +46,9 @@ import org.eclipse.jdt.launching.IVMInstallType;
 import org.eclipse.jdt.launching.JavaRuntime;
 import org.eclipse.jdt.launching.LibraryLocation;
 import org.eclipse.jdt.ui.JavaElementLabels;
+import org.eclipse.jdt.ui.dialogs.ITypeInfoFilterExtension;
 import org.eclipse.jdt.ui.dialogs.ITypeInfoImageProvider;
+import org.eclipse.jdt.ui.dialogs.TypeSelectionExtension;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
@@ -85,6 +88,8 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
   private int _filterVersion = 0;
 
   private TypeItemsFilter _filter;
+
+  private final ITypeInfoFilterExtension _filterExtension;
 
   public static boolean isLowerCase(char ch) {
     return Character.toLowerCase(ch) == ch;
@@ -127,6 +132,7 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
   }
 
   private class TypeFiltersPreferencesAction extends Action {
+
     public TypeFiltersPreferencesAction() {
       super(JavaUIMessages.FilteredTypesSelectionDialog_TypeFiltersPreferencesAction_label);
     }
@@ -150,25 +156,20 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
 
     private final TypeInfoFilter _infoFilter;
 
-    public TypeItemsFilter() {
+    public TypeItemsFilter(ITypeInfoFilterExtension extension) {
       super(new TypeSearchPattern());
-      _infoFilter = new TypeInfoFilter(patternMatcher.getPattern());
+      _infoFilter = new TypeInfoFilter(patternMatcher.getPattern(), extension);
     }
 
     @Override
     public boolean matchItem(Object item) {
-      if (item instanceof IType == false) {
-        return false;
-      }
-      return true;
+      IType type = (IType) item;
+      return _infoFilter.matchesHistoryElement(type);
     }
 
     @Override
     public boolean isConsistentItem(Object item) {
-      if (item instanceof IType) {
-        return true;
-      }
-      return false;
+      return true;
     }
 
     public int getMyFilterVersion() {
@@ -206,8 +207,7 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
 
     @Override
     public boolean matchesRawNamePattern(Object item) {
-      IType type = (IType) item;
-      return matchesRawNamePattern(type);
+      return matchesRawNamePattern((IType) item);
     }
 
     public String getNamePattern() {
@@ -224,6 +224,10 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
 
     public boolean matchesRawNamePattern(IType type) {
       return _infoFilter.matchesRawNamePattern(type);
+    }
+
+    public boolean matchesFilterExtension(IType type) {
+      return _infoFilter.matchesFilterExtension(type);
     }
 
     @Override
@@ -740,13 +744,14 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
     }
   }
 
-  public TypeSelectionDialog(Shell parentShell, IProject project, Class<?> clazz, String current, boolean multipleSelection) {
+  public TypeSelectionDialog(Shell parentShell, IProject project, Class<?> clazz, String current, TypeSelectionExtension extension, boolean multipleSelection) {
     super(parentShell, multipleSelection);
     Assert.isNotNull(project);
     Assert.isNotNull(clazz);
     _project = project;
     _clazz = clazz;
     _infoUtil = new TypeInfoUtil(null);
+    _filterExtension = (extension == null) ? null : extension.getFilterExtension();
     setTitle(CoreUIMessages._UI_TypeSelection_label);
     setMessage(NLS.bind(CoreUIMessages._UI_SelectType, _clazz.getName()));
     setListLabelProvider(new TypeItemLabelProvider());
@@ -797,12 +802,13 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
 
   @Override
   protected ItemsFilter createFilter() {
-    _filter = new TypeItemsFilter();
+    _filter = new TypeItemsFilter(_filterExtension);
     return _filter;
   }
 
   @Override
   protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
+    TypeItemsFilter typeSearchFilter = (TypeItemsFilter) itemsFilter;
     IJavaProject javaProject = null;
     try {
       // IProject should be a JavaProject
@@ -819,29 +825,30 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
         if (classType == null) {
           return;
         }
-        // Current
-        // public, non interface and non abstract are processed
-        if (Flags.isPublic(classType.getFlags()) && Flags.isInterface(classType.getFlags()) == false && Flags.isAbstract(classType.getFlags()) == false) {
+        // Filter and public, non interface and non abstract are processed
+        if (TypeFilter.isFiltered(classType) == false && Flags.isPublic(classType.getFlags()) && Flags.isInterface(classType.getFlags()) == false && Flags.isAbstract(classType.getFlags()) == false) {
           String bundleId = BundleHelper.getBundleId(classType.getJavaProject().getProject());
           // type should be contained in a bundle
-          if (bundleId != null) {
-            contentProvider.add(classType, itemsFilter);
+          if (bundleId != null && typeSearchFilter.matchesFilterExtension(classType)) {
+            contentProvider.add(classType, typeSearchFilter);
           }
         }
+        progressMonitor.worked(1);
         // Hierarchy
         ITypeHierarchy typeHierarchy = classType.newTypeHierarchy(javaProject, progressMonitor);
         if (typeHierarchy == null) {
           return;
         }
         for (IType type : typeHierarchy.getAllSubtypes(classType)) {
-          // public, non interface and non abstract are processed
-          if (Flags.isPublic(type.getFlags()) && Flags.isInterface(type.getFlags()) == false && Flags.isAbstract(type.getFlags()) == false) {
+          // Filter and public, non interface and non abstract are processed
+          if (TypeFilter.isFiltered(type) == false && Flags.isPublic(type.getFlags()) && Flags.isInterface(type.getFlags()) == false && Flags.isAbstract(type.getFlags()) == false) {
             String bundleId = BundleHelper.getBundleId(type.getJavaProject().getProject());
             // type should be contained in a bundle
-            if (bundleId != null) {
-              contentProvider.add(type, itemsFilter);
+            if (bundleId != null && typeSearchFilter.matchesFilterExtension(type)) {
+              contentProvider.add(type, typeSearchFilter);
             }
           }
+          progressMonitor.worked(1);
         }
       }
     } catch (OperationCanceledException e) {
@@ -856,6 +863,7 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
       } catch (JavaModelException jme) {
         EGFCoreUIPlugin.getDefault().logError(jme);
       }
+      progressMonitor.done();
     }
   }
 
@@ -913,6 +921,7 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
    * @see org.eclipse.ui.dialogs.SelectionDialog#setResult(java.util.List)
    */
   @Override
+  @SuppressWarnings("unchecked")
   protected void setResult(List newResult) {
     List resultToReturn = new ArrayList();
     for (int i = 0; i < newResult.size(); i++) {
