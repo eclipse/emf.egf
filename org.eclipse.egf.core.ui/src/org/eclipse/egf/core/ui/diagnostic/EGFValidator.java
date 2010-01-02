@@ -25,8 +25,9 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.common.ui.diagnostic.ThrowableHandler;
+import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.emf.EMFEditUIHelper;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
@@ -55,6 +56,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation;
 import org.eclipse.ui.part.ISetSelectionTarget;
+import org.eclipse.ui.statushandlers.StatusManager;
 
 public class EGFValidator {
 
@@ -190,8 +192,9 @@ public class EGFValidator {
                 EMFEditUIHelper.setSelectionToViewer(editorPart, uri);
               }
             } catch (PartInitException pie) {
-              EGFCoreUIPlugin.getDefault().logError(pie);
-              ThrowableHandler.displayAsyncDiagnostic(EGFCoreUIPlugin.getActiveWorkbenchShell(), pie, EGFCoreUIPlugin.getDefault().getPluginID());
+              IStatus status = EGFCoreUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, pie);
+              EGFCoreUIPlugin.getDefault().log(status);
+              StatusManager.getManager().handle(status, StatusManager.SHOW);
             }
           }
         }

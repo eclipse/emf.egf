@@ -9,6 +9,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
+ org.eclipse.ui.workbench,
  org.eclipse.egf.common.ui,
  org.eclipse.egf.core.ui,
  org.eclipse.egf.producer,

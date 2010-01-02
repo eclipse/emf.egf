@@ -23,7 +23,6 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
-import org.eclipse.egf.common.ui.diagnostic.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
@@ -53,6 +52,7 @@ import org.eclipse.ui.IActionDelegate2;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.progress.IProgressConstants;
+import org.eclipse.ui.statushandlers.StatusManager;
 
 public class GlobalRunActivityAction extends Action implements IWorkbenchWindowActionDelegate, IActionDelegate2 {
 
@@ -220,8 +220,17 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
     }
 
     if (throwable[0] != null) {
-      EGFProducerUIPlugin.getDefault().logError(throwable[0]);
-      ThrowableHandler.displayAsyncDiagnostic(EGFProducerUIPlugin.getActiveWorkbenchShell(), throwable[0], EGFProducerUIPlugin.getDefault().getPluginID());
+      IStatus status = null;
+      if (throwable[0] instanceof CoreException) {
+        status = ((CoreException) throwable[0]).getStatus();
+        EGFProducerUIPlugin.getDefault().log(status);
+      } else if (throwable[0] instanceof InvocationException) {
+        status = EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, InvocationException.class.getSimpleName(), throwable[0]);
+      } else {
+        status = EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, throwable[0]);
+        EGFProducerUIPlugin.getDefault().log(status);
+      }
+      StatusManager.getManager().handle(status, StatusManager.SHOW);
     } else if (invokeDiag[0] != null && invokeDiag[0].getSeverity() != Diagnostic.OK) {
       if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
         EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {

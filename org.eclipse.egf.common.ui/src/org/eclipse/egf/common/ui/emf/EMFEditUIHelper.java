@@ -22,10 +22,12 @@ import java.util.Collections;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
-import org.eclipse.egf.common.ui.diagnostic.ThrowableHandler;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
@@ -44,6 +46,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.part.FileEditorInput;
+import org.eclipse.ui.statushandlers.StatusManager;
 import org.osgi.framework.Bundle;
 
 /**
@@ -72,8 +75,15 @@ public class EMFEditUIHelper {
         method.invoke(part, params);
       }
     } catch (Exception e) {
-      EGFCommonUIPlugin.getDefault().logError("IEditingDomainProvider.setSelectionToViewer", e); //$NON-NLS-1$
-      ThrowableHandler.displayAsyncDiagnostic(EGFCommonUIPlugin.getActiveWorkbenchShell(), e, EGFCommonUIPlugin.getDefault().getPluginID());
+      IStatus status = null;
+      if (e instanceof CoreException) {
+        status = ((CoreException) e).getStatus();
+        EGFCommonUIPlugin.getDefault().log(status);
+      } else {
+        status = EGFCommonUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, e);
+        EGFCommonUIPlugin.getDefault().log(status);
+      }
+      StatusManager.getManager().handle(status, StatusManager.SHOW);
     }
   }
 
