@@ -13,8 +13,11 @@ package org.eclipse.egf.model.edit.ui.provider;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
+import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
+import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
 import org.eclipse.jdt.core.IType;
@@ -45,21 +48,36 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
       return null;
     }
 
-    if (object instanceof TypeAbstractClass<?> == false) {
+    if (object instanceof TypeAbstractClass<?> == false || object instanceof Task == false) {
       return super.createPropertyEditor(composite);
     }
 
     CellEditor result = null;
 
-    // Type should be defined
-    final TypeAbstractClass<?> typeClass = (TypeAbstractClass<?>) object;
-    if (typeClass.getType() == null) {
+    // Data Holder
+    final Class<?>[] clazzes = new Class<?>[1];
+    final String[] values = new String[1];
+
+    // Switch
+    if (object instanceof TypeAbstractClass<?>) {
+      TypeAbstractClass<?> typeAbstractClass = (TypeAbstractClass<?>) object;
+      // Type should be defined
+      if (typeAbstractClass.getType() == null) {
+        return null;
+      }
+      clazzes[0] = typeAbstractClass.getType();
+      values[0] = typeAbstractClass.getValue();
+    } else if (object instanceof Task) {
+      Task task = (Task) object;
+      clazzes[0] = ITaskProduction.class;
+      values[0] = task.getValue();
+    } else {
       return null;
     }
 
     // IProject should exist
     final IProject[] projects = new IProject[1];
-    projects[0] = ResourcesPlugin.getWorkspace().getRoot().getProject(typeClass.eResource().getURI().segment(1));
+    projects[0] = ResourcesPlugin.getWorkspace().getRoot().getProject(((EObject) object).eResource().getURI().segment(1));
     if (projects[0] == null) {
       return null;
     }
@@ -68,13 +86,13 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
     result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
       @Override
       protected Object openDialogBox(Control cellEditorWindow) {
-        TypeSelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), projects[0], typeClass.getType(), typeClass.getValue(), false);
+        TypeSelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), projects[0], clazzes[0], values[0], false);
         dialog.open();
         Object[] innerResult = dialog.getResult();
         if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
           return ((IType) innerResult[0]).getFullyQualifiedName();
         }
-        return typeClass.getValue();
+        return values[0];
       }
     };
 
