@@ -57,4 +57,6 @@ public class CoreUIMessages {
   public static String AbstractCheckboxSelectionDialog_Select;
   public static String AbstractCheckboxSelectionDialog_Deselect;
 
+  public static String TypeSelectionDialog_findTypeHierarchy;
+
 }

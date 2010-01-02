@@ -25,21 +25,30 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.helper.BundleHelper;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jdt.core.Flags;
+import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.ITypeHierarchy;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.IJavaSearchConstants;
+import org.eclipse.jdt.core.search.IJavaSearchScope;
 import org.eclipse.jdt.core.search.SearchPattern;
 import org.eclipse.jdt.internal.corext.util.TypeFilter;
 import org.eclipse.jdt.internal.ui.JavaUIMessages;
 import org.eclipse.jdt.internal.ui.preferences.TypeFilterPreferencePage;
+import org.eclipse.jdt.internal.ui.search.JavaSearchQuery;
+import org.eclipse.jdt.internal.ui.search.JavaSearchResult;
+import org.eclipse.jdt.internal.ui.search.JavaSearchScopeFactory;
 import org.eclipse.jdt.internal.ui.viewsupport.BasicElementLabels;
 import org.eclipse.jdt.launching.IVMInstall;
 import org.eclipse.jdt.launching.IVMInstallType;
@@ -49,6 +58,8 @@ import org.eclipse.jdt.ui.JavaElementLabels;
 import org.eclipse.jdt.ui.dialogs.ITypeInfoFilterExtension;
 import org.eclipse.jdt.ui.dialogs.ITypeInfoImageProvider;
 import org.eclipse.jdt.ui.dialogs.TypeSelectionExtension;
+import org.eclipse.jdt.ui.search.PatternQuerySpecification;
+import org.eclipse.jdt.ui.search.QuerySpecification;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.Separator;
@@ -807,8 +818,11 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
   }
 
   @Override
-  protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
-    TypeItemsFilter typeSearchFilter = (TypeItemsFilter) itemsFilter;
+  protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor monitor) throws CoreException {
+    // Invoke
+    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(CoreUIMessages.TypeSelectionDialog_findTypeHierarchy, _clazz.getName()), 1000);
+    final List<IType> types = new UniqueEList<IType>();
+    final TypeItemsFilter typeSearchFilter = (TypeItemsFilter) itemsFilter;
     IJavaProject javaProject = null;
     try {
       // IProject should be a JavaProject
@@ -820,8 +834,9 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
         EGFCoreUIPlugin.getDefault().logError(e);
       }
       if (javaProject != null) {
+        // Hierarchy Lookup
         // Retrieve IType
-        IType classType = javaProject.findType(_clazz.getName());
+        IType classType = javaProject.findType(_clazz.getName(), subMonitor.newChild(200, SubMonitor.SUPPRESS_NONE));
         if (classType == null) {
           return;
         }
@@ -830,12 +845,11 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
           String bundleId = BundleHelper.getBundleId(classType.getJavaProject().getProject());
           // type should be contained in a bundle
           if (bundleId != null && typeSearchFilter.matchesFilterExtension(classType)) {
-            contentProvider.add(classType, typeSearchFilter);
+            types.add(classType);
           }
         }
-        progressMonitor.worked(1);
         // Hierarchy
-        ITypeHierarchy typeHierarchy = classType.newTypeHierarchy(javaProject, progressMonitor);
+        ITypeHierarchy typeHierarchy = classType.newTypeHierarchy(javaProject, subMonitor.newChild(300, SubMonitor.SUPPRESS_NONE));
         if (typeHierarchy == null) {
           return;
         }
@@ -845,16 +859,43 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
             String bundleId = BundleHelper.getBundleId(type.getJavaProject().getProject());
             // type should be contained in a bundle
             if (bundleId != null && typeSearchFilter.matchesFilterExtension(type)) {
-              contentProvider.add(type, typeSearchFilter);
+              types.add(type);
             }
           }
-          progressMonitor.worked(1);
+        }
+        // Java Search Lookup
+        // Java Search Lookup
+        IJavaElement[] javaElements = new IJavaElement[] { javaProject };
+        JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
+        IJavaSearchScope scope = factory.createJavaSearchScope(javaElements, JavaSearchScopeFactory.ALL);
+        String scopeDescription = factory.getSelectionScopeDescription(javaElements, JavaSearchScopeFactory.ALL);
+        QuerySpecification querySpec = new PatternQuerySpecification(classType.getElementName(), IJavaSearchConstants.TYPE, true, IJavaSearchConstants.CLASS | IJavaSearchConstants.IMPLEMENTORS, scope, scopeDescription);
+        JavaSearchQuery searchJob = new JavaSearchQuery(querySpec);
+        searchJob.run(subMonitor.newChild(300, SubMonitor.SUPPRESS_NONE));
+        JavaSearchResult result = (JavaSearchResult) searchJob.getSearchResult();
+        for (Object object : result.getElements()) {
+          if (object instanceof IType == false) {
+            continue;
+          }
+          IType type = (IType) object;
+          // Filter and public, non interface and non abstract are processed
+          if (TypeFilter.isFiltered(type) == false && Flags.isPublic(type.getFlags()) && Flags.isInterface(type.getFlags()) == false && Flags.isAbstract(type.getFlags()) == false) {
+            String bundleId = BundleHelper.getBundleId(type.getJavaProject().getProject());
+            // type should be contained in a bundle
+            if (bundleId != null && typeSearchFilter.matchesFilterExtension(type)) {
+              types.add(type);
+            }
+          }
+        }
+        // Feed Content Provider
+        for (IType type : types) {
+          contentProvider.add(type, typeSearchFilter);
         }
       }
     } catch (OperationCanceledException e) {
       return;
-    } catch (Exception e) {
-      EGFCoreUIPlugin.getDefault().logError(e);
+    } catch (Throwable t) {
+      ThrowableHandler.handleThrowable(EGFCoreUIPlugin.getDefault().getPluginID(), t);
       return;
     } finally {
       try {
@@ -864,7 +905,7 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
       } catch (JavaModelException jme) {
         EGFCoreUIPlugin.getDefault().logError(jme);
       }
-      progressMonitor.done();
+      monitor.done();
     }
   }
 
