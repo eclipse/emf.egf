@@ -48,7 +48,6 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
@@ -74,19 +73,24 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         }
 
         public void resourceDeleted(Resource resource) {
-            if (getResource().equals(resource) && (!isDirty() || handleDirtyConflict()))
-                getSite().getPage().closeEditor(PatternEditor.this, false);
+            // if (getResource().equals(resource) && (!isDirty() ||
+            // handleDirtyConflict()))
+            getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                public void run() {
+                    getSite().getPage().closeEditor(PatternEditor.this, false);
+                }
+            });
         }
 
         public void resourceChanged(Resource resource) {
             for (PatternEditorPage page : pages)
                 page.rebind();
             addPatternChangeAdapter();
-                getSite().getShell().getDisplay().asyncExec(new Runnable() {
-                    public void run() {
-                        firePropertyChange(IEditorPart.PROP_DIRTY);
-                    }
-                });
+            getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                public void run() {
+                    firePropertyChange(IEditorPart.PROP_DIRTY);
+                }
+            });
         }
     };
     private final List<PatternEditorPage> pages = new ArrayList<PatternEditorPage>();
@@ -272,10 +276,10 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      */
-    protected boolean handleDirtyConflict() {
-        return MessageDialog.openQuestion(getSite().getShell(), "File Conflict", //$NON-NLS-1$
-                "External changes, close the editor ?"); //$NON-NLS-1$
-    }
+    // protected boolean handleDirtyConflict() {
+    //        return MessageDialog.openQuestion(getSite().getShell(), "File Conflict", //$NON-NLS-1$
+    //                "External changes, close the editor ?"); //$NON-NLS-1$
+    // }
 
     public ResourceListener getListener() {
 
