@@ -32,6 +32,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.core.helper.EclipseBuilderHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
@@ -203,7 +204,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
         projectDescription.setNatureIds(natureIds);
         subMonitor.worked(200);
       } else {
-        if (_hasEGFNature == false) {
+        if (_hasEGFNature == false && _createEGFNature) {
           EclipseBuilderHelper.addNature(projectDescription, EGFNatures.EGF_NATURE, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
         } else {
           subMonitor.worked(100);
@@ -456,8 +457,8 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     if (_project.getFile(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR).exists()) {
       addToken(entry, ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR);
     }
-    if (_project.getFile(ICoreConstants.BUNDLE_FILENAME_DESCRIPTOR).exists()) {
-      addToken(entry, ICoreConstants.BUNDLE_FILENAME_DESCRIPTOR);
+    if (_project.getFile(EGFCommonConstants.BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR).exists()) {
+      addToken(entry, EGFCommonConstants.BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR);
     }
     for (int i = 0; i < fLibEntries.length; i++) {
       addToken(entry, fLibEntries[i]);

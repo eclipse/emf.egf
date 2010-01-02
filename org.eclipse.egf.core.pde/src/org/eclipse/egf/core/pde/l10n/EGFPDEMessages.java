@@ -27,4 +27,7 @@ public class EGFPDEMessages extends NLS {
 
   public static String savedState_jobName;
 
+  public static String PluginModelUpdate_progressMessage;
+  public static String PluginModelUpdate_logTitle;
+
 }

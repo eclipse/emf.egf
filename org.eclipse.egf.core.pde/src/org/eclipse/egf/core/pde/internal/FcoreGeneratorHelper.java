@@ -17,7 +17,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.helper.ProjectHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.pde.EGFPDEPlugin;
@@ -50,7 +50,7 @@ public class FcoreGeneratorHelper {
     IFolder folder = ProjectHelper.createFolder(folderName_p, project, monitor_p);
     if (null != folder && updateBuildProperties_p) {
       WorkspaceBuildModel buildModel = getBuildModel(project);
-      addEntryInBinaryBuild(buildModel, folderName_p + CharacterConstants.SLASH_CHARACTER);
+      addEntryInBinaryBuild(buildModel, folderName_p + EGFCommonConstants.SLASH_CHARACTER);
       buildModel.save();
     }
   }

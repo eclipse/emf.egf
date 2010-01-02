@@ -37,6 +37,7 @@ import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
 import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
 import org.eclipse.egf.core.fcore.IResourceFcoreListener;
 import org.eclipse.egf.core.pde.EGFPDEPlugin;
+import org.eclipse.egf.core.pde.l10n.EGFPDEMessages;
 import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
 import org.eclipse.egf.core.pde.plugin.IPluginChangesCommandRunner;
 import org.eclipse.emf.common.util.URI;
@@ -231,7 +232,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
               try {
                 op.run(monitor);
               } catch (InvocationTargetException e) {
-                String msg = NLS.bind(InternalResourcesMessages.PluginModelUpdate_logTitle, getClass().getName(), e.getTargetException());
+                String msg = NLS.bind(EGFPDEMessages.PluginModelUpdate_logTitle, getClass().getName(), e.getTargetException());
                 throw new CoreException(StatusHelper.newStatus(IStatus.ERROR, msg, e.getTargetException()));
               } catch (InterruptedException e) {
                 return Status.CANCEL_STATUS;
@@ -269,7 +270,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
     return new IRunnableWithProgress() {
       public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
         monitor.beginTask("", (removedFcores.size() + addedFcores.size()) * 1000); //$NON-NLS-1$
-        monitor.setTaskName(InternalResourcesMessages.PluginModelUpdate_progressMessage);
+        monitor.setTaskName(EGFPDEMessages.PluginModelUpdate_progressMessage);
         try {
           // Removed Fcores
           for (IPlatformFcore fcore : removedFcores) {

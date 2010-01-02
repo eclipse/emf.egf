@@ -13,7 +13,7 @@ package org.eclipse.egf.core.pde.internal.manifest;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.core.pde.plugin.AbstractManifestChangesCommand;
 import org.eclipse.pde.internal.core.ICoreConstants;
 import org.eclipse.pde.internal.core.bundle.BundlePluginBase;
@@ -76,13 +76,13 @@ public class AbstractExportedPackagesCommand extends AbstractManifestChangesComm
         builder = new StringBuilder();
       } else {
         builder
-          .append(CharacterConstants.COMMA_CHARACTER)
-          .append(CharacterConstants.LINE_SEPARATOR)
-          .append(CharacterConstants.WHITE_SPACE_CHARACTER);
+          .append(EGFCommonConstants.COMMA_CHARACTER)
+          .append(EGFCommonConstants.LINE_SEPARATOR)
+          .append(EGFCommonConstants.WHITE_SPACE_CHARACTER);
       }
       builder.append(exportedPackage);
     }
-    return builder == null ? CharacterConstants.EMPTY_STRING : builder.toString();
+    return builder == null ? EGFCommonConstants.EMPTY_STRING : builder.toString();
   }
 
   /**
