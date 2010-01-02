@@ -45,8 +45,8 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
   private IPlatformFcore _previous;
 
   /**
-   * <code>ResourceSelectionHistory</code> provides behavior specific to
-   * resources - storing and restoring <code>IResource</code>s state
+   * <code>FcoreSelectionHistory</code> provides behavior specific to
+   * fcores - storing and restoring <code>IPlatformFcore</code>s state
    * to/from XML (memento).
    */
   private class FcoreSelectionHistory extends SelectionHistory {
