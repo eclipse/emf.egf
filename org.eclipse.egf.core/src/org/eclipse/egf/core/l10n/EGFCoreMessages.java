@@ -51,4 +51,16 @@ public class EGFCoreMessages {
 
   public static String Production_Unknown_Bundle;
 
+  public static String ConvertProjectOperation_converter;
+  public static String ConvertProjectOperation_setupClasspath;
+  public static String ConvertProjectOperation_organizeExport;
+  public static String ConvertProjectOperation_setupBuildfile;
+  public static String ConvertProjectOperation_setupManifestfile;
+
+  public static String EclipseBuilderHelper_addBuilder;
+  public static String EclipseBuilderHelper_addNature;
+  public static String EclipseBuilderHelper_getBuilder;
+  public static String EclipseBuilderHelper_removeBuilder;
+  public static String EclipseBuilderHelper_setBuilder;
+
 }

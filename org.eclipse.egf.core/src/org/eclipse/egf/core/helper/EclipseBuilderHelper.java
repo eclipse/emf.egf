@@ -16,10 +16,11 @@
 package org.eclipse.egf.core.helper;
 
 import org.eclipse.core.resources.ICommand;
-import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IProjectDescription;
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.core.l10n.EGFCoreMessages;
 
 public class EclipseBuilderHelper {
 
@@ -27,121 +28,159 @@ public class EclipseBuilderHelper {
     // Prevent Instantiation
   }
 
-  public static void addNatureToProject(IProject proj, String natureId, IProgressMonitor monitor) throws CoreException {
-    IProjectDescription description = proj.getDescription();
-    String[] prevNatures = description.getNatureIds();
-    String[] newNatures = new String[prevNatures.length + 1];
-    System.arraycopy(prevNatures, 0, newNatures, 0, prevNatures.length);
-    newNatures[prevNatures.length] = natureId;
-    description.setNatureIds(newNatures);
-    proj.setDescription(description, monitor);
-  }
-
-  public static void addToFrontofBuildSpec(IProject project_p, String builderId_p) throws CoreException {
-    if (project_p == null || builderId_p == null) {
-      return;
-    }
-    IProjectDescription description = project_p.getDescription();
-    ICommand builderCommand = getBuilderCommand(description, builderId_p);
-    if (builderCommand == null) {
-      // Add a new build spec
-      ICommand command = description.newCommand();
-      command.setBuilderName(builderId_p);
-      setFrontBuilderCommand(project_p, description, command);
+  public static void addNature(IProjectDescription description, String nature, IProgressMonitor monitor) {
+    SubMonitor subMonitor = SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_addNature, 100);
+    try {
+      Assert.isNotNull(description);
+      Assert.isNotNull(nature);
+      Assert.isLegal(nature.trim().length() > 0);
+      Assert.isNotNull(monitor);
+      String[] prevNatures = description.getNatureIds();
+      String[] newNatures = new String[prevNatures.length + 1];
+      System.arraycopy(prevNatures, 0, newNatures, 0, prevNatures.length);
+      newNatures[prevNatures.length] = nature.trim();
+      description.setNatureIds(newNatures);
+    } finally {
+      subMonitor.done();
     }
   }
 
-  public static void addToBuildSpec(IProject project_p, String builderId_p) throws CoreException {
-    if (project_p == null || builderId_p == null) {
-      return;
-    }
-    IProjectDescription description = project_p.getDescription();
-    ICommand builderCommand = getBuilderCommand(description, builderId_p);
-    if (builderCommand == null) {
-      // Add a new build spec
-      ICommand command = description.newCommand();
-      command.setBuilderName(builderId_p);
-      setBuilderCommand(project_p, description, command);
-    }
-  }
-
-  public static ICommand getBuilderCommand(IProjectDescription description_p, String builderId_p) {
-    ICommand[] commands = description_p.getBuildSpec();
-    for (int i = 0; i < commands.length; ++i) {
-      if (commands[i].getBuilderName().equals(builderId_p)) {
-        return commands[i];
+  public static void addToFrontOfBuildSpec(IProjectDescription description, String builder, IProgressMonitor monitor) {
+    SubMonitor subMonitor = SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_addBuilder, 300);
+    try {
+      Assert.isNotNull(description);
+      Assert.isNotNull(builder);
+      Assert.isLegal(builder.trim().length() > 0);
+      Assert.isNotNull(monitor);
+      ICommand builderCommand = getBuilderCommand(description, builder, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+      if (builderCommand == null) {
+        // Add a new build spec
+        ICommand command = description.newCommand();
+        command.setBuilderName(builder.trim());
+        setFrontBuilderCommand(description, command, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
       }
+    } finally {
+      subMonitor.done();
+    }
+  }
+
+  public static void addToBuildSpec(IProjectDescription description, String builder, IProgressMonitor monitor) {
+    SubMonitor subMonitor = SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_addBuilder, 300);
+    try {
+      Assert.isNotNull(description);
+      Assert.isNotNull(builder);
+      Assert.isLegal(builder.trim().length() > 0);
+      Assert.isNotNull(monitor);
+      ICommand builderCommand = getBuilderCommand(description, builder, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+      if (builderCommand == null) {
+        // Add a new build spec
+        ICommand command = description.newCommand();
+        command.setBuilderName(builder.trim());
+        setBuilderCommand(description, command, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+      }
+    } finally {
+      subMonitor.done();
+    }
+  }
+
+  public static ICommand getBuilderCommand(IProjectDescription description, String builder, IProgressMonitor monitor) {
+    SubMonitor subMonitor = SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_getBuilder, 100);
+    try {
+      Assert.isNotNull(description);
+      Assert.isNotNull(builder);
+      Assert.isLegal(builder.trim().length() > 0);
+      Assert.isNotNull(monitor);
+      ICommand[] commands = description.getBuildSpec();
+      for (int i = 0; i < commands.length; ++i) {
+        if (commands[i].getBuilderName().equals(builder)) {
+          return commands[i];
+        }
+      }
+    } finally {
+      subMonitor.done();
     }
     return null;
   }
 
-  public static void removeFromBuildSpec(IProject project_p, String builderId_p) throws CoreException {
-    if (project_p == null || builderId_p == null) {
-      return;
-    }
-    IProjectDescription description = project_p.getDescription();
-    ICommand[] commands = description.getBuildSpec();
-    for (int i = 0; i < commands.length; ++i) {
-      if (commands[i].getBuilderName().equals(builderId_p)) {
-        ICommand[] newCommands = new ICommand[commands.length - 1];
-        System.arraycopy(commands, 0, newCommands, 0, i);
-        System.arraycopy(commands, i + 1, newCommands, i, commands.length - i - 1);
-        description.setBuildSpec(newCommands);
-        return;
-      }
-    }
-  }
-
-  public static void setBuilderCommand(IProject project_p, IProjectDescription description_p, ICommand newCommand_p) throws CoreException {
-    if (project_p == null || description_p == null || newCommand_p == null) {
-      return;
-    }
-    ICommand[] oldCommands = description_p.getBuildSpec();
-    ICommand oldBuilderCommand = getBuilderCommand(description_p, newCommand_p.getBuilderName());
-    ICommand[] newCommands;
-    if (oldBuilderCommand == null) {
-      // Add a build spec after other builders
-      newCommands = new ICommand[oldCommands.length + 1];
-      System.arraycopy(oldCommands, 0, newCommands, 0, oldCommands.length);
-      newCommands[oldCommands.length] = newCommand_p;
-    } else {
-      for (int i = 0, max = oldCommands.length; i < max; i++) {
-        if (oldCommands[i] == oldBuilderCommand) {
-          oldCommands[i] = newCommand_p;
+  public static void removeFromBuildSpec(IProjectDescription description, String builder, IProgressMonitor monitor) {
+    SubMonitor subMonitor = SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_removeBuilder, 100);
+    try {
+      Assert.isNotNull(description);
+      Assert.isNotNull(builder);
+      Assert.isLegal(builder.trim().length() > 0);
+      Assert.isNotNull(monitor);
+      ICommand[] commands = description.getBuildSpec();
+      for (int i = 0; i < commands.length; ++i) {
+        if (commands[i].getBuilderName().equals(builder.trim())) {
+          ICommand[] newCommands = new ICommand[commands.length - 1];
+          System.arraycopy(commands, 0, newCommands, 0, i);
+          System.arraycopy(commands, i + 1, newCommands, i, commands.length - i - 1);
+          description.setBuildSpec(newCommands);
           break;
         }
       }
-      newCommands = oldCommands;
+    } finally {
+      subMonitor.done();
     }
-    // Commit the spec change into the project
-    description_p.setBuildSpec(newCommands);
-    project_p.setDescription(description_p, null);
+    return;
   }
 
-  public static void setFrontBuilderCommand(IProject project_p, IProjectDescription description_p, ICommand newCommand_p) throws CoreException {
-    if (project_p == null || description_p == null || newCommand_p == null) {
-      return;
-    }
-    ICommand[] oldCommands = description_p.getBuildSpec();
-    ICommand oldBuilderCommand = getBuilderCommand(description_p, newCommand_p.getBuilderName());
-    ICommand[] newCommands;
-    if (oldBuilderCommand == null) {
-      // Add a build spec in front of other builders
-      newCommands = new ICommand[oldCommands.length + 1];
-      System.arraycopy(oldCommands, 0, newCommands, 1, oldCommands.length);
-      newCommands[0] = newCommand_p;
-    } else {
-      for (int i = 0, max = oldCommands.length; i < max; i++) {
-        if (oldCommands[i] == oldBuilderCommand) {
-          oldCommands[i] = newCommand_p;
-          break;
+  public static void setBuilderCommand(IProjectDescription description, ICommand command, IProgressMonitor monitor) {
+    SubMonitor subMonitor = SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_setBuilder, 200);
+    try {
+      Assert.isNotNull(description);
+      Assert.isNotNull(command);
+      Assert.isNotNull(monitor);
+      ICommand[] oldCommands = description.getBuildSpec();
+      ICommand oldBuilderCommand = getBuilderCommand(description, command.getBuilderName(), subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+      ICommand[] newCommands;
+      if (oldBuilderCommand == null) {
+        // Add a build spec after other builders
+        newCommands = new ICommand[oldCommands.length + 1];
+        System.arraycopy(oldCommands, 0, newCommands, 0, oldCommands.length);
+        newCommands[oldCommands.length] = command;
+      } else {
+        for (int i = 0, max = oldCommands.length; i < max; i++) {
+          if (oldCommands[i] == oldBuilderCommand) {
+            oldCommands[i] = command;
+            break;
+          }
         }
+        newCommands = oldCommands;
       }
-      newCommands = oldCommands;
+      description.setBuildSpec(newCommands);
+    } finally {
+      subMonitor.done();
     }
-    // Commit the spec change into the project
-    description_p.setBuildSpec(newCommands);
-    project_p.setDescription(description_p, null);
+  }
+
+  public static void setFrontBuilderCommand(IProjectDescription description, ICommand command, IProgressMonitor monitor) {
+    SubMonitor subMonitor = SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_setBuilder, 200);
+    try {
+      Assert.isNotNull(description);
+      Assert.isNotNull(command);
+      Assert.isNotNull(monitor);
+      ICommand[] oldCommands = description.getBuildSpec();
+      ICommand oldBuilderCommand = getBuilderCommand(description, command.getBuilderName(), subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+      ICommand[] newCommands;
+      if (oldBuilderCommand == null) {
+        // Add a build spec in front of other builders
+        newCommands = new ICommand[oldCommands.length + 1];
+        System.arraycopy(oldCommands, 0, newCommands, 1, oldCommands.length);
+        newCommands[0] = command;
+      } else {
+        for (int i = 0, max = oldCommands.length; i < max; i++) {
+          if (oldCommands[i] == oldBuilderCommand) {
+            oldCommands[i] = command;
+            break;
+          }
+        }
+        newCommands = oldCommands;
+      }
+      description.setBuildSpec(newCommands);
+    } finally {
+      subMonitor.done();
+    }
   }
 
 }

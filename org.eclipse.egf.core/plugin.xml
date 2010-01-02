@@ -42,8 +42,8 @@
 
   <extension
     point="org.eclipse.core.resources.natures"  
-    id="FcoreNature"
-    name="%EGFFcoreNature"
+    id="EGFNature"
+    name="%EGFNature"
   >
     <runtime>
       <run
