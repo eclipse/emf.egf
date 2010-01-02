@@ -36,7 +36,7 @@ public class ValidationHelper {
     if (context != null && context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
       return true;
     }
-    if (eObject.eResource() == null || value == null) {
+    if (eObject.eResource() == null || value == null || value.trim().length() == 0) {
       return true;
     }
     IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(eObject.eResource());
@@ -56,7 +56,7 @@ public class ValidationHelper {
       // Load Class
       Class<?> clazz = null;
       try {
-        clazz = bundle.loadClass(value);
+        clazz = bundle.loadClass(value.trim());
       } catch (Throwable t) {
         // Nothing to do
       }
@@ -73,7 +73,7 @@ public class ValidationHelper {
     if (context != null && context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
       return true;
     }
-    if (eObject.eResource() == null || type == null || value == null) {
+    if (eObject.eResource() == null || type == null || value == null || value.trim().length() == 0) {
       return true;
     }
     IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(eObject.eResource());
@@ -93,7 +93,7 @@ public class ValidationHelper {
       // Load Class
       Class<?> clazz = null;
       try {
-        clazz = bundle.loadClass(value);
+        clazz = bundle.loadClass(value.trim());
       } catch (Throwable t) {
         // Nothing to do
       }
