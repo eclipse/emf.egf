@@ -10,8 +10,6 @@
  */
 package org.eclipse.egf.core.pde;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -25,7 +23,6 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.helper.ProjectHelper;
@@ -39,11 +36,10 @@ import org.eclipse.egf.core.pde.internal.resource.FcoreResourceListener;
 import org.eclipse.egf.core.pde.l10n.EGFPDEMessages;
 import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
 import org.eclipse.egf.core.pde.plugin.IPluginChangesCommandRunner;
-import org.eclipse.jface.operation.IRunnableWithProgress;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.internal.core.build.WorkspaceBuildModel;
-import org.eclipse.pde.internal.ui.wizards.tools.ConvertProjectToPluginOperation;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -80,6 +76,37 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
    * Fcore Resource listener
    */
   private FcoreResourceListener _fcoreResourceListener;
+
+  /**
+   * 
+   * Returns the currently active window for this workbench (if any). Returns
+   * <code>null</code> if there is no active workbench window. Returns
+   * <code>null</code> if called from a non-UI thread.
+   * 
+   * @return the active workbench window, or <code>null</code> if there is
+   *         no active workbench window or if called from a non-UI thread
+   */
+  public static IWorkbenchWindow getActiveWorkbenchWindow() {
+    return getDefault().getWorkbench().getActiveWorkbenchWindow();
+  }
+
+  /**
+   * Returns the currently active shell for this workbench (if any).
+   * 
+   * @return the active workbench shell.
+   */
+  public static Shell getActiveWorkbenchShell() {
+    IWorkbenchWindow window = getActiveWorkbenchWindow();
+    if (window == null) {
+      IWorkbenchWindow[] windows = getDefault().getWorkbench().getWorkbenchWindows();
+      if (windows.length > 0) {
+        return windows[0].getShell();
+      }
+    } else {
+      return window.getShell();
+    }
+    return null;
+  }
 
   /**
    * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
@@ -262,29 +289,6 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
     if (buildModel != null) {
       FcoreGeneratorHelper.addEntryInBinaryBuild(buildModel, entryName_p);
       buildModel.save();
-    }
-  }
-
-  /**
-   * Convert named project to a valid plug-in project.
-   * 
-   * @param projectName_p
-   * @return
-   */
-  public void convertToPlugin(IProject project_p) {
-    // Precondition.
-    if (project_p == null) {
-      return;
-    }
-    // PDE Project converter operation
-    IRunnableWithProgress convertOperation = new ConvertProjectToPluginOperation(new IProject[] { project_p });
-    try {
-      convertOperation.run(new NullProgressMonitor());
-    } catch (InvocationTargetException ite) {
-      EGFPDEPlugin.getDefault().logError(NLS.bind("EGFPDEPlugin.convertToPlugin(..) _ Project: '{0}'", //$NON-NLS-1$
-          project_p.getName()), ite);
-    } catch (InterruptedException ie) {
-      // Nothing to do
     }
   }
 
