@@ -98,8 +98,8 @@ public abstract class ModelElementManager implements IModelElementManager {
     if (_platformFcore != null) {
       try {
         return BundleSessionHelper.getBundle(getProjectBundleSession(), _platformFcore);
-      } catch (CoreException ce) {
-        throw new InvocationException(ce);
+      } catch (Throwable t) {
+        throw new InvocationException(t);
       }
     }
     // Always from parent
@@ -141,8 +141,8 @@ public abstract class ModelElementManager implements IModelElementManager {
     if (_projectBundleSession != null) {
       try {
         _projectBundleSession.dispose();
-      } catch (CoreException ce) {
-        throw new InvocationException(ce);
+      } catch (Throwable t) {
+        throw new InvocationException(t);
       }
     }
   }

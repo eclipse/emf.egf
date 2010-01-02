@@ -70,8 +70,8 @@ public class TaskManager extends ActivityManager implements ITaskManager {
         ActivityProductionContextProducer producer = null;
         try {
           producer = EGFProducerPlugin.getActivityProductionContextProducer(getParent().getProductionContext());
-        } catch (Exception e) {
-          throw new InvocationException(e);
+        } catch (Throwable t) {
+          throw new InvocationException(t);
         }
         _productionContext = producer.createActivityProductionContext(getParent().getProductionContext(), getElement(), getProjectBundleSession());
       } else {
