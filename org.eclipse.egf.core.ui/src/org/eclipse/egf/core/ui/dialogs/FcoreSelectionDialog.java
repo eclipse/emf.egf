@@ -97,7 +97,7 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
       if (item instanceof IPlatformFcore == false) {
         return false;
       }
-      return (matches(((IPlatformFcore) item).getURI().toString()));
+      return (matches(((IPlatformFcore) item).getName()));
     }
 
     @Override
