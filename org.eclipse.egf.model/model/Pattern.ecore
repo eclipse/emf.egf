@@ -110,14 +110,6 @@
         eType="#//PatternElement"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypePatternExecutionReporter">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.egf.model.pattern.PatternExecutionReporter.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
-        <eTypeArguments eClassifier="#//EPatternExecutionReporter"/>
-      </eGenericType>
-    </eOperations>
     <eGenericSuperTypes eClassifier="ecore:EClass Types.ecore#//TypeAbstractClass">
       <eTypeArguments eClassifier="#//EPatternExecutionReporter"/>
     </eGenericSuperTypes>

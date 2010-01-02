@@ -58,13 +58,4 @@ public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl<Patt
     return PatternPackage.Literals.TYPE_PATTERN_EXECUTION_REPORTER;
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Class<PatternExecutionReporter> getType() {
-    return org.eclipse.egf.model.pattern.PatternExecutionReporter.class;
-  }
-
 } //TypePatternExecutionReporterImpl

@@ -17,6 +17,7 @@ import java.util.Map;
 
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Viewpoint;
+import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.Call;
@@ -54,7 +55,6 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.pattern.PatternPackage
  * @generated
  */
@@ -63,7 +63,6 @@ public class PatternSwitch<T1> {
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static PatternPackage modelPackage;
@@ -72,7 +71,6 @@ public class PatternSwitch<T1> {
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public PatternSwitch() {
@@ -82,11 +80,9 @@ public class PatternSwitch<T1> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
@@ -95,11 +91,9 @@ public class PatternSwitch<T1> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
@@ -113,11 +107,9 @@ public class PatternSwitch<T1> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
@@ -333,9 +325,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Pattern</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -350,9 +340,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Method</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -367,9 +355,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -384,9 +370,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Library</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -401,9 +385,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -418,9 +400,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -435,9 +415,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Nature</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -452,9 +430,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -469,9 +445,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Super Pattern Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -481,17 +455,13 @@ public class PatternSwitch<T1> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Paramerter2 Parameter
-   * Map</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Paramerter2 Parameter Map</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Paramerter2 Parameter
-   *         Map</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Paramerter2 Parameter Map</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
@@ -505,9 +475,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -522,9 +490,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Method Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -539,9 +505,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -551,17 +515,13 @@ public class PatternSwitch<T1> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Abstract Pattern
-   * Call</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Pattern Call</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Abstract Pattern
-   *         Call</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Pattern Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
@@ -575,9 +535,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Injected Call</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -592,9 +550,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Query</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -609,9 +565,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Basic Query</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -626,9 +580,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>String Query</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -643,9 +595,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Custom Query</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -655,17 +605,13 @@ public class PatternSwitch<T1> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>String2 Pattern
-   * List</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>String2 Pattern List</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>String2 Pattern
-   *         List</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String2 Pattern List</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
@@ -674,17 +620,13 @@ public class PatternSwitch<T1> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Type Pattern Execution
-   * Reporter</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type Pattern Execution Reporter</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type Pattern Execution
-   *         Reporter</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Pattern Execution Reporter</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
@@ -698,9 +640,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -715,9 +655,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -732,9 +670,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -749,9 +685,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -766,9 +700,7 @@ public class PatternSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type Abstract Class</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -785,9 +717,7 @@ public class PatternSwitch<T1> {
    * last
    * case anyway.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated

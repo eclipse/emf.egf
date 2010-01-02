@@ -25,13 +25,5 @@ import org.eclipse.egf.model.types.TypeAbstractClass;
  * @generated
  */
 public interface TypePatternExecutionReporter extends TypeAbstractClass<PatternExecutionReporter> {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.egf.model.pattern.PatternExecutionReporter.class;'"
-   * @generated
-   */
-  Class<PatternExecutionReporter> getType();
 
 } // TypePatternExecutionReporter
