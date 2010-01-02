@@ -564,6 +564,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         }
 
         final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
+        ResourcesPlugin.getWorkspace();
         delta.accept(visitor);
 
         if (visitor.getRemovedResources().isEmpty() == false) {
