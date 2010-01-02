@@ -38,4 +38,6 @@ public class ProducerMessages {
   public static String OrchestrationManagerProducer_extension_error;
   public static String OrchestrationManagerProducer_type_error;
 
+  public static String _UI_CanInvoke_Diagnosis_message;
+
 }

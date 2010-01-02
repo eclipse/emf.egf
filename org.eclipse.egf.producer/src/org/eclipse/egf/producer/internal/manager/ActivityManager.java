@@ -13,6 +13,7 @@ package org.eclipse.egf.producer.internal.manager;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.common.helper.BundleHelper;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
@@ -24,6 +25,8 @@ import org.eclipse.egf.producer.context.IActivityProductionContext;
 import org.eclipse.egf.producer.internal.context.ActivityProductionContext;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.manager.IInvocationManager;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
@@ -62,6 +65,28 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
 
   @Override
   protected abstract ActivityProductionContext getInternalProductionContext() throws InvocationException;
+
+  @Override
+  public Diagnostic canInvoke() throws InvocationException {
+    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvoke();
+    // Diagnose Mandatory In Contract
+    for (ActivityContract contract : getElement().getActivityContracts(ContractMode.IN)) {
+      if (contract.isMandatory()) {
+        // Check Mandatory Value
+        Object value = null;
+        try {
+          value = getInternalProductionContext().getInputValue(contract.getName(), contract.getType().getType());
+        } catch (InvocationException ie) {
+          // Just Ignore
+        }
+        if (value == null) {
+          diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("ActivityContract is mandatory for ''{0}''", EMFHelper.getText(contract)), //$NON-NLS-1$
+              new Object[] { contract }));
+        }
+      }
+    }
+    return diagnostic;
+  }
 
   @Override
   public void initializeContext() throws InvocationException {

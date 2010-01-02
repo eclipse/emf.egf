@@ -40,7 +40,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
@@ -77,9 +76,11 @@ public class EGFValidator {
           shell.getDisplay().asyncExec(new Runnable() {
             public void run() {
               if (progressMonitor.isCanceled()) {
-                handleDiagnostic(Diagnostic.CANCEL_INSTANCE);
-              } else {
-                handleDiagnostic(diagnostic[0]);
+                return;
+              }
+              int severity = diagnostic[0].getSeverity();
+              if (severity == Diagnostic.ERROR || severity == Diagnostic.WARNING) {
+                handleDiagnostic(EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_title"), EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_message"), diagnostic[0]); //$NON-NLS-1$ //$NON-NLS-2$
               }
             }
           });
@@ -120,7 +121,7 @@ public class EGFValidator {
 
     Diagnostician diagnostician = createDiagnostician(progressMonitor);
 
-    BasicDiagnostic diagnostic = new BasicDiagnostic(EObjectValidator.DIAGNOSTIC_SOURCE, 0, EMFEditUIPlugin.INSTANCE.getString("_UI_DiagnosisOfNObjects_message", new String[] { Integer.toString(selectionSize) }), _eObjects.toArray()); //$NON-NLS-1$
+    BasicDiagnostic diagnostic = new BasicDiagnostic(EGFCoreUIPlugin.getDefault().getPluginID(), 0, EMFEditUIPlugin.INSTANCE.getString("_UI_DiagnosisOfNObjects_message", new String[] { Integer.toString(selectionSize) }), _eObjects.toArray()); //$NON-NLS-1$
     Map<Object, Object> context = diagnostician.createDefaultContext();
     // Preferences
     IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
@@ -161,20 +162,10 @@ public class EGFValidator {
     };
   }
 
-  protected void handleDiagnostic(Diagnostic diagnostic) {
-    int severity = diagnostic.getSeverity();
-    String title = null;
-    String message = null;
-
-    if (severity == Diagnostic.ERROR || severity == Diagnostic.WARNING) {
-      title = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_title"); //$NON-NLS-1$
-      message = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_message"); //$NON-NLS-1$
-    } else {
-      title = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationResults_title"); //$NON-NLS-1$
-      message = EMFEditUIPlugin.INSTANCE.getString(severity == Diagnostic.OK ? "_UI_ValidationOK_message" : "_UI_ValidationResults_message"); //$NON-NLS-1$ //$NON-NLS-2$
-    }
+  public static void handleDiagnostic(String title, String message, Diagnostic diagnostic) {
 
     int result = 0;
+
     if (diagnostic.getSeverity() != Diagnostic.OK) {
       result = DiagnosticDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic);
     }

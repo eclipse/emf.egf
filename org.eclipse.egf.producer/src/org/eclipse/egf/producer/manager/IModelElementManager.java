@@ -32,6 +32,6 @@ public interface IModelElementManager extends IProducerManager {
 
   public IModelElementProductionContext<?> getProductionContext();
 
-  public List<Activity> getTopElements() throws InvocationException;
+  public List<Activity> getActivities() throws InvocationException;
 
 }

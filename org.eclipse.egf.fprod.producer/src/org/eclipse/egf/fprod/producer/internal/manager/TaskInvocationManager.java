@@ -22,6 +22,8 @@ import org.eclipse.egf.fprod.producer.manager.IProductionPlanManager;
 import org.eclipse.egf.fprod.producer.manager.ITaskInvocationManager;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fprod.TaskInvocation;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.UniqueEList;
 
 /**
@@ -70,6 +72,15 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager imple
   }
 
   @Override
+  public Diagnostic canInvoke() throws InvocationException {
+    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvoke();
+    if (getTaskManager() != null) {
+      diagnostic.add(getTaskManager().canInvoke());
+    }
+    return diagnostic;
+  }
+
+  @Override
   public void initializeContext() throws InvocationException {
     super.initializeContext();
     if (getTaskManager() != null) {
@@ -84,10 +95,10 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager imple
     return 0;
   }
 
-  public List<Activity> getTopElements() throws InvocationException {
+  public List<Activity> getActivities() throws InvocationException {
     List<Activity> activities = new UniqueEList<Activity>();
     if (getTaskManager() != null) {
-      activities.addAll(getTaskManager().getTopElements());
+      activities.addAll(getTaskManager().getActivities());
     }
     return activities;
   }

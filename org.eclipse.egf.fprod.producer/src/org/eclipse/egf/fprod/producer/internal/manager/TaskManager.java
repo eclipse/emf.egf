@@ -27,6 +27,8 @@ import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.ActivityProductionContextProducer;
 import org.eclipse.egf.producer.internal.manager.ActivityManager;
 import org.eclipse.egf.producer.internal.manager.InvocationManager;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.osgi.framework.Bundle;
 
@@ -85,6 +87,12 @@ public class TaskManager extends ActivityManager implements ITaskManager {
   }
 
   @Override
+  public Diagnostic canInvoke() throws InvocationException {
+    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvoke();
+    return diagnostic;
+  }
+
+  @Override
   public void initializeContext() throws InvocationException {
     super.initializeContext();
   }
@@ -96,7 +104,7 @@ public class TaskManager extends ActivityManager implements ITaskManager {
     return 0;
   }
 
-  public List<Activity> getTopElements() throws InvocationException {
+  public List<Activity> getActivities() throws InvocationException {
     List<Activity> activities = new UniqueEList<Activity>();
     activities.add(getElement());
     return activities;

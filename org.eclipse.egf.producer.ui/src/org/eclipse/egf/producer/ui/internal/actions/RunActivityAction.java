@@ -96,14 +96,14 @@ public class RunActivityAction implements IObjectActionDelegate {
       try {
         IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
         String validate = store.getString(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH);
-        int status = showValidateDialog(activityManager[0].getTopElements(), validate.equals(MessageDialogWithToggle.NEVER) == false, validate.equals(MessageDialogWithToggle.PROMPT));
+        int status = showValidateDialog(activityManager[0].getActivities(), validate.equals(MessageDialogWithToggle.NEVER) == false, validate.equals(MessageDialogWithToggle.PROMPT));
         if (status != IDialogConstants.OK_ID) {
           return;
         }
         if (_validates != null && _validates.size() != 0) {
-          EGFValidator validator = new EGFValidator(activityManager[0].getTopElements());
+          EGFValidator validator = new EGFValidator(activityManager[0].getActivities());
           Diagnostic diagnostic = validator.validate();
-          if (diagnostic.getSeverity() == Diagnostic.ERROR) {
+          if (diagnostic.getSeverity() != Diagnostic.OK) {
             return;
           }
         }
@@ -112,7 +112,26 @@ public class RunActivityAction implements IObjectActionDelegate {
       }
     }
 
-    // 3 - Run activity
+    // 3 - canInvoke
+    if (throwable[0] == null) {
+      try {
+        final Diagnostic diagnostic = activityManager[0].canInvoke();
+        if (diagnostic.getSeverity() != Diagnostic.OK) {
+          if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
+            EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+              public void run() {
+                EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CanInvokeProblems_title, ProducerUIMessages._UI_CanInvokeProblems_message, diagnostic);
+              }
+            });
+          }
+          return;
+        }
+      } catch (InvocationException ie) {
+        throwable[0] = ie;
+      }
+    }
+
+    // 4 - Run activity
     if (throwable[0] == null) {
 
       WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {

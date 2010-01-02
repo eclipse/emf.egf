@@ -23,6 +23,8 @@ import org.eclipse.egf.fprod.producer.manager.IProductionPlanManager;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
 import org.eclipse.egf.producer.internal.manager.FactoryComponentManager;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.UniqueEList;
 
 /**
@@ -63,6 +65,15 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
   }
 
   @Override
+  public Diagnostic canInvoke() throws InvocationException {
+    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvoke();
+    if (getFactoryComponentManager() != null) {
+      diagnostic.add(getFactoryComponentManager().canInvoke());
+    }
+    return diagnostic;
+  }
+
+  @Override
   public void dispose() throws InvocationException {
     super.dispose();
     if (getFactoryComponentManager() != null) {
@@ -85,10 +96,10 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
     return 0;
   }
 
-  public List<Activity> getTopElements() throws InvocationException {
+  public List<Activity> getActivities() throws InvocationException {
     List<Activity> activities = new UniqueEList<Activity>();
     if (getFactoryComponentManager() != null) {
-      activities.addAll(getFactoryComponentManager().getTopElements());
+      activities.addAll(getFactoryComponentManager().getActivities());
     }
     return activities;
   }

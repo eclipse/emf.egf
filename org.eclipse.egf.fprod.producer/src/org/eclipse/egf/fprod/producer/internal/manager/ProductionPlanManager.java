@@ -31,6 +31,8 @@ import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.TaskInvocation;
 import org.eclipse.egf.producer.internal.manager.OrchestrationManager;
 import org.eclipse.egf.producer.manager.IFactoryComponentManager;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.osgi.util.NLS;
 
@@ -90,6 +92,18 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
   }
 
   @Override
+  public Diagnostic canInvoke() throws InvocationException {
+    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvoke();
+    Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
+    if (managers != null) {
+      for (Invocation<?> invocation : getElement().getInvocations()) {
+        diagnostic.add(managers.get(invocation).canInvoke());
+      }
+    }
+    return diagnostic;
+  }
+
+  @Override
   public void initializeContext() throws InvocationException {
     super.initializeContext();
     Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
@@ -111,12 +125,12 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
     return steps;
   }
 
-  public List<Activity> getTopElements() throws InvocationException {
+  public List<Activity> getActivities() throws InvocationException {
     List<Activity> activities = new UniqueEList<Activity>();
     Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
     if (managers != null) {
       for (Invocation<?> invocation : getElement().getInvocations()) {
-        activities.addAll(managers.get(invocation).getTopElements());
+        activities.addAll(managers.get(invocation).getActivities());
       }
     }
     return activities;

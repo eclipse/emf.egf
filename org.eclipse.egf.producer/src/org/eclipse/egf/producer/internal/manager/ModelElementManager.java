@@ -25,6 +25,8 @@ import org.eclipse.egf.producer.context.IModelElementProductionContext;
 import org.eclipse.egf.producer.internal.context.ModelElementProductionContext;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.manager.IModelElementManager;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
@@ -116,6 +118,16 @@ public abstract class ModelElementManager implements IModelElementManager {
       _projectBundleSession = new ProjectBundleSession(EGFProducerPlugin.getDefault().getBundle().getBundleContext());
     }
     return _projectBundleSession;
+  }
+
+  public Diagnostic canInvoke() throws InvocationException {
+    String message = null;
+    if (getElement().getName() != null && getElement().getName().trim().length() != 0) {
+      message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, getElement().getName());
+    } else {
+      message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, getElement().eClass().getName());
+    }
+    return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, null);
   }
 
   public abstract void initializeContext() throws InvocationException;

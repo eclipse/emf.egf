@@ -26,6 +26,8 @@ import org.eclipse.egf.producer.manager.IFactoryComponentManager;
 import org.eclipse.egf.producer.manager.IInvocationManager;
 import org.eclipse.egf.producer.manager.IOrchestrationManager;
 import org.eclipse.egf.producer.manager.OrchestrationManagerProducer;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.osgi.framework.Bundle;
 
@@ -90,11 +92,11 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
     return _orchestrationManager;
   }
 
-  public List<Activity> getTopElements() throws InvocationException {
+  public List<Activity> getActivities() throws InvocationException {
     List<Activity> activities = new UniqueEList<Activity>();
     activities.add(getElement());
     if (getOrchestrationManager() != null) {
-      activities.addAll(getOrchestrationManager().getTopElements());
+      activities.addAll(getOrchestrationManager().getActivities());
     }
     return activities;
   }
@@ -105,6 +107,16 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
     if (getOrchestrationManager() != null) {
       getOrchestrationManager().dispose();
     }
+  }
+
+  @Override
+  public Diagnostic canInvoke() throws InvocationException {
+    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvoke();
+    // Continue
+    if (getOrchestrationManager() != null) {
+      diagnostic.add(getOrchestrationManager().canInvoke());
+    }
+    return diagnostic;
   }
 
   @Override

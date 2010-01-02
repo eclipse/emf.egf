@@ -14,6 +14,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.osgi.framework.Bundle;
 
 /**
@@ -25,6 +26,8 @@ public interface IProducerManager {
   public Object getElement();
 
   public IProducerManager getParent();
+
+  public Diagnostic canInvoke() throws InvocationException;
 
   public IProductionContext<?> getProductionContext();
 
