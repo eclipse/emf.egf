@@ -32,6 +32,7 @@ import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
+import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.VariablesEditDialog;
@@ -52,6 +53,7 @@ import org.eclipse.emf.databinding.IEMFListProperty;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.internal.core.BinaryType;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.CellEditor;
@@ -112,11 +114,15 @@ public class ImplementationPage extends PatternEditorPage {
 
     public static final String TYPE_COLUMN_ID = "Type"; //$NON-NLS-1$
 
+    private Button methodsAdd;
+
     private Button methodsEdit;
 
     private Button methodsRemove;
 
     private Button methodsOpenTemplate;
+
+    private Button orchestrationAdd;
 
     private Button orchestrationEdit;
 
@@ -125,6 +131,8 @@ public class ImplementationPage extends PatternEditorPage {
     private Button orchestrationUp;
 
     private Button orchestrationDown;
+
+    private Button variablesAdd;
 
     private Button variablesEdit;
 
@@ -138,6 +146,8 @@ public class ImplementationPage extends PatternEditorPage {
 
     private boolean isChangeOder;
 
+    private boolean isReadOnly;
+
     private static final String VARIABLE_NAME_DEFAULT_VALUE = "variable"; //$NON-NLS-1$
 
     private static final String VARIABLE_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
@@ -148,6 +158,9 @@ public class ImplementationPage extends PatternEditorPage {
 
     @Override
     protected void doCreateFormContent(IManagedForm managedForm) {
+        PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
+        isReadOnly = editorInput.isReadOnly();
+
         FormToolkit toolkit = managedForm.getToolkit();
         ScrolledForm form = managedForm.getForm();
 
@@ -165,7 +178,31 @@ public class ImplementationPage extends PatternEditorPage {
         Composite containerRight = createComposite(toolkit, form);
         createOrchestrationSection(toolkit, containerRight);
 
+        checkReadOnlyModel();
+
         form.reflow(true);
+    }
+
+    /**
+     * Check whether the editor is on a read only pattern.
+     */
+    private void checkReadOnlyModel() {
+        if (!isReadOnly) {
+            return;
+        }
+        methodsAdd.setEnabled(false);
+        methodsEdit.setEnabled(false);
+        methodsRemove.setEnabled(false);
+        methodsOpenTemplate.setEnabled(false);
+
+        orchestrationAdd.setEnabled(false);
+        orchestrationEdit.setEnabled(false);
+        orchestrationUp.setEnabled(false);
+        orchestrationDown.setEnabled(false);
+
+        variablesAdd.setEnabled(false);
+        variablesEdit.setEnabled(false);
+        variablesRemove.setEnabled(false);
     }
 
     private Composite createComposite(FormToolkit toolkit, ScrolledForm form) {
@@ -207,17 +244,19 @@ public class ImplementationPage extends PatternEditorPage {
         tableColumn.setWidth(200);
         initMethodsTableEditor();
 
-        methodsTableViewer.setContentProvider(new TableObservableListContentProvider(methodsTableViewer));
-
         methodsTableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
             public void doubleClick(DoubleClickEvent event) {
+                if (isReadOnly)
+                    return;
                 openPatternTemplate();
             }
         });
         methodsTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
+                if (isReadOnly)
+                    return;
                 setMethodsButtonsStatus();
                 CCombo control = (CCombo) nameEditor.getControl();
                 if (control != null && !control.isDisposed()) {
@@ -227,28 +266,32 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
+        if (!isReadOnly) {
+            methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
-            public void dragStart(DragSourceEvent event) {
-                isChangeOder = false;
-                if (methodsTableViewer.getSelection() == null) {
-                    event.doit = false;
+                public void dragStart(DragSourceEvent event) {
+                    isChangeOder = false;
+                    if (methodsTableViewer.getSelection() == null) {
+                        event.doit = false;
+                    }
                 }
-            }
 
-            public void dragSetData(DragSourceEvent event) {
-                if (methodsTableViewer.getSelection() != null) {
-                    dropEntry = getmethodsSelectItem();
+                public void dragSetData(DragSourceEvent event) {
+                    if (methodsTableViewer.getSelection() != null) {
+                        dropEntry = getmethodsSelectItem();
+                    }
                 }
-            }
 
-            public void dragFinished(DragSourceEvent event) {
-            }
-        });
+                public void dragFinished(DragSourceEvent event) {
+                }
+            });
+        }
 
     }
 
     private void initMethodsTableEditor() {
+        if (isReadOnly)
+            return;
         methodsTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID });
         nameEditor = new MethodsComboBoxViewerCellEditor(methodsTableViewer.getTable(), getEditingDomain(), methodsTableViewer, this);
         nameEditor.setLabelProvider(new LabelProvider());
@@ -261,14 +304,14 @@ public class ImplementationPage extends PatternEditorPage {
     /**
      * Create the Methods section's buttons.
      */
-    private void createMethodsButtons(FormToolkit toolkit, Composite methods) {
+    private void createMethodsButtons(FormToolkit toolkit, final Composite methods) {
         Composite buttons = toolkit.createComposite(methods, SWT.NONE);
         GridLayout layout = new GridLayout();
         buttons.setLayout(layout);
 
         GridData gd = new GridData();
         gd.widthHint = 65;
-        Button methodsAdd = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        methodsAdd = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         methodsAdd.setLayoutData(gd);
         methodsAdd.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
         methodsAdd.setToolTipText(Messages.ImplementationPage_button_add);
@@ -326,7 +369,7 @@ public class ImplementationPage extends PatternEditorPage {
         methodsRemove.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                executeMethodsRemove();
+                executeMethodsRemove(methods);
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -371,22 +414,27 @@ public class ImplementationPage extends PatternEditorPage {
         }
     }
 
-    private void executeMethodsRemove() {
+    private void executeMethodsRemove(Composite methods) {
         int index = methodsTableViewer.getTable().getSelectionIndex();
         if (index >= 0) {
-            final Pattern pattern = getPattern();
             final Object selectItem = methodsTableViewer.getElementAt(index);
-            TransactionalEditingDomain editingDomain = getEditingDomain();
-            RecordingCommand cmd = new RecordingCommand(editingDomain) {
-                protected void doExecute() {
-                    if (selectItem instanceof PatternMethod) {
+            if (selectItem instanceof PatternMethod) {
+                if (isMethodDeleteDisable((PatternMethod) selectItem)) {
+                    String message = Messages.ImplementationPage_method_cannot_delete_message;
+                    showErrorMessage(methods, message);
+                    return;
+                }
+                final Pattern pattern = getPattern();
+                TransactionalEditingDomain editingDomain = getEditingDomain();
+                RecordingCommand cmd = new RecordingCommand(editingDomain) {
+                    protected void doExecute() {
                         pattern.getMethods().remove(selectItem);
                     }
-                }
-            };
-            editingDomain.getCommandStack().execute(cmd);
-            EList<PatternMethod> allVariables = pattern.getMethods();
-            setDefaultSelection(allVariables, methodsTableViewer, index);
+                };
+                editingDomain.getCommandStack().execute(cmd);
+                EList<PatternMethod> allVariables = pattern.getMethods();
+                setDefaultSelection(allVariables, methodsTableViewer, index);
+            }
         }
         setMethodsButtonsStatus();
     }
@@ -470,15 +518,22 @@ public class ImplementationPage extends PatternEditorPage {
 
         orchestrationTableViewer.setContentProvider(new TableObservableListContentProvider(orchestrationTableViewer));
         orchestrationTableViewer.setLabelProvider(new OrchestrationTableLabelProvider());
+        methodsTableViewer.setContentProvider(new TableObservableListContentProvider(methodsTableViewer, orchestrationTableViewer));
+        variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer, orchestrationTableViewer));
+
         orchestrationTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
+                if (isReadOnly)
+                    return;
                 setOrchestrationButtonsStatus();
             }
         });
         orchestrationTableViewer.addDoubleClickListener(new IDoubleClickListener() {
 
             public void doubleClick(DoubleClickEvent event) {
+                if (isReadOnly)
+                    return;
                 openOrchestrationWizard();
             }
         });
@@ -489,6 +544,8 @@ public class ImplementationPage extends PatternEditorPage {
      * Add drag and drop listener to orchTableViewer.
      */
     private void addDragDrop() {
+        if (isReadOnly)
+            return;
         orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
@@ -613,7 +670,7 @@ public class ImplementationPage extends PatternEditorPage {
         GridData gd = new GridData();
         gd.widthHint = 65;
 
-        Button orchestrationAdd = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        orchestrationAdd = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         orchestrationAdd.setLayoutData(gd);
         orchestrationAdd.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
         orchestrationAdd.setToolTipText(Messages.ImplementationPage_button_add);
@@ -854,12 +911,13 @@ public class ImplementationPage extends PatternEditorPage {
             tableColumn.setText(colNames[i]);
         }
         initVariablesTableEditor();
-        variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));
         variablesTableViewer.setLabelProvider(new ParametersTableLabelProvider());
 
     }
 
     private void initVariablesTableEditor() {
+        if (isReadOnly)
+            return;
         variablesTableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID });
         final TextCellEditor nameEditor = new TextCellEditor(variablesTableViewer.getTable());
         final DialogCellEditor typeEditor = new DialogCellEditor(variablesTableViewer.getTable()) {
@@ -938,7 +996,7 @@ public class ImplementationPage extends PatternEditorPage {
     /**
      * Create the Variables section's buttons.
      */
-    private void createVariablesButtons(FormToolkit toolkit, Composite variables) {
+    private void createVariablesButtons(FormToolkit toolkit, final Composite variables) {
         Composite buttons = toolkit.createComposite(variables, SWT.NONE);
         GridLayout layout = new GridLayout();
         buttons.setLayout(layout);
@@ -946,7 +1004,7 @@ public class ImplementationPage extends PatternEditorPage {
         GridData gd = new GridData();
         gd.widthHint = 65;
 
-        Button variablesAdd = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        variablesAdd = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         variablesAdd.setLayoutData(gd);
         variablesAdd.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
         variablesAdd.setToolTipText(Messages.ImplementationPage_button_add);
@@ -996,7 +1054,7 @@ public class ImplementationPage extends PatternEditorPage {
         variablesRemove.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                executeVariablesRemove();
+                executeVariablesRemove(variables);
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -1055,25 +1113,28 @@ public class ImplementationPage extends PatternEditorPage {
         }
     }
 
-    protected void executeVariablesRemove() {
+    protected void executeVariablesRemove(Composite variables) {
         int index = variablesTableViewer.getTable().getSelectionIndex();
         if (index >= 0) {
-            final Pattern pattern = getPattern();
             ISelection selection = variablesTableViewer.getSelection();
-            final Object[] removeThem = ((IStructuredSelection) selection).toArray();
-            TransactionalEditingDomain editingDomain = getEditingDomain();
-            RecordingCommand cmd = new RecordingCommand(editingDomain) {
-                protected void doExecute() {
-                    for (Object object : removeThem) {
-                        if (object instanceof PatternVariable) {
-                            pattern.getVariables().remove(object);
-                        }
-                    }
+            final Object removeit = ((IStructuredSelection) selection).getFirstElement();
+            if (removeit instanceof PatternVariable) {
+                if (isVariableDeleteDisable((PatternVariable) removeit)) {
+                    String message = Messages.ImplementationPage_variable_cannot_delete_message;
+                    showErrorMessage(variables, message);
+                    return;
                 }
-            };
-            editingDomain.getCommandStack().execute(cmd);
-            EList<PatternVariable> allParameters = pattern.getAllVariables();
-            setDefaultSelection(allParameters, variablesTableViewer, index);
+                final Pattern pattern = getPattern();
+                TransactionalEditingDomain editingDomain = getEditingDomain();
+                RecordingCommand cmd = new RecordingCommand(editingDomain) {
+                    protected void doExecute() {
+                        pattern.getVariables().remove(removeit);
+                    }
+                };
+                editingDomain.getCommandStack().execute(cmd);
+                EList<PatternVariable> allParameters = pattern.getAllVariables();
+                setDefaultSelection(allParameters, variablesTableViewer, index);
+            }
         }
         setVariablesButtonsStatus();
     }
@@ -1106,6 +1167,51 @@ public class ImplementationPage extends PatternEditorPage {
         } else if (index >= len) {
             tableViewer.getTable().setSelection(index - 1);
         }
+    }
+
+    /**
+     * When can't delete the select item, show a message dialog.
+     */
+    private void showErrorMessage(Composite composite, String message) {
+        MessageDialog.openError(composite.getShell(), Messages.ImplementationPage_Error, message);
+    }
+
+    /**
+     * Check whether the method can be deleted.
+     */
+    private boolean isMethodDeleteDisable(PatternMethod deleteItem) {
+        Pattern pattern = getPattern();
+        if (pattern != null) {
+            EList<Call> orchestration = pattern.getOrchestration();
+            for (Call call : orchestration) {
+                if (call instanceof MethodCall) {
+                    PatternMethod currentCalled = ((MethodCall) call).getCalled();
+                    if (deleteItem.equals(currentCalled)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Check whether the variable can be deleted.
+     */
+    private boolean isVariableDeleteDisable(PatternVariable deleteItem) {
+        Pattern pattern = getPattern();
+        if (pattern != null) {
+            EList<Call> orchestration = pattern.getOrchestration();
+            for (Call call : orchestration) {
+                if (call instanceof PatternInjectedCall) {
+                    PatternVariable currentVariable = ((PatternInjectedCall) call).getContext();
+                    if (deleteItem.equals(currentVariable)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     @Override
@@ -1152,8 +1258,8 @@ public class ImplementationPage extends PatternEditorPage {
     public Button getEditButton() {
         return methodsEdit;
     }
-    
-    private Pattern getPatternParent(){
+
+    private Pattern getPatternParent() {
         Pattern pattern = getPattern();
         return pattern == null ? null : pattern.getSuperPattern();
     }

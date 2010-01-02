@@ -50,6 +50,16 @@
                id="test.open.pattern">
          	</action>
 		</objectContribution>
+      	<objectContribution
+            objectClass="org.eclipse.core.resources.IFile"
+            id="test.contribution1">
+        	<action
+               label="Open Pattern (read only)"
+               class="org.eclipse.egf.pattern.ui.editors.actions.OpenReadOnlyPatternDebugAction"
+               enablesFor="1"
+               id="test.open.pattern">
+         	</action>
+		</objectContribution>
        	<objectContribution
             objectClass="org.eclipse.core.resources.IFile"
             id="test.contribution1">

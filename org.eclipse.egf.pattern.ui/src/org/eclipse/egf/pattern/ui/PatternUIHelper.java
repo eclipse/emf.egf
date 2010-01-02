@@ -35,14 +35,14 @@ public class PatternUIHelper {
         }
         return parentMethods;
     }
-    
+
     /**
      * Get the pattern's parent methods with out header/init/footer methods.
      */
-    public static List<PatternMethod> getUseablePatternMethods(Pattern pattern) {
+    public static List<PatternMethod> getAllUseablePatternMethods(Pattern pattern) {
         List<PatternMethod> parentMethods = new ArrayList<PatternMethod>();
         if (pattern != null) {
-            for (PatternMethod patternMethod : pattern.getMethods()) {
+            for (PatternMethod patternMethod : pattern.getAllMethods()) {
                 String name = patternMethod.getName();
                 if (!(Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name))) {
                     parentMethods.add(patternMethod);
@@ -51,9 +51,10 @@ public class PatternUIHelper {
         }
         return parentMethods;
     }
-    
+
     /**
-     * Get the pattern's parent methods name list with out header/init/footer methods.
+     * Get the pattern's parent methods name list with out header/init/footer
+     * methods.
      */
     public static List<String> getUseablePatternMethodsNameList(Pattern pattern) {
         List<String> parentMethods = new ArrayList<String>();

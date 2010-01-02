@@ -31,8 +31,16 @@ import org.eclipse.swt.widgets.TableItem;
 public class TableObservableListContentProvider extends ObservableListContentProvider {
     private TableViewer tableViewer;
 
+    private TableViewer relationTableViewer;
+
     public TableObservableListContentProvider(TableViewer tableViewer) {
         this.tableViewer = tableViewer;
+        removeAdapter();
+    }
+
+    public TableObservableListContentProvider(TableViewer tableViewer, TableViewer relationTableViewer) {
+        this.tableViewer = tableViewer;
+        this.relationTableViewer = relationTableViewer;
         removeAdapter();
     }
 
@@ -41,6 +49,9 @@ public class TableObservableListContentProvider extends ObservableListContentPro
             if (msg.getEventType() == Notification.SET || msg.getEventType() == Notification.UNSET) {
                 if (tableViewer != null && tableViewer.getTable() != null && !tableViewer.getTable().isDisposed()) {
                     tableViewer.refresh();
+                }
+                if (relationTableViewer != null && relationTableViewer.getTable() != null && !relationTableViewer.getTable().isDisposed()) {
+                    relationTableViewer.refresh();
                 }
             }
         };

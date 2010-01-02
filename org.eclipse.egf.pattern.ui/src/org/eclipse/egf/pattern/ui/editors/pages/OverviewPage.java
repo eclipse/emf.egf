@@ -28,6 +28,7 @@ import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ContainerLibrarySelectionDialog;
 import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
@@ -77,12 +78,13 @@ public class OverviewPage extends PatternEditorPage {
 
     private Text descripition;
 
+    private Button browse;
+
     private FormColors colors = new FormColors(Display.getDefault());
 
     public OverviewPage(FormEditor editor) {
         super(editor, ID, Messages.OverviewPage_title);
         this.editor = editor;
-
     }
 
     protected void doCreateFormContent(IManagedForm managedForm) {
@@ -105,7 +107,23 @@ public class OverviewPage extends PatternEditorPage {
         createRightContainer(toolkit, container);
         createDescriContainer(toolkit, container);
 
+        checkReadOnlyModel();
+
         form.reflow(true);
+    }
+
+    /**
+     * Check whether the editor is on a read only pattern.
+     */
+    private void checkReadOnlyModel() {
+        PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
+        if (!editorInput.isReadOnly()) {
+            return;
+        }
+        nameText.setEnabled(false);
+        fullNameText.setEnabled(false);
+        descripition.setEnabled(false);
+        browse.setEnabled(false);
     }
 
     private void createLeftContainer(FormToolkit toolkit, Composite container) {
@@ -168,9 +186,9 @@ public class OverviewPage extends PatternEditorPage {
         fullNameText = toolkit.createText(patternInfo, PatternHelper.getFullLibraryName(getPattern()), SWT.BORDER | SWT.READ_ONLY); //$NON-NLS-1$
         fullNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
         fullNameText.setForeground(color);
-        fullNameText.setText(fullName == null ? "" : fullName);
+        fullNameText.setText(fullName == null ? "" : fullName); //$NON-NLS-1$
 
-        Button browse = toolkit.createButton(patternInfo, Messages.OverviewPage_button_browse, SWT.PUSH);
+        browse = toolkit.createButton(patternInfo, Messages.OverviewPage_button_browse, SWT.PUSH);
         gd = new GridData();
         gd.widthHint = 65;
         browse.setLayoutData(gd);
@@ -179,7 +197,7 @@ public class OverviewPage extends PatternEditorPage {
 
             public void widgetSelected(SelectionEvent e) {
                 ContainerLibrarySelectionDialog dialog = new ContainerLibrarySelectionDialog(new Shell(), getPattern().getContainer());
-                dialog.setTitle("Change Container Library");
+                dialog.setTitle(Messages.OverviewPage_browse_dialog_title);
                 if (dialog.open() == Window.OK) {
                     final PatternLibrary patternLibrary = dialog.getLibraryContainer();
                     TransactionalEditingDomain editingDomain = getEditingDomain();
@@ -377,7 +395,7 @@ public class OverviewPage extends PatternEditorPage {
 
             public Object convert(Object fromObject) {
                 if (fromObject == null || !(fromObject instanceof PatternLibrary)) {
-                    return "";
+                    return ""; //$NON-NLS-1$
                 }
                 return ((PatternLibrary) fromObject).getName();
             }

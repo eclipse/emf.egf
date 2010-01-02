@@ -138,11 +138,11 @@ public class ChooseCallPage extends WizardPage {
 
         matchingCheckBox = new Button(parameterMatchArea, SWT.CHECK);
         matchingCheckBox.addSelectionListener(new SelectionListener() {
-            
+
             public void widgetSelected(SelectionEvent e) {
                 checkMatchingClick();
             }
-            
+
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
@@ -158,8 +158,15 @@ public class ChooseCallPage extends WizardPage {
         matchingButton.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                ParameterMatchingDialog dialog = new ParameterMatchingDialog(new Shell());
-                dialog.open();
+                int selectParentTableIndex = parentTableViewer.getTable().getSelectionIndex();
+                if (selectParentTableIndex >= 0) {
+                    Object selectItem = parentTableViewer.getElementAt(selectParentTableIndex);
+                    if (selectItem instanceof Pattern) {
+                        ParameterMatchingDialog dialog = new ParameterMatchingDialog(new Shell(), pattern, (Pattern) selectItem);
+                        dialog.setTitle(Messages.ChooseCallPage_parameter_matching_dialog_title);
+                        dialog.open();
+                    }
+                }
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -476,10 +483,10 @@ public class ChooseCallPage extends WizardPage {
         }
     }
 
-    private void checkMatchingClick(){
-        if(matchingCheckBox.isEnabled()&&matchingCheckBox.getSelection()){
+    private void checkMatchingClick() {
+        if (matchingCheckBox.isEnabled() && matchingCheckBox.getSelection()) {
             setParameterMatchAreaEnabled(true);
-        }else{
+        } else {
             setParameterMatchAreaEnabled(false);
         }
     }
@@ -500,7 +507,7 @@ public class ChooseCallPage extends WizardPage {
     }
 
     private List<PatternMethod> getMethods() {
-        return PatternUIHelper.getUseablePatternMethods(pattern);
+        return PatternUIHelper.getAllUseablePatternMethods(pattern);
     }
 
     private List<Pattern> getPatterns() {

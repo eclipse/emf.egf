@@ -27,6 +27,8 @@ public class Messages extends NLS {
     // Overview Page
     public static String OverviewPage_title;
 
+    public static String OverviewPage_browse_dialog_title;
+
     public static String OverviewPage_button_browse;
 
     public static String OverviewPage_sectionLeft_desci_label;
@@ -70,6 +72,8 @@ public class Messages extends NLS {
 
     public static String ImplementationPage_button_up;
 
+    public static String ImplementationPage_Error;
+
     public static String ImplementationPage_footer;
 
     public static String ImplementationPage_header;
@@ -82,6 +86,8 @@ public class Messages extends NLS {
 
     public static String ImplementationPage_methEdit_dialog_title;
 
+    public static String ImplementationPage_method_cannot_delete_message;
+
     public static String ImplementationPage_methSection_label;
 
     public static String ImplementationPage_orchSection_label;
@@ -89,6 +95,8 @@ public class Messages extends NLS {
     public static String ImplementationPage_orchSection_title;
 
     public static String ImplementationPage_split_mark;
+
+    public static String ImplementationPage_variable_cannot_delete_message;
 
     public static String ImplementationPage_varSection_label;
 
@@ -142,6 +150,8 @@ public class Messages extends NLS {
 
     public static String ChooseCallPage_parameter_matching_button;
 
+    public static String ChooseCallPage_parameter_matching_dialog_title;
+
     public static String ChooseCallPage_patternCall_title;
 
     public static String ChooseCallPage_patternInjectCall_title;
@@ -182,6 +192,8 @@ public class Messages extends NLS {
     public static String ContainerLibrarySelectionDialog_dialogArea_label;
 
     public static String ContainerLibrarySelectionDialog_pattern_label;
+
+    public static String ParameterMatchingDialog_label_text;
 
     // ParametersEdit Dialog
     public static String ParametersEditDialog_Browse;

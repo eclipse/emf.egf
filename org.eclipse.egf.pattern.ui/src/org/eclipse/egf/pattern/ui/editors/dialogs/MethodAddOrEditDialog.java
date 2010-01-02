@@ -18,6 +18,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.util.Policy;
 import org.eclipse.jface.util.Util;
@@ -98,7 +99,7 @@ public class MethodAddOrEditDialog extends SelectionStatusDialog {
     }
 
     private void checkRenameEnable() {
-        if ("header".equals(oldName) || "init".equals(oldName) || "footer".equals(oldName)) {
+        if (Messages.ImplementationPage_header.equals(oldName) || Messages.ImplementationPage_init.equals(oldName) || Messages.ImplementationPage_footer.equals(oldName)) {
             combo.setEnabled(false);
         }
     }

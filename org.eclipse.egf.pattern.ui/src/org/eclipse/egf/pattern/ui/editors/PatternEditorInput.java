@@ -37,6 +37,14 @@ public class PatternEditorInput implements IEditorInput {
     private final String fragment;
     private final Resource resource;
 
+    // Add for test read only mode --start;
+    private boolean isReadOnly = false;
+
+    public void setReadOnly(boolean isReadOnly) {
+        this.isReadOnly = isReadOnly;
+    }
+    // Add for test read only mode --end;
+
     public PatternEditorInput(Resource resource, String fragment) {
         this.resource = resource;
         this.fragment = fragment;
@@ -48,7 +56,7 @@ public class PatternEditorInput implements IEditorInput {
     }
 
     public boolean isReadOnly() {
-        return false;
+        return isReadOnly;
     }
 
     public Pattern getPattern() {

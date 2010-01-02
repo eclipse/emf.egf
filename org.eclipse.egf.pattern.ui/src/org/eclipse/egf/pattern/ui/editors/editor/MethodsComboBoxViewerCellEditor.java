@@ -139,7 +139,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
                 if (editButton != null && !editButton.isDisposed()) {
                     if (Messages.ImplementationPage_header.equals(text) || Messages.ImplementationPage_init.equals(text) || Messages.ImplementationPage_footer.equals(text)) {
                         editButton.setEnabled(false);
-                    } else {
+                    } else if (!("").equals(text)) {
                         editButton.setEnabled(true);
                     }
                 }

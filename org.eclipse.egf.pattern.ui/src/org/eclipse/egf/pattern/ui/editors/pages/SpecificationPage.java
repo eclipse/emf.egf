@@ -39,6 +39,7 @@ import org.eclipse.egf.pattern.query.QueryKind;
 import org.eclipse.egf.pattern.query.QueryManager;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ParametersEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.modifiers.ParametersTableCellModifier;
@@ -124,6 +125,10 @@ public class SpecificationPage extends PatternEditorPage {
 
     private Button down;
 
+    private Button browse;
+
+    private Button removeParent;
+
     private Combo combo;
 
     private TableViewer tableViewer;
@@ -146,6 +151,8 @@ public class SpecificationPage extends PatternEditorPage {
 
     private ComboBoxViewerCellEditor queryEditor;
 
+    private boolean isReadOnly;
+
     public SpecificationPage(FormEditor editor) {
         super(editor, ID, Messages.SpecificationPage_title);
 
@@ -153,6 +160,9 @@ public class SpecificationPage extends PatternEditorPage {
 
     @Override
     protected void doCreateFormContent(IManagedForm managedForm) {
+        PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
+        isReadOnly = editorInput.isReadOnly();
+
         FormToolkit toolkit = managedForm.getToolkit();
         ScrolledForm form = managedForm.getForm();
 
@@ -166,7 +176,29 @@ public class SpecificationPage extends PatternEditorPage {
         createPatternSection(toolkit, form);
         createParametersSection(toolkit, form);
 
+        checkReadOnlyModel();
+
         form.reflow(true);
+    }
+
+    /**
+     * Check whether the editor is on a read only pattern.
+     */
+    private void checkReadOnlyModel() {
+        if (!isReadOnly) {
+            return;
+        }
+        parentText.setEnabled(false);
+
+        browse.setEnabled(false);
+        removeParent.setEnabled(false);
+
+        add.setEnabled(false);
+        edit.setEnabled(false);
+        remove.setEnabled(false);
+        up.setEnabled(false);
+        down.setEnabled(false);
+        combo.setEnabled(false);
     }
 
     private void createInheritanceSection(FormToolkit toolkit, ScrolledForm form) {
@@ -215,7 +247,7 @@ public class SpecificationPage extends PatternEditorPage {
         gd.verticalIndent = 10;
         gd.widthHint = 65;
 
-        Button browse = toolkit.createButton(buttons, Messages.SpecificationPage_button_browse, SWT.PUSH);
+        browse = toolkit.createButton(buttons, Messages.SpecificationPage_button_browse, SWT.PUSH);
         browse.setLayoutData(gd);
         browse.addSelectionListener(new SelectionListener() {
 
@@ -239,7 +271,7 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        Button removeParent = toolkit.createButton(buttons, "", SWT.PUSH);
+        removeParent = toolkit.createButton(buttons, "", SWT.PUSH);
         removeParent.setLayoutData(gd);
         removeParent.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
         removeParent.setToolTipText(Messages.SpecificationPage_button_remove);
@@ -365,7 +397,7 @@ public class SpecificationPage extends PatternEditorPage {
 
         tableViewer = new TableViewer(table);
         String[] colNames = { "Name", "Type", "Query" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        int[] colWidths = { 100, 130, 130 };
+        int[] colWidths = { 100, 100, 100 };
         for (int i = 0; i < colNames.length; i++) {
             TableColumn tableColumn = new TableColumn(table, SWT.NONE);
             tableColumn.setWidth(colWidths[i]);
@@ -378,6 +410,8 @@ public class SpecificationPage extends PatternEditorPage {
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
             public void selectionChanged(SelectionChangedEvent event) {
+                if (isReadOnly)
+                    return;
                 setButtonsStatus();
             }
         });
@@ -388,6 +422,8 @@ public class SpecificationPage extends PatternEditorPage {
      * Add drag and drop listener to tableViewer.
      */
     private void addDragDrop() {
+        if (isReadOnly)
+            return;
         tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
@@ -710,6 +746,8 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     private void initTableEditor() {
+        if (isReadOnly)
+            return;
         tableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID });
         final TextCellEditor nameEditor = new TextCellEditor(tableViewer.getTable());
         final DialogCellEditor typeEditor = new DialogCellEditor(tableViewer.getTable()) {
