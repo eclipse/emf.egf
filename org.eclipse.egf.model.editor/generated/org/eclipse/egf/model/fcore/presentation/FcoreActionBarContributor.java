@@ -22,7 +22,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.egf.common.ui.constant.EGFUIConstants;
+import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
@@ -291,12 +291,12 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
 
     // Prepare for CreateChild item addition or removal.
     //
-    createChildMenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFUIConstants.CREATE_CHILD); //$NON-NLS-1$
+    createChildMenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFCommonUIConstants.CREATE_CHILD); //$NON-NLS-1$
     submenuManager.insertBefore("additions", createChildMenuManager); //$NON-NLS-1$
 
     // Prepare for CreateSibling item addition or removal.
     //
-    createSiblingMenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFUIConstants.CREATE_SIBLING); //$NON-NLS-1$
+    createSiblingMenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFCommonUIConstants.CREATE_SIBLING); //$NON-NLS-1$
     submenuManager.insertBefore("additions", createSiblingMenuManager); //$NON-NLS-1$
 
     // Force an update because Eclipse hides empty menus now.
@@ -513,11 +513,11 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
     super.menuAboutToShow(menuManager);
     MenuManager submenuManager = null;
 
-    submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFUIConstants.CREATE_CHILD); //$NON-NLS-1$
+    submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFCommonUIConstants.CREATE_CHILD); //$NON-NLS-1$
     populateManager(submenuManager, createChildActions, null);
     menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 
-    submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFUIConstants.CREATE_SIBLING); //$NON-NLS-1$
+    submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFCommonUIConstants.CREATE_SIBLING); //$NON-NLS-1$
     populateManager(submenuManager, createSiblingActions, null);
     menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 

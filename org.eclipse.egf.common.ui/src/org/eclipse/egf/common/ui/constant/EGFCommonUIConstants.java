@@ -15,7 +15,7 @@ package org.eclipse.egf.common.ui.constant;
  * 
  * @author Xavier Maysonnave
  */
-public interface EGFUIConstants {
+public interface EGFCommonUIConstants {
 
   public static final String CREATE_CHILD = "create-child"; //$NON-NLS-1$  
 

@@ -19,7 +19,7 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.egf.common.ui.constant.EGFUIConstants;
+import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.ui.contributor.ViewpointContributor;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -80,13 +80,13 @@ public class PatternViewpointContributor extends ViewpointContributor {
     IStructuredSelection selection2 = (IStructuredSelection) selection;
     if (addActions()) {
       if (selection2.getFirstElement() instanceof PatternLibrary) {
-        IContributionItem item = menuManager.find(EGFUIConstants.CREATE_CHILD);
+        IContributionItem item = menuManager.find(EGFCommonUIConstants.CREATE_CHILD);
         MenuManager createChildMenuManager = null;
         if (item != null && item instanceof MenuManager) {
           createChildMenuManager = (MenuManager) item;
         } else {
           createChildMenuManager = new MenuManager(Messages.ViewpointContributor_newChildGroup_label);
-          menuManager.insertBefore(EGFUIConstants.CREATE_SIBLING, createChildMenuManager);
+          menuManager.insertBefore(EGFCommonUIConstants.CREATE_SIBLING, createChildMenuManager);
         }
         Map<String, PatternExtension> extensions = ExtensionHelper.getExtensions();
         for (String nature : extensions.keySet()) {
@@ -99,8 +99,8 @@ public class PatternViewpointContributor extends ViewpointContributor {
         }
         // menuManager.insertBefore("edit", createChildAction);
       } else if (selection2.getFirstElement() instanceof Pattern) {
-        menuManager.insertBefore(EGFUIConstants.EDIT_MENU_GROUP, editAction);
-        menuManager.insertBefore(EGFUIConstants.EDIT_MENU_GROUP, editTemplateAction);
+        menuManager.insertBefore(EGFCommonUIConstants.EDIT_MENU_GROUP, editAction);
+        menuManager.insertBefore(EGFCommonUIConstants.EDIT_MENU_GROUP, editTemplateAction);
       }
     }
   }
