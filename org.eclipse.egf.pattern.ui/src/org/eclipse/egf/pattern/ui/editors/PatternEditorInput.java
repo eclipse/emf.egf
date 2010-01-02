@@ -86,8 +86,10 @@ public class PatternEditorInput implements IEditorInput {
 
     private class PatternPersistableElement implements IPersistableElement {
         public void saveState(IMemento memento) {
-            memento.putString(PATTERN_ID, getPattern().getID());
-            memento.putString(RESSOURCE_URI, resource.getURI().toString());
+            if (getPattern() != null) {
+                memento.putString(PATTERN_ID, getPattern().getID());
+                memento.putString(RESSOURCE_URI, resource.getURI().toString());
+            }
         }
 
         public String getFactoryId() {

@@ -111,7 +111,7 @@ public class PatternViewpointContributor extends ViewpointContributor {
 
                 @Override
                 protected boolean prepare() {
-                    return EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject() != null;
+                    return true;
                 }
 
                 public void execute() {
@@ -186,6 +186,11 @@ public class PatternViewpointContributor extends ViewpointContributor {
                 throw new IllegalStateException();
             return (Pattern) sselection.getFirstElement();
         }
+
+        protected Pattern getPatternInTransactionalEditingDomain() {
+            Pattern pattern = getPattern();
+            return PatternHelper.TRANSACTIONNAL_COLLECTOR.getPattern(pattern.getID());
+        }
     }
 
     private final class EditTemplatePatternAction extends PatternAction {
@@ -196,7 +201,7 @@ public class PatternViewpointContributor extends ViewpointContributor {
 
         @Override
         public void run() {
-            PatternTemplateEditor.openEditor(parent.getPage(), getPattern(), null);
+            PatternTemplateEditor.openEditor(parent.getPage(), getPatternInTransactionalEditingDomain(), null);
         }
     }
 
@@ -208,7 +213,7 @@ public class PatternViewpointContributor extends ViewpointContributor {
 
         @Override
         public void run() {
-            PatternEditor.openEditor(parent.getPage(), getPattern());
+            PatternEditor.openEditor(parent.getPage(), getPatternInTransactionalEditingDomain());
         }
     }
 
