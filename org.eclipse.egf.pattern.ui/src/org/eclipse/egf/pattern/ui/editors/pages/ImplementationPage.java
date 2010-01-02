@@ -242,6 +242,8 @@ public class ImplementationPage extends PatternEditorPage {
         methodsTableViewer = new TableViewer(table);
         TableColumn tableColumn = new TableColumn(table, SWT.NONE);
         tableColumn.setWidth(200);
+
+        methodsTableViewer.setContentProvider(new TableObservableListContentProvider(methodsTableViewer));
         initMethodsTableEditor();
 
         methodsTableViewer.addDoubleClickListener(new IDoubleClickListener() {
@@ -518,8 +520,6 @@ public class ImplementationPage extends PatternEditorPage {
 
         orchestrationTableViewer.setContentProvider(new TableObservableListContentProvider(orchestrationTableViewer));
         orchestrationTableViewer.setLabelProvider(new OrchestrationTableLabelProvider());
-        methodsTableViewer.setContentProvider(new TableObservableListContentProvider(methodsTableViewer, orchestrationTableViewer));
-        variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer, orchestrationTableViewer));
 
         orchestrationTableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -677,7 +677,7 @@ public class ImplementationPage extends PatternEditorPage {
         orchestrationAdd.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), CallTypeEnum.Add, null);
+                OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), CallTypeEnum.Add, null, getEditingDomain());
                 wizard.init(PlatformUI.getWorkbench(), null);
                 WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
                 int returnValue = dialog.open();
@@ -768,7 +768,7 @@ public class ImplementationPage extends PatternEditorPage {
         } else if (selectItem instanceof SuperPatternCall) {
             kind = CallTypeEnum.SUPERPATTERN_CALL;
         }
-        OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), kind, selectItem);
+        OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), kind, selectItem, getEditingDomain());
         wizard.init(PlatformUI.getWorkbench(), null);
         WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
         int returnValue = dialog.open();
@@ -911,6 +911,7 @@ public class ImplementationPage extends PatternEditorPage {
             tableColumn.setText(colNames[i]);
         }
         initVariablesTableEditor();
+        variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));
         variablesTableViewer.setLabelProvider(new ParametersTableLabelProvider());
 
     }
@@ -1263,4 +1264,5 @@ public class ImplementationPage extends PatternEditorPage {
         Pattern pattern = getPattern();
         return pattern == null ? null : pattern.getSuperPattern();
     }
+
 }

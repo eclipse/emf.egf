@@ -15,11 +15,8 @@
 
 package org.eclipse.egf.pattern.ui.editors.providers;
 
-import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternVariable;
-import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.ui.ImageShop;
-import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -28,28 +25,21 @@ import org.eclipse.swt.graphics.Image;
  * @author XiaoRu Chen - Soyatec
  * 
  */
-public class PatternSelectionLabelProvider implements ITableLabelProvider {
+public class ParameterMatchingLibraryProvider implements ITableLabelProvider {
 
     public Image getColumnImage(Object element, int columnIndex) {
-        if (element instanceof Pattern) {
-            return ImageShop.get(ImageShop.IMG_INNERCLASS_PUBLIC_OBJ);
-        } else if (element instanceof PatternVariable) {
-            return ImageShop.get(ImageShop.IMG_VARIABLE);
-        }
+
         return null;
     }
 
     public String getColumnText(Object element, int columnIndex) {
-        if (element instanceof Pattern) {
-            Pattern pattern = (Pattern) element;
-            switch (columnIndex) {
-            case 0:
-                return pattern.getName() + Messages.common_mark1 + PatternHelper.getFactoryConponentName(pattern) + Messages.common_mark2 + " - " + pattern.eResource().getURI();
-            }
-        } else if (element instanceof PatternVariable) {
-            return ((PatternVariable) element).getName();
+        if (element instanceof Paramerter2ParameterMapImpl) {
+            Paramerter2ParameterMapImpl entry = (Paramerter2ParameterMapImpl) element;
+            PatternParameter key = entry.getKey();
+            PatternParameter value = entry.getValue();
+            return (value.getName() == null ? "" : value.getName()) + " -> " + (key.getName() == null ? "" : key.getName());
         }
-        return "";
+        return null;
     }
 
     public void addListener(ILabelProviderListener listener) {

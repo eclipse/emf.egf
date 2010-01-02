@@ -12,6 +12,7 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui;
 
 import java.util.ArrayList;

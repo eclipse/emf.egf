@@ -23,7 +23,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class Messages extends NLS {
     public static String Editor_wrong_input;
-    
+
     // Overview Page
     public static String OverviewPage_title;
 
@@ -148,10 +148,6 @@ public class Messages extends NLS {
 
     public static String ChooseCallPage_no_variable_selected_error_message;
 
-    public static String ChooseCallPage_parameter_matching_button;
-
-    public static String ChooseCallPage_parameter_matching_dialog_title;
-
     public static String ChooseCallPage_patternCall_title;
 
     public static String ChooseCallPage_patternInjectCall_title;
@@ -177,23 +173,33 @@ public class Messages extends NLS {
 
     // ChooseType Page
     public static String ChooseTypePage_choose_model_button_title;
-    
+
     public static String ChooseTypePage_coreTypeTabItem_title;
-    
+
     public static String ChooseTypePage_description;
 
     public static String ChooseTypePage_ecore_file;
-    
+
     public static String ChooseTypePage_javaTypeTabItem_title;
-    
+
     public static String ChooseTypePage_title;
-    
+
     // ContainerLibrarySelection Dialog
     public static String ContainerLibrarySelectionDialog_dialogArea_label;
 
     public static String ContainerLibrarySelectionDialog_pattern_label;
 
-    public static String ParameterMatchingDialog_label_text;
+    public static String ParameterMatchingPage_button_create;
+
+    public static String ParameterMatchingPage_button_delete;
+
+    public static String ParameterMatchingPage_button_edit;
+
+    public static String ParameterMatchingPage_label_text;
+
+    public static String ParameterMatchingPage_missing_information;
+
+    public static String ParameterMatchingPage_title;
 
     // ParametersEdit Dialog
     public static String ParametersEditDialog_Browse;
@@ -208,7 +214,7 @@ public class Messages extends NLS {
     public static String PatternSelectiondialog_dialogArea_label;
 
     public static String PatternSelectiondialog_pattern_label;
-    
+
     // OpenType Page
     public static String OpenTypeWizard_window_title;
 
@@ -221,7 +227,7 @@ public class Messages extends NLS {
     public static String OrchestrationTableLabelProvider_SuperPatternCall;
 
     public static String OrchestrationWizard_title;
-    
+
     // Common
     public static String common_mark1;
 

@@ -12,20 +12,23 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.wizards;
 
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseCallPage;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseKindPage;
+import org.eclipse.egf.pattern.ui.editors.wizards.pages.ParameterMatchingPage;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchWizard;
 
 /**
  * @author XiaoRu Chen - Soyatec
@@ -37,6 +40,8 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
 
     private ChooseCallPage chooseCallPage;
 
+    private ParameterMatchingPage parameterMatchingPage;
+
     private ISelection selection;
 
     private Pattern pattern;
@@ -47,15 +52,18 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
 
     private Object eidtItem;
 
+    private TransactionalEditingDomain transactionalEditingDomain;
+
     /**
      * Constructor for MyWizard.
      */
-    public OrchestrationWizard(Pattern pattern, CallTypeEnum defaultKind, Object eidtItem) {
+    public OrchestrationWizard(Pattern pattern, CallTypeEnum defaultKind, Object eidtItem, TransactionalEditingDomain transactionalEditingDomain) {
         super();
         setNeedsProgressMonitor(true);
         this.pattern = pattern;
         this.defaultKind = defaultKind;
         this.eidtItem = eidtItem;
+        this.transactionalEditingDomain = transactionalEditingDomain;
     }
 
     /**
@@ -64,12 +72,24 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
     public void addPages() {
         // Set the window's title label
         setWindowTitle(Messages.OrchestrationWizard_title);
+        // Add chooseKindPage.
         if (defaultKind.equals(CallTypeEnum.Add)) {
             chooseKindPage = new ChooseKindPage(selection);
             addPage(chooseKindPage);
         }
+        // Add chooseCallPage.
         chooseCallPage = new ChooseCallPage(pattern, selection, eidtItem);
         addPage(chooseCallPage);
+        // Add parameterMatchingPage.
+        if (defaultKind.equals(CallTypeEnum.PATTERN_CALL) || defaultKind.equals(CallTypeEnum.Add)) {
+            parameterMatchingPage = new ParameterMatchingPage(selection, pattern, transactionalEditingDomain);
+            Pattern patternCallee = null;
+            if (eidtItem instanceof PatternCall) {
+                patternCallee = ((PatternCall) eidtItem).getCalled();
+            }
+            parameterMatchingPage.setPatternCallee((patternCallee));
+            addPage(parameterMatchingPage);
+        }
     }
 
     /**
@@ -78,7 +98,7 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
      * using wizard as execution context.
      */
     public boolean performFinish() {
-        selectCall = chooseCallPage.getChooseCallPage();
+        selectCall = chooseCallPage.getChooseCall();
         return true;
     }
 

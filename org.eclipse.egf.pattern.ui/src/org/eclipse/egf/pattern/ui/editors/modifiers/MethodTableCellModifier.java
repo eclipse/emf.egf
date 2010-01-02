@@ -12,6 +12,7 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.modifiers;
 
 import org.eclipse.egf.model.pattern.PatternMethod;

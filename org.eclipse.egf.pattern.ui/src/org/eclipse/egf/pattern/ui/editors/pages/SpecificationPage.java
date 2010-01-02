@@ -679,8 +679,7 @@ public class SpecificationPage extends PatternEditorPage {
         };
         editingDomain.getCommandStack().execute(cmd);
 
-        EList<PatternParameter> allParameters = pattern.getAllParameters();
-        int len = allParameters.size();
+        int len = tableViewer.getTable().getItemCount();
         if (index < len) {
             tableViewer.getTable().setSelection(index);
         } else if (index >= len) {
