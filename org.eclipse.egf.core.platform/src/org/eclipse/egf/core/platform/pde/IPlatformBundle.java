@@ -20,7 +20,7 @@ import org.eclipse.pde.core.plugin.IPluginExtension;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.osgi.framework.Bundle;
 
-public interface IPlatformBundle extends Comparable<IPlatformBundle> {
+public interface IPlatformBundle {
 
   /**
    * Returns the current bundle id associated with IPlatformBundle

@@ -90,23 +90,25 @@ public class PlatformBundle implements IPlatformBundle {
     _previousBundleId = BundleHelper.getBundleId(base);
   }
 
-  public int compareTo(IPlatformBundle model) {
-    if (this.equals(model)) {
-      return 0;
+  @Override
+  public boolean equals(Object object) {
+    if (this == object) {
+      return true;
     }
+    if (object instanceof IPlatformBundle == false) {
+      return false;
+    }
+    IPlatformBundle model = (IPlatformBundle) object;
     if (isTarget() && model.isTarget()) {
       if (getBundle().equals(model.getBundle())) {
-        return 0;
+        return true;
       }
-      return -1;
-    }
-    if (isTarget() == false && model.isTarget() == false) {
+    } else if (isTarget() == false && model.isTarget() == false) {
       if (getProject().equals(model.getProject())) {
-        return 0;
+        return true;
       }
-      return -1;
     }
-    return 1;
+    return false;
   }
 
   public String getBundleId() {

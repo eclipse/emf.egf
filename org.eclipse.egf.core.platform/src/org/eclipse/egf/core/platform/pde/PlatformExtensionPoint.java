@@ -46,14 +46,19 @@ public abstract class PlatformExtensionPoint implements IPlatformExtensionPoint 
     return _bundle;
   }
 
-  public int compareTo(IPlatformExtensionPoint platformExtensionPoint) {
-    if (this.equals(platformExtensionPoint)) {
-      return 0;
+  @Override
+  public boolean equals(Object object) {
+    if (this == object) {
+      return true;
     }
-    if (platformExtensionPoint.getPlatformBundle().compareTo(getPlatformBundle()) == 0) {
-      return toString().compareTo(platformExtensionPoint.toString());
+    if (object instanceof IPlatformExtensionPoint == false) {
+      return false;
     }
-    return 1;
+    IPlatformExtensionPoint platformExtensionPoint = (IPlatformExtensionPoint) object;
+    if (platformExtensionPoint.getPlatformBundle().equals(getPlatformBundle())) {
+      return toString().compareTo(platformExtensionPoint.toString()) == 0;
+    }
+    return false;
   }
 
   @Override

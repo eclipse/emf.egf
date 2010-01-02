@@ -12,7 +12,7 @@ package org.eclipse.egf.core.platform.pde;
 
 import org.eclipse.pde.core.plugin.IPluginElement;
 
-public interface IPlatformExtensionPoint extends Comparable<IPlatformExtensionPoint> {
+public interface IPlatformExtensionPoint {
 
   public String getId();
 

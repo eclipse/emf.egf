@@ -331,8 +331,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
         Resource resource = resourceSet.getResource(fcore.getURI(), false);
         if (resource != null) {
-          // If a removed workspace fcore is detected we position the
-          // conflict stack flag
+          // If a removed workspace fcore is detected we position a
+          // conflict flag
           if (fcore.getPlatformBundle().isTarget() == false) {
             conflict[0] = true;
           }
@@ -350,7 +350,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
           // // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
           // See PlatformManager for more informations
           for (IPlatformFcore innerFcore : fcores) {
-            if (innerFcore.compareTo(fcore) == 0) {
+            if (innerFcore.equals(fcore)) {
               fcores.remove(innerFcore);
               fcores.add(fcore);
               continue;

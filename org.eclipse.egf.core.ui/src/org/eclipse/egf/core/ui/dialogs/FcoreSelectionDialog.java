@@ -145,7 +145,13 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
 
   private class FcoreSearchComparator implements Comparator<IPlatformFcore> {
     public int compare(IPlatformFcore fc1, IPlatformFcore fc2) {
-      return fc1.compareTo(fc2);
+      if (fc1.getName() == null) {
+        return -1;
+      }
+      if (fc2.getName() == null) {
+        return 1;
+      }
+      return fc1.getName().compareTo(fc2.getName());
     }
   }
 
