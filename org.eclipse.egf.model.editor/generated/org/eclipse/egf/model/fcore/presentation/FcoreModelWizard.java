@@ -255,9 +255,8 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
           convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false) {
             @Override
             public List<String> addDependencies() {
-              List<String> dependencies = new ArrayList<String>(2);
-              dependencies.add("org.eclipse.egf.common"); //$NON-NLS-1$
-              dependencies.add("org.eclipse.egf.fprod.producer"); //$NON-NLS-1$
+              List<String> dependencies = new ArrayList<String>(1);
+              dependencies.add("org.eclipse.egf.model.fprod"); //$NON-NLS-1$
               return dependencies;
             }
           };
