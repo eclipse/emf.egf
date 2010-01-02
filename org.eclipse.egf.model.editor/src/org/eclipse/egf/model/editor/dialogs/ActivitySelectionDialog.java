@@ -80,7 +80,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     @Override
     protected Object restoreItemFromMemento(IMemento memento) {
       // If a previous has been set, ignore memento
-      if (_activity != null) {
+      if (_clazz != null) {
         _doNotSave = true;
         return _activity;
       }
