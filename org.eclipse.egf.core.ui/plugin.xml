@@ -45,7 +45,7 @@
     <page
       name="%egf.preferences.general"    
       class="org.eclipse.egf.core.ui.internal.preferences.EGFGeneralPreferencePage"
-      id="org.eclipse.egf.core.ui.preferences.general"
+      id="org.eclipse.egf.preferences"
     >
       <keywordReference 
         id="org.eclipse.egf.general"
@@ -54,8 +54,8 @@
     <page
       name="%egf.preferences.model"
       class="org.eclipse.egf.core.ui.internal.preferences.EGFModelPreferencePage"
-      category="org.eclipse.egf.core.ui.preferences.general"      
-      id="org.eclipse.egf.core.ui.preferences.model"
+      category="org.eclipse.egf.preferences"      
+      id="org.eclipse.egf.preferences.model"
     >
       <keywordReference 
         id="org.eclipse.egf.general"
@@ -64,8 +64,8 @@
     <page
       name="%egf.preferences.production"
       class="org.eclipse.egf.core.ui.internal.preferences.EGFProductionPreferencePage"
-      category="org.eclipse.egf.core.ui.preferences.general"      
-      id="org.eclipse.egf.core.ui.preferences.production"
+      category="org.eclipse.egf.preferences"      
+      id="org.eclipse.egf.preferences.production"
     >
       <keywordReference 
         id="org.eclipse.egf.general"
