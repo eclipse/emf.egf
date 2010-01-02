@@ -20,7 +20,7 @@ public class EGFNatures {
 
   public static final String EGF_NATURE = "org.eclipse.egf.core.EGFNature"; //$NON-NLS-1$
 
-  public static final String PATTERN_BUILDER_ID = "org.eclipse.egf.pattern.PatternBuilder"; //$NON-NLS-1$
+  public static final String PATTERN_BUILDER_ID = "org.eclipse.egf.pattern.ui.PatternBuilder"; //$NON-NLS-1$
 
   public static boolean hasFactoryComponentNature(IProject project) {
     try {
