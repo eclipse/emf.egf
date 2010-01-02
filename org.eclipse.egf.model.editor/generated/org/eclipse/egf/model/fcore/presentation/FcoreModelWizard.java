@@ -28,15 +28,14 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.common.l10n.EGFCommonMessages;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.helper.ResourceHelper;
-import org.eclipse.egf.core.pde.EGFPDEPlugin;
+import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fprod.FprodFactory;
@@ -49,12 +48,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -72,7 +71,6 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.ISetSelectionTarget;
-import org.eclipse.ui.statushandlers.StatusManager;
 
 /**
  * This is a simple wizard for creating a new model file.
@@ -186,13 +184,14 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   public void init(IWorkbench workbench, IStructuredSelection selection) {
     this.workbench = workbench;
     this.selection = selection;
     setWindowTitle(EGFModelsEditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
     setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EGFModelsEditorPlugin.INSTANCE.getImage("full/wizban/NewFcore"))); //$NON-NLS-1$
+    setNeedsProgressMonitor(true);
   }
 
   /**
@@ -237,53 +236,64 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    */
   @Override
   public boolean performFinish() {
-    try {
-      // Remember the file.
-      //
-      final IFile modelFile = getModelFile();
-      // Do the work within an operation.
-      //
-      WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
-        @Override
-        protected void execute(IProgressMonitor progressMonitor) {
-          try {
-            // Retrieve the current bundle holder of this modelFile
-            IPluginModelBase base = BundleHelper.getPluginModelBase(modelFile);
-            // Convert the current project in bundle if necessary
-            if (base == null) {
-              EGFPDEPlugin.getDefault().convertToPlugin(modelFile.getProject());
+
+    // Variables
+    final IFile modelFile = getModelFile();
+    final Throwable[] throwable = new Throwable[1];
+
+    // Do the work within an operation.
+    WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+
+      @Override
+      protected void execute(IProgressMonitor monitor) {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, EGFModelsEditorPlugin.INSTANCE.getString("_UI_Wizard_createActivity"), 200); //$NON-NLS-1$
+        try {
+          // Get Object Model
+          EObject rootObject = createInitialModel();
+          // Initialize Bundle and JavaProject if necessary
+          IRunnableWithProgress convertOperation;
+          boolean createJavaProject = rootObject instanceof FactoryComponent == false;
+          boolean createEGFNature = rootObject instanceof FactoryComponent;
+          convertOperation = new ConvertProjectOperation(modelFile.getProject(), createJavaProject, createEGFNature) {
+            @Override
+            public List<String> addDependencies() {
+              List<String> dependencies = new ArrayList<String>(2);
+              dependencies.add("org.eclipse.egf.common"); //$NON-NLS-1$
+              dependencies.add("org.eclipse.egf.fprod.producer"); //$NON-NLS-1$
+              return dependencies;
             }
-            // Create a resource set
-            ResourceSet resourceSet = new ResourceSetImpl();
-            // Create a resource for this file.
-            Resource resource = ResourceHelper.createResource(resourceSet, modelFile);
-            // Add the initial model object to the contents.
-            EObject rootObject = createInitialModel();
-            if (rootObject != null) {
-              resource.getContents().add(rootObject);
-            }
-            // Save the contents of the resource to the file system.
-            Map<Object, Object> options = new HashMap<Object, Object>();
-            options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
-            resource.save(options);
-          } catch (Throwable t) {
-            IStatus status = null;
-            if (t instanceof CoreException) {
-              status = ((CoreException) t).getStatus();
-            } else {
-              status = EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t);
-            }
-            StatusManager.getManager().handle(status, StatusManager.SHOW);
-          } finally {
-            progressMonitor.done();
+          };
+          // Synchronous operation
+          getContainer().run(false, true, convertOperation);
+          // Create a resource set
+          ResourceSet resourceSet = new ResourceSetImpl();
+          // Create a resource for this file.
+          Resource resource = ResourceHelper.createResource(resourceSet, modelFile);
+          // Add the initial model object to the contents.
+          if (rootObject != null) {
+            resource.getContents().add(rootObject);
           }
+          // Save the contents of the resource to the file system.
+          Map<Object, Object> options = new HashMap<Object, Object>();
+          options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
+          resource.save(options);
+        } catch (Throwable t) {
+          throwable[0] = t;
+        } finally {
+          subMonitor.done();
         }
-      };
+      }
+    };
 
-      getContainer().run(false, false, operation);
+    try {
+      getContainer().run(false, true, operation);
+    } catch (Throwable t) {
+      throwable[0] = t;
+    }
 
-      // Select the new file resource in the current view.
-      //
+    // Select the new file resource in the current view.
+    //
+    if (throwable[0] == null) {
       IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
       IWorkbenchPage page = workbenchWindow.getActivePage();
       final IWorkbenchPart activePart = page.getActivePart();
@@ -295,28 +305,21 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
           }
         });
       }
-
       // Open an editor on the new file.
       //
       try {
         page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
       } catch (Throwable t) {
-        IStatus status = null;
-        if (t instanceof CoreException) {
-          status = ((CoreException) t).getStatus();
-        } else {
-          status = EGFModelsEditorPlugin.getPlugin().newStatus(IStatus.ERROR, EGFModelsEditorPlugin.INSTANCE.getString("_UI_OpenEditorError_label"), t); //$NON-NLS-1$
-        }
-        StatusManager.getManager().handle(status, StatusManager.SHOW);
-        return false;
+        throwable[0] = t;
       }
+    }
 
-      return true;
-
-    } catch (Exception exception) {
-      EGFModelsEditorPlugin.INSTANCE.log(exception);
+    if (throwable[0] != null && throwable[0] instanceof InterruptedException == false) {
+      ThrowableHandler.handleThrowable(EGFModelsEditorPlugin.getPlugin().getBundle().getSymbolicName(), throwable[0]);
       return false;
     }
+
+    return true;
   }
 
   /**
