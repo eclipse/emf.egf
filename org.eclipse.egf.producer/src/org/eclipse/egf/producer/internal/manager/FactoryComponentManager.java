@@ -135,7 +135,6 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-
     BasicDiagnostic diagnostic = (BasicDiagnostic) canInvokeElement();
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       IOrchestrationManager orchestrationManager = getOrchestrationManager();
