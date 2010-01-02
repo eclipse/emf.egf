@@ -17,9 +17,12 @@ import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.model.types.TypeAbstractClass;
+import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
@@ -56,7 +59,9 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
 
     CellEditor result = null;
 
-    if (object instanceof TypeAbstractClass<?> || object instanceof Task) {
+    Object feature = itemPropertyDescriptor.getFeature(object);
+
+    if ((object instanceof TypeAbstractClass<?> && feature.equals(TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE)) || (object instanceof Task && feature.equals(FprodPackage.Literals.TASK__VALUE))) {
 
       // Data Holder
       final Class<?>[] clazzes = new Class<?>[1];
@@ -102,7 +107,7 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
 
       return result;
 
-    } else if (object instanceof Invocation<?>) {
+    } else if (object instanceof Invocation<?> && feature.equals(FcorePackage.Literals.INVOCATION__ACTIVITY)) {
 
       final Invocation<?> invocation = (Invocation<?>) object;
       EGenericType genericType = invocation.eClass().getEGenericSuperTypes().get(0).getETypeArguments().get(0);
