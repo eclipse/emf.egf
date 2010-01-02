@@ -20,6 +20,7 @@ import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -35,9 +36,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponent} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponent}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FactoryComponentItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -45,6 +48,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponentItemProvider(AdapterFactory adapterFactory) {
@@ -55,6 +59,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -67,11 +72,13 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
+   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -88,6 +95,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -102,6 +110,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
    * This returns FactoryComponent.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -113,6 +122,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -127,6 +137,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -148,6 +159,7 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -157,6 +169,25 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
     newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER, FcoreFactory.eINSTANCE.createFactoryComponentContractContainer()));
 
     newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, FcoreFactory.eINSTANCE.createViewpointContainer()));
+  }
+
+  /**
+   * This returns the icon image for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public Object getCreateChildImage(Object owner, Object feature, Object child, Collection<?> selection) {
+    if (owner != null) {
+      return super.getCreateChildImage(owner, feature, child, selection);
+    }
+    try {
+      return getResourceLocator().getImage("full/ctool16/Create" + ((EObject) child).eClass().getName()); //$NON-NLS-1$
+    } catch (Exception e) {
+      return super.getCreateChildImage(owner, feature, child, selection);
+    }
   }
 
 }
