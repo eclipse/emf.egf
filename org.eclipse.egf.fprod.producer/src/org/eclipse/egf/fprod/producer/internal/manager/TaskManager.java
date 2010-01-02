@@ -88,8 +88,7 @@ public class TaskManager extends ActivityManager implements ITaskManager {
 
   @Override
   public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvoke();
-    return diagnostic;
+    return super.canInvokeElement();
   }
 
   @Override
