@@ -23,6 +23,7 @@ import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
 import org.eclipse.jdt.core.IType;
@@ -103,7 +104,7 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
 
     } else if (object instanceof Invocation<?>) {
 
-      Invocation<?> invocation = (Invocation<?>) object;
+      final Invocation<?> invocation = (Invocation<?>) object;
       EGenericType genericType = invocation.eClass().getEGenericSuperTypes().get(0).getETypeArguments().get(0);
 
       // Data Holder
@@ -118,6 +119,9 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
           dialog.open();
           Object[] innerResult = dialog.getResult();
           if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof Activity) {
+            // Force a load resource on the current ResourceSet
+            invocation.eResource().getResourceSet().getResource(EcoreUtil.getURI((Activity) innerResult[0]), true);
+            // Return selected value
             return innerResult[0];
           }
           return activities[0];
