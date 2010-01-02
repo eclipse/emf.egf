@@ -834,7 +834,6 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
         EGFCoreUIPlugin.getDefault().logError(e);
       }
       if (javaProject != null) {
-        // Hierarchy Lookup
         // Retrieve IType
         IType classType = javaProject.findType(_clazz.getName(), subMonitor.newChild(200, SubMonitor.SUPPRESS_NONE));
         if (classType == null) {
@@ -848,7 +847,7 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
             types.add(classType);
           }
         }
-        // Hierarchy
+        // Hierarchy Lookup
         ITypeHierarchy typeHierarchy = classType.newTypeHierarchy(javaProject, subMonitor.newChild(300, SubMonitor.SUPPRESS_NONE));
         if (typeHierarchy == null) {
           return;
@@ -863,7 +862,6 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
             }
           }
         }
-        // Java Search Lookup
         // Java Search Lookup
         IJavaElement[] javaElements = new IJavaElement[] { javaProject };
         JavaSearchScopeFactory factory = JavaSearchScopeFactory.getInstance();
