@@ -35,7 +35,6 @@ import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.fcore.OrchestrationContextContainer;
-import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.Viewpoint;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -200,8 +199,6 @@ public class FcoreValidator extends EObjectValidator {
       return validateOrchestrationContext((OrchestrationContext) value, diagnostics, context);
     case FcorePackage.ORCHESTRATION_CONTEXT_CONTAINER:
       return validateOrchestrationContextContainer((OrchestrationContextContainer) value, diagnostics, context);
-    case FcorePackage.TYPE:
-      return validateType((Type<?>) value, diagnostics, context);
     case FcorePackage.INVOCATION:
       return validateInvocation((Invocation<?>) value, diagnostics, context);
     case FcorePackage.INVOCATION_CONTEXT:
@@ -591,16 +588,6 @@ public class FcoreValidator extends EObjectValidator {
    */
   public boolean validateInvocationContextContainer(InvocationContextContainer invocationContextContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return validate_EveryDefaultConstraint(invocationContextContainer, diagnostics, context);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public boolean validateType(Type<?> type, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(type, diagnostics, context);
   }
 
   /**

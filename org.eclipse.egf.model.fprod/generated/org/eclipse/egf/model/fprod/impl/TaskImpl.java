@@ -14,12 +14,12 @@ package org.eclipse.egf.model.fprod.impl;
 
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ContractMode;
-import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.impl.ActivityImpl;
 import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.model.fprod.TaskContract;
 import org.eclipse.egf.model.fprod.TaskContractContainer;
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;

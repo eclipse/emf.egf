@@ -21,10 +21,10 @@ import java.util.Map;
  *
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeMap()
- * @model superTypes="org.eclipse.egf.model.types.TypeClass<org.eclipse.emf.ecore.EMap>"
+ * @model superTypes="org.eclipse.egf.model.types.TypeAbstractClass<org.eclipse.emf.ecore.EMap>"
  * @generated
  */
-public interface TypeMap extends TypeClass<Map> {
+public interface TypeMap extends TypeAbstractClass<Map> {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

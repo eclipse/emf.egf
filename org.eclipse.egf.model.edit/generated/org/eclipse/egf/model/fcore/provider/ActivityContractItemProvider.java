@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -183,6 +184,40 @@ public class ActivityContractItemProvider extends ModelElementItemProvider imple
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeCollection()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeList()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeSet()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeGeneratorAdapterFactory()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeMap()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeBigDecimal()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeBigInteger()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeBoolean()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeByte()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeCharacter()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeDate()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeDouble()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeFloat()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeInteger()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeLong()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeShort()));
+
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeString()));
   }
 
 }

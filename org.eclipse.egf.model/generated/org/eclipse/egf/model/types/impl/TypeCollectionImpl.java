@@ -24,14 +24,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class TypeCollectionImpl extends TypeClassImpl<Collection> implements TypeCollection {
+public class TypeCollectionImpl extends TypeAbstractClassImpl<Collection> implements TypeCollection {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypeCollectionImpl() {
@@ -41,7 +40,6 @@ public class TypeCollectionImpl extends TypeClassImpl<Collection> implements Typ
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -52,7 +50,6 @@ public class TypeCollectionImpl extends TypeClassImpl<Collection> implements Typ
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Class<Collection> getType() {

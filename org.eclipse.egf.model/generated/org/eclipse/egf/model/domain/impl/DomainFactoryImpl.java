@@ -13,12 +13,12 @@
 package org.eclipse.egf.model.domain.impl;
 
 import org.eclipse.egf.model.domain.DomainEPackage;
-import org.eclipse.egf.model.domain.DomainEPackageType;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainURI;
-import org.eclipse.egf.model.domain.DomainURIType;
 import org.eclipse.egf.model.domain.DomainViewpoint;
+import org.eclipse.egf.model.domain.TypeDomainEPackage;
+import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -76,12 +76,12 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
       return createDomainViewpoint();
     case DomainPackage.DOMAIN_EPACKAGE:
       return createDomainEPackage();
-    case DomainPackage.DOMAIN_EPACKAGE_TYPE:
-      return createDomainEPackageType();
+    case DomainPackage.TYPE_DOMAIN_EPACKAGE:
+      return createTypeDomainEPackage();
     case DomainPackage.DOMAIN_URI:
       return createDomainURI();
-    case DomainPackage.DOMAIN_URI_TYPE:
-      return createDomainURIType();
+    case DomainPackage.TYPE_DOMAIN_URI:
+      return createTypeDomainURI();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -115,9 +115,9 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
    * 
    * @generated
    */
-  public DomainEPackageType createDomainEPackageType() {
-    DomainEPackageTypeImpl domainEPackageType = new DomainEPackageTypeImpl();
-    return domainEPackageType;
+  public TypeDomainEPackage createTypeDomainEPackage() {
+    TypeDomainEPackageImpl typeDomainEPackage = new TypeDomainEPackageImpl();
+    return typeDomainEPackage;
   }
 
   /**
@@ -137,9 +137,9 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
    * 
    * @generated
    */
-  public DomainURIType createDomainURIType() {
-    DomainURITypeImpl domainURIType = new DomainURITypeImpl();
-    return domainURIType;
+  public TypeDomainURI createTypeDomainURI() {
+    TypeDomainURIImpl typeDomainURI = new TypeDomainURIImpl();
+    return typeDomainURI;
   }
 
   /**

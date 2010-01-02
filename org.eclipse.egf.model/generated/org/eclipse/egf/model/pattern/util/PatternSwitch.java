@@ -16,9 +16,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.Viewpoint;
-import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.model.pattern.AbstractPatternCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.Call;
@@ -27,7 +25,6 @@ import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternElement;
-import org.eclipse.egf.model.pattern.PatternExecutionReporterType;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -39,7 +36,10 @@ import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.model.pattern.StringQuery;
 import org.eclipse.egf.model.pattern.SuperPatternCall;
-import org.eclipse.egf.model.types.TypeClass;
+import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
+import org.eclipse.egf.model.types.Type;
+import org.eclipse.egf.model.types.TypeAbstractClass;
+import org.eclipse.egf.model.types.TypeElement;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -54,660 +54,746 @@ import org.eclipse.emf.ecore.EObject;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.pattern.PatternPackage
  * @generated
  */
 public class PatternSwitch<T1> {
-    /**
-     * The cached model package
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected static PatternPackage modelPackage;
+  /**
+   * The cached model package
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected static PatternPackage modelPackage;
 
-    /**
-     * Creates an instance of the switch.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public PatternSwitch() {
-        if (modelPackage == null) {
-            modelPackage = PatternPackage.eINSTANCE;
-        }
+  /**
+   * Creates an instance of the switch.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public PatternSwitch() {
+    if (modelPackage == null) {
+      modelPackage = PatternPackage.eINSTANCE;
     }
+  }
 
-    /**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the first non-null result returned by a <code>caseXXX</code> call.
-     * @generated
-     */
-    public T1 doSwitch(EObject theEObject) {
-        return doSwitch(theEObject.eClass(), theEObject);
-    }
+  /**
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
+   * yields that result.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @return the first non-null result returned by a <code>caseXXX</code> call.
+   * @generated
+   */
+  public T1 doSwitch(EObject theEObject) {
+    return doSwitch(theEObject.eClass(), theEObject);
+  }
 
-    /**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the first non-null result returned by a <code>caseXXX</code> call.
-     * @generated
-     */
-    protected T1 doSwitch(EClass theEClass, EObject theEObject) {
-        if (theEClass.eContainer() == modelPackage) {
-            return doSwitch(theEClass.getClassifierID(), theEObject);
-        } else {
-            List<EClass> eSuperTypes = theEClass.getESuperTypes();
-            return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
-        }
+  /**
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
+   * yields that result.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @return the first non-null result returned by a <code>caseXXX</code> call.
+   * @generated
+   */
+  protected T1 doSwitch(EClass theEClass, EObject theEObject) {
+    if (theEClass.eContainer() == modelPackage) {
+      return doSwitch(theEClass.getClassifierID(), theEObject);
+    } else {
+      List<EClass> eSuperTypes = theEClass.getESuperTypes();
+      return eSuperTypes.isEmpty() ? defaultCase(theEObject) : doSwitch(eSuperTypes.get(0), theEObject);
     }
+  }
 
-    /**
-     * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the first non-null result returned by a <code>caseXXX</code> call.
-     * @generated
-     */
-    protected T1 doSwitch(int classifierID, EObject theEObject) {
-        switch (classifierID) {
-        case PatternPackage.PATTERN: {
-            Pattern pattern = (Pattern) theEObject;
-            T1 result = casePattern(pattern);
-            if (result == null)
-                result = casePatternElement(pattern);
-            if (result == null)
-                result = caseModelElement(pattern);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_METHOD: {
-            PatternMethod patternMethod = (PatternMethod) theEObject;
-            T1 result = casePatternMethod(patternMethod);
-            if (result == null)
-                result = caseModelElement(patternMethod);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_PARAMETER: {
-            PatternParameter patternParameter = (PatternParameter) theEObject;
-            T1 result = casePatternParameter(patternParameter);
-            if (result == null)
-                result = caseModelElement(patternParameter);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_LIBRARY: {
-            PatternLibrary patternLibrary = (PatternLibrary) theEObject;
-            T1 result = casePatternLibrary(patternLibrary);
-            if (result == null)
-                result = casePatternElement(patternLibrary);
-            if (result == null)
-                result = caseModelElement(patternLibrary);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_ELEMENT: {
-            PatternElement patternElement = (PatternElement) theEObject;
-            T1 result = casePatternElement(patternElement);
-            if (result == null)
-                result = caseModelElement(patternElement);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_VIEWPOINT: {
-            PatternViewpoint patternViewpoint = (PatternViewpoint) theEObject;
-            T1 result = casePatternViewpoint(patternViewpoint);
-            if (result == null)
-                result = caseViewpoint(patternViewpoint);
-            if (result == null)
-                result = caseModelElement(patternViewpoint);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_NATURE: {
-            PatternNature patternNature = (PatternNature) theEObject;
-            T1 result = casePatternNature(patternNature);
-            if (result == null)
-                result = caseModelElement(patternNature);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_CALL: {
-            PatternCall patternCall = (PatternCall) theEObject;
-            T1 result = casePatternCall(patternCall);
-            if (result == null)
-                result = caseAbstractPatternCall(patternCall);
-            if (result == null)
-                result = caseCall(patternCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.SUPER_PATTERN_CALL: {
-            SuperPatternCall superPatternCall = (SuperPatternCall) theEObject;
-            T1 result = caseSuperPatternCall(superPatternCall);
-            if (result == null)
-                result = caseAbstractPatternCall(superPatternCall);
-            if (result == null)
-                result = caseCall(superPatternCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP: {
-            @SuppressWarnings("unchecked")
-            Map.Entry<PatternParameter, PatternParameter> paramerter2ParameterMap = (Map.Entry<PatternParameter, PatternParameter>) theEObject;
-            T1 result = caseParamerter2ParameterMap(paramerter2ParameterMap);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.CALL: {
-            Call call = (Call) theEObject;
-            T1 result = caseCall(call);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.METHOD_CALL: {
-            MethodCall methodCall = (MethodCall) theEObject;
-            T1 result = caseMethodCall(methodCall);
-            if (result == null)
-                result = caseCall(methodCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_VARIABLE: {
-            PatternVariable patternVariable = (PatternVariable) theEObject;
-            T1 result = casePatternVariable(patternVariable);
-            if (result == null)
-                result = caseModelElement(patternVariable);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.ABSTRACT_PATTERN_CALL: {
-            AbstractPatternCall abstractPatternCall = (AbstractPatternCall) theEObject;
-            T1 result = caseAbstractPatternCall(abstractPatternCall);
-            if (result == null)
-                result = caseCall(abstractPatternCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_INJECTED_CALL: {
-            PatternInjectedCall patternInjectedCall = (PatternInjectedCall) theEObject;
-            T1 result = casePatternInjectedCall(patternInjectedCall);
-            if (result == null)
-                result = caseAbstractPatternCall(patternInjectedCall);
-            if (result == null)
-                result = caseCall(patternInjectedCall);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.QUERY: {
-            Query query = (Query) theEObject;
-            T1 result = caseQuery(query);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.BASIC_QUERY: {
-            BasicQuery basicQuery = (BasicQuery) theEObject;
-            T1 result = caseBasicQuery(basicQuery);
-            if (result == null)
-                result = caseQuery(basicQuery);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.STRING_QUERY: {
-            StringQuery stringQuery = (StringQuery) theEObject;
-            T1 result = caseStringQuery(stringQuery);
-            if (result == null)
-                result = caseQuery(stringQuery);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.CUSTOM_QUERY: {
-            CustomQuery customQuery = (CustomQuery) theEObject;
-            T1 result = caseCustomQuery(customQuery);
-            if (result == null)
-                result = caseQuery(customQuery);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.STRING2_PATTERN_LIST: {
-            @SuppressWarnings("unchecked")
-            Map.Entry<String, EList<PatternElement>> string2PatternList = (Map.Entry<String, EList<PatternElement>>) theEObject;
-            T1 result = caseString2PatternList(string2PatternList);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        case PatternPackage.PATTERN_EXECUTION_REPORTER_TYPE: {
-            PatternExecutionReporterType patternExecutionReporterType = (PatternExecutionReporterType) theEObject;
-            T1 result = casePatternExecutionReporterType(patternExecutionReporterType);
-            if (result == null)
-                result = caseTypeClass(patternExecutionReporterType);
-            if (result == null)
-                result = caseType(patternExecutionReporterType);
-            if (result == null)
-                result = caseModelElement(patternExecutionReporterType);
-            if (result == null)
-                result = defaultCase(theEObject);
-            return result;
-        }
-        default:
-            return defaultCase(theEObject);
-        }
+  /**
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
+   * yields that result.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @return the first non-null result returned by a <code>caseXXX</code> call.
+   * @generated
+   */
+  protected T1 doSwitch(int classifierID, EObject theEObject) {
+    switch (classifierID) {
+    case PatternPackage.PATTERN: {
+      Pattern pattern = (Pattern) theEObject;
+      T1 result = casePattern(pattern);
+      if (result == null)
+        result = casePatternElement(pattern);
+      if (result == null)
+        result = caseModelElement(pattern);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
     }
+    case PatternPackage.PATTERN_METHOD: {
+      PatternMethod patternMethod = (PatternMethod) theEObject;
+      T1 result = casePatternMethod(patternMethod);
+      if (result == null)
+        result = caseModelElement(patternMethod);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.PATTERN_PARAMETER: {
+      PatternParameter patternParameter = (PatternParameter) theEObject;
+      T1 result = casePatternParameter(patternParameter);
+      if (result == null)
+        result = caseModelElement(patternParameter);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.PATTERN_LIBRARY: {
+      PatternLibrary patternLibrary = (PatternLibrary) theEObject;
+      T1 result = casePatternLibrary(patternLibrary);
+      if (result == null)
+        result = casePatternElement(patternLibrary);
+      if (result == null)
+        result = caseModelElement(patternLibrary);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.PATTERN_ELEMENT: {
+      PatternElement patternElement = (PatternElement) theEObject;
+      T1 result = casePatternElement(patternElement);
+      if (result == null)
+        result = caseModelElement(patternElement);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.PATTERN_VIEWPOINT: {
+      PatternViewpoint patternViewpoint = (PatternViewpoint) theEObject;
+      T1 result = casePatternViewpoint(patternViewpoint);
+      if (result == null)
+        result = caseViewpoint(patternViewpoint);
+      if (result == null)
+        result = caseModelElement(patternViewpoint);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.PATTERN_NATURE: {
+      PatternNature patternNature = (PatternNature) theEObject;
+      T1 result = casePatternNature(patternNature);
+      if (result == null)
+        result = caseModelElement(patternNature);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.PATTERN_CALL: {
+      PatternCall patternCall = (PatternCall) theEObject;
+      T1 result = casePatternCall(patternCall);
+      if (result == null)
+        result = caseAbstractPatternCall(patternCall);
+      if (result == null)
+        result = caseCall(patternCall);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.SUPER_PATTERN_CALL: {
+      SuperPatternCall superPatternCall = (SuperPatternCall) theEObject;
+      T1 result = caseSuperPatternCall(superPatternCall);
+      if (result == null)
+        result = caseAbstractPatternCall(superPatternCall);
+      if (result == null)
+        result = caseCall(superPatternCall);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.PARAMERTER2_PARAMETER_MAP: {
+      @SuppressWarnings("unchecked")
+      Map.Entry<PatternParameter, PatternParameter> paramerter2ParameterMap = (Map.Entry<PatternParameter, PatternParameter>) theEObject;
+      T1 result = caseParamerter2ParameterMap(paramerter2ParameterMap);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.CALL: {
+      Call call = (Call) theEObject;
+      T1 result = caseCall(call);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.METHOD_CALL: {
+      MethodCall methodCall = (MethodCall) theEObject;
+      T1 result = caseMethodCall(methodCall);
+      if (result == null)
+        result = caseCall(methodCall);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.PATTERN_VARIABLE: {
+      PatternVariable patternVariable = (PatternVariable) theEObject;
+      T1 result = casePatternVariable(patternVariable);
+      if (result == null)
+        result = caseModelElement(patternVariable);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.ABSTRACT_PATTERN_CALL: {
+      AbstractPatternCall abstractPatternCall = (AbstractPatternCall) theEObject;
+      T1 result = caseAbstractPatternCall(abstractPatternCall);
+      if (result == null)
+        result = caseCall(abstractPatternCall);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.PATTERN_INJECTED_CALL: {
+      PatternInjectedCall patternInjectedCall = (PatternInjectedCall) theEObject;
+      T1 result = casePatternInjectedCall(patternInjectedCall);
+      if (result == null)
+        result = caseAbstractPatternCall(patternInjectedCall);
+      if (result == null)
+        result = caseCall(patternInjectedCall);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.QUERY: {
+      Query query = (Query) theEObject;
+      T1 result = caseQuery(query);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.BASIC_QUERY: {
+      BasicQuery basicQuery = (BasicQuery) theEObject;
+      T1 result = caseBasicQuery(basicQuery);
+      if (result == null)
+        result = caseQuery(basicQuery);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.STRING_QUERY: {
+      StringQuery stringQuery = (StringQuery) theEObject;
+      T1 result = caseStringQuery(stringQuery);
+      if (result == null)
+        result = caseQuery(stringQuery);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.CUSTOM_QUERY: {
+      CustomQuery customQuery = (CustomQuery) theEObject;
+      T1 result = caseCustomQuery(customQuery);
+      if (result == null)
+        result = caseQuery(customQuery);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.STRING2_PATTERN_LIST: {
+      @SuppressWarnings("unchecked")
+      Map.Entry<String, EList<PatternElement>> string2PatternList = (Map.Entry<String, EList<PatternElement>>) theEObject;
+      T1 result = caseString2PatternList(string2PatternList);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER: {
+      TypePatternExecutionReporter typePatternExecutionReporter = (TypePatternExecutionReporter) theEObject;
+      T1 result = caseTypePatternExecutionReporter(typePatternExecutionReporter);
+      if (result == null)
+        result = caseTypeAbstractClass(typePatternExecutionReporter);
+      if (result == null)
+        result = caseType(typePatternExecutionReporter);
+      if (result == null)
+        result = caseTypeElement(typePatternExecutionReporter);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    default:
+      return defaultCase(theEObject);
+    }
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Pattern</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Pattern</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePattern(Pattern object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Pattern</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Pattern</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 casePattern(Pattern object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Method</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Method</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePatternMethod(PatternMethod object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Method</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Method</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 casePatternMethod(PatternMethod object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePatternParameter(PatternParameter object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 casePatternParameter(PatternParameter object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Library</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Library</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePatternLibrary(PatternLibrary object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Library</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Library</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 casePatternLibrary(PatternLibrary object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Element</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePatternElement(PatternElement object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 casePatternElement(PatternElement object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePatternViewpoint(PatternViewpoint object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 casePatternViewpoint(PatternViewpoint object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Nature</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Nature</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePatternNature(PatternNature object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Nature</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Nature</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 casePatternNature(PatternNature object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Call</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Call</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePatternCall(PatternCall object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 casePatternCall(PatternCall object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Super Pattern Call</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Super Pattern Call</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseSuperPatternCall(SuperPatternCall object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Super Pattern Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Super Pattern Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseSuperPatternCall(SuperPatternCall object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Paramerter2 Parameter Map</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Paramerter2 Parameter Map</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseParamerter2ParameterMap(Map.Entry<PatternParameter, PatternParameter> object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Paramerter2 Parameter
+   * Map</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Paramerter2 Parameter
+   *         Map</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseParamerter2ParameterMap(Map.Entry<PatternParameter, PatternParameter> object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Call</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Call</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseCall(Call object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseCall(Call object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Method Call</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Method Call</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseMethodCall(MethodCall object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Method Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Method Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseMethodCall(MethodCall object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePatternVariable(PatternVariable object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Variable</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 casePatternVariable(PatternVariable object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Abstract Pattern Call</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Abstract Pattern Call</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseAbstractPatternCall(AbstractPatternCall object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abstract Pattern
+   * Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abstract Pattern
+   *         Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseAbstractPatternCall(AbstractPatternCall object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Injected Call</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Injected Call</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePatternInjectedCall(PatternInjectedCall object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Injected Call</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Injected Call</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 casePatternInjectedCall(PatternInjectedCall object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Query</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Query</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseQuery(Query object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Query</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Query</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseQuery(Query object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Basic Query</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Basic Query</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseBasicQuery(BasicQuery object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Basic Query</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Basic Query</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseBasicQuery(BasicQuery object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>String Query</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>String Query</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseStringQuery(StringQuery object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>String Query</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String Query</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseStringQuery(StringQuery object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Custom Query</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Custom Query</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseCustomQuery(CustomQuery object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Custom Query</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Custom Query</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseCustomQuery(CustomQuery object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>String2 Pattern List</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>String2 Pattern List</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseString2PatternList(Map.Entry<String, EList<PatternElement>> object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>String2 Pattern
+   * List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>String2 Pattern
+   *         List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseString2PatternList(Map.Entry<String, EList<PatternElement>> object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Execution Reporter Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Execution Reporter Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 casePatternExecutionReporterType(PatternExecutionReporterType object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Pattern Execution
+   * Reporter</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Pattern Execution
+   *         Reporter</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypePatternExecutionReporter(TypePatternExecutionReporter object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseModelElement(ModelElement object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseModelElement(ModelElement object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public T1 caseViewpoint(Viewpoint object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Viewpoint</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseViewpoint(Viewpoint object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Type</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public <T extends Object> T1 caseType(Type<T> object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeElement(TypeElement object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>Type Class</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>Type Class</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-     * @generated
-     */
-    public <T extends Object> T1 caseTypeClass(TypeClass<T> object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public <T extends Object> T1 caseType(Type<T> object) {
+    return null;
+  }
 
-    /**
-     * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
-     * <!-- begin-user-doc -->
-     * This implementation returns null;
-     * returning a non-null result will terminate the switch, but this is the
-     * last
-     * case anyway.
-     * <!-- end-user-doc -->
-     * @param object the target of the switch.
-     * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
-     * @see #doSwitch(org.eclipse.emf.ecore.EObject)
-     * @generated
-     */
-    public T1 defaultCase(EObject object) {
-        return null;
-    }
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Abstract Class</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Abstract Class</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public <T extends Object> T1 caseTypeAbstractClass(TypeAbstractClass<T> object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch, but this is the
+   * last
+   * case anyway.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject)
+   * @generated
+   */
+  public T1 defaultCase(EObject object) {
+    return null;
+  }
 
 } // PatternSwitch

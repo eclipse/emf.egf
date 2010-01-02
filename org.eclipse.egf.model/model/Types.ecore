@@ -3,6 +3,23 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="types"
     nsURI="http://www.eclipse.org/egf/1.0.0/types" nsPrefix="types">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeElement" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iD" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+        changeable="false" volatile="true" transient="true" unsettable="true" derived="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//TypeElement">
+    <eTypeParameters name="T">
+      <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+    </eTypeParameters>
+    <eOperations name="getType" lowerBound="1">
+      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
+        <eTypeArguments eTypeParameter="#//Type/T"/>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getValue" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeObject" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="LoadableValue ValidValue"/>
@@ -10,11 +27,11 @@
     <eTypeParameters name="T">
       <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
     </eTypeParameters>
-    <eGenericSuperTypes eClassifier="ecore:EClass Fcore.ecore#//Type">
+    <eGenericSuperTypes eClassifier="#//Type">
       <eTypeArguments eTypeParameter="#//TypeObject/T"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeClass" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeAbstractClass" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="LoadableValue ValidValue"/>
     </eAnnotations>
@@ -22,8 +39,13 @@
       <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
     </eTypeParameters>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass Fcore.ecore#//Type">
-      <eTypeArguments eTypeParameter="#//TypeClass/T"/>
+    <eGenericSuperTypes eClassifier="#//Type">
+      <eTypeArguments eTypeParameter="#//TypeAbstractClass/T"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeClass" abstract="true">
+    <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
+      <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeCollection">
@@ -35,9 +57,12 @@
         <eTypeArguments eClassifier="#//Collection"/>
       </eGenericType>
     </eOperations>
-    <eGenericSuperTypes eClassifier="#//TypeClass">
+    <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
       <eTypeArguments eClassifier="#//Collection"/>
     </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Collection" instanceClassName="java.util.Collection">
+    <eTypeParameters name="E"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeList">
     <eOperations name="getType" lowerBound="1">
@@ -48,9 +73,12 @@
         <eTypeArguments eClassifier="#//List"/>
       </eGenericType>
     </eOperations>
-    <eGenericSuperTypes eClassifier="#//TypeClass">
+    <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
       <eTypeArguments eClassifier="#//List"/>
     </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="List" instanceClassName="java.util.List">
+    <eTypeParameters name="E"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeSet">
     <eOperations name="getType" lowerBound="1">
@@ -61,10 +89,28 @@
         <eTypeArguments eClassifier="#//Set"/>
       </eGenericType>
     </eOperations>
-    <eGenericSuperTypes eClassifier="#//TypeClass">
+    <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
       <eTypeArguments eClassifier="#//Set"/>
     </eGenericSuperTypes>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="Set" instanceClassName="java.util.Set">
+    <eTypeParameters name="E"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypeGeneratorAdapterFactory">
+    <eOperations name="getType" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.class;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
+        <eTypeArguments eClassifier="#//EGeneratorAdapterFactory"/>
+      </eGenericType>
+    </eOperations>
+    <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
+      <eTypeArguments eClassifier="#//EGeneratorAdapterFactory"/>
+    </eGenericSuperTypes>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="EGeneratorAdapterFactory" instanceClassName="org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory"
+      serializable="false"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypeMap">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -74,11 +120,11 @@
         <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EMap"/>
       </eGenericType>
     </eOperations>
-    <eGenericSuperTypes eClassifier="#//TypeClass">
+    <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EMap"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BigDecimalType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeBigDecimal">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.math.BigDecimal.class;"/>
@@ -92,7 +138,7 @@
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBigDecimal"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BigIntegerType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeBigInteger">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.math.BigInteger.class;"/>
@@ -106,7 +152,7 @@
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBigInteger"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BooleanType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeBoolean">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Boolean.class;"/>
@@ -120,7 +166,7 @@
       <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ByteType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeByte">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Byte.class;"/>
@@ -134,7 +180,7 @@
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EByteObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="CharacterType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeCharacter">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Character.class;"/>
@@ -148,7 +194,7 @@
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ECharacterObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DateType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDate">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.util.Date.class;"/>
@@ -162,7 +208,7 @@
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DoubleType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDouble">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Double.class;"/>
@@ -176,7 +222,7 @@
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDoubleObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="FloatType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeFloat">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Float.class;"/>
@@ -190,7 +236,7 @@
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EFloatObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="IntegerType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeInteger">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Integer.class;"/>
@@ -204,7 +250,7 @@
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LongType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeLong">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Long.class;"/>
@@ -218,7 +264,7 @@
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELongObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ShortType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeShort">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.Short.class;"/>
@@ -232,7 +278,7 @@
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EShortObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="StringType">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeString">
     <eOperations name="getType" lowerBound="1">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
         <details key="body" value="return java.lang.String.class;"/>
@@ -245,29 +291,5 @@
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GeneratorAdapterFactoryType">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="#//EGeneratorAdapterFactory"/>
-      </eGenericType>
-    </eOperations>
-    <eGenericSuperTypes eClassifier="#//TypeClass">
-      <eTypeArguments eClassifier="#//EGeneratorAdapterFactory"/>
-    </eGenericSuperTypes>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="EGeneratorAdapterFactory" instanceClassName="org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory"
-      serializable="false"/>
-  <eClassifiers xsi:type="ecore:EDataType" name="Collection" instanceClassName="java.util.Collection">
-    <eTypeParameters name="E"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="List" instanceClassName="java.util.List">
-    <eTypeParameters name="E"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="Set" instanceClassName="java.util.Set">
-    <eTypeParameters name="E"/>
   </eClassifiers>
 </ecore:EPackage>

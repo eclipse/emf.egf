@@ -18,7 +18,7 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ContractMode;
-import org.eclipse.egf.model.types.TypeClass;
+import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.IActivityProductionContext;
 import org.eclipse.egf.producer.internal.context.ActivityProductionContext;
@@ -76,11 +76,11 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
         continue;
       }
       // Class
-      if (contract.getType() instanceof TypeClass<?>) {
+      if (contract.getType() instanceof TypeAbstractClass<?>) {
         try {
           Object object = null;
           // Should we instantiate value
-          String fqcn = ((TypeClass<?>) contract.getType()).getValue();
+          String fqcn = ((TypeAbstractClass<?>) contract.getType()).getValue();
           if (fqcn != null && fqcn.trim().length() != 0) {
             object = BundleHelper.instantiate(fqcn.trim(), getBundle());
             if (object == null) {

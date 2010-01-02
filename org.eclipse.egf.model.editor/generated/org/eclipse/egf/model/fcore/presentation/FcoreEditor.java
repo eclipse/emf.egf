@@ -44,6 +44,7 @@ import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
+import org.eclipse.egf.model.edit.ui.provider.FcoreContentProvider;
 import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
@@ -1139,7 +1140,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   public IContentOutlinePage getContentOutlinePage() {
     if (contentOutlinePage == null) {
@@ -1154,7 +1155,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
 
           // Set up the tree viewer.
           //
-          contentOutlineViewer.setContentProvider(new AdapterFactoryContentProvider(adapterFactory));
+          contentOutlineViewer.setContentProvider(new FcoreContentProvider(adapterFactory));
           contentOutlineViewer.setLabelProvider(new AdapterFactoryLabelProvider.FontAndColorProvider(adapterFactory, contentOutlineViewer));
           contentOutlineViewer.setInput(editingDomain.getResourceSet());
 
@@ -1203,7 +1204,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   public IPropertySheetPage getPropertySheetPage() {
     if (propertySheetPage == null) {
@@ -1220,7 +1221,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
           getActionBarContributor().shareGlobalActions(this, actionBars);
         }
       };
-      propertySheetPage.setPropertySourceProvider(new AdapterFactoryContentProvider(adapterFactory));
+      propertySheetPage.setPropertySourceProvider(new FcoreContentProvider(adapterFactory));
     }
 
     return propertySheetPage;

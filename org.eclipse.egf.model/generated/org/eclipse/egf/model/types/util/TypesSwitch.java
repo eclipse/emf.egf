@@ -14,27 +14,29 @@ package org.eclipse.egf.model.types.util;
 
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.egf.model.fcore.Type;
-import org.eclipse.egf.model.types.BigDecimalType;
-import org.eclipse.egf.model.types.BigIntegerType;
-import org.eclipse.egf.model.types.BooleanType;
-import org.eclipse.egf.model.types.ByteType;
-import org.eclipse.egf.model.types.CharacterType;
-import org.eclipse.egf.model.types.DateType;
-import org.eclipse.egf.model.types.DoubleType;
-import org.eclipse.egf.model.types.FloatType;
-import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
-import org.eclipse.egf.model.types.IntegerType;
-import org.eclipse.egf.model.types.LongType;
-import org.eclipse.egf.model.types.ShortType;
-import org.eclipse.egf.model.types.StringType;
+import org.eclipse.egf.model.types.*;
+import org.eclipse.egf.model.types.Type;
+import org.eclipse.egf.model.types.TypeAbstractClass;
+import org.eclipse.egf.model.types.TypeBigDecimal;
+import org.eclipse.egf.model.types.TypeBigInteger;
+import org.eclipse.egf.model.types.TypeBoolean;
+import org.eclipse.egf.model.types.TypeByte;
+import org.eclipse.egf.model.types.TypeCharacter;
 import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypeCollection;
+import org.eclipse.egf.model.types.TypeDate;
+import org.eclipse.egf.model.types.TypeDouble;
+import org.eclipse.egf.model.types.TypeElement;
+import org.eclipse.egf.model.types.TypeFloat;
+import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
+import org.eclipse.egf.model.types.TypeInteger;
 import org.eclipse.egf.model.types.TypeList;
+import org.eclipse.egf.model.types.TypeLong;
 import org.eclipse.egf.model.types.TypeMap;
 import org.eclipse.egf.model.types.TypeObject;
 import org.eclipse.egf.model.types.TypeSet;
+import org.eclipse.egf.model.types.TypeShort;
+import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -42,14 +44,13 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke
- * the <code>caseXXX</code> method for each class of the model,
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the
+ * <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object
  * and proceeding up the inheritance hierarchy
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.types.TypesPackage
  * @generated
  */
@@ -58,7 +59,6 @@ public class TypesSwitch<T1> {
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static TypesPackage modelPackage;
@@ -67,7 +67,6 @@ public class TypesSwitch<T1> {
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypesSwitch() {
@@ -77,11 +76,9 @@ public class TypesSwitch<T1> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
@@ -90,11 +87,9 @@ public class TypesSwitch<T1> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
@@ -108,34 +103,61 @@ public class TypesSwitch<T1> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
   protected T1 doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
+    case TypesPackage.TYPE_ELEMENT: {
+      TypeElement typeElement = (TypeElement) theEObject;
+      T1 result = caseTypeElement(typeElement);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case TypesPackage.TYPE: {
+      Type<?> type = (Type<?>) theEObject;
+      T1 result = caseType(type);
+      if (result == null)
+        result = caseTypeElement(type);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
     case TypesPackage.TYPE_OBJECT: {
       TypeObject<?> typeObject = (TypeObject<?>) theEObject;
       T1 result = caseTypeObject(typeObject);
       if (result == null)
         result = caseType(typeObject);
       if (result == null)
-        result = caseModelElement(typeObject);
+        result = caseTypeElement(typeObject);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case TypesPackage.TYPE_ABSTRACT_CLASS: {
+      TypeAbstractClass<?> typeAbstractClass = (TypeAbstractClass<?>) theEObject;
+      T1 result = caseTypeAbstractClass(typeAbstractClass);
+      if (result == null)
+        result = caseType(typeAbstractClass);
+      if (result == null)
+        result = caseTypeElement(typeAbstractClass);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
     case TypesPackage.TYPE_CLASS: {
-      TypeClass<?> typeClass = (TypeClass<?>) theEObject;
+      TypeClass typeClass = (TypeClass) theEObject;
       T1 result = caseTypeClass(typeClass);
+      if (result == null)
+        result = caseTypeAbstractClass(typeClass);
       if (result == null)
         result = caseType(typeClass);
       if (result == null)
-        result = caseModelElement(typeClass);
+        result = caseTypeElement(typeClass);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -144,11 +166,11 @@ public class TypesSwitch<T1> {
       TypeCollection typeCollection = (TypeCollection) theEObject;
       T1 result = caseTypeCollection(typeCollection);
       if (result == null)
-        result = caseTypeClass(typeCollection);
+        result = caseTypeAbstractClass(typeCollection);
       if (result == null)
         result = caseType(typeCollection);
       if (result == null)
-        result = caseModelElement(typeCollection);
+        result = caseTypeElement(typeCollection);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -157,11 +179,11 @@ public class TypesSwitch<T1> {
       TypeList typeList = (TypeList) theEObject;
       T1 result = caseTypeList(typeList);
       if (result == null)
-        result = caseTypeClass(typeList);
+        result = caseTypeAbstractClass(typeList);
       if (result == null)
         result = caseType(typeList);
       if (result == null)
-        result = caseModelElement(typeList);
+        result = caseTypeElement(typeList);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -170,11 +192,24 @@ public class TypesSwitch<T1> {
       TypeSet typeSet = (TypeSet) theEObject;
       T1 result = caseTypeSet(typeSet);
       if (result == null)
-        result = caseTypeClass(typeSet);
+        result = caseTypeAbstractClass(typeSet);
       if (result == null)
         result = caseType(typeSet);
       if (result == null)
-        result = caseModelElement(typeSet);
+        result = caseTypeElement(typeSet);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case TypesPackage.TYPE_GENERATOR_ADAPTER_FACTORY: {
+      TypeGeneratorAdapterFactory typeGeneratorAdapterFactory = (TypeGeneratorAdapterFactory) theEObject;
+      T1 result = caseTypeGeneratorAdapterFactory(typeGeneratorAdapterFactory);
+      if (result == null)
+        result = caseTypeAbstractClass(typeGeneratorAdapterFactory);
+      if (result == null)
+        result = caseType(typeGeneratorAdapterFactory);
+      if (result == null)
+        result = caseTypeElement(typeGeneratorAdapterFactory);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -183,180 +218,167 @@ public class TypesSwitch<T1> {
       TypeMap typeMap = (TypeMap) theEObject;
       T1 result = caseTypeMap(typeMap);
       if (result == null)
-        result = caseTypeClass(typeMap);
+        result = caseTypeAbstractClass(typeMap);
       if (result == null)
         result = caseType(typeMap);
       if (result == null)
-        result = caseModelElement(typeMap);
+        result = caseTypeElement(typeMap);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
-    case TypesPackage.BIG_DECIMAL_TYPE: {
-      BigDecimalType bigDecimalType = (BigDecimalType) theEObject;
-      T1 result = caseBigDecimalType(bigDecimalType);
+    case TypesPackage.TYPE_BIG_DECIMAL: {
+      TypeBigDecimal typeBigDecimal = (TypeBigDecimal) theEObject;
+      T1 result = caseTypeBigDecimal(typeBigDecimal);
       if (result == null)
-        result = caseTypeObject(bigDecimalType);
+        result = caseTypeObject(typeBigDecimal);
       if (result == null)
-        result = caseType(bigDecimalType);
+        result = caseType(typeBigDecimal);
       if (result == null)
-        result = caseModelElement(bigDecimalType);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.BIG_INTEGER_TYPE: {
-      BigIntegerType bigIntegerType = (BigIntegerType) theEObject;
-      T1 result = caseBigIntegerType(bigIntegerType);
-      if (result == null)
-        result = caseTypeObject(bigIntegerType);
-      if (result == null)
-        result = caseType(bigIntegerType);
-      if (result == null)
-        result = caseModelElement(bigIntegerType);
+        result = caseTypeElement(typeBigDecimal);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
-    case TypesPackage.BOOLEAN_TYPE: {
-      BooleanType booleanType = (BooleanType) theEObject;
-      T1 result = caseBooleanType(booleanType);
+    case TypesPackage.TYPE_BIG_INTEGER: {
+      TypeBigInteger typeBigInteger = (TypeBigInteger) theEObject;
+      T1 result = caseTypeBigInteger(typeBigInteger);
       if (result == null)
-        result = caseTypeObject(booleanType);
+        result = caseTypeObject(typeBigInteger);
       if (result == null)
-        result = caseType(booleanType);
+        result = caseType(typeBigInteger);
       if (result == null)
-        result = caseModelElement(booleanType);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.BYTE_TYPE: {
-      ByteType byteType = (ByteType) theEObject;
-      T1 result = caseByteType(byteType);
-      if (result == null)
-        result = caseTypeObject(byteType);
-      if (result == null)
-        result = caseType(byteType);
-      if (result == null)
-        result = caseModelElement(byteType);
+        result = caseTypeElement(typeBigInteger);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
-    case TypesPackage.CHARACTER_TYPE: {
-      CharacterType characterType = (CharacterType) theEObject;
-      T1 result = caseCharacterType(characterType);
+    case TypesPackage.TYPE_BOOLEAN: {
+      TypeBoolean typeBoolean = (TypeBoolean) theEObject;
+      T1 result = caseTypeBoolean(typeBoolean);
       if (result == null)
-        result = caseTypeObject(characterType);
+        result = caseTypeObject(typeBoolean);
       if (result == null)
-        result = caseType(characterType);
+        result = caseType(typeBoolean);
       if (result == null)
-        result = caseModelElement(characterType);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.DATE_TYPE: {
-      DateType dateType = (DateType) theEObject;
-      T1 result = caseDateType(dateType);
-      if (result == null)
-        result = caseTypeObject(dateType);
-      if (result == null)
-        result = caseType(dateType);
-      if (result == null)
-        result = caseModelElement(dateType);
+        result = caseTypeElement(typeBoolean);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
-    case TypesPackage.DOUBLE_TYPE: {
-      DoubleType doubleType = (DoubleType) theEObject;
-      T1 result = caseDoubleType(doubleType);
+    case TypesPackage.TYPE_BYTE: {
+      TypeByte typeByte = (TypeByte) theEObject;
+      T1 result = caseTypeByte(typeByte);
       if (result == null)
-        result = caseTypeObject(doubleType);
+        result = caseTypeObject(typeByte);
       if (result == null)
-        result = caseType(doubleType);
+        result = caseType(typeByte);
       if (result == null)
-        result = caseModelElement(doubleType);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.FLOAT_TYPE: {
-      FloatType floatType = (FloatType) theEObject;
-      T1 result = caseFloatType(floatType);
-      if (result == null)
-        result = caseTypeObject(floatType);
-      if (result == null)
-        result = caseType(floatType);
-      if (result == null)
-        result = caseModelElement(floatType);
+        result = caseTypeElement(typeByte);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
-    case TypesPackage.INTEGER_TYPE: {
-      IntegerType integerType = (IntegerType) theEObject;
-      T1 result = caseIntegerType(integerType);
+    case TypesPackage.TYPE_CHARACTER: {
+      TypeCharacter typeCharacter = (TypeCharacter) theEObject;
+      T1 result = caseTypeCharacter(typeCharacter);
       if (result == null)
-        result = caseTypeObject(integerType);
+        result = caseTypeObject(typeCharacter);
       if (result == null)
-        result = caseType(integerType);
+        result = caseType(typeCharacter);
       if (result == null)
-        result = caseModelElement(integerType);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.LONG_TYPE: {
-      LongType longType = (LongType) theEObject;
-      T1 result = caseLongType(longType);
-      if (result == null)
-        result = caseTypeObject(longType);
-      if (result == null)
-        result = caseType(longType);
-      if (result == null)
-        result = caseModelElement(longType);
+        result = caseTypeElement(typeCharacter);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
-    case TypesPackage.SHORT_TYPE: {
-      ShortType shortType = (ShortType) theEObject;
-      T1 result = caseShortType(shortType);
+    case TypesPackage.TYPE_DATE: {
+      TypeDate typeDate = (TypeDate) theEObject;
+      T1 result = caseTypeDate(typeDate);
       if (result == null)
-        result = caseTypeObject(shortType);
+        result = caseTypeObject(typeDate);
       if (result == null)
-        result = caseType(shortType);
+        result = caseType(typeDate);
       if (result == null)
-        result = caseModelElement(shortType);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.STRING_TYPE: {
-      StringType stringType = (StringType) theEObject;
-      T1 result = caseStringType(stringType);
-      if (result == null)
-        result = caseTypeObject(stringType);
-      if (result == null)
-        result = caseType(stringType);
-      if (result == null)
-        result = caseModelElement(stringType);
+        result = caseTypeElement(typeDate);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
     }
-    case TypesPackage.GENERATOR_ADAPTER_FACTORY_TYPE: {
-      GeneratorAdapterFactoryType generatorAdapterFactoryType = (GeneratorAdapterFactoryType) theEObject;
-      T1 result = caseGeneratorAdapterFactoryType(generatorAdapterFactoryType);
+    case TypesPackage.TYPE_DOUBLE: {
+      TypeDouble typeDouble = (TypeDouble) theEObject;
+      T1 result = caseTypeDouble(typeDouble);
       if (result == null)
-        result = caseTypeClass(generatorAdapterFactoryType);
+        result = caseTypeObject(typeDouble);
       if (result == null)
-        result = caseType(generatorAdapterFactoryType);
+        result = caseType(typeDouble);
       if (result == null)
-        result = caseModelElement(generatorAdapterFactoryType);
+        result = caseTypeElement(typeDouble);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case TypesPackage.TYPE_FLOAT: {
+      TypeFloat typeFloat = (TypeFloat) theEObject;
+      T1 result = caseTypeFloat(typeFloat);
+      if (result == null)
+        result = caseTypeObject(typeFloat);
+      if (result == null)
+        result = caseType(typeFloat);
+      if (result == null)
+        result = caseTypeElement(typeFloat);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case TypesPackage.TYPE_INTEGER: {
+      TypeInteger typeInteger = (TypeInteger) theEObject;
+      T1 result = caseTypeInteger(typeInteger);
+      if (result == null)
+        result = caseTypeObject(typeInteger);
+      if (result == null)
+        result = caseType(typeInteger);
+      if (result == null)
+        result = caseTypeElement(typeInteger);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case TypesPackage.TYPE_LONG: {
+      TypeLong typeLong = (TypeLong) theEObject;
+      T1 result = caseTypeLong(typeLong);
+      if (result == null)
+        result = caseTypeObject(typeLong);
+      if (result == null)
+        result = caseType(typeLong);
+      if (result == null)
+        result = caseTypeElement(typeLong);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case TypesPackage.TYPE_SHORT: {
+      TypeShort typeShort = (TypeShort) theEObject;
+      T1 result = caseTypeShort(typeShort);
+      if (result == null)
+        result = caseTypeObject(typeShort);
+      if (result == null)
+        result = caseType(typeShort);
+      if (result == null)
+        result = caseTypeElement(typeShort);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
+    case TypesPackage.TYPE_STRING: {
+      TypeString typeString = (TypeString) theEObject;
+      T1 result = caseTypeString(typeString);
+      if (result == null)
+        result = caseTypeObject(typeString);
+      if (result == null)
+        result = caseType(typeString);
+      if (result == null)
+        result = caseTypeElement(typeString);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -367,242 +389,17 @@ public class TypesSwitch<T1> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Big Decimal Type</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type Element</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Big Decimal Type</em>'.
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Element</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T1 caseBigDecimalType(BigDecimalType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Big Integer Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Big Integer Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseBigIntegerType(BigIntegerType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Boolean Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Boolean Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseBooleanType(BooleanType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Byte Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Byte Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseByteType(ByteType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Character Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Character Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseCharacterType(CharacterType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Date Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Date Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseDateType(DateType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Double Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Double Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseDoubleType(DoubleType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Float Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Float Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseFloatType(FloatType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>String Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>String Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseStringType(StringType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Integer Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Integer Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseIntegerType(IntegerType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Long Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Long Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseLongType(LongType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Short Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Short Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseShortType(ShortType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Generator Adapter Factory
-   * Type</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Generator Adapter Factory
-   *         Type</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseGeneratorAdapterFactoryType(GeneratorAdapterFactoryType object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T1 caseModelElement(ModelElement object) {
+  public T1 caseTypeElement(TypeElement object) {
     return null;
   }
 
@@ -612,9 +409,7 @@ public class TypesSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -629,9 +424,7 @@ public class TypesSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type Object</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -641,19 +434,32 @@ public class TypesSwitch<T1> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Abstract Class</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Abstract Class</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public <T extends Object> T1 caseTypeAbstractClass(TypeAbstractClass<T> object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Type Class</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type Class</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public <T extends Object> T1 caseTypeClass(TypeClass<T> object) {
+  public T1 caseTypeClass(TypeClass object) {
     return null;
   }
 
@@ -663,9 +469,7 @@ public class TypesSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type Collection</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -680,9 +484,7 @@ public class TypesSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type List</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -697,9 +499,7 @@ public class TypesSwitch<T1> {
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type Set</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -709,14 +509,27 @@ public class TypesSwitch<T1> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Generator Adapter Factory</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Generator Adapter Factory</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeGeneratorAdapterFactory(TypeGeneratorAdapterFactory object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Type Map</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>Type Map</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
@@ -726,15 +539,192 @@ public class TypesSwitch<T1> {
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Big Decimal</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Big Decimal</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeBigDecimal(TypeBigDecimal object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Big Integer</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Big Integer</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeBigInteger(TypeBigInteger object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Boolean</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Boolean</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeBoolean(TypeBoolean object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Byte</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Byte</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeByte(TypeByte object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Character</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Character</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeCharacter(TypeCharacter object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Date</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Date</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeDate(TypeDate object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Double</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Double</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeDouble(TypeDouble object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Float</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Float</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeFloat(TypeFloat object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Integer</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Integer</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeInteger(TypeInteger object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Long</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Long</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeLong(TypeLong object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type Short</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type Short</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeShort(TypeShort object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Type String</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Type String</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T1 caseTypeString(TypeString object) {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
-   * returning a non-null result will terminate the switch, but this is the last
-   * case anyway.
+   * returning a non-null result will terminate the switch, but this is the last case anyway.
    * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
+   * @param object the target of the switch.
    * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated

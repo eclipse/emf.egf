@@ -21,10 +21,10 @@ import java.util.List;
  *
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeList()
- * @model superTypes="org.eclipse.egf.model.types.TypeClass<org.eclipse.egf.model.types.List>"
+ * @model superTypes="org.eclipse.egf.model.types.TypeAbstractClass<org.eclipse.egf.model.types.List>"
  * @generated
  */
-public interface TypeList extends TypeClass<List> {
+public interface TypeList extends TypeAbstractClass<List> {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

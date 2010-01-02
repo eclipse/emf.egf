@@ -10,13 +10,12 @@
     codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
     booleanFlagsField="eFlags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" optimizedHasChildren="true" tableProviders="true" colorProviders="true"
-    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore">
+    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
   <foreignModel>Types.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Types" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
-      generateExampleClass="false" multipleEditorPages="false" childCreationExtenders="true"
+      generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true"
       contentTypeIdentifier="" ecorePackage="Types.ecore#/">
-    <genDataTypes ecoreDataType="Types.ecore#//EGeneratorAdapterFactory"/>
     <genDataTypes ecoreDataType="Types.ecore#//Collection">
       <genTypeParameters ecoreTypeParameter="Types.ecore#//Collection/E"/>
     </genDataTypes>
@@ -26,13 +25,26 @@
     <genDataTypes ecoreDataType="Types.ecore#//Set">
       <genTypeParameters ecoreTypeParameter="Types.ecore#//Set/E"/>
     </genDataTypes>
+    <genDataTypes ecoreDataType="Types.ecore#//EGeneratorAdapterFactory"/>
+    <genClasses image="false" ecoreClass="Types.ecore#//TypeElement">
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Identifier"
+          ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/iD"/>
+      <genFeatures createChild="false" propertyCategory="Identity" ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/name"/>
+      <genFeatures createChild="false" propertyCategory="Identity" ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/description"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Types.ecore#//Type">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//Type/T"/>
+      <genOperations ecoreOperation="Types.ecore#//Type/getType"/>
+      <genOperations ecoreOperation="Types.ecore#//Type/getValue"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="Types.ecore#//TypeObject">
       <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeObject/T"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Types.ecore#//TypeClass">
-      <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeClass/T"/>
-      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeClass/value"/>
+    <genClasses image="false" ecoreClass="Types.ecore#//TypeAbstractClass">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeAbstractClass/T"/>
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeAbstractClass/value"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="Types.ecore#//TypeClass"/>
     <genClasses ecoreClass="Types.ecore#//TypeCollection">
       <genOperations ecoreOperation="Types.ecore#//TypeCollection/getType"/>
     </genClasses>
@@ -42,60 +54,59 @@
     <genClasses ecoreClass="Types.ecore#//TypeSet">
       <genOperations ecoreOperation="Types.ecore#//TypeSet/getType"/>
     </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeGeneratorAdapterFactory">
+      <genOperations ecoreOperation="Types.ecore#//TypeGeneratorAdapterFactory/getType"/>
+    </genClasses>
     <genClasses ecoreClass="Types.ecore#//TypeMap">
       <genOperations ecoreOperation="Types.ecore#//TypeMap/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//BigDecimalType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Types.ecore#//BigDecimalType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//BigDecimalType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeBigDecimal">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeBigDecimal/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeBigDecimal/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//BigIntegerType">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Types.ecore#//BigIntegerType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//BigIntegerType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeBigInteger">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeBigInteger/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeBigInteger/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//BooleanType">
-      <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
-          ecoreFeature="ecore:EAttribute Types.ecore#//BooleanType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//BooleanType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeBoolean">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeBoolean/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeBoolean/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//ByteType">
-      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//ByteType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//ByteType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeByte">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeByte/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeByte/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//CharacterType">
-      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//CharacterType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//CharacterType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeCharacter">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeCharacter/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeCharacter/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//DateType">
-      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//DateType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//DateType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeDate">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeDate/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeDate/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//DoubleType">
-      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//DoubleType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//DoubleType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeDouble">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeDouble/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeDouble/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//FloatType">
-      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//FloatType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//FloatType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeFloat">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeFloat/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeFloat/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//IntegerType">
-      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//IntegerType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//IntegerType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeInteger">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeInteger/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeInteger/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//LongType">
-      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//LongType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//LongType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeLong">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeLong/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeLong/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//ShortType">
-      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//ShortType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//ShortType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeShort">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeShort/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeShort/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//StringType">
-      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//StringType/value"/>
-      <genOperations ecoreOperation="Types.ecore#//StringType/getType"/>
-    </genClasses>
-    <genClasses ecoreClass="Types.ecore#//GeneratorAdapterFactoryType">
-      <genOperations ecoreOperation="Types.ecore#//GeneratorAdapterFactoryType/getType"/>
+    <genClasses ecoreClass="Types.ecore#//TypeString">
+      <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeString/value"/>
+      <genOperations ecoreOperation="Types.ecore#//TypeString/getType"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

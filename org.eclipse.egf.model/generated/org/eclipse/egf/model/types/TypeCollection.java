@@ -21,10 +21,10 @@ import java.util.Collection;
  *
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeCollection()
- * @model superTypes="org.eclipse.egf.model.types.TypeClass<org.eclipse.egf.model.types.Collection>"
+ * @model superTypes="org.eclipse.egf.model.types.TypeAbstractClass<org.eclipse.egf.model.types.Collection>"
  * @generated
  */
-public interface TypeCollection extends TypeClass<Collection> {
+public interface TypeCollection extends TypeAbstractClass<Collection> {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

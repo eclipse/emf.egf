@@ -59,6 +59,15 @@ public interface TypesFactory extends EFactory {
   TypeSet createTypeSet();
 
   /**
+   * Returns a new object of class '<em>Type Generator Adapter Factory</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Type Generator Adapter Factory</em>'.
+   * @generated
+   */
+  TypeGeneratorAdapterFactory createTypeGeneratorAdapterFactory();
+
+  /**
    * Returns a new object of class '<em>Type Map</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -68,121 +77,112 @@ public interface TypesFactory extends EFactory {
   TypeMap createTypeMap();
 
   /**
-   * Returns a new object of class '<em>Big Decimal Type</em>'.
+   * Returns a new object of class '<em>Type Big Decimal</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Big Decimal Type</em>'.
+   * @return a new object of class '<em>Type Big Decimal</em>'.
    * @generated
    */
-  BigDecimalType createBigDecimalType();
+  TypeBigDecimal createTypeBigDecimal();
 
   /**
-   * Returns a new object of class '<em>Big Integer Type</em>'.
+   * Returns a new object of class '<em>Type Big Integer</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Big Integer Type</em>'.
+   * @return a new object of class '<em>Type Big Integer</em>'.
    * @generated
    */
-  BigIntegerType createBigIntegerType();
+  TypeBigInteger createTypeBigInteger();
 
   /**
-   * Returns a new object of class '<em>Boolean Type</em>'.
+   * Returns a new object of class '<em>Type Boolean</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Boolean Type</em>'.
+   * @return a new object of class '<em>Type Boolean</em>'.
    * @generated
    */
-  BooleanType createBooleanType();
+  TypeBoolean createTypeBoolean();
 
   /**
-   * Returns a new object of class '<em>Byte Type</em>'.
+   * Returns a new object of class '<em>Type Byte</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Byte Type</em>'.
+   * @return a new object of class '<em>Type Byte</em>'.
    * @generated
    */
-  ByteType createByteType();
+  TypeByte createTypeByte();
 
   /**
-   * Returns a new object of class '<em>Character Type</em>'.
+   * Returns a new object of class '<em>Type Character</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Character Type</em>'.
+   * @return a new object of class '<em>Type Character</em>'.
    * @generated
    */
-  CharacterType createCharacterType();
+  TypeCharacter createTypeCharacter();
 
   /**
-   * Returns a new object of class '<em>Date Type</em>'.
+   * Returns a new object of class '<em>Type Date</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Date Type</em>'.
+   * @return a new object of class '<em>Type Date</em>'.
    * @generated
    */
-  DateType createDateType();
+  TypeDate createTypeDate();
 
   /**
-   * Returns a new object of class '<em>Double Type</em>'.
+   * Returns a new object of class '<em>Type Double</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Double Type</em>'.
+   * @return a new object of class '<em>Type Double</em>'.
    * @generated
    */
-  DoubleType createDoubleType();
+  TypeDouble createTypeDouble();
 
   /**
-   * Returns a new object of class '<em>Float Type</em>'.
+   * Returns a new object of class '<em>Type Float</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Float Type</em>'.
+   * @return a new object of class '<em>Type Float</em>'.
    * @generated
    */
-  FloatType createFloatType();
+  TypeFloat createTypeFloat();
 
   /**
-   * Returns a new object of class '<em>String Type</em>'.
+   * Returns a new object of class '<em>Type Integer</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>String Type</em>'.
+   * @return a new object of class '<em>Type Integer</em>'.
    * @generated
    */
-  StringType createStringType();
+  TypeInteger createTypeInteger();
 
   /**
-   * Returns a new object of class '<em>Integer Type</em>'.
+   * Returns a new object of class '<em>Type Long</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Integer Type</em>'.
+   * @return a new object of class '<em>Type Long</em>'.
    * @generated
    */
-  IntegerType createIntegerType();
+  TypeLong createTypeLong();
 
   /**
-   * Returns a new object of class '<em>Long Type</em>'.
+   * Returns a new object of class '<em>Type Short</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Long Type</em>'.
+   * @return a new object of class '<em>Type Short</em>'.
    * @generated
    */
-  LongType createLongType();
+  TypeShort createTypeShort();
 
   /**
-   * Returns a new object of class '<em>Short Type</em>'.
+   * Returns a new object of class '<em>Type String</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Short Type</em>'.
+   * @return a new object of class '<em>Type String</em>'.
    * @generated
    */
-  ShortType createShortType();
-
-  /**
-   * Returns a new object of class '<em>Generator Adapter Factory Type</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Generator Adapter Factory Type</em>'.
-   * @generated
-   */
-  GeneratorAdapterFactoryType createGeneratorAdapterFactoryType();
+  TypeString createTypeString();
 
   /**
    * Returns the package supported by this factory.

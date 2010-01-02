@@ -29,7 +29,7 @@
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//TaskContract"/>
     <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -39,7 +39,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -48,13 +48,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="activityContractContainer"
         eType="#//TaskContractContainer" containment="true" resolveProxies="false"
         eOpposite="#//TaskContractContainer/activity"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TaskContract" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//TaskContract"/>
     <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -64,7 +64,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -76,7 +76,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="TaskContractContainer" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContractContainer">
     <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -86,7 +86,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Type">
+        <eGenericType eClassifier="ecore:EClass ../../org.eclipse.egf.model/model/Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>

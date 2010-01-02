@@ -564,7 +564,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocation()
    * @generated
    */
-  int INVOCATION = 13;
+  int INVOCATION = 12;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl <em>Invocation Context</em>}' class.
@@ -574,7 +574,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocationContext()
    * @generated
    */
-  int INVOCATION_CONTEXT = 14;
+  int INVOCATION_CONTEXT = 13;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.InvocationContextConnectorImpl <em>Invocation Context Connector</em>}' class.
@@ -584,7 +584,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocationContextConnector()
    * @generated
    */
-  int INVOCATION_CONTEXT_CONNECTOR = 15;
+  int INVOCATION_CONTEXT_CONNECTOR = 14;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.InvocationContextContainerImpl <em>Invocation Context Container</em>}' class.
@@ -594,17 +594,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getInvocationContextContainer()
    * @generated
    */
-  int INVOCATION_CONTEXT_CONTAINER = 16;
-
-  /**
-   * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.TypeImpl <em>Type</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.fcore.impl.TypeImpl
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getType()
-   * @generated
-   */
-  int TYPE = 12;
+  int INVOCATION_CONTEXT_CONTAINER = 15;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -884,42 +874,6 @@ public interface FcorePackage extends EPackage {
    * @ordered
    */
   int ORCHESTRATION_CONTEXT_CONTAINER_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE__ID = MODEL_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE__NAME = MODEL_ELEMENT__NAME;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
-
-  /**
-   * The number of structural features of the '<em>Type</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -1208,7 +1162,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getContractMode()
    * @generated
    */
-  int CONTRACT_MODE = 17;
+  int CONTRACT_MODE = 16;
 
   /**
    * The meta object id for the '<em>URI</em>' data type.
@@ -1218,7 +1172,7 @@ public interface FcorePackage extends EPackage {
    * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getURI()
    * @generated
    */
-  int URI = 18;
+  int URI = 17;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
@@ -1810,16 +1764,6 @@ public interface FcorePackage extends EPackage {
   EReference getInvocationContextContainer_InvocationContextConnectors();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.Type <em>Type</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Type</em>'.
-   * @see org.eclipse.egf.model.fcore.Type
-   * @generated
-   */
-  EClass getType();
-
-  /**
    * Returns the meta object for enum '{@link org.eclipse.egf.model.fcore.ContractMode <em>Contract Mode</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2333,16 +2277,6 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     EReference INVOCATION_CONTEXT_CONTAINER__INVOCATION_CONTEXT_CONNECTORS = eINSTANCE.getInvocationContextContainer_InvocationContextConnectors();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.egf.model.fcore.impl.TypeImpl <em>Type</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.fcore.impl.TypeImpl
-     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getType()
-     * @generated
-     */
-    EClass TYPE = eINSTANCE.getType();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.fcore.ContractMode <em>Contract Mode</em>}' enum.

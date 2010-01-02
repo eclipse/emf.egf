@@ -24,14 +24,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class TypeListImpl extends TypeClassImpl<List> implements TypeList {
+public class TypeListImpl extends TypeAbstractClassImpl<List> implements TypeList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypeListImpl() {
@@ -41,7 +40,6 @@ public class TypeListImpl extends TypeClassImpl<List> implements TypeList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -52,7 +50,6 @@ public class TypeListImpl extends TypeClassImpl<List> implements TypeList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Class<List> getType() {

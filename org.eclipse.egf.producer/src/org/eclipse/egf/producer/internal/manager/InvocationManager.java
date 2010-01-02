@@ -18,7 +18,7 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContext;
-import org.eclipse.egf.model.types.TypeClass;
+import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.IInvocationProductionContext;
 import org.eclipse.egf.producer.internal.context.InvocationProductionContext;
@@ -67,11 +67,11 @@ public abstract class InvocationManager extends ModelElementManager implements I
         continue;
       }
       // Class
-      if (invocationContext.getType() instanceof TypeClass<?>) {
+      if (invocationContext.getType() instanceof TypeAbstractClass<?>) {
         try {
           Object object = null;
           // Should we instantiate value
-          String fqcn = ((TypeClass<?>) invocationContext.getType()).getValue();
+          String fqcn = ((TypeAbstractClass<?>) invocationContext.getType()).getValue();
           if (fqcn != null && fqcn.trim().length() != 0) {
             object = BundleHelper.instantiate(fqcn.trim(), getBundle());
             if (object == null) {

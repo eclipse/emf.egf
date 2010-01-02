@@ -17,7 +17,7 @@ import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ActivityContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -32,12 +32,13 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ActivityContractImpl#isMandatory <em>Mandatory</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ActivityContractImpl#getMode <em>Mode</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ActivityContractImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ActivityContractImpl#isMandatory <em>Mandatory</em>}
+ * </li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ActivityContractImpl#getMode <em>Mode</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.ActivityContractImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class ActivityContractImpl extends ModelElementImpl implements ActivityContract {
@@ -45,6 +46,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * The default value of the '{@link #isMandatory() <em>Mandatory</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #isMandatory()
    * @generated
    * @ordered
@@ -55,6 +57,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * The flag representing the value of the '{@link #isMandatory() <em>Mandatory</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #isMandatory()
    * @generated
    * @ordered
@@ -65,6 +68,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getMode()
    * @generated
    * @ordered
@@ -72,9 +76,11 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   protected static final ContractMode MODE_EDEFAULT = ContractMode.IN;
 
   /**
-   * The offset of the flags representing the value of the '{@link #getMode() <em>Mode</em>}' attribute.
+   * The offset of the flags representing the value of the '{@link #getMode() <em>Mode</em>}'
+   * attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -84,6 +90,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * The flags representing the default value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -93,6 +100,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * The array of enumeration values for '{@link ContractMode Contract Mode}'
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -102,6 +110,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * The flags representing the value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getMode()
    * @generated
    * @ordered
@@ -112,6 +121,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getType()
    * @generated
    * @ordered
@@ -121,6 +131,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected ActivityContractImpl() {
@@ -130,6 +141,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -140,6 +152,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public boolean isMandatory() {
@@ -149,6 +162,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setMandatory(boolean newMandatory) {
@@ -164,6 +178,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractMode getMode() {
@@ -173,6 +188,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setMode(ContractMode newMode) {
@@ -187,6 +203,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Type<?> getType() {
@@ -196,6 +213,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetType(Type<?> newType, NotificationChain msgs) {
@@ -214,6 +232,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setType(Type<?> newType) {
@@ -233,6 +252,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Activity getActivity() {
@@ -244,6 +264,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ActivityContractContainer getActivityContractContainer() {
@@ -255,6 +276,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public <T extends ActivityContract> EList<ActivityContract> getActivityContracts() {
@@ -266,6 +288,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<ActivityContract> getActivityContracts(Type<?> type) {
@@ -277,6 +300,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<ActivityContract> getActivityContracts(ContractMode mode) {
@@ -288,6 +312,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode) {
@@ -299,6 +324,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -313,6 +339,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -331,6 +358,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -352,6 +380,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -373,6 +402,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -391,6 +421,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

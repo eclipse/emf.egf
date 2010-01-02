@@ -21,26 +21,30 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.EGFModelsPlugin;
+import org.eclipse.egf.model.types.*;
 import org.eclipse.egf.model.helper.ValidationHelper;
-import org.eclipse.egf.model.types.BigDecimalType;
-import org.eclipse.egf.model.types.BigIntegerType;
-import org.eclipse.egf.model.types.BooleanType;
-import org.eclipse.egf.model.types.ByteType;
-import org.eclipse.egf.model.types.CharacterType;
-import org.eclipse.egf.model.types.DateType;
-import org.eclipse.egf.model.types.DoubleType;
-import org.eclipse.egf.model.types.FloatType;
-import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
-import org.eclipse.egf.model.types.IntegerType;
-import org.eclipse.egf.model.types.LongType;
-import org.eclipse.egf.model.types.ShortType;
-import org.eclipse.egf.model.types.StringType;
+import org.eclipse.egf.model.types.Type;
+import org.eclipse.egf.model.types.TypeAbstractClass;
+import org.eclipse.egf.model.types.TypeBigDecimal;
+import org.eclipse.egf.model.types.TypeBigInteger;
+import org.eclipse.egf.model.types.TypeBoolean;
+import org.eclipse.egf.model.types.TypeByte;
+import org.eclipse.egf.model.types.TypeCharacter;
 import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypeCollection;
+import org.eclipse.egf.model.types.TypeDate;
+import org.eclipse.egf.model.types.TypeDouble;
+import org.eclipse.egf.model.types.TypeElement;
+import org.eclipse.egf.model.types.TypeFloat;
+import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
+import org.eclipse.egf.model.types.TypeInteger;
 import org.eclipse.egf.model.types.TypeList;
+import org.eclipse.egf.model.types.TypeLong;
 import org.eclipse.egf.model.types.TypeMap;
 import org.eclipse.egf.model.types.TypeObject;
 import org.eclipse.egf.model.types.TypeSet;
+import org.eclipse.egf.model.types.TypeShort;
+import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -61,7 +65,6 @@ import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.types.TypesPackage
  * @generated
  */
@@ -70,17 +73,14 @@ public class TypesValidator extends EObjectValidator {
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static final TypesValidator INSTANCE = new TypesValidator();
 
   /**
-   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.emf.common.util.Diagnostic#getSource()
    * @see org.eclipse.emf.common.util.Diagnostic#getCode()
    * @generated
@@ -88,21 +88,17 @@ public class TypesValidator extends EObjectValidator {
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.types"; //$NON-NLS-1$
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants in a derived class.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
@@ -111,7 +107,6 @@ public class TypesValidator extends EObjectValidator {
    * Model Validation Service interface for batch validation of EMF elements.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private final IBatchValidator batchValidator;
@@ -120,7 +115,6 @@ public class TypesValidator extends EObjectValidator {
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypesValidator() {
@@ -135,7 +129,6 @@ public class TypesValidator extends EObjectValidator {
    * Returns the package of this validator switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -146,7 +139,6 @@ public class TypesValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -157,10 +149,10 @@ public class TypesValidator extends EObjectValidator {
     // no point in validating if we can't report results
     if (diagnostics != null) {
       // if EMF Mode Validation Service already covered the sub-tree,
-      // which it does for efficient computation and error reporting,
-      // then don't repeat (the Diagnostician does the recursion
-      // externally). If there is no context map, then we can't
-      // help it
+      //    which it does for efficient computation and error reporting,
+      //    then don't repeat (the Diagnostician does the recursion
+      //    externally).  If there is no context map, then we can't
+      //    help it
       if (hasProcessed(eObject, context) == false) {
         status = batchValidator.validate(eObject, new NullProgressMonitor());
         processed(eObject, context, status);
@@ -174,58 +166,63 @@ public class TypesValidator extends EObjectValidator {
    * Calls <code>validateXXX</code> for the corresponding classifier of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
     switch (classifierID) {
+    case TypesPackage.TYPE_ELEMENT:
+      return validateTypeElement((TypeElement) value, diagnostics, context);
+    case TypesPackage.TYPE:
+      return validateType((Type<?>) value, diagnostics, context);
     case TypesPackage.TYPE_OBJECT:
       return validateTypeObject((TypeObject<?>) value, diagnostics, context);
+    case TypesPackage.TYPE_ABSTRACT_CLASS:
+      return validateTypeAbstractClass((TypeAbstractClass<?>) value, diagnostics, context);
     case TypesPackage.TYPE_CLASS:
-      return validateTypeClass((TypeClass<?>) value, diagnostics, context);
+      return validateTypeClass((TypeClass) value, diagnostics, context);
     case TypesPackage.TYPE_COLLECTION:
       return validateTypeCollection((TypeCollection) value, diagnostics, context);
     case TypesPackage.TYPE_LIST:
       return validateTypeList((TypeList) value, diagnostics, context);
     case TypesPackage.TYPE_SET:
       return validateTypeSet((TypeSet) value, diagnostics, context);
+    case TypesPackage.TYPE_GENERATOR_ADAPTER_FACTORY:
+      return validateTypeGeneratorAdapterFactory((TypeGeneratorAdapterFactory) value, diagnostics, context);
     case TypesPackage.TYPE_MAP:
       return validateTypeMap((TypeMap) value, diagnostics, context);
-    case TypesPackage.BIG_DECIMAL_TYPE:
-      return validateBigDecimalType((BigDecimalType) value, diagnostics, context);
-    case TypesPackage.BIG_INTEGER_TYPE:
-      return validateBigIntegerType((BigIntegerType) value, diagnostics, context);
-    case TypesPackage.BOOLEAN_TYPE:
-      return validateBooleanType((BooleanType) value, diagnostics, context);
-    case TypesPackage.BYTE_TYPE:
-      return validateByteType((ByteType) value, diagnostics, context);
-    case TypesPackage.CHARACTER_TYPE:
-      return validateCharacterType((CharacterType) value, diagnostics, context);
-    case TypesPackage.DATE_TYPE:
-      return validateDateType((DateType) value, diagnostics, context);
-    case TypesPackage.DOUBLE_TYPE:
-      return validateDoubleType((DoubleType) value, diagnostics, context);
-    case TypesPackage.FLOAT_TYPE:
-      return validateFloatType((FloatType) value, diagnostics, context);
-    case TypesPackage.INTEGER_TYPE:
-      return validateIntegerType((IntegerType) value, diagnostics, context);
-    case TypesPackage.LONG_TYPE:
-      return validateLongType((LongType) value, diagnostics, context);
-    case TypesPackage.SHORT_TYPE:
-      return validateShortType((ShortType) value, diagnostics, context);
-    case TypesPackage.STRING_TYPE:
-      return validateStringType((StringType) value, diagnostics, context);
-    case TypesPackage.GENERATOR_ADAPTER_FACTORY_TYPE:
-      return validateGeneratorAdapterFactoryType((GeneratorAdapterFactoryType) value, diagnostics, context);
-    case TypesPackage.EGENERATOR_ADAPTER_FACTORY:
-      return validateEGeneratorAdapterFactory((GeneratorAdapterFactory) value, diagnostics, context);
+    case TypesPackage.TYPE_BIG_DECIMAL:
+      return validateTypeBigDecimal((TypeBigDecimal) value, diagnostics, context);
+    case TypesPackage.TYPE_BIG_INTEGER:
+      return validateTypeBigInteger((TypeBigInteger) value, diagnostics, context);
+    case TypesPackage.TYPE_BOOLEAN:
+      return validateTypeBoolean((TypeBoolean) value, diagnostics, context);
+    case TypesPackage.TYPE_BYTE:
+      return validateTypeByte((TypeByte) value, diagnostics, context);
+    case TypesPackage.TYPE_CHARACTER:
+      return validateTypeCharacter((TypeCharacter) value, diagnostics, context);
+    case TypesPackage.TYPE_DATE:
+      return validateTypeDate((TypeDate) value, diagnostics, context);
+    case TypesPackage.TYPE_DOUBLE:
+      return validateTypeDouble((TypeDouble) value, diagnostics, context);
+    case TypesPackage.TYPE_FLOAT:
+      return validateTypeFloat((TypeFloat) value, diagnostics, context);
+    case TypesPackage.TYPE_INTEGER:
+      return validateTypeInteger((TypeInteger) value, diagnostics, context);
+    case TypesPackage.TYPE_LONG:
+      return validateTypeLong((TypeLong) value, diagnostics, context);
+    case TypesPackage.TYPE_SHORT:
+      return validateTypeShort((TypeShort) value, diagnostics, context);
+    case TypesPackage.TYPE_STRING:
+      return validateTypeString((TypeString) value, diagnostics, context);
     case TypesPackage.COLLECTION:
       return validateCollection((Collection<?>) value, diagnostics, context);
     case TypesPackage.LIST:
       return validateList((List<?>) value, diagnostics, context);
     case TypesPackage.SET:
       return validateSet((Set<?>) value, diagnostics, context);
+    case TypesPackage.EGENERATOR_ADAPTER_FACTORY:
+      return validateEGeneratorAdapterFactory((GeneratorAdapterFactory) value, diagnostics, context);
     default:
       return true;
     }
@@ -234,7 +231,24 @@ public class TypesValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
+   * @generated
+   */
+  public boolean validateTypeElement(TypeElement typeElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(typeElement, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateType(Type<?> type, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return validate_EveryDefaultConstraint(type, diagnostics, context);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public boolean validateTypeObject(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -307,10 +321,35 @@ public class TypesValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateTypeClass(TypeClass<?> typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeAbstractClass(TypeAbstractClass<?> typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeAbstractClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(typeAbstractClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(typeAbstractClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(typeAbstractClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(typeAbstractClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(typeAbstractClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(typeAbstractClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeAbstractClass_LoadableValue(typeAbstractClass, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeAbstractClass_ValidValue(typeAbstractClass, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateTypeClass(TypeClass typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
     boolean result = validate_EveryMultiplicityConforms(typeClass, diagnostics, context);
     if (result || diagnostics != null)
       result &= validate_EveryDataValueConforms(typeClass, diagnostics, context);
@@ -325,26 +364,26 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeClass_LoadableValue(typeClass, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableValue(typeClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeClass_ValidValue(typeClass, diagnostics, context);
+      result &= validateTypeAbstractClass_ValidValue(typeClass, diagnostics, context);
     return result;
   }
 
   /**
-   * Validates the LoadableValue constraint of '<em>Type Class</em>'.
+   * Validates the LoadableValue constraint of '<em>Type Abstract Class</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public boolean validateTypeClass_LoadableValue(TypeClass<?> typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeAbstractClass_LoadableValue(TypeAbstractClass<?> typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
     // Loadable Value
-    if (ValidationHelper.isLoadableClass(typeClass, typeClass.getValue(), context) == false) {
+    if (ValidationHelper.isLoadableClass(typeAbstractClass, typeAbstractClass.getValue(), context) == false) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Unable to load Value.", getObjectLabel(typeClass, context) }, //$NON-NLS-1$
-            new Object[] { typeClass }, context));
+            new Object[] { "Unable to load Value.", getObjectLabel(typeAbstractClass, context) }, //$NON-NLS-1$
+            new Object[] { typeAbstractClass }, context));
       }
       return false;
     }
@@ -352,19 +391,19 @@ public class TypesValidator extends EObjectValidator {
   }
 
   /**
-   * Validates the ValidValue constraint of '<em>Type Class</em>'.
+   * Validates the ValidValue constraint of '<em>Type Abstract Class</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public boolean validateTypeClass_ValidValue(TypeClass<?> typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeAbstractClass_ValidValue(TypeAbstractClass<?> typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
     // Valid Value
-    if (ValidationHelper.isValidClass(typeClass, typeClass.getType(), typeClass.getValue(), context) == false) {
+    if (ValidationHelper.isValidClass(typeAbstractClass, typeAbstractClass.getType(), typeAbstractClass.getValue(), context) == false) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Value Type mismatch.", getObjectLabel(typeClass, context) }, //$NON-NLS-1$
-            new Object[] { typeClass }, context));
+            new Object[] { "Value Type mismatch.", getObjectLabel(typeAbstractClass, context) }, //$NON-NLS-1$
+            new Object[] { typeAbstractClass }, context));
       }
       return false;
     }
@@ -374,7 +413,6 @@ public class TypesValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateTypeCollection(TypeCollection typeCollection, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -392,16 +430,15 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeCollection, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeClass_LoadableValue(typeCollection, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableValue(typeCollection, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeClass_ValidValue(typeCollection, diagnostics, context);
+      result &= validateTypeAbstractClass_ValidValue(typeCollection, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateTypeList(TypeList typeList, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -419,16 +456,15 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeList, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeClass_LoadableValue(typeList, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableValue(typeList, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeClass_ValidValue(typeList, diagnostics, context);
+      result &= validateTypeAbstractClass_ValidValue(typeList, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateTypeSet(TypeSet typeSet, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -446,16 +482,41 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeSet, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeClass_LoadableValue(typeSet, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableValue(typeSet, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeClass_ValidValue(typeSet, diagnostics, context);
+      result &= validateTypeAbstractClass_ValidValue(typeSet, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
+   * @generated
+   */
+  public boolean validateTypeGeneratorAdapterFactory(TypeGeneratorAdapterFactory typeGeneratorAdapterFactory, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeGeneratorAdapterFactory, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(typeGeneratorAdapterFactory, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(typeGeneratorAdapterFactory, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(typeGeneratorAdapterFactory, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(typeGeneratorAdapterFactory, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(typeGeneratorAdapterFactory, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(typeGeneratorAdapterFactory, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeAbstractClass_LoadableValue(typeGeneratorAdapterFactory, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeAbstractClass_ValidValue(typeGeneratorAdapterFactory, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public boolean validateTypeMap(TypeMap typeMap, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -473,367 +534,327 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeMap, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeClass_LoadableValue(typeMap, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableValue(typeMap, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeClass_ValidValue(typeMap, diagnostics, context);
+      result &= validateTypeAbstractClass_ValidValue(typeMap, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateBigDecimalType(BigDecimalType bigDecimalType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(bigDecimalType, diagnostics, context);
+  public boolean validateTypeBigDecimal(TypeBigDecimal typeBigDecimal, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeBigDecimal, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(bigDecimalType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeBigDecimal, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(bigDecimalType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeBigDecimal, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(bigDecimalType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeBigDecimal, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(bigDecimalType, diagnostics, context);
+      result &= validate_UniqueID(typeBigDecimal, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(bigDecimalType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeBigDecimal, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(bigDecimalType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeBigDecimal, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(bigDecimalType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeBigDecimal, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(bigDecimalType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeBigDecimal, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateBigIntegerType(BigIntegerType bigIntegerType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(bigIntegerType, diagnostics, context);
+  public boolean validateTypeBigInteger(TypeBigInteger typeBigInteger, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeBigInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(bigIntegerType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeBigInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(bigIntegerType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeBigInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(bigIntegerType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeBigInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(bigIntegerType, diagnostics, context);
+      result &= validate_UniqueID(typeBigInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(bigIntegerType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeBigInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(bigIntegerType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeBigInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(bigIntegerType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeBigInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(bigIntegerType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeBigInteger, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateBooleanType(BooleanType booleanType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(booleanType, diagnostics, context);
+  public boolean validateTypeBoolean(TypeBoolean typeBoolean, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeBoolean, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(booleanType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeBoolean, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(booleanType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeBoolean, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(booleanType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeBoolean, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(booleanType, diagnostics, context);
+      result &= validate_UniqueID(typeBoolean, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(booleanType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeBoolean, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(booleanType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeBoolean, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(booleanType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeBoolean, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(booleanType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeBoolean, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateByteType(ByteType byteType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(byteType, diagnostics, context);
+  public boolean validateTypeByte(TypeByte typeByte, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeByte, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(byteType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeByte, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(byteType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeByte, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(byteType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeByte, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(byteType, diagnostics, context);
+      result &= validate_UniqueID(typeByte, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(byteType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeByte, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(byteType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeByte, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(byteType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeByte, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(byteType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeByte, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateCharacterType(CharacterType characterType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(characterType, diagnostics, context);
+  public boolean validateTypeCharacter(TypeCharacter typeCharacter, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeCharacter, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(characterType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeCharacter, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(characterType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeCharacter, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(characterType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeCharacter, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(characterType, diagnostics, context);
+      result &= validate_UniqueID(typeCharacter, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(characterType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeCharacter, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(characterType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeCharacter, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(characterType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeCharacter, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(characterType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeCharacter, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateDateType(DateType dateType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(dateType, diagnostics, context);
+  public boolean validateTypeDate(TypeDate typeDate, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeDate, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(dateType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeDate, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(dateType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeDate, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(dateType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeDate, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(dateType, diagnostics, context);
+      result &= validate_UniqueID(typeDate, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(dateType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeDate, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(dateType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeDate, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(dateType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeDate, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(dateType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeDate, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateDoubleType(DoubleType doubleType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(doubleType, diagnostics, context);
+  public boolean validateTypeDouble(TypeDouble typeDouble, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeDouble, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(doubleType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeDouble, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(doubleType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeDouble, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(doubleType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeDouble, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(doubleType, diagnostics, context);
+      result &= validate_UniqueID(typeDouble, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(doubleType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeDouble, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(doubleType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeDouble, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(doubleType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeDouble, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(doubleType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeDouble, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateFloatType(FloatType floatType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(floatType, diagnostics, context);
+  public boolean validateTypeFloat(TypeFloat typeFloat, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeFloat, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(floatType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeFloat, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(floatType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeFloat, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(floatType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeFloat, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(floatType, diagnostics, context);
+      result &= validate_UniqueID(typeFloat, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(floatType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeFloat, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(floatType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeFloat, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(floatType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeFloat, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(floatType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeFloat, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateIntegerType(IntegerType integerType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(integerType, diagnostics, context);
+  public boolean validateTypeInteger(TypeInteger typeInteger, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(integerType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(integerType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(integerType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(integerType, diagnostics, context);
+      result &= validate_UniqueID(typeInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(integerType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(integerType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(integerType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(integerType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeInteger, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateLongType(LongType longType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(longType, diagnostics, context);
+  public boolean validateTypeLong(TypeLong typeLong, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeLong, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(longType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeLong, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(longType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeLong, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(longType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeLong, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(longType, diagnostics, context);
+      result &= validate_UniqueID(typeLong, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(longType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeLong, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(longType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeLong, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(longType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeLong, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(longType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeLong, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateShortType(ShortType shortType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(shortType, diagnostics, context);
+  public boolean validateTypeShort(TypeShort typeShort, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeShort, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(shortType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeShort, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(shortType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeShort, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(shortType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeShort, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(shortType, diagnostics, context);
+      result &= validate_UniqueID(typeShort, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(shortType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeShort, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(shortType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeShort, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(shortType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeShort, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(shortType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeShort, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public boolean validateStringType(StringType stringType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(stringType, diagnostics, context);
+  public boolean validateTypeString(TypeString typeString, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeString, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(stringType, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeString, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(stringType, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeString, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(stringType, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeString, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(stringType, diagnostics, context);
+      result &= validate_UniqueID(typeString, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(stringType, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeString, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(stringType, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeString, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(stringType, diagnostics, context);
+      result &= validateTypeObject_LoadableValue(typeString, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_ValidValue(stringType, diagnostics, context);
+      result &= validateTypeObject_ValidValue(typeString, diagnostics, context);
     return result;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public boolean validateGeneratorAdapterFactoryType(GeneratorAdapterFactoryType generatorAdapterFactoryType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(generatorAdapterFactoryType, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(generatorAdapterFactoryType, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(generatorAdapterFactoryType, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(generatorAdapterFactoryType, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(generatorAdapterFactoryType, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(generatorAdapterFactoryType, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(generatorAdapterFactoryType, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateTypeClass_LoadableValue(generatorAdapterFactoryType, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateTypeClass_ValidValue(generatorAdapterFactoryType, diagnostics, context);
-    return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateEGeneratorAdapterFactory(GeneratorAdapterFactory eGeneratorAdapterFactory, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -843,7 +864,6 @@ public class TypesValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateCollection(Collection<?> collection, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -853,7 +873,6 @@ public class TypesValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateList(List<?> list, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -863,7 +882,6 @@ public class TypesValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateSet(Set<?> set, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -871,11 +889,9 @@ public class TypesValidator extends EObjectValidator {
   }
 
   /**
-   * Returns the resource locator that will be used to fetch messages for this validator's
-   * diagnostics.
+   * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -887,12 +903,9 @@ public class TypesValidator extends EObjectValidator {
    * If we have a context map, record this object's <code>status</code> in it
    * so that we will know later that we have processed it and its sub-tree.
    * 
-   * @param eObject
-   *          an element that we have validated
-   * @param context
-   *          the context (may be <code>null</code>)
-   * @param status
-   *          the element's validation status
+   * @param eObject an element that we have validated
+   * @param context the context (may be <code>null</code>)
+   * @param status the element's validation status
    *          <!-- begin-user-doc -->
    *          <!-- end-user-doc -->
    * @generated
@@ -905,16 +918,14 @@ public class TypesValidator extends EObjectValidator {
 
   /**
    * Determines whether we have processed this <code>eObject</code> before,
-   * by automatic recursion of the EMF Model Validation Service. This is
+   * by automatic recursion of the EMF Model Validation Service.  This is
    * only possible if we do, indeed, have a context.
    * 
-   * @param eObject
-   *          an element to be validated (we hope not)
-   * @param context
-   *          the context (may be <code>null</code>)
+   * @param eObject an element to be validated (we hope not)
+   * @param context the context (may be <code>null</code>)
    * @return <code>true</code> if the context is not <code>null</code> and
-   *         the <code>eObject</code> or one of its containers has already been
-   *         validated; <code>false</code>, otherwise
+   *     the <code>eObject</code> or one of its containers has already been
+   *     validated;  <code>false</code>, otherwise
    *         <!-- begin-user-doc -->
    *         <!-- end-user-doc -->
    * @generated
@@ -938,10 +949,8 @@ public class TypesValidator extends EObjectValidator {
   /**
    * Converts a status result from the EMF validation service to diagnostics.
    * 
-   * @param status
-   *          the EMF validation service's status result
-   * @param diagnostics
-   *          a diagnostic chain to accumulate results on
+   * @param status the EMF validation service's status result
+   * @param diagnostics a diagnostic chain to accumulate results on
    *          <!-- begin-user-doc -->
    *          <!-- end-user-doc -->
    * @generated

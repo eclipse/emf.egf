@@ -29,10 +29,10 @@ import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
 import org.eclipse.egf.model.fcore.OrchestrationContextContainer;
-import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.Viewpoint;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.fcore.util.FcoreValidator;
+import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
@@ -50,12 +50,14 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass modelElementEClass = null;
@@ -63,6 +65,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass activityEClass = null;
@@ -70,6 +73,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass activityContractEClass = null;
@@ -77,6 +81,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass activityContractContainerEClass = null;
@@ -84,6 +89,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass factoryComponentEClass = null;
@@ -91,6 +97,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass factoryComponentContractEClass = null;
@@ -98,6 +105,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass factoryComponentContractContainerEClass = null;
@@ -105,6 +113,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass viewpointContainerEClass = null;
@@ -112,6 +121,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass viewpointEClass = null;
@@ -119,6 +129,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass orchestrationEClass = null;
@@ -126,6 +137,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass orchestrationContextEClass = null;
@@ -133,6 +145,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass orchestrationContextContainerEClass = null;
@@ -140,6 +153,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass invocationEClass = null;
@@ -147,6 +161,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass invocationContextEClass = null;
@@ -154,6 +169,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass invocationContextConnectorEClass = null;
@@ -161,6 +177,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EClass invocationContextContainerEClass = null;
@@ -168,13 +185,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass typeEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EEnum contractModeEEnum = null;
@@ -182,6 +193,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private EDataType uriEDataType = null;
@@ -209,17 +221,22 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private static boolean isInited = false;
 
   /**
-   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+   * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon
+   * which it depends.
    * 
-   * <p>This method is used to initialize {@link FcorePackage#eINSTANCE} when that field is accessed.
-   * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+   * <p>This method is used to initialize {@link FcorePackage#eINSTANCE} when that field is
+   * accessed.
+   * Clients should not invoke it directly. Instead, they should simply access that field to obtain
+   * the package.
    * <!-- begin-user-doc
    * --> <!-- end-user-doc -->
+   * 
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
@@ -235,7 +252,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     isInited = true;
 
     // Initialize simple dependencies
-    EcorePackage.eINSTANCE.eClass();
+    TypesPackage.eINSTANCE.eClass();
 
     // Create package meta-data objects
     theFcorePackage.createPackageContents();
@@ -261,6 +278,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getModelElement() {
@@ -270,6 +288,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getModelElement_ID() {
@@ -279,6 +298,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getModelElement_Name() {
@@ -288,6 +308,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getModelElement_Description() {
@@ -297,6 +318,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getActivity() {
@@ -306,6 +328,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getActivityContract() {
@@ -315,6 +338,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getActivityContract_Mandatory() {
@@ -324,6 +348,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getActivityContract_Mode() {
@@ -333,6 +358,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getActivityContract_Type() {
@@ -342,6 +368,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getActivityContractContainer() {
@@ -351,6 +378,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getFactoryComponent() {
@@ -360,6 +388,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getFactoryComponent_ViewpointContainer() {
@@ -369,6 +398,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getFactoryComponent_Orchestration() {
@@ -378,6 +408,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getFactoryComponent_ActivityContractContainer() {
@@ -387,6 +418,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getFactoryComponentContract() {
@@ -396,6 +428,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getFactoryComponentContract_InvocationContexts() {
@@ -405,6 +438,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getFactoryComponentContract_ActivityContractContainer() {
@@ -414,6 +448,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getFactoryComponentContractContainer() {
@@ -423,6 +458,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getFactoryComponentContractContainer_Activity() {
@@ -432,6 +468,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getFactoryComponentContractContainer_ActivityContracts() {
@@ -441,6 +478,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getViewpointContainer() {
@@ -450,6 +488,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getViewpointContainer_FactoryComponent() {
@@ -459,6 +498,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getViewpointContainer_Viewpoints() {
@@ -468,6 +508,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getViewpoint() {
@@ -477,6 +518,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getViewpoint_ViewerpointContainer() {
@@ -486,6 +528,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getOrchestration() {
@@ -495,6 +538,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getOrchestration_FactoryComponent() {
@@ -504,6 +548,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getOrchestration_Invocations() {
@@ -513,6 +558,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getOrchestration_OrchestrationContextContainer() {
@@ -522,6 +568,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getOrchestrationContext() {
@@ -531,6 +578,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getOrchestrationContext_OrchestrationContextContainer() {
@@ -540,6 +588,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getOrchestrationContext_InvocationContexts() {
@@ -549,6 +598,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getOrchestrationContext_Type() {
@@ -558,6 +608,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getOrchestrationContextContainer() {
@@ -567,6 +618,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getOrchestrationContextContainer_Orchestration() {
@@ -576,6 +628,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getOrchestrationContextContainer_OrchestrationContexts() {
@@ -585,6 +638,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getInvocation() {
@@ -594,6 +648,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocation_Orchestration() {
@@ -603,6 +658,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocation_InvocationContextContainer() {
@@ -612,6 +668,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocation_Activity() {
@@ -621,6 +678,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getInvocationContext() {
@@ -630,6 +688,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContext_InvocationContextContainer() {
@@ -639,6 +698,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContext_FactoryComponentExposedContract() {
@@ -648,6 +708,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContext_OrchestrationContext() {
@@ -657,6 +718,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContext_ActivityContract() {
@@ -666,6 +728,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContext_Type() {
@@ -675,6 +738,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EAttribute getInvocationContext_Mode() {
@@ -684,6 +748,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getInvocationContextConnector() {
@@ -693,6 +758,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContextConnector_InvocationContextContainer() {
@@ -702,6 +768,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContextConnector_SourceInvocationContext() {
@@ -711,6 +778,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContextConnector_TargetInvocationContext() {
@@ -720,6 +788,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EClass getInvocationContextContainer() {
@@ -729,6 +798,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContextContainer_Invocation() {
@@ -738,6 +808,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContextContainer_InvocationContexts() {
@@ -747,6 +818,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EReference getInvocationContextContainer_InvocationContextConnectors() {
@@ -756,15 +828,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getType() {
-    return typeEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EEnum getContractMode() {
@@ -774,6 +838,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EDataType getURI() {
@@ -783,6 +848,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FcoreFactory getFcoreFactory() {
@@ -792,15 +858,17 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package.  This method is
+   * Creates the meta-model objects for the package. This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void createPackageContents() {
@@ -857,8 +925,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     createEReference(orchestrationContextContainerEClass, ORCHESTRATION_CONTEXT_CONTAINER__ORCHESTRATION);
     createEReference(orchestrationContextContainerEClass, ORCHESTRATION_CONTEXT_CONTAINER__ORCHESTRATION_CONTEXTS);
 
-    typeEClass = createEClass(TYPE);
-
     invocationEClass = createEClass(INVOCATION);
     createEReference(invocationEClass, INVOCATION__ORCHESTRATION);
     createEReference(invocationEClass, INVOCATION__INVOCATION_CONTEXT_CONTAINER);
@@ -892,15 +958,17 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model.  This
+   * Complete the initialization of the package and its meta-model. This
    * method is guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void initializePackageContents() {
@@ -915,15 +983,13 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     // Obtain other dependent packages
     EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+    TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
     // Create type parameters
-    ETypeParameter typeEClass_T = addETypeParameter(typeEClass, "T"); //$NON-NLS-1$
     ETypeParameter invocationEClass_T = addETypeParameter(invocationEClass, "T"); //$NON-NLS-1$
 
     // Set bounds for type parameters
-    EGenericType g1 = createEGenericType(theEcorePackage.getEJavaObject());
-    typeEClass_T.getEBounds().add(g1);
-    g1 = createEGenericType(this.getActivity());
+    EGenericType g1 = createEGenericType(this.getActivity());
     invocationEClass_T.getEBounds().add(g1);
 
     // Add supertypes to classes
@@ -938,7 +1004,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     orchestrationEClass.getESuperTypes().add(this.getModelElement());
     orchestrationContextEClass.getESuperTypes().add(this.getModelElement());
     orchestrationContextContainerEClass.getESuperTypes().add(this.getModelElement());
-    typeEClass.getESuperTypes().add(this.getModelElement());
     invocationEClass.getESuperTypes().add(this.getModelElement());
     invocationContextEClass.getESuperTypes().add(this.getModelElement());
     invocationContextConnectorEClass.getESuperTypes().add(this.getModelElement());
@@ -958,7 +1023,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     t1.getEBounds().add(g1);
 
     op = addEOperation(activityEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     EGenericType g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -967,7 +1032,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(activityEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -976,7 +1041,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEClass(activityContractEClass, ActivityContract.class, "ActivityContract", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getActivityContract_Mandatory(), theEcorePackage.getEBoolean(), "mandatory", null, 0, 1, ActivityContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEAttribute(getActivityContract_Mode(), this.getContractMode(), "mode", null, 0, 1, ActivityContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     initEReference(getActivityContract_Type(), g1, null, "type", null, 1, 1, ActivityContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -991,7 +1056,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     t1.getEBounds().add(g1);
 
     op = addEOperation(activityContractEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1000,7 +1065,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(activityContractEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1018,7 +1083,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEOperation(op, g1);
 
     op = addEOperation(activityContractContainerEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1027,7 +1092,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(activityContractContainerEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1041,7 +1106,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEOperation(factoryComponentEClass, this.getFactoryComponentContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(factoryComponentEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1050,7 +1115,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(factoryComponentEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1059,7 +1124,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEOperation(factoryComponentEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(factoryComponentEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1068,7 +1133,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(factoryComponentEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1081,7 +1146,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEOperation(factoryComponentContractEClass, this.getFactoryComponentContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(factoryComponentContractEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1090,7 +1155,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(factoryComponentContractEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1101,7 +1166,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEReference(getFactoryComponentContractContainer_ActivityContracts(), this.getFactoryComponentContract(), this.getFactoryComponentContract_ActivityContractContainer(), "activityContracts", null, 1, -1, FactoryComponentContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(factoryComponentContractContainerEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1110,7 +1175,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(factoryComponentContractContainerEClass, this.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1140,7 +1205,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEOperation(orchestrationEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(orchestrationEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1149,7 +1214,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(orchestrationEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1158,7 +1223,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEOperation(orchestrationEClass, this.getOrchestrationContext(), "getOrchestrationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(orchestrationEClass, this.getOrchestrationContext(), "getOrchestrationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1166,7 +1231,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEClass(orchestrationContextEClass, OrchestrationContext.class, "OrchestrationContext", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getOrchestrationContext_OrchestrationContextContainer(), this.getOrchestrationContextContainer(), this.getOrchestrationContextContainer_OrchestrationContexts(), "orchestrationContextContainer", null, 1, 1, OrchestrationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getOrchestrationContext_InvocationContexts(), this.getInvocationContext(), this.getInvocationContext_OrchestrationContext(), "invocationContexts", null, 0, -1, OrchestrationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     initEReference(getOrchestrationContext_Type(), g1, null, "type", null, 1, 1, OrchestrationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1176,16 +1241,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEClass(orchestrationContextContainerEClass, OrchestrationContextContainer.class, "OrchestrationContextContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getOrchestrationContextContainer_Orchestration(), this.getOrchestration(), this.getOrchestration_OrchestrationContextContainer(), "orchestration", null, 1, 1, OrchestrationContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getOrchestrationContextContainer_OrchestrationContexts(), this.getOrchestrationContext(), this.getOrchestrationContext_OrchestrationContextContainer(), "orchestrationContexts", null, 0, -1, OrchestrationContextContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-    op = addEOperation(typeEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(typeEClass_T);
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
-    addEOperation(typeEClass, theEcorePackage.getEJavaObject(), "getValue", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(invocationEClass, Invocation.class, "Invocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getInvocation_Orchestration(), this.getOrchestration(), this.getOrchestration_Invocations(), "orchestration", null, 1, 1, Invocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1198,7 +1253,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEOperation(invocationEClass, this.getActivityContract(), "getInvocationActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(invocationEClass, this.getActivityContract(), "getInvocationActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1207,7 +1262,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(invocationEClass, this.getActivityContract(), "getInvocationActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1216,7 +1271,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEOperation(invocationEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(invocationEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1225,7 +1280,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     addEParameter(op, this.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(invocationEClass, this.getInvocationContext(), "getInvocationContexts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -1236,7 +1291,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEReference(getInvocationContext_FactoryComponentExposedContract(), this.getFactoryComponentContract(), this.getFactoryComponentContract_InvocationContexts(), "factoryComponentExposedContract", null, 0, 1, InvocationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getInvocationContext_OrchestrationContext(), this.getOrchestrationContext(), this.getOrchestrationContext_InvocationContexts(), "orchestrationContext", null, 0, 1, InvocationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getInvocationContext_ActivityContract(), this.getActivityContract(), null, "activityContract", null, 1, 1, InvocationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(this.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     initEReference(getInvocationContext_Type(), g1, null, "type", null, 0, 1, InvocationContext.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1286,6 +1341,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void createEcoreAnnotations() {

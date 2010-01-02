@@ -20,8 +20,8 @@ import org.eclipse.egf.model.fcore.FactoryComponentContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.Orchestration;
-import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -37,19 +37,24 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getActivityContractContainer <em>Activity Contract Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getViewpointContainer <em>Viewpoint Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getOrchestration <em>Orchestration</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getActivityContractContainer
+ * <em>Activity Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getViewpointContainer
+ * <em>Viewpoint Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getOrchestration
+ * <em>Orchestration</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FactoryComponentImpl extends ActivityImpl implements FactoryComponent {
   /**
-   * The cached value of the '{@link #getActivityContractContainer() <em>Activity Contract Container</em>}' containment reference.
+   * The cached value of the '{@link #getActivityContractContainer() <em>Activity Contract
+   * Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getActivityContractContainer()
    * @generated
    * @ordered
@@ -57,9 +62,11 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   protected FactoryComponentContractContainer activityContractContainer;
 
   /**
-   * The cached value of the '{@link #getViewpointContainer() <em>Viewpoint Container</em>}' containment reference.
+   * The cached value of the '{@link #getViewpointContainer() <em>Viewpoint Container</em>}'
+   * containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getViewpointContainer()
    * @generated
    * @ordered
@@ -67,9 +74,11 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   protected ViewpointContainer viewpointContainer;
 
   /**
-   * The cached value of the '{@link #getOrchestration() <em>Orchestration</em>}' containment reference.
+   * The cached value of the '{@link #getOrchestration() <em>Orchestration</em>}' containment
+   * reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getOrchestration()
    * @generated
    * @ordered
@@ -79,6 +88,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected FactoryComponentImpl() {
@@ -88,6 +98,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -98,6 +109,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ViewpointContainer getViewpointContainer() {
@@ -107,6 +119,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetViewpointContainer(ViewpointContainer newViewpointContainer, NotificationChain msgs) {
@@ -125,6 +138,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setViewpointContainer(ViewpointContainer newViewpointContainer) {
@@ -144,6 +158,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Orchestration getOrchestration() {
@@ -153,6 +168,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetOrchestration(Orchestration newOrchestration, NotificationChain msgs) {
@@ -171,6 +187,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setOrchestration(Orchestration newOrchestration) {
@@ -190,6 +207,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponentContractContainer getActivityContractContainer() {
@@ -199,6 +217,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetActivityContractContainer(FactoryComponentContractContainer newActivityContractContainer, NotificationChain msgs) {
@@ -217,6 +236,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setActivityContractContainer(FactoryComponentContractContainer newActivityContractContainer) {
@@ -369,6 +389,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -393,6 +414,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -411,6 +433,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -429,6 +452,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -450,6 +474,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -471,6 +496,7 @@ public class FactoryComponentImpl extends ActivityImpl implements FactoryCompone
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

@@ -10,7 +10,7 @@
     codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
     booleanFlagsField="eFlags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" optimizedHasChildren="true" tableProviders="true" colorProviders="true"
-    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Types.genmodel#//types">
   <foreignModel>Fcore.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Fcore" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
@@ -177,11 +177,6 @@
     <genClasses ecoreClass="Fcore.ecore#//OrchestrationContextContainer">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//OrchestrationContextContainer/orchestration"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fcore.ecore#//OrchestrationContextContainer/orchestrationContexts"/>
-    </genClasses>
-    <genClasses image="false" ecoreClass="Fcore.ecore#//Type">
-      <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Type/T"/>
-      <genOperations ecoreOperation="Fcore.ecore#//Type/getType"/>
-      <genOperations ecoreOperation="Fcore.ecore#//Type/getValue"/>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//Invocation">
       <genTypeParameters ecoreTypeParameter="Fcore.ecore#//Invocation/T"/>

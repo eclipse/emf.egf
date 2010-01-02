@@ -16,12 +16,31 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
+import org.eclipse.egf.model.types.TypeBigDecimal;
+import org.eclipse.egf.model.types.TypeBigInteger;
+import org.eclipse.egf.model.types.TypeBoolean;
+import org.eclipse.egf.model.types.TypeByte;
+import org.eclipse.egf.model.types.TypeCharacter;
+import org.eclipse.egf.model.types.TypeCollection;
+import org.eclipse.egf.model.types.TypeDate;
+import org.eclipse.egf.model.types.TypeDouble;
+import org.eclipse.egf.model.types.TypeFloat;
+import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
+import org.eclipse.egf.model.types.TypeInteger;
+import org.eclipse.egf.model.types.TypeList;
+import org.eclipse.egf.model.types.TypeLong;
+import org.eclipse.egf.model.types.TypeMap;
+import org.eclipse.egf.model.types.TypeSet;
+import org.eclipse.egf.model.types.TypeShort;
+import org.eclipse.egf.model.types.TypeString;
+import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.UniqueEList;
@@ -346,11 +365,141 @@ public class InvocationContextItemProvider extends ModelElementItemProvider impl
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
+
     super.collectNewChildDescriptors(newChildDescriptors, object);
+
+    if (object instanceof InvocationContext == false) {
+      return;
+    }
+    InvocationContext invocationContext = (InvocationContext) object;
+
+    if (invocationContext.getActivityContract() == null || invocationContext.getActivityContract().getType() == null) {
+      return;
+    }
+
+    {
+      TypeCollection type = TypesFactory.eINSTANCE.createTypeCollection();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeList type = TypesFactory.eINSTANCE.createTypeList();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeSet type = TypesFactory.eINSTANCE.createTypeSet();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeMap type = TypesFactory.eINSTANCE.createTypeMap();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeBigDecimal type = TypesFactory.eINSTANCE.createTypeBigDecimal();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeBigInteger type = TypesFactory.eINSTANCE.createTypeBigInteger();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeBoolean type = TypesFactory.eINSTANCE.createTypeBoolean();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeByte type = TypesFactory.eINSTANCE.createTypeByte();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeCharacter type = TypesFactory.eINSTANCE.createTypeCharacter();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeDate type = TypesFactory.eINSTANCE.createTypeDate();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeDouble type = TypesFactory.eINSTANCE.createTypeDouble();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeFloat type = TypesFactory.eINSTANCE.createTypeFloat();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeInteger type = TypesFactory.eINSTANCE.createTypeInteger();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeLong type = TypesFactory.eINSTANCE.createTypeLong();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeShort type = TypesFactory.eINSTANCE.createTypeShort();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeString type = TypesFactory.eINSTANCE.createTypeString();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
+    {
+      TypeGeneratorAdapterFactory type = TypesFactory.eINSTANCE.createTypeGeneratorAdapterFactory();
+      if (ClassHelper.asSubClass(type.getType(), invocationContext.getActivityContract().getType().getType())) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+      }
+    }
+
   }
 
 }

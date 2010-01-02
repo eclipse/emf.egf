@@ -21,7 +21,7 @@ import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.FactoryComponentContractContainer;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContext;
-import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -40,18 +40,23 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractImpl#getInvocationContexts <em>Invocation Contexts</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractImpl#getActivityContractContainer <em>Activity Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractImpl#getInvocationContexts
+ * <em>Invocation Contexts</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractImpl#getActivityContractContainer
+ * <em>Activity Contract Container</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FactoryComponentContractImpl extends ActivityContractImpl implements FactoryComponentContract {
   /**
-   * The cached value of the '{@link #getInvocationContexts() <em>Invocation Contexts</em>}' reference list.
+   * The cached value of the '{@link #getInvocationContexts() <em>Invocation Contexts</em>}'
+   * reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getInvocationContexts()
    * @generated
    * @ordered
@@ -61,6 +66,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected FactoryComponentContractImpl() {
@@ -70,6 +76,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -80,6 +87,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<InvocationContext> getInvocationContexts() {
@@ -106,6 +114,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -118,6 +127,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetActivityContractContainer(FactoryComponentContractContainer newActivityContractContainer, NotificationChain msgs) {
@@ -128,6 +138,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setActivityContractContainer(FactoryComponentContractContainer newActivityContractContainer) {
@@ -210,6 +221,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -229,6 +241,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -245,6 +258,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -259,6 +273,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -275,6 +290,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -295,6 +311,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -313,6 +330,7 @@ public class FactoryComponentContractImpl extends ActivityContractImpl implement
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

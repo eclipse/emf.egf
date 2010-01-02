@@ -17,7 +17,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -27,7 +27,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -47,7 +47,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -57,7 +57,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -67,7 +67,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mode" eType="#//ContractMode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
         resolveProxies="false">
-      <eGenericType eClassifier="#//Type">
+      <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
@@ -83,7 +83,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -93,7 +93,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -104,7 +104,7 @@
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//FactoryComponentContract"/>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -114,7 +114,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -123,7 +123,7 @@
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext"/>
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -133,7 +133,7 @@
     </eOperations>
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -154,7 +154,7 @@
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//FactoryComponentContract"/>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -164,7 +164,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -178,7 +178,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="FactoryComponentContractContainer" eSuperTypes="#//ActivityContractContainer">
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -188,7 +188,7 @@
     </eOperations>
     <eOperations name="getActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -221,7 +221,7 @@
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext"/>
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -231,7 +231,7 @@
     </eOperations>
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -240,7 +240,7 @@
     <eOperations name="getOrchestrationContexts" upperBound="-1" eType="#//OrchestrationContext"/>
     <eOperations name="getOrchestrationContexts" upperBound="-1" eType="#//OrchestrationContext">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -269,7 +269,7 @@
         eType="#//InvocationContext" resolveProxies="false" eOpposite="#//InvocationContext/orchestrationContext"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" containment="true"
         resolveProxies="false">
-      <eGenericType eClassifier="#//Type">
+      <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>
@@ -283,17 +283,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationContexts"
         upperBound="-1" eType="#//OrchestrationContext" containment="true" eOpposite="#//OrchestrationContext/orchestrationContextContainer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Type" abstract="true" eSuperTypes="#//ModelElement">
-    <eTypeParameters name="T">
-      <eBounds eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
-    </eTypeParameters>
-    <eOperations name="getType" lowerBound="1">
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eTypeParameter="#//Type/T"/>
-      </eGenericType>
-    </eOperations>
-    <eOperations name="getValue" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaObject"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Invocation" abstract="true" eSuperTypes="#//ModelElement">
     <eTypeParameters name="T">
       <eBounds eClassifier="#//Activity"/>
@@ -302,7 +291,7 @@
     <eOperations name="getInvocationActivityContracts" upperBound="-1" eType="#//ActivityContract"/>
     <eOperations name="getInvocationActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -312,7 +301,7 @@
     </eOperations>
     <eOperations name="getInvocationActivityContracts" upperBound="-1" eType="#//ActivityContract">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -321,7 +310,7 @@
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext"/>
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -331,7 +320,7 @@
     </eOperations>
     <eOperations name="getInvocationContexts" upperBound="-1" eType="#//InvocationContext">
       <eParameters name="type">
-        <eGenericType eClassifier="#//Type">
+        <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
           <eTypeArguments/>
         </eGenericType>
       </eParameters>
@@ -367,7 +356,7 @@
         eType="#//ActivityContract"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" containment="true"
         resolveProxies="false">
-      <eGenericType eClassifier="#//Type">
+      <eGenericType eClassifier="ecore:EClass Types.ecore#//Type">
         <eTypeArguments/>
       </eGenericType>
     </eStructuralFeatures>

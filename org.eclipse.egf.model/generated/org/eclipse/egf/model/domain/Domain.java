@@ -13,14 +13,13 @@
 package org.eclipse.egf.model.domain;
 
 import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.emf.ecore.EPackage;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Domain</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.egf.model.domain.DomainPackage#getDomain()
  * @model abstract="true"
  * @generated

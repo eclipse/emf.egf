@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.fcore;
 
+import org.eclipse.egf.model.types.Type;
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Invocation Context</b></em>'.

@@ -21,10 +21,10 @@ import java.util.Set;
  *
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeSet()
- * @model superTypes="org.eclipse.egf.model.types.TypeClass<org.eclipse.egf.model.types.Set>"
+ * @model superTypes="org.eclipse.egf.model.types.TypeAbstractClass<org.eclipse.egf.model.types.Set>"
  * @generated
  */
-public interface TypeSet extends TypeClass<Set> {
+public interface TypeSet extends TypeAbstractClass<Set> {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

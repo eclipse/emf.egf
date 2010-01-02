@@ -50,13 +50,13 @@ public interface DomainFactory extends EFactory {
   DomainEPackage createDomainEPackage();
 
   /**
-   * Returns a new object of class '<em>EPackage Type</em>'.
+   * Returns a new object of class '<em>Type Domain EPackage</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>EPackage Type</em>'.
+   * @return a new object of class '<em>Type Domain EPackage</em>'.
    * @generated
    */
-  DomainEPackageType createDomainEPackageType();
+  TypeDomainEPackage createTypeDomainEPackage();
 
   /**
    * Returns a new object of class '<em>URI</em>'.
@@ -68,13 +68,13 @@ public interface DomainFactory extends EFactory {
   DomainURI createDomainURI();
 
   /**
-   * Returns a new object of class '<em>URI Type</em>'.
+   * Returns a new object of class '<em>Type Domain URI</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>URI Type</em>'.
+   * @return a new object of class '<em>Type Domain URI</em>'.
    * @generated
    */
-  DomainURIType createDomainURIType();
+  TypeDomainURI createTypeDomainURI();
 
   /**
    * Returns the package supported by this factory.

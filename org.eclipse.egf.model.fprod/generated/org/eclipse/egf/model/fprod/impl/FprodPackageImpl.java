@@ -26,6 +26,7 @@ import org.eclipse.egf.model.fprod.TaskInvocation;
 
 import org.eclipse.egf.model.fprod.util.FprodValidator;
 
+import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EGenericType;
@@ -349,6 +350,7 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
     // Obtain other dependent packages
     FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
     EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+    TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
     // Create type parameters
     ETypeParameter productionPlanInvocationEClass_T = addETypeParameter(productionPlanInvocationEClass, "T"); //$NON-NLS-1$
@@ -391,7 +393,7 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
     addEOperation(taskEClass, this.getTaskContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     EOperation op = addEOperation(taskEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theFcorePackage.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -400,7 +402,7 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
     addEParameter(op, theFcorePackage.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(taskEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theFcorePackage.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -412,7 +414,7 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
     addEOperation(taskContractEClass, this.getTaskContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(taskContractEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theFcorePackage.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -421,7 +423,7 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
     addEParameter(op, theFcorePackage.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(taskContractEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theFcorePackage.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -432,7 +434,7 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
     initEReference(getTaskContractContainer_ActivityContracts(), this.getTaskContract(), this.getTaskContract_ActivityContractContainer(), "activityContracts", null, 1, -1, TaskContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(taskContractContainerEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theFcorePackage.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
@@ -441,7 +443,7 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
     addEParameter(op, theFcorePackage.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     op = addEOperation(taskContractContainerEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theFcorePackage.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
     g2 = createEGenericType();
     g1.getETypeArguments().add(g2);
     addEParameter(op, g1, "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$

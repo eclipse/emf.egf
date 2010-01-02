@@ -15,20 +15,26 @@ package org.eclipse.egf.model.types.impl;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
+
 import org.eclipse.egf.model.types.*;
-import org.eclipse.egf.model.types.BigDecimalType;
-import org.eclipse.egf.model.types.BigIntegerType;
-import org.eclipse.egf.model.types.BooleanType;
-import org.eclipse.egf.model.types.ByteType;
-import org.eclipse.egf.model.types.CharacterType;
-import org.eclipse.egf.model.types.DateType;
-import org.eclipse.egf.model.types.DoubleType;
-import org.eclipse.egf.model.types.FloatType;
-import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
-import org.eclipse.egf.model.types.IntegerType;
-import org.eclipse.egf.model.types.LongType;
-import org.eclipse.egf.model.types.ShortType;
-import org.eclipse.egf.model.types.StringType;
+import org.eclipse.egf.model.types.TypeBigDecimal;
+import org.eclipse.egf.model.types.TypeBigInteger;
+import org.eclipse.egf.model.types.TypeBoolean;
+import org.eclipse.egf.model.types.TypeByte;
+import org.eclipse.egf.model.types.TypeCharacter;
+import org.eclipse.egf.model.types.TypeClass;
+import org.eclipse.egf.model.types.TypeCollection;
+import org.eclipse.egf.model.types.TypeDate;
+import org.eclipse.egf.model.types.TypeDouble;
+import org.eclipse.egf.model.types.TypeFloat;
+import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
+import org.eclipse.egf.model.types.TypeInteger;
+import org.eclipse.egf.model.types.TypeList;
+import org.eclipse.egf.model.types.TypeLong;
+import org.eclipse.egf.model.types.TypeMap;
+import org.eclipse.egf.model.types.TypeSet;
+import org.eclipse.egf.model.types.TypeShort;
+import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
@@ -87,34 +93,34 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
       return createTypeList();
     case TypesPackage.TYPE_SET:
       return createTypeSet();
+    case TypesPackage.TYPE_GENERATOR_ADAPTER_FACTORY:
+      return createTypeGeneratorAdapterFactory();
     case TypesPackage.TYPE_MAP:
       return createTypeMap();
-    case TypesPackage.BIG_DECIMAL_TYPE:
-      return createBigDecimalType();
-    case TypesPackage.BIG_INTEGER_TYPE:
-      return createBigIntegerType();
-    case TypesPackage.BOOLEAN_TYPE:
-      return createBooleanType();
-    case TypesPackage.BYTE_TYPE:
-      return createByteType();
-    case TypesPackage.CHARACTER_TYPE:
-      return createCharacterType();
-    case TypesPackage.DATE_TYPE:
-      return createDateType();
-    case TypesPackage.DOUBLE_TYPE:
-      return createDoubleType();
-    case TypesPackage.FLOAT_TYPE:
-      return createFloatType();
-    case TypesPackage.INTEGER_TYPE:
-      return createIntegerType();
-    case TypesPackage.LONG_TYPE:
-      return createLongType();
-    case TypesPackage.SHORT_TYPE:
-      return createShortType();
-    case TypesPackage.STRING_TYPE:
-      return createStringType();
-    case TypesPackage.GENERATOR_ADAPTER_FACTORY_TYPE:
-      return createGeneratorAdapterFactoryType();
+    case TypesPackage.TYPE_BIG_DECIMAL:
+      return createTypeBigDecimal();
+    case TypesPackage.TYPE_BIG_INTEGER:
+      return createTypeBigInteger();
+    case TypesPackage.TYPE_BOOLEAN:
+      return createTypeBoolean();
+    case TypesPackage.TYPE_BYTE:
+      return createTypeByte();
+    case TypesPackage.TYPE_CHARACTER:
+      return createTypeCharacter();
+    case TypesPackage.TYPE_DATE:
+      return createTypeDate();
+    case TypesPackage.TYPE_DOUBLE:
+      return createTypeDouble();
+    case TypesPackage.TYPE_FLOAT:
+      return createTypeFloat();
+    case TypesPackage.TYPE_INTEGER:
+      return createTypeInteger();
+    case TypesPackage.TYPE_LONG:
+      return createTypeLong();
+    case TypesPackage.TYPE_SHORT:
+      return createTypeShort();
+    case TypesPackage.TYPE_STRING:
+      return createTypeString();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -193,6 +199,16 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
+  public TypeGeneratorAdapterFactory createTypeGeneratorAdapterFactory() {
+    TypeGeneratorAdapterFactoryImpl typeGeneratorAdapterFactory = new TypeGeneratorAdapterFactoryImpl();
+    return typeGeneratorAdapterFactory;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public TypeMap createTypeMap() {
     TypeMapImpl typeMap = new TypeMapImpl();
     return typeMap;
@@ -203,9 +219,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public BigDecimalType createBigDecimalType() {
-    BigDecimalTypeImpl bigDecimalType = new BigDecimalTypeImpl();
-    return bigDecimalType;
+  public TypeBigDecimal createTypeBigDecimal() {
+    TypeBigDecimalImpl typeBigDecimal = new TypeBigDecimalImpl();
+    return typeBigDecimal;
   }
 
   /**
@@ -213,9 +229,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public BigIntegerType createBigIntegerType() {
-    BigIntegerTypeImpl bigIntegerType = new BigIntegerTypeImpl();
-    return bigIntegerType;
+  public TypeBigInteger createTypeBigInteger() {
+    TypeBigIntegerImpl typeBigInteger = new TypeBigIntegerImpl();
+    return typeBigInteger;
   }
 
   /**
@@ -223,9 +239,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public BooleanType createBooleanType() {
-    BooleanTypeImpl booleanType = new BooleanTypeImpl();
-    return booleanType;
+  public TypeBoolean createTypeBoolean() {
+    TypeBooleanImpl typeBoolean = new TypeBooleanImpl();
+    return typeBoolean;
   }
 
   /**
@@ -233,9 +249,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public ByteType createByteType() {
-    ByteTypeImpl byteType = new ByteTypeImpl();
-    return byteType;
+  public TypeByte createTypeByte() {
+    TypeByteImpl typeByte = new TypeByteImpl();
+    return typeByte;
   }
 
   /**
@@ -243,9 +259,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public CharacterType createCharacterType() {
-    CharacterTypeImpl characterType = new CharacterTypeImpl();
-    return characterType;
+  public TypeCharacter createTypeCharacter() {
+    TypeCharacterImpl typeCharacter = new TypeCharacterImpl();
+    return typeCharacter;
   }
 
   /**
@@ -253,9 +269,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public DateType createDateType() {
-    DateTypeImpl dateType = new DateTypeImpl();
-    return dateType;
+  public TypeDate createTypeDate() {
+    TypeDateImpl typeDate = new TypeDateImpl();
+    return typeDate;
   }
 
   /**
@@ -263,9 +279,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public DoubleType createDoubleType() {
-    DoubleTypeImpl doubleType = new DoubleTypeImpl();
-    return doubleType;
+  public TypeDouble createTypeDouble() {
+    TypeDoubleImpl typeDouble = new TypeDoubleImpl();
+    return typeDouble;
   }
 
   /**
@@ -273,9 +289,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public FloatType createFloatType() {
-    FloatTypeImpl floatType = new FloatTypeImpl();
-    return floatType;
+  public TypeFloat createTypeFloat() {
+    TypeFloatImpl typeFloat = new TypeFloatImpl();
+    return typeFloat;
   }
 
   /**
@@ -283,9 +299,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public StringType createStringType() {
-    StringTypeImpl stringType = new StringTypeImpl();
-    return stringType;
+  public TypeInteger createTypeInteger() {
+    TypeIntegerImpl typeInteger = new TypeIntegerImpl();
+    return typeInteger;
   }
 
   /**
@@ -293,9 +309,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public IntegerType createIntegerType() {
-    IntegerTypeImpl integerType = new IntegerTypeImpl();
-    return integerType;
+  public TypeLong createTypeLong() {
+    TypeLongImpl typeLong = new TypeLongImpl();
+    return typeLong;
   }
 
   /**
@@ -303,9 +319,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public LongType createLongType() {
-    LongTypeImpl longType = new LongTypeImpl();
-    return longType;
+  public TypeShort createTypeShort() {
+    TypeShortImpl typeShort = new TypeShortImpl();
+    return typeShort;
   }
 
   /**
@@ -313,19 +329,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public ShortType createShortType() {
-    ShortTypeImpl shortType = new ShortTypeImpl();
-    return shortType;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public GeneratorAdapterFactoryType createGeneratorAdapterFactoryType() {
-    GeneratorAdapterFactoryTypeImpl generatorAdapterFactoryType = new GeneratorAdapterFactoryTypeImpl();
-    return generatorAdapterFactoryType;
+  public TypeString createTypeString() {
+    TypeStringImpl typeString = new TypeStringImpl();
+    return typeString;
   }
 
   /**

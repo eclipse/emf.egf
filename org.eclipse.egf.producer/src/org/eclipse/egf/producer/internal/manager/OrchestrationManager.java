@@ -17,7 +17,7 @@ import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
-import org.eclipse.egf.model.types.TypeClass;
+import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
 import org.eclipse.egf.producer.internal.context.OrchestrationProductionContext;
@@ -66,11 +66,11 @@ public abstract class OrchestrationManager extends ModelElementManager implement
         continue;
       }
       // Class
-      if (orchestrationContext.getType() instanceof TypeClass<?>) {
+      if (orchestrationContext.getType() instanceof TypeAbstractClass<?>) {
         try {
           Object object = null;
           // Should we instantiate value
-          String fqcn = ((TypeClass<?>) orchestrationContext.getType()).getValue();
+          String fqcn = ((TypeAbstractClass<?>) orchestrationContext.getType()).getValue();
           if (fqcn != null && fqcn.trim().length() != 0) {
             object = BundleHelper.instantiate(fqcn.trim(), getBundle());
             if (object == null) {

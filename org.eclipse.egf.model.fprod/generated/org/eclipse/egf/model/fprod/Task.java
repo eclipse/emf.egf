@@ -15,7 +15,7 @@ package org.eclipse.egf.model.fprod;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ContractMode;
-import org.eclipse.egf.model.fcore.Type;
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.util.EList;
 
 /**

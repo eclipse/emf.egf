@@ -12,11 +12,8 @@
  */
 package org.eclipse.egf.model.types.impl;
 
-import org.eclipse.egf.model.fcore.impl.TypeImpl;
-
 import org.eclipse.egf.model.types.TypeObject;
 import org.eclipse.egf.model.types.TypesPackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -29,15 +26,6 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public abstract class TypeObjectImpl<T extends Object> extends TypeImpl<T> implements TypeObject<T> {
-  /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  protected int eFlags = 0;
-
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -57,4 +45,4 @@ public abstract class TypeObjectImpl<T extends Object> extends TypeImpl<T> imple
     return TypesPackage.Literals.TYPE_OBJECT;
   }
 
-} //TypeObjectImpl
+} // TypeObjectImpl

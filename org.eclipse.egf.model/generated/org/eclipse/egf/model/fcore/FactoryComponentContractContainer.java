@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.fcore;
 
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.util.EList;
 
 /**

@@ -21,8 +21,8 @@ import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContext;
 import org.eclipse.egf.model.fcore.InvocationContextContainer;
 import org.eclipse.egf.model.fcore.OrchestrationContext;
-import org.eclipse.egf.model.fcore.Type;
 import org.eclipse.egf.model.fcore.adapter.InvocationContextAdapter;
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
@@ -37,22 +37,29 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getInvocationContextContainer <em>Invocation Context Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getFactoryComponentExposedContract <em>Factory Component Exposed Contract</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getOrchestrationContext <em>Orchestration Context</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getActivityContract <em>Activity Contract</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getMode <em>Mode</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getInvocationContextContainer
+ * <em>Invocation Context Container</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getFactoryComponentExposedContract
+ * <em>Factory Component Exposed Contract</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getOrchestrationContext
+ * <em>Orchestration Context</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getActivityContract
+ * <em>Activity Contract</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContextImpl#getMode <em>Mode</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class InvocationContextImpl extends ModelElementImpl implements InvocationContext {
   /**
-   * The cached value of the '{@link #getFactoryComponentExposedContract() <em>Factory Component Exposed Contract</em>}' reference.
+   * The cached value of the '{@link #getFactoryComponentExposedContract() <em>Factory Component
+   * Exposed Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getFactoryComponentExposedContract()
    * @generated
    * @ordered
@@ -60,9 +67,11 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   protected FactoryComponentContract factoryComponentExposedContract;
 
   /**
-   * The cached value of the '{@link #getOrchestrationContext() <em>Orchestration Context</em>}' reference.
+   * The cached value of the '{@link #getOrchestrationContext() <em>Orchestration Context</em>}'
+   * reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getOrchestrationContext()
    * @generated
    * @ordered
@@ -73,6 +82,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * The cached value of the '{@link #getActivityContract() <em>Activity Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getActivityContract()
    * @generated
    * @ordered
@@ -83,6 +93,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getType()
    * @generated
    * @ordered
@@ -93,6 +104,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
    * The default value of the '{@link #getMode() <em>Mode</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getMode()
    * @generated
    * @ordered
@@ -113,6 +125,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -123,6 +136,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public InvocationContextContainer getInvocationContextContainer() {
@@ -134,6 +148,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetInvocationContextContainer(InvocationContextContainer newInvocationContextContainer, NotificationChain msgs) {
@@ -144,6 +159,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setInvocationContextContainer(InvocationContextContainer newInvocationContextContainer) {
@@ -165,6 +181,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponentContract getFactoryComponentExposedContract() {
@@ -174,6 +191,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetFactoryComponentExposedContract(FactoryComponentContract newFactoryComponentExposedContract, NotificationChain msgs) {
@@ -192,6 +210,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setFactoryComponentExposedContract(FactoryComponentContract newFactoryComponentExposedContract) {
@@ -211,6 +230,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public OrchestrationContext getOrchestrationContext() {
@@ -220,6 +240,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetOrchestrationContext(OrchestrationContext newOrchestrationContext, NotificationChain msgs) {
@@ -238,6 +259,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setOrchestrationContext(OrchestrationContext newOrchestrationContext) {
@@ -257,6 +279,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ActivityContract getActivityContract() {
@@ -274,6 +297,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ActivityContract basicGetActivityContract() {
@@ -283,6 +307,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setActivityContract(ActivityContract newActivityContract) {
@@ -295,6 +320,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Type<?> getType() {
@@ -304,6 +330,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetType(Type<?> newType, NotificationChain msgs) {
@@ -322,6 +349,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setType(Type<?> newType) {
@@ -393,6 +421,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -417,6 +446,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -437,6 +467,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -451,6 +482,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -477,6 +509,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -504,6 +537,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -531,6 +565,7 @@ public class InvocationContextImpl extends ModelElementImpl implements Invocatio
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

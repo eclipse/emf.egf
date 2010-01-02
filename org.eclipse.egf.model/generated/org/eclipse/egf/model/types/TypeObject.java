@@ -12,8 +12,6 @@
  */
 package org.eclipse.egf.model.types;
 
-import org.eclipse.egf.model.fcore.Type;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type Object</b></em>'.

@@ -11,7 +11,7 @@
     testsDirectory="/org.eclipse.egf.model.tests/generated" booleanFlagsField="eFlags"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     optimizedHasChildren="true" tableProviders="true" colorProviders="true" fontProviders="true"
-    packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore">
+    packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore Types.genmodel#//types">
   <foreignModel>Domain.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Domain" basePackage="org.eclipse.egf.model" resource="XMI"
@@ -25,22 +25,22 @@
       <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
           ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackage/ePackage"/>
     </genClasses>
-    <genClasses ecoreClass="Domain.ecore#//DomainEPackageType">
-      <genFeatures notify="false" createChild="false" propertyCategory="Domain" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackageType/domain"/>
-      <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Domain.ecore#//DomainEPackageType/value"/>
-      <genOperations ecoreOperation="Domain.ecore#//DomainEPackageType/getType"/>
+    <genClasses ecoreClass="Domain.ecore#//TypeDomainEPackage">
+      <genFeatures createChild="false" propertyCategory="Domain" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainEPackage/domain"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Value"
+          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainEPackage/value"/>
+      <genOperations ecoreOperation="Domain.ecore#//TypeDomainEPackage/getType"/>
     </genClasses>
     <genClasses ecoreClass="Domain.ecore#//DomainURI">
       <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Domain.ecore#//DomainURI/uri"/>
     </genClasses>
-    <genClasses ecoreClass="Domain.ecore#//DomainURIType">
-      <genFeatures notify="false" createChild="false" propertyCategory="Domain" propertySortChoices="true"
-          ecoreFeature="ecore:EReference Domain.ecore#//DomainURIType/domain"/>
-      <genFeatures createChild="false" propertyCategory="Value" propertySortChoices="true"
-          ecoreFeature="ecore:EAttribute Domain.ecore#//DomainURIType/value"/>
-      <genOperations ecoreOperation="Domain.ecore#//DomainURIType/getType"/>
+    <genClasses ecoreClass="Domain.ecore#//TypeDomainURI">
+      <genFeatures createChild="false" propertyCategory="Domain" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Domain.ecore#//TypeDomainURI/domain"/>
+      <genFeatures property="Readonly" createChild="false" propertyCategory="Value"
+          ecoreFeature="ecore:EAttribute Domain.ecore#//TypeDomainURI/value"/>
+      <genOperations ecoreOperation="Domain.ecore#//TypeDomainURI/getType"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
