@@ -26,7 +26,6 @@ import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
 import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
 import org.eclipse.jdt.core.IType;
@@ -125,7 +124,8 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
           Object[] innerResult = dialog.getResult();
           if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof Activity) {
             // Force a load resource on the current ResourceSet
-            invocation.eResource().getResourceSet().getResource(EcoreUtil.getURI((Activity) innerResult[0]), true);
+            Activity activity = (Activity) innerResult[0];
+            invocation.eResource().getResourceSet().getResource(activity.eResource().getURI(), true);
             // Return selected value
             return innerResult[0];
           }
