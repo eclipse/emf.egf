@@ -67,9 +67,7 @@ import org.eclipse.ui.ide.IDE;
 public class PatternEditor extends FormEditor implements ResourceUser, IEditingDomainProvider {
 
     protected IUndoContext undoContext;
-    protected Resource resource;
     private TransactionalEditingDomain editingDomain;
-    private IUndoableOperation savedOperation;
     private final ResourceListener resourceListener = new ResourceListener() {
 
         public void resourceMoved(Resource resource, URI newURI) {
@@ -83,6 +81,12 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         public void resourceChanged(Resource resource) {
             for (PatternEditorPage page : pages)
                 page.rebind();
+            addPatternChangeAdapter();
+                getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                    public void run() {
+                        firePropertyChange(IEditorPart.PROP_DIRTY);
+                    }
+                });
         }
     };
     private final List<PatternEditorPage> pages = new ArrayList<PatternEditorPage>();
@@ -103,11 +107,8 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
     public void doSave(IProgressMonitor monitor) {
         try {
-            // .CUSTOM: We record the last operation executed when saved.
-            savedOperation = getOperationHistory().getUndoOperation(undoContext);
             new ProgressMonitorDialog(getSite().getShell()).run(true, false, ResourceLoadedListener.RESOURCE_MANAGER.createSaveOperation(this, editingDomain));
             ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
-            firePropertyChange(IEditorPart.PROP_DIRTY);
         } catch (InvocationTargetException exception) {
             Activator.getDefault().logError(exception.getTargetException());
         } catch (Exception exception) {
@@ -177,11 +178,10 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
     }
 
     public boolean isDirty() {
-        // We track the last operation executed before save was
-        // performed
-        // setPartName(getPattern().getName());
-        IUndoableOperation op = getOperationHistory().getUndoOperation(undoContext);
-        return op != savedOperation;
+        if (getResource() == null)
+            return false;
+        boolean modified = getResource().isModified();
+        return modified;
     }
 
     @Override
@@ -219,9 +219,6 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         ResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
         getOperationHistory().removeOperationHistoryListener(historyListener);
         getOperationHistory().dispose(undoContext, true, true, true);
-
-        // getResource().unload();
-        // editingDomain.getResourceSet().getResources().remove(getResource());
 
         removePatternChangeAdapter();
 

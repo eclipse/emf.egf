@@ -55,6 +55,7 @@ import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.IEMFListProperty;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.databinding.edit.IEMFEditValueProperty;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -80,8 +81,6 @@ import org.eclipse.swt.dnd.DragSourceEvent;
 import org.eclipse.swt.dnd.DragSourceListener;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
-import org.eclipse.swt.events.ModifyEvent;
-import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
@@ -316,8 +315,6 @@ public class SpecificationPage extends PatternEditorPage {
     }
 
     private void createTypeArea(FormToolkit toolkit, Composite pattern) {
-        // The display nature list.
-        final List<PatternNature> natureList = new ArrayList<PatternNature>();
         Label type = toolkit.createLabel(pattern, Messages.SpecificationPage_patternSection_type_label);
         GridData gd = new GridData();
         gd.verticalIndent = 10;
@@ -325,40 +322,18 @@ public class SpecificationPage extends PatternEditorPage {
         type.setForeground(colors.getColor(IFormColors.TITLE));
 
         combo = new Combo(pattern, SWT.NONE | SWT.READ_ONLY);
-        // Add the default nature name.
-        PatternNature defaultNature = getPattern() == null ? null : getPattern().getNature();
-        String natureName = defaultNature == null ? "" : getName(defaultNature); //$NON-NLS-1$
-        combo.add(natureName == null ? "" : natureName); //$NON-NLS-1$
-        natureList.add(defaultNature);
 
         Object[] natures = getNatures().keySet().toArray();
         for (int i = 0; i < natures.length; i++) {
             PatternNature currentNature = (PatternNature) natures[i];
-            String currentNatureName = getName(currentNature);
-            if (natures[i] instanceof PatternNature && !((currentNatureName).equals(natureName))) {
-                combo.add(currentNatureName);
-                natureList.add(currentNature);
-            }
+            String currentNatureName = ExtensionHelper.getName(currentNature);
+            combo.add(currentNatureName);
         }
         combo.select(0);
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.verticalIndent = 10;
         gd.widthHint = 50;
         combo.setLayoutData(gd);
-        combo.addModifyListener(new ModifyListener() {
-
-            public void modifyText(ModifyEvent e) {
-                final int selectionIndex = combo.getSelectionIndex();
-                TransactionalEditingDomain editingDomain = getEditingDomain();
-                RecordingCommand cmd = new RecordingCommand(editingDomain) {
-                    protected void doExecute() {
-                        PatternNature selectNature = (PatternNature) (natureList.get(selectionIndex));
-                        getPattern().setNature(selectNature);
-                    }
-                };
-                editingDomain.getCommandStack().execute(cmd);
-            }
-        });
     }
 
     private void createParametersSection(FormToolkit toolkit, ScrolledForm form) {
@@ -874,6 +849,25 @@ public class SpecificationPage extends PatternEditorPage {
             }
 
         });
+        targetToModel.setConverter(new IConverter() {
+            public Object getToType() {
+                return EReference.class;
+            }
+
+            public Object getFromType() {
+                return String.class;
+            }
+
+            public Object convert(Object fromObject) {
+                if (fromObject == null || !(fromObject instanceof String)) {
+                    return ""; //$NON-NLS-1$
+                }
+                if (fromObject.equals(ExtensionHelper.getName(getPattern().getNature())))
+                    return getPattern().getNature();
+                return ExtensionHelper.createNature((String) fromObject);
+            }
+        });
+
         UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
         modelToTarget.setConverter(new IConverter() {
             public Object getToType() {
@@ -888,7 +882,7 @@ public class SpecificationPage extends PatternEditorPage {
                 if (fromObject == null || !(fromObject instanceof PatternNature)) {
                     return ""; //$NON-NLS-1$
                 }
-                return getName((PatternNature) fromObject);
+                return ExtensionHelper.getName((PatternNature) fromObject);
             }
         });
 
@@ -902,10 +896,6 @@ public class SpecificationPage extends PatternEditorPage {
             IObservableList observe = input.observe(pattern);
             tableViewer.setInput(observe);
         }
-    }
-
-    private static String getName(PatternNature nature) {
-        return nature.eClass().getName();
     }
 
     public Pattern getParentPattern() {

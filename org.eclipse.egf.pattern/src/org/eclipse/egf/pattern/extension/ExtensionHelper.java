@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
+import org.eclipse.emf.ecore.EClass;
 
 /**
  * TODO for each call the extension point is read ...
@@ -47,6 +48,14 @@ public class ExtensionHelper {
         return result;
     }
 
+    public static PatternNature createNature(String name) {
+        PatternExtension patternExtension = getExtensions().get(name);
+        if (patternExtension == null)
+            throw new IllegalStateException();
+        EClass eClass = patternExtension.getNature().eClass();
+        return (PatternNature) eClass.getEPackage().getEFactoryInstance().create(eClass);
+    }
+
     public static PatternExtension getExtension(PatternNature nature) throws MissingExtensionException {
         Map<String, PatternExtension> extensions = getExtensions();
         PatternExtension patternExtension = extensions.get(getName(nature));
@@ -56,7 +65,7 @@ public class ExtensionHelper {
 
     }
 
-    private static String getName(PatternNature nature) {
+    public static String getName(PatternNature nature) {
         return nature.eClass().getName();
     }
 

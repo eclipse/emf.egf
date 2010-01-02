@@ -235,6 +235,10 @@ public class Messages extends NLS {
 
     public static String input_tooltip;
 
+    // Resource Listener
+    public static String ResourceListener_reloadDialog_title;
+    public static String ResourceListener_reloadDialog_message;
+
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.ui.PatternUIMessages";//$NON-NLS-1$
     static {
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);

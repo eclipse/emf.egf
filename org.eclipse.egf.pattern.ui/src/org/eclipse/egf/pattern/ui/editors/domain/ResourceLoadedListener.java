@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.domain;
 
+import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,6 +26,9 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.helper.ObjectHolder;
+import org.eclipse.egf.pattern.PatternConstants;
+import org.eclipse.egf.pattern.ui.Activator;
+import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -126,18 +130,16 @@ public class ResourceLoadedListener implements WorkspaceSynchronizer.Delegate {
     }
 
     public boolean handleResourceChanged(final Resource resource) {
-        // if (need2reload(resource)) {
-        // TransactionalEditingDomain editingDomain =
-        // TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
-        // editingDomain.getCommandStack().flush();
-        // System.out.println("Reload " + resource.getURI());
-        // try {
-        // resource.unload();
-        // resource.load(resource.getResourceSet().getLoadOptions());
-        // } catch (IOException e) {
-        // Activator.getDefault().logError(e);
-        // }
-        // }
+        if (need2reload(resource)) {
+            TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
+            editingDomain.getCommandStack().flush();
+            try {
+                resource.unload();
+                resource.load(resource.getResourceSet().getLoadOptions());
+            } catch (IOException e) {
+                Activator.getDefault().logError(e);
+            }
+        }
         for (ResourceListener l : RESOURCE_MANAGER.listeners)
             l.resourceChanged(resource);
 
@@ -161,8 +163,8 @@ public class ResourceLoadedListener implements WorkspaceSynchronizer.Delegate {
                 IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
                 if (activeWorkbenchWindow != null)
 
-                    reload.object = MessageDialog.openQuestion(activeWorkbenchWindow.getShell(), "File Conflict", //$NON-NLS-1$
-                            "External changes, reload the resource ?"); //$NON-NLS-1$
+                    reload.object = MessageDialog.openQuestion(activeWorkbenchWindow.getShell(), Messages.ResourceListener_reloadDialog_title, //$NON-NLS-1$
+                            Messages.ResourceListener_reloadDialog_message); //$NON-NLS-1$
             }
         });
 

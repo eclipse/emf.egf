@@ -43,10 +43,17 @@ public class PatternEditorInput implements IEditorInput {
     public void setReadOnly(boolean isReadOnly) {
         this.isReadOnly = isReadOnly;
     }
+
     // Add for test read only mode --end;
 
     public PatternEditorInput(Resource resource, String fragment) {
+        if (fragment == null)
+            throw new IllegalArgumentException();
+        if (resource == null)
+            throw new IllegalArgumentException();
+
         this.resource = resource;
+        resource.setTrackingModification(true);
         this.fragment = fragment;
     }
 
