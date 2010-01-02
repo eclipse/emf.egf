@@ -12,7 +12,15 @@
 
 <plugin>
 
-   <extension-point id="org.eclipse.egf.core.ui.viewpoint.editor.contributor" name="Editor contributor" schema="schema/viewpoint.editor.contributor.exsd"/>
+  <!-- ================================================================================= -->
+  <!-- Extension Points                                                                  -->
+  <!-- ================================================================================= -->
+
+  <extension-point 
+    id="org.eclipse.egf.core.ui.viewpoint.editor.contributor" 
+    name="%egf.editor.contributor" 
+    schema="schema/viewpoint.editor.contributor.exsd"
+  />
 
   <!-- ================================================================================= -->
   <!-- Keywords                                                                          -->
