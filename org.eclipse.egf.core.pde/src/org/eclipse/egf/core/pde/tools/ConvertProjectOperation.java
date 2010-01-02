@@ -311,20 +311,22 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       subMonitor.worked(100);
 
       // Create a source folder if necessary
-      if (_createJavaProject && sources.isEmpty()) {
-        IPath src = new Path("src"); //$NON-NLS-1$
-        IContainer sourceContainer = _project.getFolder(src);
-        ((IFolder) sourceContainer).create(false, true, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-        sources.add(src.toString() + "/"); //$NON-NLS-1$
-        IClasspathEntry sourceClasspathEntry = JavaCore.newSourceEntry(sourceContainer.getFullPath());
-        for (Iterator<IClasspathEntry> i = _classpathEntries.iterator(); i.hasNext();) {
-          IClasspathEntry classpathEntry = i.next();
-          if (classpathEntry.getPath().isPrefixOf(sourceContainer.getFullPath())) {
-            i.remove();
+      if (_createJavaProject && sources.isEmpty() && addSourceFolders() != null) {
+        for (String sourceFolder : addSourceFolders()) {
+          IPath src = new Path(sourceFolder);
+          IContainer sourceContainer = _project.getFolder(src);
+          ((IFolder) sourceContainer).create(false, true, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+          sources.add(src.toString() + "/"); //$NON-NLS-1$
+          IClasspathEntry sourceClasspathEntry = JavaCore.newSourceEntry(sourceContainer.getFullPath());
+          for (Iterator<IClasspathEntry> i = _classpathEntries.iterator(); i.hasNext();) {
+            IClasspathEntry classpathEntry = i.next();
+            if (classpathEntry.getPath().isPrefixOf(sourceContainer.getFullPath())) {
+              i.remove();
+            }
           }
+          _classpathEntries.add(0, sourceClasspathEntry);
+          sources.add(sourceFolder + "/"); //$NON-NLS-1$
         }
-        _classpathEntries.add(0, sourceClasspathEntry);
-        sources.add("src/"); //$NON-NLS-1$
       } else {
         subMonitor.worked(100);
       }
@@ -524,12 +526,12 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
   private void manageManifestFile(IBundlePluginModelBase model) throws CoreException {
 
-    IBundle pluginBundle = model.getBundleModel().getBundle();
+    IBundle bundle = model.getBundleModel().getBundle();
 
-    String pluginId = pluginBundle.getHeader(Constants.BUNDLE_SYMBOLICNAME);
-    String pluginName = pluginBundle.getHeader(Constants.BUNDLE_NAME);
-    String pluginVersion = pluginBundle.getHeader(Constants.BUNDLE_VERSION);
-    String complianceLevel = pluginBundle.getHeader(Constants.BUNDLE_REQUIREDEXECUTIONENVIRONMENT);
+    String pluginId = bundle.getHeader(Constants.BUNDLE_SYMBOLICNAME);
+    String pluginName = bundle.getHeader(Constants.BUNDLE_NAME);
+    String pluginVersion = bundle.getHeader(Constants.BUNDLE_VERSION);
+    String complianceLevel = bundle.getHeader(Constants.BUNDLE_REQUIREDEXECUTIONENVIRONMENT);
 
     boolean missingInfo = (pluginId == null || pluginName == null || pluginVersion == null);
 
@@ -549,18 +551,18 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       pluginName = createInitialName(pluginId);
     }
 
-    pluginBundle.setHeader(Constants.BUNDLE_SYMBOLICNAME, pluginId);
-    pluginBundle.setHeader(Constants.BUNDLE_VERSION, pluginVersion);
-    pluginBundle.setHeader(Constants.BUNDLE_NAME, pluginName);
+    bundle.setHeader(Constants.BUNDLE_SYMBOLICNAME, pluginId);
+    bundle.setHeader(Constants.BUNDLE_VERSION, pluginVersion);
+    bundle.setHeader(Constants.BUNDLE_NAME, pluginName);
 
     if (complianceLevel == null && _createJavaProject) {
       complianceLevel = CodeGenUtil.EclipseUtil.getJavaComplianceLevel(_project);
       if (JavaCore.VERSION_1_5.equals(complianceLevel)) {
-        pluginBundle.setHeader(Constants.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, "J2SE-1.5"); //$NON-NLS-1$        
+        bundle.setHeader(Constants.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, "J2SE-1.5"); //$NON-NLS-1$        
       } else if (JavaCore.VERSION_1_6.equals(complianceLevel)) {
-        pluginBundle.setHeader(Constants.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, "JavaSE-1.6"); //$NON-NLS-1$
+        bundle.setHeader(Constants.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, "JavaSE-1.6"); //$NON-NLS-1$
       } else if (JavaCore.VERSION_1_7.equals(complianceLevel)) {
-        pluginBundle.setHeader(Constants.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, "JavaSE-1.7"); //$NON-NLS-1$        
+        bundle.setHeader(Constants.BUNDLE_REQUIREDEXECUTIONENVIRONMENT, "JavaSE-1.7"); //$NON-NLS-1$        
       }
     }
 
@@ -581,16 +583,18 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
         base.add(library);
       }
       if (TargetPlatformHelper.getTargetVersion() >= 3.1) {
-        pluginBundle.setHeader(Constants.BUNDLE_MANIFESTVERSION, "2"); //$NON-NLS-1$
+        bundle.setHeader(Constants.BUNDLE_MANIFESTVERSION, "2"); //$NON-NLS-1$
       }
     }
 
     // Add Dependencies
     if (_createJavaProject) {
       LOOP: for (String dependency : addDependencies()) {
-        for (IPluginImport plugin : base.getImports()) {
-          if (plugin.getName().equals(dependency)) {
-            continue LOOP;
+        if (base.getImports() != null) {
+          for (IPluginImport plugin : base.getImports()) {
+            if (plugin.getId().equals(dependency)) {
+              continue LOOP;
+            }
           }
         }
         // At this stage dependency is not found, create one
@@ -609,6 +613,10 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
   }
 
   public List<String> addDependencies() {
+    return Collections.<String> emptyList();
+  }
+
+  public List<String> addSourceFolders() {
     return Collections.<String> emptyList();
   }
 
