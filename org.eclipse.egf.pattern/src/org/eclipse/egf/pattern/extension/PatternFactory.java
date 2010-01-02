@@ -497,7 +497,8 @@ public abstract class PatternFactory {
     }
 
     private URI createURI(PatternMethod method) {
-
+        if (method.getID() == null)
+            return null;
         return PatternHelper.Filename.computeFileURI(method);
     }
 
