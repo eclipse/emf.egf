@@ -17,8 +17,8 @@ package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 /**
  * This enum is using for call type selection
  * 
- * @author chenxiaoru
- *
+ * @author XiaoRu Chen - Soyatec
+ * 
  */
 public enum CallTypeEnum {
     METHOD_CALL, PATTERN_CALL, PATTERNINJECTED_CALL, SUPERPATTERN_CALL, Add

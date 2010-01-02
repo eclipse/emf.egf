@@ -25,9 +25,10 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWizard;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class OrchestrationWizard extends Wizard implements INewWizard {
@@ -97,8 +98,8 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
     public Call getSelectCall() {
         return selectCall;
     }
-    
-    public CallTypeEnum getDefaultKind(){
+
+    public CallTypeEnum getDefaultKind() {
         return defaultKind;
     }
 }

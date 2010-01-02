@@ -35,7 +35,7 @@ import org.eclipse.ui.PartInitException;
 /**
  * This class is used to test open the editor on a pattern in read only mode
  * 
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class OpenReadOnlyPatternDebugAction implements IObjectActionDelegate {

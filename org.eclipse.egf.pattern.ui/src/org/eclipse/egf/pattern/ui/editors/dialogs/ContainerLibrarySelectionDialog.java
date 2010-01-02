@@ -48,7 +48,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Text;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class ContainerLibrarySelectionDialog extends PatternElementSelectionDialog {

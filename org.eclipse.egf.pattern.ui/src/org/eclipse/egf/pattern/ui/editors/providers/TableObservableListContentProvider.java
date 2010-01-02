@@ -25,7 +25,7 @@ import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.widgets.TableItem;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class TableObservableListContentProvider extends ObservableListContentProvider {

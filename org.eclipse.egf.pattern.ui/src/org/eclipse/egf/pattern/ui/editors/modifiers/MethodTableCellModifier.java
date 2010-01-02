@@ -22,7 +22,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.TableItem;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class MethodTableCellModifier extends EditingDomainCellModifier {

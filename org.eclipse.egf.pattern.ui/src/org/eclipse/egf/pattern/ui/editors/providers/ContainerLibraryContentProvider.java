@@ -21,7 +21,7 @@ import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class ContainerLibraryContentProvider implements IStructuredContentProvider {

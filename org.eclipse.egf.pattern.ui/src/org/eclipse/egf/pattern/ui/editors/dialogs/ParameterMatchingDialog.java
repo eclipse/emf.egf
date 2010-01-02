@@ -21,8 +21,6 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
-import org.eclipse.egf.pattern.ui.editors.providers.PatternSelectionLabelProvider;
-import org.eclipse.egf.pattern.ui.editors.providers.TableObservableListContentProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -35,6 +33,11 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.dialogs.SelectionStatusDialog;
 
+/**
+ * 
+ * @author XiaoRu Chen - Soyatec
+ * 
+ */
 public class ParameterMatchingDialog extends SelectionStatusDialog {
 
     private Pattern patternCaller;

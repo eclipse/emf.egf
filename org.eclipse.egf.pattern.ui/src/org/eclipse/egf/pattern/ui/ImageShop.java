@@ -21,7 +21,7 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  */
 public class ImageShop {
     // The plug-in ID

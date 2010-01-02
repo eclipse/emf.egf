@@ -20,6 +20,10 @@ import java.util.List;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 
+/**
+ * @author XiaoRu Chen - Soyatec
+ * 
+ */
 public class PatternUIHelper {
     /**
      * Get the pattern's parent methods.

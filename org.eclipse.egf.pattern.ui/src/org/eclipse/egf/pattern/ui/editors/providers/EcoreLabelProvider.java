@@ -25,7 +25,7 @@ import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class EcoreLabelProvider implements ITableLabelProvider, ILabelProvider {

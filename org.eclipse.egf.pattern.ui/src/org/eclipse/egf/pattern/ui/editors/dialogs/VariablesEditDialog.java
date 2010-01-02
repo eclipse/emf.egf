@@ -1,3 +1,17 @@
+/**
+ * <copyright>
+ *
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
+ * 
+ * </copyright>
+ */
 package org.eclipse.egf.pattern.ui.editors.dialogs;
 
 import org.eclipse.egf.model.fcore.ModelElement;
@@ -26,6 +40,11 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.SelectionStatusDialog;
 
+/**
+ * 
+ * @author XiaoRu Chen - Soyatec
+ * 
+ */
 @SuppressWarnings("restriction")
 public class VariablesEditDialog extends SelectionStatusDialog {
 
@@ -59,11 +78,11 @@ public class VariablesEditDialog extends SelectionStatusDialog {
         }
     }
 
-    private void setValue(ModelElement selection){
+    private void setValue(ModelElement selection) {
         name = selection.getName();
         typeName = ParametersTableLabelProvider.getType(type);
     }
-    
+
     protected Control createDialogArea(Composite parent) {
         Composite dialogArea = (Composite) super.createDialogArea(parent);
         GridLayout layout = new GridLayout();

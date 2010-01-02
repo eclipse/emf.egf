@@ -25,7 +25,7 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.TableItem;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class ParametersTableCellModifier extends EditingDomainCellModifier {
@@ -104,7 +104,7 @@ public class ParametersTableCellModifier extends EditingDomainCellModifier {
                 }
             }
         };
-       doModify(cmd);
+        doModify(cmd);
     }
 
     protected void modifyQuery(PatternParameter patternParameter, String text) {

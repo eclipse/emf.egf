@@ -26,7 +26,7 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class ParametersTableLabelProvider extends LabelProvider implements ITableLabelProvider {

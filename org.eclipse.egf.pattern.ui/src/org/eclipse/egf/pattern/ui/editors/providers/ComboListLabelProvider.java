@@ -21,7 +21,7 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class ComboListLabelProvider implements ILabelProvider {
@@ -31,8 +31,8 @@ public class ComboListLabelProvider implements ILabelProvider {
     }
 
     public String getText(Object element) {
-        if(element instanceof QueryKind){
-            return ((QueryKind)element).getName();
+        if (element instanceof QueryKind) {
+            return ((QueryKind) element).getName();
         }
         return "";
     }

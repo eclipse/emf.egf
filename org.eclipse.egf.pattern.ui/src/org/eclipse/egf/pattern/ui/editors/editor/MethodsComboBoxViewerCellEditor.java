@@ -51,7 +51,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
 public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {

@@ -24,10 +24,10 @@ import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * @author xrchen
+ * @author XiaoRu Chen - Soyatec
  * 
  */
-public class MethodLabelProvider extends LabelProvider implements ITableLabelProvider{
+public class MethodLabelProvider extends LabelProvider implements ITableLabelProvider {
 
     private List<String> parentMethods;
 
@@ -58,9 +58,9 @@ public class MethodLabelProvider extends LabelProvider implements ITableLabelPro
             return ((PatternMethod) element).getName();
         return "";
     }
-    
+
     public String getText(Object element) {
         return getColumnText(element, 0);
     }
-    
+
 }
