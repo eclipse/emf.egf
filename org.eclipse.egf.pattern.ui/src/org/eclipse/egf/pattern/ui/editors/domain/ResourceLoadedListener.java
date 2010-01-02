@@ -85,6 +85,32 @@ public class ResourceLoadedListener implements WorkspaceSynchronizer.Delegate {
                 return;
             list.remove(u);
             listeners.remove(u.getListener());
+            if (noMoreObserver())
+                clearResourceSet();
+        }
+
+        private void clearResourceSet() {
+            //no editor is actually open, so let's unload all the resources
+            final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
+            try {
+                editingDomain.runExclusive(new Runnable() {
+                    public void run() {
+                        for (Resource res : editingDomain.getResourceSet().getResources()) {
+                            res.unload();
+                        }
+                    }
+                });
+            } catch (InterruptedException e) {
+                Activator.getDefault().logError(e);
+
+            }
+        }
+
+        private boolean noMoreObserver() {
+            for (List<ResourceUser> users : observers.values())
+                if (!users.isEmpty())
+                    return false;
+            return true;
         }
 
         public WorkspaceModifyOperation createSaveOperation(final ResourceUser u, final TransactionalEditingDomain editingDomain) {
