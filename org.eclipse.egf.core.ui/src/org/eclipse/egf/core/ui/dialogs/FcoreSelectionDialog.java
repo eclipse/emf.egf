@@ -42,8 +42,6 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
 
   private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog"; //$NON-NLS-1$
 
-  private IPlatformFcore _previous;
-
   /**
    * <code>FcoreSelectionHistory</code> provides behavior specific to
    * fcores - storing and restoring <code>IPlatformFcore</code>s state
@@ -52,6 +50,8 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
   private class FcoreSelectionHistory extends SelectionHistory {
 
     private static final String TAG_URI = "path"; //$NON-NLS-1$
+
+    private IPlatformFcore _previous;
 
     public FcoreSelectionHistory() {
       super();
@@ -128,6 +128,16 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
         return true;
       }
       return false;
+    }
+
+    @Override
+    protected boolean matches(String text) {
+      String pattern = patternMatcher.getPattern();
+      if (pattern.indexOf("*") != 0 & pattern.indexOf("?") != 0 & pattern.indexOf(".") != 0) {//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        pattern = "*" + pattern; //$NON-NLS-1$
+        patternMatcher.setPattern(pattern);
+      }
+      return patternMatcher.matches(text);
     }
 
   }
