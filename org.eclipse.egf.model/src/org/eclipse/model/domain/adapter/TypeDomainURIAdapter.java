@@ -38,8 +38,6 @@ public class TypeDomainURIAdapter extends AdapterImpl {
     public void notifyChanged(Notification msg) {
       if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_domainURIFeature)) {
         _typeDomainURI.eNotify(new ENotificationImpl((InternalEObject) _typeDomainURI, Notification.SET, _typeDomainURIFeature, null, _typeDomainURI.eGet(_typeDomainURIFeature, true)));
-      } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
-        _typeDomainURI.eNotify(new ENotificationImpl((InternalEObject) _typeDomainURI, Notification.SET, _domainFeature, null, null));
       }
     }
   };

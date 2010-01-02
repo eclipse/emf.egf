@@ -41,7 +41,6 @@ public class InvocationContextAdapter extends AdapterImpl {
       if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_contractModeFeature)) {
         _invocationContext.eNotify(new ENotificationImpl((InternalEObject) _invocationContext, Notification.SET, _invocationContextModeFeature, null, _invocationContext.eGet(_invocationContextModeFeature, true)));
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
-        _invocationContext.eNotify(new ENotificationImpl((InternalEObject) _invocationContext, Notification.SET, _activityContractFeature, null, null));
         _contract = null;
       }
     }

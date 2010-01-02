@@ -38,8 +38,6 @@ public class TypeDomainEPackageAdapter extends AdapterImpl {
     public void notifyChanged(Notification msg) {
       if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_domainEPackageFeature)) {
         _typeDomainEPackage.eNotify(new ENotificationImpl((InternalEObject) _typeDomainEPackage, Notification.SET, _typeDomainEPackageFeature, null, _typeDomainEPackage.eGet(_typeDomainEPackageFeature, true)));
-      } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
-        _typeDomainEPackage.eNotify(new ENotificationImpl((InternalEObject) _typeDomainEPackage, Notification.SET, _domainFeature, null, null));
       }
     }
   };
