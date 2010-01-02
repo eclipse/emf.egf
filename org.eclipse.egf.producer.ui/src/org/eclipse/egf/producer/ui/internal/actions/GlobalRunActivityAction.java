@@ -137,6 +137,9 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
     // 4 - canInvoke
     if (throwable[0] == null) {
       try {
+        // Initialize Context
+        activityManager[0].initializeContext();
+        // Check if activity could be invoked
         final Diagnostic preInvokeDiag = activityManager[0].canInvoke();
         if (preInvokeDiag.getSeverity() != Diagnostic.OK) {
           if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
@@ -176,7 +179,6 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
               if (EGFProducerUIPlugin.getDefault().isDebugging()) {
                 EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EMFHelper.getText(activity), ticks)); //$NON-NLS-1$
               }
-              activityManager[0].initializeContext();
               invokeDiag[0] = activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
               if (monitor.isCanceled()) {
                 throw new OperationCanceledException();
