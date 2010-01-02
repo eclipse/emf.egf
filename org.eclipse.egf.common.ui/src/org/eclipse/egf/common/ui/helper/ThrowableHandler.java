@@ -36,7 +36,11 @@ public class ThrowableHandler {
       InvocationTargetException ite = (InvocationTargetException) t;
       status = StatusHelper.newStatus(pluginID, IStatus.ERROR, ite.getClass().getSimpleName(), ite.getTargetException());
     } else {
-      status = StatusHelper.newStatus(pluginID, IStatus.ERROR, t.getClass().getSimpleName(), t);
+      Throwable throwable = t;
+      if (throwable.getCause() != null) {
+        throwable = throwable.getCause();
+      }
+      status = StatusHelper.newStatus(pluginID, IStatus.ERROR, throwable.getClass().getSimpleName(), t);
     }
     StatusManager.getManager().handle(status, StatusManager.LOG | StatusManager.SHOW);
   }
