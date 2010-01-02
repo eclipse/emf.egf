@@ -90,7 +90,7 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
       result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
         @Override
         protected Object openDialogBox(Control cellEditorWindow) {
-          TypeSelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), projects[0], clazzes[0], values[0], false);
+          TypeSelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), projects[0], clazzes[0], values[0], null, false);
           dialog.open();
           Object[] innerResult = dialog.getResult();
           if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
