@@ -545,7 +545,11 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
                       deltaRemovedResources.add(resource);
                     }
                   } else if (savedResources.remove(resource) == false) {
-                    deltaChangedResources.add(resource);
+                    // This prevent excessive notification (eg subclipse plugin who send
+                    // notification)
+                    if ((innerDelta.getFlags() & IResourceDelta.CONTENT) != 0) {
+                      deltaChangedResources.add(resource);
+                    }
                   }
                 }
               }
