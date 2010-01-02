@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Uc1
+Bundle-SymbolicName: org.eclipse.egf.examples.uc1;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Require-Bundle: org.eclipse.egf.model.fprod;visibility:=reexport,
+ org.eclipse.egf.pattern.fprod;visibility:=reexport,
+ org.eclipse.egf.pattern;visibility:=reexport
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: HelloFriendsPatternsLib,
+ HelloPatternsLib,
+ HelloWorldPatternsLib,
+ org.eclipse.egf.examples.uc1,
+ org.eclipse.egf.examples.uc1.reporter

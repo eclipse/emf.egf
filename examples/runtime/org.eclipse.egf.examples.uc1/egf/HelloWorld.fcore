@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="_0BNZAOTGEd6iCM6xyOQ7FA" name="HelloWorld">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_oFcGYOTNEd6jrNbWQfMNfQ">
+      <invocations xmi:type="fprod:TaskInvocation" xmi:id="_p21ykOTNEd6jrNbWQfMNfQ"
+          name="Say Hello World" activity="#_oXyaUOihEd6Bw4tAfOSnJQ"/>
+      <invocations xmi:type="fprod:TaskInvocation" xmi:id="_c3FiIOTOEd6jrNbWQfMNfQ"
+          name="Say Hello Everybody" activity="#_oXyaUOihEd6Bw4tAfOSnJQ">
+        <invocationContextContainer xmi:id="_qKGQUOTOEd6jrNbWQfMNfQ">
+          <invocationContexts xmi:id="_t0ooYOTOEd6jrNbWQfMNfQ" name="value" activityContract="#_0tP7IOihEd6Bw4tAfOSnJQ">
+            <type xmi:type="types:TypeString" xmi:id="_VnGQ4OTPEd6jrNbWQfMNfQ" value="Everybody"/>
+          </invocationContexts>
+        </invocationContextContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fprod:Task xmi:id="_oXyaUOihEd6Bw4tAfOSnJQ" name="HelloWorldTask" value="org.eclipse.egf.examples.uc1.HelloWorld">
+    <activityContractContainer xmi:id="_0TLOQOihEd6Bw4tAfOSnJQ">
+      <activityContracts xmi:id="_0tP7IOihEd6Bw4tAfOSnJQ" name="value">
+        <type xmi:type="types:TypeString" xmi:id="_23-tUOihEd6Bw4tAfOSnJQ" value="World"/>
+      </activityContracts>
+    </activityContractContainer>
+  </fprod:Task>
+</xmi:XMI>

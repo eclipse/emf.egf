@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="_BoElQejCEd6kmtdYyydDtQ"
+    name="HelloWorldTogether">
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_EomXAOjCEd6kmtdYyydDtQ">
+    <invocations xmi:type="fprod:FactoryComponentInvocation" xmi:id="_FYuMYOjCEd6kmtdYyydDtQ"
+        name="Say Hello World" activity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.examples.uc1/egf/HelloWorld.fcore#_0BNZAOTGEd6iCM6xyOQ7FA"/>
+    <invocations xmi:type="fprod:FactoryComponentInvocation" xmi:id="_Rf4ygOjCEd6kmtdYyydDtQ"
+        name="Say Hello World to model" activity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.examples.uc1/egf/HelloWorldPattern.fcore#_9dmyoOUhEd6K29loa12Zeg"/>
+  </orchestration>
+</fcore:FactoryComponent>

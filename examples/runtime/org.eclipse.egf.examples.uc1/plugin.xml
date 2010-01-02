@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.egf.core.fcore">
+      <fcore
+            id="egf/HelloWorld.fcore">
+      </fcore>
+      <fcore
+            id="egf/HelloWorldPattern.fcore">
+      </fcore>
+      <fcore
+            id="egf/PatternTask.fcore">
+      </fcore>
+      <fcore
+            id="egf/HelloWorldTogether.fcore">
+      </fcore>
+   </extension>
+
+</plugin>
