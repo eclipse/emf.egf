@@ -64,8 +64,8 @@ public class PatternBuilder extends IncrementalProjectBuilder {
 
         PatternHelper helper = PatternHelper.createCollector();
         Set<Pattern> patterns = helper.getPatterns(getProject(), patternIds);
-        if (patternIds != null && patterns.size() != patternIds.size())
-            Activator.getDefault().logWarning(Messages.PatternBuilding_warning);
+        // if (patternIds != null && patterns.size() != patternIds.size())
+        // Activator.getDefault().logWarning(Messages.PatternBuilding_warning);
         try {
             new TranslationHelper().translate(patterns);
         } catch (PatternException e) {
