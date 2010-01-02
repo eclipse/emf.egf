@@ -1261,6 +1261,16 @@ public interface TypesPackage extends EPackage {
   int EGENERATOR_ADAPTER_FACTORY = 25;
 
   /**
+   * The meta object id for the '<em>URI</em>' data type.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.emf.common.util.URI
+   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getURI()
+   * @generated
+   */
+  int URI = 26;
+
+  /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeElement <em>Type Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1698,6 +1708,17 @@ public interface TypesPackage extends EPackage {
   EDataType getEGeneratorAdapterFactory();
 
   /**
+   * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>URI</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for data type '<em>URI</em>'.
+   * @see org.eclipse.emf.common.util.URI
+   * @model instanceClass="org.eclipse.emf.common.util.URI"
+   * @generated
+   */
+  EDataType getURI();
+
+  /**
    * Returns the meta object for data type '{@link java.util.Collection <em>Collection</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2109,6 +2130,16 @@ public interface TypesPackage extends EPackage {
      * @generated
      */
     EDataType EGENERATOR_ADAPTER_FACTORY = eINSTANCE.getEGeneratorAdapterFactory();
+
+    /**
+     * The meta object literal for the '<em>URI</em>' data type.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.emf.common.util.URI
+     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getURI()
+     * @generated
+     */
+    EDataType URI = eINSTANCE.getURI();
 
     /**
      * The meta object literal for the '<em>Collection</em>' data type.

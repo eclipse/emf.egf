@@ -35,7 +35,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="pattern" lowerBound="1"
         eType="#//Pattern" resolveProxies="false" eOpposite="#//Pattern/methods"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="patternFilePath" lowerBound="1"
-        eType="ecore:EDataType Fcore.ecore#//URI"/>
+        eType="ecore:EDataType Types.ecore#//URI"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PatternParameter" eSuperTypes="Fcore.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

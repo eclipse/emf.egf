@@ -37,24 +37,19 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl#getOrchestrationContextContainer
- * <em>Orchestration Context Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl#getInvocationContexts
- * <em>Invocation Contexts</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl#getOrchestrationContextContainer <em>Orchestration Context Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl#getInvocationContexts <em>Invocation Contexts</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationContextImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class OrchestrationContextImpl extends ModelElementImpl implements OrchestrationContext {
   /**
-   * The cached value of the '{@link #getInvocationContexts() <em>Invocation Contexts</em>}'
-   * reference list.
+   * The cached value of the '{@link #getInvocationContexts() <em>Invocation Contexts</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getInvocationContexts()
    * @generated
    * @ordered
@@ -65,7 +60,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getType()
    * @generated
    * @ordered
@@ -75,7 +69,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected OrchestrationContextImpl() {
@@ -85,7 +78,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -96,7 +88,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public OrchestrationContextContainer getOrchestrationContextContainer() {
@@ -108,7 +99,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetOrchestrationContextContainer(OrchestrationContextContainer newOrchestrationContextContainer, NotificationChain msgs) {
@@ -119,7 +109,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setOrchestrationContextContainer(OrchestrationContextContainer newOrchestrationContextContainer) {
@@ -141,7 +130,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<InvocationContext> getInvocationContexts() {
@@ -154,7 +142,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Type<?> getType() {
@@ -164,7 +151,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetType(Type<?> newType, NotificationChain msgs) {
@@ -183,7 +169,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setType(Type<?> newType) {
@@ -216,7 +201,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -236,7 +220,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -255,7 +238,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -270,7 +252,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -289,7 +270,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -313,7 +293,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -335,7 +314,6 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

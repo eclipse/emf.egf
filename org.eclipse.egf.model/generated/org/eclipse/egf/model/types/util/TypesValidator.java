@@ -51,6 +51,7 @@ import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.ResourceLocator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -223,6 +224,8 @@ public class TypesValidator extends EObjectValidator {
       return validateSet((Set<?>) value, diagnostics, context);
     case TypesPackage.EGENERATOR_ADAPTER_FACTORY:
       return validateEGeneratorAdapterFactory((GeneratorAdapterFactory) value, diagnostics, context);
+    case TypesPackage.URI:
+      return validateURI((URI) value, diagnostics, context);
     default:
       return true;
     }
@@ -858,6 +861,15 @@ public class TypesValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateEGeneratorAdapterFactory(GeneratorAdapterFactory eGeneratorAdapterFactory, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    return true;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public boolean validateURI(URI uri, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return true;
   }
 

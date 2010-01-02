@@ -42,7 +42,7 @@ public interface DomainURI extends Domain {
    * @return the value of the '<em>Uri</em>' attribute.
    * @see #setUri(URI)
    * @see org.eclipse.egf.model.domain.DomainPackage#getDomainURI_Uri()
-   * @model dataType="org.eclipse.egf.model.fcore.URI" required="true"
+   * @model dataType="org.eclipse.egf.model.types.URI" required="true"
    * @generated
    */
   URI getUri();

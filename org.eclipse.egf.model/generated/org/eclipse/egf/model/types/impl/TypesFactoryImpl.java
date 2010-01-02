@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.egf.model.types.*;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.egf.model.types.TypeBigDecimal;
 import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypeBoolean;
@@ -140,6 +141,8 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
       return createListFromString(eDataType, initialValue);
     case TypesPackage.SET:
       return createSetFromString(eDataType, initialValue);
+    case TypesPackage.URI:
+      return createURIFromString(eDataType, initialValue);
     default:
       throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -159,6 +162,8 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
       return convertListToString(eDataType, instanceValue);
     case TypesPackage.SET:
       return convertSetToString(eDataType, instanceValue);
+    case TypesPackage.URI:
+      return convertURIToString(eDataType, instanceValue);
     default:
       throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -386,6 +391,24 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    */
   public String convertSetToString(EDataType eDataType, Object instanceValue) {
     return super.convertToString(instanceValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public URI createURIFromString(EDataType eDataType, String initialValue) {
+    return (URI) super.createFromString(eDataType, initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertURIToString(EDataType eDataType, Object instanceValue) {
+    return super.convertToString(eDataType, instanceValue);
   }
 
   /**

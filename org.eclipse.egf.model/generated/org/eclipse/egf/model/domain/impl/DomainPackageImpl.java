@@ -363,7 +363,7 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     typeDomainEPackageEClass.getEGenericSuperTypes().add(g1);
     domainURIEClass.getESuperTypes().add(this.getDomain());
     g1 = createEGenericType(theTypesPackage.getType());
-    g2 = createEGenericType(theFcorePackage.getURI());
+    g2 = createEGenericType(theTypesPackage.getURI());
     g1.getETypeArguments().add(g2);
     typeDomainURIEClass.getEGenericSuperTypes().add(g1);
 
@@ -381,11 +381,11 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     initEReference(getTypeDomainEPackage_Value(), theEcorePackage.getEPackage(), null, "value", null, 0, 1, TypeDomainEPackage.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(domainURIEClass, DomainURI.class, "DomainURI", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEAttribute(getDomainURI_Uri(), theFcorePackage.getURI(), "uri", null, 1, 1, DomainURI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getDomainURI_Uri(), theTypesPackage.getURI(), "uri", null, 1, 1, DomainURI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(typeDomainURIEClass, TypeDomainURI.class, "TypeDomainURI", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getTypeDomainURI_Domain(), this.getDomainURI(), null, "domain", null, 0, 1, TypeDomainURI.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEAttribute(getTypeDomainURI_Value(), theFcorePackage.getURI(), "value", null, 0, 1, TypeDomainURI.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getTypeDomainURI_Value(), theTypesPackage.getURI(), "value", null, 0, 1, TypeDomainURI.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);

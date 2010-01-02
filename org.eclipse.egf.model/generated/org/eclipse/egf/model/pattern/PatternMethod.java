@@ -72,7 +72,7 @@ public interface PatternMethod extends ModelElement {
    * @return the value of the '<em>Pattern File Path</em>' attribute.
    * @see #setPatternFilePath(URI)
    * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternMethod_PatternFilePath()
-   * @model dataType="org.eclipse.egf.model.fcore.URI" required="true"
+   * @model dataType="org.eclipse.egf.model.types.URI" required="true"
    * @generated
    */
   URI getPatternFilePath();

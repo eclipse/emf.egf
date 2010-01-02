@@ -112,8 +112,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     switch (eDataType.getClassifierID()) {
     case FcorePackage.CONTRACT_MODE:
       return createContractModeFromString(eDataType, initialValue);
-    case FcorePackage.URI:
-      return createURIFromString(eDataType, initialValue);
     default:
       throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -129,8 +127,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
     switch (eDataType.getClassifierID()) {
     case FcorePackage.CONTRACT_MODE:
       return convertContractModeToString(eDataType, instanceValue);
-    case FcorePackage.URI:
-      return convertURIToString(eDataType, instanceValue);
     default:
       throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -255,15 +251,6 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
    */
   public URI createURIFromString(EDataType eDataType, String initialValue) {
     return URI.createURI(initialValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String convertURIToString(EDataType eDataType, Object instanceValue) {
-    return super.convertToString(eDataType, instanceValue);
   }
 
   /**

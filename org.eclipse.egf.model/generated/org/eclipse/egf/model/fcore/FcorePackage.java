@@ -1165,16 +1165,6 @@ public interface FcorePackage extends EPackage {
   int CONTRACT_MODE = 16;
 
   /**
-   * The meta object id for the '<em>URI</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.emf.common.util.URI
-   * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getURI()
-   * @generated
-   */
-  int URI = 17;
-
-  /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1774,17 +1764,6 @@ public interface FcorePackage extends EPackage {
   EEnum getContractMode();
 
   /**
-   * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>URI</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>URI</em>'.
-   * @see org.eclipse.emf.common.util.URI
-   * @model instanceClass="org.eclipse.emf.common.util.URI"
-   * @generated
-   */
-  EDataType getURI();
-
-  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2287,16 +2266,6 @@ public interface FcorePackage extends EPackage {
      * @generated
      */
     EEnum CONTRACT_MODE = eINSTANCE.getContractMode();
-
-    /**
-     * The meta object literal for the '<em>URI</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.emf.common.util.URI
-     * @see org.eclipse.egf.model.fcore.impl.FcorePackageImpl#getURI()
-     * @generated
-     */
-    EDataType URI = eINSTANCE.getURI();
 
   }
 

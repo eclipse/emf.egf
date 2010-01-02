@@ -21,7 +21,6 @@
       <genEnumLiterals ecoreEnumLiteral="Fcore.ecore#//ContractMode/Out"/>
       <genEnumLiterals ecoreEnumLiteral="Fcore.ecore#//ContractMode/In_Out"/>
     </genEnums>
-    <genDataTypes ecoreDataType="Fcore.ecore#//URI"/>
     <genClasses image="false" ecoreClass="Fcore.ecore#//ModelElement">
       <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Identifier"
           ecoreFeature="ecore:EAttribute Fcore.ecore#//ModelElement/iD"/>

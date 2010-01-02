@@ -226,6 +226,13 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  private EDataType uriEDataType = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EDataType collectionEDataType = null;
 
   /**
@@ -669,6 +676,15 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EDataType getURI() {
+    return uriEDataType;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EDataType getCollection() {
     return collectionEDataType;
   }
@@ -785,6 +801,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     listEDataType = createEDataType(LIST);
     setEDataType = createEDataType(SET);
     eGeneratorAdapterFactoryEDataType = createEDataType(EGENERATOR_ADAPTER_FACTORY);
+    uriEDataType = createEDataType(URI);
   }
 
   /**
@@ -987,6 +1004,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     initEDataType(listEDataType, List.class, "List", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEDataType(setEDataType, Set.class, "Set", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEDataType(eGeneratorAdapterFactoryEDataType, GeneratorAdapterFactory.class, "EGeneratorAdapterFactory", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(uriEDataType, org.eclipse.emf.common.util.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);

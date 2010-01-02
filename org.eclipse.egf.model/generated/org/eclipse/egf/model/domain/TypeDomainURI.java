@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.URI;
  * </p>
  *
  * @see org.eclipse.egf.model.domain.DomainPackage#getTypeDomainURI()
- * @model superTypes="org.eclipse.egf.model.types.Type<org.eclipse.egf.model.fcore.URI>"
+ * @model superTypes="org.eclipse.egf.model.types.Type<org.eclipse.egf.model.types.URI>"
  * @generated
  */
 public interface TypeDomainURI extends Type<URI> {
@@ -70,7 +70,7 @@ public interface TypeDomainURI extends Type<URI> {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
    * @see org.eclipse.egf.model.domain.DomainPackage#getTypeDomainURI_Value()
-   * @model dataType="org.eclipse.egf.model.fcore.URI" transient="true" changeable="false" volatile="true" derived="true"
+   * @model dataType="org.eclipse.egf.model.types.URI" transient="true" changeable="false" volatile="true" derived="true"
    * @generated
    */
   URI getValue();

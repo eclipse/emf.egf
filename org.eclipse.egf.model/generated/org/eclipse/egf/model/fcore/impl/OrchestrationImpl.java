@@ -42,24 +42,19 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent <em>Factory
- * Component</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getOrchestrationContextContainer
- * <em>Orchestration Context Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getInvocations
- * <em>Invocations</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent <em>Factory Component</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getOrchestrationContextContainer <em>Orchestration Context Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getInvocations <em>Invocations</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class OrchestrationImpl extends ModelElementImpl implements Orchestration {
   /**
-   * The cached value of the '{@link #getOrchestrationContextContainer() <em>Orchestration Context
-   * Container</em>}' containment reference.
+   * The cached value of the '{@link #getOrchestrationContextContainer() <em>Orchestration Context Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getOrchestrationContextContainer()
    * @generated
    * @ordered
@@ -67,11 +62,9 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   protected OrchestrationContextContainer orchestrationContextContainer;
 
   /**
-   * The cached value of the '{@link #getInvocations() <em>Invocations</em>}' containment reference
-   * list.
+   * The cached value of the '{@link #getInvocations() <em>Invocations</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getInvocations()
    * @generated
    * @ordered
@@ -81,7 +74,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected OrchestrationImpl() {
@@ -91,7 +83,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -102,7 +93,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FactoryComponent getFactoryComponent() {
@@ -114,7 +104,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetFactoryComponent(FactoryComponent newFactoryComponent, NotificationChain msgs) {
@@ -125,7 +114,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setFactoryComponent(FactoryComponent newFactoryComponent) {
@@ -147,7 +135,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<Invocation<?>> getInvocations() {
@@ -160,7 +147,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public OrchestrationContextContainer getOrchestrationContextContainer() {
@@ -170,7 +156,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetOrchestrationContextContainer(OrchestrationContextContainer newOrchestrationContextContainer, NotificationChain msgs) {
@@ -189,7 +174,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setOrchestrationContextContainer(OrchestrationContextContainer newOrchestrationContextContainer) {
@@ -317,7 +301,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -341,7 +324,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -360,7 +342,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -375,7 +356,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -394,7 +374,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -418,7 +397,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -440,7 +418,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

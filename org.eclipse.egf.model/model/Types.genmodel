@@ -26,6 +26,7 @@
       <genTypeParameters ecoreTypeParameter="Types.ecore#//Set/E"/>
     </genDataTypes>
     <genDataTypes ecoreDataType="Types.ecore#//EGeneratorAdapterFactory"/>
+    <genDataTypes ecoreDataType="Types.ecore#//URI"/>
     <genClasses image="false" ecoreClass="Types.ecore#//TypeElement">
       <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Identifier"
           ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/iD"/>

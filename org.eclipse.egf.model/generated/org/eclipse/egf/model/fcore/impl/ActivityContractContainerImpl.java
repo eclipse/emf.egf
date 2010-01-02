@@ -27,14 +27,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ActivityContractContainerImpl extends ModelElementImpl implements ActivityContractContainer {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected ActivityContractContainerImpl() {
@@ -44,7 +43,6 @@ public abstract class ActivityContractContainerImpl extends ModelElementImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -55,7 +53,6 @@ public abstract class ActivityContractContainerImpl extends ModelElementImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Activity getActivity() {
@@ -67,7 +64,6 @@ public abstract class ActivityContractContainerImpl extends ModelElementImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public <T extends ActivityContract> EList<T> getActivityContracts() {
@@ -79,7 +75,6 @@ public abstract class ActivityContractContainerImpl extends ModelElementImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<ActivityContract> getActivityContracts(Type<?> type) {
@@ -91,7 +86,6 @@ public abstract class ActivityContractContainerImpl extends ModelElementImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<ActivityContract> getActivityContracts(ContractMode mode) {
@@ -103,7 +97,6 @@ public abstract class ActivityContractContainerImpl extends ModelElementImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode) {
