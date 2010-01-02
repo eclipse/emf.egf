@@ -121,43 +121,6 @@ public class ProjectHelper {
   }
 
   /**
-   * Can identified project element be converted to a factory component ?
-   * 
-   * @param elementId_p
-   *          The chosen project element id. Can either be the project name or
-   *          the plug-in id.
-   * @return <code>false</code> if no project can be found, or it is not a
-   *         plug-in, or its id does not match its name. <code>true</code> if it
-   *         can be converted to a FC.
-   */
-  public static boolean canBeConvertedToFC(String elementId_p) {
-    boolean result = false;
-    IProject project = getProject(elementId_p);
-    if (project == null) {
-      StringBuilder msg = new StringBuilder("ProjectHelper.canBeConvertedToFC(..) _ "); //$NON-NLS-1$
-      msg.append("Unable to locate a project with element id ").append(elementId_p); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().logError(msg.toString());
-    } else {
-      IPluginModelBase model = PluginRegistry.findModel(project);
-      if (model != null) {
-        String modelId = model.getPluginBase().getId();
-        result = project.getName().equals(modelId);
-        if (result == false) {
-          StringBuilder msg = new StringBuilder("ProjectHelper.canBeConvertedToFC(..) _ "); //$NON-NLS-1$
-          msg.append("To convert an existing plug-in into a FC, its related project name must be equal to the plug-in id."); //$NON-NLS-1$
-          EGFCommonPlugin.getDefault().logError(msg.toString());
-        }
-      } else {
-        StringBuilder msg = new StringBuilder("ProjectHelper.canBeConvertedToFC(..) _ "); //$NON-NLS-1$
-        msg.append("Element ").append(elementId_p).append(" is not a valid plug-in project."); //$NON-NLS-1$ //$NON-NLS-2$
-        msg.append("Only plug-in projects can be converted to FCs."); //$NON-NLS-1$
-        EGFCommonPlugin.getDefault().logError(msg.toString());
-      }
-    }
-    return result;
-  }
-
-  /**
    * Get java project in the workspace from its project name.
    * 
    * @param projectName_p
@@ -411,7 +374,7 @@ public class ProjectHelper {
     }
     // Else, try and create an EMF project.
     IPath projectLocationPath = new Path(CharacterConstants.SLASH_CHARACTER + projectName_p);
-    IProject resultingProject = Generator.createEMFProject(projectLocationPath.append(CharacterConstants.SLASH_CHARACTER + IEgfGeneratorConstants.SRC_FOLDER), null, new ArrayList<IProject>(0), new NullProgressMonitor(), projectType_p, Collections.EMPTY_LIST);
+    IProject resultingProject = Generator.createEMFProject(projectLocationPath.append(CharacterConstants.SLASH_CHARACTER + IEgfGeneratorConstants.SRC_FOLDER), null, Collections.<IProject> emptyList(), new NullProgressMonitor(), projectType_p, Collections.EMPTY_LIST);
     if (resultingProject != null && resultingProject.exists()) {
       result = ProjectExistenceStatus.CREATED;
       // If project should be cleaned, do it.
