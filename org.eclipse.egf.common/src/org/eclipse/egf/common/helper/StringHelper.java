@@ -13,7 +13,7 @@ package org.eclipse.egf.common.helper;
 import java.text.MessageFormat;
 import java.util.StringTokenizer;
 
-import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 
 /**
  * String helper.
@@ -212,7 +212,7 @@ public class StringHelper {
    *         dot character.
    */
   public static String replaceNonWordCharactersWithDot(String originalString_p) {
-    return replaceNonWordCharacters(originalString_p, String.valueOf(CharacterConstants.DOT_CHARACTER));
+    return replaceNonWordCharacters(originalString_p, String.valueOf(EGFCommonConstants.DOT_CHARACTER));
   }
 
   /**
@@ -223,7 +223,7 @@ public class StringHelper {
    *         underscore character.
    */
   public static String replaceNonWordCharactersWithUnderscore(String originalString_p) {
-    return replaceNonWordCharacters(originalString_p, String.valueOf(CharacterConstants.UNDERSCORE_CHARACTER));
+    return replaceNonWordCharacters(originalString_p, String.valueOf(EGFCommonConstants.UNDERSCORE_CHARACTER));
   }
 
   /**
@@ -235,7 +235,7 @@ public class StringHelper {
    * @return
    */
   public static String replaceNonWordCharacters(String originalString_p, String replacementString_p) {
-    return originalString_p.replaceAll(REGEXP_NON_WORD_CHARACTERS, replacementString_p != null ? replacementString_p : CharacterConstants.EMPTY_STRING);
+    return originalString_p.replaceAll(REGEXP_NON_WORD_CHARACTERS, replacementString_p != null ? replacementString_p : EGFCommonConstants.EMPTY_STRING);
   }
 
 }

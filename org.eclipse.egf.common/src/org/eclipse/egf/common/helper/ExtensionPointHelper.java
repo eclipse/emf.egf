@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.EGFCommonPlugin;
-import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -304,7 +304,7 @@ public class ExtensionPointHelper {
    * @return the fully qualified extension-point id : <code>'plug-in id.'extension-point id'.
    */
   public static String getExtensionPointId(String pluginId, String extensionPointId) {
-    return new StringBuilder(pluginId).append(CharacterConstants.DOT_STRING).append(extensionPointId).toString();
+    return new StringBuilder(pluginId).append(EGFCommonConstants.DOT_STRING).append(extensionPointId).toString();
   }
 
   /**

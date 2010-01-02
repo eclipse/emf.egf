@@ -10,14 +10,9 @@
  */
 package org.eclipse.egf.common.helper;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -28,20 +23,17 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.egf.common.EGFCommonPlugin;
-import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.generator.IEgfGeneratorConstants;
-import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.emf.codegen.ecore.Generator;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 
@@ -116,60 +108,6 @@ public class ProjectHelper {
       return underlyingResource.getProject();
     }
     return null;
-  }
-
-  public static ClassLoader getProjectClassLoader(IProject project) throws CoreException {
-    return new URLClassLoader(asURL(project), ProjectHelper.class.getClassLoader());
-  }
-
-  /**
-   * This will return the set of output folders name for the given
-   * project.
-   * <p>
-   * For example, if a project has a source folder "src" with its output folder
-   * set as "bin" and a source
-   * folder "src-gen" with its output folder set as "bin-gen", this will return
-   * a LinkedHashSet containing
-   * both "bin" and "bin-gen".
-   * </p>
-   * 
-   * @param project
-   *          The project we seek the output folders of.
-   * @return The set of output folders name for the given (java) project.
-   */
-  public static Set<String> getOutputFolders(IProject project) throws CoreException {
-    Set<String> classpathEntries = new LinkedHashSet<String>();
-    IJavaProject javaProject = JavaCore.create(project);
-    if (javaProject.exists() == false) {
-      return classpathEntries;
-    }
-    try {
-      for (IClasspathEntry entry : javaProject.getResolvedClasspath(true)) {
-        if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
-          IPath output = entry.getOutputLocation();
-          if (output != null) {
-            classpathEntries.add(output.removeFirstSegments(1).toString());
-          }
-        }
-      }
-      classpathEntries.add(javaProject.getOutputLocation().removeFirstSegments(1).toString());
-    } catch (Throwable t) {
-      throw new CoreException(EGFCommonPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCommonMessages.ProjectHelper_AnalysingFailure, project.getName()), t));
-    }
-    return classpathEntries;
-  }
-
-  private static URL[] asURL(IProject project) throws CoreException {
-    Set<String> outputFolders = getOutputFolders(project);
-    List<URL> urls = new ArrayList<URL>(outputFolders.size());
-    for (String outputFolder : outputFolders) {
-      try {
-        urls.add(new URL("file", null, outputFolder)); //$NON-NLS-1$
-      } catch (MalformedURLException mue) {
-        throw new CoreException(EGFCommonPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCommonMessages.ProjectHelper_AnalysingFailure, project.getName()), mue));
-      }
-    }
-    return urls.toArray(new URL[urls.size()]);
   }
 
   /**
@@ -299,8 +237,8 @@ public class ProjectHelper {
       return ProjectExistenceStatus.ALREADY_EXISTS;
     }
     // Else, try and create an EMF project.
-    IPath projectLocationPath = new Path(CharacterConstants.SLASH_CHARACTER + projectName_p);
-    IProject resultingProject = Generator.createEMFProject(projectLocationPath.append(CharacterConstants.SLASH_CHARACTER + IEgfGeneratorConstants.SRC_FOLDER), null, Collections.<IProject> emptyList(), new NullProgressMonitor(), projectType_p, Collections.EMPTY_LIST);
+    IPath projectLocationPath = new Path(EGFCommonConstants.SLASH_CHARACTER + projectName_p);
+    IProject resultingProject = Generator.createEMFProject(projectLocationPath.append(EGFCommonConstants.SLASH_CHARACTER + IEgfGeneratorConstants.SRC_FOLDER), null, Collections.<IProject> emptyList(), new NullProgressMonitor(), projectType_p, Collections.EMPTY_LIST);
     if (resultingProject != null && resultingProject.exists()) {
       result = ProjectExistenceStatus.CREATED;
       // If project should be cleaned, do it.
