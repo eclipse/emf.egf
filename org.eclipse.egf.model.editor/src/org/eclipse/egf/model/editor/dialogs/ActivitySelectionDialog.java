@@ -38,6 +38,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -53,7 +54,13 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
   private static final String DIALOG_SETTINGS = "org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog"; //$NON-NLS-1$
 
-  private Activity _previous;
+  private Class<?> _clazz;
+
+  private Activity _activity;
+
+  private ResourceSet _resourceSet;
+
+  private ComposedAdapterFactory _adapterFactory;
 
   /**
    * <code>ActivitySelectionHistory</code> provides behavior specific to
@@ -73,9 +80,9 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     @Override
     protected Object restoreItemFromMemento(IMemento memento) {
       // If a previous has been set, ignore memento
-      if (_previous != null) {
+      if (_activity != null) {
         _doNotSave = true;
-        return _previous;
+        return _activity;
       }
       // Restore
       String tag = memento.getString(TAG_URI);
@@ -83,11 +90,11 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         return null;
       }
       try {
-        _previous = (Activity) _resourceSet.getEObject(URI.createURI(tag), true);
+        _activity = (Activity) _resourceSet.getEObject(URI.createURI(tag), true);
       } catch (Exception e) {
         EGFModelsEditorPlugin.getPlugin().logError(e);
       }
-      return _previous;
+      return _activity;
     }
 
     @Override
@@ -102,8 +109,8 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         for (int i = 0; i < items.length; i++) {
           element.putString(TAG_URI, EcoreUtil.getURI((Activity) items[i]).toString());
         }
-      } else if (_previous != null) {
-        element.putString(TAG_URI, EcoreUtil.getURI(_previous).toString());
+      } else if (_activity != null) {
+        element.putString(TAG_URI, EcoreUtil.getURI(_activity).toString());
       }
     }
 
@@ -180,10 +187,6 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     }
   }
 
-  private ResourceSet _resourceSet;
-
-  private ComposedAdapterFactory _adapterFactory;
-
   /**
    * (non-Javadoc)
    * 
@@ -245,12 +248,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
   }
 
   public ActivitySelectionDialog(Shell parentShell, boolean multipleSelection) {
-    this(parentShell, null, multipleSelection);
-  }
-
-  public ActivitySelectionDialog(Shell parentShell, Activity previous, boolean multipleSelection) {
     super(parentShell, multipleSelection);
-    _previous = previous;
     // Create and init a resourceSet
     _resourceSet = new ResourceSetImpl();
     // Assign a fresh platform aware URIConverter
@@ -261,12 +259,43 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-    setTitle(ModelEditorMessages._UI_ActivitySelection_label);
-    setMessage(ModelEditorMessages._UI_SelectRegisteredActivityURI);
+    setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, Activity.class.getSimpleName()));
     setListLabelProvider(getLabelProvider());
     setDetailsLabelProvider(getDetailsLabelProvider());
     setSelectionHistory(new ActivitySelectionHistory());
     setSeparatorLabel(ModelEditorMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+  }
+
+  public ActivitySelectionDialog(Shell parentShell, Class<?> clazz, Activity activity, boolean multipleSelection) {
+    super(parentShell, multipleSelection);
+    _clazz = clazz;
+    _activity = activity;
+    // Create and init a resourceSet
+    _resourceSet = new ResourceSetImpl();
+    // Assign a fresh platform aware URIConverter
+    _resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    // Create an adapter factory that yields item providers.
+    _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+    _adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
+    _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
+    _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
+    _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+    if (_clazz != null) {
+      setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, clazz.getSimpleName()));
+      setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, clazz.getSimpleName()));
+    } else {
+      setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, Activity.class.getSimpleName()));
+      setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, Activity.class.getSimpleName()));
+    }
+    setListLabelProvider(getLabelProvider());
+    setDetailsLabelProvider(getDetailsLabelProvider());
+    setSelectionHistory(new ActivitySelectionHistory());
+    if (_activity != null && _activity.eResource() != null) {
+      IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(_activity.eResource());
+      setSeparatorLabel(NLS.bind(ModelEditorMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fc.getPlatformBundle().getBundleId()));
+    } else {
+      setSeparatorLabel(ModelEditorMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+    }
   }
 
   @Override
@@ -301,10 +330,20 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
       Resource resource = _resourceSet.getResource(fc.getURI(), true);
       // Analyse top contents for Activities
       for (EObject eObject : resource.getContents()) {
-        if (eObject instanceof Activity == false) {
+        // Ignore current
+        if (_activity != null && EcoreUtil.getURI(_activity).equals(EcoreUtil.getURI(eObject))) {
           continue;
         }
-        contentProvider.add(eObject, itemsFilter);
+        // Process
+        try {
+          if (_clazz != null) {
+            eObject.eClass().getInstanceClass().asSubclass(_clazz);
+          }
+          contentProvider.add(eObject, itemsFilter);
+        } catch (ClassCastException cce) {
+          // Ignore
+          continue;
+        }
       }
       progressMonitor.worked(1);
     }

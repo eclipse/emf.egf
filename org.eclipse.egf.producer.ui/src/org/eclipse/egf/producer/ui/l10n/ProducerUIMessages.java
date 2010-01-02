@@ -30,10 +30,7 @@ public class ProducerUIMessages {
   public static String GlobalRunActivityAction_description;
   public static String GlobalRunActivityAction_tooltip;
   public static String GlobalRunActivityAction_label;
-  public static String GlobalRunActivityAction_dialogMessage;
   public static String GlobalRunActivityAction_dialogTitle;
-  public static String GlobalRunActivityAction_errorTitle;
-  public static String GlobalRunActivityAction_errorMessage;
 
   public static String ActivitySelectionDialog_Title;
   public static String ActivitySelectionDialog_Select;

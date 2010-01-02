@@ -82,7 +82,6 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
     // 1 - Activity Selection
     ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), false);
     activityDialog.setTitle(ProducerUIMessages.GlobalRunActivityAction_dialogTitle);
-    activityDialog.setMessage(ProducerUIMessages.GlobalRunActivityAction_dialogMessage);
     int result = activityDialog.open();
     if (result != IDialogConstants.OK_ID) {
       return;

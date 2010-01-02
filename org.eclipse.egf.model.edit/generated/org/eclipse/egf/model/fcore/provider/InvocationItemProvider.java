@@ -20,8 +20,6 @@ import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -35,13 +33,13 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.Invocation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InvocationItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -49,6 +47,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public InvocationItemProvider(AdapterFactory adapterFactory) {
@@ -59,6 +58,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -76,33 +76,23 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   protected void addActivityPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Invocation_activity_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Invocation_activity_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_Invocation_activity_feature", "_UI_Invocation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FcorePackage.Literals.INVOCATION__ACTIVITY, true, false, true, null, getString("_UI_InvokePropertyCategory"), //$NON-NLS-1$
-        null) {
-      @Override
-      public Collection<?> getChoiceOfValues(Object current) {
-        Invocation<?> invocation = (Invocation<?>) current;
-        EGenericType genericType = invocation.eClass().getEGenericSuperTypes().get(0).getETypeArguments().get(0);
-        Collection<EObject> result = getReachableObjectsOfType(invocation, genericType.getEClassifier());
-        if (result.contains(null) == false) {
-          result.add(null);
-        }
-        result.remove(invocation.getOrchestration().getFactoryComponent());
-        return result;
-      }
-    });
+        null));
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
+   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -117,6 +107,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -131,6 +122,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * This returns Invocation.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -142,6 +134,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -156,6 +149,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -175,6 +169,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
