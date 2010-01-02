@@ -15,7 +15,6 @@
 
 package org.eclipse.egf.pattern.ui.editors.domain;
 
-import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,7 +25,6 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.helper.ObjectHolder;
-import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -127,15 +125,19 @@ public class ResourceLoadedListener implements WorkspaceSynchronizer.Delegate {
         return true;
     }
 
-    public boolean handleResourceChanged(Resource resource) {
-        if (need2reload(resource)) {
-            resource.unload();
-            try {
-                resource.load(resource.getResourceSet().getLoadOptions());
-            } catch (IOException e) {
-                Activator.getDefault().logError(e);
-            }
-        }
+    public boolean handleResourceChanged(final Resource resource) {
+        // if (need2reload(resource)) {
+        // TransactionalEditingDomain editingDomain =
+        // TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
+        // editingDomain.getCommandStack().flush();
+        // System.out.println("Reload " + resource.getURI());
+        // try {
+        // resource.unload();
+        // resource.load(resource.getResourceSet().getLoadOptions());
+        // } catch (IOException e) {
+        // Activator.getDefault().logError(e);
+        // }
+        // }
         for (ResourceListener l : RESOURCE_MANAGER.listeners)
             l.resourceChanged(resource);
 

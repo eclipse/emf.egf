@@ -39,6 +39,7 @@ import org.eclipse.egf.pattern.ui.editors.pages.ImplementationPage;
 import org.eclipse.egf.pattern.ui.editors.pages.OverviewPage;
 import org.eclipse.egf.pattern.ui.editors.pages.PatternEditorPage;
 import org.eclipse.egf.pattern.ui.editors.pages.SpecificationPage;
+import org.eclipse.emf.common.command.BasicCommandStack;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
@@ -105,6 +106,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
             // .CUSTOM: We record the last operation executed when saved.
             savedOperation = getOperationHistory().getUndoOperation(undoContext);
             new ProgressMonitorDialog(getSite().getShell()).run(true, false, ResourceLoadedListener.RESOURCE_MANAGER.createSaveOperation(this, editingDomain));
+            ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
             firePropertyChange(IEditorPart.PROP_DIRTY);
         } catch (InvocationTargetException exception) {
             Activator.getDefault().logError(exception.getTargetException());
@@ -214,12 +216,12 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
     @Override
     public void dispose() {
+        ResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
         getOperationHistory().removeOperationHistoryListener(historyListener);
         getOperationHistory().dispose(undoContext, true, true, true);
 
         // getResource().unload();
         // editingDomain.getResourceSet().getResources().remove(getResource());
-        ResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
 
         removePatternChangeAdapter();
 
