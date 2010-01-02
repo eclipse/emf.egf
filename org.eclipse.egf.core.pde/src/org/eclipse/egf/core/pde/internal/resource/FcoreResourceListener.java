@@ -112,11 +112,13 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
   public void resourceChanged(IResourceChangeEvent event) {
 
+    IResourceDelta delta = event.getDelta();
+
     int eventType = _overridenEventType == -1 ? event.getType() : _overridenEventType;
 
     try {
 
-      final class ResourceDeltaVisitor implements IResourceDeltaVisitor {
+      class ResourceDeltaVisitor implements IResourceDeltaVisitor {
 
         protected ResourceFcoreDelta deltaFcores = new ResourceFcoreDelta();
 
@@ -124,22 +126,22 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
         protected Collection<IPlatformFcore> removedFcores = new ArrayList<IPlatformFcore>();
 
-        public boolean visit(IResourceDelta delta) throws CoreException {
+        public boolean visit(IResourceDelta innerDelta) throws CoreException {
 
-          if (delta.getFlags() == IResourceDelta.MARKERS) {
+          if (innerDelta.getFlags() == IResourceDelta.MARKERS) {
             return true;
           }
 
-          IResource resource = delta.getResource();
+          IResource resource = innerDelta.getResource();
 
           // Analyse projects
           if (resource.getType() == IResource.PROJECT) {
             // Ignore Added or Remove projects
-            if (delta.getKind() == IResourceDelta.ADDED || delta.getKind() == IResourceDelta.REMOVED) {
+            if (innerDelta.getKind() == IResourceDelta.ADDED || innerDelta.getKind() == IResourceDelta.REMOVED) {
               return false;
-            } else if (delta.getKind() == IResourceDelta.CHANGED) {
+            } else if (innerDelta.getKind() == IResourceDelta.CHANGED) {
               // Ignore opened or closed project
-              if ((delta.getFlags() & IResourceDelta.OPEN) != 0) {
+              if ((innerDelta.getFlags() & IResourceDelta.OPEN) != 0) {
                 return false;
               }
             }
@@ -153,14 +155,14 @@ public class FcoreResourceListener implements IResourceChangeListener {
           }
 
           // Process files
-          if (delta.getKind() == IResourceDelta.REMOVED || delta.getKind() == IResourceDelta.CHANGED || delta.getKind() == IResourceDelta.ADDED) {
+          if (innerDelta.getKind() == IResourceDelta.REMOVED || innerDelta.getKind() == IResourceDelta.CHANGED || innerDelta.getKind() == IResourceDelta.ADDED) {
             if (IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(resource.getFileExtension())) {
               try {
                 // Build a Resource URI
                 URI uri = URIHelper.getPlatformURI(resource);
                 if (uri != null) {
                   // Removed resource
-                  if (delta.getKind() == IResourceDelta.REMOVED) {
+                  if (innerDelta.getKind() == IResourceDelta.REMOVED) {
                     for (IPlatformFcore fc : EGFCorePlugin.getWorkspacePlatformFcores()) {
                       if (fc.getURI().equals(uri)) {
                         removedFcores.add(fc);
@@ -168,7 +170,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
                       }
                     }
                     // Added resource
-                  } else if (delta.getKind() == IResourceDelta.ADDED) {
+                  } else if (innerDelta.getKind() == IResourceDelta.ADDED) {
                     boolean found = false;
                     for (IPlatformFcore fc : EGFCorePlugin.getWorkspacePlatformFcores()) {
                       if (fc.getURI().equals(uri)) {
@@ -178,17 +180,17 @@ public class FcoreResourceListener implements IResourceChangeListener {
                     }
                     if (found == false) {
                       addedFcores.add(resource);
-                      if ((delta.getFlags() & IResourceDelta.MOVED_FROM) != 0) {
+                      if ((innerDelta.getFlags() & IResourceDelta.MOVED_FROM) != 0) {
                         // Build a Resource URI
-                        URI fromURI = URIHelper.getPlatformURI(delta.getMovedFromPath());
+                        URI fromURI = URIHelper.getPlatformURI(innerDelta.getMovedFromPath());
                         if (fromURI != null) {
                           deltaFcores.storeMovedResourceFcore(uri, fromURI);
                         }
                       }
                     }
                     // Changed resource
-                  } else if (delta.getKind() == IResourceDelta.CHANGED) {
-                    if ((delta.getFlags() & IResourceDelta.CONTENT) != 0) {
+                  } else if (innerDelta.getKind() == IResourceDelta.CHANGED) {
+                    if ((innerDelta.getFlags() & IResourceDelta.CONTENT) != 0) {
                       deltaFcores.storeChangedResourceFcore(uri);
                     }
                   }
@@ -220,7 +222,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
       switch (eventType) {
       case IResourceChangeEvent.POST_CHANGE:
         final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-        event.getDelta().accept(visitor);
+        delta.accept(visitor);
         // Process added and removed resources
         if (visitor.getRemovedFcores().isEmpty() == false || visitor.getAddedFcores().isEmpty() == false) {
           final IStatus[] errorStatus = new IStatus[1];
