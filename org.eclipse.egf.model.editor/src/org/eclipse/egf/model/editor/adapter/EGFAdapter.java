@@ -67,7 +67,7 @@ public class EGFAdapter extends EContentAdapter {
           return sourceFolders;
         }
       };
-      // Asynchronous operation
+      // asynchronous operation
       try {
         new ProgressMonitorDialog(_site.getShell()).run(false, true, operation);
       } catch (InterruptedException ie) {
