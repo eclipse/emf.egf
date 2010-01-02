@@ -20,6 +20,7 @@ Export-Package:
  org.eclipse.egf.common,
  org.eclipse.egf.common.activator,
  org.eclipse.egf.common.constant,
+ org.eclipse.egf.common.cycle,
  org.eclipse.egf.common.emf,
  org.eclipse.egf.common.generator,
  org.eclipse.egf.common.helper,
