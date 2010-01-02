@@ -351,6 +351,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
           // See PlatformManager for more informations
           for (IPlatformFcore innerFcore : fcores) {
             if (innerFcore.compareTo(fcore) == 0) {
+              fcores.remove(innerFcore);
+              fcores.add(fcore);
               continue;
             }
             deltaChangedResources.add(resource);
@@ -370,6 +372,10 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
             } else {
               // Unload memory removed resources
               for (Resource resource : deltaRemovedResources) {
+                IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
+                if (fcore != null) {
+                  fcores.remove(fcore);
+                }
                 resource.unload();
               }
               // UI Update
