@@ -44,6 +44,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
@@ -85,6 +86,7 @@ public class PatternViewpointContributor extends ViewpointContributor {
                     CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, "myPattern"));
                     CreateChildAction createChildAction = new CreatePatternAction(activeEditorPart, selection, descriptor, (PatternLibrary) selection2.getFirstElement());
                     createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, nature));
+                    createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
                     createChildMenuManager.add(createChildAction);
                 }
                 // menuManager.insertBefore("edit", createChildAction);

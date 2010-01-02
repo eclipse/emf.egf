@@ -32,6 +32,7 @@ public class Messages extends NLS {
     // Extension
     public static String extension_error1;
     public static String extension_error2;
+    public static String extension_error3;
 
     // classloader
     public static String classloader_error1;

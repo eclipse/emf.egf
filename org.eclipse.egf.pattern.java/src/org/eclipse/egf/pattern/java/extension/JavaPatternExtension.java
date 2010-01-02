@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.java.extension;
 
 import org.eclipse.core.resources.IProject;
+import org.eclipse.egf.model.javapattern.provider.JavaPatternItemProviderAdapterFactory;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternNature;
@@ -25,6 +26,7 @@ import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.java.engine.JavaEngine;
 import org.eclipse.egf.pattern.java.engine.JavaNatureHelper;
+import org.eclipse.emf.common.notify.AdapterFactory;
 
 /**
  * @author Guiu
@@ -68,6 +70,12 @@ public class JavaPatternExtension extends PatternExtension {
     protected PatternInitializer doCreateInitializer(IProject project, Pattern pattern) {
 
         return new JavaPatternInitializer(project, pattern);
+    }
+
+    @Override
+    protected AdapterFactory getAdapterFactory() {
+
+        return new JavaPatternItemProviderAdapterFactory();
     }
 
 }
