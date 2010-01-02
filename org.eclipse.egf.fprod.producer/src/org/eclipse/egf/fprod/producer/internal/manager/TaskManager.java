@@ -12,9 +12,9 @@ package org.eclipse.egf.fprod.producer.internal.manager;
 
 import java.util.List;
 
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.EGFFprodProducerPlugin;
 import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
@@ -30,6 +30,7 @@ import org.eclipse.egf.producer.internal.manager.InvocationManager;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
 /**
@@ -40,17 +41,14 @@ public class TaskManager extends ActivityManager implements ITaskManager {
 
   public TaskManager(Task task) throws InvocationException {
     super(task);
-    Assert.isNotNull(task.getValue());
   }
 
   public TaskManager(Bundle bundle, Task task) {
     super(bundle, task);
-    Assert.isNotNull(task.getValue());
   }
 
   public TaskManager(InvocationManager parent, Task task) throws InvocationException {
     super(parent, task);
-    Assert.isNotNull(task.getValue());
   }
 
   @Override
@@ -87,8 +85,13 @@ public class TaskManager extends ActivityManager implements ITaskManager {
   }
 
   @Override
-  public Diagnostic canInvoke() throws InvocationException {
-    return super.canInvokeElement();
+  protected BasicDiagnostic canInvokeElement() throws InvocationException {
+    BasicDiagnostic diagnostic = super.canInvokeElement();
+    if (getElement().getValue() == null) {
+      diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("Task Implementation is mandatory for ''{0}''", EMFHelper.getText(getElement())), //$NON-NLS-1$
+          new Object[] { getElement() }));
+    }
+    return diagnostic;
   }
 
   @Override
@@ -110,7 +113,7 @@ public class TaskManager extends ActivityManager implements ITaskManager {
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    BasicDiagnostic diagnostic = (BasicDiagnostic) canInvokeElement();
+    BasicDiagnostic diagnostic = canInvokeElement();
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       EGFFprodProducerPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement().getValue()).invoke(monitor);
       if (monitor.isCanceled()) {

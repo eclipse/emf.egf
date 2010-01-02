@@ -36,6 +36,16 @@ import org.osgi.framework.Bundle;
  */
 public abstract class ModelElementManager implements IModelElementManager {
 
+  protected static BasicDiagnostic getDiagnostic(ModelElement element) {
+    String message = null;
+    if (element.getName() != null && element.getName().trim().length() != 0) {
+      message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, element.getName());
+    } else {
+      message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, element.eClass().getName());
+    }
+    return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, new Object[] { element });
+  }
+
   private ModelElement _element;
 
   protected IModelElementManager _parent;
@@ -121,14 +131,8 @@ public abstract class ModelElementManager implements IModelElementManager {
   }
 
   @SuppressWarnings("unused")
-  protected Diagnostic canInvokeElement() throws InvocationException {
-    String message = null;
-    if (getElement().getName() != null && getElement().getName().trim().length() != 0) {
-      message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, getElement().getName());
-    } else {
-      message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, getElement().eClass().getName());
-    }
-    return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, new Object[] { getElement() });
+  protected BasicDiagnostic canInvokeElement() throws InvocationException {
+    return getDiagnostic(getElement());
   }
 
   public Diagnostic canInvoke() throws InvocationException {

@@ -66,7 +66,7 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
 
   @Override
   public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvokeElement();
+    BasicDiagnostic diagnostic = canInvokeElement();
     if (getFactoryComponentManager() != null) {
       diagnostic.add(getFactoryComponentManager().canInvoke());
     }
@@ -105,7 +105,7 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    BasicDiagnostic diagnostic = (BasicDiagnostic) canInvokeElement();
+    BasicDiagnostic diagnostic = canInvokeElement();
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       FactoryComponentManager factoryComponentManager = getFactoryComponentManager();
       if (factoryComponentManager != null) {

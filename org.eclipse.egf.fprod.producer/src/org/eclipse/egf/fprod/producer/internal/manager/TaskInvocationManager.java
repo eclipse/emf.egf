@@ -73,7 +73,7 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager imple
 
   @Override
   public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvokeElement();
+    BasicDiagnostic diagnostic = canInvokeElement();
     if (getTaskManager() != null) {
       diagnostic.add(getTaskManager().canInvoke());
     }
@@ -104,7 +104,7 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager imple
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    BasicDiagnostic diagnostic = (BasicDiagnostic) canInvokeElement();
+    BasicDiagnostic diagnostic = canInvokeElement();
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       TaskManager taskManager = getTaskManager();
       if (taskManager != null) {

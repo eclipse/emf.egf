@@ -93,7 +93,7 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
 
   @Override
   public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvokeElement();
+    BasicDiagnostic diagnostic = canInvokeElement();
     Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
     if (managers != null) {
       for (Invocation<?> invocation : getElement().getInvocations()) {
@@ -137,7 +137,7 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    BasicDiagnostic diagnostic = (BasicDiagnostic) canInvokeElement();
+    BasicDiagnostic diagnostic = canInvokeElement();
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       Map<Invocation<?>, IProductionPlanInvocationManager> managers = getProductionPlanManagers();
       if (managers != null) {
