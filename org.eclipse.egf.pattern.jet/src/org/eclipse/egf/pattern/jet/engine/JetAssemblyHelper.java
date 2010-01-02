@@ -29,7 +29,7 @@ import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.ParameterMatcher;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.jet.Messages;
-import org.eclipse.egf.pattern.query.ParameterTypeHelper;
+import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 
 /**
  * @author Thomas Guiu
@@ -101,7 +101,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         content.append("<%");
         for (PatternVariable var : pattern.getAllVariables()) {
-            content.append(var.getType()).append(" ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
+            content.append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(CharacterConstants.LINE_SEPARATOR);
         }
         content.append("%>");
         super.addVariable(pattern);
