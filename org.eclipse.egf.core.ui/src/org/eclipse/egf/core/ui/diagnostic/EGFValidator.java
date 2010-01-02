@@ -25,10 +25,9 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.emf.EMFEditUIHelper;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
@@ -55,7 +54,6 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation;
 import org.eclipse.ui.part.ISetSelectionTarget;
-import org.eclipse.ui.statushandlers.StatusManager;
 
 public class EGFValidator {
 
@@ -190,8 +188,8 @@ public class EGFValidator {
               if (editorPart != null && editorPart instanceof IEditingDomainProvider) {
                 EMFEditUIHelper.setSelectionToViewer(editorPart, uri);
               }
-            } catch (Exception e) {
-              StatusManager.getManager().handle(EGFCoreUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, e), StatusManager.SHOW);
+            } catch (Throwable t) {
+              ThrowableHandler.handleThrowable(EGFCoreUIPlugin.getDefault().getPluginID(), t);
             }
           }
         }
