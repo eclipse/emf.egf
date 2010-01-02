@@ -85,12 +85,16 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
         if (value == null) {
           if (containerDiagnostic == null) {
             containerDiagnostic = getDiagnostic(contract.getActivityContractContainer());
-            diagnostic.add(containerDiagnostic);
           }
           containerDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("ActivityContract is mandatory for ''{0}''", EMFHelper.getText(contract)), //$NON-NLS-1$
               new Object[] { contract }));
         }
       }
+    }
+    // containerDiagnostic should be added at the end otherwise, the severity code is not propagated
+    // to the parent.
+    if (containerDiagnostic != null) {
+      diagnostic.add(containerDiagnostic);
     }
     return diagnostic;
   }
