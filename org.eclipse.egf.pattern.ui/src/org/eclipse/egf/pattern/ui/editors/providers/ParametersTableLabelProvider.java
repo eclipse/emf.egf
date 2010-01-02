@@ -88,7 +88,7 @@ public class ParametersTableLabelProvider extends LabelProvider implements ITabl
      * Drop any package or uri information of the type.
      */
     public static String getType(String type) {
-        if (type == null || type.isEmpty() || "".equals(type))
+        if (type == null || type.length() == 0)
             return "";
         int mark1Index = type.lastIndexOf("$");
         int mark2Index = type.lastIndexOf(".");

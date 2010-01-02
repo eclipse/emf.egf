@@ -44,7 +44,7 @@ public class PatternElementSelectionDialog extends SelectionStatusDialog {
      * Matching patternElements.
      */
     public static boolean searchContainer(String content, String regex) {
-        if (regex.isEmpty() || regex == null)
+        if (regex == null || regex.length() == 0)
             return true;
         try {
             Matcher matcher = Pattern.compile(regex.toLowerCase()).matcher(content.toLowerCase());

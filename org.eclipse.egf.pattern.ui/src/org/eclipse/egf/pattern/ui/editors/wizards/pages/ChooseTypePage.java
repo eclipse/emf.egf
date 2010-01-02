@@ -265,7 +265,7 @@ public class ChooseTypePage extends WizardPage {
      * Drop any package or uri information of the type.
      */
     public static String getType(String type) {
-        if (type == null || type.isEmpty() || "".equals(type)) //$NON-NLS-1$
+        if (type == null || type.length() == 0) //$NON-NLS-1$
             return ""; //$NON-NLS-1$
         int index = type.lastIndexOf("."); //$NON-NLS-1$
         if (index != -1)
