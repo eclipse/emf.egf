@@ -31,7 +31,6 @@ import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
-import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -165,32 +164,32 @@ public class EGFValidator {
 
     int result = 0;
 
+    DiagnosticDialog dialog = new DiagnosticDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
+
     if (diagnostic.getSeverity() != Diagnostic.OK) {
-      result = DiagnosticDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic);
+      result = dialog.open();
     }
 
-    if (result == Window.OK) {
-      if (diagnostic.getChildren().isEmpty() == false) {
-        List<?> data = (diagnostic.getChildren().get(0)).getData();
-        if (data.isEmpty() == false && data.get(0) instanceof EObject) {
-          Object part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
-          if (part instanceof ISetSelectionTarget) {
-            ((ISetSelectionTarget) part).selectReveal(new StructuredSelection(data.get(0)));
-          } else if (part instanceof IViewerProvider) {
-            Viewer viewer = ((IViewerProvider) part).getViewer();
-            if (viewer != null) {
-              viewer.setSelection(new StructuredSelection(data.get(0)), true);
+    if (result == Window.OK && dialog.getSelection() != null) {
+      List<?> data = dialog.getSelection().getData();
+      if (data.isEmpty() == false && data.get(0) instanceof EObject) {
+        Object part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
+        if (part instanceof ISetSelectionTarget) {
+          ((ISetSelectionTarget) part).selectReveal(new StructuredSelection(data.get(0)));
+        } else if (part instanceof IViewerProvider) {
+          Viewer viewer = ((IViewerProvider) part).getViewer();
+          if (viewer != null) {
+            viewer.setSelection(new StructuredSelection(data.get(0)), true);
+          }
+        } else {
+          URI uri = EcoreUtil.getURI((EObject) data.get(0));
+          try {
+            IEditorPart editorPart = EMFEditUIHelper.openEditor(uri);
+            if (editorPart != null && editorPart instanceof IEditingDomainProvider) {
+              EMFEditUIHelper.setSelectionToViewer(editorPart, uri);
             }
-          } else {
-            URI uri = EcoreUtil.getURI((EObject) data.get(0));
-            try {
-              IEditorPart editorPart = EMFEditUIHelper.openEditor(uri);
-              if (editorPart != null && editorPart instanceof IEditingDomainProvider) {
-                EMFEditUIHelper.setSelectionToViewer(editorPart, uri);
-              }
-            } catch (Throwable t) {
-              ThrowableHandler.handleThrowable(EGFCoreUIPlugin.getDefault().getPluginID(), t);
-            }
+          } catch (Throwable t) {
+            ThrowableHandler.handleThrowable(EGFCoreUIPlugin.getDefault().getPluginID(), t);
           }
         }
       }
