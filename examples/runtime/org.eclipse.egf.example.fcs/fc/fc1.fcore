@@ -18,7 +18,8 @@
         mode="Out" invocationContexts="#_HzSEYciDEd6oON34eIZwow">
       <type xmi:type="types:TypeGeneratorAdapterFactory" xmi:id="_7EKPoMnxEd62uJjVIIL53A"/>
     </activityContracts>
-    <activityContracts xmi:id="_aZgPYNW6Ed6dzvinGX1cMA" name="parameters" invocationContexts="#_OHww8NW6Ed6dzvinGX1cMA">
+    <activityContracts xmi:id="_aZgPYNW6Ed6dzvinGX1cMA" name="parameters" mandatory="true"
+        invocationContexts="#_OHww8NW6Ed6dzvinGX1cMA">
       <type xmi:type="types:TypeList" xmi:id="_ceRjgNW6Ed6dzvinGX1cMA"/>
     </activityContracts>
   </activityContractContainer>

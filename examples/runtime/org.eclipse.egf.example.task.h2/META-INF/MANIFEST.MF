@@ -10,7 +10,7 @@ Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
  org.eclipse.egf.common.ui,
- org.eclipse.egf.fprod.producer
+ org.eclipse.egf.model.fprod
 Export-Package: 
  org.eclipse.egf.example.task.h2
 Bundle-ActivationPolicy: lazy
