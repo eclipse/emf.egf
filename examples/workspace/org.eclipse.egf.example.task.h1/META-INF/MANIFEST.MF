@@ -9,8 +9,7 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
- org.eclipse.egf.common,
- org.eclipse.egf.fprod.producer
+ org.eclipse.egf.model.fprod
 Export-Package: 
  org.eclipse.egf.example.task.h1
 Bundle-ActivationPolicy: lazy
