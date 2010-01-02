@@ -26,7 +26,6 @@ import org.eclipse.core.resources.IProjectDescription;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -39,7 +38,6 @@ import org.eclipse.egf.common.generator.IEgfGeneratorConstants;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.emf.codegen.ecore.Generator;
 import org.eclipse.jdt.core.IClasspathEntry;
-import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
@@ -120,45 +118,6 @@ public class ProjectHelper {
     return null;
   }
 
-  /**
-   * Get java project in the workspace from its project name.
-   * 
-   * @param projectName_p
-   *          It is assumed given project name points to a plug-in project. If
-   *          not, use {@link #getJavaProject(IProject)} instead.
-   * @return null if it could not be found. Either the given name is null, or
-   *         there is no java project in the workspace with this name (maybe
-   *         then the project is deployed instead).
-   */
-  public static IJavaProject getJavaProject(String projectName_p) {
-    return getJavaProject(getProject(projectName_p));
-  }
-
-  /**
-   * Get java project from workspace project.
-   * 
-   * @param project_p
-   * @return null if it could not be found. The given project is not a Java one,
-   *         or JDT has not been initialized correctly.
-   */
-  public static IJavaProject getJavaProject(IProject project_p) {
-    IJavaProject result = null;
-    // Precondition.
-    if (project_p == null) {
-      return result;
-    }
-    // Get java project from project.
-    IJavaElement javaElement = (IJavaElement) ((IAdaptable) project_p).getAdapter(IJavaElement.class);
-    // Only JDT UI initializes adapter mechanism.
-    // If this method is called from a non UI application (e.g antRunner) uses
-    // the JavaCore API instead.
-    if (javaElement == null) {
-      javaElement = JavaCore.create(project_p);
-    }
-    result = javaElement.getJavaProject();
-    return result;
-  }
-
   public static ClassLoader getProjectClassLoader(IProject project) throws CoreException {
     return new URLClassLoader(asURL(project), ProjectHelper.class.getClassLoader());
   }
@@ -211,39 +170,6 @@ public class ProjectHelper {
       }
     }
     return urls.toArray(new URL[urls.size()]);
-  }
-
-  /**
-   * Get given java project dependencies in terms of compilation.<br>
-   * The resulting array can be used to feed a specific class loader.
-   * 
-   * @param javaProject_p
-   * @return An array of URL.<br>
-   *         Not null, but possibly empty.
-   * @throws Exception
-   */
-  protected static URL[] getProjectDependencies(IJavaProject javaProject_p) throws Exception {
-    // Retrieve its dependencies.
-    IClasspathEntry[] classpathEntries = javaProject_p.getResolvedClasspath(true);
-    List<URL> classpathUrls = new ArrayList<URL>(classpathEntries.length);
-    // Create urls out of them.
-    for (IClasspathEntry classpathEntry : classpathEntries) {
-      IPath urlPath = classpathEntry.getPath();
-      switch (classpathEntry.getEntryKind()) {
-      // For source project or projects, look for the output folder...
-      case IClasspathEntry.CPE_SOURCE:
-      case IClasspathEntry.CPE_PROJECT:
-        IJavaProject localProject = ProjectHelper.getJavaProject(urlPath.segment(0));
-        urlPath = localProject.getProject().getLocation().append(localProject.getOutputLocation().removeFirstSegments(1));
-        break;
-      // For libraries and installed plug-ins, simply retain the class-path
-      // entry path.
-      default:
-        break;
-      }
-      classpathUrls.add(urlPath.toFile().toURI().toURL());
-    }
-    return classpathUrls.toArray(new URL[classpathUrls.size()]);
   }
 
   /**
@@ -396,7 +322,7 @@ public class ProjectHelper {
    * @param project_p
    */
   private static void cleanProjectStructure(IProject project_p) {
-    IJavaProject javaProject = getJavaProject(project_p);
+    IJavaProject javaProject = JavaCore.create(project_p);
     // Precondition.
     if (javaProject == null) {
       return;
