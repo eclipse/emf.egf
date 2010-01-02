@@ -43,7 +43,7 @@ public class TaskManager extends ActivityManager implements ITaskManager {
     super(task);
   }
 
-  public TaskManager(Bundle bundle, Task task) {
+  public TaskManager(Bundle bundle, Task task) throws InvocationException {
     super(bundle, task);
   }
 

@@ -21,15 +21,14 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Task Contract</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fprod.TaskContract#getActivityContractContainer <em>Activity
- * Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fprod.TaskContract#getActivityContractContainer <em>Activity Contract Container</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.fprod.FprodPackage#getTaskContract()
  * @model
  * @generated
@@ -37,16 +36,13 @@ import org.eclipse.emf.common.util.EList;
 public interface TaskContract extends ActivityContract {
   /**
    * Returns the value of the '<em><b>Activity Contract Container</b></em>' container reference.
-   * It is bidirectional and its opposite is '
-   * {@link org.eclipse.egf.model.fprod.TaskContractContainer#getActivityContracts <em>Activity
-   * Contracts</em>}'.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fprod.TaskContractContainer#getActivityContracts <em>Activity Contracts</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Activity Contract Container</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Activity Contract Container</em>' container reference.
    * @see #setActivityContractContainer(TaskContractContainer)
    * @see org.eclipse.egf.model.fprod.FprodPackage#getTaskContract_ActivityContractContainer()
@@ -57,14 +53,10 @@ public interface TaskContract extends ActivityContract {
   TaskContractContainer getActivityContractContainer();
 
   /**
-   * Sets the value of the '
-   * {@link org.eclipse.egf.model.fprod.TaskContract#getActivityContractContainer <em>Activity
-   * Contract Container</em>}' container reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fprod.TaskContract#getActivityContractContainer <em>Activity Contract Container</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Activity Contract Container</em>' container reference.
+   * @param value the new value of the '<em>Activity Contract Container</em>' container reference.
    * @see #getActivityContractContainer()
    * @generated
    */
@@ -73,7 +65,6 @@ public interface TaskContract extends ActivityContract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model kind="operation"
    * @generated
    */
@@ -83,7 +74,6 @@ public interface TaskContract extends ActivityContract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model
    * @generated
    */
@@ -92,7 +82,6 @@ public interface TaskContract extends ActivityContract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model
    * @generated
    */
@@ -101,7 +90,6 @@ public interface TaskContract extends ActivityContract {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model
    * @generated
    */

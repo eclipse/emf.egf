@@ -72,11 +72,12 @@ public class RunActivityAction implements IObjectActionDelegate {
       return;
     }
 
+    final IActivityManager[] activityManager = new IActivityManager[1];
     final Throwable[] throwable = new Throwable[1];
+    final Diagnostic[] invokeDiag = new Diagnostic[1];
+    final int[] ticks = new int[1];
 
     // 1 - Locate a Manager Producer
-    final IActivityManager[] activityManager = new IActivityManager[1];
-    final int[] ticks = new int[1];
     try {
       ActivityManagerProducer producer = null;
       try {
@@ -86,7 +87,6 @@ public class RunActivityAction implements IObjectActionDelegate {
       }
       // Create a Manager
       activityManager[0] = producer.createActivityManager(_activity);
-      ticks[0] = activityManager[0].getSteps();
     } catch (Throwable t) {
       throwable[0] = t;
     }
@@ -96,12 +96,13 @@ public class RunActivityAction implements IObjectActionDelegate {
       try {
         IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
         String validate = store.getString(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH);
-        int status = showValidateDialog(activityManager[0].getActivities(), validate.equals(MessageDialogWithToggle.NEVER) == false, validate.equals(MessageDialogWithToggle.PROMPT));
+        List<Activity> activities = activityManager[0].getActivities();
+        int status = showValidateDialog(activities, validate.equals(MessageDialogWithToggle.NEVER) == false, validate.equals(MessageDialogWithToggle.PROMPT));
         if (status != IDialogConstants.OK_ID) {
           return;
         }
         if (_validates != null && _validates.size() != 0) {
-          EGFValidator validator = new EGFValidator(activityManager[0].getActivities());
+          EGFValidator validator = new EGFValidator(activities);
           Diagnostic validationDiag = validator.validate();
           if (validationDiag.getSeverity() != Diagnostic.OK) {
             return;
@@ -136,9 +137,16 @@ public class RunActivityAction implements IObjectActionDelegate {
       }
     }
 
-    final Diagnostic[] invokeDiag = new Diagnostic[1];
+    // 4 - Count Ticks
+    if (throwable[0] == null) {
+      try {
+        ticks[0] = activityManager[0].getSteps();
+      } catch (Throwable t) {
+        throwable[0] = t;
+      }
+    }
 
-    // 4 - Run activity
+    // 5 - Run activity
     if (throwable[0] == null) {
 
       WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {

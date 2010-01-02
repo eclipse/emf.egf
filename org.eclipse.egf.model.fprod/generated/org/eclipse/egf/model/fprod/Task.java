@@ -22,16 +22,15 @@ import org.eclipse.emf.common.util.EList;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Task</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fprod.Task#getActivityContractContainer <em>Activity Contract
- * Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fprod.Task#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fprod.Task#getActivityContractContainer <em>Activity Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fprod.Task#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.fprod.FprodPackage#getTask()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='LoadableValue ValidValue'"
  * @generated
@@ -39,15 +38,13 @@ import org.eclipse.emf.common.util.EList;
 public interface Task extends Activity {
   /**
    * Returns the value of the '<em><b>Activity Contract Container</b></em>' containment reference.
-   * It is bidirectional and its opposite is '
-   * {@link org.eclipse.egf.model.fprod.TaskContractContainer#getActivity <em>Activity</em>}'.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fprod.TaskContractContainer#getActivity <em>Activity</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Activity Contract Container</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Activity Contract Container</em>' containment reference.
    * @see #setActivityContractContainer(TaskContractContainer)
    * @see org.eclipse.egf.model.fprod.FprodPackage#getTask_ActivityContractContainer()
@@ -58,13 +55,10 @@ public interface Task extends Activity {
   TaskContractContainer getActivityContractContainer();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fprod.Task#getActivityContractContainer
-   * <em>Activity Contract Container</em>}' containment reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.fprod.Task#getActivityContractContainer <em>Activity Contract Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Activity Contract Container</em>' containment reference.
+   * @param value the new value of the '<em>Activity Contract Container</em>' containment reference.
    * @see #getActivityContractContainer()
    * @generated
    */
@@ -78,7 +72,6 @@ public interface Task extends Activity {
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Value</em>' attribute.
    * @see #setValue(String)
    * @see org.eclipse.egf.model.fprod.FprodPackage#getTask_Value()
@@ -88,13 +81,10 @@ public interface Task extends Activity {
   String getValue();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fprod.Task#getValue <em>Value</em>}'
-   * attribute.
+   * Sets the value of the '{@link org.eclipse.egf.model.fprod.Task#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Value</em>' attribute.
+   * @param value the new value of the '<em>Value</em>' attribute.
    * @see #getValue()
    * @generated
    */
@@ -103,7 +93,6 @@ public interface Task extends Activity {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model kind="operation"
    * @generated
    */
@@ -113,7 +102,6 @@ public interface Task extends Activity {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model
    * @generated
    */
@@ -122,7 +110,6 @@ public interface Task extends Activity {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model
    * @generated
    */
@@ -131,7 +118,6 @@ public interface Task extends Activity {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model
    * @generated
    */

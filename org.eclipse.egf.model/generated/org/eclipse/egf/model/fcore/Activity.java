@@ -23,6 +23,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getActivity()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ActivityCycle'"
  * @generated
  */
 public interface Activity extends ModelElement {

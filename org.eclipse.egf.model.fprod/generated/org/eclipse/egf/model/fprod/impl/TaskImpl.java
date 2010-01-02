@@ -35,32 +35,27 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fprod.impl.TaskImpl#getActivityContractContainer <em>Activity
- * Contract Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fprod.impl.TaskImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fprod.impl.TaskImpl#getActivityContractContainer <em>Activity Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fprod.impl.TaskImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class TaskImpl extends ActivityImpl implements Task {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getActivityContractContainer() <em>Activity Contract
-   * Container</em>}' containment reference.
+   * The cached value of the '{@link #getActivityContractContainer() <em>Activity Contract Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getActivityContractContainer()
    * @generated
    * @ordered
@@ -71,7 +66,6 @@ public class TaskImpl extends ActivityImpl implements Task {
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -82,7 +76,6 @@ public class TaskImpl extends ActivityImpl implements Task {
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -92,7 +85,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TaskImpl() {
@@ -102,7 +94,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -113,7 +104,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TaskContractContainer getActivityContractContainer() {
@@ -123,7 +113,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetActivityContractContainer(TaskContractContainer newActivityContractContainer, NotificationChain msgs) {
@@ -142,7 +131,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setActivityContractContainer(TaskContractContainer newActivityContractContainer) {
@@ -162,7 +150,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getValue() {
@@ -172,7 +159,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setValue(String newValue) {
@@ -246,7 +232,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -263,7 +248,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -278,7 +262,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -295,7 +278,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -314,7 +296,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -333,7 +314,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -350,7 +330,6 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

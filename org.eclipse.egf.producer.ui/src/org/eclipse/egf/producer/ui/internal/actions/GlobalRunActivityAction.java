@@ -86,14 +86,15 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
     if (result != IDialogConstants.OK_ID) {
       return;
     }
-    final Object[] activities = activityDialog.getResult();
-    if (activities == null || activities.length != 1) {
+    final Object[] selection = activityDialog.getResult();
+    if (selection == null || selection.length != 1) {
       return;
     }
 
-    final Activity[] activity = new Activity[] { (Activity) activities[0] };
+    final Activity[] activity = new Activity[] { (Activity) selection[0] };
     final Throwable[] throwable = new Throwable[1];
     final IActivityManager[] activityManager = new IActivityManager[1];
+    final Diagnostic[] invokeDiag = new Diagnostic[1];
     final int[] ticks = new int[1];
 
     // 2 - Locate a Manager Producer
@@ -107,7 +108,6 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         }
         // Create a Manager
         activityManager[0] = producer.createActivityManager(activity[0]);
-        ticks[0] = activityManager[0].getSteps();
       } catch (Throwable t) {
         throwable[0] = t;
       }
@@ -118,12 +118,13 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
       try {
         IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
         String validate = store.getString(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH);
-        int status = showValidateDialog(activityManager[0].getActivities(), validate.equals(MessageDialogWithToggle.NEVER) == false, validate.equals(MessageDialogWithToggle.PROMPT));
+        List<Activity> activities = activityManager[0].getActivities();
+        int status = showValidateDialog(activities, validate.equals(MessageDialogWithToggle.NEVER) == false, validate.equals(MessageDialogWithToggle.PROMPT));
         if (status != IDialogConstants.OK_ID) {
           return;
         }
         if (_validates != null && _validates.size() != 0) {
-          EGFValidator validator = new EGFValidator(activityManager[0].getActivities());
+          EGFValidator validator = new EGFValidator(activities);
           Diagnostic validationDiag = validator.validate();
           if (validationDiag.getSeverity() != Diagnostic.OK) {
             return;
@@ -158,9 +159,16 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
       }
     }
 
-    final Diagnostic[] invokeDiag = new Diagnostic[1];
+    // 5 - Count Ticks
+    if (throwable[0] == null) {
+      try {
+        ticks[0] = activityManager[0].getSteps();
+      } catch (Throwable t) {
+        throwable[0] = t;
+      }
+    }
 
-    // 5 - Run activity
+    // 6 - Run activity
     if (throwable[0] == null) {
 
       WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {

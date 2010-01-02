@@ -29,7 +29,7 @@ public class TaskManagerFactory {
     return new TaskManager(task);
   }
 
-  public static ITaskManager createProductionManager(Bundle bundle, Task task) {
+  public static ITaskManager createProductionManager(Bundle bundle, Task task) throws InvocationException {
     return new TaskManager(bundle, task);
   }
 

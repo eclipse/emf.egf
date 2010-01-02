@@ -43,7 +43,7 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
     super(factoryComponent);
   }
 
-  public FactoryComponentManager(Bundle bundle, FactoryComponent factoryComponent) {
+  public FactoryComponentManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
     super(bundle, factoryComponent);
   }
 
@@ -93,6 +93,7 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
   }
 
   public List<Activity> getActivities() throws InvocationException {
+    // Retrieve Activities
     List<Activity> activities = new UniqueEList<Activity>();
     activities.add(getElement());
     if (getOrchestrationManager() != null) {

@@ -19,6 +19,8 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ContractMode;
+import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.helper.ActivityCycleFinder;
 import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.context.IActivityProductionContext;
@@ -38,10 +40,22 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
 
   public ActivityManager(Activity activity) throws InvocationException {
     super(activity);
+    // Diagnose Cycle
+    ActivityCycleFinder finder = new ActivityCycleFinder(activity);
+    ModelElement element = finder.getFirstRepetition();
+    if (element != null) {
+      throw new InvocationException(NLS.bind("Activity cycle detected in ''{0}''", EMFHelper.getText(element))); //$NON-NLS-1$
+    }
   }
 
-  public ActivityManager(Bundle bundle, Activity activity) {
+  public ActivityManager(Bundle bundle, Activity activity) throws InvocationException {
     super(bundle, activity);
+    // Diagnose Cycle
+    ActivityCycleFinder finder = new ActivityCycleFinder(activity);
+    ModelElement element = finder.getFirstRepetition();
+    if (element != null) {
+      throw new InvocationException(NLS.bind("Activity cycle detected in ''{0}''", EMFHelper.getText(element))); //$NON-NLS-1$
+    }
   }
 
   public ActivityManager(IInvocationManager parent, Activity activity) throws InvocationException {
