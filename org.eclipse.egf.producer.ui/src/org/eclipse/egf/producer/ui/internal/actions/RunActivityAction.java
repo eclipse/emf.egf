@@ -27,6 +27,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
@@ -53,7 +54,6 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.progress.IProgressConstants;
-import org.eclipse.ui.statushandlers.StatusManager;
 
 public class RunActivityAction implements IObjectActionDelegate {
 
@@ -197,16 +197,8 @@ public class RunActivityAction implements IObjectActionDelegate {
 
     }
 
-    if (throwable[0] != null) {
-      IStatus status = null;
-      if (throwable[0] instanceof CoreException) {
-        status = ((CoreException) throwable[0]).getStatus();
-      } else if (throwable[0] instanceof InvocationException) {
-        status = EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, InvocationException.class.getSimpleName(), throwable[0]);
-      } else {
-        status = EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, throwable[0]);
-      }
-      StatusManager.getManager().handle(status, StatusManager.SHOW);
+    if (throwable[0] != null && throwable[0] instanceof InterruptedException == false) {
+      ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), throwable[0]);
     } else if (invokeDiag[0] != null && invokeDiag[0].getSeverity() != Diagnostic.OK) {
       if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
         EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
