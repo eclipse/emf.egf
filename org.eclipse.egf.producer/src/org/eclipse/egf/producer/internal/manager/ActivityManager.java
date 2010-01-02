@@ -67,7 +67,7 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
   protected abstract ActivityProductionContext getInternalProductionContext() throws InvocationException;
 
   @Override
-  public Diagnostic canInvokeElement() throws InvocationException {
+  protected Diagnostic canInvokeElement() {
     BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvokeElement();
     // Diagnose Mandatory In Contract
     for (ActivityContract contract : getElement().getActivityContracts(ContractMode.IN)) {

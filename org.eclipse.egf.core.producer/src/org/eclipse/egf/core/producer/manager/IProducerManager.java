@@ -27,8 +27,6 @@ public interface IProducerManager {
 
   public IProducerManager getParent();
 
-  public Diagnostic canInvokeElement() throws InvocationException;
-
   public Diagnostic canInvoke() throws InvocationException;
 
   public IProductionContext<?> getProductionContext();

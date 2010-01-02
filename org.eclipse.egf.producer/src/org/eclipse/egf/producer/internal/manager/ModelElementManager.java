@@ -120,7 +120,7 @@ public abstract class ModelElementManager implements IModelElementManager {
     return _projectBundleSession;
   }
 
-  public Diagnostic canInvokeElement() throws InvocationException {
+  protected Diagnostic canInvokeElement() {
     String message = null;
     if (getElement().getName() != null && getElement().getName().trim().length() != 0) {
       message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, getElement().getName());
