@@ -52,7 +52,7 @@ http://www.eclipse.org/legal/epl-v10.html
   />  
   
   <includes 
-    id="org.eclipse.egf.core.ui" 
+    id="org.eclipse.egf.fprod.ui" 
     version="0.0.0"
   />  
   
