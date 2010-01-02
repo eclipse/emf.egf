@@ -40,7 +40,7 @@ import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
-import org.eclipse.egf.producer.ui.internal.dialogs.ActivitySelectionDialog;
+import org.eclipse.egf.producer.ui.internal.dialogs.ActivityValidationSelectionDialog;
 import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -210,7 +210,7 @@ public class RunActivityAction implements IObjectActionDelegate {
   private int showValidateDialog(List<Activity> activities, boolean validate, boolean prompt) {
     if (validate) {
       if (prompt && activities != null && activities.size() > 0) {
-        ActivitySelectionDialog dialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), activities);
+        ActivityValidationSelectionDialog dialog = new ActivityValidationSelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), activities);
         if (dialog.open() == IDialogConstants.CANCEL_ID) {
           return IDialogConstants.CANCEL_ID;
         }

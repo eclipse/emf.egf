@@ -40,13 +40,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 
-/**
- * Opens a resizable dialog listing possible files to save, the user can select none, some or all of
- * the files before pressing OK.
- * 
- * @since 3.2
- */
-public class ActivitySelectionDialog extends AbstractCheckboxSelectionDialog {
+public class ActivityValidationSelectionDialog extends AbstractCheckboxSelectionDialog {
 
   private final String SETTINGS_ID = EGFProducerUIPlugin.getDefault().getPluginID() + ".SCOPED_SAVE_SELECTION_DIALOG"; //$NON-NLS-1$
 
@@ -56,7 +50,7 @@ public class ActivitySelectionDialog extends AbstractCheckboxSelectionDialog {
 
   private ComposedAdapterFactory _adapterFactory;
 
-  public ActivitySelectionDialog(Shell parentShell, List<Activity> activities) {
+  public ActivityValidationSelectionDialog(Shell parentShell, List<Activity> activities) {
     super(parentShell);
     _activities = activities;
     setTitle(ProducerUIMessages.ActivitySelectionDialog_Title);

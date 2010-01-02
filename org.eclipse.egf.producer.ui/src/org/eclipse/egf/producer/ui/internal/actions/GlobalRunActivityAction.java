@@ -25,28 +25,22 @@ import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.diagnostic.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.MissingExtensionException;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.diagnostic.EGFValidator;
-import org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog;
+import org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
-import org.eclipse.egf.producer.ui.internal.dialogs.ActivitySelectionDialog;
+import org.eclipse.egf.producer.ui.internal.dialogs.ActivityValidationSelectionDialog;
 import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IDialogConstants;
@@ -85,38 +79,25 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
 
     _validates = null;
 
-    // 1 - Fcore Selection
-    FcoreSelectionDialog fcoreDialog = new FcoreSelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), false);
-    fcoreDialog.setTitle(ProducerUIMessages.GlobalRunActivityAction_dialogTitle);
-    fcoreDialog.setMessage(ProducerUIMessages.GlobalRunActivityAction_dialogMessage);
-    int result = fcoreDialog.open();
+    // 1 - Activity Selection
+    ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), false);
+    activityDialog.setTitle(ProducerUIMessages.GlobalRunActivityAction_dialogTitle);
+    activityDialog.setMessage(ProducerUIMessages.GlobalRunActivityAction_dialogMessage);
+    int result = activityDialog.open();
     if (result != IDialogConstants.OK_ID) {
       return;
     }
-    final Object[] fcores = fcoreDialog.getResult();
-    if (fcores == null || fcores.length != 1) {
+    final Object[] activities = activityDialog.getResult();
+    if (activities == null || activities.length != 1) {
       return;
     }
 
+    final Activity[] activity = new Activity[] { (Activity) activities[0] };
     final Throwable[] throwable = new Throwable[1];
     final IActivityManager[] activityManager = new IActivityManager[1];
     final int[] ticks = new int[1];
 
-    // 2 - Load Fcore Resource and Activity selection
-    final Activity[] activity = new Activity[1];
-    try {
-      ResourceSet resourceSet = new ResourceSetImpl();
-      Resource resource = ResourceHelper.loadResource(resourceSet, ((IPlatformFcore) fcores[0]).getURI());
-      EObject eObject = resource.getContents().get(0);
-      if (eObject instanceof Activity == false) {
-        return;
-      }
-      activity[0] = (Activity) eObject;
-    } catch (Throwable t) {
-      throwable[0] = t;
-    }
-
-    // 3 - Locate a Manager Producer
+    // 2 - Locate a Manager Producer
     if (throwable[0] == null) {
       try {
         ActivityManagerProducer producer = null;
@@ -133,7 +114,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
       }
     }
 
-    // 4 - Validation
+    // 3 - Validation
     if (throwable[0] == null) {
       try {
         IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
@@ -154,7 +135,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
       }
     }
 
-    // 3 - Run activity
+    // 4 - Run activity
     if (throwable[0] == null) {
 
       WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {
@@ -228,7 +209,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
   private int showValidateDialog(List<Activity> activities, boolean validate, boolean prompt) {
     if (validate) {
       if (prompt && activities != null && activities.size() > 0) {
-        ActivitySelectionDialog dialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), activities);
+        ActivityValidationSelectionDialog dialog = new ActivityValidationSelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), activities);
         if (dialog.open() == IDialogConstants.CANCEL_ID) {
           return IDialogConstants.CANCEL_ID;
         }
