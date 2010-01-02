@@ -48,7 +48,7 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
       return null;
     }
 
-    if (object instanceof TypeAbstractClass<?> == false || object instanceof Task == false) {
+    if (object instanceof TypeAbstractClass<?> == false && object instanceof Task == false) {
       return super.createPropertyEditor(composite);
     }
 
