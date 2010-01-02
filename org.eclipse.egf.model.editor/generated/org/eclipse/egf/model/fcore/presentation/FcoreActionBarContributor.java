@@ -274,7 +274,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   @Override
   public void contributeToMenu(IMenuManager menuManager) {
@@ -289,12 +289,12 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
 
     // Prepare for CreateChild item addition or removal.
     //
-    createChildMenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item")); //$NON-NLS-1$
+    createChildMenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), "create-child"); //$NON-NLS-1$ //$NON-NLS-2$
     submenuManager.insertBefore("additions", createChildMenuManager); //$NON-NLS-1$
 
     // Prepare for CreateSibling item addition or removal.
     //
-    createSiblingMenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item")); //$NON-NLS-1$
+    createSiblingMenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), "create-sibling"); //$NON-NLS-1$ //$NON-NLS-2$
     submenuManager.insertBefore("additions", createSiblingMenuManager); //$NON-NLS-1$
 
     // Force an update because Eclipse hides empty menus now.
@@ -357,6 +357,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    * @generated NOT
    */
   public void selectionChanged(SelectionChangedEvent event) {
+
     // Remove any menu items for old selection.
     //
     if (createChildMenuManager != null) {
@@ -394,8 +395,10 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
       populateManager(createSiblingMenuManager, createSiblingActions, null);
       createSiblingMenuManager.update(true);
     }
-    for (ViewpointContributor vpc : viewpointContributors)
+
+    for (ViewpointContributor vpc : viewpointContributors) {
       vpc.selectionChanged(event);
+    }
 
   }
 
@@ -508,16 +511,18 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
     super.menuAboutToShow(menuManager);
     MenuManager submenuManager = null;
 
-    submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item")); //$NON-NLS-1$
+    submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), "create-child"); //$NON-NLS-1$ //$NON-NLS-2$
     populateManager(submenuManager, createChildActions, null);
     menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 
-    submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item")); //$NON-NLS-1$
+    submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), "create-sibling"); //$NON-NLS-1$ //$NON-NLS-2$
     populateManager(submenuManager, createSiblingActions, null);
     menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 
-    for (ViewpointContributor vpc : viewpointContributors)
+    for (ViewpointContributor vpc : viewpointContributors) {
       vpc.menuAboutToShow(menuManager);
+    }
+
   }
 
   /**
