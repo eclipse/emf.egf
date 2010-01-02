@@ -28,7 +28,9 @@ import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
+import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ContainerLibrarySelectionDialog;
 import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
@@ -54,6 +56,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.forms.IFormColors;
 import org.eclipse.ui.forms.IManagedForm;
+import org.eclipse.ui.forms.IMessageManager;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
@@ -82,6 +85,8 @@ public class OverviewPage extends PatternEditorPage {
 
     private FormColors colors = new FormColors(Display.getDefault());
 
+    private LiveValidationContentAdapter liveValidationContentAdapter;
+
     public OverviewPage(FormEditor editor) {
         super(editor, ID, Messages.OverviewPage_title);
         this.editor = editor;
@@ -90,6 +95,7 @@ public class OverviewPage extends PatternEditorPage {
     protected void doCreateFormContent(IManagedForm managedForm) {
         FormToolkit toolkit = managedForm.getToolkit();
         ScrolledForm form = managedForm.getForm();
+        final IMessageManager mmng = managedForm.getMessageManager();
 
         GridLayout gridLayout = new GridLayout();
         form.getBody().setLayout(gridLayout);
@@ -103,11 +109,14 @@ public class OverviewPage extends PatternEditorPage {
         container.setLayoutData(gd);
         container.setFocus();
 
-        createLeftContainer(toolkit, container);
+        createLeftContainer(toolkit, container, mmng);
         createRightContainer(toolkit, container);
         createDescriContainer(toolkit, container);
 
         checkReadOnlyModel();
+
+        // Add EMF validation for pattern.
+        liveValidationContentAdapter = PatternUIHelper.addEMFValidation(mmng, getPattern(), Messages.PatternUIHelper_key_NonPatternEmptyName, nameText, liveValidationContentAdapter);
 
         form.reflow(true);
     }
@@ -126,7 +135,7 @@ public class OverviewPage extends PatternEditorPage {
         browse.setEnabled(false);
     }
 
-    private void createLeftContainer(FormToolkit toolkit, Composite container) {
+    private void createLeftContainer(FormToolkit toolkit, Composite container, IMessageManager mmng) {
         Section sectionLeft = toolkit.createSection(container, Section.TITLE_BAR);
         sectionLeft.setText(Messages.OverviewPage_sectionLeft_title);
 
@@ -148,12 +157,12 @@ public class OverviewPage extends PatternEditorPage {
         gd.horizontalSpan = 2;
         title.setLayoutData(gd);
 
-        createPatternInfoContainer(toolkit, containerLeft);
+        createPatternInfoContainer(toolkit, containerLeft, mmng);
 
         sectionLeft.setClient(containerLeft);
     }
 
-    private void createPatternInfoContainer(FormToolkit toolkit, Composite containerLeft) {
+    private void createPatternInfoContainer(FormToolkit toolkit, Composite containerLeft, final IMessageManager mmng) {
         Composite patternInfo = toolkit.createComposite(containerLeft, SWT.NONE);
         GridLayout gridLayout = new GridLayout(3, false);
         patternInfo.setLayout(gridLayout);
@@ -164,19 +173,20 @@ public class OverviewPage extends PatternEditorPage {
 
         Label nameLabel = toolkit.createLabel(patternInfo, Messages.OverviewPage_sectionLeft_name_label, SWT.WRAP);
         gd = new GridData();
-        gd.widthHint = 100;
+        gd.widthHint = 80;
         nameLabel.setLayoutData(gd);
         nameLabel.setForeground(colors.getColor(IFormColors.TITLE));
 
         nameText = toolkit.createText(patternInfo, getPattern() == null ? "" : getPattern().getName(), SWT.BORDER); //$NON-NLS-1$
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.widthHint = 20;
+        gd.horizontalIndent = 5;
         gd.horizontalSpan = 2;
         nameText.setLayoutData(gd);
 
         Label fullNameLabel = toolkit.createLabel(patternInfo, Messages.OverviewPage_sectionLeft_fullName_label, SWT.WRAP);
         gd = new GridData();
-        gd.widthHint = 100;
+        gd.widthHint = 80;
         fullNameLabel.setLayoutData(gd);
         fullNameLabel.setForeground(colors.getColor(IFormColors.TITLE));
 
@@ -184,7 +194,9 @@ public class OverviewPage extends PatternEditorPage {
         String fullName = PatternHelper.getFullLibraryName(getPattern());
 
         fullNameText = toolkit.createText(patternInfo, PatternHelper.getFullLibraryName(getPattern()), SWT.BORDER | SWT.READ_ONLY); //$NON-NLS-1$
-        fullNameText.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+        gd = new GridData(GridData.FILL_HORIZONTAL);
+        gd.horizontalIndent = 5;
+        fullNameText.setLayoutData(gd);
         fullNameText.setForeground(color);
         fullNameText.setText(fullName == null ? "" : fullName); //$NON-NLS-1$
 
@@ -224,6 +236,7 @@ public class OverviewPage extends PatternEditorPage {
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.horizontalSpan = 2;
         gd.widthHint = 20;
+        gd.horizontalIndent = 5;
         idText.setLayoutData(gd);
         idText.setForeground(color);
     }
@@ -410,4 +423,11 @@ public class OverviewPage extends PatternEditorPage {
         bindDescripition();
         bindContainer();
     }
+
+    @Override
+    public void dispose() {
+        PatternUIHelper.removeAdapterForPattern(getPattern(), liveValidationContentAdapter);
+        super.dispose();
+    }
+
 }

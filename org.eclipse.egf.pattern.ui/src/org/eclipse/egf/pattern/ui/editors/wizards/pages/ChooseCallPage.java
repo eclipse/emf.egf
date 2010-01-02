@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S. and other
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -9,7 +9,6 @@
  * 
  *  Contributors:
  *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
  * 
  * </copyright>
  */
@@ -248,8 +247,8 @@ public class ChooseCallPage extends WizardPage {
             } else if (selectKind == CallTypeEnum.SUPERPATTERN_CALL && eidtItem instanceof SuperPatternCall) {
 
             }
+            setParameterMatchingCall(eidtItem);
         }
-        setParameterMatchingCall(eidtItem);
     }
 
     /**
@@ -552,26 +551,9 @@ public class ChooseCallPage extends WizardPage {
      * Update the new patternCall if the user set a new callee pattern.
      */
     private void setParameterMatchingCall(Object call) {
-        if (selectKind == CallTypeEnum.PATTERN_CALL) {
-            if (call == null && eidtItem == null) {
-                return;
-            }
-            if (call == null && eidtItem != null) {
-                ((ParameterMatchingPage) getNextPage()).setPatternCall((PatternCall) eidtItem);
-                return;
-            }
+        if (selectKind == CallTypeEnum.PATTERN_CALL && call != null && call instanceof PatternCall) {
             PatternCall patternCall = (PatternCall) call;
-            if (call != null && eidtItem == null) {
-                ((ParameterMatchingPage) getNextPage()).setPatternCall(patternCall);
-                return;
-            }
-            Pattern callee = ((PatternCall) eidtItem).getCalled();
-            Pattern newCallee = patternCall.getCalled();
-            if (!newCallee.equals(callee)) {
-                ((ParameterMatchingPage) getNextPage()).setPatternCall(patternCall);
-            } else {
-                ((ParameterMatchingPage) getNextPage()).setPatternCall((PatternCall) eidtItem);
-            }
+            ((ParameterMatchingPage) getNextPage()).setPatternCall(patternCall);
         }
     }
 

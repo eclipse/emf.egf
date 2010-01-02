@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S. and other
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -9,7 +9,6 @@
  * 
  *  Contributors:
  *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
  * 
  * </copyright>
  */
@@ -24,6 +23,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl;
+import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ParameterMatchingLibraryProvider;
@@ -76,6 +76,8 @@ public class ParameterMatchingPage extends WizardPage {
 
     private TransactionalEditingDomain transactionalEditingDomain;
 
+    private List<RecordingCommand> matchingCommands = new ArrayList<RecordingCommand>();;
+
     public ParameterMatchingPage(ISelection selection, Pattern patternCaller, TransactionalEditingDomain transactionalEditingDomain) {
         super(Messages.ParameterMatchingPage_title);
         setTitle(Messages.ParameterMatchingPage_title);
@@ -105,9 +107,11 @@ public class ParameterMatchingPage extends WizardPage {
     }
 
     private void createMatingButton(Composite parameterArea) {
-        createMatch = createButton(parameterArea, Messages.ParameterMatchingPage_button_create);
+        createMatch = new Button(parameterArea, SWT.PUSH);
+        createMatch.setText(Messages.ParameterMatchingPage_button_create);
+
         GridData gd = new GridData();
-        gd.widthHint = 110;
+        gd.widthHint = 200;
         gd.horizontalSpan = 2;
         gd.horizontalAlignment = SWT.CENTER;
         gd.verticalIndent = 0;
@@ -126,10 +130,18 @@ public class ParameterMatchingPage extends WizardPage {
     private void createMatchingArea(Composite dialogArea) {
         Composite parameterArea = createArea(dialogArea, false);
 
-        Table table = new Table(parameterArea, SWT.V_SCROLL | SWT.H_SCROLL);
-        GridData gd = new GridData(GridData.FILL_BOTH);
-        gd.heightHint = 120;
-        gd.horizontalIndent = 10;
+        Label currenMatchingLabel = new Label(parameterArea, SWT.NONE);
+        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+        gd.horizontalSpan = 2;
+        gd.horizontalIndent = 9;
+        currenMatchingLabel.setLayoutData(gd);
+        currenMatchingLabel.setText(Messages.ParameterMatchingPage_current_mathings_title);
+
+        Table table = new Table(parameterArea, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+        gd = new GridData(GridData.FILL_BOTH);
+        gd.heightHint = 160;
+        gd.horizontalIndent = 7;
+        gd.verticalIndent = 0;
         table.setLayoutData(gd);
 
         TableColumn tableColumn = new TableColumn(table, SWT.NONE);
@@ -152,7 +164,10 @@ public class ParameterMatchingPage extends WizardPage {
         GridLayout layout = new GridLayout();
         buttonsArea.setLayout(layout);
 
-        deleteMatch = createButton(buttonsArea, Messages.ParameterMatchingPage_button_delete);
+        deleteMatch = createButton(buttonsArea);
+        deleteMatch.setToolTipText(Messages.ParameterMatchingPage_button_delete);
+        deleteMatch.setText(""); //$NON-NLS-1$
+        deleteMatch.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
         deleteMatch.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
@@ -163,13 +178,18 @@ public class ParameterMatchingPage extends WizardPage {
             }
         });
 
-        editMatch = createButton(buttonsArea, Messages.ParameterMatchingPage_button_edit);
+        editMatch = createButton(buttonsArea);
+        editMatch.setToolTipText(Messages.ParameterMatchingPage_button_edit);
+        editMatch.setText(""); //$NON-NLS-1$
+        editMatch.setImage(ImageShop.get(ImageShop.IMG_EDIT_OBJ));
     }
 
     private Composite createArea(Composite composite, boolean makeColumnsEqualWidth) {
         Composite container = new Composite(composite, SWT.NONE);
         GridLayout layout = new GridLayout(2, makeColumnsEqualWidth);
+
         GridData gd = new GridData(GridData.FILL_BOTH);
+        gd.verticalIndent = 0;
         container.setLayout(layout);
         container.setLayoutData(gd);
         return container;
@@ -212,6 +232,7 @@ public class ParameterMatchingPage extends WizardPage {
     private TableViewer createParameterTableViewer(Composite container, Pattern pattern) {
         Table listTable = new Table(container, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
         GridData gd = new GridData(GridData.FILL_BOTH);
+        gd.heightHint = listTable.getItemHeight();
         listTable.setLayoutData(gd);
 
         TableColumn tableColumn = new TableColumn(listTable, SWT.NONE);
@@ -232,11 +253,10 @@ public class ParameterMatchingPage extends WizardPage {
         return callArea;
     }
 
-    private Button createButton(Composite container, String title) {
+    private Button createButton(Composite container) {
         Button button = new Button(container, SWT.PUSH);
-        button.setText(title);
         GridData gd = new GridData();
-        gd.widthHint = 110;
+        gd.widthHint = 60;
         button.setLayoutData(gd);
         return button;
     }
@@ -314,6 +334,7 @@ public class ParameterMatchingPage extends WizardPage {
             }
         };
         transactionalEditingDomain.getCommandStack().execute(cmd);
+        matchingCommands.add(cmd);
         refreshTables();
         setSelection(calleeTableViewer, selectIndex);
     }
@@ -330,6 +351,7 @@ public class ParameterMatchingPage extends WizardPage {
             }
         };
         transactionalEditingDomain.getCommandStack().execute(cmd);
+        matchingCommands.add(cmd);
         refreshTables();
         setSelection(matchingTableViewer, selectIndex);
     }
@@ -364,7 +386,7 @@ public class ParameterMatchingPage extends WizardPage {
     }
 
     private String getPatternName(String name) {
-        return name + ((name == null || "".equals("")) ? "" : ":"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+        return name + ((name == null || name.equals("")) ? "" : ":"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
     }
 
     /**
@@ -417,5 +439,9 @@ public class ParameterMatchingPage extends WizardPage {
 
     public void setPatternCallee(Pattern patternCallee) {
         this.patternCallee = patternCallee;
+    }
+
+    public List<RecordingCommand> getParameterMatchingCommands() {
+        return matchingCommands;
     }
 }

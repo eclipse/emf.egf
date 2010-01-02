@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S. and other
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -9,12 +9,13 @@
  * 
  *  Contributors:
  *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
  * 
  * </copyright>
  */
 
 package org.eclipse.egf.pattern.ui.editors.wizards;
+
+import java.util.List;
 
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -24,12 +25,14 @@ import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseCallPage;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseKindPage;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ParameterMatchingPage;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchWizard;
 
 /**
  * @author XiaoRu Chen - Soyatec
@@ -100,6 +103,31 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
      */
     public boolean performFinish() {
         selectCall = chooseCallPage.getChooseCall();
+        return true;
+    }
+
+    /**
+     * The <code>Wizard</code> implementation of this <code>IWizard</code>
+     * method does nothing and returns <code>true</code>. Subclasses should
+     * reimplement this method if they need to perform any special cancel
+     * processing for their wizard.
+     */
+    public boolean performCancel() {
+        if (parameterMatchingPage != null && eidtItem != null) {
+            List<RecordingCommand> parameterMatchingCommands = parameterMatchingPage.getParameterMatchingCommands();
+            if (parameterMatchingCommands != null) {
+                for (final RecordingCommand parameterMatchingCommand : parameterMatchingCommands) {
+                    if (parameterMatchingCommand.canUndo()) {
+                        RecordingCommand cmd = new RecordingCommand(transactionalEditingDomain) {
+                            protected void doExecute() {
+                                parameterMatchingCommand.undo();
+                            }
+                        };
+                        transactionalEditingDomain.getCommandStack().execute(cmd);
+                    }
+                }
+            }
+        }
         return true;
     }
 

@@ -72,6 +72,10 @@ public class Messages extends NLS {
 
     public static String ImplementationPage_button_up;
 
+    public static String ImplementationPage_column_title_name;
+
+    public static String ImplementationPage_column_title_type;
+
     public static String ImplementationPage_Error;
 
     public static String ImplementationPage_footer;
@@ -98,6 +102,8 @@ public class Messages extends NLS {
 
     public static String ImplementationPage_variable_cannot_delete_message;
 
+    public static String ImplementationPage_variablesEditDialog_title;
+
     public static String ImplementationPage_varSection_label;
 
     public static String ImplementationPage_varSection_title;
@@ -118,6 +124,12 @@ public class Messages extends NLS {
     public static String SpecificationPage_button_remove;
 
     public static String SpecificationPage_button_up;
+
+    public static String SpecificationPage_column_title_name;
+
+    public static String SpecificationPage_column_title_query;
+
+    public static String SpecificationPage_column_title_type;
 
     public static String SpecificationPage_inherSection_discrip_label;
 
@@ -189,11 +201,14 @@ public class Messages extends NLS {
 
     public static String ContainerLibrarySelectionDialog_pattern_label;
 
+    // ParameterMatching Page
     public static String ParameterMatchingPage_button_create;
 
     public static String ParameterMatchingPage_button_delete;
 
     public static String ParameterMatchingPage_button_edit;
+
+    public static String ParameterMatchingPage_current_mathings_title;
 
     public static String ParameterMatchingPage_label_text;
 
@@ -214,6 +229,12 @@ public class Messages extends NLS {
     public static String PatternSelectiondialog_dialogArea_label;
 
     public static String PatternSelectiondialog_pattern_label;
+
+    public static String PatternUIHelper_key_NonPatternEmptyName;
+
+    public static String PatternUIHelper_key_NonPatternVariableEmptyName;
+
+    public static String PatternUIHelper_key_NonPatternParameterEmptyName;
 
     // OpenType Page
     public static String OpenTypeWizard_window_title;
@@ -237,6 +258,7 @@ public class Messages extends NLS {
 
     // Resource Listener
     public static String ResourceListener_reloadDialog_title;
+    
     public static String ResourceListener_reloadDialog_message;
 
     // Viewpoint contributor

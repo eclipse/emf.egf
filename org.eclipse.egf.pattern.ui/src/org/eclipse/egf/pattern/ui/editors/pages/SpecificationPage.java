@@ -15,7 +15,6 @@
 
 package org.eclipse.egf.pattern.ui.editors.pages;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,7 +38,9 @@ import org.eclipse.egf.pattern.query.QueryKind;
 import org.eclipse.egf.pattern.query.QueryManager;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
+import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ParametersEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.PatternSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.modifiers.ParametersTableCellModifier;
@@ -55,7 +56,6 @@ import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.IEMFListProperty;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.databinding.edit.IEMFEditValueProperty;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -99,6 +99,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.FormColors;
 import org.eclipse.ui.forms.IFormColors;
 import org.eclipse.ui.forms.IManagedForm;
+import org.eclipse.ui.forms.IMessageManager;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
@@ -152,6 +153,8 @@ public class SpecificationPage extends PatternEditorPage {
 
     private boolean isReadOnly;
 
+    private LiveValidationContentAdapter liveValidationContentAdapter;
+
     public SpecificationPage(FormEditor editor) {
         super(editor, ID, Messages.SpecificationPage_title);
 
@@ -160,6 +163,7 @@ public class SpecificationPage extends PatternEditorPage {
     @Override
     protected void doCreateFormContent(IManagedForm managedForm) {
         PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
+        final IMessageManager mmng = managedForm.getMessageManager();
         isReadOnly = editorInput.isReadOnly();
 
         FormToolkit toolkit = managedForm.getToolkit();
@@ -176,6 +180,9 @@ public class SpecificationPage extends PatternEditorPage {
         createParametersSection(toolkit, form);
 
         checkReadOnlyModel();
+
+        // Add EMF validation for parameters.
+        liveValidationContentAdapter = PatternUIHelper.addEMFValidation(mmng, getPattern(), Messages.PatternUIHelper_key_NonPatternParameterEmptyName, tableViewer.getTable(), liveValidationContentAdapter);
 
         form.reflow(true);
     }
@@ -270,7 +277,7 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        removeParent = toolkit.createButton(buttons, "", SWT.PUSH);
+        removeParent = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         removeParent.setLayoutData(gd);
         removeParent.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
         removeParent.setToolTipText(Messages.SpecificationPage_button_remove);
@@ -371,7 +378,7 @@ public class SpecificationPage extends PatternEditorPage {
         table.setLayoutData(gd);
 
         tableViewer = new TableViewer(table);
-        String[] colNames = { "Name", "Type", "Query" }; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        String[] colNames = { Messages.SpecificationPage_column_title_name, Messages.SpecificationPage_column_title_type, Messages.SpecificationPage_column_title_query };
         int[] colWidths = { 100, 100, 100 };
         for (int i = 0; i < colNames.length; i++) {
             TableColumn tableColumn = new TableColumn(table, SWT.NONE);
@@ -380,6 +387,7 @@ public class SpecificationPage extends PatternEditorPage {
         }
         initTableEditor();
         tableViewer.setContentProvider(new TableObservableListContentProvider(tableViewer));
+
         tableViewer.setLabelProvider(new ParametersTableLabelProvider());
 
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -480,7 +488,7 @@ public class SpecificationPage extends PatternEditorPage {
         GridData gd = new GridData();
         gd.widthHint = 65;
 
-        add = toolkit.createButton(buttons, "", SWT.PUSH);
+        add = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         add.setLayoutData(gd);
         add.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
         add.setToolTipText(Messages.SpecificationPage_button_add);
@@ -494,7 +502,7 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        edit = toolkit.createButton(buttons, "", SWT.PUSH);
+        edit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         edit.setLayoutData(gd);
         edit.setEnabled(false);
         edit.setImage(ImageShop.get(ImageShop.IMG_EDIT_OBJ));
@@ -524,7 +532,7 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        remove = toolkit.createButton(buttons, "", SWT.PUSH);
+        remove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         remove.setLayoutData(gd);
         remove.setEnabled(false);
         remove.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
@@ -539,7 +547,7 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        up = toolkit.createButton(buttons, "", SWT.PUSH);
+        up = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         up.setLayoutData(gd);
         up.setEnabled(false);
         up.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
@@ -554,7 +562,7 @@ public class SpecificationPage extends PatternEditorPage {
             }
         });
 
-        down = toolkit.createButton(buttons, "", SWT.PUSH);
+        down = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         down.setLayoutData(gd);
         down.setEnabled(false);
         down.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
@@ -773,7 +781,7 @@ public class SpecificationPage extends PatternEditorPage {
 
     private void setComboViewerInput() {
         List availableQueries = QueryManager.INSTANCE.getAvailableQueries();
-        availableQueries.add(0, "");
+        availableQueries.add(0, ""); //$NON-NLS-1$
         queryEditor.setInput(availableQueries);
     }
 
@@ -786,7 +794,7 @@ public class SpecificationPage extends PatternEditorPage {
         if (selectItem instanceof PatternParameter) {
             return ((PatternParameter) selectItem).getType();
         }
-        return "";
+        return ""; //$NON-NLS-1$
     }
 
     @Override
@@ -905,4 +913,11 @@ public class SpecificationPage extends PatternEditorPage {
     public String getParentName() {
         return parentText.getText();
     }
+
+    @Override
+    public void dispose() {
+        PatternUIHelper.removeAdapterForPattern(getPattern(), liveValidationContentAdapter);
+        super.dispose();
+    }
+
 }

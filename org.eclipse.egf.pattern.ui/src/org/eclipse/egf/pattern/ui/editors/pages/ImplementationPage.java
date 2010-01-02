@@ -34,6 +34,8 @@ import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
+import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
+import org.eclipse.egf.pattern.ui.editors.adapter.RefresherAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.VariablesEditDialog;
 import org.eclipse.egf.pattern.ui.editors.editor.MethodsComboBoxViewerCellEditor;
@@ -47,6 +49,7 @@ import org.eclipse.egf.pattern.ui.editors.providers.TableObservableListContentPr
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.OrchestrationWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.IEMFListProperty;
@@ -91,6 +94,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.IManagedForm;
+import org.eclipse.ui.forms.IMessageManager;
 import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
@@ -152,6 +156,8 @@ public class ImplementationPage extends PatternEditorPage {
 
     private static final String VARIABLE_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
 
+    private LiveValidationContentAdapter liveValidationContentAdapter;
+
     public ImplementationPage(FormEditor editor) {
         super(editor, ID, Messages.ImplementationPage_title);
     }
@@ -159,6 +165,7 @@ public class ImplementationPage extends PatternEditorPage {
     @Override
     protected void doCreateFormContent(IManagedForm managedForm) {
         PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
+        final IMessageManager mmng = managedForm.getMessageManager();
         isReadOnly = editorInput.isReadOnly();
 
         FormToolkit toolkit = managedForm.getToolkit();
@@ -179,6 +186,9 @@ public class ImplementationPage extends PatternEditorPage {
         createOrchestrationSection(toolkit, containerRight);
 
         checkReadOnlyModel();
+
+        // Add EMF validation for variable.
+        liveValidationContentAdapter = PatternUIHelper.addEMFValidation(mmng, getPattern(), Messages.PatternUIHelper_key_NonPatternVariableEmptyName, variablesTableViewer.getTable(), liveValidationContentAdapter);
 
         form.reflow(true);
     }
@@ -241,7 +251,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         methodsTableViewer = new TableViewer(table);
         TableColumn tableColumn = new TableColumn(table, SWT.NONE);
-        tableColumn.setWidth(200);
+        tableColumn.setWidth(300);
 
         methodsTableViewer.setContentProvider(new TableObservableListContentProvider(methodsTableViewer));
         initMethodsTableEditor();
@@ -408,10 +418,11 @@ public class ImplementationPage extends PatternEditorPage {
             PatternMethod selectMethod = (PatternMethod) (methodsTableViewer.getElementAt(selectIndex));
             if (MethodTableCellModifier.isRenameDisable(selectMethod)) {
                 methodsEdit.setEnabled(false);
+                methodsRemove.setEnabled(false);
             } else {
                 methodsEdit.setEnabled(true);
+                methodsRemove.setEnabled(true);
             }
-            methodsRemove.setEnabled(true);
             methodsOpenTemplate.setEnabled(true);
         }
     }
@@ -652,6 +663,7 @@ public class ImplementationPage extends PatternEditorPage {
                     methodCallNew.setCalled(dropEntry);
                     methodCallNew.setPattern(getPattern());
                     getPattern().getOrchestration().add(methodCallNew);
+                    addAdapterForNewItem(orchestrationTableViewer, methodCallNew);
                 }
             };
             editingDomain.getCommandStack().execute(cmd);
@@ -785,6 +797,7 @@ public class ImplementationPage extends PatternEditorPage {
             protected void doExecute() {
                 selectCall.setPattern(getPattern());
                 getPattern().getOrchestration().add(selectCall);
+                addAdapterForNewItem(orchestrationTableViewer, selectCall);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
@@ -903,7 +916,7 @@ public class ImplementationPage extends PatternEditorPage {
         table.setLayoutData(gd);
 
         variablesTableViewer = new TableViewer(table);
-        String[] colNames = { "Name", "Type" }; //$NON-NLS-1$ //$NON-NLS-2$
+        String[] colNames = { Messages.ImplementationPage_column_title_name, Messages.ImplementationPage_column_title_type };
         int[] colWidths = { 130, 135 };
         for (int i = 0; i < colNames.length; i++) {
             TableColumn tableColumn = new TableColumn(table, SWT.NONE);
@@ -1030,7 +1043,7 @@ public class ImplementationPage extends PatternEditorPage {
                 ISelection selection = variablesTableViewer.getSelection();
                 final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
                 final VariablesEditDialog dialog = new VariablesEditDialog(new Shell(), selectItem, getEditingDomain());
-                dialog.setTitle("Edit Variable"); //$NON-NLS-1$
+                dialog.setTitle(Messages.ImplementationPage_variablesEditDialog_title);
                 if (dialog.open() == Window.OK) {
                     TransactionalEditingDomain editingDomain = getEditingDomain();
                     RecordingCommand cmd = new RecordingCommand(editingDomain) {
@@ -1215,6 +1228,14 @@ public class ImplementationPage extends PatternEditorPage {
         return false;
     }
 
+    /**
+     * Add a refresh adapter for the new item.
+     */
+    private void addAdapterForNewItem(TableViewer tableViewer, Object newItem) {
+        final AdapterImpl refresher = new RefresherAdapter(tableViewer);
+        PatternUIHelper.addAdapter(newItem, refresher);
+    }
+
     @Override
     protected void bind() {
         addBinding(null);
@@ -1265,4 +1286,8 @@ public class ImplementationPage extends PatternEditorPage {
         return pattern == null ? null : pattern.getSuperPattern();
     }
 
+    public void dispose() {
+        PatternUIHelper.removeAdapterForPattern(getPattern(), liveValidationContentAdapter);
+        super.dispose();
+    }
 }
