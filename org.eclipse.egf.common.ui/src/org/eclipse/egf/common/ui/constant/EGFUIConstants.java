@@ -21,4 +21,6 @@ public interface EGFUIConstants {
 
   public static final String CREATE_SIBLING = "create-sibling"; //$NON-NLS-1$  
 
+  public static final String EDIT_MENU_GROUP = "edit"; //$NON-NLS-1$
+
 }
