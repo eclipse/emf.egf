@@ -252,9 +252,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
           EObject rootObject = createInitialModel();
           // Initialize Bundle and JavaProject if necessary
           IRunnableWithProgress convertOperation;
-          boolean createJavaProject = rootObject instanceof FactoryComponent == false;
-          boolean createEGFNature = rootObject instanceof FactoryComponent;
-          convertOperation = new ConvertProjectOperation(modelFile.getProject(), createJavaProject, createEGFNature) {
+          convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false) {
             @Override
             public List<String> addDependencies() {
               List<String> dependencies = new ArrayList<String>(2);
