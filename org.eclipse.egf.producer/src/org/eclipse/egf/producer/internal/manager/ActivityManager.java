@@ -67,7 +67,7 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
   protected abstract ActivityProductionContext getInternalProductionContext() throws InvocationException;
 
   @Override
-  protected Diagnostic canInvokeElement() {
+  protected Diagnostic canInvokeElement() throws InvocationException {
     BasicDiagnostic diagnostic = (BasicDiagnostic) super.canInvokeElement();
     // Diagnose Mandatory In Contract
     for (ActivityContract contract : getElement().getActivityContracts(ContractMode.IN)) {
@@ -77,7 +77,9 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
         try {
           value = getInternalProductionContext().getInputValue(contract.getName(), contract.getType().getType());
         } catch (InvocationException ie) {
-          // Just Ignore
+          if (ie.getCause() != null) {
+            throw ie;
+          }
         }
         if (value == null) {
           diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("ActivityContract is mandatory for ''{0}''", EMFHelper.getText(contract)), //$NON-NLS-1$
