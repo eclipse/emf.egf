@@ -256,6 +256,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
             public List<String> addDependencies() {
               List<String> dependencies = new ArrayList<String>(1);
               dependencies.add("org.eclipse.egf.model.fprod"); //$NON-NLS-1$
+              dependencies.add("org.eclipse.egf.pattern.fprod"); //$NON-NLS-1$              
               return dependencies;
             }
 
