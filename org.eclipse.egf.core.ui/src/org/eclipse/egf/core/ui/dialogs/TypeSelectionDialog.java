@@ -852,9 +852,10 @@ public class TypeSelectionDialog extends FilteredItemsSelectionDialog {
         }
       }
     } catch (OperationCanceledException e) {
-      // Nothing to do
+      return;
     } catch (Exception e) {
       EGFCoreUIPlugin.getDefault().logError(e);
+      return;
     } finally {
       try {
         if (javaProject != null) {

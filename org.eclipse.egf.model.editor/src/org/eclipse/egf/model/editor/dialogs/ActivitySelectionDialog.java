@@ -17,6 +17,7 @@ import java.util.List;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
@@ -329,7 +330,16 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     try {
       for (IPlatformFcore fc : EGFCorePlugin.getPlatformFcores()) {
         // Load Fcore
-        Resource resource = _resourceSet.getResource(fc.getURI(), true);
+        Resource resource = null;
+        try {
+          resource = _resourceSet.getResource(fc.getURI(), true);
+        } catch (OperationCanceledException e) {
+          return;
+        } catch (Exception e) {
+          EGFModelsEditorPlugin.getPlugin().logError(e);
+          continue;
+        }
+        // Nothing to do)
         // Analyse top contents for Activities
         for (EObject eObject : resource.getContents()) {
           // Ignore current
@@ -342,6 +352,8 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
               eObject.eClass().getInstanceClass().asSubclass(_clazz);
             }
             contentProvider.add(eObject, itemsFilter);
+          } catch (OperationCanceledException e) {
+            return;
           } catch (ClassCastException cce) {
             // Ignore
             continue;
@@ -349,6 +361,8 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         }
         progressMonitor.worked(1);
       }
+    } catch (OperationCanceledException e) {
+      return;
     } finally {
       progressMonitor.done();
     }
