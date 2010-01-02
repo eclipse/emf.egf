@@ -7,7 +7,7 @@ import org.eclipse.egf.pattern.strategy.FilterStrategy;
 
 public class FilterStrategyTask extends AbstractStrategyTask {
 
-    public static final String FILTER_NAME_PARAMETER = "filterName";
+    public static final String FILTER_NAME_PARAMETER = "filter.name";
 
     public FilterStrategyTask() {
         super(new FilterStrategy());

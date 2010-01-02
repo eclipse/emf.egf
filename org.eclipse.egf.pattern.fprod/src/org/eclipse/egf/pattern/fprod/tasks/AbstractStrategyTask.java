@@ -18,8 +18,6 @@ import org.eclipse.egf.pattern.fprod.Messages;
 import org.eclipse.egf.pattern.strategy.Strategy;
 
 public abstract class AbstractStrategyTask extends AbstractPatternTask {
-    public static final String PATTERN_IDS_PARAMETER = "patternIds";
-
     private final Strategy strategy;
     protected Object parameter;
     protected final List<PatternElement> patterns = new ArrayList<PatternElement>();
@@ -30,7 +28,7 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
 
     public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
         // WORKAROUND how to read an array ?
-        String ids = context.getInputValue(PATTERN_IDS_PARAMETER, String.class);
+        String ids = context.getInputValue(PatternContext.PATTERN_IDS_PARAMETER, String.class);
         String[] idArray = ids.split(", ");
         Set<String> idSet = new HashSet<String>();
         idSet.addAll(Arrays.asList(idArray));

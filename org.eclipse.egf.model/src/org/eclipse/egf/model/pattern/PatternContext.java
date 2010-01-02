@@ -37,6 +37,7 @@ public class PatternContext implements BundleAccessor {
     public static final String PATTERN_REPORTER = "pattern.execution.reporter";
 
     public static final String PATTERN_ID = "pattern.id";
+    public static final String PATTERN_IDS_PARAMETER = "pattern.ids";
 
     /**
      * key to manage the context injected to a pattern.
