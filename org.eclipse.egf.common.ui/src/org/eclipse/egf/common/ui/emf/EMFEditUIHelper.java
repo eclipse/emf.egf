@@ -22,12 +22,10 @@ import java.util.Collections;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
@@ -46,7 +44,6 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.part.FileEditorInput;
-import org.eclipse.ui.statushandlers.StatusManager;
 import org.osgi.framework.Bundle;
 
 /**
@@ -74,14 +71,8 @@ public class EMFEditUIHelper {
         Object[] params = new Object[] { Collections.singletonList(eObject) };
         method.invoke(part, params);
       }
-    } catch (Exception e) {
-      IStatus status = null;
-      if (e instanceof CoreException) {
-        status = ((CoreException) e).getStatus();
-      } else {
-        status = EGFCommonUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, e);
-      }
-      StatusManager.getManager().handle(status, StatusManager.SHOW);
+    } catch (Throwable t) {
+      ThrowableHandler.handleThrowable(EGFCommonUIPlugin.getDefault().getPluginID(), t);
     }
   }
 
