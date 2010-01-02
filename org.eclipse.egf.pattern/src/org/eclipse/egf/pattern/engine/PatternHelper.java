@@ -24,7 +24,7 @@ import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.fcore.ModelElement;
@@ -66,7 +66,7 @@ public class PatternHelper {
             lib = lib.getContainer();
         }
         if (libs.isEmpty())
-            return CharacterConstants.EMPTY_STRING;
+            return EGFCommonConstants.EMPTY_STRING;
         if (libs.size() == 1)
             return libs.get(0).getName();
         StringBuffer buf = new StringBuffer();
@@ -250,7 +250,7 @@ public class PatternHelper {
         private static final String METHOD_TOKEN = "method.";
 
         public static URI computeFileURI(PatternMethod method) {
-            return URI.createFileURI(PatternPreferences.getTemplatesFolderName() + CharacterConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + CharacterConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + CharacterConstants.DOT_CHARACTER + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
+            return URI.createFileURI(PatternPreferences.getTemplatesFolderName() + EGFCommonConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + EGFCommonConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + EGFCommonConstants.DOT_CHARACTER + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
         }
 
         public static String extractPatternId(IPath patternMethodPath) throws FilenameFormatException {

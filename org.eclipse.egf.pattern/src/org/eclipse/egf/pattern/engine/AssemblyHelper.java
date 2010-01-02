@@ -18,7 +18,7 @@ package org.eclipse.egf.pattern.engine;
 import java.io.IOException;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.helper.ObjectHolder;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
@@ -144,7 +144,7 @@ public abstract class AssemblyHelper {
                 } catch (PatternException e) {
                     holder.object = e;
                 }
-                return CharacterConstants.EMPTY_STRING;
+                return EGFCommonConstants.EMPTY_STRING;
             }
 
             @Override
@@ -154,7 +154,7 @@ public abstract class AssemblyHelper {
                 } catch (PatternException e) {
                     holder.object = e;
                 }
-                return CharacterConstants.EMPTY_STRING;
+                return EGFCommonConstants.EMPTY_STRING;
             }
 
             @Override
@@ -164,7 +164,7 @@ public abstract class AssemblyHelper {
                 } catch (PatternException e) {
                     holder.object = e;
                 }
-                return CharacterConstants.EMPTY_STRING;
+                return EGFCommonConstants.EMPTY_STRING;
             }
 
             @Override

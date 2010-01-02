@@ -26,7 +26,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.emf.common.util.URI;
@@ -101,7 +101,7 @@ public class FileHelper {
       if (file == null)
         throw new IllegalStateException();
       if (!file.exists())
-        return CharacterConstants.EMPTY_STRING;
+        return EGFCommonConstants.EMPTY_STRING;
       return getFileContent(file);
     }
 

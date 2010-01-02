@@ -24,7 +24,7 @@ import java.util.Map;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.core.JavaModelException;
@@ -53,7 +53,7 @@ public class ProjectClassLoaderHelper {
 
         IPath outputLocation = javaProject.getOutputLocation();
         IFolder folder = project.getFolder(outputLocation.removeFirstSegments(1));
-        return new URL("file", null, folder.getLocation().toOSString() + CharacterConstants.SLASH_CHARACTER);
+        return new URL("file", null, folder.getLocation().toOSString() + EGFCommonConstants.SLASH_CHARACTER);
     }
 
     private ProjectClassLoaderHelper() {

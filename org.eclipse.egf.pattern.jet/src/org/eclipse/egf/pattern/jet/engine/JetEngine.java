@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.egf.common.constant.CharacterConstants;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
@@ -141,10 +141,10 @@ public class JetEngine extends PatternEngine {
                 builder.append(", Object ").append(local);
             }
         }
-        builder.append(") {").append(CharacterConstants.LINE_SEPARATOR);
+        builder.append(") {").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append(content.substring(startIndex + JetAssemblyHelper.START_MARKER.length(), endIndex));
 
-        builder.append("} ").append(CharacterConstants.LINE_SEPARATOR);
+        builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append(content.substring(insertionIndex));
 
         return builder.toString();
