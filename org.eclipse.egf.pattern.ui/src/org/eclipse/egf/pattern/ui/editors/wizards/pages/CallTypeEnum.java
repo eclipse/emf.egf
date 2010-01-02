@@ -13,6 +13,7 @@
  * 
  * </copyright>
  */
+
 package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
 /**

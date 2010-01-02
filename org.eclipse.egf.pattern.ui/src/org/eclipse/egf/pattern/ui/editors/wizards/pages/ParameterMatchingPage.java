@@ -76,7 +76,7 @@ public class ParameterMatchingPage extends WizardPage {
 
     private TransactionalEditingDomain transactionalEditingDomain;
 
-    private List<RecordingCommand> matchingCommands = new ArrayList<RecordingCommand>();;
+    private List<RecordingCommand> matchingCommands;
 
     public ParameterMatchingPage(ISelection selection, Pattern patternCaller, TransactionalEditingDomain transactionalEditingDomain) {
         super(Messages.ParameterMatchingPage_title);
@@ -313,6 +313,9 @@ public class ParameterMatchingPage extends WizardPage {
         }
     }
 
+    /**
+     * Return the selection of the tableViewer.
+     */
     private Object getSelection(TableViewer tableViewer) {
         int selectionIndex = tableViewer.getTable().getSelectionIndex();
         if (selectionIndex != -1) {
@@ -376,6 +379,7 @@ public class ParameterMatchingPage extends WizardPage {
      */
     public void setVisible(boolean visible) {
         if (visible) {
+            matchingCommands = new ArrayList<RecordingCommand>();
             updatePatternCallee();
             callerTableViewer.setInput(getCallerTableInput(patternCaller));
             refreshTables();
@@ -421,6 +425,10 @@ public class ParameterMatchingPage extends WizardPage {
         checkEidtAndDeleteButtonEnable();
     }
 
+    /**
+     * If there is no available caller parameters or callee parameters to
+     * setup,show the information in the page.
+     */
     private void setMissingInformation() {
         String message = null;
         if (callerTableViewer.getTable().getItemCount() == 0 || calleeTableViewer.getTable().getItemCount() == 0) {

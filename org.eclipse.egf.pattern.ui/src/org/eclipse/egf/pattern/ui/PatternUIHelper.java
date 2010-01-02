@@ -120,7 +120,6 @@ public class PatternUIHelper {
         if (object instanceof MethodCall) {
             EList<Adapter> eAdapters = ((MethodCall) object).getCalled().eAdapters();
             addIntoAdapters(eAdapters, refresher);
-
         } else if (object instanceof PatternInjectedCall) {
             EList<Adapter> eAdapters = ((PatternInjectedCall) object).getContext().eAdapters();
             addIntoAdapters(eAdapters, refresher);
@@ -183,7 +182,6 @@ public class PatternUIHelper {
      * Create validation for object.
      */
     public static void validationContent(IMessageManager mmng, EObject object, String key, Control control) {
-
         if (Messages.PatternUIHelper_key_NonPatternEmptyName.equals(key)) {
             PatternValidationDelegateClientSelector.running = true;
         } else if (Messages.PatternUIHelper_key_NonPatternParameterEmptyName.equals(key)) {
@@ -207,7 +205,6 @@ public class PatternUIHelper {
         } else if (Messages.PatternUIHelper_key_NonPatternVariableEmptyName.equals(key)) {
             VariableValidationDelegateClientSelector.running = false;
         }
-
     }
 
     /**
@@ -230,12 +227,23 @@ public class PatternUIHelper {
     }
 
     /**
-     * Add EMF validation.
+     * Add EMF live validation adapter.
      */
     public static LiveValidationContentAdapter addEMFValidation(IMessageManager mmng, Pattern pattern, String key, Control control, LiveValidationContentAdapter liveValidationContentAdapter) {
         validationContent(mmng, pattern, key, control);
         liveValidationContentAdapter = new LiveValidationContentAdapter(control, mmng, key, pattern);
         PatternUIHelper.addAdapterForPattern(pattern, liveValidationContentAdapter);
         return liveValidationContentAdapter;
+    }
+    
+    /**
+     * Return whether the method can be rename.
+     */
+    public static boolean isRenameDisable(PatternMethod element) {
+        String name = element.getName();
+        if (Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name)) {
+            return true;
+        }
+        return false;
     }
 }

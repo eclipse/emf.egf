@@ -17,7 +17,7 @@
 package org.eclipse.egf.pattern.ui.editors.modifiers;
 
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.ui.Messages;
+import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.editors.pages.ImplementationPage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.TableViewer;
@@ -36,7 +36,7 @@ public class MethodTableCellModifier extends EditingDomainCellModifier {
     public boolean canModify(Object element, String property) {
         if ((ImplementationPage.NAME_COLUMN_ID).equals(property)) {
             if (element instanceof PatternMethod)
-                return !isRenameDisable((PatternMethod) element);
+                return !PatternUIHelper.isRenameDisable((PatternMethod) element);
         }
         return false;
     }
@@ -72,15 +72,5 @@ public class MethodTableCellModifier extends EditingDomainCellModifier {
         };
         doModify(runnable);
     }
-
-    /**
-     * Return whether the method can not rename.
-     */
-    public static boolean isRenameDisable(PatternMethod element) {
-        String name = element.getName();
-        if (Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name)) {
-            return true;
-        }
-        return false;
-    }
+    
 }

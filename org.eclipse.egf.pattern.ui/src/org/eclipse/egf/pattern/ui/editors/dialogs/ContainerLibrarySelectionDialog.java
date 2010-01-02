@@ -25,7 +25,7 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Messages;
-import org.eclipse.egf.pattern.ui.editors.providers.ContainerLibraryContentProvider;
+import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ContainerLibraryLabelProvider;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.util.Policy;
@@ -120,7 +120,7 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
         tableViewer = new TableViewer(listTable);
 
         tableViewer.setLabelProvider(new ContainerLibraryLabelProvider());
-        tableViewer.setContentProvider(new ContainerLibraryContentProvider());
+        tableViewer.setContentProvider(new CommonListContentProvider());
         List<PatternLibrary> listAreaDisplay = getListAreaDisplay(librayName);
         tableViewer.setInput(listAreaDisplay);
         getSelectDefault(listAreaDisplay);
@@ -140,7 +140,6 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
                 okPressed();
             }
         });
-
     }
 
     /**

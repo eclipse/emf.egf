@@ -81,6 +81,8 @@ public class PatternEditorInput implements IEditorInput {
 
     public String getName() {
 
+        if (getPattern() == null)
+            return "";
         return getPattern().getName();
     }
 

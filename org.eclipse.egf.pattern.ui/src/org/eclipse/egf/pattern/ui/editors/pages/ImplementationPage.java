@@ -165,8 +165,8 @@ public class ImplementationPage extends PatternEditorPage {
     @Override
     protected void doCreateFormContent(IManagedForm managedForm) {
         PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
-        final IMessageManager mmng = managedForm.getMessageManager();
         isReadOnly = editorInput.isReadOnly();
+        final IMessageManager mmng = managedForm.getMessageManager();
 
         FormToolkit toolkit = managedForm.getToolkit();
         ScrolledForm form = managedForm.getForm();
@@ -187,7 +187,7 @@ public class ImplementationPage extends PatternEditorPage {
 
         checkReadOnlyModel();
 
-        // Add EMF validation for variable.
+        // Add EMF validation for variables.
         liveValidationContentAdapter = PatternUIHelper.addEMFValidation(mmng, getPattern(), Messages.PatternUIHelper_key_NonPatternVariableEmptyName, variablesTableViewer.getTable(), liveValidationContentAdapter);
 
         form.reflow(true);
@@ -416,7 +416,7 @@ public class ImplementationPage extends PatternEditorPage {
             return;
         } else {
             PatternMethod selectMethod = (PatternMethod) (methodsTableViewer.getElementAt(selectIndex));
-            if (MethodTableCellModifier.isRenameDisable(selectMethod)) {
+            if (PatternUIHelper.isRenameDisable(selectMethod)) {
                 methodsEdit.setEnabled(false);
                 methodsRemove.setEnabled(false);
             } else {
@@ -1286,6 +1286,7 @@ public class ImplementationPage extends PatternEditorPage {
         return pattern == null ? null : pattern.getSuperPattern();
     }
 
+    @Override
     public void dispose() {
         PatternUIHelper.removeAdapterForPattern(getPattern(), liveValidationContentAdapter);
         super.dispose();

@@ -60,6 +60,10 @@ public class LiveValidationContentAdapter extends EContentAdapter {
         Object notifier = notification.getNotifier();
         super.notifyChanged(notification);
 
+        if (!(notification.getFeature() instanceof EAttribute)) {
+            return;
+        }
+
         if (notifier instanceof PatternParameter || notifier instanceof PatternVariable) {
             checkTableInput(notifier);
             return;

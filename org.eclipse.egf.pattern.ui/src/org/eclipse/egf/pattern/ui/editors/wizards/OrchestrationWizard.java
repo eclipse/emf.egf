@@ -117,14 +117,8 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
             List<RecordingCommand> parameterMatchingCommands = parameterMatchingPage.getParameterMatchingCommands();
             if (parameterMatchingCommands != null) {
                 for (final RecordingCommand parameterMatchingCommand : parameterMatchingCommands) {
-                    if (parameterMatchingCommand.canUndo()) {
-                        RecordingCommand cmd = new RecordingCommand(transactionalEditingDomain) {
-                            protected void doExecute() {
-                                parameterMatchingCommand.undo();
-                            }
-                        };
-                        transactionalEditingDomain.getCommandStack().execute(cmd);
-                    }
+                    if (transactionalEditingDomain.getCommandStack().canUndo())
+                        transactionalEditingDomain.getCommandStack().undo();
                 }
             }
         }
