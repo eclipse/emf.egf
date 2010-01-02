@@ -239,6 +239,14 @@ public class Messages extends NLS {
     public static String ResourceListener_reloadDialog_title;
     public static String ResourceListener_reloadDialog_message;
 
+    // Viewpoint contributor
+    public static String ViewpointContributor_editAction_label;
+    public static String ViewpointContributor_editTemplateAction_label;
+    public static String ViewpointContributor_missingPattern_title;
+    public static String ViewpointContributor_missingPattern_message;
+    public static String ViewpointContributor_newChildGroup_label;
+    public static String ViewpointContributor_newPattern_label;
+
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.ui.PatternUIMessages";//$NON-NLS-1$
     static {
         NLS.initializeMessages(BUNDLE_NAME, Messages.class);

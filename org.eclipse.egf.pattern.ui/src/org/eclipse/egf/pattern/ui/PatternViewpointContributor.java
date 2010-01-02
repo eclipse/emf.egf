@@ -43,6 +43,7 @@ import org.eclipse.emf.edit.ui.action.CreateChildAction;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.MenuManager;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
@@ -55,6 +56,8 @@ public class PatternViewpointContributor extends ViewpointContributor {
 
     public static final String EDIT_ACTION_ID = "edit-pattern";
     public static final String EDIT_TEMPLATE_ACTION_ID = "edit-template-pattern";
+
+    private static final String EDIT_MENU_GROUP = "edit";
 
     private final EditPatternAction editAction = new EditPatternAction();
     private final EditTemplatePatternAction editTemplateAction = new EditTemplatePatternAction();
@@ -74,20 +77,20 @@ public class PatternViewpointContributor extends ViewpointContributor {
         IStructuredSelection selection2 = (IStructuredSelection) selection;
         if (addActions()) {
             if (selection2.getFirstElement() instanceof PatternLibrary) {
-                MenuManager createChildMenuManager = new MenuManager("New Child"); //$NON-NLS-1$
-                menuManager.insertBefore("edit", createChildMenuManager); //$NON-NLS-1$
+                MenuManager createChildMenuManager = new MenuManager(Messages.ViewpointContributor_newChildGroup_label);
+                menuManager.insertBefore(EDIT_MENU_GROUP, createChildMenuManager);
                 Map<String, PatternExtension> extensions = ExtensionHelper.getExtensions();
                 for (String nature : extensions.keySet()) {
                     PatternExtension patternExtension = extensions.get(nature);
                     CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, "myPattern"));
                     CreateChildAction createChildAction = new CreatePatternAction(activeEditorPart, selection, descriptor, (PatternLibrary) selection2.getFirstElement());
-                    createChildAction.setText(nature + " Pattern");
+                    createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, nature));
                     createChildMenuManager.add(createChildAction);
                 }
                 // menuManager.insertBefore("edit", createChildAction);
             } else if (selection2.getFirstElement() instanceof Pattern) {
-                menuManager.insertBefore("edit", editAction);
-                menuManager.insertBefore("edit", editTemplateAction);
+                menuManager.insertBefore(EDIT_MENU_GROUP, editAction);
+                menuManager.insertBefore(EDIT_MENU_GROUP, editTemplateAction);
             }
         }
     }
@@ -139,9 +142,7 @@ public class PatternViewpointContributor extends ViewpointContributor {
                 public void redo() {
                 }
             });
-
         }
-
     }
 
     private final class TestAction extends Action {
@@ -149,7 +150,6 @@ public class PatternViewpointContributor extends ViewpointContributor {
         public TestAction(String text) {
             super(text);
             setId(text);
-
         }
 
         @Override
@@ -165,18 +165,6 @@ public class PatternViewpointContributor extends ViewpointContributor {
             super(label);
             setId(id);
         }
-
-        // @Override
-        // public boolean isEnabled() {
-        // if (selection == null)
-        // return false;
-        // IStructuredSelection sselection = (IStructuredSelection) selection;
-        // if (sselection.size() != 1 || !(sselection.getFirstElement()
-        // instanceof Pattern))
-        // return false;
-        //
-        // return true;
-        // }
 
         protected Pattern getPattern() {
             if (selection == null)
@@ -196,24 +184,32 @@ public class PatternViewpointContributor extends ViewpointContributor {
     private final class EditTemplatePatternAction extends PatternAction {
 
         public EditTemplatePatternAction() {
-            super("Edit template", EDIT_TEMPLATE_ACTION_ID);
+            super(Messages.ViewpointContributor_editTemplateAction_label, EDIT_TEMPLATE_ACTION_ID);
         }
 
         @Override
         public void run() {
-            PatternTemplateEditor.openEditor(parent.getPage(), getPatternInTransactionalEditingDomain(), null);
+            Pattern patternInTransactionalEditingDomain = getPatternInTransactionalEditingDomain();
+            if (patternInTransactionalEditingDomain == null)
+                MessageDialog.openInformation(parent.getPage().getWorkbenchWindow().getShell(), Messages.ViewpointContributor_missingPattern_title, Messages.ViewpointContributor_missingPattern_message);
+            else
+                PatternTemplateEditor.openEditor(parent.getPage(), patternInTransactionalEditingDomain, null);
         }
     }
 
     private final class EditPatternAction extends PatternAction {
 
         public EditPatternAction() {
-            super("Edit", EDIT_ACTION_ID);
+            super(Messages.ViewpointContributor_editAction_label, EDIT_ACTION_ID);
         }
 
         @Override
         public void run() {
-            PatternEditor.openEditor(parent.getPage(), getPatternInTransactionalEditingDomain());
+            Pattern patternInTransactionalEditingDomain = getPatternInTransactionalEditingDomain();
+            if (patternInTransactionalEditingDomain == null)
+                MessageDialog.openInformation(parent.getPage().getWorkbenchWindow().getShell(), Messages.ViewpointContributor_missingPattern_title, Messages.ViewpointContributor_missingPattern_message);
+            else
+                PatternEditor.openEditor(parent.getPage(), patternInTransactionalEditingDomain);
         }
     }
 

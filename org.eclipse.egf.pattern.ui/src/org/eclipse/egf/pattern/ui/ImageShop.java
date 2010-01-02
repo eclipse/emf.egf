@@ -17,7 +17,6 @@ package org.eclipse.egf.pattern.ui;
 
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
-import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
@@ -53,19 +52,15 @@ public class ImageShop {
     public static final String IMG_METHOD_CONTENT_EDIT = ICON_PATH + "method_content_edit.gif";
     public static final String IMG_VARIABLE = ICON_PATH + "variable.gif";
 
+    private static final ImageRegistry REGISTRY = new ImageRegistry();
+
     public static Image get(String imageFilePath) {
-        ImageDescriptor imageDesc = getImageDescriptor(imageFilePath);
-        if (imageDesc != null) {
-            return imageDesc.createImage();
-        }
-        return getImageRegistry().get(imageFilePath);
-    }
-
-    public static ImageRegistry getImageRegistry() {
-        return JFaceResources.getImageRegistry();
-    }
-
-    public static ImageDescriptor getImageDescriptor(String imageFilePath) {
-        return AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, imageFilePath);
+        Image image = REGISTRY.get(imageFilePath);
+        if (image != null)
+            return image;
+        ImageDescriptor descriptor = AbstractUIPlugin.imageDescriptorFromPlugin(PLUGIN_ID, imageFilePath);
+        image = descriptor.createImage();
+        REGISTRY.put(imageFilePath, image);
+        return image;
     }
 }
