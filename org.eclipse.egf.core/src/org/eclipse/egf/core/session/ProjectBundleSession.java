@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -25,9 +24,10 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.common.helper.ProjectHelper;
+import org.eclipse.egf.common.helper.JavaHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.osgi.baseadaptor.BaseData;
 import org.eclipse.osgi.framework.internal.core.AbstractBundle;
 import org.eclipse.osgi.service.resolver.BundleDescription;
@@ -235,7 +235,7 @@ public class ProjectBundleSession {
    *          development plugin.
    */
   private void addOutputFoldersToBundleClasspath(IProject project, Bundle bundle) throws CoreException {
-    Set<String> outputFolders = ProjectHelper.getOutputFolders(project);
+    List<String> outputFolders = JavaHelper.getStringOutputFolders(JavaCore.create(project));
     BaseData bundleData = (BaseData) ((AbstractBundle) bundle).getBundleData();
     StringBuilder classpath = new StringBuilder();
     if (outputFolders.size() == 0) {
