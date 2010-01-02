@@ -15,6 +15,8 @@
 
 package org.eclipse.egf.pattern.ui.editors;
 
+import java.io.ByteArrayInputStream;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IStorage;
@@ -22,6 +24,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -102,7 +105,14 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     public IFile getFile() {
         IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(getResource());
         IProject project = platformFcore.getPlatformBundle().getProject();
-        return project.getFile(getPatternMethod().getPatternFilePath().path());
+        IFile file = project.getFile(getPatternMethod().getPatternFilePath().path());
+        if (!file.exists())
+            try {
+                file.create(new ByteArrayInputStream(new byte[0]), true, null);
+            } catch (CoreException e) {
+                Activator.getDefault().logError(e);
+            }
+        return file;
     }
 
     public IStorage getStorage() throws CoreException {
