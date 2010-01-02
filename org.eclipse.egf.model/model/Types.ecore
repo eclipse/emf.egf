@@ -49,14 +49,6 @@
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeCollection">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.util.Collection.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="#//Collection"/>
-      </eGenericType>
-    </eOperations>
     <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
       <eTypeArguments eClassifier="#//Collection"/>
     </eGenericSuperTypes>
@@ -65,14 +57,6 @@
     <eTypeParameters name="E"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeList">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.util.List.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="#//List"/>
-      </eGenericType>
-    </eOperations>
     <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
       <eTypeArguments eClassifier="#//List"/>
     </eGenericSuperTypes>
@@ -81,14 +65,6 @@
     <eTypeParameters name="E"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeSet">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.util.Set.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="#//Set"/>
-      </eGenericType>
-    </eOperations>
     <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
       <eTypeArguments eClassifier="#//Set"/>
     </eGenericSuperTypes>
@@ -97,14 +73,6 @@
     <eTypeParameters name="E"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeGeneratorAdapterFactory">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="#//EGeneratorAdapterFactory"/>
-      </eGenericType>
-    </eOperations>
     <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
       <eTypeArguments eClassifier="#//EGeneratorAdapterFactory"/>
     </eGenericSuperTypes>
@@ -112,181 +80,77 @@
   <eClassifiers xsi:type="ecore:EDataType" name="EGeneratorAdapterFactory" instanceClassName="org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory"
       serializable="false"/>
   <eClassifiers xsi:type="ecore:EClass" name="TypeMap">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.util.Map.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EMap"/>
-      </eGenericType>
-    </eOperations>
     <eGenericSuperTypes eClassifier="#//TypeAbstractClass">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EMap"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeBigDecimal">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.math.BigDecimal.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBigDecimal"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBigDecimal"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBigDecimal"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeBigInteger">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.math.BigInteger.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBigInteger"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBigInteger"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBigInteger"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeBoolean">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.lang.Boolean.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBooleanObject"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EBooleanObject"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeByte">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.lang.Byte.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EByteObject"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EByteObject"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EByteObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeCharacter">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.lang.Character.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ECharacterObject"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ECharacterObject"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ECharacterObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDate">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.util.Date.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDate"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeDouble">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.lang.Double.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDoubleObject"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDoubleObject"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EDoubleObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeFloat">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.lang.Float.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EFloatObject"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EFloatObject"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EFloatObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeInteger">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.lang.Integer.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EIntegerObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeLong">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.lang.Long.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELongObject"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELongObject"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//ELongObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeShort">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.lang.Short.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EShortObject"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EShortObject"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EShortObject"/>
     </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypeString">
-    <eOperations name="getType" lowerBound="1">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="body" value="return java.lang.String.class;"/>
-      </eAnnotations>
-      <eGenericType eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
-        <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eGenericSuperTypes eClassifier="#//TypeObject">
       <eTypeArguments eClassifier="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>

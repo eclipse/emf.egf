@@ -99,16 +99,6 @@ public class TypeFloatImpl extends TypeObjectImpl<Float> implements TypeFloat {
    * @generated
    */
   @Override
-  public Class<Float> getType() {
-    return java.lang.Float.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case TypesPackage.TYPE_FLOAT__VALUE:

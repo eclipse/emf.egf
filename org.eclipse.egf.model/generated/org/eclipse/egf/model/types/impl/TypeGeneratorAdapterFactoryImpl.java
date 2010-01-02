@@ -46,14 +46,4 @@ public class TypeGeneratorAdapterFactoryImpl extends TypeAbstractClassImpl<Gener
     return TypesPackage.Literals.TYPE_GENERATOR_ADAPTER_FACTORY;
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Class<GeneratorAdapterFactory> getType() {
-    return org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.class;
-  }
-
 } // TypeGeneratorAdapterFactoryImpl

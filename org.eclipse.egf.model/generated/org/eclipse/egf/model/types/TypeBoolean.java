@@ -55,13 +55,4 @@ public interface TypeBoolean extends TypeObject<Boolean> {
    */
   void setValue(Boolean value);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.lang.Boolean.class;'"
-   * @generated
-   */
-  Class<Boolean> getType();
-
 } // TypeBoolean

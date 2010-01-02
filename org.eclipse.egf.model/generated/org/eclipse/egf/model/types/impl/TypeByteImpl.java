@@ -99,16 +99,6 @@ public class TypeByteImpl extends TypeObjectImpl<Byte> implements TypeByte {
    * @generated
    */
   @Override
-  public Class<Byte> getType() {
-    return java.lang.Byte.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case TypesPackage.TYPE_BYTE__VALUE:

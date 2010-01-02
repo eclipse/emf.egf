@@ -47,13 +47,4 @@ public class TypeMapImpl extends TypeAbstractClassImpl<Map> implements TypeMap {
     return TypesPackage.Literals.TYPE_MAP;
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Class<Map> getType() {
-    return java.util.Map.class;
-  }
-
 } // TypeMapImpl

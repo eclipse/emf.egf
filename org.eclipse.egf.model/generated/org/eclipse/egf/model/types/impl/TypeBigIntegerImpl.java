@@ -101,16 +101,6 @@ public class TypeBigIntegerImpl extends TypeObjectImpl<BigInteger> implements Ty
    * @generated
    */
   @Override
-  public Class<BigInteger> getType() {
-    return java.math.BigInteger.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case TypesPackage.TYPE_BIG_INTEGER__VALUE:

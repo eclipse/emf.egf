@@ -25,13 +25,5 @@ import java.util.Map;
  * @generated
  */
 public interface TypeMap extends TypeAbstractClass<Map> {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.util.Map.class;'"
-   * @generated
-   */
-  Class<Map> getType();
 
 } // TypeMap

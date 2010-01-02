@@ -47,13 +47,4 @@ public class TypeSetImpl extends TypeAbstractClassImpl<Set> implements TypeSet {
     return TypesPackage.Literals.TYPE_SET;
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Class<Set> getType() {
-    return java.util.Set.class;
-  }
-
 } // TypeSetImpl

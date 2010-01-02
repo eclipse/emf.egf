@@ -47,13 +47,4 @@ public class TypeCollectionImpl extends TypeAbstractClassImpl<Collection> implem
     return TypesPackage.Literals.TYPE_COLLECTION;
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Class<Collection> getType() {
-    return java.util.Collection.class;
-  }
-
 } // TypeCollectionImpl

@@ -55,13 +55,4 @@ public interface TypeDouble extends TypeObject<Double> {
    */
   void setValue(Double value);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.lang.Double.class;'"
-   * @generated
-   */
-  Class<Double> getType();
-
 } // TypeDouble

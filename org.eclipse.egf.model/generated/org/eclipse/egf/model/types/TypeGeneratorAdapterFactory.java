@@ -25,13 +25,5 @@ import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
  * @generated
  */
 public interface TypeGeneratorAdapterFactory extends TypeAbstractClass<GeneratorAdapterFactory> {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.class;'"
-   * @generated
-   */
-  Class<GeneratorAdapterFactory> getType();
 
 } // TypeGeneratorAdapterFactory

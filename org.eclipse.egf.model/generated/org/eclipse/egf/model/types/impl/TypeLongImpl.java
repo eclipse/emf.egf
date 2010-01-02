@@ -99,16 +99,6 @@ public class TypeLongImpl extends TypeObjectImpl<Long> implements TypeLong {
    * @generated
    */
   @Override
-  public Class<Long> getType() {
-    return java.lang.Long.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case TypesPackage.TYPE_LONG__VALUE:

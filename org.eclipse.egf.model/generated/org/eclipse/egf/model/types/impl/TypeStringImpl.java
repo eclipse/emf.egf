@@ -99,16 +99,6 @@ public class TypeStringImpl extends TypeObjectImpl<String> implements TypeString
    * @generated
    */
   @Override
-  public Class<String> getType() {
-    return java.lang.String.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case TypesPackage.TYPE_STRING__VALUE:

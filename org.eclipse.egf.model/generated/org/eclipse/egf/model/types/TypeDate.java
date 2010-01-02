@@ -57,13 +57,4 @@ public interface TypeDate extends TypeObject<Date> {
    */
   void setValue(Date value);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.util.Date.class;'"
-   * @generated
-   */
-  Class<Date> getType();
-
 } // TypeDate

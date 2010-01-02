@@ -99,16 +99,6 @@ public class TypeDoubleImpl extends TypeObjectImpl<Double> implements TypeDouble
    * @generated
    */
   @Override
-  public Class<Double> getType() {
-    return java.lang.Double.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case TypesPackage.TYPE_DOUBLE__VALUE:

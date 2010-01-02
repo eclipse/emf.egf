@@ -47,13 +47,4 @@ public class TypeListImpl extends TypeAbstractClassImpl<List> implements TypeLis
     return TypesPackage.Literals.TYPE_LIST;
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Class<List> getType() {
-    return java.util.List.class;
-  }
-
 } // TypeListImpl

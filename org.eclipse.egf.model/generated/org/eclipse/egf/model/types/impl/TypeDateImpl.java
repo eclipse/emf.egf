@@ -101,16 +101,6 @@ public class TypeDateImpl extends TypeObjectImpl<Date> implements TypeDate {
    * @generated
    */
   @Override
-  public Class<Date> getType() {
-    return java.util.Date.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case TypesPackage.TYPE_DATE__VALUE:

@@ -55,13 +55,4 @@ public interface TypeString extends TypeObject<String> {
    */
   void setValue(String value);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.lang.String.class;'"
-   * @generated
-   */
-  Class<String> getType();
-
 } // TypeString

@@ -14,7 +14,6 @@ package org.eclipse.egf.model.types.impl;
 
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.model.types.TypesPackage;
-
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -49,12 +48,12 @@ public abstract class TypeImpl<T extends Object> extends TypeElementImpl impleme
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
+  @SuppressWarnings("unchecked")
   public Class<T> getType() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    return (Class<T>) eClass().getEGenericSuperTypes().get(0).getETypeArguments().get(0).getEClassifier().getInstanceClass();
   }
 
   /**
@@ -68,4 +67,4 @@ public abstract class TypeImpl<T extends Object> extends TypeElementImpl impleme
     throw new UnsupportedOperationException();
   }
 
-} //TypeImpl
+} // TypeImpl

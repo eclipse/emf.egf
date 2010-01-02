@@ -99,16 +99,6 @@ public class TypeIntegerImpl extends TypeObjectImpl<Integer> implements TypeInte
    * @generated
    */
   @Override
-  public Class<Integer> getType() {
-    return java.lang.Integer.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case TypesPackage.TYPE_INTEGER__VALUE:

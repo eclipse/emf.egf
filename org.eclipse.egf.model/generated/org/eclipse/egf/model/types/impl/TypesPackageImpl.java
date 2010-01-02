@@ -938,151 +938,49 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
     initEClass(typeCollectionEClass, TypeCollection.class, "TypeCollection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-    op = addEOperation(typeCollectionEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(this.getCollection());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeListEClass, TypeList.class, "TypeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-    op = addEOperation(typeListEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(this.getList());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     initEClass(typeSetEClass, TypeSet.class, "TypeSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-    op = addEOperation(typeSetEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(this.getSet());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeGeneratorAdapterFactoryEClass, TypeGeneratorAdapterFactory.class, "TypeGeneratorAdapterFactory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-    op = addEOperation(typeGeneratorAdapterFactoryEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(this.getEGeneratorAdapterFactory());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeMapEClass, TypeMap.class, "TypeMap", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-    op = addEOperation(typeMapEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEMap());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     initEClass(typeBigDecimalEClass, TypeBigDecimal.class, "TypeBigDecimal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeBigDecimal_Value(), theEcorePackage.getEBigDecimal(), "value", null, 0, 1, TypeBigDecimal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    op = addEOperation(typeBigDecimalEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEBigDecimal());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeBigIntegerEClass, TypeBigInteger.class, "TypeBigInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeBigInteger_Value(), theEcorePackage.getEBigInteger(), "value", null, 0, 1, TypeBigInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(typeBigIntegerEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEBigInteger());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     initEClass(typeBooleanEClass, TypeBoolean.class, "TypeBoolean", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeBoolean_Value(), theEcorePackage.getEBooleanObject(), "value", null, 0, 1, TypeBoolean.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    op = addEOperation(typeBooleanEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEBooleanObject());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeByteEClass, TypeByte.class, "TypeByte", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeByte_Value(), theEcorePackage.getEByteObject(), "value", null, 0, 1, TypeByte.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(typeByteEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEByteObject());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     initEClass(typeCharacterEClass, TypeCharacter.class, "TypeCharacter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeCharacter_Value(), theEcorePackage.getECharacterObject(), "value", null, 0, 1, TypeCharacter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    op = addEOperation(typeCharacterEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getECharacterObject());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeDateEClass, TypeDate.class, "TypeDate", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeDate_Value(), theEcorePackage.getEDate(), "value", null, 0, 1, TypeDate.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(typeDateEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEDate());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     initEClass(typeDoubleEClass, TypeDouble.class, "TypeDouble", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeDouble_Value(), theEcorePackage.getEDoubleObject(), "value", null, 0, 1, TypeDouble.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    op = addEOperation(typeDoubleEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEDoubleObject());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeFloatEClass, TypeFloat.class, "TypeFloat", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeFloat_Value(), theEcorePackage.getEFloatObject(), "value", null, 0, 1, TypeFloat.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(typeFloatEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEFloatObject());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     initEClass(typeIntegerEClass, TypeInteger.class, "TypeInteger", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeInteger_Value(), theEcorePackage.getEIntegerObject(), "value", null, 0, 1, TypeInteger.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    op = addEOperation(typeIntegerEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEIntegerObject());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeLongEClass, TypeLong.class, "TypeLong", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeLong_Value(), theEcorePackage.getELongObject(), "value", null, 0, 1, TypeLong.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(typeLongEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getELongObject());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     initEClass(typeShortEClass, TypeShort.class, "TypeShort", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeShort_Value(), theEcorePackage.getEShortObject(), "value", null, 0, 1, TypeShort.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    op = addEOperation(typeShortEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEShortObject());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeStringEClass, TypeString.class, "TypeString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeString_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TypeString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(typeStringEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(theEcorePackage.getEString());
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     // Initialize data types
     initEDataType(collectionEDataType, Collection.class, "Collection", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

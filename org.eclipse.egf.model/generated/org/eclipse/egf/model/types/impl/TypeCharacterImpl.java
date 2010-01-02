@@ -99,16 +99,6 @@ public class TypeCharacterImpl extends TypeObjectImpl<Character> implements Type
    * @generated
    */
   @Override
-  public Class<Character> getType() {
-    return java.lang.Character.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case TypesPackage.TYPE_CHARACTER__VALUE:
