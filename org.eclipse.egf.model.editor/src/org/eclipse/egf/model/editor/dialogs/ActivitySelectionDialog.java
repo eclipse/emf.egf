@@ -57,6 +57,8 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
   private Class<?> _clazz;
 
+  private Resource _context;
+
   private Activity _activity;
 
   private ResourceSet _resourceSet;
@@ -268,9 +270,10 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     setSeparatorLabel(ModelEditorMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
   }
 
-  public ActivitySelectionDialog(Shell parentShell, Class<?> clazz, Activity activity, boolean multipleSelection) {
+  public ActivitySelectionDialog(Shell parentShell, Class<?> clazz, Resource context, Activity activity, boolean multipleSelection) {
     super(parentShell, multipleSelection);
     _clazz = clazz;
+    _context = context;
     _activity = activity;
     // Create and init a resourceSet
     _resourceSet = new ResourceSetImpl();
@@ -332,14 +335,20 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         // Load Fcore
         Resource resource = null;
         try {
-          resource = _resourceSet.getResource(fc.getURI(), true);
+          // Analyse existing in memory resource if applicable
+          if (_context != null && _context.getResourceSet() != null) {
+            resource = _context.getResourceSet().getResource(fc.getURI(), false);
+          }
+          // If no memory resource are found or no _activity
+          if (resource == null) {
+            resource = _resourceSet.getResource(fc.getURI(), true);
+          }
         } catch (OperationCanceledException e) {
           return;
         } catch (Exception e) {
           EGFModelsEditorPlugin.getPlugin().logError(e);
           continue;
         }
-        // Nothing to do)
         // Analyse top contents for Activities
         for (EObject eObject : resource.getContents()) {
           // Ignore current

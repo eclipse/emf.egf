@@ -113,13 +113,13 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
 
       // Data Holder
       final Class<?>[] clazzes = new Class<?>[] { genericType.getEClassifier().getInstanceClass() };
-      final Activity[] activities = new Activity[] { invocation.getActivity() };
+      final Invocation<?>[] invocations = new Invocation<?>[] { invocation };
 
       final ILabelProvider editLabelProvider = getEditLabelProvider();
       result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
         @Override
         protected Object openDialogBox(Control cellEditorWindow) {
-          ActivitySelectionDialog dialog = new ActivitySelectionDialog(EGFModelsEditorPlugin.getActiveWorkbenchShell(), clazzes[0], activities[0], false);
+          ActivitySelectionDialog dialog = new ActivitySelectionDialog(EGFModelsEditorPlugin.getActiveWorkbenchShell(), clazzes[0], invocations[0].eResource(), invocations[0].getActivity(), false);
           dialog.open();
           Object[] innerResult = dialog.getResult();
           if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof Activity) {
@@ -129,7 +129,7 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
             // Return selected value
             return innerResult[0];
           }
-          return activities[0];
+          return invocations[0].getActivity();
         }
       };
 
