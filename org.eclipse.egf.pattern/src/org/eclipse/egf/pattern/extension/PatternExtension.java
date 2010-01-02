@@ -15,6 +15,8 @@
 
 package org.eclipse.egf.pattern.extension;
 
+import java.net.URL;
+
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -24,6 +26,8 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 
 /**
  * @author Guiu
@@ -36,6 +40,8 @@ public abstract class PatternExtension {
     public abstract PatternNature getNature();
 
     public abstract PatternFactory getFactory();
+
+    protected abstract AdapterFactory getAdapterFactory();
 
     protected abstract PatternEngine doCreateRunner(Pattern pattern) throws PatternException;
 
@@ -60,6 +66,11 @@ public abstract class PatternExtension {
             throw new IllegalStateException();
 
         return getNature().eClass().equals(pattern.getNature().eClass());
+    }
+
+    public final URL getImageURL() {
+        IItemLabelProvider itemLabelProvider = (IItemLabelProvider) getAdapterFactory().adapt(getNature(), IItemLabelProvider.class);
+        return (URL) itemLabelProvider.getImage(getNature());
     }
 
     /**
