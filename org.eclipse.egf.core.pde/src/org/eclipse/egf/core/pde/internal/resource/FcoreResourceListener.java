@@ -192,8 +192,8 @@ public class FcoreResourceListener implements IResourceChangeListener {
                     }
                   }
                 }
-              } catch (IllegalArgumentException iae) {
-                EGFPDEPlugin.getDefault().logError(new String("FcoreResourceListener.resourceChanged(..) _ "), iae); //$NON-NLS-1$
+              } catch (Throwable t) {
+                EGFPDEPlugin.getDefault().logError(new String("FcoreResourceListener.resourceChanged(..) _ "), t); //$NON-NLS-1$
               }
             }
           }
