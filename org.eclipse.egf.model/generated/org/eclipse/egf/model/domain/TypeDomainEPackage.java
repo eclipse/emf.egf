@@ -75,13 +75,4 @@ public interface TypeDomainEPackage extends Type<EPackage> {
    */
   EPackage getValue();
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.emf.ecore.EPackage.class;'"
-   * @generated
-   */
-  Class<EPackage> getType();
-
 } // TypeDomainEPackage

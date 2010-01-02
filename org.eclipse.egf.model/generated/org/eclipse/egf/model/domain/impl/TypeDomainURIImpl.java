@@ -29,20 +29,18 @@ import org.eclipse.model.domain.adapter.TypeDomainURIAdapter;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainURIImpl#getDomain <em>Domain</em>}</li>
- * <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainURIImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainURIImpl#getDomain <em>Domain</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainURIImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -52,7 +50,6 @@ public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getDomain()
    * @generated
    * @ordered
@@ -63,7 +60,6 @@ public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -84,7 +80,6 @@ public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -95,7 +90,6 @@ public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public DomainURI getDomain() {
@@ -105,7 +99,6 @@ public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setDomain(DomainURI newDomain) {
@@ -132,18 +125,6 @@ public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  public Class<URI> getType() {
-    return org.eclipse.emf.common.util.URI.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -160,7 +141,6 @@ public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -176,7 +156,6 @@ public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -192,7 +171,6 @@ public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

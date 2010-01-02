@@ -18,14 +18,14 @@ import org.eclipse.emf.common.util.URI;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>URI</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.domain.DomainURI#getUri <em>Uri</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.domain.DomainURI#getUri <em>Uri</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.domain.DomainPackage#getDomainURI()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidURI'"
  * @generated
@@ -39,7 +39,6 @@ public interface DomainURI extends Domain {
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Uri</em>' attribute.
    * @see #setUri(URI)
    * @see org.eclipse.egf.model.domain.DomainPackage#getDomainURI_Uri()
@@ -49,13 +48,10 @@ public interface DomainURI extends Domain {
   URI getUri();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.domain.DomainURI#getUri <em>Uri</em>}'
-   * attribute.
+   * Sets the value of the '{@link org.eclipse.egf.model.domain.DomainURI#getUri <em>Uri</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Uri</em>' attribute.
+   * @param value the new value of the '<em>Uri</em>' attribute.
    * @see #getUri()
    * @generated
    */

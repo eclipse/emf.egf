@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.domain.impl;
 
+import org.eclipse.egf.model.domain.*;
 import org.eclipse.egf.model.domain.DomainEPackage;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainPackage;
@@ -29,7 +30,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
@@ -37,7 +37,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static DomainFactory init() {
@@ -56,7 +55,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public DomainFactoryImpl() {
@@ -66,7 +64,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -90,7 +87,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public DomainViewpoint createDomainViewpoint() {
@@ -101,7 +97,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public DomainEPackage createDomainEPackage() {
@@ -112,7 +107,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeDomainEPackage createTypeDomainEPackage() {
@@ -123,7 +117,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public DomainURI createDomainURI() {
@@ -134,7 +127,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeDomainURI createTypeDomainURI() {
@@ -145,7 +137,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public DomainPackage getDomainPackage() {
@@ -155,7 +146,6 @@ public class DomainFactoryImpl extends EFactoryImpl implements DomainFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @deprecated
    * @generated
    */
