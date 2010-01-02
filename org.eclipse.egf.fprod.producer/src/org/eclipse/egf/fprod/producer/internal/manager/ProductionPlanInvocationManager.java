@@ -33,8 +33,8 @@ public abstract class ProductionPlanInvocationManager extends InvocationManager 
   }
 
   @Override
-  public IProductionPlanInvocationProductionContext getProductionContext() {
-    return (IProductionPlanInvocationProductionContext) super.getProductionContext();
+  public IProductionPlanInvocationProductionContext getProductionContext() throws InvocationException {
+    return getInternalProductionContext();
   }
 
   @Override

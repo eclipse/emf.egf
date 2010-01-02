@@ -45,8 +45,8 @@ public class FactoryComponentInvocationManager extends ProductionPlanInvocationM
   }
 
   @Override
-  public IFactoryComponentInvocationProductionContext getProductionContext() {
-    return (IFactoryComponentInvocationProductionContext) super.getProductionContext();
+  public IFactoryComponentInvocationProductionContext getProductionContext() throws InvocationException {
+    return getInternalProductionContext();
   }
 
   @Override

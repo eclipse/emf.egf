@@ -29,7 +29,7 @@ public interface IProducerManager {
 
   public Diagnostic canInvoke() throws InvocationException;
 
-  public IProductionContext<?> getProductionContext();
+  public IProductionContext<?> getProductionContext() throws InvocationException;
 
   public ProjectBundleSession getProjectBundleSession();
 

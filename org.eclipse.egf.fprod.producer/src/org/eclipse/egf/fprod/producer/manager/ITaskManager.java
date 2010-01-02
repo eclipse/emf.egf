@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.fprod.producer.manager;
 
+import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.producer.manager.IActivityManager;
@@ -22,6 +23,6 @@ public interface ITaskManager extends IActivityManager {
 
   public Task getElement();
 
-  public ITaskProductionContext getProductionContext();
+  public ITaskProductionContext getProductionContext() throws InvocationException;
 
 }

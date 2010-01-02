@@ -79,8 +79,8 @@ public abstract class ModelElementManager implements IModelElementManager {
     return _element;
   }
 
-  public IModelElementProductionContext<?> getProductionContext() {
-    return _productionContext;
+  public IModelElementProductionContext<?> getProductionContext() throws InvocationException {
+    return getInternalProductionContext();
   }
 
   public IModelElementManager getParent() {

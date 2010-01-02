@@ -54,8 +54,8 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
   }
 
   @Override
-  public IActivityProductionContext getProductionContext() {
-    return (IActivityProductionContext) super.getProductionContext();
+  public IActivityProductionContext getProductionContext() throws InvocationException {
+    return getInternalProductionContext();
   }
 
   @Override

@@ -30,7 +30,7 @@ public interface IModelElementManager extends IProducerManager {
 
   public IModelElementManager getParent();
 
-  public IModelElementProductionContext<?> getProductionContext();
+  public IModelElementProductionContext<?> getProductionContext() throws InvocationException;
 
   public List<Activity> getActivities() throws InvocationException;
 

@@ -54,8 +54,8 @@ public class ProductionPlanManager extends OrchestrationManager implements IProd
   }
 
   @Override
-  public IProductionPlanProductionContext getProductionContext() {
-    return (IProductionPlanProductionContext) super.getProductionContext();
+  public IProductionPlanProductionContext getProductionContext() throws InvocationException {
+    return getInternalProductionContext();
   }
 
   @Override

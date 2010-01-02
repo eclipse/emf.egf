@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.producer.manager;
 
+import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
 
@@ -23,6 +24,6 @@ public interface IOrchestrationManager extends IModelElementManager {
 
   public IFactoryComponentManager getParent();
 
-  public IOrchestrationProductionContext getProductionContext();
+  public IOrchestrationProductionContext getProductionContext() throws InvocationException;
 
 }

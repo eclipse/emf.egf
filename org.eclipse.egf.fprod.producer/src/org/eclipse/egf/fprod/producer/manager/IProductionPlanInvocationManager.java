@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.fprod.producer.manager;
 
+import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.context.IProductionPlanInvocationProductionContext;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.egf.producer.manager.IInvocationManager;
@@ -24,6 +25,6 @@ public interface IProductionPlanInvocationManager extends IInvocationManager {
 
   public IProductionPlanManager getParent();
 
-  public IProductionPlanInvocationProductionContext getProductionContext();
+  public IProductionPlanInvocationProductionContext getProductionContext() throws InvocationException;
 
 }

@@ -57,8 +57,8 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
   }
 
   @Override
-  public IFactoryComponentProductionContext getProductionContext() {
-    return (IFactoryComponentProductionContext) super.getProductionContext();
+  public IFactoryComponentProductionContext getProductionContext() throws InvocationException {
+    return getInternalProductionContext();
   }
 
   @Override
@@ -68,8 +68,8 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
         ActivityProductionContextProducer producer = null;
         try {
           producer = EGFProducerPlugin.getActivityProductionContextProducer(getParent().getProductionContext());
-        } catch (Exception e) {
-          throw new InvocationException(e);
+        } catch (Throwable t) {
+          throw new InvocationException(t);
         }
         _productionContext = producer.createActivityProductionContext(getParent().getProductionContext(), getElement(), getProjectBundleSession());
       } else {
@@ -84,8 +84,8 @@ public class FactoryComponentManager extends ActivityManager implements IFactory
       OrchestrationManagerProducer producer = null;
       try {
         producer = EGFProducerPlugin.getOrchestrationProducer(getElement().getOrchestration());
-      } catch (Exception e) {
-        throw new InvocationException(e);
+      } catch (Throwable t) {
+        throw new InvocationException(t);
       }
       _orchestrationManager = producer.createOrchestrationManager(this, getElement().getOrchestration());
     }

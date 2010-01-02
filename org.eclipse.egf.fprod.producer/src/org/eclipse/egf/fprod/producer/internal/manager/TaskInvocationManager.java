@@ -44,8 +44,8 @@ public class TaskInvocationManager extends ProductionPlanInvocationManager imple
   }
 
   @Override
-  public ITaskInvocationProductionContext getProductionContext() {
-    return (ITaskInvocationProductionContext) super.getProductionContext();
+  public ITaskInvocationProductionContext getProductionContext() throws InvocationException {
+    return getInternalProductionContext();
   }
 
   @Override

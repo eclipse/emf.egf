@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.producer.manager;
 
+import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
 
@@ -21,6 +22,6 @@ public interface IFactoryComponentManager extends IActivityManager {
 
   public FactoryComponent getElement();
 
-  public IFactoryComponentProductionContext getProductionContext();
+  public IFactoryComponentProductionContext getProductionContext() throws InvocationException;
 
 }

@@ -59,8 +59,8 @@ public class TaskManager extends ActivityManager implements ITaskManager {
   }
 
   @Override
-  public ITaskProductionContext getProductionContext() {
-    return (ITaskProductionContext) super.getProductionContext();
+  public ITaskProductionContext getProductionContext() throws InvocationException {
+    return getInternalProductionContext();
   }
 
   @Override

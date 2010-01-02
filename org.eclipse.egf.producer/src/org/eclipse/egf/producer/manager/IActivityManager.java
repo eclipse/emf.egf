@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.producer.manager;
 
+import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.producer.context.IActivityProductionContext;
 
@@ -23,6 +24,6 @@ public interface IActivityManager extends IModelElementManager {
 
   public IInvocationManager getParent();
 
-  public IActivityProductionContext getProductionContext();
+  public IActivityProductionContext getProductionContext() throws InvocationException;
 
 }

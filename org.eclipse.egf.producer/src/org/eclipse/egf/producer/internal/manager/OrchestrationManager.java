@@ -41,8 +41,8 @@ public abstract class OrchestrationManager extends ModelElementManager implement
   }
 
   @Override
-  public IOrchestrationProductionContext getProductionContext() {
-    return (IOrchestrationProductionContext) super.getProductionContext();
+  public IOrchestrationProductionContext getProductionContext() throws InvocationException {
+    return getInternalProductionContext();
   }
 
   @Override

@@ -42,8 +42,8 @@ public abstract class InvocationManager extends ModelElementManager implements I
   }
 
   @Override
-  public IInvocationProductionContext getProductionContext() {
-    return (IInvocationProductionContext) super.getProductionContext();
+  public IInvocationProductionContext getProductionContext() throws InvocationException {
+    return getInternalProductionContext();
   }
 
   @Override
