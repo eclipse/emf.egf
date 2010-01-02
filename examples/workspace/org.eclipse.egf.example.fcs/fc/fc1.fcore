@@ -7,28 +7,28 @@
   <activityContractContainer xmi:id="_SmBtAL-2Ed6E7J0w9U7NFQ">
     <activityContracts xmi:id="_S7e_oL-2Ed6E7J0w9U7NFQ" name="amount" mode="Out" invocationContexts="#_IDAaML-2Ed6E7J0w9U7NFQ"
         contexts="#_IDAaML-2Ed6E7J0w9U7NFQ">
-      <type xmi:type="types:FloatType" xmi:id="_o0esoNBTEd67h-iKUQB4KA"/>
+      <type xmi:type="types:TypeFloat" xmi:id="_o0esoNBTEd67h-iKUQB4KA"/>
     </activityContracts>
     <activityContracts xmi:id="_1SUNMcLoEd6YQfrk65kDFw" name="price" invocationContexts="#_GpyuQb_nEd6gHIEE-OJ_Mw">
-      <type xmi:type="types:FloatType" xmi:id="_BV5T0MLpEd6YQfrk65kDFw" value="11.0"/>
+      <type xmi:type="types:TypeFloat" xmi:id="_BV5T0MLpEd6YQfrk65kDFw" value="11.0"/>
     </activityContracts>
     <activityContracts xmi:id="_5siVYMnxEd62uJjVIIL53A" name="generatorAdapterFactory"
         mode="Out" invocationContexts="#_HzSEYciDEd6oON34eIZwow">
-      <type xmi:type="types:GeneratorAdapterFactoryType" xmi:id="_7EKPoMnxEd62uJjVIIL53A"/>
+      <type xmi:type="types:TypeGeneratorAdapterFactory" xmi:id="_7EKPoMnxEd62uJjVIIL53A"/>
     </activityContracts>
     <activityContracts xmi:id="_S6wewNA8Ed6uEZYKLg-jOQ" name="rebate" mode="Out" invocationContexts="#_Ltj4QNA8Ed6uEZYKLg-jOQ">
-      <type xmi:type="types:FloatType" xmi:id="_U2lSQNA8Ed6uEZYKLg-jOQ"/>
+      <type xmi:type="types:TypeFloat" xmi:id="_U2lSQNA8Ed6uEZYKLg-jOQ"/>
     </activityContracts>
     <activityContracts xmi:id="_ih5EENXAEd6mBObdoXlr9g" name="parameters" mode="In_Out"
         invocationContexts="#_aC43cNXAEd6mBObdoXlr9g">
       <type xmi:type="types:TypeList" xmi:id="_js_lQNXAEd6mBObdoXlr9g"/>
     </activityContracts>
     <activityContracts xmi:id="_LCgnUNgXEd6eJbYEYJAYWw" name="fcore" invocationContexts="#_Pnj8UNqHEd6xR_hM8cx7GA">
-      <type xmi:type="domain:DomainEPackageType" xmi:id="_U3jScdqLEd6V9pdModnIUQ"
+      <type xmi:type="domain:TypeDomainEPackage" xmi:id="_U3jScdqLEd6V9pdModnIUQ"
           name="fcore" domain="#_IlmgAdgXEd6eJbYEYJAYWw"/>
     </activityContracts>
     <activityContracts xmi:id="_zb0TwNgfEd6na6OAqTVobQ" name="fc1" invocationContexts="#_WXZRYNqHEd6xR_hM8cx7GA">
-      <type xmi:type="domain:DomainURIType" xmi:id="_HB5igdggEd6uy82Dcq20PA" name="fc1"
+      <type xmi:type="domain:TypeDomainURI" xmi:id="_HB5igdggEd6uy82Dcq20PA" name="fc1"
           domain="#_J1bPgdgfEd6na6OAqTVobQ"/>
     </activityContracts>
   </activityContractContainer>
@@ -43,7 +43,7 @@
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="4w2VoabFEd692t-PG4ogiQ">
     <orchestrationContextContainer xmi:id="_I6TxYcVjEd6ngr_25dSdnQ">
       <orchestrationContexts xmi:id="_uNn24MVjEd6ngr_25dSdnQ" name="stock" invocationContexts="#_bu7G8MVjEd6ngr_25dSdnQ #_4qwyMdA6Ed6FD_8N74-4WA">
-        <type xmi:type="types:IntegerType" xmi:id="_wKWpUMVjEd6ngr_25dSdnQ" value="10"/>
+        <type xmi:type="types:TypeInteger" xmi:id="_wKWpUMVjEd6ngr_25dSdnQ" value="10"/>
       </orchestrationContexts>
     </orchestrationContextContainer>
     <invocations xmi:type="fprod:TaskInvocation" xmi:id="tKWXIabGEd69ANF1SOWYYg" name="Call H1"
@@ -55,7 +55,7 @@
             activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_Z65BAdA5Ed6LbMEN-DBMtQ"/>
         <invocationContexts xmi:id="_Ltj4QNA8Ed6uEZYKLg-jOQ" name="rebate" factoryComponentExposedContract="#_S6wewNA8Ed6uEZYKLg-jOQ"
             activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_E11LcdA8Ed6uEZYKLg-jOQ">
-          <type xmi:type="types:FloatType" xmi:id="_LcHM0dBFEd6W8qZFaW7NMw"/>
+          <type xmi:type="types:TypeFloat" xmi:id="_LcHM0dBFEd6W8qZFaW7NMw"/>
         </invocationContexts>
         <invocationContexts xmi:id="_GpyuQb_nEd6gHIEE-OJ_Mw" name="price" factoryComponentExposedContract="#_1SUNMcLoEd6YQfrk65kDFw"
             activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_xfSXELpOEd6O-6ob3O13Lw"

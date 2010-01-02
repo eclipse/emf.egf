@@ -21,7 +21,7 @@ import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.model.fprod.TaskContract;
 import org.eclipse.egf.model.fprod.TaskContractContainer;
-import org.eclipse.egf.model.types.StringType;
+import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -44,7 +44,7 @@ public class FprodContractValidation extends TestCase {
     name1.setMode(ContractMode.IN);
     contracts.getActivityContracts().add(name1);
 
-    StringType name1Type = TypesFactory.eINSTANCE.createStringType();
+    TypeString name1Type = TypesFactory.eINSTANCE.createTypeString();
     name1.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, name1Type);
 
     TaskContract name2 = FprodFactory.eINSTANCE.createTaskContract();
@@ -52,7 +52,7 @@ public class FprodContractValidation extends TestCase {
     name2.setMode(ContractMode.IN);
     contracts.getActivityContracts().add(name2);
 
-    StringType name2Type = TypesFactory.eINSTANCE.createStringType();
+    TypeString name2Type = TypesFactory.eINSTANCE.createTypeString();
     name2.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, name2Type);
 
     Diagnostician diagnostician = new Diagnostician();
@@ -74,7 +74,7 @@ public class FprodContractValidation extends TestCase {
     name1.setMode(ContractMode.OUT);
     contracts.getActivityContracts().add(name1);
 
-    StringType name1Type = TypesFactory.eINSTANCE.createStringType();
+    TypeString name1Type = TypesFactory.eINSTANCE.createTypeString();
     name1.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, name1Type);
 
     TaskContract name2 = FprodFactory.eINSTANCE.createTaskContract();
@@ -82,7 +82,7 @@ public class FprodContractValidation extends TestCase {
     name2.setMode(ContractMode.OUT);
     contracts.getActivityContracts().add(name2);
 
-    StringType name2Type = TypesFactory.eINSTANCE.createStringType();
+    TypeString name2Type = TypesFactory.eINSTANCE.createTypeString();
     name2.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, name2Type);
 
     Diagnostician diagnostician = new Diagnostician();
@@ -104,7 +104,7 @@ public class FprodContractValidation extends TestCase {
     name1.setMode(ContractMode.IN);
     contracts.getActivityContracts().add(name1);
 
-    StringType name1Type = TypesFactory.eINSTANCE.createStringType();
+    TypeString name1Type = TypesFactory.eINSTANCE.createTypeString();
     name1.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, name1Type);
 
     TaskContract name2 = FprodFactory.eINSTANCE.createTaskContract();
@@ -112,7 +112,7 @@ public class FprodContractValidation extends TestCase {
     name2.setMode(ContractMode.OUT);
     contracts.getActivityContracts().add(name2);
 
-    StringType name2Type = TypesFactory.eINSTANCE.createStringType();
+    TypeString name2Type = TypesFactory.eINSTANCE.createTypeString();
     name2.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, name2Type);
 
     Diagnostician diagnostician = new Diagnostician();

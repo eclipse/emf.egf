@@ -26,10 +26,10 @@ import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.egf.model.fprod.TaskContract;
 import org.eclipse.egf.model.fprod.TaskContractContainer;
-import org.eclipse.egf.model.types.FloatType;
-import org.eclipse.egf.model.types.GeneratorAdapterFactoryType;
-import org.eclipse.egf.model.types.IntegerType;
 import org.eclipse.egf.model.types.TypeCollection;
+import org.eclipse.egf.model.types.TypeFloat;
+import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
+import org.eclipse.egf.model.types.TypeInteger;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
@@ -87,7 +87,7 @@ public class ContextTaskMemory extends TestCase {
     quantity.setMode(ContractMode.IN);
     contracts.getActivityContracts().add(quantity);
 
-    IntegerType quantityType = TypesFactory.eINSTANCE.createIntegerType();
+    TypeInteger quantityType = TypesFactory.eINSTANCE.createTypeInteger();
     quantityType.setValue(100);
     quantity.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, quantityType);
 
@@ -96,7 +96,7 @@ public class ContextTaskMemory extends TestCase {
     price.setMode(ContractMode.IN);
     contracts.getActivityContracts().add(price);
 
-    FloatType priceType = TypesFactory.eINSTANCE.createFloatType();
+    TypeFloat priceType = TypesFactory.eINSTANCE.createTypeFloat();
     priceType.setValue(new Float("10.5")); //$NON-NLS-1$    
     price.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, priceType);
 
@@ -114,7 +114,7 @@ public class ContextTaskMemory extends TestCase {
     amount.setMode(ContractMode.OUT);
     contracts.getActivityContracts().add(amount);
 
-    FloatType amountType = TypesFactory.eINSTANCE.createFloatType();
+    TypeFloat amountType = TypesFactory.eINSTANCE.createTypeFloat();
     amount.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, amountType);
 
     TaskContract generatorAdapterFactory = FprodFactory.eINSTANCE.createTaskContract();
@@ -122,7 +122,7 @@ public class ContextTaskMemory extends TestCase {
     generatorAdapterFactory.setMode(ContractMode.OUT);
     contracts.getActivityContracts().add(generatorAdapterFactory);
 
-    GeneratorAdapterFactoryType generatorAdapterFactoryType = TypesFactory.eINSTANCE.createGeneratorAdapterFactoryType();
+    TypeGeneratorAdapterFactory generatorAdapterFactoryType = TypesFactory.eINSTANCE.createTypeGeneratorAdapterFactory();
     generatorAdapterFactoryType.setValue("org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"); //$NON-NLS-1$
     generatorAdapterFactory.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, generatorAdapterFactoryType);
 
