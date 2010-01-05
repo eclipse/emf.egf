@@ -48,7 +48,12 @@ http://www.eclipse.org/legal/epl-v10.html
   <includes 
     id="org.eclipse.egf.doc" 
     version="0.0.0"
-  />    
+  />
+  
+  <includes 
+    id="org.eclipse.egf.examples" 
+    version="0.0.0"
+  />          
          
   <includes 
     id="org.eclipse.egf.test" 
