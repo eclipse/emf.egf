@@ -5,19 +5,14 @@ import java.util.Map;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
-public class MyReporter implements PatternExecutionReporter{
+public class MyReporter implements PatternExecutionReporter {
 
-	@Override
-	public void executionFinished(String output, PatternContext context) {
-		System.out.println("Result of pattern:\n"+output);
-		
-	}
+  public void executionFinished(String output, PatternContext context) {
+    System.out.println("Result of pattern:\n" + output); //$NON-NLS-1$
+  }
 
-	@Override
-	public void loopFinished(String output, PatternContext context,
-			Map<String, Object> parameterValues) {
-		// TODO Auto-generated method stub
-		
-	}
+  public void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues) {
+    // TODO Auto-generated method stub
+  }
 
 }

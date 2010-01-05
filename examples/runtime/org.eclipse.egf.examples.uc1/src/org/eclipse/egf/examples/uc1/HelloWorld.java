@@ -8,30 +8,24 @@ import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
 
 public class HelloWorld implements ITaskProduction {
 
-	@Override
-	public void doExecute(ITaskProductionContext taskProductionContext,
-			IProgressMonitor monitor) throws InvocationException {
-		String value  = taskProductionContext.getInputValue("value", String.class);
-		String outputMessage = new String ("Hello " + value + "!");
-		// Message on the default console
-		System.out.println(outputMessage);
-		// Message on the EGF console
-	    EGFCorePlugin.getDefault().logInfo(outputMessage); 		  
+  public void doExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
+    String value = taskProductionContext.getInputValue("value", String.class); //$NON-NLS-1$
+    String outputMessage = new String("Hello " + value + "!"); //$NON-NLS-1$ //$NON-NLS-2$
+    // Message on the default console
+    System.out.println(outputMessage);
+    // Message on the EGF console
+    EGFCorePlugin.getDefault().logInfo(outputMessage);
 
-	}
+  }
 
-	@Override
-	public void postExecute(ITaskProductionContext taskProductionContext,
-			IProgressMonitor monitor) throws InvocationException {
-		// TODO Auto-generated method stub
+  public void postExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
+    // TODO Auto-generated method stub
 
-	}
+  }
 
-	@Override
-	public void preExecute(ITaskProductionContext taskProductionContext,
-			IProgressMonitor monitor) throws InvocationException {
-		// TODO Auto-generated method stub
+  public void preExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
+    // TODO Auto-generated method stub
 
-	}
+  }
 
 }
