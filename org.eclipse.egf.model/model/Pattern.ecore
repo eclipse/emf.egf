@@ -90,16 +90,12 @@
         eType="#//PatternVariable" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Query" abstract="true">
-    <eOperations name="getQueryContext">
-      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EMap">
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-        <eTypeArguments eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      </eGenericType>
-    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
         eType="#//PatternParameter" resolveProxies="false" eOpposite="#//PatternParameter/query"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensionId" lowerBound="1"
         eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="queryContext" upperBound="-1"
+        eType="#//String2String" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BasicQuery" eSuperTypes="#//Query"/>
   <eClassifiers xsi:type="ecore:EClass" name="StringQuery" eSuperTypes="#//Query"/>
@@ -108,6 +104,10 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" upperBound="-1"
         eType="#//PatternElement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="String2String" instanceClassName="java.util.Map$Entry">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TypePatternExecutionReporter">
     <eGenericSuperTypes eClassifier="ecore:EClass Types.ecore#//TypeAbstractClass">

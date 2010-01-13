@@ -53,6 +53,7 @@ import org.eclipse.egf.pattern.ui.editors.validation.ValidationConstants;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.IEMFListProperty;
@@ -648,7 +649,7 @@ public class SpecificationPage extends PatternEditorPage {
      */
     private void setQueryContent(ParametersEditDialog dialog, Query query) {
         List<QueryContent> queryContents = dialog.getQueryContents();
-        Map<String, String> queryContext = query.getQueryContext();
+        EMap<String, String> queryContext = query.getQueryContext();
         if (queryContext != null && !queryContext.isEmpty()) {
             queryContext.clear();
         }

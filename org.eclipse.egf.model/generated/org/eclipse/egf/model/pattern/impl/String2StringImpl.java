@@ -1,44 +1,46 @@
 /**
+ *
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
  * 
- * Copyright (c) 2009 Thales Corporate Services S.A.S.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- * Thales Corporate Services S.A.S - initial API and implementation
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
 package org.eclipse.egf.model.pattern.impl;
 
 import org.eclipse.egf.model.pattern.PatternPackage;
-import org.eclipse.egf.model.pattern.PatternParameter;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.BasicEMap;
 import org.eclipse.emf.common.util.EMap;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '
- * <em><b>Paramerter2 Parameter Map</b></em>'.
+ * An implementation of the model object '<em><b>String2 String</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl#getTypedValue <em>Value</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.String2StringImpl#getTypedKey <em>Key</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.String2StringImpl#getTypedValue <em>Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.Entry<PatternParameter, PatternParameter> {
+public class String2StringImpl extends Container implements BasicEMap.Entry<String, String> {
     /**
      * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
      * <!-- begin-user-doc -->
@@ -49,31 +51,51 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     protected int eFlags = 0;
 
     /**
-     * The cached value of the '{@link #getTypedValue() <em>Value</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getTypedValue()
-     * @generated
-     * @ordered
-     */
-    protected PatternParameter value;
-
-    /**
-     * The cached value of the '{@link #getTypedKey() <em>Key</em>}' reference.
+     * The default value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @see #getTypedKey()
      * @generated
      * @ordered
      */
-    protected PatternParameter key;
+    protected static final String KEY_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTypedKey() <em>Key</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTypedKey()
+     * @generated
+     * @ordered
+     */
+    protected String key = KEY_EDEFAULT;
+
+    /**
+     * The default value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTypedValue()
+     * @generated
+     * @ordered
+     */
+    protected static final String VALUE_EDEFAULT = null;
+
+    /**
+     * The cached value of the '{@link #getTypedValue() <em>Value</em>}' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getTypedValue()
+     * @generated
+     * @ordered
+     */
+    protected String value = VALUE_EDEFAULT;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected Paramerter2ParameterMapImpl() {
+    protected String2StringImpl() {
         super();
     }
 
@@ -84,7 +106,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      */
     @Override
     protected EClass eStaticClass() {
-        return PatternPackage.Literals.PARAMERTER2_PARAMETER_MAP;
+        return PatternPackage.Literals.STRING2_STRING;
     }
 
     /**
@@ -92,7 +114,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter getTypedKey() {
+    public String getTypedKey() {
         return key;
     }
 
@@ -101,11 +123,11 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setTypedKey(PatternParameter newKey) {
-        PatternParameter oldKey = key;
+    public void setTypedKey(String newKey) {
+        String oldKey = key;
         key = newKey;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY, oldKey, key));
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.STRING2_STRING__KEY, oldKey, key));
     }
 
     /**
@@ -113,15 +135,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter getTypedValue() {
-        if (value != null && value.eIsProxy()) {
-            InternalEObject oldValue = (InternalEObject) value;
-            value = (PatternParameter) eResolveProxy(oldValue);
-            if (value != oldValue) {
-                if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE, oldValue, value));
-            }
-        }
+    public String getTypedValue() {
         return value;
     }
 
@@ -130,20 +144,11 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter basicGetTypedValue() {
-        return value;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void setTypedValue(PatternParameter newValue) {
-        PatternParameter oldValue = value;
+    public void setTypedValue(String newValue) {
+        String oldValue = value;
         value = newValue;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE, oldValue, value));
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.STRING2_STRING__VALUE, oldValue, value));
     }
 
     /**
@@ -154,12 +159,10 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-            if (resolve)
-                return getTypedValue();
-            return basicGetTypedValue();
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
+        case PatternPackage.STRING2_STRING__KEY:
             return getTypedKey();
+        case PatternPackage.STRING2_STRING__VALUE:
+            return getTypedValue();
         }
         return super.eGet(featureID, resolve, coreType);
     }
@@ -172,11 +175,11 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-            setTypedValue((PatternParameter) newValue);
+        case PatternPackage.STRING2_STRING__KEY:
+            setTypedKey((String) newValue);
             return;
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-            setTypedKey((PatternParameter) newValue);
+        case PatternPackage.STRING2_STRING__VALUE:
+            setTypedValue((String) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -190,11 +193,11 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-            setTypedValue((PatternParameter) null);
+        case PatternPackage.STRING2_STRING__KEY:
+            setTypedKey(KEY_EDEFAULT);
             return;
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-            setTypedKey((PatternParameter) null);
+        case PatternPackage.STRING2_STRING__VALUE:
+            setTypedValue(VALUE_EDEFAULT);
             return;
         }
         super.eUnset(featureID);
@@ -208,12 +211,31 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP__VALUE:
-            return value != null;
-        case PatternPackage.PARAMERTER2_PARAMETER_MAP__KEY:
-            return key != null;
+        case PatternPackage.STRING2_STRING__KEY:
+            return KEY_EDEFAULT == null ? key != null : !KEY_EDEFAULT.equals(key);
+        case PatternPackage.STRING2_STRING__VALUE:
+            return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
         }
         return super.eIsSet(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public String toString() {
+        if (eIsProxy())
+            return super.toString();
+
+        StringBuffer result = new StringBuffer(super.toString());
+        result.append(" (key: "); //$NON-NLS-1$
+        result.append(key);
+        result.append(", value: "); //$NON-NLS-1$
+        result.append(value);
+        result.append(')');
+        return result.toString();
     }
 
     /**
@@ -250,7 +272,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter getKey() {
+    public String getKey() {
         return getTypedKey();
     }
 
@@ -259,7 +281,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setKey(PatternParameter key) {
+    public void setKey(String key) {
         setTypedKey(key);
     }
 
@@ -268,7 +290,7 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter getValue() {
+    public String getValue() {
         return getTypedValue();
     }
 
@@ -277,8 +299,8 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternParameter setValue(PatternParameter value) {
-        PatternParameter oldValue = getValue();
+    public String setValue(String value) {
+        String oldValue = getValue();
         setTypedValue(value);
         return oldValue;
     }
@@ -289,9 +311,9 @@ public class Paramerter2ParameterMapImpl extends Container implements BasicEMap.
      * @generated
      */
     @SuppressWarnings("unchecked")
-    public EMap<PatternParameter, PatternParameter> getEMap() {
+    public EMap<String, String> getEMap() {
         EObject container = eContainer();
-        return container == null ? null : (EMap<PatternParameter, PatternParameter>) container.eGet(eContainmentFeature());
+        return container == null ? null : (EMap<String, String>) container.eGet(eContainmentFeature());
     }
 
-} // Paramerter2ParameterMapImpl
+} //String2StringImpl

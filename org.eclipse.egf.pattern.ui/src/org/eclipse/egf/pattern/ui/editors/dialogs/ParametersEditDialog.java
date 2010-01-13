@@ -19,7 +19,6 @@ package org.eclipse.egf.pattern.ui.editors.dialogs;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
@@ -35,6 +34,7 @@ import org.eclipse.egf.pattern.ui.editors.models.QueryContent;
 import org.eclipse.egf.pattern.ui.editors.modifiers.QueryContentTableCellModifier;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.QueryContentTableLabelProvider;
+import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jface.layout.TableColumnLayout;
@@ -297,7 +297,7 @@ public class ParametersEditDialog extends VariablesEditDialog {
     private void getInitTableInput() {
         queryContents = new ArrayList<QueryContent>();
         if (itemQuery != null) {
-            Map<String, String> queryContext = itemQuery.getQueryContext();
+            EMap<String, String> queryContext = itemQuery.getQueryContext();
             Set<String> keySet = queryContext.keySet();
             Iterator<String> iterator = keySet.iterator();
             while (iterator.hasNext()) {
