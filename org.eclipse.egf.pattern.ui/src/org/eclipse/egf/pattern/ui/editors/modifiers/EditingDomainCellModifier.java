@@ -40,7 +40,8 @@ public abstract class EditingDomainCellModifier implements ICellModifier {
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
                 runnable.run();
-                tableViewer.refresh();
+                if (tableViewer != null && !tableViewer.getTable().isDisposed())
+                    tableViewer.refresh();
             }
         };
         editingDomain.getCommandStack().execute(cmd);

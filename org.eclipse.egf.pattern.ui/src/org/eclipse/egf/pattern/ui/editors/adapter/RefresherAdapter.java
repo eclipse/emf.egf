@@ -14,6 +14,9 @@ public class RefresherAdapter extends AdapterImpl {
     }
 
     public void notifyChanged(org.eclipse.emf.common.notify.Notification msg) {
+        if (msg.isTouch()) {
+            return;
+        }
         if (msg.getFeature() instanceof EAttribute && (msg.getEventType() == Notification.SET || msg.getEventType() == Notification.UNSET)) {
             if (tableViewer != null && tableViewer.getTable() != null && !tableViewer.getTable().isDisposed()) {
                 tableViewer.refresh();

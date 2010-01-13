@@ -35,7 +35,6 @@ import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
-import org.eclipse.egf.pattern.ui.editors.adapter.RefresherAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.VariablesEditDialog;
 import org.eclipse.egf.pattern.ui.editors.editor.MethodsComboBoxViewerCellEditor;
@@ -46,10 +45,10 @@ import org.eclipse.egf.pattern.ui.editors.providers.MethodLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.OrchestrationTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.TableObservableListContentProvider;
+import org.eclipse.egf.pattern.ui.editors.validation.ValidationConstants;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.OrchestrationWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.IEMFListProperty;
@@ -156,7 +155,9 @@ public class ImplementationPage extends PatternEditorPage {
 
     private static final String VARIABLE_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
 
-    private LiveValidationContentAdapter liveValidationContentAdapter;
+    private LiveValidationContentAdapter variableNameEmpetyValidationAdapter;
+
+    private IMessageManager mmng;
 
     public ImplementationPage(FormEditor editor) {
         super(editor, ID, Messages.ImplementationPage_title);
@@ -166,7 +167,7 @@ public class ImplementationPage extends PatternEditorPage {
     protected void doCreateFormContent(IManagedForm managedForm) {
         PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
         isReadOnly = editorInput.isReadOnly();
-        final IMessageManager mmng = managedForm.getMessageManager();
+        mmng = managedForm.getMessageManager();
 
         FormToolkit toolkit = managedForm.getToolkit();
         ScrolledForm form = managedForm.getForm();
@@ -186,9 +187,6 @@ public class ImplementationPage extends PatternEditorPage {
         createOrchestrationSection(toolkit, containerRight);
 
         checkReadOnlyModel();
-
-        // Add EMF validation for variables.
-        liveValidationContentAdapter = PatternUIHelper.addEMFValidation(mmng, getPattern(), Messages.PatternUIHelper_key_NonPatternVariableEmptyName, variablesTableViewer.getTable(), liveValidationContentAdapter);
 
         form.reflow(true);
     }
@@ -461,6 +459,7 @@ public class ImplementationPage extends PatternEditorPage {
                 newMethod.setPattern(getPattern());
                 getPattern().getMethods().add(newMethod);
                 newMethod.setPatternFilePath(PatternHelper.Filename.computeFileURI(newMethod));
+                PatternUIHelper.addAdapterForNewItem(methodsTableViewer, newMethod);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
@@ -663,7 +662,7 @@ public class ImplementationPage extends PatternEditorPage {
                     methodCallNew.setCalled(dropEntry);
                     methodCallNew.setPattern(getPattern());
                     getPattern().getOrchestration().add(methodCallNew);
-                    addAdapterForNewItem(orchestrationTableViewer, methodCallNew);
+                    PatternUIHelper.addAdapterForNewItem(orchestrationTableViewer, methodCallNew);
                 }
             };
             editingDomain.getCommandStack().execute(cmd);
@@ -797,7 +796,7 @@ public class ImplementationPage extends PatternEditorPage {
             protected void doExecute() {
                 selectCall.setPattern(getPattern());
                 getPattern().getOrchestration().add(selectCall);
-                addAdapterForNewItem(orchestrationTableViewer, selectCall);
+                PatternUIHelper.addAdapterForNewItem(orchestrationTableViewer, selectCall);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
@@ -905,11 +904,17 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void createVariablesTable(FormToolkit toolkit, Composite variables) {
-        Table table = toolkit.createTable(variables, SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+        Composite tableComp = new Composite(variables, SWT.NONE);
+        TableColumnLayout layout = new TableColumnLayout();
+        tableComp.setLayout(layout);
+        GridData gd = new GridData(GridData.FILL_BOTH);
+        tableComp.setLayoutData(gd);
+
+        Table table = toolkit.createTable(tableComp, SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
         table.setHeaderVisible(true);
         table.setLinesVisible(true);
 
-        GridData gd = new GridData(GridData.FILL_BOTH);
+        gd = new GridData(GridData.FILL_BOTH);
         gd.verticalIndent = 10;
         gd.horizontalIndent = 10;
         gd.widthHint = 100;
@@ -922,11 +927,12 @@ public class ImplementationPage extends PatternEditorPage {
             TableColumn tableColumn = new TableColumn(table, SWT.NONE);
             tableColumn.setWidth(colWidths[i]);
             tableColumn.setText(colNames[i]);
+            layout.setColumnData(tableColumn, new ColumnWeightData(colWidths[i], true));
         }
         initVariablesTableEditor();
-        variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));
-        variablesTableViewer.setLabelProvider(new ParametersTableLabelProvider());
 
+        variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));//
+        variablesTableViewer.setLabelProvider(new ParametersTableLabelProvider());
     }
 
     private void initVariablesTableEditor() {
@@ -1106,6 +1112,7 @@ public class ImplementationPage extends PatternEditorPage {
                 patternVariableNew.setName(VARIABLE_NAME_DEFAULT_VALUE);
                 patternVariableNew.setType(VARIABLE_TYPE_DEFAULT_VALUE);
                 pattern.getVariables().add(patternVariableNew);
+                PatternUIHelper.addAdapterForNewItem(variablesTableViewer, patternVariableNew);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
@@ -1228,14 +1235,6 @@ public class ImplementationPage extends PatternEditorPage {
         return false;
     }
 
-    /**
-     * Add a refresh adapter for the new item.
-     */
-    private void addAdapterForNewItem(TableViewer tableViewer, Object newItem) {
-        final AdapterImpl refresher = new RefresherAdapter(tableViewer);
-        PatternUIHelper.addAdapter(newItem, refresher);
-    }
-
     @Override
     protected void bind() {
         addBinding(null);
@@ -1244,6 +1243,7 @@ public class ImplementationPage extends PatternEditorPage {
             bindMethodsTable(pattern);
             bindOrchestrationTable(pattern);
             bindVariablesTableViewer(pattern);
+            variableNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_VARIABLE_NAME_NOT_EMPTY_ID, variablesTableViewer.getTable());
         }
     }
 
@@ -1254,7 +1254,7 @@ public class ImplementationPage extends PatternEditorPage {
         }
         if (methodsTableViewer != null) {
             methodsTableViewer.setInput(null);
-            methodsTableViewer.setLabelProvider(new MethodLabelProvider(PatternUIHelper.getPatternParentMethodsNameList(getPattern())));
+            methodsTableViewer.setLabelProvider(new MethodLabelProvider());
             IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__METHODS);
             IObservableList observe = input.observe(pattern);
             methodsTableViewer.setInput(observe);
@@ -1288,7 +1288,7 @@ public class ImplementationPage extends PatternEditorPage {
 
     @Override
     public void dispose() {
-        PatternUIHelper.removeAdapterForPattern(getPattern(), liveValidationContentAdapter);
+        PatternUIHelper.removeAdapterForPattern(getPattern(), variableNameEmpetyValidationAdapter);
         super.dispose();
     }
 }

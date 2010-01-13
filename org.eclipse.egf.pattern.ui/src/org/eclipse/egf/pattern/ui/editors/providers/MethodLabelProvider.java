@@ -18,8 +18,10 @@ package org.eclipse.egf.pattern.ui.editors.providers;
 
 import java.util.List;
 
+import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.ImageShop;
+import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -32,10 +34,6 @@ public class MethodLabelProvider extends LabelProvider implements ITableLabelPro
 
     private List<String> parentMethods;
 
-    public MethodLabelProvider(List<String> parentMethods) {
-        this.parentMethods = parentMethods;
-    }
-
     public Image getColumnImage(Object element, int columnIndex) {
         if (element instanceof PatternMethod)
             if (isOverride(element))
@@ -45,23 +43,29 @@ public class MethodLabelProvider extends LabelProvider implements ITableLabelPro
     }
 
     private boolean isOverride(Object element) {
-        for (String parentMethod : parentMethods) {
-            String elementName = ((PatternMethod) element).getName();
-            if (elementName.equals(parentMethod)) {
-                return true;
+        if (element instanceof PatternMethod) {
+            PatternMethod patternMethod = (PatternMethod) element;
+            Pattern pattern = patternMethod.getPattern();
+            parentMethods = PatternUIHelper.getPatternParentMethodsNameList(pattern);
+            for (String parentMethod : parentMethods) {
+                String elementName = patternMethod.getName();
+                if (elementName.equals(parentMethod)) {
+                    return true;
+                }
             }
         }
         return false;
     }
 
     public String getColumnText(Object element, int columnIndex) {
-        if (element instanceof PatternMethod)
-            return ((PatternMethod) element).getName();
+        if (element instanceof PatternMethod) {
+            PatternMethod patternMethod = (PatternMethod) element;
+            return patternMethod.getName();
+        }
         return "";
     }
 
     public String getText(Object element) {
         return getColumnText(element, 0);
     }
-
 }

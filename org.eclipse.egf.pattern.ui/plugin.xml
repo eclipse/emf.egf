@@ -218,7 +218,7 @@
              default="false"
              id="org.eclipse.egf.pattern.ui.patternContext">
           <selector
-                class="org.eclipse.egf.pattern.ui.editors.selector.PatternValidationDelegateClientSelector">
+                class="org.eclipse.egf.pattern.ui.editors.selector.DefaultClientSelector">
           </selector>
        </clientContext>
        <binding
@@ -230,7 +230,7 @@
              default="false"
              id="org.eclipse.egf.pattern.ui.patternParameterContext">
           <selector
-                class="org.eclipse.egf.pattern.ui.editors.selector.ParameterValidationDelegateClientSelector">
+                class="org.eclipse.egf.pattern.ui.editors.selector.DefaultClientSelector">
           </selector>
        </clientContext>
        <binding
@@ -242,7 +242,7 @@
              default="false"
              id="org.eclipse.egf.pattern.ui.patternVariableContext">
           <selector
-                class="org.eclipse.egf.pattern.ui.editors.selector.VariableValidationDelegateClientSelector">
+                class="org.eclipse.egf.pattern.ui.editors.selector.DefaultClientSelector">
           </selector>
        </clientContext>
        <binding

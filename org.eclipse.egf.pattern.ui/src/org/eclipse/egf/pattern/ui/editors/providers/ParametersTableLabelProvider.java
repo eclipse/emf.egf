@@ -16,11 +16,14 @@
 
 package org.eclipse.egf.pattern.ui.editors.providers;
 
+import java.util.Map;
+
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.Query;
-import org.eclipse.egf.pattern.query.QueryKind;
 import org.eclipse.egf.pattern.query.IQuery;
+import org.eclipse.egf.pattern.query.QueryKind;
+import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ITableLabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -33,7 +36,15 @@ import org.eclipse.swt.graphics.Image;
 public class ParametersTableLabelProvider extends LabelProvider implements ITableLabelProvider {
 
     public Image getColumnImage(Object element, int columnIndex) {
-
+        if (element instanceof PatternParameter && columnIndex == 2) {
+            Query query = ((PatternParameter) element).getQuery();
+            if (query != null) {
+                Map<String, String> queryContext = query.getQueryContext();
+                if (queryContext != null && !queryContext.isEmpty()) {
+                    return ImageShop.get(ImageShop.IMG_QUERY_SET);
+                }
+            }
+        }
         return null;
     }
 

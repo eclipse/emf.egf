@@ -24,17 +24,16 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
-import org.eclipse.egf.pattern.ui.editors.selector.ParameterValidationDelegateClientSelector;
-import org.eclipse.egf.pattern.ui.editors.selector.PatternValidationDelegateClientSelector;
-import org.eclipse.egf.pattern.ui.editors.selector.VariableValidationDelegateClientSelector;
+import org.eclipse.egf.pattern.ui.editors.adapter.RefresherAdapter;
+import org.eclipse.egf.pattern.ui.editors.models.QueryContent;
+import org.eclipse.egf.pattern.ui.editors.validation.EMFvalidator;
+import org.eclipse.egf.pattern.ui.editors.validation.ValidationConstants;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.validation.model.EvaluationMode;
-import org.eclipse.emf.validation.service.IBatchValidator;
-import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.jface.dialogs.IMessageProvider;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.forms.IMessageManager;
 
@@ -181,29 +180,10 @@ public class PatternUIHelper {
     /**
      * Create validation for object.
      */
-    public static void validationContent(IMessageManager mmng, EObject object, String key, Control control) {
-        if (Messages.PatternUIHelper_key_NonPatternEmptyName.equals(key)) {
-            PatternValidationDelegateClientSelector.running = true;
-        } else if (Messages.PatternUIHelper_key_NonPatternParameterEmptyName.equals(key)) {
-            ParameterValidationDelegateClientSelector.running = true;
-        } else if (Messages.PatternUIHelper_key_NonPatternVariableEmptyName.equals(key)) {
-            VariableValidationDelegateClientSelector.running = true;
-        }
-
-        IBatchValidator validator = (IBatchValidator) ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
-        validator.setIncludeLiveConstraints(true);
-
-        IStatus status = validator.validate(object);
+    public static void validationContent(IMessageManager mmng, EObject object, final String key, Control control) {
         if (control != null && !control.isDisposed()) {
+            IStatus status = EMFvalidator.batchValidate(object, key);
             setErrorMessage(status, mmng, key, control);
-        }
-
-        if (Messages.PatternUIHelper_key_NonPatternEmptyName.equals(key)) {
-            PatternValidationDelegateClientSelector.running = false;
-        } else if (Messages.PatternUIHelper_key_NonPatternParameterEmptyName.equals(key)) {
-            ParameterValidationDelegateClientSelector.running = false;
-        } else if (Messages.PatternUIHelper_key_NonPatternVariableEmptyName.equals(key)) {
-            VariableValidationDelegateClientSelector.running = false;
         }
     }
 
@@ -219,7 +199,7 @@ public class PatternUIHelper {
             if (status.isMultiStatus()) {
                 status = status.getChildren()[0];
             }
-            if ((status.getCode() == 1 && Messages.PatternUIHelper_key_NonPatternEmptyName.equals(key)) || (status.getCode() == 2 && Messages.PatternUIHelper_key_NonPatternParameterEmptyName.equals(key)) || (status.getCode() == 3 && Messages.PatternUIHelper_key_NonPatternVariableEmptyName.equals(key)))
+            if ((status.getCode() == 1 && ValidationConstants.CONSTRAINTS_PATTERN_NAME_NOT_EMPTY_ID.equals(key)) || (status.getCode() == 2 && ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID.equals(key)) || (status.getCode() == 3 && ValidationConstants.CONSTRAINTS_PATTERN_VARIABLE_NAME_NOT_EMPTY_ID.equals(key)))
                 mmng.addMessage(key, status.getMessage(), null, IMessageProvider.ERROR, control);
         } else {
             mmng.removeMessage(key, control);
@@ -227,22 +207,54 @@ public class PatternUIHelper {
     }
 
     /**
-     * Add EMF live validation adapter.
-     */
-    public static LiveValidationContentAdapter addEMFValidation(IMessageManager mmng, Pattern pattern, String key, Control control, LiveValidationContentAdapter liveValidationContentAdapter) {
-        validationContent(mmng, pattern, key, control);
-        liveValidationContentAdapter = new LiveValidationContentAdapter(control, mmng, key, pattern);
-        PatternUIHelper.addAdapterForPattern(pattern, liveValidationContentAdapter);
-        return liveValidationContentAdapter;
-    }
-    
-    /**
      * Return whether the method can be rename.
      */
     public static boolean isRenameDisable(PatternMethod element) {
         String name = element.getName();
         if (Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name)) {
             return true;
+        }
+        return false;
+    }
+
+    /**
+     * If the validation adapter is not exist,add a new one.
+     */
+    public static LiveValidationContentAdapter addValidationAdapeter(IMessageManager mmng, Pattern pattern, String key, Control control) {
+        LiveValidationContentAdapter liveValidationContentAdapter = new LiveValidationContentAdapter(control, mmng, key, pattern);
+        PatternUIHelper.addAdapterForPattern(pattern, liveValidationContentAdapter);
+        validationContent(mmng, pattern, key, control);
+        return liveValidationContentAdapter;
+    }
+
+    /**
+     * Add a refresh adapter for the new item.
+     */
+    public static void addAdapterForNewItem(TableViewer tableViewer, Object newItem) {
+        final AdapterImpl refresher = new RefresherAdapter(tableViewer);
+        addAdapter(newItem, refresher);
+    }
+
+    public static void addEMFValidationAfterRemove(IMessageManager mmng, Pattern pattern, String key, Control control, LiveValidationContentAdapter liveValidationContentAdapter) {
+        liveValidationContentAdapter = new LiveValidationContentAdapter(control, mmng, key, pattern);
+        PatternUIHelper.addAdapterForPattern(pattern, liveValidationContentAdapter);
+
+    }
+
+    /**
+     * Check the queryContents whether has duplicate keys.
+     */
+    public static boolean hasDuplicateKey(List<QueryContent> queryContents) {
+        if (queryContents != null) {
+            for (int i = 0; i < queryContents.size(); i++) {
+                String key = queryContents.get(i).getKey();
+                for (int j = i + 1; j < queryContents.size(); j++) {
+                    String currentKey = queryContents.get(j).getKey();
+                    if (currentKey.equals(key)) {
+                        return true;
+                    }
+                }
+            }
         }
         return false;
     }
