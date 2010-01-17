@@ -89,14 +89,14 @@ public class JavaEngine extends PatternEngine {
 
         Pattern pattern = getPattern();
         // add new method call
-        builder.append("String loop = generate((PatternContext)argument");
+        builder.append("collector.append(generate((PatternContext)argument");
         if (!getPattern().getAllParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getAllParameters()) {
                 String local = PatternHelper.localizeName(parameter);
                 builder.append(", ").append(local);
             }
         }
-        builder.append(");");
+        builder.append("));");
 
         // add end of class code
         builder.append(content.substring(endIndex + JavaAssemblyHelper.END_MARKER.length(), insertionIndex));

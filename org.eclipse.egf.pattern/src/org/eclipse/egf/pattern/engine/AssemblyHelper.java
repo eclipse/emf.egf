@@ -55,11 +55,11 @@ public abstract class AssemblyHelper {
         if (read != null)
             content.append(read);
 
+        addVariable(pattern);
         beginOrchestration();
         if (orchestrationIndex == -1)
             throw new PatternException(Messages.assembly_error6);
 
-        addVariable(pattern);
         visitOrchestration(pattern);
 
         endOrchestration();

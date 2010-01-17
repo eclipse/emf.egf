@@ -140,8 +140,6 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         // content.append("String loop = tmpCollector.toString();").append(EGFCommonConstants.LINE_SEPARATOR);
         // content.append("ctx.getReporter().loopFinished(loop, ctx, null );").append(EGFCommonConstants.LINE_SEPARATOR);
 
-        content.append("collector.append(loop);").append(EGFCommonConstants.LINE_SEPARATOR);
-
         for (int i = 0; i < pattern.getAllParameters().size(); i++)
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("ctx.getReporter().executionFinished(collector.toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);

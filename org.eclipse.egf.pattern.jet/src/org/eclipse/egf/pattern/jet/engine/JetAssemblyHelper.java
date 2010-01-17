@@ -23,7 +23,6 @@ import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.ParameterMatcher;
@@ -39,8 +38,11 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 public class JetAssemblyHelper extends AssemblyHelper {
 
     public static final String GENERATE_METHOD = "generate";
-    public static final String START_MARKER = "//Start of work";
-    public static final String END_MARKER = "//End of work";
+    public static final String START_METHOD_MARKER = "//Start of work";
+    public static final String END_METHOD_MARKER = "//End of work";
+
+    public static final String START_CONSTRUCTOR_MARKER = "//Start of constructor";
+    public static final String END_CONSTRUCTOR_MARKER = "//End of constructor";
 
     public JetAssemblyHelper(Pattern pattern) {
         super(pattern);
@@ -102,13 +104,14 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
     protected void addVariable(Pattern pattern) throws PatternException {
 
-        content.append("<%");
-        for (PatternVariable var : pattern.getAllVariables()) {
-            content.append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
-        }
-        content.append("%>");
+        // content.append("<%");
+        // for (PatternVariable var : pattern.getAllVariables()) {
+        // content.append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
+        // }
+        // content.append("%>");
+        // content.append("<%").append(START_METHOD_MARKER).append("%>");
         super.addVariable(pattern);
-
+        // content.append("<%").append(END_METHOD_MARKER).append("%>");
     }
 
     @Override
@@ -121,7 +124,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
         content.append("IQuery.ParameterDescription paramDesc = null;").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("%>");
         super.beginOrchestration();
-        content.append("<%").append(START_MARKER).append("%>");
+        content.append("<%").append(START_METHOD_MARKER).append("%>");
     }
 
     /**
@@ -130,7 +133,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
      */
     @Override
     protected void endOrchestration() throws PatternException {
-        content.append("<%").append(END_MARKER).append("%>");
+        content.append("<%").append(END_METHOD_MARKER).append("%>");
         if (pattern.getAllParameters().isEmpty()) {
             content.append("<%ctx.getReporter().executionFinished(stringBuffer.toString(), ctx);%>").append(EGFCommonConstants.LINE_SEPARATOR);
             return;
@@ -161,16 +164,13 @@ public class JetAssemblyHelper extends AssemblyHelper {
         // 2 - Add post block at current index
         content.append("<%").append(EGFCommonConstants.LINE_SEPARATOR);
 
-        content.append("collector.append(loop);").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("stringBuffer.setLength(0);").append(EGFCommonConstants.LINE_SEPARATOR);
-
         for (int i = 0; i < pattern.getAllParameters().size(); i++)
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("ctx.getReporter().executionFinished(collector.toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("%>");
 
         // 3- Add additional code for parameter names handling
-        int startIndex = content.indexOf(START_MARKER);
+        int startIndex = content.indexOf(START_METHOD_MARKER);
         if (startIndex == -1)
             throw new PatternException(Messages.assembly_error2);
 
@@ -183,7 +183,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
             localContent.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
             localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
         }
-        content.insert(startIndex + START_MARKER.length(), localContent);
+        content.insert(startIndex + START_METHOD_MARKER.length(), localContent);
     }
 
     private String getParameterListName(PatternParameter parameter) {

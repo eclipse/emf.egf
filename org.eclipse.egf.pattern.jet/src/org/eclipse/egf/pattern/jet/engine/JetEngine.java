@@ -30,6 +30,7 @@ import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
@@ -38,6 +39,7 @@ import org.eclipse.egf.pattern.execution.ConsoleReporter;
 import org.eclipse.egf.pattern.jet.JetPreferences;
 import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
+import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 import org.eclipse.emf.codegen.jet.JETCompiler;
 
 /**
@@ -137,19 +139,7 @@ public class JetEngine extends PatternEngine {
         String templateURI = "Pattern_" + pattern.getName() + " (" + pattern.getID() + ")";
         try {
             JETCompiler compiler = new SkeletonJETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
-            // URL skeletonURL =
-            // FileLocator.find(Activator.getDefault().getBundle(), new
-            // Path("templates/generator.skeleton"), null);
-            // BufferedInputStream bufferedInputStream = new
-            // BufferedInputStream(skeletonURL.openStream());
-            // byte[] input = new byte[bufferedInputStream.available()];
-            // bufferedInputStream.read(input);
-            // bufferedInputStream.close();
-            // compiler.getSkeleton().setCompilationUnitContents(new
-            // String(input));
             compiler.parse();
-            // Quick hack for debug
-            // compiler.getSkeleton().addImports("java.util.* org.eclipse.emf.ecore.* ");
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();
             compiler.generate(outStream);
 
@@ -172,8 +162,8 @@ public class JetEngine extends PatternEngine {
 
     private String getContent(String content) {
         StringBuilder builder = new StringBuilder(content.length() + 500);
-        int startIndex = content.indexOf(JetAssemblyHelper.START_MARKER);
-        int endIndex = content.indexOf(JetAssemblyHelper.END_MARKER);
+        int startIndex = content.indexOf(JetAssemblyHelper.START_METHOD_MARKER);
+        int endIndex = content.indexOf(JetAssemblyHelper.END_METHOD_MARKER);
         int insertionIndex = content.lastIndexOf('}');
         if (startIndex == -1 || endIndex == -1 || insertionIndex == -1)
             return content;
@@ -182,17 +172,17 @@ public class JetEngine extends PatternEngine {
 
         Pattern pattern = getPattern();
         // add new method call
-        builder.append("String loop = generate(ctx");
+        builder.append("collector.append(generate(ctx");
         if (!getPattern().getAllParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getAllParameters()) {
                 String local = PatternHelper.localizeName(parameter);
                 builder.append(", ").append(local);
             }
         }
-        builder.append(");");
+        builder.append("));");
 
         // add end of class code
-        builder.append(content.substring(endIndex + JetAssemblyHelper.END_MARKER.length(), insertionIndex));
+        builder.append(content.substring(endIndex + JetAssemblyHelper.END_METHOD_MARKER.length(), insertionIndex));
 
         // add patter reporter stuff
         builder.append("public String generate(PatternContext ctx");
@@ -205,7 +195,7 @@ public class JetEngine extends PatternEngine {
         builder.append(") throws Exception  {").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("final StringBuffer stringBuffer = new StringBuffer();").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("PatternCallReporter callReporter =  new PatternCallReporter(stringBuffer);").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append(content.substring(startIndex + JetAssemblyHelper.START_MARKER.length(), endIndex));
+        builder.append(content.substring(startIndex + JetAssemblyHelper.START_METHOD_MARKER.length(), endIndex));
 
         builder.append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("String loop = stringBuffer.toString();").append(EGFCommonConstants.LINE_SEPARATOR);
@@ -214,8 +204,16 @@ public class JetEngine extends PatternEngine {
         builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append(content.substring(insertionIndex));
 
+        int startVariable = builder.indexOf(JetAssemblyHelper.START_CONSTRUCTOR_MARKER);
+        int endVariable = builder.indexOf(JetAssemblyHelper.END_CONSTRUCTOR_MARKER);
+
+        // if (startVariable != -1 && endVariable != -1) {
+        for (PatternVariable var : pattern.getAllVariables()) {
+            builder.append("private ").append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
+        }
+        // }
+        builder.append(content.substring(insertionIndex));
         return builder.toString();
     }
 
