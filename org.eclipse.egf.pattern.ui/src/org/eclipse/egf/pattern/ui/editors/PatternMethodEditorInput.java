@@ -85,8 +85,10 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     }
 
     public Object getAdapter(Class adapter) {
-
-        return null;
+		if (IFile.class == adapter) {
+			return getFile();
+		}
+		return null;
     }
 
     private class PatternPersistableElement implements IPersistableElement {
