@@ -30,6 +30,7 @@ import org.eclipse.egf.pattern.engine.ParameterMatcher;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * @author Thomas Guiu
@@ -53,10 +54,11 @@ public class JetAssemblyHelper extends AssemblyHelper {
             throw new PatternException(Messages.assembly_error1);
 
         content.append("<%");
-        String ctxName = "ctx_" + PatternHelper.uniqueName(pattern);
+        String ctxName = "ctx_" + EcoreUtil.generateUUID();
         content.append("PatternContext ").append(ctxName).append(" = new PatternContext(ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append(ctxName).append(".setReporter(callReporter);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append(ctxName).append(".setValue(").append("PatternContext.INJECTED_CONTEXT, ").append(call.getContext().getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(").append(ctxName).append(");");
+        content.append("EngineHelper.execute(\"").append(pattern.getID()).append("\", ").append(ctxName).append(");").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("%>");
 
     }
@@ -64,9 +66,6 @@ public class JetAssemblyHelper extends AssemblyHelper {
     @Override
     protected void call(PatternCall call) throws PatternException {
         Pattern pattern = call.getCalled();
-        String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
-        if (templateClassName == null)
-            throw new PatternException(Messages.assembly_error1);
 
         content.append("<%");
         if (call.getParameterMatching().isEmpty()) {
@@ -86,10 +85,14 @@ public class JetAssemblyHelper extends AssemblyHelper {
                 content.append(ParameterTypeHelper.INSTANCE.getTypeLiteral(binding.getKey().getType())).append(" ").append(called).append(" = ").append(binding.getValue().getName()).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
             }
         }
-        String ctxName = "ctx_" + PatternHelper.uniqueName(pattern);
+        String ctxName = "ctx_" + EcoreUtil.generateUUID();
         content.append("PatternContext ").append(ctxName).append(" = new PatternContext(ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append(ctxName).append(".setReporter(callReporter);").append(EGFCommonConstants.LINE_SEPARATOR);
+
         content.append(ctxName).append(".setValue(\"key\", \"value\");").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(stringBuffer, ").append(ctxName);
+
+        content.append("EngineHelper.executeWithInjection(\"").append(pattern.getID()).append("\", ").append(ctxName);
+        // content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(stringBuffer, ").append(ctxName);
         for (PatternParameter parameter : pattern.getAllParameters())
             content.append(", ").append(PatternHelper.uniqueName(parameter));
 
@@ -112,12 +115,10 @@ public class JetAssemblyHelper extends AssemblyHelper {
     protected void beginOrchestration() throws PatternException {
         content.append("<%");
         content.append("PatternContext ctx = (PatternContext)argument;").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
+        // content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("StringBuilder collector = new StringBuilder(2000);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("Map<String, String> queryCtx = null;").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("IQuery.ParameterDescription paramDesc = null;").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("PatternExecutionReporter reporter = (PatternExecutionReporter)ctx.getValue(PatternContext.PATTERN_REPORTER);").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("if (reporter == null) reporter = new ConsoleReporter();").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("%>");
         super.beginOrchestration();
         content.append("<%").append(START_MARKER).append("%>");
@@ -131,7 +132,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
     protected void endOrchestration() throws PatternException {
         content.append("<%").append(END_MARKER).append("%>");
         if (pattern.getAllParameters().isEmpty()) {
-            content.append("<%reporter.executionFinished(stringBuffer.toString(), ctx);%>").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("<%ctx.getReporter().executionFinished(stringBuffer.toString(), ctx);%>").append(EGFCommonConstants.LINE_SEPARATOR);
             return;
         }
         // 1 - Add pre block at insertionIndex
@@ -149,7 +150,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
         for (PatternParameter parameter : pattern.getAllParameters()) {
             String local = PatternHelper.localizeName(parameter);
             localContent.append("for (Object ").append(local).append(" : ").append(getParameterListName(parameter)).append(" ) {").append(EGFCommonConstants.LINE_SEPARATOR);
-            localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+            // localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
 
         }
 
@@ -159,15 +160,13 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         // 2 - Add post block at current index
         content.append("<%").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("String loop = stringBuffer.toString();").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("reporter.loopFinished(loop, ctx, null );").append(EGFCommonConstants.LINE_SEPARATOR);
 
         content.append("collector.append(loop);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("stringBuffer.setLength(0);").append(EGFCommonConstants.LINE_SEPARATOR);
 
         for (int i = 0; i < pattern.getAllParameters().size(); i++)
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("reporter.executionFinished(collector.toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("ctx.getReporter().executionFinished(collector.toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("%>");
 
         // 3- Add additional code for parameter names handling
@@ -177,11 +176,12 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         localContent.setLength(0);
         localContent.append(EGFCommonConstants.LINE_SEPARATOR);
+        localContent.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
         for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
             String local = PatternHelper.localizeName(parameter);
             String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
             localContent.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
-
+            localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
         }
         content.insert(startIndex + START_MARKER.length(), localContent);
     }

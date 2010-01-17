@@ -26,44 +26,24 @@ import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
+import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.execution.ConsoleReporter;
 import org.eclipse.egf.pattern.java.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
 
 /**
- * @author Guiu
+ * @author Thomas Guiu
  * 
- *         Temp class ...
  */
 public class JavaEngine extends PatternEngine {
 
     public JavaEngine(Pattern pattern) throws PatternException {
         super(pattern);
-    }
-
-    public void execute(PatternContext context) throws PatternException {
-        if (getPattern() == null)
-            throw new IllegalStateException();
-        String templateClassName = JavaNatureHelper.getClassName(getPattern());
-        if (templateClassName == null)
-            throw new IllegalStateException(Messages.assembly_error3);
-        try {
-
-            Class<?> templateClass = context.getBundle(getBundleId()).loadClass(templateClassName);
-            Method method = templateClass.getMethod("generate", Object.class);
-            Object template = templateClass.newInstance();
-            method.invoke(template, context);
-        } catch (InvocationTargetException e) {
-            throw new PatternException(e.getCause());
-        } catch (PatternException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new PatternException(e);
-        }
     }
 
     public void translate() throws PatternException {
@@ -109,7 +89,7 @@ public class JavaEngine extends PatternEngine {
 
         Pattern pattern = getPattern();
         // add new method call
-        builder.append("generate(tmpCollector, (PatternContext)argument");
+        builder.append("String loop = generate((PatternContext)argument");
         if (!getPattern().getAllParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getAllParameters()) {
                 String local = PatternHelper.localizeName(parameter);
@@ -122,16 +102,21 @@ public class JavaEngine extends PatternEngine {
         builder.append(content.substring(endIndex + JavaAssemblyHelper.END_MARKER.length(), insertionIndex));
 
         // add new method body
-        builder.append("public void generate(StringBuilder out, PatternContext ctx");
+        builder.append("public String generate(PatternContext ctx");
         if (!getPattern().getParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getParameters()) {
                 String local = PatternHelper.localizeName(parameter);
                 builder.append(", Object ").append(local);
             }
         }
-        builder.append(") {").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append(content.substring(startIndex + JavaAssemblyHelper.START_MARKER.length(), endIndex));
+        builder.append(") throws Exception {").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("final StringBuffer out = new StringBuffer();").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("PatternCallReporter callReporter =  new PatternCallReporter(out);").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append(content.substring(startIndex + JavaAssemblyHelper.START_MARKER.length(), endIndex)).append(EGFCommonConstants.LINE_SEPARATOR);
 
+        builder.append("String loop = out.toString();").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("ctx.getReporter().loopFinished(loop, ctx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append(content.substring(insertionIndex));
 
@@ -149,6 +134,79 @@ public class JavaEngine extends PatternEngine {
         }
         result = result.addFileExtension("java");
         return result;
+    }
+
+    @Override
+    public void executeWithInjection(PatternContext context, Object... parameters) throws PatternException {
+        doExecute(context, parameters);
+    }
+
+    @Override
+    public void execute(PatternContext context) throws PatternException {
+
+        setupExecutionReporter(context);
+        doExecute(context, null);
+    }
+
+    private void doExecute(PatternContext context, Object[] executionParameters) throws PatternException {
+        try {
+            Class<?> templateClass = loadTemplateClass(context);
+            Object template = templateClass.newInstance();
+
+            Class<?>[] parameterClasses = null;
+            Object[] parameterValues = null;
+            if (executionParameters == null) {
+                parameterClasses = new Class<?>[] { Object.class };
+                parameterValues = new Object[] { context };
+            } else {
+                int size = executionParameters == null ? 1 : executionParameters.length + 1;
+                parameterClasses = new Class<?>[size];
+                parameterValues = new Object[size];
+
+                parameterClasses[0] = PatternContext.class;
+                parameterValues[0] = context;
+                for (int n = 0; n < executionParameters.length; n++) {
+                    parameterClasses[n + 1] = Object.class;
+                    parameterValues[n + 1] = executionParameters[n];
+                }
+            }
+            Method method = templateClass.getMethod(JavaAssemblyHelper.GENERATE_METHOD, parameterClasses);
+            // the pattern is executed but we don't care about the result.
+            method.invoke(template, parameterValues);
+        } catch (InvocationTargetException e) {
+            throw new PatternException(e.getCause());
+        } catch (PatternException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new PatternException(e);
+        }
+    }
+
+    private void setupExecutionReporter(PatternContext context) throws PatternException {
+        PatternExecutionReporter reporter = null;
+        String classname = (String) context.getValue(PatternContext.PATTERN_REPORTER);
+        if (classname == null)
+            reporter = new ConsoleReporter();
+        else {
+            try {
+                Class<?> templateClass = context.getBundle(getBundleId()).loadClass(classname);
+                reporter = (PatternExecutionReporter) templateClass.newInstance();
+            } catch (Exception e) {
+                throw new PatternException(e);
+            }
+        }
+        context.setReporter(reporter);
+    }
+
+    private Class<?> loadTemplateClass(PatternContext context) throws PatternException, ClassNotFoundException {
+        Pattern pattern = getPattern();
+        if (pattern == null)
+            throw new PatternException(Messages.assembly_error9);
+        String templateClassName = JavaNatureHelper.getClassName(pattern);
+        if (templateClassName == null)
+            throw new PatternException(Messages.assembly_error1);
+        Class<?> templateClass = context.getBundle(getBundleId()).loadClass(templateClassName);
+        return templateClass;
     }
 
 }
