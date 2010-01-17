@@ -52,7 +52,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getInputValueType(key);
     }
     // Locate an ActivityContract
-    ActivityContract activityContract = getFactoryComponentContract(key, getElement().getActivityContracts(ContractMode.IN));
+    ActivityContract activityContract = getFactoryComponentContract(key, getInputValueKeys());
     // ActivityContract should be known at this stage
     if (activityContract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
@@ -79,7 +79,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getInputValue(key, clazz);
     }
     // Locate an FactoryComponentContract
-    ActivityContract activityContract = getFactoryComponentContract(key, getElement().getActivityContracts(ContractMode.IN));
+    ActivityContract activityContract = getFactoryComponentContract(key, getInputValueKeys());
     // ActivityContract should be known at this stage
     if (activityContract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
@@ -106,7 +106,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getOutputValueType(key);
     }
     // Locate an ActivityContract
-    ActivityContract activityContract = getFactoryComponentContract(key, getElement().getActivityContracts(ContractMode.OUT));
+    ActivityContract activityContract = getFactoryComponentContract(key, getOutputValueKeys());
     // ActivityContract should be known at this stage
     if (activityContract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
@@ -133,7 +133,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getOutputValue(key, clazz);
     }
     // Locate an ActivityContract
-    ActivityContract activityContract = getFactoryComponentContract(key, getElement().getActivityContracts(ContractMode.OUT));
+    ActivityContract activityContract = getFactoryComponentContract(key, getOutputValueKeys());
     // ActivityContract should be known at this stage
     if (activityContract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
