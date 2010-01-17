@@ -23,10 +23,6 @@ import org.osgi.framework.Bundle;
  */
 public interface IProductionContext<T extends Object> {
 
-  public String getName();
-
-  public Object getElement();
-
   public IProductionContext<?> getParent();
 
   public Bundle getBundle(String id) throws InvocationException;
