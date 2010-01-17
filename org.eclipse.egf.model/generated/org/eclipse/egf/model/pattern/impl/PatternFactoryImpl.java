@@ -110,8 +110,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
       return createCustomQuery();
     case PatternPackage.STRING2_PATTERN_LIST:
       return (EObject) createString2PatternList();
-    case PatternPackage.STRING2_STRING:
-      return (EObject) createString2String();
     case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER:
       return createTypePatternExecutionReporter();
     default:
@@ -290,16 +288,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
   public Map.Entry<String, EList<PatternElement>> createString2PatternList() {
     String2PatternListImpl string2PatternList = new String2PatternListImpl();
     return string2PatternList;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Map.Entry<String, String> createString2String() {
-    String2StringImpl string2String = new String2StringImpl();
-    return string2String;
   }
 
   /**

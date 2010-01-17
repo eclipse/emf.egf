@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeBigDecimalImpl extends TypeObjectImpl implements TypeBigDecimal {
+public class TypeBigDecimalImpl extends TypeObjectImpl<BigDecimal> implements TypeBigDecimal {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

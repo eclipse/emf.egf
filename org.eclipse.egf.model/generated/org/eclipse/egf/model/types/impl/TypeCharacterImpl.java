@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeCharacterImpl extends TypeObjectImpl implements TypeCharacter {
+public class TypeCharacterImpl extends TypeObjectImpl<Character> implements TypeCharacter {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

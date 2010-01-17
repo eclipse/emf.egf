@@ -42,7 +42,7 @@ import org.eclipse.emf.ecore.EObject;
  * @see org.eclipse.egf.model.domain.DomainPackage
  * @generated
  */
-public class DomainSwitch<T> {
+public class DomainSwitch<T1> {
   /**
    * The cached model package
    * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public class DomainSwitch<T> {
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  public T doSwitch(EObject theEObject) {
+  public T1 doSwitch(EObject theEObject) {
     return doSwitch(theEObject.eClass(), theEObject);
   }
 
@@ -81,7 +81,7 @@ public class DomainSwitch<T> {
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  protected T doSwitch(EClass theEClass, EObject theEObject) {
+  protected T1 doSwitch(EClass theEClass, EObject theEObject) {
     if (theEClass.eContainer() == modelPackage) {
       return doSwitch(theEClass.getClassifierID(), theEObject);
     } else {
@@ -97,11 +97,11 @@ public class DomainSwitch<T> {
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
-  protected T doSwitch(int classifierID, EObject theEObject) {
+  protected T1 doSwitch(int classifierID, EObject theEObject) {
     switch (classifierID) {
     case DomainPackage.DOMAIN_VIEWPOINT: {
       DomainViewpoint domainViewpoint = (DomainViewpoint) theEObject;
-      T result = caseDomainViewpoint(domainViewpoint);
+      T1 result = caseDomainViewpoint(domainViewpoint);
       if (result == null)
         result = caseViewpoint(domainViewpoint);
       if (result == null)
@@ -112,7 +112,7 @@ public class DomainSwitch<T> {
     }
     case DomainPackage.DOMAIN: {
       Domain domain = (Domain) theEObject;
-      T result = caseDomain(domain);
+      T1 result = caseDomain(domain);
       if (result == null)
         result = caseModelElement(domain);
       if (result == null)
@@ -121,7 +121,7 @@ public class DomainSwitch<T> {
     }
     case DomainPackage.DOMAIN_EPACKAGE: {
       DomainEPackage domainEPackage = (DomainEPackage) theEObject;
-      T result = caseDomainEPackage(domainEPackage);
+      T1 result = caseDomainEPackage(domainEPackage);
       if (result == null)
         result = caseDomain(domainEPackage);
       if (result == null)
@@ -132,7 +132,7 @@ public class DomainSwitch<T> {
     }
     case DomainPackage.TYPE_DOMAIN_EPACKAGE: {
       TypeDomainEPackage typeDomainEPackage = (TypeDomainEPackage) theEObject;
-      T result = caseTypeDomainEPackage(typeDomainEPackage);
+      T1 result = caseTypeDomainEPackage(typeDomainEPackage);
       if (result == null)
         result = caseType(typeDomainEPackage);
       if (result == null)
@@ -143,7 +143,7 @@ public class DomainSwitch<T> {
     }
     case DomainPackage.DOMAIN_URI: {
       DomainURI domainURI = (DomainURI) theEObject;
-      T result = caseDomainURI(domainURI);
+      T1 result = caseDomainURI(domainURI);
       if (result == null)
         result = caseDomain(domainURI);
       if (result == null)
@@ -154,7 +154,7 @@ public class DomainSwitch<T> {
     }
     case DomainPackage.TYPE_DOMAIN_URI: {
       TypeDomainURI typeDomainURI = (TypeDomainURI) theEObject;
-      T result = caseTypeDomainURI(typeDomainURI);
+      T1 result = caseTypeDomainURI(typeDomainURI);
       if (result == null)
         result = caseType(typeDomainURI);
       if (result == null)
@@ -179,7 +179,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDomainViewpoint(DomainViewpoint object) {
+  public T1 caseDomainViewpoint(DomainViewpoint object) {
     return null;
   }
 
@@ -194,7 +194,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDomain(Domain object) {
+  public T1 caseDomain(Domain object) {
     return null;
   }
 
@@ -209,7 +209,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDomainEPackage(DomainEPackage object) {
+  public T1 caseDomainEPackage(DomainEPackage object) {
     return null;
   }
 
@@ -224,7 +224,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypeDomainEPackage(TypeDomainEPackage object) {
+  public T1 caseTypeDomainEPackage(TypeDomainEPackage object) {
     return null;
   }
 
@@ -239,7 +239,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseDomainURI(DomainURI object) {
+  public T1 caseDomainURI(DomainURI object) {
     return null;
   }
 
@@ -254,7 +254,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypeDomainURI(TypeDomainURI object) {
+  public T1 caseTypeDomainURI(TypeDomainURI object) {
     return null;
   }
 
@@ -269,7 +269,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseModelElement(ModelElement object) {
+  public T1 caseModelElement(ModelElement object) {
     return null;
   }
 
@@ -284,7 +284,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseViewpoint(Viewpoint object) {
+  public T1 caseViewpoint(Viewpoint object) {
     return null;
   }
 
@@ -299,7 +299,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypeElement(TypeElement object) {
+  public T1 caseTypeElement(TypeElement object) {
     return null;
   }
 
@@ -314,7 +314,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseType(Type object) {
+  public <T extends Object> T1 caseType(Type<T> object) {
     return null;
   }
 
@@ -330,7 +330,7 @@ public class DomainSwitch<T> {
    * @see #doSwitch(org.eclipse.emf.ecore.EObject)
    * @generated
    */
-  public T defaultCase(EObject object) {
+  public T1 defaultCase(EObject object) {
     return null;
   }
 

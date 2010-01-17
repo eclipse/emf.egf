@@ -25,10 +25,10 @@ package org.eclipse.egf.model.types;
  * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeInteger()
- * @model
+ * @model superTypes="org.eclipse.egf.model.types.TypeObject<org.eclipse.emf.ecore.EIntegerObject>"
  * @generated
  */
-public interface TypeInteger extends TypeObject {
+public interface TypeInteger extends TypeObject<Integer> {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->

@@ -49,7 +49,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -152,15 +151,11 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
      * While the name of the pattern has been changed, refresh the editor title.
      */
     private void addPatternChangeAdapter() {
-        Display.getDefault().syncExec(new Runnable() {
-            public void run() {
-                Pattern pattern = getPattern();
-                if (pattern != null) {
-                    pattern.eAdapters().add(refresher);
-                    setPartName(pattern.getName());
-                }
-            }
-        });
+        Pattern pattern = getPattern();
+        if (pattern != null) {
+            pattern.eAdapters().add(refresher);
+            setPartName(pattern.getName());
+        }
     }
 
     /**

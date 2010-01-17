@@ -12,28 +12,18 @@
  */
 package org.eclipse.egf.model.types;
 
+import java.util.Map;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type Map</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeMap()
- * @model
+ * @model superTypes="org.eclipse.egf.model.types.TypeAbstractClass<org.eclipse.emf.ecore.EMap>"
  * @generated
  */
-public interface TypeMap extends TypeAbstractClass {
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @model kind="operation" required="true"
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.util.Map.class;'"
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  Class<?> getType();
+public interface TypeMap extends TypeAbstractClass<Map> {
 
 } // TypeMap

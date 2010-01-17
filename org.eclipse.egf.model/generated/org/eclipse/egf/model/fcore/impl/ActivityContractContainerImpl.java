@@ -77,7 +77,7 @@ public abstract class ActivityContractContainerImpl extends ModelElementImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ActivityContract> getActivityContracts(Type type) {
+  public EList<ActivityContract> getActivityContracts(Type<?> type) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -99,7 +99,7 @@ public abstract class ActivityContractContainerImpl extends ModelElementImpl imp
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ActivityContract> getActivityContracts(Type type, ContractMode mode) {
+  public EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();

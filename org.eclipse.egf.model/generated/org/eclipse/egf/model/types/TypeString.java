@@ -25,10 +25,10 @@ package org.eclipse.egf.model.types;
  * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeString()
- * @model
+ * @model superTypes="org.eclipse.egf.model.types.TypeObject<org.eclipse.emf.ecore.EString>"
  * @generated
  */
-public interface TypeString extends TypeObject {
+public interface TypeString extends TypeObject<String> {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->

@@ -28,20 +28,18 @@ import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.execution.ConsoleReporter;
 import org.eclipse.egf.pattern.jet.JetPreferences;
 import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.emf.codegen.jet.JETCompiler;
 
 /**
- * @author Thomas Guiu
+ * @author Guiu
  * 
  */
 public class JetEngine extends PatternEngine {
@@ -50,43 +48,20 @@ public class JetEngine extends PatternEngine {
         super(pattern);
     }
 
-    @Override
-    public void executeWithInjection(PatternContext context, Object... parameters) throws PatternException {
-        doExecute(context, parameters);
-    }
-
-    @Override
     public void execute(PatternContext context) throws PatternException {
+        Pattern pattern = getPattern();
+        if (pattern == null)
+            throw new IllegalStateException();
+        String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
+        if (templateClassName == null)
+            throw new IllegalStateException(Messages.assembly_error1);
 
-        setupExecutionReporter(context);
-        doExecute(context, null);
-    }
-
-    private void doExecute(PatternContext context, Object[] executionParameters) throws PatternException {
         try {
-            Class<?> templateClass = loadTemplateClass(context);
+            Class<?> templateClass = context.getBundle(getBundleId()).loadClass(templateClassName);
+            Method method = templateClass.getMethod(JetAssemblyHelper.GENERATE_METHOD, Object.class);
             Object template = templateClass.newInstance();
-
-            Class<?>[] parameterClasses = null;
-            Object[] parameterValues = null;
-            if (executionParameters == null) {
-                parameterClasses = new Class<?>[] { Object.class };
-                parameterValues = new Object[] { context };
-            } else {
-                int size = executionParameters == null ? 1 : executionParameters.length + 1;
-                parameterClasses = new Class<?>[size];
-                parameterValues = new Object[size];
-
-                parameterClasses[0] = PatternContext.class;
-                parameterValues[0] = context;
-                for (int n = 0; n < executionParameters.length; n++) {
-                    parameterClasses[n + 1] = Object.class;
-                    parameterValues[n + 1] = executionParameters[n];
-                }
-            }
-            Method method = templateClass.getMethod(JetAssemblyHelper.GENERATE_METHOD, parameterClasses);
             // the pattern is executed but we don't care about the result.
-            method.invoke(template, parameterValues);
+            method.invoke(template, context);
         } catch (InvocationTargetException e) {
             throw new PatternException(e.getCause());
         } catch (PatternException e) {
@@ -94,33 +69,7 @@ public class JetEngine extends PatternEngine {
         } catch (Exception e) {
             throw new PatternException(e);
         }
-    }
 
-    private void setupExecutionReporter(PatternContext context) throws PatternException {
-        PatternExecutionReporter reporter = null;
-        String classname = (String) context.getValue(PatternContext.PATTERN_REPORTER);
-        if (classname == null)
-            reporter = new ConsoleReporter();
-        else {
-            try {
-                Class<?> templateClass = context.getBundle(getBundleId()).loadClass(classname);
-                reporter = (PatternExecutionReporter) templateClass.newInstance();
-            } catch (Exception e) {
-                throw new PatternException(e);
-            }
-        }
-        context.setReporter(reporter);
-    }
-
-    private Class<?> loadTemplateClass(PatternContext context) throws PatternException, ClassNotFoundException {
-        Pattern pattern = getPattern();
-        if (pattern == null)
-            throw new PatternException(Messages.assembly_error9);
-        String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
-        if (templateClassName == null)
-            throw new PatternException(Messages.assembly_error1);
-        Class<?> templateClass = context.getBundle(getBundleId()).loadClass(templateClassName);
-        return templateClass;
     }
 
     public void translate() throws PatternException {
@@ -136,17 +85,7 @@ public class JetEngine extends PatternEngine {
         // 2 - compile the result
         String templateURI = "Pattern_" + pattern.getName() + " (" + pattern.getID() + ")";
         try {
-            JETCompiler compiler = new SkeletonJETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
-            // URL skeletonURL =
-            // FileLocator.find(Activator.getDefault().getBundle(), new
-            // Path("templates/generator.skeleton"), null);
-            // BufferedInputStream bufferedInputStream = new
-            // BufferedInputStream(skeletonURL.openStream());
-            // byte[] input = new byte[bufferedInputStream.available()];
-            // bufferedInputStream.read(input);
-            // bufferedInputStream.close();
-            // compiler.getSkeleton().setCompilationUnitContents(new
-            // String(input));
+            JETCompiler compiler = new JETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
             compiler.parse();
             // Quick hack for debug
             // compiler.getSkeleton().addImports("java.util.* org.eclipse.emf.ecore.* ");
@@ -182,7 +121,7 @@ public class JetEngine extends PatternEngine {
 
         Pattern pattern = getPattern();
         // add new method call
-        builder.append("String loop = generate(ctx");
+        builder.append("generate(stringBuffer, ctx");
         if (!getPattern().getAllParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getAllParameters()) {
                 String local = PatternHelper.localizeName(parameter);
@@ -194,26 +133,18 @@ public class JetEngine extends PatternEngine {
         // add end of class code
         builder.append(content.substring(endIndex + JetAssemblyHelper.END_MARKER.length(), insertionIndex));
 
-        // add patter reporter stuff
-        builder.append("public String generate(PatternContext ctx");
+        // add new method body
+        builder.append("public void generate(final StringBuffer stringBuffer, PatternContext ctx");
         if (!getPattern().getAllParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getAllParameters()) {
                 String local = PatternHelper.localizeName(parameter);
                 builder.append(", Object ").append(local);
             }
         }
-        builder.append(") throws Exception  {").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("final StringBuffer stringBuffer = new StringBuffer();").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("PatternCallReporter callReporter =  new PatternCallReporter(stringBuffer);").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append(") {").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append(content.substring(startIndex + JetAssemblyHelper.START_MARKER.length(), endIndex));
 
-        builder.append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("String loop = stringBuffer.toString();").append(EGFCommonConstants.LINE_SEPARATOR);
-        if (!getPattern().getAllParameters().isEmpty())
-            builder.append("ctx.getReporter().loopFinished(loop, ctx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append(content.substring(insertionIndex));
 
         return builder.toString();

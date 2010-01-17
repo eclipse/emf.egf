@@ -37,9 +37,11 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.TypeDomainEPackage} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.TypeDomainEPackage}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypeDomainEPackageItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -47,6 +49,7 @@ public class TypeDomainEPackageItemProvider extends TypeItemProvider implements 
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypeDomainEPackageItemProvider(AdapterFactory adapterFactory) {
@@ -57,6 +60,7 @@ public class TypeDomainEPackageItemProvider extends TypeItemProvider implements 
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -74,6 +78,7 @@ public class TypeDomainEPackageItemProvider extends TypeItemProvider implements 
    * This adds a property descriptor for the Domain feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addDomainPropertyDescriptor(Object object) {
@@ -87,6 +92,7 @@ public class TypeDomainEPackageItemProvider extends TypeItemProvider implements 
    * This adds a property descriptor for the Value feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addValuePropertyDescriptor(Object object) {
@@ -100,6 +106,7 @@ public class TypeDomainEPackageItemProvider extends TypeItemProvider implements 
    * This returns TypeDomainEPackage.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -142,6 +149,7 @@ public class TypeDomainEPackageItemProvider extends TypeItemProvider implements 
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -162,6 +170,7 @@ public class TypeDomainEPackageItemProvider extends TypeItemProvider implements 
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -173,6 +182,7 @@ public class TypeDomainEPackageItemProvider extends TypeItemProvider implements 
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

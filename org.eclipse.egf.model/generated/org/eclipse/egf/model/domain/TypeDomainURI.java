@@ -30,10 +30,10 @@ import org.eclipse.emf.common.util.URI;
  * </p>
  *
  * @see org.eclipse.egf.model.domain.DomainPackage#getTypeDomainURI()
- * @model
+ * @model superTypes="org.eclipse.egf.model.types.Type<org.eclipse.egf.model.types.URI>"
  * @generated
  */
-public interface TypeDomainURI extends Type {
+public interface TypeDomainURI extends Type<URI> {
   /**
    * Returns the value of the '<em><b>Domain</b></em>' reference.
    * <!-- begin-user-doc -->

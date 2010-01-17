@@ -922,22 +922,13 @@ public interface PatternPackage extends EPackage {
   int QUERY__EXTENSION_ID = 1;
 
   /**
-   * The feature id for the '<em><b>Query Context</b></em>' map.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int QUERY__QUERY_CONTEXT = 2;
-
-  /**
    * The number of structural features of the '<em>Query</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int QUERY_FEATURE_COUNT = 3;
+  int QUERY_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.BasicQueryImpl <em>Basic Query</em>}' class.
@@ -966,15 +957,6 @@ public interface PatternPackage extends EPackage {
    * @ordered
    */
   int BASIC_QUERY__EXTENSION_ID = QUERY__EXTENSION_ID;
-
-  /**
-   * The feature id for the '<em><b>Query Context</b></em>' map.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BASIC_QUERY__QUERY_CONTEXT = QUERY__QUERY_CONTEXT;
 
   /**
    * The number of structural features of the '<em>Basic Query</em>' class.
@@ -1014,15 +996,6 @@ public interface PatternPackage extends EPackage {
   int STRING_QUERY__EXTENSION_ID = QUERY__EXTENSION_ID;
 
   /**
-   * The feature id for the '<em><b>Query Context</b></em>' map.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING_QUERY__QUERY_CONTEXT = QUERY__QUERY_CONTEXT;
-
-  /**
    * The number of structural features of the '<em>String Query</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1058,15 +1031,6 @@ public interface PatternPackage extends EPackage {
    * @ordered
    */
   int CUSTOM_QUERY__EXTENSION_ID = QUERY__EXTENSION_ID;
-
-  /**
-   * The feature id for the '<em><b>Query Context</b></em>' map.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int CUSTOM_QUERY__QUERY_CONTEXT = QUERY__QUERY_CONTEXT;
 
   /**
    * The number of structural features of the '<em>Custom Query</em>' class.
@@ -1115,43 +1079,6 @@ public interface PatternPackage extends EPackage {
   int STRING2_PATTERN_LIST_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.String2StringImpl <em>String2 String</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.pattern.impl.String2StringImpl
-   * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getString2String()
-   * @generated
-   */
-  int STRING2_STRING = 20;
-
-  /**
-   * The feature id for the '<em><b>Key</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING2_STRING__KEY = 0;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING2_STRING__VALUE = 1;
-
-  /**
-   * The number of structural features of the '<em>String2 String</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int STRING2_STRING_FEATURE_COUNT = 2;
-
-  /**
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternExecutionReporterImpl <em>Type Pattern Execution Reporter</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1159,7 +1086,7 @@ public interface PatternPackage extends EPackage {
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternExecutionReporter()
    * @generated
    */
-  int TYPE_PATTERN_EXECUTION_REPORTER = 21;
+  int TYPE_PATTERN_EXECUTION_REPORTER = 20;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -1214,7 +1141,7 @@ public interface PatternPackage extends EPackage {
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
    * @generated
    */
-  int PATTERN_CONTEXT = 22;
+  int PATTERN_CONTEXT = 21;
 
   /**
    * The meta object id for the '<em>Exception</em>' data type.
@@ -1224,7 +1151,7 @@ public interface PatternPackage extends EPackage {
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
    * @generated
    */
-  int PATTERN_EXCEPTION = 23;
+  int PATTERN_EXCEPTION = 22;
 
   /**
    * The meta object id for the '<em>EPattern Execution Reporter</em>' data type.
@@ -1234,7 +1161,7 @@ public interface PatternPackage extends EPackage {
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getEPatternExecutionReporter()
    * @generated
    */
-  int EPATTERN_EXECUTION_REPORTER = 24;
+  int EPATTERN_EXECUTION_REPORTER = 23;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -1686,17 +1613,6 @@ public interface PatternPackage extends EPackage {
   EAttribute getQuery_ExtensionId();
 
   /**
-   * Returns the meta object for the map '{@link org.eclipse.egf.model.pattern.Query#getQueryContext <em>Query Context</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the map '<em>Query Context</em>'.
-   * @see org.eclipse.egf.model.pattern.Query#getQueryContext()
-   * @see #getQuery()
-   * @generated
-   */
-  EReference getQuery_QueryContext();
-
-  /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.BasicQuery <em>Basic Query</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1759,40 +1675,6 @@ public interface PatternPackage extends EPackage {
    * @generated
    */
   EReference getString2PatternList_Value();
-
-  /**
-   * Returns the meta object for class '{@link java.util.Map.Entry <em>String2 String</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>String2 String</em>'.
-   * @see java.util.Map.Entry
-   * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
-   *        valueDataType="org.eclipse.emf.ecore.EString" valueRequired="true"
-   * @generated
-   */
-  EClass getString2String();
-
-  /**
-   * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Key</em>'.
-   * @see java.util.Map.Entry
-   * @see #getString2String()
-   * @generated
-   */
-  EAttribute getString2String_Key();
-
-  /**
-   * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Value</em>'.
-   * @see java.util.Map.Entry
-   * @see #getString2String()
-   * @generated
-   */
-  EAttribute getString2String_Value();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.TypePatternExecutionReporter <em>Type Pattern Execution Reporter</em>}'.
@@ -2239,14 +2121,6 @@ public interface PatternPackage extends EPackage {
     EAttribute QUERY__EXTENSION_ID = eINSTANCE.getQuery_ExtensionId();
 
     /**
-     * The meta object literal for the '<em><b>Query Context</b></em>' map feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference QUERY__QUERY_CONTEXT = eINSTANCE.getQuery_QueryContext();
-
-    /**
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.BasicQueryImpl <em>Basic Query</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2301,32 +2175,6 @@ public interface PatternPackage extends EPackage {
      * @generated
      */
     EReference STRING2_PATTERN_LIST__VALUE = eINSTANCE.getString2PatternList_Value();
-
-    /**
-     * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.String2StringImpl <em>String2 String</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.pattern.impl.String2StringImpl
-     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getString2String()
-     * @generated
-     */
-    EClass STRING2_STRING = eINSTANCE.getString2String();
-
-    /**
-     * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STRING2_STRING__KEY = eINSTANCE.getString2String_Key();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STRING2_STRING__VALUE = eINSTANCE.getString2String_Value();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternExecutionReporterImpl <em>Type Pattern Execution Reporter</em>}' class.

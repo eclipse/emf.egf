@@ -25,10 +25,10 @@ package org.eclipse.egf.model.types;
  * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeShort()
- * @model
+ * @model superTypes="org.eclipse.egf.model.types.TypeObject<org.eclipse.emf.ecore.EShortObject>"
  * @generated
  */
-public interface TypeShort extends TypeObject {
+public interface TypeShort extends TypeObject<Short> {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->

@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeFloatImpl extends TypeObjectImpl implements TypeFloat {
+public class TypeFloatImpl extends TypeObjectImpl<Float> implements TypeFloat {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

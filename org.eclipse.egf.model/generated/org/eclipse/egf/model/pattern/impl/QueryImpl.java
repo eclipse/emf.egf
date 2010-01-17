@@ -12,20 +12,18 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
+import java.util.Map;
+
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EMap;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
-import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '
@@ -33,23 +31,18 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getParameter <em>Parameter</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getExtensionId <em>Extension Id</em>}
- * </li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getQueryContext <em>Query Context</em>}
- * </li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getExtensionId <em>Extension Id</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class QueryImpl extends Container implements Query {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -59,7 +52,6 @@ public abstract class QueryImpl extends Container implements Query {
    * The default value of the '{@link #getExtensionId() <em>Extension Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getExtensionId()
    * @generated
    * @ordered
@@ -70,7 +62,6 @@ public abstract class QueryImpl extends Container implements Query {
    * The cached value of the '{@link #getExtensionId() <em>Extension Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getExtensionId()
    * @generated
    * @ordered
@@ -78,19 +69,7 @@ public abstract class QueryImpl extends Container implements Query {
   protected String extensionId = EXTENSION_ID_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getQueryContext() <em>Query Context</em>}' map.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @see #getQueryContext()
-   * @generated
-   * @ordered
-   */
-  protected EMap<String, String> queryContext;
-
-  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected QueryImpl() {
@@ -99,7 +78,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -109,7 +87,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public PatternParameter getParameter() {
@@ -120,7 +97,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetParameter(PatternParameter newParameter, NotificationChain msgs) {
@@ -130,7 +106,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setParameter(PatternParameter newParameter) {
@@ -152,7 +127,6 @@ public abstract class QueryImpl extends Container implements Query {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getExtensionId() {
@@ -162,7 +136,6 @@ public abstract class QueryImpl extends Container implements Query {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setExtensionId(String newExtensionId) {
@@ -174,19 +147,16 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public EMap<String, String> getQueryContext() {
-    if (queryContext == null) {
-      queryContext = new EcoreEMap<String, String>(PatternPackage.Literals.STRING2_STRING, String2StringImpl.class, this, PatternPackage.QUERY__QUERY_CONTEXT);
-    }
-    return queryContext;
+  public Map<String, String> getQueryContext() {
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -202,7 +172,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -210,15 +179,12 @@ public abstract class QueryImpl extends Container implements Query {
     switch (featureID) {
     case PatternPackage.QUERY__PARAMETER:
       return basicSetParameter(null, msgs);
-    case PatternPackage.QUERY__QUERY_CONTEXT:
-      return ((InternalEList<?>) getQueryContext()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -232,7 +198,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -242,18 +207,12 @@ public abstract class QueryImpl extends Container implements Query {
       return getParameter();
     case PatternPackage.QUERY__EXTENSION_ID:
       return getExtensionId();
-    case PatternPackage.QUERY__QUERY_CONTEXT:
-      if (coreType)
-        return getQueryContext();
-      else
-        return getQueryContext().map();
     }
     return super.eGet(featureID, resolve, coreType);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -265,16 +224,12 @@ public abstract class QueryImpl extends Container implements Query {
     case PatternPackage.QUERY__EXTENSION_ID:
       setExtensionId((String) newValue);
       return;
-    case PatternPackage.QUERY__QUERY_CONTEXT:
-      ((EStructuralFeature.Setting) getQueryContext()).set(newValue);
-      return;
     }
     super.eSet(featureID, newValue);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -286,16 +241,12 @@ public abstract class QueryImpl extends Container implements Query {
     case PatternPackage.QUERY__EXTENSION_ID:
       setExtensionId(EXTENSION_ID_EDEFAULT);
       return;
-    case PatternPackage.QUERY__QUERY_CONTEXT:
-      getQueryContext().clear();
-      return;
     }
     super.eUnset(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -305,15 +256,12 @@ public abstract class QueryImpl extends Container implements Query {
       return getParameter() != null;
     case PatternPackage.QUERY__EXTENSION_ID:
       return EXTENSION_ID_EDEFAULT == null ? extensionId != null : !EXTENSION_ID_EDEFAULT.equals(extensionId);
-    case PatternPackage.QUERY__QUERY_CONTEXT:
-      return queryContext != null && !queryContext.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

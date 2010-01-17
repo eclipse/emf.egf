@@ -12,6 +12,9 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.emf.ecore.EClass;
@@ -32,6 +35,13 @@ public class BasicQueryImpl extends QueryImpl implements BasicQuery {
    */
   protected BasicQueryImpl() {
     super();
+  }
+
+  @Override
+  public Map<String, String> getQueryContext() {
+    Map<String, String> result = new HashMap<String, String>();
+    result.put(TYPE, getParameter().getType());
+    return result;
   }
 
   /**

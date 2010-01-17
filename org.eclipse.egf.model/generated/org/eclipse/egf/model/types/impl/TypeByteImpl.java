@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeByteImpl extends TypeObjectImpl implements TypeByte {
+public class TypeByteImpl extends TypeObjectImpl<Byte> implements TypeByte {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

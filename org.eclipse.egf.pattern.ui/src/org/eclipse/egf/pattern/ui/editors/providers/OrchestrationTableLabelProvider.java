@@ -38,13 +38,13 @@ public class OrchestrationTableLabelProvider extends LabelProvider implements IT
 
     public Image getColumnImage(Object element, int columnIndex) {
         if (element instanceof MethodCall)
-            return ImageShop.get(ImageShop.IMG_KIND_METHODCALL);
+            return ImageShop.get(ImageShop.IMG_KIND_METODCALL_OBJ);
         else if (element instanceof PatternCall)
-            return ImageShop.get(ImageShop.IMG_KIND_PATTERNCALL);
+            return ImageShop.get(ImageShop.IMG_KIND_PATTERNCALL_OBJ);
         else if (element instanceof PatternInjectedCall)
-            return ImageShop.get(ImageShop.IMG_KIND_PATTERNINJECTEDCALL);
+            return ImageShop.get(ImageShop.IMG_KIND_PATTERNINJECTEDCALL_OBJ);
         else if (element instanceof SuperPatternCall)
-            return ImageShop.get(ImageShop.IMG_KIND_SUPERPATTERNCALL);
+            return ImageShop.get(ImageShop.IMG_KIND_SUPERPATTERNCALL_OBJ);
         return null;
     }
 

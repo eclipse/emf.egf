@@ -15,7 +15,6 @@ package org.eclipse.egf.model.types.impl;
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -26,7 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  * @generated
  */
-public abstract class TypeImpl extends TypeElementImpl implements Type {
+public abstract class TypeImpl<T extends Object> extends TypeElementImpl implements Type<T> {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -53,12 +52,8 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
    * @generated NOT
    */
   @SuppressWarnings("unchecked")
-  public <T extends Object> Class<T> getType() {
-    EStructuralFeature feature = eClass().getEStructuralFeature("value"); //$NON-NLS-1$
-    if (feature == null) {
-      throw new UnsupportedOperationException();
-    }
-    return (Class<T>) feature.getEType().getInstanceClass();
+  public Class<T> getType() {
+    return (Class<T>) eClass().getEGenericSuperTypes().get(0).getETypeArguments().get(0).getEClassifier().getInstanceClass();
   }
 
   /**

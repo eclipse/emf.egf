@@ -90,7 +90,7 @@ public class TypeAbstractClassItemProvider extends TypeItemProvider implements I
    */
   @Override
   public String getText(Object object) {
-    String label = ((TypeAbstractClass) object).getName();
+    String label = ((TypeAbstractClass<?>) object).getName();
     return label == null || label.length() == 0 ? "[" + getString("_UI_TypeAbstractClass_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         label + " [" + getString("_UI_TypeAbstractClass_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }

@@ -122,7 +122,7 @@ public interface Orchestration extends ModelElement {
    * @model
    * @generated
    */
-  EList<InvocationContext> getInvocationContexts(Type type);
+  EList<InvocationContext> getInvocationContexts(Type<?> type);
 
   /**
    * <!-- begin-user-doc -->
@@ -138,7 +138,7 @@ public interface Orchestration extends ModelElement {
    * @model
    * @generated
    */
-  EList<InvocationContext> getInvocationContexts(Type type, ContractMode mode);
+  EList<InvocationContext> getInvocationContexts(Type<?> type, ContractMode mode);
 
   /**
    * <!-- begin-user-doc -->
@@ -154,6 +154,6 @@ public interface Orchestration extends ModelElement {
    * @model
    * @generated
    */
-  EList<OrchestrationContext> getOrchestrationContexts(Type type);
+  EList<OrchestrationContext> getOrchestrationContexts(Type<?> type);
 
 } // Orchestration

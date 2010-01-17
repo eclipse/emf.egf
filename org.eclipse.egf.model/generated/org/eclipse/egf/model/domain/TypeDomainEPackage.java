@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @model
  * @generated
  */
-public interface TypeDomainEPackage extends Type {
+public interface TypeDomainEPackage extends Type<EPackage> {
   /**
    * Returns the value of the '<em><b>Domain</b></em>' reference.
    * <!-- begin-user-doc -->

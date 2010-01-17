@@ -36,7 +36,6 @@ public abstract class PatternEngine {
             throw new PatternException(Messages.classloader_error4);
     }
 
-    public abstract void executeWithInjection(PatternContext context, Object... parameters) throws PatternException;
     public abstract void execute(PatternContext context) throws PatternException;
 
     public abstract void translate() throws PatternException;

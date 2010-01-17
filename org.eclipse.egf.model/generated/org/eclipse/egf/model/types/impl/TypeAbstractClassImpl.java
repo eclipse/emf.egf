@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public abstract class TypeAbstractClassImpl extends TypeImpl implements TypeAbstractClass {
+public abstract class TypeAbstractClassImpl<T extends Object> extends TypeImpl<T> implements TypeAbstractClass<T> {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

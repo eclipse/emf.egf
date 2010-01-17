@@ -36,7 +36,7 @@ import org.eclipse.model.domain.adapter.TypeDomainURIAdapter;
  *
  * @generated
  */
-public class TypeDomainURIImpl extends TypeImpl implements TypeDomainURI {
+public class TypeDomainURIImpl extends TypeImpl<URI> implements TypeDomainURI {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->

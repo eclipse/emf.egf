@@ -33,7 +33,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeDateImpl extends TypeObjectImpl implements TypeDate {
+public class TypeDateImpl extends TypeObjectImpl<Date> implements TypeDate {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

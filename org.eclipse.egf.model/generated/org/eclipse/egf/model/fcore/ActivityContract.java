@@ -104,7 +104,7 @@ public interface ActivityContract extends ModelElement {
    * @model containment="true" required="true"
    * @generated
    */
-  Type getType();
+  Type<?> getType();
 
   /**
    * Sets the value of the '{@link org.eclipse.egf.model.fcore.ActivityContract#getType <em>Type</em>}' containment reference.
@@ -114,7 +114,7 @@ public interface ActivityContract extends ModelElement {
    * @see #getType()
    * @generated
    */
-  void setType(Type value);
+  void setType(Type<?> value);
 
   /**
    * <!-- begin-user-doc -->
@@ -146,7 +146,7 @@ public interface ActivityContract extends ModelElement {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type type);
+  EList<ActivityContract> getActivityContracts(Type<?> type);
 
   /**
    * <!-- begin-user-doc -->
@@ -162,6 +162,6 @@ public interface ActivityContract extends ModelElement {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type type, ContractMode mode);
+  EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode);
 
 } // ActivityContract

@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeStringImpl extends TypeObjectImpl implements TypeString {
+public class TypeStringImpl extends TypeObjectImpl<String> implements TypeString {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

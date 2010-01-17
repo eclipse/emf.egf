@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeIntegerImpl extends TypeObjectImpl implements TypeInteger {
+public class TypeIntegerImpl extends TypeObjectImpl<Integer> implements TypeInteger {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

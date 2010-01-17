@@ -26,23 +26,23 @@ import org.eclipse.egf.model.fcore.Orchestration;
  */
 public class ActivityCycleFinder {
 
-  private List<Activity> _activities = new ArrayList<Activity>();
+  private List<Activity> _activities;
 
   private Activity _activity;
 
   public ActivityCycleFinder(Activity activity) {
     Assert.isNotNull(activity);
     _activity = activity;
+    _activities = new ArrayList<Activity>();
+    _activities.add(_activity);
   }
 
   public ModelElement getFirstRepetition() {
-    _activities.clear();
     return getFirstRepetition(_activity);
   }
 
   protected ModelElement getFirstRepetition(Activity activity) {
     if (activity instanceof FactoryComponent) {
-      _activities.add(activity);
       return getFirstRepetition(((FactoryComponent) activity).getOrchestration());
     }
     return null;
@@ -62,10 +62,10 @@ public class ActivityCycleFinder {
     if (invocation.getActivity() == null) {
       return null;
     }
-    // Cycle detection at invocation level
     if (activityLookup(invocation.getActivity())) {
       return invocation;
     }
+    _activities.add(invocation.getActivity());
     return getFirstRepetition(invocation.getActivity());
   }
 

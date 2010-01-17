@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.types.impl;
 
+import java.util.Map;
+
 import org.eclipse.egf.model.types.TypeMap;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
@@ -22,14 +24,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class TypeMapImpl extends TypeAbstractClassImpl implements TypeMap {
+public class TypeMapImpl extends TypeAbstractClassImpl<Map> implements TypeMap {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypeMapImpl() {
@@ -39,24 +40,11 @@ public class TypeMapImpl extends TypeAbstractClassImpl implements TypeMap {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   protected EClass eStaticClass() {
     return TypesPackage.Literals.TYPE_MAP;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Class<?> getType() {
-    return java.util.Map.class;
   }
 
 } // TypeMapImpl

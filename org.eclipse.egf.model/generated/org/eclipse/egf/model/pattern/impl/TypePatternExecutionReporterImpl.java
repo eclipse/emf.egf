@@ -12,9 +12,12 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
+import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
+
 import org.eclipse.egf.model.types.impl.TypeAbstractClassImpl;
+
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -23,16 +26,14 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl implements TypePatternExecutionReporter {
+public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl<PatternExecutionReporter> implements TypePatternExecutionReporter {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -41,7 +42,6 @@ public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl impl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypePatternExecutionReporterImpl() {
@@ -51,7 +51,6 @@ public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl impl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -59,16 +58,4 @@ public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl impl
     return PatternPackage.Literals.TYPE_PATTERN_EXECUTION_REPORTER;
   }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Class<?> getType() {
-    return org.eclipse.egf.model.pattern.PatternExecutionReporter.class;
-  }
-
-} // TypePatternExecutionReporterImpl
+} //TypePatternExecutionReporterImpl

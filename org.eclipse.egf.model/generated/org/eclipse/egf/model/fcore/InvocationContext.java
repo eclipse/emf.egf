@@ -160,7 +160,7 @@ public interface InvocationContext extends ModelElement {
    * @model containment="true"
    * @generated
    */
-  Type getType();
+  Type<?> getType();
 
   /**
    * Sets the value of the '{@link org.eclipse.egf.model.fcore.InvocationContext#getType <em>Type</em>}' containment reference.
@@ -170,7 +170,7 @@ public interface InvocationContext extends ModelElement {
    * @see #getType()
    * @generated
    */
-  void setType(Type value);
+  void setType(Type<?> value);
 
   /**
    * Returns the value of the '<em><b>Mode</b></em>' attribute.

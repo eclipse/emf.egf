@@ -42,33 +42,27 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fprod.impl.TaskContractContainerImpl#getActivity
- * <em>Activity</em>}</li>
- * <li>{@link org.eclipse.egf.model.fprod.impl.TaskContractContainerImpl#getActivityContracts
- * <em>Activity Contracts</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fprod.impl.TaskContractContainerImpl#getActivity <em>Activity</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fprod.impl.TaskContractContainerImpl#getActivityContracts <em>Activity Contracts</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class TaskContractContainerImpl extends ActivityContractContainerImpl implements TaskContractContainer {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   protected int eFlags = 0;
 
   /**
-   * The cached value of the '{@link #getActivityContracts() <em>Activity Contracts</em>}'
-   * containment reference list.
+   * The cached value of the '{@link #getActivityContracts() <em>Activity Contracts</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getActivityContracts()
    * @generated
    * @ordered
@@ -78,7 +72,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TaskContractContainerImpl() {
@@ -88,7 +81,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -99,7 +91,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -112,7 +103,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetActivity(Task newActivity, NotificationChain msgs) {
@@ -123,7 +113,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setActivity(Task newActivity) {
@@ -145,7 +134,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -164,7 +152,7 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
    * @generated NOT
    */
   @Override
-  public EList<ActivityContract> getActivityContracts(Type type) {
+  public EList<ActivityContract> getActivityContracts(Type<?> type) {
     EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
     if (type != null) {
       for (Iterator<TaskContract> it = getActivityContracts().iterator(); it.hasNext();) {
@@ -208,7 +196,7 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
    * @generated NOT
    */
   @Override
-  public EList<ActivityContract> getActivityContracts(Type type, ContractMode mode) {
+  public EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode) {
     EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
     for (Iterator<ActivityContract> it = getActivityContracts(type).iterator(); it.hasNext();) {
       ActivityContract contract = it.next();
@@ -226,7 +214,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -246,7 +233,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -263,7 +249,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -278,7 +263,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -295,7 +279,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -316,7 +299,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -335,7 +317,6 @@ public class TaskContractContainerImpl extends ActivityContractContainerImpl imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.types.impl;
 
+import java.util.Set;
+
 import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
@@ -22,14 +24,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class TypeSetImpl extends TypeAbstractClassImpl implements TypeSet {
+public class TypeSetImpl extends TypeAbstractClassImpl<Set> implements TypeSet {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypeSetImpl() {
@@ -39,24 +40,11 @@ public class TypeSetImpl extends TypeAbstractClassImpl implements TypeSet {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   protected EClass eStaticClass() {
     return TypesPackage.Literals.TYPE_SET;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Class<?> getType() {
-    return java.util.Set.class;
   }
 
 } // TypeSetImpl

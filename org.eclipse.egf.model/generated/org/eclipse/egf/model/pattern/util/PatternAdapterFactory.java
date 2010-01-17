@@ -204,11 +204,6 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseString2String(Map.Entry<String, String> object) {
-      return createString2StringAdapter();
-    }
-
-    @Override
     public Adapter caseTypePatternExecutionReporter(TypePatternExecutionReporter object) {
       return createTypePatternExecutionReporterAdapter();
     }
@@ -229,12 +224,12 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseType(Type object) {
+    public <T extends Object> Adapter caseType(Type<T> object) {
       return createTypeAdapter();
     }
 
     @Override
-    public Adapter caseTypeAbstractClass(TypeAbstractClass object) {
+    public <T extends Object> Adapter caseTypeAbstractClass(TypeAbstractClass<T> object) {
       return createTypeAbstractClassAdapter();
     }
 
@@ -574,20 +569,6 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createString2PatternListAdapter() {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link java.util.Map.Entry <em>String2 String</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see java.util.Map.Entry
-   * @generated
-   */
-  public Adapter createString2StringAdapter() {
     return null;
   }
 

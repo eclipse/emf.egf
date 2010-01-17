@@ -34,33 +34,23 @@
       <genFeatures createChild="false" propertyCategory="Identity" ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/description"/>
     </genClasses>
     <genClasses image="false" ecoreClass="Types.ecore#//Type">
-      <genOperations ecoreOperation="Types.ecore#//Type/getType">
-        <genTypeParameters ecoreTypeParameter="Types.ecore#//Type/getType/T"/>
-      </genOperations>
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//Type/T"/>
+      <genOperations ecoreOperation="Types.ecore#//Type/getType"/>
       <genOperations ecoreOperation="Types.ecore#//Type/getValue"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="Types.ecore#//TypeObject"/>
+    <genClasses image="false" ecoreClass="Types.ecore#//TypeObject">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeObject/T"/>
+    </genClasses>
     <genClasses image="false" ecoreClass="Types.ecore#//TypeAbstractClass">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeAbstractClass/T"/>
       <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeAbstractClass/value"/>
-      <genOperations ecoreOperation="Types.ecore#//TypeAbstractClass/getType">
-        <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeAbstractClass/getType/T"/>
-      </genOperations>
     </genClasses>
-    <genClasses ecoreClass="Types.ecore#//TypeCollection">
-      <genOperations ecoreOperation="Types.ecore#//TypeCollection/getType"/>
-    </genClasses>
-    <genClasses ecoreClass="Types.ecore#//TypeList">
-      <genOperations ecoreOperation="Types.ecore#//TypeList/getType"/>
-    </genClasses>
-    <genClasses ecoreClass="Types.ecore#//TypeSet">
-      <genOperations ecoreOperation="Types.ecore#//TypeSet/getType"/>
-    </genClasses>
-    <genClasses ecoreClass="Types.ecore#//TypeGeneratorAdapterFactory">
-      <genOperations ecoreOperation="Types.ecore#//TypeGeneratorAdapterFactory/getType"/>
-    </genClasses>
-    <genClasses ecoreClass="Types.ecore#//TypeMap">
-      <genOperations ecoreOperation="Types.ecore#//TypeMap/getType"/>
-    </genClasses>
+    <genClasses image="false" ecoreClass="Types.ecore#//TypeClass"/>
+    <genClasses ecoreClass="Types.ecore#//TypeCollection"/>
+    <genClasses ecoreClass="Types.ecore#//TypeList"/>
+    <genClasses ecoreClass="Types.ecore#//TypeSet"/>
+    <genClasses ecoreClass="Types.ecore#//TypeGeneratorAdapterFactory"/>
+    <genClasses ecoreClass="Types.ecore#//TypeMap"/>
     <genClasses ecoreClass="Types.ecore#//TypeBigDecimal">
       <genFeatures createChild="false" propertyCategory="Value" ecoreFeature="ecore:EAttribute Types.ecore#//TypeBigDecimal/value"/>
     </genClasses>

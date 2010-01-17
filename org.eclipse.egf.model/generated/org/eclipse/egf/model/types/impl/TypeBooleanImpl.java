@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeBooleanImpl extends TypeObjectImpl implements TypeBoolean {
+public class TypeBooleanImpl extends TypeObjectImpl<Boolean> implements TypeBoolean {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

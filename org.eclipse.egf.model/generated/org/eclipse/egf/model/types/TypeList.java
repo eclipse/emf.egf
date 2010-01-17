@@ -12,29 +12,18 @@
  */
 package org.eclipse.egf.model.types;
 
+import java.util.List;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type List</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeList()
- * @model
+ * @model superTypes="org.eclipse.egf.model.types.TypeAbstractClass<org.eclipse.egf.model.types.List>"
  * @generated
  */
-public interface TypeList extends TypeAbstractClass {
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @model kind="operation" required="true"
-   *        
-   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.util.List.class;'"
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  Class<?> getType();
+public interface TypeList extends TypeAbstractClass<List> {
 
 } // TypeList

@@ -25,6 +25,8 @@ import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EGenericType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EValidator;
@@ -355,9 +357,15 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     domainViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
     domainEClass.getESuperTypes().add(theFcorePackage.getModelElement());
     domainEPackageEClass.getESuperTypes().add(this.getDomain());
-    typeDomainEPackageEClass.getESuperTypes().add(theTypesPackage.getType());
+    EGenericType g1 = createEGenericType(theTypesPackage.getType());
+    EGenericType g2 = createEGenericType(theEcorePackage.getEPackage());
+    g1.getETypeArguments().add(g2);
+    typeDomainEPackageEClass.getEGenericSuperTypes().add(g1);
     domainURIEClass.getESuperTypes().add(this.getDomain());
-    typeDomainURIEClass.getESuperTypes().add(theTypesPackage.getType());
+    g1 = createEGenericType(theTypesPackage.getType());
+    g2 = createEGenericType(theTypesPackage.getURI());
+    g1.getETypeArguments().add(g2);
+    typeDomainURIEClass.getEGenericSuperTypes().add(g1);
 
     // Initialize classes and features; add operations and parameters
     initEClass(domainViewpointEClass, DomainViewpoint.class, "DomainViewpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

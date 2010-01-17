@@ -35,6 +35,7 @@ import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
+import org.eclipse.egf.pattern.ui.editors.adapter.RefresherAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.VariablesEditDialog;
 import org.eclipse.egf.pattern.ui.editors.editor.MethodsComboBoxViewerCellEditor;
@@ -45,10 +46,10 @@ import org.eclipse.egf.pattern.ui.editors.providers.MethodLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.OrchestrationTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.TableObservableListContentProvider;
-import org.eclipse.egf.pattern.ui.editors.validation.ValidationConstants;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.OrchestrationWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.IEMFListProperty;
@@ -123,10 +124,6 @@ public class ImplementationPage extends PatternEditorPage {
 
     private Button methodsRemove;
 
-    private Button methodsUp;
-
-    private Button methodsDown;
-
     private Button methodsOpenTemplate;
 
     private Button orchestrationAdd;
@@ -149,13 +146,9 @@ public class ImplementationPage extends PatternEditorPage {
 
     private PatternMethod dropEntry;
 
-    private int methodsDragIndex = -1;
+    private int dragIndex = -1;
 
-    private int orchestrationDragIndex = -1;
-
-    private boolean isChangMethodsOrder;
-
-    private boolean isChangOrchestrationeOrder;
+    private boolean isChangeOder;
 
     private boolean isReadOnly;
 
@@ -163,9 +156,7 @@ public class ImplementationPage extends PatternEditorPage {
 
     private static final String VARIABLE_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
 
-    private LiveValidationContentAdapter variableNameEmpetyValidationAdapter;
-
-    private IMessageManager mmng;
+    private LiveValidationContentAdapter liveValidationContentAdapter;
 
     public ImplementationPage(FormEditor editor) {
         super(editor, ID, Messages.ImplementationPage_title);
@@ -175,7 +166,7 @@ public class ImplementationPage extends PatternEditorPage {
     protected void doCreateFormContent(IManagedForm managedForm) {
         PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
         isReadOnly = editorInput.isReadOnly();
-        mmng = managedForm.getMessageManager();
+        final IMessageManager mmng = managedForm.getMessageManager();
 
         FormToolkit toolkit = managedForm.getToolkit();
         ScrolledForm form = managedForm.getForm();
@@ -195,6 +186,9 @@ public class ImplementationPage extends PatternEditorPage {
         createOrchestrationSection(toolkit, containerRight);
 
         checkReadOnlyModel();
+
+        // Add EMF validation for variables.
+        liveValidationContentAdapter = PatternUIHelper.addEMFValidation(mmng, getPattern(), Messages.PatternUIHelper_key_NonPatternVariableEmptyName, variablesTableViewer.getTable(), liveValidationContentAdapter);
 
         form.reflow(true);
     }
@@ -284,54 +278,27 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        addDragDropForMethodsTable();
-    }
+        if (!isReadOnly) {
+            methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
-    /**
-     * Add drag and drop listener to methodsTableViewer.
-     */
-    private void addDragDropForMethodsTable() {
-        if (isReadOnly)
-            return;
-
-        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
-
-            public void dragStart(DragSourceEvent event) {
-                isChangOrchestrationeOrder = false;
-                isChangMethodsOrder = true;
-                if (methodsTableViewer.getSelection() == null) {
-                    event.doit = false;
+                public void dragStart(DragSourceEvent event) {
+                    isChangeOder = false;
+                    if (methodsTableViewer.getSelection() == null) {
+                        event.doit = false;
+                    }
                 }
-            }
 
-            public void dragSetData(DragSourceEvent event) {
-                if (methodsTableViewer.getSelection() != null) {
-                    dropEntry = getmethodsSelectItem();
-                    methodsDragIndex = methodsTableViewer.getTable().getSelectionIndex();
+                public void dragSetData(DragSourceEvent event) {
+                    if (methodsTableViewer.getSelection() != null) {
+                        dropEntry = getmethodsSelectItem();
+                    }
                 }
-            }
 
-            public void dragFinished(DragSourceEvent event) {
-            }
-        });
-
-        methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(methodsTableViewer) {
-
-            public boolean validateDrop(Object target, int operation, TransferData transferType) {
-                if (isChangMethodsOrder) {
-                    return true;
+                public void dragFinished(DragSourceEvent event) {
                 }
-                return false;
-            }
+            });
+        }
 
-            public boolean performDrop(Object data) {
-                Object currentTarget = getCurrentTarget();
-                EList<PatternMethod> methods = getPattern().getMethods();
-                executeChangeOrder(currentTarget, methodsTableViewer, methods, methodsDragIndex);
-                setMethodsButtonsStatus();
-                return false;
-            }
-        });
     }
 
     private void initMethodsTableEditor() {
@@ -406,21 +373,6 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        methodsOpenTemplate = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
-        methodsOpenTemplate.setLayoutData(gd);
-        methodsOpenTemplate.setEnabled(false);
-        methodsOpenTemplate.setImage(ImageShop.get(ImageShop.IMG_METHOD_CONTENT_EDIT));
-        methodsOpenTemplate.setToolTipText(Messages.ImplementationPage_button_methodsOpenTemplate);
-        methodsOpenTemplate.addSelectionListener(new SelectionListener() {
-
-            public void widgetSelected(SelectionEvent e) {
-                openPatternTemplate();
-            }
-
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
-
         methodsRemove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         methodsRemove.setLayoutData(gd);
         methodsRemove.setEnabled(false);
@@ -436,57 +388,20 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        methodsUp = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
-        methodsUp.setLayoutData(gd);
-        methodsUp.setEnabled(false);
-        methodsUp.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
-        methodsUp.setToolTipText(Messages.ImplementationPage_button_up);
-        methodsUp.addSelectionListener(new SelectionListener() {
+        methodsOpenTemplate = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        methodsOpenTemplate.setLayoutData(gd);
+        methodsOpenTemplate.setEnabled(false);
+        methodsOpenTemplate.setImage(ImageShop.get(ImageShop.IMG_METHOD_CONTENT_EDIT));
+        methodsOpenTemplate.setToolTipText(Messages.ImplementationPage_button_methodsOpenTemplate);
+        methodsOpenTemplate.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                executeMethodsUpOrDown(-1);
-                ;
+                openPatternTemplate();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
-
-        methodsDown = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
-        methodsDown.setLayoutData(gd);
-        methodsDown.setEnabled(false);
-        methodsDown.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
-        methodsDown.setToolTipText(Messages.ImplementationPage_button_down);
-        methodsDown.addSelectionListener(new SelectionListener() {
-
-            public void widgetSelected(SelectionEvent e) {
-                executeMethodsUpOrDown(1);
-            }
-
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
-
-    }
-
-    /**
-     * Execute methods table up or down operation.
-     */
-    protected void executeMethodsUpOrDown(int num) {
-        final int oldIndex = methodsTableViewer.getTable().getSelectionIndex();
-        final int newIndex = oldIndex + num;
-        final EList<PatternMethod> methods = getPattern().getMethods();
-
-        TransactionalEditingDomain editingDomain = getEditingDomain();
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            protected void doExecute() {
-                methods.move(newIndex, oldIndex);
-            }
-        };
-        editingDomain.getCommandStack().execute(cmd);
-
-        methodsTableViewer.getTable().setSelection(newIndex);
-        setMethodsButtonsStatus();
     }
 
     /**
@@ -494,12 +409,9 @@ public class ImplementationPage extends PatternEditorPage {
      */
     private void setMethodsButtonsStatus() {
         int selectIndex = methodsTableViewer.getTable().getSelectionIndex();
-        int length = methodsTableViewer.getTable().getItemCount();
         if (selectIndex == -1) {
             methodsRemove.setEnabled(false);
             methodsEdit.setEnabled(false);
-            methodsUp.setEnabled(false);
-            methodsDown.setEnabled(false);
             methodsOpenTemplate.setEnabled(false);
             return;
         } else {
@@ -510,17 +422,6 @@ public class ImplementationPage extends PatternEditorPage {
             } else {
                 methodsEdit.setEnabled(true);
                 methodsRemove.setEnabled(true);
-            }
-
-            if (selectIndex <= 0) {
-                methodsUp.setEnabled(false);
-            } else {
-                methodsUp.setEnabled(true);
-            }
-            if ((selectIndex + 1) == length) {
-                methodsDown.setEnabled(false);
-            } else {
-                methodsDown.setEnabled(true);
             }
             methodsOpenTemplate.setEnabled(true);
         }
@@ -560,7 +461,6 @@ public class ImplementationPage extends PatternEditorPage {
                 newMethod.setPattern(getPattern());
                 getPattern().getMethods().add(newMethod);
                 newMethod.setPatternFilePath(PatternHelper.Filename.computeFileURI(newMethod));
-                PatternUIHelper.addAdapterForNewItem(methodsTableViewer, newMethod);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
@@ -648,20 +548,19 @@ public class ImplementationPage extends PatternEditorPage {
                 openOrchestrationWizard();
             }
         });
-        addDragDropForOrchestrationTable();
+        addDragDrop();
     }
 
     /**
      * Add drag and drop listener to orchTableViewer.
      */
-    private void addDragDropForOrchestrationTable() {
+    private void addDragDrop() {
         if (isReadOnly)
             return;
         orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
-                isChangOrchestrationeOrder = true;
-                isChangMethodsOrder = false;
+                isChangeOder = true;
                 if (orchestrationTableViewer.getSelection() == null) {
                     event.doit = false;
                 }
@@ -669,7 +568,7 @@ public class ImplementationPage extends PatternEditorPage {
 
             public void dragSetData(DragSourceEvent event) {
                 if (orchestrationTableViewer.getSelection() != null) {
-                    orchestrationDragIndex = orchestrationTableViewer.getTable().getSelectionIndex();
+                    dragIndex = orchestrationTableViewer.getTable().getSelectionIndex();
                 }
             }
 
@@ -680,18 +579,16 @@ public class ImplementationPage extends PatternEditorPage {
         orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(orchestrationTableViewer) {
 
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
-                if (!isChangOrchestrationeOrder) {
+                if (!isChangeOder) {
                     return checkDropSupport();
                 }
                 return true;
             }
 
             public boolean performDrop(Object data) {
-                if (isChangOrchestrationeOrder) {
+                if (isChangeOder) {
                     Object currentTarget = getCurrentTarget();
-                    EList<Call> orchestration = getPattern().getOrchestration();
-                    executeChangeOrder(currentTarget, orchestrationTableViewer, orchestration, orchestrationDragIndex);
-                    setOrchestrationButtonsStatus();
+                    executeChangeOrder(currentTarget);
                 } else {
                     executeDrop();
                 }
@@ -704,13 +601,15 @@ public class ImplementationPage extends PatternEditorPage {
      * Execute the drag and drop operation to change the order of the table
      * rows.
      */
-    protected void executeChangeOrder(Object currentTarget, TableViewer tableViewer, EList<?> list, int sourceIndex) {
+    protected void executeChangeOrder(Object currentTarget) {
+        EList<Call> orchestration = getPattern().getOrchestration();
         int targetIndex = 0;
         int index = 0;
         if (currentTarget == null) {
-            targetIndex = tableViewer.getTable().getItemCount() - 1;
+            targetIndex = orchestrationTableViewer.getTable().getItemCount() - 1;
+            currentTarget = orchestrationTableViewer.getElementAt(targetIndex);
         } else {
-            for (Object enty : list) {
+            for (Object enty : orchestration) {
                 if (currentTarget.equals(enty)) {
                     targetIndex = index;
                     break;
@@ -718,18 +617,20 @@ public class ImplementationPage extends PatternEditorPage {
                 index++;
             }
         }
-        refreshTableContent(list, targetIndex, sourceIndex);
-        tableViewer.getTable().setSelection(targetIndex);
+        updateOrchestration(orchestration, targetIndex);
+        orchestrationTableViewer.getTable().setSelection(targetIndex);
+        setOrchestrationButtonsStatus();
     }
 
     /**
-     * Refresh the table content after change the tables order.
+     * Refresh the pattern's Orchestration after change orchestrationTableViewer
+     * order's.
      */
-    private void refreshTableContent(final EList<?> list, final int targetIndex, final int sourceIndex) {
+    private void updateOrchestration(final EList<Call> orchestration, final int targetIndex) {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
-                list.move(targetIndex, sourceIndex);
+                orchestration.move(targetIndex, dragIndex);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
@@ -762,7 +663,7 @@ public class ImplementationPage extends PatternEditorPage {
                     methodCallNew.setCalled(dropEntry);
                     methodCallNew.setPattern(getPattern());
                     getPattern().getOrchestration().add(methodCallNew);
-                    PatternUIHelper.addAdapterForNewItem(orchestrationTableViewer, methodCallNew);
+                    addAdapterForNewItem(orchestrationTableViewer, methodCallNew);
                 }
             };
             editingDomain.getCommandStack().execute(cmd);
@@ -896,7 +797,7 @@ public class ImplementationPage extends PatternEditorPage {
             protected void doExecute() {
                 selectCall.setPattern(getPattern());
                 getPattern().getOrchestration().add(selectCall);
-                PatternUIHelper.addAdapterForNewItem(orchestrationTableViewer, selectCall);
+                addAdapterForNewItem(orchestrationTableViewer, selectCall);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
@@ -1004,17 +905,11 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     private void createVariablesTable(FormToolkit toolkit, Composite variables) {
-        Composite tableComp = new Composite(variables, SWT.NONE);
-        TableColumnLayout layout = new TableColumnLayout();
-        tableComp.setLayout(layout);
-        GridData gd = new GridData(GridData.FILL_BOTH);
-        tableComp.setLayoutData(gd);
-
-        Table table = toolkit.createTable(tableComp, SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+        Table table = toolkit.createTable(variables, SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
         table.setHeaderVisible(true);
         table.setLinesVisible(true);
 
-        gd = new GridData(GridData.FILL_BOTH);
+        GridData gd = new GridData(GridData.FILL_BOTH);
         gd.verticalIndent = 10;
         gd.horizontalIndent = 10;
         gd.widthHint = 100;
@@ -1027,12 +922,11 @@ public class ImplementationPage extends PatternEditorPage {
             TableColumn tableColumn = new TableColumn(table, SWT.NONE);
             tableColumn.setWidth(colWidths[i]);
             tableColumn.setText(colNames[i]);
-            layout.setColumnData(tableColumn, new ColumnWeightData(colWidths[i], true));
         }
         initVariablesTableEditor();
-
-        variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));//
+        variablesTableViewer.setContentProvider(new TableObservableListContentProvider(variablesTableViewer));
         variablesTableViewer.setLabelProvider(new ParametersTableLabelProvider());
+
     }
 
     private void initVariablesTableEditor() {
@@ -1212,7 +1106,6 @@ public class ImplementationPage extends PatternEditorPage {
                 patternVariableNew.setName(VARIABLE_NAME_DEFAULT_VALUE);
                 patternVariableNew.setType(VARIABLE_TYPE_DEFAULT_VALUE);
                 pattern.getVariables().add(patternVariableNew);
-                PatternUIHelper.addAdapterForNewItem(variablesTableViewer, patternVariableNew);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
@@ -1335,6 +1228,14 @@ public class ImplementationPage extends PatternEditorPage {
         return false;
     }
 
+    /**
+     * Add a refresh adapter for the new item.
+     */
+    private void addAdapterForNewItem(TableViewer tableViewer, Object newItem) {
+        final AdapterImpl refresher = new RefresherAdapter(tableViewer);
+        PatternUIHelper.addAdapter(newItem, refresher);
+    }
+
     @Override
     protected void bind() {
         addBinding(null);
@@ -1343,7 +1244,6 @@ public class ImplementationPage extends PatternEditorPage {
             bindMethodsTable(pattern);
             bindOrchestrationTable(pattern);
             bindVariablesTableViewer(pattern);
-            variableNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_VARIABLE_NAME_NOT_EMPTY_ID, variablesTableViewer.getTable());
         }
     }
 
@@ -1354,7 +1254,7 @@ public class ImplementationPage extends PatternEditorPage {
         }
         if (methodsTableViewer != null) {
             methodsTableViewer.setInput(null);
-            methodsTableViewer.setLabelProvider(new MethodLabelProvider());
+            methodsTableViewer.setLabelProvider(new MethodLabelProvider(PatternUIHelper.getPatternParentMethodsNameList(getPattern())));
             IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__METHODS);
             IObservableList observe = input.observe(pattern);
             methodsTableViewer.setInput(observe);
@@ -1388,7 +1288,7 @@ public class ImplementationPage extends PatternEditorPage {
 
     @Override
     public void dispose() {
-        PatternUIHelper.removeAdapterForPattern(getPattern(), variableNameEmpetyValidationAdapter);
+        PatternUIHelper.removeAdapterForPattern(getPattern(), liveValidationContentAdapter);
         super.dispose();
     }
 }

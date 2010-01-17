@@ -23,6 +23,7 @@ import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypeBoolean;
 import org.eclipse.egf.model.types.TypeByte;
 import org.eclipse.egf.model.types.TypeCharacter;
+import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypeDate;
 import org.eclipse.egf.model.types.TypeDouble;
@@ -86,6 +87,13 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * @generated
    */
   private EClass typeAbstractClassEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass typeClassEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -382,6 +390,15 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    */
   public EAttribute getTypeAbstractClass_Value() {
     return (EAttribute) typeAbstractClassEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTypeClass() {
+    return typeClassEClass;
   }
 
   /**
@@ -731,6 +748,8 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     typeAbstractClassEClass = createEClass(TYPE_ABSTRACT_CLASS);
     createEAttribute(typeAbstractClassEClass, TYPE_ABSTRACT_CLASS__VALUE);
 
+    typeClassEClass = createEClass(TYPE_CLASS);
+
     typeCollectionEClass = createEClass(TYPE_COLLECTION);
 
     typeListEClass = createEClass(TYPE_LIST);
@@ -813,33 +832,103 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
+    ETypeParameter typeEClass_T = addETypeParameter(typeEClass, "T"); //$NON-NLS-1$
+    ETypeParameter typeObjectEClass_T = addETypeParameter(typeObjectEClass, "T"); //$NON-NLS-1$
+    ETypeParameter typeAbstractClassEClass_T = addETypeParameter(typeAbstractClassEClass, "T"); //$NON-NLS-1$
     addETypeParameter(collectionEDataType, "E"); //$NON-NLS-1$
     addETypeParameter(listEDataType, "E"); //$NON-NLS-1$
     addETypeParameter(setEDataType, "E"); //$NON-NLS-1$
 
     // Set bounds for type parameters
+    EGenericType g1 = createEGenericType(theEcorePackage.getEJavaObject());
+    typeEClass_T.getEBounds().add(g1);
+    g1 = createEGenericType(theEcorePackage.getEJavaObject());
+    typeObjectEClass_T.getEBounds().add(g1);
+    g1 = createEGenericType(theEcorePackage.getEJavaObject());
+    typeAbstractClassEClass_T.getEBounds().add(g1);
 
     // Add supertypes to classes
     typeEClass.getESuperTypes().add(this.getTypeElement());
-    typeObjectEClass.getESuperTypes().add(this.getType());
-    typeAbstractClassEClass.getESuperTypes().add(this.getType());
-    typeCollectionEClass.getESuperTypes().add(this.getTypeAbstractClass());
-    typeListEClass.getESuperTypes().add(this.getTypeAbstractClass());
-    typeSetEClass.getESuperTypes().add(this.getTypeAbstractClass());
-    typeGeneratorAdapterFactoryEClass.getESuperTypes().add(this.getTypeAbstractClass());
-    typeMapEClass.getESuperTypes().add(this.getTypeAbstractClass());
-    typeBigDecimalEClass.getESuperTypes().add(this.getTypeObject());
-    typeBigIntegerEClass.getESuperTypes().add(this.getTypeObject());
-    typeBooleanEClass.getESuperTypes().add(this.getTypeObject());
-    typeByteEClass.getESuperTypes().add(this.getTypeObject());
-    typeCharacterEClass.getESuperTypes().add(this.getTypeObject());
-    typeDateEClass.getESuperTypes().add(this.getTypeObject());
-    typeDoubleEClass.getESuperTypes().add(this.getTypeObject());
-    typeFloatEClass.getESuperTypes().add(this.getTypeObject());
-    typeIntegerEClass.getESuperTypes().add(this.getTypeObject());
-    typeLongEClass.getESuperTypes().add(this.getTypeObject());
-    typeShortEClass.getESuperTypes().add(this.getTypeObject());
-    typeStringEClass.getESuperTypes().add(this.getTypeObject());
+    g1 = createEGenericType(this.getType());
+    EGenericType g2 = createEGenericType(typeObjectEClass_T);
+    g1.getETypeArguments().add(g2);
+    typeObjectEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getType());
+    g2 = createEGenericType(typeAbstractClassEClass_T);
+    g1.getETypeArguments().add(g2);
+    typeAbstractClassEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeAbstractClass());
+    g2 = createEGenericType(theEcorePackage.getEJavaObject());
+    g1.getETypeArguments().add(g2);
+    typeClassEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeAbstractClass());
+    g2 = createEGenericType(this.getCollection());
+    g1.getETypeArguments().add(g2);
+    typeCollectionEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeAbstractClass());
+    g2 = createEGenericType(this.getList());
+    g1.getETypeArguments().add(g2);
+    typeListEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeAbstractClass());
+    g2 = createEGenericType(this.getSet());
+    g1.getETypeArguments().add(g2);
+    typeSetEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeAbstractClass());
+    g2 = createEGenericType(this.getEGeneratorAdapterFactory());
+    g1.getETypeArguments().add(g2);
+    typeGeneratorAdapterFactoryEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeAbstractClass());
+    g2 = createEGenericType(theEcorePackage.getEMap());
+    g1.getETypeArguments().add(g2);
+    typeMapEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEBigDecimal());
+    g1.getETypeArguments().add(g2);
+    typeBigDecimalEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEBigInteger());
+    g1.getETypeArguments().add(g2);
+    typeBigIntegerEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(ecorePackage.getEBooleanObject());
+    g1.getETypeArguments().add(g2);
+    typeBooleanEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEByteObject());
+    g1.getETypeArguments().add(g2);
+    typeByteEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getECharacterObject());
+    g1.getETypeArguments().add(g2);
+    typeCharacterEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEDate());
+    g1.getETypeArguments().add(g2);
+    typeDateEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEDoubleObject());
+    g1.getETypeArguments().add(g2);
+    typeDoubleEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEFloatObject());
+    g1.getETypeArguments().add(g2);
+    typeFloatEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEIntegerObject());
+    g1.getETypeArguments().add(g2);
+    typeIntegerEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getELongObject());
+    g1.getETypeArguments().add(g2);
+    typeLongEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEShortObject());
+    g1.getETypeArguments().add(g2);
+    typeShortEClass.getEGenericSuperTypes().add(g1);
+    g1 = createEGenericType(this.getTypeObject());
+    g2 = createEGenericType(theEcorePackage.getEString());
+    g1.getETypeArguments().add(g2);
+    typeStringEClass.getEGenericSuperTypes().add(g1);
 
     // Initialize classes and features; add operations and parameters
     initEClass(typeElementEClass, TypeElement.class, "TypeElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -850,11 +939,8 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
     EOperation op = addEOperation(typeEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    ETypeParameter t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
-    EGenericType g1 = createEGenericType(theEcorePackage.getEJavaObject());
-    t1.getEBounds().add(g1);
     g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    EGenericType g2 = createEGenericType(t1);
+    g2 = createEGenericType(typeEClass_T);
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
 
@@ -865,54 +951,17 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     initEClass(typeAbstractClassEClass, TypeAbstractClass.class, "TypeAbstractClass", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeAbstractClass_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TypeAbstractClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    op = addEOperation(typeAbstractClassEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaObject());
-    t1.getEBounds().add(g1);
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType(t1);
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
+    initEClass(typeClassEClass, TypeClass.class, "TypeClass", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
     initEClass(typeCollectionEClass, TypeCollection.class, "TypeCollection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-    op = addEOperation(typeCollectionEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType();
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeListEClass, TypeList.class, "TypeList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-    op = addEOperation(typeListEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType();
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     initEClass(typeSetEClass, TypeSet.class, "TypeSet", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-    op = addEOperation(typeSetEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType();
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeGeneratorAdapterFactoryEClass, TypeGeneratorAdapterFactory.class, "TypeGeneratorAdapterFactory", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-    op = addEOperation(typeGeneratorAdapterFactoryEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType();
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
-
     initEClass(typeMapEClass, TypeMap.class, "TypeMap", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-    op = addEOperation(typeMapEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    g2 = createEGenericType();
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     initEClass(typeBigDecimalEClass, TypeBigDecimal.class, "TypeBigDecimal", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeBigDecimal_Value(), theEcorePackage.getEBigDecimal(), "value", null, 0, 1, TypeBigDecimal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$

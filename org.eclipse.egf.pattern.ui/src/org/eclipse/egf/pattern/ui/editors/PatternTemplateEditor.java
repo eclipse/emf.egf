@@ -50,7 +50,7 @@ public class PatternTemplateEditor extends MultiPageEditorPart {
     void createPage(PatternMethod method) {
         try {
 
-            TextEditor editor = TemplateEditorFactory.getEditor(getPattern());
+            TextEditor editor = new TextEditor();
             int index = addPage(editor, new PatternMethodEditorInput(method.eResource(), method.getID()));
             setPageText(index, method.getName());
             editors.put(method.getID(), editor);

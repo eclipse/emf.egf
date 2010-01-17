@@ -89,7 +89,7 @@ public interface TaskContractContainer extends ActivityContractContainer {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type type);
+  EList<ActivityContract> getActivityContracts(Type<?> type);
 
   /**
    * <!-- begin-user-doc -->
@@ -105,6 +105,6 @@ public interface TaskContractContainer extends ActivityContractContainer {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type type, ContractMode mode);
+  EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode);
 
 } // TaskContractContainer

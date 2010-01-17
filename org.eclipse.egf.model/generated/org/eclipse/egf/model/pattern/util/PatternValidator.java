@@ -211,8 +211,6 @@ public class PatternValidator extends EObjectValidator {
       return validateCustomQuery((CustomQuery) value, diagnostics, context);
     case PatternPackage.STRING2_PATTERN_LIST:
       return validateString2PatternList((Map.Entry<?, ?>) value, diagnostics, context);
-    case PatternPackage.STRING2_STRING:
-      return validateString2String((Map.Entry<?, ?>) value, diagnostics, context);
     case PatternPackage.TYPE_PATTERN_EXECUTION_REPORTER:
       return validateTypePatternExecutionReporter((TypePatternExecutionReporter) value, diagnostics, context);
     case PatternPackage.PATTERN_CONTEXT:
@@ -439,15 +437,6 @@ public class PatternValidator extends EObjectValidator {
    */
   public boolean validateString2PatternList(Map.Entry<?, ?> string2PatternList, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return validate_EveryDefaultConstraint((EObject) string2PatternList, diagnostics, context);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public boolean validateString2String(Map.Entry<?, ?> string2String, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint((EObject) string2String, diagnostics, context);
   }
 
   /**

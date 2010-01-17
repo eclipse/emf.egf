@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="editor" name="editor" schema="schema/editor.exsd"/>
 
    <extension
          point="org.eclipse.egf.core.ui.viewpoint.editor.contributor">
@@ -219,7 +218,7 @@
              default="false"
              id="org.eclipse.egf.pattern.ui.patternContext">
           <selector
-                class="org.eclipse.egf.pattern.ui.editors.selector.DefaultClientSelector">
+                class="org.eclipse.egf.pattern.ui.editors.selector.PatternValidationDelegateClientSelector">
           </selector>
        </clientContext>
        <binding
@@ -231,7 +230,7 @@
              default="false"
              id="org.eclipse.egf.pattern.ui.patternParameterContext">
           <selector
-                class="org.eclipse.egf.pattern.ui.editors.selector.DefaultClientSelector">
+                class="org.eclipse.egf.pattern.ui.editors.selector.ParameterValidationDelegateClientSelector">
           </selector>
        </clientContext>
        <binding
@@ -243,7 +242,7 @@
              default="false"
              id="org.eclipse.egf.pattern.ui.patternVariableContext">
           <selector
-                class="org.eclipse.egf.pattern.ui.editors.selector.DefaultClientSelector">
+                class="org.eclipse.egf.pattern.ui.editors.selector.VariableValidationDelegateClientSelector">
           </selector>
        </clientContext>
        <binding

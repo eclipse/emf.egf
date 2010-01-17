@@ -23,7 +23,6 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
 import org.eclipse.egf.fprod.producer.invocation.ITaskProductionInvocation;
-import org.eclipse.egf.model.fprod.Task;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
@@ -46,16 +45,16 @@ public class ProductionTaskInvocation implements ITaskProductionInvocation {
   private ITaskProductionContext _taskProductionContext;
 
   /**
-   * Task
+   * IProductionTask
    */
-  private Task _task;
+  private String _value;
 
-  public ProductionTaskInvocation(Bundle bundle, ITaskProductionContext taskProductionContext, Task task) {
+  public ProductionTaskInvocation(Bundle bundle, ITaskProductionContext taskProductionContext, String value) {
     Assert.isNotNull(bundle);
     Assert.isNotNull(taskProductionContext);
     _bundle = bundle;
     _taskProductionContext = taskProductionContext;
-    _task = task;
+    _value = value;
   }
 
   /**
@@ -67,18 +66,18 @@ public class ProductionTaskInvocation implements ITaskProductionInvocation {
   protected ITaskProduction createProductionInvocationInstance() throws CoreException {
     ITaskProduction productionTask = null;
     // Nothing to do
-    if (_task == null || _task.getValue() == null || _task.getValue().trim().length() == 0) {
+    if (_value == null) {
       return null;
     }
     // Load Class and instantiate
     try {
-      productionTask = (ITaskProduction) BundleHelper.instantiate(_task.getValue().trim(), _bundle);
+      productionTask = (ITaskProduction) BundleHelper.instantiate(_value.trim(), _bundle);
     } catch (ClassNotFoundException cnfe) {
-      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _task.getValue()), cnfe));
+      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _value), cnfe));
     } catch (InstantiationException ie) {
-      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _task.getValue()), ie));
+      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _value), ie));
     } catch (IllegalAccessException iae) {
-      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _task.getValue()), iae));
+      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.AbstractTask_errorTaskInstance, _value), iae));
     }
     return productionTask;
   }
@@ -90,7 +89,7 @@ public class ProductionTaskInvocation implements ITaskProductionInvocation {
    * @return true if the execution was successful, false otherwise.
    */
   public void invoke(final IProgressMonitor monitor) throws InvocationException {
-    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, _task.getName()), 1000);
+    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, _taskProductionContext.getName()), 1000);
     try {
       // Instantiate an IProductionTask object
       ITaskProduction task = null;

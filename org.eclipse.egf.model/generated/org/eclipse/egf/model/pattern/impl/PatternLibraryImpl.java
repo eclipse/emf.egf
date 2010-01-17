@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreEMap;
+import org.eclipse.emf.ecore.util.EObjectEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
@@ -34,13 +35,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getElements <em>Elements</em>}
- * </li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getFilters <em>Filters</em>}
- * </li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getElements <em>Elements</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl#getFilters <em>Filters</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PatternLibraryImpl extends PatternElementImpl implements PatternLibrary {
@@ -48,7 +47,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
    * The cached value of the '{@link #getElements() <em>Elements</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getElements()
    * @generated
    * @ordered
@@ -59,7 +57,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
    * The cached value of the '{@link #getFilters() <em>Filters</em>}' map.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getFilters()
    * @generated
    * @ordered
@@ -69,7 +66,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected PatternLibraryImpl() {
@@ -79,7 +75,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -90,7 +85,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EList<PatternElement> getElements() {
@@ -103,7 +97,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EMap<String, EList<PatternElement>> getFilters() {
@@ -116,7 +109,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -132,7 +124,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -149,7 +140,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -169,7 +159,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -190,7 +179,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -209,7 +197,6 @@ public class PatternLibraryImpl extends PatternElementImpl implements PatternLib
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

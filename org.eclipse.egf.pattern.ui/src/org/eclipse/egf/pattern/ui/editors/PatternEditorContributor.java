@@ -56,12 +56,5 @@ public class PatternEditorContributor extends EditingDomainActionBarContributor 
         redoAction = new RedoActionWrapper();
         redoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
         actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), redoAction);
-
-        actionBars.setGlobalActionHandler(ActionFactory.CUT.getId(), null);
-
-        actionBars.setGlobalActionHandler(ActionFactory.COPY.getId(), null);
-
-        actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(), null);
     }
-
 }

@@ -185,13 +185,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass string2StringEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   private EClass typePatternExecutionReporterEClass = null;
 
   /**
@@ -627,15 +620,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getQuery_QueryContext() {
-    return (EReference) queryEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
    * @generated
    */
@@ -684,33 +668,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
    */
   public EReference getString2PatternList_Value() {
     return (EReference) string2PatternListEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getString2String() {
-    return string2StringEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getString2String_Key() {
-    return (EAttribute) string2StringEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getString2String_Value() {
-    return (EAttribute) string2StringEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -840,7 +797,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     queryEClass = createEClass(QUERY);
     createEReference(queryEClass, QUERY__PARAMETER);
     createEAttribute(queryEClass, QUERY__EXTENSION_ID);
-    createEReference(queryEClass, QUERY__QUERY_CONTEXT);
 
     basicQueryEClass = createEClass(BASIC_QUERY);
 
@@ -851,10 +807,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     string2PatternListEClass = createEClass(STRING2_PATTERN_LIST);
     createEAttribute(string2PatternListEClass, STRING2_PATTERN_LIST__KEY);
     createEReference(string2PatternListEClass, STRING2_PATTERN_LIST__VALUE);
-
-    string2StringEClass = createEClass(STRING2_STRING);
-    createEAttribute(string2StringEClass, STRING2_STRING__KEY);
-    createEAttribute(string2StringEClass, STRING2_STRING__VALUE);
 
     typePatternExecutionReporterEClass = createEClass(TYPE_PATTERN_EXECUTION_REPORTER);
 
@@ -913,7 +865,10 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     basicQueryEClass.getESuperTypes().add(this.getQuery());
     stringQueryEClass.getESuperTypes().add(this.getQuery());
     customQueryEClass.getESuperTypes().add(this.getQuery());
-    typePatternExecutionReporterEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
+    EGenericType g1 = createEGenericType(theTypesPackage.getTypeAbstractClass());
+    EGenericType g2 = createEGenericType(this.getEPatternExecutionReporter());
+    g1.getETypeArguments().add(g2);
+    typePatternExecutionReporterEClass.getEGenericSuperTypes().add(g1);
 
     // Initialize classes and features; add operations and parameters
     initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -983,7 +938,14 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     initEClass(queryEClass, Query.class, "Query", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getQuery_Parameter(), this.getPatternParameter(), this.getPatternParameter_Query(), "parameter", null, 1, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEAttribute(getQuery_ExtensionId(), theEcorePackage.getEString(), "extensionId", null, 1, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getQuery_QueryContext(), this.getString2String(), null, "queryContext", null, 0, -1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+    op = addEOperation(queryEClass, null, "getQueryContext", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    g1 = createEGenericType(ecorePackage.getEMap());
+    g2 = createEGenericType(ecorePackage.getEString());
+    g1.getETypeArguments().add(g2);
+    g2 = createEGenericType(ecorePackage.getEString());
+    g1.getETypeArguments().add(g2);
+    initEOperation(op, g1);
 
     initEClass(basicQueryEClass, BasicQuery.class, "BasicQuery", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -995,17 +957,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     initEAttribute(getString2PatternList_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getString2PatternList_Value(), this.getPatternElement(), null, "value", null, 0, -1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(string2StringEClass, Map.Entry.class, "String2String", !IS_ABSTRACT, !IS_INTERFACE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEAttribute(getString2String_Key(), ecorePackage.getEString(), "key", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEAttribute(getString2String_Value(), ecorePackage.getEString(), "value", null, 1, 1, Map.Entry.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
     initEClass(typePatternExecutionReporterEClass, TypePatternExecutionReporter.class, "TypePatternExecutionReporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-    op = addEOperation(typePatternExecutionReporterEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    EGenericType g1 = createEGenericType(theEcorePackage.getEJavaClass());
-    EGenericType g2 = createEGenericType();
-    g1.getETypeArguments().add(g2);
-    initEOperation(op, g1);
 
     // Initialize data types
     initEDataType(patternContextEDataType, PatternContext.class, "PatternContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

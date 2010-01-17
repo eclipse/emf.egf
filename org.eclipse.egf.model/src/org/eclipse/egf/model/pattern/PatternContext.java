@@ -26,32 +26,32 @@ import org.osgi.framework.Bundle;
  * un peu de control pour savoir les noms en lecture et ceux en écriture.
  * 
  * 
- * @author Thomas Guiu
+ * @author Guiu
  * 
  */
 public class PatternContext implements BundleAccessor {
 
     /**
-     * Public Keys to manage the patter execution reporter.
+     * Key to manage the patter execution reporter.
      */
     public static final String PATTERN_REPORTER = "pattern.execution.reporter";
+
     public static final String PATTERN_ID = "pattern.id";
     public static final String PATTERN_IDS_PARAMETER = "pattern.ids";
-    public static final String DOMAIN_OBJECTS = "domain";
 
     /**
-     * keys to manage the context injected to a pattern.
+     * key to manage the context injected to a pattern.
      */
     public static final String INJECTED_CONTEXT = "internal.injected.context";
 
     /**
      * key to manage the object collection to perform queries on.
      */
+    public static final String DOMAIN_OBJECTS = "domain";
 
     private PatternContext parent;
     private final Map<String, Object> data = new HashMap<String, Object>();
     private final BundleAccessor accessor;
-    private PatternExecutionReporter reporter;
 
     public PatternContext(BundleAccessor accessor) {
         if (accessor == null)
@@ -83,20 +83,6 @@ public class PatternContext implements BundleAccessor {
     public Bundle getBundle(String id) throws PatternException {
 
         return accessor.getBundle(id);
-    }
-
-    public void setReporter(PatternExecutionReporter reporter) {
-        this.reporter = reporter;
-    }
-
-    public PatternExecutionReporter getReporter() {
-        if (reporter == null) {
-            // no need for a chain of command
-            // if (parent == null)
-            throw new IllegalStateException();
-            // return parent.getReporter();
-        }
-        return reporter;
     }
 
 }

@@ -42,7 +42,7 @@ public interface Activity extends ModelElement {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type type);
+  EList<ActivityContract> getActivityContracts(Type<?> type);
 
   /**
    * <!-- begin-user-doc -->
@@ -58,6 +58,6 @@ public interface Activity extends ModelElement {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type type, ContractMode mode);
+  EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode);
 
 } // Activity

@@ -156,8 +156,6 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
     private void executeModifyMethod(final String newName) {
         if (newName != null && !"".equals(newName) && isModify) {
             int selectionIndex = tableViewer.getTable().getSelectionIndex();
-            if (selectionIndex < 0)
-                return;
             final PatternMethod method = (PatternMethod) tableViewer.getElementAt(selectionIndex);
             RecordingCommand cmd = new RecordingCommand(editingDomain) {
                 protected void doExecute() {

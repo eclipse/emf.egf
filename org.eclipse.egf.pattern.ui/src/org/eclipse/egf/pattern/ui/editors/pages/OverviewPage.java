@@ -32,7 +32,6 @@ import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ContainerLibrarySelectionDialog;
-import org.eclipse.egf.pattern.ui.editors.validation.ValidationConstants;
 import org.eclipse.emf.databinding.EMFUpdateValueStrategy;
 import org.eclipse.emf.databinding.edit.EMFEditProperties;
 import org.eclipse.emf.databinding.edit.IEMFEditValueProperty;
@@ -86,9 +85,7 @@ public class OverviewPage extends PatternEditorPage {
 
     private FormColors colors = new FormColors(Display.getDefault());
 
-    private LiveValidationContentAdapter patternNameEmpetyValidationAdapter;
-
-    private IMessageManager mmng;
+    private LiveValidationContentAdapter liveValidationContentAdapter;
 
     public OverviewPage(FormEditor editor) {
         super(editor, ID, Messages.OverviewPage_title);
@@ -98,7 +95,7 @@ public class OverviewPage extends PatternEditorPage {
     protected void doCreateFormContent(IManagedForm managedForm) {
         FormToolkit toolkit = managedForm.getToolkit();
         ScrolledForm form = managedForm.getForm();
-        mmng = managedForm.getMessageManager();
+        final IMessageManager mmng = managedForm.getMessageManager();
 
         GridLayout gridLayout = new GridLayout();
         form.getBody().setLayout(gridLayout);
@@ -112,11 +109,14 @@ public class OverviewPage extends PatternEditorPage {
         container.setLayoutData(gd);
         container.setFocus();
 
-        createLeftContainer(toolkit, container);
+        createLeftContainer(toolkit, container, mmng);
         createRightContainer(toolkit, container);
         createDescriContainer(toolkit, container);
 
         checkReadOnlyModel();
+
+        // Add EMF validation for pattern.
+        liveValidationContentAdapter = PatternUIHelper.addEMFValidation(mmng, getPattern(), Messages.PatternUIHelper_key_NonPatternEmptyName, nameText, liveValidationContentAdapter);
 
         form.reflow(true);
     }
@@ -135,7 +135,7 @@ public class OverviewPage extends PatternEditorPage {
         browse.setEnabled(false);
     }
 
-    private void createLeftContainer(FormToolkit toolkit, Composite container) {
+    private void createLeftContainer(FormToolkit toolkit, Composite container, IMessageManager mmng) {
         Section sectionLeft = toolkit.createSection(container, Section.TITLE_BAR);
         sectionLeft.setText(Messages.OverviewPage_sectionLeft_title);
 
@@ -157,12 +157,12 @@ public class OverviewPage extends PatternEditorPage {
         gd.horizontalSpan = 2;
         title.setLayoutData(gd);
 
-        createPatternInfoContainer(toolkit, containerLeft);
+        createPatternInfoContainer(toolkit, containerLeft, mmng);
 
         sectionLeft.setClient(containerLeft);
     }
 
-    private void createPatternInfoContainer(FormToolkit toolkit, Composite containerLeft) {
+    private void createPatternInfoContainer(FormToolkit toolkit, Composite containerLeft, final IMessageManager mmng) {
         Composite patternInfo = toolkit.createComposite(containerLeft, SWT.NONE);
         GridLayout gridLayout = new GridLayout(3, false);
         patternInfo.setLayout(gridLayout);
@@ -351,11 +351,10 @@ public class OverviewPage extends PatternEditorPage {
     }
 
     void bindName() {
-        Pattern pattern = getPattern();
         IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.MODEL_ELEMENT__NAME);
         IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
         IObservableValue uiObs = textProp.observeDelayed(400, nameText);
-        IObservableValue mObs = mprop.observe(pattern);
+        IObservableValue mObs = mprop.observe(getPattern());
 
         addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
 
@@ -382,6 +381,9 @@ public class OverviewPage extends PatternEditorPage {
     }
 
     void bindContainer() {
+        if (getPattern() == null) {
+            return;
+        }
         IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN_ELEMENT__CONTAINER);
         IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
         IObservableValue uiObs = textProp.observeDelayed(400, fullNameText);
@@ -417,17 +419,14 @@ public class OverviewPage extends PatternEditorPage {
 
     @Override
     protected void bind() {
-        if (getPattern() != null) {
-            bindName();
-            bindDescripition();
-            bindContainer();
-            patternNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_NAME_NOT_EMPTY_ID, nameText);
-        }
+        bindName();
+        bindDescripition();
+        bindContainer();
     }
 
     @Override
     public void dispose() {
-        PatternUIHelper.removeAdapterForPattern(getPattern(), patternNameEmpetyValidationAdapter);
+        PatternUIHelper.removeAdapterForPattern(getPattern(), liveValidationContentAdapter);
         super.dispose();
     }
 

@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeShortImpl extends TypeObjectImpl implements TypeShort {
+public class TypeShortImpl extends TypeObjectImpl<Short> implements TypeShort {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

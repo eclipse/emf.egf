@@ -27,10 +27,10 @@ import java.math.BigDecimal;
  * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeBigDecimal()
- * @model
+ * @model superTypes="org.eclipse.egf.model.types.TypeObject<org.eclipse.emf.ecore.EBigDecimal>"
  * @generated
  */
-public interface TypeBigDecimal extends TypeObject {
+public interface TypeBigDecimal extends TypeObject<BigDecimal> {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->

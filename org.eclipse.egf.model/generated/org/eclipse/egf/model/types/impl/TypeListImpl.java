@@ -12,6 +12,8 @@
  */
 package org.eclipse.egf.model.types.impl;
 
+import java.util.List;
+
 import org.eclipse.egf.model.types.TypeList;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
@@ -22,14 +24,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
-public class TypeListImpl extends TypeAbstractClassImpl implements TypeList {
+public class TypeListImpl extends TypeAbstractClassImpl<List> implements TypeList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypeListImpl() {
@@ -39,24 +40,11 @@ public class TypeListImpl extends TypeAbstractClassImpl implements TypeList {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   protected EClass eStaticClass() {
     return TypesPackage.Literals.TYPE_LIST;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Class<?> getType() {
-    return java.util.List.class;
   }
 
 } // TypeListImpl

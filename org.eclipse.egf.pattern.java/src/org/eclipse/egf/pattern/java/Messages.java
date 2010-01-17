@@ -14,7 +14,6 @@ public class Messages extends NLS {
 
     public static String assembly_error8;
     public static String assembly_error7;
-    public static String assembly_error9;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.java.JavaPatternMessages";//$NON-NLS-1$
     static {

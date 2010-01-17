@@ -37,7 +37,7 @@ import org.eclipse.model.domain.adapter.TypeDomainEPackageAdapter;
  *
  * @generated
  */
-public class TypeDomainEPackageImpl extends TypeImpl implements TypeDomainEPackage {
+public class TypeDomainEPackageImpl extends TypeImpl<EPackage> implements TypeDomainEPackage {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->

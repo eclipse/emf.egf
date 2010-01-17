@@ -132,7 +132,7 @@ public class DomainAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
-    public Adapter caseType(Type object) {
+    public <T extends Object> Adapter caseType(Type<T> object) {
       return createTypeAdapter();
     }
 

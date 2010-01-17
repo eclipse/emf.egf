@@ -451,29 +451,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link java.util.Map.Entry} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected String2StringItemProvider string2StringItemProvider;
-
-  /**
-   * This creates an adapter for a {@link java.util.Map.Entry}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createString2StringAdapter() {
-    if (string2StringItemProvider == null) {
-      string2StringItemProvider = new String2StringItemProvider(this);
-    }
-
-    return string2StringItemProvider;
-  }
-
-  /**
    * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.TypePatternExecutionReporter} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -625,8 +602,6 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
       customQueryItemProvider.dispose();
     if (string2PatternListItemProvider != null)
       string2PatternListItemProvider.dispose();
-    if (string2StringItemProvider != null)
-      string2StringItemProvider.dispose();
     if (typePatternExecutionReporterItemProvider != null)
       typePatternExecutionReporterItemProvider.dispose();
   }

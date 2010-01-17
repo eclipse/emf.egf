@@ -42,6 +42,17 @@
       </toc>
    </extension>
    <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts_EGF_Engine.xml"
+            plugin="org.eclipse.egf.core.ui">
+      </contexts>
+      <contexts
+            file="contexts_EGF_Engine.xml"
+            plugin="org.eclipse.egf.pde">
+      </contexts>
+   </extension>
+   <extension
          point="org.eclipse.pde.core.javadoc">
       <javadoc
             path="html/reference/javadoc/">

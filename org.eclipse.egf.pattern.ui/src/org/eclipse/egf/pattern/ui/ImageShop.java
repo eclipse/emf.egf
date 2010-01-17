@@ -36,10 +36,10 @@ public class ImageShop {
     public static final String IMG_HELP = ICON_PATH + "help.gif";
     public static final String IMG_INNERCLASS_PUBLIC_OBJ = ICON_PATH + "innerclass_public_obj.gif";
     public static final String IMG_METHOD_OVERRIDE = ICON_PATH + "method_override.png";
-    public static final String IMG_KIND_METHODCALL = ICON_PATH + "kind_methodCall.gif";
-    public static final String IMG_KIND_PATTERNCALL = ICON_PATH + "kind_patternCall.gif";
-    public static final String IMG_KIND_PATTERNINJECTEDCALL = ICON_PATH + "kind_patternInjectedCall.gif";
-    public static final String IMG_KIND_SUPERPATTERNCALL = ICON_PATH + "kind_superPatternCall.gif";
+    public static final String IMG_KIND_METODCALL_OBJ = ICON_PATH + "kind_metodCall_obj.gif";
+    public static final String IMG_KIND_PATTERNCALL_OBJ = ICON_PATH + "kind_patternCall_obj.gif";
+    public static final String IMG_KIND_PATTERNINJECTEDCALL_OBJ = ICON_PATH + "kind_patternInjectedCall_obj.gif";
+    public static final String IMG_KIND_SUPERPATTERNCALL_OBJ = ICON_PATH + "kind_superPatternCall_obj.gif";
     public static final String IMG_OVER_OBJ = ICON_PATH + "over_obj.gif";
     public static final String IMG_CATEGORY_OBJ = ICON_PATH + "category_obj.gif";
     public static final String IMG_TREE_MODE = ICON_PATH + "tree_mode.gif";
@@ -52,7 +52,6 @@ public class ImageShop {
     public static final String IMG_METHOD = ICON_PATH + "method.gif";
     public static final String IMG_METHOD_CONTENT_EDIT = ICON_PATH + "method_content_edit.gif";
     public static final String IMG_VARIABLE = ICON_PATH + "variable.gif";
-    public static final String IMG_QUERY_SET = ICON_PATH + "query_set.gif";
 
     private static final ImageRegistry REGISTRY = new ImageRegistry();
 

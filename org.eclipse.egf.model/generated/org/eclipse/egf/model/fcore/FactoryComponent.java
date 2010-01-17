@@ -105,7 +105,7 @@ public interface FactoryComponent extends Activity {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type type);
+  EList<ActivityContract> getActivityContracts(Type<?> type);
 
   /**
    * <!-- begin-user-doc -->
@@ -122,7 +122,7 @@ public interface FactoryComponent extends Activity {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type type, ContractMode mode);
+  EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode);
 
   /**
    * Returns the value of the '<em><b>Activity Contract Container</b></em>' containment reference.
@@ -166,7 +166,7 @@ public interface FactoryComponent extends Activity {
    * @model
    * @generated
    */
-  EList<InvocationContext> getInvocationContexts(Type type);
+  EList<InvocationContext> getInvocationContexts(Type<?> type);
 
   /**
    * <!-- begin-user-doc -->
@@ -182,6 +182,6 @@ public interface FactoryComponent extends Activity {
    * @model
    * @generated
    */
-  EList<InvocationContext> getInvocationContexts(Type type, ContractMode mode);
+  EList<InvocationContext> getInvocationContexts(Type<?> type, ContractMode mode);
 
 } // FactoryComponent

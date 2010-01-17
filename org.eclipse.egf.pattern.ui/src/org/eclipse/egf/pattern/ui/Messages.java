@@ -219,24 +219,22 @@ public class Messages extends NLS {
     // ParametersEdit Dialog
     public static String ParametersEditDialog_Browse;
 
-    public static String ParametersEditDialog_duplicate_key_error_message;
-
-    public static String ParametersEditDialog_Key_title;
-
     public static String ParametersEditDialog_Name;
 
     public static String ParametersEditDialog_Query;
 
-    public static String ParametersEditDialog_query_context_label;
-
     public static String ParametersEditDialog_Type;
-
-    public static String ParametersEditDialog_Value_title;
 
     // PatternSelection Dialog
     public static String PatternSelectiondialog_dialogArea_label;
 
     public static String PatternSelectiondialog_pattern_label;
+
+    public static String PatternUIHelper_key_NonPatternEmptyName;
+
+    public static String PatternUIHelper_key_NonPatternVariableEmptyName;
+
+    public static String PatternUIHelper_key_NonPatternParameterEmptyName;
 
     // OpenType Page
     public static String OpenTypeWizard_window_title;

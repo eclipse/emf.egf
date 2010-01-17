@@ -25,11 +25,11 @@ package org.eclipse.egf.model.types;
  * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeAbstractClass()
- * @model abstract="true"
+ * @model abstract="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='LoadableValue ValidValue'"
  * @generated
  */
-public interface TypeAbstractClass extends Type {
+public interface TypeAbstractClass<T extends Object> extends Type<T> {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -55,13 +55,5 @@ public interface TypeAbstractClass extends Type {
    * @generated
    */
   void setValue(String value);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
-   * @generated
-   */
-  <T extends Object> Class<T> getType();
 
 } // TypeAbstractClass
