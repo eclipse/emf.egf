@@ -64,7 +64,7 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
    * @generated
    * @ordered
    */
-  protected Type<?> type;
+  protected Type type;
 
   /**
    * <!-- begin-user-doc -->
@@ -144,7 +144,7 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type<?> getType() {
+  public Type getType() {
     return type;
   }
 
@@ -153,8 +153,8 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Type<?> newType, NotificationChain msgs) {
-    Type<?> oldType = type;
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs) {
+    Type oldType = type;
     type = newType;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.ORCHESTRATION_CONTEXT__TYPE, oldType, newType);
@@ -171,7 +171,7 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(Type<?> newType) {
+  public void setType(Type newType) {
     if (newType != type) {
       NotificationChain msgs = null;
       if (type != null)
@@ -284,7 +284,7 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
       getInvocationContexts().addAll((Collection<? extends InvocationContext>) newValue);
       return;
     case FcorePackage.ORCHESTRATION_CONTEXT__TYPE:
-      setType((Type<?>) newValue);
+      setType((Type) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -305,7 +305,7 @@ public class OrchestrationContextImpl extends ModelElementImpl implements Orches
       getInvocationContexts().clear();
       return;
     case FcorePackage.ORCHESTRATION_CONTEXT__TYPE:
-      setType((Type<?>) null);
+      setType((Type) null);
       return;
     }
     super.eUnset(featureID);

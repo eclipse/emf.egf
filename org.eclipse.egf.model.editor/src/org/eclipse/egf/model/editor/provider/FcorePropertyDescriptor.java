@@ -60,15 +60,15 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
 
     Object feature = itemPropertyDescriptor.getFeature(object);
 
-    if ((object instanceof TypeAbstractClass<?> && feature.equals(TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE)) || (object instanceof Task && feature.equals(FprodPackage.Literals.TASK__VALUE))) {
+    if ((object instanceof TypeAbstractClass && feature.equals(TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE)) || (object instanceof Task && feature.equals(FprodPackage.Literals.TASK__VALUE))) {
 
       // Data Holder
       final Class<?>[] clazzes = new Class<?>[1];
       final String[] values = new String[1];
 
       // Switch
-      if (object instanceof TypeAbstractClass<?>) {
-        TypeAbstractClass<?> typeAbstractClass = (TypeAbstractClass<?>) object;
+      if (object instanceof TypeAbstractClass) {
+        TypeAbstractClass typeAbstractClass = (TypeAbstractClass) object;
         // Type should be defined
         if (typeAbstractClass.getType() == null) {
           return null;

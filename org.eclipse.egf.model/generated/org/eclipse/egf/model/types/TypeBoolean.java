@@ -25,10 +25,10 @@ package org.eclipse.egf.model.types;
  * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeBoolean()
- * @model superTypes="org.eclipse.egf.model.types.TypeObject<org.eclipse.emf.ecore.EBooleanObject>"
+ * @model
  * @generated
  */
-public interface TypeBoolean extends TypeObject<Boolean> {
+public interface TypeBoolean extends TypeObject {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->

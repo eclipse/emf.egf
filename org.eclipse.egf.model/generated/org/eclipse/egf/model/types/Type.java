@@ -19,17 +19,17 @@ package org.eclipse.egf.model.types;
  *
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getType()
- * @model abstract="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
+ * @model abstract="true"
  * @generated
  */
-public interface Type<T extends Object> extends TypeElement {
+public interface Type extends TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @model kind="operation" required="true"
+   * @model kind="operation" required="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
    * @generated
    */
-  Class<T> getType();
+  <T extends Object> Class<T> getType();
 
   /**
    * <!-- begin-user-doc -->

@@ -70,7 +70,7 @@ public class TypeObjectItemProvider extends TypeItemProvider implements IEditing
    */
   @Override
   public String getText(Object object) {
-    String label = ((TypeObject<?>) object).getName();
+    String label = ((TypeObject) object).getName();
     return label == null || label.length() == 0 ? "[" + getString("_UI_TypeObject_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         label + " [" + getString("_UI_TypeObject_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }

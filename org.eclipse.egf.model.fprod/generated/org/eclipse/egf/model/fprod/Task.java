@@ -105,7 +105,7 @@ public interface Task extends Activity {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type<?> type);
+  EList<ActivityContract> getActivityContracts(Type type);
 
   /**
    * <!-- begin-user-doc -->
@@ -121,6 +121,6 @@ public interface Task extends Activity {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode);
+  EList<ActivityContract> getActivityContracts(Type type, ContractMode mode);
 
 } // Task

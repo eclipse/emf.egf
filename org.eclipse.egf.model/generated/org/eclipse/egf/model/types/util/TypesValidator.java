@@ -29,7 +29,6 @@ import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypeBoolean;
 import org.eclipse.egf.model.types.TypeByte;
 import org.eclipse.egf.model.types.TypeCharacter;
-import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypeDate;
 import org.eclipse.egf.model.types.TypeDouble;
@@ -188,13 +187,11 @@ public class TypesValidator extends EObjectValidator {
     case TypesPackage.TYPE_ELEMENT:
       return validateTypeElement((TypeElement) value, diagnostics, context);
     case TypesPackage.TYPE:
-      return validateType((Type<?>) value, diagnostics, context);
+      return validateType((Type) value, diagnostics, context);
     case TypesPackage.TYPE_OBJECT:
-      return validateTypeObject((TypeObject<?>) value, diagnostics, context);
+      return validateTypeObject((TypeObject) value, diagnostics, context);
     case TypesPackage.TYPE_ABSTRACT_CLASS:
-      return validateTypeAbstractClass((TypeAbstractClass<?>) value, diagnostics, context);
-    case TypesPackage.TYPE_CLASS:
-      return validateTypeClass((TypeClass) value, diagnostics, context);
+      return validateTypeAbstractClass((TypeAbstractClass) value, diagnostics, context);
     case TypesPackage.TYPE_COLLECTION:
       return validateTypeCollection((TypeCollection) value, diagnostics, context);
     case TypesPackage.TYPE_LIST:
@@ -260,7 +257,7 @@ public class TypesValidator extends EObjectValidator {
    * 
    * @generated
    */
-  public boolean validateType(Type<?> type, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateType(Type type, DiagnosticChain diagnostics, Map<Object, Object> context) {
     return validate_EveryDefaultConstraint(type, diagnostics, context);
   }
 
@@ -270,7 +267,7 @@ public class TypesValidator extends EObjectValidator {
    * 
    * @generated
    */
-  public boolean validateTypeObject(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeObject(TypeObject typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
     boolean result = validate_EveryMultiplicityConforms(typeObject, diagnostics, context);
     if (result || diagnostics != null)
       result &= validate_EveryDataValueConforms(typeObject, diagnostics, context);
@@ -298,7 +295,7 @@ public class TypesValidator extends EObjectValidator {
    * 
    * @generated NOT
    */
-  public boolean validateTypeObject_LoadableValue(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeObject_LoadableValue(TypeObject typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (typeObject.getValue() == null) {
       return true;
     }
@@ -321,7 +318,7 @@ public class TypesValidator extends EObjectValidator {
    * 
    * @generated NOT
    */
-  public boolean validateTypeObject_ValidValue(TypeObject<?> typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeObject_ValidValue(TypeObject typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (typeObject.getValue() == null) {
       return true;
     }
@@ -343,7 +340,7 @@ public class TypesValidator extends EObjectValidator {
    * 
    * @generated
    */
-  public boolean validateTypeAbstractClass(TypeAbstractClass<?> typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeAbstractClass(TypeAbstractClass typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
     boolean result = validate_EveryMultiplicityConforms(typeAbstractClass, diagnostics, context);
     if (result || diagnostics != null)
       result &= validate_EveryDataValueConforms(typeAbstractClass, diagnostics, context);
@@ -365,40 +362,13 @@ public class TypesValidator extends EObjectValidator {
   }
 
   /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public boolean validateTypeClass(TypeClass typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_UniqueID(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateTypeAbstractClass_LoadableValue(typeClass, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= validateTypeAbstractClass_ValidValue(typeClass, diagnostics, context);
-    return result;
-  }
-
-  /**
    * Validates the LoadableValue constraint of '<em>Type Abstract Class</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public boolean validateTypeAbstractClass_LoadableValue(TypeAbstractClass<?> typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeAbstractClass_LoadableValue(TypeAbstractClass typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (typeAbstractClass.getValue() == null) {
       return true;
     }
@@ -421,7 +391,7 @@ public class TypesValidator extends EObjectValidator {
    * 
    * @generated NOT
    */
-  public boolean validateTypeAbstractClass_ValidValue(TypeAbstractClass<?> typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeAbstractClass_ValidValue(TypeAbstractClass typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (typeAbstractClass.getValue() == null) {
       return true;
     }

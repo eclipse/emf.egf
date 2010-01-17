@@ -36,17 +36,20 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fprod.impl.TaskContractImpl#getActivityContractContainer <em>Activity Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fprod.impl.TaskContractImpl#getActivityContractContainer
+ * <em>Activity Contract Container</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TaskContractImpl extends ActivityContractImpl implements TaskContract {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable
+   * features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -55,6 +58,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TaskContractImpl() {
@@ -64,6 +68,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -88,6 +93,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -100,6 +106,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetActivityContractContainer(TaskContractContainer newActivityContractContainer, NotificationChain msgs) {
@@ -110,6 +117,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setActivityContractContainer(TaskContractContainer newActivityContractContainer) {
@@ -151,7 +159,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
    * @generated NOT
    */
   @Override
-  public EList<ActivityContract> getActivityContracts(Type<?> innerType) {
+  public EList<ActivityContract> getActivityContracts(Type innerType) {
     EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
     if (getActivityContractContainer() != null) {
       return getActivityContractContainer().getActivityContracts(innerType);
@@ -181,7 +189,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
    * @generated NOT
    */
   @Override
-  public EList<ActivityContract> getActivityContracts(Type<?> innerType, ContractMode mode) {
+  public EList<ActivityContract> getActivityContracts(Type innerType, ContractMode mode) {
     EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
     if (getActivityContractContainer() != null) {
       return getActivityContractContainer().getActivityContracts(innerType, mode);
@@ -192,6 +200,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -208,6 +217,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -222,6 +232,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -236,6 +247,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -250,6 +262,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -265,6 +278,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -280,6 +294,7 @@ public class TaskContractImpl extends ActivityContractImpl implements TaskContra
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

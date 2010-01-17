@@ -18,12 +18,23 @@ import org.eclipse.egf.model.types.TypeAbstractClass;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type Pattern Execution Reporter</b></em>'.
  * <!-- end-user-doc -->
- *
- *
+ * 
+ * 
  * @see org.eclipse.egf.model.pattern.PatternPackage#getTypePatternExecutionReporter()
- * @model superTypes="org.eclipse.egf.model.types.TypeAbstractClass<org.eclipse.egf.model.pattern.EPatternExecutionReporter>"
+ * @model
  * @generated
  */
-public interface TypePatternExecutionReporter extends TypeAbstractClass<PatternExecutionReporter> {
+public interface TypePatternExecutionReporter extends TypeAbstractClass {
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @model kind="operation" required="true"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.egf.model.pattern.PatternExecutionReporter.class;'"
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  Class<?> getType();
 
 } // TypePatternExecutionReporter

@@ -13,16 +13,13 @@
       <details key="constraints" value="ValidPackage"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ePackage" lowerBound="1"
-        eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
+        eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDomainEPackage">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDomainEPackage" eSuperTypes="Types.ecore#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" eType="#//DomainEPackage"
         resolveProxies="false"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
         changeable="false" volatile="true" transient="true" derived="true"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass Types.ecore#//Type">
-      <eTypeArguments eClassifier="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
-    </eGenericSuperTypes>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DomainURI" eSuperTypes="#//Domain">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -30,13 +27,10 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType Types.ecore#//URI"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDomainURI">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDomainURI" eSuperTypes="Types.ecore#//Type">
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" eType="#//DomainURI"
         resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType Types.ecore#//URI"
         changeable="false" volatile="true" transient="true" derived="true"/>
-    <eGenericSuperTypes eClassifier="ecore:EClass Types.ecore#//Type">
-      <eTypeArguments eClassifier="ecore:EDataType Types.ecore#//URI"/>
-    </eGenericSuperTypes>
   </eClassifiers>
 </ecore:EPackage>

@@ -12,8 +12,6 @@
  */
 package org.eclipse.egf.model.types;
 
-import java.util.Collection;
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type Collection</b></em>'.
@@ -21,9 +19,19 @@ import java.util.Collection;
  *
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeCollection()
- * @model superTypes="org.eclipse.egf.model.types.TypeAbstractClass<org.eclipse.egf.model.types.Collection>"
+ * @model
  * @generated
  */
-public interface TypeCollection extends TypeAbstractClass<Collection> {
+public interface TypeCollection extends TypeAbstractClass {
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation" required="true"
+   *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return java.util.Collection.class;'"
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  Class<?> getType();
 
 } // TypeCollection

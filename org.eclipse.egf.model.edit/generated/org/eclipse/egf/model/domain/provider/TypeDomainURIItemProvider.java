@@ -38,11 +38,9 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.TypeDomainURI}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.TypeDomainURI} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TypeDomainURIItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -50,7 +48,6 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeDomainURIItemProvider(AdapterFactory adapterFactory) {
@@ -61,7 +58,6 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -79,7 +75,6 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
    * This adds a property descriptor for the Domain feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addDomainPropertyDescriptor(Object object) {
@@ -93,7 +88,6 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
    * This adds a property descriptor for the Value feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addValuePropertyDescriptor(Object object) {
@@ -107,7 +101,6 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
    * This returns TypeDomainURI.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -150,7 +143,6 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -171,7 +163,6 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -183,7 +174,6 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

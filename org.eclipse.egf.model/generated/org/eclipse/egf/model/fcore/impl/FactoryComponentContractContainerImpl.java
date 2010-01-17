@@ -41,18 +41,23 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl#getActivity <em>Activity</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl#getActivityContracts <em>Activity Contracts</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl#getActivity
+ * <em>Activity</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.fcore.impl.FactoryComponentContractContainerImpl#getActivityContracts
+ * <em>Activity Contracts</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class FactoryComponentContractContainerImpl extends ActivityContractContainerImpl implements FactoryComponentContractContainer {
   /**
-   * The cached value of the '{@link #getActivityContracts() <em>Activity Contracts</em>}' containment reference list.
+   * The cached value of the '{@link #getActivityContracts() <em>Activity Contracts</em>}'
+   * containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getActivityContracts()
    * @generated
    * @ordered
@@ -62,6 +67,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected FactoryComponentContractContainerImpl() {
@@ -71,6 +77,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -81,6 +88,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -93,6 +101,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetActivity(FactoryComponent newActivity, NotificationChain msgs) {
@@ -103,6 +112,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setActivity(FactoryComponent newActivity) {
@@ -124,6 +134,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -142,7 +153,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
    * @generated NOT
    */
   @Override
-  public EList<ActivityContract> getActivityContracts(Type<?> type) {
+  public EList<ActivityContract> getActivityContracts(Type type) {
     EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
     if (type != null) {
       for (Iterator<FactoryComponentContract> it = getActivityContracts().iterator(); it.hasNext();) {
@@ -186,7 +197,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
    * @generated NOT
    */
   @Override
-  public EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode) {
+  public EList<ActivityContract> getActivityContracts(Type type, ContractMode mode) {
     EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
     for (Iterator<ActivityContract> it = getActivityContracts(type).iterator(); it.hasNext();) {
       ActivityContract contract = it.next();
@@ -204,6 +215,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -223,6 +235,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -239,6 +252,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -253,6 +267,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -269,6 +284,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -289,6 +305,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -307,6 +324,7 @@ public class FactoryComponentContractContainerImpl extends ActivityContractConta
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

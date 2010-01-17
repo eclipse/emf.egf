@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeLongImpl extends TypeObjectImpl<Long> implements TypeLong {
+public class TypeLongImpl extends TypeObjectImpl implements TypeLong {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->

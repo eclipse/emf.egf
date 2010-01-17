@@ -25,10 +25,10 @@ package org.eclipse.egf.model.types;
  * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeByte()
- * @model superTypes="org.eclipse.egf.model.types.TypeObject<org.eclipse.emf.ecore.EByteObject>"
+ * @model
  * @generated
  */
-public interface TypeByte extends TypeObject<Byte> {
+public interface TypeByte extends TypeObject {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->

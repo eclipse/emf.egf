@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class TypeObjectImpl<T extends Object> extends TypeImpl<T> implements TypeObject<T> {
+public abstract class TypeObjectImpl extends TypeImpl implements TypeObject {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

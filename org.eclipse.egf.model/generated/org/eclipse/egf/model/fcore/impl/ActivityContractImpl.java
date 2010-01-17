@@ -116,7 +116,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * @generated
    * @ordered
    */
-  protected Type<?> type;
+  protected Type type;
 
   /**
    * <!-- begin-user-doc -->
@@ -189,7 +189,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * <!-- end-user-doc -->
    * @generated
    */
-  public Type<?> getType() {
+  public Type getType() {
     return type;
   }
 
@@ -198,8 +198,8 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetType(Type<?> newType, NotificationChain msgs) {
-    Type<?> oldType = type;
+  public NotificationChain basicSetType(Type newType, NotificationChain msgs) {
+    Type oldType = type;
     type = newType;
     if (eNotificationRequired()) {
       ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.ACTIVITY_CONTRACT__TYPE, oldType, newType);
@@ -216,7 +216,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setType(Type<?> newType) {
+  public void setType(Type newType) {
     if (newType != type) {
       NotificationChain msgs = null;
       if (type != null)
@@ -268,7 +268,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ActivityContract> getActivityContracts(Type<?> type) {
+  public EList<ActivityContract> getActivityContracts(Type type) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -290,7 +290,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<ActivityContract> getActivityContracts(Type<?> type, ContractMode mode) {
+  public EList<ActivityContract> getActivityContracts(Type type, ContractMode mode) {
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
@@ -343,7 +343,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
       setMode((ContractMode) newValue);
       return;
     case FcorePackage.ACTIVITY_CONTRACT__TYPE:
-      setType((Type<?>) newValue);
+      setType((Type) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -364,7 +364,7 @@ public abstract class ActivityContractImpl extends ModelElementImpl implements A
       setMode(MODE_EDEFAULT);
       return;
     case FcorePackage.ACTIVITY_CONTRACT__TYPE:
-      setType((Type<?>) null);
+      setType((Type) null);
       return;
     }
     super.eUnset(featureID);

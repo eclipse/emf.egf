@@ -19,6 +19,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.EGFModelsPlugin;
+import org.eclipse.egf.model.fcore.*;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ActivityContract;
 import org.eclipse.egf.model.fcore.ActivityContractContainer;
@@ -56,7 +57,6 @@ import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
  * <!-- begin-user-doc -->
  * The <b>Validator</b> for the model.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.fcore.FcorePackage
  * @generated
  */
@@ -65,17 +65,14 @@ public class FcoreValidator extends EObjectValidator {
    * The cached model package
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public static final FcoreValidator INSTANCE = new FcoreValidator();
 
   /**
-   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.emf.common.util.Diagnostic#getSource()
    * @see org.eclipse.emf.common.util.Diagnostic#getCode()
    * @generated
@@ -83,21 +80,17 @@ public class FcoreValidator extends EObjectValidator {
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.fcore"; //$NON-NLS-1$
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants in a derived class.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected static final int DIAGNOSTIC_CODE_COUNT = GENERATED_DIAGNOSTIC_CODE_COUNT;
@@ -106,7 +99,6 @@ public class FcoreValidator extends EObjectValidator {
    * Model Validation Service interface for batch validation of EMF elements.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private final IBatchValidator batchValidator;
@@ -115,7 +107,6 @@ public class FcoreValidator extends EObjectValidator {
    * Creates an instance of the switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FcoreValidator() {
@@ -130,7 +121,6 @@ public class FcoreValidator extends EObjectValidator {
    * Returns the package of this validator switch.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -141,7 +131,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -152,10 +141,10 @@ public class FcoreValidator extends EObjectValidator {
     // no point in validating if we can't report results
     if (diagnostics != null) {
       // if EMF Mode Validation Service already covered the sub-tree,
-      // which it does for efficient computation and error reporting,
-      // then don't repeat (the Diagnostician does the recursion
-      // externally). If there is no context map, then we can't
-      // help it
+      //    which it does for efficient computation and error reporting,
+      //    then don't repeat (the Diagnostician does the recursion
+      //    externally).  If there is no context map, then we can't
+      //    help it
       if (hasProcessed(eObject, context) == false) {
         status = batchValidator.validate(eObject, new NullProgressMonitor());
         processed(eObject, context, status);
@@ -169,7 +158,6 @@ public class FcoreValidator extends EObjectValidator {
    * Calls <code>validateXXX</code> for the corresponding classifier of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -217,7 +205,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateModelElement(ModelElement modelElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -227,7 +214,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateActivity(Activity activity, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -273,7 +259,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateActivityContract(ActivityContract activityContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -300,7 +285,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateActivityContractContainer(ActivityContractContainer activityContractContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -310,7 +294,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateFactoryComponent(FactoryComponent factoryComponent, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -335,7 +318,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateFactoryComponentContract(FactoryComponentContract factoryComponentContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -364,7 +346,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateFactoryComponentContractContainer(FactoryComponentContractContainer factoryComponentContractContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -374,7 +355,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateViewpointContainer(ViewpointContainer viewpointContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -384,7 +364,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateViewpoint(Viewpoint viewpoint, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -394,7 +373,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateOrchestration(Orchestration orchestration, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -404,7 +382,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateOrchestrationContext(OrchestrationContext orchestrationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -448,7 +425,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateOrchestrationContextContainer(OrchestrationContextContainer orchestrationContextContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -493,7 +469,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateInvocation(Invocation<?> invocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -503,7 +478,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateInvocationContext(InvocationContext invocationContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -622,7 +596,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateInvocationContextConnector(InvocationContextConnector invocationContextConnector, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -632,7 +605,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateInvocationContextContainer(InvocationContextContainer invocationContextContainer, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -826,7 +798,6 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public boolean validateContractMode(ContractMode contractMode, DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -834,11 +805,9 @@ public class FcoreValidator extends EObjectValidator {
   }
 
   /**
-   * Returns the resource locator that will be used to fetch messages for this validator's
-   * diagnostics.
+   * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -850,12 +819,9 @@ public class FcoreValidator extends EObjectValidator {
    * If we have a context map, record this object's <code>status</code> in it
    * so that we will know later that we have processed it and its sub-tree.
    * 
-   * @param eObject
-   *          an element that we have validated
-   * @param context
-   *          the context (may be <code>null</code>)
-   * @param status
-   *          the element's validation status
+   * @param eObject an element that we have validated
+   * @param context the context (may be <code>null</code>)
+   * @param status the element's validation status
    *          <!-- begin-user-doc -->
    *          <!-- end-user-doc -->
    * @generated
@@ -868,16 +834,14 @@ public class FcoreValidator extends EObjectValidator {
 
   /**
    * Determines whether we have processed this <code>eObject</code> before,
-   * by automatic recursion of the EMF Model Validation Service. This is
+   * by automatic recursion of the EMF Model Validation Service.  This is
    * only possible if we do, indeed, have a context.
    * 
-   * @param eObject
-   *          an element to be validated (we hope not)
-   * @param context
-   *          the context (may be <code>null</code>)
+   * @param eObject an element to be validated (we hope not)
+   * @param context the context (may be <code>null</code>)
    * @return <code>true</code> if the context is not <code>null</code> and
-   *         the <code>eObject</code> or one of its containers has already been
-   *         validated; <code>false</code>, otherwise
+   *     the <code>eObject</code> or one of its containers has already been
+   *     validated;  <code>false</code>, otherwise
    *         <!-- begin-user-doc -->
    *         <!-- end-user-doc -->
    * @generated
@@ -901,10 +865,8 @@ public class FcoreValidator extends EObjectValidator {
   /**
    * Converts a status result from the EMF validation service to diagnostics.
    * 
-   * @param status
-   *          the EMF validation service's status result
-   * @param diagnostics
-   *          a diagnostic chain to accumulate results on
+   * @param status the EMF validation service's status result
+   * @param diagnostics a diagnostic chain to accumulate results on
    *          <!-- begin-user-doc -->
    *          <!-- end-user-doc -->
    * @generated

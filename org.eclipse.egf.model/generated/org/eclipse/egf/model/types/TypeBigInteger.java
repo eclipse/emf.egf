@@ -27,10 +27,10 @@ import java.math.BigInteger;
  * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeBigInteger()
- * @model superTypes="org.eclipse.egf.model.types.TypeObject<org.eclipse.emf.ecore.EBigInteger>"
+ * @model
  * @generated
  */
-public interface TypeBigInteger extends TypeObject<BigInteger> {
+public interface TypeBigInteger extends TypeObject {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->

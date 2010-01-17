@@ -126,11 +126,11 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
         continue;
       }
       // Class
-      if (contract.getType() instanceof TypeAbstractClass<?>) {
+      if (contract.getType() instanceof TypeAbstractClass) {
         try {
           Object object = null;
           // Should we instantiate value
-          String fqcn = ((TypeAbstractClass<?>) contract.getType()).getValue();
+          String fqcn = ((TypeAbstractClass) contract.getType()).getValue();
           if (fqcn != null && fqcn.trim().length() != 0) {
             object = BundleHelper.instantiate(fqcn.trim(), getBundle());
             if (object == null) {

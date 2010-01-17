@@ -19,9 +19,9 @@ package org.eclipse.egf.model.types;
  *
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeObject()
- * @model abstract="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
+ * @model abstract="true"
  *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='LoadableValue ValidValue'"
  * @generated
  */
-public interface TypeObject<T extends Object> extends Type<T> {
+public interface TypeObject extends Type {
 } // TypeObject

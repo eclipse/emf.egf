@@ -27,10 +27,10 @@ import java.util.Date;
  * </p>
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeDate()
- * @model superTypes="org.eclipse.egf.model.types.TypeObject<org.eclipse.emf.ecore.EDate>"
+ * @model
  * @generated
  */
-public interface TypeDate extends TypeObject<Date> {
+public interface TypeDate extends TypeObject {
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->

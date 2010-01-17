@@ -8,7 +8,7 @@
       <details key="constraints" value="headerMethod footerMethod"/>
     </eAnnotations>
     <eOperations name="getMethod" eType="#//PatternMethod">
-      <eParameters name="name" eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eParameters name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     </eOperations>
     <eOperations name="getAllParameters" upperBound="-1" eType="#//PatternParameter"/>
     <eOperations name="getAllVariables" upperBound="-1" eType="#//PatternVariable"/>
@@ -93,7 +93,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" lowerBound="1"
         eType="#//PatternParameter" resolveProxies="false" eOpposite="#//PatternParameter/query"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="extensionId" lowerBound="1"
-        eType="ecore:EDataType ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+        eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="queryContext" upperBound="-1"
         eType="#//String2String" containment="true"/>
   </eClassifiers>
@@ -109,10 +109,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="key" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypePatternExecutionReporter">
-    <eGenericSuperTypes eClassifier="ecore:EClass Types.ecore#//TypeAbstractClass">
-      <eTypeArguments eClassifier="#//EPatternExecutionReporter"/>
-    </eGenericSuperTypes>
+  <eClassifiers xsi:type="ecore:EClass" name="TypePatternExecutionReporter" eSuperTypes="Types.ecore#//TypeAbstractClass">
+    <eOperations name="getType" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return org.eclipse.egf.model.pattern.PatternExecutionReporter.class;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="EPatternExecutionReporter" instanceClassName="org.eclipse.egf.model.pattern.PatternExecutionReporter"/>
 </ecore:EPackage>

@@ -14,7 +14,6 @@ package org.eclipse.egf.model.types.impl;
 
 import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
 import org.eclipse.egf.model.types.TypesPackage;
-import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.ecore.EClass;
 
 /**
@@ -23,13 +22,14 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- *
+ * 
  * @generated
  */
-public class TypeGeneratorAdapterFactoryImpl extends TypeAbstractClassImpl<GeneratorAdapterFactory> implements TypeGeneratorAdapterFactory {
+public class TypeGeneratorAdapterFactoryImpl extends TypeAbstractClassImpl implements TypeGeneratorAdapterFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TypeGeneratorAdapterFactoryImpl() {
@@ -39,11 +39,24 @@ public class TypeGeneratorAdapterFactoryImpl extends TypeAbstractClassImpl<Gener
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   protected EClass eStaticClass() {
     return TypesPackage.Literals.TYPE_GENERATOR_ADAPTER_FACTORY;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  @SuppressWarnings("unchecked")
+  public Class<?> getType() {
+    return org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.class;
   }
 
 } // TypeGeneratorAdapterFactoryImpl

@@ -66,11 +66,11 @@ public abstract class OrchestrationManager extends ModelElementManager implement
         continue;
       }
       // Class
-      if (orchestrationContext.getType() instanceof TypeAbstractClass<?>) {
+      if (orchestrationContext.getType() instanceof TypeAbstractClass) {
         try {
           Object object = null;
           // Should we instantiate value
-          String fqcn = ((TypeAbstractClass<?>) orchestrationContext.getType()).getValue();
+          String fqcn = ((TypeAbstractClass) orchestrationContext.getType()).getValue();
           if (fqcn != null && fqcn.trim().length() != 0) {
             object = BundleHelper.instantiate(fqcn.trim(), getBundle());
             if (object == null) {

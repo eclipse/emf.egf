@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class TypeDoubleImpl extends TypeObjectImpl<Double> implements TypeDouble {
+public class TypeDoubleImpl extends TypeObjectImpl implements TypeDouble {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
