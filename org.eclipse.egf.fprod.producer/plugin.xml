@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+ 
+<plugin>
+
+  <!-- ================================================================================= -->
+  <!-- Extension Points Definition                                                       -->
+  <!-- ================================================================================= -->
+  
+  <extension-point 
+    id="taskInvocation" 
+    name="%EGFTaskInvocationExtensionPoint" 
+    schema="schema/taskInvocation.exsd"
+  />
+      
+  <!-- ================================================================================= -->
+  <!-- Activity Manager Producer                                                         -->
+  <!-- ================================================================================= -->
+  
+  <extension
+    point="org.eclipse.egf.producer.activityManagerProducer"
+  >
+    <activityManagerProducer
+      class="org.eclipse.egf.fprod.producer.internal.manager.TaskManagerProducer"
+    />
+  </extension>
+  
+  
+  <!-- ================================================================================= -->
+  <!-- Activity Production Context Producer                                              -->
+  <!-- ================================================================================= -->
+  
+  <extension
+    point="org.eclipse.egf.producer.activityProductionContextProducer"
+  >
+    <activityProductionContextProducer
+      class="org.eclipse.egf.fprod.producer.internal.context.FactoryComponentProductionContextProducer"
+    />
+  </extension>    
+  
+  <extension
+    point="org.eclipse.egf.producer.activityProductionContextProducer"
+  >
+    <activityProductionContextProducer
+      class="org.eclipse.egf.fprod.producer.internal.context.TaskProductionContextProducer"
+    />
+  </extension>  
+     
+  <!-- ================================================================================= -->
+  <!-- Orchestration Manager Producer                                                    -->
+  <!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.egf.producer.orchestrationManagerProducer"
+  >
+    <orchestrationManagerProducer
+      class="org.eclipse.egf.fprod.producer.internal.manager.ProductionPlanManagerProducer"
+    />
+  </extension>       
+    
+</plugin>

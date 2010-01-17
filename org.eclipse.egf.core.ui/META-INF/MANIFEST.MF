@@ -1,0 +1,23 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.core.ui; singleton:=true
+Bundle-Version: 0.2.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.core.ui.EGFCoreUIPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.search,
+ org.eclipse.jdt.ui;visibility:=reexport,
+ org.eclipse.egf.common.ui;visibility:=reexport,
+ org.eclipse.egf.core;visibility:=reexport
+Export-Package: 
+ org.eclipse.egf.core.ui,
+ org.eclipse.egf.core.ui.contributor,
+ org.eclipse.egf.core.ui.diagnostic,
+ org.eclipse.egf.core.ui.dialogs,
+ org.eclipse.egf.core.ui.wizard,
+ org.eclipse.egf.core.ui.l10n
+Bundle-ActivationPolicy: lazy

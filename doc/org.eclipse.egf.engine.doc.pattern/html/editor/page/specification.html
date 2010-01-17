@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta name="copyright" content="Copyright (c) THALES, 2007. All rights reserved." >
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+	<link rel="stylesheet" href="../../book.css" charset="ISO-8859-1" type="text/css">
+	<title>Pattern Editor Specification Page</title>
+</head>
+
+<body>
+	<h1>Specification Page</h1>
+	<p>
+		The specification page defines the pattern parameters and the applicable condition for pattern matching.
+		<p>
+			A pattern with parameters act as the following piece of code at runtime :
+			<div class="code-block">
+<pre>for every tuple T of possible <a href="#parameters">parameters</a> values {
+  if (<a href="#condition">condition(T)</a>) {
+    generate(T);
+  }
+}</pre>
+			</div>
+		</p>
+		
+		<p>
+			<a name="parameters">
+			<h2>The All Parameters section</h2>
+			</a>
+			This is the list of ordered parameters.<br/>
+			The following actions are available :
+			<ul>
+				<li><b>Add</b> is adding a new parameter to the pattern with a default name and type.</li>
+				<li><b>Remove</b> is removing the selected parameter.</li>
+				<li><b>Up</b> is swapping currently selected parameter with the previous one (higher in the list).</li>
+				<li><b>Down</b> is swapping the currently selected parameter with the next one (lower in the list).</li>
+			</ul>
+			This order is used in the condition class implementation, and at runtime for computation of the current tuple.<br/>
+			Thus inverting the elements may result in different runtime execution speed, depending on the condition content.
+			<h3>The Parameter properties section</h3>
+			The parameter properties are accessible through a details section.
+			<table border="1" cellspacing="0" cellpadding="5">
+				<tr>
+					<th>Field</th>
+					<th>Description</th>
+					<th>Modifiable</th>
+					<th>Default value</th>
+				</tr>
+				<tr>
+					<td align="left" valign="top">Name</td>
+					<td align="left" valign="top">
+						The parameter name. Used in the condition class and in the pattern templates.<br/>
+						This name should be unique in the whole pattern execution chain.
+					</td>
+					<td align="left" valign="top">Yes</td>
+					<td align="left" valign="top">newParameter<i>XXX</i></td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">Type</td>
+					<td align="left" valign="top">
+						The parameter type. Used in the condition class and in the pattern templates.<br/>
+						Each parameter can take a different type from a different metamodel, as long as it makes sense with the model
+						used when executing the pattern.
+					</td>
+					<td align="left" valign="top">Yes, through the <b>Browse...</b> button</td>
+					<td align="left" valign="top">EClass, from Ecore metamodel</i></td>
+				</tr>
+			</table>
+			<p>
+				The following action is available :
+				<ul>
+					<li>
+						<b>Browse...</b> is opening a new type selection window.
+					</li>
+				</ul>
+				<p align="center">
+					<img src="../images/specification/TypeSelection.png" alt="Parameter type selection window"/><br/>
+				</p>
+				It is displaying the available types for currently selected model (by default, Ecore metamodel). One can change the selected model by pressing the <b>Choose model...</b>
+				button. The EMF default load resource window is then displayed.<br/>
+				<p align="center">
+					<img src="../images/specification/ChooseModel.png" alt="Load Resource window"/><br/>
+				</p>
+				Although this window allows the user to select a resource from the file system or from the workspace, the user should always browse registered packages.
+				Once <b>Browse Registered Packages...</b> is hit, the Package Selection window is displayed. The user can now select a new model based on its base package URI.
+				Back to the type selection window, the new available types are displayed.
+			</p>
+		</p>
+		<p>
+			<a name="condition">
+			<h2>The Edit condition class section</h2>
+			</a>
+			It is just made of a single link to the condition class.<br/>
+			By clicking this link, the corresponding Java class is opened for edition.<br/>
+			For synchronization purpose, the content of this class is recomputed if the parameters list has changed.
+			It is also recomputed each time a Save command happens for the current editor.
+			<h3>The Condition class current content section</h3>
+			It is a text component showing the currently known content of the condition class.<br/>
+			Since there is no Java edition feature attach to this widget, it might only be helpful in consultation mode (that is when the content can not be changed).
+			This mode is activated only for deployed factory components.
+		</p>
+	</p>
+	<p>
+		<img border="0" src="../../../../org.eclipse.egf.engine.doc/html/images/ngrelr.png" alt="Related Reference">
+	</p>
+	<a href="../editor.html">Pattern editor</a>
+</body>
+</html>

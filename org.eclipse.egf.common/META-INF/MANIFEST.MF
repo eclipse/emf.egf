@@ -1,0 +1,29 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.common;singleton:=true
+Bundle-Version: 0.2.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.common.EGFCommonPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.core.resources;visibility:=reexport,
+ org.eclipse.core.runtime;visibility:=reexport,
+ org.eclipse.jdt.core;visibility:=reexport,
+ org.eclipse.jdt.launching;visibility:=reexport,
+ org.eclipse.pde.core;visibility:=reexport, 
+ org.eclipse.emf.edit;visibility:=reexport, 
+ org.eclipse.emf.codegen.ecore;visibility:=reexport
+Export-Package: 
+ org.eclipse.egf.common,
+ org.eclipse.egf.common.activator,
+ org.eclipse.egf.common.constant,
+ org.eclipse.egf.common.cycle,
+ org.eclipse.egf.common.emf,
+ org.eclipse.egf.common.generator,
+ org.eclipse.egf.common.helper,
+ org.eclipse.egf.common.l10n,
+ org.eclipse.egf.common.log
+Bundle-ActivationPolicy: lazy

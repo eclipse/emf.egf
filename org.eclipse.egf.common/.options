@@ -1,0 +1,2 @@
+# Prints debug information
+org.eclipse.egf.common/debug=true

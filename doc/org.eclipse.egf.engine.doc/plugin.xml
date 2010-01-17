@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="topics_Concepts.xml">
+      </toc>
+      <toc
+            file="topics_Reference_Preferences.xml">
+      </toc>
+      <toc
+            file="topics_Reference_Views.xml">
+      </toc>
+      <toc
+            file="topics_Reference_Wizards.xml">
+      </toc>
+      <toc
+            file="topics_Reference_Wizards_Edit.xml">
+      </toc>
+      <toc
+            file="topics_Reference_Icons.xml">
+      </toc>
+      <toc
+            file="topics_Overviews.xml">
+      </toc>
+      <toc
+            file="toc_GettingStarted.xml">
+      </toc>
+      <toc
+            file="topics_Reference_Api.xml">
+      </toc>
+   </extension>
+   <extension
+         point="org.eclipse.pde.core.javadoc">
+      <javadoc
+            path="html/reference/javadoc/">
+         <plugin
+               id="org.eclipse.egf.common">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.common.ui">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.model">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.model.edit">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.pde">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.pde.emf">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.core">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.core.ui">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.core.ui.workbench">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.mapping.ui.editor">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.mapping">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.batch.application">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.pattern">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.pattern.ui">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.pde.pattern">
+         </plugin>
+         <plugin
+               id="org.eclipse.egf.pattern.refactoring">
+         </plugin>
+      </javadoc>
+   </extension>
+</plugin>

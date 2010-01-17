@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>
+		EGF Tutorial - Factory Component. First steps.
+	</title>
+	<link rel="stylesheet" href="../book.css" charset="ISO-8859-1" type="text/css" />
+
+	<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." />
+	<meta name="author" content="Benoit Langlois" />
+	<meta name="keywords" content="egf,factory,component"/>
+</head>
+
+<body xml:lang="EN-US" lang="EN-US">
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+    	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+    	  <h2><font face="Arial,Helvetica"><font color="#ffffff">
+    	  &nbsp;EGF Tutorial - Factory Component. First steps.
+    	  </font></font></h2>
+    	</td>
+    </tr>
+	</tbody>
+</table>
+
+<p class="Para">This first tutorial explains how to create and execute simple factory components with EGF.</p>
+
+<br/>
+
+<h2 class="Head">1. Creation of factory component and task</h2>
+
+<h3 class="Head">1.1. Comprehension</h3>
+<p class="Para"><i>Generation activities</i>. A generation can be decomposed into generation stages down to generation leaves that realize a generation task. In EGF, this corresponds to <b>factory components</b> that delegate their generations to other factory components until <b>tasks</b> that realizes a generation task.</p>
+<p class="Para"><i>Storage</i>. Factory components and tasks are stored in <b>fcore</b> files.</p>
+
+
+
+<h3 class="Head">1.2. Practice</h3>
+
+<p class="Para">The sequence of actions to <i>create a factory component</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">First, create a project and a folder where the factory components and tasks will be located</li>
+    <li CLASS="Item">Commands: <i>[File][New][EGF Activity]</i></li>
+    <li CLASS="Item">Select a project or a project folder, and set the fcore file name</li>
+    <li CLASS="Item">Next, select <i>Factory Component</i> as model object</li>
+    <li CLASS="Item">Click on Finish; the Factory Component is created</li>
+    <li CLASS="Item">Set the factory component name to better identify it later</li>
+</ul>
+
+<p class="Para">The sequence of actions is the same for creating a task: select <i>Task</i> as model object instead of <i>Factory Component</i>.</p>
+
+<h3 class="Head">1.3. Application</h3>
+<p class="Para">Create a Factory component named <i>HelloWorld</i> and a Task named <i>HelloWorldTask</i>.</p>
+
+<p align="left">
+  <img src="./images/egf_uc1_fc_1.png" alt="New Factory Component"/>
+</p>
+
+<br/>
+
+<h2 class="Head">2. Creation of task contracts and task implementation</h2>
+
+<h3 class="Head">2.1. Comprehension</h3>
+
+<p class="Para"><i>Contracts</i>. In EGF, a task parameter is named <b>Contract</b>. Task contracts are contained in a <i>Task Contract Container</i>. A <i>Contract</i> has a Name, Mode (IN, OUT, IN_OUT), is mandatory or not, has a <b>Type</b>, and possibly a default value.</p>
+<p class="Para"><i>Implementation</i>. It is necessary to differentiate the task declaration, defined in a fcore model, and the task implementation, defined in a Java class. The task implementation is the means to execute any generation tool, or to do more. The Java class implements an <i>ITaskProduction</i> interface. It can implement three methods: preExecute, doExecute, postExecute. The task methods have a context parameter to get and work with the task contracts. The link between the Task and the task Java class is realized at the task level.</p>
+
+
+<h3 class="Head">2.2. Practice</h3>
+<p class="Para">Task modeling - The sequence of actions to <i>create task contracts</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Creation of the task contract container - Command: on a task, <i>[New Child][Task Contract Container]</i></li>
+    <li CLASS="Item">Creation of a task contract - Command: on the task contract container, <i>[New Child][Task Contract]</i></li>
+    <li CLASS="Item">Set the contract name, mode, and mandatory values</li>
+    <li CLASS="Item">Definition of the task contract type - Command: on the task contract, <i>[New Child][String|Integer...]</i></li>
+    <li CLASS="Item">Set the default value on the contract type</li>
+</ul>
+
+<h3 class="Head">2.3. Application</h3>
+<p class="Para">Create a Task contract 'value' of String contract type with the  (default) value 'World'.</p>
+
+<p align="left">
+  <img src="./images/egf_uc1_fc_2.png" alt="Task creation"/>
+</p>
+
+
+<h3 class="Head">2.4. Practice</h3>
+<p class="Para">Task implementation - The sequence of actions to <i>create and associate a task Java Class</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Create a Class that implements the <i>ITaskProduction</i> Interface</li>
+    <li CLASS="Item">Implement the task class</li>
+    <li CLASS="Item">Associate the task with the task Java class - Command: on the task, on the value property of the Task production section, select a task java class</li>
+</ul>
+
+<p align="left">
+  <img src="./images/egf_uc1_fc_3.png" alt="Task / Java class association"/>
+</p>
+
+
+<h3 class="Head">2.5. Application</h3>
+<p class="Para">Create a task Java class 'HelloWorld' that displays an parameterized Hello message. Example of code:</p>
+				<font color="777777"><pre>
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
+import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
+
+
+public class HelloWorld implements ITaskProduction {
+
+	@Override
+	  public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+		String value  = taskProductionContext.getInputValue("value", String.class);
+		String outputMessage = new String ("Hello " + value + "!");
+		// Message on the default console
+		System.out.println(outputMessage);
+		// Message on the EGF console
+	    EGFCorePlugin.getDefault().logInfo(outputMessage); 		  
+	}
+
+	@Override
+	  public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	  public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+		// TODO Auto-generated method stub
+
+	}
+
+}
+				</pre></font>
+
+
+<br/>
+
+<h2 class="Head">3. Task invocation in a factory component</h2>
+
+<h3 class="Head">3.1. Comprehension</h3>
+<p class="Para"><i>Orchestration</i>. >The same task can be invoked by different factory components and several times inside the same factory component. The last point underlies the need of orchestration. EGF proposes a simple orchestration mode named <b>production plan</b>. A production is a sorted list of task invocations. A <b>task invocation</b> calls a task with the values required by the task contracts.</p>
+
+
+<h3 class="Head">3.2. Practice</h3>
+
+<p class="Para">The sequence of actions to <i>create a production plan</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Commands: on a factory component, <i>[New Child][Production Plan]</i></li>
+</ul>
+
+<p class="Para">The sequence of actions to <i>create a task invocation</i> in a production plan:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Commands: on a production plan, <i>[New Child][Task Invocation]</i></li>
+    <li CLASS="Item">Set the task Name</li>
+    <li CLASS="Item">In the invoke section of the task invocation, set the Activity property: select the task among the proposed tasks</li>
+</ul>
+
+<p class="Para">The sequence of actions to <i>create task invocation values</i> in a task invocation:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">First, create an invocation context - Commands: on a task invocation, <i>[New Child][Invocation Context Container]</i></li>
+    <li CLASS="Item">For each task contract to be valued - Commands: on an invocation context container, <i>[New Child][Invocation Context]</i></li>
+    <li CLASS="Item">Set the invocation context Name</li>
+    <li CLASS="Item">On the invocation context, in the Activity Contract property of the invoke section, select the concerned task contract to be valued</li>
+    <li CLASS="Item">Definition of an Invocation Context value - Commands: on an invocation context, <i>[New Child][the activity contract type]</i></li>
+    <li CLASS="Item">Set the value</li>
+</ul>
+
+<p class="Para">The two last steps are necessary when the default value of the task contract must be redefined or is undefined and madatory.</p>
+
+<h3 class="Head">3.3. Application</h3>
+<p class="Para">Create a task invocation without Invocation Context (the default value of the task contract is used) and one with.</p>
+
+
+<br/>
+
+<h2 class="Head">4. Execution of task and factory component</h2>
+
+<h3 class="Head">4.1. Comprehension</h3>
+<p class="Para"><i>Execution mode</i>. There are two modes to execute a task or factory component: 1) dynamically, directly on the model, 2) in a deployed mode. The dynamic execution is useful to simultaneously develop and test tasks and factory components. Before execution, it is controled that the model is valid. The EGF production settings are accessible via the EGF preferences.</p>
+
+
+<h3 class="Head">4.2. Practice</h3>
+
+<p class="Para">The sequence of actions to <i>execute a task or factory component dynamically</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Commands: <i>[Right-Click][Run EGF Activity...]: on a task or a factory component</i></li>
+</ul>
+
+
+</body>
+</html>

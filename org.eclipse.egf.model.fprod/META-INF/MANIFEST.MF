@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.model.fprod;singleton:=true
+Bundle-Version: 0.2.0.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.model.EGFModelPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ org.eclipse.egf.model,
+ org.eclipse.egf.model.fprod,
+ org.eclipse.egf.model.fprod.impl,
+ org.eclipse.egf.model.fprod.util,
+ org.eclipse.egf.fprod.producer.context,
+ org.eclipse.egf.fprod.producer.invocation 
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.egf.core;visibility:=reexport,  
+ org.eclipse.egf.model;visibility:=reexport,
+ org.eclipse.egf.producer;visibility:=reexport 
+Bundle-ActivationPolicy: lazy

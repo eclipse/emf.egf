@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.egf.model.fprod/generated"
+    editDirectory="/org.eclipse.egf.model.fprod.edit/generated" editorDirectory="/org.eclipse.egf.model.fprod.editor/generated"
+    modelPluginID="org.eclipse.egf.model.fprod" templateDirectory="/org.eclipse.egf.model/templates"
+    dynamicTemplates="true" modelName="Fprod" modelPluginClass="org.eclipse.egf.model.EGFModelPlugin"
+    editPluginClass="org.eclipse.egf.model.edit.EGFModelEditPlugin" editorPluginClass="org.eclipse.egf.model.editor.EGFModelEditorPlugin"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container"
+    codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
+    booleanFlagsField="eFlags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" editPluginID="org.eclipse.egf.model.fprod.edit" editorPluginID="org.eclipse.egf.model.fprod.editor"
+    optimizedHasChildren="true" tableProviders="true" colorProviders="true" fontProviders="true"
+    packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.egf.model/model/Fcore.genmodel#//fcore ../../org.eclipse.egf.model/model/Types.genmodel#//types">
+  <foreignModel>Fprod.ecore</foreignModel>
+  <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
+  <genPackages prefix="Fprod" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
+      generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true"
+      childCreationExtenders="true" contentTypeIdentifier="" fileExtensions="fprod"
+      ecorePackage="Fprod.ecore#/">
+    <genClasses ecoreClass="Fprod.ecore#//ProductionPlan"/>
+    <genClasses image="false" ecoreClass="Fprod.ecore#//ProductionPlanInvocation">
+      <genTypeParameters ecoreTypeParameter="Fprod.ecore#//ProductionPlanInvocation/T"/>
+    </genClasses>
+    <genClasses ecoreClass="Fprod.ecore#//FactoryComponentInvocation"/>
+    <genClasses ecoreClass="Fprod.ecore#//TaskInvocation"/>
+    <genClasses ecoreClass="Fprod.ecore#//Task">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fprod.ecore#//Task/activityContractContainer"/>
+      <genFeatures createChild="false" propertyCategory="Task Production" propertySortChoices="true"
+          ecoreFeature="ecore:EAttribute Fprod.ecore#//Task/value"/>
+      <genOperations ecoreOperation="Fprod.ecore#//Task/getActivityContracts"/>
+      <genOperations ecoreOperation="Fprod.ecore#//Task/getActivityContracts.1">
+        <genParameters ecoreParameter="Fprod.ecore#//Task/getActivityContracts.1/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//Task/getActivityContracts.2">
+        <genParameters ecoreParameter="Fprod.ecore#//Task/getActivityContracts.2/mode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//Task/getActivityContracts.3">
+        <genParameters ecoreParameter="Fprod.ecore#//Task/getActivityContracts.3/type"/>
+        <genParameters ecoreParameter="Fprod.ecore#//Task/getActivityContracts.3/mode"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Fprod.ecore#//TaskContract">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fprod.ecore#//TaskContract/activityContractContainer"/>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContract/getActivityContracts"/>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContract/getActivityContracts.1">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContract/getActivityContracts.1/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContract/getActivityContracts.2">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContract/getActivityContracts.2/mode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContract/getActivityContracts.3">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContract/getActivityContracts.3/type"/>
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContract/getActivityContracts.3/mode"/>
+      </genOperations>
+    </genClasses>
+    <genClasses ecoreClass="Fprod.ecore#//TaskContractContainer">
+      <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fprod.ecore#//TaskContractContainer/activity"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fprod.ecore#//TaskContractContainer/activityContracts"/>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContractContainer/getActivityContracts">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContractContainer/getActivityContracts/type"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContractContainer/getActivityContracts.1">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContractContainer/getActivityContracts.1/mode"/>
+      </genOperations>
+      <genOperations ecoreOperation="Fprod.ecore#//TaskContractContainer/getActivityContracts.2">
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContractContainer/getActivityContracts.2/type"/>
+        <genParameters ecoreParameter="Fprod.ecore#//TaskContractContainer/getActivityContracts.2/mode"/>
+      </genOperations>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

@@ -1,0 +1,515 @@
+/**
+ * 
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * 
+ */
+package org.eclipse.egf.model.fcore.impl;
+
+import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.fcore.ContractMode;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.FactoryComponentContract;
+import org.eclipse.egf.model.fcore.FactoryComponentContractContainer;
+import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fcore.ViewpointContainer;
+import org.eclipse.egf.model.types.Type;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
+/**
+ * <!-- begin-user-doc -->
+ * An implementation of the model object '<em><b>Factory Component</b></em>'.
+ * <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getActivityContractContainer
+ * <em>Activity Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getViewpointContainer
+ * <em>Viewpoint Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.FactoryComponentImpl#getOrchestration
+ * <em>Orchestration</em>}</li>
+ * </ul>
+ * </p>
+ * 
+ * @generated
+ */
+public class FactoryComponentImpl extends ActivityImpl implements FactoryComponent {
+  /**
+   * The cached value of the '{@link #getActivityContractContainer() <em>Activity Contract
+   * Container</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @see #getActivityContractContainer()
+   * @generated
+   * @ordered
+   */
+  protected FactoryComponentContractContainer activityContractContainer;
+
+  /**
+   * The cached value of the '{@link #getViewpointContainer() <em>Viewpoint Container</em>}'
+   * containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @see #getViewpointContainer()
+   * @generated
+   * @ordered
+   */
+  protected ViewpointContainer viewpointContainer;
+
+  /**
+   * The cached value of the '{@link #getOrchestration() <em>Orchestration</em>}' containment
+   * reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @see #getOrchestration()
+   * @generated
+   * @ordered
+   */
+  protected Orchestration orchestration;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected FactoryComponentImpl() {
+    super();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return FcorePackage.Literals.FACTORY_COMPONENT;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public ViewpointContainer getViewpointContainer() {
+    return viewpointContainer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public NotificationChain basicSetViewpointContainer(ViewpointContainer newViewpointContainer, NotificationChain msgs) {
+    ViewpointContainer oldViewpointContainer = viewpointContainer;
+    viewpointContainer = newViewpointContainer;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, oldViewpointContainer, newViewpointContainer);
+      if (msgs == null)
+        msgs = notification;
+      else
+        msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public void setViewpointContainer(ViewpointContainer newViewpointContainer) {
+    if (newViewpointContainer != viewpointContainer) {
+      NotificationChain msgs = null;
+      if (viewpointContainer != null)
+        msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT, ViewpointContainer.class, msgs);
+      if (newViewpointContainer != null)
+        msgs = ((InternalEObject) newViewpointContainer).eInverseAdd(this, FcorePackage.VIEWPOINT_CONTAINER__FACTORY_COMPONENT, ViewpointContainer.class, msgs);
+      msgs = basicSetViewpointContainer(newViewpointContainer, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, newViewpointContainer, newViewpointContainer));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public Orchestration getOrchestration() {
+    return orchestration;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public NotificationChain basicSetOrchestration(Orchestration newOrchestration, NotificationChain msgs) {
+    Orchestration oldOrchestration = orchestration;
+    orchestration = newOrchestration;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, oldOrchestration, newOrchestration);
+      if (msgs == null)
+        msgs = notification;
+      else
+        msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public void setOrchestration(Orchestration newOrchestration) {
+    if (newOrchestration != orchestration) {
+      NotificationChain msgs = null;
+      if (orchestration != null)
+        msgs = ((InternalEObject) orchestration).eInverseRemove(this, FcorePackage.ORCHESTRATION__FACTORY_COMPONENT, Orchestration.class, msgs);
+      if (newOrchestration != null)
+        msgs = ((InternalEObject) newOrchestration).eInverseAdd(this, FcorePackage.ORCHESTRATION__FACTORY_COMPONENT, Orchestration.class, msgs);
+      msgs = basicSetOrchestration(newOrchestration, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, newOrchestration, newOrchestration));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public FactoryComponentContractContainer getActivityContractContainer() {
+    return activityContractContainer;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public NotificationChain basicSetActivityContractContainer(FactoryComponentContractContainer newActivityContractContainer, NotificationChain msgs) {
+    FactoryComponentContractContainer oldActivityContractContainer = activityContractContainer;
+    activityContractContainer = newActivityContractContainer;
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER, oldActivityContractContainer, newActivityContractContainer);
+      if (msgs == null)
+        msgs = notification;
+      else
+        msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public void setActivityContractContainer(FactoryComponentContractContainer newActivityContractContainer) {
+    if (newActivityContractContainer != activityContractContainer) {
+      NotificationChain msgs = null;
+      if (activityContractContainer != null)
+        msgs = ((InternalEObject) activityContractContainer).eInverseRemove(this, FcorePackage.FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY, FactoryComponentContractContainer.class, msgs);
+      if (newActivityContractContainer != null)
+        msgs = ((InternalEObject) newActivityContractContainer).eInverseAdd(this, FcorePackage.FACTORY_COMPONENT_CONTRACT_CONTAINER__ACTIVITY, FactoryComponentContractContainer.class, msgs);
+      msgs = basicSetActivityContractContainer(newActivityContractContainer, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER, newActivityContractContainer, newActivityContractContainer));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public EList<FactoryComponentContract> getActivityContracts() {
+    EList<FactoryComponentContract> contracts = new UniqueEList<FactoryComponentContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts();
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(Type innerType) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts(innerType);
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(ContractMode mode) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts(mode);
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public EList<ActivityContract> getActivityContracts(Type innerType, ContractMode mode) {
+    EList<ActivityContract> contracts = new UniqueEList<ActivityContract>();
+    if (getActivityContractContainer() != null) {
+      return getActivityContractContainer().getActivityContracts(innerType, mode);
+    }
+    return contracts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<InvocationContext> getInvocationContexts() {
+    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
+    if (getOrchestration() != null) {
+      return getOrchestration().getInvocationContexts();
+    }
+    return invocationContexts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @SuppressWarnings("unchecked")
+  public EList<InvocationContext> getInvocationContexts(Type innerType) {
+    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
+    if (innerType != null && getOrchestration() != null) {
+      return getOrchestration().getInvocationContexts(innerType);
+    }
+    return invocationContexts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<InvocationContext> getInvocationContexts(ContractMode mode) {
+    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
+    if (mode != null) {
+      for (InvocationContext innerInvocationContext : getInvocationContexts()) {
+        if (mode == ContractMode.IN && (innerInvocationContext.getMode() == ContractMode.IN || innerInvocationContext.getMode() == ContractMode.IN_OUT)) {
+          invocationContexts.add(innerInvocationContext);
+        } else if (mode == ContractMode.OUT && (innerInvocationContext.getMode() == ContractMode.OUT || innerInvocationContext.getMode() == ContractMode.IN_OUT)) {
+          invocationContexts.add(innerInvocationContext);
+        } else if (mode == ContractMode.IN_OUT) {
+          invocationContexts.add(innerInvocationContext);
+        }
+      }
+    }
+    return invocationContexts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @SuppressWarnings("unchecked")
+  public EList<InvocationContext> getInvocationContexts(Type type, ContractMode mode) {
+    EList<InvocationContext> invocationContexts = new UniqueEList<InvocationContext>();
+    for (InvocationContext innerInvocationContext : getInvocationContexts(type)) {
+      if (mode == ContractMode.IN && (innerInvocationContext.getMode() == ContractMode.IN || innerInvocationContext.getMode() == ContractMode.IN_OUT)) {
+        invocationContexts.add(innerInvocationContext);
+      } else if (mode == ContractMode.OUT && (innerInvocationContext.getMode() == ContractMode.OUT || innerInvocationContext.getMode() == ContractMode.IN_OUT)) {
+        invocationContexts.add(innerInvocationContext);
+      } else if (mode == ContractMode.IN_OUT) {
+        invocationContexts.add(innerInvocationContext);
+      }
+    }
+    return invocationContexts;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      if (activityContractContainer != null)
+        msgs = ((InternalEObject) activityContractContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER, null, msgs);
+      return basicSetActivityContractContainer((FactoryComponentContractContainer) otherEnd, msgs);
+    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+      if (viewpointContainer != null)
+        msgs = ((InternalEObject) viewpointContainer).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, null, msgs);
+      return basicSetViewpointContainer((ViewpointContainer) otherEnd, msgs);
+    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+      if (orchestration != null)
+        msgs = ((InternalEObject) orchestration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - FcorePackage.FACTORY_COMPONENT__ORCHESTRATION, null, msgs);
+      return basicSetOrchestration((Orchestration) otherEnd, msgs);
+    }
+    return super.eInverseAdd(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      return basicSetActivityContractContainer(null, msgs);
+    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+      return basicSetViewpointContainer(null, msgs);
+    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+      return basicSetOrchestration(null, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      return getActivityContractContainer();
+    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+      return getViewpointContainer();
+    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+      return getOrchestration();
+    }
+    return super.eGet(featureID, resolve, coreType);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public void eSet(int featureID, Object newValue) {
+    switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      setActivityContractContainer((FactoryComponentContractContainer) newValue);
+      return;
+    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+      setViewpointContainer((ViewpointContainer) newValue);
+      return;
+    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+      setOrchestration((Orchestration) newValue);
+      return;
+    }
+    super.eSet(featureID, newValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID) {
+    switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      setActivityContractContainer((FactoryComponentContractContainer) null);
+      return;
+    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+      setViewpointContainer((ViewpointContainer) null);
+      return;
+    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+      setOrchestration((Orchestration) null);
+      return;
+    }
+    super.eUnset(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID) {
+    switch (featureID) {
+    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
+      return activityContractContainer != null;
+    case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
+      return viewpointContainer != null;
+    case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
+      return orchestration != null;
+    }
+    return super.eIsSet(featureID);
+  }
+
+} // FactoryComponentImpl
