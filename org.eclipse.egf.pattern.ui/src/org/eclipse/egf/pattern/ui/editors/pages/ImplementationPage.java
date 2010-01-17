@@ -123,6 +123,10 @@ public class ImplementationPage extends PatternEditorPage {
 
     private Button methodsRemove;
 
+    private Button methodsUp;
+
+    private Button methodsDown;
+
     private Button methodsOpenTemplate;
 
     private Button orchestrationAdd;
@@ -145,9 +149,13 @@ public class ImplementationPage extends PatternEditorPage {
 
     private PatternMethod dropEntry;
 
-    private int dragIndex = -1;
+    private int methodsDragIndex = -1;
 
-    private boolean isChangeOder;
+    private int orchestrationDragIndex = -1;
+
+    private boolean isChangMethodsOrder;
+
+    private boolean isChangOrchestrationeOrder;
 
     private boolean isReadOnly;
 
@@ -276,27 +284,54 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        if (!isReadOnly) {
-            methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
+        addDragDropForMethodsTable();
+    }
 
-                public void dragStart(DragSourceEvent event) {
-                    isChangeOder = false;
-                    if (methodsTableViewer.getSelection() == null) {
-                        event.doit = false;
-                    }
+    /**
+     * Add drag and drop listener to methodsTableViewer.
+     */
+    private void addDragDropForMethodsTable() {
+        if (isReadOnly)
+            return;
+
+        methodsTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
+
+            public void dragStart(DragSourceEvent event) {
+                isChangOrchestrationeOrder = false;
+                isChangMethodsOrder = true;
+                if (methodsTableViewer.getSelection() == null) {
+                    event.doit = false;
                 }
+            }
 
-                public void dragSetData(DragSourceEvent event) {
-                    if (methodsTableViewer.getSelection() != null) {
-                        dropEntry = getmethodsSelectItem();
-                    }
+            public void dragSetData(DragSourceEvent event) {
+                if (methodsTableViewer.getSelection() != null) {
+                    dropEntry = getmethodsSelectItem();
+                    methodsDragIndex = methodsTableViewer.getTable().getSelectionIndex();
                 }
+            }
 
-                public void dragFinished(DragSourceEvent event) {
+            public void dragFinished(DragSourceEvent event) {
+            }
+        });
+
+        methodsTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(methodsTableViewer) {
+
+            public boolean validateDrop(Object target, int operation, TransferData transferType) {
+                if (isChangMethodsOrder) {
+                    return true;
                 }
-            });
-        }
+                return false;
+            }
 
+            public boolean performDrop(Object data) {
+                Object currentTarget = getCurrentTarget();
+                EList<PatternMethod> methods = getPattern().getMethods();
+                executeChangeOrder(currentTarget, methodsTableViewer, methods, methodsDragIndex);
+                setMethodsButtonsStatus();
+                return false;
+            }
+        });
     }
 
     private void initMethodsTableEditor() {
@@ -371,6 +406,21 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
+        methodsOpenTemplate = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        methodsOpenTemplate.setLayoutData(gd);
+        methodsOpenTemplate.setEnabled(false);
+        methodsOpenTemplate.setImage(ImageShop.get(ImageShop.IMG_METHOD_CONTENT_EDIT));
+        methodsOpenTemplate.setToolTipText(Messages.ImplementationPage_button_methodsOpenTemplate);
+        methodsOpenTemplate.addSelectionListener(new SelectionListener() {
+
+            public void widgetSelected(SelectionEvent e) {
+                openPatternTemplate();
+            }
+
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
         methodsRemove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
         methodsRemove.setLayoutData(gd);
         methodsRemove.setEnabled(false);
@@ -386,20 +436,57 @@ public class ImplementationPage extends PatternEditorPage {
             }
         });
 
-        methodsOpenTemplate = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
-        methodsOpenTemplate.setLayoutData(gd);
-        methodsOpenTemplate.setEnabled(false);
-        methodsOpenTemplate.setImage(ImageShop.get(ImageShop.IMG_METHOD_CONTENT_EDIT));
-        methodsOpenTemplate.setToolTipText(Messages.ImplementationPage_button_methodsOpenTemplate);
-        methodsOpenTemplate.addSelectionListener(new SelectionListener() {
+        methodsUp = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        methodsUp.setLayoutData(gd);
+        methodsUp.setEnabled(false);
+        methodsUp.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
+        methodsUp.setToolTipText(Messages.ImplementationPage_button_up);
+        methodsUp.addSelectionListener(new SelectionListener() {
 
             public void widgetSelected(SelectionEvent e) {
-                openPatternTemplate();
+                executeMethodsUpOrDown(-1);
+                ;
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
             }
         });
+
+        methodsDown = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+        methodsDown.setLayoutData(gd);
+        methodsDown.setEnabled(false);
+        methodsDown.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
+        methodsDown.setToolTipText(Messages.ImplementationPage_button_down);
+        methodsDown.addSelectionListener(new SelectionListener() {
+
+            public void widgetSelected(SelectionEvent e) {
+                executeMethodsUpOrDown(1);
+            }
+
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
+    }
+
+    /**
+     * Execute methods table up or down operation.
+     */
+    protected void executeMethodsUpOrDown(int num) {
+        final int oldIndex = methodsTableViewer.getTable().getSelectionIndex();
+        final int newIndex = oldIndex + num;
+        final EList<PatternMethod> methods = getPattern().getMethods();
+
+        TransactionalEditingDomain editingDomain = getEditingDomain();
+        RecordingCommand cmd = new RecordingCommand(editingDomain) {
+            protected void doExecute() {
+                methods.move(newIndex, oldIndex);
+            }
+        };
+        editingDomain.getCommandStack().execute(cmd);
+
+        methodsTableViewer.getTable().setSelection(newIndex);
+        setMethodsButtonsStatus();
     }
 
     /**
@@ -407,9 +494,12 @@ public class ImplementationPage extends PatternEditorPage {
      */
     private void setMethodsButtonsStatus() {
         int selectIndex = methodsTableViewer.getTable().getSelectionIndex();
+        int length = methodsTableViewer.getTable().getItemCount();
         if (selectIndex == -1) {
             methodsRemove.setEnabled(false);
             methodsEdit.setEnabled(false);
+            methodsUp.setEnabled(false);
+            methodsDown.setEnabled(false);
             methodsOpenTemplate.setEnabled(false);
             return;
         } else {
@@ -420,6 +510,17 @@ public class ImplementationPage extends PatternEditorPage {
             } else {
                 methodsEdit.setEnabled(true);
                 methodsRemove.setEnabled(true);
+            }
+
+            if (selectIndex <= 0) {
+                methodsUp.setEnabled(false);
+            } else {
+                methodsUp.setEnabled(true);
+            }
+            if ((selectIndex + 1) == length) {
+                methodsDown.setEnabled(false);
+            } else {
+                methodsDown.setEnabled(true);
             }
             methodsOpenTemplate.setEnabled(true);
         }
@@ -547,19 +648,20 @@ public class ImplementationPage extends PatternEditorPage {
                 openOrchestrationWizard();
             }
         });
-        addDragDrop();
+        addDragDropForOrchestrationTable();
     }
 
     /**
      * Add drag and drop listener to orchTableViewer.
      */
-    private void addDragDrop() {
+    private void addDragDropForOrchestrationTable() {
         if (isReadOnly)
             return;
         orchestrationTableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
 
             public void dragStart(DragSourceEvent event) {
-                isChangeOder = true;
+                isChangOrchestrationeOrder = true;
+                isChangMethodsOrder = false;
                 if (orchestrationTableViewer.getSelection() == null) {
                     event.doit = false;
                 }
@@ -567,7 +669,7 @@ public class ImplementationPage extends PatternEditorPage {
 
             public void dragSetData(DragSourceEvent event) {
                 if (orchestrationTableViewer.getSelection() != null) {
-                    dragIndex = orchestrationTableViewer.getTable().getSelectionIndex();
+                    orchestrationDragIndex = orchestrationTableViewer.getTable().getSelectionIndex();
                 }
             }
 
@@ -578,16 +680,18 @@ public class ImplementationPage extends PatternEditorPage {
         orchestrationTableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(orchestrationTableViewer) {
 
             public boolean validateDrop(Object target, int operation, TransferData transferType) {
-                if (!isChangeOder) {
+                if (!isChangOrchestrationeOrder) {
                     return checkDropSupport();
                 }
                 return true;
             }
 
             public boolean performDrop(Object data) {
-                if (isChangeOder) {
+                if (isChangOrchestrationeOrder) {
                     Object currentTarget = getCurrentTarget();
-                    executeChangeOrder(currentTarget);
+                    EList<Call> orchestration = getPattern().getOrchestration();
+                    executeChangeOrder(currentTarget, orchestrationTableViewer, orchestration, orchestrationDragIndex);
+                    setOrchestrationButtonsStatus();
                 } else {
                     executeDrop();
                 }
@@ -600,15 +704,13 @@ public class ImplementationPage extends PatternEditorPage {
      * Execute the drag and drop operation to change the order of the table
      * rows.
      */
-    protected void executeChangeOrder(Object currentTarget) {
-        EList<Call> orchestration = getPattern().getOrchestration();
+    protected void executeChangeOrder(Object currentTarget, TableViewer tableViewer, EList<?> list, int sourceIndex) {
         int targetIndex = 0;
         int index = 0;
         if (currentTarget == null) {
-            targetIndex = orchestrationTableViewer.getTable().getItemCount() - 1;
-            currentTarget = orchestrationTableViewer.getElementAt(targetIndex);
+            targetIndex = tableViewer.getTable().getItemCount() - 1;
         } else {
-            for (Object enty : orchestration) {
+            for (Object enty : list) {
                 if (currentTarget.equals(enty)) {
                     targetIndex = index;
                     break;
@@ -616,20 +718,18 @@ public class ImplementationPage extends PatternEditorPage {
                 index++;
             }
         }
-        updateOrchestration(orchestration, targetIndex);
-        orchestrationTableViewer.getTable().setSelection(targetIndex);
-        setOrchestrationButtonsStatus();
+        refreshTableContent(list, targetIndex, sourceIndex);
+        tableViewer.getTable().setSelection(targetIndex);
     }
 
     /**
-     * Refresh the pattern's Orchestration after change orchestrationTableViewer
-     * order's.
+     * Refresh the table content after change the tables order.
      */
-    private void updateOrchestration(final EList<Call> orchestration, final int targetIndex) {
+    private void refreshTableContent(final EList<?> list, final int targetIndex, final int sourceIndex) {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
-                orchestration.move(targetIndex, dragIndex);
+                list.move(targetIndex, sourceIndex);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
