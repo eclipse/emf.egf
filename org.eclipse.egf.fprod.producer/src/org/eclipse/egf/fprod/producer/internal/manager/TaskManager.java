@@ -115,7 +115,7 @@ public class TaskManager extends ActivityManager implements ITaskManager {
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
     BasicDiagnostic diagnostic = canInvokeElement();
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
-      EGFFprodProducerPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement().getValue()).invoke(monitor);
+      EGFFprodProducerPlugin.getProductionPlanTaskInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement()).invoke(monitor);
       if (monitor.isCanceled()) {
         throw new OperationCanceledException();
       }

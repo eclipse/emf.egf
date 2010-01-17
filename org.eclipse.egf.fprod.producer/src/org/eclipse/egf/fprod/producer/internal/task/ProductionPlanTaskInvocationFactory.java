@@ -14,6 +14,7 @@ import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
 import org.eclipse.egf.fprod.producer.internal.invocation.ProductionTaskInvocation;
 import org.eclipse.egf.fprod.producer.invocation.ITaskProductionInvocation;
 import org.eclipse.egf.fprod.producer.task.IProductionPlanTaskInvocationFactory;
+import org.eclipse.egf.model.fprod.Task;
 import org.osgi.framework.Bundle;
 
 /**
@@ -22,8 +23,8 @@ import org.osgi.framework.Bundle;
  */
 public class ProductionPlanTaskInvocationFactory implements IProductionPlanTaskInvocationFactory {
 
-  public ITaskProductionInvocation createInvocation(Bundle bundle, ITaskProductionContext context, String value) {
-    return new ProductionTaskInvocation(bundle, context, value);
+  public ITaskProductionInvocation createInvocation(Bundle bundle, ITaskProductionContext context, Task task) {
+    return new ProductionTaskInvocation(bundle, context, task);
   }
 
 }
