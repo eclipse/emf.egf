@@ -344,9 +344,9 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
         if (resource instanceof IContainer == false) {
           continue;
         }
-        String path = resource.getFullPath().removeFirstSegments(1).toString();
+        String path = resource.getFullPath().removeFirstSegments(1).toString() + "/"; //$NON-NLS-1$
         if (sources.contains(path) == false) {
-          directories.add(path + "/"); //$NON-NLS-1$
+          directories.add(path);
         }
       }
 
