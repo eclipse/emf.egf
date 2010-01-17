@@ -5,7 +5,7 @@ Bundle-Vendor: %providerName
 Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.egf.pattern.jet;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.2.1.qualifier
 Bundle-Activator: org.eclipse.egf.pattern.jet.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,

@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.egf.test"
       label="%featureName"
-      version="0.2.0.qualifier"
+      version="0.2.1.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.egf.core.test"
       image="eclipse_update_120.jpg">
@@ -29,10 +29,12 @@ http://www.eclipse.org/legal/epl-v10.html
       <discovery label="%EMFTUpdateSiteName" url="http://download.eclipse.org/modeling/emft/updates/"/>
    </url>
 
-   <includes id="org.eclipse.egf" version="0.0.0"/>
+   <includes
+         id="org.eclipse.egf"
+         version="0.0.0"/>
 
    <requires>
-      <import plugin="org.junit" version="3.8.2.v20090203-1005" match="compatible"/>      
+      <import plugin="org.junit" version="3.8.2.v20090203-1005" match="compatible"/>
    </requires>
 
    <plugin
