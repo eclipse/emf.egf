@@ -25,6 +25,8 @@ import org.eclipse.emf.codegen.jet.JETCompiler;
 import org.eclipse.emf.codegen.jet.JETException;
 import org.eclipse.emf.codegen.jet.JETMark;
 import org.eclipse.emf.codegen.jet.JETSkeleton;
+import org.eclipse.jdt.core.jdom.IDOMNode;
+import org.eclipse.jdt.core.jdom.IDOMType;
 
 /**
  * @author Thomas Guiu
@@ -32,6 +34,18 @@ import org.eclipse.emf.codegen.jet.JETSkeleton;
  */
 public class SkeletonJETCompiler extends JETCompiler {
     private static final String GENERATOR_SKELETON = "platform:/plugin/org.eclipse.egf.pattern.jet/templates/generator.skeleton";
+
+    public static class CustomJETSkeleton extends JETSkeleton {
+        public void setParentClass(String classname) {
+            for (IDOMNode node = compilationUnit.getFirstChild(); node != null; node = node.getNextNode()) {
+                if (node.getNodeType() == IDOMNode.TYPE) {
+                    IDOMType type = (IDOMType) node;
+                    type.setSuperclass(classname);
+                }
+            }
+
+        }
+    }
 
     public SkeletonJETCompiler(String templateURI, InputStream inputStream, String encoding) throws JETException {
         super(templateURI, inputStream, encoding);
@@ -43,7 +57,7 @@ public class SkeletonJETCompiler extends JETCompiler {
      */
     public void handleDirective(String directive, JETMark start, JETMark stop, Map<String, String> attributes) throws JETException {
         if (directive.equals("jet") && skeleton == null) {
-            skeleton = new JETSkeleton();
+            skeleton = new CustomJETSkeleton();
             String skeletonURI = attributes.get("skeleton");
             if (skeletonURI == null)
                 skeletonURI = GENERATOR_SKELETON;

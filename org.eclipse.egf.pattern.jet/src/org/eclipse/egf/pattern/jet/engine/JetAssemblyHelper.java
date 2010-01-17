@@ -41,8 +41,10 @@ public class JetAssemblyHelper extends AssemblyHelper {
     public static final String START_METHOD_MARKER = "//Start of work";
     public static final String END_METHOD_MARKER = "//End of work";
 
-    public static final String START_CONSTRUCTOR_MARKER = "//Start of constructor";
-    public static final String END_CONSTRUCTOR_MARKER = "//End of constructor";
+    public static final String START_INIT_VARIABLE_MARKER = "//Start of init";
+    public static final String END_INIT_VARIABLE_MARKER = "//End of init";
+
+    public static final String CONSTRUCTOR_MARKER = "//Here is the constructor";
 
     public JetAssemblyHelper(Pattern pattern) {
         super(pattern);
@@ -100,18 +102,6 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         content.append(");");
         content.append("%>");
-    }
-
-    protected void addVariable(Pattern pattern) throws PatternException {
-
-        // content.append("<%");
-        // for (PatternVariable var : pattern.getAllVariables()) {
-        // content.append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
-        // }
-        // content.append("%>");
-        // content.append("<%").append(START_METHOD_MARKER).append("%>");
-        super.addVariable(pattern);
-        // content.append("<%").append(END_METHOD_MARKER).append("%>");
     }
 
     @Override
@@ -209,6 +199,13 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         localContent.append("List<Object> ").append(getParameterListName(parameter)).append(" = ");
         localContent.append("QueryHelper.load(ctx, \"").append(query.getExtensionId()).append("\").execute(paramDesc, queryCtx, ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+    }
+
+    @Override
+    protected void addVariableInitialization() throws PatternException {
+        content.append("<%").append(START_INIT_VARIABLE_MARKER).append("%>");
+        content.append(getMethodContent(pattern.getInitMethod()));
+        content.append("<%").append(END_INIT_VARIABLE_MARKER).append("%>");
     }
 
 }

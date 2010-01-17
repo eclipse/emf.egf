@@ -28,6 +28,7 @@ import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
@@ -35,6 +36,11 @@ import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.execution.ConsoleReporter;
 import org.eclipse.egf.pattern.java.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
+import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
+import org.eclipse.jdt.core.jdom.DOMFactory;
+import org.eclipse.jdt.core.jdom.IDOMCompilationUnit;
+import org.eclipse.jdt.core.jdom.IDOMNode;
+import org.eclipse.jdt.core.jdom.IDOMType;
 
 /**
  * @author Thomas Guiu
@@ -77,7 +83,7 @@ public class JavaEngine extends PatternEngine {
 
     }
 
-    private String getContent(String content) {
+    private String getContent(String content) throws PatternException {
         StringBuilder builder = new StringBuilder(content.length() + 500);
         int startIndex = content.indexOf(JavaAssemblyHelper.START_MARKER);
         int endIndex = content.indexOf(JavaAssemblyHelper.END_MARKER);
@@ -119,9 +125,28 @@ public class JavaEngine extends PatternEngine {
             builder.append("ctx.getReporter().loopFinished(loop, ctx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
+
+        for (PatternVariable var : pattern.getVariables()) {
+            builder.append("protected ").append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
+        }
+
         builder.append(content.substring(insertionIndex));
 
-        return builder.toString();
+        return addParentClass(builder.toString());
+    }
+
+    private String addParentClass(String content) throws PatternException {
+        if (getPattern().getSuperPattern() == null)
+            return content;
+        DOMFactory jdomFactory = new DOMFactory();
+        IDOMCompilationUnit compilationUnit = jdomFactory.createCompilationUnit(content, getPattern().getName());
+        for (IDOMNode node = compilationUnit.getFirstChild(); node != null; node = node.getNextNode()) {
+            if (node.getNodeType() == IDOMNode.TYPE) {
+                IDOMType type = (IDOMType) node;
+                type.setSuperclass(JavaNatureHelper.getClassName(getPattern().getSuperPattern()));
+            }
+        }
+        return compilationUnit.getContents();
     }
 
     private IPath computeFilePath(String classname) {

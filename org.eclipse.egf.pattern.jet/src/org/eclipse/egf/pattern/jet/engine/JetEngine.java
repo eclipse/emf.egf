@@ -40,7 +40,6 @@ import org.eclipse.egf.pattern.jet.JetPreferences;
 import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
-import org.eclipse.emf.codegen.jet.JETCompiler;
 
 /**
  * @author Thomas Guiu
@@ -138,8 +137,12 @@ public class JetEngine extends PatternEngine {
         // 2 - compile the result
         String templateURI = "Pattern_" + pattern.getName() + " (" + pattern.getID() + ")";
         try {
-            JETCompiler compiler = new SkeletonJETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
+            SkeletonJETCompiler compiler = new SkeletonJETCompiler(templateURI, new ByteArrayInputStream(templatecontent.getBytes()), JetPreferences.getEncoding());
             compiler.parse();
+            if (pattern.getSuperPattern() != null) {
+                Pattern parentPattern = pattern.getSuperPattern();
+                ((SkeletonJETCompiler.CustomJETSkeleton) compiler.getSkeleton()).setParentClass(JetNatureHelper.getTemplateClassName(parentPattern));
+            }
             ByteArrayOutputStream outStream = new ByteArrayOutputStream();
             compiler.generate(outStream);
 
@@ -205,14 +208,28 @@ public class JetEngine extends PatternEngine {
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("").append(EGFCommonConstants.LINE_SEPARATOR);
 
-        int startVariable = builder.indexOf(JetAssemblyHelper.START_CONSTRUCTOR_MARKER);
-        int endVariable = builder.indexOf(JetAssemblyHelper.END_CONSTRUCTOR_MARKER);
-
-        // if (startVariable != -1 && endVariable != -1) {
-        for (PatternVariable var : pattern.getAllVariables()) {
-            builder.append("private ").append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
+        // Handle variable initialization and fields
+        int startVariable = content.indexOf(JetAssemblyHelper.START_INIT_VARIABLE_MARKER);
+        int endVariable = content.indexOf(JetAssemblyHelper.END_INIT_VARIABLE_MARKER);
+        if (startVariable != -1 && endVariable != -1) {
+            int indexOf = builder.indexOf(JetAssemblyHelper.CONSTRUCTOR_MARKER);
+            if (indexOf != -1) {
+                CharSequence sequence = content.subSequence(startVariable + JetAssemblyHelper.START_INIT_VARIABLE_MARKER.length(), endVariable);
+                indexOf += JetAssemblyHelper.CONSTRUCTOR_MARKER.length();
+                builder.insert(indexOf, sequence);
+                // TODO filter sequence instead of using a workaround...
+                builder.insert(indexOf, "\nStringBuffer stringBuffer = new StringBuffer();\n");
+                startVariable = builder.indexOf(JetAssemblyHelper.START_INIT_VARIABLE_MARKER);
+                endVariable = builder.indexOf(JetAssemblyHelper.END_INIT_VARIABLE_MARKER);
+                if (startVariable != -1 && endVariable != -1) {
+                    builder.delete(startVariable, endVariable + JetAssemblyHelper.END_INIT_VARIABLE_MARKER.length());
+                }
+            }
         }
-        // }
+
+        for (PatternVariable var : pattern.getVariables()) {
+            builder.append("protected ").append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
+        }
         builder.append(content.substring(insertionIndex));
         return builder.toString();
     }

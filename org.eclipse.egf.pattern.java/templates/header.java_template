@@ -8,5 +8,9 @@ import org.eclipse.egf.pattern.query.*;
 
 public class CLASS {
 
-public void generate (Object argument) throws Exception {
+	public CLASS() {
+		//Here is the constructor
+	}
+
+	public void generate (Object argument) throws Exception {
 

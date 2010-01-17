@@ -1,8 +1,13 @@
 public class CLASS 
 {
-  public String generate(Object argument) throws Exception
-  {
-    return "";
-  }
+	public CLASS()
+	{
+	//Here is the constructor
+	}
+  	
+  	public String generate(Object argument) throws Exception
+  	{
+	    return "";
+  	}
 
 }

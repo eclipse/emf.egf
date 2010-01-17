@@ -23,7 +23,6 @@ import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.ParameterMatcher;
@@ -40,6 +39,8 @@ public class JavaAssemblyHelper extends AssemblyHelper {
     public static final String GENERATE_METHOD = "generate";
     public static final String START_MARKER = "//Start of work";
     public static final String END_MARKER = "//End of work";
+
+    public static final String CONSTRUCTOR_MARKER = "//Here is the constructor";
 
     public JavaAssemblyHelper(Pattern pattern) {
         super(pattern);
@@ -86,12 +87,12 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         content.append(");").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
     }
 
-    protected void addVariable(Pattern pattern) throws PatternException {
-        for (PatternVariable var : pattern.getAllVariables()) {
-            content.append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
-        }
-        super.addVariable(pattern);
-
+    @Override
+    protected void addVariableInitialization() throws PatternException {
+        int indexOf = content.indexOf(CONSTRUCTOR_MARKER);
+        if (indexOf == -1)
+            throw new IllegalStateException();
+        content.insert(indexOf + CONSTRUCTOR_MARKER.length() + 1, getMethodContent(pattern.getInitMethod()));
     }
 
     @Override
@@ -112,7 +113,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
     protected void endOrchestration() throws PatternException {
         content.append(END_MARKER).append(EGFCommonConstants.LINE_SEPARATOR);
         if (pattern.getAllParameters().isEmpty()) {
-            content.append("ctx.getReporter().executionFinished(tmpCollector.toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("ctx.getReporter().executionFinished(collector.toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
             return;
         }
         // 1 - Add pre block at insertionIndex
@@ -137,8 +138,6 @@ public class JavaAssemblyHelper extends AssemblyHelper {
 
         // 2 - Add post block at current index
         content.append(EGFCommonConstants.LINE_SEPARATOR);
-        // content.append("String loop = tmpCollector.toString();").append(EGFCommonConstants.LINE_SEPARATOR);
-        // content.append("ctx.getReporter().loopFinished(loop, ctx, null );").append(EGFCommonConstants.LINE_SEPARATOR);
 
         for (int i = 0; i < pattern.getAllParameters().size(); i++)
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);

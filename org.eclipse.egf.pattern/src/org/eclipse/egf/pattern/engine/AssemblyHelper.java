@@ -55,7 +55,7 @@ public abstract class AssemblyHelper {
         if (read != null)
             content.append(read);
 
-        addVariable(pattern);
+        addVariableInitialization();
         beginOrchestration();
         if (orchestrationIndex == -1)
             throw new PatternException(Messages.assembly_error6);
@@ -83,16 +83,7 @@ public abstract class AssemblyHelper {
         orchestrationIndex = content.length();
     }
 
-    protected void addVariable(Pattern pattern) throws PatternException {
-        StringBuilder inits = new StringBuilder(1000);
-        Pattern parent = pattern.getSuperPattern();
-        inits.append(getMethodContent(pattern.getInitMethod()));
-        while (parent != null) {
-            inits.insert(0, getMethodContent(parent.getInitMethod()));
-            parent = parent.getSuperPattern();
-        }
-        content.append(inits);
-    }
+    protected abstract void addVariableInitialization() throws PatternException;
 
     protected final void handleParameters(int insertionIndex) throws PatternException {
     }
@@ -180,7 +171,7 @@ public abstract class AssemblyHelper {
         return result;
     }
 
-    private String getMethodContent(PatternMethod object) throws PatternException {
+    protected String getMethodContent(PatternMethod object) throws PatternException {
         URI uri = object.getPatternFilePath();
         try {
             return FileHelper.getContent(PatternHelper.getPlatformFcore(object.getPattern()), uri);
