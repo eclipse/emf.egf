@@ -115,7 +115,8 @@ public class JavaEngine extends PatternEngine {
         builder.append(content.substring(startIndex + JavaAssemblyHelper.START_MARKER.length(), endIndex)).append(EGFCommonConstants.LINE_SEPARATOR);
 
         builder.append("String loop = out.toString();").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("ctx.getReporter().loopFinished(loop, ctx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
+        if (!getPattern().getAllParameters().isEmpty())
+            builder.append("ctx.getReporter().loopFinished(loop, ctx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append(content.substring(insertionIndex));
