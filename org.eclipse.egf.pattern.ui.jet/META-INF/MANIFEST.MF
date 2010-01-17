@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-Vendor: %providerName
 Bundle-ClassPath: .
 Bundle-Localization: plugin
-Bundle-SymbolicName: org.eclipse.egf.pattern.ui.jet;singleton:=true
+Bundle-SymbolicName: org.eclipse.egf.pattern.jet.ui;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-Activator: org.eclipse.pattern.jet.ui.Activator
 Require-Bundle: 
