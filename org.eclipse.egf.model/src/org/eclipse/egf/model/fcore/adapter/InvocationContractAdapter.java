@@ -33,15 +33,13 @@ public class InvocationContractAdapter extends AdapterImpl {
 
   private EStructuralFeature _contractModeFeature = FcorePackage.Literals.CONTRACT__MODE;
 
-  private EStructuralFeature _invocationContractInvokedModeFeature = FcorePackage.Literals.INVOCATION_CONTRACT__INVOKED_MODE;
-
   private EStructuralFeature _invocationContractInvokedContractFeature = FcorePackage.Literals.INVOCATION_CONTRACT__INVOKED_CONTRACT;
 
   private AdapterImpl _contractAdapter = new AdapterImpl() {
     @Override
     public void notifyChanged(Notification msg) {
       if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_contractModeFeature)) {
-        _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedModeFeature, null, _invocationContract.eGet(_invocationContractInvokedModeFeature, true)));
+        _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _invocationContract.eGet(_invocationContractInvokedContractFeature, true)));
       } else if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_nameFeature)) {
         _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _invocationContract.eGet(_invocationContractInvokedContractFeature, true)));
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {

@@ -28,7 +28,6 @@ import org.eclipse.egf.model.types.Type;
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContract#getSourceInvocationContract <em>Source Invocation Contract</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContract#getTargetInvocationContract <em>Target Invocation Contract</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContract#getInvokedContract <em>Invoked Contract</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.InvocationContract#getInvokedMode <em>Invoked Mode</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.InvocationContract#getType <em>Type</em>}</li>
  * </ul>
  * </p>
@@ -201,32 +200,16 @@ public interface InvocationContract extends ModelElement {
   void setInvokedContract(Contract value);
 
   /**
-   * Returns the value of the '<em><b>Invoked Mode</b></em>' attribute.
-   * The literals are from the enumeration {@link org.eclipse.egf.model.fcore.ContractMode}.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Invoked Mode</em>' attribute isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Invoked Mode</em>' attribute.
-   * @see org.eclipse.egf.model.fcore.ContractMode
-   * @see #isSetInvokedMode()
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContract_InvokedMode()
-   * @model unsettable="true" required="true" transient="true" changeable="false" volatile="true" derived="true"
+   * @model kind="operation"
    * @generated
    */
   ContractMode getInvokedMode();
-
-  /**
-   * Returns whether the value of the '{@link org.eclipse.egf.model.fcore.InvocationContract#getInvokedMode <em>Invoked Mode</em>}' attribute is set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return whether the value of the '<em>Invoked Mode</em>' attribute is set.
-   * @see #getInvokedMode()
-   * @generated
-   */
-  boolean isSetInvokedMode();
 
   /**
    * Returns the value of the '<em><b>Type</b></em>' containment reference.

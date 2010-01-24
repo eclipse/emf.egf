@@ -208,6 +208,7 @@
     </eAnnotations>
     <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
     <eOperations name="getInvocation" lowerBound="1" eType="#//Invocation"/>
+    <eOperations name="getInvokedMode" eType="#//ContractMode"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="invocationContractContainer"
         lowerBound="1" eType="#//InvocationContractContainer" resolveProxies="false"
         eOpposite="#//InvocationContractContainer/invocationContracts"/>
@@ -221,9 +222,6 @@
         eType="#//InvocationContract" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="invokedContract" lowerBound="1"
         eType="#//Contract"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="invokedMode" lowerBound="1"
-        eType="#//ContractMode" changeable="false" volatile="true" transient="true"
-        unsettable="true" derived="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass Types.ecore#//Type"
         containment="true" resolveProxies="false"/>
   </eClassifiers>

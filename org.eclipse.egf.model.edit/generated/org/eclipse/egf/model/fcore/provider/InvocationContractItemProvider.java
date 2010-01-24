@@ -62,11 +62,9 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContract}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class InvocationContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -74,7 +72,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public InvocationContractItemProvider(AdapterFactory adapterFactory) {
@@ -85,7 +82,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -98,7 +94,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
       addSourceInvocationContractPropertyDescriptor(object);
       addTargetInvocationContractPropertyDescriptor(object);
       addInvokedContractPropertyDescriptor(object);
-      addInvokedModePropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
@@ -200,7 +195,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This adds a property descriptor for the Source Invocation Contract feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addSourceInvocationContractPropertyDescriptor(Object object) {
@@ -214,7 +208,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This adds a property descriptor for the Target Invocation Contract feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addTargetInvocationContractPropertyDescriptor(Object object) {
@@ -278,27 +271,11 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
   }
 
   /**
-   * This adds a property descriptor for the Invoked Mode feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected void addInvokedModePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_invokedMode_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_InvocationContract_invokedMode_feature", "_UI_InvocationContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.INVOCATION_CONTRACT__INVOKED_MODE, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_BehaviourPropertyCategory"), //$NON-NLS-1$
-        null));
-  }
-
-  /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
-   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -313,7 +290,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -328,7 +304,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This returns InvocationContract.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -362,7 +337,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -371,7 +345,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
 
     switch (notification.getFeatureID(InvocationContract.class)) {
     case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
-    case FcorePackage.INVOCATION_CONTRACT__INVOKED_MODE:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     case FcorePackage.INVOCATION_CONTRACT__TYPE:

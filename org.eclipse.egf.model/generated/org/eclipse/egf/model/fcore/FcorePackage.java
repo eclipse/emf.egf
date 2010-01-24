@@ -973,22 +973,13 @@ public interface FcorePackage extends EPackage {
   int INVOCATION_CONTRACT__INVOKED_CONTRACT = MODEL_ELEMENT_FEATURE_COUNT + 5;
 
   /**
-   * The feature id for the '<em><b>Invoked Mode</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int INVOCATION_CONTRACT__INVOKED_MODE = MODEL_ELEMENT_FEATURE_COUNT + 6;
-
-  /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INVOCATION_CONTRACT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 7;
+  int INVOCATION_CONTRACT__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 6;
 
   /**
    * The number of structural features of the '<em>Invocation Contract</em>' class.
@@ -997,7 +988,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INVOCATION_CONTRACT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 8;
+  int INVOCATION_CONTRACT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 7;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.ContractMode <em>Contract Mode</em>}' enum.
@@ -1523,17 +1514,6 @@ public interface FcorePackage extends EPackage {
   EReference getInvocationContract_InvokedContract();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.fcore.InvocationContract#getInvokedMode <em>Invoked Mode</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Invoked Mode</em>'.
-   * @see org.eclipse.egf.model.fcore.InvocationContract#getInvokedMode()
-   * @see #getInvocationContract()
-   * @generated
-   */
-  EAttribute getInvocationContract_InvokedMode();
-
-  /**
    * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.fcore.InvocationContract#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2037,15 +2017,6 @@ public interface FcorePackage extends EPackage {
      */
     @SuppressWarnings("hiding")
     EReference INVOCATION_CONTRACT__INVOKED_CONTRACT = eINSTANCE.getInvocationContract_InvokedContract();
-
-    /**
-     * The meta object literal for the '<em><b>Invoked Mode</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("hiding")
-    EAttribute INVOCATION_CONTRACT__INVOKED_MODE = eINSTANCE.getInvocationContract_InvokedMode();
 
     /**
      * The meta object literal for the '<em><b>Type</b></em>' containment reference feature.

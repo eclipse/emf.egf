@@ -190,12 +190,11 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/targetInvocationContract"/>
       <genFeatures createChild="false" propertyCategory="Behaviour" propertySortChoices="true"
           ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/invokedContract"/>
-      <genFeatures property="Readonly" createChild="false" propertyCategory="Behaviour"
-          ecoreFeature="ecore:EAttribute Fcore.ecore#//InvocationContract/invokedMode"/>
       <genFeatures property="None" children="true" createChild="true" propertyCategory=""
           ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/type"/>
       <genOperations ecoreOperation="Fcore.ecore#//InvocationContract/getFactoryComponent"/>
       <genOperations ecoreOperation="Fcore.ecore#//InvocationContract/getInvocation"/>
+      <genOperations ecoreOperation="Fcore.ecore#//InvocationContract/getInvokedMode"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

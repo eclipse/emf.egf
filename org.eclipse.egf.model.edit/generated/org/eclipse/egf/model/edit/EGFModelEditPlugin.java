@@ -18,7 +18,7 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
- * This is the central singleton for the Domain edit plugin.
+ * This is the central singleton for the Fcore edit plugin.
  * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * @generated

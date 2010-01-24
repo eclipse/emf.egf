@@ -672,17 +672,8 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getInvocationContract_InvokedMode() {
-    return (EAttribute) invocationContractEClass.getEStructuralFeatures().get(6);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getInvocationContract_Type() {
-    return (EReference) invocationContractEClass.getEStructuralFeatures().get(7);
+    return (EReference) invocationContractEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -785,7 +776,6 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     createEReference(invocationContractEClass, INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT);
     createEReference(invocationContractEClass, INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT);
     createEReference(invocationContractEClass, INVOCATION_CONTRACT__INVOKED_CONTRACT);
-    createEAttribute(invocationContractEClass, INVOCATION_CONTRACT__INVOKED_MODE);
     createEReference(invocationContractEClass, INVOCATION_CONTRACT__TYPE);
 
     // Create enums
@@ -1015,12 +1005,13 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEReference(getInvocationContract_SourceInvocationContract(), this.getInvocationContract(), null, "sourceInvocationContract", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getInvocationContract_TargetInvocationContract(), this.getInvocationContract(), null, "targetInvocationContract", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getInvocationContract_InvokedContract(), this.getContract(), null, "invokedContract", null, 1, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEAttribute(getInvocationContract_InvokedMode(), this.getContractMode(), "invokedMode", null, 1, 1, InvocationContract.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getInvocationContract_Type(), theTypesPackage.getType(), null, "type", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     addEOperation(invocationContractEClass, this.getFactoryComponent(), "getFactoryComponent", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     addEOperation(invocationContractEClass, this.getInvocation(), "getInvocation", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+    addEOperation(invocationContractEClass, this.getContractMode(), "getInvokedMode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
     // Initialize enums and add enum literals
     initEEnum(contractModeEEnum, ContractMode.class, "ContractMode"); //$NON-NLS-1$
