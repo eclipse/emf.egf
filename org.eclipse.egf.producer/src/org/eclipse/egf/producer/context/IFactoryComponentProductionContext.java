@@ -16,8 +16,6 @@ import org.eclipse.egf.model.fcore.FactoryComponent;
  * @author Xavier Maysonnave
  * 
  */
-public interface IFactoryComponentProductionContext extends IActivityProductionContext {
-
-  public FactoryComponent getElement();
-
+public interface IFactoryComponentProductionContext extends IActivityProductionContext<FactoryComponent> {
+  // Nothing to do
 }

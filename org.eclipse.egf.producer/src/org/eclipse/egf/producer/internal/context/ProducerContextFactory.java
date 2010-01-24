@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.producer.internal.context;
 
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
@@ -25,9 +26,8 @@ public class ProducerContextFactory {
   }
 
   // FactoryComponent
-
-  public static IFactoryComponentProductionContext createContext(FactoryComponent element, ProjectBundleSession projectBundleSession) {
-    return new FactoryComponentProductionContext(element, projectBundleSession);
+  public static IFactoryComponentProductionContext createContext(ProjectBundleSession projectBundleSession, FactoryComponent element) {
+    return new FactoryComponentProductionContext(projectBundleSession, element, EMFHelper.getText(element));
   }
 
 }

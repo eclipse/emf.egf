@@ -18,7 +18,9 @@ package org.eclipse.egf.producer.manager;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.osgi.util.NLS;
@@ -27,13 +29,13 @@ import org.eclipse.osgi.util.NLS;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class OrchestrationManagerProducer {
+public abstract class OrchestrationManagerProducer<T extends Orchestration> {
 
   public abstract EClass getOrchestration();
 
-  protected abstract IOrchestrationManager doCreateOrchestrationManager(IFactoryComponentManager parent, Orchestration orchestration) throws InvocationException;
+  protected abstract IModelElementManager<T, OrchestrationParameter> doCreateOrchestrationManager(IActivityManager<FactoryComponent> parent, T orchestration) throws InvocationException;
 
-  public IOrchestrationManager createOrchestrationManager(IFactoryComponentManager parent, Orchestration orchestration) throws InvocationException {
+  public IModelElementManager<T, OrchestrationParameter> createOrchestrationManager(IActivityManager<FactoryComponent> parent, T orchestration) throws InvocationException {
     if (matchNature(orchestration) == false) {
       throw new InvocationException(NLS.bind(ProducerMessages.OrchestrationManagerProducer_type_error, getOrchestration().eClass().getName(), orchestration.eClass().getName()));
     }

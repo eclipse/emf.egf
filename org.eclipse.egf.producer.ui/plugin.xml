@@ -59,7 +59,7 @@
     >
       <enablement>
         <objectClass
-          name="org.eclipse.egf.model.fcore.ActivityContract"
+          name="org.eclipse.egf.model.fcore.Contract"
         />
       </enablement>
     </decorator>

@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -16,7 +16,6 @@
 package org.eclipse.egf.pattern.ui.editors.validation;
 
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.validation.IValidationContext;
@@ -26,16 +25,16 @@ import org.eclipse.emf.validation.IValidationContext;
  * 
  */
 public class ParameterNonEmptyNamesConstraint extends NonEmptyNamesConstraint {
-    private EObject eObj;
+  private EObject eObj;
 
-    @Override
-    public IStatus validate(IValidationContext ctx) {
-        eObj = ctx.getTarget();
-        if (eObj instanceof PatternParameter) {
-            if (checkNameEmpty((ModelElement) eObj)) {
-                return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() });
-            }
-        }
-        return ctx.createSuccessStatus();
+  @Override
+  public IStatus validate(IValidationContext ctx) {
+    eObj = ctx.getTarget();
+    if (eObj instanceof PatternParameter) {
+      if (checkNameEmpty((PatternParameter) eObj)) {
+        return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() });
+      }
     }
+    return ctx.createSuccessStatus();
+  }
 }

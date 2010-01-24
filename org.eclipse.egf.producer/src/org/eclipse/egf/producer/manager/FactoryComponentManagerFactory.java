@@ -12,6 +12,8 @@ package org.eclipse.egf.producer.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.producer.internal.manager.FactoryComponentManager;
 import org.osgi.framework.Bundle;
 
@@ -25,12 +27,16 @@ public class FactoryComponentManagerFactory {
     // Prevent Instantiation
   }
 
-  public static IFactoryComponentManager createProductionManager(FactoryComponent factoryComponent) throws InvocationException {
+  public static IActivityManager<FactoryComponent> createProductionManager(FactoryComponent factoryComponent) throws InvocationException {
     return new FactoryComponentManager(factoryComponent);
   }
 
-  public static IFactoryComponentManager createProductionManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
+  public static IActivityManager<FactoryComponent> createProductionManager(Bundle bundle, FactoryComponent factoryComponent) throws InvocationException {
     return new FactoryComponentManager(bundle, factoryComponent);
+  }
+
+  public static <T extends Invocation> IActivityManager<FactoryComponent> createProductionManager(IModelElementManager<T, InvocationContract> parent, FactoryComponent factoryComponent) throws InvocationException {
+    return new FactoryComponentManager(parent, factoryComponent);
   }
 
 }

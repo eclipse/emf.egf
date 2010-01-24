@@ -14,9 +14,12 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.FactoryComponentManagerFactory;
-import org.eclipse.egf.producer.manager.IFactoryComponentManager;
+import org.eclipse.egf.producer.manager.IActivityManager;
+import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.emf.ecore.EClass;
 import org.osgi.framework.Bundle;
 
@@ -24,7 +27,7 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public class FactoryComponentManagerProducer extends ActivityManagerProducer {
+public class FactoryComponentManagerProducer extends ActivityManagerProducer<FactoryComponent> {
 
   @Override
   public EClass getActivity() {
@@ -32,13 +35,18 @@ public class FactoryComponentManagerProducer extends ActivityManagerProducer {
   }
 
   @Override
-  protected IFactoryComponentManager doCreateActivityManager(Activity activity) throws InvocationException {
+  protected IActivityManager<FactoryComponent> doCreateActivityManager(Activity activity) throws InvocationException {
     return FactoryComponentManagerFactory.createProductionManager((FactoryComponent) activity);
   }
 
   @Override
-  protected IFactoryComponentManager doCreateActivityManager(Bundle bundle, Activity activity) throws InvocationException {
+  protected IActivityManager<FactoryComponent> doCreateActivityManager(Bundle bundle, Activity activity) throws InvocationException {
     return FactoryComponentManagerFactory.createProductionManager(bundle, (FactoryComponent) activity);
+  }
+
+  @Override
+  protected <T extends Invocation> IActivityManager<FactoryComponent> doCreateActivityManager(IModelElementManager<T, InvocationContract> parent, Activity activity) throws InvocationException {
+    return FactoryComponentManagerFactory.createProductionManager(parent, (FactoryComponent) activity);
   }
 
 }

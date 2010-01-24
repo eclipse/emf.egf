@@ -18,8 +18,11 @@ package org.eclipse.egf.producer.context;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.osgi.util.NLS;
@@ -28,34 +31,32 @@ import org.eclipse.osgi.util.NLS;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ActivityProductionContextProducer {
-
-  public abstract <R extends IInvocationProductionContext> Class<R> getParentProductionContext();
+public abstract class ActivityProductionContextProducer<P extends Activity> {
 
   public abstract EClass getActivity();
 
-  protected abstract IActivityProductionContext doCreateActivityProductionContext(IInvocationProductionContext parent, Activity activity, ProjectBundleSession projectBundleSession) throws InvocationException;
+  protected abstract IActivityProductionContext<P> doCreateActivityProductionContext(ProjectBundleSession projectBundleSession, Activity activity) throws InvocationException;
 
-  public IActivityProductionContext createActivityProductionContext(IInvocationProductionContext parent, Activity activity, ProjectBundleSession projectBundleSession) throws InvocationException {
+  protected abstract IActivityProductionContext<P> doCreateActivityProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, Activity activity) throws InvocationException;
+
+  public IActivityProductionContext<P> createActivityProductionContext(ProjectBundleSession projectBundleSession, Activity activity) throws InvocationException {
     if (matchNature(activity) == false) {
       throw new InvocationException(NLS.bind(ProducerMessages.ActivityManagerProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
     }
-    if (matchParentProductionContext(parent) == false) {
-      throw new InvocationException(NLS.bind(ProducerMessages.ActivityProductionContextProducer_type_error, getParentProductionContext().getName(), parent.getClass().getName()));
+    return doCreateActivityProductionContext(projectBundleSession, activity);
+  }
+
+  public IActivityProductionContext<P> createActivityProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, Activity activity) throws InvocationException {
+    if (matchNature(activity) == false) {
+      throw new InvocationException(NLS.bind(ProducerMessages.ActivityManagerProducer_type_error, getActivity().eClass().getName(), activity.eClass().getName()));
     }
-    return doCreateActivityProductionContext(parent, activity, projectBundleSession);
+    return doCreateActivityProductionContext(parent, projectBundleSession, activity);
   }
 
   public boolean matchNature(Activity activity) {
     Assert.isNotNull(activity);
     Assert.isNotNull(getActivity());
     return getActivity() == EMFHelper.solveAgainstStaticPackage(activity.eClass());
-  }
-
-  public boolean matchParentProductionContext(IInvocationProductionContext parent) {
-    Assert.isNotNull(parent);
-    Assert.isNotNull(getParentProductionContext());
-    return getParentProductionContext() == parent.getClass();
   }
 
 }

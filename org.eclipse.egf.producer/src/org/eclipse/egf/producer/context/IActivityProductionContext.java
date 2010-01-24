@@ -10,17 +10,14 @@
  */
 package org.eclipse.egf.producer.context;
 
+import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.fcore.Contract;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IActivityProductionContext extends IModelElementProductionContext<ActivityContract> {
-
-  public Activity getElement();
-
-  public IInvocationProductionContext getParent();
-
+public interface IActivityProductionContext<P extends Activity> extends IProductionContext<P, Contract> {
+  // Nothing to do
 }

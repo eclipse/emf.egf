@@ -32,7 +32,6 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.core.producer.MissingExtensionException;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.diagnostic.EGFValidator;
 import org.eclipse.egf.model.fcore.Activity;
@@ -72,18 +71,18 @@ public class RunActivityAction implements IObjectActionDelegate {
       return;
     }
 
-    final IActivityManager[] activityManager = new IActivityManager[1];
+    final IActivityManager<?>[] activityManager = new IActivityManager[1];
     final Throwable[] throwable = new Throwable[1];
     final Diagnostic[] invokeDiag = new Diagnostic[1];
     final int[] ticks = new int[1];
 
     // 1 - Locate a Manager Producer
     try {
-      ActivityManagerProducer producer = null;
+      ActivityManagerProducer<Activity> producer = null;
       try {
         producer = EGFProducerPlugin.getActivityManagerProducer(_activity);
-      } catch (MissingExtensionException mee) {
-        throw new InvocationException(mee);
+      } catch (Throwable t) {
+        throw new InvocationException(t);
       }
       // Create a Manager
       activityManager[0] = producer.createActivityManager(_activity);
@@ -159,7 +158,7 @@ public class RunActivityAction implements IObjectActionDelegate {
         @Override
         public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
           // Invoke
-          SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, activityManager[0].getName()), (1000 * ticks[0]));
+          SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, EMFHelper.getText(activityManager[0].getElement())), (1000 * ticks[0]));
           try {
             try {
               if (EGFProducerUIPlugin.getDefault().isDebugging()) {

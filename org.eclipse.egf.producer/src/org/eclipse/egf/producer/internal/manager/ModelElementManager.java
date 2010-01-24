@@ -18,11 +18,12 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.core.producer.context.IProductionContext;
+import org.eclipse.egf.core.producer.context.ProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.context.IModelElementProductionContext;
-import org.eclipse.egf.producer.internal.context.ModelElementProductionContext;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -34,23 +35,27 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ModelElementManager implements IModelElementManager {
+public abstract class ModelElementManager<P extends ModelElement, T extends ModelElement> implements IModelElementManager<P, T> {
 
   protected static BasicDiagnostic getDiagnostic(ModelElement element) {
     String message = null;
-    if (element.getName() != null && element.getName().trim().length() != 0) {
-      message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, element.getName());
-    } else {
+    if (element instanceof NamedModelElement) {
+      NamedModelElement namedElement = (NamedModelElement) element;
+      if (namedElement.getName() != null && namedElement.getName().trim().length() != 0) {
+        message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, namedElement.getName());
+      }
+    }
+    if (message == null) {
       message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, element.eClass().getName());
     }
     return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, new Object[] { element });
   }
 
-  private ModelElement _element;
+  private P _element;
 
-  protected IModelElementManager _parent;
+  protected IModelElementManager<?, ?> _parent;
 
-  protected IModelElementProductionContext<?> _productionContext;
+  protected IProductionContext<P, T> _productionContext;
 
   private Bundle _bundle;
 
@@ -58,7 +63,7 @@ public abstract class ModelElementManager implements IModelElementManager {
 
   private IPlatformFcore _platformFcore;
 
-  public ModelElementManager(ModelElement element) throws InvocationException {
+  public ModelElementManager(P element) throws InvocationException {
     Assert.isNotNull(element);
     _element = element;
     _platformFcore = EGFCorePlugin.getPlatformFcore(element.eResource());
@@ -67,14 +72,14 @@ public abstract class ModelElementManager implements IModelElementManager {
     }
   }
 
-  public ModelElementManager(Bundle bundle, ModelElement element) {
+  public ModelElementManager(Bundle bundle, P element) {
     Assert.isNotNull(bundle);
     Assert.isNotNull(element);
     _bundle = bundle;
     _element = element;
   }
 
-  public ModelElementManager(IModelElementManager parent, ModelElement element) throws InvocationException {
+  public ModelElementManager(IModelElementManager<?, ?> parent, P element) throws InvocationException {
     Assert.isNotNull(parent);
     Assert.isNotNull(element);
     _parent = parent;
@@ -85,19 +90,19 @@ public abstract class ModelElementManager implements IModelElementManager {
     }
   }
 
-  public ModelElement getElement() {
+  public P getElement() {
     return _element;
   }
 
-  public IModelElementProductionContext<?> getProductionContext() throws InvocationException {
+  public IProductionContext<P, T> getProductionContext() throws InvocationException {
     return getInternalProductionContext();
   }
 
-  public IModelElementManager getParent() {
+  public IModelElementManager<?, ?> getParent() {
     return _parent;
   }
 
-  protected abstract ModelElementProductionContext<?> getInternalProductionContext() throws InvocationException;
+  protected abstract ProductionContext<P, T> getInternalProductionContext() throws InvocationException;
 
   public String getName() {
     return EMFHelper.getText(getElement());

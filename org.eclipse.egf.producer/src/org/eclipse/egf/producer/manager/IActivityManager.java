@@ -10,20 +10,13 @@
  */
 package org.eclipse.egf.producer.manager;
 
-import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.producer.context.IActivityProductionContext;
+import org.eclipse.egf.model.fcore.Contract;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IActivityManager extends IModelElementManager {
-
-  public Activity getElement();
-
-  public IInvocationManager getParent();
-
-  public IActivityProductionContext getProductionContext() throws InvocationException;
-
+public interface IActivityManager<P extends Activity> extends IModelElementManager<P, Contract> {
+  // Nothing to do
 }

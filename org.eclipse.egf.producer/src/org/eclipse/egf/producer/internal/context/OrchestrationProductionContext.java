@@ -14,59 +14,51 @@ import java.util.Collection;
 
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.core.producer.context.IProductionContext;
+import org.eclipse.egf.core.producer.context.ProductionContext;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractMode;
-import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.Orchestration;
-import org.eclipse.egf.model.fcore.OrchestrationContext;
-import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
-import org.eclipse.egf.producer.context.IOrchestrationProductionContext;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public abstract class OrchestrationProductionContext extends ModelElementProductionContext<OrchestrationContext> implements IOrchestrationProductionContext {
+public abstract class OrchestrationProductionContext<P extends Orchestration> extends ProductionContext<P, OrchestrationParameter> {
 
-  public OrchestrationProductionContext(Orchestration element, ProjectBundleSession projectBundleSession) {
-    super(element, projectBundleSession);
+  public OrchestrationProductionContext(ProjectBundleSession projectBundleSession, P element, String name) {
+    super(projectBundleSession, element, name);
   }
 
-  public OrchestrationProductionContext(IFactoryComponentProductionContext parent, Orchestration element, ProjectBundleSession projectBundleSession) {
-    super(parent, element, projectBundleSession);
-  }
-
-  @Override
-  public Orchestration getElement() {
-    return (Orchestration) super.getElement();
-  }
-
-  @Override
-  public IFactoryComponentProductionContext getParent() {
-    return (IFactoryComponentProductionContext) super.getParent();
+  public OrchestrationProductionContext(IProductionContext<FactoryComponent, Contract> parent, ProjectBundleSession projectBundleSession, P element, String name) {
+    super(parent, projectBundleSession, element, name);
   }
 
   @Override
   public Class<?> getInputValueType(Object key) throws InvocationException {
-    // Locate an OrchestrationContext, it could be null, just do it for type checking
-    OrchestrationContext orchestrationContext = getOrchestrationContext(key, getElement().getOrchestrationContexts());
-    InvocationContext invocationContext = (InvocationContext) key;
+    // Locate an OrchestrationParameter, it could be null, just do it for key type checking
+    OrchestrationParameter orchestrationParameter = getOrchestrationParameter(key, getInputValueKeys());
+    InvocationContract invocationContract = (InvocationContract) key;
     Class<?> valueType = null;
-    // Always propagate, An InvocationContext shouldn't be in an OrchestrationContext
+    // Always propagate, An InvocationContract shouldn't be in an OrchestrationParameter
     // and in an FactoryComponent Contract
-    if (invocationContext.getFactoryComponentExposedContract() != null) {
-      if (getParent() != null && invocationContext.getFactoryComponentExposedContract().getMode() != ContractMode.OUT) {
-        valueType = getParent().getInputValueType(invocationContext);
+    if (invocationContract.getFactoryComponentContract() != null) {
+      if (getParent() != null && invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
+        valueType = getParent().getInputValueType(invocationContract);
       }
     } else {
       // Shouldn't be null at this stage
-      if (orchestrationContext == null) {
+      if (orchestrationParameter == null) {
         throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
       }
       // Looking for a local Value Type
-      Data data = _inputDatas.get(orchestrationContext);
+      Data data = _inputDatas.get(orchestrationParameter);
       if (data != null) {
         valueType = data.getType();
       }
@@ -76,25 +68,25 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
 
   @Override
   public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
-    // Locate an OrchestrationContext, it could be null, just do it for type checking
-    OrchestrationContext orchestrationContext = getOrchestrationContext(key, getElement().getOrchestrationContexts());
-    InvocationContext invocationContext = (InvocationContext) key;
+    // Locate an OrchestrationParameter, it could be null, just do it for key type checking
+    OrchestrationParameter orchestrationParameter = getOrchestrationParameter(key, getInputValueKeys());
+    InvocationContract invocationContract = (InvocationContract) key;
     R value = null;
-    // Always propagate, An InvocationContext shouldn't be in an OrchestrationContext
+    // Always propagate, An InvocationContract shouldn't be in an OrchestrationParameter
     // and in an FactoryComponent Contract
-    if (invocationContext.getFactoryComponentExposedContract() != null) {
-      if (getParent() != null && invocationContext.getFactoryComponentExposedContract().getMode() != ContractMode.OUT) {
-        value = getParent().getInputValue(invocationContext, clazz);
+    if (invocationContract.getFactoryComponentContract() != null) {
+      if (getParent() != null && invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
+        value = getParent().getInputValue(invocationContract, clazz);
       }
     } else {
       // Shouldn't be null at this stage
-      if (orchestrationContext == null) {
+      if (orchestrationParameter == null) {
         throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
       }
       // Looking for a local value
-      Data data = _inputDatas.get(orchestrationContext);
+      Data data = _inputDatas.get(orchestrationParameter);
       if (data != null) {
-        value = getValue(orchestrationContext, clazz, data);
+        value = getValue(orchestrationParameter, clazz, data);
       }
     }
     return value;
@@ -102,14 +94,14 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
 
   @Override
   public Class<?> getOutputValueType(Object key) throws InvocationException {
-    // Locate an OrchestrationContext, it should be null, just do it for type checking
-    getOrchestrationContext(key, getElement().getOrchestrationContexts());
-    InvocationContext invocationContext = (InvocationContext) key;
+    // Locate an OrchestrationParameter, it should be null, just do it for key type checking
+    getOrchestrationParameter(key, getOutputValueKeys());
+    InvocationContract invocationContract = (InvocationContract) key;
     Class<?> valueType = null;
-    // Always propagate, OrchestrationContext doesn't hold Output Values
-    if (invocationContext.getFactoryComponentExposedContract() != null) {
-      if (getParent() != null && invocationContext.getFactoryComponentExposedContract().getMode() != ContractMode.IN) {
-        valueType = getParent().getOutputValueType(invocationContext);
+    // Always propagate, OrchestrationParameter doesn't hold Output Values
+    if (invocationContract.getFactoryComponentContract() != null) {
+      if (getParent() != null && invocationContract.getFactoryComponentContract().getMode() != ContractMode.IN) {
+        valueType = getParent().getOutputValueType(invocationContract);
       }
     }
     return valueType;
@@ -117,14 +109,14 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
 
   @Override
   public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
-    // Locate an OrchestrationContext, it should be null, just do it for type checking
-    getOrchestrationContext(key, getElement().getOrchestrationContexts());
-    InvocationContext invocationContext = (InvocationContext) key;
+    // Locate an OrchestrationParameter, it should be null, just do it for key type checking
+    getOrchestrationParameter(key, getOutputValueKeys());
+    InvocationContract invocationContract = (InvocationContract) key;
     R value = null;
-    // Always propagate, OrchestrationContext doesn't hold Output Values
-    if (invocationContext.getFactoryComponentExposedContract() != null) {
-      if (getParent() != null && invocationContext.getFactoryComponentExposedContract().getMode() != ContractMode.IN) {
-        value = getParent().getOutputValue(invocationContext, clazz);
+    // Always propagate, OrchestrationParameter doesn't hold Output Values
+    if (invocationContract.getFactoryComponentContract() != null) {
+      if (getParent() != null && invocationContract.getFactoryComponentContract().getMode() != ContractMode.IN) {
+        value = getParent().getOutputValue(invocationContract, clazz);
       }
     }
     return value;
@@ -132,35 +124,35 @@ public abstract class OrchestrationProductionContext extends ModelElementProduct
 
   @Override
   public void setOutputValue(Object key, Object value) throws InvocationException {
-    // Locate an OrchestrationContext, it should be null, just do it for type checking
-    getOrchestrationContext(key, getElement().getOrchestrationContexts());
-    InvocationContext invocationContext = (InvocationContext) key;
-    // Always propagate, OrchestrationContext doesn't hold Output Values
-    if (invocationContext.getFactoryComponentExposedContract() != null) {
-      if (getParent() != null && invocationContext.getFactoryComponentExposedContract().getMode() != ContractMode.IN) {
-        getParent().setOutputValue(invocationContext, value);
+    // Locate an OrchestrationParameter, it should be null, just do it for key type checking
+    getOrchestrationParameter(key, getOutputValueKeys());
+    InvocationContract invocationContract = (InvocationContract) key;
+    // Always propagate, OrchestrationParameter doesn't hold Output Values
+    if (invocationContract.getFactoryComponentContract() != null) {
+      if (getParent() != null && invocationContract.getFactoryComponentContract().getMode() != ContractMode.IN) {
+        getParent().setOutputValue(invocationContract, value);
       }
     }
   }
 
-  private OrchestrationContext getOrchestrationContext(Object key, Collection<OrchestrationContext> keys) throws InvocationException {
+  private OrchestrationParameter getOrchestrationParameter(Object key, Collection<OrchestrationParameter> keys) throws InvocationException {
     // Usual Tests
     if (key == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
     }
-    if (key instanceof InvocationContext == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContext.class.getName(), EMFHelper.getText(key), key.getClass().getName(), getName() }));
+    if (key instanceof InvocationContract == false) {
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContract.class.getName(), EMFHelper.getText(key), key.getClass().getName(), getName() }));
     }
-    // Locate OrchestrationContext
-    OrchestrationContext orchestrationContext = null;
-    for (OrchestrationContext innerOrchestrationContext : keys) {
-      if (innerOrchestrationContext.getInvocationContexts().contains(key)) {
-        orchestrationContext = innerOrchestrationContext;
+    // Locate OrchestrationParameter
+    OrchestrationParameter orchestrationParameter = null;
+    for (OrchestrationParameter innerOrchestrationParameter : keys) {
+      if (innerOrchestrationParameter.getInvocationContracts().contains(key)) {
+        orchestrationParameter = innerOrchestrationParameter;
         break;
       }
     }
     // Return
-    return orchestrationContext;
+    return orchestrationParameter;
   }
 
 }

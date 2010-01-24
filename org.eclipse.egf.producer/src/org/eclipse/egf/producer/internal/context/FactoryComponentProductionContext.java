@@ -15,34 +15,29 @@ import java.util.Collection;
 import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
-import org.eclipse.egf.model.fcore.ActivityContract;
-import org.eclipse.egf.model.fcore.ContractMode;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FactoryComponentContract;
-import org.eclipse.egf.model.fcore.InvocationContext;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
-import org.eclipse.egf.producer.context.IInvocationProductionContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class FactoryComponentProductionContext extends ActivityProductionContext implements IFactoryComponentProductionContext {
+public class FactoryComponentProductionContext extends ActivityProductionContext<FactoryComponent> implements IFactoryComponentProductionContext {
 
-  public FactoryComponentProductionContext(FactoryComponent element, ProjectBundleSession projectBundleSession) {
-    super(element, projectBundleSession);
+  public FactoryComponentProductionContext(ProjectBundleSession projectBundleSession, FactoryComponent element, String name) {
+    super(projectBundleSession, element, name);
   }
 
-  public FactoryComponentProductionContext(IInvocationProductionContext parent, FactoryComponent element, ProjectBundleSession projectBundleSession) {
-    super(parent, element, projectBundleSession);
-  }
-
-  @Override
-  public FactoryComponent getElement() {
-    return (FactoryComponent) super.getElement();
+  public FactoryComponentProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, FactoryComponent element, String name) {
+    super(parent, projectBundleSession, element, name);
   }
 
   @Override
@@ -51,20 +46,20 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     if (key != null && key instanceof String) {
       return super.getInputValueType(key);
     }
-    // Locate an ActivityContract
-    ActivityContract activityContract = getFactoryComponentContract(key, getInputValueKeys());
-    // ActivityContract should be known at this stage
-    if (activityContract == null) {
+    // Locate a Contract
+    Contract contract = getContract(key, getInputValueKeys());
+    // Contract should be known at this stage
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     Class<?> valueType = null;
     // Looking for Parent Value Type if available
     if (getParent() != null) {
-      valueType = getParent().getInputValueType(activityContract);
+      valueType = getParent().getInputValueType(contract);
     }
     // Looking for local Value Type if necessary
     if (valueType == null) {
-      Data data = _inputDatas.get(activityContract);
+      Data data = _inputDatas.get(contract);
       if (data != null) {
         valueType = data.getType();
       }
@@ -78,22 +73,22 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     if (key != null && key instanceof String) {
       return super.getInputValue(key, clazz);
     }
-    // Locate an FactoryComponentContract
-    ActivityContract activityContract = getFactoryComponentContract(key, getInputValueKeys());
-    // ActivityContract should be known at this stage
-    if (activityContract == null) {
+    // Locate an Contract
+    Contract contract = getContract(key, getInputValueKeys());
+    // Contract should be known at this stage
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     R value = null;
     // Looking for Parent Value if available
     if (getParent() != null) {
-      value = getParent().getInputValue(activityContract, clazz);
+      value = getParent().getInputValue(contract, clazz);
     }
     // Looking for a local value if necessary
     if (value == null) {
-      Data data = _inputDatas.get(activityContract);
+      Data data = _inputDatas.get(contract);
       if (data != null) {
-        value = getValue(activityContract, clazz, data);
+        value = getValue(contract, clazz, data);
       }
     }
     return value;
@@ -105,20 +100,20 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     if (key != null && key instanceof String) {
       return super.getOutputValueType(key);
     }
-    // Locate an ActivityContract
-    ActivityContract activityContract = getFactoryComponentContract(key, getOutputValueKeys());
-    // ActivityContract should be known at this stage
-    if (activityContract == null) {
+    // Locate an Contract
+    Contract contract = getContract(key, getOutputValueKeys());
+    // Contract should be known at this stage
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     Class<?> valueType = null;
     // Looking for Parent Value Type if available
     if (getParent() != null) {
-      valueType = getParent().getOutputValueType(activityContract);
+      valueType = getParent().getOutputValueType(contract);
     }
     // Looking for a local Value Type if necessary
     if (valueType == null) {
-      Data data = _outputDatas.get(activityContract);
+      Data data = _outputDatas.get(contract);
       if (data != null) {
         valueType = data.getType();
       }
@@ -132,22 +127,22 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     if (key != null && key instanceof String) {
       return super.getOutputValue(key, clazz);
     }
-    // Locate an ActivityContract
-    ActivityContract activityContract = getFactoryComponentContract(key, getOutputValueKeys());
-    // ActivityContract should be known at this stage
-    if (activityContract == null) {
+    // Locate an Contract
+    Contract contract = getContract(key, getOutputValueKeys());
+    // Contract should be known at this stage
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     R value = null;
     // Looking for Parent Value if available
     if (getParent() != null) {
-      value = getParent().getOutputValue(activityContract, clazz);
+      value = getParent().getOutputValue(contract, clazz);
     }
     // Looking for a local value if necessary
     if (value == null) {
-      Data data = _outputDatas.get(activityContract);
+      Data data = _outputDatas.get(contract);
       if (data != null) {
-        value = getValue(activityContract, clazz, data);
+        value = getValue(contract, clazz, data);
       }
     }
     return value;
@@ -159,18 +154,18 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     if (key != null && key instanceof String) {
       super.setOutputValue(key, value);
     }
-    // Locate an ActivityContract
-    ActivityContract activityContract = getFactoryComponentContract(key, getElement().getActivityContracts(ContractMode.OUT));
-    // ActivityContract should be known at this stage
-    if (activityContract == null) {
+    // Locate an Contract
+    Contract contract = getContract(key, getOutputValueKeys());
+    // Contract should be known at this stage
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     // Propagate Value to parent if necessary
     if (getParent() != null) {
-      getParent().setOutputValue(activityContract, value);
+      getParent().setOutputValue(contract, value);
     }
     // Fetch available data
-    Data data = _outputDatas.get(activityContract);
+    Data data = _outputDatas.get(contract);
     if (data == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
@@ -182,29 +177,27 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     data.setValue(value);
   }
 
-  private FactoryComponentContract getFactoryComponentContract(Object key, Collection<ActivityContract> keys) throws InvocationException {
+  private Contract getContract(Object key, Collection<Contract> keys) throws InvocationException {
     // Usual Tests
     if (key == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
     }
-    if (key instanceof InvocationContext == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContext.class.getName(), EMFHelper.getText(key), key.getClass().getName(), getName() }));
+    if (key instanceof InvocationContract == false) {
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContract.class.getName(), EMFHelper.getText(key), key.getClass().getName(), getName() }));
     }
-    // Locate FactoryComponentContract
-    FactoryComponentContract factoryComponentContract = null;
-    for (ActivityContract activityContract : keys) {
-      // Shouldn't happen
-      if (activityContract instanceof FactoryComponentContract == false) {
+    // Locate Contract
+    Contract contract = null;
+    for (Contract innerContract : keys) {
+      if (innerContract instanceof FactoryComponentContract == false) {
         continue;
       }
-      FactoryComponentContract innerFactoryComponentContract = (FactoryComponentContract) activityContract;
-      if (innerFactoryComponentContract.getInvocationContexts().contains(key)) {
-        factoryComponentContract = innerFactoryComponentContract;
+      if (((FactoryComponentContract) innerContract).getInvocationContracts().contains(key)) {
+        contract = innerContract;
         break;
       }
     }
     // Return
-    return factoryComponentContract;
+    return contract;
   }
 
 }

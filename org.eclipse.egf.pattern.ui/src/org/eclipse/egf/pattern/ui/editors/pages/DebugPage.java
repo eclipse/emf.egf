@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -44,82 +44,83 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
  */
 public class DebugPage extends PatternEditorPage {
 
-    public static final String ID = "OverviewPage";
+  public static final String ID = "OverviewPage"; //$NON-NLS-1$
 
-    private Text text;
+  private Text text;
 
-    private Text label;
+  private Text label;
 
-    public DebugPage(FormEditor editor) {
-        super(editor, ID, Messages.OverviewPage_title);
+  public DebugPage(FormEditor editor) {
+    super(editor, ID, Messages.OverviewPage_title);
 
-    }
+  }
 
-    protected void doCreateFormContent(IManagedForm managedForm) {
-        FormToolkit toolkit = managedForm.getToolkit();
-        ScrolledForm form = managedForm.getForm();
-        form.getBody().setLayout(new GridLayout());
+  @Override
+  protected void doCreateFormContent(IManagedForm managedForm) {
+    FormToolkit toolkit = managedForm.getToolkit();
+    ScrolledForm form = managedForm.getForm();
+    form.getBody().setLayout(new GridLayout());
 
-        text = toolkit.createText(form.getBody(), getPattern().getName(), SWT.BORDER);
-        text.addModifyListener(new ModifyListener() {
+    text = toolkit.createText(form.getBody(), getPattern().getName(), SWT.BORDER);
+    text.addModifyListener(new ModifyListener() {
 
-            public void modifyText(ModifyEvent e) {
-                Pattern pattern = getPattern();// pattern.eResource()
-                // System.out.println("pattern = " + pattern + "\tresource = " +
-                // pattern.eResource());
-                // System.out.println("Parent is " + pattern.getSuperPattern()
-                // == null ? "none" : pattern.getSuperPattern().getName()));
-                System.out.println("Parent = " + pattern.getSuperPattern() + "\t");
-                String text2 = text.getText();
-                // Command cmd = SetCommand.create(getEditingDomain(), pattern,
-                // FcorePackage.Literals.MODEL_ELEMENT__NAME, text2);
-                // if (cmd.canExecute()) {
-                // execute(cmd);
-                // }
-            }
+      public void modifyText(ModifyEvent e) {
+        Pattern pattern = getPattern();// pattern.eResource()
+        // System.out.println("pattern = " + pattern + "\tresource = " +
+        // pattern.eResource());
+        // System.out.println("Parent is " + pattern.getSuperPattern()
+        // == null ? "none" : pattern.getSuperPattern().getName()));
+        System.out.println("Parent = " + pattern.getSuperPattern() + "\t");
+        String text2 = text.getText();
+        // Command cmd = SetCommand.create(getEditingDomain(), pattern,
+        // FcorePackage.Literals.MODEL_ELEMENT__NAME, text2);
+        // if (cmd.canExecute()) {
+        // execute(cmd);
+        // }
+      }
 
-        });
-        GridData gd = new GridData(GridData.FILL_HORIZONTAL);
-        text.setLayoutData(gd);
+    });
+    GridData gd = new GridData(GridData.FILL_HORIZONTAL);
+    text.setLayoutData(gd);
 
-        label = toolkit.createText(form.getBody(), "", SWT.BORDER);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        label.setLayoutData(gd);
+    label = toolkit.createText(form.getBody(), "", SWT.BORDER);
+    gd = new GridData(GridData.FILL_HORIZONTAL);
+    label.setLayoutData(gd);
 
-    }
+  }
 
-    void bindParentName() {
-        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.MODEL_ELEMENT__NAME);
-        IWidgetValueProperty labelProp = WidgetProperties.text(SWT.Modify);
-        IObservableValue uiObs = labelProp.observeDelayed(400, label);
-        IObservableValue mObs = mprop.observe(getPattern().getSuperPattern());
-        addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+  void bindParentName() {
+    IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME);
+    IWidgetValueProperty labelProp = WidgetProperties.text(SWT.Modify);
+    IObservableValue uiObs = labelProp.observeDelayed(400, label);
+    IObservableValue mObs = mprop.observe(getPattern().getSuperPattern());
+    addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
 
-            public IStatus validate(Object value) {
+      public IStatus validate(Object value) {
 
-                return Status.OK_STATUS;
-            }
-        }), null));
-    }
+        return Status.OK_STATUS;
+      }
+    }), null));
+  }
 
-    void bindName() {
-        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.MODEL_ELEMENT__NAME);
-        IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
-        IObservableValue uiObs = textProp.observeDelayed(400, text);
-        IObservableValue mObs = mprop.observe(getPattern());
+  void bindName() {
+    IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME);
+    IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
+    IObservableValue uiObs = textProp.observeDelayed(400, text);
+    IObservableValue mObs = mprop.observe(getPattern());
 
-        addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+    addBinding(ctx.bindValue(uiObs, mObs, new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
 
-            public IStatus validate(Object value) {
+      public IStatus validate(Object value) {
 
-                return Status.OK_STATUS;
-            }
-        }), null));
-    }
+        return Status.OK_STATUS;
+      }
+    }), null));
+  }
 
-    @Override
-    protected void bind() {
-        bindName();
-        bindParentName();
-    }
+  @Override
+  protected void bind() {
+    bindName();
+    bindParentName();
+  }
 }

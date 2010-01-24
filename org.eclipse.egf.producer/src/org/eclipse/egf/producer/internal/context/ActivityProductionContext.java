@@ -14,99 +14,92 @@ import java.util.Collection;
 
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.core.producer.context.IProductionContext;
+import org.eclipse.egf.core.producer.context.ProductionContext;
 import org.eclipse.egf.core.producer.l10n.CoreProducerMessages;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.producer.context.IActivityProductionContext;
-import org.eclipse.egf.producer.context.IInvocationProductionContext;
 import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ActivityProductionContext extends ModelElementProductionContext<ActivityContract> implements IActivityProductionContext {
+public abstract class ActivityProductionContext<P extends Activity> extends ProductionContext<P, Contract> implements IActivityProductionContext<P> {
 
-  public ActivityProductionContext(Activity element, ProjectBundleSession projectBundleSession) {
-    super(element, projectBundleSession);
+  public ActivityProductionContext(ProjectBundleSession projectBundleSession, P element, String name) {
+    super(projectBundleSession, element, name);
   }
 
-  public ActivityProductionContext(IInvocationProductionContext parent, Activity element, ProjectBundleSession projectBundleSession) {
-    super(parent, element, projectBundleSession);
-  }
-
-  @Override
-  public Activity getElement() {
-    return (Activity) super.getElement();
-  }
-
-  @Override
-  public IInvocationProductionContext getParent() {
-    return (IInvocationProductionContext) super.getParent();
+  public ActivityProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, P element, String name) {
+    super(parent, projectBundleSession, element, name);
   }
 
   @Override
   public Class<?> getInputValueType(Object key) throws InvocationException {
-    // Looking for an ActivityContract
-    ActivityContract activityContract = getActivityContract(key, getInputValueKeys());
+    // Looking for a Contract
+    Contract contract = getContract(key, getInputValueKeys());
     // Unknown ActivityContract
-    if (activityContract == null) {
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
     }
     // Looking for an Input ActivityContract type
-    return super.getInputValueType(activityContract);
+    return super.getInputValueType(contract);
   }
 
   @Override
   public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
-    // Looking for an ActivityContract
-    ActivityContract activityContract = getActivityContract(key, getInputValueKeys());
-    // Unknown ActivityContract
-    if (activityContract == null) {
+    // Looking for a Contract
+    Contract contract = getContract(key, getInputValueKeys());
+    // Unknown Contract
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
     }
     // Looking for an Input ActivityContract value
-    return super.getInputValue(activityContract, clazz);
+    return super.getInputValue(contract, clazz);
   }
 
   @Override
   public Class<?> getOutputValueType(Object key) throws InvocationException {
-    // Looking for an ActivityContract
-    ActivityContract activityContract = getActivityContract(key, getOutputValueKeys());
-    // Unknown ActivityContract
-    if (activityContract == null) {
+    // Looking for a Contract
+    Contract contract = getContract(key, getOutputValueKeys());
+    // Unknown Contract
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
     }
     // Looking for an Output ActivityContract type
-    return super.getOutputValueType(activityContract);
+    return super.getOutputValueType(contract);
   }
 
   @Override
   public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
-    // Looking for an ActivityContract
-    ActivityContract activityContract = getActivityContract(key, getOutputValueKeys());
-    // Unknown ActivityContract
-    if (activityContract == null) {
+    // Looking for a Contract
+    Contract contract = getContract(key, getOutputValueKeys());
+    // Unknown Contract
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
     }
     // Looking for an Output ActivityContract value
-    return super.getOutputValue(activityContract, clazz);
+    return super.getOutputValue(contract, clazz);
   }
 
   @Override
   public void setOutputValue(Object key, Object value) throws InvocationException {
-    // Looking for an ActivityContract
-    ActivityContract activityContract = getActivityContract(key, getOutputValueKeys());
-    // Unknown ActivityContract
-    if (activityContract == null) {
+    // Looking for a Contract
+    Contract contract = getContract(key, getOutputValueKeys());
+    // Unknown Contract
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
     }
     // Set ActivityContract Value
-    super.setOutputValue(activityContract, value);
+    super.setOutputValue(contract, value);
   }
 
-  private ActivityContract getActivityContract(Object key, Collection<ActivityContract> keys) throws InvocationException {
+  private Contract getContract(Object key, Collection<Contract> keys) throws InvocationException {
     // Usual Tests
     if (key == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_name, getName()));
@@ -118,20 +111,20 @@ public abstract class ActivityProductionContext extends ModelElementProductionCo
     if (innerName.length() == 0) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_emtpy_name, getName()));
     }
-    // Looking for an ActivityContract
-    ActivityContract activityContract = null;
-    for (ActivityContract innerActivityContract : keys) {
-      if (innerName.equals(innerActivityContract.getName())) {
-        activityContract = innerActivityContract;
+    // Looking for a Contract
+    Contract contract = null;
+    for (Contract innerContract : keys) {
+      if (innerName.equals(innerContract.getName())) {
+        contract = innerContract;
         break;
       }
     }
     // Unknown ActivityContract
-    if (activityContract == null) {
+    if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, innerName, getName()));
     }
     // Return
-    return activityContract;
+    return contract;
   }
 
 }

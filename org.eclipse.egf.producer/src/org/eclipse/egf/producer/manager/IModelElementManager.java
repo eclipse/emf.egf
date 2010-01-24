@@ -16,21 +16,12 @@ import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.manager.IProducerManager;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.ModelElement;
-import org.eclipse.egf.producer.context.IModelElementProductionContext;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface IModelElementManager extends IProducerManager {
-
-  public String getName();
-
-  public ModelElement getElement();
-
-  public IModelElementManager getParent();
-
-  public IModelElementProductionContext<?> getProductionContext() throws InvocationException;
+public interface IModelElementManager<P extends ModelElement, T extends ModelElement> extends IProducerManager<P, T> {
 
   public List<Activity> getActivities() throws InvocationException;
 

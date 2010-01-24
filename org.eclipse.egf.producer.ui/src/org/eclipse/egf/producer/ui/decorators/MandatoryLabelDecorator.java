@@ -12,7 +12,7 @@ package org.eclipse.egf.producer.ui.decorators;
 
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.IEGFCoreUIImages;
-import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -32,8 +32,8 @@ public class MandatoryLabelDecorator implements ILightweightLabelDecorator {
    *      org.eclipse.jface.viewers.IDecoration)
    */
   public void decorate(Object element, IDecoration decoration) {
-    if (element instanceof ActivityContract) {
-      ActivityContract contract = (ActivityContract) element;
+    if (element instanceof Contract) {
+      Contract contract = (Contract) element;
       if (contract.isMandatory()) {
         decoration.addOverlay(getMandatoryImage());
       }

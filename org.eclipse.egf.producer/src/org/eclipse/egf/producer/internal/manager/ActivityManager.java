@@ -16,17 +16,18 @@ import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.core.producer.context.ProductionContext;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractMode;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.helper.ActivityCycleFinder;
 import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.producer.EGFProducerPlugin;
-import org.eclipse.egf.producer.context.IActivityProductionContext;
-import org.eclipse.egf.producer.internal.context.ActivityProductionContext;
 import org.eclipse.egf.producer.manager.IActivityManager;
-import org.eclipse.egf.producer.manager.IInvocationManager;
+import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.osgi.util.NLS;
@@ -36,9 +37,9 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ActivityManager extends ModelElementManager implements IActivityManager {
+public abstract class ActivityManager<P extends Activity> extends ModelElementManager<P, Contract> implements IActivityManager<P> {
 
-  public ActivityManager(Activity activity) throws InvocationException {
+  public ActivityManager(P activity) throws InvocationException {
     super(activity);
     // Diagnose Cycle
     ActivityCycleFinder finder = new ActivityCycleFinder(activity);
@@ -48,7 +49,7 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
     }
   }
 
-  public ActivityManager(Bundle bundle, Activity activity) throws InvocationException {
+  public ActivityManager(Bundle bundle, P activity) throws InvocationException {
     super(bundle, activity);
     // Diagnose Cycle
     ActivityCycleFinder finder = new ActivityCycleFinder(activity);
@@ -58,34 +59,16 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
     }
   }
 
-  public ActivityManager(IInvocationManager parent, Activity activity) throws InvocationException {
+  public <M extends Invocation> ActivityManager(IModelElementManager<M, InvocationContract> parent, P activity) throws InvocationException {
     super(parent, activity);
   }
-
-  @Override
-  public Activity getElement() {
-    return (Activity) super.getElement();
-  }
-
-  @Override
-  public IActivityProductionContext getProductionContext() throws InvocationException {
-    return getInternalProductionContext();
-  }
-
-  @Override
-  public IInvocationManager getParent() {
-    return (IInvocationManager) super.getParent();
-  }
-
-  @Override
-  protected abstract ActivityProductionContext getInternalProductionContext() throws InvocationException;
 
   @Override
   protected BasicDiagnostic canInvokeElement() throws InvocationException {
     BasicDiagnostic diagnostic = getDiagnostic(getElement());
     BasicDiagnostic containerDiagnostic = null;
     // Diagnose Mandatory In Contract
-    for (ActivityContract contract : getElement().getActivityContracts(ContractMode.IN)) {
+    for (Contract contract : getElement().getContracts(ContractMode.IN)) {
       if (contract.isMandatory()) {
         // Check Mandatory Value
         Object value = null;
@@ -98,7 +81,7 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
         }
         if (value == null) {
           if (containerDiagnostic == null) {
-            containerDiagnostic = getDiagnostic(contract.getActivityContractContainer());
+            containerDiagnostic = getDiagnostic(contract.getContractContainer());
           }
           containerDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("ActivityContract is mandatory for ''{0}''", EMFHelper.getText(contract)), //$NON-NLS-1$
               new Object[] { contract }));
@@ -116,11 +99,11 @@ public abstract class ActivityManager extends ModelElementManager implements IAc
   @Override
   public void initializeContext() throws InvocationException {
     // Get Context
-    ActivityProductionContext context = getInternalProductionContext();
+    ProductionContext<P, Contract> context = getInternalProductionContext();
     // Clear Context
     context.clear();
     // Set Context
-    for (ActivityContract contract : getElement().getActivityContracts()) {
+    for (Contract contract : getElement().getContracts()) {
       // Should not happen, anyway ignore
       if (contract.getType() == null) {
         continue;

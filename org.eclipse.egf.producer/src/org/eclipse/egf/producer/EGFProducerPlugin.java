@@ -8,7 +8,6 @@ import org.eclipse.egf.core.producer.MissingExtensionException;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.producer.context.ActivityProductionContextProducer;
-import org.eclipse.egf.producer.context.IInvocationProductionContext;
 import org.eclipse.egf.producer.internal.registry.ProducerRegistry;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
@@ -61,9 +60,10 @@ public class EGFProducerPlugin extends EGFAbstractPlugin {
    * 
    * @return an ActivityManagerProducer
    */
-  public static ActivityManagerProducer getActivityManagerProducer(Activity activity) throws MissingExtensionException {
-    Map<EClass, ActivityManagerProducer> producers = ProducerRegistry.getActivityManagerProducers();
-    ActivityManagerProducer producer = producers.get(EMFHelper.solveAgainstStaticPackage(activity.eClass()));
+  @SuppressWarnings("unchecked")
+  public static <P extends Activity> ActivityManagerProducer<P> getActivityManagerProducer(P activity) throws MissingExtensionException {
+    Map<EClass, ActivityManagerProducer<?>> producers = ProducerRegistry.getActivityManagerProducers();
+    ActivityManagerProducer<P> producer = (ActivityManagerProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(activity.eClass()));
     if (producer == null) {
       throw new MissingExtensionException(NLS.bind(ProducerMessages.ActivityManagerProducer_extension_error, ProducerRegistry.getName(activity)));
     }
@@ -77,11 +77,12 @@ public class EGFProducerPlugin extends EGFAbstractPlugin {
    * 
    * @return an ActivityProductionContextProducer
    */
-  public static ActivityProductionContextProducer getActivityProductionContextProducer(IInvocationProductionContext parentProductionContext) throws MissingExtensionException {
-    Map<Class<IInvocationProductionContext>, ActivityProductionContextProducer> producers = ProducerRegistry.getActivityProductionContextProducers();
-    ActivityProductionContextProducer producer = producers.get(parentProductionContext.getClass());
+  @SuppressWarnings("unchecked")
+  public static <P extends Activity> ActivityProductionContextProducer<P> getActivityProductionContextProducer(P activity) throws MissingExtensionException {
+    Map<EClass, ActivityProductionContextProducer<?>> producers = ProducerRegistry.getActivityProductionContextProducers();
+    ActivityProductionContextProducer<P> producer = (ActivityProductionContextProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(activity.eClass()));
     if (producer == null) {
-      throw new MissingExtensionException(NLS.bind(ProducerMessages.ActivityProductionContextProducer_extension_error, ProducerRegistry.getName(parentProductionContext)));
+      throw new MissingExtensionException(NLS.bind(ProducerMessages.ActivityProductionContextProducer_extension_error, ProducerRegistry.getName(activity)));
     }
     return producer;
 
@@ -92,9 +93,10 @@ public class EGFProducerPlugin extends EGFAbstractPlugin {
    * 
    * @return an OrchestrationProducer
    */
-  public static OrchestrationManagerProducer getOrchestrationProducer(Orchestration orchestration) throws MissingExtensionException {
-    Map<EClass, OrchestrationManagerProducer> producers = ProducerRegistry.getOrchestrationManagerProducers();
-    OrchestrationManagerProducer producer = producers.get(EMFHelper.solveAgainstStaticPackage(orchestration.eClass()));
+  @SuppressWarnings("unchecked")
+  public static <P extends Orchestration> OrchestrationManagerProducer<P> getOrchestrationProducer(P orchestration) throws MissingExtensionException {
+    Map<EClass, OrchestrationManagerProducer<?>> producers = ProducerRegistry.getOrchestrationManagerProducers();
+    OrchestrationManagerProducer<P> producer = (OrchestrationManagerProducer<P>) producers.get(EMFHelper.solveAgainstStaticPackage(orchestration.eClass()));
     if (producer == null) {
       throw new MissingExtensionException(NLS.bind(ProducerMessages.OrchestrationManagerProducer_extension_error, ProducerRegistry.getName(orchestration)));
     }
