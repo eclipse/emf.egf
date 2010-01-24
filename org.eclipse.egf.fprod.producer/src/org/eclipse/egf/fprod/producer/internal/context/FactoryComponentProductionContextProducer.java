@@ -11,35 +11,36 @@
 package org.eclipse.egf.fprod.producer.internal.context;
 
 import org.eclipse.egf.core.producer.InvocationException;
+import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
-import org.eclipse.egf.fprod.producer.context.IFactoryComponentInvocationProductionContext;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.producer.context.ActivityProductionContextProducer;
 import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
-import org.eclipse.egf.producer.context.IInvocationProductionContext;
 import org.eclipse.emf.ecore.EClass;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class FactoryComponentProductionContextProducer extends ActivityProductionContextProducer {
+public class FactoryComponentProductionContextProducer extends ActivityProductionContextProducer<FactoryComponent> {
 
   @Override
   public EClass getActivity() {
     return FcorePackage.Literals.FACTORY_COMPONENT;
   }
 
-  @SuppressWarnings("unchecked")
   @Override
-  public Class<FactoryComponentInvocationProductionContext> getParentProductionContext() {
-    return FactoryComponentInvocationProductionContext.class;
+  protected IFactoryComponentProductionContext doCreateActivityProductionContext(ProjectBundleSession projectBundleSession, Activity element) throws InvocationException {
+    return FprodProducerContextFactory.createContext(projectBundleSession, (FactoryComponent) element);
   }
 
   @Override
-  protected IFactoryComponentProductionContext doCreateActivityProductionContext(IInvocationProductionContext parent, Activity activity, ProjectBundleSession projectBundleSession) throws InvocationException {
-    return FprodProducerContextFactory.createContext((IFactoryComponentInvocationProductionContext) parent, (FactoryComponent) activity, projectBundleSession);
+  protected IFactoryComponentProductionContext doCreateActivityProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, Activity element) throws InvocationException {
+    return FprodProducerContextFactory.createContext(parent, projectBundleSession, (FactoryComponent) element);
   }
+
 }

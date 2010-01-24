@@ -11,11 +11,12 @@
 package org.eclipse.egf.fprod.producer.internal.manager;
 
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.model.fcore.Orchestration;
+import org.eclipse.egf.model.fcore.FactoryComponent;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.ProductionPlan;
-import org.eclipse.egf.producer.manager.IFactoryComponentManager;
-import org.eclipse.egf.producer.manager.IOrchestrationManager;
+import org.eclipse.egf.producer.manager.IActivityManager;
+import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.egf.producer.manager.OrchestrationManagerProducer;
 import org.eclipse.emf.ecore.EClass;
 
@@ -23,7 +24,7 @@ import org.eclipse.emf.ecore.EClass;
  * @author Xavier Maysonnave
  * 
  */
-public class ProductionPlanManagerProducer extends OrchestrationManagerProducer {
+public class ProductionPlanManagerProducer extends OrchestrationManagerProducer<ProductionPlan> {
 
   @Override
   public EClass getOrchestration() {
@@ -31,7 +32,7 @@ public class ProductionPlanManagerProducer extends OrchestrationManagerProducer 
   }
 
   @Override
-  protected IOrchestrationManager doCreateOrchestrationManager(IFactoryComponentManager parent, Orchestration orchestration) throws InvocationException {
-    return ProductionPlanManagerFactory.createProductionManager(parent, (ProductionPlan) orchestration);
+  protected IModelElementManager<ProductionPlan, OrchestrationParameter> doCreateOrchestrationManager(IActivityManager<FactoryComponent> parent, ProductionPlan productionPlan) throws InvocationException {
+    return ProductionPlanManagerFactory.createProductionManager(parent, productionPlan);
   }
 }

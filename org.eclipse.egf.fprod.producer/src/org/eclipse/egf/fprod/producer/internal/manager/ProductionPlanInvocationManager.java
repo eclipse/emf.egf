@@ -10,39 +10,114 @@
  */
 package org.eclipse.egf.fprod.producer.internal.manager;
 
+import java.util.List;
+
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.fprod.producer.context.IProductionPlanInvocationProductionContext;
-import org.eclipse.egf.fprod.producer.internal.context.ProductionPlanInvocationProductionContext;
-import org.eclipse.egf.fprod.producer.manager.IProductionPlanManager;
+import org.eclipse.egf.core.producer.context.IProductionContext;
+import org.eclipse.egf.core.producer.context.ProductionContext;
+import org.eclipse.egf.fprod.producer.internal.context.FprodProducerContextFactory;
+import org.eclipse.egf.model.fcore.Activity;
+import org.eclipse.egf.model.fcore.InvocationContract;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
+import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
+import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.internal.manager.InvocationManager;
+import org.eclipse.egf.producer.manager.ActivityManagerProducer;
+import org.eclipse.egf.producer.manager.IActivityManager;
+import org.eclipse.egf.producer.manager.IModelElementManager;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.UniqueEList;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ProductionPlanInvocationManager extends InvocationManager {
+public class ProductionPlanInvocationManager extends InvocationManager<ProductionPlan, ProductionPlanInvocation> {
 
-  public ProductionPlanInvocationManager(IProductionPlanManager parent, ProductionPlanInvocation<?> productionPlanInvocation) throws InvocationException {
-    super(parent, productionPlanInvocation);
+  private IActivityManager<?> _activityManager;
+
+  public ProductionPlanInvocationManager(IModelElementManager<ProductionPlan, OrchestrationParameter> parent, ProductionPlanInvocation element) throws InvocationException {
+    super(parent, element);
   }
 
   @Override
-  public ProductionPlanInvocation<?> getElement() {
-    return (ProductionPlanInvocation<?>) super.getElement();
+  @SuppressWarnings("unchecked")
+  public ProductionContext<ProductionPlanInvocation, InvocationContract> getInternalProductionContext() throws InvocationException {
+    if (_productionContext == null) {
+      _productionContext = FprodProducerContextFactory.createContext((IProductionContext<ProductionPlan, OrchestrationParameter>) getParent().getProductionContext(), getProjectBundleSession(), getElement());
+    }
+    return (ProductionContext<ProductionPlanInvocation, InvocationContract>) _productionContext;
+  }
+
+  public IActivityManager<?> getActivityManager() throws InvocationException {
+    if (_activityManager == null && getElement().getInvokedActivity() != null) {
+      ActivityManagerProducer<?> producer = null;
+      try {
+        producer = EGFProducerPlugin.getActivityManagerProducer(getElement().getInvokedActivity());
+      } catch (Throwable t) {
+        throw new InvocationException(t);
+      }
+      _activityManager = producer.createActivityManager(this, getElement().getInvokedActivity());
+    }
+    return _activityManager;
   }
 
   @Override
-  public IProductionPlanInvocationProductionContext getProductionContext() throws InvocationException {
-    return getInternalProductionContext();
+  public void dispose() throws InvocationException {
+    super.dispose();
+    if (getActivityManager() != null) {
+      getActivityManager().dispose();
+    }
   }
 
   @Override
-  public IProductionPlanManager getParent() {
-    return (IProductionPlanManager) super.getParent();
+  public Diagnostic canInvoke() throws InvocationException {
+    BasicDiagnostic diagnostic = canInvokeElement();
+    if (getActivityManager() != null) {
+      diagnostic.add(getActivityManager().canInvoke());
+    }
+    return diagnostic;
   }
 
   @Override
-  protected abstract ProductionPlanInvocationProductionContext getInternalProductionContext() throws InvocationException;
+  public void initializeContext() throws InvocationException {
+    super.initializeContext();
+    if (getActivityManager() != null) {
+      getActivityManager().initializeContext();
+    }
+  }
+
+  public int getSteps() throws InvocationException {
+    if (getActivityManager() != null) {
+      return getActivityManager().getSteps();
+    }
+    return 0;
+  }
+
+  public List<Activity> getActivities() throws InvocationException {
+    List<Activity> activities = new UniqueEList<Activity>();
+    if (getActivityManager() != null) {
+      activities.addAll(getActivityManager().getActivities());
+    }
+    return activities;
+  }
+
+  public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
+    BasicDiagnostic diagnostic = canInvokeElement();
+    if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+      IActivityManager<?> activityManager = getActivityManager();
+      if (activityManager != null) {
+        diagnostic.add(activityManager.invoke(monitor));
+        if (monitor.isCanceled()) {
+          throw new OperationCanceledException();
+        }
+      }
+    }
+    return diagnostic;
+  }
 
 }

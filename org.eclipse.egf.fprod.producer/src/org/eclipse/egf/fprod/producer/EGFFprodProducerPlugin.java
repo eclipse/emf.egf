@@ -1,8 +1,6 @@
 package org.eclipse.egf.fprod.producer;
 
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
-import org.eclipse.egf.fprod.producer.internal.task.ProductionPlanTaskInvocationFactory;
-import org.eclipse.egf.fprod.producer.task.IProductionPlanTaskInvocationFactory;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -14,23 +12,6 @@ public class EGFFprodProducerPlugin extends EGFAbstractPlugin {
    * The shared instance
    */
   private static EGFFprodProducerPlugin __plugin;
-
-  /**
-   * IProductionPlanTaskInvocationFactory singleton.
-   */
-  private static IProductionPlanTaskInvocationFactory __productionPlanTaskInvocationFactory;
-
-  /**
-   * Returns the singleton instance of the IProductionPlanTaskInvocationFactory.
-   * 
-   * @return the singleton task runner factory.
-   */
-  public static IProductionPlanTaskInvocationFactory getProductionPlanTaskInvocationFactory() {
-    if (__productionPlanTaskInvocationFactory == null) {
-      __productionPlanTaskInvocationFactory = new ProductionPlanTaskInvocationFactory();
-    }
-    return __productionPlanTaskInvocationFactory;
-  }
 
   /**
    * (non-Javadoc)

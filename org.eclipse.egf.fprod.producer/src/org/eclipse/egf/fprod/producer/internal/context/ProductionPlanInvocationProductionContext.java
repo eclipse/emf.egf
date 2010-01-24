@@ -10,9 +10,10 @@
  */
 package org.eclipse.egf.fprod.producer.internal.context;
 
+import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
-import org.eclipse.egf.fprod.producer.context.IProductionPlanInvocationProductionContext;
-import org.eclipse.egf.fprod.producer.context.IProductionPlanProductionContext;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
+import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.egf.producer.internal.context.InvocationProductionContext;
 
@@ -20,24 +21,14 @@ import org.eclipse.egf.producer.internal.context.InvocationProductionContext;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ProductionPlanInvocationProductionContext extends InvocationProductionContext implements IProductionPlanInvocationProductionContext {
+public class ProductionPlanInvocationProductionContext extends InvocationProductionContext<ProductionPlanInvocation, ProductionPlan> {
 
-  public ProductionPlanInvocationProductionContext(ProductionPlanInvocation<?> element, ProjectBundleSession projectBundleSession) {
-    super(element, projectBundleSession);
+  public ProductionPlanInvocationProductionContext(ProjectBundleSession projectBundleSession, ProductionPlanInvocation element, String name) {
+    super(projectBundleSession, element, name);
   }
 
-  public ProductionPlanInvocationProductionContext(IProductionPlanProductionContext parent, ProductionPlanInvocation<?> element, ProjectBundleSession projectBundleSession) {
-    super(parent, element, projectBundleSession);
-  }
-
-  @Override
-  public ProductionPlanInvocation<?> getElement() {
-    return (ProductionPlanInvocation<?>) super.getElement();
-  }
-
-  @Override
-  public IProductionPlanProductionContext getParent() {
-    return (IProductionPlanProductionContext) super.getParent();
+  public ProductionPlanInvocationProductionContext(IProductionContext<ProductionPlan, OrchestrationParameter> parent, ProjectBundleSession projectBundleSession, ProductionPlanInvocation element, String name) {
+    super(parent, projectBundleSession, element, name);
   }
 
 }

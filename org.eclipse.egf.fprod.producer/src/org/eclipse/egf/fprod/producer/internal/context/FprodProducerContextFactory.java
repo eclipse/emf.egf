@@ -10,16 +10,16 @@
  */
 package org.eclipse.egf.fprod.producer.internal.context;
 
+import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
-import org.eclipse.egf.fprod.producer.context.IFactoryComponentInvocationProductionContext;
-import org.eclipse.egf.fprod.producer.context.IProductionPlanProductionContext;
-import org.eclipse.egf.fprod.producer.context.ITaskInvocationProductionContext;
-import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FactoryComponent;
-import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContract;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fprod.ProductionPlan;
-import org.eclipse.egf.model.fprod.Task;
-import org.eclipse.egf.model.fprod.TaskInvocation;
+import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.egf.producer.context.IFactoryComponentProductionContext;
 import org.eclipse.egf.producer.internal.context.FactoryComponentProductionContext;
 
@@ -35,36 +35,24 @@ public class FprodProducerContextFactory {
 
   // FactoryComponent
 
-  public static IFactoryComponentProductionContext createContext(IFactoryComponentInvocationProductionContext parent, FactoryComponent element, ProjectBundleSession projectBundleSession) {
-    return new FactoryComponentProductionContext(parent, element, projectBundleSession);
+  public static IFactoryComponentProductionContext createContext(ProjectBundleSession projectBundleSession, FactoryComponent element) {
+    return new FactoryComponentProductionContext(projectBundleSession, element, EMFHelper.getText(element));
   }
 
-  // Task
-
-  public static ITaskProductionContext createContext(Task element, ProjectBundleSession projectBundleSession) {
-    return new TaskProductionContext(element, projectBundleSession);
-  }
-
-  public static ITaskProductionContext createContext(ITaskInvocationProductionContext parent, Task element, ProjectBundleSession projectBundleSession) {
-    return new TaskProductionContext(parent, element, projectBundleSession);
+  public static IFactoryComponentProductionContext createContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, FactoryComponent element) {
+    return new FactoryComponentProductionContext(parent, projectBundleSession, element, EMFHelper.getText(element));
   }
 
   // ProductionPlan
 
-  public static IProductionPlanProductionContext createContext(IFactoryComponentProductionContext parent, ProductionPlan element, ProjectBundleSession projectBundleSession) {
-    return new ProductionPlanProductionContext(parent, element, projectBundleSession);
+  public static IProductionContext<ProductionPlan, OrchestrationParameter> createContext(IProductionContext<FactoryComponent, Contract> parent, ProjectBundleSession projectBundleSession, ProductionPlan element) {
+    return new ProductionPlanProductionContext(parent, projectBundleSession, element, EMFHelper.getText(element));
   }
 
-  // FactoryComponentInvocation
+  // ProductionPlanInvocation
 
-  public static IFactoryComponentInvocationProductionContext createContext(IProductionPlanProductionContext parent, FactoryComponentInvocation element, ProjectBundleSession projectBundleSession) {
-    return new FactoryComponentInvocationProductionContext(parent, element, projectBundleSession);
-  }
-
-  // TaskInvocation
-
-  public static ITaskInvocationProductionContext createContext(IProductionPlanProductionContext parent, TaskInvocation element, ProjectBundleSession projectBundleSession) {
-    return new TaskInvocationProductionContext(parent, element, projectBundleSession);
+  public static IProductionContext<ProductionPlanInvocation, InvocationContract> createContext(IProductionContext<ProductionPlan, OrchestrationParameter> parent, ProjectBundleSession projectBundleSession, ProductionPlanInvocation element) {
+    return new ProductionPlanInvocationProductionContext(parent, projectBundleSession, element, EMFHelper.getText(element));
   }
 
 }

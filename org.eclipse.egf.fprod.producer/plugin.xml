@@ -11,30 +11,7 @@
          Thales Corporate Services S.A.S - initial API and implementation
  -->
  
-<plugin>
-
-  <!-- ================================================================================= -->
-  <!-- Extension Points Definition                                                       -->
-  <!-- ================================================================================= -->
-  
-  <extension-point 
-    id="taskInvocation" 
-    name="%EGFTaskInvocationExtensionPoint" 
-    schema="schema/taskInvocation.exsd"
-  />
-      
-  <!-- ================================================================================= -->
-  <!-- Activity Manager Producer                                                         -->
-  <!-- ================================================================================= -->
-  
-  <extension
-    point="org.eclipse.egf.producer.activityManagerProducer"
-  >
-    <activityManagerProducer
-      class="org.eclipse.egf.fprod.producer.internal.manager.TaskManagerProducer"
-    />
-  </extension>
-  
+<plugin>        
   
   <!-- ================================================================================= -->
   <!-- Activity Production Context Producer                                              -->
@@ -47,15 +24,7 @@
       class="org.eclipse.egf.fprod.producer.internal.context.FactoryComponentProductionContextProducer"
     />
   </extension>    
-  
-  <extension
-    point="org.eclipse.egf.producer.activityProductionContextProducer"
-  >
-    <activityProductionContextProducer
-      class="org.eclipse.egf.fprod.producer.internal.context.TaskProductionContextProducer"
-    />
-  </extension>  
-     
+       
   <!-- ================================================================================= -->
   <!-- Orchestration Manager Producer                                                    -->
   <!-- ================================================================================= -->  
