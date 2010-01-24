@@ -100,7 +100,7 @@ public class RunActivityAction implements IObjectActionDelegate {
           return;
         }
         if (_validates != null && _validates.size() != 0) {
-          EGFValidator validator = new EGFValidator(activities);
+          EGFValidator validator = new EGFValidator(_validates);
           Diagnostic validationDiag = validator.validate();
           if (validationDiag.getSeverity() != Diagnostic.OK) {
             return;
