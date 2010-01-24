@@ -21,15 +21,14 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
-import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 import org.eclipse.egf.ftask.producer.invocation.ITaskJavaProductionInvocation;
+import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 import org.eclipse.egf.model.ftask.TaskJava;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
 /**
- * This class is responsible to process user defined
- * {@link org.eclipse.egf.ftask.producer.invocation.ITaskJavaProductionInvocation}.
+ * This class is responsible to process user defined {@link org.eclipse.egf.ftask.producer.invocation.ITaskJavaProductionInvocation}.
  * 
  * @author Xavier Maysonnave
  */
@@ -91,41 +90,38 @@ public class TaskJavaProductionInvocation implements ITaskJavaProductionInvocati
    */
   public void invoke(final IProgressMonitor monitor) throws InvocationException {
     SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, _taskJava.getName()), 1000);
+    // Instantiate an ITaskProduction object
+    ITaskProduction task = null;
     try {
-      // Instantiate an ITaskProduction object
-      ITaskProduction task = null;
-      try {
-        task = createProductionInvocationInstance();
-      } catch (CoreException ce) {
-        throw new InvocationException(ce);
-      }
-      if (task == null) {
-        return;
-      }
-      subMonitor.worked(100);
-      if (monitor.isCanceled()) {
-        throw new OperationCanceledException();
-      }
-      // PreExecute
-      task.preExecute(_productionContext, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-      subMonitor.worked(100);
-      if (monitor.isCanceled()) {
-        throw new OperationCanceledException();
-      }
-      // DoExecute
-      task.doExecute(_productionContext, subMonitor.newChild(700, SubMonitor.SUPPRESS_NONE));
-      subMonitor.worked(700);
-      if (monitor.isCanceled()) {
-        throw new OperationCanceledException();
-      }
-      // PostExecute
-      task.postExecute(_productionContext, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-      subMonitor.worked(100);
-      if (monitor.isCanceled()) {
-        throw new OperationCanceledException();
-      }
-    } finally {
-      subMonitor.done();
+      task = createProductionInvocationInstance();
+    } catch (CoreException ce) {
+      throw new InvocationException(ce);
+    }
+    if (task == null) {
+      return;
+    }
+    subMonitor.worked(100);
+    if (subMonitor.isCanceled()) {
+      throw new OperationCanceledException();
+    }
+    // PreExecute
+    task.preExecute(_productionContext, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+    subMonitor.worked(100);
+
+    if (subMonitor.isCanceled()) {
+      throw new OperationCanceledException();
+    }
+    // DoExecute
+    task.doExecute(_productionContext, subMonitor.newChild(700, SubMonitor.SUPPRESS_NONE));
+    subMonitor.worked(700);
+    if (subMonitor.isCanceled()) {
+      throw new OperationCanceledException();
+    }
+    // PostExecute
+    task.postExecute(_productionContext, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+    subMonitor.worked(100);
+    if (subMonitor.isCanceled()) {
+      throw new OperationCanceledException();
     }
   }
 
