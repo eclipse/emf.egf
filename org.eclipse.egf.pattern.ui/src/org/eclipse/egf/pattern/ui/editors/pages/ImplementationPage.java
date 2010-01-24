@@ -29,11 +29,11 @@ import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.SuperPatternCall;
 import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
-import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.MethodAddOrEditDialog;
 import org.eclipse.egf.pattern.ui.editors.dialogs.VariablesEditDialog;
@@ -45,6 +45,8 @@ import org.eclipse.egf.pattern.ui.editors.providers.MethodLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.OrchestrationTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.TableObservableListContentProvider;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.AbstractTemplateEditor;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateExtensionRegistry;
 import org.eclipse.egf.pattern.ui.editors.validation.ValidationConstants;
 import org.eclipse.egf.pattern.ui.editors.wizards.OpenTypeWizard;
 import org.eclipse.egf.pattern.ui.editors.wizards.OrchestrationWizard;
@@ -91,6 +93,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.IMessageManager;
@@ -98,6 +101,7 @@ import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
+import org.eclipse.ui.ide.IDE;
 
 /**
  * @author Thomas Guiu
@@ -592,7 +596,17 @@ public class ImplementationPage extends PatternEditorPage {
             PatternMethod method = (PatternMethod) ((IStructuredSelection) selection).getFirstElement();
             methodId = method.getID();
         }
-        PatternTemplateEditor.openEditor(getEditorSite().getPage(), pattern, methodId);
+
+        String editor = TemplateExtensionRegistry.getEditor(pattern);
+        if (editor != null) {
+            try {
+                PatternEditorInput input = new PatternEditorInput(pattern.eResource(), pattern.getID());
+                AbstractTemplateEditor editorPart = (AbstractTemplateEditor) IDE.openEditor(getEditorSite().getPage(), input, editor);
+                editorPart.setActivePage(methodId);
+            } catch (PartInitException e) {
+                Activator.getDefault().logError(e);
+            }
+        }
     }
 
     private void createOrchestrationSection(FormToolkit toolkit, Composite composite) {

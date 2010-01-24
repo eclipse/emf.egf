@@ -15,13 +15,17 @@
 
 package org.eclipse.egf.pattern.ui.jet.editor;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor;
 import org.eclipse.jet.core.parser.ast.JETCompilationUnit;
 import org.eclipse.jet.core.parser.ast.Problem;
 import org.eclipse.jet.internal.editor.JETTextEditor;
+import org.eclipse.jet.internal.editor.annotations.JETProblemAnnotation;
 import org.eclipse.jet.internal.editor.configuration.JETReconcilingStrategy;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.IRegion;
@@ -30,7 +34,10 @@ import org.eclipse.jface.text.reconciler.DirtyRegion;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
+
+;
 
 /**
  * @author Yahong Song - Soyatec
@@ -60,7 +67,22 @@ public class JetReconcilingStrategy extends JETReconcilingStrategy {
     private void internalReconcile() {
         JETCompilationUnit cUnit = jetEditor.requestCompilationUnit();
         List cUnitProblems = cUnit.getProblems();
-        List javaContentProblems = JetEditorHelper.evaluateProblems(jetEditor, sourceViewer.getDocument());
+        IEditorInput editorInput = jetEditor.getEditorInput();
+		String name = editorInput.getName();
+		Map<String, List<Problem>> mETHODPROBLEMS = JetTemplateEditor.getMETHODPROBLEMS();
+		List javaContentProblems = new ArrayList<Problem>();
+		if(mETHODPROBLEMS != null&&!mETHODPROBLEMS.isEmpty()){
+			javaContentProblems = mETHODPROBLEMS.get(name);
+		}
+		List evaluateProblems = JetEditorHelper.evaluateProblems(jetEditor, sourceViewer.getDocument());
+		Iterator iter = evaluateProblems.iterator();
+		while (iter.hasNext()){
+			Object next = iter.next();
+			if(!javaContentProblems.contains(next)){
+				javaContentProblems.add(next);
+			}
+		}
+
         IAnnotationModel annotationModelq = sourceViewer.getAnnotationModel();
         JETAnnotationModel annotationModel = (JETAnnotationModel) annotationModelq;
         if (annotationModel != null) {

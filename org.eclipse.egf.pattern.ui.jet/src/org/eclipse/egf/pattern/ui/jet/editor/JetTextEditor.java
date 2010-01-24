@@ -15,6 +15,9 @@
 
 package org.eclipse.egf.pattern.ui.jet.editor;
 
+import java.io.IOException;
+
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jet.internal.editor.JETTextEditor;
 
 /**
@@ -23,9 +26,10 @@ import org.eclipse.jet.internal.editor.JETTextEditor;
  */
 public class JetTextEditor extends JETTextEditor {
 
-    public JetTextEditor() {
+    public JetTextEditor() throws CoreException, IOException {
         super();
         setSourceViewerConfiguration(new JetSourceViewerConfigure(this));
         setDocumentProvider(new JetDocumentProvider(this));
     }
+
 }

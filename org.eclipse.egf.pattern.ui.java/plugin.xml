@@ -2,10 +2,21 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.egf.pattern.ui.editor">
+         point="org.eclipse.egf.pattern.ui.templateEditor">
       <editor
-            Nature="org.eclipse.egf.model.javapattern.impl.JavaNatureImpl"
-            editor="org.eclipse.pattern.java.ui.editor.JavaTextEditor">
+            class="org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor"
+            id="org.eclipse.egf.pattern.ui.JavaTemplateEditor"
+            nature="JavaNature">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor"
+            default="false"
+            icon="icons/sample.gif"
+            id="org.eclipse.egf.pattern.ui.JavaTemplateEditor"
+            name="Java Template Editor">
       </editor>
    </extension>
 

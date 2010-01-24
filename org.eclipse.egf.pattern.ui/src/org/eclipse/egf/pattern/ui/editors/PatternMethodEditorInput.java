@@ -24,7 +24,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -112,7 +111,9 @@ public class PatternMethodEditorInput implements IFileEditorInput {
             try {
                 file.create(new ByteArrayInputStream(new byte[0]), true, null);
             } catch (CoreException e) {
-                Activator.getDefault().logError(e);
+            	/* all modifications of the recources that subclipse
+            	touches do happen outside of eclipse own control.Resources are out of synch .*/
+//                Activator.getDefault().logError(e);
             }
         return file;
     }

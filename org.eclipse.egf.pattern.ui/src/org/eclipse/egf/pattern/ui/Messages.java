@@ -125,6 +125,8 @@ public class Messages extends NLS {
 
     public static String SpecificationPage_button_up;
 
+    public static String SpecificationPage_change_nature_type;
+
     public static String SpecificationPage_column_title_name;
 
     public static String SpecificationPage_column_title_query;

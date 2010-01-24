@@ -21,7 +21,9 @@ import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternViewpoint;
-import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
+import org.eclipse.egf.pattern.ui.Activator;
+import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateExtensionRegistry;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -30,6 +32,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.ide.IDE;
 
 /**
  * 
@@ -62,7 +66,15 @@ public class OpenPatternTemplateDebugAction implements IObjectActionDelegate {
         PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
         PatternLibrary patternLibrary = pvp.getLibraries().get(0);
         Pattern pattern = (Pattern) patternLibrary.getElements().get(0);
-        PatternTemplateEditor.openEditor(targetPart.getSite().getPage(), pattern, null);
+        String editor = TemplateExtensionRegistry.getEditor(pattern);
+        if (editor != null) {
+            try {
+                PatternEditorInput input = new PatternEditorInput(pattern.eResource(), pattern.getID());
+                IDE.openEditor(targetPart.getSite().getPage(), input, editor);
+            } catch (PartInitException e) {
+                Activator.getDefault().logError(e);
+            }
+        }
     }
 
 }

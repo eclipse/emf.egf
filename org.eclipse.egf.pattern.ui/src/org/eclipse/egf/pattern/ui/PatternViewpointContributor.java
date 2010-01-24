@@ -36,7 +36,8 @@ import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.ui.editors.PatternEditor;
-import org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor;
+import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateExtensionRegistry;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
@@ -52,6 +53,8 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.ide.IDE;
 
 /**
  * @author Thomas Guiu
@@ -222,8 +225,19 @@ public class PatternViewpointContributor extends ViewpointContributor {
             Pattern patternInTransactionalEditingDomain = getPatternInTransactionalEditingDomain();
             if (patternInTransactionalEditingDomain == null)
                 MessageDialog.openInformation(parent.getPage().getWorkbenchWindow().getShell(), Messages.ViewpointContributor_missingPattern_title, Messages.ViewpointContributor_missingPattern_message);
-            else
-                PatternTemplateEditor.openEditor(parent.getPage(), patternInTransactionalEditingDomain, null);
+            else{
+                //PatternTemplateEditor.openEditor(parent.getPage(), patternInTransactionalEditingDomain, null);
+                Pattern pattern = getPattern();
+                String editor = TemplateExtensionRegistry.getEditor(pattern);
+                if (editor != null) {
+                    try {
+                        PatternEditorInput input = new PatternEditorInput(pattern.eResource(), pattern.getID());
+                        IDE.openEditor(parent.getPage(), input, editor);
+                    } catch (PartInitException e) {
+                        Activator.getDefault().logError(e);
+                    }
+                }
+            }
         }
     }
 

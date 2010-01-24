@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
-   <extension-point id="editor" name="editor" schema="schema/editor.exsd"/>
+   <extension-point id="templateEditor" name="templateEditor" schema="schema/templateEditor.exsd"/>
 
    <extension
          point="org.eclipse.egf.core.ui.viewpoint.editor.contributor">
@@ -19,14 +19,6 @@
             contributorClass="org.eclipse.egf.pattern.ui.editors.PatternEditorContributor"
             class="org.eclipse.egf.pattern.ui.editors.PatternEditor"
             id="org.eclipse.egf.pattern.ui.editors.PatternEditor">
-      	</editor>
-      	<editor
-            name="%patternTemplateEditorLabel"
-            extensions="fcore"
-            icon="icons/sample.gif"
-            contributorClass="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditorContributor"
-            class="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor"
-            id="org.eclipse.egf.pattern.ui.editors.PatternTemplateEditor">
       	</editor>
       	
    	</extension>

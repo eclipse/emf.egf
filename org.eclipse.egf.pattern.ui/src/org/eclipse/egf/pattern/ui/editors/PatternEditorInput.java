@@ -16,7 +16,6 @@
 package org.eclipse.egf.pattern.ui.editors;
 
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.IEditorInput;
@@ -92,8 +91,7 @@ public class PatternEditorInput implements IEditorInput {
     }
 
     public String getToolTipText() {
-
-        return Messages.input_tooltip;
+        return resource.getURI().toPlatformString(false);
     }
 
     public Object getAdapter(Class adapter) {

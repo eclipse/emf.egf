@@ -24,16 +24,22 @@ import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.IValidator;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternFactory;
+import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
+import org.eclipse.egf.pattern.extension.PatternInitializer;
+import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.query.IQuery;
 import org.eclipse.egf.pattern.query.QueryKind;
 import org.eclipse.egf.pattern.ui.ImageShop;
@@ -65,6 +71,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jdt.internal.core.BinaryType;
 import org.eclipse.jface.databinding.swt.IWidgetValueProperty;
 import org.eclipse.jface.databinding.swt.WidgetProperties;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.TableColumnLayout;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.CellEditor;
@@ -162,6 +169,8 @@ public class SpecificationPage extends PatternEditorPage {
 
     private IMessageManager mmng;
 
+    private int comboSelectIndex;
+
     public SpecificationPage(FormEditor editor) {
         super(editor, ID, Messages.SpecificationPage_title);
 
@@ -187,7 +196,7 @@ public class SpecificationPage extends PatternEditorPage {
         createParametersSection(toolkit, containerLeft);
 
         Composite containerRight = createComposite(toolkit, form);
-        createPatternSection(toolkit, containerRight);
+        createPatternNatureSection(toolkit, containerRight);
 
         checkReadOnlyModel();
 
@@ -317,7 +326,7 @@ public class SpecificationPage extends PatternEditorPage {
         });
     }
 
-    private void createPatternSection(FormToolkit toolkit, Composite form) {
+    private void createPatternNatureSection(FormToolkit toolkit, Composite form) {
         Section patternSection = toolkit.createSection(form, Section.TITLE_BAR);
         patternSection.setText(Messages.SpecificationPage_patternSection_title);
         GridData gd = new GridData(GridData.FILL_BOTH);
@@ -340,14 +349,14 @@ public class SpecificationPage extends PatternEditorPage {
         patternSection.setClient(pattern);
     }
 
-    private void createTypeArea(FormToolkit toolkit, Composite pattern) {
-        Label type = toolkit.createLabel(pattern, Messages.SpecificationPage_patternSection_type_label);
+    private void createTypeArea(FormToolkit toolkit, final Composite composite) {
+        Label type = toolkit.createLabel(composite, Messages.SpecificationPage_patternSection_type_label);
         GridData gd = new GridData();
         gd.verticalIndent = 10;
         type.setLayoutData(gd);
         type.setForeground(colors.getColor(IFormColors.TITLE));
 
-        combo = new Combo(pattern, SWT.NONE | SWT.READ_ONLY);
+        combo = new Combo(composite, SWT.NONE | SWT.READ_ONLY);
 
         Object[] natures = getNatures().keySet().toArray();
         for (int i = 0; i < natures.length; i++) {
@@ -360,6 +369,42 @@ public class SpecificationPage extends PatternEditorPage {
         gd.verticalIndent = 10;
         gd.widthHint = 50;
         combo.setLayoutData(gd);
+
+        combo.addSelectionListener(new SelectionListener() {
+
+            @Override
+            public void widgetSelected(SelectionEvent e) {
+                executeNatureChange(composite);
+            }
+
+            @Override
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+    }
+
+    private void executeNatureChange(Composite composite) {
+        String message = Messages.SpecificationPage_change_nature_type;
+        boolean openQuestion = MessageDialog.openQuestion(composite.getShell(), null, message);
+        if (openQuestion) {
+            // create template files
+            Pattern pattern = getPattern();
+            PatternLibrary library = pattern.getContainer();
+            IProject project = EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject();
+            PatternInitializer initializer;
+            try {
+                initializer = ExtensionHelper.getExtension(getPattern().getNature()).createInitializer(project, pattern);
+                initializer.updateContent();
+            } catch (PatternException e) {
+                e.printStackTrace();
+            } catch (MissingExtensionException e) {
+                e.printStackTrace();
+            }
+            comboSelectIndex = combo.getSelectionIndex();
+        } else {
+            combo.select(comboSelectIndex);
+        }
+        getEditor().doSave(null);
     }
 
     private void createParametersSection(FormToolkit toolkit, Composite form) {
@@ -946,6 +991,8 @@ public class SpecificationPage extends PatternEditorPage {
         });
 
         addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
+        if (combo != null && !combo.isDisposed())
+            comboSelectIndex = combo.getSelectionIndex();
     }
 
     private void bindTableViewer() {

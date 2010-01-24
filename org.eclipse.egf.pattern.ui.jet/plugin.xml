@@ -2,10 +2,21 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
-         point="org.eclipse.egf.pattern.ui.editor">
+         point="org.eclipse.egf.pattern.ui.templateEditor">
+       <editor
+             class="org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor"
+             id="org.eclipse.egf.pattern.ui.JetTemplateEditor"
+             nature="JetNature">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
       <editor
-            Nature="org.eclipse.egf.model.jetpattern.impl.JetNatureImpl"
-            editor="org.eclipse.pattern.jet.ui.editor.JetTextEditor">
+            class="org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor"
+            default="false"
+            icon="icons/sample.gif"
+            id="org.eclipse.egf.pattern.ui.JetTemplateEditor"
+            name="Jet Template Editor">
       </editor>
    </extension>
 

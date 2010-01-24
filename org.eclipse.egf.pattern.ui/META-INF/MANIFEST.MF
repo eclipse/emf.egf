@@ -14,7 +14,7 @@ Require-Bundle:
  org.eclipse.ui.ide,
  org.eclipse.egf.common.ui,
  org.eclipse.egf.core.pde,
- org.eclipse.egf.pattern,
+ org.eclipse.egf.pattern;visibility:=reexport,
  org.eclipse.ui.editors,
  org.eclipse.ui.forms,
  org.eclipse.emf.edit,
@@ -29,7 +29,8 @@ Require-Bundle:
  org.eclipse.jdt.ui,
  org.eclipse.emf.ecore.edit,
  org.eclipse.emf.ecore.editor,
- org.eclipse.egf.core.ui
+ org.eclipse.egf.core.ui,
+ org.eclipse.jface.text
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.egf.pattern.ui.editors
-
+Export-Package: org.eclipse.egf.pattern.ui.editors,
+ org.eclipse.egf.pattern.ui.editors.templateEditor
