@@ -30,6 +30,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.PatternConstants;
+import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.domain.ResourceLoadedListener;
@@ -66,6 +67,7 @@ import org.eclipse.ui.ide.IDE;
  */
 public class PatternEditor extends FormEditor implements ResourceUser, IEditingDomainProvider {
 
+    private String initialPatternName;
     protected IUndoContext undoContext;
     private TransactionalEditingDomain editingDomain;
     private final ResourceListener resourceListener = new ResourceListener() {
@@ -90,8 +92,18 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
             getSite().getShell().getDisplay().asyncExec(new Runnable() {
                 public void run() {
                     firePropertyChange(IEditorPart.PROP_DIRTY);
+                    String name = getPattern().getName();
+                    if (initialPatternName != null && !initialPatternName.equals(name)) {
+                        try {
+                            ExtensionHelper.getExtension(getPattern().getNature()).getRefactoringManager().renamePattern(getPattern(), initialPatternName, name);
+                        } catch (Exception e) {
+                            Activator.getDefault().logError(e);
+                        }
+                        initialPatternName = name;
+                    }
                 }
             });
+
         }
     };
     private final List<PatternEditorPage> pages = new ArrayList<PatternEditorPage>();
@@ -148,6 +160,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
             throw new PartInitException(Messages.Editor_wrong_input);
 
         super.init(site, editorInput);
+        initialPatternName = getPattern().getName();
         ResourceLoadedListener.RESOURCE_MANAGER.addObserver(this);
         addPatternChangeAdapter();
     }

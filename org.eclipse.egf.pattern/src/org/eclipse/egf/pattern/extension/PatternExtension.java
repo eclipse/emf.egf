@@ -30,7 +30,7 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 
 /**
- * @author Guiu
+ * @author Thomas Guiu
  * 
  */
 public abstract class PatternExtension {
@@ -104,4 +104,7 @@ public abstract class PatternExtension {
 
         return null; // no problem
     }
+
+    public abstract RefactoringManager getRefactoringManager();
+
 }

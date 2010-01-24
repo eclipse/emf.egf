@@ -116,7 +116,7 @@ public class FileHelper {
 
   }
 
-  private static String getFileContent(IFile file) throws CoreException, IOException {
+  public static String getFileContent(IFile file) throws CoreException, IOException {
     return getContent(file.getContents());
   }
 

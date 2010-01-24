@@ -29,7 +29,7 @@ import org.eclipse.egf.pattern.templates.TemplateEngine;
  * @author Guiu
  * 
  */
-public abstract class TemplateInitializer extends PatternInitializer {
+public abstract class TemplateInitializer extends BasePatternInitializer {
 
     private final TemplateEngine engine;
 

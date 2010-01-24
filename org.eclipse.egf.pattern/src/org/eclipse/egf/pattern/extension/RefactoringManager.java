@@ -15,15 +15,16 @@
 
 package org.eclipse.egf.pattern.extension;
 
+import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
+import org.eclipse.egf.model.pattern.PatternLibrary;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public interface PatternInitializer {
+public interface RefactoringManager {
+    void renamePattern(Pattern pattern, String oldName, String newName) throws PatternException;
 
-    public void initContent() throws PatternException;
-
-    public void updateContent() throws PatternException;
+    void renameLibrary(PatternLibrary lib, String oldName, String newName) throws PatternException;
 }

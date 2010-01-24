@@ -27,7 +27,7 @@ import org.eclipse.egf.pattern.java.JavaPreferences;
 import org.eclipse.egf.pattern.templates.SimpleEngine;
 
 /**
- * @author Guiu
+ * @author Thomas Guiu
  * 
  */
 public class JavaPatternInitializer extends TemplateInitializer {

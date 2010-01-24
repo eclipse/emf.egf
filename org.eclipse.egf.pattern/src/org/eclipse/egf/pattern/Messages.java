@@ -25,6 +25,9 @@ public class Messages extends NLS {
 
     public static String translation_job_label;
 
+    // refactoring
+    public static String refactoring_error1;
+
     // Initializer
     public static String initializer_error1;
     public static String initializer_error2;
