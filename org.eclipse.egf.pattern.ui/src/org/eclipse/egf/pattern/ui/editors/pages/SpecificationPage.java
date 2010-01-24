@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -123,899 +123,897 @@ import org.eclipse.ui.forms.widgets.Section;
  */
 @SuppressWarnings("restriction")
 public class SpecificationPage extends PatternEditorPage {
-    public static final String ID = "SpecificationPage"; //$NON-NLS-1$
+  public static final String ID = "SpecificationPage"; //$NON-NLS-1$
 
-    private Text parentText;
+  private Text parentText;
 
-    private Button add;
+  private Button add;
 
-    private Button edit;
+  private Button edit;
 
-    private Button remove;
+  private Button remove;
 
-    private Button up;
+  private Button up;
 
-    private Button down;
+  private Button down;
 
-    private Button browse;
+  private Button browse;
 
-    private Button removeParent;
+  private Button removeParent;
 
-    private Combo combo;
+  private Combo combo;
 
-    private TableViewer tableViewer;
+  private TableViewer tableViewer;
 
-    private FormColors colors = new FormColors(Display.getDefault());
+  private FormColors colors = new FormColors(Display.getDefault());
 
-    public static final String NAME_COLUMN_ID = "Name"; //$NON-NLS-1$
+  public static final String NAME_COLUMN_ID = "Name"; //$NON-NLS-1$
 
-    public static final String TYPE_COLUMN_ID = "Type"; //$NON-NLS-1$
+  public static final String TYPE_COLUMN_ID = "Type"; //$NON-NLS-1$
 
-    public static final String QUERY_COLUMN_ID = "Query"; //$NON-NLS-1$
+  public static final String QUERY_COLUMN_ID = "Query"; //$NON-NLS-1$
 
-    private static final String NO_QUERY_VALUE = ""; //$NON-NLS-1$
+  private static final String NO_QUERY_VALUE = ""; //$NON-NLS-1$
 
-    private static final String PARAMETER_NAME_DEFAULT_VALUE = "parameter"; //$NON-NLS-1$
+  private static final String PARAMETER_NAME_DEFAULT_VALUE = "parameter"; //$NON-NLS-1$
 
-    private static final String PARAMETER_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
+  private static final String PARAMETER_TYPE_DEFAULT_VALUE = "http://www.eclipse.org/emf/2002/Ecore#//EClass"; //$NON-NLS-1$
 
-    private int dragIndex = -1;
+  private int dragIndex = -1;
 
-    private ComboBoxViewerCellEditor queryEditor;
+  private ComboBoxViewerCellEditor queryEditor;
 
-    private boolean isReadOnly;
+  private boolean isReadOnly;
 
-    private LiveValidationContentAdapter parameterNameEmpetyValidationAdapter;
+  private LiveValidationContentAdapter parameterNameEmpetyValidationAdapter;
 
-    private IMessageManager mmng;
+  private IMessageManager mmng;
 
-    private int comboSelectIndex;
+  private int comboSelectIndex;
 
-    public SpecificationPage(FormEditor editor) {
-        super(editor, ID, Messages.SpecificationPage_title);
+  public SpecificationPage(FormEditor editor) {
+    super(editor, ID, Messages.SpecificationPage_title);
 
+  }
+
+  @Override
+  protected void doCreateFormContent(IManagedForm managedForm) {
+    PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
+    mmng = managedForm.getMessageManager();
+    isReadOnly = editorInput.isReadOnly();
+
+    FormToolkit toolkit = managedForm.getToolkit();
+    ScrolledForm form = managedForm.getForm();
+
+    toolkit.decorateFormHeading(form.getForm());
+    GridLayout layout = new GridLayout(2, true);
+    form.getBody().setLayout(layout);
+    form.setImage(ImageShop.get(ImageShop.IMG_PLUGIN_MF_OBJ));
+    form.setText(Messages.SpecificationPage_title);
+
+    Composite containerLeft = createComposite(toolkit, form);
+    createInheritanceSection(toolkit, containerLeft);
+    createParametersSection(toolkit, containerLeft);
+
+    Composite containerRight = createComposite(toolkit, form);
+    createPatternNatureSection(toolkit, containerRight);
+
+    checkReadOnlyModel();
+
+    form.reflow(true);
+  }
+
+  private Composite createComposite(FormToolkit toolkit, ScrolledForm form) {
+    Composite composite = toolkit.createComposite(form.getBody(), SWT.NONE);
+    GridLayout layout = new GridLayout(1, true);
+    composite.setLayout(layout);
+    GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
+    composite.setLayoutData(gd);
+    return composite;
+  }
+
+  /**
+   * Check whether the editor is on a read only pattern.
+   */
+  private void checkReadOnlyModel() {
+    if (!isReadOnly) {
+      return;
     }
+    parentText.setEnabled(false);
 
-    @Override
-    protected void doCreateFormContent(IManagedForm managedForm) {
-        PatternEditorInput editorInput = (PatternEditorInput) getEditorInput();
-        mmng = managedForm.getMessageManager();
-        isReadOnly = editorInput.isReadOnly();
+    browse.setEnabled(false);
+    removeParent.setEnabled(false);
 
-        FormToolkit toolkit = managedForm.getToolkit();
-        ScrolledForm form = managedForm.getForm();
+    add.setEnabled(false);
+    edit.setEnabled(false);
+    remove.setEnabled(false);
+    up.setEnabled(false);
+    down.setEnabled(false);
+    combo.setEnabled(false);
+  }
 
-        toolkit.decorateFormHeading(form.getForm());
-        GridLayout layout = new GridLayout(2, true);
-        form.getBody().setLayout(layout);
-        form.setImage(ImageShop.get(ImageShop.IMG_PLUGIN_MF_OBJ));
-        form.setText(Messages.SpecificationPage_title);
+  private void createInheritanceSection(FormToolkit toolkit, Composite form) {
+    Section inherSection = toolkit.createSection(form, Section.TITLE_BAR);
+    inherSection.setText(Messages.SpecificationPage_inherSection_title);
+    GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
+    inherSection.setLayoutData(gd);
 
-        Composite containerLeft = createComposite(toolkit, form);
-        createInheritanceSection(toolkit, containerLeft);
-        createParametersSection(toolkit, containerLeft);
+    Composite inheritance = toolkit.createComposite(inherSection, SWT.NONE);
+    GridLayout layout = new GridLayout();
+    layout.numColumns = 3;
+    inheritance.setLayout(layout);
 
-        Composite containerRight = createComposite(toolkit, form);
-        createPatternNatureSection(toolkit, containerRight);
+    gd = new GridData(GridData.FILL_BOTH);
+    inheritance.setLayoutData(gd);
 
-        checkReadOnlyModel();
+    Label discrip = toolkit.createLabel(inheritance, Messages.SpecificationPage_inherSection_discrip_label);
+    gd = new GridData();
+    gd.horizontalSpan = 3;
+    gd.horizontalIndent = 4;
+    discrip.setLayoutData(gd);
 
-        form.reflow(true);
-    }
+    Label parentLabel = toolkit.createLabel(inheritance, Messages.SpecificationPage_inherSection_parent_label);
+    gd = new GridData();
+    gd.verticalIndent = 10;
+    parentLabel.setLayoutData(gd);
+    parentLabel.setForeground(colors.getColor(IFormColors.TITLE));
 
-    private Composite createComposite(FormToolkit toolkit, ScrolledForm form) {
-        Composite composite = toolkit.createComposite(form.getBody(), SWT.NONE);
-        GridLayout layout = new GridLayout(1, true);
-        composite.setLayout(layout);
-        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
-        composite.setLayoutData(gd);
-        return composite;
-    }
+    Pattern superPattern = getPattern() == null ? null : getPattern().getSuperPattern();
+    String parentName = superPattern == null ? "" : superPattern.getName(); //$NON-NLS-1$
+    parentText = toolkit.createText(inheritance, parentName, SWT.BORDER | SWT.READ_ONLY);
+    gd = new GridData(GridData.FILL_HORIZONTAL);
+    gd.verticalIndent = 10;
+    gd.widthHint = 20;
+    parentText.setLayoutData(gd);
 
-    /**
-     * Check whether the editor is on a read only pattern.
-     */
-    private void checkReadOnlyModel() {
-        if (!isReadOnly) {
-            return;
+    createInheritanceButtons(toolkit, inheritance);
+
+    inherSection.setClient(inheritance);
+  }
+
+  private void createInheritanceButtons(FormToolkit toolkit, Composite Inheritance) {
+    Composite buttons = toolkit.createComposite(Inheritance, SWT.NONE);
+    GridLayout layout = new GridLayout();
+    layout.numColumns = 2;
+    buttons.setLayout(layout);
+
+    GridData gd = new GridData();
+    gd.verticalIndent = 10;
+    gd.widthHint = 65;
+
+    browse = toolkit.createButton(buttons, Messages.SpecificationPage_button_browse, SWT.PUSH);
+    browse.setLayoutData(gd);
+    browse.addSelectionListener(new SelectionListener() {
+
+      public void widgetSelected(SelectionEvent e) {
+        PatternSelectionDialog dialog = new PatternSelectionDialog(new Shell(), getParentPattern(), getParentName());
+        dialog.setTitle(Messages.SpecificationPage_browse_dialog_title);
+        if (dialog.open() == Window.OK) {
+          final Pattern parent = dialog.getParent();
+          TransactionalEditingDomain editingDomain = getEditingDomain();
+          RecordingCommand cmd = new RecordingCommand(editingDomain) {
+            protected void doExecute() {
+              getPattern().setSuperPattern(parent);
+            }
+          };
+          editingDomain.getCommandStack().execute(cmd);
         }
-        parentText.setEnabled(false);
 
-        browse.setEnabled(false);
-        removeParent.setEnabled(false);
+      }
 
-        add.setEnabled(false);
-        edit.setEnabled(false);
-        remove.setEnabled(false);
-        up.setEnabled(false);
-        down.setEnabled(false);
-        combo.setEnabled(false);
+      public void widgetDefaultSelected(SelectionEvent e) {
+      }
+    });
+
+    removeParent = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+    removeParent.setLayoutData(gd);
+    removeParent.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+    removeParent.setToolTipText(Messages.SpecificationPage_button_remove);
+    removeParent.addSelectionListener(new SelectionListener() {
+
+      public void widgetSelected(SelectionEvent e) {
+        TransactionalEditingDomain editingDomain = getEditingDomain();
+        RecordingCommand cmd = new RecordingCommand(editingDomain) {
+          protected void doExecute() {
+            getPattern().setSuperPattern(null);
+          }
+        };
+        editingDomain.getCommandStack().execute(cmd);
+      }
+
+      public void widgetDefaultSelected(SelectionEvent e) {
+      }
+    });
+  }
+
+  private void createPatternNatureSection(FormToolkit toolkit, Composite form) {
+    Section patternSection = toolkit.createSection(form, Section.TITLE_BAR);
+    patternSection.setText(Messages.SpecificationPage_patternSection_title);
+    GridData gd = new GridData(GridData.FILL_BOTH);
+    patternSection.setLayoutData(gd);
+
+    Composite pattern = toolkit.createComposite(patternSection, SWT.NONE);
+    GridLayout layout = new GridLayout();
+    layout.numColumns = 2;
+    pattern.setLayout(layout);
+
+    Label discrip = toolkit.createLabel(pattern, Messages.SpecificationPage_patternSection_discrip_label, SWT.WRAP);
+    gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
+    gd.horizontalSpan = 2;
+    gd.horizontalIndent = 4;
+    gd.widthHint = 100;
+    discrip.setLayoutData(gd);
+
+    createTypeArea(toolkit, pattern);
+
+    patternSection.setClient(pattern);
+  }
+
+  private void createTypeArea(FormToolkit toolkit, final Composite composite) {
+    Label type = toolkit.createLabel(composite, Messages.SpecificationPage_patternSection_type_label);
+    GridData gd = new GridData();
+    gd.verticalIndent = 10;
+    type.setLayoutData(gd);
+    type.setForeground(colors.getColor(IFormColors.TITLE));
+
+    combo = new Combo(composite, SWT.NONE | SWT.READ_ONLY);
+
+    Object[] natures = getNatures().keySet().toArray();
+    for (int i = 0; i < natures.length; i++) {
+      PatternNature currentNature = (PatternNature) natures[i];
+      String currentNatureName = ExtensionHelper.getName(currentNature);
+      combo.add(currentNatureName);
     }
+    combo.select(0);
+    gd = new GridData(GridData.FILL_HORIZONTAL);
+    gd.verticalIndent = 10;
+    gd.widthHint = 50;
+    combo.setLayoutData(gd);
 
-    private void createInheritanceSection(FormToolkit toolkit, Composite form) {
-        Section inherSection = toolkit.createSection(form, Section.TITLE_BAR);
-        inherSection.setText(Messages.SpecificationPage_inherSection_title);
-        GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
-        inherSection.setLayoutData(gd);
+    combo.addSelectionListener(new SelectionListener() {
 
-        Composite inheritance = toolkit.createComposite(inherSection, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        layout.numColumns = 3;
-        inheritance.setLayout(layout);
+      public void widgetSelected(SelectionEvent e) {
+        executeNatureChange(composite);
+      }
 
-        gd = new GridData(GridData.FILL_BOTH);
-        inheritance.setLayoutData(gd);
+      public void widgetDefaultSelected(SelectionEvent e) {
+      }
+    });
+  }
 
-        Label discrip = toolkit.createLabel(inheritance, Messages.SpecificationPage_inherSection_discrip_label);
-        gd = new GridData();
-        gd.horizontalSpan = 3;
-        gd.horizontalIndent = 4;
-        discrip.setLayoutData(gd);
-
-        Label parentLabel = toolkit.createLabel(inheritance, Messages.SpecificationPage_inherSection_parent_label);
-        gd = new GridData();
-        gd.verticalIndent = 10;
-        parentLabel.setLayoutData(gd);
-        parentLabel.setForeground(colors.getColor(IFormColors.TITLE));
-
-        Pattern superPattern = getPattern() == null ? null : getPattern().getSuperPattern();
-        String parentName = superPattern == null ? "" : superPattern.getName(); //$NON-NLS-1$
-        parentText = toolkit.createText(inheritance, parentName, SWT.BORDER | SWT.READ_ONLY);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.verticalIndent = 10;
-        gd.widthHint = 20;
-        parentText.setLayoutData(gd);
-
-        createInheritanceButtons(toolkit, inheritance);
-
-        inherSection.setClient(inheritance);
+  private void executeNatureChange(Composite composite) {
+    String message = Messages.SpecificationPage_change_nature_type;
+    boolean openQuestion = MessageDialog.openQuestion(composite.getShell(), null, message);
+    if (openQuestion) {
+      // create template files
+      Pattern pattern = getPattern();
+      PatternLibrary library = pattern.getContainer();
+      IProject project = EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject();
+      PatternInitializer initializer;
+      try {
+        initializer = ExtensionHelper.getExtension(getPattern().getNature()).createInitializer(project, pattern);
+        initializer.updateContent();
+      } catch (PatternException e) {
+        e.printStackTrace();
+      } catch (MissingExtensionException e) {
+        e.printStackTrace();
+      }
+      comboSelectIndex = combo.getSelectionIndex();
+    } else {
+      combo.select(comboSelectIndex);
     }
+    getEditor().doSave(null);
+  }
 
-    private void createInheritanceButtons(FormToolkit toolkit, Composite Inheritance) {
-        Composite buttons = toolkit.createComposite(Inheritance, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        layout.numColumns = 2;
-        buttons.setLayout(layout);
+  private void createParametersSection(FormToolkit toolkit, Composite form) {
+    Composite composite = toolkit.createComposite(form, SWT.NONE);
+    GridLayout layout = new GridLayout();
+    composite.setLayout(layout);
+    GridData gd = new GridData(GridData.FILL_BOTH);
+    composite.setLayoutData(gd);
 
-        GridData gd = new GridData();
-        gd.verticalIndent = 10;
-        gd.widthHint = 65;
+    Section paraSection = toolkit.createSection(composite, Section.TITLE_BAR);
+    paraSection.setText(Messages.SpecificationPage_paraSection_title);
+    gd = new GridData(GridData.FILL_BOTH);
+    paraSection.setLayoutData(gd);
 
-        browse = toolkit.createButton(buttons, Messages.SpecificationPage_button_browse, SWT.PUSH);
-        browse.setLayoutData(gd);
-        browse.addSelectionListener(new SelectionListener() {
+    Composite parameters = toolkit.createComposite(paraSection, SWT.NONE);
+    layout = new GridLayout();
+    layout.numColumns = 2;
+    parameters.setLayout(layout);
 
-            public void widgetSelected(SelectionEvent e) {
-                PatternSelectionDialog dialog = new PatternSelectionDialog(new Shell(), getParentPattern(), getParentName());
-                dialog.setTitle(Messages.SpecificationPage_browse_dialog_title);
-                if (dialog.open() == Window.OK) {
-                    final Pattern parent = dialog.getParent();
-                    TransactionalEditingDomain editingDomain = getEditingDomain();
-                    RecordingCommand cmd = new RecordingCommand(editingDomain) {
-                        protected void doExecute() {
-                            getPattern().setSuperPattern(parent);
-                        }
-                    };
-                    editingDomain.getCommandStack().execute(cmd);
-                }
+    Label discrip = toolkit.createLabel(parameters, Messages.SpecificationPage_paraSection_discrip_label, SWT.WRAP);
+    gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
+    gd.horizontalSpan = 2;
+    gd.horizontalIndent = 4;
+    gd.widthHint = 100;
+    discrip.setLayoutData(gd);
 
-            }
+    createParametersTableArea(toolkit, parameters);
+    createParametersButtons(toolkit, parameters);
+    paraSection.setClient(parameters);
+  }
 
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
+  private void createParametersTableArea(FormToolkit toolkit, Composite parameters) {
 
-        removeParent = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
-        removeParent.setLayoutData(gd);
-        removeParent.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
-        removeParent.setToolTipText(Messages.SpecificationPage_button_remove);
-        removeParent.addSelectionListener(new SelectionListener() {
+    Composite tableComp = new Composite(parameters, SWT.NONE);
+    TableColumnLayout layout = new TableColumnLayout();
+    tableComp.setLayout(layout);
+    GridData gd = new GridData(GridData.FILL_BOTH);
+    tableComp.setLayoutData(gd);
 
-            public void widgetSelected(SelectionEvent e) {
-                TransactionalEditingDomain editingDomain = getEditingDomain();
-                RecordingCommand cmd = new RecordingCommand(editingDomain) {
-                    protected void doExecute() {
-                        getPattern().setSuperPattern(null);
-                    }
-                };
-                editingDomain.getCommandStack().execute(cmd);
-            }
+    Table table = toolkit.createTable(tableComp, SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+    table.setHeaderVisible(true);
+    table.setLinesVisible(true);
 
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
+    gd = new GridData(GridData.FILL_BOTH);
+    gd.verticalIndent = 10;
+    gd.horizontalIndent = 10;
+    gd.widthHint = 100;
+    table.setLayoutData(gd);
+
+    tableViewer = new TableViewer(table);
+    String[] colNames = { Messages.SpecificationPage_column_title_name, Messages.SpecificationPage_column_title_type, Messages.SpecificationPage_column_title_query };
+    int[] colWidths = { 100, 80, 80 };
+    for (int i = 0; i < colNames.length; i++) {
+      TableColumn tableColumn = new TableColumn(table, SWT.NONE);
+      tableColumn.setWidth(colWidths[i]);
+      tableColumn.setText(colNames[i]);
+      layout.setColumnData(tableColumn, new ColumnWeightData(colWidths[i], true));
     }
+    initTableEditor();
 
-    private void createPatternNatureSection(FormToolkit toolkit, Composite form) {
-        Section patternSection = toolkit.createSection(form, Section.TITLE_BAR);
-        patternSection.setText(Messages.SpecificationPage_patternSection_title);
-        GridData gd = new GridData(GridData.FILL_BOTH);
-        patternSection.setLayoutData(gd);
+    tableViewer.setContentProvider(new TableObservableListContentProvider(tableViewer));
 
-        Composite pattern = toolkit.createComposite(patternSection, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        layout.numColumns = 2;
-        pattern.setLayout(layout);
+    tableViewer.setLabelProvider(new ParametersTableLabelProvider());
 
-        Label discrip = toolkit.createLabel(pattern, Messages.SpecificationPage_patternSection_discrip_label, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
-        gd.horizontalSpan = 2;
-        gd.horizontalIndent = 4;
-        gd.widthHint = 100;
-        discrip.setLayoutData(gd);
+    tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-        createTypeArea(toolkit, pattern);
-
-        patternSection.setClient(pattern);
-    }
-
-    private void createTypeArea(FormToolkit toolkit, final Composite composite) {
-        Label type = toolkit.createLabel(composite, Messages.SpecificationPage_patternSection_type_label);
-        GridData gd = new GridData();
-        gd.verticalIndent = 10;
-        type.setLayoutData(gd);
-        type.setForeground(colors.getColor(IFormColors.TITLE));
-
-        combo = new Combo(composite, SWT.NONE | SWT.READ_ONLY);
-
-        Object[] natures = getNatures().keySet().toArray();
-        for (int i = 0; i < natures.length; i++) {
-            PatternNature currentNature = (PatternNature) natures[i];
-            String currentNatureName = ExtensionHelper.getName(currentNature);
-            combo.add(currentNatureName);
-        }
-        combo.select(0);
-        gd = new GridData(GridData.FILL_HORIZONTAL);
-        gd.verticalIndent = 10;
-        gd.widthHint = 50;
-        combo.setLayoutData(gd);
-
-        combo.addSelectionListener(new SelectionListener() {
-
-            @Override
-            public void widgetSelected(SelectionEvent e) {
-                executeNatureChange(composite);
-            }
-
-            @Override
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
-    }
-
-    private void executeNatureChange(Composite composite) {
-        String message = Messages.SpecificationPage_change_nature_type;
-        boolean openQuestion = MessageDialog.openQuestion(composite.getShell(), null, message);
-        if (openQuestion) {
-            // create template files
-            Pattern pattern = getPattern();
-            PatternLibrary library = pattern.getContainer();
-            IProject project = EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject();
-            PatternInitializer initializer;
-            try {
-                initializer = ExtensionHelper.getExtension(getPattern().getNature()).createInitializer(project, pattern);
-                initializer.updateContent();
-            } catch (PatternException e) {
-                e.printStackTrace();
-            } catch (MissingExtensionException e) {
-                e.printStackTrace();
-            }
-            comboSelectIndex = combo.getSelectionIndex();
-        } else {
-            combo.select(comboSelectIndex);
-        }
-        getEditor().doSave(null);
-    }
-
-    private void createParametersSection(FormToolkit toolkit, Composite form) {
-        Composite composite = toolkit.createComposite(form, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        composite.setLayout(layout);
-        GridData gd = new GridData(GridData.FILL_BOTH);
-        composite.setLayoutData(gd);
-
-        Section paraSection = toolkit.createSection(composite, Section.TITLE_BAR);
-        paraSection.setText(Messages.SpecificationPage_paraSection_title);
-        gd = new GridData(GridData.FILL_BOTH);
-        paraSection.setLayoutData(gd);
-
-        Composite parameters = toolkit.createComposite(paraSection, SWT.NONE);
-        layout = new GridLayout();
-        layout.numColumns = 2;
-        parameters.setLayout(layout);
-
-        Label discrip = toolkit.createLabel(parameters, Messages.SpecificationPage_paraSection_discrip_label, SWT.WRAP);
-        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
-        gd.horizontalSpan = 2;
-        gd.horizontalIndent = 4;
-        gd.widthHint = 100;
-        discrip.setLayoutData(gd);
-
-        createParametersTableArea(toolkit, parameters);
-        createParametersButtons(toolkit, parameters);
-        paraSection.setClient(parameters);
-    }
-
-    private void createParametersTableArea(FormToolkit toolkit, Composite parameters) {
-
-        Composite tableComp = new Composite(parameters, SWT.NONE);
-        TableColumnLayout layout = new TableColumnLayout();
-        tableComp.setLayout(layout);
-        GridData gd = new GridData(GridData.FILL_BOTH);
-        tableComp.setLayoutData(gd);
-
-        Table table = toolkit.createTable(tableComp, SWT.FULL_SELECTION | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
-        table.setHeaderVisible(true);
-        table.setLinesVisible(true);
-
-        gd = new GridData(GridData.FILL_BOTH);
-        gd.verticalIndent = 10;
-        gd.horizontalIndent = 10;
-        gd.widthHint = 100;
-        table.setLayoutData(gd);
-
-        tableViewer = new TableViewer(table);
-        String[] colNames = { Messages.SpecificationPage_column_title_name, Messages.SpecificationPage_column_title_type, Messages.SpecificationPage_column_title_query };
-        int[] colWidths = { 100, 80, 80 };
-        for (int i = 0; i < colNames.length; i++) {
-            TableColumn tableColumn = new TableColumn(table, SWT.NONE);
-            tableColumn.setWidth(colWidths[i]);
-            tableColumn.setText(colNames[i]);
-            layout.setColumnData(tableColumn, new ColumnWeightData(colWidths[i], true));
-        }
-        initTableEditor();
-
-        tableViewer.setContentProvider(new TableObservableListContentProvider(tableViewer));
-
-        tableViewer.setLabelProvider(new ParametersTableLabelProvider());
-
-        tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-
-            public void selectionChanged(SelectionChangedEvent event) {
-                if (isReadOnly)
-                    return;
-                setButtonsStatus();
-            }
-        });
-        addDragDrop();
-    }
-
-    /**
-     * Add drag and drop listener to tableViewer.
-     */
-    private void addDragDrop() {
+      public void selectionChanged(SelectionChangedEvent event) {
         if (isReadOnly)
-            return;
-        tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
-
-            public void dragStart(DragSourceEvent event) {
-                if (tableViewer.getSelection() == null) {
-                    event.doit = false;
-                }
-            }
-
-            public void dragSetData(DragSourceEvent event) {
-                if (tableViewer.getSelection() != null) {
-                    dragIndex = tableViewer.getTable().getSelectionIndex();
-                }
-            }
-
-            public void dragFinished(DragSourceEvent event) {
-            }
-        });
-
-        tableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(tableViewer) {
-
-            public boolean validateDrop(Object target, int operation, TransferData transferType) {
-                return true;
-            }
-
-            public boolean performDrop(Object data) {
-                Object currentTarget = getCurrentTarget();
-                executeChangeOrder(currentTarget);
-                return false;
-            }
-        });
-    }
-
-    /**
-     * Execute the drag and drop operation to change the order of the table
-     * rows.
-     */
-    protected void executeChangeOrder(Object currentTarget) {
-        EList<PatternParameter> allParameters = getPattern().getAllParameters();
-        Object currentSource = allParameters.get(dragIndex);
-        BasicEList<PatternParameter> allParametersNew = new BasicEList<PatternParameter>();
-        int targetIndex = 0;
-        int index = 0;
-        if (currentTarget == null) {
-            targetIndex = tableViewer.getTable().getItemCount() - 1;
-            currentTarget = tableViewer.getElementAt(targetIndex);
-        } else {
-            for (Object parameter : allParameters) {
-                if (currentTarget.equals(parameter)) {
-                    targetIndex = index;
-                    break;
-                }
-                index++;
-            }
-        }
-        for (int i = 0; i < allParameters.size(); i++) {
-            if (i == targetIndex) {
-                if (targetIndex > dragIndex) {
-                    allParametersNew.add((PatternParameter) currentTarget);
-                    allParametersNew.add((PatternParameter) currentSource);
-                } else {
-                    allParametersNew.add((PatternParameter) currentSource);
-                    allParametersNew.add((PatternParameter) currentTarget);
-                }
-            } else if (i != dragIndex) {
-                allParametersNew.add(allParameters.get(i));
-            }
-        }
-
-        updateAllParameters(allParametersNew);
-        tableViewer.getTable().setSelection(targetIndex);
+          return;
         setButtonsStatus();
+      }
+    });
+    addDragDrop();
+  }
+
+  /**
+   * Add drag and drop listener to tableViewer.
+   */
+  private void addDragDrop() {
+    if (isReadOnly)
+      return;
+    tableViewer.addDragSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new DragSourceListener() {
+
+      public void dragStart(DragSourceEvent event) {
+        if (tableViewer.getSelection() == null) {
+          event.doit = false;
+        }
+      }
+
+      public void dragSetData(DragSourceEvent event) {
+        if (tableViewer.getSelection() != null) {
+          dragIndex = tableViewer.getTable().getSelectionIndex();
+        }
+      }
+
+      public void dragFinished(DragSourceEvent event) {
+      }
+    });
+
+    tableViewer.addDropSupport(DND.DROP_COPY | DND.DROP_MOVE, new Transfer[] { LocalSelectionTransfer.getTransfer() }, new ViewerDropAdapter(tableViewer) {
+
+      public boolean validateDrop(Object target, int operation, TransferData transferType) {
+        return true;
+      }
+
+      public boolean performDrop(Object data) {
+        Object currentTarget = getCurrentTarget();
+        executeChangeOrder(currentTarget);
+        return false;
+      }
+    });
+  }
+
+  /**
+   * Execute the drag and drop operation to change the order of the table
+   * rows.
+   */
+  protected void executeChangeOrder(Object currentTarget) {
+    EList<PatternParameter> allParameters = getPattern().getAllParameters();
+    Object currentSource = allParameters.get(dragIndex);
+    BasicEList<PatternParameter> allParametersNew = new BasicEList<PatternParameter>();
+    int targetIndex = 0;
+    int index = 0;
+    if (currentTarget == null) {
+      targetIndex = tableViewer.getTable().getItemCount() - 1;
+      currentTarget = tableViewer.getElementAt(targetIndex);
+    } else {
+      for (Object parameter : allParameters) {
+        if (currentTarget.equals(parameter)) {
+          targetIndex = index;
+          break;
+        }
+        index++;
+      }
     }
-
-    private void createParametersButtons(FormToolkit toolkit, Composite parameters) {
-        Composite buttons = toolkit.createComposite(parameters, SWT.NONE);
-        GridLayout layout = new GridLayout();
-        buttons.setLayout(layout);
-
-        GridData gd = new GridData();
-        gd.widthHint = 65;
-
-        add = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
-        add.setLayoutData(gd);
-        add.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
-        add.setToolTipText(Messages.SpecificationPage_button_add);
-        add.addSelectionListener(new SelectionListener() {
-
-            public void widgetSelected(SelectionEvent e) {
-                executeAdd();
-            }
-
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
-
-        edit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
-        edit.setLayoutData(gd);
-        edit.setEnabled(false);
-        edit.setImage(ImageShop.get(ImageShop.IMG_EDIT_OBJ));
-        edit.setToolTipText(Messages.SpecificationPage_button_edit);
-        edit.addSelectionListener(new SelectionListener() {
-
-            public void widgetSelected(SelectionEvent e) {
-                ISelection selection = tableViewer.getSelection();
-                final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
-                if (selectItem instanceof PatternParameter) {
-                    PatternParameter patternParameter = (PatternParameter) selectItem;
-                    final ParametersEditDialog dialog = new ParametersEditDialog(new Shell(), patternParameter, getEditingDomain());
-                    dialog.setTitle(Messages.SpecificationPage_parametersEditDialog_title);
-                    if (dialog.open() == Window.OK) {
-                        TransactionalEditingDomain editingDomain = getEditingDomain();
-                        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-                            protected void doExecute() {
-                                executeParameterEdit(dialog, selectItem);
-                            }
-                        };
-                        editingDomain.getCommandStack().execute(cmd);
-                    }
-                }
-                tableViewer.refresh();
-            }
-
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
-
-        remove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
-        remove.setLayoutData(gd);
-        remove.setEnabled(false);
-        remove.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
-        remove.setToolTipText(Messages.SpecificationPage_button_remove);
-        remove.addSelectionListener(new SelectionListener() {
-
-            public void widgetSelected(SelectionEvent e) {
-                exectueRemove();
-            }
-
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
-
-        up = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
-        up.setLayoutData(gd);
-        up.setEnabled(false);
-        up.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
-        up.setToolTipText(Messages.SpecificationPage_button_up);
-        up.addSelectionListener(new SelectionListener() {
-
-            public void widgetSelected(SelectionEvent e) {
-                executeUpOrDown(-1);
-            }
-
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
-
-        down = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
-        down.setLayoutData(gd);
-        down.setEnabled(false);
-        down.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
-        down.setToolTipText(Messages.SpecificationPage_button_down);
-        down.addSelectionListener(new SelectionListener() {
-
-            public void widgetSelected(SelectionEvent e) {
-                executeUpOrDown(1);
-            }
-
-            public void widgetDefaultSelected(SelectionEvent e) {
-            }
-        });
-    }
-
-    protected void executeParameterEdit(ParametersEditDialog dialog, Object selectItem) {
-        String newName = dialog.getName();
-        String newType = dialog.getType();
-        String newQuey = dialog.getQuery();
-
-        QueryKind queryKind = IQuery.INSTANCE.getQueryKindByName(newQuey);
-        if (queryKind != null) {
-            newQuey = queryKind.getId();
-        }
-
-        if (selectItem instanceof PatternParameter) {
-            PatternParameter item = (PatternParameter) selectItem;
-            item.setName(newName);
-            item.setType(newType);
-            Query queryItem = item.getQuery();
-            if (queryItem != null) {
-                queryItem.setExtensionId(newQuey);
-                setQueryContent(dialog, queryItem);
-            } else if (!NO_QUERY_VALUE.equals(newQuey)) { //$NON-NLS-1$
-                Query query = PatternFactory.eINSTANCE.createBasicQuery();
-                query.setExtensionId(newQuey);
-                item.setQuery(query);
-                query.setParameter(item);
-                setQueryContent(dialog, query);
-            }
-            if (NO_QUERY_VALUE.equals(queryItem)) {
-                item.setQuery(null);
-            }
-        }
-    }
-
-    /**
-     * Update the Query Content of the Query.
-     */
-    private void setQueryContent(ParametersEditDialog dialog, Query query) {
-        List<QueryContent> queryContents = dialog.getQueryContents();
-        EMap<String, String> queryContext = query.getQueryContext();
-        if (queryContext != null && !queryContext.isEmpty()) {
-            queryContext.clear();
-        }
-        for (QueryContent queryContent : queryContents) {
-            queryContext.put(queryContent.getKey(), queryContent.getValue());
-        }
-    }
-
-    private void setButtonsStatus() {
-        int selectIndex = tableViewer.getTable().getSelectionIndex();
-        if (selectIndex == -1) {
-            edit.setEnabled(false);
-            remove.setEnabled(false);
-            up.setEnabled(false);
-            down.setEnabled(false);
-            return;
-        }
-        int length = tableViewer.getTable().getItemCount();
-        if (length > 0) {
-            remove.setEnabled(true);
-            edit.setEnabled(true);
+    for (int i = 0; i < allParameters.size(); i++) {
+      if (i == targetIndex) {
+        if (targetIndex > dragIndex) {
+          allParametersNew.add((PatternParameter) currentTarget);
+          allParametersNew.add((PatternParameter) currentSource);
         } else {
-            remove.setEnabled(false);
-            edit.setEnabled(false);
+          allParametersNew.add((PatternParameter) currentSource);
+          allParametersNew.add((PatternParameter) currentTarget);
         }
-        if (selectIndex <= 0) {
-            up.setEnabled(false);
-        } else {
-            up.setEnabled(true);
-        }
-        if ((selectIndex + 1) == length) {
-            down.setEnabled(false);
-        } else {
-            down.setEnabled(true);
-        }
+      } else if (i != dragIndex) {
+        allParametersNew.add(allParameters.get(i));
+      }
     }
 
-    /**
-     * Get all the natures.
-     */
-    private static Map<PatternNature, PatternExtension> getNatures() {
+    updateAllParameters(allParametersNew);
+    tableViewer.getTable().setSelection(targetIndex);
+    setButtonsStatus();
+  }
 
-        Map<PatternNature, PatternExtension> result = new HashMap<PatternNature, PatternExtension>();
-        for (PatternExtension ext : ExtensionHelper.getExtensions().values())
-            result.put(ext.getNature(), ext);
-        return result;
-    }
+  private void createParametersButtons(FormToolkit toolkit, Composite parameters) {
+    Composite buttons = toolkit.createComposite(parameters, SWT.NONE);
+    GridLayout layout = new GridLayout();
+    buttons.setLayout(layout);
 
-    protected void exectueRemove() {
-        int index = tableViewer.getTable().getSelectionIndex();
-        final Pattern pattern = getPattern();
+    GridData gd = new GridData();
+    gd.widthHint = 65;
+
+    add = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+    add.setLayoutData(gd);
+    add.setImage(ImageShop.get(ImageShop.IMG_ADD_OBJ));
+    add.setToolTipText(Messages.SpecificationPage_button_add);
+    add.addSelectionListener(new SelectionListener() {
+
+      public void widgetSelected(SelectionEvent e) {
+        executeAdd();
+      }
+
+      public void widgetDefaultSelected(SelectionEvent e) {
+      }
+    });
+
+    edit = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+    edit.setLayoutData(gd);
+    edit.setEnabled(false);
+    edit.setImage(ImageShop.get(ImageShop.IMG_EDIT_OBJ));
+    edit.setToolTipText(Messages.SpecificationPage_button_edit);
+    edit.addSelectionListener(new SelectionListener() {
+
+      public void widgetSelected(SelectionEvent e) {
         ISelection selection = tableViewer.getSelection();
-        final Object[] removeThem = ((IStructuredSelection) selection).toArray();
-        TransactionalEditingDomain editingDomain = getEditingDomain();
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            protected void doExecute() {
-                for (Object object : removeThem) {
-                    if (object instanceof PatternParameter) {
-                        pattern.getParameters().remove(object);
-                    }
-                }
-            }
-        };
-        editingDomain.getCommandStack().execute(cmd);
-
-        int len = tableViewer.getTable().getItemCount();
-        if (index < len) {
-            tableViewer.getTable().setSelection(index);
-        } else if (index >= len) {
-            tableViewer.getTable().setSelection(index - 1);
-        }
-        setButtonsStatus();
-    }
-
-    /**
-     * Add a new PatternParameter with a default name.
-     */
-    protected void executeAdd() {
-        final Pattern pattern = getPattern();
-        TransactionalEditingDomain editingDomain = getEditingDomain();
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            protected void doExecute() {
-                PatternParameter newPatternParameter = PatternFactory.eINSTANCE.createPatternParameter();
-                newPatternParameter.setName(PARAMETER_NAME_DEFAULT_VALUE);
-                newPatternParameter.setType(PARAMETER_TYPE_DEFAULT_VALUE);
-                pattern.getParameters().add(newPatternParameter);
-                PatternUIHelper.addAdapterForNewItem(tableViewer, newPatternParameter);
-            }
-        };
-        editingDomain.getCommandStack().execute(cmd);
-
-        EList<PatternParameter> allParameters = pattern.getAllParameters();
-        int len = allParameters.size();
-        tableViewer.getTable().setSelection(len - 1);
-        setButtonsStatus();
-    }
-
-    private void executeUpOrDown(int num) {
-        int oldIndex = tableViewer.getTable().getSelectionIndex();
-        int newIndex = oldIndex + num;
-
-        EList<PatternParameter> allParameters = getPattern().getAllParameters();
-        BasicEList<PatternParameter> allParametersNew = new BasicEList<PatternParameter>();
-        for (int i = 0; i < allParameters.size(); i++) {
-            if (i == newIndex) {
-                allParametersNew.add(allParameters.get(oldIndex));
-            } else if (i == oldIndex) {
-                allParametersNew.add(allParameters.get(newIndex));
-            } else {
-                allParametersNew.add(allParameters.get(i));
-            }
-        }
-        updateAllParameters(allParametersNew);
-        tableViewer.getTable().setSelection(newIndex);
-        setButtonsStatus();
-    }
-
-    /**
-     * Refresh the pattern's all parameters after change tableViewer order's.
-     */
-    private void updateAllParameters(final BasicEList<PatternParameter> allParametersNew) {
-        TransactionalEditingDomain editingDomain = getEditingDomain();
-        RecordingCommand cmd = new RecordingCommand(editingDomain) {
-            protected void doExecute() {
-                getPattern().getParameters().removeAll(getPattern().getParameters());
-                getPattern().getParameters().addAll(allParametersNew);
-            }
-        };
-        editingDomain.getCommandStack().execute(cmd);
-    }
-
-    private void initTableEditor() {
-        if (isReadOnly)
-            return;
-        tableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID });
-        final TextCellEditor nameEditor = new TextCellEditor(tableViewer.getTable());
-        final DialogCellEditor typeEditor = new DialogCellEditor(tableViewer.getTable()) {
-
-            @Override
-            protected Object openDialogBox(Control cellEditorWindow) {
-                OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType());
-                wizard.init(PlatformUI.getWorkbench(), null);
-                WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
-                int returnValue = dialog.open();
-                if (Window.OK == returnValue) {
-                    if (wizard.getSelectType() instanceof String) {
-                        final String selectType = (String) wizard.getSelectType();
-                        updateType(selectType);
-                    } else if (wizard.getSelectType() instanceof BinaryType) {
-                        final String selectType = ((BinaryType) wizard.getSelectType()).getFullyQualifiedName();
-                        updateType(selectType);
-                    }
-
-                }
-                return null;
-            }
-        };
-        queryEditor = new ComboBoxViewerCellEditor(tableViewer.getTable(), SWT.NONE);
-        queryEditor.setLabelProvider(new ComboListLabelProvider());
-        queryEditor.setContenProvider(new CommonListContentProvider());
-        setComboViewerInput();
-        tableViewer.setCellEditors(new CellEditor[] { nameEditor, typeEditor, queryEditor });
-        ParametersTableCellModifier modifier = new ParametersTableCellModifier(getEditingDomain(), tableViewer);
-        tableViewer.setCellModifier(modifier);
-    }
-
-    private void updateType(final String selectType) {
-        if (selectType != null && !"".equals(selectType)) { //$NON-NLS-1$
-            ISelection selection = tableViewer.getSelection();
-            final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
-            if (selectItem instanceof PatternParameter) {
-                TransactionalEditingDomain editingDomain = getEditingDomain();
-                RecordingCommand cmd = new RecordingCommand(editingDomain) {
-                    protected void doExecute() {
-                        ((PatternParameter) selectItem).setType(selectType);
-                    }
-                };
-                editingDomain.getCommandStack().execute(cmd);
-                tableViewer.refresh();
-            }
-        }
-    }
-
-    private void setComboViewerInput() {
-        List availableQueries = IQuery.INSTANCE.getAvailableQueries();
-        availableQueries.add(0, ""); //$NON-NLS-1$
-        queryEditor.setInput(availableQueries);
-    }
-
-    /**
-     * Get the type of selected pattern parameter.
-     */
-    private String getSelectItemType() {
-        int selectionIndex = tableViewer.getTable().getSelectionIndex();
-        Object selectItem = tableViewer.getElementAt(selectionIndex);
+        final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
         if (selectItem instanceof PatternParameter) {
-            return ((PatternParameter) selectItem).getType();
+          PatternParameter patternParameter = (PatternParameter) selectItem;
+          final ParametersEditDialog dialog = new ParametersEditDialog(new Shell(), patternParameter, getEditingDomain());
+          dialog.setTitle(Messages.SpecificationPage_parametersEditDialog_title);
+          if (dialog.open() == Window.OK) {
+            TransactionalEditingDomain editingDomain = getEditingDomain();
+            RecordingCommand cmd = new RecordingCommand(editingDomain) {
+              protected void doExecute() {
+                executeParameterEdit(dialog, selectItem);
+              }
+            };
+            editingDomain.getCommandStack().execute(cmd);
+          }
         }
-        return ""; //$NON-NLS-1$
+        tableViewer.refresh();
+      }
+
+      public void widgetDefaultSelected(SelectionEvent e) {
+      }
+    });
+
+    remove = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+    remove.setLayoutData(gd);
+    remove.setEnabled(false);
+    remove.setImage(ImageShop.get(ImageShop.IMG_DELETE_OBJ));
+    remove.setToolTipText(Messages.SpecificationPage_button_remove);
+    remove.addSelectionListener(new SelectionListener() {
+
+      public void widgetSelected(SelectionEvent e) {
+        exectueRemove();
+      }
+
+      public void widgetDefaultSelected(SelectionEvent e) {
+      }
+    });
+
+    up = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+    up.setLayoutData(gd);
+    up.setEnabled(false);
+    up.setImage(ImageShop.get(ImageShop.IMG_UPWARD_OBJ));
+    up.setToolTipText(Messages.SpecificationPage_button_up);
+    up.addSelectionListener(new SelectionListener() {
+
+      public void widgetSelected(SelectionEvent e) {
+        executeUpOrDown(-1);
+      }
+
+      public void widgetDefaultSelected(SelectionEvent e) {
+      }
+    });
+
+    down = toolkit.createButton(buttons, "", SWT.PUSH); //$NON-NLS-1$
+    down.setLayoutData(gd);
+    down.setEnabled(false);
+    down.setImage(ImageShop.get(ImageShop.IMG_DOWNWARD_OBJ));
+    down.setToolTipText(Messages.SpecificationPage_button_down);
+    down.addSelectionListener(new SelectionListener() {
+
+      public void widgetSelected(SelectionEvent e) {
+        executeUpOrDown(1);
+      }
+
+      public void widgetDefaultSelected(SelectionEvent e) {
+      }
+    });
+  }
+
+  protected void executeParameterEdit(ParametersEditDialog dialog, Object selectItem) {
+    String newName = dialog.getName();
+    String newType = dialog.getType();
+    String newQuey = dialog.getQuery();
+
+    QueryKind queryKind = IQuery.INSTANCE.getQueryKindByName(newQuey);
+    if (queryKind != null) {
+      newQuey = queryKind.getId();
     }
 
-    @Override
-    protected void bind() {
-        if (getPattern() != null) {
-            bindParent();
-            bindNature();
-            bindTableViewer();
-            parameterNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, tableViewer.getTable());
+    if (selectItem instanceof PatternParameter) {
+      PatternParameter item = (PatternParameter) selectItem;
+      item.setName(newName);
+      item.setType(newType);
+      Query queryItem = item.getQuery();
+      if (queryItem != null) {
+        queryItem.setExtensionId(newQuey);
+        setQueryContent(dialog, queryItem);
+      } else if (!NO_QUERY_VALUE.equals(newQuey)) { //$NON-NLS-1$
+        Query query = PatternFactory.eINSTANCE.createBasicQuery();
+        query.setExtensionId(newQuey);
+        item.setQuery(query);
+        query.setParameter(item);
+        setQueryContent(dialog, query);
+      }
+      if (NO_QUERY_VALUE.equals(queryItem)) {
+        item.setQuery(null);
+      }
+    }
+  }
+
+  /**
+   * Update the Query Content of the Query.
+   */
+  private void setQueryContent(ParametersEditDialog dialog, Query query) {
+    List<QueryContent> queryContents = dialog.getQueryContents();
+    EMap<String, String> queryContext = query.getQueryContext();
+    if (queryContext != null && !queryContext.isEmpty()) {
+      queryContext.clear();
+    }
+    for (QueryContent queryContent : queryContents) {
+      queryContext.put(queryContent.getKey(), queryContent.getValue());
+    }
+  }
+
+  private void setButtonsStatus() {
+    int selectIndex = tableViewer.getTable().getSelectionIndex();
+    if (selectIndex == -1) {
+      edit.setEnabled(false);
+      remove.setEnabled(false);
+      up.setEnabled(false);
+      down.setEnabled(false);
+      return;
+    }
+    int length = tableViewer.getTable().getItemCount();
+    if (length > 0) {
+      remove.setEnabled(true);
+      edit.setEnabled(true);
+    } else {
+      remove.setEnabled(false);
+      edit.setEnabled(false);
+    }
+    if (selectIndex <= 0) {
+      up.setEnabled(false);
+    } else {
+      up.setEnabled(true);
+    }
+    if ((selectIndex + 1) == length) {
+      down.setEnabled(false);
+    } else {
+      down.setEnabled(true);
+    }
+  }
+
+  /**
+   * Get all the natures.
+   */
+  private static Map<PatternNature, PatternExtension> getNatures() {
+
+    Map<PatternNature, PatternExtension> result = new HashMap<PatternNature, PatternExtension>();
+    for (PatternExtension ext : ExtensionHelper.getExtensions().values())
+      result.put(ext.getNature(), ext);
+    return result;
+  }
+
+  protected void exectueRemove() {
+    int index = tableViewer.getTable().getSelectionIndex();
+    final Pattern pattern = getPattern();
+    ISelection selection = tableViewer.getSelection();
+    final Object[] removeThem = ((IStructuredSelection) selection).toArray();
+    TransactionalEditingDomain editingDomain = getEditingDomain();
+    RecordingCommand cmd = new RecordingCommand(editingDomain) {
+      protected void doExecute() {
+        for (Object object : removeThem) {
+          if (object instanceof PatternParameter) {
+            pattern.getParameters().remove(object);
+          }
         }
+      }
+    };
+    editingDomain.getCommandStack().execute(cmd);
+
+    int len = tableViewer.getTable().getItemCount();
+    if (index < len) {
+      tableViewer.getTable().setSelection(index);
+    } else if (index >= len) {
+      tableViewer.getTable().setSelection(index - 1);
     }
+    setButtonsStatus();
+  }
 
-    void bindParent() {
-        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__SUPER_PATTERN);
-        IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
-        IObservableValue uiObs = textProp.observeDelayed(400, parentText);
-        IObservableValue mObs = mprop.observe(getPattern());
+  /**
+   * Add a new PatternParameter with a default name.
+   */
+  protected void executeAdd() {
+    final Pattern pattern = getPattern();
+    TransactionalEditingDomain editingDomain = getEditingDomain();
+    RecordingCommand cmd = new RecordingCommand(editingDomain) {
+      protected void doExecute() {
+        PatternParameter newPatternParameter = PatternFactory.eINSTANCE.createPatternParameter();
+        newPatternParameter.setName(PARAMETER_NAME_DEFAULT_VALUE);
+        newPatternParameter.setType(PARAMETER_TYPE_DEFAULT_VALUE);
+        pattern.getParameters().add(newPatternParameter);
+        PatternUIHelper.addAdapterForNewItem(tableViewer, newPatternParameter);
+      }
+    };
+    editingDomain.getCommandStack().execute(cmd);
 
-        UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
-            public IStatus validate(Object value) {
+    EList<PatternParameter> allParameters = pattern.getAllParameters();
+    int len = allParameters.size();
+    tableViewer.getTable().setSelection(len - 1);
+    setButtonsStatus();
+  }
 
-                return Status.OK_STATUS;
-            }
+  private void executeUpOrDown(int num) {
+    int oldIndex = tableViewer.getTable().getSelectionIndex();
+    int newIndex = oldIndex + num;
 
-        });
-        UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
-        modelToTarget.setConverter(new IConverter() {
-            public Object getToType() {
-                return String.class;
-            }
-
-            public Object getFromType() {
-                return EReference.class;
-            }
-
-            public Object convert(Object fromObject) {
-                if (fromObject == null || !(fromObject instanceof Pattern)) {
-                    return ""; //$NON-NLS-1$
-                }
-                return ((Pattern) fromObject).getName();
-            }
-        });
-
-        addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
+    EList<PatternParameter> allParameters = getPattern().getAllParameters();
+    BasicEList<PatternParameter> allParametersNew = new BasicEList<PatternParameter>();
+    for (int i = 0; i < allParameters.size(); i++) {
+      if (i == newIndex) {
+        allParametersNew.add(allParameters.get(oldIndex));
+      } else if (i == oldIndex) {
+        allParametersNew.add(allParameters.get(newIndex));
+      } else {
+        allParametersNew.add(allParameters.get(i));
+      }
     }
+    updateAllParameters(allParametersNew);
+    tableViewer.getTable().setSelection(newIndex);
+    setButtonsStatus();
+  }
 
-    void bindNature() {
-        IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__NATURE);
-        IWidgetValueProperty comboProp = WidgetProperties.selection();
-        IObservableValue uiObs = comboProp.observeDelayed(400, combo);
-        IObservableValue mObs = mprop.observe(getPattern());
+  /**
+   * Refresh the pattern's all parameters after change tableViewer order's.
+   */
+  private void updateAllParameters(final BasicEList<PatternParameter> allParametersNew) {
+    TransactionalEditingDomain editingDomain = getEditingDomain();
+    RecordingCommand cmd = new RecordingCommand(editingDomain) {
+      protected void doExecute() {
+        getPattern().getParameters().removeAll(getPattern().getParameters());
+        getPattern().getParameters().addAll(allParametersNew);
+      }
+    };
+    editingDomain.getCommandStack().execute(cmd);
+  }
 
-        UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
-            public IStatus validate(Object value) {
+  private void initTableEditor() {
+    if (isReadOnly)
+      return;
+    tableViewer.setColumnProperties(new String[] { NAME_COLUMN_ID, TYPE_COLUMN_ID, QUERY_COLUMN_ID });
+    final TextCellEditor nameEditor = new TextCellEditor(tableViewer.getTable());
+    final DialogCellEditor typeEditor = new DialogCellEditor(tableViewer.getTable()) {
 
-                return Status.OK_STATUS;
-            }
+      @Override
+      protected Object openDialogBox(Control cellEditorWindow) {
+        OpenTypeWizard wizard = new OpenTypeWizard(getEditingDomain(), getSelectItemType());
+        wizard.init(PlatformUI.getWorkbench(), null);
+        WizardDialog dialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
+        int returnValue = dialog.open();
+        if (Window.OK == returnValue) {
+          if (wizard.getSelectType() instanceof String) {
+            final String selectType = (String) wizard.getSelectType();
+            updateType(selectType);
+          } else if (wizard.getSelectType() instanceof BinaryType) {
+            final String selectType = ((BinaryType) wizard.getSelectType()).getFullyQualifiedName();
+            updateType(selectType);
+          }
 
-        });
-        targetToModel.setConverter(new IConverter() {
-            public Object getToType() {
-                return EReference.class;
-            }
-
-            public Object getFromType() {
-                return String.class;
-            }
-
-            public Object convert(Object fromObject) {
-                if (fromObject == null || !(fromObject instanceof String)) {
-                    return ""; //$NON-NLS-1$
-                }
-                if (fromObject.equals(ExtensionHelper.getName(getPattern().getNature())))
-                    return getPattern().getNature();
-                return ExtensionHelper.createNature((String) fromObject);
-            }
-        });
-
-        UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
-        modelToTarget.setConverter(new IConverter() {
-            public Object getToType() {
-                return String.class;
-            }
-
-            public Object getFromType() {
-                return EReference.class;
-            }
-
-            public Object convert(Object fromObject) {
-                if (fromObject == null || !(fromObject instanceof PatternNature)) {
-                    return ""; //$NON-NLS-1$
-                }
-                return ExtensionHelper.getName((PatternNature) fromObject);
-            }
-        });
-
-        addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
-        if (combo != null && !combo.isDisposed())
-            comboSelectIndex = combo.getSelectionIndex();
-    }
-
-    private void bindTableViewer() {
-        Pattern pattern = getPattern();
-        if (pattern != null && tableViewer != null) {
-            IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__PARAMETERS);
-            IObservableList observe = input.observe(pattern);
-            tableViewer.setInput(observe);
         }
-    }
+        return null;
+      }
+    };
+    queryEditor = new ComboBoxViewerCellEditor(tableViewer.getTable(), SWT.NONE);
+    queryEditor.setLabelProvider(new ComboListLabelProvider());
+    queryEditor.setContenProvider(new CommonListContentProvider());
+    setComboViewerInput();
+    tableViewer.setCellEditors(new CellEditor[] { nameEditor, typeEditor, queryEditor });
+    ParametersTableCellModifier modifier = new ParametersTableCellModifier(getEditingDomain(), tableViewer);
+    tableViewer.setCellModifier(modifier);
+  }
 
-    public Pattern getParentPattern() {
-        return getPattern() != null ? getPattern().getSuperPattern() : null;
+  private void updateType(final String selectType) {
+    if (selectType != null && !"".equals(selectType)) { //$NON-NLS-1$
+      ISelection selection = tableViewer.getSelection();
+      final Object selectItem = ((IStructuredSelection) selection).getFirstElement();
+      if (selectItem instanceof PatternParameter) {
+        TransactionalEditingDomain editingDomain = getEditingDomain();
+        RecordingCommand cmd = new RecordingCommand(editingDomain) {
+          protected void doExecute() {
+            ((PatternParameter) selectItem).setType(selectType);
+          }
+        };
+        editingDomain.getCommandStack().execute(cmd);
+        tableViewer.refresh();
+      }
     }
+  }
 
-    public String getParentName() {
-        return parentText.getText();
-    }
+  private void setComboViewerInput() {
+    List availableQueries = IQuery.INSTANCE.getAvailableQueries();
+    availableQueries.add(0, ""); //$NON-NLS-1$
+    queryEditor.setInput(availableQueries);
+  }
 
-    @Override
-    public void dispose() {
-        PatternUIHelper.removeAdapterForPattern(getPattern(), parameterNameEmpetyValidationAdapter);
-        super.dispose();
+  /**
+   * Get the type of selected pattern parameter.
+   */
+  private String getSelectItemType() {
+    int selectionIndex = tableViewer.getTable().getSelectionIndex();
+    Object selectItem = tableViewer.getElementAt(selectionIndex);
+    if (selectItem instanceof PatternParameter) {
+      return ((PatternParameter) selectItem).getType();
     }
+    return ""; //$NON-NLS-1$
+  }
+
+  @Override
+  protected void bind() {
+    if (getPattern() != null) {
+      bindParent();
+      bindNature();
+      bindTableViewer();
+      parameterNameEmpetyValidationAdapter = PatternUIHelper.addValidationAdapeter(mmng, getPattern(), ValidationConstants.CONSTRAINTS_PATTERN_PARAMETER_NOT_EMPTY_NAME_ID, tableViewer.getTable());
+    }
+  }
+
+  void bindParent() {
+    IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__SUPER_PATTERN);
+    IWidgetValueProperty textProp = WidgetProperties.text(SWT.Modify);
+    IObservableValue uiObs = textProp.observeDelayed(400, parentText);
+    IObservableValue mObs = mprop.observe(getPattern());
+
+    UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+      public IStatus validate(Object value) {
+
+        return Status.OK_STATUS;
+      }
+
+    });
+    UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
+    modelToTarget.setConverter(new IConverter() {
+      public Object getToType() {
+        return String.class;
+      }
+
+      public Object getFromType() {
+        return EReference.class;
+      }
+
+      public Object convert(Object fromObject) {
+        if (fromObject == null || !(fromObject instanceof Pattern)) {
+          return ""; //$NON-NLS-1$
+        }
+        return ((Pattern) fromObject).getName();
+      }
+    });
+
+    addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
+  }
+
+  void bindNature() {
+    IEMFEditValueProperty mprop = EMFEditProperties.value(getEditingDomain(), PatternPackage.Literals.PATTERN__NATURE);
+    IWidgetValueProperty comboProp = WidgetProperties.selection();
+    IObservableValue uiObs = comboProp.observeDelayed(400, combo);
+    IObservableValue mObs = mprop.observe(getPattern());
+
+    UpdateValueStrategy targetToModel = new EMFUpdateValueStrategy().setBeforeSetValidator(new IValidator() {
+      public IStatus validate(Object value) {
+
+        return Status.OK_STATUS;
+      }
+
+    });
+    targetToModel.setConverter(new IConverter() {
+      public Object getToType() {
+        return EReference.class;
+      }
+
+      public Object getFromType() {
+        return String.class;
+      }
+
+      public Object convert(Object fromObject) {
+        if (fromObject == null || !(fromObject instanceof String)) {
+          return ""; //$NON-NLS-1$
+        }
+        if (fromObject.equals(ExtensionHelper.getName(getPattern().getNature())))
+          return getPattern().getNature();
+        return ExtensionHelper.createNature((String) fromObject);
+      }
+    });
+
+    UpdateValueStrategy modelToTarget = new UpdateValueStrategy();
+    modelToTarget.setConverter(new IConverter() {
+      public Object getToType() {
+        return String.class;
+      }
+
+      public Object getFromType() {
+        return EReference.class;
+      }
+
+      public Object convert(Object fromObject) {
+        if (fromObject == null || !(fromObject instanceof PatternNature)) {
+          return ""; //$NON-NLS-1$
+        }
+        return ExtensionHelper.getName((PatternNature) fromObject);
+      }
+    });
+
+    addBinding(ctx.bindValue(uiObs, mObs, targetToModel, modelToTarget));
+    if (combo != null && !combo.isDisposed())
+      comboSelectIndex = combo.getSelectionIndex();
+  }
+
+  private void bindTableViewer() {
+    Pattern pattern = getPattern();
+    if (pattern != null && tableViewer != null) {
+      IEMFListProperty input = EMFProperties.list(PatternPackage.Literals.PATTERN__PARAMETERS);
+      IObservableList observe = input.observe(pattern);
+      tableViewer.setInput(observe);
+    }
+  }
+
+  public Pattern getParentPattern() {
+    return getPattern() != null ? getPattern().getSuperPattern() : null;
+  }
+
+  public String getParentName() {
+    return parentText.getText();
+  }
+
+  @Override
+  public void dispose() {
+    PatternUIHelper.removeAdapterForPattern(getPattern(), parameterNameEmpetyValidationAdapter);
+    super.dispose();
+  }
 
 }
