@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension-point id="defaultContentColorerDelegates" name="Default JET Text Content Colorer Delegates" schema="schema/defaultContentColorerDelegates.exsd"/>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.eclipse.jet.internal.editor.JETTextEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            default="true"
+            extensions="jet,jet2"
+            icon="icons/full/obj16/JETTemplateFile.gif"
+            id="org.eclipse.jet.editor.JETEditor"
+            name="%editor.name.0">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.jet.editor.defaultContentColorerDelegates">
+      <defaultContentColorerDelegate
+            delegateClass="org.eclipse.jet.internal.editor.configuration.delegates.java.JavaContentPartitionConfigurationDelegate">
+      </defaultContentColorerDelegate>
+      <defaultContentColorerDelegate
+            delegateClass="org.eclipse.jet.internal.editor.configuration.delegates.xml.XMLContentPartitionConfigurationDelegate">
+      </defaultContentColorerDelegate>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="org.eclipse.jet.editor.JETEditor.actionsContributor"
+            targetID="org.eclipse.jet.editor.JETEditor">
+         <action
+               actionID="setDelegateColorerActionID"
+               class="org.eclipse.jet.internal.editor.actions.SetContentColorerAction"
+               id="org.eclipse.jet.editor.setDelegateColorerActionID"
+               label="%_UI_SetContentColorerAction.label"
+               style="push">
+         </action>
+      </editorContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.annotationTypes">
+      <type
+            markerSeverity="2"
+            name="org.eclipse.jet.editor.error"
+            super="org.eclipse.ui.workbench.texteditor.error">
+      </type>
+      <type
+            markerSeverity="1"
+            name="org.eclipse.jet.editor.warning"
+            super="org.eclipse.ui.workbench.texteditor.warning">
+      </type>
+      <type
+            markerSeverity="0"
+            name="org.eclipse.jet.editor.info"
+            super="org.eclipse.ui.workbench.texteditor.info">
+      </type>
+   </extension>
+
+</plugin>
