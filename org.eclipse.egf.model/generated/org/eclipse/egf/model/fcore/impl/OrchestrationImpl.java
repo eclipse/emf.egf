@@ -12,7 +12,6 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
-import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
@@ -38,22 +37,18 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent <em>Factory
- * Component</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getOrchestrationParameterContainer
- * <em>Orchestration Parameter Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent <em>Factory Component</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getOrchestrationParameterContainer <em>Orchestration Parameter Container</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class OrchestrationImpl extends ModelElementImpl implements Orchestration {
   /**
-   * The cached value of the '{@link #getOrchestrationParameterContainer() <em>Orchestration
-   * Parameter Container</em>}' containment reference.
+   * The cached value of the '{@link #getOrchestrationParameterContainer() <em>Orchestration Parameter Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getOrchestrationParameterContainer()
    * @generated
    * @ordered
@@ -63,7 +58,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected OrchestrationImpl() {
@@ -73,7 +67,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -84,7 +77,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FactoryComponent getFactoryComponent() {
@@ -96,7 +88,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetFactoryComponent(FactoryComponent newFactoryComponent, NotificationChain msgs) {
@@ -107,7 +98,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setFactoryComponent(FactoryComponent newFactoryComponent) {
@@ -129,7 +119,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public OrchestrationParameterContainer getOrchestrationParameterContainer() {
@@ -139,7 +128,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetOrchestrationParameterContainer(OrchestrationParameterContainer newOrchestrationParameterContainer, NotificationChain msgs) {
@@ -158,7 +146,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setOrchestrationParameterContainer(OrchestrationParameterContainer newOrchestrationParameterContainer) {
@@ -178,7 +165,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public <T extends Invocation> EList<T> getInvocations() {
@@ -212,10 +198,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   public EList<InvocationContract> getInvocationContracts(Type type) {
     EList<InvocationContract> invocationContracts = new UniqueEList<InvocationContract>();
     if (type != null) {
-      for (InvocationContract innerInvocationContract : getInvocationContracts()) {
-        if (innerInvocationContract.getInvokedContract() != null && innerInvocationContract.getInvokedContract().getType() != null && ClassHelper.asSubClass(type.getType(), innerInvocationContract.getInvokedContract().getType().getType())) {
-          invocationContracts.add(innerInvocationContract);
-        }
+      for (Invocation invocation : getInvocations()) {
+        invocationContracts.addAll(invocation.getInvocationContracts(type));
       }
     }
     return invocationContracts;
@@ -230,14 +214,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   public EList<InvocationContract> getInvocationContracts(ContractMode mode) {
     EList<InvocationContract> invocationContracts = new UniqueEList<InvocationContract>();
     if (mode != null) {
-      for (InvocationContract innerInvocationContract : getInvocationContracts()) {
-        if (mode == ContractMode.IN && (innerInvocationContract.getInvokedMode() == ContractMode.IN || innerInvocationContract.getInvokedMode() == ContractMode.IN_OUT)) {
-          invocationContracts.add(innerInvocationContract);
-        } else if (mode == ContractMode.OUT && (innerInvocationContract.getInvokedMode() == ContractMode.OUT || innerInvocationContract.getInvokedMode() == ContractMode.IN_OUT)) {
-          invocationContracts.add(innerInvocationContract);
-        } else if (mode == ContractMode.IN_OUT) {
-          invocationContracts.add(innerInvocationContract);
-        }
+      for (Invocation invocation : getInvocations()) {
+        invocationContracts.addAll(invocation.getInvocationContracts(mode));
       }
     }
     return invocationContracts;
@@ -251,14 +229,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
    */
   public EList<InvocationContract> getInvocationContracts(Type type, ContractMode mode) {
     EList<InvocationContract> invocationContracts = new UniqueEList<InvocationContract>();
-    for (InvocationContract innerInvocationContract : getInvocationContracts(type)) {
-      if (mode == ContractMode.IN && (innerInvocationContract.getInvokedMode() == ContractMode.IN || innerInvocationContract.getInvokedMode() == ContractMode.IN_OUT)) {
-        invocationContracts.add(innerInvocationContract);
-      } else if (mode == ContractMode.OUT && (innerInvocationContract.getInvokedMode() == ContractMode.OUT || innerInvocationContract.getInvokedMode() == ContractMode.IN_OUT)) {
-        invocationContracts.add(innerInvocationContract);
-      } else if (mode == ContractMode.IN_OUT) {
-        invocationContracts.add(innerInvocationContract);
-      }
+    for (Invocation invocation : getInvocations()) {
+      invocationContracts.addAll(invocation.getInvocationContracts(type, mode));
     }
     return invocationContracts;
   }
@@ -285,10 +257,8 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
    */
   public EList<OrchestrationParameter> getOrchestrationParameters(Type type) {
     EList<OrchestrationParameter> orchestrationParameters = new UniqueEList<OrchestrationParameter>();
-    for (OrchestrationParameter innerOrchestrationParameter : getOrchestrationParameters()) {
-      if (innerOrchestrationParameter.getType() != null && ClassHelper.asSubClass(type.getType(), innerOrchestrationParameter.getType().getType())) {
-        orchestrationParameters.add(innerOrchestrationParameter);
-      }
+    if (getOrchestrationParameterContainer() != null) {
+      return getOrchestrationParameterContainer().getOrchestrationParameters(type);
     }
     return orchestrationParameters;
   }
@@ -296,7 +266,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -317,7 +286,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -334,7 +302,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -349,7 +316,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -366,7 +332,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -385,7 +350,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -404,7 +368,6 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

@@ -14,22 +14,20 @@ package org.eclipse.egf.model.fcore.impl;
 
 import java.util.Collection;
 
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fcore.OrchestrationParameterContainer;
-
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
-
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -141,6 +139,22 @@ public class OrchestrationParameterContainerImpl extends ModelElementImpl implem
     // TODO: implement this method
     // Ensure that you remove @generated or mark it @generated NOT
     throw new UnsupportedOperationException();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public EList<OrchestrationParameter> getOrchestrationParameters(Type type) {
+    EList<OrchestrationParameter> innerOrchestrationParameters = new UniqueEList<OrchestrationParameter>();
+    for (OrchestrationParameter innerOrchestrationParameter : getOrchestrationParameters()) {
+      if (innerOrchestrationParameter.getType() != null && ClassHelper.asSubClass(type.getType(), innerOrchestrationParameter.getType().getType())) {
+        innerOrchestrationParameters.add(innerOrchestrationParameter);
+      }
+    }
+    return innerOrchestrationParameters;
   }
 
   /**
@@ -262,4 +276,4 @@ public class OrchestrationParameterContainerImpl extends ModelElementImpl implem
     return super.eIsSet(featureID);
   }
 
-} //OrchestrationParameterContainerImpl
+} // OrchestrationParameterContainerImpl

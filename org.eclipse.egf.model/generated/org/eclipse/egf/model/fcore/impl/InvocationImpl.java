@@ -37,22 +37,18 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvocationContractContainer
- * <em>Invocation Contract Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvokedActivity <em>Invoked
- * Activity</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvocationContractContainer <em>Invocation Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvokedActivity <em>Invoked Activity</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class InvocationImpl extends ModelElementImpl implements Invocation {
   /**
-   * The cached value of the '{@link #getInvocationContractContainer() <em>Invocation Contract
-   * Container</em>}' containment reference.
+   * The cached value of the '{@link #getInvocationContractContainer() <em>Invocation Contract Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getInvocationContractContainer()
    * @generated
    * @ordered
@@ -63,7 +59,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
    * The cached value of the '{@link #getInvokedActivity() <em>Invoked Activity</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getInvokedActivity()
    * @generated
    * @ordered
@@ -73,7 +68,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected InvocationImpl() {
@@ -83,7 +77,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -94,7 +87,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public InvocationContractContainer getInvocationContractContainer() {
@@ -104,7 +96,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetInvocationContractContainer(InvocationContractContainer newInvocationContractContainer, NotificationChain msgs) {
@@ -123,7 +114,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setInvocationContractContainer(InvocationContractContainer newInvocationContractContainer) {
@@ -143,7 +133,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Activity getInvokedActivity() {
@@ -161,7 +150,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Activity basicGetInvokedActivity() {
@@ -171,7 +159,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setInvokedActivity(Activity newInvokedActivity) {
@@ -184,7 +171,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FactoryComponent getFactoryComponent() {
@@ -295,7 +281,17 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
     EList<InvocationContract> invocationContracts = new UniqueEList<InvocationContract>();
     if (innerType != null) {
       for (InvocationContract innerInvocationContract : getInvocationContracts()) {
-        if (innerInvocationContract.getInvokedContract() != null && innerInvocationContract.getInvokedContract().getType() != null && ClassHelper.asSubClass(innerType.getType(), innerInvocationContract.getInvokedContract().getType().getType())) {
+        // Nothing to analyse
+        if (innerInvocationContract.getInvokedContract() == null || innerInvocationContract.getInvokedContract().getType() == null) {
+          continue;
+        }
+        // Local type definition if available
+        Type type = innerInvocationContract.getType();
+        if (type == null) {
+          // Otherwise invoked contract type
+          type = innerInvocationContract.getInvokedContract().getType();
+        }
+        if (ClassHelper.asSubClass(innerType.getType(), type.getType())) {
           invocationContracts.add(innerInvocationContract);
         }
       }
@@ -348,7 +344,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -365,7 +360,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -380,7 +374,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -399,7 +392,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -418,7 +410,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -437,7 +428,6 @@ public abstract class InvocationImpl extends ModelElementImpl implements Invocat
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

@@ -71,8 +71,7 @@ public class FcoreSwitch<T> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -84,8 +83,7 @@ public class FcoreSwitch<T> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -103,8 +101,7 @@ public class FcoreSwitch<T> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -366,8 +363,7 @@ public class FcoreSwitch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Factory Component
-   * Contract</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Factory Component Contract</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
@@ -375,8 +371,7 @@ public class FcoreSwitch<T> {
    * 
    * @param object
    *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Factory Component
-   *         Contract</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Factory Component Contract</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
@@ -436,8 +431,7 @@ public class FcoreSwitch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Orchestration Parameter
-   * Container</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Orchestration Parameter Container</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
@@ -445,8 +439,7 @@ public class FcoreSwitch<T> {
    * 
    * @param object
    *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Orchestration Parameter
-   *         Container</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Orchestration Parameter Container</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
@@ -455,8 +448,7 @@ public class FcoreSwitch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Orchestration
-   * Parameter</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Orchestration Parameter</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
@@ -464,8 +456,7 @@ public class FcoreSwitch<T> {
    * 
    * @param object
    *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Orchestration
-   *         Parameter</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Orchestration Parameter</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
@@ -491,8 +482,7 @@ public class FcoreSwitch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Invocation Contract
-   * Container</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Invocation Contract Container</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
@@ -500,8 +490,7 @@ public class FcoreSwitch<T> {
    * 
    * @param object
    *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Invocation Contract
-   *         Container</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Invocation Contract Container</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */

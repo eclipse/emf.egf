@@ -19,14 +19,14 @@ import org.eclipse.egf.model.fcore.Invocation;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Production Plan Invocation</b></em>'.
  * <!-- end-user-doc -->
- *
+ * 
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fprod.ProductionPlanInvocation#getProductionPlan <em>Production Plan</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fprod.ProductionPlanInvocation#getProductionPlan <em>Production Plan</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.eclipse.egf.model.fprod.FprodPackage#getProductionPlanInvocation()
  * @model
  * @generated
@@ -42,6 +42,7 @@ public interface ProductionPlanInvocation extends Invocation {
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
+   * 
    * @return the value of the '<em>Production Plan</em>' container reference.
    * @see #setProductionPlan(ProductionPlan)
    * @see org.eclipse.egf.model.fprod.FprodPackage#getProductionPlanInvocation_ProductionPlan()
@@ -55,7 +56,9 @@ public interface ProductionPlanInvocation extends Invocation {
    * Sets the value of the '{@link org.eclipse.egf.model.fprod.ProductionPlanInvocation#getProductionPlan <em>Production Plan</em>}' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Production Plan</em>' container reference.
+   * 
+   * @param value
+   *          the new value of the '<em>Production Plan</em>' container reference.
    * @see #getProductionPlan()
    * @generated
    */
@@ -64,6 +67,7 @@ public interface ProductionPlanInvocation extends Invocation {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @model kind="operation" required="true"
    * @generated
    */

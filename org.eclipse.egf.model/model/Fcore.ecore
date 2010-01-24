@@ -146,6 +146,9 @@
       <details key="constraints" value="UselessOrchestrationParameterContainer"/>
     </eAnnotations>
     <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
+    <eOperations name="getOrchestrationParameters" upperBound="-1" eType="#//OrchestrationParameter">
+      <eParameters name="type" eType="ecore:EClass Types.ecore#//Type"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestration" lowerBound="1"
         eType="#//Orchestration" eOpposite="#//Orchestration/orchestrationParameterContainer"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationParameters"
@@ -204,7 +207,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InvocationContract" eSuperTypes="#//ModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ValidInvokedContract ValidInvokedContractType ValidInvocationContract ValidFactoryComponentContract ValidFactoryComponentContractType MandatoryTypeValue UselessType"/>
+      <details key="constraints" value="ValidInvokedContract ValidInvokedContractType ValidInvocationContract ValidFactoryComponentContract ValidFactoryComponentContractType ValidOrchestrationParameter ValidOrchestrationParameterType UselessTypeValue"/>
     </eAnnotations>
     <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
     <eOperations name="getInvocation" lowerBound="1" eType="#//Invocation"/>

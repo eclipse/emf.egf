@@ -135,6 +135,9 @@
       <genFeatures property="None" children="true" createChild="true" propertyCategory=""
           ecoreFeature="ecore:EReference Fcore.ecore#//OrchestrationParameterContainer/orchestrationParameters"/>
       <genOperations ecoreOperation="Fcore.ecore#//OrchestrationParameterContainer/getFactoryComponent"/>
+      <genOperations ecoreOperation="Fcore.ecore#//OrchestrationParameterContainer/getOrchestrationParameters">
+        <genParameters ecoreParameter="Fcore.ecore#//OrchestrationParameterContainer/getOrchestrationParameters/type"/>
+      </genOperations>
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//OrchestrationParameter">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//OrchestrationParameter/orchestrationParameterContainer"/>

@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.fcore;
 
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -85,5 +86,13 @@ public interface OrchestrationParameterContainer extends ModelElement {
    * @generated
    */
   FactoryComponent getFactoryComponent();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model
+   * @generated
+   */
+  EList<OrchestrationParameter> getOrchestrationParameters(Type type);
 
 } // OrchestrationParameterContainer
