@@ -95,7 +95,7 @@ public class ProductionPlanInvocationItemProvider extends InvocationItemProvider
       label = EMFHelper.getText(productionPlanInvocation.getInvokedActivity());
     }
     if (label != null) {
-      label = "[" + getString("_UI_ProductionPlanInvocation_type") + "] " + label; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      label = "[" + getString("_UI_ProductionPlanInvocation_type") + "] -> " + label; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     } else {
       label = "[" + getString("_UI_ProductionPlanInvocation_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     }
