@@ -1059,7 +1059,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
     addAnnotation(activityEClass, source, new String[] { "constraints", "ActivityCycle" //$NON-NLS-1$ //$NON-NLS-2$
     });
-    addAnnotation(contractEClass, source, new String[] { "constraints", "UniqueName" //$NON-NLS-1$ //$NON-NLS-2$
+    addAnnotation(contractEClass, source, new String[] { "constraints", "UniqueName UselessMandatoryMode" //$NON-NLS-1$ //$NON-NLS-2$
     });
     addAnnotation(contractContainerEClass, source, new String[] { "constraints", "FactoryComponentContract" //$NON-NLS-1$ //$NON-NLS-2$
     });

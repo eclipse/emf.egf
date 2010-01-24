@@ -31,7 +31,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Contract" eSuperTypes="#//NamedModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UniqueName"/>
+      <details key="constraints" value="UniqueName UselessMandatoryMode"/>
     </eAnnotations>
     <eOperations name="getActivity" lowerBound="1" eType="#//Activity"/>
     <eOperations name="getContracts" upperBound="-1" eType="#//Contract"/>

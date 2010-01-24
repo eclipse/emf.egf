@@ -299,6 +299,8 @@ public class FcoreValidator extends EObjectValidator {
       result &= validate_EveryMapEntryUnique(contract, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateContract_UniqueName(contract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateContract_UselessMandatoryMode(contract, diagnostics, context);
     return result;
   }
 
@@ -403,6 +405,8 @@ public class FcoreValidator extends EObjectValidator {
       result &= validate_EveryMapEntryUnique(factoryComponentContract, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateContract_UniqueName(factoryComponentContract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateContract_UselessMandatoryMode(factoryComponentContract, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateFactoryComponentContract_OutModeIsRestricted(factoryComponentContract, diagnostics, context);
     return result;
@@ -898,6 +902,25 @@ public class FcoreValidator extends EObjectValidator {
       return false;
     }
     return true;
+  }
+
+  /**
+   * Validates the UselessMandatoryMode constraint of '<em>Contract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateContract_UselessMandatoryMode(Contract contract, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (contract.isMandatory() == false || contract.getType() == null || contract.getType().getValue() == null) {
+      return true;
+    }
+    if (diagnostics != null) {
+      diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+          new Object[] { "UselessMandatoryMode", getObjectLabel(contract, context), "A Mandatory Contract with a default value is always true" }, //$NON-NLS-1$ //$NON-NLS-2$
+          new Object[] { contract }, context));
+    }
+    return false;
   }
 
   /**
