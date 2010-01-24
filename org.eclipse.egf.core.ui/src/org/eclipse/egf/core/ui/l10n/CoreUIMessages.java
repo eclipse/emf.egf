@@ -59,4 +59,7 @@ public class CoreUIMessages {
 
   public static String TypeSelectionDialog_findTypeHierarchy;
 
+  public static String _UI_DiagnosisOfNObject_message;
+  public static String _UI_DiagnosisOfNObjects_message;
+
 }
