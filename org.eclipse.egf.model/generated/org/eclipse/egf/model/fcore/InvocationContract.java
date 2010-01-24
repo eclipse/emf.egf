@@ -33,7 +33,7 @@ import org.eclipse.egf.model.types.Type;
  * </p>
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContract()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidInvokedContract ValidInvokedContractType ValidInvocationContract ValidFactoryComponentContract ValidFactoryComponentContractType ValidOrchestrationParameter ValidOrchestrationParameterType UselessTypeValue'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidInvokedContract ValidInvokedContractType ValidFactoryComponentContract ValidFactoryComponentContractType ValidOrchestrationParameter ValidOrchestrationParameterType ValidSourceInvocationContract ValidSourceInvocationContractType UselessTypeValue'"
  * @generated
  */
 public interface InvocationContract extends ModelElement {

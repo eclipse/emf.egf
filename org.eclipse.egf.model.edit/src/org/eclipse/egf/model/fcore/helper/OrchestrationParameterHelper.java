@@ -38,23 +38,28 @@ public class OrchestrationParameterHelper {
         for (Iterator<InvocationContract> it = result.iterator(); it.hasNext();) {
           InvocationContract invocationContract = it.next();
           if (invocationContract.getInvokedMode() == ContractMode.OUT) {
-            // Only In or In_Out mode are assignable in OrchestrationParameter
+            // Only In or In_Out mode are assignable to an OrchestrationParameter
             // They have an In semantic in this area
             it.remove();
-          } else if (invocationContract.getFactoryComponentContract() != null) {
-            ContractMode exposedMode = invocationContract.getFactoryComponentContract().getMode();
-            if (invocationContract.getInvokedMode() == ContractMode.IN) {
-              // Filter invocation contract with In mode is already assigned to an In exposed
-              // contract
-              it.remove();
-            } else if (exposedMode != ContractMode.OUT) {
-              // Filter invocation contract with In_Out mode is already assigned to an In or
-              // In_Out contract
-              it.remove();
+          } else {
+            if (invocationContract.getFactoryComponentContract() != null) {
+              if (invocationContract.getInvokedMode() == ContractMode.IN) {
+                // Filter InvocationContract with In mode already assigned to a FactoryComponentContract
+                it.remove();
+              } else if (invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
+                // Filter InvocationContract with In_Out mode already assigned to an In or In_Out FactoryComponentContract
+                it.remove();
+              }
+            }
+            if (invocationContract.getSourceInvocationContract() != null) {
+              if (invocationContract.getInvokedMode() == ContractMode.IN) {
+                // Filter InvocationContract with In mode already assigned to a SourceInvocationContract
+                it.remove();
+              }
             }
           }
         }
-        // Filter invocation contract already assigned to an OrchestrationParameter
+        // Filter InvocationContract already assigned to an OrchestrationParameter
         for (OrchestrationParameter innerOrchestrationParameter : orchestrationParameter.getOrchestrationParameterContainer().getOrchestrationParameters()) {
           if (orchestrationParameter == innerOrchestrationParameter) {
             continue;

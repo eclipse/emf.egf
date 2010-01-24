@@ -572,8 +572,6 @@ public class FcoreValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validateInvocationContract_ValidInvokedContractType(invocationContract, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateInvocationContract_ValidInvocationContract(invocationContract, diagnostics, context);
-    if (result || diagnostics != null)
       result &= validateInvocationContract_ValidFactoryComponentContract(invocationContract, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateInvocationContract_ValidFactoryComponentContractType(invocationContract, diagnostics, context);
@@ -581,6 +579,10 @@ public class FcoreValidator extends EObjectValidator {
       result &= validateInvocationContract_ValidOrchestrationParameter(invocationContract, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateInvocationContract_ValidOrchestrationParameterType(invocationContract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateInvocationContract_ValidSourceInvocationContract(invocationContract, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateInvocationContract_ValidSourceInvocationContractType(invocationContract, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateInvocationContract_UselessTypeValue(invocationContract, diagnostics, context);
     return result;
@@ -639,36 +641,6 @@ public class FcoreValidator extends EObjectValidator {
   }
 
   /**
-   * Validates the ValidInvocationContract constraint of '<em>Invocation Contract</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public boolean validateInvocationContract_ValidInvocationContract(InvocationContract invocationContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean mistmatch = false;
-    if (invocationContract.getOrchestrationParameter() != null && invocationContract.getFactoryComponentContract() != null) {
-      if (invocationContract.getInvokedMode() == ContractMode.OUT) {
-        // Only In or In_Out could be bound in an OrchestrationContext and in an exposed contract
-        mistmatch = true;
-      } else if (invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
-        // if both assigned only exposed contract in out mode makes sense
-        // with In mode in an orchestration context and an Out mode in an exposed contract
-        mistmatch = true;
-      }
-    }
-    if (mistmatch) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "ValidInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract should exist in an OrchestrationParameter or a FactoryComponentContract but not both" }, //$NON-NLS-1$ //$NON-NLS-2$
-            new Object[] { invocationContract }, context));
-      }
-      return false;
-    }
-    return true;
-  }
-
-  /**
    * Validates the ValidFactoryComponentContract constraint of '<em>Invocation Contract</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -676,22 +648,27 @@ public class FcoreValidator extends EObjectValidator {
    * @generated NOT
    */
   public boolean validateInvocationContract_ValidFactoryComponentContract(InvocationContract invocationContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (invocationContract.getFactoryComponentContract() == null || invocationContract.getInvokedContract() == null) {
+    if (invocationContract.getFactoryComponentContract() == null || invocationContract.getInvokedMode() == null) {
       return true;
     }
-    boolean mistmatch = false;
-    if (invocationContract.getFactoryComponentContract().getMode() == ContractMode.IN && invocationContract.getInvokedContract().getMode() == ContractMode.OUT) {
-      mistmatch = true;
-    } else if (invocationContract.getFactoryComponentContract().getMode() == ContractMode.OUT && invocationContract.getInvokedContract().getMode() == ContractMode.IN) {
-      mistmatch = true;
-    }
-    if (mistmatch) {
-      if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "ValidFactoryComponentContract", getObjectLabel(invocationContract, context), "FactoryComponentContract and Invoked Contract Mode mismatch" }, //$NON-NLS-1$ //$NON-NLS-2$
-            new Object[] { invocationContract }, context));
+    if (invocationContract.getInvokedMode() == ContractMode.OUT) {
+      if (invocationContract.getFactoryComponentContract().getMode() == ContractMode.IN) {
+        if (diagnostics != null) {
+          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+              new Object[] { "ValidFactoryComponentContract", getObjectLabel(invocationContract, context), "InvocationContract in Out Mode couldn't be assigned to a FactoryComponentContract in In Mode" }, //$NON-NLS-1$ //$NON-NLS-2$
+              new Object[] { invocationContract }, context));
+        }
+        return false;
       }
-      return false;
+    } else if (invocationContract.getInvokedMode() == ContractMode.IN) {
+      if (invocationContract.getFactoryComponentContract().getMode() == ContractMode.OUT) {
+        if (diagnostics != null) {
+          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+              new Object[] { "ValidFactoryComponentContract", getObjectLabel(invocationContract, context), "InvocationContract in In Mode couldn't be assigned to a FactoryComponentContract in Out Mode" }, //$NON-NLS-1$ //$NON-NLS-2$
+              new Object[] { invocationContract }, context));
+        }
+        return false;
+      }
     }
     return true;
   }
@@ -704,7 +681,10 @@ public class FcoreValidator extends EObjectValidator {
    * @generated NOT
    */
   public boolean validateInvocationContract_ValidFactoryComponentContractType(InvocationContract invocationContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (invocationContract.getFactoryComponentContract() == null || invocationContract.getFactoryComponentContract().getType() == null || invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
+    if (invocationContract.getFactoryComponentContract() == null || invocationContract.getFactoryComponentContract().getType() == null) {
+      return true;
+    }
+    if (invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
       return true;
     }
     Type type = invocationContract.getType();
@@ -736,7 +716,23 @@ public class FcoreValidator extends EObjectValidator {
     if (invocationContract.getInvokedContract().getMode() == ContractMode.OUT) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "ValidOrchestrationParameter", getObjectLabel(invocationContract, context), "OrchestrationParameter shouldn't hold InvocationContract in Out Mode" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { "ValidOrchestrationParameter", getObjectLabel(invocationContract, context), "InvocationContract in Out Mode couldn't be assigned to an OrchestrationParameter" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { invocationContract }, context));
+      }
+      return false;
+    }
+    if (invocationContract.getSourceInvocationContract() != null) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidOrchestrationParameter", getObjectLabel(invocationContract, context), "InvocationContract assigned to a SourceInvocationContract couldn't be assigned to an OrchestrationParameter" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { invocationContract }, context));
+      }
+      return false;
+    }
+    if (invocationContract.getFactoryComponentContract() != null && invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidOrchestrationParameter", getObjectLabel(invocationContract, context), "FactoryComponentContract should be in Out Mode when an InvocationContract is either assigned to an OrchestrationParameter and a FactoryComponentContract" }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { invocationContract }, context));
       }
       return false;
@@ -763,6 +759,69 @@ public class FcoreValidator extends EObjectValidator {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
             new Object[] { "ValidOrchestrationParameterType", getObjectLabel(invocationContract, context), "OrchestrationParameter Type is not a subtype of Invoked Contract Type" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { invocationContract }, context));
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validates the ValidSourceInvocationContract constraint of '<em>Invocation Contract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocationContract_ValidSourceInvocationContract(InvocationContract invocationContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (invocationContract.getSourceInvocationContract() == null || invocationContract.getInvokedContract() == null) {
+      return true;
+    }
+    if (invocationContract.getInvokedContract().getMode() == ContractMode.OUT) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidSourceInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract in Out Mode couldn't be assigned to a SourceInvocationContract" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { invocationContract }, context));
+      }
+      return false;
+    }
+    if (invocationContract.getFactoryComponentContract() != null && invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidSourceInvocationContract", getObjectLabel(invocationContract, context), "InvocationContract with a SourceInvocationContract couldn't be assigned to a FactoryComponentContract in In or In_Out Mode" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { invocationContract }, context));
+      }
+      return false;
+    }
+    return true;
+  }
+
+  /**
+   * Validates the ValidSourceInvocationContractType constraint of '<em>Invocation Contract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocationContract_ValidSourceInvocationContractType(InvocationContract invocationContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (invocationContract.getSourceInvocationContract() == null || invocationContract.getSourceInvocationContract().getInvokedContract() == null || invocationContract.getSourceInvocationContract().getInvokedContract().getType() == null) {
+      return true;
+    }
+    Type sourceType = invocationContract.getSourceInvocationContract().getType();
+    if (sourceType == null) {
+      sourceType = invocationContract.getSourceInvocationContract().getInvokedContract().getType();
+    }
+    if (invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
+      return true;
+    }
+    Type type = invocationContract.getType();
+    if (type == null) {
+      type = invocationContract.getInvokedContract().getType();
+    }
+    if (ClassHelper.asSubClass(sourceType.getType(), type.getType()) == false) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidSourceInvocationContractType", getObjectLabel(invocationContract, context), "InvocationContract Type and SourceInvocationContract Type mismatch" }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { invocationContract }, context));
       }
       return false;
@@ -820,7 +879,7 @@ public class FcoreValidator extends EObjectValidator {
       if (innerContract == contract) {
         continue;
       }
-      // Ignore exclusive conditions
+      // Ignore mutually exclusive conditions
       if ((contract.getMode() == ContractMode.IN && innerContract.getMode() == ContractMode.OUT) || (contract.getMode() == ContractMode.OUT && innerContract.getMode() == ContractMode.IN)) {
         continue;
       }

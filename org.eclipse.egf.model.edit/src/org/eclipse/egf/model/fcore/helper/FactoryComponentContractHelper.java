@@ -44,16 +44,21 @@ public class FactoryComponentContractHelper {
     // Retrieve all the InvocationContracts based on their types and mode
     result.addAll(factoryComponent.getInvocationContracts(factoryComponentContract.getType(), factoryComponentContract.getMode()));
     if (result.size() > 0) {
-      // Filter invocation context already assigned to an OrchestrationParameter
+      // Filter InvocationContract already assigned to an OrchestrationParameter
       for (Iterator<InvocationContract> it = result.iterator(); it.hasNext();) {
         InvocationContract invocationContract = it.next();
         // an In_Out could either be in an OrchestrationParameter with an In semantic and
-        // in a Contract with an Out semantic but not both
+        // in a FactoryComponentContract with an Out semantic but not both
         if (invocationContract.getOrchestrationParameter() != null && factoryComponentContract.getMode() != ContractMode.OUT) {
           it.remove();
         }
+        // an In_Out could either be in a SourceInvocationContract with an In semantic and
+        // in a FactoryComponentContract with an Out semantic but not both
+        if (invocationContract.getSourceInvocationContract() != null && factoryComponentContract.getMode() != ContractMode.OUT) {
+          it.remove();
+        }
       }
-      // Filter InvocationContract already assigned to a contract
+      // Filter InvocationContract already assigned to a FactoryComponentContract
       for (Contract innerContract : factoryComponent.getContracts(factoryComponentContract.getType(), factoryComponentContract.getMode())) {
         if (factoryComponentContract == innerContract) {
           continue;
