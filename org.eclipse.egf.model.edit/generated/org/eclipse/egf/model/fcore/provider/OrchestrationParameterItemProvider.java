@@ -13,17 +13,14 @@
 package org.eclipse.egf.model.fcore.provider;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.OrchestrationParameter;
+import org.eclipse.egf.model.fcore.helper.OrchestrationParameterHelper;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -44,13 +41,16 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.OrchestrationParameter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class OrchestrationParameterItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class OrchestrationParameterItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+    IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public OrchestrationParameterItemProvider(AdapterFactory adapterFactory) {
@@ -61,6 +61,7 @@ public class OrchestrationParameterItemProvider extends ModelElementItemProvider
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -87,54 +88,16 @@ public class OrchestrationParameterItemProvider extends ModelElementItemProvider
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        OrchestrationParameter orchestrationParameter = (OrchestrationParameter) current;
-        Collection<InvocationContract> result = new UniqueEList<InvocationContract>();
-        if (orchestrationParameter.getType() != null) {
-          // Retrieve all the InvocationContracts based on their types and mode
-          result.addAll(orchestrationParameter.getOrchestration().getInvocationContracts(orchestrationParameter.getType()));
-          if (result.size() > 0) {
-            // Filter
-            for (Iterator<InvocationContract> it = result.iterator(); it.hasNext();) {
-              InvocationContract invocationContract = it.next();
-              if (invocationContract.getInvokedMode() == ContractMode.OUT) {
-                // Only In or In_Out mode are assignable in OrchestrationParameter
-                // They have an In semantic in this area
-                it.remove();
-              } else if (invocationContract.getFactoryComponentContract() != null) {
-                ContractMode exposedMode = invocationContract.getFactoryComponentContract().getMode();
-                if (invocationContract.getInvokedMode() == ContractMode.IN) {
-                  // Filter invocation contract with In mode is already assigned to an In exposed
-                  // contract
-                  it.remove();
-                } else if (exposedMode != ContractMode.OUT) {
-                  // Filter invocation contract with In_Out mode is already assigned to an In or
-                  // In_Out contract
-                  it.remove();
-                }
-              }
-            }
-            // Filter invocation contract already assigned to an OrchestrationParameter
-            for (OrchestrationParameter innerOrchestrationParameter : orchestrationParameter.getOrchestrationParameterContainer().getOrchestrationParameters()) {
-              if (orchestrationParameter == innerOrchestrationParameter) {
-                continue;
-              }
-              for (InvocationContract invocationContract : innerOrchestrationParameter.getInvocationContracts()) {
-                result.remove(invocationContract);
-              }
-            }
-          }
-        }
-        return result;
+        return OrchestrationParameterHelper.getAvailableInvocationContracts((OrchestrationParameter) current);
       }
     });
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -149,6 +112,7 @@ public class OrchestrationParameterItemProvider extends ModelElementItemProvider
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -163,6 +127,7 @@ public class OrchestrationParameterItemProvider extends ModelElementItemProvider
    * This returns OrchestrationParameter.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -187,6 +152,7 @@ public class OrchestrationParameterItemProvider extends ModelElementItemProvider
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -209,6 +175,7 @@ public class OrchestrationParameterItemProvider extends ModelElementItemProvider
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

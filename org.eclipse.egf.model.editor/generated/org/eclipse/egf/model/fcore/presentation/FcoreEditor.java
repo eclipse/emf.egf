@@ -754,8 +754,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
     BasicCommandStack commandStack = new BasicCommandStack();
 
     // Add a listener to set the most recent command's affected objects to
-    // be
-    // the selection of the viewer with focus.
+    // be the selection of the viewer with focus.
     //
     commandStack.addCommandStackListener(new CommandStackListener() {
       public void commandStackChanged(final EventObject event) {
@@ -822,8 +821,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
 
   /**
    * This returns the editing domain as required by the {@link IEditingDomainProvider} interface.
-   * This is important for implementing the static methods of {@link AdapterFactoryEditingDomain}
-   * and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
+   * This is important for implementing the static methods of {@link AdapterFactoryEditingDomain} and for supporting {@link org.eclipse.emf.edit.ui.action.CommandAction}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 

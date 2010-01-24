@@ -14,18 +14,13 @@ package org.eclipse.egf.model.fcore.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.ContractMode;
-import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.InvocationContract;
+import org.eclipse.egf.model.fcore.helper.FactoryComponentContractHelper;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedImage;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -43,14 +38,14 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.fcore.FactoryComponentContract} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponentContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class FactoryComponentContractItemProvider extends ContractItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class FactoryComponentContractItemProvider extends ContractItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+    IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -92,40 +87,7 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
         FcorePackage.Literals.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS, true, false, true, null, getString("_UI_InvocationContractsPropertyCategory"), null) { //$NON-NLS-1$
           @Override
           public Collection<?> getChoiceOfValues(Object current) {
-            FactoryComponentContract factoryComponentContract = (FactoryComponentContract) current;
-            Collection<InvocationContract> result = new UniqueEList<InvocationContract>();
-            // Nothing to retrieve
-            if (factoryComponentContract.getType() == null || factoryComponentContract.getActivity() == null) {
-              return result;
-            }
-            FactoryComponent factoryComponent = (FactoryComponent) factoryComponentContract.getActivity();
-            // Out or In_Out should have only one assigned InvocationContext
-            if (factoryComponentContract.getMode() != ContractMode.IN && factoryComponentContract.getInvocationContracts().size() != 0) {
-              return result;
-            }
-            // Retrieve all the InvocationContexts based on their types and mode
-            result.addAll(factoryComponent.getInvocationContracts(factoryComponentContract.getType(), factoryComponentContract.getMode()));
-            if (result.size() > 0) {
-              // Filter invocation context already assigned to an orchestration parameter
-              for (Iterator<InvocationContract> it = result.iterator(); it.hasNext();) {
-                InvocationContract invocationContract = it.next();
-                // an In_Out could either be in an orchestration parameter with an In semantic and
-                // in a Contract with an Out semantic but not both
-                if (invocationContract.getOrchestrationParameter() != null && factoryComponentContract.getMode() != ContractMode.OUT) {
-                  it.remove();
-                }
-              }
-              // Filter invocation contract already assigned to a contract
-              for (Contract innerContract : factoryComponent.getContracts(factoryComponentContract.getType(), factoryComponentContract.getMode())) {
-                if (factoryComponentContract == innerContract) {
-                  continue;
-                }
-                for (InvocationContract invocationContract : ((FactoryComponentContract) innerContract).getInvocationContracts()) {
-                  result.remove(invocationContract);
-                }
-              }
-            }
-            return result;
+            return FactoryComponentContractHelper.getAvailableInvocationContracts((FactoryComponentContract) current);
           }
         });
   }
