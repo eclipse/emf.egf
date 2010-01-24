@@ -210,6 +210,7 @@ public class ResourceAndContainerGroup implements Listener {
     resourceNameField = new Text(nameGroup, SWT.BORDER);
     resourceNameField.addListener(SWT.Modify, this);
     resourceNameField.addFocusListener(new FocusAdapter() {
+      @Override
       public void focusLost(FocusEvent e) {
         handleResourceNameFocusLostEvent();
       }

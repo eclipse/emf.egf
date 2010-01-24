@@ -6,6 +6,7 @@
 			<accessrule kind="accessible" pattern="org/eclipse/jdt/internal/ui/**"/>
 			<accessrule kind="accessible" pattern="org/eclipse/jdt/internal/corext/util/**"/>
 			<accessrule kind="accessible" pattern="org/eclipse/jdt/internal/core/search/*"/>
+			<accessrule kind="accessible" pattern="org/eclipse/ui/internal/ide/**"/>
 		</accessrules>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>

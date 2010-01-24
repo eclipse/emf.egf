@@ -34,7 +34,7 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class ProductionContext<T extends Object> implements IProductionContext<T> {
+public abstract class ProductionContext<P extends Object, T extends Object> implements IProductionContext<P, T> {
 
   protected class Data {
 
@@ -78,36 +78,46 @@ public abstract class ProductionContext<T extends Object> implements IProduction
 
   }
 
-  private Object _element;
+  private String _name;
 
   private ProjectBundleSession _projectBundleSession;
 
-  protected IProductionContext<?> _parent;
+  protected P _element;
+
+  protected IProductionContext<?, ?> _parent;
 
   protected final Map<T, Data> _inputDatas = new HashMap<T, Data>();
 
   protected final Map<T, Data> _outputDatas = new HashMap<T, Data>();
 
-  public ProductionContext(Object element, ProjectBundleSession projectBundleSession) {
-    Assert.isNotNull(element);
+  public ProductionContext(ProjectBundleSession projectBundleSession, P element, String name) {
     Assert.isNotNull(projectBundleSession);
-    _element = element;
+    Assert.isNotNull(element);
+    Assert.isNotNull(name);
     _projectBundleSession = projectBundleSession;
+    _element = element;
+    _name = name;
   }
 
-  public ProductionContext(IProductionContext<?> parent, Object element, ProjectBundleSession projectBundleSession) {
-    Assert.isNotNull(element);
+  public ProductionContext(IProductionContext<?, ?> parent, ProjectBundleSession projectBundleSession, P element, String name) {
     Assert.isNotNull(projectBundleSession);
+    Assert.isNotNull(element);
+    Assert.isNotNull(name);
     _parent = parent;
-    _element = element;
     _projectBundleSession = projectBundleSession;
+    _element = element;
+    _name = name;
   }
 
-  public Object getElement() {
+  public String getName() {
+    return _name;
+  }
+
+  public P getElement() {
     return _element;
   }
 
-  public IProductionContext<?> getParent() {
+  public IProductionContext<?, ?> getParent() {
     return _parent;
   }
 
@@ -139,8 +149,6 @@ public abstract class ProductionContext<T extends Object> implements IProduction
     _inputDatas.clear();
     _outputDatas.clear();
   }
-
-  public abstract String getName();
 
   public void addInputData(T key, Class<?> clazz, Object object) throws InvocationException {
     if (_inputDatas.put(key, new Data(key, clazz, object)) != null) {

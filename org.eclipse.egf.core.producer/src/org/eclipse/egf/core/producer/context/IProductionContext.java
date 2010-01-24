@@ -21,9 +21,13 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public interface IProductionContext<T extends Object> {
+public interface IProductionContext<P extends Object, T extends Object> {
 
-  public IProductionContext<?> getParent();
+  public String getName();
+
+  public P getElement();
+
+  public IProductionContext<?, ?> getParent();
 
   public Bundle getBundle(String id) throws InvocationException;
 

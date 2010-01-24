@@ -130,8 +130,8 @@ public class DiagnosticDialog extends IconAndMessageDialog {
    */
   public DiagnosticDialog(Shell parentShell, String dialogTitle, String message, Diagnostic diagnostic, int severityMask) {
     super(parentShell);
-    this.title = dialogTitle == null ? JFaceResources.getString("Problem_Occurred") : dialogTitle;
-    this.message = message == null ? diagnostic.getMessage() : JFaceResources.format("Reason", new Object[] { message, diagnostic.getMessage() });
+    this.title = dialogTitle == null ? JFaceResources.getString("Problem_Occurred") : dialogTitle; //$NON-NLS-1$
+    this.message = message == null ? diagnostic.getMessage() : JFaceResources.format("Reason", new Object[] { message, diagnostic.getMessage() }); //$NON-NLS-1$
     this.diagnostic = diagnostic;
     this.severityMask = severityMask;
     setShellStyle(getShellStyle() | SWT.RESIZE);
@@ -252,6 +252,7 @@ public class DiagnosticDialog extends IconAndMessageDialog {
    *          the parent composite
    * @return the diagnostic composite
    */
+  @SuppressWarnings("hiding")
   protected DiagnosticComposite createDiagnosticComposite(Composite parent) {
     DiagnosticComposite diagnosticComposite = new DiagnosticComposite(parent, SWT.NONE);
     GridData data = new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL | GridData.VERTICAL_ALIGN_FILL | GridData.GRAB_VERTICAL);
@@ -293,6 +294,7 @@ public class DiagnosticDialog extends IconAndMessageDialog {
    *          whether to include the specified diagnostic in the display or
    *          just its children
    */
+  @SuppressWarnings("hiding")
   private void populate(DiagnosticComposite diagnosticComposite, Diagnostic diagnostic, boolean includeDiagnostic) {
     if (DiagnosticComposite.severityMatches(diagnostic, severityMask)) {
       diagnosticComposite.setShowRootDiagnostic(includeDiagnostic);

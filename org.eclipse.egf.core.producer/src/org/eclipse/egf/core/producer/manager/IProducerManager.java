@@ -21,15 +21,15 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public interface IProducerManager {
+public interface IProducerManager<P extends Object, T extends Object> {
 
-  public Object getElement();
+  public P getElement();
 
-  public IProducerManager getParent();
+  public IProducerManager<?, ?> getParent();
 
   public Diagnostic canInvoke() throws InvocationException;
 
-  public IProductionContext<?> getProductionContext() throws InvocationException;
+  public IProductionContext<P, T> getProductionContext() throws InvocationException;
 
   public ProjectBundleSession getProjectBundleSession();
 
