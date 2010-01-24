@@ -70,6 +70,14 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
         this.transactionalEditingDomain = transactionalEditingDomain;
     }
 
+    @Override
+    public boolean canFinish() {
+
+        if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.BACK_CALL)
+            return true;
+        return super.canFinish();
+    }
+
     /**
      * Adding the page to the wizard.
      */
