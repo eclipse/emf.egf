@@ -180,14 +180,14 @@
     </genClasses>
     <genClasses ecoreClass="Fcore.ecore#//InvocationContract">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/invocationContractContainer"/>
-      <genFeatures notify="false" createChild="false" propertyCategory="Factory Component"
-          propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/factoryComponentContract"/>
-      <genFeatures notify="false" createChild="false" propertyCategory="Orchestration"
-          propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/orchestrationParameter"/>
-      <genFeatures notify="false" createChild="false" propertyCategory="Connector"
-          propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/sourceInvocationContract"/>
-      <genFeatures notify="false" createChild="false" propertyCategory="Connector"
-          propertySortChoices="true" ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/targetInvocationContract"/>
+      <genFeatures createChild="false" propertyCategory="Factory Component" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/factoryComponentContract"/>
+      <genFeatures createChild="false" propertyCategory="Orchestration" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/orchestrationParameter"/>
+      <genFeatures createChild="false" propertyCategory="Connector" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/sourceInvocationContract"/>
+      <genFeatures createChild="false" propertyCategory="Connector" propertySortChoices="true"
+          ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/targetInvocationContract"/>
       <genFeatures createChild="false" propertyCategory="Behaviour" propertySortChoices="true"
           ecoreFeature="ecore:EReference Fcore.ecore#//InvocationContract/invokedContract"/>
       <genFeatures property="None" children="true" createChild="true" propertyCategory=""

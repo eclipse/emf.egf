@@ -36,18 +36,23 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractContainerImpl#getInvocation <em>Invocation</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractContainerImpl#getInvocationContracts <em>Invocation Contracts</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractContainerImpl#getInvocation
+ * <em>Invocation</em>}</li>
+ * <li>
+ * {@link org.eclipse.egf.model.fcore.impl.InvocationContractContainerImpl#getInvocationContracts
+ * <em>Invocation Contracts</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class InvocationContractContainerImpl extends ModelElementImpl implements InvocationContractContainer {
   /**
-   * The cached value of the '{@link #getInvocationContracts() <em>Invocation Contracts</em>}' containment reference list.
+   * The cached value of the '{@link #getInvocationContracts() <em>Invocation Contracts</em>}'
+   * containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getInvocationContracts()
    * @generated
    * @ordered
@@ -57,6 +62,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected InvocationContractContainerImpl() {
@@ -66,6 +72,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -76,6 +83,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Invocation getInvocation() {
@@ -87,6 +95,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetInvocation(Invocation newInvocation, NotificationChain msgs) {
@@ -97,6 +106,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setInvocation(Invocation newInvocation) {
@@ -118,6 +128,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public EList<InvocationContract> getInvocationContracts() {
@@ -130,17 +141,20 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   public FactoryComponent getFactoryComponent() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    if (getInvocation() != null) {
+      return getInvocation().getFactoryComponent();
+    }
+    return null;
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -160,6 +174,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -176,6 +191,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -190,6 +206,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -206,6 +223,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @SuppressWarnings("unchecked")
@@ -226,6 +244,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -244,6 +263,7 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
