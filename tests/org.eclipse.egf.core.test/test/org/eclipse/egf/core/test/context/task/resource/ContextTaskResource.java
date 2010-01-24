@@ -17,10 +17,9 @@ import junit.framework.TestSuite;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
-import org.eclipse.egf.fprod.producer.manager.ITaskManager;
-import org.eclipse.egf.fprod.producer.manager.TaskManagerFactory;
+import org.eclipse.egf.ftask.producer.manager.TaskManagerFactory;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.fprod.Task;
+import org.eclipse.egf.model.ftask.TaskJava;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
@@ -54,9 +53,9 @@ public class ContextTaskResource extends TestCase {
     // Invoke Activity
     Activity activity = (Activity) eObject;
 
-    ActivityManagerProducer producer = EGFProducerPlugin.getActivityManagerProducer(activity);
+    ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity);
 
-    IActivityManager manager = producer.createActivityManager(activity);
+    IActivityManager<Activity> manager = producer.createActivityManager(activity);
 
     try {
       manager.initializeContext();
@@ -86,14 +85,14 @@ public class ContextTaskResource extends TestCase {
     Resource resource = ResourceHelper.loadResource(resourceSet, uri);
     assertNotNull(NLS.bind("Unable to load Resource ''{0}''", uri.toString()), resource); //$NON-NLS-1$
 
-    // Fetch Task
+    // Fetch Task Java
     EObject eObject = resource.getContents().get(0);
-    assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Task); //$NON-NLS-1$
+    assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof TaskJava); //$NON-NLS-1$
 
-    // Invoke Task
-    Task task = (Task) eObject;
+    // Invoke Task Java
+    TaskJava taskJava = (TaskJava) eObject;
 
-    ITaskManager manager = TaskManagerFactory.createProductionManager(task);
+    IActivityManager<TaskJava> manager = TaskManagerFactory.createProductionManager(taskJava);
 
     try {
       manager.initializeContext();
@@ -129,12 +128,12 @@ public class ContextTaskResource extends TestCase {
 
     // Fetch Task
     EObject eObject = resource.getContents().get(0);
-    assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Task); //$NON-NLS-1$
+    assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof TaskJava); //$NON-NLS-1$
 
-    // Invoke Task
-    Task task = (Task) eObject;
+    // Invoke TaskJava
+    TaskJava taskJava = (TaskJava) eObject;
 
-    ITaskManager manager = TaskManagerFactory.createProductionManager(task);
+    IActivityManager<TaskJava> manager = TaskManagerFactory.createProductionManager(taskJava);
 
     GeneratorAdapterFactory defaultValue = null;
 

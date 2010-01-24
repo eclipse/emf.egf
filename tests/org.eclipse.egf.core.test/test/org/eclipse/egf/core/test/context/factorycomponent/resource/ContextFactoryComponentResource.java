@@ -25,7 +25,6 @@ import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.FactoryComponentManagerFactory;
 import org.eclipse.egf.producer.manager.IActivityManager;
-import org.eclipse.egf.producer.manager.IFactoryComponentManager;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -55,9 +54,9 @@ public class ContextFactoryComponentResource extends TestCase {
     // Invoke Activity
     Activity activity = (Activity) eObject;
 
-    ActivityManagerProducer producer = EGFProducerPlugin.getActivityManagerProducer(activity);
+    ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity);
 
-    IActivityManager manager = producer.createActivityManager(activity);
+    IActivityManager<Activity> manager = producer.createActivityManager(activity);
 
     try {
       manager.initializeContext();
@@ -94,7 +93,7 @@ public class ContextFactoryComponentResource extends TestCase {
     // Invoke FactoryComponent
     FactoryComponent fc = (FactoryComponent) eObject;
 
-    IFactoryComponentManager manager = FactoryComponentManagerFactory.createProductionManager(fc);
+    IActivityManager<FactoryComponent> manager = FactoryComponentManagerFactory.createProductionManager(fc);
     try {
       manager.initializeContext();
       manager.invoke(new NullProgressMonitor());
@@ -135,7 +134,7 @@ public class ContextFactoryComponentResource extends TestCase {
     // Invoke FactoryComponent
     FactoryComponent fc = (FactoryComponent) eObject;
 
-    IFactoryComponentManager manager = FactoryComponentManagerFactory.createProductionManager(fc);
+    IActivityManager<FactoryComponent> manager = FactoryComponentManagerFactory.createProductionManager(fc);
     try {
       manager.initializeContext();
       manager.invoke(new NullProgressMonitor());

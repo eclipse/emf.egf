@@ -17,15 +17,14 @@ import junit.framework.TestSuite;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.test.EGFCoreTestPlugin;
-import org.eclipse.egf.fprod.producer.manager.ITaskManager;
-import org.eclipse.egf.fprod.producer.manager.TaskManagerFactory;
+import org.eclipse.egf.ftask.producer.manager.TaskManagerFactory;
+import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.ContractMode;
+import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fprod.FprodFactory;
-import org.eclipse.egf.model.fprod.FprodPackage;
-import org.eclipse.egf.model.fprod.Task;
-import org.eclipse.egf.model.fprod.TaskContract;
-import org.eclipse.egf.model.fprod.TaskContractContainer;
+import org.eclipse.egf.model.ftask.FtaskFactory;
+import org.eclipse.egf.model.ftask.TaskJava;
 import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypeFloat;
 import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
@@ -45,12 +44,12 @@ public class ContextTaskMemory extends TestCase {
 
   public void testContractH1() throws Exception {
 
-    Task task = FprodFactory.eINSTANCE.createTask();
-    task.setValue("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+    TaskJava taskJava = FtaskFactory.eINSTANCE.createTaskJava();
+    taskJava.setValue("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
 
-    ActivityManagerProducer producer = EGFProducerPlugin.getActivityManagerProducer(task);
+    ActivityManagerProducer<TaskJava> producer = EGFProducerPlugin.getActivityManagerProducer(taskJava);
 
-    IActivityManager manager = producer.createActivityManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
+    IActivityManager<?> manager = producer.createActivityManager(EGFCoreTestPlugin.getDefault().getBundle(), taskJava);
     try {
       manager.initializeContext();
       manager.invoke(new NullProgressMonitor());
@@ -76,57 +75,57 @@ public class ContextTaskMemory extends TestCase {
 
   public void testOutputContractClassNotTheSameH1() throws Exception {
 
-    Task task = FprodFactory.eINSTANCE.createTask();
-    task.setValue("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+    TaskJava taskJava = FtaskFactory.eINSTANCE.createTaskJava();
+    taskJava.setValue("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
 
-    TaskContractContainer contracts = FprodFactory.eINSTANCE.createTaskContractContainer();
-    task.eSet(FprodPackage.Literals.TASK__ACTIVITY_CONTRACT_CONTAINER, contracts);
+    ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
+    taskJava.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
 
-    TaskContract quantity = FprodFactory.eINSTANCE.createTaskContract();
+    Contract quantity = FcoreFactory.eINSTANCE.createContract();
     quantity.setName("quantity"); //$NON-NLS-1$
     quantity.setMode(ContractMode.IN);
-    contracts.getActivityContracts().add(quantity);
+    contracts.getContracts().add(quantity);
 
     TypeInteger quantityType = TypesFactory.eINSTANCE.createTypeInteger();
     quantityType.setValue(100);
-    quantity.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, quantityType);
+    quantity.eSet(FcorePackage.Literals.CONTRACT__TYPE, quantityType);
 
-    TaskContract price = FprodFactory.eINSTANCE.createTaskContract();
+    Contract price = FcoreFactory.eINSTANCE.createContract();
     price.setName("price"); //$NON-NLS-1$
     price.setMode(ContractMode.IN);
-    contracts.getActivityContracts().add(price);
+    contracts.getContracts().add(price);
 
     TypeFloat priceType = TypesFactory.eINSTANCE.createTypeFloat();
     priceType.setValue(new Float("10.5")); //$NON-NLS-1$    
-    price.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, priceType);
+    price.eSet(FcorePackage.Literals.CONTRACT__TYPE, priceType);
 
-    TaskContract parameters = FprodFactory.eINSTANCE.createTaskContract();
+    Contract parameters = FcoreFactory.eINSTANCE.createContract();
     parameters.setName("parameters"); //$NON-NLS-1$
     parameters.setMode(ContractMode.IN_OUT);
-    contracts.getActivityContracts().add(parameters);
+    contracts.getContracts().add(parameters);
 
     TypeCollection parametersType = TypesFactory.eINSTANCE.createTypeCollection();
     parametersType.setValue("java.util.ArrayList"); //$NON-NLS-1$
-    parameters.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, parametersType);
+    parameters.eSet(FcorePackage.Literals.CONTRACT__TYPE, parametersType);
 
-    TaskContract amount = FprodFactory.eINSTANCE.createTaskContract();
+    Contract amount = FcoreFactory.eINSTANCE.createContract();
     amount.setName("amount"); //$NON-NLS-1$
     amount.setMode(ContractMode.OUT);
-    contracts.getActivityContracts().add(amount);
+    contracts.getContracts().add(amount);
 
     TypeFloat amountType = TypesFactory.eINSTANCE.createTypeFloat();
-    amount.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, amountType);
+    amount.eSet(FcorePackage.Literals.CONTRACT__TYPE, amountType);
 
-    TaskContract generatorAdapterFactory = FprodFactory.eINSTANCE.createTaskContract();
+    Contract generatorAdapterFactory = FcoreFactory.eINSTANCE.createContract();
     generatorAdapterFactory.setName("generatorAdapterFactory"); //$NON-NLS-1$
     generatorAdapterFactory.setMode(ContractMode.OUT);
-    contracts.getActivityContracts().add(generatorAdapterFactory);
+    contracts.getContracts().add(generatorAdapterFactory);
 
     TypeGeneratorAdapterFactory generatorAdapterFactoryType = TypesFactory.eINSTANCE.createTypeGeneratorAdapterFactory();
     generatorAdapterFactoryType.setValue("org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"); //$NON-NLS-1$
-    generatorAdapterFactory.eSet(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, generatorAdapterFactoryType);
+    generatorAdapterFactory.eSet(FcorePackage.Literals.CONTRACT__TYPE, generatorAdapterFactoryType);
 
-    ITaskManager manager = TaskManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
+    IActivityManager<TaskJava> manager = TaskManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), taskJava);
 
     GeneratorAdapterFactory defaultValue = null;
 
