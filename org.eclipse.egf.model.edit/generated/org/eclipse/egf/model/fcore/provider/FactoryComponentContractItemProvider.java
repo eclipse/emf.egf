@@ -43,9 +43,11 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponentContract} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.egf.model.fcore.FactoryComponentContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class FactoryComponentContractItemProvider extends ContractItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -53,6 +55,7 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponentContractItemProvider(AdapterFactory adapterFactory) {
@@ -63,6 +66,7 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -79,26 +83,13 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
    * This adds a property descriptor for the Invocation Contracts feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addInvocationContractsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FactoryComponentContract_invocationContracts_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_FactoryComponentContract_invocationContracts_feature", "_UI_FactoryComponentContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS, true, false, true, null, getString("_UI_InvocationContractsPropertyCategory"), //$NON-NLS-1$
-        null));
-  }
-
-  /**
-   * This adds a property descriptor for the Invocation Contexts feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  protected void addInvocationContextsPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FactoryComponentContract_invocationContexts_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_FactoryComponentContract_invocationContexts_feature", "_UI_FactoryComponentContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS, true, false, true, null, getString("_UI_ContextPropertyCategory"), null) { //$NON-NLS-1$
+  protected void addInvocationContractsPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_FactoryComponentContract_invocationContracts_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_FactoryComponentContract_invocationContracts_feature", "_UI_FactoryComponentContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.FACTORY_COMPONENT_CONTRACT__INVOCATION_CONTRACTS, true, false, true, null, getString("_UI_InvocationContractsPropertyCategory"), null) { //$NON-NLS-1$
           @Override
           public Collection<?> getChoiceOfValues(Object current) {
             FactoryComponentContract factoryComponentContract = (FactoryComponentContract) current;
@@ -192,6 +183,7 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -211,6 +203,7 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
