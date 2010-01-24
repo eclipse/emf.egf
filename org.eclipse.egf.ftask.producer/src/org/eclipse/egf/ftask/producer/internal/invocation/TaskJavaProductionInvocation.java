@@ -22,18 +22,18 @@ import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
-import org.eclipse.egf.ftask.producer.invocation.ITaskProductionInvocation;
+import org.eclipse.egf.ftask.producer.invocation.ITaskJavaProductionInvocation;
 import org.eclipse.egf.model.ftask.TaskJava;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
 /**
  * This class is responsible to process user defined
- * {@link org.eclipse.egf.ftask.producer.invocation.ITaskProductionInvocation}.
+ * {@link org.eclipse.egf.ftask.producer.invocation.ITaskJavaProductionInvocation}.
  * 
  * @author Xavier Maysonnave
  */
-public class TaskJavaProductionInvocation implements ITaskProductionInvocation {
+public class TaskJavaProductionInvocation implements ITaskJavaProductionInvocation {
 
   /**
    * Bundle

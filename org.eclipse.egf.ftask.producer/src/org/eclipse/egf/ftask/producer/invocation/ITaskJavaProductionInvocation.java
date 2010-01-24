@@ -17,7 +17,7 @@ import org.eclipse.egf.core.producer.InvocationException;
  * @author Xavier Maysonnave
  * 
  */
-public interface ITaskProductionInvocation {
+public interface ITaskJavaProductionInvocation {
 
   public void invoke(final IProgressMonitor monitor) throws InvocationException;
 

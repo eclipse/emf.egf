@@ -1,8 +1,8 @@
 package org.eclipse.egf.ftask.producer;
 
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
-import org.eclipse.egf.ftask.producer.internal.task.TaskProductionInvocationFactory;
-import org.eclipse.egf.ftask.producer.task.ITaskProductionInvocationFactory;
+import org.eclipse.egf.ftask.producer.internal.task.TaskJavaProductionInvocationFactory;
+import org.eclipse.egf.ftask.producer.task.ITaskJavaProductionInvocationFactory;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -18,16 +18,16 @@ public class EGFFtaskProducerPlugin extends EGFAbstractPlugin {
   /**
    * ITaskProductionInvocationFactory singleton.
    */
-  private static ITaskProductionInvocationFactory __taskProductionInvocationFactory;
+  private static ITaskJavaProductionInvocationFactory __taskProductionInvocationFactory;
 
   /**
    * Returns the singleton instance of the ITaskProductionInvocationFactory.
    * 
    * @return the singleton task runner factory.
    */
-  public static ITaskProductionInvocationFactory getTaskProductionInvocationFactory() {
+  public static ITaskJavaProductionInvocationFactory getTaskProductionInvocationFactory() {
     if (__taskProductionInvocationFactory == null) {
-      __taskProductionInvocationFactory = new TaskProductionInvocationFactory();
+      __taskProductionInvocationFactory = new TaskJavaProductionInvocationFactory();
     }
     return __taskProductionInvocationFactory;
   }

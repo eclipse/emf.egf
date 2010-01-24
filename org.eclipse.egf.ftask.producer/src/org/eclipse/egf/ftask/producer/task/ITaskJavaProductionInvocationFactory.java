@@ -8,12 +8,10 @@
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
  */
-package org.eclipse.egf.ftask.producer.internal.task;
+package org.eclipse.egf.ftask.producer.task;
 
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
-import org.eclipse.egf.ftask.producer.internal.invocation.TaskJavaProductionInvocation;
-import org.eclipse.egf.ftask.producer.invocation.ITaskProductionInvocation;
-import org.eclipse.egf.ftask.producer.task.ITaskProductionInvocationFactory;
+import org.eclipse.egf.ftask.producer.invocation.ITaskJavaProductionInvocation;
 import org.eclipse.egf.model.ftask.TaskJava;
 import org.osgi.framework.Bundle;
 
@@ -21,10 +19,8 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public class TaskProductionInvocationFactory implements ITaskProductionInvocationFactory {
+public interface ITaskJavaProductionInvocationFactory {
 
-  public ITaskProductionInvocation createInvocation(Bundle bundle, ITaskProductionContext context, TaskJava taskJava) {
-    return new TaskJavaProductionInvocation(bundle, context, taskJava);
-  }
+  public ITaskJavaProductionInvocation createInvocation(Bundle bundle, ITaskProductionContext context, TaskJava taskJava);
 
 }
