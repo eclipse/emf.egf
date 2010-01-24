@@ -23,6 +23,6 @@ package org.eclipse.egf.model.pattern;
  */
 public interface BasicQuery extends Query {
 
-  String TYPE = "type"; //$NON-NLS-1$
+    String TYPE = "type"; //$NON-NLS-1$
 
 } // BasicQuery

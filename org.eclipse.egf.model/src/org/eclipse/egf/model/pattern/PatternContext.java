@@ -37,6 +37,7 @@ public class PatternContext implements BundleAccessor {
   public static final String PATTERN_REPORTER = "pattern.execution.reporter"; //$NON-NLS-1$
 
   public static final String PATTERN_ID = "pattern.id"; //$NON-NLS-1$
+    public static final String STRATEGY_VISITOR = "internal.strategy.visitor";
 
   public static final String PATTERN_IDS_PARAMETER = "pattern.ids"; //$NON-NLS-1$
 

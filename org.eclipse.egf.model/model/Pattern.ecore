@@ -120,4 +120,8 @@
     </eOperations>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EDataType" name="EPatternExecutionReporter" instanceClassName="org.eclipse.egf.model.pattern.PatternExecutionReporter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BackCall" eSuperTypes="#//Call">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="called" lowerBound="1"
+        eType="#//PatternMethod"/>
+  </eClassifiers>
 </ecore:EPackage>

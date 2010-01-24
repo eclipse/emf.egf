@@ -1,40 +1,42 @@
 /**
+ *
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
  * 
- * Copyright (c) 2009 Thales Corporate Services S.A.S.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- * Thales Corporate Services S.A.S - initial API and implementation
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.pattern.AbstractPatternCall;
-import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.BackCall;
+import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
+
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Abstract Pattern Call</b></em>
- * '.
+ * An implementation of the model object '<em><b>Back Call</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl#getCalled <em>Called</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.BackCallImpl#getCalled <em>Called</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public abstract class AbstractPatternCallImpl extends CallImpl implements AbstractPatternCall {
+public class BackCallImpl extends CallImpl implements BackCall {
     /**
      * The cached value of the '{@link #getCalled() <em>Called</em>}' reference.
      * <!-- begin-user-doc -->
@@ -43,14 +45,14 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
      * @generated
      * @ordered
      */
-    protected Pattern called;
+    protected PatternMethod called;
 
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    protected AbstractPatternCallImpl() {
+    protected BackCallImpl() {
         super();
     }
 
@@ -61,7 +63,7 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
      */
     @Override
     protected EClass eStaticClass() {
-        return PatternPackage.Literals.ABSTRACT_PATTERN_CALL;
+        return PatternPackage.Literals.BACK_CALL;
     }
 
     /**
@@ -69,13 +71,13 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
      * <!-- end-user-doc -->
      * @generated
      */
-    public Pattern getCalled() {
+    public PatternMethod getCalled() {
         if (called != null && called.eIsProxy()) {
             InternalEObject oldCalled = (InternalEObject) called;
-            called = (Pattern) eResolveProxy(oldCalled);
+            called = (PatternMethod) eResolveProxy(oldCalled);
             if (called != oldCalled) {
                 if (eNotificationRequired())
-                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.ABSTRACT_PATTERN_CALL__CALLED, oldCalled, called));
+                    eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.BACK_CALL__CALLED, oldCalled, called));
             }
         }
         return called;
@@ -86,7 +88,7 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
      * <!-- end-user-doc -->
      * @generated
      */
-    public Pattern basicGetCalled() {
+    public PatternMethod basicGetCalled() {
         return called;
     }
 
@@ -95,11 +97,11 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setCalled(Pattern newCalled) {
-        Pattern oldCalled = called;
+    public void setCalled(PatternMethod newCalled) {
+        PatternMethod oldCalled = called;
         called = newCalled;
         if (eNotificationRequired())
-            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.ABSTRACT_PATTERN_CALL__CALLED, oldCalled, called));
+            eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.BACK_CALL__CALLED, oldCalled, called));
     }
 
     /**
@@ -110,7 +112,7 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
     @Override
     public Object eGet(int featureID, boolean resolve, boolean coreType) {
         switch (featureID) {
-        case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
+        case PatternPackage.BACK_CALL__CALLED:
             if (resolve)
                 return getCalled();
             return basicGetCalled();
@@ -126,8 +128,8 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
     @Override
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
-        case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
-            setCalled((Pattern) newValue);
+        case PatternPackage.BACK_CALL__CALLED:
+            setCalled((PatternMethod) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -141,8 +143,8 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
     @Override
     public void eUnset(int featureID) {
         switch (featureID) {
-        case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
-            setCalled((Pattern) null);
+        case PatternPackage.BACK_CALL__CALLED:
+            setCalled((PatternMethod) null);
             return;
         }
         super.eUnset(featureID);
@@ -156,10 +158,10 @@ public abstract class AbstractPatternCallImpl extends CallImpl implements Abstra
     @Override
     public boolean eIsSet(int featureID) {
         switch (featureID) {
-        case PatternPackage.ABSTRACT_PATTERN_CALL__CALLED:
+        case PatternPackage.BACK_CALL__CALLED:
             return called != null;
         }
         return super.eIsSet(featureID);
     }
 
-} // AbstractPatternCallImpl
+} //BackCallImpl
