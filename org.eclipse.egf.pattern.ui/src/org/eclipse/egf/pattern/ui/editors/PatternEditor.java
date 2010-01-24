@@ -66,250 +66,250 @@ import org.eclipse.ui.ide.IDE;
  */
 public class PatternEditor extends FormEditor implements ResourceUser, IEditingDomainProvider {
 
-  protected IUndoContext undoContext;
-  private TransactionalEditingDomain editingDomain;
-  private final ResourceListener resourceListener = new ResourceListener() {
+    protected IUndoContext undoContext;
+    private TransactionalEditingDomain editingDomain;
+    private final ResourceListener resourceListener = new ResourceListener() {
 
-    public void resourceMoved(Resource resource, URI newURI) {
-    }
-
-    public void resourceDeleted(Resource resource) {
-      // if (getResource().equals(resource) && (!isDirty() ||
-      // handleDirtyConflict()))
-      getSite().getShell().getDisplay().asyncExec(new Runnable() {
-        public void run() {
-          getSite().getPage().closeEditor(PatternEditor.this, false);
+        public void resourceMoved(Resource resource, URI newURI) {
         }
-      });
-    }
 
-    public void resourceChanged(Resource resource) {
-      for (PatternEditorPage page : pages)
-        page.rebind();
-      addPatternChangeAdapter();
-      getSite().getShell().getDisplay().asyncExec(new Runnable() {
-        public void run() {
-          firePropertyChange(IEditorPart.PROP_DIRTY);
+        public void resourceDeleted(Resource resource) {
+            // if (getResource().equals(resource) && (!isDirty() ||
+            // handleDirtyConflict()))
+            getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                public void run() {
+                    getSite().getPage().closeEditor(PatternEditor.this, false);
+                }
+            });
         }
-      });
-    }
-  };
-  private final List<PatternEditorPage> pages = new ArrayList<PatternEditorPage>();
 
-  // The adapter is for refreshing the editor title while the name of pattern
-  // has been changed.
-  AdapterImpl refresher = new AdapterImpl() {
+        public void resourceChanged(Resource resource) {
+            for (PatternEditorPage page : pages)
+                page.rebind();
+            addPatternChangeAdapter();
+            getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                public void run() {
+                    firePropertyChange(IEditorPart.PROP_DIRTY);
+                }
+            });
+        }
+    };
+    private final List<PatternEditorPage> pages = new ArrayList<PatternEditorPage>();
+
+    // The adapter is for refreshing the editor title while the name of pattern
+    // has been changed.
+    AdapterImpl refresher = new AdapterImpl() {
+        @Override
+        public void notifyChanged(Notification msg) {
+            if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg.getFeature())) {
+                setPartName((String) msg.getNewValue());
+            }
+        }
+    };
+
+    public PatternEditor() {
+        initializeEditingDomain();
+    }
+
     @Override
-    public void notifyChanged(Notification msg) {
-      if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg.getFeature())) {
-        setPartName((String) msg.getNewValue());
-      }
+    public void doSave(IProgressMonitor monitor) {
+        try {
+            new ProgressMonitorDialog(getSite().getShell()).run(true, false, ResourceLoadedListener.RESOURCE_MANAGER.createSaveOperation(this, editingDomain));
+            ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
+        } catch (InvocationTargetException exception) {
+            Activator.getDefault().logError(exception.getTargetException());
+        } catch (Exception exception) {
+            Activator.getDefault().logError(exception);
+        }
     }
-  };
 
-  public PatternEditor() {
-    initializeEditingDomain();
-  }
-
-  @Override
-  public void doSave(IProgressMonitor monitor) {
-    try {
-      new ProgressMonitorDialog(getSite().getShell()).run(true, false, ResourceLoadedListener.RESOURCE_MANAGER.createSaveOperation(this, editingDomain));
-      ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
-    } catch (InvocationTargetException exception) {
-      Activator.getDefault().logError(exception.getTargetException());
-    } catch (Exception exception) {
-      Activator.getDefault().logError(exception);
+    @Override
+    public void doSaveAs() {
+        throw new UnsupportedOperationException();
     }
-  }
 
-  @Override
-  public void doSaveAs() {
-    throw new UnsupportedOperationException();
-  }
+    protected void initializeEditingDomain() {
+        editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
+        undoContext = new ObjectUndoContext(this, "undoContext label"); //$NON-NLS-1$
+        getOperationHistory().addOperationHistoryListener(historyListener);
+    }
 
-  protected void initializeEditingDomain() {
-    editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID);
-    undoContext = new ObjectUndoContext(this, "undoContext label"); //$NON-NLS-1$
-    getOperationHistory().addOperationHistoryListener(historyListener);
-  }
+    private IOperationHistory getOperationHistory() {
+        return ((IWorkspaceCommandStack) editingDomain.getCommandStack()).getOperationHistory();
+    }
 
-  private IOperationHistory getOperationHistory() {
-    return ((IWorkspaceCommandStack) editingDomain.getCommandStack()).getOperationHistory();
-  }
+    /**
+     * The <code>MultiPageEditorExample</code> implementation of this method
+     * checks that the input is an instance of <code>IFileEditorInput</code>.
+     */
+    @Override
+    public void init(IEditorSite site, IEditorInput editorInput) throws PartInitException {
+        if (!(editorInput instanceof PatternEditorInput))
+            throw new PartInitException(Messages.Editor_wrong_input);
 
-  /**
-   * The <code>MultiPageEditorExample</code> implementation of this method
-   * checks that the input is an instance of <code>IFileEditorInput</code>.
-   */
-  @Override
-  public void init(IEditorSite site, IEditorInput editorInput) throws PartInitException {
-    if (!(editorInput instanceof PatternEditorInput))
-      throw new PartInitException(Messages.Editor_wrong_input);
+        super.init(site, editorInput);
+        ResourceLoadedListener.RESOURCE_MANAGER.addObserver(this);
+        addPatternChangeAdapter();
+    }
 
-    super.init(site, editorInput);
-    ResourceLoadedListener.RESOURCE_MANAGER.addObserver(this);
-    addPatternChangeAdapter();
-  }
+    /**
+     * While the name of the pattern has been changed, refresh the editor title.
+     */
+    private void addPatternChangeAdapter() {
+        Display.getDefault().syncExec(new Runnable() {
+            public void run() {
+                Pattern pattern = getPattern();
+                if (pattern != null) {
+                    pattern.eAdapters().add(refresher);
+                    setPartName(pattern.getName());
+                }
+            }
+        });
+    }
 
-  /**
-   * While the name of the pattern has been changed, refresh the editor title.
-   */
-  private void addPatternChangeAdapter() {
-    Display.getDefault().syncExec(new Runnable() {
-      public void run() {
+    /**
+     * Remove the Adapter add for refreshing the editor title
+     */
+    private void removePatternChangeAdapter() {
         Pattern pattern = getPattern();
-        if (pattern != null) {
-          pattern.eAdapters().add(refresher);
-          setPartName(pattern.getName());
+        if (pattern != null && pattern.eAdapters().contains(refresher)) {
+            pattern.eAdapters().remove(refresher);
         }
-      }
-    });
-  }
-
-  /**
-   * Remove the Adapter add for refreshing the editor title
-   */
-  private void removePatternChangeAdapter() {
-    Pattern pattern = getPattern();
-    if (pattern != null && pattern.eAdapters().contains(refresher)) {
-      pattern.eAdapters().remove(refresher);
-    }
-  }
-
-  @SuppressWarnings("unchecked")
-  @Override
-  public Object getAdapter(Class key) {
-    if (key.equals(IUndoContext.class)) {
-      return undoContext;
     }
 
-    return super.getAdapter(key);
-  }
+    @SuppressWarnings("unchecked")
+    @Override
+    public Object getAdapter(Class key) {
+        if (key.equals(IUndoContext.class)) {
+            return undoContext;
+        }
 
-  @Override
-  public boolean isSaveAsAllowed() {
-    return false;
-  }
-
-  @Override
-  public boolean isDirty() {
-    if (getResource() == null)
-      return false;
-    boolean modified = getResource().isModified();
-    return modified;
-  }
-
-  @Override
-  protected void addPages() {
-    try {
-      addPage(new OverviewPage(this));
-      addPage(new SpecificationPage(this));
-      addPage(new ImplementationPage(this));
-    } catch (PartInitException e) {
-      Activator.getDefault().logError(e);
+        return super.getAdapter(key);
     }
-  }
 
-  private Pattern getPattern() {
-    PatternEditorInput input = (PatternEditorInput) getEditorInput();
-    if (input == null)
-      throw new IllegalStateException();
-    return input.getPattern();
-  }
+    @Override
+    public boolean isSaveAsAllowed() {
+        return false;
+    }
 
-  public Resource getResource() {
-    PatternEditorInput input = (PatternEditorInput) getEditorInput();
-    if (input == null)
-      throw new IllegalStateException();
-    return input.getResource();
+    @Override
+    public boolean isDirty() {
+        if (getResource() == null)
+            return false;
+        boolean modified = getResource().isModified();
+        return modified;
+    }
 
-  }
+    @Override
+    protected void addPages() {
+        try {
+            addPage(new OverviewPage(this));
+            addPage(new SpecificationPage(this));
+            addPage(new ImplementationPage(this));
+        } catch (PartInitException e) {
+            Activator.getDefault().logError(e);
+        }
+    }
 
-  public TransactionalEditingDomain getEditingDomain() {
-    return editingDomain;
-  }
+    private Pattern getPattern() {
+        PatternEditorInput input = (PatternEditorInput) getEditorInput();
+        if (input == null)
+            throw new IllegalStateException();
+        return input.getPattern();
+    }
 
-  @Override
-  public void dispose() {
-    ResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
-    getOperationHistory().removeOperationHistoryListener(historyListener);
-    getOperationHistory().dispose(undoContext, true, true, true);
+    public Resource getResource() {
+        PatternEditorInput input = (PatternEditorInput) getEditorInput();
+        if (input == null)
+            throw new IllegalStateException();
+        return input.getResource();
 
-    removePatternChangeAdapter();
+    }
 
-    super.dispose();
-  }
+    public TransactionalEditingDomain getEditingDomain() {
+        return editingDomain;
+    }
 
-  private final IOperationHistoryListener historyListener = new IOperationHistoryListener() {
-    public void historyNotification(final OperationHistoryEvent event) {
-      Set<Resource> affectedResources = ResourceUndoContext.getAffectedResources(event.getOperation());
-      switch (event.getEventType()) {
-      case OperationHistoryEvent.DONE:
+    @Override
+    public void dispose() {
+        ResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
+        getOperationHistory().removeOperationHistoryListener(historyListener);
+        getOperationHistory().dispose(undoContext, true, true, true);
 
-        if (affectedResources.contains(getResource())) {
-          final IUndoableOperation operation = event.getOperation();
+        removePatternChangeAdapter();
 
-          // remove the default undo context so that we can have
-          // independent undo/redo of independent resource changes
-          operation.removeContext(((IWorkspaceCommandStack) getEditingDomain().getCommandStack()).getDefaultUndoContext());
+        super.dispose();
+    }
 
-          // add our undo context to populate our undo menu
-          operation.addContext(undoContext);
-          getSite().getShell().getDisplay().asyncExec(new Runnable() {
-            public void run() {
-              firePropertyChange(IEditorPart.PROP_DIRTY);
+    private final IOperationHistoryListener historyListener = new IOperationHistoryListener() {
+        public void historyNotification(final OperationHistoryEvent event) {
+            Set<Resource> affectedResources = ResourceUndoContext.getAffectedResources(event.getOperation());
+            switch (event.getEventType()) {
+            case OperationHistoryEvent.DONE:
+
+                if (affectedResources.contains(getResource())) {
+                    final IUndoableOperation operation = event.getOperation();
+
+                    // remove the default undo context so that we can have
+                    // independent undo/redo of independent resource changes
+                    operation.removeContext(((IWorkspaceCommandStack) getEditingDomain().getCommandStack()).getDefaultUndoContext());
+
+                    // add our undo context to populate our undo menu
+                    operation.addContext(undoContext);
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                        public void run() {
+                            firePropertyChange(IEditorPart.PROP_DIRTY);
+                        }
+                    });
+                }
+                break;
+            case OperationHistoryEvent.UNDONE:
+            case OperationHistoryEvent.REDONE:
+                if (affectedResources.contains(getResource())) {
+
+                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                        public void run() {
+                            firePropertyChange(IEditorPart.PROP_DIRTY);
+                        }
+                    });
+                }
+                break;
             }
-          });
         }
-        break;
-      case OperationHistoryEvent.UNDONE:
-      case OperationHistoryEvent.REDONE:
-        if (affectedResources.contains(getResource())) {
+    };
 
-          getSite().getShell().getDisplay().asyncExec(new Runnable() {
-            public void run() {
-              firePropertyChange(IEditorPart.PROP_DIRTY);
-            }
-          });
+    public void addPage(PatternEditorPage page) throws PartInitException {
+        pages.add(page);
+        addPage((IFormPage) page);
+    }
+
+    /**
+     * Shows a dialog that asks if conflicting changes should be discarded.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     */
+    // protected boolean handleDirtyConflict() {
+    //        return MessageDialog.openQuestion(getSite().getShell(), "File Conflict", //$NON-NLS-1$
+    //                "External changes, close the editor ?"); //$NON-NLS-1$
+    // }
+
+    public ResourceListener getListener() {
+
+        return resourceListener;
+    }
+
+    public static void openEditor(IWorkbenchPage page, Pattern pattern) {
+        if (page == null)
+            throw new IllegalArgumentException();
+        if (pattern == null)
+            throw new IllegalArgumentException();
+
+        Resource resource = pattern.eResource();
+        try {
+            IDE.openEditor(page, new PatternEditorInput(resource, pattern.getID()), "org.eclipse.egf.pattern.ui.editors.PatternEditor"); //$NON-NLS-1$
+        } catch (PartInitException e) {
+            Activator.getDefault().logError(e);
         }
-        break;
-      }
     }
-  };
-
-  public void addPage(PatternEditorPage page) throws PartInitException {
-    pages.add(page);
-    addPage((IFormPage) page);
-  }
-
-  /**
-   * Shows a dialog that asks if conflicting changes should be discarded.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   */
-  // protected boolean handleDirtyConflict() {
-  //        return MessageDialog.openQuestion(getSite().getShell(), "File Conflict", //$NON-NLS-1$
-  //                "External changes, close the editor ?"); //$NON-NLS-1$
-  // }
-
-  public ResourceListener getListener() {
-
-    return resourceListener;
-  }
-
-  public static void openEditor(IWorkbenchPage page, Pattern pattern) {
-    if (page == null)
-      throw new IllegalArgumentException();
-    if (pattern == null)
-      throw new IllegalArgumentException();
-
-    Resource resource = pattern.eResource();
-    try {
-      IDE.openEditor(page, new PatternEditorInput(resource, pattern.getID()), "org.eclipse.egf.pattern.ui.editors.PatternEditor"); //$NON-NLS-1$
-    } catch (PartInitException e) {
-      e.printStackTrace();
-    }
-  }
 
 }
