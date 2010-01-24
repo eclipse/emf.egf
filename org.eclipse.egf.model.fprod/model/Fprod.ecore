@@ -9,6 +9,7 @@
         eOpposite="#//ProductionPlanInvocation/productionPlan"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProductionPlanInvocation" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Invocation">
+    <eOperations name="getFactoryComponent" lowerBound="1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//FactoryComponent"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="productionPlan" lowerBound="1"
         eType="#//ProductionPlan" resolveProxies="false" eOpposite="#//ProductionPlan/invocations"/>
   </eClassifiers>

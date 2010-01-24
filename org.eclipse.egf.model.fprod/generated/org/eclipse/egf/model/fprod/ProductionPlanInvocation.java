@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.fprod;
 
+import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.Invocation;
 
 /**
@@ -59,4 +60,12 @@ public interface ProductionPlanInvocation extends Invocation {
    * @generated
    */
   void setProductionPlan(ProductionPlan value);
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @model kind="operation" required="true"
+   * @generated
+   */
+  FactoryComponent getFactoryComponent();
 } // ProductionPlanInvocation

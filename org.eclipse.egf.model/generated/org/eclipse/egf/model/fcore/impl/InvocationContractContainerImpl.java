@@ -130,14 +130,12 @@ public class InvocationContractContainerImpl extends ModelElementImpl implements
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * @generated
    */
   public FactoryComponent getFactoryComponent() {
-    if (getInvocation() != null) {
-      return getInvocation().getFactoryComponent();
-    }
-    return null;
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**

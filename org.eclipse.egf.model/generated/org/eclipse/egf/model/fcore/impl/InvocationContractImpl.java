@@ -37,32 +37,23 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>
- * {@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getInvocationContractContainer
- * <em>Invocation Contract Container</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getFactoryComponentContract
- * <em>Factory Component Contract</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getOrchestrationParameter
- * <em>Orchestration Parameter</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getSourceInvocationContract
- * <em>Source Invocation Contract</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getTargetInvocationContract
- * <em>Target Invocation Contract</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getInvokedContract <em>Invoked
- * Contract</em>}</li>
- * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getInvocationContractContainer <em>Invocation Contract Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getFactoryComponentContract <em>Factory Component Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getOrchestrationParameter <em>Orchestration Parameter</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getSourceInvocationContract <em>Source Invocation Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getTargetInvocationContract <em>Target Invocation Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getInvokedContract <em>Invoked Contract</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationContractImpl#getType <em>Type</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class InvocationContractImpl extends ModelElementImpl implements InvocationContract {
   /**
-   * The cached value of the '{@link #getFactoryComponentContract() <em>Factory Component
-   * Contract</em>}' reference.
+   * The cached value of the '{@link #getFactoryComponentContract() <em>Factory Component Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getFactoryComponentContract()
    * @generated
    * @ordered
@@ -70,11 +61,9 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   protected FactoryComponentContract factoryComponentContract;
 
   /**
-   * The cached value of the '{@link #getOrchestrationParameter() <em>Orchestration Parameter</em>}'
-   * reference.
+   * The cached value of the '{@link #getOrchestrationParameter() <em>Orchestration Parameter</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getOrchestrationParameter()
    * @generated
    * @ordered
@@ -82,11 +71,9 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   protected OrchestrationParameter orchestrationParameter;
 
   /**
-   * The cached value of the '{@link #getSourceInvocationContract() <em>Source Invocation
-   * Contract</em>}' reference.
+   * The cached value of the '{@link #getSourceInvocationContract() <em>Source Invocation Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getSourceInvocationContract()
    * @generated
    * @ordered
@@ -94,11 +81,9 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   protected InvocationContract sourceInvocationContract;
 
   /**
-   * The cached value of the '{@link #getTargetInvocationContract() <em>Target Invocation
-   * Contract</em>}' reference.
+   * The cached value of the '{@link #getTargetInvocationContract() <em>Target Invocation Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getTargetInvocationContract()
    * @generated
    * @ordered
@@ -109,7 +94,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
    * The cached value of the '{@link #getInvokedContract() <em>Invoked Contract</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getInvokedContract()
    * @generated
    * @ordered
@@ -120,7 +104,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
    * The cached value of the '{@link #getType() <em>Type</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getType()
    * @generated
    * @ordered
@@ -141,7 +124,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -152,7 +134,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public InvocationContractContainer getInvocationContractContainer() {
@@ -164,7 +145,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetInvocationContractContainer(InvocationContractContainer newInvocationContractContainer, NotificationChain msgs) {
@@ -175,7 +155,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setInvocationContractContainer(InvocationContractContainer newInvocationContractContainer) {
@@ -197,7 +176,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FactoryComponentContract getFactoryComponentContract() {
@@ -207,7 +185,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetFactoryComponentContract(FactoryComponentContract newFactoryComponentContract, NotificationChain msgs) {
@@ -226,7 +203,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setFactoryComponentContract(FactoryComponentContract newFactoryComponentContract) {
@@ -246,7 +222,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public OrchestrationParameter getOrchestrationParameter() {
@@ -256,7 +231,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetOrchestrationParameter(OrchestrationParameter newOrchestrationParameter, NotificationChain msgs) {
@@ -275,7 +249,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setOrchestrationParameter(OrchestrationParameter newOrchestrationParameter) {
@@ -295,7 +268,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public InvocationContract getSourceInvocationContract() {
@@ -305,7 +277,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setSourceInvocationContract(InvocationContract newSourceInvocationContract) {
@@ -318,7 +289,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public InvocationContract getTargetInvocationContract() {
@@ -328,7 +298,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setTargetInvocationContract(InvocationContract newTargetInvocationContract) {
@@ -341,7 +310,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Contract getInvokedContract() {
@@ -359,7 +327,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Contract basicGetInvokedContract() {
@@ -369,7 +336,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setInvokedContract(Contract newInvokedContract) {
@@ -395,7 +361,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public Type getType() {
@@ -405,7 +370,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetType(Type newType, NotificationChain msgs) {
@@ -424,7 +388,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setType(Type newType) {
@@ -470,7 +433,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -495,7 +457,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -516,7 +477,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -531,7 +491,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -560,7 +519,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -594,7 +552,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -628,7 +585,6 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

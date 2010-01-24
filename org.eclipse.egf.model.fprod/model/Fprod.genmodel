@@ -23,6 +23,7 @@
     </genClasses>
     <genClasses ecoreClass="Fprod.ecore#//ProductionPlanInvocation">
       <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference Fprod.ecore#//ProductionPlanInvocation/productionPlan"/>
+      <genOperations ecoreOperation="Fprod.ecore#//ProductionPlanInvocation/getFactoryComponent"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.fprod.impl;
 
+import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.impl.InvocationImpl;
 import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.ProductionPlan;
@@ -31,20 +32,17 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.fprod.impl.ProductionPlanInvocationImpl#getProductionPlan
- * <em>Production Plan</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fprod.impl.ProductionPlanInvocationImpl#getProductionPlan <em>Production Plan</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ProductionPlanInvocationImpl extends InvocationImpl implements ProductionPlanInvocation {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -64,7 +62,6 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -76,6 +73,19 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
+   * @generated NOT
+   */
+  @Override
+  public FactoryComponent getFactoryComponent() {
+    if (getProductionPlan() != null) {
+      return getProductionPlan().getFactoryComponent();
+    }
+    return null;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
    * @generated
    */
   public ProductionPlan getProductionPlan() {
@@ -87,7 +97,6 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetProductionPlan(ProductionPlan newProductionPlan, NotificationChain msgs) {
@@ -98,7 +107,6 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setProductionPlan(ProductionPlan newProductionPlan) {
@@ -120,7 +128,6 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -137,7 +144,6 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -152,7 +158,6 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -167,7 +172,6 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -182,7 +186,6 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -198,7 +201,6 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -214,7 +216,6 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
