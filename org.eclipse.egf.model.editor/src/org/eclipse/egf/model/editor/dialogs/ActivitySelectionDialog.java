@@ -21,7 +21,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
@@ -95,7 +95,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
       try {
         _activity = (Activity) _resourceSet.getEObject(URI.createURI(tag), true);
       } catch (Exception e) {
-        EGFModelsEditorPlugin.getPlugin().logError(e);
+        EGFModelEditorPlugin.getPlugin().logError(e);
       }
       return _activity;
     }
@@ -270,6 +270,10 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     setSeparatorLabel(ModelEditorMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
   }
 
+  public ActivitySelectionDialog(Shell parentShell, Resource context, Activity activity, boolean multipleSelection) {
+    this(parentShell, null, context, activity, multipleSelection);
+  }
+
   public ActivitySelectionDialog(Shell parentShell, Class<?> clazz, Resource context, Activity activity, boolean multipleSelection) {
     super(parentShell, multipleSelection);
     _clazz = clazz;
@@ -346,7 +350,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         } catch (OperationCanceledException e) {
           return;
         } catch (Exception e) {
-          EGFModelsEditorPlugin.getPlugin().logError(e);
+          EGFModelEditorPlugin.getPlugin().logError(e);
           continue;
         }
         // Analyse top contents for Activities
@@ -379,9 +383,9 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
   @Override
   protected IDialogSettings getDialogSettings() {
-    IDialogSettings settings = EGFModelsEditorPlugin.getPlugin().getDialogSettings().getSection(DIALOG_SETTINGS);
+    IDialogSettings settings = EGFModelEditorPlugin.getPlugin().getDialogSettings().getSection(DIALOG_SETTINGS);
     if (settings == null) {
-      settings = EGFModelsEditorPlugin.getPlugin().getDialogSettings().addNewSection(DIALOG_SETTINGS);
+      settings = EGFModelEditorPlugin.getPlugin().getDialogSettings().addNewSection(DIALOG_SETTINGS);
     }
     return settings;
   }
@@ -402,7 +406,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
   @Override
   protected IStatus validateItem(Object item) {
-    return new Status(IStatus.OK, EGFModelsEditorPlugin.getPlugin().getBundle().getSymbolicName(), 0, "", null); //$NON-NLS-1$
+    return new Status(IStatus.OK, EGFModelEditorPlugin.getPlugin().getBundle().getSymbolicName(), 0, "", null); //$NON-NLS-1$
   }
 
 }

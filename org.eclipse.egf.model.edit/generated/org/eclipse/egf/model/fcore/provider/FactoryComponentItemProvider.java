@@ -79,7 +79,6 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(FcorePackage.Literals.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER);
       childrenFeatures.add(FcorePackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER);
       childrenFeatures.add(FcorePackage.Literals.FACTORY_COMPONENT__ORCHESTRATION);
     }
@@ -135,7 +134,6 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
     updateChildren(notification);
 
     switch (notification.getFeatureID(FactoryComponent.class)) {
-    case FcorePackage.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER:
     case FcorePackage.FACTORY_COMPONENT__VIEWPOINT_CONTAINER:
     case FcorePackage.FACTORY_COMPONENT__ORCHESTRATION:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -154,8 +152,6 @@ public class FactoryComponentItemProvider extends ActivityItemProvider implement
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
-
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__ACTIVITY_CONTRACT_CONTAINER, FcoreFactory.eINSTANCE.createFactoryComponentContractContainer()));
 
     newChildDescriptors.add(createChildParameter(FcorePackage.Literals.FACTORY_COMPONENT__VIEWPOINT_CONTAINER, FcoreFactory.eINSTANCE.createViewpointContainer()));
   }

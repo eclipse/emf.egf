@@ -35,12 +35,12 @@ import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.core.ui.wizard.WizardNewFileCreationPage;
-import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fprod.FprodFactory;
-import org.eclipse.egf.model.fprod.FprodPackage;
+import org.eclipse.egf.model.ftask.FtaskFactory;
+import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -87,7 +87,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * 
    * @generated
    */
-  public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(EGFModelsEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameExtensions").split("\\s*,\\s*"))); //$NON-NLS-1$ //$NON-NLS-2$
+  public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameExtensions").split("\\s*,\\s*"))); //$NON-NLS-1$ //$NON-NLS-2$
 
   /**
    * A formatted list of supported file extensions, suitable for display.
@@ -96,7 +96,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * 
    * @generated
    */
-  public static final String FORMATTED_FILE_EXTENSIONS = EGFModelsEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+  public static final String FORMATTED_FILE_EXTENSIONS = EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
   /**
    * This caches an instance of the model package.
@@ -114,7 +114,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * 
    * @generated NOT
    */
-  protected FprodPackage fprodPackage = FprodPackage.eINSTANCE;
+  protected FtaskPackage ftaskPackage = FtaskPackage.eINSTANCE;
 
   /**
    * This caches an instance of the model factory.
@@ -132,7 +132,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * 
    * @generated NOT
    */
-  protected FprodFactory fprodFactory = fprodPackage.getFprodFactory();
+  protected FtaskFactory ftaskFactory = ftaskPackage.getFtaskFactory();
 
   /**
    * This is the file creation page.
@@ -186,11 +186,11 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * 
    * @generated NOT
    */
-  public void init(IWorkbench workbench, IStructuredSelection selection) {
-    this.workbench = workbench;
-    this.selection = selection;
-    setWindowTitle(EGFModelsEditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
-    setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EGFModelsEditorPlugin.INSTANCE.getImage("full/wizban/NewFcore"))); //$NON-NLS-1$
+  public void init(IWorkbench innerWorkbench, IStructuredSelection innerSelection) {
+    this.workbench = innerWorkbench;
+    this.selection = innerSelection;
+    setWindowTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
+    setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EGFModelEditorPlugin.INSTANCE.getImage("full/wizban/NewFcore"))); //$NON-NLS-1$
     setNeedsProgressMonitor(true);
   }
 
@@ -205,7 +205,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     if (initialObjectNames == null) {
       initialObjectNames = new ArrayList<String>();
       initialObjectNames.add(fcorePackage.getFactoryComponent().getName());
-      initialObjectNames.add(fprodPackage.getTask().getName());
+      initialObjectNames.add(ftaskPackage.getTaskJava().getName());
       Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
     }
     return initialObjectNames;
@@ -221,8 +221,8 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
   protected EObject createInitialModel() {
     EClass eClass = (EClass) fcorePackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
     if (eClass == null) {
-      eClass = (EClass) fprodPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-      return fprodFactory.create(eClass);
+      eClass = (EClass) ftaskPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+      return ftaskFactory.create(eClass);
     }
     return fcoreFactory.create(eClass);
   }
@@ -246,7 +246,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
 
       @Override
       protected void execute(IProgressMonitor monitor) {
-        SubMonitor subMonitor = SubMonitor.convert(monitor, EGFModelsEditorPlugin.INSTANCE.getString("_UI_Wizard_createActivity"), 200); //$NON-NLS-1$
+        SubMonitor subMonitor = SubMonitor.convert(monitor, EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_createActivity"), 200); //$NON-NLS-1$
         try {
           // Get Object Model
           EObject rootObject = createInitialModel();
@@ -255,8 +255,8 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
             @Override
             public List<String> addDependencies() {
               List<String> dependencies = new ArrayList<String>(1);
-              dependencies.add("org.eclipse.egf.model.fprod"); //$NON-NLS-1$
-              dependencies.add("org.eclipse.egf.pattern.fprod"); //$NON-NLS-1$              
+              dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$
+              dependencies.add("org.eclipse.egf.pattern.ftask"); //$NON-NLS-1$              
               return dependencies;
             }
 
@@ -319,7 +319,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     }
 
     if (throwable[0] != null && throwable[0] instanceof InterruptedException == false) {
-      ThrowableHandler.handleThrowable(EGFModelsEditorPlugin.getPlugin().getBundle().getSymbolicName(), throwable[0]);
+      ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getBundle().getSymbolicName(), throwable[0]);
       return false;
     }
 
@@ -358,7 +358,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
         String extension = new Path(getFileName()).getFileExtension();
         if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
           String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension"; //$NON-NLS-1$ //$NON-NLS-2$
-          setErrorMessage(EGFModelsEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
+          setErrorMessage(EGFModelEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
           return false;
         }
         return true;
@@ -442,7 +442,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
 
       Label containerLabel = new Label(composite, SWT.LEFT);
       {
-        containerLabel.setText(EGFModelsEditorPlugin.INSTANCE.getString("_UI_ModelObject")); //$NON-NLS-1$
+        containerLabel.setText(EGFModelEditorPlugin.INSTANCE.getString("_UI_ModelObject")); //$NON-NLS-1$
 
         GridData data = new GridData();
         data.horizontalAlignment = GridData.FILL;
@@ -468,7 +468,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
 
       Label encodingLabel = new Label(composite, SWT.LEFT);
       {
-        encodingLabel.setText(EGFModelsEditorPlugin.INSTANCE.getString("_UI_XMLEncoding")); //$NON-NLS-1$
+        encodingLabel.setText(EGFModelEditorPlugin.INSTANCE.getString("_UI_XMLEncoding")); //$NON-NLS-1$
 
         GridData data = new GridData();
         data.horizontalAlignment = GridData.FILL;
@@ -571,9 +571,9 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
      */
     protected String getLabel(String typeName) {
       try {
-        return EGFModelsEditorPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
+        return EGFModelEditorPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
       } catch (MissingResourceException mre) {
-        EGFModelsEditorPlugin.INSTANCE.log(mre);
+        EGFModelEditorPlugin.INSTANCE.log(mre);
       }
       return typeName;
     }
@@ -587,7 +587,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     protected Collection<String> getEncodings() {
       if (encodings == null) {
         encodings = new ArrayList<String>();
-        for (StringTokenizer stringTokenizer = new StringTokenizer(EGFModelsEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) //$NON-NLS-1$
+        for (StringTokenizer stringTokenizer = new StringTokenizer(EGFModelEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) //$NON-NLS-1$
         {
           encodings.add(stringTokenizer.nextToken());
         }
@@ -608,9 +608,9 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     // Create a page, set the title, and the initial model file name.
     //
     newFileCreationPage = new FcoreModelWizardNewFileCreationPage("Whatever", selection); //$NON-NLS-1$
-    newFileCreationPage.setTitle(EGFModelsEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_label")); //$NON-NLS-1$
-    newFileCreationPage.setDescription(EGFModelsEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_description")); //$NON-NLS-1$
-    newFileCreationPage.setFileName(EGFModelsEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0)); //$NON-NLS-1$ //$NON-NLS-2$
+    newFileCreationPage.setTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_label")); //$NON-NLS-1$
+    newFileCreationPage.setDescription(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_description")); //$NON-NLS-1$
+    newFileCreationPage.setFileName(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0)); //$NON-NLS-1$ //$NON-NLS-2$
     addPage(newFileCreationPage);
 
     // Try and get the resource selection to determine a current directory for the file dialog.
@@ -636,7 +636,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
 
           // Make up a unique new name here.
           //
-          String defaultModelBaseFilename = EGFModelsEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameDefaultBase"); //$NON-NLS-1$
+          String defaultModelBaseFilename = EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameDefaultBase"); //$NON-NLS-1$
           String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
           String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension; //$NON-NLS-1$
           for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
@@ -647,8 +647,8 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
       }
     }
     initialObjectCreationPage = new FcoreModelWizardInitialObjectCreationPage("Whatever2"); //$NON-NLS-1$
-    initialObjectCreationPage.setTitle(EGFModelsEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_label")); //$NON-NLS-1$
-    initialObjectCreationPage.setDescription(EGFModelsEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description")); //$NON-NLS-1$
+    initialObjectCreationPage.setTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_label")); //$NON-NLS-1$
+    initialObjectCreationPage.setDescription(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description")); //$NON-NLS-1$
     addPage(initialObjectCreationPage);
   }
 

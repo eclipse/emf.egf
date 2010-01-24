@@ -20,7 +20,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.egf.model.EGFModelsPlugin;
+import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.model.types.TypeAbstractClass;
@@ -77,6 +77,7 @@ public class TypesValidator extends EObjectValidator {
    * 
    * @generated
    */
+  @SuppressWarnings("hiding")
   public static final TypesValidator INSTANCE = new TypesValidator();
 
   /**
@@ -89,6 +90,7 @@ public class TypesValidator extends EObjectValidator {
    * @see org.eclipse.emf.common.util.Diagnostic#getCode()
    * @generated
    */
+  @SuppressWarnings("hiding")
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.types"; //$NON-NLS-1$
 
   /**
@@ -226,14 +228,14 @@ public class TypesValidator extends EObjectValidator {
       return validateTypeShort((TypeShort) value, diagnostics, context);
     case TypesPackage.TYPE_STRING:
       return validateTypeString((TypeString) value, diagnostics, context);
-    case TypesPackage.COLLECTION:
-      return validateCollection((Collection<?>) value, diagnostics, context);
-    case TypesPackage.LIST:
-      return validateList((List<?>) value, diagnostics, context);
-    case TypesPackage.SET:
-      return validateSet((Set<?>) value, diagnostics, context);
     case TypesPackage.EGENERATOR_ADAPTER_FACTORY:
       return validateEGeneratorAdapterFactory((GeneratorAdapterFactory) value, diagnostics, context);
+    case TypesPackage.SET:
+      return validateSet((Set<?>) value, diagnostics, context);
+    case TypesPackage.LIST:
+      return validateList((List<?>) value, diagnostics, context);
+    case TypesPackage.COLLECTION:
+      return validateCollection((Collection<?>) value, diagnostics, context);
     case TypesPackage.URI:
       return validateURI((URI) value, diagnostics, context);
     default:
@@ -926,7 +928,7 @@ public class TypesValidator extends EObjectValidator {
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return EGFModelsPlugin.INSTANCE;
+    return EGFModelPlugin.INSTANCE;
   }
 
   /**

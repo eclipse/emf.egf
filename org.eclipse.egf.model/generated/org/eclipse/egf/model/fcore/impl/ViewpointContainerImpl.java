@@ -121,7 +121,7 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
    */
   public EList<Viewpoint> getViewpoints() {
     if (viewpoints == null) {
-      viewpoints = new EObjectContainmentWithInverseEList<Viewpoint>(Viewpoint.class, this, FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS, FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER);
+      viewpoints = new EObjectContainmentWithInverseEList<Viewpoint>(Viewpoint.class, this, FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS, FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER);
     }
     return viewpoints;
   }
@@ -132,10 +132,11 @@ public class ViewpointContainerImpl extends ModelElementImpl implements Viewpoin
    * 
    * @generated NOT
    */
-  public Viewpoint getViewpoint(Class vpClass) {
-    for (Viewpoint vp : getViewpoints()) {
-      if (vpClass.isInstance(vp))
-        return vp;
+  public Viewpoint getViewpoint(Class<?> clazz) {
+    for (Viewpoint viewpoint : getViewpoints()) {
+      if (clazz.isInstance(viewpoint)) {
+        return viewpoint;
+      }
     }
     return null;
   }

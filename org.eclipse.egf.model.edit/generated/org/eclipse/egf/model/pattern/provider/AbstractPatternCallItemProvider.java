@@ -32,9 +32,11 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.AbstractPatternCall} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.AbstractPatternCall}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class AbstractPatternCallItemProvider extends CallItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -42,6 +44,7 @@ public class AbstractPatternCallItemProvider extends CallItemProvider implements
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public AbstractPatternCallItemProvider(AdapterFactory adapterFactory) {
@@ -52,6 +55,7 @@ public class AbstractPatternCallItemProvider extends CallItemProvider implements
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -68,6 +72,7 @@ public class AbstractPatternCallItemProvider extends CallItemProvider implements
    * This adds a property descriptor for the Called feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addCalledPropertyDescriptor(Object object) {
@@ -80,7 +85,8 @@ public class AbstractPatternCallItemProvider extends CallItemProvider implements
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
@@ -92,6 +98,7 @@ public class AbstractPatternCallItemProvider extends CallItemProvider implements
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -105,6 +112,7 @@ public class AbstractPatternCallItemProvider extends CallItemProvider implements
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

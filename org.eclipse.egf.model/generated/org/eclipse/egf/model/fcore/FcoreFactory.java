@@ -32,6 +32,15 @@ public interface FcoreFactory extends EFactory {
   FcoreFactory eINSTANCE = org.eclipse.egf.model.fcore.impl.FcoreFactoryImpl.init();
 
   /**
+   * Returns a new object of class '<em>Contract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Contract</em>'.
+   * @generated
+   */
+  Contract createContract();
+
+  /**
    * Returns a new object of class '<em>Factory Component</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -39,6 +48,15 @@ public interface FcoreFactory extends EFactory {
    * @generated
    */
   FactoryComponent createFactoryComponent();
+
+  /**
+   * Returns a new object of class '<em>Contract Container</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Contract Container</em>'.
+   * @generated
+   */
+  ContractContainer createContractContainer();
 
   /**
    * Returns a new object of class '<em>Factory Component Contract</em>'.
@@ -50,15 +68,6 @@ public interface FcoreFactory extends EFactory {
   FactoryComponentContract createFactoryComponentContract();
 
   /**
-   * Returns a new object of class '<em>Factory Component Contract Container</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Factory Component Contract Container</em>'.
-   * @generated
-   */
-  FactoryComponentContractContainer createFactoryComponentContractContainer();
-
-  /**
    * Returns a new object of class '<em>Viewpoint Container</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -68,49 +77,40 @@ public interface FcoreFactory extends EFactory {
   ViewpointContainer createViewpointContainer();
 
   /**
-   * Returns a new object of class '<em>Orchestration Context</em>'.
+   * Returns a new object of class '<em>Orchestration Parameter Container</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Orchestration Context</em>'.
+   * @return a new object of class '<em>Orchestration Parameter Container</em>'.
    * @generated
    */
-  OrchestrationContext createOrchestrationContext();
+  OrchestrationParameterContainer createOrchestrationParameterContainer();
 
   /**
-   * Returns a new object of class '<em>Orchestration Context Container</em>'.
+   * Returns a new object of class '<em>Orchestration Parameter</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Orchestration Context Container</em>'.
+   * @return a new object of class '<em>Orchestration Parameter</em>'.
    * @generated
    */
-  OrchestrationContextContainer createOrchestrationContextContainer();
+  OrchestrationParameter createOrchestrationParameter();
 
   /**
-   * Returns a new object of class '<em>Invocation Context</em>'.
+   * Returns a new object of class '<em>Invocation Contract Container</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Invocation Context</em>'.
+   * @return a new object of class '<em>Invocation Contract Container</em>'.
    * @generated
    */
-  InvocationContext createInvocationContext();
+  InvocationContractContainer createInvocationContractContainer();
 
   /**
-   * Returns a new object of class '<em>Invocation Context Connector</em>'.
+   * Returns a new object of class '<em>Invocation Contract</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Invocation Context Connector</em>'.
+   * @return a new object of class '<em>Invocation Contract</em>'.
    * @generated
    */
-  InvocationContextConnector createInvocationContextConnector();
-
-  /**
-   * Returns a new object of class '<em>Invocation Context Container</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Invocation Context Container</em>'.
-   * @generated
-   */
-  InvocationContextContainer createInvocationContextContainer();
+  InvocationContract createInvocationContract();
 
   /**
    * Returns the package supported by this factory.

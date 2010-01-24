@@ -98,6 +98,7 @@ public class TypesSwitch<T> {
    * @return the first non-null result returned by a <code>caseXXX</code> call.
    * @generated
    */
+  @SuppressWarnings("all")
   protected T doSwitch(EClass theEClass, EObject theEObject) {
     if (theEClass.eContainer() == modelPackage) {
       return doSwitch(theEClass.getClassifierID(), theEObject);

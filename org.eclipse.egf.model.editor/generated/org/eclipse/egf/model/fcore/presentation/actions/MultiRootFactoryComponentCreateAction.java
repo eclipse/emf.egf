@@ -24,13 +24,13 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * Multi-rooted resources support.
- * This action allows the user to create a Library
+ * This action allows the user to create a FactoryComponent
  * root on the resource.
  */
 public class MultiRootFactoryComponentCreateAction extends StaticSelectionCommandAction {
 
   /**
-   * This constructs an instance of an action that creates a Library
+   * This constructs an instance of an action that creates a FactoryComponent
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 

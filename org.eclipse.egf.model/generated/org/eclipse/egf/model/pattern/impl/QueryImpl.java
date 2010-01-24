@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
+import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
@@ -22,7 +23,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container;
 import org.eclipse.emf.ecore.util.EcoreEMap;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
@@ -33,23 +33,19 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getParameter <em>Parameter</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getExtensionId <em>Extension Id</em>}
- * </li>
- * <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getQueryContext <em>Query Context</em>}
- * </li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getExtensionId <em>Extension Id</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.QueryImpl#getQueryContext <em>Query Context</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
-public abstract class QueryImpl extends Container implements Query {
+public abstract class QueryImpl extends ModelElementImpl implements Query {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -59,7 +55,6 @@ public abstract class QueryImpl extends Container implements Query {
    * The default value of the '{@link #getExtensionId() <em>Extension Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getExtensionId()
    * @generated
    * @ordered
@@ -70,7 +65,6 @@ public abstract class QueryImpl extends Container implements Query {
    * The cached value of the '{@link #getExtensionId() <em>Extension Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getExtensionId()
    * @generated
    * @ordered
@@ -81,7 +75,6 @@ public abstract class QueryImpl extends Container implements Query {
    * The cached value of the '{@link #getQueryContext() <em>Query Context</em>}' map.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getQueryContext()
    * @generated
    * @ordered
@@ -90,7 +83,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected QueryImpl() {
@@ -99,7 +91,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -109,7 +100,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public PatternParameter getParameter() {
@@ -120,7 +110,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public NotificationChain basicSetParameter(PatternParameter newParameter, NotificationChain msgs) {
@@ -130,7 +119,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setParameter(PatternParameter newParameter) {
@@ -152,7 +140,6 @@ public abstract class QueryImpl extends Container implements Query {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public String getExtensionId() {
@@ -162,7 +149,6 @@ public abstract class QueryImpl extends Container implements Query {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setExtensionId(String newExtensionId) {
@@ -174,7 +160,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EMap<String, String> getQueryContext() {
@@ -186,7 +171,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -202,7 +186,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -218,7 +201,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -232,10 +214,10 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
+  @SuppressWarnings("all")
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case PatternPackage.QUERY__PARAMETER:
@@ -253,7 +235,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -274,7 +255,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -295,7 +275,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -313,7 +292,6 @@ public abstract class QueryImpl extends Container implements Query {
 
   /**
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

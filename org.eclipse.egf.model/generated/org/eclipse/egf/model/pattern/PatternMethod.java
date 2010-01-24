@@ -12,7 +12,7 @@
  */
 package org.eclipse.egf.model.pattern;
 
-import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.emf.common.util.URI;
 
 /**
@@ -32,7 +32,7 @@ import org.eclipse.emf.common.util.URI;
  * @model
  * @generated
  */
-public interface PatternMethod extends ModelElement {
+public interface PatternMethod extends NamedModelElement {
   /**
    * Returns the value of the '<em><b>Pattern</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.pattern.Pattern#getMethods <em>Methods</em>}'.

@@ -247,7 +247,7 @@ public class MappingPackageImpl extends EPackageImpl implements MappingPackage {
 
     // Add supertypes to classes
     mappingViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
-    mappingEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+    mappingEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
     mappingDomainEClass.getESuperTypes().add(this.getMapping());
 
     // Initialize classes and features; add operations and parameters

@@ -13,8 +13,8 @@ package org.eclipse.egf.model.fcore.presentation.actions;
 
 import java.util.Collection;
 
-import org.eclipse.egf.model.fprod.FprodFactory;
-import org.eclipse.egf.model.fprod.FprodPackage;
+import org.eclipse.egf.model.ftask.FtaskFactory;
+import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -24,19 +24,19 @@ import org.eclipse.ui.IEditorPart;
 
 /**
  * Multi-rooted resources support.
- * This action allows the user to create a Library
+ * This action allows the user to create a TaskJava
  * root on the resource.
  */
-public class MultiRootTaskCreateAction extends StaticSelectionCommandAction {
+public class MultiRootTaskJavaCreateAction extends StaticSelectionCommandAction {
 
   /**
-   * This constructs an instance of an action that creates a Library
+   * This constructs an instance of an action that creates a TaskJava
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated
    */
-  public MultiRootTaskCreateAction(IEditorPart editorPart, ISelection selection) {
+  public MultiRootTaskJavaCreateAction(IEditorPart editorPart, ISelection selection) {
     super(editorPart);
     configureAction(selection);
   }
@@ -53,7 +53,7 @@ public class MultiRootTaskCreateAction extends StaticSelectionCommandAction {
    */
   @Override
   protected Command createActionCommand(EditingDomain inputEditingDomain, Collection<?> collection) {
-    return new MultiRootAddCommand(inputEditingDomain, ((Resource) collection.toArray()[0]).getContents(), FprodPackage.Literals.TASK, FprodFactory.eINSTANCE.createTask());
+    return new MultiRootAddCommand(inputEditingDomain, ((Resource) collection.toArray()[0]).getContents(), FtaskPackage.Literals.TASK_JAVA, FtaskFactory.eINSTANCE.createTaskJava());
   }
 
 }

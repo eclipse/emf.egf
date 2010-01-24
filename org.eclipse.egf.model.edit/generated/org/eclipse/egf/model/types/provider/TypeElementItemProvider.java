@@ -17,12 +17,9 @@ import java.util.List;
 
 import org.eclipse.egf.model.types.TypeElement;
 import org.eclipse.egf.model.types.TypesPackage;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IChildCreationExtender;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -69,7 +66,6 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
       super.getPropertyDescriptors(object);
 
       addIDPropertyDescriptor(object);
-      addNamePropertyDescriptor(object);
       addDescriptionPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
@@ -89,19 +85,6 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
   }
 
   /**
-   * This adds a property descriptor for the Name feature.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void addNamePropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeElement_name_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_TypeElement_name_feature", "_UI_TypeElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        TypesPackage.Literals.TYPE_ELEMENT__NAME, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_IdentityPropertyCategory"), //$NON-NLS-1$
-        null));
-  }
-
-  /**
    * This adds a property descriptor for the Description feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -110,7 +93,7 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
   protected void addDescriptionPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeElement_description_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_TypeElement_description_feature", "_UI_TypeElement_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        TypesPackage.Literals.TYPE_ELEMENT__DESCRIPTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_IdentityPropertyCategory"), //$NON-NLS-1$
+        TypesPackage.Literals.TYPE_ELEMENT__DESCRIPTION, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_DocumentationPropertyCategory"), //$NON-NLS-1$
         null));
   }
 
@@ -128,13 +111,12 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((TypeElement) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_TypeElement_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_TypeElement_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    return "[" + getString("_UI_TypeElement_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -149,7 +131,6 @@ public class TypeElementItemProvider extends ItemProviderAdapter implements IEdi
     updateChildren(notification);
 
     switch (notification.getFeatureID(TypeElement.class)) {
-    case TypesPackage.TYPE_ELEMENT__NAME:
     case TypesPackage.TYPE_ELEMENT__DESCRIPTION:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;

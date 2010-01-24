@@ -55,5 +55,4 @@ public class TypeCollectionImpl extends TypeAbstractClassImpl implements TypeCol
   public Class<?> getType() {
     return java.util.Collection.class;
   }
-
 } // TypeCollectionImpl

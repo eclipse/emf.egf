@@ -898,18 +898,20 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
     // Add supertypes to classes
     patternEClass.getESuperTypes().add(this.getPatternElement());
-    patternMethodEClass.getESuperTypes().add(theFcorePackage.getModelElement());
-    patternParameterEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+    patternMethodEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
+    patternParameterEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
     patternLibraryEClass.getESuperTypes().add(this.getPatternElement());
-    patternElementEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+    patternElementEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
     patternViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
-    patternNatureEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+    patternNatureEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
     patternCallEClass.getESuperTypes().add(this.getAbstractPatternCall());
     superPatternCallEClass.getESuperTypes().add(this.getAbstractPatternCall());
+    callEClass.getESuperTypes().add(theFcorePackage.getModelElement());
     methodCallEClass.getESuperTypes().add(this.getCall());
-    patternVariableEClass.getESuperTypes().add(theFcorePackage.getModelElement());
+    patternVariableEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
     abstractPatternCallEClass.getESuperTypes().add(this.getCall());
     patternInjectedCallEClass.getESuperTypes().add(this.getAbstractPatternCall());
+    queryEClass.getESuperTypes().add(theFcorePackage.getModelElement());
     basicQueryEClass.getESuperTypes().add(this.getQuery());
     stringQueryEClass.getESuperTypes().add(this.getQuery());
     customQueryEClass.getESuperTypes().add(this.getQuery());

@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -159,7 +159,7 @@ public class Paramerter2ParameterMapItemProvider extends ItemProviderAdapter imp
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return EGFModelsEditPlugin.INSTANCE;
+    return EGFModelEditPlugin.INSTANCE;
   }
 
 }

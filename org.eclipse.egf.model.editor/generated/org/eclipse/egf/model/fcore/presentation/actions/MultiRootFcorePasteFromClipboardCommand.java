@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.egf.model.fcore.FactoryComponent;
-import org.eclipse.egf.model.fprod.Task;
+import org.eclipse.egf.model.ftask.TaskJava;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandWrapper;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -144,7 +144,7 @@ public class MultiRootFcorePasteFromClipboardCommand extends PasteFromClipboardC
           // Library is a defined Root Object
           //
           if (owner instanceof Resource) {
-            if (eObject instanceof FactoryComponent || eObject instanceof Task) {
+            if (eObject instanceof FactoryComponent || eObject instanceof TaskJava) {
               rootList.add(eObject);
               continue;
             }
@@ -220,7 +220,7 @@ public class MultiRootFcorePasteFromClipboardCommand extends PasteFromClipboardC
       // Library is a defined Root Object
       //
       if (owner instanceof Resource) {
-        if (eObject instanceof FactoryComponent || eObject instanceof Task) {
+        if (eObject instanceof FactoryComponent || eObject instanceof TaskJava) {
           rootList.add(eObject);
           continue;
         }

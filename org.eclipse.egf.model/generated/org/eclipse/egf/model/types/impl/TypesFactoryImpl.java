@@ -138,12 +138,12 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   @Override
   public Object createFromString(EDataType eDataType, String initialValue) {
     switch (eDataType.getClassifierID()) {
-    case TypesPackage.COLLECTION:
-      return createCollectionFromString(eDataType, initialValue);
-    case TypesPackage.LIST:
-      return createListFromString(eDataType, initialValue);
     case TypesPackage.SET:
       return createSetFromString(eDataType, initialValue);
+    case TypesPackage.LIST:
+      return createListFromString(eDataType, initialValue);
+    case TypesPackage.COLLECTION:
+      return createCollectionFromString(eDataType, initialValue);
     case TypesPackage.URI:
       return createURIFromString(eDataType, initialValue);
     default:
@@ -160,12 +160,12 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   @Override
   public String convertToString(EDataType eDataType, Object instanceValue) {
     switch (eDataType.getClassifierID()) {
-    case TypesPackage.COLLECTION:
-      return convertCollectionToString(eDataType, instanceValue);
-    case TypesPackage.LIST:
-      return convertListToString(eDataType, instanceValue);
     case TypesPackage.SET:
       return convertSetToString(eDataType, instanceValue);
+    case TypesPackage.LIST:
+      return convertListToString(eDataType, instanceValue);
+    case TypesPackage.COLLECTION:
+      return convertCollectionToString(eDataType, instanceValue);
     case TypesPackage.URI:
       return convertURIToString(eDataType, instanceValue);
     default:

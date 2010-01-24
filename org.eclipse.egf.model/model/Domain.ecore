@@ -15,7 +15,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="ePackage" lowerBound="1"
         eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDomainEPackage" eSuperTypes="Types.ecore#//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDomainEPackage" eSuperTypes="Types.ecore#//TypeObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" eType="#//DomainEPackage"
         resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EPackage"
@@ -27,7 +27,7 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="uri" lowerBound="1" eType="ecore:EDataType Types.ecore#//URI"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="TypeDomainURI" eSuperTypes="Types.ecore#//Type">
+  <eClassifiers xsi:type="ecore:EClass" name="TypeDomainURI" eSuperTypes="Types.ecore#//TypeObject">
     <eStructuralFeatures xsi:type="ecore:EReference" name="domain" eType="#//DomainURI"
         resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType Types.ecore#//URI"

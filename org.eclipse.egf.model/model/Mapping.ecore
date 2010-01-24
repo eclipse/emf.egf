@@ -7,7 +7,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="mappings" upperBound="-1"
         eType="#//MappingDomain" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Mapping" abstract="true" eSuperTypes="Fcore.ecore#//ModelElement"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Mapping" abstract="true" eSuperTypes="Fcore.ecore#//NamedModelElement"/>
   <eClassifiers xsi:type="ecore:EClass" name="MappingDomain" eSuperTypes="#//Mapping">
     <eStructuralFeatures xsi:type="ecore:EReference" name="source" lowerBound="1"
         eType="ecore:EClass Domain.ecore#//Domain" resolveProxies="false"/>

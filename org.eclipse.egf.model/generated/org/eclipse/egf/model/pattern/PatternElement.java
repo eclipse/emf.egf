@@ -12,7 +12,7 @@
  */
 package org.eclipse.egf.model.pattern;
 
-import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.NamedModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import org.eclipse.egf.model.fcore.ModelElement;
  * @model abstract="true"
  * @generated
  */
-public interface PatternElement extends ModelElement {
+public interface PatternElement extends NamedModelElement {
   /**
    * Returns the value of the '<em><b>Container</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.pattern.PatternLibrary#getElements <em>Elements</em>}'.

@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.fcore.util.FcoreSwitch;
@@ -332,7 +332,7 @@ public class MappingItemProviderAdapterFactory extends MappingAdapterFactory imp
      * @generated
      */
     public ResourceLocator getResourceLocator() {
-      return EGFModelsEditPlugin.INSTANCE;
+      return EGFModelEditPlugin.INSTANCE;
     }
   }
 

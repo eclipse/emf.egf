@@ -15,7 +15,7 @@ package org.eclipse.egf.model.pattern.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.fcore.provider.ViewpointItemProvider;
 import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternPackage;
@@ -114,13 +114,12 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((PatternViewpoint) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_PatternViewpoint_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_PatternViewpoint_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    return "[" + getString("_UI_PatternViewpoint_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -164,7 +163,7 @@ public class PatternViewpointItemProvider extends ViewpointItemProvider implemen
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return EGFModelsEditPlugin.INSTANCE;
+    return EGFModelEditPlugin.INSTANCE;
   }
 
 }

@@ -17,10 +17,8 @@ import java.util.List;
 
 import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypesPackage;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -78,7 +76,7 @@ public class TypeBigIntegerItemProvider extends TypeObjectItemProvider implement
   protected void addValuePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeBigInteger_value_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_TypeBigInteger_value_feature", "_UI_TypeBigInteger_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        TypesPackage.Literals.TYPE_BIG_INTEGER__VALUE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_ValuePropertyCategory"), //$NON-NLS-1$
+        TypesPackage.Literals.TYPE_BIG_INTEGER__VALUE, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
         null));
   }
 
@@ -97,13 +95,12 @@ public class TypeBigIntegerItemProvider extends TypeObjectItemProvider implement
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((TypeBigInteger) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_TypeBigInteger_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_TypeBigInteger_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    return "[" + getString("_UI_TypeBigInteger_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**

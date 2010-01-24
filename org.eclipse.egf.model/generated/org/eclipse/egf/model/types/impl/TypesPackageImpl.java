@@ -335,17 +335,8 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getTypeElement_Name() {
-    return (EAttribute) typeElementEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EAttribute getTypeElement_Description() {
-    return (EAttribute) typeElementEClass.getEStructuralFeatures().get(2);
+    return (EAttribute) typeElementEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -721,7 +712,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     // Create classes and their features
     typeElementEClass = createEClass(TYPE_ELEMENT);
     createEAttribute(typeElementEClass, TYPE_ELEMENT__ID);
-    createEAttribute(typeElementEClass, TYPE_ELEMENT__NAME);
     createEAttribute(typeElementEClass, TYPE_ELEMENT__DESCRIPTION);
 
     typeEClass = createEClass(TYPE);
@@ -778,10 +768,10 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     createEAttribute(typeStringEClass, TYPE_STRING__VALUE);
 
     // Create data types
-    collectionEDataType = createEDataType(COLLECTION);
-    listEDataType = createEDataType(LIST);
-    setEDataType = createEDataType(SET);
     eGeneratorAdapterFactoryEDataType = createEDataType(EGENERATOR_ADAPTER_FACTORY);
+    setEDataType = createEDataType(SET);
+    listEDataType = createEDataType(LIST);
+    collectionEDataType = createEDataType(COLLECTION);
     uriEDataType = createEDataType(URI);
   }
 
@@ -813,9 +803,9 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
     // Create type parameters
-    addETypeParameter(collectionEDataType, "E"); //$NON-NLS-1$
-    addETypeParameter(listEDataType, "E"); //$NON-NLS-1$
     addETypeParameter(setEDataType, "E"); //$NON-NLS-1$
+    addETypeParameter(listEDataType, "E"); //$NON-NLS-1$
+    addETypeParameter(collectionEDataType, "E"); //$NON-NLS-1$
 
     // Set bounds for type parameters
 
@@ -844,7 +834,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     // Initialize classes and features; add operations and parameters
     initEClass(typeElementEClass, TypeElement.class, "TypeElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEAttribute(getTypeElement_ID(), theEcorePackage.getEString(), "iD", null, 0, 1, TypeElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEAttribute(getTypeElement_Name(), theEcorePackage.getEString(), "name", null, 0, 1, TypeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEAttribute(getTypeElement_Description(), theEcorePackage.getEString(), "description", null, 0, 1, TypeElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(typeEClass, Type.class, "Type", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -862,10 +851,7 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
 
     initEClass(typeObjectEClass, TypeObject.class, "TypeObject", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
-    initEClass(typeAbstractClassEClass, TypeAbstractClass.class, "TypeAbstractClass", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEAttribute(getTypeAbstractClass_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TypeAbstractClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(typeAbstractClassEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    op = addEOperation(typeObjectEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
     t1 = addETypeParameter(op, "T"); //$NON-NLS-1$
     g1 = createEGenericType(theEcorePackage.getEJavaObject());
     t1.getEBounds().add(g1);
@@ -873,6 +859,9 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     g2 = createEGenericType(t1);
     g1.getETypeArguments().add(g2);
     initEOperation(op, g1);
+
+    initEClass(typeAbstractClassEClass, TypeAbstractClass.class, "TypeAbstractClass", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getTypeAbstractClass_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TypeAbstractClass.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(typeCollectionEClass, TypeCollection.class, "TypeCollection", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
@@ -951,10 +940,10 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     initEAttribute(getTypeString_Value(), theEcorePackage.getEString(), "value", null, 0, 1, TypeString.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     // Initialize data types
-    initEDataType(collectionEDataType, Collection.class, "Collection", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEDataType(listEDataType, List.class, "List", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEDataType(setEDataType, Set.class, "Set", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEDataType(eGeneratorAdapterFactoryEDataType, GeneratorAdapterFactory.class, "EGeneratorAdapterFactory", !IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(setEDataType, Set.class, "Set", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(listEDataType, List.class, "List", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEDataType(collectionEDataType, Collection.class, "Collection", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEDataType(uriEDataType, org.eclipse.emf.common.util.URI.class, "URI", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
     // Create resource

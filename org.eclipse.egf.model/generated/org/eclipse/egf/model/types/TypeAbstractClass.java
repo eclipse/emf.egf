@@ -56,12 +56,4 @@ public interface TypeAbstractClass extends Type {
    */
   void setValue(String value);
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation" required="true" TBounds="org.eclipse.emf.ecore.EJavaObject"
-   * @generated
-   */
-  <T extends Object> Class<T> getType();
-
 } // TypeAbstractClass

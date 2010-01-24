@@ -12,8 +12,7 @@
  */
 package org.eclipse.egf.model.domain;
 
-import org.eclipse.egf.model.types.Type;
-
+import org.eclipse.egf.model.types.TypeObject;
 import org.eclipse.emf.ecore.EPackage;
 
 /**
@@ -33,7 +32,7 @@ import org.eclipse.emf.ecore.EPackage;
  * @model
  * @generated
  */
-public interface TypeDomainEPackage extends Type {
+public interface TypeDomainEPackage extends TypeObject {
   /**
    * Returns the value of the '<em><b>Domain</b></em>' reference.
    * <!-- begin-user-doc -->

@@ -13,8 +13,8 @@
 package org.eclipse.egf.model.mapping.util;
 
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.fcore.Viewpoint;
-import org.eclipse.egf.model.mapping.*;
 import org.eclipse.egf.model.mapping.Mapping;
 import org.eclipse.egf.model.mapping.MappingDomain;
 import org.eclipse.egf.model.mapping.MappingPackage;
@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * It provides an adapter <code>createXXX</code> method for each class of the
  * model.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.mapping.MappingPackage
  * @generated
  */
@@ -38,6 +39,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
    * The cached model package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected static MappingPackage modelPackage;
@@ -46,6 +48,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
    * Creates an instance of the adapter factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public MappingAdapterFactory() {
@@ -60,6 +63,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
    * This implementation returns <code>true</code> if the object is either the
    * model's package or is an instance object of the model.
    * <!-- end-user-doc -->
+   * 
    * @return whether this factory is applicable for the type of the object.
    * @generated
    */
@@ -78,6 +82,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
    * The switch that delegates to the <code>createXXX</code> methods.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected MappingSwitch<Adapter> modelSwitch = new MappingSwitch<Adapter>() {
@@ -107,6 +112,11 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
+    public Adapter caseNamedModelElement(NamedModelElement object) {
+      return createNamedModelElementAdapter();
+    }
+
+    @Override
     public Adapter defaultCase(EObject object) {
       return createEObjectAdapter();
     }
@@ -116,7 +126,9 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
    * Creates an adapter for the <code>target</code>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param target the object to adapt.
+   * 
+   * @param target
+   *          the object to adapt.
    * @return the adapter for the <code>target</code>.
    * @generated
    */
@@ -126,13 +138,15 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.mapping.MappingViewpoint <em>Viewpoint</em>}'.
+   * Creates a new adapter for an object of class '
+   * {@link org.eclipse.egf.model.mapping.MappingViewpoint <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
+   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.mapping.MappingViewpoint
    * @generated
@@ -142,13 +156,15 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.mapping.Mapping <em>Mapping</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.mapping.Mapping
+   * <em>Mapping</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
+   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.mapping.Mapping
    * @generated
@@ -158,13 +174,15 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.mapping.MappingDomain <em>Domain</em>}'.
+   * Creates a new adapter for an object of class '
+   * {@link org.eclipse.egf.model.mapping.MappingDomain <em>Domain</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
+   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.mapping.MappingDomain
    * @generated
@@ -174,13 +192,15 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement
+   * <em>Model Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
+   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.ModelElement
    * @generated
@@ -190,13 +210,15 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Viewpoint <em>Viewpoint</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Viewpoint
+   * <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
    * it's useful to ignore a case when inheritance will catch all the cases
    * anyway.
    * <!-- end-user-doc -->
+   * 
    * @return the new adapter.
    * @see org.eclipse.egf.model.fcore.Viewpoint
    * @generated
@@ -206,10 +228,27 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
+   * Creates a new adapter for an object of class '
+   * {@link org.eclipse.egf.model.fcore.NamedModelElement <em>Named Model Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * 
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.NamedModelElement
+   * @generated
+   */
+  public Adapter createNamedModelElementAdapter() {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for the default case.
    * <!-- begin-user-doc -->
    * This default implementation returns null.
    * <!-- end-user-doc -->
+   * 
    * @return the new adapter.
    * @generated
    */

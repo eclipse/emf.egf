@@ -22,14 +22,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class TypeGeneratorAdapterFactoryImpl extends TypeAbstractClassImpl implements TypeGeneratorAdapterFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypeGeneratorAdapterFactoryImpl() {
@@ -39,7 +38,6 @@ public class TypeGeneratorAdapterFactoryImpl extends TypeAbstractClassImpl imple
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -50,7 +48,6 @@ public class TypeGeneratorAdapterFactoryImpl extends TypeAbstractClassImpl imple
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

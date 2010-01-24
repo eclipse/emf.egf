@@ -21,11 +21,11 @@ import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.TypeDomainEPackage;
 import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.domain.util.DomainAdapterFactory;
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-import org.eclipse.egf.model.fcore.ActivityContract;
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.InvocationContext;
-import org.eclipse.egf.model.fcore.OrchestrationContext;
+import org.eclipse.egf.model.fcore.InvocationContract;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.fcore.util.FcoreSwitch;
 import org.eclipse.emf.common.notify.Adapter;
@@ -379,10 +379,10 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        * @generated
        */
       @Override
-      public Object caseActivityContract(ActivityContract object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
+      public Object caseContract(Contract object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ACTIVITY_CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
 
         return null;
       }
@@ -405,10 +405,10 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        * @generated
        */
       @Override
-      public Object caseOrchestrationContext(OrchestrationContext object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
+      public Object caseOrchestrationParameter(OrchestrationParameter object) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainEPackage()));
 
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_CONTEXT__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, DomainFactory.eINSTANCE.createTypeDomainURI()));
 
         return null;
       }
@@ -420,23 +420,23 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
        * @generated NOT
        */
       @Override
-      public Object caseInvocationContext(InvocationContext object) {
+      public Object caseInvocationContract(InvocationContract object) {
 
-        if (object.getActivityContract() == null || object.getActivityContract().getType() == null) {
+        if (object.getInvokedContract() == null || object.getInvokedContract().getType() == null) {
           return null;
         }
 
         {
           TypeDomainEPackage type = DomainFactory.eINSTANCE.createTypeDomainEPackage();
-          if (ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+          if (ClassHelper.asSubClass(type.getType(), object.getInvokedContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
           }
         }
 
         {
           TypeDomainURI type = DomainFactory.eINSTANCE.createTypeDomainURI();
-          if (ClassHelper.asSubClass(type.getType(), object.getActivityContract().getType().getType())) {
-            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTEXT__TYPE, type));
+          if (ClassHelper.asSubClass(type.getType(), object.getInvokedContract().getType().getType())) {
+            newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
           }
         }
 
@@ -471,7 +471,7 @@ public class DomainItemProviderAdapterFactory extends DomainAdapterFactory imple
      * @generated
      */
     public ResourceLocator getResourceLocator() {
-      return EGFModelsEditPlugin.INSTANCE;
+      return EGFModelEditPlugin.INSTANCE;
     }
   }
 

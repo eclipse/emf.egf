@@ -15,8 +15,8 @@ package org.eclipse.egf.model.pattern.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-import org.eclipse.egf.model.fcore.provider.ModelElementItemProvider;
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
+import org.eclipse.egf.model.fcore.provider.NamedModelElementItemProvider;
 import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
@@ -45,7 +45,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class PatternParameterItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class PatternParameterItemProvider extends NamedModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -183,7 +183,7 @@ public class PatternParameterItemProvider extends ModelElementItemProvider imple
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return EGFModelsEditPlugin.INSTANCE;
+    return EGFModelEditPlugin.INSTANCE;
   }
 
 }

@@ -76,7 +76,8 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
   protected void addSourcePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_MappingDomain_source_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_MappingDomain_source_feature", "_UI_MappingDomain_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        MappingPackage.Literals.MAPPING_DOMAIN__SOURCE, true, false, true, null, null, null));
+        MappingPackage.Literals.MAPPING_DOMAIN__SOURCE, true, false, true, null, getString("_UI_ConnectorPropertyCategory"), //$NON-NLS-1$
+        null));
   }
 
   /**
@@ -88,7 +89,8 @@ public class MappingDomainItemProvider extends MappingItemProvider implements IE
   protected void addTargetPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_MappingDomain_target_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_MappingDomain_target_feature", "_UI_MappingDomain_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        MappingPackage.Literals.MAPPING_DOMAIN__TARGET, true, false, true, null, null, null));
+        MappingPackage.Literals.MAPPING_DOMAIN__TARGET, true, false, true, null, getString("_UI_ConnectorPropertyCategory"), //$NON-NLS-1$
+        null));
   }
 
   /**

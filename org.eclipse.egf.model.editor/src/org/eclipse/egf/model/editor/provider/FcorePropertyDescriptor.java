@@ -13,18 +13,17 @@ package org.eclipse.egf.model.editor.provider;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
-import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
-import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
+import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
-import org.eclipse.egf.model.fprod.FprodPackage;
-import org.eclipse.egf.model.fprod.Task;
+import org.eclipse.egf.model.ftask.FtaskPackage;
+import org.eclipse.egf.model.ftask.TaskJava;
 import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
-import org.eclipse.emf.ecore.EGenericType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.PropertyDescriptor;
@@ -60,7 +59,7 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
 
     Object feature = itemPropertyDescriptor.getFeature(object);
 
-    if ((object instanceof TypeAbstractClass && feature.equals(TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE)) || (object instanceof Task && feature.equals(FprodPackage.Literals.TASK__VALUE))) {
+    if ((object instanceof TypeAbstractClass && feature.equals(TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE)) || (object instanceof TaskJava && feature.equals(FtaskPackage.Literals.TASK_JAVA__VALUE))) {
 
       // Data Holder
       final Class<?>[] clazzes = new Class<?>[1];
@@ -75,10 +74,10 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
         }
         clazzes[0] = typeAbstractClass.getType();
         values[0] = typeAbstractClass.getValue();
-      } else if (object instanceof Task) {
-        Task task = (Task) object;
+      } else if (object instanceof TaskJava) {
+        TaskJava taskJava = (TaskJava) object;
         clazzes[0] = ITaskProduction.class;
-        values[0] = task.getValue();
+        values[0] = taskJava.getValue();
       } else {
         return null;
       }
@@ -106,30 +105,26 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
 
       return result;
 
-    } else if (object instanceof Invocation<?> && feature.equals(FcorePackage.Literals.INVOCATION__ACTIVITY)) {
-
-      final Invocation<?> invocation = (Invocation<?>) object;
-      EGenericType genericType = invocation.eClass().getEGenericSuperTypes().get(0).getETypeArguments().get(0);
+    } else if (object instanceof Invocation && feature.equals(FcorePackage.Literals.INVOCATION__INVOKED_ACTIVITY)) {
 
       // Data Holder
-      final Class<?>[] clazzes = new Class<?>[] { genericType.getEClassifier().getInstanceClass() };
-      final Invocation<?>[] invocations = new Invocation<?>[] { invocation };
+      final Invocation[] invocations = new Invocation[] { (Invocation) object };
 
       final ILabelProvider editLabelProvider = getEditLabelProvider();
       result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
         @Override
         protected Object openDialogBox(Control cellEditorWindow) {
-          ActivitySelectionDialog dialog = new ActivitySelectionDialog(EGFModelsEditorPlugin.getActiveWorkbenchShell(), clazzes[0], invocations[0].eResource(), invocations[0].getActivity(), false);
+          ActivitySelectionDialog dialog = new ActivitySelectionDialog(EGFModelEditorPlugin.getActiveWorkbenchShell(), invocations[0].eResource(), invocations[0].getInvokedActivity(), false);
           dialog.open();
           Object[] innerResult = dialog.getResult();
           if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof Activity) {
             // Force a load resource on the current ResourceSet
             Activity activity = (Activity) innerResult[0];
-            invocation.eResource().getResourceSet().getResource(activity.eResource().getURI(), true);
+            invocations[0].eResource().getResourceSet().getResource(activity.eResource().getURI(), true);
             // Return selected value
             return innerResult[0];
           }
-          return invocations[0].getActivity();
+          return invocations[0].getInvokedActivity();
         }
       };
 

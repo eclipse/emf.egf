@@ -355,9 +355,9 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     domainViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
     domainEClass.getESuperTypes().add(theFcorePackage.getModelElement());
     domainEPackageEClass.getESuperTypes().add(this.getDomain());
-    typeDomainEPackageEClass.getESuperTypes().add(theTypesPackage.getType());
+    typeDomainEPackageEClass.getESuperTypes().add(theTypesPackage.getTypeObject());
     domainURIEClass.getESuperTypes().add(this.getDomain());
-    typeDomainURIEClass.getESuperTypes().add(theTypesPackage.getType());
+    typeDomainURIEClass.getESuperTypes().add(theTypesPackage.getTypeObject());
 
     // Initialize classes and features; add operations and parameters
     initEClass(domainViewpointEClass, DomainViewpoint.class, "DomainViewpoint", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

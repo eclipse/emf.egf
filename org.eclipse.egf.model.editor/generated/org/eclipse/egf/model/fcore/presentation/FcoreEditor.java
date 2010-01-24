@@ -44,11 +44,12 @@ import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
-import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.adapter.EGFAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
+import org.eclipse.egf.model.ftask.provider.FtaskItemProviderAdapterFactory;
 import org.eclipse.egf.model.pattern.provider.PatternItemProviderAdapterFactory;
 import org.eclipse.egf.model.resource.ModelResourceItemProviderAdapterFactory;
 import org.eclipse.egf.model.types.provider.TypesItemProviderAdapterFactory;
@@ -506,13 +507,13 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
     }
 
     @Override
-    protected void setTarget(Resource target) {
-      basicSetTarget(target);
+    protected void setTarget(Resource innerTarget) {
+      basicSetTarget(innerTarget);
     }
 
     @Override
-    protected void unsetTarget(Resource target) {
-      basicUnsetTarget(target);
+    protected void unsetTarget(Resource innerTarget) {
+      basicUnsetTarget(innerTarget);
     }
   };
 
@@ -593,7 +594,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
           });
         }
       } catch (CoreException exception) {
-        EGFModelsEditorPlugin.INSTANCE.log(exception);
+        EGFModelEditorPlugin.INSTANCE.log(exception);
       }
     }
   };
@@ -685,7 +686,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
           setActivePage(lastEditorPage);
           showTabs();
         } catch (PartInitException exception) {
-          EGFModelsEditorPlugin.INSTANCE.log(exception);
+          EGFModelEditorPlugin.INSTANCE.log(exception);
         }
       }
 
@@ -695,7 +696,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
           try {
             markerHelper.createMarkers(diagnostic);
           } catch (CoreException exception) {
-            EGFModelsEditorPlugin.INSTANCE.log(exception);
+            EGFModelEditorPlugin.INSTANCE.log(exception);
           }
         }
       }
@@ -740,6 +741,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
 
     adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
+    adapterFactory.addAdapterFactory(new FtaskItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
@@ -998,7 +1000,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
       //
       resource = ResourceHelper.loadResource(editingDomain.getResourceSet(), uri);
     } catch (Exception e) {
-      EGFModelsEditorPlugin.getPlugin().logError(e);
+      EGFModelEditorPlugin.getPlugin().logError(e);
       exception = e;
       resource = editingDomain.getResourceSet().getResource(uri, false);
     }
@@ -1368,7 +1370,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
     } catch (Exception exception) {
       // Something went wrong that shouldn't.
       //
-      EGFModelsEditorPlugin.INSTANCE.log(exception);
+      EGFModelEditorPlugin.INSTANCE.log(exception);
     }
     updateProblemIndication = true;
     updateProblemIndication();
@@ -1464,7 +1466,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
         }
       }
     } catch (CoreException exception) {
-      EGFModelsEditorPlugin.INSTANCE.log(exception);
+      EGFModelEditorPlugin.INSTANCE.log(exception);
     }
   }
 
@@ -1592,7 +1594,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * @generated
    */
   private static String getString(String key) {
-    return EGFModelsEditorPlugin.INSTANCE.getString(key);
+    return EGFModelEditorPlugin.INSTANCE.getString(key);
   }
 
   /**
@@ -1603,7 +1605,7 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
    * @generated
    */
   private static String getString(String key, Object s1) {
-    return EGFModelsEditorPlugin.INSTANCE.getString(key, new Object[] { s1 });
+    return EGFModelEditorPlugin.INSTANCE.getString(key, new Object[] { s1 });
   }
 
   /**

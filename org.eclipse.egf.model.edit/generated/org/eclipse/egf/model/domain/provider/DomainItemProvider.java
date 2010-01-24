@@ -16,7 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.domain.Domain;
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.fcore.provider.ModelElementItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -37,6 +37,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.Domain} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DomainItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -44,6 +45,7 @@ public class DomainItemProvider extends ModelElementItemProvider implements IEdi
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainItemProvider(AdapterFactory adapterFactory) {
@@ -54,6 +56,7 @@ public class DomainItemProvider extends ModelElementItemProvider implements IEdi
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -69,11 +72,12 @@ public class DomainItemProvider extends ModelElementItemProvider implements IEdi
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public String getText(Object object) {
-    String label = ((Domain) object).getName();
+    String label = ((Domain) object).getID();
     return label == null || label.length() == 0 ? "[" + getString("_UI_Domain_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         label + " [" + getString("_UI_Domain_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
@@ -83,6 +87,7 @@ public class DomainItemProvider extends ModelElementItemProvider implements IEdi
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -96,6 +101,7 @@ public class DomainItemProvider extends ModelElementItemProvider implements IEdi
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -107,11 +113,12 @@ public class DomainItemProvider extends ModelElementItemProvider implements IEdi
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return EGFModelsEditPlugin.INSTANCE;
+    return EGFModelEditPlugin.INSTANCE;
   }
 
 }

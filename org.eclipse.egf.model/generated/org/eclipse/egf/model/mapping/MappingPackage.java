@@ -85,15 +85,6 @@ public interface MappingPackage extends EPackage {
   int MAPPING_VIEWPOINT__ID = FcorePackage.VIEWPOINT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MAPPING_VIEWPOINT__NAME = FcorePackage.VIEWPOINT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -103,13 +94,13 @@ public interface MappingPackage extends EPackage {
   int MAPPING_VIEWPOINT__DESCRIPTION = FcorePackage.VIEWPOINT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Viewerpoint Container</b></em>' container reference.
+   * The feature id for the '<em><b>Viewpoint Container</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MAPPING_VIEWPOINT__VIEWERPOINT_CONTAINER = FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER;
+  int MAPPING_VIEWPOINT__VIEWPOINT_CONTAINER = FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER;
 
   /**
    * The feature id for the '<em><b>Mappings</b></em>' containment reference list.
@@ -146,16 +137,7 @@ public interface MappingPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MAPPING__ID = FcorePackage.MODEL_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MAPPING__NAME = FcorePackage.MODEL_ELEMENT__NAME;
+  int MAPPING__ID = FcorePackage.NAMED_MODEL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -164,7 +146,16 @@ public interface MappingPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MAPPING__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+  int MAPPING__DESCRIPTION = FcorePackage.NAMED_MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MAPPING__NAME = FcorePackage.NAMED_MODEL_ELEMENT__NAME;
 
   /**
    * The number of structural features of the '<em>Mapping</em>' class.
@@ -173,7 +164,7 @@ public interface MappingPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int MAPPING_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int MAPPING_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.mapping.impl.MappingDomainImpl <em>Domain</em>}' class.
@@ -195,15 +186,6 @@ public interface MappingPackage extends EPackage {
   int MAPPING_DOMAIN__ID = MAPPING__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MAPPING_DOMAIN__NAME = MAPPING__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -211,6 +193,15 @@ public interface MappingPackage extends EPackage {
    * @ordered
    */
   int MAPPING_DOMAIN__DESCRIPTION = MAPPING__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MAPPING_DOMAIN__NAME = MAPPING__NAME;
 
   /**
    * The feature id for the '<em><b>Source</b></em>' reference.
@@ -332,6 +323,7 @@ public interface MappingPackage extends EPackage {
      * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMappingViewpoint()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass MAPPING_VIEWPOINT = eINSTANCE.getMappingViewpoint();
 
     /**
@@ -340,6 +332,7 @@ public interface MappingPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference MAPPING_VIEWPOINT__MAPPINGS = eINSTANCE.getMappingViewpoint_Mappings();
 
     /**
@@ -350,6 +343,7 @@ public interface MappingPackage extends EPackage {
      * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMapping()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass MAPPING = eINSTANCE.getMapping();
 
     /**
@@ -360,6 +354,7 @@ public interface MappingPackage extends EPackage {
      * @see org.eclipse.egf.model.mapping.impl.MappingPackageImpl#getMappingDomain()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass MAPPING_DOMAIN = eINSTANCE.getMappingDomain();
 
     /**
@@ -368,6 +363,7 @@ public interface MappingPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference MAPPING_DOMAIN__SOURCE = eINSTANCE.getMappingDomain_Source();
 
     /**
@@ -376,6 +372,7 @@ public interface MappingPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference MAPPING_DOMAIN__TARGET = eINSTANCE.getMappingDomain_Target();
 
   }

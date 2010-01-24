@@ -12,12 +12,10 @@
  */
 package org.eclipse.egf.model.types;
 
-import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EPackage;
-import org.eclipse.emf.ecore.EReference;
 
 /**
  * <!-- begin-user-doc -->
@@ -87,22 +85,13 @@ public interface TypesPackage extends EPackage {
   int TYPE_ELEMENT__ID = 0;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_ELEMENT__NAME = 1;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TYPE_ELEMENT__DESCRIPTION = 2;
+  int TYPE_ELEMENT__DESCRIPTION = 1;
 
   /**
    * The number of structural features of the '<em>Type Element</em>' class.
@@ -111,7 +100,7 @@ public interface TypesPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_ELEMENT_FEATURE_COUNT = 3;
+  int TYPE_ELEMENT_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeImpl <em>Type</em>}' class.
@@ -131,15 +120,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE__ID = TYPE_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE__NAME = TYPE_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -179,15 +159,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_OBJECT__ID = TYPE__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_OBJECT__NAME = TYPE__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -223,15 +194,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE_ABSTRACT_CLASS__ID = TYPE__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_ABSTRACT_CLASS__NAME = TYPE__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -280,15 +242,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_COLLECTION__ID = TYPE_ABSTRACT_CLASS__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_COLLECTION__NAME = TYPE_ABSTRACT_CLASS__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -333,15 +286,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE_LIST__ID = TYPE_ABSTRACT_CLASS__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_LIST__NAME = TYPE_ABSTRACT_CLASS__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -390,15 +334,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_SET__ID = TYPE_ABSTRACT_CLASS__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_SET__NAME = TYPE_ABSTRACT_CLASS__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -443,15 +378,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE_GENERATOR_ADAPTER_FACTORY__ID = TYPE_ABSTRACT_CLASS__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_GENERATOR_ADAPTER_FACTORY__NAME = TYPE_ABSTRACT_CLASS__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -500,15 +426,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_MAP__ID = TYPE_ABSTRACT_CLASS__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_MAP__NAME = TYPE_ABSTRACT_CLASS__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -553,15 +470,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE_BIG_DECIMAL__ID = TYPE_OBJECT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_BIG_DECIMAL__NAME = TYPE_OBJECT__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -610,15 +518,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_BIG_INTEGER__ID = TYPE_OBJECT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_BIG_INTEGER__NAME = TYPE_OBJECT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -663,15 +562,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE_BOOLEAN__ID = TYPE_OBJECT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_BOOLEAN__NAME = TYPE_OBJECT__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -720,15 +610,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_BYTE__ID = TYPE_OBJECT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_BYTE__NAME = TYPE_OBJECT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -773,15 +654,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE_CHARACTER__ID = TYPE_OBJECT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_CHARACTER__NAME = TYPE_OBJECT__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -830,15 +702,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_DATE__ID = TYPE_OBJECT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DATE__NAME = TYPE_OBJECT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -883,15 +746,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE_DOUBLE__ID = TYPE_OBJECT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DOUBLE__NAME = TYPE_OBJECT__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -940,15 +794,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_FLOAT__ID = TYPE_OBJECT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_FLOAT__NAME = TYPE_OBJECT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -993,15 +838,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE_INTEGER__ID = TYPE_OBJECT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_INTEGER__NAME = TYPE_OBJECT__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1050,15 +886,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_LONG__ID = TYPE_OBJECT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_LONG__NAME = TYPE_OBJECT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1103,15 +930,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE_SHORT__ID = TYPE_OBJECT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_SHORT__NAME = TYPE_OBJECT__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1160,15 +978,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_STRING__ID = TYPE_OBJECT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_STRING__NAME = TYPE_OBJECT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1203,7 +1012,7 @@ public interface TypesPackage extends EPackage {
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getEGeneratorAdapterFactory()
    * @generated
    */
-  int EGENERATOR_ADAPTER_FACTORY = 24;
+  int EGENERATOR_ADAPTER_FACTORY = 21;
 
   /**
    * The meta object id for the '<em>URI</em>' data type.
@@ -1237,17 +1046,6 @@ public interface TypesPackage extends EPackage {
   EAttribute getTypeElement_ID();
 
   /**
-   * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeElement#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.eclipse.egf.model.types.TypeElement#getName()
-   * @see #getTypeElement()
-   * @generated
-   */
-  EAttribute getTypeElement_Name();
-
-  /**
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.types.TypeElement#getDescription <em>Description</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1276,7 +1074,7 @@ public interface TypesPackage extends EPackage {
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getCollection()
    * @generated
    */
-  int COLLECTION = 21;
+  int COLLECTION = 24;
 
   /**
    * The meta object id for the '<em>List</em>' data type.
@@ -1286,7 +1084,7 @@ public interface TypesPackage extends EPackage {
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getList()
    * @generated
    */
-  int LIST = 22;
+  int LIST = 23;
 
   /**
    * The meta object id for the '<em>Set</em>' data type.
@@ -1296,7 +1094,7 @@ public interface TypesPackage extends EPackage {
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getSet()
    * @generated
    */
-  int SET = 23;
+  int SET = 22;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeObject <em>Type Object</em>}'.
@@ -1716,6 +1514,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeElement()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_ELEMENT = eINSTANCE.getTypeElement();
 
     /**
@@ -1724,15 +1523,8 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_ELEMENT__ID = eINSTANCE.getTypeElement_ID();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TYPE_ELEMENT__NAME = eINSTANCE.getTypeElement_Name();
 
     /**
      * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
@@ -1740,6 +1532,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_ELEMENT__DESCRIPTION = eINSTANCE.getTypeElement_Description();
 
     /**
@@ -1750,6 +1543,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getType()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE = eINSTANCE.getType();
 
     /**
@@ -1760,6 +1554,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeObject()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_OBJECT = eINSTANCE.getTypeObject();
 
     /**
@@ -1770,6 +1565,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeAbstractClass()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_ABSTRACT_CLASS = eINSTANCE.getTypeAbstractClass();
 
     /**
@@ -1778,6 +1574,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_ABSTRACT_CLASS__VALUE = eINSTANCE.getTypeAbstractClass_Value();
 
     /**
@@ -1788,6 +1585,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeCollection()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_COLLECTION = eINSTANCE.getTypeCollection();
 
     /**
@@ -1798,6 +1596,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeList()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_LIST = eINSTANCE.getTypeList();
 
     /**
@@ -1808,6 +1607,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeSet()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_SET = eINSTANCE.getTypeSet();
 
     /**
@@ -1818,6 +1618,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeGeneratorAdapterFactory()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_GENERATOR_ADAPTER_FACTORY = eINSTANCE.getTypeGeneratorAdapterFactory();
 
     /**
@@ -1828,6 +1629,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeMap()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_MAP = eINSTANCE.getTypeMap();
 
     /**
@@ -1838,6 +1640,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeBigDecimal()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_BIG_DECIMAL = eINSTANCE.getTypeBigDecimal();
 
     /**
@@ -1846,6 +1649,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_BIG_DECIMAL__VALUE = eINSTANCE.getTypeBigDecimal_Value();
 
     /**
@@ -1856,6 +1660,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeBigInteger()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_BIG_INTEGER = eINSTANCE.getTypeBigInteger();
 
     /**
@@ -1864,6 +1669,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_BIG_INTEGER__VALUE = eINSTANCE.getTypeBigInteger_Value();
 
     /**
@@ -1874,6 +1680,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeBoolean()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_BOOLEAN = eINSTANCE.getTypeBoolean();
 
     /**
@@ -1882,6 +1689,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_BOOLEAN__VALUE = eINSTANCE.getTypeBoolean_Value();
 
     /**
@@ -1892,6 +1700,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeByte()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_BYTE = eINSTANCE.getTypeByte();
 
     /**
@@ -1900,6 +1709,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_BYTE__VALUE = eINSTANCE.getTypeByte_Value();
 
     /**
@@ -1910,6 +1720,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeCharacter()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_CHARACTER = eINSTANCE.getTypeCharacter();
 
     /**
@@ -1918,6 +1729,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_CHARACTER__VALUE = eINSTANCE.getTypeCharacter_Value();
 
     /**
@@ -1928,6 +1740,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeDate()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_DATE = eINSTANCE.getTypeDate();
 
     /**
@@ -1936,6 +1749,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_DATE__VALUE = eINSTANCE.getTypeDate_Value();
 
     /**
@@ -1946,6 +1760,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeDouble()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_DOUBLE = eINSTANCE.getTypeDouble();
 
     /**
@@ -1954,6 +1769,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_DOUBLE__VALUE = eINSTANCE.getTypeDouble_Value();
 
     /**
@@ -1964,6 +1780,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeFloat()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_FLOAT = eINSTANCE.getTypeFloat();
 
     /**
@@ -1972,6 +1789,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_FLOAT__VALUE = eINSTANCE.getTypeFloat_Value();
 
     /**
@@ -1982,6 +1800,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeInteger()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_INTEGER = eINSTANCE.getTypeInteger();
 
     /**
@@ -1990,6 +1809,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_INTEGER__VALUE = eINSTANCE.getTypeInteger_Value();
 
     /**
@@ -2000,6 +1820,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeLong()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_LONG = eINSTANCE.getTypeLong();
 
     /**
@@ -2008,6 +1829,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_LONG__VALUE = eINSTANCE.getTypeLong_Value();
 
     /**
@@ -2018,6 +1840,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeShort()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_SHORT = eINSTANCE.getTypeShort();
 
     /**
@@ -2026,6 +1849,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_SHORT__VALUE = eINSTANCE.getTypeShort_Value();
 
     /**
@@ -2036,6 +1860,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeString()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_STRING = eINSTANCE.getTypeString();
 
     /**
@@ -2044,6 +1869,7 @@ public interface TypesPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_STRING__VALUE = eINSTANCE.getTypeString_Value();
 
     /**
@@ -2054,6 +1880,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getEGeneratorAdapterFactory()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EDataType EGENERATOR_ADAPTER_FACTORY = eINSTANCE.getEGeneratorAdapterFactory();
 
     /**
@@ -2064,6 +1891,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getURI()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EDataType URI = eINSTANCE.getURI();
 
     /**
@@ -2074,6 +1902,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getCollection()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EDataType COLLECTION = eINSTANCE.getCollection();
 
     /**
@@ -2084,6 +1913,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getList()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EDataType LIST = eINSTANCE.getList();
 
     /**
@@ -2094,6 +1924,7 @@ public interface TypesPackage extends EPackage {
      * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getSet()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EDataType SET = eINSTANCE.getSet();
 
   }

@@ -12,7 +12,7 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
+import org.eclipse.egf.model.fcore.impl.NamedModelElementImpl;
 import org.eclipse.egf.model.pattern.PatternNature;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.emf.ecore.EClass;
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class PatternNatureImpl extends ModelElementImpl implements PatternNature {
+public abstract class PatternNatureImpl extends NamedModelElementImpl implements PatternNature {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->

@@ -22,14 +22,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class TypeSetImpl extends TypeAbstractClassImpl implements TypeSet {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypeSetImpl() {
@@ -39,7 +38,6 @@ public class TypeSetImpl extends TypeAbstractClassImpl implements TypeSet {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -50,7 +48,6 @@ public class TypeSetImpl extends TypeAbstractClassImpl implements TypeSet {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

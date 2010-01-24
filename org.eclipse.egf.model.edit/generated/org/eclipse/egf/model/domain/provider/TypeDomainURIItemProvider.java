@@ -17,8 +17,8 @@ import java.util.List;
 
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.TypeDomainURI;
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-import org.eclipse.egf.model.types.provider.TypeItemProvider;
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
+import org.eclipse.egf.model.types.provider.TypeObjectItemProvider;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
@@ -43,7 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * <!-- end-user-doc -->
  * @generated
  */
-public class TypeDomainURIItemProvider extends TypeItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -93,7 +93,7 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
   protected void addValuePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeDomainURI_value_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_TypeDomainURI_value_feature", "_UI_TypeDomainURI_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        DomainPackage.Literals.TYPE_DOMAIN_URI__VALUE, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_ValuePropertyCategory"), //$NON-NLS-1$
+        DomainPackage.Literals.TYPE_DOMAIN_URI__VALUE, false, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
         null));
   }
 
@@ -118,22 +118,13 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
   @Override
   public String getText(Object object) {
     TypeDomainURI typeDomainEPackage = (TypeDomainURI) object;
-    String label = typeDomainEPackage.getName();
     String nsuri = null;
     if (typeDomainEPackage.getValue() != null) {
       nsuri = "[" + typeDomainEPackage.getValue() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }
-    if (label == null || label.length() == 0) {
-      label = "[" + getString("_UI_TypeDomainURI_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-      if (nsuri != null) {
-        label = nsuri + " " + label; //$NON-NLS-1$
-      }
-    } else {
-      if (nsuri != null) {
-        label = label + " " + nsuri + " [" + getString("_UI_TypeDomainURI_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-      } else {
-        label = label + " [" + getString("_UI_TypeDomainURI_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-      }
+    String label = "[" + getString("_UI_TypeDomainURI_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    if (nsuri != null) {
+      label = nsuri + " " + label; //$NON-NLS-1$
     }
     return label;
   }
@@ -178,7 +169,7 @@ public class TypeDomainURIItemProvider extends TypeItemProvider implements IEdit
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return EGFModelsEditPlugin.INSTANCE;
+    return EGFModelEditPlugin.INSTANCE;
   }
 
 }

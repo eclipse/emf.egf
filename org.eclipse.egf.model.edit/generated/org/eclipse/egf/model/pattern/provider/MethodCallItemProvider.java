@@ -35,6 +35,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.MethodCall} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class MethodCallItemProvider extends CallItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -42,6 +43,7 @@ public class MethodCallItemProvider extends CallItemProvider implements IEditing
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public MethodCallItemProvider(AdapterFactory adapterFactory) {
@@ -52,6 +54,7 @@ public class MethodCallItemProvider extends CallItemProvider implements IEditing
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -68,6 +71,7 @@ public class MethodCallItemProvider extends CallItemProvider implements IEditing
    * This adds a property descriptor for the Called feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addCalledPropertyDescriptor(Object object) {
@@ -80,6 +84,7 @@ public class MethodCallItemProvider extends CallItemProvider implements IEditing
    * This returns MethodCall.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -91,7 +96,8 @@ public class MethodCallItemProvider extends CallItemProvider implements IEditing
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
@@ -103,6 +109,7 @@ public class MethodCallItemProvider extends CallItemProvider implements IEditing
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -116,6 +123,7 @@ public class MethodCallItemProvider extends CallItemProvider implements IEditing
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

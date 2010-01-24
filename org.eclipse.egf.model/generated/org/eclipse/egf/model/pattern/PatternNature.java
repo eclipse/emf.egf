@@ -12,7 +12,7 @@
  */
 package org.eclipse.egf.model.pattern;
 
-import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.NamedModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,5 +24,5 @@ import org.eclipse.egf.model.fcore.ModelElement;
  * @model abstract="true"
  * @generated
  */
-public interface PatternNature extends ModelElement {
+public interface PatternNature extends NamedModelElement {
 } // PatternNature

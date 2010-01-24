@@ -78,8 +78,7 @@ public class OrchestrationItemProvider extends ModelElementItemProvider implemen
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(FcorePackage.Literals.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER);
-      childrenFeatures.add(FcorePackage.Literals.ORCHESTRATION__INVOCATIONS);
+      childrenFeatures.add(FcorePackage.Literals.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER);
     }
     return childrenFeatures;
   }
@@ -101,13 +100,12 @@ public class OrchestrationItemProvider extends ModelElementItemProvider implemen
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((Orchestration) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_Orchestration_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_Orchestration_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    return "[" + getString("_UI_Orchestration_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -122,8 +120,7 @@ public class OrchestrationItemProvider extends ModelElementItemProvider implemen
     updateChildren(notification);
 
     switch (notification.getFeatureID(Orchestration.class)) {
-    case FcorePackage.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER:
-    case FcorePackage.ORCHESTRATION__INVOCATIONS:
+    case FcorePackage.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -141,7 +138,7 @@ public class OrchestrationItemProvider extends ModelElementItemProvider implemen
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION__ORCHESTRATION_CONTEXT_CONTAINER, FcoreFactory.eINSTANCE.createOrchestrationContextContainer()));
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION__ORCHESTRATION_PARAMETER_CONTAINER, FcoreFactory.eINSTANCE.createOrchestrationParameterContainer()));
   }
 
 }

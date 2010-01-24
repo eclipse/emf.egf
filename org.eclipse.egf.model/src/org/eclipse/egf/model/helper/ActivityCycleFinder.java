@@ -49,7 +49,7 @@ public class ActivityCycleFinder {
   }
 
   protected ModelElement getFirstRepetition(Orchestration orchestration) {
-    for (Invocation<?> invocation : orchestration.getInvocations()) {
+    for (Invocation invocation : orchestration.getInvocations()) {
       ModelElement element = getFirstRepetition(invocation);
       if (element != null) {
         return element;
@@ -58,15 +58,15 @@ public class ActivityCycleFinder {
     return null;
   }
 
-  protected ModelElement getFirstRepetition(Invocation<?> invocation) {
-    if (invocation.getActivity() == null) {
+  protected ModelElement getFirstRepetition(Invocation invocation) {
+    if (invocation.getInvokedActivity() == null) {
       return null;
     }
     // Cycle detection at invocation level
-    if (activityLookup(invocation.getActivity())) {
+    if (activityLookup(invocation.getInvokedActivity())) {
       return invocation;
     }
-    return getFirstRepetition(invocation.getActivity());
+    return getFirstRepetition(invocation.getInvokedActivity());
   }
 
   private boolean activityLookup(Activity activity) {

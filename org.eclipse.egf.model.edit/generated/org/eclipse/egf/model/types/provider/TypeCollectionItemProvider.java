@@ -15,11 +15,8 @@ package org.eclipse.egf.model.types.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.types.TypeCollection;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -33,9 +30,11 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.types.TypeCollection} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.types.TypeCollection}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypeCollectionItemProvider extends TypeAbstractClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -43,6 +42,7 @@ public class TypeCollectionItemProvider extends TypeAbstractClassItemProvider im
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypeCollectionItemProvider(AdapterFactory adapterFactory) {
@@ -53,6 +53,7 @@ public class TypeCollectionItemProvider extends TypeAbstractClassItemProvider im
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -68,6 +69,7 @@ public class TypeCollectionItemProvider extends TypeAbstractClassItemProvider im
    * This returns TypeCollection.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -79,13 +81,12 @@ public class TypeCollectionItemProvider extends TypeAbstractClassItemProvider im
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((TypeCollection) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_TypeCollection_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_TypeCollection_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    return "[" + getString("_UI_TypeCollection_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -93,6 +94,7 @@ public class TypeCollectionItemProvider extends TypeAbstractClassItemProvider im
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -106,6 +108,7 @@ public class TypeCollectionItemProvider extends TypeAbstractClassItemProvider im
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

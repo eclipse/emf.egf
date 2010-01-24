@@ -12,7 +12,7 @@
  */
 package org.eclipse.egf.model.pattern;
 
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.egf.model.fcore.ModelElement;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model abstract="true"
  * @generated
  */
-public interface Call extends EObject {
+public interface Call extends ModelElement {
   /**
    * Returns the value of the '<em><b>Pattern</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.pattern.Pattern#getOrchestration <em>Orchestration</em>}'.

@@ -12,13 +12,12 @@
  */
 package org.eclipse.egf.model.types;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Type Generator Adapter Factory</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeGeneratorAdapterFactory()
  * @model
  * @generated
@@ -28,7 +27,6 @@ public interface TypeGeneratorAdapterFactory extends TypeAbstractClass {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @model kind="operation" required="true"
    *        annotation="http://www.eclipse.org/emf/2002/GenModel body='return org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory.class;'"
    * @generated

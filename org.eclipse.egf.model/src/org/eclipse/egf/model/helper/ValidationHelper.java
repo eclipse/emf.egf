@@ -18,7 +18,7 @@ import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
-import org.eclipse.egf.model.EGFModelsPlugin;
+import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.emf.ecore.EObject;
 import org.osgi.framework.Bundle;
 
@@ -64,7 +64,7 @@ public class ValidationHelper {
         return false;
       }
     } catch (Throwable t) {
-      EGFModelsPlugin.getPlugin().logError(t);
+      EGFModelPlugin.getPlugin().logError(t);
     }
     return true;
   }
@@ -105,7 +105,7 @@ public class ValidationHelper {
         return false;
       }
     } catch (Throwable t) {
-      EGFModelsPlugin.getPlugin().logError(t);
+      EGFModelPlugin.getPlugin().logError(t);
     }
     return true;
   }

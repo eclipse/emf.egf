@@ -15,17 +15,11 @@ package org.eclipse.egf.model.pattern.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.edit.EGFModelsEditPlugin;
-
-import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
-
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.types.provider.TypeAbstractClassItemProvider;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -39,9 +33,11 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.TypePatternExecutionReporter} object.
+ * This is the item provider adapter for a
+ * {@link org.eclipse.egf.model.pattern.TypePatternExecutionReporter} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -49,6 +45,7 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypePatternExecutionReporterItemProvider(AdapterFactory adapterFactory) {
@@ -59,6 +56,7 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -74,6 +72,7 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
    * This returns TypePatternExecutionReporter.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -85,13 +84,12 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((TypePatternExecutionReporter) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_TypePatternExecutionReporter_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_TypePatternExecutionReporter_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    return "[" + getString("_UI_TypePatternExecutionReporter_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -99,6 +97,7 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -112,6 +111,7 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -123,11 +123,12 @@ public class TypePatternExecutionReporterItemProvider extends TypeAbstractClassI
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public ResourceLocator getResourceLocator() {
-    return EGFModelsEditPlugin.INSTANCE;
+    return EGFModelEditPlugin.INSTANCE;
   }
 
 }

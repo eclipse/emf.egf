@@ -15,7 +15,6 @@ package org.eclipse.egf.model.types.impl;
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * <!-- begin-user-doc -->
@@ -49,16 +48,12 @@ public abstract class TypeImpl extends TypeElementImpl implements Type {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @generated NOT
+   * @generated
    */
-  @SuppressWarnings("unchecked")
   public <T extends Object> Class<T> getType() {
-    EStructuralFeature feature = eClass().getEStructuralFeature("value"); //$NON-NLS-1$
-    if (feature == null) {
-      throw new UnsupportedOperationException();
-    }
-    return (Class<T>) feature.getEType().getInstanceClass();
+    // TODO: implement this method
+    // Ensure that you remove @generated or mark it @generated NOT
+    throw new UnsupportedOperationException();
   }
 
   /**

@@ -17,7 +17,7 @@ import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
-import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
@@ -73,7 +73,7 @@ public class EGFAdapter extends EContentAdapter {
       } catch (InterruptedException ie) {
         // Nothing to do
       } catch (Exception e) {
-        ThrowableHandler.handleThrowable(EGFModelsEditorPlugin.getPlugin().getSymbolicName(), e);
+        ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), e);
       }
     }
   }

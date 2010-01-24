@@ -35,6 +35,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.PatternCall} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class PatternCallItemProvider extends AbstractPatternCallItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -42,6 +43,7 @@ public class PatternCallItemProvider extends AbstractPatternCallItemProvider imp
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public PatternCallItemProvider(AdapterFactory adapterFactory) {
@@ -52,6 +54,7 @@ public class PatternCallItemProvider extends AbstractPatternCallItemProvider imp
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -68,6 +71,7 @@ public class PatternCallItemProvider extends AbstractPatternCallItemProvider imp
    * This adds a property descriptor for the Parameter Matching feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addParameterMatchingPropertyDescriptor(Object object) {
@@ -80,6 +84,7 @@ public class PatternCallItemProvider extends AbstractPatternCallItemProvider imp
    * This returns PatternCall.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -91,7 +96,8 @@ public class PatternCallItemProvider extends AbstractPatternCallItemProvider imp
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
@@ -103,6 +109,7 @@ public class PatternCallItemProvider extends AbstractPatternCallItemProvider imp
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -116,6 +123,7 @@ public class PatternCallItemProvider extends AbstractPatternCallItemProvider imp
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

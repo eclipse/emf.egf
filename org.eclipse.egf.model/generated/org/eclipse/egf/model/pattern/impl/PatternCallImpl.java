@@ -98,6 +98,7 @@ public class PatternCallImpl extends AbstractPatternCallImpl implements PatternC
    * @generated
    */
   @Override
+  @SuppressWarnings("all")
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
     case PatternPackage.PATTERN_CALL__PARAMETER_MATCHING:
@@ -114,7 +115,6 @@ public class PatternCallImpl extends AbstractPatternCallImpl implements PatternC
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {

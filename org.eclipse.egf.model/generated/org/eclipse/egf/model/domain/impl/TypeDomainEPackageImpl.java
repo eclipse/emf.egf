@@ -15,7 +15,7 @@ package org.eclipse.egf.model.domain.impl;
 import org.eclipse.egf.model.domain.DomainEPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.TypeDomainEPackage;
-import org.eclipse.egf.model.types.impl.TypeImpl;
+import org.eclipse.egf.model.types.impl.TypeObjectImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
@@ -37,7 +37,7 @@ import org.eclipse.model.domain.adapter.TypeDomainEPackageAdapter;
  *
  * @generated
  */
-public class TypeDomainEPackageImpl extends TypeImpl implements TypeDomainEPackage {
+public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomainEPackage {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->

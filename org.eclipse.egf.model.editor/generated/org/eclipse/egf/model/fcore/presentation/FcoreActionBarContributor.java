@@ -27,7 +27,7 @@ import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.ViewpointContributor;
-import org.eclipse.egf.model.editor.EGFModelsEditorPlugin;
+import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -101,14 +101,14 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    * 
    * @generated
    */
-  protected IAction showPropertiesViewAction = new Action(EGFModelsEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) //$NON-NLS-1$
+  protected IAction showPropertiesViewAction = new Action(EGFModelEditorPlugin.INSTANCE.getString("_UI_ShowPropertiesView_menu_item")) //$NON-NLS-1$
   {
     @Override
     public void run() {
       try {
         getPage().showView("org.eclipse.ui.views.PropertySheet"); //$NON-NLS-1$
       } catch (PartInitException exception) {
-        EGFModelsEditorPlugin.INSTANCE.log(exception);
+        EGFModelEditorPlugin.INSTANCE.log(exception);
       }
     }
   };
@@ -121,7 +121,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    * 
    * @generated
    */
-  protected IAction refreshViewerAction = new Action(EGFModelsEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) //$NON-NLS-1$
+  protected IAction refreshViewerAction = new Action(EGFModelEditorPlugin.INSTANCE.getString("_UI_RefreshViewer_menu_item")) //$NON-NLS-1$
   {
     @Override
     public boolean isEnabled() {
@@ -237,7 +237,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
           context.put(IEGFModelConstants.VALIDATE_TYPES, Boolean.FALSE);
         }
         // Bundle Session
-        ProjectBundleSession session = new ProjectBundleSession(EGFModelsEditorPlugin.getPlugin().getBundle().getBundleContext());
+        ProjectBundleSession session = new ProjectBundleSession(EGFModelEditorPlugin.getPlugin().getBundle().getBundleContext());
         context.put(ProjectBundleSession.PROJECT_BUNDLE_SESSION, session);
         // Validation
         for (EObject eObject : selectedObjects) {
@@ -248,7 +248,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
         try {
           session.dispose();
         } catch (CoreException ce) {
-          EGFModelsEditorPlugin.getPlugin().logError(ce);
+          EGFModelEditorPlugin.getPlugin().logError(ce);
         }
         return diagnostic;
       }
@@ -282,7 +282,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
   public void contributeToMenu(IMenuManager menuManager) {
     super.contributeToMenu(menuManager);
 
-    IMenuManager submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_FcoreEditor_menu"), "org.eclipse.egf.model.fcoreMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
+    IMenuManager submenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditor_menu"), "org.eclipse.egf.model.fcoreMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
     menuManager.insertAfter("additions", submenuManager); //$NON-NLS-1$
     submenuManager.add(new Separator("settings")); //$NON-NLS-1$
     submenuManager.add(new Separator("actions")); //$NON-NLS-1$
@@ -291,19 +291,19 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
 
     // Prepare for CreateChild item addition or removal.
     //
-    createChildMenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFCommonUIConstants.CREATE_CHILD); //$NON-NLS-1$
+    createChildMenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFCommonUIConstants.CREATE_CHILD); //$NON-NLS-1$
     submenuManager.insertBefore("additions", createChildMenuManager); //$NON-NLS-1$
 
     // Prepare for CreateSibling item addition or removal.
     //
-    createSiblingMenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFCommonUIConstants.CREATE_SIBLING); //$NON-NLS-1$
+    createSiblingMenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFCommonUIConstants.CREATE_SIBLING); //$NON-NLS-1$
     submenuManager.insertBefore("additions", createSiblingMenuManager); //$NON-NLS-1$
 
     // Force an update because Eclipse hides empty menus now.
     //
     submenuManager.addMenuListener(new IMenuListener() {
-      public void menuAboutToShow(IMenuManager menuManager) {
-        menuManager.updateAll(true);
+      public void menuAboutToShow(IMenuManager innerMenuManager) {
+        innerMenuManager.updateAll(true);
       }
     });
 
@@ -513,11 +513,11 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
     super.menuAboutToShow(menuManager);
     MenuManager submenuManager = null;
 
-    submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFCommonUIConstants.CREATE_CHILD); //$NON-NLS-1$
+    submenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFCommonUIConstants.CREATE_CHILD); //$NON-NLS-1$
     populateManager(submenuManager, createChildActions, null);
     menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 
-    submenuManager = new MenuManager(EGFModelsEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFCommonUIConstants.CREATE_SIBLING); //$NON-NLS-1$
+    submenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFCommonUIConstants.CREATE_SIBLING); //$NON-NLS-1$
     populateManager(submenuManager, createSiblingActions, null);
     menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 

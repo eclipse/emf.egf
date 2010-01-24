@@ -12,7 +12,9 @@ package org.eclipse.egf.model.resource;
 
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProvider;
 
@@ -48,6 +50,14 @@ public class ModelResourceItemProvider extends ResourceItemProvider {
       buffer.append("]"); //$NON-NLS-1$
     }
     return buffer.toString();
+  }
+
+  /**
+   * This returns Fcore.gif.
+   */
+  @Override
+  public Object getImage(Object object) {
+    return URI.createURI(EGFModelEditPlugin.INSTANCE.getPluginResourceLocator().getImage("full/obj16/Fcore").toString()); //$NON-NLS-1$
   }
 
 }

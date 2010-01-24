@@ -87,15 +87,6 @@ public interface DomainPackage extends EPackage {
   int DOMAIN_VIEWPOINT__ID = FcorePackage.VIEWPOINT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_VIEWPOINT__NAME = FcorePackage.VIEWPOINT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -105,13 +96,13 @@ public interface DomainPackage extends EPackage {
   int DOMAIN_VIEWPOINT__DESCRIPTION = FcorePackage.VIEWPOINT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Viewerpoint Container</b></em>' container reference.
+   * The feature id for the '<em><b>Viewpoint Container</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DOMAIN_VIEWPOINT__VIEWERPOINT_CONTAINER = FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER;
+  int DOMAIN_VIEWPOINT__VIEWPOINT_CONTAINER = FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER;
 
   /**
    * The feature id for the '<em><b>Domains</b></em>' containment reference list.
@@ -151,15 +142,6 @@ public interface DomainPackage extends EPackage {
   int DOMAIN__ID = FcorePackage.MODEL_ELEMENT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN__NAME = FcorePackage.MODEL_ELEMENT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -195,15 +177,6 @@ public interface DomainPackage extends EPackage {
    * @ordered
    */
   int DOMAIN_EPACKAGE__ID = DOMAIN__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_EPACKAGE__NAME = DOMAIN__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -249,16 +222,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_EPACKAGE__ID = TypesPackage.TYPE__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DOMAIN_EPACKAGE__NAME = TypesPackage.TYPE__NAME;
+  int TYPE_DOMAIN_EPACKAGE__ID = TypesPackage.TYPE_OBJECT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -267,7 +231,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_EPACKAGE__DESCRIPTION = TypesPackage.TYPE__DESCRIPTION;
+  int TYPE_DOMAIN_EPACKAGE__DESCRIPTION = TypesPackage.TYPE_OBJECT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' reference.
@@ -276,7 +240,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_EPACKAGE__DOMAIN = TypesPackage.TYPE_FEATURE_COUNT + 0;
+  int TYPE_DOMAIN_EPACKAGE__DOMAIN = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' reference.
@@ -285,7 +249,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_EPACKAGE__VALUE = TypesPackage.TYPE_FEATURE_COUNT + 1;
+  int TYPE_DOMAIN_EPACKAGE__VALUE = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Type Domain EPackage</em>' class.
@@ -294,7 +258,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_EPACKAGE_FEATURE_COUNT = TypesPackage.TYPE_FEATURE_COUNT + 2;
+  int TYPE_DOMAIN_EPACKAGE_FEATURE_COUNT = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.domain.impl.DomainURIImpl <em>URI</em>}' class.
@@ -314,15 +278,6 @@ public interface DomainPackage extends EPackage {
    * @ordered
    */
   int DOMAIN_URI__ID = DOMAIN__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DOMAIN_URI__NAME = DOMAIN__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -368,16 +323,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_URI__ID = TypesPackage.TYPE__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_DOMAIN_URI__NAME = TypesPackage.TYPE__NAME;
+  int TYPE_DOMAIN_URI__ID = TypesPackage.TYPE_OBJECT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -386,7 +332,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_URI__DESCRIPTION = TypesPackage.TYPE__DESCRIPTION;
+  int TYPE_DOMAIN_URI__DESCRIPTION = TypesPackage.TYPE_OBJECT__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Domain</b></em>' reference.
@@ -395,7 +341,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_URI__DOMAIN = TypesPackage.TYPE_FEATURE_COUNT + 0;
+  int TYPE_DOMAIN_URI__DOMAIN = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -404,7 +350,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_URI__VALUE = TypesPackage.TYPE_FEATURE_COUNT + 1;
+  int TYPE_DOMAIN_URI__VALUE = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Type Domain URI</em>' class.
@@ -413,7 +359,7 @@ public interface DomainPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int TYPE_DOMAIN_URI_FEATURE_COUNT = TypesPackage.TYPE_FEATURE_COUNT + 2;
+  int TYPE_DOMAIN_URI_FEATURE_COUNT = TypesPackage.TYPE_OBJECT_FEATURE_COUNT + 2;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.domain.DomainViewpoint <em>Viewpoint</em>}'.
@@ -582,6 +528,7 @@ public interface DomainPackage extends EPackage {
      * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainViewpoint()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass DOMAIN_VIEWPOINT = eINSTANCE.getDomainViewpoint();
 
     /**
@@ -590,6 +537,7 @@ public interface DomainPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference DOMAIN_VIEWPOINT__DOMAINS = eINSTANCE.getDomainViewpoint_Domains();
 
     /**
@@ -600,6 +548,7 @@ public interface DomainPackage extends EPackage {
      * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomain()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass DOMAIN = eINSTANCE.getDomain();
 
     /**
@@ -610,6 +559,7 @@ public interface DomainPackage extends EPackage {
      * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainEPackage()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass DOMAIN_EPACKAGE = eINSTANCE.getDomainEPackage();
 
     /**
@@ -618,6 +568,7 @@ public interface DomainPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference DOMAIN_EPACKAGE__EPACKAGE = eINSTANCE.getDomainEPackage_EPackage();
 
     /**
@@ -628,6 +579,7 @@ public interface DomainPackage extends EPackage {
      * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getTypeDomainEPackage()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_DOMAIN_EPACKAGE = eINSTANCE.getTypeDomainEPackage();
 
     /**
@@ -636,6 +588,7 @@ public interface DomainPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference TYPE_DOMAIN_EPACKAGE__DOMAIN = eINSTANCE.getTypeDomainEPackage_Domain();
 
     /**
@@ -644,6 +597,7 @@ public interface DomainPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference TYPE_DOMAIN_EPACKAGE__VALUE = eINSTANCE.getTypeDomainEPackage_Value();
 
     /**
@@ -654,6 +608,7 @@ public interface DomainPackage extends EPackage {
      * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getDomainURI()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass DOMAIN_URI = eINSTANCE.getDomainURI();
 
     /**
@@ -662,6 +617,7 @@ public interface DomainPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute DOMAIN_URI__URI = eINSTANCE.getDomainURI_Uri();
 
     /**
@@ -672,6 +628,7 @@ public interface DomainPackage extends EPackage {
      * @see org.eclipse.egf.model.domain.impl.DomainPackageImpl#getTypeDomainURI()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_DOMAIN_URI = eINSTANCE.getTypeDomainURI();
 
     /**
@@ -680,6 +637,7 @@ public interface DomainPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference TYPE_DOMAIN_URI__DOMAIN = eINSTANCE.getTypeDomainURI_Domain();
 
     /**
@@ -688,6 +646,7 @@ public interface DomainPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute TYPE_DOMAIN_URI__VALUE = eINSTANCE.getTypeDomainURI_Value();
 
   }

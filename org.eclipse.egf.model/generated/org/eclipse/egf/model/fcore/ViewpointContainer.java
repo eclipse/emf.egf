@@ -63,7 +63,7 @@ public interface ViewpointContainer extends ModelElement {
   /**
    * Returns the value of the '<em><b>Viewpoints</b></em>' containment reference list.
    * The list contents are of type {@link org.eclipse.egf.model.fcore.Viewpoint}.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Viewpoint#getViewerpointContainer <em>Viewerpoint Container</em>}'.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.Viewpoint#getViewpointContainer <em>Viewpoint Container</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Viewpoints</em>' containment reference list
@@ -72,8 +72,8 @@ public interface ViewpointContainer extends ModelElement {
    * <!-- end-user-doc -->
    * @return the value of the '<em>Viewpoints</em>' containment reference list.
    * @see org.eclipse.egf.model.fcore.FcorePackage#getViewpointContainer_Viewpoints()
-   * @see org.eclipse.egf.model.fcore.Viewpoint#getViewerpointContainer
-   * @model opposite="viewerpointContainer" containment="true"
+   * @see org.eclipse.egf.model.fcore.Viewpoint#getViewpointContainer
+   * @model opposite="viewpointContainer" containment="true"
    * @generated
    */
   EList<Viewpoint> getViewpoints();

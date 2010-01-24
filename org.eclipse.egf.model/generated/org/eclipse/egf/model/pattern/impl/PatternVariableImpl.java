@@ -12,7 +12,7 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
+import org.eclipse.egf.model.fcore.impl.NamedModelElementImpl;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.emf.common.notify.Notification;
@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PatternVariableImpl extends ModelElementImpl implements PatternVariable {
+public class PatternVariableImpl extends NamedModelElementImpl implements PatternVariable {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->

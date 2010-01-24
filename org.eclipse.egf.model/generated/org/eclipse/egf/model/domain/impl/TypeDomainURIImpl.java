@@ -15,7 +15,7 @@ package org.eclipse.egf.model.domain.impl;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.TypeDomainURI;
-import org.eclipse.egf.model.types.impl.TypeImpl;
+import org.eclipse.egf.model.types.impl.TypeObjectImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -36,7 +36,7 @@ import org.eclipse.model.domain.adapter.TypeDomainURIAdapter;
  *
  * @generated
  */
-public class TypeDomainURIImpl extends TypeImpl implements TypeDomainURI {
+public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->

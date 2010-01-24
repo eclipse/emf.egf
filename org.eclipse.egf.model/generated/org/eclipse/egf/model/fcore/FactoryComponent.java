@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.EList;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.FactoryComponent#getActivityContractContainer <em>Activity Contract Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.FactoryComponent#getViewpointContainer <em>Viewpoint Container</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.FactoryComponent#getOrchestration <em>Orchestration</em>}</li>
  * </ul>
@@ -96,8 +95,7 @@ public interface FactoryComponent extends Activity {
    * @model kind="operation"
    * @generated
    */
-  @SuppressWarnings("unchecked")
-  EList<FactoryComponentContract> getActivityContracts();
+  EList<InvocationContract> getInvocationContracts();
 
   /**
    * <!-- begin-user-doc -->
@@ -105,7 +103,7 @@ public interface FactoryComponent extends Activity {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type type);
+  EList<InvocationContract> getInvocationContracts(Type type);
 
   /**
    * <!-- begin-user-doc -->
@@ -113,8 +111,7 @@ public interface FactoryComponent extends Activity {
    * @model
    * @generated
    */
-  @SuppressWarnings("unchecked")
-  EList<ActivityContract> getActivityContracts(ContractMode mode);
+  EList<InvocationContract> getInvocationContracts(ContractMode mode);
 
   /**
    * <!-- begin-user-doc -->
@@ -122,66 +119,6 @@ public interface FactoryComponent extends Activity {
    * @model
    * @generated
    */
-  EList<ActivityContract> getActivityContracts(Type type, ContractMode mode);
-
-  /**
-   * Returns the value of the '<em><b>Activity Contract Container</b></em>' containment reference.
-   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.FactoryComponentContractContainer#getActivity <em>Activity</em>}'.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Activity Contract Container</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Activity Contract Container</em>' containment reference.
-   * @see #setActivityContractContainer(FactoryComponentContractContainer)
-   * @see org.eclipse.egf.model.fcore.FcorePackage#getFactoryComponent_ActivityContractContainer()
-   * @see org.eclipse.egf.model.fcore.FactoryComponentContractContainer#getActivity
-   * @model opposite="activity" containment="true"
-   * @generated
-   */
-  FactoryComponentContractContainer getActivityContractContainer();
-
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.FactoryComponent#getActivityContractContainer <em>Activity Contract Container</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Activity Contract Container</em>' containment reference.
-   * @see #getActivityContractContainer()
-   * @generated
-   */
-  void setActivityContractContainer(FactoryComponentContractContainer value);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model kind="operation"
-   * @generated
-   */
-  EList<InvocationContext> getInvocationContexts();
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
-  EList<InvocationContext> getInvocationContexts(Type type);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
-  EList<InvocationContext> getInvocationContexts(ContractMode mode);
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @model
-   * @generated
-   */
-  EList<InvocationContext> getInvocationContexts(Type type, ContractMode mode);
+  EList<InvocationContract> getInvocationContracts(Type type, ContractMode mode);
 
 } // FactoryComponent

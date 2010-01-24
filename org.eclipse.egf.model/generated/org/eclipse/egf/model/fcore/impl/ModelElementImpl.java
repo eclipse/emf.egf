@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getID <em>ID</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.egf.model.fcore.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
@@ -54,26 +53,6 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * @ordered
    */
   protected static final String ID_EDEFAULT = null;
-
-  /**
-   * The default value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected static final String NAME_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected String name = NAME_EDEFAULT;
 
   /**
    * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
@@ -139,27 +118,6 @@ public abstract class ModelElementImpl extends Container implements ModelElement
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getName() {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setName(String newName) {
-    String oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.MODEL_ELEMENT__NAME, oldName, name));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public String getDescription() {
     return description;
   }
@@ -186,8 +144,6 @@ public abstract class ModelElementImpl extends Container implements ModelElement
     switch (featureID) {
     case FcorePackage.MODEL_ELEMENT__ID:
       return getID();
-    case FcorePackage.MODEL_ELEMENT__NAME:
-      return getName();
     case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
       return getDescription();
     }
@@ -202,9 +158,6 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case FcorePackage.MODEL_ELEMENT__NAME:
-      setName((String) newValue);
-      return;
     case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
       setDescription((String) newValue);
       return;
@@ -220,9 +173,6 @@ public abstract class ModelElementImpl extends Container implements ModelElement
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case FcorePackage.MODEL_ELEMENT__NAME:
-      setName(NAME_EDEFAULT);
-      return;
     case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
       setDescription(DESCRIPTION_EDEFAULT);
       return;
@@ -240,8 +190,6 @@ public abstract class ModelElementImpl extends Container implements ModelElement
     switch (featureID) {
     case FcorePackage.MODEL_ELEMENT__ID:
       return isSetID();
-    case FcorePackage.MODEL_ELEMENT__NAME:
-      return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     case FcorePackage.MODEL_ELEMENT__DESCRIPTION:
       return DESCRIPTION_EDEFAULT == null ? description != null : !DESCRIPTION_EDEFAULT.equals(description);
     }
@@ -259,9 +207,7 @@ public abstract class ModelElementImpl extends Container implements ModelElement
       return super.toString();
 
     StringBuffer result = new StringBuffer(super.toString());
-    result.append(" (name: "); //$NON-NLS-1$
-    result.append(name);
-    result.append(", description: "); //$NON-NLS-1$
+    result.append(" (description: "); //$NON-NLS-1$
     result.append(description);
     result.append(')');
     return result.toString();

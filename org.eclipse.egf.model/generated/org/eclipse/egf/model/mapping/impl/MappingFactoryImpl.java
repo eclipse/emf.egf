@@ -12,7 +12,6 @@
  */
 package org.eclipse.egf.model.mapping.impl;
 
-import org.eclipse.egf.model.mapping.*;
 import org.eclipse.egf.model.mapping.MappingDomain;
 import org.eclipse.egf.model.mapping.MappingFactory;
 import org.eclipse.egf.model.mapping.MappingPackage;
@@ -27,6 +26,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
@@ -34,6 +34,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
    * Creates the default factory implementation.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public static MappingFactory init() {
@@ -52,6 +53,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
    * Creates an instance of the factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public MappingFactoryImpl() {
@@ -61,6 +63,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -78,6 +81,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public MappingViewpoint createMappingViewpoint() {
@@ -88,6 +92,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public MappingDomain createMappingDomain() {
@@ -98,6 +103,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public MappingPackage getMappingPackage() {
@@ -107,6 +113,7 @@ public class MappingFactoryImpl extends EFactoryImpl implements MappingFactory {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @deprecated
    * @generated
    */

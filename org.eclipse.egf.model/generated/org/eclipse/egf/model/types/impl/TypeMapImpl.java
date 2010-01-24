@@ -22,14 +22,13 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class TypeMapImpl extends TypeAbstractClassImpl implements TypeMap {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypeMapImpl() {
@@ -39,7 +38,6 @@ public class TypeMapImpl extends TypeAbstractClassImpl implements TypeMap {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -50,7 +48,6 @@ public class TypeMapImpl extends TypeAbstractClassImpl implements TypeMap {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

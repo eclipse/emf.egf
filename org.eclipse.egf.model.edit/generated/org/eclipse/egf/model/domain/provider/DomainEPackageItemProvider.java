@@ -33,13 +33,15 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.DomainEPackage} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.DomainEPackage}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class DomainEPackageItemProvider extends DomainItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -47,6 +49,7 @@ public class DomainEPackageItemProvider extends DomainItemProvider implements IE
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainEPackageItemProvider(AdapterFactory adapterFactory) {
@@ -57,6 +60,7 @@ public class DomainEPackageItemProvider extends DomainItemProvider implements IE
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -101,6 +105,7 @@ public class DomainEPackageItemProvider extends DomainItemProvider implements IE
    * This returns DomainEPackage.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -118,22 +123,13 @@ public class DomainEPackageItemProvider extends DomainItemProvider implements IE
   @Override
   public String getText(Object object) {
     DomainEPackage domainEPackage = (DomainEPackage) object;
-    String label = domainEPackage.getName();
     String nsuri = null;
     if (domainEPackage.getEPackage() != null) {
       nsuri = "[" + domainEPackage.getEPackage().getNsURI() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
     }
-    if (label == null || label.length() == 0) {
-      label = "[" + getString("_UI_DomainEPackage_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-      if (nsuri != null) {
-        label = nsuri + " " + label; //$NON-NLS-1$
-      }
-    } else {
-      if (nsuri != null) {
-        label = label + " " + nsuri + " [" + getString("_UI_DomainEPackage_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
-      } else {
-        label = label + " [" + getString("_UI_DomainEPackage_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-      }
+    String label = "[" + getString("_UI_DomainEPackage_type") + "]";//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    if (nsuri != null) {
+      label = nsuri + " " + label; //$NON-NLS-1$
     }
     return label;
   }
@@ -143,6 +139,7 @@ public class DomainEPackageItemProvider extends DomainItemProvider implements IE
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -162,6 +159,7 @@ public class DomainEPackageItemProvider extends DomainItemProvider implements IE
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

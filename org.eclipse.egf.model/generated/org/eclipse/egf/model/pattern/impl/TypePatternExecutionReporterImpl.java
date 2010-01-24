@@ -23,16 +23,14 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl implements TypePatternExecutionReporter {
   /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable
-   * features have been set.
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -41,7 +39,6 @@ public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl impl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypePatternExecutionReporterImpl() {
@@ -51,7 +48,6 @@ public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl impl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -62,7 +58,6 @@ public class TypePatternExecutionReporterImpl extends TypeAbstractClassImpl impl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

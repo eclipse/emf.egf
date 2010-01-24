@@ -12,7 +12,7 @@
  */
 package org.eclipse.egf.model.mapping.impl;
 
-import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
+import org.eclipse.egf.model.fcore.impl.NamedModelElementImpl;
 import org.eclipse.egf.model.mapping.Mapping;
 import org.eclipse.egf.model.mapping.MappingPackage;
 import org.eclipse.emf.ecore.EClass;
@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EClass;
  *
  * @generated
  */
-public abstract class MappingImpl extends ModelElementImpl implements Mapping {
+public abstract class MappingImpl extends NamedModelElementImpl implements Mapping {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->

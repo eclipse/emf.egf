@@ -345,14 +345,14 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
    * 
    * @generated NOT
    */
-  public PatternMethod getMethod(String name) {
+  public PatternMethod getMethod(String innerName) {
     for (PatternMethod method : getMethods()) {
-      if (method.getName().equals(name))
+      if (method.getName().equals(innerName))
         return method;
     }
     if (getSuperPattern() == null)
       return null;
-    return getSuperPattern().getMethod(name);
+    return getSuperPattern().getMethod(innerName);
   }
 
   /**
@@ -364,10 +364,10 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   public EList<PatternParameter> getAllParameters() {
     BasicEList<PatternParameter> result = new BasicEList<PatternParameter>();
     result.addAll(getParameters());
-    Pattern superPattern = getSuperPattern();
-    while (superPattern != null) {
-      result.addAll(superPattern.getParameters());
-      superPattern = superPattern.getSuperPattern();
+    Pattern innerSuperPattern = getSuperPattern();
+    while (innerSuperPattern != null) {
+      result.addAll(innerSuperPattern.getParameters());
+      innerSuperPattern = innerSuperPattern.getSuperPattern();
     }
     return result;
   }
@@ -381,10 +381,10 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   public EList<PatternVariable> getAllVariables() {
     BasicEList<PatternVariable> result = new BasicEList<PatternVariable>();
     result.addAll(getVariables());
-    Pattern superPattern = getSuperPattern();
-    while (superPattern != null) {
-      result.addAll(superPattern.getVariables());
-      superPattern = superPattern.getSuperPattern();
+    Pattern innerSuperPattern = getSuperPattern();
+    while (innerSuperPattern != null) {
+      result.addAll(innerSuperPattern.getVariables());
+      innerSuperPattern = innerSuperPattern.getSuperPattern();
     }
     return result;
   }
@@ -398,10 +398,10 @@ public class PatternImpl extends PatternElementImpl implements Pattern {
   public EList<PatternMethod> getAllMethods() {
     BasicEList<PatternMethod> result = new BasicEList<PatternMethod>();
     result.addAll(getMethods());
-    Pattern superPattern = getSuperPattern();
-    while (superPattern != null) {
-      result.addAll(superPattern.getMethods());
-      superPattern = superPattern.getSuperPattern();
+    Pattern innerSuperPattern = getSuperPattern();
+    while (innerSuperPattern != null) {
+      result.addAll(innerSuperPattern.getMethods());
+      innerSuperPattern = innerSuperPattern.getSuperPattern();
     }
     return result;
   }

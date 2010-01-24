@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -31,9 +30,11 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.SuperPatternCall} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.pattern.SuperPatternCall}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class SuperPatternCallItemProvider extends AbstractPatternCallItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -41,6 +42,7 @@ public class SuperPatternCallItemProvider extends AbstractPatternCallItemProvide
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public SuperPatternCallItemProvider(AdapterFactory adapterFactory) {
@@ -51,6 +53,7 @@ public class SuperPatternCallItemProvider extends AbstractPatternCallItemProvide
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -66,6 +69,7 @@ public class SuperPatternCallItemProvider extends AbstractPatternCallItemProvide
    * This returns SuperPatternCall.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -77,7 +81,8 @@ public class SuperPatternCallItemProvider extends AbstractPatternCallItemProvide
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
@@ -89,6 +94,7 @@ public class SuperPatternCallItemProvider extends AbstractPatternCallItemProvide
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -102,6 +108,7 @@ public class SuperPatternCallItemProvider extends AbstractPatternCallItemProvide
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

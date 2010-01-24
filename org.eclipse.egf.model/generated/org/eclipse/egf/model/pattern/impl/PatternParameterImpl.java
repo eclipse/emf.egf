@@ -12,7 +12,7 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
-import org.eclipse.egf.model.fcore.impl.ModelElementImpl;
+import org.eclipse.egf.model.fcore.impl.NamedModelElementImpl;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
@@ -36,7 +36,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public class PatternParameterImpl extends ModelElementImpl implements PatternParameter {
+public class PatternParameterImpl extends NamedModelElementImpl implements PatternParameter {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->

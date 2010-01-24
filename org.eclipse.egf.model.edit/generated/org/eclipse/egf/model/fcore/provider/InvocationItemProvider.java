@@ -63,21 +63,21 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
     if (itemPropertyDescriptors == null) {
       super.getPropertyDescriptors(object);
 
-      addActivityPropertyDescriptor(object);
+      addInvokedActivityPropertyDescriptor(object);
     }
     return itemPropertyDescriptors;
   }
 
   /**
-   * This adds a property descriptor for the Activity feature.
+   * This adds a property descriptor for the Invoked Activity feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected void addActivityPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Invocation_activity_feature"), //$NON-NLS-1$
-        getString("_UI_PropertyDescriptor_description", "_UI_Invocation_activity_feature", "_UI_Invocation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FcorePackage.Literals.INVOCATION__ACTIVITY, true, false, true, null, getString("_UI_InvokePropertyCategory"), //$NON-NLS-1$
+  protected void addInvokedActivityPropertyDescriptor(Object object) {
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Invocation_invokedActivity_feature"), //$NON-NLS-1$
+        getString("_UI_PropertyDescriptor_description", "_UI_Invocation_invokedActivity_feature", "_UI_Invocation_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        FcorePackage.Literals.INVOCATION__INVOKED_ACTIVITY, true, false, true, null, getString("_UI_ActivityPropertyCategory"), //$NON-NLS-1$
         null));
   }
 
@@ -93,7 +93,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
   public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
     if (childrenFeatures == null) {
       super.getChildrenFeatures(object);
-      childrenFeatures.add(FcorePackage.Literals.INVOCATION__INVOCATION_CONTEXT_CONTAINER);
+      childrenFeatures.add(FcorePackage.Literals.INVOCATION__INVOCATION_CONTRACT_CONTAINER);
     }
     return childrenFeatures;
   }
@@ -126,13 +126,12 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((Invocation<?>) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_Invocation_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_Invocation_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    return "[" + getString("_UI_Invocation_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -147,7 +146,10 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
     updateChildren(notification);
 
     switch (notification.getFeatureID(Invocation.class)) {
-    case FcorePackage.INVOCATION__INVOCATION_CONTEXT_CONTAINER:
+    case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+      return;
+    case FcorePackage.INVOCATION__INVOCATION_CONTRACT_CONTAINER:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
     }
@@ -165,7 +167,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION__INVOCATION_CONTEXT_CONTAINER, FcoreFactory.eINSTANCE.createInvocationContextContainer()));
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION__INVOCATION_CONTRACT_CONTAINER, FcoreFactory.eINSTANCE.createInvocationContractContainer()));
   }
 
 }

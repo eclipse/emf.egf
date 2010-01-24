@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.ViewpointImpl#getViewerpointContainer <em>Viewerpoint Container</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.fcore.impl.ViewpointImpl#getViewpointContainer <em>Viewpoint Container</em>}</li>
  * </ul>
  * </p>
  *
@@ -60,8 +60,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
    * <!-- end-user-doc -->
    * @generated
    */
-  public ViewpointContainer getViewerpointContainer() {
-    if (eContainerFeatureID() != FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER)
+  public ViewpointContainer getViewpointContainer() {
+    if (eContainerFeatureID() != FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER)
       return null;
     return (ViewpointContainer) eContainer();
   }
@@ -71,8 +71,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetViewerpointContainer(ViewpointContainer newViewerpointContainer, NotificationChain msgs) {
-    msgs = eBasicSetContainer((InternalEObject) newViewerpointContainer, FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER, msgs);
+  public NotificationChain basicSetViewpointContainer(ViewpointContainer newViewpointContainer, NotificationChain msgs) {
+    msgs = eBasicSetContainer((InternalEObject) newViewpointContainer, FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER, msgs);
     return msgs;
   }
 
@@ -81,20 +81,20 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setViewerpointContainer(ViewpointContainer newViewerpointContainer) {
-    if (newViewerpointContainer != eInternalContainer() || (eContainerFeatureID() != FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER && newViewerpointContainer != null)) {
-      if (EcoreUtil.isAncestor(this, newViewerpointContainer))
+  public void setViewpointContainer(ViewpointContainer newViewpointContainer) {
+    if (newViewpointContainer != eInternalContainer() || (eContainerFeatureID() != FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER && newViewpointContainer != null)) {
+      if (EcoreUtil.isAncestor(this, newViewpointContainer))
         throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
       NotificationChain msgs = null;
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
-      if (newViewerpointContainer != null)
-        msgs = ((InternalEObject) newViewerpointContainer).eInverseAdd(this, FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS, ViewpointContainer.class, msgs);
-      msgs = basicSetViewerpointContainer(newViewerpointContainer, msgs);
+      if (newViewpointContainer != null)
+        msgs = ((InternalEObject) newViewpointContainer).eInverseAdd(this, FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS, ViewpointContainer.class, msgs);
+      msgs = basicSetViewpointContainer(newViewpointContainer, msgs);
       if (msgs != null)
         msgs.dispatch();
     } else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER, newViewerpointContainer, newViewerpointContainer));
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER, newViewpointContainer, newViewpointContainer));
   }
 
   /**
@@ -105,10 +105,10 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER:
+    case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
       if (eInternalContainer() != null)
         msgs = eBasicRemoveFromContainer(msgs);
-      return basicSetViewerpointContainer((ViewpointContainer) otherEnd, msgs);
+      return basicSetViewpointContainer((ViewpointContainer) otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -121,8 +121,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
-    case FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER:
-      return basicSetViewerpointContainer(null, msgs);
+    case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+      return basicSetViewpointContainer(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -135,7 +135,7 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   @Override
   public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
     switch (eContainerFeatureID()) {
-    case FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER:
+    case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
       return eInternalContainer().eInverseRemove(this, FcorePackage.VIEWPOINT_CONTAINER__VIEWPOINTS, ViewpointContainer.class, msgs);
     }
     return super.eBasicRemoveFromContainerFeature(msgs);
@@ -149,8 +149,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType) {
     switch (featureID) {
-    case FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER:
-      return getViewerpointContainer();
+    case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+      return getViewpointContainer();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -163,8 +163,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
-    case FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER:
-      setViewerpointContainer((ViewpointContainer) newValue);
+    case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+      setViewpointContainer((ViewpointContainer) newValue);
       return;
     }
     super.eSet(featureID, newValue);
@@ -178,8 +178,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   @Override
   public void eUnset(int featureID) {
     switch (featureID) {
-    case FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER:
-      setViewerpointContainer((ViewpointContainer) null);
+    case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+      setViewpointContainer((ViewpointContainer) null);
       return;
     }
     super.eUnset(featureID);
@@ -193,8 +193,8 @@ public abstract class ViewpointImpl extends ModelElementImpl implements Viewpoin
   @Override
   public boolean eIsSet(int featureID) {
     switch (featureID) {
-    case FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER:
-      return getViewerpointContainer() != null;
+    case FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER:
+      return getViewpointContainer() != null;
     }
     return super.eIsSet(featureID);
   }

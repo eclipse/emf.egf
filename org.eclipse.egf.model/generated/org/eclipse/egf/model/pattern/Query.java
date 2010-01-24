@@ -12,38 +12,36 @@
  */
 package org.eclipse.egf.model.pattern;
 
+import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.emf.common.util.EMap;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '
  * <em><b>Query</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.Query#getParameter <em>Parameter</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.Query#getExtensionId <em>Extension Id</em>}</li>
- * <li>{@link org.eclipse.egf.model.pattern.Query#getQueryContext <em>Query Context</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Query#getParameter <em>Parameter</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Query#getExtensionId <em>Extension Id</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.Query#getQueryContext <em>Query Context</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getQuery()
  * @model abstract="true"
  * @generated
  */
-public interface Query extends EObject {
+public interface Query extends ModelElement {
   /**
    * Returns the value of the '<em><b>Parameter</b></em>' container reference.
-   * It is bidirectional and its opposite is '
-   * {@link org.eclipse.egf.model.pattern.PatternParameter#getQuery <em>Query</em>}'.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.pattern.PatternParameter#getQuery <em>Query</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Parameter</em>' container reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Parameter</em>' container reference.
    * @see #setParameter(PatternParameter)
    * @see org.eclipse.egf.model.pattern.PatternPackage#getQuery_Parameter()
@@ -54,13 +52,10 @@ public interface Query extends EObject {
   PatternParameter getParameter();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.pattern.Query#getParameter
-   * <em>Parameter</em>}' container reference.
+   * Sets the value of the '{@link org.eclipse.egf.model.pattern.Query#getParameter <em>Parameter</em>}' container reference.
    * <!-- begin-user-doc --> <!--
    * end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Parameter</em>' container reference.
+   * @param value the new value of the '<em>Parameter</em>' container reference.
    * @see #getParameter()
    * @generated
    */
@@ -74,7 +69,6 @@ public interface Query extends EObject {
    * really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Extension Id</em>' attribute.
    * @see #setExtensionId(String)
    * @see org.eclipse.egf.model.pattern.PatternPackage#getQuery_ExtensionId()
@@ -84,13 +78,10 @@ public interface Query extends EObject {
   String getExtensionId();
 
   /**
-   * Sets the value of the '{@link org.eclipse.egf.model.pattern.Query#getExtensionId <em>Extension
-   * Id</em>}' attribute.
+   * Sets the value of the '{@link org.eclipse.egf.model.pattern.Query#getExtensionId <em>Extension Id</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param value
-   *          the new value of the '<em>Extension Id</em>' attribute.
+   * @param value the new value of the '<em>Extension Id</em>' attribute.
    * @see #getExtensionId()
    * @generated
    */
@@ -101,7 +92,6 @@ public interface Query extends EObject {
    * The key is of type {@link java.lang.String},
    * and the value is of type {@link java.lang.String},
    * <!-- begin-user-doc --> <!-- end-user-doc -->
-   * 
    * @return the value of the '<em>Query Context</em>' map.
    * @see org.eclipse.egf.model.pattern.PatternPackage#getQuery_QueryContext()
    * @model mapType="org.eclipse.egf.model.pattern.String2String<org.eclipse.emf.ecore.EString, org.eclipse.emf.ecore.EString>"

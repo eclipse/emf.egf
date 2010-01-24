@@ -17,7 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.egf.model.fcore.FactoryComponent;
-import org.eclipse.egf.model.fprod.Task;
+import org.eclipse.egf.model.ftask.TaskJava;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
@@ -90,7 +90,7 @@ public class MultiRootFcoreCutAction extends CutAction {
       // Activities should have a resource as parent domain
       //
       if (getEditingDomain().getParent(eObject) instanceof Resource) {
-        if (eObject instanceof FactoryComponent || eObject instanceof Task) {
+        if (eObject instanceof FactoryComponent || eObject instanceof TaskJava) {
           rootList.add(eObject);
           continue;
         }

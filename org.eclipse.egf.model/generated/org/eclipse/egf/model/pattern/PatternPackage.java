@@ -85,16 +85,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_ELEMENT__ID = FcorePackage.MODEL_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_ELEMENT__NAME = FcorePackage.MODEL_ELEMENT__NAME;
+  int PATTERN_ELEMENT__ID = FcorePackage.NAMED_MODEL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -103,7 +94,16 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_ELEMENT__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+  int PATTERN_ELEMENT__DESCRIPTION = FcorePackage.NAMED_MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_ELEMENT__NAME = FcorePackage.NAMED_MODEL_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -112,7 +112,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_ELEMENT__CONTAINER = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int PATTERN_ELEMENT__CONTAINER = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Element</em>' class.
@@ -121,7 +121,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_ELEMENT_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int PATTERN_ELEMENT_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternImpl <em>Pattern</em>}' class.
@@ -143,15 +143,6 @@ public interface PatternPackage extends EPackage {
   int PATTERN__ID = PATTERN_ELEMENT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN__NAME = PATTERN_ELEMENT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -159,6 +150,15 @@ public interface PatternPackage extends EPackage {
    * @ordered
    */
   int PATTERN__DESCRIPTION = PATTERN_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN__NAME = PATTERN_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -276,16 +276,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_METHOD__ID = FcorePackage.MODEL_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_METHOD__NAME = FcorePackage.MODEL_ELEMENT__NAME;
+  int PATTERN_METHOD__ID = FcorePackage.NAMED_MODEL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -294,7 +285,16 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_METHOD__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+  int PATTERN_METHOD__DESCRIPTION = FcorePackage.NAMED_MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_METHOD__NAME = FcorePackage.NAMED_MODEL_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
@@ -303,7 +303,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_METHOD__PATTERN = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int PATTERN_METHOD__PATTERN = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Pattern File Path</b></em>' attribute.
@@ -312,7 +312,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_METHOD__PATTERN_FILE_PATH = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int PATTERN_METHOD__PATTERN_FILE_PATH = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Method</em>' class.
@@ -321,7 +321,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_METHOD_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+  int PATTERN_METHOD_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl <em>Parameter</em>}' class.
@@ -340,16 +340,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_PARAMETER__ID = FcorePackage.MODEL_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_PARAMETER__NAME = FcorePackage.MODEL_ELEMENT__NAME;
+  int PATTERN_PARAMETER__ID = FcorePackage.NAMED_MODEL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -358,7 +349,16 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_PARAMETER__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+  int PATTERN_PARAMETER__DESCRIPTION = FcorePackage.NAMED_MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_PARAMETER__NAME = FcorePackage.NAMED_MODEL_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -367,7 +367,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_PARAMETER__TYPE = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int PATTERN_PARAMETER__TYPE = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Query</b></em>' containment reference.
@@ -376,7 +376,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_PARAMETER__QUERY = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int PATTERN_PARAMETER__QUERY = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Parameter</em>' class.
@@ -385,7 +385,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_PARAMETER_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+  int PATTERN_PARAMETER_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl <em>Library</em>}' class.
@@ -407,15 +407,6 @@ public interface PatternPackage extends EPackage {
   int PATTERN_LIBRARY__ID = PATTERN_ELEMENT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_LIBRARY__NAME = PATTERN_ELEMENT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -423,6 +414,15 @@ public interface PatternPackage extends EPackage {
    * @ordered
    */
   int PATTERN_LIBRARY__DESCRIPTION = PATTERN_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_LIBRARY__NAME = PATTERN_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Container</b></em>' container reference.
@@ -480,15 +480,6 @@ public interface PatternPackage extends EPackage {
   int PATTERN_VIEWPOINT__ID = FcorePackage.VIEWPOINT__ID;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_VIEWPOINT__NAME = FcorePackage.VIEWPOINT__NAME;
-
-  /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -498,13 +489,13 @@ public interface PatternPackage extends EPackage {
   int PATTERN_VIEWPOINT__DESCRIPTION = FcorePackage.VIEWPOINT__DESCRIPTION;
 
   /**
-   * The feature id for the '<em><b>Viewerpoint Container</b></em>' container reference.
+   * The feature id for the '<em><b>Viewpoint Container</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PATTERN_VIEWPOINT__VIEWERPOINT_CONTAINER = FcorePackage.VIEWPOINT__VIEWERPOINT_CONTAINER;
+  int PATTERN_VIEWPOINT__VIEWPOINT_CONTAINER = FcorePackage.VIEWPOINT__VIEWPOINT_CONTAINER;
 
   /**
    * The feature id for the '<em><b>Libraries</b></em>' containment reference list.
@@ -541,16 +532,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_NATURE__ID = FcorePackage.MODEL_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_NATURE__NAME = FcorePackage.MODEL_ELEMENT__NAME;
+  int PATTERN_NATURE__ID = FcorePackage.NAMED_MODEL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -559,7 +541,16 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_NATURE__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+  int PATTERN_NATURE__DESCRIPTION = FcorePackage.NAMED_MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_NATURE__NAME = FcorePackage.NAMED_MODEL_ELEMENT__NAME;
 
   /**
    * The number of structural features of the '<em>Nature</em>' class.
@@ -568,7 +559,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_NATURE_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int PATTERN_NATURE_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.CallImpl <em>Call</em>}' class.
@@ -581,13 +572,31 @@ public interface PatternPackage extends EPackage {
   int CALL = 10;
 
   /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CALL__ID = FcorePackage.MODEL_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CALL__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+
+  /**
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CALL__PATTERN = 0;
+  int CALL__PATTERN = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Call</em>' class.
@@ -596,7 +605,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int CALL_FEATURE_COUNT = 1;
+  int CALL_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl <em>Abstract Pattern Call</em>}' class.
@@ -607,6 +616,24 @@ public interface PatternPackage extends EPackage {
    * @generated
    */
   int ABSTRACT_PATTERN_CALL = 13;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_PATTERN_CALL__ID = CALL__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_PATTERN_CALL__DESCRIPTION = CALL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
@@ -644,6 +671,24 @@ public interface PatternPackage extends EPackage {
    * @generated
    */
   int PATTERN_CALL = 7;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_CALL__ID = ABSTRACT_PATTERN_CALL__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_CALL__DESCRIPTION = ABSTRACT_PATTERN_CALL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
@@ -690,6 +735,24 @@ public interface PatternPackage extends EPackage {
    * @generated
    */
   int SUPER_PATTERN_CALL = 8;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPER_PATTERN_CALL__ID = ABSTRACT_PATTERN_CALL__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUPER_PATTERN_CALL__DESCRIPTION = ABSTRACT_PATTERN_CALL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
@@ -766,6 +829,24 @@ public interface PatternPackage extends EPackage {
   int METHOD_CALL = 11;
 
   /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METHOD_CALL__ID = CALL__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int METHOD_CALL__DESCRIPTION = CALL__DESCRIPTION;
+
+  /**
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -809,16 +890,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_VARIABLE__ID = FcorePackage.MODEL_ELEMENT__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PATTERN_VARIABLE__NAME = FcorePackage.MODEL_ELEMENT__NAME;
+  int PATTERN_VARIABLE__ID = FcorePackage.NAMED_MODEL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -827,7 +899,16 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_VARIABLE__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+  int PATTERN_VARIABLE__DESCRIPTION = FcorePackage.NAMED_MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_VARIABLE__NAME = FcorePackage.NAMED_MODEL_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -836,7 +917,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_VARIABLE__TYPE = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int PATTERN_VARIABLE__TYPE = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The number of structural features of the '<em>Variable</em>' class.
@@ -845,7 +926,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int PATTERN_VARIABLE_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int PATTERN_VARIABLE_FEATURE_COUNT = FcorePackage.NAMED_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl <em>Injected Call</em>}' class.
@@ -856,6 +937,24 @@ public interface PatternPackage extends EPackage {
    * @generated
    */
   int PATTERN_INJECTED_CALL = 14;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_INJECTED_CALL__ID = ABSTRACT_PATTERN_CALL__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PATTERN_INJECTED_CALL__DESCRIPTION = ABSTRACT_PATTERN_CALL__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
@@ -904,13 +1003,31 @@ public interface PatternPackage extends EPackage {
   int QUERY = 15;
 
   /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUERY__ID = FcorePackage.MODEL_ELEMENT__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int QUERY__DESCRIPTION = FcorePackage.MODEL_ELEMENT__DESCRIPTION;
+
+  /**
    * The feature id for the '<em><b>Parameter</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int QUERY__PARAMETER = 0;
+  int QUERY__PARAMETER = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Extension Id</b></em>' attribute.
@@ -919,7 +1036,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int QUERY__EXTENSION_ID = 1;
+  int QUERY__EXTENSION_ID = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Query Context</b></em>' map.
@@ -928,7 +1045,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int QUERY__QUERY_CONTEXT = 2;
+  int QUERY__QUERY_CONTEXT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Query</em>' class.
@@ -937,7 +1054,7 @@ public interface PatternPackage extends EPackage {
    * @generated
    * @ordered
    */
-  int QUERY_FEATURE_COUNT = 3;
+  int QUERY_FEATURE_COUNT = FcorePackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.BasicQueryImpl <em>Basic Query</em>}' class.
@@ -948,6 +1065,24 @@ public interface PatternPackage extends EPackage {
    * @generated
    */
   int BASIC_QUERY = 16;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_QUERY__ID = QUERY__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BASIC_QUERY__DESCRIPTION = QUERY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Parameter</b></em>' container reference.
@@ -996,6 +1131,24 @@ public interface PatternPackage extends EPackage {
   int STRING_QUERY = 17;
 
   /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_QUERY__ID = QUERY__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int STRING_QUERY__DESCRIPTION = QUERY__DESCRIPTION;
+
+  /**
    * The feature id for the '<em><b>Parameter</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1040,6 +1193,24 @@ public interface PatternPackage extends EPackage {
    * @generated
    */
   int CUSTOM_QUERY = 18;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOM_QUERY__ID = QUERY__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CUSTOM_QUERY__DESCRIPTION = QUERY__DESCRIPTION;
 
   /**
    * The feature id for the '<em><b>Parameter</b></em>' container reference.
@@ -1169,15 +1340,6 @@ public interface PatternPackage extends EPackage {
    * @ordered
    */
   int TYPE_PATTERN_EXECUTION_REPORTER__ID = TypesPackage.TYPE_ABSTRACT_CLASS__ID;
-
-  /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_PATTERN_EXECUTION_REPORTER__NAME = TypesPackage.TYPE_ABSTRACT_CLASS__NAME;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -1878,6 +2040,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPattern()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PATTERN = eINSTANCE.getPattern();
 
     /**
@@ -1886,6 +2049,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN__HEADER_METHOD = eINSTANCE.getPattern_HeaderMethod();
 
     /**
@@ -1894,6 +2058,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN__METHODS = eINSTANCE.getPattern_Methods();
 
     /**
@@ -1902,6 +2067,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN__SUPER_PATTERN = eINSTANCE.getPattern_SuperPattern();
 
     /**
@@ -1910,6 +2076,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN__FOOTER_METHOD = eINSTANCE.getPattern_FooterMethod();
 
     /**
@@ -1918,6 +2085,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN__ORCHESTRATION = eINSTANCE.getPattern_Orchestration();
 
     /**
@@ -1926,6 +2094,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN__PARAMETERS = eINSTANCE.getPattern_Parameters();
 
     /**
@@ -1934,6 +2103,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN__NATURE = eINSTANCE.getPattern_Nature();
 
     /**
@@ -1942,6 +2112,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN__VARIABLES = eINSTANCE.getPattern_Variables();
 
     /**
@@ -1950,6 +2121,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN__INIT_METHOD = eINSTANCE.getPattern_InitMethod();
 
     /**
@@ -1960,6 +2132,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternMethod()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PATTERN_METHOD = eINSTANCE.getPatternMethod();
 
     /**
@@ -1968,6 +2141,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN_METHOD__PATTERN = eINSTANCE.getPatternMethod_Pattern();
 
     /**
@@ -1976,6 +2150,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute PATTERN_METHOD__PATTERN_FILE_PATH = eINSTANCE.getPatternMethod_PatternFilePath();
 
     /**
@@ -1986,6 +2161,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternParameter()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PATTERN_PARAMETER = eINSTANCE.getPatternParameter();
 
     /**
@@ -1994,6 +2170,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute PATTERN_PARAMETER__TYPE = eINSTANCE.getPatternParameter_Type();
 
     /**
@@ -2002,6 +2179,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN_PARAMETER__QUERY = eINSTANCE.getPatternParameter_Query();
 
     /**
@@ -2012,6 +2190,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternLibrary()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PATTERN_LIBRARY = eINSTANCE.getPatternLibrary();
 
     /**
@@ -2020,6 +2199,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN_LIBRARY__ELEMENTS = eINSTANCE.getPatternLibrary_Elements();
 
     /**
@@ -2028,6 +2208,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN_LIBRARY__FILTERS = eINSTANCE.getPatternLibrary_Filters();
 
     /**
@@ -2038,6 +2219,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternElement()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PATTERN_ELEMENT = eINSTANCE.getPatternElement();
 
     /**
@@ -2046,6 +2228,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN_ELEMENT__CONTAINER = eINSTANCE.getPatternElement_Container();
 
     /**
@@ -2056,6 +2239,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternViewpoint()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PATTERN_VIEWPOINT = eINSTANCE.getPatternViewpoint();
 
     /**
@@ -2064,6 +2248,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN_VIEWPOINT__LIBRARIES = eINSTANCE.getPatternViewpoint_Libraries();
 
     /**
@@ -2074,6 +2259,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternNature()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PATTERN_NATURE = eINSTANCE.getPatternNature();
 
     /**
@@ -2084,6 +2270,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternCall()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PATTERN_CALL = eINSTANCE.getPatternCall();
 
     /**
@@ -2092,6 +2279,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN_CALL__PARAMETER_MATCHING = eINSTANCE.getPatternCall_ParameterMatching();
 
     /**
@@ -2102,6 +2290,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getSuperPatternCall()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass SUPER_PATTERN_CALL = eINSTANCE.getSuperPatternCall();
 
     /**
@@ -2112,6 +2301,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getParamerter2ParameterMap()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PARAMERTER2_PARAMETER_MAP = eINSTANCE.getParamerter2ParameterMap();
 
     /**
@@ -2120,6 +2310,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PARAMERTER2_PARAMETER_MAP__KEY = eINSTANCE.getParamerter2ParameterMap_Key();
 
     /**
@@ -2130,6 +2321,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getCall()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass CALL = eINSTANCE.getCall();
 
     /**
@@ -2138,6 +2330,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference CALL__PATTERN = eINSTANCE.getCall_Pattern();
 
     /**
@@ -2148,6 +2341,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getMethodCall()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass METHOD_CALL = eINSTANCE.getMethodCall();
 
     /**
@@ -2156,6 +2350,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference METHOD_CALL__CALLED = eINSTANCE.getMethodCall_Called();
 
     /**
@@ -2166,6 +2361,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternVariable()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PATTERN_VARIABLE = eINSTANCE.getPatternVariable();
 
     /**
@@ -2174,6 +2370,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute PATTERN_VARIABLE__TYPE = eINSTANCE.getPatternVariable_Type();
 
     /**
@@ -2184,6 +2381,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getAbstractPatternCall()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass ABSTRACT_PATTERN_CALL = eINSTANCE.getAbstractPatternCall();
 
     /**
@@ -2192,6 +2390,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference ABSTRACT_PATTERN_CALL__CALLED = eINSTANCE.getAbstractPatternCall_Called();
 
     /**
@@ -2202,6 +2401,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternInjectedCall()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass PATTERN_INJECTED_CALL = eINSTANCE.getPatternInjectedCall();
 
     /**
@@ -2210,6 +2410,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PATTERN_INJECTED_CALL__CONTEXT = eINSTANCE.getPatternInjectedCall_Context();
 
     /**
@@ -2220,6 +2421,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getQuery()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass QUERY = eINSTANCE.getQuery();
 
     /**
@@ -2228,6 +2430,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference QUERY__PARAMETER = eINSTANCE.getQuery_Parameter();
 
     /**
@@ -2236,6 +2439,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute QUERY__EXTENSION_ID = eINSTANCE.getQuery_ExtensionId();
 
     /**
@@ -2244,6 +2448,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference QUERY__QUERY_CONTEXT = eINSTANCE.getQuery_QueryContext();
 
     /**
@@ -2254,6 +2459,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getBasicQuery()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass BASIC_QUERY = eINSTANCE.getBasicQuery();
 
     /**
@@ -2264,6 +2470,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getStringQuery()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass STRING_QUERY = eINSTANCE.getStringQuery();
 
     /**
@@ -2274,6 +2481,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getCustomQuery()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass CUSTOM_QUERY = eINSTANCE.getCustomQuery();
 
     /**
@@ -2284,6 +2492,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getString2PatternList()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass STRING2_PATTERN_LIST = eINSTANCE.getString2PatternList();
 
     /**
@@ -2292,6 +2501,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute STRING2_PATTERN_LIST__KEY = eINSTANCE.getString2PatternList_Key();
 
     /**
@@ -2300,6 +2510,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference STRING2_PATTERN_LIST__VALUE = eINSTANCE.getString2PatternList_Value();
 
     /**
@@ -2310,6 +2521,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getString2String()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass STRING2_STRING = eINSTANCE.getString2String();
 
     /**
@@ -2318,6 +2530,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute STRING2_STRING__KEY = eINSTANCE.getString2String_Key();
 
     /**
@@ -2326,6 +2539,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EAttribute STRING2_STRING__VALUE = eINSTANCE.getString2String_Value();
 
     /**
@@ -2336,6 +2550,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternExecutionReporter()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EClass TYPE_PATTERN_EXECUTION_REPORTER = eINSTANCE.getTypePatternExecutionReporter();
 
     /**
@@ -2344,6 +2559,7 @@ public interface PatternPackage extends EPackage {
      * <!-- end-user-doc -->
      * @generated
      */
+    @SuppressWarnings("hiding")
     EReference PARAMERTER2_PARAMETER_MAP__VALUE = eINSTANCE.getParamerter2ParameterMap_Value();
 
     /**
@@ -2354,6 +2570,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EDataType PATTERN_CONTEXT = eINSTANCE.getPatternContext();
 
     /**
@@ -2364,6 +2581,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EDataType PATTERN_EXCEPTION = eINSTANCE.getPatternException();
 
     /**
@@ -2374,6 +2592,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getEPatternExecutionReporter()
      * @generated
      */
+    @SuppressWarnings("hiding")
     EDataType EPATTERN_EXECUTION_REPORTER = eINSTANCE.getEPatternExecutionReporter();
 
   }
