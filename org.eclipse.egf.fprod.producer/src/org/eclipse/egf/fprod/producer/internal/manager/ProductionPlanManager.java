@@ -130,21 +130,17 @@ public class ProductionPlanManager extends OrchestrationManager<ProductionPlan> 
       if (managers != null) {
         int steps = getSteps();
         SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), steps * 900);
-        try {
-          for (Invocation invocation : getElement().getInvocations()) {
-            ProductionPlanInvocationManager manager = managers.get(invocation);
-            Diagnostic innerDiagnostic = manager.invoke(subMonitor.newChild(900 * manager.getSteps(), SubMonitor.SUPPRESS_NONE));
-            diagnostic.add(innerDiagnostic);
-            // Stop if any invocation diagnosis error are raised
-            if (innerDiagnostic.getSeverity() == Diagnostic.ERROR) {
-              break;
-            }
-            if (monitor.isCanceled()) {
-              throw new OperationCanceledException();
-            }
+        for (Invocation invocation : getElement().getInvocations()) {
+          ProductionPlanInvocationManager manager = managers.get(invocation);
+          Diagnostic innerDiagnostic = manager.invoke(subMonitor.newChild(900 * manager.getSteps(), SubMonitor.SUPPRESS_NONE));
+          diagnostic.add(innerDiagnostic);
+          // Stop if any invocation diagnosis error are raised
+          if (innerDiagnostic.getSeverity() == Diagnostic.ERROR) {
+            break;
           }
-        } finally {
-          subMonitor.done();
+          if (subMonitor.isCanceled()) {
+            throw new OperationCanceledException();
+          }
         }
       }
     }
