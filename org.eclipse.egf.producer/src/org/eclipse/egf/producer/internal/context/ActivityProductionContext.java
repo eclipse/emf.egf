@@ -35,7 +35,7 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
     super(projectBundleSession, element, name);
   }
 
-  public ActivityProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, P element, String name) {
+  public <T extends Invocation> ActivityProductionContext(IProductionContext<T, InvocationContract> parent, ProjectBundleSession projectBundleSession, P element, String name) {
     super(parent, projectBundleSession, element, name);
   }
 
