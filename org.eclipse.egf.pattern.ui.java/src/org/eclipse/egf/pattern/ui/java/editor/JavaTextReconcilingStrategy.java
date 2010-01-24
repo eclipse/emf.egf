@@ -1,20 +1,29 @@
-/*******************************************************************************
- * Copyright (c) 2006, 2009 Soyatec (http://www.soyatec.com) and others.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
+/**
+ * <copyright>
  *
- * Contributors:
- *     Soyatec - initial API and implementation
- *******************************************************************************/
+ *  Copyright (c) 2009 Thales Corporate Services S.A.S. and other
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
+ * 
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
+ *      PanPan Liu, Soyatec 
+ * 
+ * </copyright>
+ */
+
 package org.eclipse.egf.pattern.ui.java.editor;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
 import org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.internal.ui.JavaPlugin;
 import org.eclipse.jdt.internal.ui.text.JavaCompositeReconcilingStrategy;
 import org.eclipse.jdt.internal.ui.text.java.JavaReconcilingStrategy;
@@ -37,7 +46,6 @@ public class JavaTextReconcilingStrategy extends JavaCompositeReconcilingStrateg
 	
 	private ITextEditor fEditor;
 	private JavaReconcilingStrategy fJavaStrategy;
-	private boolean reconciled = false;
 	
 	/**
 	 * Creates a new Java reconciling strategy.
@@ -70,15 +78,16 @@ public class JavaTextReconcilingStrategy extends JavaCompositeReconcilingStrateg
         IEditorInput editorInput = fEditor.getEditorInput();
 		String name = editorInput.getName();
 		IAnnotationModel annotationModel= p.getAnnotationModel(fEditor.getEditorInput());
-		Iterator iter = annotationModel.getAnnotationIterator();
+		Iterator<Annotation> iter = annotationModel.getAnnotationIterator();
 		while(iter.hasNext()){
-			Annotation annotation = (Annotation) iter.next();
+			Annotation annotation = iter.next();
+//			org.eclipse.jdt.ui.error
 			annotationModel.removeAnnotation(annotation);
 		}
-		Map<String, Map> mETHODJAVAANNOTATIONS = JavaTemplateEditor.getMETHODJAVAANNOTATIONS();
+		Map<String, Map<Annotation,Position>> methodJavaAnnotations = JavaTemplateEditor.getMethodJavaAnnotations();
 		Map<Annotation,Position> methodAnnotations = new HashMap<Annotation,Position>();
-		if(mETHODJAVAANNOTATIONS != null&&!mETHODJAVAANNOTATIONS.isEmpty()){
-			methodAnnotations = mETHODJAVAANNOTATIONS.get(name);
+		if(methodJavaAnnotations != null&&!methodJavaAnnotations.isEmpty()){
+			methodAnnotations = methodJavaAnnotations.get(name);
 		}
         if (annotationModel != null) {
         	for(Annotation annotation:methodAnnotations.keySet()){
@@ -99,7 +108,10 @@ public class JavaTextReconcilingStrategy extends JavaCompositeReconcilingStrateg
 	 * @see org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy#reconcile(org.eclipse.jface.text.IRegion)
 	 */
 	public void reconcile(IRegion partition) {
-		JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
+		if(JavaTextEditor.refreshJob){
+			JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
+			JavaTextEditor.refreshJob = false;
+		}
 	}
 
 	/**
@@ -115,14 +127,29 @@ public class JavaTextReconcilingStrategy extends JavaCompositeReconcilingStrateg
 	 * @see org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy#initialReconcile()
 	 */
 	public void initialReconcile() {
-		internalReconcile();
+//		internalReconcile();
+		initialMapping();
+	}
+	
+	private void initialMapping(){
+		JavaTextEditor javaTextEditor = (JavaTextEditor) fEditor;
+		EList<PatternMethod> methods = javaTextEditor.getPattern().getMethods();
+		int size = methods.size();
+		PatternMethod patternMethod = methods.get(size-1);
+		IEditorInput editorInput = javaTextEditor.getEditorInput();
+		if(editorInput instanceof PatternMethodEditorInput){
+			PatternMethodEditorInput input = (PatternMethodEditorInput)editorInput;
+			PatternMethod inputPatternMethod = input.getPatternMethod();
+			if(patternMethod.equals(inputPatternMethod)){
+				JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
+			}
+		}
 	}
 
 	private void reconciled() {
 		fJavaStrategy.reconciled();
 	}
-
-
+	
 	@Override
 	public void aboutToBeReconciled() {
 		super.aboutToBeReconciled();

@@ -21,9 +21,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.pattern.ui.jet.editor.JetTextEditor.RefreshUIJob;
 import org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor;
 import org.eclipse.jet.core.parser.ast.JETCompilationUnit;
 import org.eclipse.jet.core.parser.ast.Problem;
+import org.eclipse.jet.internal.editor.JETEditorHelper;
 import org.eclipse.jet.internal.editor.JETTextEditor;
 import org.eclipse.jet.internal.editor.annotations.JETProblemAnnotation;
 import org.eclipse.jet.internal.editor.configuration.JETReconcilingStrategy;
@@ -36,8 +39,6 @@ import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
-
-;
 
 /**
  * @author Yahong Song - Soyatec
@@ -66,18 +67,18 @@ public class JetReconcilingStrategy extends JETReconcilingStrategy {
      */
     private void internalReconcile() {
         JETCompilationUnit cUnit = jetEditor.requestCompilationUnit();
-        List cUnitProblems = cUnit.getProblems();
+        List<Problem> cUnitProblems = cUnit.getProblems();
         IEditorInput editorInput = jetEditor.getEditorInput();
 		String name = editorInput.getName();
-		Map<String, List<Problem>> mETHODPROBLEMS = JetTemplateEditor.getMETHODPROBLEMS();
-		List javaContentProblems = new ArrayList<Problem>();
-		if(mETHODPROBLEMS != null&&!mETHODPROBLEMS.isEmpty()){
-			javaContentProblems = mETHODPROBLEMS.get(name);
+		Map<String, List<Problem>> methodProblems = JetTemplateEditor.getMethodProblems();
+		List<Problem> javaContentProblems = new ArrayList<Problem>();
+		if(methodProblems != null&&!methodProblems.isEmpty()){
+			javaContentProblems = methodProblems.get(name);
 		}
-		List evaluateProblems = JetEditorHelper.evaluateProblems(jetEditor, sourceViewer.getDocument());
-		Iterator iter = evaluateProblems.iterator();
+		List<Problem> evaluateProblems = JETEditorHelper.evaluateProblems(jetEditor, sourceViewer.getDocument());
+		Iterator<Problem> iter = evaluateProblems.iterator();
 		while (iter.hasNext()){
-			Object next = iter.next();
+			Problem next = iter.next();
 			if(!javaContentProblems.contains(next)){
 				javaContentProblems.add(next);
 			}
@@ -118,6 +119,8 @@ public class JetReconcilingStrategy extends JETReconcilingStrategy {
             annotationModel.fireAnnotationModelChanged();
         }
     }
+    
+    
 
     public void setDocument(IDocument idocument) {
     }
@@ -131,7 +134,9 @@ public class JetReconcilingStrategy extends JETReconcilingStrategy {
     }
 
     public void reconcile(IRegion partition) {
-        internalReconcile();
+		JetTextEditor jetTextEditor = (JetTextEditor) jetEditor;
+		JetEditorHelper.refreshPublicTemplateEditor(jetTextEditor);
+		JetEditorHelper.mappingErrorFromTemplateEditor(jetTextEditor);
     }
 
     public void setProgressMonitor(IProgressMonitor iprogressmonitor) {

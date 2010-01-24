@@ -40,15 +40,18 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
 
     private Map<String, List<Problem>> methodProblems = new HashMap<String, List<Problem>>();
 
+    private List<JetTextEditor> javaEditorList = new ArrayList<JetTextEditor>();
+
     private IFile templateFile;
 
     private static Map<String, List<Problem>> METHODPROBLEMS = new HashMap<String, List<Problem>>();
 
     protected void createPages() {
         Pattern pattern = getPattern();
+        addPatternChangeAdapter(pattern);
         EList<PatternMethod> methods = pattern.getMethods();
         try {
-        	templateFile = setPublicTemplateEditor(pattern, methods, TEMPLATE_FILE_EXTENTION);
+            templateFile = setPublicTemplateEditor(pattern, methods, TEMPLATE_FILE_EXTENTION);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -63,10 +66,11 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
 
     void createPage(PatternMethod method) {
         try {
-            JetTextEditor editor = new JetTextEditor();
+            JetTextEditor editor = new JetTextEditor(getPattern());
             int index = addPage(editor, new PatternMethodEditorInput(method.eResource(), method.getID()));
             setPageText(index, method.getName());
             jetEditorMap.put(method.getID(), editor);
+            javaEditorList.add(editor);
         } catch (Exception e) {
             Activator.getDefault().logError(e);
         }
@@ -118,8 +122,8 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
         String message = problem.getMessage();
         Object[] messageArgs = problem.getMessageArgs();
         ProblemSeverity problemSeverity = problem.getProblemSeverity();
-        if(templateFile == null){
-        	return null;
+        if (templateFile == null) {
+            return null;
         }
         URI locationURI = templateFile.getProject().getLocationURI();
         String string = templateFile.getProjectRelativePath().toString();
@@ -127,8 +131,20 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
         return newProblem;
     }
 
-    public static Map<String, List<Problem>> getMETHODPROBLEMS() {
+    public static Map<String, List<Problem>> getMethodProblems() {
         return METHODPROBLEMS;
+    }
+
+    public IEditorPart getTemplateFileEditorPart() {
+        return openEditor;
+    }
+
+    public List<JetTextEditor> getEditorList() {
+        return javaEditorList;
+    }
+
+    public Map<String, JetTextEditor> getEditorMap() {
+        return jetEditorMap;
     }
 
     @Override

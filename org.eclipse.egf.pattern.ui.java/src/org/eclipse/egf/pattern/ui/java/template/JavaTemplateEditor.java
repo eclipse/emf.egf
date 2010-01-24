@@ -50,12 +50,13 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
 
     private IAnnotationModel javaAnnotationModel;
 
-    private Map<String, Map> methodJavaAnnotations = new HashMap<String, Map>();
+    private Map<String, Map<Annotation,Position>> methodJavaAnnotations = new HashMap<String, Map<Annotation,Position>>();
 
-    private static Map<String, Map> METHODJAVAANNOTATIONS = new HashMap<String, Map>();
+    private static Map<String, Map<Annotation,Position>> METHODJAVAANNOTATIONS = new HashMap<String, Map<Annotation,Position>>();
 
     protected void createPages() {
         Pattern pattern = getPattern();
+        addPatternChangeAdapter(pattern);
         EList<PatternMethod> methods = pattern.getMethods();
         try {
             setPublicTemplateEditor(pattern, methods, TEMPLATE_FILE_EXTENTION);
@@ -122,7 +123,7 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
         }
     }
 
-    public static Map<String, Map> getMETHODJAVAANNOTATIONS() {
+    public static Map<String, Map<Annotation,Position>> getMethodJavaAnnotations() {
         return METHODJAVAANNOTATIONS;
     }
 

@@ -15,14 +15,23 @@
 
 package org.eclipse.egf.pattern.ui.jet.editor;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.StringBufferInputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
@@ -38,8 +47,21 @@ import org.eclipse.jet.core.parser.ast.Problem;
 import org.eclipse.jet.internal.editor.Activator;
 import org.eclipse.jet.internal.editor.JETEditorHelper;
 import org.eclipse.jet.internal.editor.JETTextEditor;
+import org.eclipse.jet.internal.editor.annotations.JETProblemAnnotation;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.Position;
+import org.eclipse.jface.text.source.Annotation;
+import org.eclipse.jface.text.source.IAnnotationModel;
+import org.eclipse.jface.text.source.ISourceViewer;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IFileEditorInput;
+import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.part.MultiPageEditorPart;
+import org.eclipse.ui.part.MultiPageEditorSite;
+import org.eclipse.ui.texteditor.IDocumentProvider;
+import org.eclipse.ui.texteditor.MarkerAnnotation;
 
 /**
  * @author Yahong Song - Soyatec
@@ -190,5 +212,208 @@ public class JetEditorHelper extends JETEditorHelper {
             Activator.log(e);
         }
         return problems;
+    }
+    
+    /**
+     * While do code completion, refresh the template file's content via the
+     * content of method editor.
+     */
+    public static void refreshPublicTemplateEditor(Pattern pattern, IFile templateFile, JetTextEditor editor) {
+        MultiPageEditorPart multiPageEditorPart = getMultiPageEditorPart(editor);
+        List<JetTextEditor> editors = ((JetTemplateEditor) multiPageEditorPart).getEditorList();
+        if (templateFile.exists()) {
+            try {
+                templateFile.setContents(new ByteArrayInputStream(new byte[0]), true, false, null);
+                if(editors == null){
+                	return;
+                }
+                int size = editors.size();
+                if(size == 0){
+                	return;
+                }
+                for (int i = 0;i<size;i++) {
+                	JetTextEditor currentEditor = editors.get(i);
+                    if (currentEditor == null) {
+                        continue;
+                    }
+                    if (currentEditor != null) {
+                        InputStream inputStreamOfEditor = getInputStreamOfEditor(currentEditor);
+                        if (inputStreamOfEditor == null) {
+                            continue;
+                        }
+                        templateFile.appendContents(inputStreamOfEditor, false, false, null);
+                        if(i!=size -1){
+							templateFile.appendContents(
+									new StringBufferInputStream("\n"), true,
+									false, null);
+                        }
+                    }
+                }
+            } catch (Exception e) {
+            }
+        }
+    }
+    
+    /**
+     * add by PanPan.Liu
+     * mapping errors from TemplateEditor to sub editors.
+     */
+    public static void mappingErrorFromTemplateEditor(JetTextEditor editor) {
+        MultiPageEditorPart multiPageEditorPart = getMultiPageEditorPart(editor);
+        if (multiPageEditorPart == null)
+            return;
+        IEditorPart templateEditorPart = ((JetTemplateEditor) multiPageEditorPart).getTemplateFileEditorPart();
+        Pattern pattern = editor.getPattern();
+        Map<String, JetTextEditor> editors = ((JetTemplateEditor) multiPageEditorPart).getEditorMap();
+        if (!(templateEditorPart instanceof TextEditor)) {
+            return;
+        }
+        JETTextEditor fEditor = (JETTextEditor) templateEditorPart;
+        IDocumentProvider fDocumentProvider = fEditor.getDocumentProvider();
+        IDocument fDocument = fDocumentProvider.getDocument(fEditor.getEditorInput());  
+
+        IDocumentProvider p = fEditor.getDocumentProvider();
+        if (p == null) {
+            return;
+        }
+        IAnnotationModel javaAnnotationModel = p.getAnnotationModel(fEditor.getEditorInput());
+        if (javaAnnotationModel == null) {
+            return;
+        }
+        Map<String, Position> mappings = getMappings(pattern, editors);
+        if (mappings == null || mappings.size() == 0) {
+            return;
+        }
+        List<Problem> javaContentProblems = JETEditorHelper.evaluateProblems(fEditor, fDocument);
+        JETCompilationUnit cUnit = fEditor.requestCompilationUnit();
+        List<Problem> cUnitProblems = cUnit.getProblems();
+        javaContentProblems.addAll(cUnitProblems);
+        
+        for (String id : editors.keySet()) {
+        	JetTextEditor textEditor = editors.get(id);
+        	List<Problem> problems = javaContentProblems;
+        	String partName = textEditor.getPartName();
+            Position position = mappings.get(id);
+            if(position == null){
+            	continue;
+            }
+            int startOffset = position.offset;
+            int endOffset = position.offset + position.length - 1;
+            
+            if (problems == null || problems.size()==0) {
+            	continue;
+            }
+            
+            IDocumentProvider documentProvider = textEditor.getDocumentProvider();
+            IDocument document = fDocumentProvider.getDocument(textEditor.getEditorInput());  
+            IAnnotationModel annotationModel = documentProvider.getAnnotationModel(textEditor.getEditorInput());
+            JETAnnotationModel jetAnnotationModel = (JETAnnotationModel) annotationModel;
+            if (jetAnnotationModel != null) {
+            	jetAnnotationModel.setFireChanges(false);
+                for (Iterator it = jetAnnotationModel.getAnnotationIterator(); it.hasNext();) {
+                    Annotation annotation = (Annotation) it.next();
+                    if ((annotation instanceof JETProblemAnnotation) || (annotation instanceof MarkerAnnotation))
+                    	jetAnnotationModel.removeAnnotation(annotation);
+                }
+                
+    			Iterator<Problem> iterator = problems.iterator();
+    			while (iterator.hasNext()) {
+    				Problem problem = iterator.next();
+                    JETProblemAnnotation annotation = new JETProblemAnnotation(problem);
+    				Position posi = createPositionFromProblem(problem);
+    				if (posi == null) {
+    					continue;
+    				}
+    				int offset = posi.offset;
+    				if (startOffset == 0 && offset == -1) {
+    					jetAnnotationModel.addAnnotation(annotation, posi);
+    				}
+    				if (offset >= startOffset && offset <= endOffset) {
+    					posi.setOffset(offset - startOffset);
+    					jetAnnotationModel.addAnnotation(annotation, posi);
+    				}
+    			}
+    			jetAnnotationModel.setFireChanges(true);
+    			jetAnnotationModel.fireAnnotationModelChanged();
+            }
+        }
+    }
+    
+	public static Position createPositionFromProblem(Problem problem) {
+		int start= problem.getStart();
+		int end= problem.getEnd();
+
+		if (end == 0 && start == 0)
+			return new Position(0, 0);
+
+		int length= end - start + 1;
+		if (length < 0)
+			return null;
+
+		return new Position(start, length);
+	}
+    
+    /**
+     * Get the new offset which mapping from the template file to method file.
+     * 
+     * @param editors
+     */
+    public static Map<String, Position> getMappings(Pattern pattern, Map<String, JetTextEditor> editors) {
+        EList<PatternMethod> methods = pattern.getMethods();
+        Map<String,Position> mappings = new HashMap<String,Position>();
+        int startOffset = 0;
+		for (PatternMethod method : methods) {
+			String id = method.getID();
+			TextEditor textEditor = editors.get(id);
+			if(textEditor == null){
+				continue;
+			}
+			ISourceViewer viewer = ((JetTextEditor) textEditor).getViewer();
+			if (viewer == null || viewer.getDocument() == null) {
+				return null;
+			}
+			int length = viewer.getDocument().getLength();
+			mappings.put(id, new Position(startOffset, length));
+			startOffset = startOffset+length +1 ;
+		}
+		return mappings;
+    }
+
+
+    /**
+     * add by PanPan.Liu
+     * do the refresh sync. job
+     */
+    public static void refreshPublicTemplateEditor(JetTextEditor editor) {
+        MultiPageEditorPart multiPageEditorPart = getMultiPageEditorPart(editor);
+        if (multiPageEditorPart == null)
+            return;
+        IEditorPart templateEditorPart = ((JetTemplateEditor) multiPageEditorPart).getTemplateFileEditorPart();
+        Pattern pattern = editor.getPattern();
+        IEditorInput editorInput = templateEditorPart.getEditorInput();
+        if (editorInput instanceof IFileEditorInput) {
+            IFile templateFile = ((IFileEditorInput) editorInput).getFile();
+            refreshPublicTemplateEditor(pattern, templateFile, editor);
+        }
+    }
+    
+    public static MultiPageEditorPart getMultiPageEditorPart(TextEditor editor) {
+        IWorkbenchPartSite site = editor.getSite();
+        if (site instanceof MultiPageEditorSite) {
+            return ((MultiPageEditorSite) site).getMultiPageEditor();
+        }
+        return null;
+    }
+
+    /**
+     * Get the inputStream of the editor.
+     */
+    public static InputStream getInputStreamOfEditor(JetTextEditor editor) {
+        ISourceViewer viewer = ((JetTextEditor) editor).getViewer();
+        if (viewer == null) {
+            return null;
+        }
+        IDocument document = viewer.getDocument();
+        return new ByteArrayInputStream(document.get().getBytes());
     }
 }

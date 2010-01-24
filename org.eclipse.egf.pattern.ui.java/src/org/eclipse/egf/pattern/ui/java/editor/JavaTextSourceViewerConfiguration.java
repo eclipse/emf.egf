@@ -21,6 +21,7 @@ import org.eclipse.jdt.internal.ui.text.JavaReconciler;
 import org.eclipse.jdt.ui.text.IColorManager;
 import org.eclipse.jdt.ui.text.JavaSourceViewerConfiguration;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.text.IAutoEditStrategy;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.reconciler.IReconciler;
@@ -51,10 +52,12 @@ public class JavaTextSourceViewerConfiguration extends JavaSourceViewerConfigura
         ContentAssistant fContentAssistant = new ContentAssistant();
 
         fContentAssistant.setContentAssistProcessor(new JavaTextEditorContentAssistProcessor(editor), "__dftl_partition_content_type");
-        fContentAssistant.enableAutoActivation(true);
         fContentAssistant.setAutoActivationDelay(500);
         fContentAssistant.setProposalPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
         fContentAssistant.setContextInformationPopupOrientation(IContentAssistant.CONTEXT_INFO_BELOW);
+        fContentAssistant.setInformationControlCreator(getInformationControlCreator(sourceViewer));
+        fContentAssistant.enableAutoInsert(false);
+        fContentAssistant.enableAutoActivation(true);
         return fContentAssistant;
     }
 

@@ -39,10 +39,10 @@ public class TemplateEditorUtility {
         if (startPositions == null || startPositions.size() == 0) {
             return startOffset;
         } else {
-            Collection collection = startPositions.values();
-            Iterator e = collection.iterator();
+            Collection<Position> starts = (Collection<Position>) startPositions.values();
+            Iterator<Position> e = starts.iterator();
             while (e.hasNext()) {
-                Position position = (Position) e.next();
+                Position position = e.next();
                 startOffset = startOffset+position.length+1;
             }
         }

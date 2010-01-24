@@ -22,6 +22,7 @@ import java.util.List;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.ui.java.JavaTextEditorMessages;
+import org.eclipse.egf.pattern.ui.java.editor.JavaDocumentReader;
 import org.eclipse.egf.pattern.ui.java.editor.JavaTextEditor;
 import org.eclipse.egf.pattern.ui.java.editor.JavaTextEditorHelper;
 import org.eclipse.egf.pattern.ui.java.editor.contentassist.computer.JavaTypeProposalComputer;
@@ -33,6 +34,8 @@ import org.eclipse.jdt.internal.ui.javaeditor.EditorUtility;
 import org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal;
 import org.eclipse.jdt.internal.ui.text.java.JavaCompletionProposal;
 import org.eclipse.jdt.internal.ui.text.java.LazyGenericTypeProposal;
+import org.eclipse.jdt.internal.ui.text.template.contentassist.TemplateProposal;
+import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
@@ -61,17 +64,20 @@ public class JavaTextEditorContentAssistProcessor implements IContentAssistProce
 
     private final static String JAVA_UTIL_PAKAGE = "java.util.";
 
+    private char[] fCompletionAutoActivationCharacters;
+
     public JavaTextEditorContentAssistProcessor(JavaTextEditor editor) {
         this.editor = editor;
+        fCompletionAutoActivationCharacters = editor.getEditorPreferenceStore().getString("content_assist_autoactivation_triggers_java").toCharArray();
     }
 
     public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int offset) {
         MultiPageEditorPart multiPageEditorPart = JavaTextEditorHelper.getMultiPageEditorPart(editor);
-        if(multiPageEditorPart==null)
+        if (multiPageEditorPart == null)
             return null;
-        templateEditorPart = ((JavaTemplateEditor)multiPageEditorPart).getTemplateFileEditorPart();
+        templateEditorPart = ((JavaTemplateEditor) multiPageEditorPart).getTemplateFileEditorPart();
         refreshPublicTemplateEditor();
-        
+
         pattern = editor.getPattern();
 
         List<ICompletionProposal> proposals = new ArrayList<ICompletionProposal>();
@@ -84,8 +90,8 @@ public class JavaTextEditorContentAssistProcessor implements IContentAssistProce
         int mappingOffset = JavaTextEditorHelper.getMappingOffset(pattern, editor, offset);
         JavaTypeProposalComputer javaTypeProposalComputer = new JavaTypeProposalComputer(viewer, mappingOffset, templateEditorPart);
         List<ICompletionProposal> computeProposals = javaTypeProposalComputer.computeProposal();
-        updateProposalOffset(computeProposals, offset, mappingOffset);
-        addProposal(proposals, computeProposals);
+        List<ICompletionProposal> javaTypeProposals = updateProposalOffset(computeProposals, offset, mappingOffset);
+        addProposal(proposals, javaTypeProposals);
 
         ICompletionProposal[] result;
 
@@ -109,11 +115,10 @@ public class JavaTextEditorContentAssistProcessor implements IContentAssistProce
      * @param mappingOffset
      * @param offset
      */
-    private void updateProposalOffset(List<ICompletionProposal> computeProposals, int offset, int mappingOffset) {
+    private List<ICompletionProposal> updateProposalOffset(List<ICompletionProposal> computeProposals, int offset, int mappingOffset) {
         if (computeProposals == null)
-            return;
-        List<ICompletionProposal> removeThem = new ArrayList<ICompletionProposal>();
-        List<ICompletionProposal> addThem = new ArrayList<ICompletionProposal>();
+            return null;
+        List<ICompletionProposal> newProposals = new ArrayList<ICompletionProposal>();
         int activePageIndex = JavaTextEditorHelper.getActivePageIndex(editor);
         for (ICompletionProposal computeProposal : computeProposals) {
             if (computeProposal instanceof AbstractJavaCompletionProposal) {
@@ -121,21 +126,36 @@ public class JavaTextEditorContentAssistProcessor implements IContentAssistProce
                 int replacementOffset = currentPropsal.getReplacementOffset() - (mappingOffset - offset);
                 currentPropsal.setReplacementOffset(replacementOffset);
             }
-            if (computeProposal instanceof LazyGenericTypeProposal && !(activePageIndex == 0))
-                changeLazyGenericTypeToJavaProposal(computeProposals, (LazyGenericTypeProposal) computeProposal, removeThem, addThem);
-
+            if (!(activePageIndex == 0) && computeProposal instanceof LazyGenericTypeProposal) {
+                CompletionProposal javaProposal = changeLazyGenericTypeToJavaProposal(computeProposals, (LazyGenericTypeProposal) computeProposal);
+                newProposals.add(javaProposal);
+            } else if (computeProposal instanceof TemplateProposal) {
+                CompletionProposal templateProposal = changTemplateToJavaProposal(computeProposals, (TemplateProposal) computeProposal, offset);
+                newProposals.add(templateProposal);
+            } else {
+                newProposals.add(computeProposal);
+            }
         }
-        computeProposals.removeAll(removeThem);
-        computeProposals.addAll(addThem);
+
+        return newProposals;
+    }
+
+    private List<ICompletionProposal> reverseProposals(List<ICompletionProposal> computeProposals) {
+        List<ICompletionProposal> newComputeProposals = new ArrayList<ICompletionProposal>();
+        for (int i = computeProposals.size() - 1; i >= 0; i--) {
+            newComputeProposals.add(computeProposals.get(i));
+        }
+        return newComputeProposals;
     }
 
     /**
-     * Change the LazyGenericTypeProposal into JavaCompletionProposal.
+     * Change the LazyGenericTypeProposal into CompletionProposal.
      * 
-     * @param addThem
-     * @param removeThem
+     * @param computeProposals
+     * @param lazyGenericTypeProposal
+     * @return
      */
-    private void changeLazyGenericTypeToJavaProposal(List<ICompletionProposal> computeProposals, LazyGenericTypeProposal lazyGenericTypeProposal, List<ICompletionProposal> removeThem, List<ICompletionProposal> addThem) {
+    private CompletionProposal changeLazyGenericTypeToJavaProposal(List<ICompletionProposal> computeProposals, LazyGenericTypeProposal lazyGenericTypeProposal) {
         String replacementString = lazyGenericTypeProposal.getReplacementString();
         int replacementOffset = lazyGenericTypeProposal.getReplacementOffset();
         int replacementLength = lazyGenericTypeProposal.getReplacementLength();
@@ -146,8 +166,33 @@ public class JavaTextEditorContentAssistProcessor implements IContentAssistProce
             qualifiedTypeName = replacementString;
         }
         CompletionProposal proposal = new CompletionProposal(qualifiedTypeName, replacementOffset, replacementLength, qualifiedTypeName.length(), image, displayString, null, null);
-        removeThem.add(lazyGenericTypeProposal);
-        addThem.add(proposal);
+        return proposal;
+    }
+
+    /**
+     * Change the TemplateProposal into CompletionProposal.
+     * 
+     * @param computeProposals
+     * @param templateProposal
+     * @param offset
+     * @return
+     */
+    private CompletionProposal changTemplateToJavaProposal(List<ICompletionProposal> computeProposals, TemplateProposal templateProposal, int offset) {
+        String replaceString = templateProposal.getAdditionalProposalInfo();
+        Image image = templateProposal.getImage();
+        String displayString = templateProposal.getDisplayString();
+        IDocument doc = editor.getViewer().getDocument();
+        JavaDocumentReader reader = new JavaDocumentReader(doc, offset);
+        char c = reader.readBackward();
+        String allWords[] = JavaTextEditorHelper.getAllWords(c, reader);
+        List<ICompletionProposal> parameterProposals = new ArrayList<ICompletionProposal>();
+        if (allWords.length > 0) {
+            String replacedWord = allWords[0];
+            int replacementOffset = offset - replacedWord.length();
+            CompletionProposal proposal = new CompletionProposal(replaceString, replacementOffset, replacedWord.length(), replaceString.length(), image, displayString, null, null);
+            return proposal;
+        }
+        return null;
     }
 
     private void refreshPublicTemplateEditor() {
@@ -193,7 +238,7 @@ public class JavaTextEditorContentAssistProcessor implements IContentAssistProce
 
     public char[] getCompletionProposalAutoActivationCharacters() {
 
-        return null;
+        return fCompletionAutoActivationCharacters;
     }
 
     public char[] getContextInformationAutoActivationCharacters() {
@@ -210,4 +255,5 @@ public class JavaTextEditorContentAssistProcessor implements IContentAssistProce
 
         return null;
     }
+
 }

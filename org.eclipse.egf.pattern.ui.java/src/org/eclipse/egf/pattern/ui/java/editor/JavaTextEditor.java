@@ -54,130 +54,139 @@ import org.eclipse.ui.texteditor.ChainedPreferenceStore;
  */
 public class JavaTextEditor extends TextEditor {
 
-	private RefreshUIJob job;
+    private RefreshUIJob job;
 
-	private Pattern pattern;
+    private Pattern pattern;
 
-	public JavaTextEditor(Pattern pattern) throws CoreException, IOException {
-		this.pattern = pattern;
-		CompilationUnitDocumentProvider provider = new CompilationUnitDocumentProvider();
-		setDocumentProvider(provider);
-	}
+    public static boolean refreshJob = false;
 
-	public Pattern getPattern() {
-		return pattern;
-	}
+    public JavaTextEditor(Pattern pattern) throws CoreException, IOException {
+        this.pattern = pattern;
+        CompilationUnitDocumentProvider provider = new CompilationUnitDocumentProvider();
+        setDocumentProvider(provider);
+    }
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * org.eclipse.ui.editors.text.TextEditor#doSetInput(org.eclipse.ui.IEditorInput
-	 * )
-	 */
-	protected void doSetInput(IEditorInput input) throws CoreException {
-		super.doSetInput(input);
-		IPreferenceStore store = createCombinedPreferenceStore(input);
-		setPreferenceStore(store);
+    public Pattern getPattern() {
+        return pattern;
+    }
 
-		ISourceViewer sourceViewer = getSourceViewer();
-		if (sourceViewer instanceof JavaSourceViewer) {
-			((JavaSourceViewer) sourceViewer).setPreferenceStore(store);
-		}
-		JavaTextTools textTools = JavaPlugin.getDefault().getJavaTextTools();
-		JavaSourceViewerConfiguration configure = new JavaTextSourceViewerConfiguration(
-				textTools.getColorManager(), store, this,
-				IJavaPartitions.JAVA_PARTITIONING);
-		setSourceViewerConfiguration(configure);
-	}
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * 
+     * 
+     * 
+     * org.eclipse.ui.editors.text.TextEditor#doSetInput(org.eclipse.ui.IEditorInput
+     * )
+     */
+    protected void doSetInput(IEditorInput input) throws CoreException {
+        super.doSetInput(input);
+        IPreferenceStore store = createCombinedPreferenceStore(input);
+        setPreferenceStore(store);
 
-	public void doSave(IProgressMonitor progressMonitor) {
-//		refreshErrorManage();
-		super.doSave(progressMonitor);
-	}
+        ISourceViewer sourceViewer = getSourceViewer();
+        if (sourceViewer instanceof JavaSourceViewer) {
+            ((JavaSourceViewer) sourceViewer).setPreferenceStore(store);
+        }
+        JavaTextTools textTools = JavaPlugin.getDefault().getJavaTextTools();
+        JavaSourceViewerConfiguration configure = new JavaTextSourceViewerConfiguration(textTools.getColorManager(), store, this, IJavaPartitions.JAVA_PARTITIONING);
+        setSourceViewerConfiguration(configure);
+    }
 
-	@Override
-	protected void updateStatusField(String category) {
-		super.updateStatusField(category);
-	}
+    public void doSave(IProgressMonitor progressMonitor) {
+        super.doSave(progressMonitor);
+    }
 
-	@Override
-	public void createPartControl(Composite parent) {
-		super.createPartControl(parent);
-		StyledText textWidget = getSourceViewer().getTextWidget();
-		textWidget.addModifyListener(new JavaModifyListener());
-	}
+    @Override
+    protected void updateStatusField(String category) {
+        super.updateStatusField(category);
+    }
 
-	class JavaModifyListener implements ModifyListener {
-		public void modifyText(ModifyEvent e) {
-			if (job == null) {
-				job = new RefreshUIJob("RefreshTemplateEditor");
-			}
-			job.start();
-		}
-	}
+    @Override
+    public void createPartControl(Composite parent) {
+        super.createPartControl(parent);
+        StyledText textWidget = getSourceViewer().getTextWidget();
+        textWidget.addModifyListener(new JavaModifyListener());
+    }
 
-	class RefreshUIJob extends Job {
+    class JavaModifyListener implements ModifyListener {
+        public void modifyText(ModifyEvent e) {
+            if (job == null) {
+                job = new RefreshUIJob("RefreshTemplateEditor");
+            }
+            job.start();
+        }
+    }
 
-		private long timestamp = -1;
+    class RefreshUIJob extends Job {
 
-		private boolean lazy = false;
+        private long timestamp = -1;
 
-		public RefreshUIJob(String name) {
-			super(name);
-		}
+        private boolean lazy = false;
 
-		private void start() {
-			if (!lazy) {
-				schedule(1000);
-			} else if (System.currentTimeMillis() - timestamp > 999 && !lazy) {
-				lazy = true;
-			}
-			timestamp = System.currentTimeMillis();
-		}
+        public RefreshUIJob(String name) {
+            super(name);
+        }
 
-		protected IStatus run(IProgressMonitor monitor) {
-			JavaTextEditorHelper
-			.refreshPublicTemplateEditor(JavaTextEditor.this);
-			if (lazy) {
-				schedule();
-				lazy = false;
-			}
-			return Status.OK_STATUS;
-		}
-	}
+        private void start() {
+            if (!lazy) {
+                schedule(1000);
+            } else if (System.currentTimeMillis() - timestamp > 999 && !lazy) {
+                lazy = true;
+            }
+            timestamp = System.currentTimeMillis();
+        }
 
-	/**
-	 * @param input
-	 * @return
-	 */
-	private IPreferenceStore createCombinedPreferenceStore(IEditorInput input) {
-		List stores = new ArrayList(3);
+        protected IStatus run(IProgressMonitor monitor) {
+            refreshJob = true;
+            JavaTextEditorHelper.refreshPublicTemplateEditor(JavaTextEditor.this);
+            if (lazy) {
+                schedule();
+                lazy = false;
+            }
+            return Status.OK_STATUS;
+        }
+    }
 
-		IJavaProject project = EditorUtility.getJavaProject(input);
-		if (project != null) {
-			stores.add(new EclipsePreferencesAdapter(new ProjectScope(project
-					.getProject()), JavaCore.PLUGIN_ID));
-		}
+    /**
+     * @param input
+     * @return
+     */
+    private IPreferenceStore createCombinedPreferenceStore(IEditorInput input) {
+        List<IPreferenceStore> stores = new ArrayList<IPreferenceStore>(3);
 
-		stores.add(JavaPlugin.getDefault().getPreferenceStore());
-		stores.add(new PreferencesAdapter(JavaCore.getPlugin()
-				.getPluginPreferences()));
-		stores.add(EditorsUI.getPreferenceStore());
-		stores.add(PlatformUI.getPreferenceStore());
+        IJavaProject project = EditorUtility.getJavaProject(input);
+        if (project != null) {
+            stores.add(new EclipsePreferencesAdapter(new ProjectScope(project.getProject()), JavaCore.PLUGIN_ID));
+        }
 
-		return new ChainedPreferenceStore((IPreferenceStore[]) stores
-				.toArray(new IPreferenceStore[stores.size()]));
-	}
+        stores.add(JavaPlugin.getDefault().getPreferenceStore());
+        stores.add(new PreferencesAdapter(JavaCore.getPlugin().getPluginPreferences()));
+        stores.add(EditorsUI.getPreferenceStore());
+        stores.add(PlatformUI.getPreferenceStore());
 
-	/**
-	 * @return the source viewer used by this editor
-	 */
-	public final ISourceViewer getViewer() {
-		return getSourceViewer();
-	}
+        return new ChainedPreferenceStore((IPreferenceStore[]) stores.toArray(new IPreferenceStore[stores.size()]));
+    }
 
-	private JavaTextEditor getEditor() {
-		return this;
-	}
+    /**
+     * @return the source viewer used by this editor
+     */
+    public final ISourceViewer getViewer() {
+        return getSourceViewer();
+    }
+
+    private JavaTextEditor getEditor() {
+        return this;
+    }
+
+    /**
+     * Returns the editor's preference store. This method exist to make the
+     * preference store accessible to other classes.
+     * 
+     * @return the editor's preference store
+     */
+    public IPreferenceStore getEditorPreferenceStore() {
+        return super.getPreferenceStore();
+    }
 }

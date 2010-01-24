@@ -29,10 +29,14 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.text.Position;
@@ -54,110 +58,160 @@ import org.eclipse.ui.part.MultiPageEditorPart;
  */
 public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 
-    protected IEditorPart openEditor;
+	protected IEditorPart openEditor;
 
-    protected Map<String, Position> startPositions = new HashMap<String, Position>();
+	protected Map<String, Position> startPositions = new HashMap<String, Position>();
 
-    public AbstractTemplateEditor() {
-        super();
-    }
+	// The adapter is for refreshing the editor title while the name of pattern
+	// has been changed.
+	AdapterImpl refresher = new AdapterImpl() {
+		public void notifyChanged(Notification msg) {
+			if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg
+					.getFeature())) {
+				setPartName((String) msg.getNewValue());
+			} else if (msg.getFeature() == null) {
+				Pattern pattern = getPattern();
+				addPatternChangeAdapter(pattern);
+			}
+		}
+	};
 
-    protected abstract void initProblems();
+	public AbstractTemplateEditor() {
+		super();
+	}
 
-    protected abstract void divideByMethods();
+	protected abstract void initProblems();
 
-    public abstract void setActivePage(String methodId);
+	protected abstract void divideByMethods();
 
-    public void doSave(IProgressMonitor monitor) {
-        for (int i = 0; i < getPageCount(); i++)
-            getEditor(i).doSave(monitor);
-    }
+	public abstract void setActivePage(String methodId);
 
-    public void doSaveAs() {
-        throw new UnsupportedOperationException();
-    }
+	public void doSave(IProgressMonitor monitor) {
+		for (int i = 0; i < getPageCount(); i++)
+			getEditor(i).doSave(monitor);
+	}
 
-    /*
-     * (non-Javadoc)
-     * Method declared on IEditorPart
-     */
-    public void gotoMarker(IMarker marker) {
-        setActivePage(0);
-        IDE.gotoMarker(getEditor(0), marker);
-    }
+	public void doSaveAs() {
+		throw new UnsupportedOperationException();
+	}
 
-    /**
-     * The <code>MultiPageEditorExample</code> implementation of this method
-     * checks that the input is an instance of <code>IFileEditorInput</code>.
-     */
-    public void init(IEditorSite site, IEditorInput editorInput) throws PartInitException {
-        if (!(editorInput instanceof PatternEditorInput))
-            throw new PartInitException(Messages.Editor_wrong_input);
-        super.init(site, editorInput);
-    }
+	/*
+	 * (non-Javadoc) Method declared on IEditorPart
+	 */
+	public void gotoMarker(IMarker marker) {
+		setActivePage(0);
+		IDE.gotoMarker(getEditor(0), marker);
+	}
 
-    /*
-     * (non-Javadoc)
-     * Method declared on IEditorPart.
-     */
-    public boolean isSaveAsAllowed() {
-        return false;
-    }
+	/**
+	 * The <code>MultiPageEditorExample</code> implementation of this method
+	 * checks that the input is an instance of <code>IFileEditorInput</code>.
+	 */
+	public void init(IEditorSite site, IEditorInput editorInput)
+			throws PartInitException {
+		if (!(editorInput instanceof PatternEditorInput))
+			throw new PartInitException(Messages.Editor_wrong_input);
+		super.init(site, editorInput);
+	}
 
-    public Pattern getPattern() {
-        PatternEditorInput input = (PatternEditorInput) getEditorInput();
-        if (input == null)
-            throw new IllegalStateException();
-        return input.getPattern();
-    }
+	/*
+	 * (non-Javadoc) Method declared on IEditorPart.
+	 */
+	public boolean isSaveAsAllowed() {
+		return false;
+	}
 
-    protected void initEditor(IFile templateFile) throws CoreException {
-        try {
-            IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-//            IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
-             IWorkbenchPage activePage = new WorkbenchPage((WorkbenchWindow)activeWorkbenchWindow, null);
-            if (activePage == null || templateFile == null)
-                return;
-            openEditor = IDE.openEditor(activePage, templateFile, false);
-            activePage.setEditorAreaVisible(true);
-        } catch (PartInitException e) {
-            e.printStackTrace();
-        }
-    }
+	public Pattern getPattern() {
+		PatternEditorInput input = (PatternEditorInput) getEditorInput();
+		if (input == null)
+			throw new IllegalStateException();
+		return input.getPattern();
+	}
 
-    protected IFile setPublicTemplateEditor(Pattern pattern, EList<PatternMethod> methods, String fileExtention) {
-        IFile templateFile = null;
-        try {
-            Resource eResource = pattern.eResource();
-            IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(eResource);
-            IProject project = platformFcore.getPlatformBundle().getProject();
-            IFolder folder = project.getFolder("src");
-            if (!folder.exists()) {
-                folder.create(true, false, null);
-            }
-            templateFile = folder.getFile(fileExtention);
-            if (!templateFile.exists()) {
-                templateFile.create(new ByteArrayInputStream(new byte[0]), true, null);
-            } else {
-                templateFile.setContents(new ByteArrayInputStream(new byte[0]), true, false, null);
-            }
-            for (PatternMethod method : methods) {
-                IFile file = project.getFile(method.getPatternFilePath().path());
-                if (!file.exists()) {
-                    file.create(new ByteArrayInputStream(new byte[0]), true, null);
-                }
-                templateFile.appendContents(file.getContents(), false, false, null);
-                templateFile.appendContents(new StringBufferInputStream("\n"), true, false, null);
-                int startPosition = TemplateEditorUtility.getStartPosition(startPositions);
-                int length = TemplateEditorUtility.getSourceLength(file.getContents());
-                Position position = new Position(startPosition, length);
-                startPositions.put(method.getName(), position);
-            }
-            initEditor(templateFile);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return templateFile;
-    }
+	protected void initEditor(IFile templateFile) throws CoreException {
+		try {
+			IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
+					.getActiveWorkbenchWindow();
+			// IWorkbenchPage activePage =
+			// activeWorkbenchWindow.getActivePage();
+			IWorkbenchPage activePage = new WorkbenchPage(
+					(WorkbenchWindow) activeWorkbenchWindow, null);
+			if (activePage == null || templateFile == null)
+				return;
+			openEditor = IDE.openEditor(activePage, templateFile, false);
+			activePage.setEditorAreaVisible(false);
+		} catch (PartInitException e) {
+			Activator.getDefault().logError(e);
+		}
+	}
 
+	protected IFile setPublicTemplateEditor(Pattern pattern,
+			EList<PatternMethod> methods, String fileExtention) {
+		IFile templateFile = null;
+		try {
+			Resource eResource = pattern.eResource();
+			IPlatformFcore platformFcore = EGFCorePlugin
+					.getPlatformFcore(eResource);
+			IProject project = platformFcore.getPlatformBundle().getProject();
+			IFolder folder = project.getFolder("src");
+			if (!folder.exists()) {
+				folder.create(true, false, null);
+			}
+			templateFile = folder.getFile(fileExtention);
+			if (!templateFile.exists()) {
+				templateFile.create(new ByteArrayInputStream(new byte[0]),
+						true, null);
+			} else {
+				templateFile.setContents(new ByteArrayInputStream(new byte[0]),
+						true, false, null);
+			}
+			for (PatternMethod method : methods) {
+				IFile file = project
+						.getFile(method.getPatternFilePath().path());
+				if (!file.exists()) {
+					file.create(new ByteArrayInputStream(new byte[0]), true,
+							null);
+				}
+				templateFile.appendContents(file.getContents(), false, false,
+						null);
+				templateFile.appendContents(new StringBufferInputStream("\n"),
+						true, false, null);
+				int startPosition = TemplateEditorUtility
+						.getStartPosition(startPositions);
+				int length = TemplateEditorUtility.getSourceLength(file
+						.getContents());
+				Position position = new Position(startPosition, length);
+				startPositions.put(method.getName(), position);
+			}
+			initEditor(templateFile);
+		} catch (Exception e) {
+			Activator.getDefault().logError(e);
+		}
+		return templateFile;
+	}
+
+	/**
+	 * While the name of the pattern has been changed, refresh the editor title.
+	 */
+	protected void addPatternChangeAdapter(final Pattern pattern) {
+		if (pattern != null && !pattern.eAdapters().contains(refresher)) {
+			pattern.eAdapters().add(refresher);
+		}
+	}
+
+	/**
+	 * Remove the Adapter add for refreshing the editor title
+	 */
+	protected void removePatternChangeAdapter() {
+		Pattern pattern = getPattern();
+		if (pattern != null && pattern.eAdapters().contains(refresher)) {
+			pattern.eAdapters().remove(refresher);
+		}
+	}
+
+	@Override
+	public void dispose() {
+		removePatternChangeAdapter();
+		super.dispose();
+	}
 }

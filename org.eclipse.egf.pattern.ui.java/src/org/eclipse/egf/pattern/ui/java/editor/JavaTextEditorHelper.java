@@ -58,7 +58,7 @@ public class JavaTextEditorHelper {
      * Get the words which will be used in code completion.
      */
     public static String[] getAllWords(char c, JavaDocumentReader reader) {
-        ArrayList all = new ArrayList(20);
+        ArrayList<String> all = new ArrayList<String>(20);
         char currChar = c;
         currChar = trimBlanksBackward(reader, currChar);
         for (boolean done = false; !done;) {
@@ -94,7 +94,15 @@ public class JavaTextEditorHelper {
         if (templateFile.exists()) {
             try {
                 templateFile.setContents(new ByteArrayInputStream(new byte[0]), true, false, null);
-                for (JavaTextEditor currentEditor : editors) {
+                if(editors == null){
+                	return;
+                }
+                int size = editors.size();
+                if(size == 0){
+                	return;
+                }
+                for (int i = 0;i<size;i++) {
+                	JavaTextEditor currentEditor = editors.get(i);
                     if (currentEditor == null) {
                         continue;
                     }
@@ -104,11 +112,14 @@ public class JavaTextEditorHelper {
                             continue;
                         }
                         templateFile.appendContents(inputStreamOfEditor, false, false, null);
-                        templateFile.appendContents(new StringBufferInputStream("\n"), true, false, null);
+                        if(i!=size -1){
+							templateFile.appendContents(
+									new StringBufferInputStream("\n"), true,
+									false, null);
+                        }
                     }
                 }
             } catch (Exception e) {
-                e.printStackTrace();
             }
         }
     }
@@ -144,11 +155,7 @@ public class JavaTextEditorHelper {
         for (String id : editors.keySet()) {
             TextEditor textEditor = editors.get(id);
             IDocumentProvider documentProvider = textEditor.getDocumentProvider();
-            IDocument document = documentProvider.getDocument(textEditor.getEditorInput());
             IAnnotationModel annotationModel = documentProvider.getAnnotationModel(textEditor.getEditorInput());
-            // JavaAnnotationModel annotationModel =
-            // (JavaAnnotationModel)iannotationModel;
-            // annotationModel.disconnect(document);
             Iterator iter = annotationModel.getAnnotationIterator();
             while (iter.hasNext()) {
                 Annotation annotation = (Annotation) iter.next();
@@ -159,7 +166,6 @@ public class JavaTextEditorHelper {
             int endOffset = position.offset + position.length - 1;
             Iterator annotationIterator = javaAnnotationModel.getAnnotationIterator();
             if (annotationModel != null) {
-                // annotationModel.setFireChanges(false);
                 while (annotationIterator.hasNext()) {
                     Annotation annotation = (Annotation) annotationIterator.next();
                     if (!annotation.getType().equals("org.eclipse.jdt.ui.error")) {
@@ -178,9 +184,6 @@ public class JavaTextEditorHelper {
                         annotationModel.addAnnotation(annotation, posi);
                     }
                 }
-                // annotationModel.connect(document);
-                // annotationModel.setFireChanges(true);
-                // annotationModel.fireAnnotationModelChanged();
             }
         }
     }

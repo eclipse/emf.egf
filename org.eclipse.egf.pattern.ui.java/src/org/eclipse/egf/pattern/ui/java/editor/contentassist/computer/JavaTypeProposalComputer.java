@@ -31,6 +31,8 @@ import org.eclipse.jdt.internal.ui.text.JavaHeuristicScanner;
 import org.eclipse.jdt.internal.ui.text.Symbols;
 import org.eclipse.jdt.internal.ui.text.java.FillArgumentNamesCompletionProposalCollector;
 import org.eclipse.jdt.internal.ui.text.java.JavaMethodCompletionProposal;
+import org.eclipse.jdt.internal.ui.text.java.ProposalSorterRegistry;
+import org.eclipse.jdt.internal.ui.text.java.TemplateCompletionProposalComputer;
 import org.eclipse.jdt.ui.PreferenceConstants;
 import org.eclipse.jdt.ui.text.java.CompletionProposalCollector;
 import org.eclipse.jdt.ui.text.java.ContentAssistInvocationContext;
@@ -67,6 +69,18 @@ public class JavaTypeProposalComputer extends JavaTextEditorProposalComputer {
         if (unit == null)
             return null;
 
+        List<ICompletionProposal> proposals = new ArrayList<ICompletionProposal>();
+
+        List<ICompletionProposal> javaTypeProposal = computeJavaTypeProposal(unit, context);
+        proposals.addAll(javaTypeProposal);
+        List<ICompletionProposal> templateProposal = computeTemplateProposal(context);
+        proposals.addAll(templateProposal);
+
+        ProposalSorterRegistry.getDefault().getCurrentSorter().sortProposals(context, proposals);
+        return proposals;
+    }
+
+    private List<ICompletionProposal> computeJavaTypeProposal(ICompilationUnit unit, JavaContentAssistInvocationContext context) {
         ITextViewer viewer = context.getViewer();
 
         CompletionProposalCollector collector = createCollector(context);
@@ -112,8 +126,14 @@ public class JavaTypeProposalComputer extends JavaTextEditorProposalComputer {
                 }
             }
         }
+        return Arrays.asList(javaProposals);
+    }
 
-        return new ArrayList(Arrays.asList(javaProposals));
+    private List<ICompletionProposal> computeTemplateProposal(JavaContentAssistInvocationContext context) {
+        // Get the template proposals.
+        TemplateCompletionProposalComputer templateCompletionProposalComputer = new TemplateCompletionProposalComputer();
+        List computeCompletionProposals = templateCompletionProposalComputer.computeCompletionProposals(context, null);
+        return computeCompletionProposals;
     }
 
     private void setCollectorIgnored(CompletionProposalCollector collector) {
