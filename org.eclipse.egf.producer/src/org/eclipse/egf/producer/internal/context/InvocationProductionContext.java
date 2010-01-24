@@ -41,6 +41,27 @@ public abstract class InvocationProductionContext<P extends Invocation, T extend
   }
 
   @Override
+  public boolean isSetAtRuntime(Object key) throws InvocationException {
+    // Locate an InvocationContract
+    InvocationContract invocationContract = getInvocationContract(key, getInputValueKeys());
+    // Unknown InvocationContract
+    if (invocationContract == null) {
+      return false;
+    }
+    // Input Contract is set at runtime
+    if (invocationContract.getSourceInvocationContract() != null) {
+      return true;
+    }
+    // Is it necessary to propagate ?
+    if (invocationContract.getOrchestrationParameter() != null || invocationContract.getFactoryComponentContract() != null) {
+      if (getParent() != null) {
+        return getParent().isSetAtRuntime(invocationContract);
+      }
+    }
+    return false;
+  }
+
+  @Override
   public Class<?> getInputValueType(Object key) throws InvocationException {
     // Locate an InvocationContract
     InvocationContract invocationContract = getInvocationContract(key, getInputValueKeys());
@@ -48,6 +69,7 @@ public abstract class InvocationProductionContext<P extends Invocation, T extend
     if (invocationContract == null) {
       return null;
     }
+    // Parent or local value
     Class<?> valueType = null;
     // Is it necessary to propagate ?
     if (invocationContract.getOrchestrationParameter() != null || invocationContract.getFactoryComponentContract() != null) {

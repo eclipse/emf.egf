@@ -27,6 +27,8 @@ public interface IProductionContext<P extends Object, T extends Object> {
 
   public P getElement();
 
+  public boolean isSetAtRuntime(Object key) throws InvocationException;
+
   public IProductionContext<?, ?> getParent();
 
   public Bundle getBundle(String id) throws InvocationException;

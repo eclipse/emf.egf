@@ -40,14 +40,29 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
   }
 
   @Override
-  public Class<?> getInputValueType(Object key) throws InvocationException {
+  public boolean isSetAtRuntime(Object key) throws InvocationException {
     // Looking for a Contract
     Contract contract = getContract(key, getInputValueKeys());
-    // Unknown ActivityContract
+    // Unknown Contract
     if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
     }
-    // Looking for an Input ActivityContract type
+    // Looking for a Parent Input Contract set at runtime
+    if (getParent() != null) {
+      return getParent().isSetAtRuntime(contract);
+    }
+    return false;
+  }
+
+  @Override
+  public Class<?> getInputValueType(Object key) throws InvocationException {
+    // Looking for a Contract
+    Contract contract = getContract(key, getInputValueKeys());
+    // Unknown Contract
+    if (contract == null) {
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
+    }
+    // Looking for an Input Contract type
     return super.getInputValueType(contract);
   }
 
@@ -59,7 +74,7 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
     if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
     }
-    // Looking for an Input ActivityContract value
+    // Looking for an Input Contract value
     return super.getInputValue(contract, clazz);
   }
 
@@ -71,7 +86,7 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
     if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
     }
-    // Looking for an Output ActivityContract type
+    // Looking for an Output Contract type
     return super.getOutputValueType(contract);
   }
 
@@ -83,7 +98,7 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
     if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
     }
-    // Looking for an Output ActivityContract value
+    // Looking for an Output Contract value
     return super.getOutputValue(contract, clazz);
   }
 
@@ -95,7 +110,7 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
     if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
     }
-    // Set ActivityContract Value
+    // Set Contract Value
     super.setOutputValue(contract, value);
   }
 
@@ -119,7 +134,7 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
         break;
       }
     }
-    // Unknown ActivityContract
+    // Unknown Contract
     if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, innerName, getName()));
     }

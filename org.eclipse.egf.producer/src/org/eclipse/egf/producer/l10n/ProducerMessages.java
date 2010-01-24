@@ -39,5 +39,6 @@ public class ProducerMessages {
   public static String OrchestrationManagerProducer_type_error;
 
   public static String _UI_CanInvoke_Diagnosis_message;
+  public static String _UI_RuntimeCanInvoke_Diagnosis_message;
 
 }

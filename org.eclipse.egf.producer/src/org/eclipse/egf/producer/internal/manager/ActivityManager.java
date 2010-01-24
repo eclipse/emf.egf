@@ -64,16 +64,21 @@ public abstract class ActivityManager<P extends Activity> extends ModelElementMa
   }
 
   @Override
-  protected BasicDiagnostic canInvokeElement() throws InvocationException {
-    BasicDiagnostic diagnostic = getDiagnostic(getElement());
+  protected BasicDiagnostic canInvokeElement(boolean runtime) throws InvocationException {
+    BasicDiagnostic diagnostic = getDiagnostic(getElement(), runtime);
     BasicDiagnostic containerDiagnostic = null;
+    ProductionContext<P, Contract> context = getInternalProductionContext();
     // Diagnose Mandatory In Contract
     for (Contract contract : getElement().getContracts(ContractMode.IN)) {
       if (contract.isMandatory()) {
+        // Check whether or not we face a contract set at runtime
+        if (runtime == false && context.isSetAtRuntime(contract.getName())) {
+          continue;
+        }
         // Check Mandatory Value
         Object value = null;
         try {
-          value = getInternalProductionContext().getInputValue(contract.getName(), contract.getType().getType());
+          value = context.getInputValue(contract.getName(), contract.getType().getType());
         } catch (InvocationException ie) {
           if (ie.getCause() != null) {
             throw ie;
@@ -81,15 +86,14 @@ public abstract class ActivityManager<P extends Activity> extends ModelElementMa
         }
         if (value == null) {
           if (containerDiagnostic == null) {
-            containerDiagnostic = getDiagnostic(contract.getContractContainer());
+            containerDiagnostic = getDiagnostic(contract.getContractContainer(), runtime);
           }
-          containerDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("ActivityContract is mandatory for ''{0}''", EMFHelper.getText(contract)), //$NON-NLS-1$
+          containerDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("Value is mandatory for ''{0}''", EMFHelper.getText(contract)), //$NON-NLS-1$
               new Object[] { contract }));
         }
       }
     }
-    // containerDiagnostic should be added at the end otherwise, the severity code is not propagated
-    // to the parent.
+    // containerDiagnostic should be added at the end otherwise, the severity code is not propagated to the parent.
     if (containerDiagnostic != null) {
       diagnostic.add(containerDiagnostic);
     }

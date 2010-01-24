@@ -41,6 +41,25 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
   }
 
   @Override
+  public boolean isSetAtRuntime(Object key) throws InvocationException {
+    // It could be a String in this context
+    if (key != null && key instanceof String) {
+      return super.isSetAtRuntime(key);
+    }
+    // Locate a Contract
+    Contract contract = getContract(key, getInputValueKeys());
+    // Contract should be known at this stage
+    if (contract == null) {
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
+    }
+    // Looking for a Parent Input Contract set at runtime
+    if (getParent() != null) {
+      return getParent().isSetAtRuntime(contract);
+    }
+    return false;
+  }
+
+  @Override
   public Class<?> getInputValueType(Object key) throws InvocationException {
     // It could be a String in this context
     if (key != null && key instanceof String) {

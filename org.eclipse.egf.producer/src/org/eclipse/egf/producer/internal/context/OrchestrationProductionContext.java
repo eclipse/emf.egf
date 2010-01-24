@@ -41,6 +41,21 @@ public abstract class OrchestrationProductionContext<P extends Orchestration> ex
   }
 
   @Override
+  public boolean isSetAtRuntime(Object key) throws InvocationException {
+    // Locate an OrchestrationParameter, just do it for key type checking
+    getOrchestrationParameter(key, getInputValueKeys());
+    InvocationContract invocationContract = (InvocationContract) key;
+    // Always propagate, An InvocationContract shouldn't be in an OrchestrationParameter
+    // and in an FactoryComponentContract
+    if (invocationContract.getFactoryComponentContract() != null) {
+      if (getParent() != null && invocationContract.getFactoryComponentContract().getMode() != ContractMode.OUT) {
+        return getParent().isSetAtRuntime(invocationContract);
+      }
+    }
+    return false;
+  }
+
+  @Override
   public Class<?> getInputValueType(Object key) throws InvocationException {
     // Locate an OrchestrationParameter, it could be null, just do it for key type checking
     OrchestrationParameter orchestrationParameter = getOrchestrationParameter(key, getInputValueKeys());

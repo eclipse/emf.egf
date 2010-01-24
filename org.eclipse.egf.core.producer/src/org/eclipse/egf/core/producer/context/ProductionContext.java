@@ -150,6 +150,18 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     _outputDatas.clear();
   }
 
+  public boolean isSetAtRuntime(Object key) throws InvocationException {
+    // Usual Tests
+    if (key == null) {
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
+    }
+    // Looking for Parent
+    if (getParent() != null) {
+      return getParent().isSetAtRuntime(key);
+    }
+    return false;
+  }
+
   public void addInputData(T key, Class<?> clazz, Object object) throws InvocationException {
     if (_inputDatas.put(key, new Data(key, clazz, object)) != null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EMFHelper.getText(key), getName()));

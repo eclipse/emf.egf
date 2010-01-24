@@ -37,16 +37,24 @@ import org.osgi.framework.Bundle;
  */
 public abstract class ModelElementManager<P extends ModelElement, T extends ModelElement> implements IModelElementManager<P, T> {
 
-  protected static BasicDiagnostic getDiagnostic(ModelElement element) {
+  protected static BasicDiagnostic getDiagnostic(ModelElement element, boolean runtime) {
     String message = null;
     if (element instanceof NamedModelElement) {
       NamedModelElement namedElement = (NamedModelElement) element;
       if (namedElement.getName() != null && namedElement.getName().trim().length() != 0) {
-        message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, namedElement.getName());
+        if (runtime) {
+          message = NLS.bind(ProducerMessages._UI_RuntimeCanInvoke_Diagnosis_message, namedElement.getName());
+        } else {
+          message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, namedElement.getName());
+        }
       }
     }
     if (message == null) {
-      message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, element.eClass().getName());
+      if (runtime) {
+        message = NLS.bind(ProducerMessages._UI_RuntimeCanInvoke_Diagnosis_message, element.eClass().getName());
+      } else {
+        message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, element.eClass().getName());
+      }
     }
     return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, new Object[] { element });
   }
@@ -136,12 +144,12 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
   }
 
   @SuppressWarnings("unused")
-  protected BasicDiagnostic canInvokeElement() throws InvocationException {
-    return getDiagnostic(getElement());
+  protected BasicDiagnostic canInvokeElement(boolean runtime) throws InvocationException {
+    return getDiagnostic(getElement(), runtime);
   }
 
   public Diagnostic canInvoke() throws InvocationException {
-    return canInvokeElement();
+    return canInvokeElement(false);
   }
 
   public abstract void initializeContext() throws InvocationException;

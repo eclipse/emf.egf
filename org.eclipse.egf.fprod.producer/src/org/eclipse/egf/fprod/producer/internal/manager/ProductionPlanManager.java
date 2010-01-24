@@ -80,7 +80,7 @@ public class ProductionPlanManager extends OrchestrationManager<ProductionPlan> 
 
   @Override
   public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = canInvokeElement();
+    BasicDiagnostic diagnostic = canInvokeElement(false);
     Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
     if (managers != null) {
       for (Invocation invocation : getElement().getInvocations()) {
@@ -124,7 +124,7 @@ public class ProductionPlanManager extends OrchestrationManager<ProductionPlan> 
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    BasicDiagnostic diagnostic = canInvokeElement();
+    BasicDiagnostic diagnostic = canInvokeElement(true);
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
       if (managers != null) {

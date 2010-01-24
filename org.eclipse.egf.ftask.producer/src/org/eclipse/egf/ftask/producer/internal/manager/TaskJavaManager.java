@@ -75,8 +75,8 @@ public class TaskJavaManager extends ActivityManager<TaskJava> {
   }
 
   @Override
-  protected BasicDiagnostic canInvokeElement() throws InvocationException {
-    BasicDiagnostic diagnostic = super.canInvokeElement();
+  protected BasicDiagnostic canInvokeElement(boolean runtime) throws InvocationException {
+    BasicDiagnostic diagnostic = super.canInvokeElement(runtime);
     if (getElement().getValue() == null) {
       diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("Task Java Implementation is mandatory for ''{0}''", EMFHelper.getText(getElement())), //$NON-NLS-1$
           new Object[] { getElement() }));
@@ -103,7 +103,7 @@ public class TaskJavaManager extends ActivityManager<TaskJava> {
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    BasicDiagnostic diagnostic = canInvokeElement();
+    BasicDiagnostic diagnostic = canInvokeElement(true);
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       EGFFtaskProducerPlugin.getTaskProductionInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement()).invoke(monitor);
       if (monitor.isCanceled()) {
