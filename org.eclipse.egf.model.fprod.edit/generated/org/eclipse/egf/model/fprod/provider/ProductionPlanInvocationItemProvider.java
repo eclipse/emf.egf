@@ -90,14 +90,13 @@ public class ProductionPlanInvocationItemProvider extends InvocationItemProvider
   @Override
   public String getText(Object object) {
     ProductionPlanInvocation productionPlanInvocation = (ProductionPlanInvocation) object;
-    String label = null;
+    String invoked = null;
     if (productionPlanInvocation.getInvokedActivity() != null) {
-      label = EMFHelper.getText(productionPlanInvocation.getInvokedActivity());
+      invoked = EMFHelper.getText(productionPlanInvocation.getInvokedActivity());
     }
-    if (label != null) {
-      label = "[" + getString("_UI_ProductionPlanInvocation_type") + "] -> " + label; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    } else {
-      label = "[" + getString("_UI_ProductionPlanInvocation_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    String label = "[" + getString("_UI_ProductionPlanInvocation_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    if (invoked != null) {
+      label = label + " -> " + invoked; //$NON-NLS-1$
     }
     return label;
   }

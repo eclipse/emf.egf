@@ -29,6 +29,8 @@ public class InvocationContractAdapter extends AdapterImpl {
 
   private Contract _contract;
 
+  private EStructuralFeature _nameFeature = FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME;
+
   private EStructuralFeature _contractModeFeature = FcorePackage.Literals.CONTRACT__MODE;
 
   private EStructuralFeature _invocationContractInvokedModeFeature = FcorePackage.Literals.INVOCATION_CONTRACT__INVOKED_MODE;
@@ -40,6 +42,8 @@ public class InvocationContractAdapter extends AdapterImpl {
     public void notifyChanged(Notification msg) {
       if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_contractModeFeature)) {
         _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedModeFeature, null, _invocationContract.eGet(_invocationContractInvokedModeFeature, true)));
+      } else if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_nameFeature)) {
+        _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _invocationContract.eGet(_invocationContractInvokedContractFeature, true)));
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
         _contract = null;
       }
