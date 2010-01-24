@@ -6,7 +6,7 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class Hello
+public class Hello 
 {
   protected static String nl;
   public static synchronized Hello create(String lineSeparator)
@@ -21,26 +21,37 @@ public class Hello
   protected final String TEXT_1 = "Hello - Hello!";
   protected final String TEXT_2 = NL;
 
-  public String generate(Object argument)
+	public Hello()
+	{
+	//Here is the constructor
+StringBuffer stringBuffer = new StringBuffer();
+
+    // add initialisation of the pattern variables (declaration has been already done).
+    
+	}
+  	
+  	public String generate(Object argument) throws Exception
   {
     final StringBuffer stringBuffer = new StringBuffer();
+    
     PatternContext ctx = (PatternContext)argument;
-Map<String, Object> parameterValues = new HashMap<String, Object>();
 StringBuilder collector = new StringBuilder(2000);
 Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
-PatternExecutionReporter reporter = (PatternExecutionReporter)ctx.getValue(PatternContext.PATTERN_REPORTER);
-if (reporter == null) reporter = new ConsoleReporter();
 
-    generate(stringBuffer, ctx);
-    reporter.executionFinished(stringBuffer.toString(), ctx);
+    collector.append(generate(ctx));
+    ctx.getReporter().executionFinished(stringBuffer.toString(), ctx);
     stringBuffer.append(TEXT_2);
     return stringBuffer.toString();
   }
-public void generate(final StringBuffer stringBuffer, PatternContext ctx) {
+public String generate(PatternContext ctx) throws Exception  {
+final StringBuffer stringBuffer = new StringBuffer();
+PatternCallReporter callReporter =  new PatternCallReporter(stringBuffer);
 
-    
-    // add initialisation of the pattern variables (declaration has been already done).
     stringBuffer.append(TEXT_1);
-    } 
+    
+String loop = stringBuffer.toString();
+return loop;
+} 
+
 }

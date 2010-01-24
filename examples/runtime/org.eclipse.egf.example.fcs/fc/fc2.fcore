@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fcore:FactoryComponent xmi:version="2.1"
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
-    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="6yt_IWV8Ed6WjOtbZOwqNA"
-    name="FC2">
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmi:id="6yt_IWV8Ed6WjOtbZOwqNA" name="FC2">
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="zwp8wKbGEd69ANF1SOWYYg">
-    <invocations xmi:type="fprod:TaskInvocation" xmi:id="28WcsKbGEd69ANF1SOWYYg" name="Call H2"
-        activity="fprod:Task platform:/plugin/org.eclipse.egf.example.task.h2/task_h2.fcore#9hT-gKbGEd69ANF1SOWYYg"/>
+    <invocations xmi:type="fprod:ProductionPlanInvocation" xmi:id="28WcsKbGEd69ANF1SOWYYg"
+        invokedActivity="ftask:TaskJava platform:/plugin/org.eclipse.egf.example.task.h2/task_h2.fcore#9hT-gKbGEd69ANF1SOWYYg"/>
   </orchestration>
 </fcore:FactoryComponent>

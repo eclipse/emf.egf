@@ -2,17 +2,18 @@
 <fcore:FactoryComponent xmi:version="2.1"
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
-    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
-    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_9dmyoOUhEd6K29loa12Zeg"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_9dmyoOUhEd6K29loa12Zeg"
     name="HelloWorldPattern">
   <viewpointContainer xmi:id="_BEuDQOUiEd6K29loa12Zeg">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_S3cJcOWPEd6-n_el3pPeEA">
-      <domains xmi:type="domain:DomainURI" xmi:id="_TwXVgOWPEd6-n_el3pPeEA" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
+      <domains xmi:type="domain:DomainURI" xmi:id="_TwXVgOWPEd6-n_el3pPeEA" name=""
+          uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_HoMXUOUiEd6K29loa12Zeg">
       <libraries xmi:id="_-5uOEOgQEd6H-IbEpfKYLw" name="HelloPatternsLib">
-        <elements xmi:type="pattern:Pattern" xmi:id="_e1HzsOgREd6H-IbEpfKYLw" name="Hello"
-            description="" headerMethod="#_e1HzsegREd6H-IbEpfKYLw" footerMethod="#_e1HztOgREd6H-IbEpfKYLw"
+        <elements xmi:type="pattern:Pattern" xmi:id="_e1HzsOgREd6H-IbEpfKYLw" description=""
+            name="Hello" headerMethod="#_e1HzsegREd6H-IbEpfKYLw" footerMethod="#_e1HztOgREd6H-IbEpfKYLw"
             initMethod="#_e1HzsugREd6H-IbEpfKYLw">
           <methods xmi:id="_e1HzsegREd6H-IbEpfKYLw" name="header" patternFilePath="templates/pattern._e1HzsOgREd6H-IbEpfKYLw/method._e1HzsegREd6H-IbEpfKYLw.pt"/>
           <methods xmi:id="_e1HzsugREd6H-IbEpfKYLw" name="init" patternFilePath="templates/pattern._e1HzsOgREd6H-IbEpfKYLw/method._e1HzsugREd6H-IbEpfKYLw.pt"/>
@@ -21,12 +22,13 @@
           <methods xmi:id="_qL9FceiHEd6-N7yXRz81IQ" name="SayHello" patternFilePath="templates/pattern._e1HzsOgREd6H-IbEpfKYLw/method._qL9FceiHEd6-N7yXRz81IQ.pt"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_e1HztegREd6H-IbEpfKYLw"
               called="#_e1Hzs-gREd6H-IbEpfKYLw"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_e1HztugREd6H-IbEpfKYLw"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_e1HztugREd6H-IbEpfKYLw"
+              name=""/>
         </elements>
       </libraries>
       <libraries xmi:id="_IE8kwOUiEd6K29loa12Zeg" name="HelloWorldPatternsLib">
-        <elements xmi:type="pattern:Pattern" xmi:id="_LA2VMOUiEd6K29loa12Zeg" name="HelloWorld"
-            description="" headerMethod="#_LA2VMeUiEd6K29loa12Zeg" footerMethod="#_LA2VNOUiEd6K29loa12Zeg"
+        <elements xmi:type="pattern:Pattern" xmi:id="_LA2VMOUiEd6K29loa12Zeg" description=""
+            name="HelloWorld" headerMethod="#_LA2VMeUiEd6K29loa12Zeg" footerMethod="#_LA2VNOUiEd6K29loa12Zeg"
             superPattern="#_e1HzsOgREd6H-IbEpfKYLw" initMethod="#_LA2VMuUiEd6K29loa12Zeg">
           <methods xmi:id="_LA2VMeUiEd6K29loa12Zeg" name="header" patternFilePath="templates/pattern._LA2VMOUiEd6K29loa12Zeg/method._LA2VMeUiEd6K29loa12Zeg.pt"/>
           <methods xmi:id="_LA2VMuUiEd6K29loa12Zeg" name="init" patternFilePath="templates/pattern._LA2VMOUiEd6K29loa12Zeg/method._LA2VMuUiEd6K29loa12Zeg.pt"/>
@@ -68,20 +70,19 @@
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_g6_ZMOWOEd6-n_el3pPeEA">
-    <invocations xmi:type="fprod:TaskInvocation" xmi:id="_PIQy4OWYEd6gUKKuh6R6ww"
-        name="Hello Classes" activity="fprod:Task platform:/plugin/org.eclipse.egf.examples.uc1/egf/PatternTask.fcore#_JdTNQOVuEd6-n_el3pPeEA">
-      <invocationContextContainer xmi:id="_QW8MgOWYEd6gUKKuh6R6ww">
-        <invocationContexts xmi:id="_V0hPgOWYEd6gUKKuh6R6ww" name="Domain" activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.examples.uc1/egf/PatternTask.fcore#_7ljWIOV0Ed6-n_el3pPeEA">
+    <invocations xmi:id="_PIQy4OWYEd6gUKKuh6R6ww" invokedActivity="ftask:TaskJava platform:/plugin/org.eclipse.egf.examples.uc1/egf/PatternTask.fcore#_JdTNQOVuEd6-n_el3pPeEA">
+      <invocationContractContainer xmi:id="_QW8MgOWYEd6gUKKuh6R6ww">
+        <invocationContracts xmi:id="_V0hPgOWYEd6gUKKuh6R6ww" invokedContract="platform:/plugin/org.eclipse.egf.examples.uc1/egf/PatternTask.fcore#_7ljWIOV0Ed6-n_el3pPeEA">
           <type xmi:type="domain:TypeDomainURI" xmi:id="_YpHeEOWYEd6gUKKuh6R6ww" domain="#_TwXVgOWPEd6-n_el3pPeEA"/>
-        </invocationContexts>
-        <invocationContexts xmi:id="_oU2-MOWYEd6gUKKuh6R6ww" name="Pattern" activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.examples.uc1/egf/PatternTask.fcore#_Vag-cOV0Ed6-n_el3pPeEA">
+        </invocationContracts>
+        <invocationContracts xmi:id="_oU2-MOWYEd6gUKKuh6R6ww" invokedContract="platform:/plugin/org.eclipse.egf.examples.uc1/egf/PatternTask.fcore#_Vag-cOV0Ed6-n_el3pPeEA">
           <type xmi:type="types:TypeString" xmi:id="_yC_QYOWYEd6gUKKuh6R6ww" value="_LA2VMOUiEd6K29loa12Zeg"/>
-        </invocationContexts>
-        <invocationContexts xmi:id="_zFl84OWYEd6gUKKuh6R6ww" name="Reporter" activityContract="fprod:TaskContract platform:/plugin/org.eclipse.egf.examples.uc1/egf/PatternTask.fcore#_kcrWEOV0Ed6-n_el3pPeEA">
+        </invocationContracts>
+        <invocationContracts xmi:id="_zFl84OWYEd6gUKKuh6R6ww" invokedContract="platform:/plugin/org.eclipse.egf.examples.uc1/egf/PatternTask.fcore#_kcrWEOV0Ed6-n_el3pPeEA">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_5XCFwOWYEd6gUKKuh6R6ww"
               value="org.eclipse.egf.examples.uc1.reporter.MyReporter"/>
-        </invocationContexts>
-      </invocationContextContainer>
+        </invocationContracts>
+      </invocationContractContainer>
     </invocations>
   </orchestration>
 </fcore:FactoryComponent>

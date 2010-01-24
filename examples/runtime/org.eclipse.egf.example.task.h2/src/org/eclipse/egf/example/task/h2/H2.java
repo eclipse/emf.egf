@@ -3,8 +3,8 @@ package org.eclipse.egf.example.task.h2;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.producer.InvocationException;
-import org.eclipse.egf.fprod.producer.context.ITaskProductionContext;
-import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
+import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
+import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 
 public class H2 implements ITaskProduction {
 

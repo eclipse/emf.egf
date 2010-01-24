@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<fprod:Task xmi:version="2.1"
+<ftask:TaskJava xmi:version="2.1"
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
-    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
     xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_JdTNQOVuEd6-n_el3pPeEA"
     name="Pattern Task" value="org.eclipse.egf.pattern.fprod.tasks.PatternTask">
-  <activityContractContainer xmi:id="_UuQVYOV0Ed6-n_el3pPeEA">
-    <activityContracts xmi:id="_Vag-cOV0Ed6-n_el3pPeEA" name="pattern.id">
-      <type xmi:type="types:TypeString" xmi:id="_dwkqcOV0Ed6-n_el3pPeEA" name=""/>
-    </activityContracts>
-    <activityContracts xmi:id="_kcrWEOV0Ed6-n_el3pPeEA" name="pattern.execution.reporter">
+  <contractContainer xmi:id="_UuQVYOV0Ed6-n_el3pPeEA">
+    <contracts xmi:id="_Vag-cOV0Ed6-n_el3pPeEA" name="pattern.id">
+      <type xmi:type="types:TypeString" xmi:id="_dwkqcOV0Ed6-n_el3pPeEA"/>
+    </contracts>
+    <contracts xmi:id="_kcrWEOV0Ed6-n_el3pPeEA" name="pattern.execution.reporter">
       <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_3QjEwOV0Ed6-n_el3pPeEA"/>
-    </activityContracts>
-    <activityContracts xmi:id="_7ljWIOV0Ed6-n_el3pPeEA" name="domain">
+    </contracts>
+    <contracts xmi:id="_7ljWIOV0Ed6-n_el3pPeEA" name="domain">
       <type xmi:type="domain:TypeDomainURI" xmi:id="_9pu0YOV0Ed6-n_el3pPeEA"/>
-    </activityContracts>
-  </activityContractContainer>
-</fprod:Task>
+    </contracts>
+  </contractContainer>
+</ftask:TaskJava>

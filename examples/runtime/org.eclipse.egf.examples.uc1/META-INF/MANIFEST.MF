@@ -8,8 +8,8 @@ Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
- org.eclipse.egf.model.fprod;visibility:=reexport,
- org.eclipse.egf.pattern.fprod;visibility:=reexport,
+ org.eclipse.egf.model.ftask;visibility:=reexport,
+ org.eclipse.egf.pattern.ftask;visibility:=reexport,
  org.eclipse.egf.pattern;visibility:=reexport
 Export-Package: 
  HelloFriendsPatternsLib,
