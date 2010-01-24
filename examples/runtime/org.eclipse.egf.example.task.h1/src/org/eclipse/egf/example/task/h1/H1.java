@@ -20,18 +20,18 @@ public class H1 implements ITaskProduction {
   private Collection<String> parameters;
 
   @SuppressWarnings("unchecked")
-  public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+  public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
     quantity = context.getInputValue("quantity", Integer.class); //$NON-NLS-1$
     price = context.getInputValue("price", Float.class); //$NON-NLS-1$
     parameters = context.getInputValue("parameters", Collection.class); //$NON-NLS-1$
     context.getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$       
   }
 
-  public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+  public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
     amount = quantity * price;
   }
 
-  public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
+  public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
     context.setOutputValue("amount", amount); //$NON-NLS-1$       
     context.setOutputValue("generatorAdapterFactory", new GenModelGeneratorAdapterFactory()); //$NON-NLS-1$
   }
