@@ -38,18 +38,22 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent <em>Factory Component</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getOrchestrationParameterContainer <em>Orchestration Parameter Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getFactoryComponent <em>Factory
+ * Component</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.OrchestrationImpl#getOrchestrationParameterContainer
+ * <em>Orchestration Parameter Container</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class OrchestrationImpl extends ModelElementImpl implements Orchestration {
   /**
-   * The cached value of the '{@link #getOrchestrationParameterContainer() <em>Orchestration Parameter Container</em>}' containment reference.
+   * The cached value of the '{@link #getOrchestrationParameterContainer() <em>Orchestration
+   * Parameter Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getOrchestrationParameterContainer()
    * @generated
    * @ordered
@@ -59,6 +63,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected OrchestrationImpl() {
@@ -68,6 +73,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -78,6 +84,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponent getFactoryComponent() {
@@ -89,6 +96,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetFactoryComponent(FactoryComponent newFactoryComponent, NotificationChain msgs) {
@@ -99,6 +107,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setFactoryComponent(FactoryComponent newFactoryComponent) {
@@ -120,6 +129,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public OrchestrationParameterContainer getOrchestrationParameterContainer() {
@@ -129,6 +139,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetOrchestrationParameterContainer(OrchestrationParameterContainer newOrchestrationParameterContainer, NotificationChain msgs) {
@@ -147,6 +158,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setOrchestrationParameterContainer(OrchestrationParameterContainer newOrchestrationParameterContainer) {
@@ -166,6 +178,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public <T extends Invocation> EList<T> getInvocations() {
@@ -267,21 +280,10 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<OrchestrationParameter> getOrchestrationParameters(Type type) {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public EList<OrchestrationParameter> getOrchestrationContexts(Type type) {
+  public EList<OrchestrationParameter> getOrchestrationParameters(Type type) {
     EList<OrchestrationParameter> orchestrationParameters = new UniqueEList<OrchestrationParameter>();
     for (OrchestrationParameter innerOrchestrationParameter : getOrchestrationParameters()) {
       if (innerOrchestrationParameter.getType() != null && ClassHelper.asSubClass(type.getType(), innerOrchestrationParameter.getType().getType())) {
@@ -294,6 +296,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -314,6 +317,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -330,6 +334,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -344,6 +349,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -360,6 +366,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -378,6 +385,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -396,6 +404,7 @@ public abstract class OrchestrationImpl extends ModelElementImpl implements Orch
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
