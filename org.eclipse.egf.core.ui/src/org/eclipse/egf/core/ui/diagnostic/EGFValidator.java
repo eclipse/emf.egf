@@ -18,7 +18,6 @@ package org.eclipse.egf.core.ui.diagnostic;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -31,6 +30,7 @@ import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
+import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -48,6 +48,7 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
@@ -56,24 +57,29 @@ import org.eclipse.ui.part.ISetSelectionTarget;
 
 public class EGFValidator {
 
-  private Collection<? extends EObject> _eObjects = new ArrayList<EObject>();
+  private List<? extends EObject> _eObjects = new ArrayList<EObject>();
 
-  public EGFValidator(Collection<? extends EObject> eObjects) {
+  public EGFValidator(List<? extends EObject> eObjects) {
     _eObjects = eObjects;
   }
 
   public Diagnostic validate() {
 
+    // Nothing to do
+    if (_eObjects == null || _eObjects.size() == 0) {
+      return Diagnostic.OK_INSTANCE;
+    }
+
     final Diagnostic[] diagnostic = new Diagnostic[1];
     final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
     IRunnableWithProgress runnableWithProgress = new IRunnableWithProgress() {
-      public void run(final IProgressMonitor progressMonitor) throws InvocationTargetException, InterruptedException {
+      public void run(final IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
         try {
-          diagnostic[0] = validate(progressMonitor);
+          diagnostic[0] = validate(monitor);
           shell.getDisplay().asyncExec(new Runnable() {
             public void run() {
-              if (progressMonitor.isCanceled()) {
+              if (monitor.isCanceled()) {
                 return;
               }
               int severity = diagnostic[0].getSeverity();
@@ -83,7 +89,7 @@ public class EGFValidator {
             }
           });
         } finally {
-          progressMonitor.done();
+          monitor.done();
         }
       }
     };
@@ -106,7 +112,7 @@ public class EGFValidator {
   /**
    * This simply execute the command.
    */
-  protected Diagnostic validate(IProgressMonitor progressMonitor) {
+  protected Diagnostic validate(IProgressMonitor monitor) {
     int selectionSize = _eObjects.size();
     int count = selectionSize;
     for (EObject eObject : _eObjects) {
@@ -115,11 +121,15 @@ public class EGFValidator {
       }
     }
 
-    progressMonitor.beginTask("", count); //$NON-NLS-1$
+    monitor.beginTask("", count); //$NON-NLS-1$
 
-    Diagnostician diagnostician = createDiagnostician(progressMonitor);
+    Diagnostician diagnostician = createDiagnostician(monitor);
 
-    BasicDiagnostic diagnostic = new BasicDiagnostic(EGFCoreUIPlugin.getDefault().getPluginID(), 0, EMFEditUIPlugin.INSTANCE.getString("_UI_DiagnosisOfNObjects_message", new String[] { Integer.toString(selectionSize) }), _eObjects.toArray()); //$NON-NLS-1$
+    String message = NLS.bind(CoreUIMessages._UI_DiagnosisOfNObjects_message, Integer.toString(selectionSize));
+    if (_eObjects.size() == 1) {
+      message = NLS.bind(CoreUIMessages._UI_DiagnosisOfNObject_message, EMFHelper.getText(_eObjects.get(0)));
+    }
+    BasicDiagnostic diagnostic = new BasicDiagnostic(EGFCoreUIPlugin.getDefault().getPluginID(), 0, message, _eObjects.toArray());
     Map<Object, Object> context = diagnostician.createDefaultContext();
     // Preferences
     IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
@@ -133,7 +143,7 @@ public class EGFValidator {
     context.put(ProjectBundleSession.PROJECT_BUNDLE_SESSION, session);
     // Validation
     for (EObject eObject : _eObjects) {
-      progressMonitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[] { diagnostician.getObjectLabel(eObject) })); //$NON-NLS-1$
+      monitor.setTaskName(EMFEditUIPlugin.INSTANCE.getString("_UI_Validating_message", new Object[] { diagnostician.getObjectLabel(eObject) })); //$NON-NLS-1$
       diagnostician.validate(eObject, diagnostic, context);
     }
     // Dispose Session
