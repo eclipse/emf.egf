@@ -13,27 +13,28 @@ package org.eclipse.egf.producer.ui.internal.actions;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
-import org.eclipse.core.runtime.IAdapterManager;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.diagnostic.EGFValidator;
+import org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
@@ -43,6 +44,9 @@ import org.eclipse.egf.producer.ui.internal.dialogs.ActivityValidationSelectionD
 import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialogWithToggle;
@@ -56,6 +60,8 @@ import org.eclipse.ui.progress.IProgressConstants;
 
 public class RunActivityAction implements IObjectActionDelegate {
 
+  private IPlatformFcore _fcore;
+
   private Activity _activity;
 
   /**
@@ -67,6 +73,22 @@ public class RunActivityAction implements IObjectActionDelegate {
 
     _validates = null;
 
+    // 1 - Activity Selection
+    if (_fcore != null) {
+      ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), false);
+      activityDialog.setTitle(ProducerUIMessages.GlobalRunActivityAction_dialogTitle);
+      int result = activityDialog.open();
+      if (result != IDialogConstants.OK_ID) {
+        return;
+      }
+      final Object[] selection = activityDialog.getResult();
+      if (selection == null || selection.length != 1) {
+        return;
+      }
+      _activity = (Activity) selection[0];
+    }
+
+    // Nothing to process
     if (_activity == null) {
       return;
     }
@@ -75,7 +97,7 @@ public class RunActivityAction implements IObjectActionDelegate {
     Throwable throwable = null;
     final int[] ticks = new int[1];
 
-    // 1 - Locate a Manager Producer
+    // 2 - Locate a Manager Producer
     try {
       ActivityManagerProducer<Activity> producer = null;
       try {
@@ -89,7 +111,7 @@ public class RunActivityAction implements IObjectActionDelegate {
       throwable = t;
     }
 
-    // 2 - Validation
+    // 3 - Validation
     if (throwable == null) {
       try {
         IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
@@ -111,7 +133,7 @@ public class RunActivityAction implements IObjectActionDelegate {
       }
     }
 
-    // 3 - canInvoke
+    // 4 - canInvoke
     if (throwable == null) {
       try {
         // Initialize Context
@@ -135,7 +157,7 @@ public class RunActivityAction implements IObjectActionDelegate {
       }
     }
 
-    // 4 - Count Ticks
+    // 5 - Count Ticks
     if (throwable == null) {
       try {
         ticks[0] = activityManager[0].getSteps();
@@ -144,7 +166,7 @@ public class RunActivityAction implements IObjectActionDelegate {
       }
     }
 
-    // 5 - Run activity
+    // 6 - Run activity
     if (throwable == null) {
 
       WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {
@@ -204,10 +226,11 @@ public class RunActivityAction implements IObjectActionDelegate {
           return Status.OK_STATUS;
         }
       };
-
       activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
-      activityJob.setUser(true);
       activityJob.setProperty(IProgressConstants.ICON_PROPERTY, ProducerUIImages.EGF_RUN_ACTIVITY);
+      activityJob.setPriority(Job.LONG);
+      activityJob.setUser(true);
+      activityJob.setSystem(false);
       activityJob.schedule();
 
     }
@@ -220,7 +243,7 @@ public class RunActivityAction implements IObjectActionDelegate {
 
   }
 
-  protected Activity getSelection(IStructuredSelection selection) {
+  protected Activity getActivitySelection(IStructuredSelection selection) {
     Object selectedObject = selection.getFirstElement();
     if (selectedObject == null) {
       return null;
@@ -228,17 +251,22 @@ public class RunActivityAction implements IObjectActionDelegate {
     if (selectedObject instanceof Activity) {
       return (Activity) selectedObject;
     }
-    if (selectedObject instanceof IAdaptable) {
-      Object adaptedObject = ((IAdaptable) selectedObject).getAdapter(Activity.class);
-      if (adaptedObject != null && adaptedObject instanceof Activity) {
-        return (Activity) adaptedObject;
-      }
+    return null;
+  }
+
+  protected IPlatformFcore getPlatformFcoreSelection(IStructuredSelection selection) {
+    Object selectedObject = selection.getFirstElement();
+    if (selectedObject == null) {
+      return null;
     }
-    IAdapterManager adapterManager = Platform.getAdapterManager();
-    if (adapterManager.hasAdapter(selectedObject, Activity.class.getName())) {
-      Object adaptedObject = adapterManager.loadAdapter(selectedObject, IFile.class.getName());
-      if (adaptedObject instanceof Activity) {
-        return (Activity) adaptedObject;
+    if (selectedObject instanceof IResource) {
+      // Load this IFile as an EMF Resource
+      try {
+        ResourceSet resourceSet = new ResourceSetImpl();
+        Resource resource = ResourceHelper.loadResource(resourceSet, (IResource) selectedObject);
+        return EGFCorePlugin.getPlatformFcore(resource);
+      } catch (Throwable t) {
+        EGFProducerUIPlugin.getDefault().logError(t);
       }
     }
     return null;
@@ -266,7 +294,10 @@ public class RunActivityAction implements IObjectActionDelegate {
   public void selectionChanged(IAction action, ISelection selection) {
     _activity = null;
     if (selection instanceof IStructuredSelection) {
-      _activity = getSelection((IStructuredSelection) selection);
+      _activity = getActivitySelection((IStructuredSelection) selection);
+      if (_activity == null) {
+        _fcore = getPlatformFcoreSelection((IStructuredSelection) selection);
+      }
     }
   }
 

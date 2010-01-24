@@ -15,6 +15,24 @@
 -->
 
 <plugin>
+
+  <!-- ================================================================================= -->
+  <!-- propertyTesters                                                                   -->
+  <!-- ================================================================================= -->
+
+  <extension 
+    point="org.eclipse.core.expressions.propertyTesters"
+  >
+  
+    <propertyTester
+      id="org.eclipse.egf.producer.ui.testers.FcoreResourceTester"
+      type="org.eclipse.core.resources.IFile"
+      namespace="org.eclipse.egf.producer.ui"
+      properties="fcoreResource"
+      class="org.eclipse.egf.producer.ui.testers.FcoreResourceTester"
+    />
+            
+  </extension>
   
   <!-- ================================================================================= -->
   <!-- popupMenus                                                                        -->
@@ -33,14 +51,45 @@
         class="org.eclipse.egf.producer.ui.internal.actions.RunActivityAction"
         icon="$nl$/icons/full/elcl16/runactivity.gif"
         id="org.eclipse.egf.model.producer.ui.activity.contribution.action.run.activity"
-        label="%GlobalRunActivityAction_label"
+        label="%RunActivityAction_label"
         enablesFor="1"
         menubarPath="additions"
+        tooltip="%RunActivityAction_tooltip"
       />
     
     </objectContribution>
   
-  </extension>  
+  </extension>
+  
+  <extension
+    point="org.eclipse.ui.popupMenus"
+  >
+  
+    <objectContribution
+      id="org.eclipse.egf.producer.ui.activity.contribution"
+      objectClass="org.eclipse.core.resources.IFile"
+    >
+    
+      <enablement>
+        <test
+          forcePluginActivation="true"
+          property="org.eclipse.egf.producer.ui.fcoreResource"
+        />
+      </enablement>
+    
+      <action
+        class="org.eclipse.egf.producer.ui.internal.actions.RunActivityAction"
+        icon="$nl$/icons/full/elcl16/runactivity.gif"
+        id="org.eclipse.egf.model.producer.ui.activity.contribution.action.run.activity"
+        label="%RunActivityAction_label"
+        enablesFor="1"
+        menubarPath="additions"
+        tooltip="%RunActivityAction_tooltip"
+      />
+    
+    </objectContribution>
+  
+  </extension>      
   
   <!-- ================================================================================= -->
   <!-- decorators                                                                        -->
@@ -86,9 +135,9 @@
         class="org.eclipse.egf.producer.ui.internal.actions.GlobalRunActivityAction"
         definitionId="org.eclipse.egf.ui.action.set.global.run.activity.action.definition"
         icon="$nl$/icons/full/elcl16/runactivity.gif"
-        label="%GlobalRunActivityAction_label"
+        label="%RunActivityAction_label"
         menubarPath="org.eclipse.ui.run/runGroup"
-        tooltip="%GlobalRunActivityAction_tooltip"
+        tooltip="%RunActivityAction_tooltip"
       />
       
     </actionSet>
