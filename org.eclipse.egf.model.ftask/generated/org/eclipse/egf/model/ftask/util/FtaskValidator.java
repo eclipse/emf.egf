@@ -251,8 +251,8 @@ public class FtaskValidator extends EObjectValidator {
     // Loadable Value
     if (ValidationHelper.isLoadableClass(taskJava, taskJava.getValue(), context) == false) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { NLS.bind("Unable to load ''{0}''.", taskJava.getValue()), getObjectLabel(taskJava, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "LoadableValue", getObjectLabel(taskJava, context), NLS.bind("Unable to load ''{0}''", taskJava.getValue()) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { taskJava }, context));
       }
       return false;
@@ -274,8 +274,8 @@ public class FtaskValidator extends EObjectValidator {
     // Valid Value
     if (ValidationHelper.isValidClass(taskJava, ITaskProduction.class, taskJava.getValue(), context) == false) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { NLS.bind("Type mismatch ''{0}'' with ''{1}''.", ITaskProduction.class.getName(), taskJava.getValue()), getObjectLabel(taskJava, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidValue", getObjectLabel(taskJava, context), NLS.bind("Type mismatch ''{0}'' with ''{1}''", ITaskProduction.class.getName(), taskJava.getValue()) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { taskJava }, context));
       }
       return false;
