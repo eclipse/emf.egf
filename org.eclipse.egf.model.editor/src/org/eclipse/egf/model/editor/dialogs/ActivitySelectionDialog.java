@@ -237,7 +237,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         if (fc == null) {
           return super.getText(element);
         }
-        StringBuffer buffer = new StringBuffer(fc.getURI() == null ? "" : fc.getURI().toString()); //$NON-NLS-1$
+        StringBuffer buffer = new StringBuffer(fc.getURI() == null ? "" : URI.decode(fc.getURI().toString())); //$NON-NLS-1$
         if (fc.getPlatformBundle().isTarget()) {
           buffer.append(" [Target]"); //$NON-NLS-1$
         } else {
