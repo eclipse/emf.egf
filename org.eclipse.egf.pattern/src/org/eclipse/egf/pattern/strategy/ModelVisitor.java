@@ -76,13 +76,13 @@ public class ModelVisitor {
     }
 
     protected boolean process(PatternContext context, Object model) throws MissingExtensionException, PatternException {
-        List<Pattern> foundPattern = findPattern(model);
+        List<Pattern> foundPattern = findPatterns(model);
         if (foundPattern == null || foundPattern.isEmpty())
             return false;
         return executeWithInjection(foundPattern, context, model);
     }
 
-    protected List<Pattern> findPattern(Object model) {
+    protected List<Pattern> findPatterns(Object model) {
         List<Pattern> result = null;
         if (model instanceof EObject) {
             String fullName = NsURIHelper.getFullName((EObject) model);
