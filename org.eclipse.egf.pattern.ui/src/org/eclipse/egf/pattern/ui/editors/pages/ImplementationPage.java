@@ -892,6 +892,8 @@ public class ImplementationPage extends PatternEditorPage {
             kind = CallTypeEnum.PATTERNINJECTED_CALL;
         } else if (selectItem instanceof SuperPatternCall) {
             kind = CallTypeEnum.SUPERPATTERN_CALL;
+            // Prevent the wizard from pops up from BackCall objects.
+            return;
         }
         OrchestrationWizard wizard = new OrchestrationWizard(getPattern(), kind, selectItem, getEditingDomain());
         wizard.init(PlatformUI.getWorkbench(), null);
@@ -999,6 +1001,12 @@ public class ImplementationPage extends PatternEditorPage {
             orchestrationDown.setEnabled(false);
         } else {
             orchestrationDown.setEnabled(true);
+        }
+
+        // Prevent the wizard from pops up from BackCall objects.
+        Object selectItem = orchestrationTableViewer.getElementAt(selectIndex);
+        if (selectItem instanceof BackCall) {
+            orchestrationEdit.setEnabled(false);
         }
     }
 
