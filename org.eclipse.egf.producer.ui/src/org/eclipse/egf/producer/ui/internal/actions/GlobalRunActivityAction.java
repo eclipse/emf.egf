@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
@@ -91,29 +92,26 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
     }
 
     final Activity[] activity = new Activity[] { (Activity) selection[0] };
-    final Throwable[] throwable = new Throwable[1];
+    Throwable throwable = null;
     final IActivityManager<?>[] activityManager = new IActivityManager[1];
-    final Diagnostic[] invokeDiag = new Diagnostic[1];
     final int[] ticks = new int[1];
 
     // 2 - Locate a Manager Producer
-    if (throwable[0] == null) {
+    try {
+      ActivityManagerProducer<Activity> producer = null;
       try {
-        ActivityManagerProducer<Activity> producer = null;
-        try {
-          producer = EGFProducerPlugin.getActivityManagerProducer(activity[0]);
-        } catch (Throwable t) {
-          throw new InvocationException(t);
-        }
-        // Create a Manager
-        activityManager[0] = producer.createActivityManager(activity[0]);
+        producer = EGFProducerPlugin.getActivityManagerProducer(activity[0]);
       } catch (Throwable t) {
-        throwable[0] = t;
+        throw new InvocationException(t);
       }
+      // Create a Manager
+      activityManager[0] = producer.createActivityManager(activity[0]);
+    } catch (Throwable t) {
+      throwable = t;
     }
 
     // 3 - Validation
-    if (throwable[0] == null) {
+    if (throwable == null) {
       try {
         IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
         String validate = store.getString(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH);
@@ -130,12 +128,12 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
           }
         }
       } catch (InvocationException ie) {
-        throwable[0] = ie;
+        throwable = ie;
       }
     }
 
     // 4 - canInvoke
-    if (throwable[0] == null) {
+    if (throwable == null) {
       try {
         // Initialize Context
         activityManager[0].initializeContext();
@@ -154,21 +152,21 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
           }
         }
       } catch (InvocationException ie) {
-        throwable[0] = ie;
+        throwable = ie;
       }
     }
 
     // 5 - Count Ticks
-    if (throwable[0] == null) {
+    if (throwable == null) {
       try {
         ticks[0] = activityManager[0].getSteps();
       } catch (Throwable t) {
-        throwable[0] = t;
+        throwable = t;
       }
     }
 
     // 6 - Run activity
-    if (throwable[0] == null) {
+    if (throwable == null) {
 
       WorkspaceJob activityJob = new WorkspaceJob(ProducerUIMessages.GlobalRunActivityAction_label) {
 
@@ -178,9 +176,9 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         }
 
         @Override
-        public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+        public IStatus runInWorkspace(IProgressMonitor innerMonitor) throws CoreException {
           // Invoke
-          SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, EMFHelper.getText(activityManager[0].getElement())), (1000 * ticks[0]));
+          SubMonitor subMonitor = SubMonitor.convert(innerMonitor, NLS.bind(EGFCoreMessages.Production_Invoke, EMFHelper.getText(activityManager[0].getElement())), (1000 * ticks[0]));
           try {
             try {
               if (EGFProducerUIPlugin.getDefault().isDebugging()) {
@@ -190,15 +188,24 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
                   EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerUIMessages.Activity_Invocations, EMFHelper.getText(activity[0]), ticks[0]));
                 }
               }
-              invokeDiag[0] = activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
-              if (monitor.isCanceled()) {
+              final Diagnostic diagnostic = activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
+              if (subMonitor.isCanceled()) {
                 throw new OperationCanceledException();
+              }
+              if (diagnostic != null && diagnostic.getSeverity() != Diagnostic.OK) {
+                if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
+                  EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
+                    public void run() {
+                      EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CantInvokeProblems_title, ProducerUIMessages._UI_CantInvokeProblems_message, diagnostic);
+                    }
+                  });
+                }
               }
             } catch (InvocationException ie) {
               if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
                 throw (CoreException) ie.getCause();
               }
-              throwable[0] = ie;
+              ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), ie);
             } catch (Throwable t) {
               throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
             } finally {
@@ -208,40 +215,28 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
                 if (ie.getCause() != null && ie.getCause() instanceof CoreException) {
                   throw (CoreException) ie.getCause();
                 }
-                throwable[0] = ie;
+                ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), ie);
               } catch (Throwable t) {
                 throw new CoreException(EGFProducerUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, t));
               }
             }
           } finally {
-            subMonitor.done();
+            innerMonitor.done();
           }
           return Status.OK_STATUS;
         }
       };
       activityJob.setRule(ResourcesPlugin.getWorkspace().getRuleFactory().buildRule());
       activityJob.setProperty(IProgressConstants.ICON_PROPERTY, ProducerUIImages.EGF_RUN_ACTIVITY);
+      activityJob.setPriority(Job.LONG);
       activityJob.setUser(true);
+      activityJob.setSystem(false);
       activityJob.schedule();
-
-      try {// block
-        activityJob.join();
-      } catch (InterruptedException ie) {
-        // Do nothing
-      }
 
     }
 
-    if (throwable[0] != null && throwable[0] instanceof InterruptedException == false) {
-      ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), throwable[0]);
-    } else if (invokeDiag[0] != null && invokeDiag[0].getSeverity() != Diagnostic.OK) {
-      if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
-        EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
-          public void run() {
-            EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CantInvokeProblems_title, ProducerUIMessages._UI_CantInvokeProblems_message, invokeDiag[0]);
-          }
-        });
-      }
+    if (throwable != null && throwable instanceof InterruptedException == false) {
+      ThrowableHandler.handleThrowable(EGFProducerUIPlugin.getDefault().getPluginID(), throwable);
     }
 
     return;
