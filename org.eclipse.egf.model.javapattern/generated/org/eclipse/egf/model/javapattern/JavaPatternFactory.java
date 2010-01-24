@@ -23,30 +23,30 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface JavaPatternFactory extends EFactory {
-    /**
-     * The singleton instance of the factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    JavaPatternFactory eINSTANCE = org.eclipse.egf.model.javapattern.impl.JavaPatternFactoryImpl.init();
+  /**
+   * The singleton instance of the factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  JavaPatternFactory eINSTANCE = org.eclipse.egf.model.javapattern.impl.JavaPatternFactoryImpl.init();
 
-    /**
-     * Returns a new object of class '<em>Java Nature</em>'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return a new object of class '<em>Java Nature</em>'.
-     * @generated
-     */
-    JavaNature createJavaNature();
+  /**
+   * Returns a new object of class '<em>Java Nature</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Java Nature</em>'.
+   * @generated
+   */
+  JavaNature createJavaNature();
 
-    /**
-     * Returns the package supported by this factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the package supported by this factory.
-     * @generated
-     */
-    JavaPatternPackage getJavaPatternPackage();
+  /**
+   * Returns the package supported by this factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the package supported by this factory.
+   * @generated
+   */
+  JavaPatternPackage getJavaPatternPackage();
 
 } //JavaPatternFactory

@@ -10,30 +10,26 @@
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
-package org.eclipse.egf.model.edit;
+package org.eclipse.egf.model;
 
 import org.eclipse.egf.common.activator.EGFEclipsePlugin;
-
 import org.eclipse.emf.common.EMFPlugin;
-
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-
 /**
- * This is the central singleton for the JetPattern edit plugin.
+ * This is the central singleton for the Fprod model plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class EGFJetPatternEditPlugin extends EMFPlugin {
+public final class EGFFprodPlugin extends EMFPlugin {
   /**
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final EGFJetPatternEditPlugin INSTANCE = new EGFJetPatternEditPlugin();
+  public static final EGFFprodPlugin INSTANCE = new EGFFprodPlugin();
 
   /**
    * Keep track of the singleton.
@@ -49,8 +45,8 @@ public final class EGFJetPatternEditPlugin extends EMFPlugin {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EGFJetPatternEditPlugin() {
-    super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelEditPlugin.INSTANCE, });
+  public EGFFprodPlugin() {
+    super(new ResourceLocator[] {});
   }
 
   /**

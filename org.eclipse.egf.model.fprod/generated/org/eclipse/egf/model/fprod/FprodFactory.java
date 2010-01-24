@@ -41,49 +41,13 @@ public interface FprodFactory extends EFactory {
   ProductionPlan createProductionPlan();
 
   /**
-   * Returns a new object of class '<em>Factory Component Invocation</em>'.
+   * Returns a new object of class '<em>Production Plan Invocation</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Factory Component Invocation</em>'.
+   * @return a new object of class '<em>Production Plan Invocation</em>'.
    * @generated
    */
-  FactoryComponentInvocation createFactoryComponentInvocation();
-
-  /**
-   * Returns a new object of class '<em>Task Invocation</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Task Invocation</em>'.
-   * @generated
-   */
-  TaskInvocation createTaskInvocation();
-
-  /**
-   * Returns a new object of class '<em>Task</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Task</em>'.
-   * @generated
-   */
-  Task createTask();
-
-  /**
-   * Returns a new object of class '<em>Task Contract</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Task Contract</em>'.
-   * @generated
-   */
-  TaskContract createTaskContract();
-
-  /**
-   * Returns a new object of class '<em>Task Contract Container</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Task Contract Container</em>'.
-   * @generated
-   */
-  TaskContractContainer createTaskContractContainer();
+  ProductionPlanInvocation createProductionPlanInvocation();
 
   /**
    * Returns the package supported by this factory.

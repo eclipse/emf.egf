@@ -4,12 +4,12 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.model.javapattern.edit;singleton:=true
 Bundle-Version: 0.2.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.eclipse.egf.model.javapattern.edit.EGFModelsEditPlugin$Implementation
+Bundle-Activator: org.eclipse.egf.model.edit.EGFJavaPatternEditPlugin$Implementation
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
- org.eclipse.egf.model.javapattern.edit,
+ org.eclipse.egf.model.edit,
  org.eclipse.egf.model.javapattern.provider
 Require-Bundle: 
  org.eclipse.core.runtime,

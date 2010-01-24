@@ -21,19 +21,19 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
- * This is the central singleton for the JetPattern edit plugin.
+ * This is the central singleton for the JavaPattern edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public final class EGFJetPatternEditPlugin extends EMFPlugin {
+public final class EGFJavaPatternEditPlugin extends EMFPlugin {
   /**
    * Keep track of the singleton.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  public static final EGFJetPatternEditPlugin INSTANCE = new EGFJetPatternEditPlugin();
+  public static final EGFJavaPatternEditPlugin INSTANCE = new EGFJavaPatternEditPlugin();
 
   /**
    * Keep track of the singleton.
@@ -49,7 +49,7 @@ public final class EGFJetPatternEditPlugin extends EMFPlugin {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EGFJetPatternEditPlugin() {
+  public EGFJavaPatternEditPlugin() {
     super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EGFModelEditPlugin.INSTANCE, });
   }
 

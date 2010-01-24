@@ -16,31 +16,20 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.edit.EGFModelEditPlugin;
-
+import org.eclipse.egf.model.edit.EGFFprodEditPlugin;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.fcore.Orchestration;
-
 import org.eclipse.egf.model.fcore.util.FcoreSwitch;
-
 import org.eclipse.egf.model.fprod.FprodFactory;
 import org.eclipse.egf.model.fprod.FprodPackage;
-
 import org.eclipse.egf.model.fprod.util.FprodAdapterFactory;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
 import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.emf.edit.command.CommandParameter;
-
 import org.eclipse.emf.edit.domain.EditingDomain;
-
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ChildCreationExtenderManager;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -92,7 +81,7 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(EGFModelEditPlugin.INSTANCE, FprodPackage.eNS_URI);
+  protected ChildCreationExtenderManager childCreationExtenderManager = new ChildCreationExtenderManager(EGFFprodEditPlugin.INSTANCE, FprodPackage.eNS_URI);
 
   /**
    * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
@@ -145,118 +134,26 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fprod.FactoryComponentInvocation} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fprod.ProductionPlanInvocation} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected FactoryComponentInvocationItemProvider factoryComponentInvocationItemProvider;
+  protected ProductionPlanInvocationItemProvider productionPlanInvocationItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fprod.FactoryComponentInvocation}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.fprod.ProductionPlanInvocation}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createFactoryComponentInvocationAdapter() {
-    if (factoryComponentInvocationItemProvider == null) {
-      factoryComponentInvocationItemProvider = new FactoryComponentInvocationItemProvider(this);
+  public Adapter createProductionPlanInvocationAdapter() {
+    if (productionPlanInvocationItemProvider == null) {
+      productionPlanInvocationItemProvider = new ProductionPlanInvocationItemProvider(this);
     }
 
-    return factoryComponentInvocationItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fprod.TaskInvocation} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TaskInvocationItemProvider taskInvocationItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fprod.TaskInvocation}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createTaskInvocationAdapter() {
-    if (taskInvocationItemProvider == null) {
-      taskInvocationItemProvider = new TaskInvocationItemProvider(this);
-    }
-
-    return taskInvocationItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fprod.Task} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TaskItemProvider taskItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fprod.Task}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createTaskAdapter() {
-    if (taskItemProvider == null) {
-      taskItemProvider = new TaskItemProvider(this);
-    }
-
-    return taskItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fprod.TaskContract} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TaskContractItemProvider taskContractItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fprod.TaskContract}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createTaskContractAdapter() {
-    if (taskContractItemProvider == null) {
-      taskContractItemProvider = new TaskContractItemProvider(this);
-    }
-
-    return taskContractItemProvider;
-  }
-
-  /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.fprod.TaskContractContainer} instances.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TaskContractContainerItemProvider taskContractContainerItemProvider;
-
-  /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.fprod.TaskContractContainer}.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Adapter createTaskContractContainerAdapter() {
-    if (taskContractContainerItemProvider == null) {
-      taskContractContainerItemProvider = new TaskContractContainerItemProvider(this);
-    }
-
-    return taskContractContainerItemProvider;
+    return productionPlanInvocationItemProvider;
   }
 
   /**
@@ -387,16 +284,8 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
   public void dispose() {
     if (productionPlanItemProvider != null)
       productionPlanItemProvider.dispose();
-    if (factoryComponentInvocationItemProvider != null)
-      factoryComponentInvocationItemProvider.dispose();
-    if (taskInvocationItemProvider != null)
-      taskInvocationItemProvider.dispose();
-    if (taskItemProvider != null)
-      taskItemProvider.dispose();
-    if (taskContractItemProvider != null)
-      taskContractItemProvider.dispose();
-    if (taskContractContainerItemProvider != null)
-      taskContractContainerItemProvider.dispose();
+    if (productionPlanInvocationItemProvider != null)
+      productionPlanInvocationItemProvider.dispose();
   }
 
   /**
@@ -457,20 +346,6 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
        * <!-- end-user-doc -->
        * @generated
        */
-      @Override
-      public Object caseOrchestration(Orchestration object) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION__INVOCATIONS, FprodFactory.eINSTANCE.createFactoryComponentInvocation()));
-
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION__INVOCATIONS, FprodFactory.eINSTANCE.createTaskInvocation()));
-
-        return null;
-      }
-
-      /**
-       * <!-- begin-user-doc -->
-       * <!-- end-user-doc -->
-       * @generated
-       */
       protected CommandParameter createChildParameter(Object feature, Object child) {
         return new CommandParameter(null, feature, child);
       }
@@ -494,7 +369,7 @@ public class FprodItemProviderAdapterFactory extends FprodAdapterFactory impleme
      * @generated
      */
     public ResourceLocator getResourceLocator() {
-      return EGFModelEditPlugin.INSTANCE;
+      return EGFFprodEditPlugin.INSTANCE;
     }
   }
 

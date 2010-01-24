@@ -13,30 +13,13 @@
 package org.eclipse.egf.model.fprod.impl;
 
 import org.eclipse.egf.model.fcore.FcorePackage;
-
-import org.eclipse.egf.model.fprod.FactoryComponentInvocation;
 import org.eclipse.egf.model.fprod.FprodFactory;
 import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
-import org.eclipse.egf.model.fprod.Task;
-import org.eclipse.egf.model.fprod.TaskContract;
-import org.eclipse.egf.model.fprod.TaskContractContainer;
-import org.eclipse.egf.model.fprod.TaskInvocation;
-
-import org.eclipse.egf.model.fprod.util.FprodValidator;
-
-import org.eclipse.egf.model.types.TypesPackage;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EGenericType;
-import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.ETypeParameter;
-import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.EcorePackage;
-
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 /**
@@ -59,41 +42,6 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
    * @generated
    */
   private EClass productionPlanInvocationEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass factoryComponentInvocationEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass taskInvocationEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass taskEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass taskContractEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass taskContractContainerEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -151,13 +99,6 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
     // Initialize created meta-data
     theFprodPackage.initializePackageContents();
 
-    // Register package validator
-    EValidator.Registry.INSTANCE.put(theFprodPackage, new EValidator.Descriptor() {
-      public EValidator getEValidator() {
-        return FprodValidator.INSTANCE;
-      }
-    });
-
     // Mark meta-data to indicate it can't be changed
     theFprodPackage.freeze();
 
@@ -180,6 +121,15 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getProductionPlan_Invocations() {
+    return (EReference) productionPlanEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EClass getProductionPlanInvocation() {
     return productionPlanInvocationEClass;
   }
@@ -189,89 +139,8 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getFactoryComponentInvocation() {
-    return factoryComponentInvocationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getTaskInvocation() {
-    return taskInvocationEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getTask() {
-    return taskEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTask_ActivityContractContainer() {
-    return (EReference) taskEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EAttribute getTask_Value() {
-    return (EAttribute) taskEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getTaskContract() {
-    return taskContractEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTaskContract_ActivityContractContainer() {
-    return (EReference) taskContractEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getTaskContractContainer() {
-    return taskContractContainerEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTaskContractContainer_Activity() {
-    return (EReference) taskContractContainerEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getTaskContractContainer_ActivityContracts() {
-    return (EReference) taskContractContainerEClass.getEStructuralFeatures().get(1);
+  public EReference getProductionPlanInvocation_ProductionPlan() {
+    return (EReference) productionPlanInvocationEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -304,23 +173,10 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
 
     // Create classes and their features
     productionPlanEClass = createEClass(PRODUCTION_PLAN);
+    createEReference(productionPlanEClass, PRODUCTION_PLAN__INVOCATIONS);
 
     productionPlanInvocationEClass = createEClass(PRODUCTION_PLAN_INVOCATION);
-
-    factoryComponentInvocationEClass = createEClass(FACTORY_COMPONENT_INVOCATION);
-
-    taskInvocationEClass = createEClass(TASK_INVOCATION);
-
-    taskEClass = createEClass(TASK);
-    createEReference(taskEClass, TASK__ACTIVITY_CONTRACT_CONTAINER);
-    createEAttribute(taskEClass, TASK__VALUE);
-
-    taskContractEClass = createEClass(TASK_CONTRACT);
-    createEReference(taskContractEClass, TASK_CONTRACT__ACTIVITY_CONTRACT_CONTAINER);
-
-    taskContractContainerEClass = createEClass(TASK_CONTRACT_CONTAINER);
-    createEReference(taskContractContainerEClass, TASK_CONTRACT_CONTAINER__ACTIVITY);
-    createEReference(taskContractContainerEClass, TASK_CONTRACT_CONTAINER__ACTIVITY_CONTRACTS);
+    createEReference(productionPlanInvocationEClass, PRODUCTION_PLAN_INVOCATION__PRODUCTION_PLAN);
   }
 
   /**
@@ -349,106 +205,24 @@ public class FprodPackageImpl extends EPackageImpl implements FprodPackage {
 
     // Obtain other dependent packages
     FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
-    EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-    TypesPackage theTypesPackage = (TypesPackage) EPackage.Registry.INSTANCE.getEPackage(TypesPackage.eNS_URI);
 
     // Create type parameters
-    ETypeParameter productionPlanInvocationEClass_T = addETypeParameter(productionPlanInvocationEClass, "T"); //$NON-NLS-1$
 
     // Set bounds for type parameters
-    EGenericType g1 = createEGenericType(theFcorePackage.getActivity());
-    productionPlanInvocationEClass_T.getEBounds().add(g1);
 
     // Add supertypes to classes
     productionPlanEClass.getESuperTypes().add(theFcorePackage.getOrchestration());
-    g1 = createEGenericType(theFcorePackage.getInvocation());
-    EGenericType g2 = createEGenericType(productionPlanInvocationEClass_T);
-    g1.getETypeArguments().add(g2);
-    productionPlanInvocationEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(this.getProductionPlanInvocation());
-    g2 = createEGenericType(theFcorePackage.getFactoryComponent());
-    g1.getETypeArguments().add(g2);
-    factoryComponentInvocationEClass.getEGenericSuperTypes().add(g1);
-    g1 = createEGenericType(this.getProductionPlanInvocation());
-    g2 = createEGenericType(this.getTask());
-    g1.getETypeArguments().add(g2);
-    taskInvocationEClass.getEGenericSuperTypes().add(g1);
-    taskEClass.getESuperTypes().add(theFcorePackage.getActivity());
-    taskContractEClass.getESuperTypes().add(theFcorePackage.getActivityContract());
-    taskContractContainerEClass.getESuperTypes().add(theFcorePackage.getActivityContractContainer());
+    productionPlanInvocationEClass.getESuperTypes().add(theFcorePackage.getInvocation());
 
     // Initialize classes and features; add operations and parameters
     initEClass(productionPlanEClass, ProductionPlan.class, "ProductionPlan", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getProductionPlan_Invocations(), this.getProductionPlanInvocation(), this.getProductionPlanInvocation_ProductionPlan(), "invocations", null, 1, -1, ProductionPlan.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-    initEClass(productionPlanInvocationEClass, ProductionPlanInvocation.class, "ProductionPlanInvocation", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-    initEClass(factoryComponentInvocationEClass, FactoryComponentInvocation.class, "FactoryComponentInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-    initEClass(taskInvocationEClass, TaskInvocation.class, "TaskInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
-    initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getTask_ActivityContractContainer(), this.getTaskContractContainer(), this.getTaskContractContainer_Activity(), "activityContractContainer", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEAttribute(getTask_Value(), theEcorePackage.getEString(), "value", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    addEOperation(taskEClass, this.getTaskContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-    EOperation op = addEOperation(taskEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theTypesPackage.getType(), "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(taskEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theFcorePackage.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(taskEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theTypesPackage.getType(), "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theFcorePackage.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-    initEClass(taskContractEClass, TaskContract.class, "TaskContract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getTaskContract_ActivityContractContainer(), this.getTaskContractContainer(), this.getTaskContractContainer_ActivityContracts(), "activityContractContainer", null, 1, 1, TaskContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    addEOperation(taskContractEClass, this.getTaskContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(taskContractEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theTypesPackage.getType(), "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(taskContractEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theFcorePackage.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(taskContractEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theTypesPackage.getType(), "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theFcorePackage.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-    initEClass(taskContractContainerEClass, TaskContractContainer.class, "TaskContractContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEReference(getTaskContractContainer_Activity(), this.getTask(), this.getTask_ActivityContractContainer(), "activity", null, 1, 1, TaskContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getTaskContractContainer_ActivityContracts(), this.getTaskContract(), this.getTaskContract_ActivityContractContainer(), "activityContracts", null, 1, -1, TaskContractContainer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(taskContractContainerEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theTypesPackage.getType(), "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(taskContractContainerEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theFcorePackage.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
-    op = addEOperation(taskContractContainerEClass, theFcorePackage.getActivityContract(), "getActivityContracts", 0, -1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theTypesPackage.getType(), "type", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-    addEParameter(op, theFcorePackage.getContractMode(), "mode", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    initEClass(productionPlanInvocationEClass, ProductionPlanInvocation.class, "ProductionPlanInvocation", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEReference(getProductionPlanInvocation_ProductionPlan(), this.getProductionPlan(), this.getProductionPlan_Invocations(), "productionPlan", null, 1, 1, ProductionPlanInvocation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     // Create resource
     createResource(eNS_URI);
-
-    // Create annotations
-    // http://www.eclipse.org/emf/2002/Ecore
-    createEcoreAnnotations();
   }
 
-  /**
-   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected void createEcoreAnnotations() {
-    String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-    addAnnotation(taskEClass, source, new String[] { "constraints", "LoadableValue ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
-    });
-  }
-
-} //FprodPackageImpl
+} // FprodPackageImpl

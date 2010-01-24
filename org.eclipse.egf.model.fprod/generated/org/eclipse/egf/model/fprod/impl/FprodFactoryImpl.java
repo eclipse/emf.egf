@@ -67,16 +67,8 @@ public class FprodFactoryImpl extends EFactoryImpl implements FprodFactory {
     switch (eClass.getClassifierID()) {
     case FprodPackage.PRODUCTION_PLAN:
       return createProductionPlan();
-    case FprodPackage.FACTORY_COMPONENT_INVOCATION:
-      return createFactoryComponentInvocation();
-    case FprodPackage.TASK_INVOCATION:
-      return createTaskInvocation();
-    case FprodPackage.TASK:
-      return createTask();
-    case FprodPackage.TASK_CONTRACT:
-      return createTaskContract();
-    case FprodPackage.TASK_CONTRACT_CONTAINER:
-      return createTaskContractContainer();
+    case FprodPackage.PRODUCTION_PLAN_INVOCATION:
+      return createProductionPlanInvocation();
     default:
       throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
     }
@@ -97,49 +89,9 @@ public class FprodFactoryImpl extends EFactoryImpl implements FprodFactory {
    * <!-- end-user-doc -->
    * @generated
    */
-  public FactoryComponentInvocation createFactoryComponentInvocation() {
-    FactoryComponentInvocationImpl factoryComponentInvocation = new FactoryComponentInvocationImpl();
-    return factoryComponentInvocation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TaskInvocation createTaskInvocation() {
-    TaskInvocationImpl taskInvocation = new TaskInvocationImpl();
-    return taskInvocation;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Task createTask() {
-    TaskImpl task = new TaskImpl();
-    return task;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TaskContract createTaskContract() {
-    TaskContractImpl taskContract = new TaskContractImpl();
-    return taskContract;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public TaskContractContainer createTaskContractContainer() {
-    TaskContractContainerImpl taskContractContainer = new TaskContractContainerImpl();
-    return taskContractContainer;
+  public ProductionPlanInvocation createProductionPlanInvocation() {
+    ProductionPlanInvocationImpl productionPlanInvocation = new ProductionPlanInvocationImpl();
+    return productionPlanInvocation;
   }
 
   /**

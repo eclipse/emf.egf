@@ -15,16 +15,13 @@ package org.eclipse.egf.model.fprod.provider;
 import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.FcorePackage;
-
 import org.eclipse.egf.model.fcore.provider.OrchestrationItemProvider;
-
 import org.eclipse.egf.model.fprod.FprodFactory;
+import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.ProductionPlan;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -36,6 +33,7 @@ import org.eclipse.emf.edit.provider.ITableItemColorProvider;
 import org.eclipse.emf.edit.provider.ITableItemFontProvider;
 import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fprod.ProductionPlan} object.
@@ -70,6 +68,36 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
   }
 
   /**
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+    if (childrenFeatures == null) {
+      super.getChildrenFeatures(object);
+      childrenFeatures.add(FprodPackage.Literals.PRODUCTION_PLAN__INVOCATIONS);
+    }
+    return childrenFeatures;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EStructuralFeature getChildFeature(Object object, Object child) {
+    // Check the type of the specified child object and return the proper feature to use for
+    // adding (see {@link AddCommand}) it as a child.
+
+    return super.getChildFeature(object, child);
+  }
+
+  /**
    * This returns ProductionPlan.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -84,13 +112,12 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((ProductionPlan) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_ProductionPlan_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_ProductionPlan_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    return "[" + getString("_UI_ProductionPlan_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -103,6 +130,12 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
   @Override
   public void notifyChanged(Notification notification) {
     updateChildren(notification);
+
+    switch (notification.getFeatureID(ProductionPlan.class)) {
+    case FprodPackage.PRODUCTION_PLAN__INVOCATIONS:
+      fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+      return;
+    }
     super.notifyChanged(notification);
   }
 
@@ -117,9 +150,7 @@ public class ProductionPlanItemProvider extends OrchestrationItemProvider implem
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION__INVOCATIONS, FprodFactory.eINSTANCE.createFactoryComponentInvocation()));
-
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION__INVOCATIONS, FprodFactory.eINSTANCE.createTaskInvocation()));
+    newChildDescriptors.add(createChildParameter(FprodPackage.Literals.PRODUCTION_PLAN__INVOCATIONS, FprodFactory.eINSTANCE.createProductionPlanInvocation()));
   }
 
 }
