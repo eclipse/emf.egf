@@ -34,7 +34,7 @@
     point="org.eclipse.emf.ecore.extension_parser"
   >
     <parser
-      type="fprod"
+      type="ftask"
       class="org.eclipse.egf.model.ftask.util.FtaskResourceFactoryImpl"
     />
   </extension>
