@@ -21,7 +21,7 @@ public abstract class PlatformExtensionPointURI extends PlatformExtensionPoint i
 
   public PlatformExtensionPointURI(IPlatformBundle bundle, IPluginElement element, String id) {
     super(bundle, element, id);
-    _previousUri = URIHelper.getPlatformURI(bundle.getBundleId(), getId(), false);
+    _previousUri = URIHelper.getPlatformURI(bundle.getBundleId(), getId(), true);
     Assert.isNotNull(_previousUri);
   }
 
@@ -31,7 +31,7 @@ public abstract class PlatformExtensionPointURI extends PlatformExtensionPoint i
 
   public URI getURI() {
     if (getPlatformBundle().getBundleId().equals(getPlatformBundle().getPreviousBundleId()) == false) {
-      return URIHelper.getPlatformURI(getPlatformBundle().getBundleId(), getId(), false);
+      return URIHelper.getPlatformURI(getPlatformBundle().getBundleId(), getId(), true);
     }
     return getPreviousURI();
   }
