@@ -288,22 +288,22 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
         // Process existing source folder
         if (contentType == IClasspathEntry.CPE_SOURCE) {
           String relativePath = getRelativePath(currentClassPath, _project);
-          if (relativePath.equals("")) { //$NON-NLS-1$
+          if ("".equals(relativePath)) { //$NON-NLS-1$
             IPath src = new Path("src"); //$NON-NLS-1$
             IContainer sourceContainer = _project.getFolder(src);
             if (sourceContainer.exists() == false) {
               ((IFolder) sourceContainer).create(false, true, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-              sources.add(src.toString() + "/"); //$NON-NLS-1$
-              IClasspathEntry sourceClasspathEntry = JavaCore.newSourceEntry(sourceContainer.getFullPath());
-              for (Iterator<IClasspathEntry> i = _classpathEntries.iterator(); i.hasNext();) {
-                IClasspathEntry classpathEntry = i.next();
-                if (classpathEntry.getPath().isPrefixOf(sourceContainer.getFullPath())) {
-                  i.remove();
-                }
-              }
-              _classpathEntries.add(0, sourceClasspathEntry);
             }
-            sources.add("src/"); //$NON-NLS-1$
+            sources.add(src.toString() + "/"); //$NON-NLS-1$
+            IClasspathEntry sourceClasspathEntry = JavaCore.newSourceEntry(sourceContainer.getFullPath());
+            for (Iterator<IClasspathEntry> i = _classpathEntries.iterator(); i.hasNext();) {
+              IClasspathEntry classpathEntry = i.next();
+              if (classpathEntry.getPath().isPrefixOf(sourceContainer.getFullPath())) {
+                // Remove previous source folder if any
+                i.remove();
+              }
+            }
+            _classpathEntries.add(0, sourceClasspathEntry);
           } else {
             sources.add(relativePath + "/"); //$NON-NLS-1$
           }
@@ -318,17 +318,22 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       }
       subMonitor.worked(100);
 
-      // Create a source folder if necessary
-      if ((_hasJavaNature || _createJavaProject) && sources.isEmpty() && addSourceFolders() != null) {
+      // Create source folders if necessary
+      if ((_hasJavaNature || _createJavaProject) && addSourceFolders() != null) {
         for (String sourceFolder : addSourceFolders()) {
           IPath src = new Path(sourceFolder);
           IContainer sourceContainer = _project.getFolder(src);
-          ((IFolder) sourceContainer).create(false, true, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+          // Create folder if it doesn't exist
+          if (sourceContainer.exists() == false) {
+            ((IFolder) sourceContainer).create(false, true, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+          }
+          // Classpath processing
           sources.add(src.toString() + "/"); //$NON-NLS-1$
           IClasspathEntry sourceClasspathEntry = JavaCore.newSourceEntry(sourceContainer.getFullPath());
           for (Iterator<IClasspathEntry> i = _classpathEntries.iterator(); i.hasNext();) {
             IClasspathEntry classpathEntry = i.next();
             if (classpathEntry.getPath().isPrefixOf(sourceContainer.getFullPath())) {
+              // Remove previous source folder if any
               i.remove();
             }
           }
