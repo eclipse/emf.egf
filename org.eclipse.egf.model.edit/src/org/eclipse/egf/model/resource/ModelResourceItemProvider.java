@@ -37,7 +37,7 @@ public class ModelResourceItemProvider extends ResourceItemProvider {
   @Override
   public String getText(Object object) {
     Resource resource = (Resource) object;
-    StringBuffer buffer = new StringBuffer(resource.getURI() == null ? "" : resource.getURI().toString()); //$NON-NLS-1$
+    StringBuffer buffer = new StringBuffer(resource.getURI() == null ? "" : URI.decode(resource.getURI().toString())); //$NON-NLS-1$
     IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(resource);
     if (fc != null) {
       if (fc.getPlatformBundle().isTarget()) {
