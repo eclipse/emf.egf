@@ -12,7 +12,7 @@
  * 
  * </copyright>
  */
-package org.eclipse.pattern.jet.ui.editor;
+package org.eclipse.egf.pattern.ui.jet.editor;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;

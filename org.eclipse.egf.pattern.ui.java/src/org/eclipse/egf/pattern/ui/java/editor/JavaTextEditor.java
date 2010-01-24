@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.pattern.java.ui.editor;
+package org.eclipse.egf.pattern.ui.java.editor;
 
 import java.util.ArrayList;
 import java.util.List;

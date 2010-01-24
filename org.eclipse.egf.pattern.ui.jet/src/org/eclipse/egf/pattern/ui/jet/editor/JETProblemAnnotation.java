@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.pattern.jet.ui.editor;
+package org.eclipse.egf.pattern.ui.jet.editor;
 
 import org.eclipse.jet.core.parser.ProblemSeverity;
 import org.eclipse.jet.core.parser.ast.Problem;

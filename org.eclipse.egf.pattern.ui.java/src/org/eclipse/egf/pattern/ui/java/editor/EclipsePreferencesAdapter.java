@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.pattern.java.ui.editor;
+package org.eclipse.egf.pattern.ui.java.editor;
 
 import org.eclipse.core.runtime.ListenerList;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;

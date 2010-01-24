@@ -6,7 +6,7 @@ Bundle-ClassPath: .
 Bundle-Localization: plugin
 Bundle-SymbolicName: org.eclipse.egf.pattern.java.ui;singleton:=true
 Bundle-Version: 0.2.0.qualifier
-Bundle-Activator: org.eclipse.pattern.java.ui.Activator
+Bundle-Activator: org.eclipse.egf.pattern.ui.java.Activator
 Require-Bundle: 
  org.eclipse.jface.text,
  org.eclipse.egf.common.ui,
