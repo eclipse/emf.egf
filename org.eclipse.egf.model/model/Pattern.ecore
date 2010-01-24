@@ -5,7 +5,7 @@
     nsURI="http://www.eclipse.org/egf/1.0.0/pattern" nsPrefix="pattern">
   <eClassifiers xsi:type="ecore:EClass" name="Pattern" eSuperTypes="#//PatternElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="headerMethod footerMethod"/>
+      <details key="constraints" value="HeaderMethod FooterMethod"/>
     </eAnnotations>
     <eOperations name="getMethod" eType="#//PatternMethod">
       <eParameters name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>

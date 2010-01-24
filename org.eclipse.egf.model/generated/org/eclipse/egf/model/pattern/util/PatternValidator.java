@@ -260,23 +260,23 @@ public class PatternValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(pattern, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validatePattern_headerMethod(pattern, diagnostics, context);
+      result &= validatePattern_HeaderMethod(pattern, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validatePattern_footerMethod(pattern, diagnostics, context);
+      result &= validatePattern_FooterMethod(pattern, diagnostics, context);
     return result;
   }
 
   /**
-   * Validates the headerMethod constraint of '<em>Pattern</em>'. <!--
+   * Validates the HeaderMethod constraint of '<em>Pattern</em>'. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public boolean validatePattern_headerMethod(Pattern pattern, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validatePattern_HeaderMethod(Pattern pattern, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (pattern.getHeaderMethod() != null && pattern.getMethods().contains(pattern.getHeaderMethod()) == false) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Header Method should be a Pattern Method.", getObjectLabel(pattern, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "HeaderMethod", getObjectLabel(pattern, context), "Header Method should be a Pattern Method" }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { pattern }, context));
       }
       return false;
@@ -285,16 +285,16 @@ public class PatternValidator extends EObjectValidator {
   }
 
   /**
-   * Validates the footerMethod constraint of '<em>Pattern</em>'. <!--
+   * Validates the FooterMethod constraint of '<em>Pattern</em>'. <!--
    * begin-user-doc --> <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public boolean validatePattern_footerMethod(Pattern pattern, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validatePattern_FooterMethod(Pattern pattern, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (pattern.getFooterMethod() != null && pattern.getMethods().contains(pattern.getFooterMethod()) == false) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Footer Method should be a Pattern Method.", getObjectLabel(pattern, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "FooterMethod", getObjectLabel(pattern, context), "Footer Method should be a Pattern Method" }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { pattern }, context));
       }
       return false;

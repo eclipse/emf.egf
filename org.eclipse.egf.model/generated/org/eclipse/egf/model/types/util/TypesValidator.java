@@ -304,8 +304,8 @@ public class TypesValidator extends EObjectValidator {
     // Loadable Value
     if (ValidationHelper.isLoadableClass(typeObject, typeObject.getValue().getClass().getName(), context) == false) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { NLS.bind("Unable to load ''{0}''.", typeObject.getValue().getClass().getName()), getObjectLabel(typeObject, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "LoadableValue", getObjectLabel(typeObject, context), NLS.bind("Unable to load ''{0}''", typeObject.getValue().getClass().getName()) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { typeObject }, context));
       }
       return false;
@@ -327,8 +327,8 @@ public class TypesValidator extends EObjectValidator {
     // Valid Value
     if (ValidationHelper.isValidClass(typeObject, typeObject.getType(), typeObject.getValue().getClass().getName(), context) == false) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { NLS.bind("Type mismatch ''{0}'' with ''{1}''.", typeObject.getType().getClass().getName(), typeObject.getValue().getClass().getName()), getObjectLabel(typeObject, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidValue", getObjectLabel(typeObject, context), NLS.bind("Type mismatch ''{0}'' with ''{1}''", typeObject.getType().getClass().getName(), typeObject.getValue().getClass().getName()) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { typeObject }, context));
       }
       return false;
@@ -377,8 +377,8 @@ public class TypesValidator extends EObjectValidator {
     // Loadable Value
     if (ValidationHelper.isLoadableClass(typeAbstractClass, typeAbstractClass.getValue(), context) == false) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { NLS.bind("Unable to load ''{0}''.", typeAbstractClass.getValue()), getObjectLabel(typeAbstractClass, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "LoadableValue", getObjectLabel(typeAbstractClass, context), NLS.bind("Unable to load ''{0}''", typeAbstractClass.getValue()) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { typeAbstractClass }, context));
       }
       return false;
@@ -400,8 +400,8 @@ public class TypesValidator extends EObjectValidator {
     // Valid Value
     if (ValidationHelper.isValidClass(typeAbstractClass, typeAbstractClass.getType(), typeAbstractClass.getValue(), context) == false) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { NLS.bind("Type mismatch ''{0}'' with ''{1}''.", typeAbstractClass.getType().getName(), typeAbstractClass.getValue()), getObjectLabel(typeAbstractClass, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidValue", getObjectLabel(typeAbstractClass, context), NLS.bind("Type mismatch ''{0}'' with ''{1}''", typeAbstractClass.getType().getName(), typeAbstractClass.getValue()) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { typeAbstractClass }, context));
       }
       return false;

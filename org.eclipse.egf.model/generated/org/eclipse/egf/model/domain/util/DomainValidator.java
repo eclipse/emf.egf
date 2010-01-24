@@ -250,8 +250,8 @@ public class DomainValidator extends EObjectValidator {
     }
     if (EPackage.Registry.INSTANCE.get(domainEPackage.getEPackage().getNsURI()) == null) {
       if (diagnostics != null) {
-        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_GenericConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "Unknown EPackage in EPackage.Registry.", getObjectLabel(domainEPackage, context) }, //$NON-NLS-1$
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidPackage", getObjectLabel(domainEPackage, context), "Unknown EPackage in EPackage.Registry" }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { domainEPackage }, context));
       }
       return false;
