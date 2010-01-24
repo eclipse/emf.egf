@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.egf.model.ftask/generated"
+    editDirectory="/org.eclipse.egf.model.ftask.edit/generated" editorDirectory="/org.eclipse.egf.model.ftask.editor/generated"
+    modelPluginID="org.eclipse.egf.model.ftask" templateDirectory="/org.eclipse.egf.model/templates"
+    dynamicTemplates="true" modelName="Ftask" modelPluginClass="org.eclipse.egf.model.EGFFtaskPlugin"
+    editPluginClass="org.eclipse.egf.model.edit.EGFFtaskEditPlugin" editorPluginClass="org.eclipse.egf.model.editor.EGFFtaskEditorPlugin"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container"
+    codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
+    booleanFlagsField="eFlags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" editPluginID="org.eclipse.egf.model.ftask.edit" editorPluginID="org.eclipse.egf.model.ftask.editor"
+    optimizedHasChildren="true" tableProviders="true" colorProviders="true" fontProviders="true"
+    packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.egf.model/model/Fcore.genmodel#//fcore ../../org.eclipse.egf.model/model/Types.genmodel#//types">
+  <foreignModel>Ftask.ecore</foreignModel>
+  <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
+  <genPackages prefix="Ftask" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
+      generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true"
+      childCreationExtenders="true" contentTypeIdentifier="" fileExtensions="ftask"
+      ecorePackage="Ftask.ecore#/">
+    <genClasses image="false" ecoreClass="Ftask.ecore#//Task"/>
+    <genClasses ecoreClass="Ftask.ecore#//TaskJava">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Ftask.ecore#//TaskJava/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
