@@ -7,8 +7,8 @@
     name="HelloWorldPattern">
   <viewpointContainer xmi:id="_BEuDQOUiEd6K29loa12Zeg">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_S3cJcOWPEd6-n_el3pPeEA">
-      <domains xmi:type="domain:DomainURI" xmi:id="_TwXVgOWPEd6-n_el3pPeEA" name=""
-          uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
+      <domains xmi:type="domain:DomainURI" xmi:id="_TwXVgOWPEd6-n_el3pPeEA" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"
+          name=""/>
     </viewpoints>
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_HoMXUOUiEd6K29loa12Zeg">
       <libraries xmi:id="_-5uOEOgQEd6H-IbEpfKYLw" name="HelloPatternsLib">
@@ -23,7 +23,7 @@
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_e1HztegREd6H-IbEpfKYLw"
               called="#_e1Hzs-gREd6H-IbEpfKYLw"/>
           <nature xmi:type="jetpattern:JetNature" xmi:id="_e1HztugREd6H-IbEpfKYLw"
-              name=""/>
+              name="myJetNature"/>
         </elements>
       </libraries>
       <libraries xmi:id="_IE8kwOUiEd6K29loa12Zeg" name="HelloWorldPatternsLib">
@@ -50,7 +50,8 @@
             <query xmi:type="pattern:BasicQuery" xmi:id="_QT2f4OUiEd6K29loa12Zeg"
                 extensionId="org.eclipse.egf.pattern.basic.query"/>
           </parameters>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_LA2VNuUiEd6K29loa12Zeg"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_LA2VNuUiEd6K29loa12Zeg"
+              name="myJetNature"/>
         </elements>
       </libraries>
       <libraries xmi:id="_4PIv8OgREd6H-IbEpfKYLw" name="HelloFriendsPatternsLib">
@@ -64,7 +65,8 @@
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_7MX9JegREd6H-IbEpfKYLw"
               called="#_7MX9I-gREd6H-IbEpfKYLw"/>
           <parameters xmi:id="_KPk9gOiJEd6-N7yXRz81IQ" name="element" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-          <nature xmi:type="jetpattern:JetNature" xmi:id="_7MX9JugREd6H-IbEpfKYLw"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_7MX9JugREd6H-IbEpfKYLw"
+              name="myJetNature"/>
         </elements>
       </libraries>
     </viewpoints>
