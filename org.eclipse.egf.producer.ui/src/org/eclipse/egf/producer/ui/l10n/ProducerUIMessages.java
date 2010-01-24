@@ -39,4 +39,7 @@ public class ProducerUIMessages {
   public static String _UI_CantInvokeProblems_title;
   public static String _UI_CantInvokeProblems_message;
 
+  public static String Activity_Invocation;
+  public static String Activity_Invocations;
+
 }

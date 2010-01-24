@@ -184,7 +184,11 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
           try {
             try {
               if (EGFProducerUIPlugin.getDefault().isDebugging()) {
-                EGFProducerUIPlugin.getDefault().logInfo(NLS.bind("Activity ''{0}'' will invoke ''{1}'' step(s).", EMFHelper.getText(activity), ticks)); //$NON-NLS-1$
+                if (ticks[0] == 1) {
+                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerUIMessages.Activity_Invocation, EMFHelper.getText(activity[0])));
+                } else {
+                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerUIMessages.Activity_Invocations, EMFHelper.getText(activity[0]), ticks[0]));
+                }
               }
               invokeDiag[0] = activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
               if (monitor.isCanceled()) {
