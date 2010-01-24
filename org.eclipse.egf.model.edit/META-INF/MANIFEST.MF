@@ -12,6 +12,7 @@ Export-Package:
  org.eclipse.egf.model.domain.provider,
  org.eclipse.egf.model.edit,
  org.eclipse.egf.model.fcore.provider,
+ org.eclipse.egf.model.fcore.helper,
  org.eclipse.egf.model.mapping.provider,
  org.eclipse.egf.model.pattern.provider,
  org.eclipse.egf.model.resource,

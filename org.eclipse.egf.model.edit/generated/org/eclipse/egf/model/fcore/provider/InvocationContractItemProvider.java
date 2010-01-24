@@ -13,17 +13,13 @@
 package org.eclipse.egf.model.fcore.provider;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.model.fcore.Contract;
-import org.eclipse.egf.model.fcore.ContractMode;
-import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
-import org.eclipse.egf.model.fcore.OrchestrationParameter;
+import org.eclipse.egf.model.fcore.helper.InvocationContractHelper;
 import org.eclipse.egf.model.types.TypeBigDecimal;
 import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypeBoolean;
@@ -44,7 +40,6 @@ import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -62,9 +57,11 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContract} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContract}
+ * object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InvocationContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
@@ -72,6 +69,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public InvocationContractItemProvider(AdapterFactory adapterFactory) {
@@ -82,6 +80,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -112,43 +111,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        InvocationContract invocationContract = (InvocationContract) current;
-        Collection<Contract> result = new UniqueEList<Contract>();
-        if (result.contains(null) == false) {
-          result.add(null);
-        }
-        // Nothing to retrieve
-        if (invocationContract.getFactoryComponent() == null || invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
-          return result;
-        }
-        // If an orchestration parameter is already assigned, InvocationParameter in In mode are not
-        // assignable
-        if (invocationContract.getOrchestrationParameter() != null && invocationContract.getInvokedMode() == ContractMode.IN) {
-          return result;
-        }
-        // Retrieve all the typed contracts if available
-        if (invocationContract.getInvokedMode() == ContractMode.IN) {
-          result.addAll(invocationContract.getFactoryComponent().getContracts(invocationContract.getInvokedContract().getType(), ContractMode.IN));
-        } else {
-          // In or In_Out Contract should have only one assigned InvocationContract.
-          for (Contract contract : invocationContract.getFactoryComponent().getContracts(invocationContract.getInvokedContract().getType(), invocationContract.getInvokedMode())) {
-            if (((FactoryComponentContract) contract).getInvocationContracts().size() == 0) {
-              result.add(contract);
-            }
-          }
-        }
-        // If an orchestration parameter is already assigned, InvocationContract in In_Out mode are
-        // only assignable to Out Mode Contract
-        if (invocationContract.getOrchestrationParameter() != null && invocationContract.getInvokedMode() == ContractMode.IN_OUT) {
-          for (Iterator<Contract> it = result.iterator(); it.hasNext();) {
-            Contract contract = it.next();
-            if (contract.getMode() != ContractMode.OUT) {
-              it.remove();
-            }
-          }
-          return result;
-        }
-        return result;
+        return InvocationContractHelper.getAvailableFactoryComponentContract((InvocationContract) current);
       }
     });
   }
@@ -167,26 +130,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        InvocationContract invocationContract = (InvocationContract) current;
-        Collection<OrchestrationParameter> result = new UniqueEList<OrchestrationParameter>();
-        if (result.contains(null) == false) {
-          result.add(null);
-        }
-        // Nothing to retrieve
-        if (invocationContract.getFactoryComponent() == null || invocationContract.getFactoryComponent().getOrchestration() == null || invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
-          return result;
-        }
-        // InvocationContract in Out mode are not assignable
-        if (invocationContract.getInvokedMode() == ContractMode.OUT) {
-          return result;
-        }
-        // InvocationContract already assigned to an exposed contract should in be In_Out mode
-        if (invocationContract.getFactoryComponentContract() != null && invocationContract.getInvokedMode() != ContractMode.IN_OUT) {
-          return result;
-        }
-        // Retrieve all compatible typed OrchestrationParameter
-        result.addAll(invocationContract.getFactoryComponent().getOrchestration().getOrchestrationParameters(invocationContract.getInvokedContract().getType()));
-        return result;
+        return InvocationContractHelper.getAvailableOrchestrationParameter((InvocationContract) current);
       }
     });
   }
@@ -195,26 +139,38 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This adds a property descriptor for the Source Invocation Contract feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addSourceInvocationContractPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_sourceInvocationContract_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_sourceInvocationContract_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_InvocationContract_sourceInvocationContract_feature", "_UI_InvocationContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FcorePackage.Literals.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, true, false, true, null, getString("_UI_ConnectorPropertyCategory"), //$NON-NLS-1$
-        null));
+        null) {
+      @Override
+      public Collection<?> getChoiceOfValues(Object current) {
+        return InvocationContractHelper.getAvailableSourceInvocationContract((InvocationContract) current);
+      }
+    });
   }
 
   /**
    * This adds a property descriptor for the Target Invocation Contract feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addTargetInvocationContractPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_targetInvocationContract_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_targetInvocationContract_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_InvocationContract_targetInvocationContract_feature", "_UI_InvocationContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FcorePackage.Literals.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, true, false, true, null, getString("_UI_ConnectorPropertyCategory"), //$NON-NLS-1$
-        null));
+        null) {
+      @Override
+      public Collection<?> getChoiceOfValues(Object current) {
+        return InvocationContractHelper.getAvailableTargetInvocationContract((InvocationContract) current);
+      }
+    });
   }
 
   /**
@@ -231,51 +187,19 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        InvocationContract invocationContract = (InvocationContract) current;
-        Collection<Contract> result = new UniqueEList<Contract>();
-        // Retrieve all the typed contracts if available
-        if (invocationContract.getInvocation() != null && invocationContract.getInvocation().getInvokedActivity() != null) {
-          // Type filtering
-          if (invocationContract.getType() != null) {
-            if (invocationContract.getFactoryComponentContract() != null) {
-              result.addAll(invocationContract.getInvocation().getInvokedActivity().getContracts(invocationContract.getType(), invocationContract.getFactoryComponentContract().getMode()));
-            } else {
-              result.addAll(invocationContract.getInvocation().getInvokedActivity().getContracts(invocationContract.getType()));
-            }
-            // Filter all assigned contracts if necessary
-            if (result.size() > 0) {
-              for (Contract innerContract : invocationContract.getInvocation().getInvokedContracts(invocationContract.getType())) {
-                result.remove(innerContract);
-              }
-            }
-          } else {
-            if (invocationContract.getFactoryComponentContract() != null) {
-              result.addAll(invocationContract.getInvocation().getInvokedActivity().getContracts(invocationContract.getFactoryComponentContract().getMode()));
-            } else {
-              result.addAll(invocationContract.getInvocation().getInvokedActivity().getContracts());
-            }
-            // Filter all assigned contracts if necessary
-            if (result.size() > 0) {
-              for (Contract innerContract : invocationContract.getInvocation().getInvokedContracts()) {
-                result.remove(innerContract);
-              }
-            }
-          }
-        }
-        if (result.contains(null) == false) {
-          result.add(null);
-        }
-        return result;
+        return InvocationContractHelper.getAvailableInvokedContract((InvocationContract) current);
       }
     });
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
+   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
+   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
    * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -290,6 +214,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -304,6 +229,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This returns InvocationContract.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -337,6 +263,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
