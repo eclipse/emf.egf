@@ -26,13 +26,15 @@ public class ModelSchemeAware extends URIHandlerImpl {
   public URI deresolve(URI uri) {
     if (uri.isPlatformResource()) {
       URI deresolve = uri.deresolve(baseURI);
-      if (deresolve.isCurrentDocumentReference())
+      if (deresolve.isCurrentDocumentReference()) {
         return deresolve;
+      }
       return URI.createPlatformPluginURI(uri.toPlatformString(true), true).appendFragment(uri.fragment());
     } else if (uri.isPlatformPlugin()) {
       URI deresolve = uri.deresolve(_basePluginURI);
-      if (deresolve.isCurrentDocumentReference())
+      if (deresolve.isCurrentDocumentReference()) {
         return deresolve;
+      }
       return uri;
     }
     return uri.isPlatform() == false || (uri.segmentCount() > 0 && baseURI.segmentCount() > 0 && uri.segment(0).equals(baseURI.segment(0))) ? super.deresolve(uri) : uri;
