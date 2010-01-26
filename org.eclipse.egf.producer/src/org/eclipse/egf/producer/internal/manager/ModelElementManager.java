@@ -185,7 +185,7 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
   }
 
   @SuppressWarnings("unused")
-  protected BasicDiagnostic canInvokeInputElement(boolean runtime) throws InvocationException {
+  protected BasicDiagnostic checkInputElement(boolean runtime) throws InvocationException {
     return getDiagnostic(getElement(), runtime);
   }
 
@@ -195,7 +195,7 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
   }
 
   public Diagnostic canInvoke() throws InvocationException {
-    return canInvokeInputElement(false);
+    return checkInputElement(false);
   }
 
   public abstract void initializeContext() throws InvocationException;

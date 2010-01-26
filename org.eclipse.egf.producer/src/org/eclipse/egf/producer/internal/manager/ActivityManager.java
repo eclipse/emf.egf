@@ -60,7 +60,7 @@ public abstract class ActivityManager<P extends Activity> extends ModelElementMa
   }
 
   @Override
-  protected BasicDiagnostic canInvokeInputElement(boolean runtime) throws InvocationException {
+  protected BasicDiagnostic checkInputElement(boolean runtime) throws InvocationException {
     BasicDiagnostic diagnostic = getDiagnostic(getElement(), runtime);
     BasicDiagnostic containerDiagnostic = null;
     ProductionContext<P, Contract> context = getInternalProductionContext();

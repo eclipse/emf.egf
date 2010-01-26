@@ -104,7 +104,7 @@ public class FactoryComponentManager extends ActivityManager<FactoryComponent> {
 
   @Override
   public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = canInvokeInputElement(false);
+    BasicDiagnostic diagnostic = checkInputElement(false);
     // Continue
     if (getOrchestrationManager() != null) {
       diagnostic.add(getOrchestrationManager().canInvoke());
@@ -128,7 +128,7 @@ public class FactoryComponentManager extends ActivityManager<FactoryComponent> {
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    BasicDiagnostic diagnostic = canInvokeInputElement(true);
+    BasicDiagnostic diagnostic = checkInputElement(true);
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       IModelElementManager<Orchestration, OrchestrationParameter> orchestrationManager = getOrchestrationManager();
       if (orchestrationManager != null) {
