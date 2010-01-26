@@ -13,8 +13,8 @@ package org.eclipse.egf.console.internal;
 
 import java.util.StringTokenizer;
 
+import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.console.EGFConsolePlugin;
-import org.eclipse.egf.console.util.ConsoleUtil;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.text.BadLocationException;
@@ -152,9 +152,9 @@ public class ConsoleLineNotifier implements IPatternMatchListener {
     public void linkActivated() {
       try {
         if (_uri != null) {
-          IEditorPart part = ConsoleUtil.openEditor(_uri);
+          IEditorPart part = EditorHelper.openEditor(_uri);
           if (part != null && part instanceof IEditingDomainProvider) {
-            ConsoleUtil.setSelectionToViewer(part, _uri);
+            EditorHelper.setSelectionToViewer(part, _uri);
           }
         }
       } catch (PartInitException pie) {

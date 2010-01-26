@@ -24,6 +24,5 @@ Export-Package:
  org.eclipse.egf.console,
  org.eclipse.egf.console.internal,
  org.eclipse.egf.console.l10n,
- org.eclipse.egf.console.preferences,
- org.eclipse.egf.console.util
+ org.eclipse.egf.console.preferences
 Bundle-ActivationPolicy: lazy
