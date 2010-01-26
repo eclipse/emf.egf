@@ -53,6 +53,8 @@ public class ImageShop {
     public static final String IMG_METHOD_CONTENT_EDIT = ICON_PATH + "method_content_edit.gif";
     public static final String IMG_VARIABLE = ICON_PATH + "variable.gif";
     public static final String IMG_QUERY_SET = ICON_PATH + "query_set.gif";
+    public static final String IMG_PARAMETER_OBJ = ICON_PATH + "parameter_obj.gif";
+    public static final String IMG_VARIABLE_OBJ = ICON_PATH + "variable_obj.gif";
 
     private static final ImageRegistry REGISTRY = new ImageRegistry();
 

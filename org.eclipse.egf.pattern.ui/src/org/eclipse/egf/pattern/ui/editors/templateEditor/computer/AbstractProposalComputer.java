@@ -14,7 +14,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.ui.java.editor.contentassist.computer;
+package org.eclipse.egf.pattern.ui.editors.templateEditor.computer;
 
 import java.util.List;
 
@@ -24,10 +24,23 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
  * @author XiaoRu Chen - Soyatec
  * 
  */
-public abstract class JavaTextEditorProposalComputer {
+public abstract class AbstractProposalComputer {
     /**
      * Compute the proposal of java text editor.
      */
     public abstract List<ICompletionProposal> computeProposal();
+
+    /**
+     * Get the display String of type.
+     */
+    public static String getType(String type) {
+        if (type == null || type.length() == 0)
+            return "";
+        int index = type.lastIndexOf("//");
+        if (index != -1) {
+            return type.substring(index + 2);
+        }
+        return type;
+    }
 
 }

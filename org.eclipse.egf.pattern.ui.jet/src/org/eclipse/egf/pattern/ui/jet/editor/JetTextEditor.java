@@ -35,79 +35,79 @@ import org.eclipse.swt.widgets.Composite;
  * 
  */
 public class JetTextEditor extends JETTextEditor {
-	
-	private RefreshUIJob job;
-	
-	private Pattern pattern;
+
+    private RefreshUIJob job;
+
+    private Pattern pattern;
 
     public JetTextEditor(Pattern pattern) throws CoreException, IOException {
         super();
-		this.pattern = pattern;
+        this.pattern = pattern;
         setSourceViewerConfiguration(new JetSourceViewerConfigure(this));
         setDocumentProvider(new JetDocumentProvider(this));
     }
-    
-	public Pattern getPattern() {
-		return pattern;
-	}
 
-	/**
-	 * @return the source viewer used by this editor
-	 */
-	public final ISourceViewer getViewer() {
-		return getSourceViewer();
-	}
-    
+    public Pattern getPattern() {
+        return pattern;
+    }
+
+    /**
+     * @return the source viewer used by this editor
+     */
+    public final ISourceViewer getViewer() {
+        return getSourceViewer();
+    }
+
     @Override
     public void createPartControl(Composite parent) {
-    	super.createPartControl(parent);
-//		StyledText textWidget = getSourceViewer().getTextWidget();
-//		textWidget.addModifyListener((ModifyListener) new JetModifyListener());
+        super.createPartControl(parent);
+        // StyledText textWidget = getSourceViewer().getTextWidget();
+        // textWidget.addModifyListener((ModifyListener) new
+        // JetModifyListener());
     }
-    
-	class JetModifyListener implements ModifyListener {
-		public void modifyText(ModifyEvent e) {
-			if (job == null) {
-				job = new RefreshUIJob("RefreshTemplateEditor");
-			}
-			job.start();
-		}
-	}
 
-	class RefreshUIJob extends Job {
+    class JetModifyListener implements ModifyListener {
+        public void modifyText(ModifyEvent e) {
+            if (job == null) {
+                job = new RefreshUIJob("RefreshTemplateEditor");
+            }
+            job.start();
+        }
+    }
 
-		private long timestamp = -1;
+    class RefreshUIJob extends Job {
 
-		private boolean lazy = false;
+        private long timestamp = -1;
 
-		public RefreshUIJob(String name) {
-			super(name);
-		}
+        private boolean lazy = false;
 
-		private void start() {
-			if (!lazy) {
-				schedule(1000);
-			} else if (System.currentTimeMillis() - timestamp > 999 && !lazy) {
-				lazy = true;
-			}
-			timestamp = System.currentTimeMillis();
-		}
+        public RefreshUIJob(String name) {
+            super(name);
+        }
 
-		protected IStatus run(IProgressMonitor monitor) {
-			System.out.println("Refresh_begin");
-			JetEditorHelper
-			.refreshPublicTemplateEditor(JetTextEditor.this);
-			if (lazy) {
-				schedule();
-				lazy = false;
-			}
-			System.out.println("Refresh_end");
-			return Status.OK_STATUS;
-		}
-	}
+        private void start() {
+            if (!lazy) {
+                schedule(1000);
+            } else if (System.currentTimeMillis() - timestamp > 999 && !lazy) {
+                lazy = true;
+            }
+            timestamp = System.currentTimeMillis();
+        }
 
-	public RefreshUIJob getJob() {
-		return job;
-	}
-	
+        protected IStatus run(IProgressMonitor monitor) {
+            System.out.println("Refresh_begin");
+            JetEditorHelper.refreshPublicTemplateEditor(JetTextEditor.this);
+            if (lazy) {
+                schedule();
+                lazy = false;
+            }
+            System.out.println("Refresh_end");
+            return Status.OK_STATUS;
+        }
+    }
+
+    public RefreshUIJob getJob() {
+        return job;
+    }
+
 }

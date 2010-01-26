@@ -22,8 +22,11 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.ui.jet.editor.JetTextEditor.RefreshUIJob;
 import org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.jet.core.parser.ast.JETCompilationUnit;
 import org.eclipse.jet.core.parser.ast.Problem;
 import org.eclipse.jet.internal.editor.JETEditorHelper;
@@ -38,6 +41,9 @@ import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
 
 /**
@@ -66,23 +72,34 @@ public class JetReconcilingStrategy extends JETReconcilingStrategy {
      * evaluations and update
      */
     private void internalReconcile() {
+        JetTextEditor jetTextEditor = null;
         JETCompilationUnit cUnit = jetEditor.requestCompilationUnit();
         List<Problem> cUnitProblems = cUnit.getProblems();
         IEditorInput editorInput = jetEditor.getEditorInput();
-		String name = editorInput.getName();
-		Map<String, List<Problem>> methodProblems = JetTemplateEditor.getMethodProblems();
-		List<Problem> javaContentProblems = new ArrayList<Problem>();
-		if(methodProblems != null&&!methodProblems.isEmpty()){
-			javaContentProblems = methodProblems.get(name);
-		}
-		List<Problem> evaluateProblems = JETEditorHelper.evaluateProblems(jetEditor, sourceViewer.getDocument());
-		Iterator<Problem> iter = evaluateProblems.iterator();
-		while (iter.hasNext()){
-			Problem next = iter.next();
-			if(!javaContentProblems.contains(next)){
-				javaContentProblems.add(next);
-			}
-		}
+        String name = editorInput.getName();
+        Map<String, List<Problem>> methodProblems = JetTemplateEditor.getMethodProblems();
+        List<Problem> javaContentProblems = new ArrayList<Problem>();
+        if (methodProblems != null && !methodProblems.isEmpty()) {
+            javaContentProblems = methodProblems.get(name);
+        }
+        List<Problem> evaluateProblems = JETEditorHelper.evaluateProblems(jetEditor, sourceViewer.getDocument());
+        Iterator<Problem> iter = evaluateProblems.iterator();
+        while (iter.hasNext()) {
+            Problem next = iter.next();
+            if (!javaContentProblems.contains(next)) {
+                javaContentProblems.add(next);
+            }
+        }
+
+        if (jetEditor instanceof JetTextEditor) {
+            jetTextEditor = (JetTextEditor) jetEditor;
+        }
+
+        EList<PatternParameter> allParameters = jetTextEditor.getPattern().getAllParameters();
+        EList<PatternVariable> allVariables = jetTextEditor.getPattern().getAllVariables();
+
+        javaContentProblems = JetEditorHelper.clearProblemsForParameterAndVariable(allParameters, javaContentProblems);
+        javaContentProblems = JetEditorHelper.clearProblemsForParameterAndVariable(allVariables, javaContentProblems);
 
         IAnnotationModel annotationModelq = sourceViewer.getAnnotationModel();
         JETAnnotationModel annotationModel = (JETAnnotationModel) annotationModelq;
@@ -119,8 +136,6 @@ public class JetReconcilingStrategy extends JETReconcilingStrategy {
             annotationModel.fireAnnotationModelChanged();
         }
     }
-    
-    
 
     public void setDocument(IDocument idocument) {
     }
@@ -134,9 +149,9 @@ public class JetReconcilingStrategy extends JETReconcilingStrategy {
     }
 
     public void reconcile(IRegion partition) {
-		JetTextEditor jetTextEditor = (JetTextEditor) jetEditor;
-		JetEditorHelper.refreshPublicTemplateEditor(jetTextEditor);
-		JetEditorHelper.mappingErrorFromTemplateEditor(jetTextEditor);
+        JetTextEditor jetTextEditor = (JetTextEditor) jetEditor;
+        JetEditorHelper.refreshPublicTemplateEditor(jetTextEditor);
+        JetEditorHelper.mappingErrorFromTemplateEditor(jetTextEditor);
     }
 
     public void setProgressMonitor(IProgressMonitor iprogressmonitor) {

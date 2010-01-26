@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
@@ -49,17 +50,19 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
     private List<JavaTextEditor> javaEditorList = new ArrayList<JavaTextEditor>();
 
     private IAnnotationModel javaAnnotationModel;
+    
+    private IFile templateFile;
 
-    private Map<String, Map<Annotation,Position>> methodJavaAnnotations = new HashMap<String, Map<Annotation,Position>>();
+    private Map<String, Map<Annotation, Position>> methodJavaAnnotations = new HashMap<String, Map<Annotation, Position>>();
 
-    private static Map<String, Map<Annotation,Position>> METHODJAVAANNOTATIONS = new HashMap<String, Map<Annotation,Position>>();
+    private static Map<String, Map<Annotation, Position>> METHODJAVAANNOTATIONS = new HashMap<String, Map<Annotation, Position>>();
 
     protected void createPages() {
         Pattern pattern = getPattern();
         addPatternChangeAdapter(pattern);
         EList<PatternMethod> methods = pattern.getMethods();
         try {
-            setPublicTemplateEditor(pattern, methods, TEMPLATE_FILE_EXTENTION);
+            templateFile = setPublicTemplateEditor(pattern, methods, TEMPLATE_FILE_EXTENTION);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -123,7 +126,7 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
         }
     }
 
-    public static Map<String, Map<Annotation,Position>> getMethodJavaAnnotations() {
+    public static Map<String, Map<Annotation, Position>> getMethodJavaAnnotations() {
         return METHODJAVAANNOTATIONS;
     }
 
@@ -137,6 +140,10 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
 
     public List<JavaTextEditor> getEditorList() {
         return javaEditorList;
+    }
+    
+    public IFile getTemplateFile() {
+        return templateFile;
     }
 
     @Override

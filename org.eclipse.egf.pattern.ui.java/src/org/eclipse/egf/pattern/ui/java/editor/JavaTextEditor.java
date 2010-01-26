@@ -77,6 +77,7 @@ public class JavaTextEditor extends TextEditor {
      * 
      * 
      * 
+     * 
      * org.eclipse.ui.editors.text.TextEditor#doSetInput(org.eclipse.ui.IEditorInput
      * )
      */

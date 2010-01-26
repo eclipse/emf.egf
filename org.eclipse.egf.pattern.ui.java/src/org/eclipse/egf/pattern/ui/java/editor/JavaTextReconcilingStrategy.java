@@ -43,118 +43,121 @@ import org.eclipse.ui.texteditor.ITextEditor;
  * @author panpan.liu@soyatec.com
  */
 public class JavaTextReconcilingStrategy extends JavaCompositeReconcilingStrategy {
-	
-	private ITextEditor fEditor;
-	private JavaReconcilingStrategy fJavaStrategy;
-	
-	/**
-	 * Creates a new Java reconciling strategy.
-	 *
-	 * @param viewer the source viewer
-	 * @param editor the editor of the strategy's reconciler
-	 * @param documentPartitioning the document partitioning this strategy uses for configuration
-	 */
-	public JavaTextReconcilingStrategy(ISourceViewer viewer, ITextEditor editor,
-			String documentPartitioning) {
-		super(viewer, editor, documentPartitioning);
-		fEditor= editor;
-		fJavaStrategy= new JavaReconcilingStrategy(editor);
-		setReconcilingStrategies(new IReconcilingStrategy[] {
-			fJavaStrategy,
-			new JavaSpellingReconcileStrategy(viewer, editor)
-		});
-	}
-	
+
+    private ITextEditor fEditor;
+    private JavaReconcilingStrategy fJavaStrategy;
+
+    /**
+     * Creates a new Java reconciling strategy.
+     * 
+     * @param viewer
+     *            the source viewer
+     * @param editor
+     *            the editor of the strategy's reconciler
+     * @param documentPartitioning
+     *            the document partitioning this strategy uses for configuration
+     */
+    public JavaTextReconcilingStrategy(ISourceViewer viewer, ITextEditor editor, String documentPartitioning) {
+        super(viewer, editor, documentPartitioning);
+        fEditor = editor;
+        fJavaStrategy = new JavaReconcilingStrategy(editor);
+        setReconcilingStrategies(new IReconcilingStrategy[] { fJavaStrategy, new JavaSpellingReconcileStrategy(viewer, editor) });
+    }
 
     /**
      * This is the single method that performs the annotation model problems
      * evaluations and update
      */
     private void internalReconcile() {
-		IDocumentProvider p= fEditor.getDocumentProvider();
-		if (p == null) {
-			p= JavaPlugin.getDefault().getCompilationUnitDocumentProvider();
-		}
+        IDocumentProvider p = fEditor.getDocumentProvider();
+        if (p == null) {
+            p = JavaPlugin.getDefault().getCompilationUnitDocumentProvider();
+        }
         IEditorInput editorInput = fEditor.getEditorInput();
-		String name = editorInput.getName();
-		IAnnotationModel annotationModel= p.getAnnotationModel(fEditor.getEditorInput());
-		Iterator<Annotation> iter = annotationModel.getAnnotationIterator();
-		while(iter.hasNext()){
-			Annotation annotation = iter.next();
-//			org.eclipse.jdt.ui.error
-			annotationModel.removeAnnotation(annotation);
-		}
-		Map<String, Map<Annotation,Position>> methodJavaAnnotations = JavaTemplateEditor.getMethodJavaAnnotations();
-		Map<Annotation,Position> methodAnnotations = new HashMap<Annotation,Position>();
-		if(methodJavaAnnotations != null&&!methodJavaAnnotations.isEmpty()){
-			methodAnnotations = methodJavaAnnotations.get(name);
-		}
+        String name = editorInput.getName();
+        IAnnotationModel annotationModel = p.getAnnotationModel(fEditor.getEditorInput());
+        Iterator<Annotation> iter = annotationModel.getAnnotationIterator();
+        while (iter.hasNext()) {
+            Annotation annotation = iter.next();
+            // org.eclipse.jdt.ui.error
+            annotationModel.removeAnnotation(annotation);
+        }
+        Map<String, Map<Annotation, Position>> methodJavaAnnotations = JavaTemplateEditor.getMethodJavaAnnotations();
+        Map<Annotation, Position> methodAnnotations = new HashMap<Annotation, Position>();
+        if (methodJavaAnnotations != null && !methodJavaAnnotations.isEmpty()) {
+            methodAnnotations = methodJavaAnnotations.get(name);
+        }
         if (annotationModel != null) {
-        	for(Annotation annotation:methodAnnotations.keySet()){
-        		Position position = methodAnnotations.get(annotation);
-        		annotationModel.addAnnotation(annotation, position);
-        	}
-        }  
+            for (Annotation annotation : methodAnnotations.keySet()) {
+                Position position = methodAnnotations.get(annotation);
+                annotationModel.addAnnotation(annotation, position);
+            }
+        }
     }
 
-	/*
-	 * @see org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy#reconcile(org.eclipse.jface.text.reconciler.DirtyRegion, org.eclipse.jface.text.IRegion)
-	 */
-	public void reconcile(DirtyRegion dirtyRegion, IRegion subRegion) {
-		JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
-	}
+    /*
+     * @see
+     * org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy#reconcile
+     * (org.eclipse.jface.text.reconciler.DirtyRegion,
+     * org.eclipse.jface.text.IRegion)
+     */
+    public void reconcile(DirtyRegion dirtyRegion, IRegion subRegion) {
+        JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
+    }
 
-	/*
-	 * @see org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy#reconcile(org.eclipse.jface.text.IRegion)
-	 */
-	public void reconcile(IRegion partition) {
-		if(JavaTextEditor.refreshJob){
-			JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
-			JavaTextEditor.refreshJob = false;
-		}
-	}
+    /*
+     * @see
+     * org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy#reconcile
+     * (org.eclipse.jface.text.IRegion)
+     */
+    public void reconcile(IRegion partition) {
+        if (JavaTextEditor.refreshJob) {
+            JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
+            JavaTextEditor.refreshJob = false;
+        }
+    }
 
-	/**
-	 * Tells this strategy whether to inform its listeners.
-	 *
-	 * @param notify <code>true</code> if listeners should be notified
-	 */
-	public void notifyListeners(boolean notify) {
-		fJavaStrategy.notifyListeners(notify);
-	}
+    /**
+     * Tells this strategy whether to inform its listeners.
+     * 
+     * @param notify
+     *            <code>true</code> if listeners should be notified
+     */
+    public void notifyListeners(boolean notify) {
+        fJavaStrategy.notifyListeners(notify);
+    }
 
-	/*
-	 * @see org.eclipse.jface.text.reconciler.CompositeReconcilingStrategy#initialReconcile()
-	 */
-	public void initialReconcile() {
-//		internalReconcile();
-		initialMapping();
-	}
-	
-	private void initialMapping(){
-		JavaTextEditor javaTextEditor = (JavaTextEditor) fEditor;
-		EList<PatternMethod> methods = javaTextEditor.getPattern().getMethods();
-		int size = methods.size();
-		PatternMethod patternMethod = methods.get(size-1);
-		IEditorInput editorInput = javaTextEditor.getEditorInput();
-		if(editorInput instanceof PatternMethodEditorInput){
-			PatternMethodEditorInput input = (PatternMethodEditorInput)editorInput;
-			PatternMethod inputPatternMethod = input.getPatternMethod();
-			if(patternMethod.equals(inputPatternMethod)){
-				JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
-			}
-		}
-	}
+    /*
+     * @seeorg.eclipse.jface.text.reconciler.CompositeReconcilingStrategy#
+     * initialReconcile()
+     */
+    public void initialReconcile() {
+        // internalReconcile();
+        initialMapping();
+    }
 
-	private void reconciled() {
-		fJavaStrategy.reconciled();
-	}
-	
-	@Override
-	public void aboutToBeReconciled() {
-		super.aboutToBeReconciled();
-	}
-	
-	
+    private void initialMapping() {
+        JavaTextEditor javaTextEditor = (JavaTextEditor) fEditor;
+        EList<PatternMethod> methods = javaTextEditor.getPattern().getMethods();
+        int size = methods.size();
+        PatternMethod patternMethod = methods.get(size - 1);
+        IEditorInput editorInput = javaTextEditor.getEditorInput();
+        if (editorInput instanceof PatternMethodEditorInput) {
+            PatternMethodEditorInput input = (PatternMethodEditorInput) editorInput;
+            PatternMethod inputPatternMethod = input.getPatternMethod();
+            if (patternMethod.equals(inputPatternMethod)) {
+                JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
+            }
+        }
+    }
+
+    private void reconciled() {
+        fJavaStrategy.reconciled();
+    }
+
+    @Override
+    public void aboutToBeReconciled() {
+        super.aboutToBeReconciled();
+    }
 
 }

@@ -27,8 +27,12 @@ import java.util.Map;
 import java.util.Stack;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.model.pattern.PatternParameter;
+import org.eclipse.egf.model.pattern.PatternVariable;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.AbstractTemplateEditor;
 import org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.internal.ui.JavaPlugin;
@@ -94,15 +98,15 @@ public class JavaTextEditorHelper {
         if (templateFile.exists()) {
             try {
                 templateFile.setContents(new ByteArrayInputStream(new byte[0]), true, false, null);
-                if(editors == null){
-                	return;
+                if (editors == null) {
+                    return;
                 }
                 int size = editors.size();
-                if(size == 0){
-                	return;
+                if (size == 0) {
+                    return;
                 }
-                for (int i = 0;i<size;i++) {
-                	JavaTextEditor currentEditor = editors.get(i);
+                for (int i = 0; i < size; i++) {
+                    JavaTextEditor currentEditor = editors.get(i);
                     if (currentEditor == null) {
                         continue;
                     }
@@ -112,15 +116,21 @@ public class JavaTextEditorHelper {
                             continue;
                         }
                         templateFile.appendContents(inputStreamOfEditor, false, false, null);
-                        if(i!=size -1){
-							templateFile.appendContents(
-									new StringBufferInputStream("\n"), true,
-									false, null);
+                        if (i != size - 1) {
+                            templateFile.appendContents(new StringBufferInputStream("\n"), true, false, null);
                         }
                     }
                 }
             } catch (Exception e) {
             }
+        }else{
+            try {
+                templateFile.create(new ByteArrayInputStream(new byte[0]),
+                        true, null);
+            } catch (CoreException e) {
+                e.printStackTrace();
+            }
+            refreshPublicTemplateEditor(pattern,templateFile,editor);
         }
     }
 
@@ -132,9 +142,10 @@ public class JavaTextEditorHelper {
         MultiPageEditorPart multiPageEditorPart = JavaTextEditorHelper.getMultiPageEditorPart(editor);
         if (multiPageEditorPart == null)
             return;
-        IEditorPart templateEditorPart = ((JavaTemplateEditor) multiPageEditorPart).getTemplateFileEditorPart();
+        JavaTemplateEditor javaTemplateEditor = (JavaTemplateEditor) multiPageEditorPart;
+        IEditorPart templateEditorPart = javaTemplateEditor.getTemplateFileEditorPart();
         Pattern pattern = editor.getPattern();
-        Map<String, JavaTextEditor> editors = ((JavaTemplateEditor) multiPageEditorPart).getEditorMap();
+        Map<String, JavaTextEditor> editors = javaTemplateEditor.getEditorMap();
         if (!(templateEditorPart instanceof JavaEditor)) {
             return;
         }
@@ -142,16 +153,30 @@ public class JavaTextEditorHelper {
 
         IDocumentProvider p = fEditor.getDocumentProvider();
         if (p == null) {
-            p = JavaPlugin.getDefault().getCompilationUnitDocumentProvider();
+            IFile templateFile = javaTemplateEditor.getTemplateFile();
+            try {
+                fEditor = (JavaEditor) AbstractTemplateEditor.initEditor(templateFile);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            p = fEditor.getDocumentProvider();
         }
         IAnnotationModel javaAnnotationModel = p.getAnnotationModel(fEditor.getEditorInput());
         if (javaAnnotationModel == null) {
             return;
         }
+
         Map<String, Position> mappings = getMappings(pattern, editors);
         if (mappings == null || mappings.size() == 0) {
             return;
         }
+
+        EList<PatternParameter> allParameters = pattern.getAllParameters();
+        EList<PatternVariable> allVariables = pattern.getAllVariables();
+
+        javaAnnotationModel = clearDirtyAnnotationForPatternVariAndParam(javaAnnotationModel, allParameters);
+        javaAnnotationModel = clearDirtyAnnotationForPatternVariAndParam(javaAnnotationModel, allVariables);
+
         for (String id : editors.keySet()) {
             TextEditor textEditor = editors.get(id);
             IDocumentProvider documentProvider = textEditor.getDocumentProvider();
@@ -161,14 +186,19 @@ public class JavaTextEditorHelper {
                 Annotation annotation = (Annotation) iter.next();
                 annotationModel.removeAnnotation(annotation);
             }
+            Iterator annotationIterator = javaAnnotationModel.getAnnotationIterator();
             Position position = mappings.get(id);
             int startOffset = position.offset;
             int endOffset = position.offset + position.length - 1;
-            Iterator annotationIterator = javaAnnotationModel.getAnnotationIterator();
+
             if (annotationModel != null) {
                 while (annotationIterator.hasNext()) {
                     Annotation annotation = (Annotation) annotationIterator.next();
                     if (!annotation.getType().equals("org.eclipse.jdt.ui.error")) {
+                        continue;
+                    }
+                    String text = annotation.getText();
+                    if (text.startsWith("The declared package ") || text.startsWith("The public type ")) {
                         continue;
                     }
                     Position posi = javaAnnotationModel.getPosition(annotation);
@@ -186,6 +216,33 @@ public class JavaTextEditorHelper {
                 }
             }
         }
+    }
+
+    private static IAnnotationModel clearDirtyAnnotationForPatternVariAndParam(IAnnotationModel javaAnnotationModel, EList list) {
+        if (list == null || list.size() == 0) {
+            return javaAnnotationModel;
+        }
+        List<Annotation> annotations = new ArrayList<Annotation>();
+        Iterator annotationIterator = javaAnnotationModel.getAnnotationIterator();
+        while (annotationIterator.hasNext()) {
+            Object next = annotationIterator.next();
+            if (next instanceof Annotation) {
+                Annotation annotation = (Annotation) next;
+                String filter = "";
+                for (Object obj : list) {
+                    if (obj instanceof PatternParameter) {
+                        filter = ((PatternParameter) obj).getName();
+                    } else if (obj instanceof PatternVariable) {
+                        filter = ((PatternVariable) obj).getName();
+                    }
+                    filter = filter + " ";
+                    if (annotation.getText().startsWith(filter)) {
+                        javaAnnotationModel.removeAnnotation(annotation);
+                    }
+                }
+            }
+        }
+        return javaAnnotationModel;
     }
 
     /**
@@ -224,23 +281,23 @@ public class JavaTextEditorHelper {
      */
     public static Map<String, Position> getMappings(Pattern pattern, Map<String, JavaTextEditor> editors) {
         EList<PatternMethod> methods = pattern.getMethods();
-        Map<String,Position> mappings = new HashMap<String,Position>();
+        Map<String, Position> mappings = new HashMap<String, Position>();
         int startOffset = 0;
-		for (PatternMethod method : methods) {
-			String id = method.getID();
-			TextEditor textEditor = editors.get(id);
-			if(textEditor == null){
-				continue;
-			}
-			ISourceViewer viewer = ((JavaTextEditor) textEditor).getViewer();
-			if (viewer == null || viewer.getDocument() == null) {
-				return null;
-			}
-			int length = viewer.getDocument().getLength();
-			mappings.put(id, new Position(startOffset, length));
-			startOffset = startOffset+length +1 ;
-		}
-		return mappings;
+        for (PatternMethod method : methods) {
+            String id = method.getID();
+            TextEditor textEditor = editors.get(id);
+            if (textEditor == null) {
+                continue;
+            }
+            ISourceViewer viewer = ((JavaTextEditor) textEditor).getViewer();
+            if (viewer == null || viewer.getDocument() == null) {
+                return null;
+            }
+            int length = viewer.getDocument().getLength();
+            mappings.put(id, new Position(startOffset, length));
+            startOffset = startOffset + length + 1;
+        }
+        return mappings;
     }
 
     /**

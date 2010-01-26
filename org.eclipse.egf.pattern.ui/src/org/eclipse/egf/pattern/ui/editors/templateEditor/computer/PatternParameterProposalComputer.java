@@ -14,19 +14,17 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.ui.java.editor.contentassist.computer;
+package org.eclipse.egf.pattern.ui.editors.templateEditor.computer;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternParameter;
-import org.eclipse.egf.pattern.ui.java.ImageShop;
-import org.eclipse.egf.pattern.ui.java.editor.JavaDocumentReader;
-import org.eclipse.egf.pattern.ui.java.editor.JavaTextEditorHelper;
+import org.eclipse.egf.pattern.ui.ImageShop;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateEditorUtility;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.internal.ui.text.java.JavaCompletionProposal;
-import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
 
@@ -34,7 +32,7 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
  * @author XiaoRu Chen - Soyatec
  * 
  */
-public class PatternParameterProposalComputer extends JavaTextEditorProposalComputer {
+public class PatternParameterProposalComputer extends AbstractProposalComputer {
     private ITextViewer viewer;
     private int offset;
     private Pattern pattern;
@@ -47,10 +45,8 @@ public class PatternParameterProposalComputer extends JavaTextEditorProposalComp
 
     @Override
     public List<ICompletionProposal> computeProposal() {
-        IDocument doc = viewer.getDocument();
-        JavaDocumentReader reader = new JavaDocumentReader(doc, offset);
-        char c = reader.readBackward();
-        String allWords[] = JavaTextEditorHelper.getAllWords(c, reader);
+        String allWords[] = TemplateEditorUtility.getAllWords(viewer, offset);
+
         List<ICompletionProposal> parameterProposals = new ArrayList<ICompletionProposal>();
         if (allWords.length > 0) {
             String replacedWord = allWords[0];
@@ -59,7 +55,7 @@ public class PatternParameterProposalComputer extends JavaTextEditorProposalComp
             for (PatternParameter parameter : allParameters) {
                 String parameterName = parameter.getName();
                 String displayName = parameterName + " - " + getType(parameter.getType());
-                if (parameterName.indexOf(replacedWord) == 0) {
+                if (!"".equals(replacedWord) && parameterName.indexOf(replacedWord) == 0) {
                     JavaCompletionProposal propsal = new JavaCompletionProposal(parameterName, replacementOffset, replacedWord.length(), ImageShop.get(ImageShop.IMG_PARAMETER_OBJ), displayName, parameterName.length());
                     parameterProposals.add(propsal);
                 }
@@ -68,16 +64,4 @@ public class PatternParameterProposalComputer extends JavaTextEditorProposalComp
         return parameterProposals;
     }
 
-    /**
-     * Get the display String of type.
-     */
-    public static String getType(String type) {
-        if (type == null || type.length() == 0)
-            return "";
-        int index = type.lastIndexOf("//");
-        if (index != -1) {
-            return type.substring(index + 2);
-        }
-        return type;
-    }
 }

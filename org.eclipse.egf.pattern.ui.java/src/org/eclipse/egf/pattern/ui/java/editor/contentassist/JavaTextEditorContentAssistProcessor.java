@@ -21,12 +21,13 @@ import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateEditorUtility;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.computer.PatternParameterProposalComputer;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.computer.PatternVariableProposalComputer;
 import org.eclipse.egf.pattern.ui.java.JavaTextEditorMessages;
-import org.eclipse.egf.pattern.ui.java.editor.JavaDocumentReader;
 import org.eclipse.egf.pattern.ui.java.editor.JavaTextEditor;
 import org.eclipse.egf.pattern.ui.java.editor.JavaTextEditorHelper;
 import org.eclipse.egf.pattern.ui.java.editor.contentassist.computer.JavaTypeProposalComputer;
-import org.eclipse.egf.pattern.ui.java.editor.contentassist.computer.PatternParameterProposalComputer;
 import org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
@@ -35,7 +36,6 @@ import org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal;
 import org.eclipse.jdt.internal.ui.text.java.JavaCompletionProposal;
 import org.eclipse.jdt.internal.ui.text.java.LazyGenericTypeProposal;
 import org.eclipse.jdt.internal.ui.text.template.contentassist.TemplateProposal;
-import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.contentassist.CompletionProposal;
 import org.eclipse.jface.text.contentassist.ICompletionProposal;
@@ -85,6 +85,10 @@ public class JavaTextEditorContentAssistProcessor implements IContentAssistProce
         // Get the pattern parameter proposals.
         PatternParameterProposalComputer parameterProposalComputer = new PatternParameterProposalComputer(viewer, offset, pattern);
         addProposal(proposals, parameterProposalComputer.computeProposal());
+
+        // Get the pattern variable proposals.
+        PatternVariableProposalComputer variableProposalComputer = new PatternVariableProposalComputer(viewer, offset, pattern);
+        addProposal(proposals, variableProposalComputer.computeProposal());
 
         // Get the java type proposals.
         int mappingOffset = JavaTextEditorHelper.getMappingOffset(pattern, editor, offset);
@@ -181,10 +185,10 @@ public class JavaTextEditorContentAssistProcessor implements IContentAssistProce
         String replaceString = templateProposal.getAdditionalProposalInfo();
         Image image = templateProposal.getImage();
         String displayString = templateProposal.getDisplayString();
-        IDocument doc = editor.getViewer().getDocument();
-        JavaDocumentReader reader = new JavaDocumentReader(doc, offset);
-        char c = reader.readBackward();
-        String allWords[] = JavaTextEditorHelper.getAllWords(c, reader);
+        // IDocument doc = editor.getViewer().getDocument();
+        // JavaDocumentReader reader = new JavaDocumentReader(doc, offset);
+        // char c = reader.readBackward();
+        String allWords[] = TemplateEditorUtility.getAllWords(editor.getViewer(), offset);
         List<ICompletionProposal> parameterProposals = new ArrayList<ICompletionProposal>();
         if (allWords.length > 0) {
             String replacedWord = allWords[0];

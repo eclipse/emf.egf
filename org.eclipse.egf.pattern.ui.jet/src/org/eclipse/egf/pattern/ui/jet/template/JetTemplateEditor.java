@@ -147,6 +147,10 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
         return jetEditorMap;
     }
 
+    public IFile getTemplateFile() {
+        return templateFile;
+    }
+
     @Override
     public void setActivePage(String methodId) {
         if (methodId != null && !"".equals(methodId)) {

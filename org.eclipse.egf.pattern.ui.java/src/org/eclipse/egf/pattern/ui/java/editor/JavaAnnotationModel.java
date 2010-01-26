@@ -71,4 +71,3 @@ public class JavaAnnotationModel extends ResourceMarkerAnnotationModel {
         fireModelChanged();
     }
 }
-

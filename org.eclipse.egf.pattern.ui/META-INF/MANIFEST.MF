@@ -33,4 +33,5 @@ Require-Bundle:
  org.eclipse.jface.text
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.egf.pattern.ui.editors,
- org.eclipse.egf.pattern.ui.editors.templateEditor
+ org.eclipse.egf.pattern.ui.editors.templateEditor,
+ org.eclipse.egf.pattern.ui.editors.templateEditor.computer

@@ -1,15 +1,5 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S. and other
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
- * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
  * 
  * </copyright>
  */
@@ -22,6 +12,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.computer.AbstractProposalComputer;
 import org.eclipse.jdt.core.CompletionProposal;
 import org.eclipse.jdt.core.CompletionRequestor;
 import org.eclipse.jdt.core.ICompilationUnit;
@@ -47,7 +38,7 @@ import org.eclipse.ui.IEditorPart;
  * @author XiaoRu Chen - Soyatec
  * 
  */
-public class JavaTypeProposalComputer extends JavaTextEditorProposalComputer {
+public class JavaTypeProposalComputer extends AbstractProposalComputer {
     private IProgressMonitor fTimeoutProgressMonitor;
     private int offset;
     private IEditorPart templateEditorPart;
@@ -59,7 +50,6 @@ public class JavaTypeProposalComputer extends JavaTextEditorProposalComputer {
         fTimeoutProgressMonitor = createTimeoutProgressMonitor(JAVA_CODE_ASSIST_TIMEOUT);
     }
 
-    @Override
     public List<ICompletionProposal> computeProposal() {
         if (templateEditorPart == null || ((JavaEditor) templateEditorPart).getViewer() == null)
             return null;
@@ -75,8 +65,9 @@ public class JavaTypeProposalComputer extends JavaTextEditorProposalComputer {
         proposals.addAll(javaTypeProposal);
         List<ICompletionProposal> templateProposal = computeTemplateProposal(context);
         proposals.addAll(templateProposal);
-
+        // Sort proposals.
         ProposalSorterRegistry.getDefault().getCurrentSorter().sortProposals(context, proposals);
+
         return proposals;
     }
 

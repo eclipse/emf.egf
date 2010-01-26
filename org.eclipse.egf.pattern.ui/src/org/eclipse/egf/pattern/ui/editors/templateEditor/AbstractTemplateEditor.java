@@ -25,6 +25,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
@@ -43,7 +44,7 @@ import org.eclipse.jface.text.Position;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -57,10 +58,12 @@ import org.eclipse.ui.part.MultiPageEditorPart;
  * 
  */
 public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
-
+    
+    private String projectName = ".templateproject";
+    
 	protected IEditorPart openEditor;
-
-	protected Map<String, Position> startPositions = new HashMap<String, Position>();
+	
+    protected Map<String, Position> startPositions = new HashMap<String, Position>();
 
 	// The adapter is for refreshing the editor title while the name of pattern
 	// has been changed.
@@ -128,21 +131,21 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 		return input.getPattern();
 	}
 
-	protected void initEditor(IFile templateFile) throws CoreException {
+	public static IEditorPart initEditor(IFile templateFile) throws CoreException {
 		try {
-			IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow();
-			// IWorkbenchPage activePage =
-			// activeWorkbenchWindow.getActivePage();
-			IWorkbenchPage activePage = new WorkbenchPage(
-					(WorkbenchWindow) activeWorkbenchWindow, null);
-			if (activePage == null || templateFile == null)
-				return;
-			openEditor = IDE.openEditor(activePage, templateFile, false);
-			activePage.setEditorAreaVisible(false);
+		    IWorkbench workbench = PlatformUI.getWorkbench();
+		    IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
+			WorkbenchPage  templateActivePage = new WorkbenchPage(
+	                    (WorkbenchWindow) activeWorkbenchWindow, null);
+			if ( templateActivePage == null || templateFile == null)
+				return null;
+			IEditorPart openEditor = IDE.openEditor(templateActivePage, templateFile, false);
+			templateActivePage.setEditorAreaVisible(false);
+			return openEditor;
 		} catch (PartInitException e) {
 			Activator.getDefault().logError(e);
 		}
+        return null;
 	}
 
 	protected IFile setPublicTemplateEditor(Pattern pattern,
@@ -153,7 +156,17 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 			IPlatformFcore platformFcore = EGFCorePlugin
 					.getPlatformFcore(eResource);
 			IProject project = platformFcore.getPlatformBundle().getProject();
-			IFolder folder = project.getFolder("src");
+			IProject templateProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);		
+			if(!templateProject.exists()){
+		         project.copy(templateProject.getFullPath(), true, null);
+			}else{
+			    templateProject.delete(true, true, null);
+			    setPublicTemplateEditor(pattern, methods, fileExtention);
+			}
+			if(!templateProject.isOpen()){
+			    templateProject.open(null);
+			}
+			IFolder folder = templateProject.getFolder("src");
 			if (!folder.exists()) {
 				folder.create(true, false, null);
 			}
@@ -183,7 +196,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 				Position position = new Position(startPosition, length);
 				startPositions.put(method.getName(), position);
 			}
-			initEditor(templateFile);
+			openEditor = initEditor(templateFile);
 		} catch (Exception e) {
 			Activator.getDefault().logError(e);
 		}
