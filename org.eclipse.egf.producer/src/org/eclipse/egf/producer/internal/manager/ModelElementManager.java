@@ -64,7 +64,7 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
     return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, new Object[] { element });
   }
 
-  protected static <T extends ModelElement> void populateContext(ProductionContext<?, T> context, Bundle bundle, T key, ContractMode mode, Type type, Object value) throws InvocationException {
+  protected static <M extends ModelElement> void populateContext(ProductionContext<?, M> context, Bundle bundle, M key, ContractMode mode, Type type, Object value) throws InvocationException {
     // Class
     if (type instanceof TypeAbstractClass) {
       try {
