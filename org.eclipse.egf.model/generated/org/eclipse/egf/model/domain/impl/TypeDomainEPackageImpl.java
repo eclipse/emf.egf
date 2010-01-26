@@ -15,13 +15,13 @@ package org.eclipse.egf.model.domain.impl;
 import org.eclipse.egf.model.domain.DomainEPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.TypeDomainEPackage;
+import org.eclipse.egf.model.domain.adapter.TypeDomainEPackageAdapter;
 import org.eclipse.egf.model.types.impl.TypeObjectImpl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.model.domain.adapter.TypeDomainEPackageAdapter;
 
 /**
  * <!-- begin-user-doc -->
@@ -30,11 +30,11 @@ import org.eclipse.model.domain.adapter.TypeDomainEPackageAdapter;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl#getDomain <em>Domain</em>}</li>
+ * <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomainEPackage {
@@ -42,6 +42,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -51,6 +52,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDomain()
    * @generated
    * @ordered
@@ -71,6 +73,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -81,6 +84,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainEPackage getDomain() {
@@ -90,6 +94,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setDomain(DomainEPackage newDomain) {
@@ -102,6 +107,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -126,6 +132,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -144,6 +151,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -159,6 +167,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -174,6 +183,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
