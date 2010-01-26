@@ -1,4 +1,4 @@
-package org.eclipse.egf.pattern.fprod.tasks;
+package org.eclipse.egf.pattern.ftask.tasks;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;

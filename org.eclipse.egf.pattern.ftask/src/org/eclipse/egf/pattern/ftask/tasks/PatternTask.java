@@ -1,4 +1,4 @@
-package org.eclipse.egf.pattern.fprod.tasks;
+package org.eclipse.egf.pattern.ftask.tasks;
 
 import java.util.HashSet;
 import java.util.LinkedHashSet;
@@ -16,7 +16,7 @@ import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
-import org.eclipse.egf.pattern.fprod.Messages;
+import org.eclipse.egf.pattern.ftask.Messages;
 
 public class PatternTask extends AbstractPatternTask {
 

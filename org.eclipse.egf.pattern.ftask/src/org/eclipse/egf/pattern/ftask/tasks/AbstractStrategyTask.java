@@ -1,4 +1,4 @@
-package org.eclipse.egf.pattern.fprod.tasks;
+package org.eclipse.egf.pattern.ftask.tasks;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -14,7 +14,7 @@ import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
-import org.eclipse.egf.pattern.fprod.Messages;
+import org.eclipse.egf.pattern.ftask.Messages;
 import org.eclipse.egf.pattern.strategy.Strategy;
 
 public abstract class AbstractStrategyTask extends AbstractPatternTask {

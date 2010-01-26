@@ -1,4 +1,4 @@
-package org.eclipse.egf.pattern.fprod;
+package org.eclipse.egf.pattern.ftask;
 
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
 import org.osgi.framework.BundleContext;

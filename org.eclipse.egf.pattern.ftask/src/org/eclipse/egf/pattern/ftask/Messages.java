@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.fprod;
+package org.eclipse.egf.pattern.ftask;
 
 import org.eclipse.osgi.util.NLS;
 
