@@ -66,7 +66,7 @@ public class ModelVisitor {
 
     public void visit(PatternContext context, List<?> model) throws MissingExtensionException, PatternException {
         for (Object obj : model) {
-            if (!process(context, obj))
+            if (process(context, obj))
                 visit(context, obj);
         }
     }
@@ -78,7 +78,7 @@ public class ModelVisitor {
     protected boolean process(PatternContext context, Object model) throws MissingExtensionException, PatternException {
         List<Pattern> foundPattern = findPatterns(model);
         if (foundPattern == null || foundPattern.isEmpty())
-            return false;
+            return true;
         return executeWithInjection(foundPattern, context, model);
     }
 
