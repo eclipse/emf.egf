@@ -27,6 +27,7 @@ import org.eclipse.pde.core.build.IBuild;
 import org.eclipse.pde.core.build.IBuildEntry;
 import org.eclipse.pde.core.build.IBuildModel;
 import org.eclipse.pde.internal.core.build.WorkspaceBuildModel;
+import org.eclipse.pde.internal.ui.util.PDEModelUtility;
 
 /**
  * Provides services when creating fcore or converting existing
@@ -40,17 +41,17 @@ public class FcoreGeneratorHelper {
    * Create and add a new folder in given plug-in. <br>
    * The 'build.properties' file is updated accordingly if requested.
    * 
-   * @param pluginId_p
-   * @param folderName_p
-   * @param updateBuildProperties_p
-   * @param monitor_p
+   * @param pluginId
+   * @param folderName
+   * @param updateBuildProperties
+   * @param monitor
    */
-  public static void addFolderIn(String pluginId_p, String folderName_p, boolean updateBuildProperties_p, IProgressMonitor monitor_p) {
-    IProject project = ProjectHelper.getProject(pluginId_p);
-    IFolder folder = ProjectHelper.createFolder(folderName_p, project, monitor_p);
-    if (null != folder && updateBuildProperties_p) {
+  public static void addFolderIn(String pluginId, String folderName, boolean updateBuildProperties, IProgressMonitor monitor) {
+    IProject project = ProjectHelper.getProject(pluginId);
+    IFolder folder = ProjectHelper.createFolder(folderName, project, monitor);
+    if (folder != null && updateBuildProperties) {
       WorkspaceBuildModel buildModel = getBuildModel(project);
-      addEntryInBinaryBuild(buildModel, folderName_p + EGFCommonConstants.SLASH_CHARACTER);
+      addEntryInBinaryBuild(buildModel, folderName + EGFCommonConstants.SLASH_CHARACTER);
       buildModel.save();
     }
   }
@@ -59,16 +60,16 @@ public class FcoreGeneratorHelper {
    * Add an entry in the binary entry of the build.properties i.e bin.include.<br>
    * Caller is responsible to save the modified build model.
    * 
-   * @param buildModel_p
+   * @param buildModel
    */
-  public static void addEntryInBinaryBuild(IBuildModel buildModel_p, String entryName_p) {
-    IBuild build = buildModel_p.getBuild();
+  public static void addEntryInBinaryBuild(IBuildModel buildModel, String entryName) {
+    IBuild build = buildModel.getBuild();
     // Update the bin.includes property
     IBuildEntry binEntry = build.getEntry(IBuildEntry.BIN_INCLUDES);
     if (binEntry != null) {
       try {
-        if (binEntry.contains(entryName_p) == false) {
-          binEntry.addToken(entryName_p);
+        if (binEntry.contains(entryName) == false) {
+          binEntry.addToken(entryName);
         }
       } catch (CoreException ce) {
         EGFPDEPlugin.getDefault().logError(new String("FcoreGeneratorHelper.addEntryInBinInclude(..) _ ").toString(), ce); //$NON-NLS-1$
@@ -79,18 +80,18 @@ public class FcoreGeneratorHelper {
   /**
    * Get the build model for given project.
    * 
-   * @param project_p
+   * @param project
    * @return
    */
-  public static WorkspaceBuildModel getBuildModel(IProject project_p) {
-    WorkspaceBuildModel buildModel = null;
+  public static WorkspaceBuildModel getBuildModel(IProject project) {
     // Precondition.
-    if (null == project_p) {
-      return buildModel;
+    if (project == null) {
+      return null;
     }
-    IFile buildFile = project_p.getFile("build.properties"); //$NON-NLS-1$
+    WorkspaceBuildModel buildModel = null;
+    IFile buildFile = project.getFile(PDEModelUtility.F_BUILD);
+    buildModel = new WorkspaceBuildModel(buildFile);
     if (buildFile.exists()) {
-      buildModel = new WorkspaceBuildModel(buildFile);
       buildModel.load();
     }
     return buildModel;
@@ -99,13 +100,13 @@ public class FcoreGeneratorHelper {
   /**
    * Add Fcore dependency in given plug-in manifest. See {@link #getEGFCoreDependency()} .
    * 
-   * @param pluginId_p
-   * @param optional_p
+   * @param pluginId
+   * @param optional
    */
-  public static void addStandardFcoreDependency(String pluginId_p, boolean optional_p) {
+  public static void addStandardFcoreDependency(String pluginId, boolean optional) {
     // Add standard Fcore dependency.
-    IPluginChangesCommand commandsOnManifest = ManifestChangeCommandFactory.setRequiredPlugins(getEGFCoreDependency(), optional_p);
-    EGFPDEPlugin.getPluginChangesCommandRunner().performChangesOnManifest(pluginId_p, Collections.singletonList(commandsOnManifest));
+    IPluginChangesCommand commandsOnManifest = ManifestChangeCommandFactory.setRequiredPlugins(getEGFCoreDependency(), optional);
+    EGFPDEPlugin.getPluginChangesCommandRunner().performChangesOnManifest(pluginId, Collections.singletonList(commandsOnManifest));
   }
 
   /**

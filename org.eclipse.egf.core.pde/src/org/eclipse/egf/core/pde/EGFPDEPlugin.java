@@ -38,6 +38,7 @@ import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
 import org.eclipse.egf.core.pde.plugin.IPluginChangesCommandRunner;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.internal.core.build.WorkspaceBuildModel;
+import org.eclipse.pde.internal.ui.util.PDEModelUtility;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.osgi.framework.BundleContext;
@@ -46,21 +47,6 @@ import org.osgi.framework.BundleContext;
  * The activator class controls the plug-in life cycle
  */
 public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipant {
-
-  /**
-   * Constant that defines the Plug-in file name.
-   */
-  public static final String PLUGIN_FILE_NAME = "plugin.xml"; //$NON-NLS-1$
-
-  /**
-   * Constant that defines the Plug-in file name.
-   */
-  public static final String FRAGMENT_FILE_NAME = "fragment.xml"; //$NON-NLS-1$  
-
-  /**
-   * Constant that defines the bundle manifest file name.
-   */
-  public static final String MANIFEST_FILE_NAME = "META-INF/MANIFEST.MF"; //$NON-NLS-1$
 
   /**
    * The shared instance
@@ -112,8 +98,8 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
    * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
    */
   @Override
-  public void start(BundleContext context_p) throws Exception {
-    super.start(context_p);
+  public void start(BundleContext context) throws Exception {
+    super.start(context);
     __plugin = this;
     // Listener initalization
     _fcoreResourceListener = new FcoreResourceListener();
@@ -173,12 +159,12 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
    * @see org.eclipse.core.runtime.Plugin#stop(org.osgi.framework.BundleContext)
    */
   @Override
-  public void stop(BundleContext context_p) throws Exception {
+  public void stop(BundleContext context) throws Exception {
     // Stop our listeners
     _fcoreResourceListener.dispose();
     _fcoreResourceListener = null;
     __plugin = null;
-    super.stop(context_p);
+    super.stop(context);
   }
 
   /**
@@ -225,46 +211,42 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
    * @param pluginModelBase_p
    * @return null if file does not exist.
    */
-  public IFile getFile(IPluginModelBase pluginModelBase_p) {
-    return getFile(ProjectHelper.getProject(pluginModelBase_p));
+  public IFile getFile(IPluginModelBase pluginModelBase) {
+    return getFile(ProjectHelper.getProject(pluginModelBase));
   }
 
   /**
    * Get the plug-in file for given project.
    * 
-   * @param project_p
+   * @param project
    * @return null if file does not exist.
    */
-  public IFile getFile(IProject project_p) {
-    IFile result = null;
+  public IFile getFile(IProject project) {
     // Precondition.
-    if (project_p == null) {
-      return result;
+    if (project == null) {
+      return null;
     }
-    result = project_p.getFile(PLUGIN_FILE_NAME);
-    // Check plug-in file existence ?
-    result = result.exists() ? result : null;
-    return result;
+    IFile plugin = project.getFile(PDEModelUtility.F_PLUGIN);
+    return plugin.exists() ? plugin : null;
   }
 
   /**
    * Is the given file the plug-in file hosts in an {@link IProject}.
    * 
-   * @param resource_p
+   * @param resource
    * @return true if given resource is the plug-in file (plugin.xml); false
    *         otherwise.
    */
-  public boolean isPluginFile(IResource resource_p) {
+  public boolean isPluginFile(IResource resource) {
     // Check if given resource is an IFile and the plug-in file ?
-    if (resource_p != null && resource_p instanceof IFile) {
-      return ((IFile) resource_p).getName().equals(PLUGIN_FILE_NAME);
+    if (resource != null && resource instanceof IFile) {
+      return ((IFile) resource).getName().equals(PDEModelUtility.F_PLUGIN);
     }
     return false;
   }
 
   /**
-   * Get the plug-in changes command runner that is able to execute {@link IPluginChangesCommand}
-   * commands.
+   * Get the plug-in changes command runner that is able to execute {@link IPluginChangesCommand} commands.
    * 
    * @return a not null object.
    */
@@ -280,16 +262,14 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
    * Add an entry with specified entry name in the binary build for given
    * project.
    */
-  public void addEntryInBinaryBuild(IProject project_p, String entryName_p) {
+  public void addEntryInBinaryBuild(IProject project, String entryName) {
     // Preconditions.
-    if (project_p == null || entryName_p == null) {
+    if (project == null || entryName == null) {
       return;
     }
-    WorkspaceBuildModel buildModel = FcoreGeneratorHelper.getBuildModel(project_p);
-    if (buildModel != null) {
-      FcoreGeneratorHelper.addEntryInBinaryBuild(buildModel, entryName_p);
-      buildModel.save();
-    }
+    WorkspaceBuildModel buildModel = FcoreGeneratorHelper.getBuildModel(project);
+    FcoreGeneratorHelper.addEntryInBinaryBuild(buildModel, entryName);
+    buildModel.save();
   }
 
 }
