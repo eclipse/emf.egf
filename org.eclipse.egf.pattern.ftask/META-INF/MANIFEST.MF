@@ -4,7 +4,7 @@ Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-SymbolicName: org.eclipse.egf.pattern.ftask;singleton:=true
 Bundle-Version: 0.2.0.qualifier
-Bundle-Activator: org.eclipse.egf.pattern.fprod.Activator
+Bundle-Activator: org.eclipse.egf.pattern.ftask.Activator
 Bundle-Localization: plugin
 Require-Bundle: 
  org.eclipse.core.runtime,
@@ -15,5 +15,5 @@ Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
 Export-Package: 
- org.eclipse.egf.pattern.fprod,
- org.eclipse.egf.pattern.fprod.tasks
+ org.eclipse.egf.pattern.ftask,
+ org.eclipse.egf.pattern.ftask.tasks
