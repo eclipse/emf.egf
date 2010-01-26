@@ -166,6 +166,9 @@ public class InvocationContractHelper {
         }
       }
     }
+    if (result.contains(null) == false) {
+      result.add(null);
+    }
     return result;
   }
 
@@ -208,6 +211,9 @@ public class InvocationContractHelper {
           result.add(innerInvocationContract);
         }
       }
+    }
+    if (result.contains(null) == false) {
+      result.add(null);
     }
     return result;
   }
