@@ -80,11 +80,6 @@ public final class SetInvocationInvokedActivityCommand extends CompoundCommand {
 
   @Override
   protected boolean prepare() {
-    prepareCommand();
-    return super.prepare();
-  }
-
-  protected void prepareCommand() {
     // First reset inner reference if necessary
     if (_invocation.getInvocationContractContainer() != null) {
       for (InvocationContract contract : _invocation.getInvocationContractContainer().getInvocationContracts()) {
@@ -108,6 +103,7 @@ public final class SetInvocationInvokedActivityCommand extends CompoundCommand {
     append(new SetCommand(_editingDomain, _invocation, FcorePackage.Literals.INVOCATION__INVOCATION_CONTRACT_CONTAINER, null));
     // Assign new activity
     append(new SetCommand(_editingDomain, _invocation, FcorePackage.Literals.INVOCATION__INVOKED_ACTIVITY, _activity));
+    return super.prepare();
   }
 
 }

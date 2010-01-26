@@ -438,8 +438,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
   protected Command createSetCommand(EditingDomain editingDomain, EObject modelElement, EStructuralFeature feature, Object value) {
     // Default Command
     Command command = super.createSetCommand(editingDomain, modelElement, feature, value);
-    // feature could be null, typically during a drop operation
-    // see org.eclipse.emf.edit.command.DragAndDropCommand#prepareDropLinkOn()
+    // feature could be null
     if (feature == null) {
       return command;
     }
@@ -447,10 +446,14 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
     int featureId = feature.getFeatureID();
     switch (featureId) {
     case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
-      command = new SetInvocationContractSourceInvocationContractCommand(editingDomain, (InvocationContract) modelElement, (InvocationContract) value);
+      if (value == null || value instanceof InvocationContract) {
+        command = new SetInvocationContractSourceInvocationContractCommand(editingDomain, (InvocationContract) modelElement, (InvocationContract) value);
+      }
       break;
     case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-      command = new SetInvocationContractTargetInvocationContractCommand(editingDomain, (InvocationContract) modelElement, (InvocationContract) value);
+      if (value == null || value instanceof InvocationContract) {
+        command = new SetInvocationContractTargetInvocationContractCommand(editingDomain, (InvocationContract) modelElement, (InvocationContract) value);
+      }
       break;
     }
     return command;

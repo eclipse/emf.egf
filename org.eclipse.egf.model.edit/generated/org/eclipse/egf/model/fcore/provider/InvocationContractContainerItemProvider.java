@@ -18,9 +18,13 @@ import java.util.List;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContractContainer;
+import org.eclipse.egf.model.fcore.commands.RemoveInvocationContractContainerInvocationContracts;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -38,13 +42,16 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContractContainer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class InvocationContractContainerItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class InvocationContractContainerItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+    IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public InvocationContractContainerItemProvider(AdapterFactory adapterFactory) {
@@ -55,6 +62,7 @@ public class InvocationContractContainerItemProvider extends ModelElementItemPro
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -67,11 +75,10 @@ public class InvocationContractContainerItemProvider extends ModelElementItemPro
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -86,6 +93,7 @@ public class InvocationContractContainerItemProvider extends ModelElementItemPro
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -100,6 +108,7 @@ public class InvocationContractContainerItemProvider extends ModelElementItemPro
    * This returns InvocationContractContainer.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -124,6 +133,7 @@ public class InvocationContractContainerItemProvider extends ModelElementItemPro
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -143,6 +153,7 @@ public class InvocationContractContainerItemProvider extends ModelElementItemPro
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -150,6 +161,31 @@ public class InvocationContractContainerItemProvider extends ModelElementItemPro
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
     newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS, FcoreFactory.eINSTANCE.createInvocationContract()));
+  }
+
+  /**
+   * This creates a primitive {@link org.eclipse.emf.edit.command.RemoveCommand}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  protected Command createRemoveCommand(EditingDomain editingDomain, EObject modelElement, EStructuralFeature feature, Collection<?> collection) {
+    // Default Command
+    Command command = super.createRemoveCommand(editingDomain, modelElement, feature, collection);
+    // feature could be null
+    if (feature == null) {
+      return command;
+    }
+    // Get the feature id to switch on the right stuff.
+    int featureId = feature.getFeatureID();
+    switch (featureId) {
+    case FcorePackage.INVOCATION_CONTRACT_CONTAINER__INVOCATION_CONTRACTS:
+      command = new RemoveInvocationContractContainerInvocationContracts(editingDomain, (InvocationContractContainer) modelElement, (Collection<?>) collection);
+      break;
+    }
+    return command;
   }
 
 }

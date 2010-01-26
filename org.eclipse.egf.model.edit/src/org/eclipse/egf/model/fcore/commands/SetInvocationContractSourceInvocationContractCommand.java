@@ -78,21 +78,17 @@ public final class SetInvocationContractSourceInvocationContractCommand extends 
 
   @Override
   protected boolean prepare() {
-    prepareCommand();
-    return super.prepare();
-  }
-
-  protected void prepareCommand() {
-    // Reset previous source
+    // Reset previous source target
     if (_invocationContract.getSourceInvocationContract() != null) {
       append(new SetCommand(_editingDomain, _invocationContract.getSourceInvocationContract(), FcorePackage.Literals.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, null));
     }
-    // Assign new source
+    // Assign new source target
     if (_sourceInvocationContract != null) {
       append(new SetCommand(_editingDomain, _sourceInvocationContract, FcorePackage.Literals.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, _invocationContract));
     }
     // Assign SourceInvocationContract
     append(new SetCommand(_editingDomain, _invocationContract, FcorePackage.Literals.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, _sourceInvocationContract));
+    return super.prepare();
   }
 
 }

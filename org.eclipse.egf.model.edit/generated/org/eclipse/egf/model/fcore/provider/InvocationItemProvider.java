@@ -203,7 +203,9 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
     int featureId = feature.getFeatureID();
     switch (featureId) {
     case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
-      command = new SetInvocationInvokedActivityCommand(editingDomain, (Invocation) modelElement, (Activity) value);
+      if (value == null || value instanceof Activity) {
+        command = new SetInvocationInvokedActivityCommand(editingDomain, (Invocation) modelElement, (Activity) value);
+      }
       break;
     }
     return command;
