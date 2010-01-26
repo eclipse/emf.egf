@@ -27,6 +27,8 @@ import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternException;
+import org.eclipse.egf.model.pattern.PatternExecutionReporter;
+import org.eclipse.egf.pattern.execution.ConsoleReporter;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.ftask.Messages;
 import org.eclipse.egf.pattern.strategy.Strategy;
@@ -38,9 +40,18 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
     private final Strategy strategy;
     protected Object parameter;
     protected final List<PatternElement> patterns = new ArrayList<PatternElement>();
+    private StrategyReporter reporter;
 
     protected AbstractStrategyTask(Strategy strategy) {
         this.strategy = strategy;
+    }
+
+    protected void readContext(final ITaskProductionContext context, PatternContext ctx) throws InvocationException {
+        super.readContext(context, ctx);
+        PatternExecutionReporter reporter = (PatternExecutionReporter) ctx.getValue(PatternContext.PATTERN_REPORTER);
+        if (reporter == null)
+            reporter = new ConsoleReporter();
+        ctx.setValue(PatternContext.PATTERN_REPORTER, this.reporter = new StrategyReporter(reporter));
     }
 
     @Override
@@ -73,6 +84,7 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
             strategy.setPatternElements(patterns);
             strategy.execute(ctx, parameter);
             writeContext(context, ctx);
+            reporter.executionFinished(ctx);
         } catch (MissingExtensionException e) {
             throw new InvocationException(e);
         } catch (PatternException e) {
