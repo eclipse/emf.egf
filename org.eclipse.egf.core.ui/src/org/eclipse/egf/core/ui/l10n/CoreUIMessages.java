@@ -37,6 +37,7 @@ public class CoreUIMessages {
   public static String _UI_FilteredTypesSelectionDialog_library_name_format;
   public static String _UI_FilteredTypesSelectionDialog_dialogMessage;
   public static String _UI_FilteredItemsSelectionDialog_separatorLabel;
+  public static String _UI_FilteredItemsSelectionDialog_platformSeparatorLabel;
   public static String _UI_Reset_Label;
 
   public static String EGFGeneralPreferencePage_Title;

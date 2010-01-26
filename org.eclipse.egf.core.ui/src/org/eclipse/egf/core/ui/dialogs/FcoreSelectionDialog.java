@@ -130,17 +130,6 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
       return false;
     }
 
-    // Activate to run a full load when dialog is opened
-    // @Override
-    // protected boolean matches(String text) {
-    // String pattern = patternMatcher.getPattern();
-    //      if (pattern.indexOf("*") != 0 & pattern.indexOf("?") != 0 & pattern.indexOf(".") != 0) {//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    //        pattern = "*" + pattern; //$NON-NLS-1$
-    // patternMatcher.setPattern(pattern);
-    // }
-    // return patternMatcher.matches(text);
-    // }
-
   }
 
   private class FcoreSearchComparator implements Comparator<IPlatformFcore> {
@@ -168,7 +157,7 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
       if (element instanceof IPlatformFcore == false) {
         return super.getText(element);
       }
-      return ((IPlatformFcore) element).getURI().toString();
+      return URI.decode(((IPlatformFcore) element).getURI().toString());
     }
   };
 
@@ -208,6 +197,7 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
     setMessage(CoreUIMessages._UI_SelectRegisteredFcoreURI);
     setListLabelProvider(_labelProvider);
     setDetailsLabelProvider(_detailsLabelProvider);
+    setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
     setSelectionHistory(new FcoreSelectionHistory());
   }
 
