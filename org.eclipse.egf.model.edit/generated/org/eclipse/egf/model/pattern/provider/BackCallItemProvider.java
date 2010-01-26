@@ -62,21 +62,8 @@ public class BackCallItemProvider extends CallItemProvider implements IEditingDo
         if (itemPropertyDescriptors == null) {
             super.getPropertyDescriptors(object);
 
-            addCalledPropertyDescriptor(object);
         }
         return itemPropertyDescriptors;
-    }
-
-    /**
-     * This adds a property descriptor for the Called feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void addCalledPropertyDescriptor(Object object) {
-        itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_BackCall_called_feature"), //$NON-NLS-1$
-                getString("_UI_PropertyDescriptor_description", "_UI_BackCall_called_feature", "_UI_BackCall_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-                PatternPackage.Literals.BACK_CALL__CALLED, true, false, true, null, null, null));
     }
 
     /**
