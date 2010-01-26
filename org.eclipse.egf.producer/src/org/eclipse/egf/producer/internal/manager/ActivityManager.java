@@ -21,6 +21,7 @@ import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.helper.ActivityCycleFinder;
 import org.eclipse.egf.producer.EGFProducerPlugin;
+import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -59,11 +60,11 @@ public abstract class ActivityManager<P extends Activity> extends ModelElementMa
   }
 
   @Override
-  protected BasicDiagnostic canInvokeElement(boolean runtime) throws InvocationException {
+  protected BasicDiagnostic canInvokeInputElement(boolean runtime) throws InvocationException {
     BasicDiagnostic diagnostic = getDiagnostic(getElement(), runtime);
     BasicDiagnostic containerDiagnostic = null;
     ProductionContext<P, Contract> context = getInternalProductionContext();
-    // Diagnose Mandatory In Contract
+    // Diagnose Mandatory In and In_Out Contract
     for (Contract contract : getElement().getContracts(ContractMode.IN)) {
       if (contract.isMandatory()) {
         // Check whether or not we face a contract set at runtime
@@ -85,6 +86,37 @@ public abstract class ActivityManager<P extends Activity> extends ModelElementMa
           }
           containerDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("Value is mandatory for ''{0}''", EMFHelper.getText(contract)), //$NON-NLS-1$
               new Object[] { contract }));
+        }
+      }
+    }
+    // containerDiagnostic should be added at the end otherwise, the severity code is not propagated to the parent.
+    if (containerDiagnostic != null) {
+      diagnostic.add(containerDiagnostic);
+    }
+    return diagnostic;
+  }
+
+  @Override
+  protected BasicDiagnostic checkOutputElement(BasicDiagnostic diagnostic) throws InvocationException {
+    BasicDiagnostic containerDiagnostic = null;
+    ProductionContext<P, Contract> context = getInternalProductionContext();
+    // Diagnose Mandatory Out and In_Out Contract
+    for (Contract contract : getElement().getContracts(ContractMode.OUT)) {
+      if (contract.isMandatory()) {
+        // Check Mandatory Value
+        Object value = null;
+        try {
+          value = context.getOutputValue(contract.getName(), contract.getType().getType());
+        } catch (InvocationException ie) {
+          if (ie.getCause() != null) {
+            throw ie;
+          }
+        }
+        if (value == null) {
+          if (containerDiagnostic == null) {
+            containerDiagnostic = getDiagnostic(contract.getContractContainer(), true);
+          }
+          containerDiagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind(ProducerMessages.ActivityManager_mandatory_value, EMFHelper.getText(contract)), new Object[] { contract }));
         }
       }
     }

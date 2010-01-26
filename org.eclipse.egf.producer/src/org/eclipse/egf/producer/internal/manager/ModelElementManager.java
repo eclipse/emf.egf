@@ -78,24 +78,24 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
           }
         }
         if (mode == ContractMode.IN) {
-          context.addInputData(key, type.getType(), object);
+          context.addInputData(key, type.getType(), object, true);
         } else if (mode == ContractMode.OUT) {
-          context.addOutputData(key, type.getType(), null);
+          context.addOutputData(key, type.getType(), null, true);
         } else if (mode == ContractMode.IN_OUT) {
-          context.addInputData(key, type.getType(), object);
-          context.addOutputData(key, type.getType(), object);
+          context.addInputData(key, type.getType(), object, true);
+          context.addOutputData(key, type.getType(), object, true);
         }
       } catch (Throwable t) {
         throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value), t)));
       }
     } else {
       if (mode == ContractMode.IN) {
-        context.addInputData(key, type.getType(), value);
+        context.addInputData(key, type.getType(), value, true);
       } else if (mode == ContractMode.OUT) {
-        context.addOutputData(key, type.getType(), null);
+        context.addOutputData(key, type.getType(), null, true);
       } else if (mode == ContractMode.IN_OUT) {
-        context.addInputData(key, type.getType(), value);
-        context.addOutputData(key, type.getType(), value);
+        context.addInputData(key, type.getType(), value, true);
+        context.addOutputData(key, type.getType(), value, true);
       }
     }
   }
@@ -117,7 +117,7 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
     _element = element;
     _platformFcore = EGFCorePlugin.getPlatformFcore(element.eResource());
     if (_platformFcore == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ActivityManager_fcore_activity, getName()), null)));
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_activity, getName()), null)));
     }
   }
 
@@ -135,7 +135,7 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
     _element = element;
     _platformFcore = EGFCorePlugin.getPlatformFcore(element.eResource());
     if (_platformFcore == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ActivityManager_fcore_activity, getName()), null)));
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_activity, getName()), null)));
     }
   }
 
@@ -185,12 +185,17 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
   }
 
   @SuppressWarnings("unused")
-  protected BasicDiagnostic canInvokeElement(boolean runtime) throws InvocationException {
+  protected BasicDiagnostic canInvokeInputElement(boolean runtime) throws InvocationException {
     return getDiagnostic(getElement(), runtime);
   }
 
+  @SuppressWarnings("unused")
+  protected BasicDiagnostic checkOutputElement(BasicDiagnostic diagnostic) throws InvocationException {
+    return diagnostic;
+  }
+
   public Diagnostic canInvoke() throws InvocationException {
-    return canInvokeElement(false);
+    return canInvokeInputElement(false);
   }
 
   public abstract void initializeContext() throws InvocationException;

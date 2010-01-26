@@ -76,7 +76,7 @@ public class ProductionPlanInvocationManager extends InvocationManager<Productio
 
   @Override
   public Diagnostic canInvoke() throws InvocationException {
-    BasicDiagnostic diagnostic = canInvokeElement(false);
+    BasicDiagnostic diagnostic = canInvokeInputElement(false);
     if (getActivityManager() != null) {
       diagnostic.add(getActivityManager().canInvoke());
     }
@@ -107,7 +107,7 @@ public class ProductionPlanInvocationManager extends InvocationManager<Productio
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-    BasicDiagnostic diagnostic = canInvokeElement(true);
+    BasicDiagnostic diagnostic = canInvokeInputElement(true);
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       IActivityManager<Activity> activityManager = getActivityManager();
       if (activityManager != null) {

@@ -27,7 +27,9 @@ public class ProducerMessages {
     NLS.initializeMessages(BUNDLE_NAME, ProducerMessages.class);
   }
 
-  public static String ActivityManager_fcore_activity;
+  public static String ModelElementManager_fcore_activity;
+
+  public static String ActivityManager_mandatory_value;
 
   public static String ActivityManagerProducer_extension_error;
   public static String ActivityManagerProducer_type_error;

@@ -162,15 +162,19 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     return false;
   }
 
-  public void addInputData(T key, Class<?> clazz, Object object) throws InvocationException {
+  public void addInputData(T key, Class<?> clazz, Object object, boolean check) throws InvocationException {
     if (_inputDatas.put(key, new Data(key, clazz, object)) != null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EMFHelper.getText(key), getName()));
+      if (check) {
+        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EMFHelper.getText(key), getName()));
+      }
     }
   }
 
-  public void addOutputData(T key, Class<?> clazz, Object object) throws InvocationException {
+  public void addOutputData(T key, Class<?> clazz, Object object, boolean check) throws InvocationException {
     if (_outputDatas.put(key, new Data(key, clazz, object)) != null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EMFHelper.getText(key), getName()));
+      if (check) {
+        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EMFHelper.getText(key), getName()));
+      }
     }
   }
 
