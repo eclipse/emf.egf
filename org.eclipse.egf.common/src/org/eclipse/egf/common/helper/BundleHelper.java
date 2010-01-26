@@ -41,7 +41,7 @@ public class BundleHelper {
    */
   public static Object instantiate(String fqcn, Bundle bundle) throws ClassNotFoundException, InstantiationException, IllegalAccessException {
     // Precondition.
-    if (fqcn == null || bundle == null) {
+    if (fqcn == null || fqcn.trim().length() == 0 || bundle == null) {
       return null;
     }
     // Try loading a class according to the class name.
@@ -65,10 +65,10 @@ public class BundleHelper {
   public static Class<?> loadClass(String fqcn, Bundle bundle) throws ClassNotFoundException {
     Class<?> clazz = null;
     // Precondition.
-    if (fqcn == null || bundle == null) {
+    if (fqcn == null || fqcn.trim().length() == 0 || bundle == null) {
       return clazz;
     }
-    return bundle.loadClass(fqcn);
+    return bundle.loadClass(fqcn.trim());
   }
 
   /**
