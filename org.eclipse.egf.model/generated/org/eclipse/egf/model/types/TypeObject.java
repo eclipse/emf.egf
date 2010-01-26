@@ -20,7 +20,7 @@ package org.eclipse.egf.model.types;
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeObject()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='LoadableType ValidValue'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidValue'"
  * @generated
  */
 public interface TypeObject extends Type {

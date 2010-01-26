@@ -277,8 +277,6 @@ public class DomainValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeDomainEPackage, diagnostics, context);
     if (result || diagnostics != null)
-      result &= typesValidator.validateTypeObject_LoadableType(typeDomainEPackage, diagnostics, context);
-    if (result || diagnostics != null)
       result &= typesValidator.validateTypeObject_ValidValue(typeDomainEPackage, diagnostics, context);
     return result;
   }
@@ -364,8 +362,6 @@ public class DomainValidator extends EObjectValidator {
       result &= validate_EveryKeyUnique(typeDomainURI, diagnostics, context);
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeDomainURI, diagnostics, context);
-    if (result || diagnostics != null)
-      result &= typesValidator.validateTypeObject_LoadableType(typeDomainURI, diagnostics, context);
     if (result || diagnostics != null)
       result &= typesValidator.validateTypeObject_ValidValue(typeDomainURI, diagnostics, context);
     return result;
