@@ -98,18 +98,9 @@ public class JetEngine extends PatternEngine {
     }
 
     private void setupExecutionReporter(PatternContext context) throws PatternException {
-        PatternExecutionReporter reporter = null;
-        String classname = (String) context.getValue(PatternContext.PATTERN_REPORTER);
-        if (classname == null)
+        PatternExecutionReporter reporter = (PatternExecutionReporter) context.getValue(PatternContext.PATTERN_REPORTER);
+        if (reporter == null)
             reporter = new ConsoleReporter();
-        else {
-            try {
-                Class<?> templateClass = context.getBundle(getBundleId()).loadClass(classname);
-                reporter = (PatternExecutionReporter) templateClass.newInstance();
-            } catch (Exception e) {
-                throw new PatternException(e);
-            }
-        }
         context.setReporter(reporter);
     }
 
