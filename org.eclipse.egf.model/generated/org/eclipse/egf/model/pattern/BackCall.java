@@ -17,42 +17,11 @@ package org.eclipse.egf.model.pattern;
  * A representation of the model object '<em><b>Back Call</b></em>'.
  * <!-- end-user-doc -->
  *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.BackCall#getCalled <em>Called</em>}</li>
- * </ul>
- * </p>
  *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getBackCall()
  * @model
  * @generated
  */
 public interface BackCall extends Call {
-  /**
-   * Returns the value of the '<em><b>Called</b></em>' reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Called</em>' reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Called</em>' reference.
-   * @see #setCalled(PatternMethod)
-   * @see org.eclipse.egf.model.pattern.PatternPackage#getBackCall_Called()
-   * @model required="true"
-   * @generated
-   */
-  PatternMethod getCalled();
-
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.pattern.BackCall#getCalled <em>Called</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Called</em>' reference.
-   * @see #getCalled()
-   * @generated
-   */
-  void setCalled(PatternMethod value);
 
 } // BackCall

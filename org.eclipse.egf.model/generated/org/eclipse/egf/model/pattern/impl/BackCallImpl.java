@@ -28,140 +28,28 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * An implementation of the model object '<em><b>Back Call</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.BackCallImpl#getCalled <em>Called</em>}</li>
- * </ul>
  * </p>
  *
  * @generated
  */
 public class BackCallImpl extends CallImpl implements BackCall {
-  /**
-   * The cached value of the '{@link #getCalled() <em>Called</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCalled()
-   * @generated
-   * @ordered
-   */
-  protected PatternMethod called;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected BackCallImpl() {
-    super();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return PatternPackage.Literals.BACK_CALL;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PatternMethod getCalled() {
-    if (called != null && called.eIsProxy()) {
-      InternalEObject oldCalled = (InternalEObject) called;
-      called = (PatternMethod) eResolveProxy(oldCalled);
-      if (called != oldCalled) {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, PatternPackage.BACK_CALL__CALLED, oldCalled, called));
-      }
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected BackCallImpl() {
+        super();
     }
-    return called;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public PatternMethod basicGetCalled() {
-    return called;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setCalled(PatternMethod newCalled) {
-    PatternMethod oldCalled = called;
-    called = newCalled;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.BACK_CALL__CALLED, oldCalled, called));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case PatternPackage.BACK_CALL__CALLED:
-      if (resolve)
-        return getCalled();
-      return basicGetCalled();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return PatternPackage.Literals.BACK_CALL;
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case PatternPackage.BACK_CALL__CALLED:
-      setCalled((PatternMethod) newValue);
-      return;
-    }
-    super.eSet(featureID, newValue);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case PatternPackage.BACK_CALL__CALLED:
-      setCalled((PatternMethod) null);
-      return;
-    }
-    super.eUnset(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case PatternPackage.BACK_CALL__CALLED:
-      return called != null;
-    }
-    return super.eIsSet(featureID);
-  }
 
 } //BackCallImpl
