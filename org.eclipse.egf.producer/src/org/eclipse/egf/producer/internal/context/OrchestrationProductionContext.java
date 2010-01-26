@@ -99,9 +99,9 @@ public abstract class OrchestrationProductionContext<P extends Orchestration> ex
         throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
       }
       // Looking for a local value
-      Data data = _inputDatas.get(orchestrationParameter);
-      if (data != null) {
-        value = getValue(orchestrationParameter, clazz, data);
+      Data inputData = _inputDatas.get(orchestrationParameter);
+      if (inputData != null) {
+        value = getValue(orchestrationParameter, clazz, inputData);
       }
     }
     return value;

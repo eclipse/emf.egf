@@ -187,17 +187,22 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     if (getParent() != null) {
       getParent().setOutputValue(key, value);
     }
-    // Fetch available data
-    Data data = _outputDatas.get(key);
-    if (data == null) {
+    // Fetch available output data
+    Data outputData = _outputDatas.get(key);
+    if (outputData == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     // null value is a valid value
-    if (value != null && (ClassHelper.asSubClass(value.getClass(), data.getType()) == false || data.getType().isInstance(value) == false)) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EMFHelper.getText(key), value.getClass().getName(), getName() }));
+    if (value != null && (ClassHelper.asSubClass(value.getClass(), outputData.getType()) == false || outputData.getType().isInstance(value) == false)) {
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { outputData.getType().getName(), EMFHelper.getText(key), value.getClass().getName(), getName() }));
     }
-    // Set local value
-    data.setValue(value);
+    // Set output value
+    outputData.setValue(value);
+    // Set input value if it exists
+    Data inputData = _inputDatas.get(key);
+    if (inputData != null) {
+      inputData.setValue(value);
+    }
   }
 
   public Class<?> getInputValueType(Object key) throws InvocationException {
@@ -212,9 +217,9 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     }
     // Looking for local Value Type if necessary
     if (valueType == null) {
-      Data data = _inputDatas.get(key);
-      if (data != null) {
-        valueType = data.getType();
+      Data inputData = _inputDatas.get(key);
+      if (inputData != null) {
+        valueType = inputData.getType();
       }
     }
     return valueType;
@@ -232,9 +237,9 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     }
     // Looking for local value if necessary
     if (value == null) {
-      Data data = _inputDatas.get(key);
-      if (data != null) {
-        value = getValue(key, clazz, data);
+      Data inputData = _inputDatas.get(key);
+      if (inputData != null) {
+        value = getValue(key, clazz, inputData);
       }
     }
     return value;
@@ -256,9 +261,9 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     }
     // Looking for local Value Type if necessary
     if (valueType == null) {
-      Data data = _outputDatas.get(key);
-      if (data != null) {
-        valueType = data.getType();
+      Data outputData = _outputDatas.get(key);
+      if (outputData != null) {
+        valueType = outputData.getType();
       }
     }
     return valueType;
@@ -276,9 +281,9 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     }
     // Looking for local value if necessary
     if (value == null) {
-      Data data = _outputDatas.get(key);
-      if (data != null) {
-        value = getValue(key, clazz, data);
+      Data outputData = _outputDatas.get(key);
+      if (outputData != null) {
+        value = getValue(key, clazz, outputData);
       }
     }
     return value;

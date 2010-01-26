@@ -78,9 +78,9 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     }
     // Looking for local Value Type if necessary
     if (valueType == null) {
-      Data data = _inputDatas.get(contract);
-      if (data != null) {
-        valueType = data.getType();
+      Data inputData = _inputDatas.get(contract);
+      if (inputData != null) {
+        valueType = inputData.getType();
       }
     }
     return valueType;
@@ -105,9 +105,9 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     }
     // Looking for a local value if necessary
     if (value == null) {
-      Data data = _inputDatas.get(contract);
-      if (data != null) {
-        value = getValue(contract, clazz, data);
+      Data inputData = _inputDatas.get(contract);
+      if (inputData != null) {
+        value = getValue(contract, clazz, inputData);
       }
     }
     return value;
@@ -132,9 +132,9 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     }
     // Looking for a local Value Type if necessary
     if (valueType == null) {
-      Data data = _outputDatas.get(contract);
-      if (data != null) {
-        valueType = data.getType();
+      Data outputData = _outputDatas.get(contract);
+      if (outputData != null) {
+        valueType = outputData.getType();
       }
     }
     return valueType;
@@ -159,9 +159,9 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     }
     // Looking for a local value if necessary
     if (value == null) {
-      Data data = _outputDatas.get(contract);
-      if (data != null) {
-        value = getValue(contract, clazz, data);
+      Data outputData = _outputDatas.get(contract);
+      if (outputData != null) {
+        value = getValue(contract, clazz, outputData);
       }
     }
     return value;
@@ -183,17 +183,22 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     if (getParent() != null) {
       getParent().setOutputValue(contract, value);
     }
-    // Fetch available data
-    Data data = _outputDatas.get(contract);
-    if (data == null) {
+    // Fetch available output data
+    Data outputData = _outputDatas.get(contract);
+    if (outputData == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
     }
     // null value is a valid value
-    if (value != null && (ClassHelper.asSubClass(value.getClass(), data.getType()) == false || data.getType().isInstance(value) == false)) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EMFHelper.getText(key), value.getClass().getName(), getName() }));
+    if (value != null && (ClassHelper.asSubClass(value.getClass(), outputData.getType()) == false || outputData.getType().isInstance(value) == false)) {
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { outputData.getType().getName(), EMFHelper.getText(key), value.getClass().getName(), getName() }));
     }
-    // Set local value
-    data.setValue(value);
+    // Set ouptut value
+    outputData.setValue(value);
+    // Set input value if it exists
+    Data inputData = _inputDatas.get(key);
+    if (inputData != null) {
+      inputData.setValue(value);
+    }
   }
 
   private Contract getContract(Object key, Collection<Contract> keys) throws InvocationException {
