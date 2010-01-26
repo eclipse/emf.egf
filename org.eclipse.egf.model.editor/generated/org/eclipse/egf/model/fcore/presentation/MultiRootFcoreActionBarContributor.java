@@ -103,17 +103,14 @@ public class MultiRootFcoreActionBarContributor extends FcoreActionBarContributo
     super.init(actionBars);
     ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
     // Override deleteAction
-    //		
     deleteAction = new MultiRootFcoreDeleteAction(removeAllReferencesOnDelete());
     deleteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
     actionBars.setGlobalActionHandler(ActionFactory.DELETE.getId(), deleteAction);
     // Override cutAction
-    //		
     cutAction = new MultiRootFcoreCutAction();
     cutAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_CUT));
     actionBars.setGlobalActionHandler(ActionFactory.CUT.getId(), cutAction);
     // Override pasteAction
-    //		
     pasteAction = new MultiRootFcorePasteAction();
     pasteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_PASTE));
     actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(), pasteAction);
