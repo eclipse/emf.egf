@@ -25,11 +25,20 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspace;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
@@ -40,7 +49,33 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.IOpenable;
+import org.eclipse.jdt.core.IPackageFragment;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.internal.core.JavaModel;
+import org.eclipse.jdt.internal.core.JavaProject;
+import org.eclipse.jdt.internal.core.PackageFragmentRoot;
+import org.eclipse.jdt.internal.ui.util.BusyIndicatorRunnableContext;
+import org.eclipse.jdt.internal.ui.util.CoreUtility;
+import org.eclipse.jdt.internal.ui.wizards.IStatusChangeListener;
+import org.eclipse.jdt.internal.ui.wizards.NewWizardMessages;
+import org.eclipse.jdt.internal.ui.wizards.buildpaths.BuildPathsBlock;
+import org.eclipse.jdt.ui.wizards.JavaCapabilityConfigurationPage;
+import org.eclipse.jdt.ui.wizards.NewJavaProjectWizardPage;
 import org.eclipse.jface.text.Position;
+import org.eclipse.pde.core.build.IBuildModel;
+import org.eclipse.pde.core.plugin.IPluginBase;
+import org.eclipse.pde.core.plugin.IPluginImport;
+import org.eclipse.pde.core.plugin.IPluginLibrary;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.core.plugin.PluginRegistry;
+import org.eclipse.pde.internal.core.bundle.Bundle;
+import org.eclipse.pde.internal.core.bundle.WorkspaceBundleModel;
+import org.eclipse.pde.internal.core.ibundle.IBundleModel;
+import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
+import org.eclipse.pde.internal.core.natures.PluginProject;
+import org.eclipse.pde.internal.core.plugin.PluginBase;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -78,6 +113,8 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 			}
 		}
 	};
+
+    private BuildPathsBlock fBuildPathsBlock;
 
 	public AbstractTemplateEditor() {
 		super();
@@ -135,8 +172,9 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 		try {
 		    IWorkbench workbench = PlatformUI.getWorkbench();
 		    IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
-			WorkbenchPage  templateActivePage = new WorkbenchPage(
-	                    (WorkbenchWindow) activeWorkbenchWindow, null);
+			WorkbenchPage  templateActivePage = /*new WorkbenchPage(
+	                    (WorkbenchWindow) activeWorkbenchWindow, null);*/
+			    (WorkbenchPage) activeWorkbenchWindow.getActivePage();
 			if ( templateActivePage == null || templateFile == null)
 				return null;
 			IEditorPart openEditor = IDE.openEditor(templateActivePage, templateFile, false);
@@ -155,22 +193,42 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 			Resource eResource = pattern.eResource();
 			IPlatformFcore platformFcore = EGFCorePlugin
 					.getPlatformFcore(eResource);
-			IProject project = platformFcore.getPlatformBundle().getProject();
-			IProject templateProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);		
-			if(!templateProject.exists()){
-		         project.copy(templateProject.getFullPath(), true, null);
-			}else{
-			    templateProject.delete(true, true, null);
-			    setPublicTemplateEditor(pattern, methods, fileExtention);
+			IPlatformBundle platformBundle = platformFcore.getPlatformBundle();
+			IPluginBase pluginBase = platformBundle.getPluginBase();
+			IPluginLibrary[] libraries = pluginBase.getLibraries();
+			IPluginImport[] imports = pluginBase.getImports();
+            IProject project = platformBundle.getProject();
+                        
+            NullProgressMonitor monitor = new NullProgressMonitor();
+            
+            IProject templateProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
+            
+            if (!templateProject.exists()) {
+                // new one pluginProject.
+                PluginProject pluginProject = TemplateEditorUtility.createPluginProject(projectName, monitor);
+                templateProject = pluginProject.getProject();
+
+                IBundlePluginModelBase pluginModelBase = (IBundlePluginModelBase) TemplateEditorUtility.getPluginModelBase(templateProject);
+                WorkspaceBundleModel bundleModel = (WorkspaceBundleModel) pluginModelBase.getBundleModel();
+                bundleModel.setEditable(true);
+                IPluginBase templatePluginBase = TemplateEditorUtility.getPluginBase(templateProject);
+                String name = project.getName();
+
+                for (IPluginLibrary library : libraries) {
+                    templatePluginBase.add(library);
+                }
+                for (IPluginImport pluginImport : imports) {
+                    templatePluginBase.add(pluginImport);
+                }
+                bundleModel.save();
+                bundleModel.setEditable(false);
+            }
+			
+			IFolder src = templateProject.getFolder("src");
+			if (!src.exists()) {
+			    src.create(true, false, null);
 			}
-			if(!templateProject.isOpen()){
-			    templateProject.open(null);
-			}
-			IFolder folder = templateProject.getFolder("src");
-			if (!folder.exists()) {
-				folder.create(true, false, null);
-			}
-			templateFile = folder.getFile(fileExtention);
+			templateFile = src.getFile(fileExtention);
 			if (!templateFile.exists()) {
 				templateFile.create(new ByteArrayInputStream(new byte[0]),
 						true, null);
@@ -202,7 +260,13 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 		}
 		return templateFile;
 	}
-
+	
+    private BuildPathsBlock getBuildPathsBlock() {
+        if (fBuildPathsBlock == null) {
+            fBuildPathsBlock= new BuildPathsBlock(new BusyIndicatorRunnableContext(), null, 0, true, null);
+        }
+        return fBuildPathsBlock;
+    }
 	/**
 	 * While the name of the pattern has been changed, refresh the editor title.
 	 */

@@ -161,7 +161,11 @@ public class JavaTextEditorHelper {
             }
             p = fEditor.getDocumentProvider();
         }
-        IAnnotationModel javaAnnotationModel = p.getAnnotationModel(fEditor.getEditorInput());
+        IEditorInput editorInput = fEditor.getEditorInput();
+        if(editorInput ==null){
+            return;
+        }
+        IAnnotationModel javaAnnotationModel = p.getAnnotationModel(editorInput);
         if (javaAnnotationModel == null) {
             return;
         }

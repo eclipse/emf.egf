@@ -26,6 +26,8 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.MethodEditorActivationListener;
+import org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.internal.ui.JavaPlugin;
@@ -43,9 +45,20 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.IPartService;
+import org.eclipse.ui.IWindowListener;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.part.MultiEditorInput;
+import org.eclipse.ui.part.MultiPageEditorSite;
 import org.eclipse.ui.texteditor.ChainedPreferenceStore;
 
 /**
@@ -58,12 +71,20 @@ public class JavaTextEditor extends TextEditor {
 
     private Pattern pattern;
 
+    private ActivationListener fActivationListener;
+
     public static boolean refreshJob = false;
 
     public JavaTextEditor(Pattern pattern) throws CoreException, IOException {
         this.pattern = pattern;
         CompilationUnitDocumentProvider provider = new CompilationUnitDocumentProvider();
         setDocumentProvider(provider);
+    }
+
+    public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+
+        super.init(site, input);
+        fActivationListener = new ActivationListener(site.getWorkbenchWindow().getPartService(), this);
     }
 
     public Pattern getPattern() {
@@ -74,8 +95,6 @@ public class JavaTextEditor extends TextEditor {
      * (non-Javadoc)
      * 
      * @see
-     * 
-     * 
      * 
      * 
      * org.eclipse.ui.editors.text.TextEditor#doSetInput(org.eclipse.ui.IEditorInput
@@ -177,10 +196,6 @@ public class JavaTextEditor extends TextEditor {
         return getSourceViewer();
     }
 
-    private JavaTextEditor getEditor() {
-        return this;
-    }
-
     /**
      * Returns the editor's preference store. This method exist to make the
      * preference store accessible to other classes.
@@ -189,5 +204,30 @@ public class JavaTextEditor extends TextEditor {
      */
     public IPreferenceStore getEditorPreferenceStore() {
         return super.getPreferenceStore();
+    }
+
+    @Override
+    public void dispose() {
+        if (fActivationListener != null) {
+            fActivationListener.dispose();
+            fActivationListener = null;
+        }
+
+        super.dispose();
+
+    }
+
+    class ActivationListener extends MethodEditorActivationListener {
+
+        public ActivationListener(IPartService partService, TextEditor editor) {
+            super(partService, editor);
+
+        }
+
+        @Override
+        protected void handleActivation() {
+            safelySanityCheckState(getEditorInput());
+        }
+
     }
 }

@@ -23,12 +23,25 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.MethodEditorActivationListener;
 import org.eclipse.jet.internal.editor.JETTextEditor;
 import org.eclipse.jface.text.source.ISourceViewer;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.IEditorInput;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IPartListener;
+import org.eclipse.ui.IPartService;
+import org.eclipse.ui.IWindowListener;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.part.MultiPageEditorSite;
 
 /**
  * @author Yahong Song - Soyatec
@@ -40,11 +53,20 @@ public class JetTextEditor extends JETTextEditor {
 
     private Pattern pattern;
 
+    private ActivationListener fActivationListener;
+
     public JetTextEditor(Pattern pattern) throws CoreException, IOException {
         super();
         this.pattern = pattern;
         setSourceViewerConfiguration(new JetSourceViewerConfigure(this));
         setDocumentProvider(new JetDocumentProvider(this));
+    }
+
+    @Override
+    public void init(IEditorSite site, IEditorInput input) throws PartInitException {
+
+        super.init(site, input);
+        fActivationListener = new ActivationListener(site.getWorkbenchWindow().getPartService(), this);
     }
 
     public Pattern getPattern() {
@@ -110,4 +132,28 @@ public class JetTextEditor extends JETTextEditor {
         return job;
     }
 
+    @Override
+    public void dispose() {
+        if (fActivationListener != null) {
+            fActivationListener.dispose();
+            fActivationListener = null;
+        }
+
+        super.dispose();
+
+    }
+
+    class ActivationListener extends MethodEditorActivationListener {
+
+        public ActivationListener(IPartService partService, TextEditor editor) {
+            super(partService, editor);
+
+        }
+
+        @Override
+        protected void handleActivation() {
+            safelySanityCheckState(getEditorInput());
+        }
+
+    }
 }
