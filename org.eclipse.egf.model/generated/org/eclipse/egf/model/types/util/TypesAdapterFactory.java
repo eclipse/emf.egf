@@ -228,8 +228,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeElement
-   * <em>Type Element</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeElement <em>Type Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -244,8 +243,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.Type
-   * <em>Type</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.Type <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -260,8 +258,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeObject
-   * <em>Type Object</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeObject <em>Type Object</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -276,8 +273,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.TypeAbstractClass <em>Type Abstract Class</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeAbstractClass <em>Type Abstract Class</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -292,8 +288,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.TypeCollection <em>Type Collection</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeCollection <em>Type Collection</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -308,8 +303,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeList
-   * <em>Type List</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeList <em>Type List</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -324,8 +318,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeSet
-   * <em>Type Set</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeSet <em>Type Set</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -340,9 +333,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.TypeGeneratorAdapterFactory <em>Type Generator Adapter
-   * Factory</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeGeneratorAdapterFactory <em>Type Generator Adapter Factory</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -357,8 +348,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeMap
-   * <em>Type Map</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeMap <em>Type Map</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -373,8 +363,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.TypeBigDecimal <em>Type Big Decimal</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeBigDecimal <em>Type Big Decimal</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -389,8 +378,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.types.TypeBigInteger <em>Type Big Integer</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeBigInteger <em>Type Big Integer</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -405,8 +393,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeBoolean
-   * <em>Type Boolean</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeBoolean <em>Type Boolean</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -421,8 +408,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeByte
-   * <em>Type Byte</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeByte <em>Type Byte</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -437,8 +423,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeCharacter
-   * <em>Type Character</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeCharacter <em>Type Character</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -453,8 +438,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeDate
-   * <em>Type Date</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeDate <em>Type Date</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -469,8 +453,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeDouble
-   * <em>Type Double</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeDouble <em>Type Double</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -485,8 +468,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeFloat
-   * <em>Type Float</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeFloat <em>Type Float</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -501,8 +483,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeInteger
-   * <em>Type Integer</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeInteger <em>Type Integer</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -517,8 +498,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeLong
-   * <em>Type Long</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeLong <em>Type Long</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -533,8 +513,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeShort
-   * <em>Type Short</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeShort <em>Type Short</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -549,8 +528,7 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeString
-   * <em>Type String</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeString <em>Type String</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.

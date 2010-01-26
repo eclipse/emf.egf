@@ -77,8 +77,7 @@ public class TypesSwitch<T> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -90,8 +89,7 @@ public class TypesSwitch<T> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -109,8 +107,7 @@ public class TypesSwitch<T> {
   }
 
   /**
-   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it
-   * yields that result.
+   * Calls <code>caseXXX</code> for each class of the model until one returns a non null result; it yields that result.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -503,8 +500,7 @@ public class TypesSwitch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Type Generator Adapter
-   * Factory</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type Generator Adapter Factory</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
@@ -512,8 +508,7 @@ public class TypesSwitch<T> {
    * 
    * @param object
    *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type Generator Adapter
-   *         Factory</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Type Generator Adapter Factory</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */

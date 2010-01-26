@@ -26,7 +26,7 @@ package org.eclipse.egf.model.types;
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeAbstractClass()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='LoadableValue ValidValue'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='LoadableType ValidValue'"
  * @generated
  */
 public interface TypeAbstractClass extends Type {

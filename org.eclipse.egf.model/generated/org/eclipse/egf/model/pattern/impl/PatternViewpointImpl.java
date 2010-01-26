@@ -39,128 +39,128 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * @generated
  */
 public class PatternViewpointImpl extends ViewpointImpl implements PatternViewpoint {
-    /**
-     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected int eFlags = 0;
+  /**
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  protected int eFlags = 0;
 
-    /**
-     * The cached value of the '{@link #getLibraries() <em>Libraries</em>}' containment reference list.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see #getLibraries()
-     * @generated
-     * @ordered
-     */
-    protected EList<PatternLibrary> libraries;
+  /**
+   * The cached value of the '{@link #getLibraries() <em>Libraries</em>}' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLibraries()
+   * @generated
+   * @ordered
+   */
+  protected EList<PatternLibrary> libraries;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected PatternViewpointImpl() {
-        super();
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected PatternViewpointImpl() {
+    super();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return PatternPackage.Literals.PATTERN_VIEWPOINT;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<PatternLibrary> getLibraries() {
+    if (libraries == null) {
+      libraries = new EObjectContainmentEList<PatternLibrary>(PatternLibrary.class, this, PatternPackage.PATTERN_VIEWPOINT__LIBRARIES);
     }
+    return libraries;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return PatternPackage.Literals.PATTERN_VIEWPOINT;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+      return ((InternalEList<?>) getLibraries()).basicRemove(otherEnd, msgs);
     }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EList<PatternLibrary> getLibraries() {
-        if (libraries == null) {
-            libraries = new EObjectContainmentEList<PatternLibrary>(PatternLibrary.class, this, PatternPackage.PATTERN_VIEWPOINT__LIBRARIES);
-        }
-        return libraries;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object eGet(int featureID, boolean resolve, boolean coreType) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+      return getLibraries();
     }
+    return super.eGet(featureID, resolve, coreType);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-            return ((InternalEList<?>) getLibraries()).basicRemove(otherEnd, msgs);
-        }
-        return super.eInverseRemove(otherEnd, featureID, msgs);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @SuppressWarnings("unchecked")
+  @Override
+  public void eSet(int featureID, Object newValue) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+      getLibraries().clear();
+      getLibraries().addAll((Collection<? extends PatternLibrary>) newValue);
+      return;
     }
+    super.eSet(featureID, newValue);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public Object eGet(int featureID, boolean resolve, boolean coreType) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-            return getLibraries();
-        }
-        return super.eGet(featureID, resolve, coreType);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void eUnset(int featureID) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+      getLibraries().clear();
+      return;
     }
+    super.eUnset(featureID);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @SuppressWarnings("unchecked")
-    @Override
-    public void eSet(int featureID, Object newValue) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-            getLibraries().clear();
-            getLibraries().addAll((Collection<? extends PatternLibrary>) newValue);
-            return;
-        }
-        super.eSet(featureID, newValue);
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public boolean eIsSet(int featureID) {
+    switch (featureID) {
+    case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
+      return libraries != null && !libraries.isEmpty();
     }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public void eUnset(int featureID) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-            getLibraries().clear();
-            return;
-        }
-        super.eUnset(featureID);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    public boolean eIsSet(int featureID) {
-        switch (featureID) {
-        case PatternPackage.PATTERN_VIEWPOINT__LIBRARIES:
-            return libraries != null && !libraries.isEmpty();
-        }
-        return super.eIsSet(featureID);
-    }
+    return super.eIsSet(featureID);
+  }
 
 } // PatternViewpointImpl

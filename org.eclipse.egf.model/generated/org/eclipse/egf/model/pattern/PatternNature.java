@@ -22,6 +22,7 @@ import org.eclipse.egf.model.fcore.NamedModelElement;
  *
  * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternNature()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryName'"
  * @generated
  */
 public interface PatternNature extends NamedModelElement {

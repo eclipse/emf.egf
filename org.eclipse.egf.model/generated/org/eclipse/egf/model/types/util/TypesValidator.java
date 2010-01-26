@@ -81,8 +81,7 @@ public class TypesValidator extends EObjectValidator {
   public static final TypesValidator INSTANCE = new TypesValidator();
 
   /**
-   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -94,8 +93,7 @@ public class TypesValidator extends EObjectValidator {
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.types"; //$NON-NLS-1$
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -104,8 +102,7 @@ public class TypesValidator extends EObjectValidator {
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants in a derived class.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -284,20 +281,20 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeObject, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeObject, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeObject, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeObject, diagnostics, context);
     return result;
   }
 
   /**
-   * Validates the LoadableValue constraint of '<em>Type Object</em>'.
+   * Validates the LoadableType constraint of '<em>Type Object</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public boolean validateTypeObject_LoadableValue(TypeObject typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeObject_LoadableType(TypeObject typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (typeObject.getValue() == null) {
       return true;
     }
@@ -305,7 +302,7 @@ public class TypesValidator extends EObjectValidator {
     if (ValidationHelper.isLoadableClass(typeObject, typeObject.getValue().getClass().getName(), context) == false) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "LoadableValue", getObjectLabel(typeObject, context), NLS.bind("Unable to load ''{0}''", typeObject.getValue().getClass().getName()) }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { "LoadableType", getObjectLabel(typeObject, context), NLS.bind("Unable to load ''{0}''", typeObject.getValue().getClass().getName()) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { typeObject }, context));
       }
       return false;
@@ -357,20 +354,20 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeAbstractClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeAbstractClass_LoadableValue(typeAbstractClass, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableType(typeAbstractClass, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeAbstractClass_ValidValue(typeAbstractClass, diagnostics, context);
     return result;
   }
 
   /**
-   * Validates the LoadableValue constraint of '<em>Type Abstract Class</em>'.
+   * Validates the LoadableType constraint of '<em>Type Abstract Class</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated NOT
    */
-  public boolean validateTypeAbstractClass_LoadableValue(TypeAbstractClass typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+  public boolean validateTypeAbstractClass_LoadableType(TypeAbstractClass typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (typeAbstractClass.getValue() == null) {
       return true;
     }
@@ -378,7 +375,7 @@ public class TypesValidator extends EObjectValidator {
     if (ValidationHelper.isLoadableClass(typeAbstractClass, typeAbstractClass.getValue(), context) == false) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "LoadableValue", getObjectLabel(typeAbstractClass, context), NLS.bind("Unable to load ''{0}''", typeAbstractClass.getValue()) }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { "LoadableType", getObjectLabel(typeAbstractClass, context), NLS.bind("Unable to load ''{0}''", typeAbstractClass.getValue()) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { typeAbstractClass }, context));
       }
       return false;
@@ -430,7 +427,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeCollection, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeAbstractClass_LoadableValue(typeCollection, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableType(typeCollection, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeAbstractClass_ValidValue(typeCollection, diagnostics, context);
     return result;
@@ -457,7 +454,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeList, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeAbstractClass_LoadableValue(typeList, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableType(typeList, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeAbstractClass_ValidValue(typeList, diagnostics, context);
     return result;
@@ -484,7 +481,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeSet, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeAbstractClass_LoadableValue(typeSet, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableType(typeSet, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeAbstractClass_ValidValue(typeSet, diagnostics, context);
     return result;
@@ -511,7 +508,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeGeneratorAdapterFactory, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeAbstractClass_LoadableValue(typeGeneratorAdapterFactory, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableType(typeGeneratorAdapterFactory, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeAbstractClass_ValidValue(typeGeneratorAdapterFactory, diagnostics, context);
     return result;
@@ -538,7 +535,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeMap, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeAbstractClass_LoadableValue(typeMap, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableType(typeMap, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeAbstractClass_ValidValue(typeMap, diagnostics, context);
     return result;
@@ -565,7 +562,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeBigDecimal, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeBigDecimal, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeBigDecimal, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeBigDecimal, diagnostics, context);
     return result;
@@ -592,7 +589,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeBigInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeBigInteger, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeBigInteger, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeBigInteger, diagnostics, context);
     return result;
@@ -619,7 +616,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeBoolean, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeBoolean, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeBoolean, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeBoolean, diagnostics, context);
     return result;
@@ -646,7 +643,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeByte, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeByte, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeByte, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeByte, diagnostics, context);
     return result;
@@ -673,7 +670,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeCharacter, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeCharacter, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeCharacter, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeCharacter, diagnostics, context);
     return result;
@@ -700,7 +697,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeDate, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeDate, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeDate, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeDate, diagnostics, context);
     return result;
@@ -727,7 +724,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeDouble, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeDouble, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeDouble, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeDouble, diagnostics, context);
     return result;
@@ -754,7 +751,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeFloat, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeFloat, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeFloat, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeFloat, diagnostics, context);
     return result;
@@ -781,7 +778,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeInteger, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeInteger, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeInteger, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeInteger, diagnostics, context);
     return result;
@@ -808,7 +805,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeLong, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeLong, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeLong, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeLong, diagnostics, context);
     return result;
@@ -835,7 +832,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeShort, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeShort, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeShort, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeShort, diagnostics, context);
     return result;
@@ -862,7 +859,7 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeString, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeObject_LoadableValue(typeString, diagnostics, context);
+      result &= validateTypeObject_LoadableType(typeString, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeString, diagnostics, context);
     return result;
@@ -919,8 +916,7 @@ public class TypesValidator extends EObjectValidator {
   }
 
   /**
-   * Returns the resource locator that will be used to fetch messages for this validator's
-   * diagnostics.
+   * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 

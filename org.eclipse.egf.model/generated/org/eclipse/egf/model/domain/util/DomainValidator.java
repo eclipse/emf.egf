@@ -60,8 +60,7 @@ public class DomainValidator extends EObjectValidator {
   public static final DomainValidator INSTANCE = new DomainValidator();
 
   /**
-   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -73,8 +72,7 @@ public class DomainValidator extends EObjectValidator {
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.domain"; //$NON-NLS-1$
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -83,8 +81,7 @@ public class DomainValidator extends EObjectValidator {
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants in a derived class.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -280,7 +277,7 @@ public class DomainValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeDomainEPackage, diagnostics, context);
     if (result || diagnostics != null)
-      result &= typesValidator.validateTypeObject_LoadableValue(typeDomainEPackage, diagnostics, context);
+      result &= typesValidator.validateTypeObject_LoadableType(typeDomainEPackage, diagnostics, context);
     if (result || diagnostics != null)
       result &= typesValidator.validateTypeObject_ValidValue(typeDomainEPackage, diagnostics, context);
     return result;
@@ -368,15 +365,14 @@ public class DomainValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(typeDomainURI, diagnostics, context);
     if (result || diagnostics != null)
-      result &= typesValidator.validateTypeObject_LoadableValue(typeDomainURI, diagnostics, context);
+      result &= typesValidator.validateTypeObject_LoadableType(typeDomainURI, diagnostics, context);
     if (result || diagnostics != null)
       result &= typesValidator.validateTypeObject_ValidValue(typeDomainURI, diagnostics, context);
     return result;
   }
 
   /**
-   * Returns the resource locator that will be used to fetch messages for this validator's
-   * diagnostics.
+   * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 

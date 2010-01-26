@@ -962,9 +962,9 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    */
   protected void createEcoreAnnotations() {
     String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-    addAnnotation(typeObjectEClass, source, new String[] { "constraints", "LoadableValue ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
+    addAnnotation(typeObjectEClass, source, new String[] { "constraints", "LoadableType ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
     });
-    addAnnotation(typeAbstractClassEClass, source, new String[] { "constraints", "LoadableValue ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
+    addAnnotation(typeAbstractClassEClass, source, new String[] { "constraints", "LoadableType ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
     });
   }
 
