@@ -44,7 +44,6 @@ import org.eclipse.egf.producer.ui.internal.dialogs.ActivityValidationSelectionD
 import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.IAction;
@@ -75,7 +74,7 @@ public class RunActivityAction implements IObjectActionDelegate {
 
     // 1 - Activity Selection
     if (_fcore != null) {
-      ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), false);
+      ActivitySelectionDialog activityDialog = new ActivitySelectionDialog(EGFProducerUIPlugin.getActiveWorkbenchShell(), _fcore, false);
       activityDialog.setTitle(ProducerUIMessages.GlobalRunActivityAction_dialogTitle);
       int result = activityDialog.open();
       if (result != IDialogConstants.OK_ID) {
@@ -263,8 +262,7 @@ public class RunActivityAction implements IObjectActionDelegate {
       // Load this IFile as an EMF Resource
       try {
         ResourceSet resourceSet = new ResourceSetImpl();
-        Resource resource = ResourceHelper.loadResource(resourceSet, (IResource) selectedObject);
-        return EGFCorePlugin.getPlatformFcore(resource);
+        return EGFCorePlugin.getPlatformFcore(ResourceHelper.loadResource(resourceSet, (IResource) selectedObject));
       } catch (Throwable t) {
         EGFProducerUIPlugin.getDefault().logError(t);
       }

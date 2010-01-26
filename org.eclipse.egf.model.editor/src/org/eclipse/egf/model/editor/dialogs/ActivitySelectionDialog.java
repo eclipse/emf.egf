@@ -55,8 +55,6 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
   private static final String DIALOG_SETTINGS = "org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog"; //$NON-NLS-1$
 
-  private Class<?> _clazz;
-
   private Resource _context;
 
   private Activity _activity;
@@ -64,6 +62,8 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
   private ResourceSet _resourceSet;
 
   private ComposedAdapterFactory _adapterFactory;
+
+  private IPlatformFcore[] _fcores = EGFCorePlugin.getPlatformFcores();
 
   /**
    * <code>ActivitySelectionHistory</code> provides behavior specific to
@@ -74,19 +74,12 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
     private static final String TAG_URI = "path"; //$NON-NLS-1$
 
-    private boolean _doNotSave = false;
-
     public ActivitySelectionHistory() {
       super();
     }
 
     @Override
     protected Object restoreItemFromMemento(IMemento memento) {
-      // If a previous has been set, ignore memento
-      if (_clazz != null) {
-        _doNotSave = true;
-        return _activity;
-      }
       // Restore
       String tag = memento.getString(TAG_URI);
       if (tag == null) {
@@ -94,18 +87,24 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
       }
       try {
         _activity = (Activity) _resourceSet.getEObject(URI.createURI(tag), true);
+        // Check whether or not this activity belongs to our fcores
+        IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_activity.eResource());
+        if (fcore != null) {
+          for (IPlatformFcore innerFcore : _fcores) {
+            if (innerFcore.equals(fcore)) {
+              return _activity;
+            }
+          }
+        }
+        _activity = null;
       } catch (Exception e) {
         EGFModelEditorPlugin.getPlugin().logError(e);
       }
-      return _activity;
+      return null;
     }
 
     @Override
     protected void storeItemToMemento(Object item, IMemento element) {
-      // Ignore memento
-      if (_doNotSave) {
-        return;
-      }
       // Save
       if (getReturnCode() == OK) {
         Object[] items = getHistoryItems();
@@ -162,17 +161,6 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
       }
       return false;
     }
-
-    // Activate to run a full load when dialog is opened
-    // @Override
-    // protected boolean matches(String text) {
-    // String pattern = patternMatcher.getPattern();
-    //    if (pattern.indexOf("*") != 0 & pattern.indexOf("?") != 0 & pattern.indexOf(".") != 0) {//$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-    //      pattern = "*" + pattern; //$NON-NLS-1$
-    // patternMatcher.setPattern(pattern);
-    // }
-    // return patternMatcher.matches(text);
-    // }
 
   }
 
@@ -270,13 +258,16 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     setSeparatorLabel(ModelEditorMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
   }
 
-  public ActivitySelectionDialog(Shell parentShell, Resource context, Activity activity, boolean multipleSelection) {
-    this(parentShell, null, context, activity, multipleSelection);
+  public ActivitySelectionDialog(Shell parentShell, IPlatformFcore fcore, boolean multipleSelection) {
+    this(parentShell, null, null, multipleSelection);
+    if (fcore != null) {
+      _fcores = new IPlatformFcore[] { fcore };
+      setSeparatorLabel(NLS.bind(ModelEditorMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
+    }
   }
 
-  public ActivitySelectionDialog(Shell parentShell, Class<?> clazz, Resource context, Activity activity, boolean multipleSelection) {
+  public ActivitySelectionDialog(Shell parentShell, Resource context, Activity activity, boolean multipleSelection) {
     super(parentShell, multipleSelection);
-    _clazz = clazz;
     _context = context;
     _activity = activity;
     // Create and init a resourceSet
@@ -289,13 +280,8 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
-    if (_clazz != null) {
-      setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, clazz.getSimpleName()));
-      setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, clazz.getSimpleName()));
-    } else {
-      setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, Activity.class.getSimpleName()));
-      setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, Activity.class.getSimpleName()));
-    }
+    setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, Activity.class.getSimpleName()));
+    setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, Activity.class.getSimpleName()));
     setListLabelProvider(getLabelProvider());
     setDetailsLabelProvider(getDetailsLabelProvider());
     setSelectionHistory(new ActivitySelectionHistory());
@@ -335,7 +321,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
   @Override
   protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter, IProgressMonitor progressMonitor) throws CoreException {
     try {
-      for (IPlatformFcore fc : EGFCorePlugin.getPlatformFcores()) {
+      for (IPlatformFcore fc : _fcores) {
         // Load Fcore
         Resource resource = null;
         try {
@@ -343,7 +329,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
           if (_context != null && _context.getResourceSet() != null) {
             resource = _context.getResourceSet().getResource(fc.getURI(), false);
           }
-          // If no memory resource are found or no _activity
+          // If no memory resource are found
           if (resource == null) {
             resource = _resourceSet.getResource(fc.getURI(), true);
           }
@@ -361,9 +347,6 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
           }
           // Process
           try {
-            if (_clazz != null) {
-              eObject.eClass().getInstanceClass().asSubclass(_clazz);
-            }
             contentProvider.add(eObject, itemsFilter);
           } catch (OperationCanceledException e) {
             return;
