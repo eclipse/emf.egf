@@ -26,14 +26,12 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
  */
 public class ConsoleReporter implements PatternExecutionReporter {
 
-  public void executionFinished(String output, PatternContext context) {
-    System.out.println("*** execution Finished ***");
-    System.out.println(output);
-  }
+    public void executionFinished(String output, PatternContext context) {
+        System.out.println(output);
+    }
 
-  public void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues) {
-    System.out.println("*** loop Finished ***");
-    System.out.println(output);
-  }
+    public void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues) {
+        System.out.println(output);
+    }
 
 }
