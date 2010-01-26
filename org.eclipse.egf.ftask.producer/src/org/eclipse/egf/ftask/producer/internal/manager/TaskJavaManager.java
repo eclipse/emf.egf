@@ -84,11 +84,6 @@ public class TaskJavaManager extends ActivityManager<TaskJava> {
     return diagnostic;
   }
 
-  @Override
-  public void initializeContext() throws InvocationException {
-    super.initializeContext();
-  }
-
   public int getSteps() throws InvocationException {
     if (getElement().getValue() != null) {
       return 1;

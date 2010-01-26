@@ -38,7 +38,7 @@ import org.eclipse.emf.common.util.UniqueEList;
  */
 public class ProductionPlanInvocationManager extends InvocationManager<ProductionPlan, ProductionPlanInvocation> {
 
-  private IActivityManager<?> _activityManager;
+  private IActivityManager<Activity> _activityManager;
 
   public ProductionPlanInvocationManager(IModelElementManager<ProductionPlan, OrchestrationParameter> parent, ProductionPlanInvocation element) throws InvocationException {
     super(parent, element);
@@ -53,9 +53,9 @@ public class ProductionPlanInvocationManager extends InvocationManager<Productio
     return (ProductionContext<ProductionPlanInvocation, InvocationContract>) _productionContext;
   }
 
-  public IActivityManager<?> getActivityManager() throws InvocationException {
+  public IActivityManager<Activity> getActivityManager() throws InvocationException {
     if (_activityManager == null && getElement().getInvokedActivity() != null) {
-      ActivityManagerProducer<?> producer = null;
+      ActivityManagerProducer<Activity> producer = null;
       try {
         producer = EGFProducerPlugin.getActivityManagerProducer(getElement().getInvokedActivity());
       } catch (Throwable t) {
@@ -109,7 +109,7 @@ public class ProductionPlanInvocationManager extends InvocationManager<Productio
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
     BasicDiagnostic diagnostic = canInvokeElement(true);
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
-      IActivityManager<?> activityManager = getActivityManager();
+      IActivityManager<Activity> activityManager = getActivityManager();
       if (activityManager != null) {
         diagnostic.add(activityManager.invoke(monitor));
         if (monitor.isCanceled()) {

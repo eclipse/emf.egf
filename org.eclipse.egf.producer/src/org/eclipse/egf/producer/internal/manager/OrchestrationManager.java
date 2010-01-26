@@ -10,19 +10,13 @@
  */
 package org.eclipse.egf.producer.internal.manager;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.ProductionContext;
+import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fcore.OrchestrationParameter;
-import org.eclipse.egf.model.types.TypeAbstractClass;
-import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.IActivityManager;
-import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Xavier Maysonnave
@@ -46,25 +40,8 @@ public abstract class OrchestrationManager<P extends Orchestration> extends Mode
       if (orchestrationParameter.getType() == null) {
         continue;
       }
-      // Class
-      if (orchestrationParameter.getType() instanceof TypeAbstractClass) {
-        try {
-          Object object = null;
-          // Should we instantiate value
-          String fqcn = ((TypeAbstractClass) orchestrationParameter.getType()).getValue();
-          if (fqcn != null && fqcn.trim().length() != 0) {
-            object = BundleHelper.instantiate(fqcn.trim(), getBundle());
-            if (object == null) {
-              throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, orchestrationParameter.getType().getValue(), getBundle().getSymbolicName()), null)));
-            }
-          }
-          context.addInputData(orchestrationParameter, orchestrationParameter.getType().getType(), object);
-        } catch (Throwable t) {
-          throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, orchestrationParameter.getType().getValue()), t)));
-        }
-      } else {
-        context.addInputData(orchestrationParameter, orchestrationParameter.getType().getType(), orchestrationParameter.getType().getValue());
-      }
+      // Populate
+      ModelElementManager.populateContext(context, getBundle(), orchestrationParameter, ContractMode.IN, orchestrationParameter.getType(), orchestrationParameter.getType().getValue());
     }
   }
 
