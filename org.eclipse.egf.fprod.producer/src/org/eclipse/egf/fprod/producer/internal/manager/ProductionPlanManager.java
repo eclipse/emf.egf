@@ -132,6 +132,8 @@ public class ProductionPlanManager extends OrchestrationManager<ProductionPlan> 
         SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), steps * 900);
         for (Invocation invocation : getElement().getInvocations()) {
           ProductionPlanInvocationManager manager = managers.get(invocation);
+          // Populate runtime contract
+          // invoke
           Diagnostic innerDiagnostic = manager.invoke(subMonitor.newChild(900 * manager.getSteps(), SubMonitor.SUPPRESS_NONE));
           diagnostic.add(innerDiagnostic);
           // Stop if any invocation diagnosis error are raised

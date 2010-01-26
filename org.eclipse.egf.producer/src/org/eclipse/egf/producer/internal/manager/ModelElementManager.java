@@ -13,16 +13,21 @@ package org.eclipse.egf.producer.internal.manager;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.BundleSessionHelper;
+import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.producer.context.ProductionContext;
 import org.eclipse.egf.core.session.ProjectBundleSession;
+import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.NamedModelElement;
+import org.eclipse.egf.model.types.Type;
+import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.manager.IModelElementManager;
@@ -57,6 +62,42 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
       }
     }
     return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, new Object[] { element });
+  }
+
+  protected static <T extends ModelElement> void populateContext(ProductionContext<?, T> context, Bundle bundle, T key, ContractMode mode, Type type, Object value) throws InvocationException {
+    // Class
+    if (type instanceof TypeAbstractClass) {
+      try {
+        Object object = null;
+        // Should we instantiate value
+        String fqcn = (String) value;
+        if (fqcn != null && fqcn.trim().length() != 0) {
+          object = BundleHelper.instantiate(fqcn.trim(), bundle);
+          if (object == null) {
+            throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value, bundle.getSymbolicName()), null)));
+          }
+        }
+        if (mode == ContractMode.IN) {
+          context.addInputData(key, type.getType(), object);
+        } else if (mode == ContractMode.OUT) {
+          context.addOutputData(key, type.getType(), null);
+        } else if (mode == ContractMode.IN_OUT) {
+          context.addInputData(key, type.getType(), object);
+          context.addOutputData(key, type.getType(), object);
+        }
+      } catch (Throwable t) {
+        throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value), t)));
+      }
+    } else {
+      if (mode == ContractMode.IN) {
+        context.addInputData(key, type.getType(), value);
+      } else if (mode == ContractMode.OUT) {
+        context.addOutputData(key, type.getType(), null);
+      } else if (mode == ContractMode.IN_OUT) {
+        context.addInputData(key, type.getType(), value);
+        context.addOutputData(key, type.getType(), value);
+      }
+    }
   }
 
   private P _element;

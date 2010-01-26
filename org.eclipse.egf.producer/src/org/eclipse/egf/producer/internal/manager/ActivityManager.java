@@ -10,11 +10,7 @@
  */
 package org.eclipse.egf.producer.internal.manager;
 
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.ProductionContext;
 import org.eclipse.egf.model.fcore.Activity;
@@ -24,7 +20,6 @@ import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.helper.ActivityCycleFinder;
-import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.manager.IModelElementManager;
@@ -112,39 +107,8 @@ public abstract class ActivityManager<P extends Activity> extends ModelElementMa
       if (contract.getType() == null) {
         continue;
       }
-      // Class
-      if (contract.getType() instanceof TypeAbstractClass) {
-        try {
-          Object object = null;
-          // Should we instantiate value
-          String fqcn = ((TypeAbstractClass) contract.getType()).getValue();
-          if (fqcn != null && fqcn.trim().length() != 0) {
-            object = BundleHelper.instantiate(fqcn.trim(), getBundle());
-            if (object == null) {
-              throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, contract.getType().getValue(), getBundle().getSymbolicName()), null)));
-            }
-          }
-          if (contract.getMode() == ContractMode.IN) {
-            context.addInputData(contract, contract.getType().getType(), object);
-          } else if (contract.getMode() == ContractMode.OUT) {
-            context.addOutputData(contract, contract.getType().getType(), null);
-          } else if (contract.getMode() == ContractMode.IN_OUT) {
-            context.addInputData(contract, contract.getType().getType(), object);
-            context.addOutputData(contract, contract.getType().getType(), object);
-          }
-        } catch (Throwable t) {
-          throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, contract.getType().getValue()), t)));
-        }
-      } else {
-        if (contract.getMode() == ContractMode.IN) {
-          context.addInputData(contract, contract.getType().getType(), contract.getType().getValue());
-        } else if (contract.getMode() == ContractMode.OUT) {
-          context.addOutputData(contract, contract.getType().getType(), null);
-        } else if (contract.getMode() == ContractMode.IN_OUT) {
-          context.addInputData(contract, contract.getType().getType(), contract.getType().getValue());
-          context.addOutputData(contract, contract.getType().getType(), contract.getType().getValue());
-        }
-      }
+      // Populate
+      ModelElementManager.populateContext(context, getBundle(), contract, contract.getMode(), contract.getType(), contract.getType().getValue());
     }
   }
 
