@@ -46,7 +46,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *
  * @generated
  */
-public class OrchestrationParameterImpl extends ModelElementImpl implements OrchestrationParameter {
+public class OrchestrationParameterImpl extends NamedModelElementImpl implements OrchestrationParameter {
   /**
    * The cached value of the '{@link #getInvocationContracts() <em>Invocation Contracts</em>}' reference list.
    * <!-- begin-user-doc -->

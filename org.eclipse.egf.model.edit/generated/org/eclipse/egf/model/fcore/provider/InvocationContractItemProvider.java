@@ -65,7 +65,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class InvocationContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
@@ -74,7 +73,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public InvocationContractItemProvider(AdapterFactory adapterFactory) {
@@ -85,7 +83,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -144,38 +141,26 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This adds a property descriptor for the Source Invocation Contract feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addSourceInvocationContractPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_sourceInvocationContract_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_sourceInvocationContract_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_InvocationContract_sourceInvocationContract_feature", "_UI_InvocationContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FcorePackage.Literals.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, true, false, true, null, getString("_UI_ConnectorPropertyCategory"), //$NON-NLS-1$
-        null) {
-      @Override
-      public Collection<?> getChoiceOfValues(Object current) {
-        return InvocationContractHelper.getAvailableSourceInvocationContract((InvocationContract) current);
-      }
-    });
+        null));
   }
 
   /**
    * This adds a property descriptor for the Target Invocation Contract feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addTargetInvocationContractPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_targetInvocationContract_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_targetInvocationContract_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_InvocationContract_targetInvocationContract_feature", "_UI_InvocationContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FcorePackage.Literals.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, true, false, true, null, getString("_UI_ConnectorPropertyCategory"), //$NON-NLS-1$
-        null) {
-      @Override
-      public Collection<?> getChoiceOfValues(Object current) {
-        return InvocationContractHelper.getAvailableTargetInvocationContract((InvocationContract) current);
-      }
-    });
+        null));
   }
 
   /**
@@ -198,11 +183,11 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
-   * feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -217,7 +202,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -232,7 +216,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This returns InvocationContract.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -266,7 +249,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -274,6 +256,10 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
     updateChildren(notification);
 
     switch (notification.getFeatureID(InvocationContract.class)) {
+    case FcorePackage.INVOCATION_CONTRACT__FACTORY_COMPONENT_CONTRACT:
+    case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
+    case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+    case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
     case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;

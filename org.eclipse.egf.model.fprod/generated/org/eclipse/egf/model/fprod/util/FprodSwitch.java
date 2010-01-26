@@ -16,6 +16,7 @@ import java.util.List;
 
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.ProductionPlan;
@@ -117,6 +118,8 @@ public class FprodSwitch<T> {
       if (result == null)
         result = caseInvocation(productionPlanInvocation);
       if (result == null)
+        result = caseNamedModelElement(productionPlanInvocation);
+      if (result == null)
         result = caseModelElement(productionPlanInvocation);
       if (result == null)
         result = defaultCase(theEObject);
@@ -192,6 +195,23 @@ public class FprodSwitch<T> {
    * @generated
    */
   public T caseOrchestration(Orchestration object) {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Named Model Element</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * 
+   * @param object
+   *          the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Named Model Element</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNamedModelElement(NamedModelElement object) {
     return null;
   }
 

@@ -825,8 +825,8 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     viewpointEClass.getESuperTypes().add(this.getModelElement());
     orchestrationEClass.getESuperTypes().add(this.getModelElement());
     orchestrationParameterContainerEClass.getESuperTypes().add(this.getModelElement());
-    orchestrationParameterEClass.getESuperTypes().add(this.getModelElement());
-    invocationEClass.getESuperTypes().add(this.getModelElement());
+    orchestrationParameterEClass.getESuperTypes().add(this.getNamedModelElement());
+    invocationEClass.getESuperTypes().add(this.getNamedModelElement());
     invocationContractContainerEClass.getESuperTypes().add(this.getModelElement());
     invocationContractEClass.getESuperTypes().add(this.getModelElement());
 
@@ -836,7 +836,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     initEAttribute(getModelElement_Description(), theEcorePackage.getEString(), "description", null, 0, 1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(namedModelElementEClass, NamedModelElement.class, "NamedModelElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEAttribute(getNamedModelElement_Name(), theEcorePackage.getEString(), "name", null, 1, 1, NamedModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getNamedModelElement_Name(), theEcorePackage.getEString(), "name", null, 0, 1, NamedModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(activityEClass, Activity.class, "Activity", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getActivity_ContractContainer(), this.getContractContainer(), this.getContractContainer_Activity(), "contractContainer", null, 0, 1, Activity.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1057,7 +1057,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
    */
   protected void createEcoreAnnotations() {
     String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-    addAnnotation(activityEClass, source, new String[] { "constraints", "ActivityCycle" //$NON-NLS-1$ //$NON-NLS-2$
+    addAnnotation(activityEClass, source, new String[] { "constraints", "MandatoryName ActivityCycle" //$NON-NLS-1$ //$NON-NLS-2$
     });
     addAnnotation(contractEClass, source, new String[] { "constraints", "UniqueName UselessMandatoryMode" //$NON-NLS-1$ //$NON-NLS-2$
     });

@@ -9,11 +9,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamedModelElement" abstract="true" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Activity" abstract="true" eSuperTypes="#//NamedModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="ActivityCycle"/>
+      <details key="constraints" value="MandatoryName ActivityCycle"/>
     </eAnnotations>
     <eOperations name="getContracts" upperBound="-1" eType="#//Contract"/>
     <eOperations name="getContracts" upperBound="-1" eType="#//Contract">
@@ -154,7 +154,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationParameters"
         upperBound="-1" eType="#//OrchestrationParameter" containment="true" eOpposite="#//OrchestrationParameter/orchestrationParameterContainer"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OrchestrationParameter" eSuperTypes="#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="OrchestrationParameter" eSuperTypes="#//NamedModelElement">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="UselessOrchestrationParameter"/>
     </eAnnotations>
@@ -168,7 +168,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" lowerBound="1" eType="ecore:EClass Types.ecore#//Type"
         containment="true" resolveProxies="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Invocation" abstract="true" eSuperTypes="#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="Invocation" abstract="true" eSuperTypes="#//NamedModelElement">
     <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
     <eOperations name="getInvocationContracts" upperBound="-1" eType="#//InvocationContract"/>
     <eOperations name="getInvocationContracts" upperBound="-1" eType="#//InvocationContract">

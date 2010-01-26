@@ -14,6 +14,7 @@ package org.eclipse.egf.model.fprod.util;
 
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.ModelElement;
+import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.fcore.Orchestration;
 import org.eclipse.egf.model.fprod.FprodPackage;
 import org.eclipse.egf.model.fprod.ProductionPlan;
@@ -105,6 +106,11 @@ public class FprodAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
+    public Adapter caseNamedModelElement(NamedModelElement object) {
+      return createNamedModelElementAdapter();
+    }
+
+    @Override
     public Adapter caseInvocation(Invocation object) {
       return createInvocationAdapter();
     }
@@ -187,6 +193,21 @@ public class FprodAdapterFactory extends AdapterFactoryImpl {
    * @generated
    */
   public Adapter createOrchestrationAdapter() {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.NamedModelElement <em>Named Model Element</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * 
+   * @return the new adapter.
+   * @see org.eclipse.egf.model.fcore.NamedModelElement
+   * @generated
+   */
+  public Adapter createNamedModelElementAdapter() {
     return null;
   }
 

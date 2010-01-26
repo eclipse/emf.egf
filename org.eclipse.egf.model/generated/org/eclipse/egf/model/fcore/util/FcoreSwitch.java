@@ -223,6 +223,8 @@ public class FcoreSwitch<T> {
       OrchestrationParameter orchestrationParameter = (OrchestrationParameter) theEObject;
       T result = caseOrchestrationParameter(orchestrationParameter);
       if (result == null)
+        result = caseNamedModelElement(orchestrationParameter);
+      if (result == null)
         result = caseModelElement(orchestrationParameter);
       if (result == null)
         result = defaultCase(theEObject);
@@ -231,6 +233,8 @@ public class FcoreSwitch<T> {
     case FcorePackage.INVOCATION: {
       Invocation invocation = (Invocation) theEObject;
       T result = caseInvocation(invocation);
+      if (result == null)
+        result = caseNamedModelElement(invocation);
       if (result == null)
         result = caseModelElement(invocation);
       if (result == null)

@@ -252,8 +252,29 @@ public class FcoreValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(activity, diagnostics, context);
     if (result || diagnostics != null)
+      result &= validateActivity_MandatoryName(activity, diagnostics, context);
+    if (result || diagnostics != null)
       result &= validateActivity_ActivityCycle(activity, diagnostics, context);
     return result;
+  }
+
+  /**
+   * Validates the MandatoryName constraint of '<em>Activity</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateActivity_MandatoryName(Activity activity, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (activity.getName() == null || activity.getName().trim().length() == 0) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "MandatoryName", getObjectLabel(activity, context), "The attribute name is mandatory" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { activity }, context));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -324,6 +345,8 @@ public class FcoreValidator extends EObjectValidator {
       result &= validate_EveryKeyUnique(factoryComponent, diagnostics, context);
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(factoryComponent, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateActivity_MandatoryName(factoryComponent, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateActivity_ActivityCycle(factoryComponent, diagnostics, context);
     return result;

@@ -34,7 +34,7 @@ import org.eclipse.emf.common.util.EList;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UselessOrchestrationParameter'"
  * @generated
  */
-public interface OrchestrationParameter extends ModelElement {
+public interface OrchestrationParameter extends NamedModelElement {
   /**
    * Returns the value of the '<em><b>Orchestration Parameter Container</b></em>' container reference.
    * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.OrchestrationParameterContainer#getOrchestrationParameters <em>Orchestration Parameters</em>}'.

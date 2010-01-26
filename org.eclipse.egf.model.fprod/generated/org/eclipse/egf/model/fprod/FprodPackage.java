@@ -158,6 +158,15 @@ public interface FprodPackage extends EPackage {
   int PRODUCTION_PLAN_INVOCATION__DESCRIPTION = FcorePackage.INVOCATION__DESCRIPTION;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PRODUCTION_PLAN_INVOCATION__NAME = FcorePackage.INVOCATION__NAME;
+
+  /**
    * The feature id for the '<em><b>Invocation Contract Container</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -743,7 +743,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ORCHESTRATION_PARAMETER__ID = MODEL_ELEMENT__ID;
+  int ORCHESTRATION_PARAMETER__ID = NAMED_MODEL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -752,7 +752,16 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ORCHESTRATION_PARAMETER__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+  int ORCHESTRATION_PARAMETER__DESCRIPTION = NAMED_MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ORCHESTRATION_PARAMETER__NAME = NAMED_MODEL_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Orchestration Parameter Container</b></em>' container reference.
@@ -761,7 +770,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER = MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int ORCHESTRATION_PARAMETER__ORCHESTRATION_PARAMETER_CONTAINER = NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Invocation Contracts</b></em>' reference list.
@@ -770,7 +779,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS = MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS = NAMED_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The feature id for the '<em><b>Type</b></em>' containment reference.
@@ -779,7 +788,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ORCHESTRATION_PARAMETER__TYPE = MODEL_ELEMENT_FEATURE_COUNT + 2;
+  int ORCHESTRATION_PARAMETER__TYPE = NAMED_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The number of structural features of the '<em>Orchestration Parameter</em>' class.
@@ -788,7 +797,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int ORCHESTRATION_PARAMETER_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 3;
+  int ORCHESTRATION_PARAMETER_FEATURE_COUNT = NAMED_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -797,7 +806,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INVOCATION__ID = MODEL_ELEMENT__ID;
+  int INVOCATION__ID = NAMED_MODEL_ELEMENT__ID;
 
   /**
    * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -806,7 +815,16 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INVOCATION__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+  int INVOCATION__DESCRIPTION = NAMED_MODEL_ELEMENT__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INVOCATION__NAME = NAMED_MODEL_ELEMENT__NAME;
 
   /**
    * The feature id for the '<em><b>Invocation Contract Container</b></em>' containment reference.
@@ -815,7 +833,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INVOCATION__INVOCATION_CONTRACT_CONTAINER = MODEL_ELEMENT_FEATURE_COUNT + 0;
+  int INVOCATION__INVOCATION_CONTRACT_CONTAINER = NAMED_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>Invoked Activity</b></em>' reference.
@@ -824,7 +842,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INVOCATION__INVOKED_ACTIVITY = MODEL_ELEMENT_FEATURE_COUNT + 1;
+  int INVOCATION__INVOKED_ACTIVITY = NAMED_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
   /**
    * The number of structural features of the '<em>Invocation</em>' class.
@@ -833,7 +851,7 @@ public interface FcorePackage extends EPackage {
    * @generated
    * @ordered
    */
-  int INVOCATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 2;
+  int INVOCATION_FEATURE_COUNT = NAMED_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.fcore.impl.InvocationContractContainerImpl <em>Invocation Contract Container</em>}' class.

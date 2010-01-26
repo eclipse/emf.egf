@@ -44,7 +44,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  *
  * @generated
  */
-public abstract class InvocationImpl extends ModelElementImpl implements Invocation {
+public abstract class InvocationImpl extends NamedModelElementImpl implements Invocation {
   /**
    * The cached value of the '{@link #getInvocationContractContainer() <em>Invocation Contract Container</em>}' containment reference.
    * <!-- begin-user-doc -->

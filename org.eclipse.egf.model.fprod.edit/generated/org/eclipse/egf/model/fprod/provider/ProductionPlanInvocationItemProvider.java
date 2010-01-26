@@ -33,19 +33,17 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.fprod.ProductionPlanInvocation} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fprod.ProductionPlanInvocation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class ProductionPlanInvocationItemProvider extends InvocationItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class ProductionPlanInvocationItemProvider extends InvocationItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+    IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ProductionPlanInvocationItemProvider(AdapterFactory adapterFactory) {
@@ -56,7 +54,6 @@ public class ProductionPlanInvocationItemProvider extends InvocationItemProvider
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -72,7 +69,6 @@ public class ProductionPlanInvocationItemProvider extends InvocationItemProvider
    * This returns ProductionPlanInvocation.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -90,11 +86,17 @@ public class ProductionPlanInvocationItemProvider extends InvocationItemProvider
   @Override
   public String getText(Object object) {
     ProductionPlanInvocation productionPlanInvocation = (ProductionPlanInvocation) object;
+    // Name
+    String name = productionPlanInvocation.getName();
+    // Invoked Activity
     String invoked = null;
     if (productionPlanInvocation.getInvokedActivity() != null) {
       invoked = EMFHelper.getText(productionPlanInvocation.getInvokedActivity());
     }
     String label = "[" + getString("_UI_ProductionPlanInvocation_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    if (name != null) {
+      label = name + " " + label; //$NON-NLS-1$ 
+    }
     if (invoked != null) {
       label = label + " -> " + invoked; //$NON-NLS-1$
     }
@@ -106,7 +108,6 @@ public class ProductionPlanInvocationItemProvider extends InvocationItemProvider
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -120,7 +121,6 @@ public class ProductionPlanInvocationItemProvider extends InvocationItemProvider
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

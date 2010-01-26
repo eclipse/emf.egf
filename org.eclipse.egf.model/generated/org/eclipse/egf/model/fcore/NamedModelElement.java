@@ -40,7 +40,7 @@ public interface NamedModelElement extends ModelElement {
    * @return the value of the '<em>Name</em>' attribute.
    * @see #setName(String)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getNamedModelElement_Name()
-   * @model required="true"
+   * @model
    * @generated
    */
   String getName();
