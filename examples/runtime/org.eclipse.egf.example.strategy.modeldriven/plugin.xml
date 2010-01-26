@@ -7,9 +7,6 @@
       <fcore
             id="default.fcore">
       </fcore>
-      <fcore
-            id="task.fcore">
-      </fcore>
    </extension>
 
 </plugin>
