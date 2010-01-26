@@ -19,6 +19,8 @@ import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
+import org.eclipse.egf.model.fcore.commands.SetInvocationContractSourceInvocationContractCommand;
+import org.eclipse.egf.model.fcore.commands.SetInvocationContractTargetInvocationContractCommand;
 import org.eclipse.egf.model.fcore.helper.InvocationContractHelper;
 import org.eclipse.egf.model.types.TypeBigDecimal;
 import org.eclipse.egf.model.types.TypeBigInteger;
@@ -38,9 +40,12 @@ import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypeShort;
 import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesFactory;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -57,14 +62,14 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContract}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class InvocationContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class InvocationContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+    IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -194,9 +199,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
 
   /**
    * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate
-   * feature for an {@link org.eclipse.emf.edit.command.AddCommand},
-   * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -422,6 +425,35 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
       }
     }
 
+  }
+
+  /**
+   * Create a command to proceed a set operation.
+   * 
+   * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
+   * @generated NOT
+   * 
+   */
+  @Override
+  protected Command createSetCommand(EditingDomain editingDomain, EObject modelElement, EStructuralFeature feature, Object value) {
+    // Default Command
+    Command command = super.createSetCommand(editingDomain, modelElement, feature, value);
+    // feature could be null, typically during a drop operation
+    // see org.eclipse.emf.edit.command.DragAndDropCommand#prepareDropLinkOn()
+    if (feature == null) {
+      return command;
+    }
+    // Get the feature id to switch on the right stuff.
+    int featureId = feature.getFeatureID();
+    switch (featureId) {
+    case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+      command = new SetInvocationContractSourceInvocationContractCommand(editingDomain, (InvocationContract) modelElement, (InvocationContract) value);
+      break;
+    case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
+      command = new SetInvocationContractTargetInvocationContractCommand(editingDomain, (InvocationContract) modelElement, (InvocationContract) value);
+      break;
+    }
+    return command;
   }
 
 }
