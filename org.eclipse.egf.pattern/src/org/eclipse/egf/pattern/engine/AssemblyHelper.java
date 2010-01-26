@@ -53,7 +53,7 @@ public abstract class AssemblyHelper {
         orchestrationIndex = -1;
         String read = getMethodContent(pattern.getHeaderMethod());
         if (read != null)
-            content.append(read);
+            content.append(read).append(EGFCommonConstants.LINE_SEPARATOR);
 
         addVariableInitialization();
         beginOrchestration();
@@ -66,7 +66,7 @@ public abstract class AssemblyHelper {
 
         read = getMethodContent(pattern.getFooterMethod());
         if (read != null)
-            content.append(read);
+            content.append(read).append(EGFCommonConstants.LINE_SEPARATOR);
 
         return content.toString();
     }
@@ -117,7 +117,7 @@ public abstract class AssemblyHelper {
         for (Call element : orchestration) {
             String read = getContent(element);
             if (read != null)
-                content.append(read);
+                content.append(read).append(EGFCommonConstants.LINE_SEPARATOR);
         }
     }
 
