@@ -15,12 +15,17 @@ package org.eclipse.egf.model.fcore.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.commands.SetInvocationInvokedActivityCommand;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -39,13 +44,16 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.Invocation} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class InvocationItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class InvocationItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+    IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public InvocationItemProvider(AdapterFactory adapterFactory) {
@@ -56,6 +64,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -72,6 +81,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * This adds a property descriptor for the Invoked Activity feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addInvokedActivityPropertyDescriptor(Object object) {
@@ -82,11 +92,10 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -101,6 +110,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -115,6 +125,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * This returns Invocation.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -139,6 +150,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -161,6 +173,7 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -168,6 +181,32 @@ public class InvocationItemProvider extends ModelElementItemProvider implements 
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
     newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION__INVOCATION_CONTRACT_CONTAINER, FcoreFactory.eINSTANCE.createInvocationContractContainer()));
+  }
+
+  /**
+   * Create a command to proceed a set operation.
+   * 
+   * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
+   * @generated NOT
+   * 
+   */
+  @Override
+  protected Command createSetCommand(EditingDomain editingDomain, EObject modelElement, EStructuralFeature feature, Object value) {
+    // Default Command
+    Command command = super.createSetCommand(editingDomain, modelElement, feature, value);
+    // feature could be null, typically during a drop operation
+    // see org.eclipse.emf.edit.command.DragAndDropCommand#prepareDropLinkOn()
+    if (feature == null) {
+      return command;
+    }
+    // Get the feature id to switch on the right stuff.
+    int featureId = feature.getFeatureID();
+    switch (featureId) {
+    case FcorePackage.INVOCATION__INVOKED_ACTIVITY:
+      command = new SetInvocationInvokedActivityCommand(editingDomain, (Invocation) modelElement, (Activity) value);
+      break;
+    }
+    return command;
   }
 
 }
