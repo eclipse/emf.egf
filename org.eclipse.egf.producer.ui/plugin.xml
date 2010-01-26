@@ -15,24 +15,6 @@
 -->
 
 <plugin>
-
-  <!-- ================================================================================= -->
-  <!-- propertyTesters                                                                   -->
-  <!-- ================================================================================= -->
-
-  <extension 
-    point="org.eclipse.core.expressions.propertyTesters"
-  >
-  
-    <propertyTester
-      id="org.eclipse.egf.producer.ui.testers.FcoreResourceTester"
-      type="org.eclipse.core.resources.IFile"
-      namespace="org.eclipse.egf.producer.ui"
-      properties="fcoreResource"
-      class="org.eclipse.egf.producer.ui.testers.FcoreResourceTester"
-    />
-            
-  </extension>
   
   <!-- ================================================================================= -->
   <!-- popupMenus                                                                        -->
@@ -68,15 +50,9 @@
     <objectContribution
       id="org.eclipse.egf.producer.ui.activity.contribution"
       objectClass="org.eclipse.core.resources.IFile"
+      nameFilter="*.fcore"
     >
-    
-      <enablement>
-        <test
-          forcePluginActivation="true"
-          property="org.eclipse.egf.producer.ui.fcoreResource"
-        />
-      </enablement>
-    
+        
       <action
         class="org.eclipse.egf.producer.ui.internal.actions.RunActivityAction"
         icon="$nl$/icons/full/elcl16/runactivity.gif"
@@ -123,17 +99,17 @@
   >
   
     <actionSet
-      label="%EGFActionSet_label"
-      description="%EGFActionSet_description"
-      visible="false"
-      id="org.eclipse.egf.ui.action.set"
+      label="%EGFActivityActionSet_label"
+      description="%EGFActivityActionSet_description"
+      visible="true"
+      id="org.eclipse.egf.ui.activity.actionSet"
     >
                   
       <action
-        id="org.eclipse.egf.ui.action.set.global.run.activity.action"  
+        id="org.eclipse.egf.ui.actionSet.global.run.activity.action"  
         toolbarPath="org.eclipse.debug.ui.launchActionSet/debug"         
         class="org.eclipse.egf.producer.ui.internal.actions.GlobalRunActivityAction"
-        definitionId="org.eclipse.egf.ui.action.set.global.run.activity.action.definition"
+        definitionId="org.eclipse.egf.ui.actionSet.global.run.activity.action.definition"
         icon="$nl$/icons/full/elcl16/runactivity.gif"
         label="%RunActivityAction_label"
         menubarPath="org.eclipse.ui.run/runGroup"
@@ -143,23 +119,27 @@
     </actionSet>
     
   </extension>
-  
-  <extension
-    point="org.eclipse.ui.commands"
-  >
-    
+      
   <!-- ================================================================================= -->
   <!-- Command Run                                                                       -->
   <!-- ================================================================================= -->
+  
+  <extension
+    point="org.eclipse.ui.commands"
+  >  
     
     <command
       name="%ActionDefinition_runActivity_name"
       description="%ActionDefinition_runActivity_description"
       categoryId="org.eclipse.debug.ui.category.run"
-      id="org.eclipse.egf.ui.action.set.global.run.activity.action.definition"
+      id="org.eclipse.egf.ui.actionSet.global.run.activity.action.definition"
     />
       
   </extension>  
+  
+  <!-- ================================================================================= -->
+  <!-- Bindings                                                                          -->
+  <!-- ================================================================================= -->  
   
   <extension
     point="org.eclipse.ui.bindings"
@@ -176,7 +156,7 @@
      
     <key
       sequence="M1+M2+V"
-      commandId="org.eclipse.egf.ui.action.set.global.run.activity.action.definition"
+      commandId="org.eclipse.egf.ui.actionSet.global.run.activity.action.definition"
       schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
     />
             

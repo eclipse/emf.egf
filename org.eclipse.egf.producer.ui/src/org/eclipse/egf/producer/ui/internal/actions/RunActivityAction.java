@@ -44,6 +44,7 @@ import org.eclipse.egf.producer.ui.internal.dialogs.ActivityValidationSelectionD
 import org.eclipse.egf.producer.ui.internal.ui.ProducerUIImages;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.action.IAction;
@@ -262,7 +263,15 @@ public class RunActivityAction implements IObjectActionDelegate {
       // Load this IFile as an EMF Resource
       try {
         ResourceSet resourceSet = new ResourceSetImpl();
-        return EGFCorePlugin.getPlatformFcore(ResourceHelper.loadResource(resourceSet, (IResource) selectedObject));
+        Resource resource = ResourceHelper.loadResource(resourceSet, (IResource) selectedObject);
+        IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
+        if (fcore != null) {
+          if (resource.getContents().size() == 1 && resource.getContents().get(0) instanceof Activity) {
+            _activity = (Activity) resource.getContents().get(0);
+            return null;
+          }
+          return fcore;
+        }
       } catch (Throwable t) {
         EGFProducerUIPlugin.getDefault().logError(t);
       }
