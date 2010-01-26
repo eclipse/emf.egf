@@ -36,7 +36,7 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    * 
    * @generated
    */
-  private ItemProviderAdapter itemProvider = null;
+  private ItemProviderAdapter _itemProvider = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -44,7 +44,7 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    * 
    * @generated
    */
-  private Object value = null;
+  private Object _value = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -52,7 +52,7 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    * 
    * @generated
    */
-  private Object feature = null;
+  private Object _feature = null;
 
   /**
    * Constructor
@@ -61,16 +61,16 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    *          the editing domain
    * @param list
    *          the list to add to
-   * @param feature
+   * @param _feature
    *          the feature to process
-   * @param value
+   * @param _value
    *          the value to add
    *          <!-- begin-user-doc -->
    *          <!-- end-user-doc -->
    * @generated
    */
-  public MultiRootAddCommand(EditingDomain domain_p, EList<?> list_p, Object feature_p, Object value_p) {
-    this(domain_p, list_p, feature_p, value_p, CommandParameter.NO_INDEX);
+  public MultiRootAddCommand(EditingDomain domain, EList<?> list, Object feature, Object value) {
+    this(domain, list, feature, value, CommandParameter.NO_INDEX);
   }
 
   /**
@@ -80,9 +80,9 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    *          the editing domain
    * @param list
    *          the list to add to
-   * @param feature
+   * @param _feature
    *          the feature to process
-   * @param value
+   * @param _value
    *          the value to add
    * @param index
    *          the index
@@ -90,19 +90,19 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    *          <!-- end-user-doc -->
    * @generated
    */
-  public MultiRootAddCommand(EditingDomain domain_p, EList<?> list_p, Object feature_p, Object value_p, int index_p) {
-    super(domain_p, list_p, value_p, index_p);
-    feature = feature_p;
-    value = value_p;
+  public MultiRootAddCommand(EditingDomain domain, EList<?> list, Object feature, Object value, int index) {
+    super(domain, list, value, index);
+    _feature = feature;
+    _value = value;
     if (getDomain() instanceof AdapterFactoryEditingDomain) {
-      IEditingDomainItemProvider editingDomainItemProvider = (IEditingDomainItemProvider) ((AdapterFactoryEditingDomain) getDomain()).getAdapterFactory().adapt(value, IEditingDomainItemProvider.class);
+      IEditingDomainItemProvider editingDomainItemProvider = (IEditingDomainItemProvider) ((AdapterFactoryEditingDomain) getDomain()).getAdapterFactory().adapt(_value, IEditingDomainItemProvider.class);
       if (editingDomainItemProvider instanceof ItemProviderAdapter) {
-        itemProvider = (ItemProviderAdapter) editingDomainItemProvider;
+        _itemProvider = (ItemProviderAdapter) editingDomainItemProvider;
       }
     }
-    if (itemProvider != null) {
-      setLabel(itemProvider.getCreateChildText(null, feature, value, null));
-      setDescription(itemProvider.getCreateChildToolTipText(null, feature, value, null));
+    if (_itemProvider != null) {
+      setLabel(_itemProvider.getCreateChildText(null, _feature, _value, null));
+      setDescription(_itemProvider.getCreateChildToolTipText(null, _feature, _value, null));
     }
   }
 
@@ -113,7 +113,7 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    * @generated
    */
   public Object getImage() {
-    return itemProvider != null ? itemProvider.getCreateChildImage(null, feature, value, null) : null;
+    return _itemProvider != null ? _itemProvider.getCreateChildImage(null, _feature, _value, null) : null;
   }
 
   /**
@@ -123,7 +123,7 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    * @generated
    */
   public String getText() {
-    return itemProvider != null ? itemProvider.getCreateChildText(null, feature, value, null) : null;
+    return _itemProvider != null ? _itemProvider.getCreateChildText(null, _feature, _value, null) : null;
   }
 
   /**
@@ -133,7 +133,7 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    * @generated
    */
   public String getToolTipText() {
-    return itemProvider != null ? itemProvider.getCreateChildToolTipText(null, feature, value, null) : null;
+    return _itemProvider != null ? _itemProvider.getCreateChildToolTipText(null, _feature, _value, null) : null;
   }
 
 }

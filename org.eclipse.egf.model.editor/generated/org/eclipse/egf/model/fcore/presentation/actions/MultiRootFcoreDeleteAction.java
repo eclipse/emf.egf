@@ -16,8 +16,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.FactoryComponent;
-import org.eclipse.egf.model.ftask.TaskJava;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
@@ -104,7 +103,6 @@ public class MultiRootFcoreDeleteAction extends DeleteAction {
     List<EObject> rootList = new ArrayList<EObject>();
     Command cmd = null;
     // Process Current Selection
-    // 
     Iterator<?> iter = selection.iterator();
     while (iter.hasNext()) {
       Object next = iter.next();
@@ -113,20 +111,17 @@ public class MultiRootFcoreDeleteAction extends DeleteAction {
         continue;
       }
       EObject eObject = (EObject) next;
-      // Library should have a resource as parent domain
-      //
+      // Activity should have a resource as parent domain
       if (getEditingDomain().getParent(eObject) instanceof Resource) {
-        if (eObject instanceof FactoryComponent || eObject instanceof TaskJava) {
+        if (eObject instanceof Activity) {
           rootList.add(eObject);
           continue;
         }
       }
       // Default
-      //
       otherList.add(eObject);
     }
     // Build rootList Command
-    //
     if (rootList.isEmpty() == false) {
       EObject eObject = rootList.get(0);
       if (eObject.eResource() != null) {
@@ -134,7 +129,6 @@ public class MultiRootFcoreDeleteAction extends DeleteAction {
       }
     }
     // Build otherList Command
-    //		
     if (otherList.isEmpty() == false) {
       if (cmd == null) {
         cmd = super.createCommand(otherList);

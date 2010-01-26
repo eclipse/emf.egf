@@ -37,7 +37,7 @@ public class MultiRootRemoveCommand extends RemoveCommand implements CommandActi
    * 
    * @generated
    */
-  private IItemLabelProvider labelProvider = null;
+  private IItemLabelProvider _labelProvider = null;
 
   /**
    * Constructor
@@ -52,10 +52,10 @@ public class MultiRootRemoveCommand extends RemoveCommand implements CommandActi
    *          <!-- end-user-doc -->
    * @generated
    */
-  public MultiRootRemoveCommand(EditingDomain domain_p, EList<?> list, Collection<?> collection_p) {
-    super(domain_p, list, collection_p);
+  public MultiRootRemoveCommand(EditingDomain domain, EList<?> list, Collection<?> collection) {
+    super(domain, list, collection);
     if (getDomain() instanceof AdapterFactoryEditingDomain) {
-      labelProvider = (IItemLabelProvider) ((AdapterFactoryEditingDomain) getDomain()).getAdapterFactory().adapt(getCollection().toArray()[0], IItemLabelProvider.class);
+      _labelProvider = (IItemLabelProvider) ((AdapterFactoryEditingDomain) getDomain()).getAdapterFactory().adapt(getCollection().toArray()[0], IItemLabelProvider.class);
     }
     setLabel(LABEL);
     setDescription(DESCRIPTION);
@@ -68,7 +68,7 @@ public class MultiRootRemoveCommand extends RemoveCommand implements CommandActi
    * @generated
    */
   public Object getImage() {
-    return this.labelProvider != null ? this.labelProvider.getImage(getCollection().toArray()[0]) : null;
+    return this._labelProvider != null ? this._labelProvider.getImage(getCollection().toArray()[0]) : null;
   }
 
   /**
@@ -78,7 +78,7 @@ public class MultiRootRemoveCommand extends RemoveCommand implements CommandActi
    * @generated
    */
   public String getText() {
-    return this.labelProvider != null ? this.labelProvider.getText(getCollection().toArray()[0]) : null;
+    return this._labelProvider != null ? this._labelProvider.getText(getCollection().toArray()[0]) : null;
   }
 
   /**

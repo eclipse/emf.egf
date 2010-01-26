@@ -15,8 +15,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.FactoryComponent;
-import org.eclipse.egf.model.ftask.TaskJava;
+import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CommandWrapper;
 import org.eclipse.emf.common.command.CompoundCommand;
@@ -31,8 +30,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 
 /**
  * Multi-rooted resources support.
- * This works exactly like an {@link AddCommand} but the things to be added are copied from the
- * {@link EditingDomain} clipboard.
+ * This works exactly like an {@link AddCommand} but the things to be added are copied from the {@link EditingDomain} clipboard.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
@@ -113,14 +111,11 @@ public class MultiRootFcorePasteFromClipboardCommand extends PasteFromClipboardC
   public boolean prepare() {
 
     // Create a strict compound command to do a copy and then add the result
-    //
     command = new StrictCompoundCommand();
     // Create a command to copy the clipboard.
-    //
     final Command copyCommand = CopyCommand.create(domain, domain.getClipboard());
     command.append(copyCommand);
     // Create a proxy that will create an add command.
-    //
     command.append(
 
     new CommandWrapper() {
@@ -132,7 +127,6 @@ public class MultiRootFcorePasteFromClipboardCommand extends PasteFromClipboardC
         List<EObject> rootList = new ArrayList<EObject>();
         CompoundCommand addCommand = new CompoundCommand(CompoundCommand.MERGE_COMMAND_ALL);
         // Process Current Clipboard
-        // 
         Iterator<?> iter = copyCommand.getResult().iterator();
         while (iter.hasNext()) {
           Object next = iter.next();
@@ -141,32 +135,27 @@ public class MultiRootFcorePasteFromClipboardCommand extends PasteFromClipboardC
             continue;
           }
           EObject eObject = (EObject) next;
-          // Library is a defined Root Object
-          //
+          // Activity is a defined Root Object
           if (owner instanceof Resource) {
-            if (eObject instanceof FactoryComponent || eObject instanceof TaskJava) {
+            if (eObject instanceof Activity) {
               rootList.add(eObject);
               continue;
             }
           }
           // Default
-          //
           otherList.add(eObject);
         }
         // Build Root List Commands
-        //
         if (rootList.isEmpty() == false) {
           for (EObject eObject : rootList) {
             addCommand.append(new MultiRootAddCommand(domain, ((Resource) owner).getContents(), eObject, index));
           }
         }
         // Build Other List Commands
-        //		
         if (otherList.isEmpty() == false) {
           addCommand.append(AddCommand.create(domain, owner, feature, otherList, index));
         }
         // return CompoundCommand
-        //
         return addCommand;
 
       }
@@ -178,11 +167,9 @@ public class MultiRootFcorePasteFromClipboardCommand extends PasteFromClipboardC
     boolean result;
     if (optimize) {
       // This will determine canExecute as efficiently as possible.
-      //
       result = optimizedCanExecute();
     } else {
       // This will actually execute the copy command in order to check if the add can execute.
-      //
       result = command.canExecute();
     }
 
@@ -208,7 +195,6 @@ public class MultiRootFcorePasteFromClipboardCommand extends PasteFromClipboardC
     List<EObject> rootList = new ArrayList<EObject>();
     CompoundCommand addCommand = new CompoundCommand(CompoundCommand.MERGE_COMMAND_ALL);
     // Process Current Clipboard
-    // 
     Iterator<?> iter = domain.getClipboard().iterator();
     while (iter.hasNext()) {
       Object next = iter.next();
@@ -217,32 +203,27 @@ public class MultiRootFcorePasteFromClipboardCommand extends PasteFromClipboardC
         continue;
       }
       EObject eObject = (EObject) next;
-      // Library is a defined Root Object
-      //
+      // Activity is a defined Root Object
       if (owner instanceof Resource) {
-        if (eObject instanceof FactoryComponent || eObject instanceof TaskJava) {
+        if (eObject instanceof Activity) {
           rootList.add(eObject);
           continue;
         }
       }
       // Default
-      //
       otherList.add(eObject);
     }
     // Process Root List
-    //
     if (rootList.isEmpty() == false) {
       for (EObject eObject : rootList) {
         addCommand.append(new MultiRootAddCommand(domain, ((Resource) owner).getContents(), eObject, index));
       }
     }
     // Process Other List
-    //
     if (otherList.isEmpty() == false) {
       addCommand.append(AddCommand.create(domain, owner, feature, otherList, index));
     }
     // Check CompoundCommand
-    //
     boolean result = addCommand.canExecute();
     addCommand.dispose();
     return result;
