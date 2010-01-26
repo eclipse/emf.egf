@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
@@ -255,14 +256,14 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     setListLabelProvider(getLabelProvider());
     setDetailsLabelProvider(getDetailsLabelProvider());
     setSelectionHistory(new ActivitySelectionHistory());
-    setSeparatorLabel(ModelEditorMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+    setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
   }
 
   public ActivitySelectionDialog(Shell parentShell, IPlatformFcore fcore, boolean multipleSelection) {
     this(parentShell, null, null, multipleSelection);
     if (fcore != null) {
       _fcores = new IPlatformFcore[] { fcore };
-      setSeparatorLabel(NLS.bind(ModelEditorMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
+      setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
     }
   }
 
@@ -287,9 +288,9 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     setSelectionHistory(new ActivitySelectionHistory());
     if (_activity != null && _activity.eResource() != null) {
       IPlatformFcore fc = EGFCorePlugin.getPlatformFcore(_activity.eResource());
-      setSeparatorLabel(NLS.bind(ModelEditorMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fc.getPlatformBundle().getBundleId()));
+      setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fc.getPlatformBundle().getBundleId()));
     } else {
-      setSeparatorLabel(ModelEditorMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
+      setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);
     }
   }
 

@@ -27,9 +27,6 @@ public class ModelEditorMessages {
     NLS.initializeMessages(BUNDLE_NAME, ModelEditorMessages.class);
   }
 
-  public static String _UI_FilteredItemsSelectionDialog_separatorLabel;
-  public static String _UI_FilteredItemsSelectionDialog_platformSeparatorLabel;
-
   public static String _UI_ActivitySelectionDialog_dialogTitle;
   public static String _UI_ActivitySelectionDialog_dialogMessage;
 
