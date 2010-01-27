@@ -43,7 +43,7 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
  * @author Thomas Guiu
  * 
  */
-public class ResourceLoadedListener implements WorkspaceSynchronizer.Delegate {
+public class EGFResourceLoadedListener implements WorkspaceSynchronizer.Delegate {
 
   public static final ResourceEventManager RESOURCE_MANAGER = new ResourceEventManager();
 

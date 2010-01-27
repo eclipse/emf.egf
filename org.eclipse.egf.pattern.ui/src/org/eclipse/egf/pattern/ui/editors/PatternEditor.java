@@ -28,9 +28,9 @@ import org.eclipse.core.commands.operations.ObjectUndoContext;
 import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.ui.domain.ResourceLoadedListener;
-import org.eclipse.egf.core.ui.domain.ResourceLoadedListener.ResourceListener;
-import org.eclipse.egf.core.ui.domain.ResourceLoadedListener.ResourceUser;
+import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener;
+import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener.ResourceListener;
+import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
@@ -126,7 +126,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
   @Override
   public void doSave(IProgressMonitor monitor) {
     try {
-      new ProgressMonitorDialog(getSite().getShell()).run(true, false, ResourceLoadedListener.RESOURCE_MANAGER.createSaveOperation(this, editingDomain));
+      new ProgressMonitorDialog(getSite().getShell()).run(true, false, EGFResourceLoadedListener.RESOURCE_MANAGER.createSaveOperation(this, editingDomain));
       ((BasicCommandStack) editingDomain.getCommandStack()).saveIsDone();
     } catch (InvocationTargetException exception) {
       Activator.getDefault().logError(exception.getTargetException());
@@ -161,7 +161,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
     super.init(site, editorInput);
     initialPatternName = getPattern().getName();
-    ResourceLoadedListener.RESOURCE_MANAGER.addObserver(this);
+    EGFResourceLoadedListener.RESOURCE_MANAGER.addObserver(this);
     addPatternChangeAdapter();
   }
 
@@ -245,7 +245,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
   @Override
   public void dispose() {
-    ResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
+    EGFResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
     getOperationHistory().removeOperationHistoryListener(historyListener);
     getOperationHistory().dispose(undoContext, true, true, true);
 
