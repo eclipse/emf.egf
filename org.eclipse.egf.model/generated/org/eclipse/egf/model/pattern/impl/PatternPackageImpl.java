@@ -39,6 +39,8 @@ import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.model.pattern.Query;
 import org.eclipse.egf.model.pattern.StringQuery;
 import org.eclipse.egf.model.pattern.SuperPatternCall;
+import org.eclipse.egf.model.pattern.TypePatternCallBackHandler;
+import org.eclipse.egf.model.pattern.TypePatternDomainVisitor;
 import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
 import org.eclipse.egf.model.pattern.util.PatternValidator;
 import org.eclipse.egf.model.types.TypesPackage;
@@ -203,6 +205,20 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     private EClass backCallEClass = null;
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass typePatternCallBackHandlerEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass typePatternDomainVisitorEClass = null;
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
@@ -213,13 +229,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * @generated
      */
     private EDataType patternExceptionEDataType = null;
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EDataType ePatternExecutionReporterEDataType = null;
 
     /**
      * Creates an instance of the model <b>Package</b>, registered with
@@ -740,6 +749,24 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getTypePatternCallBackHandler() {
+        return typePatternCallBackHandlerEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getTypePatternDomainVisitor() {
+        return typePatternDomainVisitorEClass;
+    }
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
@@ -761,15 +788,6 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      */
     public EDataType getPatternException() {
         return patternExceptionEDataType;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EDataType getEPatternExecutionReporter() {
-        return ePatternExecutionReporterEDataType;
     }
 
     /**
@@ -877,10 +895,13 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
         backCallEClass = createEClass(BACK_CALL);
 
+        typePatternCallBackHandlerEClass = createEClass(TYPE_PATTERN_CALL_BACK_HANDLER);
+
+        typePatternDomainVisitorEClass = createEClass(TYPE_PATTERN_DOMAIN_VISITOR);
+
         // Create data types
         patternContextEDataType = createEDataType(PATTERN_CONTEXT);
         patternExceptionEDataType = createEDataType(PATTERN_EXCEPTION);
-        ePatternExecutionReporterEDataType = createEDataType(EPATTERN_EXECUTION_REPORTER);
     }
 
     /**
@@ -936,6 +957,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         customQueryEClass.getESuperTypes().add(this.getQuery());
         typePatternExecutionReporterEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         backCallEClass.getESuperTypes().add(this.getCall());
+        typePatternCallBackHandlerEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
+        typePatternDomainVisitorEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
 
         // Initialize classes and features; add operations and parameters
         initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -1031,10 +1054,25 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
         initEClass(backCallEClass, BackCall.class, "BackCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
+        initEClass(typePatternCallBackHandlerEClass, TypePatternCallBackHandler.class, "TypePatternCallBackHandler", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+        op = addEOperation(typePatternCallBackHandlerEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaClass());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
+        initEClass(typePatternDomainVisitorEClass, TypePatternDomainVisitor.class, "TypePatternDomainVisitor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+        op = addEOperation(typePatternDomainVisitorEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaClass());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
         // Initialize data types
         initEDataType(patternContextEDataType, PatternContext.class, "PatternContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEDataType(patternExceptionEDataType, PatternException.class, "PatternException", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEDataType(ePatternExecutionReporterEDataType, PatternExecutionReporter.class, "EPatternExecutionReporter", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
         // Create resource
         createResource(eNS_URI);

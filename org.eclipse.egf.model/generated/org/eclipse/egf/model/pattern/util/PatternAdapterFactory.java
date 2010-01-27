@@ -220,6 +220,16 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
+        public Adapter caseTypePatternCallBackHandler(TypePatternCallBackHandler object) {
+            return createTypePatternCallBackHandlerAdapter();
+        }
+
+        @Override
+        public Adapter caseTypePatternDomainVisitor(TypePatternDomainVisitor object) {
+            return createTypePatternDomainVisitorAdapter();
+        }
+
+        @Override
         public Adapter caseModelElement(ModelElement object) {
             return createModelElementAdapter();
         }
@@ -627,6 +637,34 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createBackCallAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.TypePatternCallBackHandler <em>Type Pattern Call Back Handler</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.TypePatternCallBackHandler
+     * @generated
+     */
+    public Adapter createTypePatternCallBackHandlerAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.TypePatternDomainVisitor <em>Type Pattern Domain Visitor</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.TypePatternDomainVisitor
+     * @generated
+     */
+    public Adapter createTypePatternDomainVisitorAdapter() {
         return null;
     }
 

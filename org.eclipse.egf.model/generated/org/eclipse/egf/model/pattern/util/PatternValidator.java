@@ -220,12 +220,14 @@ public class PatternValidator extends EObjectValidator {
             return validateTypePatternExecutionReporter((TypePatternExecutionReporter) value, diagnostics, context);
         case PatternPackage.BACK_CALL:
             return validateBackCall((BackCall) value, diagnostics, context);
+        case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER:
+            return validateTypePatternCallBackHandler((TypePatternCallBackHandler) value, diagnostics, context);
+        case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR:
+            return validateTypePatternDomainVisitor((TypePatternDomainVisitor) value, diagnostics, context);
         case PatternPackage.PATTERN_CONTEXT:
             return validatePatternContext((PatternContext) value, diagnostics, context);
         case PatternPackage.PATTERN_EXCEPTION:
             return validatePatternException((PatternException) value, diagnostics, context);
-        case PatternPackage.EPATTERN_EXECUTION_REPORTER:
-            return validateEPatternExecutionReporter((PatternExecutionReporter) value, diagnostics, context);
         default:
             return true;
         }
@@ -678,6 +680,58 @@ public class PatternValidator extends EObjectValidator {
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateTypePatternCallBackHandler(TypePatternCallBackHandler typePatternCallBackHandler, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        boolean result = validate_EveryMultiplicityConforms(typePatternCallBackHandler, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryDataValueConforms(typePatternCallBackHandler, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryReferenceIsContained(typePatternCallBackHandler, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryProxyResolves(typePatternCallBackHandler, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_UniqueID(typePatternCallBackHandler, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryKeyUnique(typePatternCallBackHandler, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryMapEntryUnique(typePatternCallBackHandler, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= typesValidator.validateTypeAbstractClass_LoadableType(typePatternCallBackHandler, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= typesValidator.validateTypeAbstractClass_ValidValue(typePatternCallBackHandler, diagnostics, context);
+        return result;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateTypePatternDomainVisitor(TypePatternDomainVisitor typePatternDomainVisitor, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        boolean result = validate_EveryMultiplicityConforms(typePatternDomainVisitor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryDataValueConforms(typePatternDomainVisitor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryReferenceIsContained(typePatternDomainVisitor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryProxyResolves(typePatternDomainVisitor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_UniqueID(typePatternDomainVisitor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryKeyUnique(typePatternDomainVisitor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= validate_EveryMapEntryUnique(typePatternDomainVisitor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= typesValidator.validateTypeAbstractClass_LoadableType(typePatternDomainVisitor, diagnostics, context);
+        if (result || diagnostics != null)
+            result &= typesValidator.validateTypeAbstractClass_ValidValue(typePatternDomainVisitor, diagnostics, context);
+        return result;
+    }
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
@@ -690,15 +744,6 @@ public class PatternValidator extends EObjectValidator {
      * @generated
      */
     public boolean validatePatternException(PatternException patternException, DiagnosticChain diagnostics, Map<Object, Object> context) {
-        return true;
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public boolean validateEPatternExecutionReporter(PatternExecutionReporter ePatternExecutionReporter, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return true;
     }
 

@@ -167,6 +167,24 @@ public interface PatternFactory extends EFactory {
     BackCall createBackCall();
 
     /**
+     * Returns a new object of class '<em>Type Pattern Call Back Handler</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Type Pattern Call Back Handler</em>'.
+     * @generated
+     */
+    TypePatternCallBackHandler createTypePatternCallBackHandler();
+
+    /**
+     * Returns a new object of class '<em>Type Pattern Domain Visitor</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Type Pattern Domain Visitor</em>'.
+     * @generated
+     */
+    TypePatternDomainVisitor createTypePatternDomainVisitor();
+
+    /**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

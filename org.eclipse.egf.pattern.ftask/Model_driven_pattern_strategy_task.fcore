@@ -13,6 +13,12 @@
     <contracts xmi:id="_L6JSwAHAEd-4faJMEplCjxw" name="pattern.execution.reporter">
       <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_NlkSwaAHAEd-4fJMEplCjxw"/>
     </contracts>
+    <contracts xmi:id="_JXimcAXOEd-ra8cys1-yIrg" name="pattern.call.back.handler">
+      <type xmi:type="pattern:TypePatternCallBackHandler" xmi:id="_QvrcMQXsPEd-3-vQYulrkBQ" value="org.eclipse.egf.pattern.strategy.modeldriven.ModelDrivenCallBackHandler"/>
+    </contracts>
+    <contracts xmi:id="_zJXimcAXOEd-ra8cys1-yIrg" name="pattern.modeldriven.visitor">
+      <type xmi:type="pattern:TypePatternDomainVisitor" xmi:id="_zQvrcMQXsPEd-3-vQYulrkBQ" value="org.eclipse.egf.pattern.strategy.modeldriven.EmfModelVisitor"/>
+    </contracts>
     
   </contractContainer>
 </ftask:TaskJava>

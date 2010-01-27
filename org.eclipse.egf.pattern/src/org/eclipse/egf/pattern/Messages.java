@@ -86,9 +86,12 @@ public class Messages extends NLS {
     public static String strategy_error3;
     public static String strategy_error2;
     public static String strategy_error1;
+    public static String strategy_error4;
 
     public static String collect_error1;
     public static String collect_error2;
+
+    public static String missing_callback_handler;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.PatternMessages";//$NON-NLS-1$
     static {

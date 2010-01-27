@@ -135,6 +135,25 @@
       </eGenericType>
     </eOperations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EDataType" name="EPatternExecutionReporter" instanceClassName="org.eclipse.egf.model.pattern.PatternExecutionReporter"/>
   <eClassifiers xsi:type="ecore:EClass" name="BackCall" eSuperTypes="#//Call"/>
+  <eClassifiers xsi:type="ecore:EClass" name="TypePatternCallBackHandler" eSuperTypes="Types.ecore#//TypeAbstractClass">
+    <eOperations name="getType" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return org.eclipse.egf.model.pattern.CallBackHandler.class;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypePatternDomainVisitor" eSuperTypes="Types.ecore#//TypeAbstractClass">
+    <eOperations name="getType" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return org.eclipse.egf.model.pattern.DomainVisitor.class;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
+  </eClassifiers>
 </ecore:EPackage>

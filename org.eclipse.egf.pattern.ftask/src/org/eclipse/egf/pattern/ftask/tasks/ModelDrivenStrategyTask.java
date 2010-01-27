@@ -17,7 +17,7 @@ package org.eclipse.egf.pattern.ftask.tasks;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
-import org.eclipse.egf.pattern.strategy.ModelDrivenStrategy;
+import org.eclipse.egf.pattern.strategy.modeldriven.ModelDrivenStrategy;
 
 /**
  * @author Thomas Guiu

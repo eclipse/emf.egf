@@ -369,6 +369,32 @@ public class PatternSwitch<T> {
                 result = defaultCase(theEObject);
             return result;
         }
+        case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER: {
+            TypePatternCallBackHandler typePatternCallBackHandler = (TypePatternCallBackHandler) theEObject;
+            T result = caseTypePatternCallBackHandler(typePatternCallBackHandler);
+            if (result == null)
+                result = caseTypeAbstractClass(typePatternCallBackHandler);
+            if (result == null)
+                result = caseType(typePatternCallBackHandler);
+            if (result == null)
+                result = caseTypeElement(typePatternCallBackHandler);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR: {
+            TypePatternDomainVisitor typePatternDomainVisitor = (TypePatternDomainVisitor) theEObject;
+            T result = caseTypePatternDomainVisitor(typePatternDomainVisitor);
+            if (result == null)
+                result = caseTypeAbstractClass(typePatternDomainVisitor);
+            if (result == null)
+                result = caseType(typePatternDomainVisitor);
+            if (result == null)
+                result = caseTypeElement(typePatternDomainVisitor);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
         default:
             return defaultCase(theEObject);
         }
@@ -716,6 +742,36 @@ public class PatternSwitch<T> {
      * @generated
      */
     public T caseBackCall(BackCall object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Type Pattern Call Back Handler</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Type Pattern Call Back Handler</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseTypePatternCallBackHandler(TypePatternCallBackHandler object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Type Pattern Domain Visitor</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Type Pattern Domain Visitor</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseTypePatternDomainVisitor(TypePatternDomainVisitor object) {
         return null;
     }
 

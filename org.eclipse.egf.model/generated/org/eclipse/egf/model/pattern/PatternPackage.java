@@ -1415,6 +1415,98 @@ public interface PatternPackage extends EPackage {
     int BACK_CALL_FEATURE_COUNT = CALL_FEATURE_COUNT + 0;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternCallBackHandlerImpl <em>Type Pattern Call Back Handler</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.TypePatternCallBackHandlerImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternCallBackHandler()
+     * @generated
+     */
+    int TYPE_PATTERN_CALL_BACK_HANDLER = 23;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_CALL_BACK_HANDLER__ID = TypesPackage.TYPE_ABSTRACT_CLASS__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_CALL_BACK_HANDLER__DESCRIPTION = TypesPackage.TYPE_ABSTRACT_CLASS__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_CALL_BACK_HANDLER__VALUE = TypesPackage.TYPE_ABSTRACT_CLASS__VALUE;
+
+    /**
+     * The number of structural features of the '<em>Type Pattern Call Back Handler</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_CALL_BACK_HANDLER_FEATURE_COUNT = TypesPackage.TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
+
+    /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternDomainVisitorImpl <em>Type Pattern Domain Visitor</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.TypePatternDomainVisitorImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternDomainVisitor()
+     * @generated
+     */
+    int TYPE_PATTERN_DOMAIN_VISITOR = 24;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_DOMAIN_VISITOR__ID = TypesPackage.TYPE_ABSTRACT_CLASS__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_DOMAIN_VISITOR__DESCRIPTION = TypesPackage.TYPE_ABSTRACT_CLASS__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Value</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_DOMAIN_VISITOR__VALUE = TypesPackage.TYPE_ABSTRACT_CLASS__VALUE;
+
+    /**
+     * The number of structural features of the '<em>Type Pattern Domain Visitor</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_DOMAIN_VISITOR_FEATURE_COUNT = TypesPackage.TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
+
+    /**
      * The meta object id for the '<em>Context</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1422,7 +1514,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
      */
-    int PATTERN_CONTEXT = 23;
+    int PATTERN_CONTEXT = 25;
 
     /**
      * The meta object id for the '<em>Exception</em>' data type.
@@ -1432,17 +1524,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated
      */
-    int PATTERN_EXCEPTION = 24;
-
-    /**
-     * The meta object id for the '<em>EPattern Execution Reporter</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.pattern.PatternExecutionReporter
-     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getEPatternExecutionReporter()
-     * @generated
-     */
-    int EPATTERN_EXECUTION_REPORTER = 25;
+    int PATTERN_EXCEPTION = 26;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -2023,6 +2105,26 @@ public interface PatternPackage extends EPackage {
     EClass getBackCall();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.TypePatternCallBackHandler <em>Type Pattern Call Back Handler</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Type Pattern Call Back Handler</em>'.
+     * @see org.eclipse.egf.model.pattern.TypePatternCallBackHandler
+     * @generated
+     */
+    EClass getTypePatternCallBackHandler();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.TypePatternDomainVisitor <em>Type Pattern Domain Visitor</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Type Pattern Domain Visitor</em>'.
+     * @see org.eclipse.egf.model.pattern.TypePatternDomainVisitor
+     * @generated
+     */
+    EClass getTypePatternDomainVisitor();
+
+    /**
      * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2054,17 +2156,6 @@ public interface PatternPackage extends EPackage {
      * @generated
      */
     EDataType getPatternException();
-
-    /**
-     * Returns the meta object for data type '{@link org.eclipse.egf.model.pattern.PatternExecutionReporter <em>EPattern Execution Reporter</em>}'.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @return the meta object for data type '<em>EPattern Execution Reporter</em>'.
-     * @see org.eclipse.egf.model.pattern.PatternExecutionReporter
-     * @model instanceClass="org.eclipse.egf.model.pattern.PatternExecutionReporter"
-     * @generated
-     */
-    EDataType getEPatternExecutionReporter();
 
     /**
      * Returns the factory that creates the instances of the model.
@@ -2621,6 +2712,26 @@ public interface PatternPackage extends EPackage {
         EClass BACK_CALL = eINSTANCE.getBackCall();
 
         /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternCallBackHandlerImpl <em>Type Pattern Call Back Handler</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.TypePatternCallBackHandlerImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternCallBackHandler()
+         * @generated
+         */
+        EClass TYPE_PATTERN_CALL_BACK_HANDLER = eINSTANCE.getTypePatternCallBackHandler();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternDomainVisitorImpl <em>Type Pattern Domain Visitor</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.TypePatternDomainVisitorImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternDomainVisitor()
+         * @generated
+         */
+        EClass TYPE_PATTERN_DOMAIN_VISITOR = eINSTANCE.getTypePatternDomainVisitor();
+
+        /**
          * The meta object literal for the '<em><b>Value</b></em>' reference feature.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -2650,17 +2761,6 @@ public interface PatternPackage extends EPackage {
          */
         @SuppressWarnings("hiding")
         EDataType PATTERN_EXCEPTION = eINSTANCE.getPatternException();
-
-        /**
-         * The meta object literal for the '<em>EPattern Execution Reporter</em>' data type.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * @see org.eclipse.egf.model.pattern.PatternExecutionReporter
-         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getEPatternExecutionReporter()
-         * @generated
-         */
-        @SuppressWarnings("hiding")
-        EDataType EPATTERN_EXECUTION_REPORTER = eINSTANCE.getEPatternExecutionReporter();
 
     }
 

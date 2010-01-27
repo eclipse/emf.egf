@@ -24,6 +24,7 @@ Export-Package:
  org.eclipse.egf.pattern.extension,
  org.eclipse.egf.pattern.query,
  org.eclipse.egf.pattern.strategy,
+ org.eclipse.egf.pattern.strategy.modeldriven,
  org.eclipse.egf.pattern.templates,
  org.eclipse.egf.pattern.utils
 Bundle-Vendor: %providerName

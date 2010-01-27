@@ -116,6 +116,10 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
             return createTypePatternExecutionReporter();
         case PatternPackage.BACK_CALL:
             return createBackCall();
+        case PatternPackage.TYPE_PATTERN_CALL_BACK_HANDLER:
+            return createTypePatternCallBackHandler();
+        case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR:
+            return createTypePatternDomainVisitor();
         default:
             throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -132,8 +136,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
             return createPatternContextFromString(eDataType, initialValue);
         case PatternPackage.PATTERN_EXCEPTION:
             return createPatternExceptionFromString(eDataType, initialValue);
-        case PatternPackage.EPATTERN_EXECUTION_REPORTER:
-            return createEPatternExecutionReporterFromString(eDataType, initialValue);
         default:
             throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -150,8 +152,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
             return convertPatternContextToString(eDataType, instanceValue);
         case PatternPackage.PATTERN_EXCEPTION:
             return convertPatternExceptionToString(eDataType, instanceValue);
-        case PatternPackage.EPATTERN_EXECUTION_REPORTER:
-            return convertEPatternExecutionReporterToString(eDataType, instanceValue);
         default:
             throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -325,6 +325,26 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypePatternCallBackHandler createTypePatternCallBackHandler() {
+        TypePatternCallBackHandlerImpl typePatternCallBackHandler = new TypePatternCallBackHandlerImpl();
+        return typePatternCallBackHandler;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypePatternDomainVisitor createTypePatternDomainVisitor() {
+        TypePatternDomainVisitorImpl typePatternDomainVisitor = new TypePatternDomainVisitorImpl();
+        return typePatternDomainVisitor;
+    }
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
@@ -353,24 +373,6 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
      * @generated
      */
     public String convertPatternExceptionToString(EDataType eDataType, Object instanceValue) {
-        return super.convertToString(eDataType, instanceValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public PatternExecutionReporter createEPatternExecutionReporterFromString(EDataType eDataType, String initialValue) {
-        return (PatternExecutionReporter) super.createFromString(eDataType, initialValue);
-    }
-
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public String convertEPatternExecutionReporterToString(EDataType eDataType, Object instanceValue) {
         return super.convertToString(eDataType, instanceValue);
     }
 

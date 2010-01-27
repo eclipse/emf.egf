@@ -1022,7 +1022,9 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
             resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
         }
         editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
-        editingDomain.getResourceSet().eAdapters().add(new EGFAdapter(getSite()));
+         //
+         editingDomain.getResourceSet().eAdapters().add(new EGFAdapter(getSite()));
+         
     }
 
     /**
