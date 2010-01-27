@@ -98,6 +98,8 @@ public class JetEngine extends PatternEngine {
     }
 
     private void setupExecutionReporter(PatternContext context) throws PatternException {
+        if (context.hasReporter())
+            return;
         PatternExecutionReporter reporter = (PatternExecutionReporter) context.getValue(PatternContext.PATTERN_REPORTER);
         if (reporter == null)
             reporter = new ConsoleReporter();

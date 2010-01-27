@@ -93,6 +93,10 @@ public class PatternContext implements BundleAccessor {
         this.reporter = reporter;
     }
 
+    public boolean hasReporter() {
+        return reporter != null;
+    }
+
     public PatternExecutionReporter getReporter() {
         if (reporter == null) {
             // no need for a chain of command
