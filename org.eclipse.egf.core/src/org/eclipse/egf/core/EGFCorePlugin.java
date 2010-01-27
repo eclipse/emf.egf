@@ -39,6 +39,8 @@ import org.osgi.framework.BundleContext;
  */
 public class EGFCorePlugin extends EGFAbstractPlugin {
 
+  public static String EDITING_DOMAIN_ID = "org.eclipse.egf.core.editing.domain"; //$NON-NLS-1$  
+
   /**
    * Plug-in unique instance.
    */
