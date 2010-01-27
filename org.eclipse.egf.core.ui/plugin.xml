@@ -27,6 +27,19 @@
     name="%egf.editor.listener.contributor" 
     schema="schema/editor.listener.contributor.exsd"
   />
+  
+  <!-- ================================================================================= -->
+  <!-- Editing Domain                                                                    -->
+  <!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.emf.transaction.editingDomains"
+  >
+    <editingDomain
+      factory="org.eclipse.egf.core.ui.domain.EGFEditingDomainFactory"
+      id="org.eclipse.egf.core.editing.domain"
+    />
+  </extension>  
 
   <!-- ================================================================================= -->
   <!-- Keywords                                                                          -->

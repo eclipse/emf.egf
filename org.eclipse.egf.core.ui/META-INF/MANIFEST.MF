@@ -12,12 +12,15 @@ Require-Bundle:
  org.eclipse.search,
  org.eclipse.jdt.ui;visibility:=reexport,
  org.eclipse.egf.common.ui;visibility:=reexport,
- org.eclipse.egf.core;visibility:=reexport
+ org.eclipse.egf.core;visibility:=reexport,
+ org.eclipse.emf.workspace;visibility:=reexport,
+ org.eclipse.emf.workspace.ui;visibility:=reexport
 Export-Package: 
  org.eclipse.egf.core.ui,
  org.eclipse.egf.core.ui.contributor,
  org.eclipse.egf.core.ui.diagnostic,
  org.eclipse.egf.core.ui.dialogs,
+ org.eclipse.egf.core.ui.domain,
  org.eclipse.egf.core.ui.wizard,
  org.eclipse.egf.core.ui.l10n
 Bundle-ActivationPolicy: lazy

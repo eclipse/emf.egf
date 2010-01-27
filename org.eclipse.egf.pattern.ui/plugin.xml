@@ -77,12 +77,6 @@
  	</extension>
    
     <extension
-        point="org.eclipse.emf.transaction.editingDomains">
-    	<editingDomain
-           factory="org.eclipse.egf.pattern.ui.editors.domain.PatternEditingDomainFactory"
-           id="org.eclipse.egf.pattern.ui.editors.PatternEditingDomain"/>
-  	</extension>
-    <extension
           id="PatternBuilder"
           point="org.eclipse.core.resources.builders"
           name="%EGFPatternBuilder">

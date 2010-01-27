@@ -63,4 +63,8 @@ public class CoreUIMessages {
   public static String _UI_DiagnosisOfNObject_message;
   public static String _UI_DiagnosisOfNObjects_message;
 
+  // Resource Listener
+  public static String ResourceListener_reloadDialog_title;
+  public static String ResourceListener_reloadDialog_message;
+
 }

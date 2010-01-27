@@ -8,8 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
- *      XiaoRu Chen, Soyatec 
+ * Thales Corporate Services S.A.S - initial API and implementation
+ * XiaoRu Chen, Soyatec
  * 
  * </copyright>
  */
@@ -18,6 +18,7 @@ package org.eclipse.egf.pattern.ui.editors.actions;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.egf.common.helper.URIHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternLibrary;
@@ -41,41 +42,41 @@ import org.eclipse.ui.PartInitException;
  */
 public class OpenReadOnlyPatternDebugAction implements IObjectActionDelegate {
 
-    protected IStructuredSelection selection;
+  protected IStructuredSelection selection;
 
-    private IWorkbenchPart targetPart;
+  private IWorkbenchPart targetPart;
 
-    public void selectionChanged(IAction action, ISelection selection) {
-        this.selection = (IStructuredSelection) selection;
+  public void selectionChanged(IAction action, ISelection selection) {
+    this.selection = (IStructuredSelection) selection;
+  }
+
+  public void setActivePart(IAction action, IWorkbenchPart targetPart) {
+    this.targetPart = targetPart;
+
+  }
+
+  public void run(IAction action) {
+    try {
+      IFile file = (IFile) selection.getFirstElement();
+      URI uri = URIHelper.getPlatformURI(file.getFullPath());
+      TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+
+      Resource res = editingDomain.getResourceSet().getResource(uri, true);
+
+      FactoryComponent fc = (FactoryComponent) res.getContents().get(0);
+      PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
+      PatternLibrary patternLibrary = pvp.getLibraries().get(0);
+
+      Pattern pattern = (Pattern) patternLibrary.getElements().get(0);
+      // URI uri2 = EcoreUtil.getURI(pattern);
+      PatternEditorInput input = new PatternEditorInput(res, pattern.getID());
+      // Set the editor on a pattern in read only mode.
+      input.setReadOnly(true);
+
+      targetPart.getSite().getPage().openEditor(input, "org.eclipse.egf.pattern.ui.editors.PatternEditor");
+    } catch (PartInitException e) {
+      e.printStackTrace();
+
     }
-
-    public void setActivePart(IAction action, IWorkbenchPart targetPart) {
-        this.targetPart = targetPart;
-
-    }
-
-    public void run(IAction action) {
-        try {
-            IFile file = (IFile) selection.getFirstElement();
-            URI uri = URIHelper.getPlatformURI(file.getFullPath());
-            TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.eclipse.egf.pattern.ui.editors.PatternEditingDomain");
-
-            Resource res = editingDomain.getResourceSet().getResource(uri, true);
-
-            FactoryComponent fc = (FactoryComponent) res.getContents().get(0);
-            PatternViewpoint pvp = (PatternViewpoint) fc.getViewpointContainer().getViewpoints().get(0);
-            PatternLibrary patternLibrary = pvp.getLibraries().get(0);
-
-            Pattern pattern = (Pattern) patternLibrary.getElements().get(0);
-            // URI uri2 = EcoreUtil.getURI(pattern);
-            PatternEditorInput input = new PatternEditorInput(res, pattern.getID());
-            // Set the editor on a pattern in read only mode.
-            input.setReadOnly(true);
-
-            targetPart.getSite().getPage().openEditor(input, "org.eclipse.egf.pattern.ui.editors.PatternEditor");
-        } catch (PartInitException e) {
-            e.printStackTrace();
-
-        }
-    }
+  }
 }
