@@ -27,11 +27,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.MethodEditorActivationListener;
-import org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.internal.ui.JavaPlugin;
-import org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider;
 import org.eclipse.jdt.internal.ui.javaeditor.EditorUtility;
 import org.eclipse.jdt.internal.ui.javaeditor.JavaSourceViewer;
 import org.eclipse.jdt.internal.ui.text.PreferencesAdapter;
@@ -45,20 +43,12 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IPartService;
-import org.eclipse.ui.IWindowListener;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.editors.text.TextEditor;
-import org.eclipse.ui.part.MultiEditorInput;
-import org.eclipse.ui.part.MultiPageEditorSite;
 import org.eclipse.ui.texteditor.ChainedPreferenceStore;
 
 /**
@@ -77,7 +67,7 @@ public class JavaTextEditor extends TextEditor {
 
     public JavaTextEditor(Pattern pattern) throws CoreException, IOException {
         this.pattern = pattern;
-        CompilationUnitDocumentProvider provider = new CompilationUnitDocumentProvider();
+        JavaDocumentProvider provider = new JavaDocumentProvider(this);
         setDocumentProvider(provider);
     }
 
@@ -95,6 +85,7 @@ public class JavaTextEditor extends TextEditor {
      * (non-Javadoc)
      * 
      * @see
+     * 
      * 
      * 
      * org.eclipse.ui.editors.text.TextEditor#doSetInput(org.eclipse.ui.IEditorInput

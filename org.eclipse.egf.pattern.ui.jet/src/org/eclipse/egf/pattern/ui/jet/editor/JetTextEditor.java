@@ -30,18 +30,10 @@ import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
-import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IPartService;
-import org.eclipse.ui.IWindowListener;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.TextEditor;
-import org.eclipse.ui.part.MultiPageEditorSite;
 
 /**
  * @author Yahong Song - Soyatec
@@ -117,13 +109,11 @@ public class JetTextEditor extends JETTextEditor {
         }
 
         protected IStatus run(IProgressMonitor monitor) {
-            System.out.println("Refresh_begin");
             JetEditorHelper.refreshPublicTemplateEditor(JetTextEditor.this);
             if (lazy) {
                 schedule();
                 lazy = false;
             }
-            System.out.println("Refresh_end");
             return Status.OK_STATUS;
         }
     }

@@ -53,7 +53,7 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
         try {
             templateFile = setPublicTemplateEditor(pattern, methods, TEMPLATE_FILE_EXTENTION);
         } catch (Exception e) {
-            e.printStackTrace();
+            Activator.getDefault().log(e);
         }
         initProblems();
         divideByMethods();

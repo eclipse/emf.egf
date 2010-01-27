@@ -32,7 +32,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
-import org.eclipse.egf.pattern.ui.editors.templateEditor.AbstractTemplateEditor;
+import org.eclipse.egf.pattern.ui.java.Activator;
 import org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.internal.ui.JavaPlugin;
@@ -48,6 +48,8 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.editors.text.TextEditor;
+import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.internal.WorkbenchPage;
 import org.eclipse.ui.part.MultiPageEditorPart;
 import org.eclipse.ui.part.MultiPageEditorSite;
 import org.eclipse.ui.texteditor.IDocumentProvider;
@@ -154,15 +156,23 @@ public class JavaTextEditorHelper {
         IDocumentProvider p = fEditor.getDocumentProvider();
         if (p == null) {
             IFile templateFile = javaTemplateEditor.getTemplateFile();
+            WorkbenchPage templateActivePage = javaTemplateEditor.getTemplateActivePage();
             try {
-                fEditor = (JavaEditor) AbstractTemplateEditor.initEditor(templateFile);
+                if (templateActivePage == null || templateFile == null){
+                    return; 
+                }
+                fEditor = (JavaEditor) IDE.openEditor(templateActivePage, templateFile, false);
+                templateActivePage.setEditorAreaVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                Activator.getDefault().log(e);
             }
             p = fEditor.getDocumentProvider();
         }
         IEditorInput editorInput = fEditor.getEditorInput();
         if(editorInput ==null){
+            return;
+        }
+        if(p==null){
             return;
         }
         IAnnotationModel javaAnnotationModel = p.getAnnotationModel(editorInput);

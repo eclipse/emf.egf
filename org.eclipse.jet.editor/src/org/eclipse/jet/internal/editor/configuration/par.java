@@ -36,6 +36,6 @@ public class par extends FastPartitioner {
 				e.printStackTrace();
 			}
 		}
-		System.out.print(buffer);
+//		System.out.print(buffer);
 	}
 }

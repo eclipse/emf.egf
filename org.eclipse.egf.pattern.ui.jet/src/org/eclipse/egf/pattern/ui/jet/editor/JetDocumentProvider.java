@@ -27,8 +27,11 @@ import org.eclipse.ui.IFileEditorInput;
  */
 public class JetDocumentProvider extends JETDocumentProvider {
 
+    JETTextEditor editor;
+
     public JetDocumentProvider(JETTextEditor editor) {
         super(editor);
+        this.editor = editor;
     }
 
     protected IAnnotationModel createAnnotationModel(Object element) throws CoreException {
@@ -39,4 +42,16 @@ public class JetDocumentProvider extends JETDocumentProvider {
             return super.createAnnotationModel(element);
         }
     }
+
+    @Override
+    public boolean isSynchronized(Object element) {
+        boolean isSynchronized = super.isSynchronized(element);
+        if (isSynchronized && editor.isDirty()) {
+            long modificationStamp = getModificationStamp(element);
+            long synchronizationStamp = getSynchronizationStamp(element);
+            return isSynchronized && (modificationStamp == synchronizationStamp);
+        }
+        return isSynchronized;
+    }
+
 }

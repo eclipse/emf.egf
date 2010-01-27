@@ -79,15 +79,18 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     }
 
     public String getToolTipText() {
-
-        return Messages.input_tooltip;
+        if (getFile() != null) {
+            return getFile().getFullPath().toString();
+        } else {
+            return Messages.input_tooltip;
+        }
     }
 
     public Object getAdapter(Class adapter) {
-		if (IFile.class == adapter) {
-			return getFile();
-		}
-		return null;
+        if (IFile.class == adapter) {
+            return getFile();
+        }
+        return null;
     }
 
     private class PatternPersistableElement implements IPersistableElement {
@@ -111,9 +114,12 @@ public class PatternMethodEditorInput implements IFileEditorInput {
             try {
                 file.create(new ByteArrayInputStream(new byte[0]), true, null);
             } catch (CoreException e) {
-            	/* all modifications of the recources that subclipse
-            	touches do happen outside of eclipse own control.Resources are out of synch .*/
-//                Activator.getDefault().logError(e);
+                /*
+                 * all modifications of the recources that subclipse
+                 * touches do happen outside of eclipse own control.Resources
+                 * are out of synch .
+                 */
+                // Activator.getDefault().logError(e);
             }
         return file;
     }

@@ -19,23 +19,19 @@ package org.eclipse.egf.pattern.ui.editors.templateEditor;
 import java.io.ByteArrayInputStream;
 import java.io.StringBufferInputStream;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IWorkspace;
-import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.platform.pde.IPlatformBundle;
@@ -49,37 +45,16 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IOpenable;
-import org.eclipse.jdt.core.IPackageFragment;
+import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.JavaCore;
-import org.eclipse.jdt.internal.core.JavaModel;
-import org.eclipse.jdt.internal.core.JavaProject;
-import org.eclipse.jdt.internal.core.PackageFragmentRoot;
-import org.eclipse.jdt.internal.ui.util.BusyIndicatorRunnableContext;
-import org.eclipse.jdt.internal.ui.util.CoreUtility;
-import org.eclipse.jdt.internal.ui.wizards.IStatusChangeListener;
-import org.eclipse.jdt.internal.ui.wizards.NewWizardMessages;
-import org.eclipse.jdt.internal.ui.wizards.buildpaths.BuildPathsBlock;
-import org.eclipse.jdt.ui.wizards.JavaCapabilityConfigurationPage;
-import org.eclipse.jdt.ui.wizards.NewJavaProjectWizardPage;
 import org.eclipse.jface.text.Position;
-import org.eclipse.pde.core.build.IBuildModel;
-import org.eclipse.pde.core.plugin.IPluginBase;
-import org.eclipse.pde.core.plugin.IPluginImport;
-import org.eclipse.pde.core.plugin.IPluginLibrary;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
-import org.eclipse.pde.core.plugin.PluginRegistry;
-import org.eclipse.pde.internal.core.bundle.Bundle;
-import org.eclipse.pde.internal.core.bundle.WorkspaceBundleModel;
-import org.eclipse.pde.internal.core.ibundle.IBundleModel;
-import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
-import org.eclipse.pde.internal.core.natures.PluginProject;
-import org.eclipse.pde.internal.core.plugin.PluginBase;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -94,13 +69,15 @@ import org.eclipse.ui.part.MultiPageEditorPart;
  */
 public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
     
-    private String projectName = ".templateproject";
+    private String projectName = "___templateproject";
     
 	protected IEditorPart openEditor;
 	
     protected Map<String, Position> startPositions = new HashMap<String, Position>();
+    
+    protected WorkbenchPage  templateActivePage;
 
-	// The adapter is for refreshing the editor title while the name of pattern
+    // The adapter is for refreshing the editor title while the name of pattern
 	// has been changed.
 	AdapterImpl refresher = new AdapterImpl() {
 		public void notifyChanged(Notification msg) {
@@ -113,8 +90,6 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 			}
 		}
 	};
-
-    private BuildPathsBlock fBuildPathsBlock;
 
 	public AbstractTemplateEditor() {
 		super();
@@ -168,13 +143,12 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 		return input.getPattern();
 	}
 
-	public static IEditorPart initEditor(IFile templateFile) throws CoreException {
+	public IEditorPart initEditor(IFile templateFile) throws CoreException {
 		try {
 		    IWorkbench workbench = PlatformUI.getWorkbench();
 		    IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
-			WorkbenchPage  templateActivePage = /*new WorkbenchPage(
-	                    (WorkbenchWindow) activeWorkbenchWindow, null);*/
-			    (WorkbenchPage) activeWorkbenchWindow.getActivePage();
+			templateActivePage = new WorkbenchPage(
+	                    (WorkbenchWindow) activeWorkbenchWindow, null);
 			if ( templateActivePage == null || templateFile == null)
 				return null;
 			IEditorPart openEditor = IDE.openEditor(templateActivePage, templateFile, false);
@@ -188,42 +162,56 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 
 	protected IFile setPublicTemplateEditor(Pattern pattern,
 			EList<PatternMethod> methods, String fileExtention) {
-		IFile templateFile = null;
+ 		IFile templateFile = null;
 		try {
 			Resource eResource = pattern.eResource();
 			IPlatformFcore platformFcore = EGFCorePlugin
 					.getPlatformFcore(eResource);
 			IPlatformBundle platformBundle = platformFcore.getPlatformBundle();
-			IPluginBase pluginBase = platformBundle.getPluginBase();
-			IPluginLibrary[] libraries = pluginBase.getLibraries();
-			IPluginImport[] imports = pluginBase.getImports();
             IProject project = platformBundle.getProject();
-                        
-            NullProgressMonitor monitor = new NullProgressMonitor();
             
-            IProject templateProject = ResourcesPlugin.getWorkspace().getRoot().getProject(projectName);
-            
-            if (!templateProject.exists()) {
-                // new one pluginProject.
-                PluginProject pluginProject = TemplateEditorUtility.createPluginProject(projectName, monitor);
-                templateProject = pluginProject.getProject();
-
-                IBundlePluginModelBase pluginModelBase = (IBundlePluginModelBase) TemplateEditorUtility.getPluginModelBase(templateProject);
-                WorkspaceBundleModel bundleModel = (WorkspaceBundleModel) pluginModelBase.getBundleModel();
-                bundleModel.setEditable(true);
-                IPluginBase templatePluginBase = TemplateEditorUtility.getPluginBase(templateProject);
-                String name = project.getName();
-
-                for (IPluginLibrary library : libraries) {
-                    templatePluginBase.add(library);
+            IJavaProject userProject = JavaCore.create(project);
+            IPackageFragmentRoot[] allPackageFragmentRoots = userProject.getAllPackageFragmentRoots();
+            Set classpathEntrys= new HashSet<IClasspathEntry>();
+            boolean isExported = false;
+            for (IPackageFragmentRoot root : allPackageFragmentRoots) {
+                IClasspathEntry rawClasspathEntry = root.getRawClasspathEntry();
+                isExported = rawClasspathEntry.isExported();
+                IPath path = root.getPath();
+                int contentKind = rawClasspathEntry.getContentKind();
+                IPath attachPath = rawClasspathEntry.getSourceAttachmentPath();
+                IPath attachRoot = rawClasspathEntry.getSourceAttachmentRootPath();
+                switch (contentKind) {
+                case IClasspathEntry.CPE_SOURCE:
+                    classpathEntrys.add(JavaCore.newSourceEntry(path));
+                    break;
+                case IClasspathEntry.CPE_LIBRARY:
+                    classpathEntrys.add(JavaCore.newLibraryEntry(path, attachPath, attachRoot, isExported));
+                    break;
+                case IClasspathEntry.CPE_VARIABLE:
+                    classpathEntrys.add(JavaCore.newVariableEntry(path, attachPath, attachRoot, isExported));
+                    break;
+                case IClasspathEntry.CPE_PROJECT:
+                    classpathEntrys.add(JavaCore.newProjectEntry(path, isExported));
+                    break;
+                case IClasspathEntry.CPE_CONTAINER:
+                    classpathEntrys.add(JavaCore.newContainerEntry(path, isExported));
+                    break;
                 }
-                for (IPluginImport pluginImport : imports) {
-                    templatePluginBase.add(pluginImport);
-                }
-                bundleModel.save();
-                bundleModel.setEditable(false);
             }
-			
+            NullProgressMonitor monitor = new NullProgressMonitor();
+            String tempProjectName ="."+project.getName()+projectName;
+            IProject templateProject = ResourcesPlugin.getWorkspace().getRoot().getProject(tempProjectName);
+
+            if (!templateProject.exists()) {
+                // templateProject.delete(true, monitor);
+                IJavaProject javaProject = TemplateEditorUtility.createJavaProject(tempProjectName, monitor);
+                templateProject = javaProject.getProject();
+                IClasspathEntry[] compileEntrys = (IClasspathEntry[]) classpathEntrys.toArray(new IClasspathEntry[classpathEntrys.size()]);
+                IClasspathEntry[] rawClasspath = javaProject.getRawClasspath();
+                IClasspathEntry[] newIClasspathEntry = TemplateEditorUtility.getNewIClasspathEntry(compileEntrys, rawClasspath);
+                javaProject.setRawClasspath(newIClasspathEntry, monitor);
+            }
 			IFolder src = templateProject.getFolder("src");
 			if (!src.exists()) {
 			    src.create(true, false, null);
@@ -260,13 +248,6 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 		}
 		return templateFile;
 	}
-	
-    private BuildPathsBlock getBuildPathsBlock() {
-        if (fBuildPathsBlock == null) {
-            fBuildPathsBlock= new BuildPathsBlock(new BusyIndicatorRunnableContext(), null, 0, true, null);
-        }
-        return fBuildPathsBlock;
-    }
 	/**
 	 * While the name of the pattern has been changed, refresh the editor title.
 	 */
@@ -275,7 +256,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 			pattern.eAdapters().add(refresher);
 		}
 	}
-
+	
 	/**
 	 * Remove the Adapter add for refreshing the editor title
 	 */
@@ -285,6 +266,10 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 			pattern.eAdapters().remove(refresher);
 		}
 	}
+	
+    public WorkbenchPage getTemplateActivePage() {
+        return templateActivePage;
+    }
 
 	@Override
 	public void dispose() {

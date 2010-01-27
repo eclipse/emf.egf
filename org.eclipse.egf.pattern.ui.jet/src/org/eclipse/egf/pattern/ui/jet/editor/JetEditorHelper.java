@@ -32,7 +32,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
-import org.eclipse.egf.pattern.ui.editors.templateEditor.AbstractTemplateEditor;
+import org.eclipse.egf.pattern.ui.jet.Activator;
 import org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jdt.core.ICompilationUnit;
@@ -47,7 +47,6 @@ import org.eclipse.jet.core.parser.ProblemSeverity;
 import org.eclipse.jet.core.parser.ast.JETASTElement;
 import org.eclipse.jet.core.parser.ast.JETCompilationUnit;
 import org.eclipse.jet.core.parser.ast.Problem;
-import org.eclipse.jet.internal.editor.Activator;
 import org.eclipse.jet.internal.editor.JETEditorHelper;
 import org.eclipse.jet.internal.editor.JETTextEditor;
 import org.eclipse.jet.internal.editor.annotations.JETProblemAnnotation;
@@ -60,10 +59,10 @@ import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.ide.IDE;
+import org.eclipse.ui.internal.WorkbenchPage;
 import org.eclipse.ui.part.MultiPageEditorPart;
 import org.eclipse.ui.part.MultiPageEditorSite;
 import org.eclipse.ui.texteditor.IDocumentProvider;
@@ -214,8 +213,7 @@ public class JetEditorHelper extends JETEditorHelper {
             ICompilationUnit copy = compilationUnit.getWorkingCopy(owner, problemRequestor, null);
             copy.reconcile(0, true, owner, null);
         } catch (JavaModelException e) {
-            System.out.println(e);
-            Activator.log(e);
+            Activator.getDefault().log(e);
         }
         return problems;
     }
@@ -254,13 +252,14 @@ public class JetEditorHelper extends JETEditorHelper {
                     }
                 }
             } catch (Exception e) {
+                Activator.getDefault().log(e);
             }
         }else{
             try {
                 templateFile.create(new ByteArrayInputStream(new byte[0]),
                         true, null);
             } catch (CoreException e) {
-                e.printStackTrace();
+                Activator.getDefault().log(e);
             }
             refreshPublicTemplateEditor(pattern,templateFile,editor);
         }
@@ -285,14 +284,25 @@ public class JetEditorHelper extends JETEditorHelper {
         IDocumentProvider fDocumentProvider = fEditor.getDocumentProvider();
         if (fDocumentProvider == null) {
             IFile templateFile = jetTemplateEditor.getTemplateFile();
+            WorkbenchPage templateActivePage = jetTemplateEditor.getTemplateActivePage();
             try {
-                fEditor = (JETTextEditor) AbstractTemplateEditor.initEditor(templateFile);
+                if (templateActivePage == null || templateFile == null){
+                    return; 
+                }
+                fEditor = (JETTextEditor) IDE.openEditor(templateActivePage, templateFile, false);
+                templateActivePage.setEditorAreaVisible(false);
             } catch (Exception e) {
-                e.printStackTrace();
+                Activator.getDefault().log(e);
             }
             fDocumentProvider = fEditor.getDocumentProvider();
         }
+        if(fEditor == null){
+            return;
+        }
         IDocument fDocument = fDocumentProvider.getDocument(fEditor.getEditorInput());
+        if(fDocument == null){
+            return;
+        }
 
         Map<String, Position> mappings = getMappings(pattern, editors);
         if (mappings == null || mappings.size() == 0) {
@@ -471,7 +481,6 @@ public class JetEditorHelper extends JETEditorHelper {
                 result[i + proposalsAdd.size()] = proposals[i];
             }
         }
-
         return result;
     }
 }
