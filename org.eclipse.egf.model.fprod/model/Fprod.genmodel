@@ -15,9 +15,9 @@
   <foreignModel>Fprod.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Fprod" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
-      generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true"
-      childCreationExtenders="true" contentTypeIdentifier="" fileExtensions="fprod"
-      ecorePackage="Fprod.ecore#/">
+      generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
+      extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier=""
+      fileExtensions="fprod" ecorePackage="Fprod.ecore#/">
     <genClasses ecoreClass="Fprod.ecore#//ProductionPlan">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Fprod.ecore#//ProductionPlan/invocations"/>
     </genClasses>
