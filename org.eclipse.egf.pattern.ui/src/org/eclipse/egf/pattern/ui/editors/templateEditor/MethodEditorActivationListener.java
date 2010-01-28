@@ -16,6 +16,9 @@
 
 package org.eclipse.egf.pattern.ui.editors.templateEditor;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.IPartListener;
@@ -64,7 +67,7 @@ public abstract class MethodEditorActivationListener implements IPartListener, I
         IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
         IEditorPart activeEditor = activePage.getActiveEditor();
         if (activeEditor == getMultiPageEditor()) {
-            handleActivation();
+            gotoCheck();
         }
     }
 
@@ -89,7 +92,7 @@ public abstract class MethodEditorActivationListener implements IPartListener, I
         if (window == editorSite.getWorkbenchWindow() && getMultiPageEditor() == activeEditor) {
             window.getShell().getDisplay().asyncExec(new Runnable() {
                 public void run() {
-                    handleActivation();
+                    gotoCheck();
                 }
             });
         }
@@ -119,6 +122,14 @@ public abstract class MethodEditorActivationListener implements IPartListener, I
         IEditorSite editorSite = textEditor.getEditorSite();
         IEditorPart editor = ((MultiPageEditorSite) editorSite).getMultiPageEditor();
         return editor;
+    }
+
+    private void gotoCheck() {
+        IEditorInput editorInput = textEditor.getEditorInput();
+        IFile file = ((PatternMethodEditorInput) editorInput).getFile();
+        if (file != null) {
+            handleActivation();
+        }
     }
 
     /**

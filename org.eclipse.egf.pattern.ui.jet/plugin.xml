@@ -16,7 +16,7 @@
             default="false"
             icon="icons/sample.gif"
             id="org.eclipse.egf.pattern.ui.JetTemplateEditor"
-            name="Jet Template Editor">
+            name="%editor.name">
       </editor>
    </extension>
 

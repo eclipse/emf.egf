@@ -24,7 +24,6 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateEditorUtility;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.computer.PatternParameterProposalComputer;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.computer.PatternVariableProposalComputer;
-import org.eclipse.egf.pattern.ui.java.JavaTextEditorMessages;
 import org.eclipse.egf.pattern.ui.java.editor.JavaTextEditor;
 import org.eclipse.egf.pattern.ui.java.editor.JavaTextEditorHelper;
 import org.eclipse.egf.pattern.ui.java.editor.contentassist.computer.JavaTypeProposalComputer;
@@ -33,7 +32,6 @@ import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.internal.ui.javaeditor.EditorUtility;
 import org.eclipse.jdt.internal.ui.text.java.AbstractJavaCompletionProposal;
-import org.eclipse.jdt.internal.ui.text.java.JavaCompletionProposal;
 import org.eclipse.jdt.internal.ui.text.java.LazyGenericTypeProposal;
 import org.eclipse.jdt.internal.ui.text.template.contentassist.TemplateProposal;
 import org.eclipse.jface.text.ITextViewer;
@@ -97,12 +95,12 @@ public class JavaTextEditorContentAssistProcessor implements IContentAssistProce
         List<ICompletionProposal> javaTypeProposals = updateProposalOffset(computeProposals, offset, mappingOffset);
         addProposal(proposals, javaTypeProposals);
 
-        ICompletionProposal[] result;
+        ICompletionProposal[] result = null;
 
         if (proposals.size() == 0) {
-            result = new ICompletionProposal[1];
-            JavaCompletionProposal propsal = new JavaCompletionProposal("", 0, 0, null, JavaTextEditorMessages.JavaTextEditorContentAssistProcessor_No_Default_proposals, 0); //$NON-NLS-1$
-            result[0] = propsal;
+            // result = new ICompletionProposal[1];
+            //            JavaCompletionProposal propsal = new JavaCompletionProposal("", 0, 0, null, JavaTextEditorMessages.JavaTextEditorContentAssistProcessor_No_Default_proposals, 0); //$NON-NLS-1$
+            // result[0] = propsal;
         } else {
             result = new ICompletionProposal[proposals.size()];
             for (int i = 0; i < proposals.size(); i++) {

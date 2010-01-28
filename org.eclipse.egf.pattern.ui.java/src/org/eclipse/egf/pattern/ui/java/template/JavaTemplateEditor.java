@@ -36,10 +36,6 @@ import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * @author XiaoRu Chen - Soyatec
@@ -54,7 +50,7 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
     private List<JavaTextEditor> javaEditorList = new ArrayList<JavaTextEditor>();
 
     private IAnnotationModel javaAnnotationModel;
-    
+
     private IFile templateFile;
 
     private Map<String, Map<Annotation, Position>> methodJavaAnnotations = new HashMap<String, Map<Annotation, Position>>();
@@ -145,7 +141,7 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
     public List<JavaTextEditor> getEditorList() {
         return javaEditorList;
     }
-    
+
     public IFile getTemplateFile() {
         return templateFile;
     }

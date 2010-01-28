@@ -125,14 +125,13 @@ public class JavaTextEditorHelper {
                 }
             } catch (Exception e) {
             }
-        }else{
+        } else {
             try {
-                templateFile.create(new ByteArrayInputStream(new byte[0]),
-                        true, null);
+                templateFile.create(new ByteArrayInputStream(new byte[0]), true, null);
             } catch (CoreException e) {
                 e.printStackTrace();
             }
-            refreshPublicTemplateEditor(pattern,templateFile,editor);
+            refreshPublicTemplateEditor(pattern, templateFile, editor);
         }
     }
 
@@ -158,8 +157,8 @@ public class JavaTextEditorHelper {
             IFile templateFile = javaTemplateEditor.getTemplateFile();
             WorkbenchPage templateActivePage = javaTemplateEditor.getTemplateActivePage();
             try {
-                if (templateActivePage == null || templateFile == null){
-                    return; 
+                if (templateActivePage == null || templateFile == null) {
+                    return;
                 }
                 fEditor = (JavaEditor) IDE.openEditor(templateActivePage, templateFile, false);
                 templateActivePage.setEditorAreaVisible(false);
@@ -169,10 +168,10 @@ public class JavaTextEditorHelper {
             p = fEditor.getDocumentProvider();
         }
         IEditorInput editorInput = fEditor.getEditorInput();
-        if(editorInput ==null){
+        if (editorInput == null) {
             return;
         }
-        if(p==null){
+        if (p == null) {
             return;
         }
         IAnnotationModel javaAnnotationModel = p.getAnnotationModel(editorInput);
@@ -242,6 +241,9 @@ public class JavaTextEditorHelper {
             Object next = annotationIterator.next();
             if (next instanceof Annotation) {
                 Annotation annotation = (Annotation) next;
+                if (annotation.getText() == null) {
+                    continue;
+                }
                 String filter = "";
                 for (Object obj : list) {
                     if (obj instanceof PatternParameter) {
@@ -322,15 +324,12 @@ public class JavaTextEditorHelper {
         if (multiPageEditorPart == null)
             return offset;
 
-        Map<String, JavaTextEditor> editors = ((JavaTemplateEditor) multiPageEditorPart).getEditorMap();
+        List<JavaTextEditor> editors = ((JavaTemplateEditor) multiPageEditorPart).getEditorList();
         int mappingOffset = offset;
 
         int activePage = multiPageEditorPart.getActivePage();
-        EList<PatternMethod> methods = pattern.getMethods();
         for (int i = 0; i < activePage; i++) {
-            PatternMethod method = methods.get(i);
-            String id = method.getID();
-            JavaTextEditor currentEditor = editors.get(id);
+            JavaTextEditor currentEditor = editors.get(i);
             if (currentEditor != null && !(editor).equals(currentEditor)) {
                 ISourceViewer viewer = currentEditor.getViewer();
                 int length = viewer.getDocument().getLength();
@@ -339,7 +338,6 @@ public class JavaTextEditorHelper {
                 return mappingOffset;
             }
         }
-
         return mappingOffset;
     }
 

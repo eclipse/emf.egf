@@ -79,8 +79,8 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     }
 
     public String getToolTipText() {
-        if (getFile() != null) {
-            return getFile().getFullPath().toString();
+        if (getPatternMethod() != null) {
+            return getPatternMethod().getName();
         } else {
             return Messages.input_tooltip;
         }
@@ -109,7 +109,10 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     public IFile getFile() {
         IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(getResource());
         IProject project = platformFcore.getPlatformBundle().getProject();
-        IFile file = project.getFile(getPatternMethod().getPatternFilePath().path());
+        PatternMethod patternMethod = getPatternMethod();
+        if (patternMethod == null)
+            return null;
+        IFile file = project.getFile(patternMethod.getPatternFilePath().path());
         if (!file.exists())
             try {
                 file.create(new ByteArrayInputStream(new byte[0]), true, null);

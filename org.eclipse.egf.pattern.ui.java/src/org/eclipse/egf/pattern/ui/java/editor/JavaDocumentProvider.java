@@ -16,7 +16,6 @@
 
 package org.eclipse.egf.pattern.ui.java.editor;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.jdt.internal.ui.javaeditor.CompilationUnitDocumentProvider;
 import org.eclipse.jdt.internal.ui.javaeditor.JavaDocumentSetupParticipant;
 import org.eclipse.jdt.ui.text.IJavaPartitions;
@@ -53,10 +52,5 @@ public class JavaDocumentProvider extends CompilationUnitDocumentProvider {
             return isSynchronized && (modificationStamp == synchronizationStamp);
         }
         return isSynchronized;
-    }
-
-    public boolean isNotSynchronizedException(Object element, CoreException ex) {
-
-        return super.isNotSynchronizedException(element, ex);
     }
 }
