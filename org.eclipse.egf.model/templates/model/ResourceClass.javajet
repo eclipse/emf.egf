@@ -93,19 +93,6 @@ public class <%=genPackage.getResourceClassName()%> extends <%=genPackage.getImp
 <%if (genModel.useClassOverrideAnnotation()) {%>
 	@Override
 <%}%>
-	public boolean isTrackingModification() {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-<%if (genModel.useClassOverrideAnnotation()) {%>
-	@Override
-<%}%>
 	protected boolean useIDAttributes() 
 	{
 		return false;
@@ -535,6 +522,7 @@ public class <%=genPackage.getResourceClassName()%> extends <%=genPackage.getImp
 	@Override
 	protected void init() {
 		super.init();
+		setTrackingModification(true);
 		setEncoding("UTF-8");<%=genModel.getNonNLS()%>
 <%if (genPackage.getResource() == GenResourceKind.XMI_LITERAL) {%>
 		setXMIVersion("2.1");<%=genModel.getNonNLS()%>

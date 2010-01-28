@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class TypePatternCallBackHandlerImpl extends TypeAbstractClassImpl implements TypePatternCallBackHandler {
@@ -31,7 +31,6 @@ public class TypePatternCallBackHandlerImpl extends TypeAbstractClassImpl implem
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -40,7 +39,6 @@ public class TypePatternCallBackHandlerImpl extends TypeAbstractClassImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypePatternCallBackHandlerImpl() {
@@ -50,7 +48,6 @@ public class TypePatternCallBackHandlerImpl extends TypeAbstractClassImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -61,7 +58,6 @@ public class TypePatternCallBackHandlerImpl extends TypeAbstractClassImpl implem
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

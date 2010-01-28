@@ -82,17 +82,6 @@ public class TypesResourceImpl extends XMIResourceImpl {
    * @generated
    */
   @Override
-  public boolean isTrackingModification() {
-    return true;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  @Override
   protected boolean useIDAttributes() {
     return false;
   }
@@ -117,6 +106,7 @@ public class TypesResourceImpl extends XMIResourceImpl {
   @Override
   protected void init() {
     super.init();
+    setTrackingModification(true);
     setEncoding("UTF-8"); //$NON-NLS-1$
     setXMIVersion("2.1"); //$NON-NLS-1$
     // Save Options
