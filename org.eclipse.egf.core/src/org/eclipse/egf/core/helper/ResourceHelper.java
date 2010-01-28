@@ -13,6 +13,7 @@ package org.eclipse.egf.core.helper;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.egf.common.helper.URIHelper;
@@ -21,6 +22,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 
 /**
  * @author Xavier Maysonnave
@@ -75,28 +77,40 @@ public class ResourceHelper {
       resource.getResourceSet().getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
     }
     // Load
-    resource.load(Collections.EMPTY_MAP);
+    if (resource instanceof XMLResource) {
+      resource.load(((XMLResource) resource).getDefaultLoadOptions());
+    } else {
+      resource.load(Collections.EMPTY_MAP);
+    }
   }
 
-  public static void reloadResources(ResourceSet resourceSet, Collection<Resource> resources) {
-    if (resourceSet == null || resources == null || resources.size() == 0) {
+  public static void reloadResources(Collection<Resource> resources) throws IOException {
+    if (resources == null) {
       return;
     }
-    Collection<URI> uris = new UniqueEList<URI>(resources.size());
-    // Unload resources and store URIs
+    List<ResourceSet> resourceSets = new UniqueEList<ResourceSet>();
+    // Unload resources
     for (Resource resource : resources) {
-      URI uri = resource.getURI();
-      uris.add(uri);
       resource.unload();
-      resourceSet.getResources().remove(resource);
+      if (resource.getResourceSet() != null) {
+        resourceSets.add(resource.getResourceSet());
+        resource.getResourceSet().getResources().remove(resource);
+      }
     }
-    // Clear the previous URIConverter content
-    resourceSet.getURIConverter().getURIMap().clear();
-    // Assign a fresh platform aware URIConverter
-    resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    // Update URI Converter
+    for (ResourceSet resourceSet : resourceSets) {
+      // Clear the previous URIConverter content
+      resourceSet.getURIConverter().getURIMap().clear();
+      // Assign a fresh platform aware URIConverter
+      resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    }
     // Load Resource
-    for (URI uri : uris) {
-      resourceSet.getResource(uri, true);
+    for (Resource resource : resources) {
+      if (resource instanceof XMLResource) {
+        resource.load(((XMLResource) resource).getDefaultLoadOptions());
+      } else {
+        resource.load(Collections.EMPTY_MAP);
+      }
     }
   }
 

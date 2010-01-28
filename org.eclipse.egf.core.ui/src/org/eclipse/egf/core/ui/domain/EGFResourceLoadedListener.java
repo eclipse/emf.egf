@@ -31,6 +31,7 @@ import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -68,29 +69,29 @@ public class EGFResourceLoadedListener implements WorkspaceSynchronizer.Delegate
 
   public static class ResourceEventManager {
 
-    final List<ResourceListener> listeners = new ArrayList<ResourceListener>();
+    final List<ResourceListener> _listeners = new ArrayList<ResourceListener>();
 
-    final Map<Resource, List<ResourceUser>> observers = new HashMap<Resource, List<ResourceUser>>();
+    final Map<Resource, List<ResourceUser>> _observers = new HashMap<Resource, List<ResourceUser>>();
 
-    public void addObserver(ResourceUser u) {
-      Resource resource = u.getResource();
-      List<ResourceUser> list = observers.get(resource);
+    public void addObserver(ResourceUser resourceUser) {
+      Resource resource = resourceUser.getResource();
+      List<ResourceUser> list = _observers.get(resource);
       if (list == null) {
         list = new ArrayList<ResourceUser>();
-        observers.put(resource, list);
+        _observers.put(resource, list);
       }
-      list.add(u);
-      listeners.add(u.getListener());
+      list.add(resourceUser);
+      _listeners.add(resourceUser.getListener());
     }
 
-    public void removeObserver(ResourceUser u) {
-      Resource resource = u.getResource();
-      List<ResourceUser> list = observers.get(resource);
+    public void removeObserver(ResourceUser resourceUser) {
+      Resource resource = resourceUser.getResource();
+      List<ResourceUser> list = _observers.get(resource);
       if (list == null) {
         return;
       }
-      list.remove(u);
-      listeners.remove(u.getListener());
+      list.remove(resourceUser);
+      _listeners.remove(resourceUser.getListener());
       if (noMoreObserver()) {
         clearResourceSet();
       }
@@ -114,7 +115,7 @@ public class EGFResourceLoadedListener implements WorkspaceSynchronizer.Delegate
     }
 
     private boolean noMoreObserver() {
-      for (List<ResourceUser> users : observers.values()) {
+      for (List<ResourceUser> users : _observers.values()) {
         if (users.isEmpty() == false) {
           return false;
         }
@@ -122,14 +123,14 @@ public class EGFResourceLoadedListener implements WorkspaceSynchronizer.Delegate
       return true;
     }
 
-    public WorkspaceModifyOperation createSaveOperation(final ResourceUser u, final TransactionalEditingDomain editingDomain) {
-      if (u == null) {
+    public WorkspaceModifyOperation createSaveOperation(final ResourceUser resourceUser, final TransactionalEditingDomain editingDomain) {
+      if (resourceUser == null) {
         throw new IllegalArgumentException();
       }
-      if (u.getResource() == null) {
+      if (resourceUser.getResource() == null) {
         throw new IllegalArgumentException();
       }
-      final Resource resource = u.getResource();
+      final Resource resource = resourceUser.getResource();
       final ObjectHolder<Exception> holder = new ObjectHolder<Exception>();
       return new WorkspaceModifyOperation() {
         @Override
@@ -137,7 +138,11 @@ public class EGFResourceLoadedListener implements WorkspaceSynchronizer.Delegate
           editingDomain.runExclusive(new Runnable() {
             public void run() {
               try {
-                resource.save(Collections.EMPTY_MAP);
+                if (resource instanceof XMLResource) {
+                  resource.save(((XMLResource) resource).getDefaultSaveOptions());
+                } else {
+                  resource.save(Collections.EMPTY_MAP);
+                }
               } catch (Exception exception) {
                 holder.object = exception;
               }
@@ -153,7 +158,7 @@ public class EGFResourceLoadedListener implements WorkspaceSynchronizer.Delegate
 
   public boolean handleResourceMoved(Resource resource, URI newURI) {
     resource.unload();
-    for (ResourceListener l : RESOURCE_MANAGER.listeners) {
+    for (ResourceListener l : RESOURCE_MANAGER._listeners) {
       l.resourceMoved(resource, newURI);
     }
     return true;
@@ -161,7 +166,7 @@ public class EGFResourceLoadedListener implements WorkspaceSynchronizer.Delegate
 
   public boolean handleResourceDeleted(Resource resource) {
     resource.unload();
-    for (ResourceListener l : RESOURCE_MANAGER.listeners) {
+    for (ResourceListener l : RESOURCE_MANAGER._listeners) {
       l.resourceDeleted(resource);
     }
     return true;
@@ -173,19 +178,23 @@ public class EGFResourceLoadedListener implements WorkspaceSynchronizer.Delegate
       editingDomain.getCommandStack().flush();
       try {
         resource.unload();
-        resource.load(resource.getResourceSet().getLoadOptions());
+        if (resource instanceof XMLResource) {
+          resource.load(((XMLResource) resource).getDefaultLoadOptions());
+        } else {
+          resource.load(Collections.EMPTY_MAP);
+        }
       } catch (IOException e) {
         EGFCoreUIPlugin.getDefault().logError(e);
       }
     }
-    for (ResourceListener l : RESOURCE_MANAGER.listeners) {
+    for (ResourceListener l : RESOURCE_MANAGER._listeners) {
       l.resourceChanged(resource);
     }
     return true;
   }
 
   private boolean need2reload(Resource resource) {
-    List<ResourceUser> users = RESOURCE_MANAGER.observers.get(resource);
+    List<ResourceUser> users = RESOURCE_MANAGER._observers.get(resource);
     if (users == null) {
       return true; // no one edit it -> reload
     }
@@ -194,7 +203,7 @@ public class EGFResourceLoadedListener implements WorkspaceSynchronizer.Delegate
     for (ResourceUser user : users) {
       dirty |= user.isDirty();
     }
-    if (!dirty) {
+    if (dirty == false) {
       return true; // no one has pending change -> reload
     }
     Display.getDefault().syncExec(new Runnable() {
