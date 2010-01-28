@@ -67,6 +67,7 @@ public class ChooseKindPage extends WizardPage {
 
             public void widgetSelected(SelectionEvent e) {
                 selectedKind = CallTypeEnum.METHOD_CALL;
+                getContainer().updateButtons();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -79,6 +80,7 @@ public class ChooseKindPage extends WizardPage {
 
             public void widgetSelected(SelectionEvent e) {
                 selectedKind = CallTypeEnum.PATTERN_CALL;
+                getContainer().updateButtons();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -91,6 +93,7 @@ public class ChooseKindPage extends WizardPage {
 
             public void widgetSelected(SelectionEvent e) {
                 selectedKind = CallTypeEnum.PATTERNINJECTED_CALL;
+                getContainer().updateButtons();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -103,7 +106,7 @@ public class ChooseKindPage extends WizardPage {
 
             public void widgetSelected(SelectionEvent e) {
                 selectedKind = CallTypeEnum.SUPERPATTERN_CALL;
-                setPageComplete(true);
+                getContainer().updateButtons();
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {

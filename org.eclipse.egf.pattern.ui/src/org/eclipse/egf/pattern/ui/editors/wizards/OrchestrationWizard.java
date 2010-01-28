@@ -29,6 +29,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.INewWizard;
 import org.eclipse.ui.IWorkbench;
@@ -76,6 +77,13 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
         if (chooseKindPage != null && (chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL))
             return true;
         return super.canFinish();
+    }
+
+    @Override
+    public IWizardPage getNextPage(IWizardPage page) {
+        if (chooseKindPage != null && (chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL))
+            return null;
+        return super.getNextPage(page);
     }
 
     /**
