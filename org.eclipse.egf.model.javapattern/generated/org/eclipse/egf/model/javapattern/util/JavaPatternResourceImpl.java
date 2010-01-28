@@ -43,7 +43,7 @@ public class JavaPatternResourceImpl extends XMIResourceImpl {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   private List<Object> lookupTable = new ArrayList<Object>();
 
@@ -51,7 +51,7 @@ public class JavaPatternResourceImpl extends XMIResourceImpl {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   private XMLParserPool parserPool = new XMLParserPoolImpl();
 
@@ -59,7 +59,7 @@ public class JavaPatternResourceImpl extends XMIResourceImpl {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   private Map<Object, Object> nameToFeatureMap = new HashMap<Object, Object>();
 
@@ -67,22 +67,29 @@ public class JavaPatternResourceImpl extends XMIResourceImpl {
    * Creates an instance of the resource.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param uri
-   *          the URI of the new resource.
-   * @generated NOT
+   * @param uri the URI of the new resource.
+   * @generated
    */
   public JavaPatternResourceImpl(URI uri) {
     super(uri);
-    setEncoding("UTF-8"); //$NON-NLS-1$
-    setXMIVersion("2.1"); //$NON-NLS-1$
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
+   */
+  @Override
+  public boolean isTrackingModification() {
+    return true;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
    */
   @Override
   protected boolean useIDAttributes() {
@@ -93,7 +100,7 @@ public class JavaPatternResourceImpl extends XMIResourceImpl {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   @Override
   protected boolean useUUIDs() {
@@ -104,13 +111,14 @@ public class JavaPatternResourceImpl extends XMIResourceImpl {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   @Override
   protected void init() {
     super.init();
+    setEncoding("UTF-8"); //$NON-NLS-1$
+    setXMIVersion("2.1"); //$NON-NLS-1$
     // Save Options
-    //
     getDefaultSaveOptions().put(XMLResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
     getDefaultSaveOptions().put(XMLResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
     getDefaultSaveOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
@@ -130,7 +138,6 @@ public class JavaPatternResourceImpl extends XMIResourceImpl {
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
     // Load Options
-    //
     getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);

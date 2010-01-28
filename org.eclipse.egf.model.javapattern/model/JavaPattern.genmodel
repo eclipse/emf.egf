@@ -14,8 +14,8 @@
   <foreignModel>JavaPattern.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="JavaPattern" basePackage="org.eclipse.egf.model" resource="XMI"
-      disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
-      childCreationExtenders="true" ecorePackage="JavaPattern.ecore#/">
+      disposableProviderFactory="true" generateExampleClass="false" dataTypeConverters="true"
+      multipleEditorPages="false" childCreationExtenders="true" ecorePackage="JavaPattern.ecore#/">
     <genClasses ecoreClass="JavaPattern.ecore#//JavaNature"/>
   </genPackages>
 </genmodel:GenModel>
