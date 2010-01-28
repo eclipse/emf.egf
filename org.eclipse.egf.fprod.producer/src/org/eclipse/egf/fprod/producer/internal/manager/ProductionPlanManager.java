@@ -179,7 +179,7 @@ public class ProductionPlanManager extends OrchestrationManager<ProductionPlan> 
       }
       Object value = manager.getProductionContext().getOutputValue(contract.getInvokedContract(), type.getType());
       if (targetInvocationContract.getInvokedMode() == ContractMode.IN) {
-        targetManager.getInternalProductionContext().addOutputData(targetInvocationContract, type.getType(), value, false);
+        targetManager.getInternalProductionContext().addInputData(targetInvocationContract, type.getType(), value, false);
       } else {
         targetManager.getInternalProductionContext().addInputData(targetInvocationContract, type.getType(), value, false);
         targetManager.getInternalProductionContext().addOutputData(targetInvocationContract, type.getType(), value, false);
