@@ -20,4 +20,6 @@ public interface IEGFModelConstants {
 
   public static final String VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH = "org.eclipse.egf.core.validate.model.instances.before.launch"; //$NON-NLS-1$
 
+  public static final String EDIT_LOADED_RESOURCES = "org.eclipse.egf.core.model.edit.loaded.resources"; //$NON-NLS-1$
+
 }

@@ -60,7 +60,7 @@
                   FactoryComponent identifier.
                </documentation>
                <appInfo>
-                  <meta.attribute kind="identifier"/>
+                  <meta.attribute kind="resource"/>
                </appInfo>
             </annotation>
          </attribute>

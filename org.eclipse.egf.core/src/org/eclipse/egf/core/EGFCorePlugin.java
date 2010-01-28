@@ -41,6 +41,8 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
 
   public static String EDITING_DOMAIN_ID = "org.eclipse.egf.core.editing.domain"; //$NON-NLS-1$  
 
+  public static String FCORE_EDITOR_ID = "org.eclipse.egf.model.fcore.presentation.FcoreEditorID"; //$NON-NLS-1$
+
   /**
    * Plug-in unique instance.
    */
