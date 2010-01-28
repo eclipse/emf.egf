@@ -15,9 +15,9 @@
   <foreignModel>Ftask.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Ftask" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
-      generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true"
-      childCreationExtenders="true" contentTypeIdentifier="" fileExtensions="ftask"
-      ecorePackage="Ftask.ecore#/">
+      generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
+      extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier=""
+      fileExtensions="ftask" ecorePackage="Ftask.ecore#/">
     <genClasses image="false" ecoreClass="Ftask.ecore#//Task"/>
     <genClasses ecoreClass="Ftask.ecore#//TaskJava">
       <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Ftask.ecore#//TaskJava/value"/>

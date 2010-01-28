@@ -59,8 +59,7 @@ public class FtaskValidator extends EObjectValidator {
   public static final FtaskValidator INSTANCE = new FtaskValidator();
 
   /**
-   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of
-   * diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+   * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -72,8 +71,7 @@ public class FtaskValidator extends EObjectValidator {
   public static final String DIAGNOSTIC_SOURCE = "org.eclipse.egf.model.ftask"; //$NON-NLS-1$
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -82,8 +80,7 @@ public class FtaskValidator extends EObjectValidator {
   private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 0;
 
   /**
-   * A constant with a fixed name that can be used as the base value for additional hand written
-   * constants in a derived class.
+   * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -204,6 +201,8 @@ public class FtaskValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(task, diagnostics, context);
     if (result || diagnostics != null)
+      result &= fcoreValidator.validateActivity_MandatoryName(task, diagnostics, context);
+    if (result || diagnostics != null)
       result &= fcoreValidator.validateActivity_ActivityCycle(task, diagnostics, context);
     return result;
   }
@@ -228,6 +227,8 @@ public class FtaskValidator extends EObjectValidator {
       result &= validate_EveryKeyUnique(taskJava, diagnostics, context);
     if (result || diagnostics != null)
       result &= validate_EveryMapEntryUnique(taskJava, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= fcoreValidator.validateActivity_MandatoryName(taskJava, diagnostics, context);
     if (result || diagnostics != null)
       result &= fcoreValidator.validateActivity_ActivityCycle(taskJava, diagnostics, context);
     if (result || diagnostics != null)
@@ -284,8 +285,7 @@ public class FtaskValidator extends EObjectValidator {
   }
 
   /**
-   * Returns the resource locator that will be used to fetch messages for this validator's
-   * diagnostics.
+   * Returns the resource locator that will be used to fetch messages for this validator's diagnostics.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
