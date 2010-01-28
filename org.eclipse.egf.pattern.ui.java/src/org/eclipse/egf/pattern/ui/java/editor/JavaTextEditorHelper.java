@@ -41,6 +41,7 @@ import org.eclipse.jdt.internal.ui.text.java.IProblemRequestorExtension;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
+import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.IEditorInput;
@@ -129,7 +130,7 @@ public class JavaTextEditorHelper {
             try {
                 templateFile.create(new ByteArrayInputStream(new byte[0]), true, null);
             } catch (CoreException e) {
-                e.printStackTrace();
+                Activator.getDefault().log(e);
             }
             refreshPublicTemplateEditor(pattern, templateFile, editor);
         }
@@ -241,6 +242,9 @@ public class JavaTextEditorHelper {
             Object next = annotationIterator.next();
             if (next instanceof Annotation) {
                 Annotation annotation = (Annotation) next;
+                if(annotation == null){
+                    continue;
+                }
                 if (annotation.getText() == null) {
                     continue;
                 }
@@ -324,12 +328,15 @@ public class JavaTextEditorHelper {
         if (multiPageEditorPart == null)
             return offset;
 
-        List<JavaTextEditor> editors = ((JavaTemplateEditor) multiPageEditorPart).getEditorList();
+        Map<String, JavaTextEditor> editors = ((JavaTemplateEditor) multiPageEditorPart).getEditorMap();
         int mappingOffset = offset;
 
         int activePage = multiPageEditorPart.getActivePage();
+        EList<PatternMethod> methods = pattern.getMethods();
         for (int i = 0; i < activePage; i++) {
-            JavaTextEditor currentEditor = editors.get(i);
+            PatternMethod method = methods.get(i);
+            String id = method.getID();
+            JavaTextEditor currentEditor = editors.get(id);
             if (currentEditor != null && !(editor).equals(currentEditor)) {
                 ISourceViewer viewer = currentEditor.getViewer();
                 int length = viewer.getDocument().getLength();
@@ -338,6 +345,7 @@ public class JavaTextEditorHelper {
                 return mappingOffset;
             }
         }
+
         return mappingOffset;
     }
 
