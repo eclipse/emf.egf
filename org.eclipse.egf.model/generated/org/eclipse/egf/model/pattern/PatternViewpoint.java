@@ -32,20 +32,20 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface PatternViewpoint extends Viewpoint {
-    /**
-     * Returns the value of the '<em><b>Libraries</b></em>' containment reference list.
-     * The list contents are of type {@link org.eclipse.egf.model.pattern.PatternLibrary}.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Libraries</em>' containment reference list isn't
-     * clear, there really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Libraries</em>' containment reference list.
-     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternViewpoint_Libraries()
-     * @model containment="true"
-     * @generated
-     */
-    EList<PatternLibrary> getLibraries();
+  /**
+   * Returns the value of the '<em><b>Libraries</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.egf.model.pattern.PatternLibrary}.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Libraries</em>' containment reference list isn't
+   * clear, there really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Libraries</em>' containment reference list.
+   * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternViewpoint_Libraries()
+   * @model containment="true"
+   * @generated
+   */
+  EList<PatternLibrary> getLibraries();
 
 } // PatternViewpoint

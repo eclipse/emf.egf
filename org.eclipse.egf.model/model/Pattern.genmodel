@@ -19,7 +19,6 @@
       ecorePackage="Pattern.ecore#/">
     <genDataTypes ecoreDataType="Pattern.ecore#//PatternContext"/>
     <genDataTypes ecoreDataType="Pattern.ecore#//PatternException"/>
-    <genDataTypes ecoreDataType="Pattern.ecore#//EPatternExecutionReporter"/>
     <genClasses ecoreClass="Pattern.ecore#//Pattern">
       <genFeatures createChild="false" propertyCategory="" propertySortChoices="true"
           ecoreFeature="ecore:EReference Pattern.ecore#//Pattern/headerMethod"/>
@@ -100,5 +99,11 @@
       <genOperations ecoreOperation="Pattern.ecore#//TypePatternExecutionReporter/getType"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//BackCall"/>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternCallBackHandler">
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternCallBackHandler/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//TypePatternDomainVisitor">
+      <genOperations ecoreOperation="Pattern.ecore#//TypePatternDomainVisitor/getType"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
