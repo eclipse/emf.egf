@@ -238,11 +238,31 @@ public class FcoreFactoryImpl extends EFactoryImpl implements FcoreFactory {
    * 
    * @generated
    */
-  public ContractMode createContractModeFromString(EDataType eDataType, String initialValue) {
-    ContractMode result = ContractMode.get(initialValue);
+  public ContractMode createContractMode(String literal) {
+    ContractMode result = ContractMode.get(literal);
     if (result == null)
-      throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+      throw new IllegalArgumentException("The value '" + literal + "' is not a valid enumerator of '" + FcorePackage.Literals.CONTRACT_MODE.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public ContractMode createContractModeFromString(EDataType eDataType, String initialValue) {
+    return createContractMode(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public String convertContractMode(ContractMode instanceValue) {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**

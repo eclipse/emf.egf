@@ -14,8 +14,9 @@
   <foreignModel>Pattern.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Pattern" basePackage="org.eclipse.egf.model" resource="XMI"
-      disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
-      childCreationExtenders="true" contentTypeIdentifier="" ecorePackage="Pattern.ecore#/">
+      disposableProviderFactory="true" generateExampleClass="false" dataTypeConverters="true"
+      multipleEditorPages="false" childCreationExtenders="true" contentTypeIdentifier=""
+      ecorePackage="Pattern.ecore#/">
     <genDataTypes ecoreDataType="Pattern.ecore#//PatternContext"/>
     <genDataTypes ecoreDataType="Pattern.ecore#//PatternException"/>
     <genDataTypes ecoreDataType="Pattern.ecore#//EPatternExecutionReporter"/>
@@ -98,8 +99,6 @@
     <genClasses ecoreClass="Pattern.ecore#//TypePatternExecutionReporter">
       <genOperations ecoreOperation="Pattern.ecore#//TypePatternExecutionReporter/getType"/>
     </genClasses>
-    <genClasses ecoreClass="Pattern.ecore#//BackCall">
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Pattern.ecore#//BackCall/called"/>
-    </genClasses>
+    <genClasses ecoreClass="Pattern.ecore#//BackCall"/>
   </genPackages>
 </genmodel:GenModel>

@@ -14,8 +14,8 @@
   <foreignModel>Types.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Types" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
-      generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true"
-      contentTypeIdentifier="" ecorePackage="Types.ecore#/">
+      generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
+      extensibleProviderFactory="true" contentTypeIdentifier="" ecorePackage="Types.ecore#/">
     <genDataTypes ecoreDataType="Types.ecore#//EGeneratorAdapterFactory"/>
     <genDataTypes ecoreDataType="Types.ecore#//Set">
       <genTypeParameters ecoreTypeParameter="Types.ecore#//Set/E"/>

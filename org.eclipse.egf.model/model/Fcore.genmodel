@@ -14,8 +14,9 @@
   <foreignModel>Fcore.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Fcore" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
-      generateExampleClass="false" multipleEditorPages="false" extensibleProviderFactory="true"
-      contentTypeIdentifier="" fileExtensions="fcore" ecorePackage="Fcore.ecore#/">
+      generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
+      extensibleProviderFactory="true" contentTypeIdentifier="" fileExtensions="fcore"
+      ecorePackage="Fcore.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Fcore.ecore#//ContractMode">
       <genEnumLiterals ecoreEnumLiteral="Fcore.ecore#//ContractMode/In"/>
       <genEnumLiterals ecoreEnumLiteral="Fcore.ecore#//ContractMode/Out"/>

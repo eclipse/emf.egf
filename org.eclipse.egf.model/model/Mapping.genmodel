@@ -14,8 +14,9 @@
   <foreignModel>Mapping.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="Mapping" basePackage="org.eclipse.egf.model" resource="XMI"
-      disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
-      childCreationExtenders="true" contentTypeIdentifier="" ecorePackage="Mapping.ecore#/">
+      disposableProviderFactory="true" generateExampleClass="false" dataTypeConverters="true"
+      multipleEditorPages="false" childCreationExtenders="true" contentTypeIdentifier=""
+      ecorePackage="Mapping.ecore#/">
     <genClasses ecoreClass="Mapping.ecore#//MappingViewpoint">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Mapping.ecore#//MappingViewpoint/mappings"/>
     </genClasses>

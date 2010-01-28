@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.model.domain.adapter;
 
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.domain.DomainEPackage;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.TypeDomainEPackage;
@@ -18,12 +19,16 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
 public class TypeDomainEPackageAdapter extends AdapterImpl {
+
+  private TransactionalEditingDomain _editingDomain;
 
   private TypeDomainEPackage _typeDomainEPackage;
 
@@ -37,7 +42,12 @@ public class TypeDomainEPackageAdapter extends AdapterImpl {
     @Override
     public void notifyChanged(Notification msg) {
       if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_domainEPackageFeature)) {
-        _typeDomainEPackage.eNotify(new ENotificationImpl((InternalEObject) _typeDomainEPackage, Notification.SET, _typeDomainEPackageFeature, null, _typeDomainEPackage.eGet(_typeDomainEPackageFeature, true)));
+        _editingDomain.getCommandStack().execute(new RecordingCommand(_editingDomain) {
+          @Override
+          protected void doExecute() {
+            _typeDomainEPackage.eNotify(new ENotificationImpl((InternalEObject) _typeDomainEPackage, Notification.SET, _typeDomainEPackageFeature, null, _typeDomainEPackage.eGet(_typeDomainEPackageFeature, true)));
+          }
+        });
       }
     }
   };
@@ -46,6 +56,7 @@ public class TypeDomainEPackageAdapter extends AdapterImpl {
     super();
     _typeDomainEPackage = typeDomainEPackage;
     _typeDomainEPackage.eAdapters().add(this);
+    _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
   }
 
   @Override

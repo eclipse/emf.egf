@@ -12,6 +12,10 @@
  */
 package org.eclipse.egf.model.types;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EFactory;
 
 /**
@@ -183,6 +187,86 @@ public interface TypesFactory extends EFactory {
    * @generated
    */
   TypeString createTypeString();
+
+  /**
+   * Returns an instance of data type '<em>Set</em>' corresponding the given literal.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param literal a literal of the data type.
+   * @return a new instance value of the data type.
+   * @generated
+   */
+  Set<?> createSet(String literal);
+
+  /**
+   * Returns a literal representation of an instance of data type '<em>Set</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param instanceValue an instance value of the data type.
+   * @return a literal representation of the instance value.
+   * @generated
+   */
+  String convertSet(Set<?> instanceValue);
+
+  /**
+   * Returns an instance of data type '<em>List</em>' corresponding the given literal.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param literal a literal of the data type.
+   * @return a new instance value of the data type.
+   * @generated
+   */
+  List<?> createList(String literal);
+
+  /**
+   * Returns a literal representation of an instance of data type '<em>List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param instanceValue an instance value of the data type.
+   * @return a literal representation of the instance value.
+   * @generated
+   */
+  String convertList(List<?> instanceValue);
+
+  /**
+   * Returns an instance of data type '<em>Collection</em>' corresponding the given literal.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param literal a literal of the data type.
+   * @return a new instance value of the data type.
+   * @generated
+   */
+  Collection<?> createCollection(String literal);
+
+  /**
+   * Returns a literal representation of an instance of data type '<em>Collection</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param instanceValue an instance value of the data type.
+   * @return a literal representation of the instance value.
+   * @generated
+   */
+  String convertCollection(Collection<?> instanceValue);
+
+  /**
+   * Returns an instance of data type '<em>URI</em>' corresponding the given literal.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param literal a literal of the data type.
+   * @return a new instance value of the data type.
+   * @generated
+   */
+  URI createURI(String literal);
+
+  /**
+   * Returns a literal representation of an instance of data type '<em>URI</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param instanceValue an instance value of the data type.
+   * @return a literal representation of the instance value.
+   * @generated
+   */
+  String convertURI(URI instanceValue);
 
   /**
    * Returns the package supported by this factory.

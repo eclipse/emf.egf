@@ -366,8 +366,28 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * 
    * @generated
    */
+  public Set<?> createSet(String literal) {
+    return (Set<?>) super.createFromString(literal);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
   public Collection<?> createCollectionFromString(EDataType eDataType, String initialValue) {
     return (Collection<?>) super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public String convertCollection(Collection<?> instanceValue) {
+    return super.convertToString(instanceValue);
   }
 
   /**
@@ -386,8 +406,28 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * 
    * @generated
    */
+  public URI createURI(String literal) {
+    return (URI) super.createFromString(TypesPackage.Literals.URI, literal);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
   public List<?> createListFromString(EDataType eDataType, String initialValue) {
     return (List<?>) super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public String convertList(List<?> instanceValue) {
+    return super.convertToString(instanceValue);
   }
 
   /**
@@ -406,8 +446,28 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * 
    * @generated
    */
+  public Collection<?> createCollection(String literal) {
+    return (Collection<?>) super.createFromString(literal);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
   public Set<?> createSetFromString(EDataType eDataType, String initialValue) {
     return (Set<?>) super.createFromString(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public String convertSet(Set<?> instanceValue) {
+    return super.convertToString(instanceValue);
   }
 
   /**
@@ -424,10 +484,30 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
+   * @generated
+   */
+  public List<?> createList(String literal) {
+    return (List<?>) super.createFromString(literal);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
    * @generated NOT
    */
   public URI createURIFromString(EDataType eDataType, String initialValue) {
     return URI.createURI(initialValue);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public String convertURI(URI instanceValue) {
+    return super.convertToString(TypesPackage.Literals.URI, instanceValue);
   }
 
   /**

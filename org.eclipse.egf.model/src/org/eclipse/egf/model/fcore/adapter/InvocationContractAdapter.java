@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.model.fcore.adapter;
 
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
@@ -18,12 +19,16 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
 public class InvocationContractAdapter extends AdapterImpl {
+
+  private TransactionalEditingDomain _editingDomain;
 
   private InvocationContract _invocationContract;
 
@@ -39,9 +44,19 @@ public class InvocationContractAdapter extends AdapterImpl {
     @Override
     public void notifyChanged(Notification msg) {
       if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_contractModeFeature)) {
-        _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _invocationContract.eGet(_invocationContractInvokedContractFeature, true)));
+        _editingDomain.getCommandStack().execute(new RecordingCommand(_editingDomain) {
+          @Override
+          protected void doExecute() {
+            _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _invocationContract.eGet(_invocationContractInvokedContractFeature, true)));
+          }
+        });
       } else if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_nameFeature)) {
-        _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _invocationContract.eGet(_invocationContractInvokedContractFeature, true)));
+        _editingDomain.getCommandStack().execute(new RecordingCommand(_editingDomain) {
+          @Override
+          protected void doExecute() {
+            _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _invocationContract.eGet(_invocationContractInvokedContractFeature, true)));
+          }
+        });
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
         _contract = null;
       }
@@ -52,6 +67,7 @@ public class InvocationContractAdapter extends AdapterImpl {
     super();
     _invocationContract = invocationContract;
     _invocationContract.eAdapters().add(this);
+    _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
   }
 
   @Override
@@ -68,10 +84,6 @@ public class InvocationContractAdapter extends AdapterImpl {
           newValue.eAdapters().add(_contractAdapter);
         }
         _contract = newValue;
-        // Needed when there is an update from workspace and target platform.
-        if (_contract != null) {
-          _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _contract));
-        }
         break;
       case Notification.REMOVING_ADAPTER:
         if (_contract != null) {

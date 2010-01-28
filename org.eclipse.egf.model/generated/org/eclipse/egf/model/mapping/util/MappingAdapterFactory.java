@@ -138,8 +138,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.mapping.MappingViewpoint <em>Viewpoint</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.mapping.MappingViewpoint <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
@@ -156,8 +155,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.mapping.Mapping
-   * <em>Mapping</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.mapping.Mapping <em>Mapping</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
@@ -174,8 +172,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.mapping.MappingDomain <em>Domain</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.mapping.MappingDomain <em>Domain</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
@@ -192,8 +189,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement
-   * <em>Model Element</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
@@ -210,8 +206,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Viewpoint
-   * <em>Viewpoint</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.Viewpoint <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
@@ -228,8 +223,7 @@ public class MappingAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.fcore.NamedModelElement <em>Named Model Element</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.NamedModelElement <em>Named Model Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
