@@ -37,14 +37,14 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 /**
- * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.DomainEPackage}
- * object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.domain.DomainEPackage} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class DomainEPackageItemProvider extends DomainItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class DomainEPackageItemProvider extends DomainItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
+    IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -83,7 +83,7 @@ public class DomainEPackageItemProvider extends DomainItemProvider implements IE
   protected void addEPackagePropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_DomainEPackage_ePackage_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_DomainEPackage_ePackage_feature", "_UI_DomainEPackage_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        DomainPackage.Literals.DOMAIN_EPACKAGE__EPACKAGE, true, false, true, null, getString("_UI_ValuePropertyCategory"), //$NON-NLS-1$
+        DomainPackage.Literals.DOMAIN_EPACKAGE__EPACKAGE, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
         null) {
       @Override
       public Collection<EPackage> getChoiceOfValues(Object innerObject) {
