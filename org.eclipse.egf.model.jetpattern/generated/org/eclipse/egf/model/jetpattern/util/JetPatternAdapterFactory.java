@@ -126,8 +126,7 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.jetpattern.JetNature <em>Jet Nature</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.jetpattern.JetNature <em>Jet Nature</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
@@ -144,8 +143,7 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement
-   * <em>Model Element</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.ModelElement <em>Model Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;
@@ -162,8 +160,7 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.fcore.NamedModelElement <em>Named Model Element</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.fcore.NamedModelElement <em>Named Model Element</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -178,8 +175,7 @@ public class JetPatternAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '
-   * {@link org.eclipse.egf.model.pattern.PatternNature <em>Nature</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.PatternNature <em>Nature</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore
    * cases;

@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.EPackage;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.jetpattern.JetPatternFactory
  * @model kind="package"
  * @generated
@@ -37,7 +36,6 @@ public interface JetPatternPackage extends EPackage {
    * The package name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNAME = "jetpattern"; //$NON-NLS-1$
@@ -46,7 +44,6 @@ public interface JetPatternPackage extends EPackage {
    * The package namespace URI.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_URI = "http://www.eclipse.org/egf/1.0.0/jetpattern"; //$NON-NLS-1$
@@ -55,7 +52,6 @@ public interface JetPatternPackage extends EPackage {
    * The package namespace name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_PREFIX = "jetpattern"; //$NON-NLS-1$
@@ -64,17 +60,14 @@ public interface JetPatternPackage extends EPackage {
    * The singleton instance of the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   JetPatternPackage eINSTANCE = org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl.init();
 
   /**
-   * The meta object id for the '{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl <em>Jet
-   * Nature</em>}' class.
+   * The meta object id for the '{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl <em>Jet Nature</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.jetpattern.impl.JetNatureImpl
    * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetNature()
    * @generated
@@ -85,7 +78,6 @@ public interface JetPatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -95,7 +87,6 @@ public interface JetPatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -105,7 +96,6 @@ public interface JetPatternPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -115,18 +105,15 @@ public interface JetPatternPackage extends EPackage {
    * The number of structural features of the '<em>Jet Nature</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
   int JET_NATURE_FEATURE_COUNT = PatternPackage.PATTERN_NATURE_FEATURE_COUNT + 0;
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.egf.model.jetpattern.JetNature <em>Jet
-   * Nature</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.jetpattern.JetNature <em>Jet Nature</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Jet Nature</em>'.
    * @see org.eclipse.egf.model.jetpattern.JetNature
    * @generated
@@ -137,7 +124,6 @@ public interface JetPatternPackage extends EPackage {
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the factory that creates the instances of the model.
    * @generated
    */
@@ -153,16 +139,13 @@ public interface JetPatternPackage extends EPackage {
    * <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   interface Literals {
     /**
-     * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl
-     * <em>Jet Nature</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.jetpattern.impl.JetNatureImpl <em>Jet Nature</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.jetpattern.impl.JetNatureImpl
      * @see org.eclipse.egf.model.jetpattern.impl.JetPatternPackageImpl#getJetNature()
      * @generated

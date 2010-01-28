@@ -10,13 +10,13 @@
     booleanFlagsField="eFlags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" editPluginID="org.eclipse.egf.model.jetpattern.edit" editorPluginID="org.eclipse.egf.model.jetpattern.editor"
     optimizedHasChildren="true" tableProviders="true" colorProviders="true" fontProviders="true"
-    packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.egf.model/model/Fcore.genmodel#//fcore ../../org.eclipse.egf.model/model/Pattern.genmodel#//pattern">
+    packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.egf.model/model/Fcore.genmodel#//fcore ../../org.eclipse.egf.model/model/Pattern.genmodel#//pattern ../../org.eclipse.egf.model/model/Types.genmodel#//types">
   <foreignModel>JetPattern.ecore</foreignModel>
   <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
   <genPackages prefix="JetPattern" basePackage="org.eclipse.egf.model" resource="XMI"
-      disposableProviderFactory="true" generateExampleClass="false" multipleEditorPages="false"
-      childCreationExtenders="true" contentTypeIdentifier="" ecorePackage="JetPattern.ecore#/">
+      disposableProviderFactory="true" generateExampleClass="false" dataTypeConverters="true"
+      multipleEditorPages="false" childCreationExtenders="true" contentTypeIdentifier=""
+      ecorePackage="JetPattern.ecore#/">
     <genClasses ecoreClass="JetPattern.ecore#//JetNature"/>
-    <genClasses ecoreClass="JetPattern.ecore#//JetEngine"/>
   </genPackages>
 </genmodel:GenModel>
