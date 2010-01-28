@@ -218,30 +218,36 @@ public class PluginChangesCommandRunner implements IPluginChangesCommandRunner {
    * @param monitor
    */
   private void updateSingleton(final IPluginModelBase bundleModel, final IProgressMonitor monitor) {
-    if (bundleModel instanceof IBundlePluginModel) {
-      IFile file = (IFile) bundleModel.getUnderlyingResource();
-      // Create an update operation that deals with updating the singleton
-      // attribute.
-      ModelModification modification = new ModelModification(file) {
-        @Override
-        protected void modifyModel(IBaseModel model_p, IProgressMonitor progressMonitor_p) throws CoreException {
-          // Precondition.
-          if (model_p instanceof IBundlePluginModelBase == false) {
-            return;
-          }
-          IBundlePluginModelBase modelBase = (IBundlePluginModelBase) model_p;
-          IBundle bundle = modelBase.getBundleModel().getBundle();
-          IManifestHeader header = bundle.getManifestHeader(Constants.BUNDLE_SYMBOLICNAME);
-          if (header instanceof BundleSymbolicNameHeader) {
-            BundleSymbolicNameHeader symbolic = (BundleSymbolicNameHeader) header;
-            if (symbolic.isSingleton() == false)
-              symbolic.setSingleton(true);
-          }
-        }
-      };
-      // Let's update the file.
-      PDEModelUtility.modifyModel(modification, monitor);
+    if (bundleModel instanceof IBundlePluginModel == false) {
+      return;
     }
+    final IFile file = (IFile) bundleModel.getUnderlyingResource();
+    final Display display = getDisplay();
+    display.syncExec(new Runnable() {
+      public void run() {
+        // Create an update operation that deals with updating the singleton
+        // attribute.
+        ModelModification modification = new ModelModification(file) {
+          @Override
+          protected void modifyModel(IBaseModel model_p, IProgressMonitor progressMonitor_p) throws CoreException {
+            // Precondition.
+            if (model_p instanceof IBundlePluginModelBase == false) {
+              return;
+            }
+            IBundlePluginModelBase modelBase = (IBundlePluginModelBase) model_p;
+            IBundle bundle = modelBase.getBundleModel().getBundle();
+            IManifestHeader header = bundle.getManifestHeader(Constants.BUNDLE_SYMBOLICNAME);
+            if (header instanceof BundleSymbolicNameHeader) {
+              BundleSymbolicNameHeader symbolic = (BundleSymbolicNameHeader) header;
+              if (symbolic.isSingleton() == false)
+                symbolic.setSingleton(true);
+            }
+          }
+        };
+        // Let's update the file.
+        PDEModelUtility.modifyModel(modification, new NullProgressMonitor());
+      }
+    });
   }
 
   /**
