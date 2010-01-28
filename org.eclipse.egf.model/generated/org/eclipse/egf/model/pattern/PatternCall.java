@@ -31,21 +31,21 @@ import org.eclipse.emf.common.util.EMap;
  * @generated
  */
 public interface PatternCall extends AbstractPatternCall {
-  /**
-   * Returns the value of the '<em><b>Parameter Matching</b></em>' map.
-   * The key is of type {@link org.eclipse.egf.model.pattern.PatternParameter},
-   * and the value is of type {@link org.eclipse.egf.model.pattern.PatternParameter},
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Parameter Matching</em>' reference list isn't
-   * clear, there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Parameter Matching</em>' map.
-   * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternCall_ParameterMatching()
-   * @model mapType="org.eclipse.egf.model.pattern.Paramerter2ParameterMap<org.eclipse.egf.model.pattern.PatternParameter, org.eclipse.egf.model.pattern.PatternParameter>"
-   * @generated
-   */
-  EMap<PatternParameter, PatternParameter> getParameterMatching();
+    /**
+     * Returns the value of the '<em><b>Parameter Matching</b></em>' map.
+     * The key is of type {@link org.eclipse.egf.model.pattern.PatternParameter},
+     * and the value is of type {@link org.eclipse.egf.model.pattern.PatternParameter},
+     * <!-- begin-user-doc -->
+     * <p>
+     * If the meaning of the '<em>Parameter Matching</em>' reference list isn't
+     * clear, there really should be more of a description here...
+     * </p>
+     * <!-- end-user-doc -->
+     * @return the value of the '<em>Parameter Matching</em>' map.
+     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternCall_ParameterMatching()
+     * @model mapType="org.eclipse.egf.model.pattern.Paramerter2ParameterMap<org.eclipse.egf.model.pattern.PatternParameter, org.eclipse.egf.model.pattern.PatternParameter>"
+     * @generated
+     */
+    EMap<PatternParameter, PatternParameter> getParameterMatching();
 
 } // PatternCall
