@@ -23,7 +23,7 @@ import org.eclipse.emf.ecore.EClass;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class JavaNatureImpl extends PatternNatureImpl implements JavaNature {
@@ -31,7 +31,6 @@ public class JavaNatureImpl extends PatternNatureImpl implements JavaNature {
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -51,7 +50,6 @@ public class JavaNatureImpl extends PatternNatureImpl implements JavaNature {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
