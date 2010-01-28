@@ -29,7 +29,7 @@ import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternVariable;
-import org.eclipse.egf.model.pattern.SuperPatternCall;
+import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
@@ -244,7 +244,7 @@ public class ChooseCallPage extends WizardPage {
                 PatternVariable context = call.getContext();
                 setSelectValue(called, context);
 
-            } else if (selectKind == CallTypeEnum.SUPERPATTERN_CALL && eidtItem instanceof SuperPatternCall) {
+            } else if (selectKind == CallTypeEnum.SUPERPATTERN_CALL && eidtItem instanceof SuperCall) {
 
             }
             setParameterMatchingCall(eidtItem);
@@ -539,10 +539,6 @@ public class ChooseCallPage extends WizardPage {
                     patternInjectedCall.setContext(patternVariable);
                 }
                 selectCall = patternInjectedCall;
-                return;
-            case SUPERPATTERN_CALL:
-                Pattern patternKind_3 = (Pattern) selectParentItem;
-                selectCall = PatternFactory.eINSTANCE.createSuperPatternCall();
                 return;
             }
         }

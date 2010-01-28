@@ -27,6 +27,7 @@ import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
@@ -94,6 +95,8 @@ public abstract class AssemblyHelper {
      * can't.
      */
     protected abstract void call(PatternCall object) throws PatternException;
+
+    protected abstract void call(SuperCall object) throws PatternException;
 
     /**
      * This method handles pattern calls.<br>

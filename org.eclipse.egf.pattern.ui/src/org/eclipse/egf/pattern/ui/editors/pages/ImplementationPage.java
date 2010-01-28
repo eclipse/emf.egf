@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.pages;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.list.IObservableList;
@@ -27,7 +28,7 @@ import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternVariable;
-import org.eclipse.egf.model.pattern.SuperPatternCall;
+import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.ImageShop;
@@ -890,7 +891,7 @@ public class ImplementationPage extends PatternEditorPage {
             kind = CallTypeEnum.PATTERN_CALL;
         } else if (selectItem instanceof PatternInjectedCall) {
             kind = CallTypeEnum.PATTERNINJECTED_CALL;
-        } else if (selectItem instanceof SuperPatternCall) {
+        } else if (selectItem instanceof SuperCall) {
             kind = CallTypeEnum.SUPERPATTERN_CALL;
             // Prevent the wizard from pops up from BackCall objects.
             return;

@@ -18,12 +18,14 @@ package org.eclipse.egf.pattern.java.engine;
 import java.util.Map.Entry;
 
 import org.eclipse.egf.common.constant.EGFCommonConstants;
+import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
+import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.ParameterMatcher;
 import org.eclipse.egf.pattern.engine.PatternHelper;
@@ -44,6 +46,20 @@ public class JavaAssemblyHelper extends AssemblyHelper {
 
     public JavaAssemblyHelper(Pattern pattern) {
         super(pattern);
+    }
+
+    @Override
+    protected void call(BackCall call) throws PatternException {
+        content.append("CallHelper.callBack(ctx");
+        for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
+            content.append(", ").append(parameter.getName());
+        }
+        content.append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+    }
+
+    @Override
+    protected void call(SuperCall object) throws PatternException {
+        throw new IllegalStateException("not implemented");
     }
 
     @Override
