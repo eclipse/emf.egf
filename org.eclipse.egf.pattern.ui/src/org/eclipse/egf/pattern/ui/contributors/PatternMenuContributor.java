@@ -16,7 +16,9 @@
 package org.eclipse.egf.pattern.ui.contributors;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
@@ -25,12 +27,13 @@ import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternLibrary;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternPackage;
+import org.eclipse.egf.model.pattern.PatternViewpoint;
 import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.engine.TranslationHelper;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.PatternInitializer;
@@ -42,6 +45,8 @@ import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateExtensionRegist
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.CreateChildAction;
@@ -71,20 +76,12 @@ public class PatternMenuContributor extends MenuContributor {
 
     private final EditTemplatePatternAction editTemplateAction = new EditTemplatePatternAction();
 
-    private boolean addActions() {
-        if (selection == null)
-            return false;
-        IStructuredSelection sselection = (IStructuredSelection) selection;
-        if (sselection.size() != 1 || !(sselection.getFirstElement() instanceof PatternElement))
-            return false;
-
-        return true;
-    }
+    private final GeneratePatternAction generateAction = new GeneratePatternAction();
 
     @Override
     public void menuAboutToShow(IMenuManager menuManager) {
         IStructuredSelection selection2 = (IStructuredSelection) selection;
-        if (addActions()) {
+        if (selection2.size() == 1) {
             if (selection2.getFirstElement() instanceof PatternLibrary) {
                 IContributionItem item = menuManager.find(EGFCommonUIConstants.CREATE_CHILD);
                 MenuManager createChildMenuManager = null;
@@ -107,6 +104,8 @@ public class PatternMenuContributor extends MenuContributor {
             } else if (selection2.getFirstElement() instanceof Pattern) {
                 menuManager.insertBefore(EGFCommonUIConstants.EDIT_MENU_GROUP, editAction);
                 menuManager.insertBefore(EGFCommonUIConstants.EDIT_MENU_GROUP, editTemplateAction);
+            } else if (selection2.getFirstElement() instanceof PatternViewpoint) {
+                menuManager.insertBefore(EGFCommonUIConstants.EDIT_MENU_GROUP, generateAction);
             }
         }
     }
@@ -179,17 +178,35 @@ public class PatternMenuContributor extends MenuContributor {
         }
     }
 
-    private final class TestAction extends Action {
+    private final class GeneratePatternAction extends Action {
 
-        public TestAction(String text) {
-            super(text);
-            setId(text);
+        public GeneratePatternAction() {
+            super(Messages.ViewpointContributor_generatePatternAction_label);
+            setId(getText());
         }
 
         @Override
         public void run() {
+            if (selection == null)
+                throw new IllegalStateException();
+            IStructuredSelection sselection = (IStructuredSelection) selection;
+            if (sselection.isEmpty() || !(sselection.getFirstElement() instanceof EObject))
+                throw new IllegalStateException();
 
-            super.run();
+            Resource resource = ((EObject) sselection.getFirstElement()).eResource();
+
+            Set<Pattern> patterns = new HashSet<Pattern>();
+            PatternHelper patternCollector = PatternHelper.createCollector();
+            try {
+                patterns.addAll(patternCollector.getPatterns(resource.getURI()));
+
+                new TranslationHelper().translate(patterns);
+            } catch (PatternException e) {
+                Activator.getDefault().logError(e);
+            } finally {
+                patterns.clear();
+                patternCollector.clear();
+            }
         }
     }
 
