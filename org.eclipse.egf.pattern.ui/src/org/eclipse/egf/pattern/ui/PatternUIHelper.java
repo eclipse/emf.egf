@@ -16,7 +16,9 @@
 package org.eclipse.egf.pattern.ui;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.model.pattern.MethodCall;
@@ -62,11 +64,15 @@ public class PatternUIHelper {
      */
     public static List<PatternMethod> getAllUseablePatternMethods(Pattern pattern) {
         List<PatternMethod> parentMethods = new ArrayList<PatternMethod>();
+        Set<String> names = new HashSet<String>();
         if (pattern != null) {
             for (PatternMethod patternMethod : pattern.getAllMethods()) {
                 String name = patternMethod.getName();
                 if (!(Messages.ImplementationPage_header.equals(name) || Messages.ImplementationPage_init.equals(name) || Messages.ImplementationPage_footer.equals(name))) {
-                    parentMethods.add(patternMethod);
+                    if (!names.contains(name)) {
+                        parentMethods.add(patternMethod);
+                        names.add(name);
+                    }
                 }
             }
         }

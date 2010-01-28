@@ -35,7 +35,7 @@ import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
 import org.eclipse.egf.pattern.ui.editors.dialogs.PatternElementSelectionDialog;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
-import org.eclipse.egf.pattern.ui.editors.providers.OrchestrationMethodLabelProvider;
+import org.eclipse.egf.pattern.ui.editors.providers.MethodLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.PatternSelectionLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.wizards.OrchestrationWizard;
 import org.eclipse.emf.common.util.EList;
@@ -329,7 +329,7 @@ public class ChooseCallPage extends WizardPage {
     private void updateTable(CallTypeEnum kind) {
         if (kind == CallTypeEnum.METHOD_CALL) {
             if (kind != oldKind) {
-                parentTableViewer.setLabelProvider(new OrchestrationMethodLabelProvider());
+                parentTableViewer.setLabelProvider(new MethodLabelProvider());
                 parentTableViewer.setSorter(new ViewerSorter(Collator.getInstance(Locale.ENGLISH)));
                 updateTableInput(getMethods(), null, true, false);
             }

@@ -52,7 +52,7 @@ public class OrchestrationTableLabelProvider extends LabelProvider implements IT
         if (element instanceof MethodCall) {
             MethodCall methodCall = (MethodCall) element;
             PatternMethod patternMethod = methodCall.getCalled();
-            return (patternMethod == null ? "" : patternMethod.getName()) + Messages.bind(Messages.OrchestrationTableLabelProvider_MethodCall, patternMethod.getPattern().getName()); //$NON-NLS-1$
+            return (patternMethod == null ? "" : patternMethod.getName()) + Messages.OrchestrationTableLabelProvider_MethodCall; //$NON-NLS-1$
         } else if (element instanceof PatternCall) {
             PatternCall patternCall = (PatternCall) element;
             Pattern pattern = patternCall.getCalled();
