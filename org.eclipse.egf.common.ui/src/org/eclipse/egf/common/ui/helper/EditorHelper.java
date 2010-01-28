@@ -18,6 +18,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
@@ -36,6 +37,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.part.FileEditorInput;
+import org.osgi.framework.Bundle;
 
 /**
  * Utility class to create status objects.
@@ -85,10 +87,10 @@ public class EditorHelper {
     return openEditor(uri);
   }
 
-  public static String computeEditorId(String fileName_p) {
+  public static String computeEditorId(String fileName) {
     IWorkbench workbench = PlatformUI.getWorkbench();
     IEditorRegistry editorRegistry = workbench.getEditorRegistry();
-    IEditorDescriptor descriptor = editorRegistry.getDefaultEditor(fileName_p);
+    IEditorDescriptor descriptor = editorRegistry.getDefaultEditor(fileName);
     if (descriptor != null) {
       return descriptor.getId();
     }
@@ -126,9 +128,10 @@ public class EditorHelper {
     return null;
   }
 
-  private static class EclipseUtil {
+  public static class EclipseUtil {
 
     static final Class<?> FILE_CLASS;
+
     static {
       Class<?> fileClass = null;
       try {
@@ -139,21 +142,71 @@ public class EditorHelper {
       FILE_CLASS = fileClass;
     }
 
+    static final Class<?> FILE_REVISION_CLASS;
+    static final Method FILE_REVISION_GET_URI_METHOD;
+    static {
+      Class<?> fileRevisionClass = null;
+      Method fileRevisionGetURIMethod = null;
+      Bundle bundle = Platform.getBundle("org.eclipse.team.core"); //$NON-NLS-1$
+      if (bundle != null && (bundle.getState() & (Bundle.ACTIVE | Bundle.STARTING | Bundle.RESOLVED)) != 0) {
+        try {
+          fileRevisionClass = bundle.loadClass("org.eclipse.team.core.history.IFileRevision"); //$NON-NLS-1$
+          fileRevisionGetURIMethod = fileRevisionClass.getMethod("getURI"); //$NON-NLS-1$
+        } catch (Throwable exeption) {
+          // Ignore any exceptions and assume the class isn't available.
+        }
+      }
+      FILE_REVISION_CLASS = fileRevisionClass;
+      FILE_REVISION_GET_URI_METHOD = fileRevisionGetURIMethod;
+    }
+
     static final Class<?> URI_EDITOR_INPUT_CLASS;
     static {
       Class<?> uriEditorInputClass = null;
       try {
         uriEditorInputClass = IURIEditorInput.class;
       } catch (Throwable exception) {
-        // Ignore any exceptions and assume the class isn't available.
+        // The class is not available.
       }
       URI_EDITOR_INPUT_CLASS = uriEditorInputClass;
+    }
+
+    public static URI getURI(IEditorInput editorInput) {
+      if (FILE_CLASS != null) {
+        IFile file = (IFile) editorInput.getAdapter(FILE_CLASS);
+        if (file != null) {
+          return URI.createPlatformPluginURI(file.getFullPath().toString(), true);
+        }
+      }
+      if (FILE_REVISION_CLASS != null) {
+        Object fileRevision = editorInput.getAdapter(FILE_REVISION_CLASS);
+        if (fileRevision != null) {
+          try {
+            return URI.createURI(((java.net.URI) FILE_REVISION_GET_URI_METHOD.invoke(fileRevision)).toString());
+          } catch (Throwable t) {
+            EGFCommonUIPlugin.getDefault().logError(t);
+          }
+        }
+      }
+      if (URI_EDITOR_INPUT_CLASS != null) {
+        if (editorInput instanceof IURIEditorInput) {
+          return URI.createURI(((IURIEditorInput) editorInput).getURI().toString()).trimFragment();
+        }
+      }
+
+      return null;
+    }
+
+    public static IFile getIFile(IEditorInput editorInput) {
+      if (FILE_CLASS != null) {
+        return (IFile) editorInput.getAdapter(FILE_CLASS);
+      }
+      return null;
     }
 
     public static IEditorInput createFileEditorInput(IFile file) {
       return new FileEditorInput(file);
     }
-
   }
 
 }
