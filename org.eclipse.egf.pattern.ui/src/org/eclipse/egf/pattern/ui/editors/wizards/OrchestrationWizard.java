@@ -73,7 +73,7 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
     @Override
     public boolean canFinish() {
 
-        if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.BACK_CALL)
+        if (chooseKindPage != null && (chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL))
             return true;
         return super.canFinish();
     }

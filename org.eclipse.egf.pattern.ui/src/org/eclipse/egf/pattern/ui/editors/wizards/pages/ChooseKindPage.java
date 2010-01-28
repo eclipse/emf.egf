@@ -103,6 +103,7 @@ public class ChooseKindPage extends WizardPage {
 
             public void widgetSelected(SelectionEvent e) {
                 selectedKind = CallTypeEnum.SUPERPATTERN_CALL;
+                setPageComplete(true);
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {

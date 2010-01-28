@@ -541,7 +541,8 @@ public class ChooseCallPage extends WizardPage {
                 selectCall = patternInjectedCall;
                 return;
             case SUPERPATTERN_CALL:
-                // TODO:superPatternCall there is nothing to do.
+                Pattern patternKind_3 = (Pattern) selectParentItem;
+                selectCall = PatternFactory.eINSTANCE.createSuperPatternCall();
                 return;
             }
         }

@@ -270,6 +270,8 @@ public class Messages extends NLS {
     
     public static String ViewpointContributor_generatePatternAction_label;
 
+    public static String ChooseKindPage_radio_backCall;
+
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.ui.PatternUIMessages";//$NON-NLS-1$
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.ui.PatternUIMessages";//$NON-NLS-1$
