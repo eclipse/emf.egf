@@ -18,6 +18,7 @@ package org.eclipse.egf.pattern.strategy.modeldriven;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.egf.model.pattern.DomainVisitor;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
@@ -39,12 +40,9 @@ public class ModelDrivenStrategy extends AbstractStrategy {
 
         EList<EObject> model = (EList<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS);
 
-        final EmfModelVisitor visitor = new EmfModelVisitor();
+        final DomainVisitor visitor = (DomainVisitor)context.getValue(PatternContext.MODEL_DRIVEN_DOMAIN_VISITOR);
         visitor.setPatterns(result);
-        // CallBackHandler handler = new ModelDrivenCallBackHandler(visitor);
-        // context.setValue(PatternContext.CALL_BACK_HANDLER, handler);
-        for (EObject obj : model)
-            visitor.visit(context, obj);
+        visitor.visit(context, model);
     }
 
 }

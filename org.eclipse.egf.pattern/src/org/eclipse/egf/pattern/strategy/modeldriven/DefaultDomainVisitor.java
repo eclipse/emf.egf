@@ -52,12 +52,11 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
     }
 
     public void visit(PatternContext context, Object model) throws PatternException {
-        process(context, model);
         for (Object obj : getChildren(model))
-            visit(context, obj);
+            doProcess(context, obj);
     }
 
-    protected void process(PatternContext context, Object model) throws PatternException {
+    protected void doProcess(PatternContext context, Object model) throws PatternException {
         List<Pattern> foundPattern = findPatterns(model);
         if (foundPattern == null || foundPattern.isEmpty())
             return;

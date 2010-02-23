@@ -33,8 +33,10 @@ public class EmfModelVisitor extends DefaultDomainVisitor {
 
     public List<?> getChildren(Object model) {
         // a implementer par les users en fct du model
-        if (model instanceof EObject)
-            return ((EObject) model).eContents();
+    	if (model instanceof EObject)
+    		return ((EObject) model).eContents();
+        if (model instanceof List<?>)
+            return (List<?>)model;
         return EMPTY_LIST;
     }
 
