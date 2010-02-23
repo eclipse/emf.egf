@@ -39,7 +39,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.ui.emf.EMFEditUIHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.ListenerContributor;
@@ -65,7 +64,6 @@ import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
@@ -286,17 +284,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected MarkerHelper markerHelper = new EditUIMarkerHelper();
 
   /**
-   * The MarkerHelper is responsible for creating workspace resource markers
-   * presented
-   * in Eclipse's Problems View.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected List<IPlatformFcore> fcores = new UniqueEList<IPlatformFcore>();
-
-  /**
    * This listens for when the outline becomes active
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -488,11 +475,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         case Resource.RESOURCE__ERRORS:
         case Resource.RESOURCE__WARNINGS: {
           Resource innerResource = (Resource) notification.getNotifier();
-          // Load tracking
-          IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(innerResource);
-          if (fcore != null) {
-            fcores.add(fcore);
-          }
           // Problem
           Diagnostic diagnostic = analyzeResourceProblems(innerResource, null);
           if (diagnostic.getSeverity() != Diagnostic.OK) {
@@ -1024,10 +1006,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       resource = editingDomain.getResourceSet().getResource(uri, false);
     }
     resourceHasBeenExternallyChanged = EGFResourceLoadedListener.RESOURCE_MANAGER.resourceHasBeenExternallyChanged(resource);
-    IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
-    if (fcore != null) {
-      fcores.add(fcore);
-    }
     Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
     if (diagnostic.getSeverity() != Diagnostic.OK) {
       resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
