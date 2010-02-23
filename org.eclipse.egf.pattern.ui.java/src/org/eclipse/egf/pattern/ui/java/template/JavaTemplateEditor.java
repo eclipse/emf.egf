@@ -23,6 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
@@ -36,6 +37,7 @@ import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.editors.text.TextEditor;
 
 /**
  * @author XiaoRu Chen - Soyatec
@@ -45,7 +47,8 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
 
     private final static String TEMPLATE_FILE_EXTENTION = ".java";
 
-    private Map<String, JavaTextEditor> javaEditorMap = new HashMap<String, JavaTextEditor>();
+    // private Map<String, JavaTextEditor> javaEditorMap = new HashMap<String,
+    // JavaTextEditor>();
 
     private List<JavaTextEditor> javaEditorList = new ArrayList<JavaTextEditor>();
 
@@ -64,7 +67,7 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
         try {
             templateFile = setPublicTemplateEditor(pattern, methods, TEMPLATE_FILE_EXTENTION);
         } catch (Exception e) {
-            e.printStackTrace();
+            Activator.getDefault().log(e);
         }
         initProblems();
         divideByMethods();
@@ -80,7 +83,7 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
             JavaTextEditor editor = new JavaTextEditor(pattern);
             int index = addPage(editor, new PatternMethodEditorInput(method.eResource(), method.getID()));
             setPageText(index, method.getName());
-            javaEditorMap.put(method.getID(), editor);
+            editorMap.put(method.getID(), editor);
             javaEditorList.add(editor);
         } catch (Exception e) {
             Activator.getDefault().logError(e);
@@ -134,8 +137,8 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
         return openEditor;
     }
 
-    public Map<String, JavaTextEditor> getEditorMap() {
-        return javaEditorMap;
+    public Map<String, TextEditor> getEditorMap() {
+        return editorMap;
     }
 
     public List<JavaTextEditor> getEditorList() {
@@ -147,9 +150,21 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
     }
 
     @Override
+    public void doSave(IProgressMonitor monitor) {
+        super.doSave(monitor);
+        JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) this.getActiveEditor());
+    }
+
+    @Override
+    public void setFocus() {
+        super.setFocus();
+        JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) this.getActiveEditor());
+    }
+
+    @Override
     public void setActivePage(String methodId) {
         if (methodId != null && !"".equals(methodId)) {
-            JavaTextEditor javaTextEditor = javaEditorMap.get(methodId);
+            JavaTextEditor javaTextEditor = (JavaTextEditor) editorMap.get(methodId);
             if (javaTextEditor != null) {
                 this.setActiveEditor(javaTextEditor);
             }

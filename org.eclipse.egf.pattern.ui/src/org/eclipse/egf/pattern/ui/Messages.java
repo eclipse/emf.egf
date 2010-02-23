@@ -85,6 +85,8 @@ public class Messages extends NLS {
     public static String ImplementationPage_init;
 
     public static String ImplementationPage_Methods;
+    public static String ImplementationPage_Methods_2;
+    public static String ImplementationPage_Methods_3;
 
     public static String ImplementationPage_methAdd_dialog_title;
 

@@ -133,7 +133,7 @@ public class JavaTextReconcilingStrategy extends JavaCompositeReconcilingStrateg
      */
     public void initialReconcile() {
         // internalReconcile();
-        initialMapping();
+//        initialMapping();
     }
 
     private void initialMapping() {

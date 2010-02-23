@@ -41,7 +41,6 @@ import org.eclipse.jdt.internal.ui.text.java.IProblemRequestorExtension;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
-import org.eclipse.jface.text.source.AnnotationModel;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.IEditorInput;
@@ -147,7 +146,7 @@ public class JavaTextEditorHelper {
         JavaTemplateEditor javaTemplateEditor = (JavaTemplateEditor) multiPageEditorPart;
         IEditorPart templateEditorPart = javaTemplateEditor.getTemplateFileEditorPart();
         Pattern pattern = editor.getPattern();
-        Map<String, JavaTextEditor> editors = javaTemplateEditor.getEditorMap();
+        Map<String, TextEditor> editors = javaTemplateEditor.getEditorMap();
         if (!(templateEditorPart instanceof JavaEditor)) {
             return;
         }
@@ -194,6 +193,9 @@ public class JavaTextEditorHelper {
         for (String id : editors.keySet()) {
             TextEditor textEditor = editors.get(id);
             IDocumentProvider documentProvider = textEditor.getDocumentProvider();
+            if (documentProvider == null) {
+                continue;
+            }
             IAnnotationModel annotationModel = documentProvider.getAnnotationModel(textEditor.getEditorInput());
             Iterator iter = annotationModel.getAnnotationIterator();
             while (iter.hasNext()) {
@@ -212,8 +214,10 @@ public class JavaTextEditorHelper {
                         continue;
                     }
                     String text = annotation.getText();
-                    if (text.startsWith("The declared package ") || text.startsWith("The public type ")) {
-                        continue;
+                    if (text != null) {
+                        if (text.startsWith("The declared package ") || text.startsWith("The public type ")) {
+                            continue;
+                        }
                     }
                     Position posi = javaAnnotationModel.getPosition(annotation);
                     if (posi == null) {
@@ -242,7 +246,7 @@ public class JavaTextEditorHelper {
             Object next = annotationIterator.next();
             if (next instanceof Annotation) {
                 Annotation annotation = (Annotation) next;
-                if(annotation == null){
+                if (annotation == null) {
                     continue;
                 }
                 if (annotation.getText() == null) {
@@ -278,7 +282,7 @@ public class JavaTextEditorHelper {
         IEditorInput editorInput = templateEditorPart.getEditorInput();
         if (editorInput instanceof IFileEditorInput) {
             IFile templateFile = ((IFileEditorInput) editorInput).getFile();
-            JavaTextEditorHelper.refreshPublicTemplateEditor(pattern, templateFile, editor);
+            refreshPublicTemplateEditor(pattern, templateFile, editor);
         }
     }
 
@@ -299,7 +303,7 @@ public class JavaTextEditorHelper {
      * 
      * @param editors
      */
-    public static Map<String, Position> getMappings(Pattern pattern, Map<String, JavaTextEditor> editors) {
+    public static Map<String, Position> getMappings(Pattern pattern, Map<String, TextEditor> editors) {
         EList<PatternMethod> methods = pattern.getMethods();
         Map<String, Position> mappings = new HashMap<String, Position>();
         int startOffset = 0;
@@ -328,7 +332,7 @@ public class JavaTextEditorHelper {
         if (multiPageEditorPart == null)
             return offset;
 
-        Map<String, JavaTextEditor> editors = ((JavaTemplateEditor) multiPageEditorPart).getEditorMap();
+        Map<String, TextEditor> editors = ((JavaTemplateEditor) multiPageEditorPart).getEditorMap();
         int mappingOffset = offset;
 
         int activePage = multiPageEditorPart.getActivePage();
@@ -336,7 +340,7 @@ public class JavaTextEditorHelper {
         for (int i = 0; i < activePage; i++) {
             PatternMethod method = methods.get(i);
             String id = method.getID();
-            JavaTextEditor currentEditor = editors.get(id);
+            JavaTextEditor currentEditor = (JavaTextEditor) editors.get(id);
             if (currentEditor != null && !(editor).equals(currentEditor)) {
                 ISourceViewer viewer = currentEditor.getViewer();
                 int length = viewer.getDocument().getLength();

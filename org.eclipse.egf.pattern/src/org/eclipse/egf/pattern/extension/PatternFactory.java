@@ -44,6 +44,7 @@ public abstract class PatternFactory {
     public static final String INIT_METHOD_NAME = "init";
     public static final String HEADER_METHOD_NAME = "header";
     public static final String FOOTER_METHOD_NAME = "footer";
+    public static final String PRECONDITION_METHOD_NAME = "preCondition";
     public static final String BODY_METHOD_NAME = "body";
 
     public void createDebugPatternUC5(PatternLibrary lib) {

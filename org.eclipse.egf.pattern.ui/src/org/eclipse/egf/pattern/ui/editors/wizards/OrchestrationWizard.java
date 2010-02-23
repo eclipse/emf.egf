@@ -18,12 +18,14 @@ package org.eclipse.egf.pattern.ui.editors.wizards;
 import java.util.List;
 
 import org.eclipse.egf.model.pattern.Call;
+import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseCallPage;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseKindPage;
+import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseMethodCallPage;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ParameterMatchingPage;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -45,6 +47,8 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
 
     private ChooseCallPage chooseCallPage;
 
+    private ChooseMethodCallPage chooseMethodCallPage;
+
     private ParameterMatchingPage parameterMatchingPage;
 
     private ISelection selection;
@@ -52,6 +56,8 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
     private Pattern pattern;
 
     private Call selectCall;
+
+    private List<MethodCall> chooseMethodCallList;
 
     private CallTypeEnum defaultKind;
 
@@ -74,16 +80,13 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
     @Override
     public boolean canFinish() {
 
-        if (chooseKindPage != null && (chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL))
+        if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.BACK_CALL)
             return true;
-        return super.canFinish();
-    }
-
-    @Override
-    public IWizardPage getNextPage(IWizardPage page) {
-        if (chooseKindPage != null && (chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL))
-            return null;
-        return super.getNextPage(page);
+        if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.METHOD_CALL && defaultKind == CallTypeEnum.Add) {
+            return chooseMethodCallPage.canFinish();
+        } else {
+            return chooseCallPage.canFinish();
+        }
     }
 
     /**
@@ -100,6 +103,9 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
         // Add chooseCallPage.
         chooseCallPage = new ChooseCallPage(pattern, selection, eidtItem);
         addPage(chooseCallPage);
+        // Add chooseMethodCallPage.
+        chooseMethodCallPage = new ChooseMethodCallPage(pattern, selection, eidtItem);
+        addPage(chooseMethodCallPage);
         // Add parameterMatchingPage.
         if (defaultKind.equals(CallTypeEnum.PATTERN_CALL) || defaultKind.equals(CallTypeEnum.Add)) {
             parameterMatchingPage = new ParameterMatchingPage(selection, pattern, transactionalEditingDomain);
@@ -110,6 +116,22 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
             parameterMatchingPage.setPatternCallee((patternCallee));
             addPage(parameterMatchingPage);
         }
+    }
+
+    @Override
+    public IWizardPage getNextPage(IWizardPage page) {
+        IWizardPage nextPage;
+        if (page instanceof ChooseKindPage) {
+            CallTypeEnum kind = ((ChooseKindPage) page).getKind();
+            if (kind == CallTypeEnum.METHOD_CALL && defaultKind.equals(CallTypeEnum.Add)) {
+                nextPage = chooseMethodCallPage;
+            } else {
+                nextPage = chooseCallPage;
+            }
+        } else {
+            nextPage = parameterMatchingPage;
+        }
+        return nextPage;
     }
 
     /**
@@ -156,6 +178,10 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
      */
     public Call getSelectCall() {
         return selectCall;
+    }
+
+    public List<MethodCall> getSelectMethodCallList() {
+        return chooseMethodCallList;
     }
 
     public CallTypeEnum getDefaultKind() {

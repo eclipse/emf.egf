@@ -21,10 +21,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
-import org.eclipse.egf.pattern.ui.jet.editor.JetTextEditor.RefreshUIJob;
 import org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jet.core.parser.ast.JETCompilationUnit;
@@ -41,9 +39,6 @@ import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.jface.text.source.ISourceViewer;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.texteditor.MarkerAnnotation;
 
 /**
@@ -141,7 +136,7 @@ public class JetReconcilingStrategy extends JETReconcilingStrategy {
     }
 
     public void initialReconcile() {
-        internalReconcile();
+//        internalReconcile();
     }
 
     public void reconcile(DirtyRegion dirtyRegion, IRegion subRegion) {

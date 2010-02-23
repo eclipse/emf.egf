@@ -110,31 +110,46 @@ public class JETAnnotationHover implements IAnnotationHover {
     return false;
   }
 
-  /* (non-Javadoc)
-   * @see org.eclipse.jface.text.source.IAnnotationHover#getHoverInfo(org.eclipse.jface.text.source.ISourceViewer, int)
-   */
-  public String getHoverInfo(ISourceViewer sourceViewer, int lineNumber) {
-    List annotations = getAnnotationsForLine(sourceViewer, lineNumber);
-    if (annotations != null)
-      if (annotations.size() == 1) {
-        JETProblemAnnotation annotation = (JETProblemAnnotation) annotations.get(0);
-        String message = annotation.getText();
-        if (message != null && message.trim().length() > 0)
-          return message;
-      } else {
-        List messages = new ArrayList();
-        for (Iterator e = annotations.iterator(); e.hasNext();) {
-          JETProblemAnnotation javaAnnotation = (JETProblemAnnotation) e.next();
-          String message = javaAnnotation.getText();
-          if (message != null && message.trim().length() > 0)
-            messages.add(message.trim());
-        }
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * org.eclipse.jface.text.source.IAnnotationHover#getHoverInfo(org.eclipse
+     * .jface.text.source.ISourceViewer, int)
+     */
+    public String getHoverInfo(ISourceViewer sourceViewer, int lineNumber) {
+        List annotations = getAnnotationsForLine(sourceViewer, lineNumber);
+        if (annotations != null) {
+            int size = annotations.size();
+            if (size == 1) {
+                JETProblemAnnotation annotation = (JETProblemAnnotation) annotations.get(0);
+                String message = annotation.getText();
+                if (message != null && message.trim().length() > 0)
+                    return message;
+            } else {
+                List messages = new ArrayList();
+                for (int i = 0; i < size; i++) {
+                    JETProblemAnnotation javaAnnotation = (JETProblemAnnotation) annotations.get(i);
+                    String message = javaAnnotation.getText();
+                    if (message != null && message.trim().length() > 0) {
+                        messages.add(message.trim());
+                    }
+                }
 
-        if (messages.size() == 1)
-          return (String) messages.get(0);
-        if (messages.size() > 1)
-          return messages.toString();
-      }
-    return null;
-  }
+                if (messages.size() == 1)
+                    return (String) messages.get(0);
+                if (messages.size() > 1){
+                    String result = "Multiple markers at this line"+"\n";
+                    for(int j = 0;j<messages.size();j++){
+                        result = result + "    - "+messages.get(j);
+                        if(j!=messages.size()-1){
+                            result = result +"\n";
+                        }
+                    }
+                    return result; 
+                }
+            }
+        }
+        return "";
+    }
 }

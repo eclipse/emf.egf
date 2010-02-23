@@ -65,6 +65,11 @@ public class JavaTextEditor extends TextEditor {
 
     public static boolean refreshJob = false;
 
+    @Override
+    public void setFocus() {
+        super.setFocus();
+    }
+
     public JavaTextEditor(Pattern pattern) throws CoreException, IOException {
         this.pattern = pattern;
         JavaDocumentProvider provider = new JavaDocumentProvider(this);

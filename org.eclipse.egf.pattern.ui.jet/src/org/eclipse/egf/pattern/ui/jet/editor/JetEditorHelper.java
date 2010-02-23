@@ -276,7 +276,7 @@ public class JetEditorHelper extends JETEditorHelper {
         JetTemplateEditor jetTemplateEditor = (JetTemplateEditor) multiPageEditorPart;
         IEditorPart templateEditorPart = jetTemplateEditor.getTemplateFileEditorPart();
         Pattern pattern = editor.getPattern();
-        Map<String, JetTextEditor> editors = ((JetTemplateEditor) multiPageEditorPart).getEditorMap();
+        Map<String, TextEditor> editors = ((JetTemplateEditor) multiPageEditorPart).getEditorMap();
         if (!(templateEditorPart instanceof TextEditor)) {
             return;
         }
@@ -320,7 +320,7 @@ public class JetEditorHelper extends JETEditorHelper {
         javaContentProblems = clearProblemsForParameterAndVariable(allVariables, javaContentProblems);
 
         for (String id : editors.keySet()) {
-            JetTextEditor textEditor = editors.get(id);
+            JetTextEditor textEditor = (JetTextEditor)editors.get(id);
             List<Problem> problems = javaContentProblems;
             Position position = mappings.get(id);
             if (position == null) {
@@ -410,7 +410,7 @@ public class JetEditorHelper extends JETEditorHelper {
      * 
      * @param editors
      */
-    public static Map<String, Position> getMappings(Pattern pattern, Map<String, JetTextEditor> editors) {
+    public static Map<String, Position> getMappings(Pattern pattern, Map<String, TextEditor> editors) {
         EList<PatternMethod> methods = pattern.getMethods();
         Map<String, Position> mappings = new HashMap<String, Position>();
         int startOffset = 0;

@@ -36,6 +36,8 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.eclipse.pde.internal.core.bundle.BundlePluginModel;
 import org.eclipse.pde.internal.core.bundle.WorkspaceBundleModel;
+import org.eclipse.pde.internal.core.ibundle.IBundle;
+import org.osgi.framework.Constants;
 
 /**
  * @author PanPan.Liu
@@ -90,6 +92,7 @@ public class ConvertPluginProjectOperation extends ConvertProjectOperation {
         }
         _project.setDescription(description, monitor);
         
+        
         IPluginBase pluginBase = platformBundle.getPluginBase();
         IPluginExtensionPoint[] extensionPoints = pluginBase.getExtensionPoints();
         IPluginExtension[] extensions = pluginBase.getExtensions();
@@ -103,7 +106,9 @@ public class ConvertPluginProjectOperation extends ConvertProjectOperation {
             BundlePluginModel bundlePluginModel = (BundlePluginModel)model;
             WorkspaceBundleModel workspaceBundleModel = (WorkspaceBundleModel) bundlePluginModel.getBundleModel();
             workspaceBundleModel.setEditable(true);
+            IBundle bundle = workspaceBundleModel.getBundle();
             IPluginBase templatePluginBase = model.getPluginBase(true);
+            updateManifest(bundle);
             for(IPluginExtensionPoint extensionPoint:extensionPoints){
                 templatePluginBase.add(extensionPoint);
             }
@@ -125,5 +130,15 @@ public class ConvertPluginProjectOperation extends ConvertProjectOperation {
             workspaceBundleModel.save();
             workspaceBundleModel.setEditable(false);
         }
+    }
+    
+    private void updateManifest(IBundle bundle){
+        String pluginId = bundle.getHeader(Constants.BUNDLE_SYMBOLICNAME);
+        String projectName = _project.getName();
+        if(projectName.startsWith(".")){
+            projectName = projectName.substring(1, projectName.length()-1);
+        }
+
+        bundle.setHeader(Constants.BUNDLE_SYMBOLICNAME, projectName+";singleton:=true");
     }
 }

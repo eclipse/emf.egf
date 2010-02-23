@@ -43,6 +43,7 @@ import org.eclipse.egf.pattern.ui.editors.modifiers.MethodTableCellModifier;
 import org.eclipse.egf.pattern.ui.editors.modifiers.VariablesTableCellModifier;
 import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.MethodLabelProvider;
+import org.eclipse.egf.pattern.ui.editors.providers.MethodsTableObservableListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.OrchestrationTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.ParametersTableLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.TableObservableListContentProvider;
@@ -94,12 +95,16 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.IMessageManager;
 import org.eclipse.ui.forms.editor.FormEditor;
+import org.eclipse.ui.forms.events.HyperlinkEvent;
+import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.ui.ide.IDE;
@@ -239,22 +244,136 @@ public class ImplementationPage extends PatternEditorPage {
 
         Section methSection = toolkit.createSection(composite, Section.TITLE_BAR);
         methSection.setText(Messages.ImplementationPage_Methods);
+
         GridData gd = new GridData(GridData.VERTICAL_ALIGN_BEGINNING | GridData.FILL_BOTH);
         methSection.setLayoutData(gd);
 
-        String label = Messages.ImplementationPage_methSection_label;
-        Composite methods = createComposite(toolkit, methSection, label);
+        Composite methods = createMethodComposite(toolkit, methSection);
 
-        createMethodsTable(toolkit, methods);
-        createMethodsButtons(toolkit, methods);
+        createLabel(toolkit, methods, Messages.ImplementationPage_Methods_2, 1);
+        createLabel(toolkit, methods, Messages.ImplementationPage_Methods_3, 2);
+
+        createPatternMethodsArea(toolkit, methods);
+        createImplementationMethodsTable(toolkit, methods);
+        createImplementationMethodsButtons(toolkit, methods);
 
         methSection.setClient(methods);
     }
 
-    private void createMethodsTable(FormToolkit toolkit, Composite methods) {
-        Table table = toolkit.createTable(methods, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
-
+    private Composite createMethodComposite(FormToolkit toolkit, Section section) {
+        Composite container = toolkit.createComposite(section, SWT.NONE);
+        GridLayout layout = new GridLayout();
+        layout.numColumns = 3;
+        container.setLayout(layout);
         GridData gd = new GridData(GridData.FILL_BOTH);
+        container.setLayoutData(gd);
+        return container;
+    }
+
+    private void createPatternMethodsArea(FormToolkit toolkit, Composite methods) {
+        Composite patternMethodsArea = toolkit.createComposite(methods, SWT.NONE);
+        GridLayout layout = new GridLayout();
+        patternMethodsArea.setLayout(layout);
+        GridData gd = new GridData(GridData.FILL_BOTH);
+        gd.verticalIndent = 20;
+        patternMethodsArea.setLayoutData(gd);
+
+        createPatternMethodsLink(toolkit, patternMethodsArea);
+    }
+
+    private void createPatternMethodsLink(FormToolkit toolkit, Composite container) {
+        ImageHyperlink headerLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.HEADER_METHOD_NAME);
+        headerLink.addHyperlinkListener(new IHyperlinkListener() {
+
+            public void linkExited(HyperlinkEvent e) {
+            }
+
+            public void linkEntered(HyperlinkEvent e) {
+            }
+
+            public void linkActivated(HyperlinkEvent e) {
+                PatternMethod headerMethod = getPattern().getHeaderMethod();
+                String headerMethodId = headerMethod.getID();
+                openMethodTemplate(headerMethodId);
+            }
+        });
+
+        ImageHyperlink initLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.INIT_METHOD_NAME);
+        initLink.addHyperlinkListener(new IHyperlinkListener() {
+
+            public void linkExited(HyperlinkEvent e) {
+            }
+
+            public void linkEntered(HyperlinkEvent e) {
+            }
+
+            public void linkActivated(HyperlinkEvent e) {
+                PatternMethod initMethod = getPattern().getInitMethod();
+                String initMethodId = initMethod.getID();
+                openMethodTemplate(initMethodId);
+            }
+        });
+
+        ImageHyperlink preConditionLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.PRECONDITION_METHOD_NAME);
+        preConditionLink.addHyperlinkListener(new IHyperlinkListener() {
+
+            public void linkExited(HyperlinkEvent e) {
+            }
+
+            public void linkEntered(HyperlinkEvent e) {
+            }
+
+            public void linkActivated(HyperlinkEvent e) {
+                // TODO
+            }
+        });
+
+        ImageHyperlink footerLink = createPatternMethodLink(toolkit, container, org.eclipse.egf.pattern.extension.PatternFactory.FOOTER_METHOD_NAME);
+        footerLink.addHyperlinkListener(new IHyperlinkListener() {
+
+            public void linkExited(HyperlinkEvent e) {
+            }
+
+            public void linkEntered(HyperlinkEvent e) {
+            }
+
+            public void linkActivated(HyperlinkEvent e) {
+                PatternMethod footerMethod = getPattern().getFooterMethod();
+                String footerMethodId = footerMethod.getID();
+                openMethodTemplate(footerMethodId);
+            }
+        });
+
+    }
+
+    private ImageHyperlink createPatternMethodLink(FormToolkit toolkit, Composite methods, String label) {
+        ImageHyperlink patternMethodLink = toolkit.createImageHyperlink(methods, SWT.NULL);
+        patternMethodLink.setText(label);
+        patternMethodLink.setImage(ImageShop.get(ImageShop.IMG_METHOD));
+        GridData gd = new GridData();
+        gd.verticalIndent = 0;
+        patternMethodLink.setLayoutData(gd);
+        return patternMethodLink;
+    }
+
+    private void createLabel(FormToolkit toolkit, Composite container, String label, int horizontalSpan) {
+        Label discrip = toolkit.createLabel(container, label, SWT.WRAP);
+        GridData gd = new GridData(GridData.FILL_BOTH);
+        gd = new GridData(GridData.FILL_HORIZONTAL | GridData.GRAB_HORIZONTAL);
+        gd.horizontalSpan = horizontalSpan;
+        gd.horizontalIndent = 4;
+        discrip.setLayoutData(gd);
+    }
+
+    private void createImplementationMethodsTable(FormToolkit toolkit, Composite methods) {
+        Composite tableComp = new Composite(methods, SWT.NONE);
+        TableColumnLayout layout = new TableColumnLayout();
+        tableComp.setLayout(layout);
+        GridData gd = new GridData(GridData.FILL_BOTH);
+        tableComp.setLayoutData(gd);
+
+        Table table = toolkit.createTable(tableComp, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+        gd = new GridData(GridData.FILL_BOTH);
         gd.verticalIndent = 10;
         gd.horizontalIndent = 10;
         gd.widthHint = 100;
@@ -262,9 +381,9 @@ public class ImplementationPage extends PatternEditorPage {
 
         methodsTableViewer = new TableViewer(table);
         TableColumn tableColumn = new TableColumn(table, SWT.NONE);
-        tableColumn.setWidth(300);
+        layout.setColumnData(tableColumn, new ColumnWeightData(200, true));
 
-        methodsTableViewer.setContentProvider(new TableObservableListContentProvider(methodsTableViewer));
+        methodsTableViewer.setContentProvider(new MethodsTableObservableListContentProvider(methodsTableViewer));
         initMethodsTableEditor();
 
         methodsTableViewer.addDoubleClickListener(new IDoubleClickListener() {
@@ -354,7 +473,7 @@ public class ImplementationPage extends PatternEditorPage {
     /**
      * Create the Methods section's buttons.
      */
-    private void createMethodsButtons(FormToolkit toolkit, final Composite methods) {
+    private void createImplementationMethodsButtons(FormToolkit toolkit, final Composite methods) {
         Composite buttons = toolkit.createComposite(methods, SWT.NONE);
         GridLayout layout = new GridLayout();
         buttons.setLayout(layout);
@@ -450,7 +569,6 @@ public class ImplementationPage extends PatternEditorPage {
 
             public void widgetSelected(SelectionEvent e) {
                 executeMethodsUpOrDown(-1);
-                ;
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
@@ -478,20 +596,48 @@ public class ImplementationPage extends PatternEditorPage {
      * Execute methods table up or down operation.
      */
     protected void executeMethodsUpOrDown(int num) {
-        final int oldIndex = methodsTableViewer.getTable().getSelectionIndex();
-        final int newIndex = oldIndex + num;
         final EList<PatternMethod> methods = getPattern().getMethods();
+
+        int oldIndex = methodsTableViewer.getTable().getSelectionIndex();
+        final int fromIndex = getIndexOfPatternMethodsMappingTable(oldIndex, methods);
+
+        int newIndex = oldIndex + num;
+        final int toIndex = getIndexOfPatternMethodsMappingTable(newIndex, methods);
 
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
-                methods.move(newIndex, oldIndex);
+                methods.move(toIndex, fromIndex);
             }
         };
         editingDomain.getCommandStack().execute(cmd);
 
+        methodsTableViewer.refresh();
         methodsTableViewer.getTable().setSelection(newIndex);
         setMethodsButtonsStatus();
+    }
+
+    /**
+     * Cet the method's index in pattern mapping methodsTable.
+     */
+    private int getIndexOfPatternMethodsMappingTable(int indexOfTable, EList<PatternMethod> patternMethods) {
+        PatternMethod item = getTableItem(indexOfTable);
+        int index = patternMethods.indexOf(item);
+        if (index == -1) {
+            System.out.println();
+        }
+        return index;
+    }
+
+    /**
+     * Get the method of index in table.
+     */
+    private PatternMethod getTableItem(int index) {
+        Object selectItem = methodsTableViewer.getElementAt(index);
+        if (selectItem instanceof PatternMethod) {
+            return (PatternMethod) selectItem;
+        }
+        return null;
     }
 
     /**
@@ -549,8 +695,8 @@ public class ImplementationPage extends PatternEditorPage {
                     }
                 };
                 editingDomain.getCommandStack().execute(cmd);
-                EList<PatternMethod> allVariables = pattern.getMethods();
-                setDefaultSelection(allVariables, methodsTableViewer, index);
+                EList<PatternMethod> allMethods = pattern.getMethods();
+                setDefaultSelection(allMethods.size() - 3, methodsTableViewer, index);
             }
         }
         setMethodsButtonsStatus();
@@ -569,7 +715,7 @@ public class ImplementationPage extends PatternEditorPage {
             }
         };
         editingDomain.getCommandStack().execute(cmd);
-
+        methodsTableViewer.refresh();
         methodsTableViewer.getTable().setSelection((methodsTableViewer.getTable().getItemCount()) - 1);
     }
 
@@ -590,14 +736,17 @@ public class ImplementationPage extends PatternEditorPage {
      * tO open a pattern template editor.
      */
     private void openPatternTemplate() {
-        Pattern pattern = getPattern();
         ISelection selection = methodsTableViewer.getSelection();
         String methodId = null;
         if (selection != null && !selection.isEmpty()) {
             PatternMethod method = (PatternMethod) ((IStructuredSelection) selection).getFirstElement();
             methodId = method.getID();
         }
+        openMethodTemplate(methodId);
+    }
 
+    private void openMethodTemplate(String methodId) {
+        Pattern pattern = getPattern();
         String editor = TemplateExtensionRegistry.getEditor(pattern);
         if (editor != null) {
             try {
@@ -721,19 +870,26 @@ public class ImplementationPage extends PatternEditorPage {
      */
     protected void executeChangeOrder(Object currentTarget, TableViewer tableViewer, EList<?> list, int sourceIndex) {
         int targetIndex = 0;
-        int index = 0;
         if (currentTarget == null) {
             targetIndex = tableViewer.getTable().getItemCount() - 1;
         } else {
-            for (Object enty : list) {
-                if (currentTarget.equals(enty)) {
-                    targetIndex = index;
+            TableItem[] items = tableViewer.getTable().getItems();
+            for (TableItem item : items) {
+                if (currentTarget.equals(item.getData())) {
+                    targetIndex = tableViewer.getTable().indexOf(item);
                     break;
                 }
-                index++;
             }
         }
-        refreshTableContent(list, targetIndex, sourceIndex);
+        Object item = list.get(0);
+        if (item != null && item instanceof PatternMethod) {
+            int fromIndex = getIndexOfPatternMethodsMappingTable(sourceIndex, (EList<PatternMethod>) list);
+            int toIndex = getIndexOfPatternMethodsMappingTable(targetIndex, (EList<PatternMethod>) list);
+            refreshTableContent(list, toIndex, fromIndex);
+        } else {
+            refreshTableContent(list, targetIndex, sourceIndex);
+        }
+        tableViewer.refresh();
         tableViewer.getTable().setSelection(targetIndex);
     }
 
@@ -907,7 +1063,24 @@ public class ImplementationPage extends PatternEditorPage {
     }
 
     protected void exectuteOrchestrationAdd(OrchestrationWizard wizard) {
-        final Call selectCall = wizard.getSelectCall();
+        List selectCallList = new ArrayList();
+        if (wizard.getDefaultKind() == CallTypeEnum.Add && wizard.getSelectCall() instanceof MethodCall) {
+            selectCallList = wizard.getSelectMethodCallList();
+        } else {
+            Call selectCall = wizard.getSelectCall();
+            selectCallList.add(selectCall);
+        }
+
+        for (Object selectCall : selectCallList) {
+            exectuteOrchestrationAddCall((Call) selectCall);
+        }
+
+        int len = getPattern().getOrchestration().size();
+        orchestrationTableViewer.getTable().setSelection(len - 1);
+        setOrchestrationButtonsStatus();
+    }
+
+    private void exectuteOrchestrationAddCall(final Call selectCall) {
         TransactionalEditingDomain editingDomain = getEditingDomain();
         RecordingCommand cmd = new RecordingCommand(editingDomain) {
             protected void doExecute() {
@@ -917,9 +1090,6 @@ public class ImplementationPage extends PatternEditorPage {
             }
         };
         editingDomain.getCommandStack().execute(cmd);
-        int len = getPattern().getOrchestration().size();
-        orchestrationTableViewer.getTable().setSelection(len - 1);
-        setOrchestrationButtonsStatus();
     }
 
     protected void exectuteOrchestrationEdit(final Call selectCall, final Object selectItem) {
@@ -970,7 +1140,7 @@ public class ImplementationPage extends PatternEditorPage {
             };
             editingDomain.getCommandStack().execute(cmd);
             EList<Call> orchestration = getPattern().getOrchestration();
-            setDefaultSelection(orchestration, orchestrationTableViewer, index);
+            setDefaultSelection(orchestration.size(), orchestrationTableViewer, index);
         }
         setOrchestrationButtonsStatus();
     }
@@ -1277,7 +1447,7 @@ public class ImplementationPage extends PatternEditorPage {
                 };
                 editingDomain.getCommandStack().execute(cmd);
                 EList<PatternVariable> allParameters = pattern.getAllVariables();
-                setDefaultSelection(allParameters, variablesTableViewer, index);
+                setDefaultSelection(allParameters.size(), variablesTableViewer, index);
             }
         }
         setVariablesButtonsStatus();
@@ -1304,8 +1474,7 @@ public class ImplementationPage extends PatternEditorPage {
     /**
      * Set default selection after remove operation.
      */
-    private void setDefaultSelection(EList<?> model, TableViewer tableViewer, int index) {
-        int len = model.size();
+    private void setDefaultSelection(int len, TableViewer tableViewer, int index) {
         if (index < len) {
             tableViewer.getTable().setSelection(index);
         } else if (index >= len) {

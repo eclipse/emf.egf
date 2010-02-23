@@ -80,6 +80,8 @@ public class ChooseCallPage extends WizardPage {
 
     private Call selectCall;
 
+    private List<MethodCall> selectMethodCallList;
+
     private Label title;
 
     private Text text;
@@ -88,7 +90,11 @@ public class ChooseCallPage extends WizardPage {
 
     private Object eidtItem;
 
+    protected Composite container;
+
     private boolean isFirst = true;
+
+    private boolean canFinish = false;
 
     public ChooseCallPage(Pattern pattern, ISelection selection, Object eidtItem) {
         super(Messages.ChooseCallPage_title);
@@ -104,7 +110,7 @@ public class ChooseCallPage extends WizardPage {
     }
 
     private void createCallControl(Composite parent) {
-        Composite container = new Composite(parent, SWT.NONE);
+        container = new Composite(parent, SWT.NONE);
         container.setLayoutData(new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL | GridData.GRAB_VERTICAL));
         GridLayout layout = new GridLayout();
         container.setLayout(layout);
@@ -113,12 +119,12 @@ public class ChooseCallPage extends WizardPage {
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         title.setLayoutData(gd);
 
-        createPatternsMethodsArea(container);
-        createVariablesArea(container);
+        createPatternsMethodsArea();
+        createVariablesArea();
         setControl(container);
     }
 
-    private void createPatternsMethodsArea(Composite container) {
+    private void createPatternsMethodsArea() {
         text = new Text(container, SWT.BORDER);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.widthHint = 550;
@@ -134,7 +140,7 @@ public class ChooseCallPage extends WizardPage {
         Label label = new Label(container, SWT.NONE);
         label.setText(Messages.ChooseCallPage_label_text);
 
-        Table listTable = new Table(container, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+        Table listTable = createParentTable();
         gd = new GridData(GridData.FILL_BOTH);
         gd.heightHint = 60;
         listTable.setLayoutData(gd);
@@ -173,7 +179,12 @@ public class ChooseCallPage extends WizardPage {
         });
     }
 
-    private void createVariablesArea(Composite container) {
+    protected Table createParentTable() {
+        Table listTable = new Table(container, SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+        return listTable;
+    }
+
+    private void createVariablesArea() {
         varParaLabel = new Label(container, SWT.NONE);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         varParaLabel.setLayoutData(gd);
@@ -437,8 +448,10 @@ public class ChooseCallPage extends WizardPage {
         setMessage(message, ERROR);
         if ("".equals(message) || message == null) { //$NON-NLS-1$
             getSelectionContent();
+            canFinish(true);
             setPageComplete(true);
         } else {
+            canFinish(false);
             setPageComplete(false);
         }
     }
@@ -516,6 +529,7 @@ public class ChooseCallPage extends WizardPage {
             Object selectParentItem = parentTableViewer.getElementAt(selectParentTableIndex);
             switch (selectKind) {
             case METHOD_CALL:
+                getSelectMethodCallList();
                 PatternMethod patternMethod = (PatternMethod) selectParentItem;
                 MethodCall methodCall = PatternFactory.eINSTANCE.createMethodCall();
                 methodCall.setCalled(patternMethod);
@@ -541,6 +555,21 @@ public class ChooseCallPage extends WizardPage {
                 selectCall = patternInjectedCall;
                 return;
             }
+        }
+    }
+
+    /**
+     * Get select method calls.
+     */
+    private void getSelectMethodCallList() {
+        selectMethodCallList = new ArrayList<MethodCall>();
+        TableItem[] selection = parentTableViewer.getTable().getSelection();
+        for (TableItem item : selection) {
+            Object data = item.getData();
+            PatternMethod patternMethod = (PatternMethod) data;
+            MethodCall methodCall = PatternFactory.eINSTANCE.createMethodCall();
+            methodCall.setCalled(patternMethod);
+            selectMethodCallList.add(methodCall);
         }
     }
 
@@ -572,5 +601,17 @@ public class ChooseCallPage extends WizardPage {
             return ((ParameterMatchingPage) getNextPage()).getPatternCall();
         }
         return selectCall;
+    }
+
+    public List<MethodCall> getChooseMethodCallList() {
+        return selectMethodCallList;
+    }
+
+    private void canFinish(boolean isFinish) {
+        canFinish = isFinish;
+    }
+
+    public boolean canFinish() {
+        return canFinish;
     }
 }

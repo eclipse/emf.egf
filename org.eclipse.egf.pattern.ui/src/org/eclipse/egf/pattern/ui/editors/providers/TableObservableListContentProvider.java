@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.TableItem;
 public class TableObservableListContentProvider extends ObservableListContentProvider {
     private TableViewer tableViewer;
 
-    private AdapterImpl refresher;
+    protected AdapterImpl refresher;
 
     public TableObservableListContentProvider(TableViewer tableViewer) {
         this.tableViewer = tableViewer;
@@ -60,5 +60,4 @@ public class TableObservableListContentProvider extends ObservableListContentPro
         }
         return elements;
     }
-
 }

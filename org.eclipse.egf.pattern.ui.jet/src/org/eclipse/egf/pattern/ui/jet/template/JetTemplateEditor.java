@@ -14,6 +14,7 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.AbstractTemplateEditor;
 import org.eclipse.egf.pattern.ui.jet.Activator;
+import org.eclipse.egf.pattern.ui.jet.editor.JetEditorHelper;
 import org.eclipse.egf.pattern.ui.jet.editor.JetTextEditor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jet.core.parser.ProblemSeverity;
@@ -24,6 +25,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.Position;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 
 /**
@@ -36,7 +38,7 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
 
     private List<Problem> problems = new ArrayList<Problem>();
 
-    private Map<String, JetTextEditor> jetEditorMap = new HashMap<String, JetTextEditor>();
+    //private Map<String, JetTextEditor> jetEditorMap = new HashMap<String, JetTextEditor>();
 
     private Map<String, List<Problem>> methodProblems = new HashMap<String, List<Problem>>();
 
@@ -69,7 +71,7 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
             JetTextEditor editor = new JetTextEditor(getPattern());
             int index = addPage(editor, new PatternMethodEditorInput(method.eResource(), method.getID()));
             setPageText(index, method.getName());
-            jetEditorMap.put(method.getID(), editor);
+            editorMap.put(method.getID(), editor);
             javaEditorList.add(editor);
         } catch (Exception e) {
             Activator.getDefault().logError(e);
@@ -143,18 +145,24 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
         return javaEditorList;
     }
 
-    public Map<String, JetTextEditor> getEditorMap() {
-        return jetEditorMap;
+    public Map<String, TextEditor> getEditorMap() {
+        return editorMap;
     }
 
     public IFile getTemplateFile() {
         return templateFile;
     }
+    
+    @Override
+    public void setFocus() {
+        super.setFocus();
+        JetEditorHelper.mappingErrorFromTemplateEditor((JetTextEditor) this.getActiveEditor());
+    }
 
     @Override
     public void setActivePage(String methodId) {
         if (methodId != null && !"".equals(methodId)) {
-            JetTextEditor javaTextEditor = jetEditorMap.get(methodId);
+            JetTextEditor javaTextEditor = (JetTextEditor)editorMap.get(methodId);
             if (javaTextEditor != null) {
                 this.setActiveEditor(javaTextEditor);
             }

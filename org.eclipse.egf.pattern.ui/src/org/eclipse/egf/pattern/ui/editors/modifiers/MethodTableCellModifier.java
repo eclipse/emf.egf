@@ -72,5 +72,5 @@ public class MethodTableCellModifier extends EditingDomainCellModifier {
         };
         doModify(runnable);
     }
-    
+
 }
