@@ -50,10 +50,7 @@ import org.eclipse.osgi.util.NLS;
  */
 public class FcoreResourceListener implements IResourceChangeListener {
 
-  /*
-   * Type of event that should be processed no matter what the real event type
-   * is.
-   */
+  // Type of event that should be processed no matter what the real event type is.
   public int _overridenEventType = -1;
 
   // A list of listeners interested in changes to factory components resources
@@ -245,8 +242,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
           job.setUser(true);
           job.schedule();
         }
-        // Broadcast events
-        // Something to process
+        // Broadcast events if any
         if (visitor.getFcoresDelta().isEmpty() == false) {
           // Debug
           if (EGFPDEPlugin.getDefault().isDebugging()) {
@@ -290,8 +286,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
             // Create an extension point
             IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(URI.createURI(resource.getFullPath().removeFirstSegments(1).makeRelative().toString()));
             IPluginChangesCommandRunner runner = EGFPDEPlugin.getPluginChangesCommandRunner();
-            // Locate the bundleId, resource should be located in a bundle
-            // project
+            // Locate the bundleId, resource should be located in a bundle project
             String bundleId = BundleHelper.getBundleId(resource);
             if (bundleId != null) {
               runner.performChangesOnPlugin(bundleId, Collections.singletonList(createCommand));
