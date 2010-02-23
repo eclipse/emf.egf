@@ -63,7 +63,7 @@
         <invocationContracts xmi:id="_HzSEYciDEd6oON34eIZwow"
             factoryComponentContract="#_5siVYMnxEd62uJjVIIL53A" invokedContract="fcore:Contract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_PFOYwbshEd6hlL3ru-eQtQ"/>
         <invocationContracts xmi:id="_aC43cNXAEd6mBObdoXlr9g" factoryComponentContract="#_ih5EENXAEd6mBObdoXlr9g"
-            invokedContract="fcore:Contract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_TX0todXAEd6mBObdoXlr9g"/>
+            invokedContract="fcore:Contract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_l2A5kdT3Ed6Pk6ruhJpBtQ"/>
         <invocationContracts xmi:id="_Pnj8UNqHEd6xR_hM8cx7GA" factoryComponentContract="#_LCgnUNgXEd6eJbYEYJAYWw"
             invokedContract="fcore:Contract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_M2YOIdqHEd6xR_hM8cx7GA"/>
         <invocationContracts xmi:id="_WXZRYNqHEd6xR_hM8cx7GA" factoryComponentContract="#_zb0TwNgfEd6na6OAqTVobQ"
