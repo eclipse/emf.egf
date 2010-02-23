@@ -409,7 +409,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
                         }
                         // Reload Changed Resources and update UI
                         updateProblemIndication = false;
-                        ResourceHelper.reloadResources(editingDomain.getResourceSet(), deltaChangedResources);
+                        // ResourceHelper.reloadResources(editingDomain.getResourceSet(),
+                        // deltaChangedResources);
                         if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
                             setSelection(StructuredSelection.EMPTY);
                         }
@@ -650,7 +651,8 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
             }
             editingDomain.getCommandStack().flush();
             updateProblemIndication = false;
-            ResourceHelper.reloadResources(editingDomain.getResourceSet(), changedResources);
+            // ResourceHelper.reloadResources(editingDomain.getResourceSet(),
+            // changedResources);
             if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
                 setSelection(StructuredSelection.EMPTY);
             }
@@ -1022,9 +1024,9 @@ public class FcoreEditor extends MultiPageEditorPart implements IEditingDomainPr
             resourceToDiagnosticMap.put(resource, analyzeResourceProblems(resource, exception));
         }
         editingDomain.getResourceSet().eAdapters().add(problemIndicationAdapter);
-         //
-         editingDomain.getResourceSet().eAdapters().add(new EGFAdapter(getSite()));
-         
+        //
+        editingDomain.getResourceSet().eAdapters().add(new EGFAdapter(getSite()));
+
     }
 
     /**
