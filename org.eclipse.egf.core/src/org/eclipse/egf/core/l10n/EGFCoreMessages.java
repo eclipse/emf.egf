@@ -63,4 +63,6 @@ public class EGFCoreMessages {
   public static String EclipseBuilderHelper_removeBuilder;
   public static String EclipseBuilderHelper_setBuilder;
 
+  public static String synchJobName;
+
 }
