@@ -38,7 +38,7 @@ public abstract class PlatformExtensionPointURI extends PlatformExtensionPoint i
 
   @Override
   public String toString() {
-    return getURI().toString();
+    return URI.decode(getURI().toString());
   }
 
 }
