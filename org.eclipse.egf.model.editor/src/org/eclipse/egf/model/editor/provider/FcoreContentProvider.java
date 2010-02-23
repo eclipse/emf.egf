@@ -12,17 +12,18 @@ package org.eclipse.egf.model.editor.provider;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.eclipse.ui.views.properties.IPropertySource;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class FcoreContentProvider extends AdapterFactoryContentProvider {
+public class FcoreContentProvider extends TransactionalAdapterFactoryContentProvider {
 
-  public FcoreContentProvider(AdapterFactory adapterFactory) {
-    super(adapterFactory);
+  public FcoreContentProvider(TransactionalEditingDomain editingDomain, AdapterFactory adapterFactory) {
+    super(editingDomain, adapterFactory);
   }
 
   @Override

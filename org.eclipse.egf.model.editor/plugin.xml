@@ -47,7 +47,7 @@
     point="org.eclipse.ui.editors"
   >
     <editor
-      id="org.eclipse.egf.model.factorycomponent.presentation.FactoryComponentEditorID"
+      id="org.eclipse.egf.model.fcore.presentation.FcoreEditorID"
       name="%_UI_FcoreEditor_label"
       icon="$nl$/icons/full/obj16/Fcore.gif"
       extensions="fcore"

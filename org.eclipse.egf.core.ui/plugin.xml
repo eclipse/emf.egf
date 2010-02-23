@@ -40,6 +40,18 @@
       id="org.eclipse.egf.core.editing.domain"
     />
   </extension>  
+  
+  <extension
+    point="org.eclipse.emf.transaction.listeners"
+  >
+    <listener 
+      class="org.eclipse.egf.core.ui.domain.FcoreResourceLoadedListener"
+    >
+      <editingDomain 
+        id="org.eclipse.egf.core.editing.domain"
+      />
+    </listener>
+  </extension>      
 
   <!-- ================================================================================= -->
   <!-- Keywords                                                                          -->
@@ -70,6 +82,16 @@
         id="org.eclipse.egf.general"
       />
     </page> 
+    <page
+      name="%egf.preferences.editors"
+      class="org.eclipse.egf.core.ui.internal.preferences.EGFEditorsPreferencePage"
+      category="org.eclipse.egf.preferences"      
+      id="org.eclipse.egf.preferences.editors"
+    >
+      <keywordReference 
+        id="org.eclipse.egf.general"
+      />
+    </page>        
     <page
       name="%egf.preferences.model"
       class="org.eclipse.egf.core.ui.internal.preferences.EGFModelPreferencePage"

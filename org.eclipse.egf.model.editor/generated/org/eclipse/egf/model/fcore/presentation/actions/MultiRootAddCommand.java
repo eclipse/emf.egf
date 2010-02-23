@@ -11,7 +11,7 @@
  */
 package org.eclipse.egf.model.fcore.presentation.actions;
 
-import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.CommandActionDelegate;
 import org.eclipse.emf.edit.command.CommandParameter;
@@ -55,6 +55,14 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
   private Object _feature = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  private Resource _resource = null;
+
+  /**
    * Constructor
    * 
    * @param domain
@@ -69,8 +77,8 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    *          <!-- end-user-doc -->
    * @generated
    */
-  public MultiRootAddCommand(EditingDomain domain, EList<?> list, Object feature, Object value) {
-    this(domain, list, feature, value, CommandParameter.NO_INDEX);
+  public MultiRootAddCommand(EditingDomain domain, Resource resource, Object feature, Object value) {
+    this(domain, resource, feature, value, CommandParameter.NO_INDEX);
   }
 
   /**
@@ -90,10 +98,11 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
    *          <!-- end-user-doc -->
    * @generated
    */
-  public MultiRootAddCommand(EditingDomain domain, EList<?> list, Object feature, Object value, int index) {
-    super(domain, list, value, index);
+  public MultiRootAddCommand(EditingDomain domain, Resource resource, Object feature, Object value, int index) {
+    super(domain, resource.getContents(), value, index);
     _feature = feature;
     _value = value;
+    _resource = resource;
     if (getDomain() instanceof AdapterFactoryEditingDomain) {
       IEditingDomainItemProvider editingDomainItemProvider = (IEditingDomainItemProvider) ((AdapterFactoryEditingDomain) getDomain()).getAdapterFactory().adapt(_value, IEditingDomainItemProvider.class);
       if (editingDomainItemProvider instanceof ItemProviderAdapter) {
@@ -104,6 +113,14 @@ public class MultiRootAddCommand extends AddCommand implements CommandActionDele
       setLabel(_itemProvider.getCreateChildText(null, _feature, _value, null));
       setDescription(_itemProvider.getCreateChildToolTipText(null, _feature, _value, null));
     }
+  }
+
+  @Override
+  protected boolean prepare() {
+    if (domain.isReadOnly(_resource)) {
+      return false;
+    }
+    return super.prepare();
   }
 
   /**

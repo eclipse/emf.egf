@@ -160,7 +160,7 @@ public class MultiRootFcorePasteFromClipboardCommand extends PasteFromClipboardC
             if (object instanceof Activity == false) {
               continue;
             }
-            ((CompoundCommand) addCommand).append(new MultiRootAddCommand(domain, ((Resource) owner).getContents(), null, object, index));
+            ((CompoundCommand) addCommand).append(new MultiRootAddCommand(domain, (Resource) owner, null, object, index));
           }
         } else {
           addCommand = AddCommand.create(domain, owner, feature, _original == null ? _copy : _original, index);
@@ -235,7 +235,7 @@ public class MultiRootFcorePasteFromClipboardCommand extends PasteFromClipboardC
         if (object instanceof Activity == false) {
           return false;
         }
-        ((CompoundCommand) addCommand).append(new MultiRootAddCommand(domain, ((Resource) owner).getContents(), null, object, index));
+        ((CompoundCommand) addCommand).append(new MultiRootAddCommand(domain, (Resource) owner, null, object, index));
       }
     } else {
       addCommand = AddCommand.create(domain, owner, feature, domain.getClipboard(), index);

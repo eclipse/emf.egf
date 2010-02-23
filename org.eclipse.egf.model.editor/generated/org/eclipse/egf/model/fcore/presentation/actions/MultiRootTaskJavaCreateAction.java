@@ -53,7 +53,15 @@ public class MultiRootTaskJavaCreateAction extends StaticSelectionCommandAction 
    */
   @Override
   protected Command createActionCommand(EditingDomain inputEditingDomain, Collection<?> collection) {
-    return new MultiRootAddCommand(inputEditingDomain, ((Resource) collection.toArray()[0]).getContents(), FtaskPackage.Literals.TASK_JAVA, FtaskFactory.eINSTANCE.createTaskJava());
+    if (collection != null && collection.size() == 1) {
+      for (Object object : collection) {
+        if (object instanceof Resource == false) {
+          break;
+        }
+        return new MultiRootAddCommand(inputEditingDomain, (Resource) object, FtaskPackage.Literals.TASK_JAVA, FtaskFactory.eINSTANCE.createTaskJava());
+      }
+    }
+    return null;
   }
 
 }

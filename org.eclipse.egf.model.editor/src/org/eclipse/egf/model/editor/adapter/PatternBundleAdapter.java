@@ -23,18 +23,23 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchPartSite;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class EGFAdapter extends EContentAdapter {
+public class PatternBundleAdapter extends EContentAdapter {
 
-  private IWorkbenchPartSite _site;
+  private Shell _shell;
 
-  public EGFAdapter(IWorkbenchPartSite site) {
-    _site = site;
+  public PatternBundleAdapter() {
+    _shell = EGFModelEditorPlugin.getActiveWorkbenchShell();
+  }
+
+  public PatternBundleAdapter(IWorkbenchPartSite site) {
+    _shell = site != null ? site.getShell() : EGFModelEditorPlugin.getActiveWorkbenchShell();
   }
 
   @Override
@@ -70,7 +75,7 @@ public class EGFAdapter extends EContentAdapter {
       };
       // asynchronous operation
       try {
-        new ProgressMonitorDialog(_site.getShell()).run(false, true, operation);
+        new ProgressMonitorDialog(_shell).run(false, true, operation);
       } catch (InterruptedException ie) {
         // Nothing to do
       } catch (Exception e) {

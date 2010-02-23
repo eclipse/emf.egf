@@ -53,7 +53,15 @@ public class MultiRootFactoryComponentCreateAction extends StaticSelectionComman
    */
   @Override
   protected Command createActionCommand(EditingDomain inputEditingDomain, Collection<?> collection) {
-    return new MultiRootAddCommand(inputEditingDomain, ((Resource) collection.toArray()[0]).getContents(), FcorePackage.Literals.FACTORY_COMPONENT, FcoreFactory.eINSTANCE.createFactoryComponent());
+    if (collection != null && collection.size() == 1) {
+      for (Object object : collection) {
+        if (object instanceof Resource == false) {
+          break;
+        }
+        return new MultiRootAddCommand(inputEditingDomain, (Resource) object, FcorePackage.Literals.FACTORY_COMPONENT, FcoreFactory.eINSTANCE.createFactoryComponent());
+      }
+    }
+    return null;
   }
 
 }

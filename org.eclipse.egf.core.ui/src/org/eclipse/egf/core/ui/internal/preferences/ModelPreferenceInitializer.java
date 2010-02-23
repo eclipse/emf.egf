@@ -35,6 +35,7 @@ public class ModelPreferenceInitializer extends AbstractPreferenceInitializer {
     final IPreferenceStore prefs = EGFCoreUIPlugin.getDefault().getPreferenceStore();
     prefs.setDefault(IEGFModelConstants.VALIDATE_TYPES, true);
     prefs.setDefault(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH, MessageDialogWithToggle.PROMPT);
+    prefs.setDefault(IEGFModelConstants.EDIT_LOADED_RESOURCES, false);
   }
 
 }
