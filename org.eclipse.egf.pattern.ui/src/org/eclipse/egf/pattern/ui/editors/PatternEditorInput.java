@@ -29,88 +29,82 @@ import org.eclipse.ui.IPersistableElement;
  */
 
 public class PatternEditorInput implements IEditorInput {
-    public static final String PATTERN_ID = "patternId";
-    public static final String RESSOURCE_URI = "uri";
 
-    private final PatternPersistableElement persistable = new PatternPersistableElement();
-    private final String fragment;
-    private final Resource resource;
+  public static final String PATTERN_ID = "patternId"; //$NON-NLS-1$
 
-    // Add for test read only mode --start;
-    private boolean isReadOnly = false;
+  public static final String RESSOURCE_URI = "uri"; //$NON-NLS-1$
 
-    public void setReadOnly(boolean isReadOnly) {
-        this.isReadOnly = isReadOnly;
+  private final PatternPersistableElement persistable = new PatternPersistableElement();
+
+  private final String fragment;
+
+  private final Resource resource;
+
+  // Add for test read only mode --start;
+  private boolean isReadOnly = false;
+
+  public void setReadOnly(boolean isReadOnly) {
+    this.isReadOnly = isReadOnly;
+  }
+
+  // Add for test read only mode --end;
+
+  public PatternEditorInput(Resource resource, String fragment) {
+    if (fragment == null || resource == null)
+      throw new IllegalArgumentException();
+    this.resource = resource;
+    this.fragment = fragment;
+  }
+
+  public boolean exists() {
+    return true;
+  }
+
+  public boolean isReadOnly() {
+    return isReadOnly;
+  }
+
+  public Pattern getPattern() {
+    return (Pattern) resource.getEObject(fragment);
+  }
+
+  public Resource getResource() {
+    return resource;
+  }
+
+  public ImageDescriptor getImageDescriptor() {
+    return null;
+  }
+
+  public String getName() {
+    if (getPattern() == null)
+      return ""; //$NON-NLS-1$
+    return getPattern().getName();
+  }
+
+  public IPersistableElement getPersistable() {
+    return persistable;
+  }
+
+  public String getToolTipText() {
+    return resource.getURI().toPlatformString(false);
+  }
+
+  public Object getAdapter(Class adapter) {
+    return null;
+  }
+
+  private class PatternPersistableElement implements IPersistableElement {
+    public void saveState(IMemento memento) {
+      if (getPattern() != null) {
+        memento.putString(PATTERN_ID, getPattern().getID());
+        memento.putString(RESSOURCE_URI, resource.getURI().toString());
+      }
     }
 
-    // Add for test read only mode --end;
-
-    public PatternEditorInput(Resource resource, String fragment) {
-        if (fragment == null)
-            throw new IllegalArgumentException();
-        if (resource == null)
-            throw new IllegalArgumentException();
-
-        this.resource = resource;
-        resource.setTrackingModification(true);
-        this.fragment = fragment;
+    public String getFactoryId() {
+      return "org.eclipse.egf.pattern.ui.pattern.factory.id"; //$NON-NLS-1$
     }
 
-    public boolean exists() {
-
-        return true;
-    }
-
-    public boolean isReadOnly() {
-        return isReadOnly;
-    }
-
-    public Pattern getPattern() {
-        return (Pattern) resource.getEObject(fragment);
-    }
-
-    public Resource getResource() {
-        return resource;
-    }
-
-    public ImageDescriptor getImageDescriptor() {
-
-        return null;
-    }
-
-    public String getName() {
-
-        if (getPattern() == null)
-            return "";
-        return getPattern().getName();
-    }
-
-    public IPersistableElement getPersistable() {
-
-        return persistable;
-    }
-
-    public String getToolTipText() {
-        return resource.getURI().toPlatformString(false);
-    }
-
-    public Object getAdapter(Class adapter) {
-
-        return null;
-    }
-
-    private class PatternPersistableElement implements IPersistableElement {
-        public void saveState(IMemento memento) {
-            if (getPattern() != null) {
-                memento.putString(PATTERN_ID, getPattern().getID());
-                memento.putString(RESSOURCE_URI, resource.getURI().toString());
-            }
-        }
-
-        public String getFactoryId() {
-
-            return "org.eclipse.egf.pattern.ui.pattern.factory.id";
-        }
-
-    }
+  }
 }
