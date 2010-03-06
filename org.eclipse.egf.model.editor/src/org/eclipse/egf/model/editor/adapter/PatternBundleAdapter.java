@@ -75,7 +75,7 @@ public class PatternBundleAdapter extends EContentAdapter {
       };
       // asynchronous operation
       try {
-        new ProgressMonitorDialog(_shell).run(false, true, operation);
+        new ProgressMonitorDialog(_shell).run(true, true, operation);
       } catch (InterruptedException ie) {
         // Nothing to do
       } catch (Exception e) {
