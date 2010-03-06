@@ -86,12 +86,24 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
 
     final Map<Resource, List<ResourceUser>> _observers = new HashMap<Resource, List<ResourceUser>>();
 
+    // Due to PDE bug notification we need to handle
+    // notification in a weird way
+    // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
+    // See PlatformManager for more informations
+    final Map<Resource, IPlatformFcore> _fcores = new HashMap<Resource, IPlatformFcore>();
+
     public void addObserver(ResourceUser resourceUser) {
       Resource resource = resourceUser.getResource();
       List<ResourceUser> list = _observers.get(resource);
       if (list == null) {
         list = new ArrayList<ResourceUser>();
         _observers.put(resource, list);
+        // Start Workaround PDE Bug 267954
+        IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
+        if (fcore != null) {
+          _fcores.put(resource, fcore);
+        }
+        // End Workaround PDE Bug 267954
       }
       list.add(resourceUser);
       _listeners.add(resourceUser.getListener());
@@ -104,6 +116,12 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
         return;
       }
       list.remove(resourceUser);
+      if (list.isEmpty()) {
+        _observers.remove(resource);
+        // Start Workaround PDE Bug 267954
+        _fcores.remove(resource);
+        // End Workaround PDE Bug 267954
+      }
       _listeners.remove(resourceUser.getListener());
       if (noMoreObserver()) {
         clearResourceSet();
@@ -150,7 +168,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       } finally {
         FcoreResourceLoadedListener.getDefault().watch(resource);
       }
-      for (ResourceListener resourceListener : RESOURCE_MANAGER._listeners) {
+      for (ResourceListener resourceListener : _listeners) {
         resourceListener.resourceReloaded(resource);
       }
     }
@@ -159,7 +177,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       if (resource == null) {
         throw new IllegalArgumentException();
       }
-      List<ResourceUser> users = RESOURCE_MANAGER._observers.get(resource);
+      List<ResourceUser> users = _observers.get(resource);
       if (users == null) {
         return false;
       }
@@ -176,7 +194,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       if (resource == null || undoContext == null) {
         throw new IllegalArgumentException();
       }
-      List<ResourceUser> users = RESOURCE_MANAGER._observers.get(resource);
+      List<ResourceUser> users = _observers.get(resource);
       if (users == null) {
         return;
       }
@@ -231,7 +249,14 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
         IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
         for (Resource resource : RESOURCE_MANAGER._observers.keySet()) {
           if (resource.getURI().equals(fcore.getURI()) && deltaRemovedResources.remove(resource) == true) {
-            deltaChangedResources.add(resource);
+            // Start Workaround PDE Bug 267954
+            IPlatformFcore innerFcore = RESOURCE_MANAGER._fcores.get(resource);
+            if (innerFcore.equals(fcore) == false) {
+              deltaChangedResources.add(resource); // <- not a workaround bug, we need to trust our equals
+            } else {
+              RESOURCE_MANAGER._fcores.put(resource, innerFcore);
+            }
+            // End Workaround PDE Bug 267954
           }
         }
       }
@@ -253,7 +278,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
           }
           // Give a chance to non dirty editors to close themselves
           // as the isDirty is processed against the resource
-          // as such we unload the resource later
+          // as such we unload the resource once notified
           if (isDirty == false) {
             resource.unload();
           }
