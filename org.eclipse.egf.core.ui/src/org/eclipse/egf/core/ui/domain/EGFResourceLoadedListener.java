@@ -227,24 +227,21 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
     public void platformExtensionPointChanged(IPlatformExtensionPointDelta delta) {
 
       final List<Resource> deltaChangedResources = new UniqueEList<Resource>();
+
       final List<Resource> deltaRemovedResources = new UniqueEList<Resource>();
-      final boolean[] conflict = new boolean[] { false };
 
       // Check if a removed platform fcore is applicable
       for (IPlatformExtensionPoint extensionPoint : delta.getRemovedPlatformExtensionPoints(IPlatformFcore.class)) {
         IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
         for (Resource resource : RESOURCE_MANAGER._observers.keySet()) {
           if (resource.getURI().equals(fcore.getURI())) {
-            // If a removed workspace fcore is detected we position a conflict flag
-            if (fcore.getPlatformBundle().isTarget() == false) {
-              conflict[0] = true;
-            }
             deltaRemovedResources.add(resource);
           }
         }
       }
       // Check if an added platform fcore is applicable
       // if a removed platform fcore is also detected it means a changed resource
+      // eg: changed means target versus workspace fcore
       for (IPlatformExtensionPoint extensionPoint : delta.getAddedPlatformExtensionPoints(IPlatformFcore.class)) {
         IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
         for (Resource resource : RESOURCE_MANAGER._observers.keySet()) {
@@ -252,7 +249,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
             // Start Workaround PDE Bug 267954
             IPlatformFcore innerFcore = RESOURCE_MANAGER._fcores.get(resource);
             if (innerFcore.equals(fcore) == false) {
-              deltaChangedResources.add(resource); // <- not a workaround bug, we need to trust our equals
+              deltaChangedResources.add(resource); // <- this statement is not a workaround bug
             } else {
               RESOURCE_MANAGER._fcores.put(resource, innerFcore);
             }
@@ -276,11 +273,14 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
           for (ResourceListener l : RESOURCE_MANAGER._listeners) {
             l.resourceDeleted(resource);
           }
-          // Give a chance to non dirty editors to close themselves
-          // as the isDirty is processed against the resource
-          // as such we unload the resource once notified
+          // Non dirty editors should close themselves
+          // The isDirty is processed against the resource (setTrackingModification)
+          // We unload the resource once notified
           if (isDirty == false) {
             resource.unload();
+            // Start Workaround PDE Bug 267954
+            RESOURCE_MANAGER._fcores.remove(resource);
+            // End Workaround PDE Bug 267954
           }
         }
       }
