@@ -32,6 +32,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.ui.java.Activator;
 import org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor;
 import org.eclipse.emf.common.util.EList;
@@ -96,7 +97,7 @@ public class JavaTextEditorHelper {
      */
     public static void refreshPublicTemplateEditor(Pattern pattern, IFile templateFile, JavaTextEditor editor) {
         MultiPageEditorPart multiPageEditorPart = getMultiPageEditorPart(editor);
-        List<JavaTextEditor> editors = ((JavaTemplateEditor) multiPageEditorPart).getEditorList();
+        List<TextEditor> editors = ((JavaTemplateEditor) multiPageEditorPart).getEditorList();
         if (templateFile.exists()) {
             try {
                 templateFile.setContents(new ByteArrayInputStream(new byte[0]), true, false, null);
@@ -107,22 +108,17 @@ public class JavaTextEditorHelper {
                 if (size == 0) {
                     return;
                 }
+                JavaTextEditor footerEditor = null;
                 for (int i = 0; i < size; i++) {
-                    JavaTextEditor currentEditor = editors.get(i);
-                    if (currentEditor == null) {
+                    JavaTextEditor currentEditor = (JavaTextEditor) editors.get(i);
+                    String partName = currentEditor.getPartName();
+                    if (partName.equals(PatternFactory.FOOTER_METHOD_NAME)) {
+                        footerEditor = currentEditor;
                         continue;
                     }
-                    if (currentEditor != null) {
-                        InputStream inputStreamOfEditor = getInputStreamOfEditor(currentEditor);
-                        if (inputStreamOfEditor == null) {
-                            continue;
-                        }
-                        templateFile.appendContents(inputStreamOfEditor, false, false, null);
-                        if (i != size - 1) {
-                            templateFile.appendContents(new StringBufferInputStream("\n"), true, false, null);
-                        }
-                    }
+                    visitMethod(currentEditor, templateFile, true);
                 }
+                visitMethod(footerEditor, templateFile, false);
             } catch (Exception e) {
             }
         } else {
@@ -132,6 +128,22 @@ public class JavaTextEditorHelper {
                 Activator.getDefault().log(e);
             }
             refreshPublicTemplateEditor(pattern, templateFile, editor);
+        }
+    }
+
+    private static void visitMethod(JavaTextEditor currentEditor, IFile templateFile, boolean seprator) throws CoreException {
+        if (currentEditor == null) {
+            return;
+        }
+        if (currentEditor != null) {
+            InputStream inputStreamOfEditor = getInputStreamOfEditor(currentEditor);
+            if (inputStreamOfEditor == null) {
+                return;
+            }
+            templateFile.appendContents(inputStreamOfEditor, false, false, null);
+            if (seprator) {
+                templateFile.appendContents(new StringBufferInputStream("\n"), true, false, null);
+            }
         }
     }
 

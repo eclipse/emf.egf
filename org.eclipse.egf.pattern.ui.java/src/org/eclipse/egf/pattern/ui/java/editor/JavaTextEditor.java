@@ -26,6 +26,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.model.pattern.Pattern;
+import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.MethodEditorActivationListener;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
@@ -90,6 +91,7 @@ public class JavaTextEditor extends TextEditor {
      * (non-Javadoc)
      * 
      * @see
+     * 
      * 
      * 
      * 

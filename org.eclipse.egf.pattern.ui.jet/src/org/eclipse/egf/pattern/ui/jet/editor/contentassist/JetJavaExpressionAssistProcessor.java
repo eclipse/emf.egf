@@ -18,6 +18,7 @@ package org.eclipse.egf.pattern.ui.jet.editor.contentassist;
 
 import java.util.List;
 
+import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateEditorUtility;
 import org.eclipse.egf.pattern.ui.jet.editor.JetEditorHelper;
 import org.eclipse.egf.pattern.ui.jet.editor.JetTextEditor;
 import org.eclipse.jet.internal.editor.contentassist.JETJavaExpressionAssistProcessor;
@@ -39,7 +40,7 @@ public class JetJavaExpressionAssistProcessor extends JETJavaExpressionAssistPro
 
     public ICompletionProposal[] computeCompletionProposals(ITextViewer viewer, int offset) {
 
-        ICompletionProposal[] computeCompletionProposals = super.computeCompletionProposals(viewer, offset);
+        ICompletionProposal[] computeCompletionProposals = TemplateEditorUtility.filterJavaMethodProposals(super.computeCompletionProposals(viewer, offset));
 
         JetParameterVariableAssistUtility utility = new JetParameterVariableAssistUtility(editor, viewer, offset);
         List<ICompletionProposal> proposals = utility.getParameterVariableAssist();

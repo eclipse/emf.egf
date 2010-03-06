@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateEditorUtility;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.computer.AbstractProposalComputer;
 import org.eclipse.jdt.core.CompletionProposal;
 import org.eclipse.jdt.core.CompletionRequestor;
@@ -107,7 +108,7 @@ public class JavaTypeProposalComputer extends AbstractProposalComputer {
         } catch (JavaModelException x) {
         }
 
-        ICompletionProposal[] javaProposals = collector.getJavaCompletionProposals();
+        ICompletionProposal[] javaProposals = TemplateEditorUtility.filterJavaMethodProposals(collector.getJavaCompletionProposals());
         int contextInformationOffset = guessMethodContextInformationPosition(context, offset);
         if (contextInformationOffset != offset) {
             for (int i = 0; i < javaProposals.length; i++) {

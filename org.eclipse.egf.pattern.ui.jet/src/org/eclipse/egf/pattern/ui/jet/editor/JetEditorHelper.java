@@ -32,6 +32,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.ui.jet.Activator;
 import org.eclipse.egf.pattern.ui.jet.template.JetTemplateEditor;
 import org.eclipse.emf.common.util.EList;
@@ -224,7 +225,7 @@ public class JetEditorHelper extends JETEditorHelper {
      */
     public static void refreshPublicTemplateEditor(Pattern pattern, IFile templateFile, JetTextEditor editor) {
         MultiPageEditorPart multiPageEditorPart = getMultiPageEditorPart(editor);
-        List<JetTextEditor> editors = ((JetTemplateEditor) multiPageEditorPart).getEditorList();
+        List<TextEditor> editors = ((JetTemplateEditor) multiPageEditorPart).getEditorList();
         if (templateFile.exists()) {
             try {
                 templateFile.setContents(new ByteArrayInputStream(new byte[0]), true, false, null);
@@ -235,33 +236,43 @@ public class JetEditorHelper extends JETEditorHelper {
                 if (size == 0) {
                     return;
                 }
+                JetTextEditor footerEditor = null;
                 for (int i = 0; i < size; i++) {
-                    JetTextEditor currentEditor = editors.get(i);
-                    if (currentEditor == null) {
+                    JetTextEditor currentEditor = (JetTextEditor) editors.get(i);
+                    String partName = currentEditor.getPartName();
+                    if (partName.equals(PatternFactory.FOOTER_METHOD_NAME)) {
+                        footerEditor = currentEditor;
                         continue;
                     }
-                    if (currentEditor != null) {
-                        InputStream inputStreamOfEditor = getInputStreamOfEditor(currentEditor);
-                        if (inputStreamOfEditor == null) {
-                            continue;
-                        }
-                        templateFile.appendContents(inputStreamOfEditor, false, false, null);
-                        if (i != size - 1) {
-                            templateFile.appendContents(new StringBufferInputStream("\n"), true, false, null);
-                        }
-                    }
+                    visitMethod(currentEditor, templateFile, true);
                 }
+                visitMethod(footerEditor, templateFile, false);
             } catch (Exception e) {
                 Activator.getDefault().log(e);
             }
-        }else{
+        } else {
             try {
-                templateFile.create(new ByteArrayInputStream(new byte[0]),
-                        true, null);
+                templateFile.create(new ByteArrayInputStream(new byte[0]), true, null);
             } catch (CoreException e) {
                 Activator.getDefault().log(e);
             }
-            refreshPublicTemplateEditor(pattern,templateFile,editor);
+            refreshPublicTemplateEditor(pattern, templateFile, editor);
+        }
+    }
+
+    private static void visitMethod(JetTextEditor currentEditor, IFile templateFile, boolean seprator) throws CoreException {
+        if (currentEditor == null) {
+            return;
+        }
+        if (currentEditor != null) {
+            InputStream inputStreamOfEditor = getInputStreamOfEditor(currentEditor);
+            if (inputStreamOfEditor == null) {
+                return;
+            }
+            templateFile.appendContents(inputStreamOfEditor, false, false, null);
+            if (seprator) {
+                templateFile.appendContents(new StringBufferInputStream("\n"), true, false, null);
+            }
         }
     }
 
@@ -286,8 +297,8 @@ public class JetEditorHelper extends JETEditorHelper {
             IFile templateFile = jetTemplateEditor.getTemplateFile();
             WorkbenchPage templateActivePage = jetTemplateEditor.getTemplateActivePage();
             try {
-                if (templateActivePage == null || templateFile == null){
-                    return; 
+                if (templateActivePage == null || templateFile == null) {
+                    return;
                 }
                 fEditor = (JETTextEditor) IDE.openEditor(templateActivePage, templateFile, false);
                 templateActivePage.setEditorAreaVisible(false);
@@ -296,11 +307,11 @@ public class JetEditorHelper extends JETEditorHelper {
             }
             fDocumentProvider = fEditor.getDocumentProvider();
         }
-        if(fEditor == null){
+        if (fEditor == null) {
             return;
         }
         IDocument fDocument = fDocumentProvider.getDocument(fEditor.getEditorInput());
-        if(fDocument == null){
+        if (fDocument == null) {
             return;
         }
 
@@ -320,7 +331,7 @@ public class JetEditorHelper extends JETEditorHelper {
         javaContentProblems = clearProblemsForParameterAndVariable(allVariables, javaContentProblems);
 
         for (String id : editors.keySet()) {
-            JetTextEditor textEditor = (JetTextEditor)editors.get(id);
+            JetTextEditor textEditor = (JetTextEditor) editors.get(id);
             List<Problem> problems = javaContentProblems;
             Position position = mappings.get(id);
             if (position == null) {

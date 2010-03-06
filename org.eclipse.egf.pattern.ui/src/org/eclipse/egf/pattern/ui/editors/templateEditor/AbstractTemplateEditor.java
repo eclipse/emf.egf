@@ -17,9 +17,14 @@
 package org.eclipse.egf.pattern.ui.editors.templateEditor;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.StringBufferInputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.Map.Entry;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
@@ -35,12 +40,16 @@ import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
+import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
+import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.core.IJavaProject;
@@ -74,9 +83,11 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 
     protected Map<String, TextEditor> editorMap = new HashMap<String, TextEditor>();
 
+    protected List<TextEditor> editorList = new ArrayList<TextEditor>();
+
     // The adapter is for refreshing the editor title while the name of pattern
     // has been changed.
-    AdapterImpl refresher = new AdapterImpl() {
+    AdapterImpl patternAdapter = new AdapterImpl() {
         public void notifyChanged(Notification msg) {
             if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg.getFeature())) {
                 setPartName((String) msg.getNewValue());
@@ -88,6 +99,14 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
                 if ("methods".equals(ref.getName())) {
                     refreshTemplateEditor(msg);
                 }
+            }
+        }
+    };
+
+    AdapterImpl methodAdapter = new AdapterImpl() {
+        public void notifyChanged(Notification msg) {
+            if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg.getFeature())) {
+                executeMethodEditorRename();
             }
         }
     };
@@ -186,18 +205,15 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
             } else {
                 templateFile.setContents(new ByteArrayInputStream(new byte[0]), true, false, null);
             }
+            PatternMethod footMethod = null;
             for (PatternMethod method : methods) {
-                IFile file = project.getFile(method.getPatternFilePath().path());
-                if (!file.exists()) {
-                    file.create(new ByteArrayInputStream(new byte[0]), true, null);
+                if (method.getName().equals(PatternFactory.FOOTER_METHOD_NAME)) {
+                    footMethod = method;
+                    continue;
                 }
-                templateFile.appendContents(file.getContents(), false, false, null);
-                templateFile.appendContents(new StringBufferInputStream("\n"), true, false, null);
-                int startPosition = TemplateEditorUtility.getStartPosition(startPositions);
-                int length = TemplateEditorUtility.getSourceLength(file.getContents());
-                Position position = new Position(startPosition, length);
-                startPositions.put(method.getName(), position);
+                visitMethod(project, method, templateFile, true);
             }
+            visitMethod(project, footMethod, templateFile, false);
             openEditor = initEditor(templateFile);
         } catch (Exception e) {
             Activator.getDefault().logError(e);
@@ -205,12 +221,40 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
         return templateFile;
     }
 
+    private void visitMethod(IProject project, PatternMethod method, IFile templateFile, boolean seprator) throws CoreException, IOException {
+        IFile file = project.getFile(method.getPatternFilePath().path());
+        if (!file.exists()) {
+            file.create(new ByteArrayInputStream(new byte[0]), true, null);
+        }
+        templateFile.appendContents(file.getContents(), false, false, null);
+        if (seprator) {
+            templateFile.appendContents(new StringBufferInputStream("\n"), true, false, null);
+        }
+        int startPosition = TemplateEditorUtility.getStartPosition(startPositions);
+        int length = TemplateEditorUtility.getSourceLength(file.getContents());
+        Position position = new Position(startPosition, length);
+        startPositions.put(method.getName(), position);
+    }
+
     /**
-     * While the name of the pattern has been changed, refresh the editor title.
+     * While pattern has been changed, refresh the editor title.
      */
     protected void addPatternChangeAdapter(final Pattern pattern) {
-        if (pattern != null && !pattern.eAdapters().contains(refresher)) {
-            pattern.eAdapters().add(refresher);
+        if (pattern != null && !pattern.eAdapters().contains(patternAdapter)) {
+            pattern.eAdapters().add(patternAdapter);
+            EList<PatternMethod> methods = pattern.getMethods();
+            for (PatternMethod method : methods) {
+                addMethodChangeAdapter(method);
+            }
+        }
+    }
+
+    /**
+     * While method has been changed, refresh the editor title.
+     */
+    protected void addMethodChangeAdapter(PatternMethod method) {
+        if (method != null && !method.eAdapters().contains(methodAdapter)) {
+            method.eAdapters().add(methodAdapter);
         }
     }
 
@@ -219,8 +263,21 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
      */
     protected void removePatternChangeAdapter() {
         Pattern pattern = getPattern();
-        if (pattern != null && pattern.eAdapters().contains(refresher)) {
-            pattern.eAdapters().remove(refresher);
+        if (pattern != null && pattern.eAdapters().contains(patternAdapter)) {
+            pattern.eAdapters().remove(patternAdapter);
+        }
+        EList<PatternMethod> methods = pattern.getMethods();
+        for (PatternMethod method : methods) {
+            removeMethodChangeAdapter(method);
+        }
+    }
+
+    /**
+     * Remove the Adapter add for refreshing the editor title
+     */
+    protected void removeMethodChangeAdapter(PatternMethod method) {
+        if (method != null && method.eAdapters().contains(methodAdapter)) {
+            method.eAdapters().remove(methodAdapter);
         }
     }
 
@@ -233,24 +290,104 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
      * methods.
      */
     private void refreshTemplateEditor(Notification msg) {
-        // TODO
         Object newValue = msg.getNewValue();
+        Object oldValue = msg.getOldValue();
+        int eventType = msg.getEventType();
+        if ((newValue != null && newValue instanceof PatternMethod) || (newValue == null && oldValue instanceof PatternMethod)) {
+            switch (eventType) {
+            case Notification.ADD:
+                executeMethodEditorAdd((PatternMethod) newValue);
+                break;
+            case Notification.REMOVE:
+                executeMethodEditorRemove((PatternMethod) oldValue);
+                break;
+            case Notification.MOVE:
+                // TODO
+                break;
+            default:
+                return;
+            }
+        }
+        System.out.println();
     }
 
-    private void executeRenameMethodEditor(EList<PatternMethod> methods) {
+    private void executeMethodEditorRename() {
+        for (TextEditor editor : editorList) {
+            PatternMethod patternMethod = ((PatternMethodEditorInput) editor.getEditorInput()).getPatternMethod();
+            if (patternMethod != null) {
+                int index = getIndexOfMethodEditor(editor);
+                setPageText(index, patternMethod.getName());
+            }
+        }
+    }
+
+    private void executeMethodEditorRemove(PatternMethod deleteMethod) {
+        for (int i = 0; i < this.getPageCount(); i++) {
+            IEditorPart currentEditor = this.getEditor(i);
+            IEditorInput editorInput = currentEditor.getEditorInput();
+            if (editorInput instanceof PatternMethodEditorInput) {
+                PatternMethod patternMethod = ((PatternMethodEditorInput) editorInput).getPatternMethod();
+                if (patternMethod == null) {
+                    this.removePage(i);
+                    removeEditor(currentEditor);
+                }
+            }
+        }
+    }
+
+    private void removeEditor(IEditorPart editor) {
+        editorList.remove(editor);
+        Set<Entry<String, TextEditor>> entrySet = editorMap.entrySet();
+        for (Entry<String, TextEditor> entry : entrySet) {
+            if (entry.getValue().equals(editor)) {
+                editorMap.remove(entry.getKey());
+                return;
+            }
+        }
+    }
+
+    protected void executeMethodEditorAdd(PatternMethod addMethod) {
+        addMethodChangeAdapter(addMethod);
+    }
+
+    protected void addEditor(TextEditor editor, PatternMethod method) {
+        try {
+            int index = addPage(editor, new PatternMethodEditorInput(method.eResource(), method.getID()));
+            setPageText(index, method.getName());
+            editorMap.put(method.getID(), editor);
+            editorList.add(editor);
+        } catch (PartInitException e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void setPatternFilePath(PatternMethod addMethod) {
+        URI computeFileURI = PatternHelper.Filename.computeFileURI(addMethod);
+        addMethod.setPatternFilePath(computeFileURI);
+    }
+
+    private void executeMethodEditorsReorder(PatternMethod moveMethod) {
         // TODO
     }
 
-    private void executeRemoveMethodEditor(EList<PatternMethod> methods) {
-        // TODO
+    private int getIndexOfMethodEditor(TextEditor editor) {
+        int index = -1;
+        for (int i = 0; i < this.getPageCount(); i++) {
+            IEditorPart currentEditor = this.getEditor(i);
+            if (editor.equals(currentEditor)) {
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
-    private void executeAddMethodEditor(EList<PatternMethod> methods) {
-        // TODO
+    public Map<String, TextEditor> getEditorMap() {
+        return editorMap;
     }
 
-    private void executeReOrderMethodEditors(EList<PatternMethod> methods) {
-        // TODO
+    public List<TextEditor> getEditorList() {
+        return editorList;
     }
 
     @Override

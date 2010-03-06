@@ -96,6 +96,10 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.TableItem;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbench;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.IManagedForm;
@@ -749,6 +753,24 @@ public class ImplementationPage extends PatternEditorPage {
         Pattern pattern = getPattern();
         String editor = TemplateExtensionRegistry.getEditor(pattern);
         if (editor != null) {
+            IWorkbench workbench = PlatformUI.getWorkbench();
+            IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
+            IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
+            IEditorPart[] editorParts = activePage.getEditors();
+            if (editorParts.length > 1) {
+                for (int i = editorParts.length - 1; i >= 0; i--) {
+                    if (editorParts[i] instanceof AbstractTemplateEditor) {
+                        Pattern templateEdtiorPattern = ((AbstractTemplateEditor) editorParts[i]).getPattern();
+                        if ((getPattern()).equals(templateEdtiorPattern)) {
+                            // Switch to the already opened editor.
+                            activePage.activate(editorParts[i]);
+                            ((AbstractTemplateEditor) editorParts[i]).setActivePage(methodId);
+                            return;
+                        }
+                    }
+                }
+            }
+            // Open a new template editor.
             try {
                 PatternEditorInput input = new PatternEditorInput(pattern.eResource(), pattern.getID());
                 AbstractTemplateEditor editorPart = (AbstractTemplateEditor) IDE.openEditor(getEditorSite().getPage(), input, editor);
@@ -756,6 +778,7 @@ public class ImplementationPage extends PatternEditorPage {
             } catch (PartInitException e) {
                 Activator.getDefault().logError(e);
             }
+
         }
     }
 

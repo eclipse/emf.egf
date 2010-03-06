@@ -16,17 +16,16 @@
 
 package org.eclipse.egf.pattern.ui.java.template;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.AbstractTemplateEditor;
 import org.eclipse.egf.pattern.ui.java.Activator;
 import org.eclipse.egf.pattern.ui.java.editor.JavaTextEditor;
@@ -37,7 +36,6 @@ import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.editors.text.TextEditor;
 
 /**
  * @author XiaoRu Chen - Soyatec
@@ -46,11 +44,6 @@ import org.eclipse.ui.editors.text.TextEditor;
 public class JavaTemplateEditor extends AbstractTemplateEditor {
 
     private final static String TEMPLATE_FILE_EXTENTION = ".java";
-
-    // private Map<String, JavaTextEditor> javaEditorMap = new HashMap<String,
-    // JavaTextEditor>();
-
-    private List<JavaTextEditor> javaEditorList = new ArrayList<JavaTextEditor>();
 
     private IAnnotationModel javaAnnotationModel;
 
@@ -81,10 +74,7 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
     void createPage(PatternMethod method, Pattern pattern) {
         try {
             JavaTextEditor editor = new JavaTextEditor(pattern);
-            int index = addPage(editor, new PatternMethodEditorInput(method.eResource(), method.getID()));
-            setPageText(index, method.getName());
-            editorMap.put(method.getID(), editor);
-            javaEditorList.add(editor);
+            addEditor(editor, method);
         } catch (Exception e) {
             Activator.getDefault().logError(e);
         }
@@ -137,14 +127,6 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
         return openEditor;
     }
 
-    public Map<String, TextEditor> getEditorMap() {
-        return editorMap;
-    }
-
-    public List<JavaTextEditor> getEditorList() {
-        return javaEditorList;
-    }
-
     public IFile getTemplateFile() {
         return templateFile;
     }
@@ -171,4 +153,21 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
         }
     }
 
+    @Override
+    protected void executeMethodEditorAdd(PatternMethod addMethod) {
+        try {
+            if (addMethod.getID() == null)
+                return;
+            // Add the pattern file path to method in order to create add
+            // editor's input file.
+            setPatternFilePath(addMethod);
+            JavaTextEditor newEditor = new JavaTextEditor(getPattern());
+            addEditor(newEditor, addMethod);
+            super.executeMethodEditorAdd(addMethod);
+        } catch (CoreException e) {
+            Activator.getDefault().logError(e);
+        } catch (IOException e) {
+            Activator.getDefault().logError(e);
+        }
+    }
 }

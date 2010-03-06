@@ -42,10 +42,14 @@ import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.internal.ui.text.java.JavaMethodCompletionProposal;
 import org.eclipse.jdt.ui.PreferenceConstants;
+import org.eclipse.jdt.ui.text.java.IJavaCompletionProposal;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.ITextViewer;
 import org.eclipse.jface.text.Position;
+import org.eclipse.jface.text.contentassist.ICompletionProposal;
+
 /**
  * @author Yahong Song - Soyatec
  * 
@@ -125,27 +129,27 @@ public class TemplateEditorUtility {
             ;
         return currChar;
     }
-    
-    public static IClasspathEntry[] getNewIClasspathEntry(IClasspathEntry[] entries,IClasspathEntry[] jreEntry){
-        if (entries != null && jreEntry != null ) {
-            IClasspathEntry[] newEntries= new IClasspathEntry[entries.length + jreEntry.length];
+
+    public static IClasspathEntry[] getNewIClasspathEntry(IClasspathEntry[] entries, IClasspathEntry[] jreEntry) {
+        if (entries != null && jreEntry != null) {
+            IClasspathEntry[] newEntries = new IClasspathEntry[entries.length + jreEntry.length];
             System.arraycopy(entries, 0, newEntries, 0, entries.length);
             System.arraycopy(jreEntry, 0, newEntries, entries.length, jreEntry.length);
             return newEntries;
         }
         return null;
     }
-    
+
     public static void createFolder(IFolder folder, boolean force, boolean local, IProgressMonitor monitor) throws CoreException {
         if (!folder.exists()) {
-            IContainer parent= folder.getParent();
+            IContainer parent = folder.getParent();
             if (parent instanceof IFolder) {
-                createFolder((IFolder)parent, force, local, null);
+                createFolder((IFolder) parent, force, local, null);
             }
             folder.create(force, local, monitor);
         }
     }
-    
+
     public static IJavaProject createJavaProject(String name, IProgressMonitor monitor) {
         IJavaProject javaProject = null;
         IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
@@ -239,5 +243,18 @@ public class TemplateEditorUtility {
             }
         }
         return javaProject;
+    }
+
+    public static ICompletionProposal[] filterJavaMethodProposals(ICompletionProposal[] javaProposals) {
+        if (javaProposals == null) {
+            return null;
+        }
+        List<ICompletionProposal> proposals = new ArrayList<ICompletionProposal>();
+        for (ICompletionProposal javaProposal : javaProposals) {
+            if (!(javaProposal instanceof JavaMethodCompletionProposal)) {
+                proposals.add(javaProposal);
+            }
+        }
+        return (ICompletionProposal[]) proposals.toArray(new IJavaCompletionProposal[proposals.size()]);
     }
 }

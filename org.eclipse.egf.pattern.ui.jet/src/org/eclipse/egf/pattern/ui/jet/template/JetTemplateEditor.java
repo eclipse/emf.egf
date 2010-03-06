@@ -1,5 +1,6 @@
 package org.eclipse.egf.pattern.ui.jet.template;
 
+import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
@@ -25,7 +27,6 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.Position;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 
 /**
@@ -38,11 +39,7 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
 
     private List<Problem> problems = new ArrayList<Problem>();
 
-    //private Map<String, JetTextEditor> jetEditorMap = new HashMap<String, JetTextEditor>();
-
     private Map<String, List<Problem>> methodProblems = new HashMap<String, List<Problem>>();
-
-    private List<JetTextEditor> javaEditorList = new ArrayList<JetTextEditor>();
 
     private IFile templateFile;
 
@@ -69,10 +66,7 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
     void createPage(PatternMethod method) {
         try {
             JetTextEditor editor = new JetTextEditor(getPattern());
-            int index = addPage(editor, new PatternMethodEditorInput(method.eResource(), method.getID()));
-            setPageText(index, method.getName());
-            editorMap.put(method.getID(), editor);
-            javaEditorList.add(editor);
+            addEditor(editor, method);
         } catch (Exception e) {
             Activator.getDefault().logError(e);
         }
@@ -141,18 +135,10 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
         return openEditor;
     }
 
-    public List<JetTextEditor> getEditorList() {
-        return javaEditorList;
-    }
-
-    public Map<String, TextEditor> getEditorMap() {
-        return editorMap;
-    }
-
     public IFile getTemplateFile() {
         return templateFile;
     }
-    
+
     @Override
     public void setFocus() {
         super.setFocus();
@@ -162,10 +148,29 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
     @Override
     public void setActivePage(String methodId) {
         if (methodId != null && !"".equals(methodId)) {
-            JetTextEditor javaTextEditor = (JetTextEditor)editorMap.get(methodId);
+            JetTextEditor javaTextEditor = (JetTextEditor) editorMap.get(methodId);
             if (javaTextEditor != null) {
                 this.setActiveEditor(javaTextEditor);
             }
         }
     }
+
+    @Override
+    protected void executeMethodEditorAdd(PatternMethod addMethod) {
+        try {
+            if (addMethod.getID() == null)
+                return;
+            // Add the pattern file path to method in order to create add
+            // editor's input file.
+            setPatternFilePath(addMethod);
+            JetTextEditor newEditor = new JetTextEditor(getPattern());
+            addEditor(newEditor, addMethod);
+            super.executeMethodEditorAdd(addMethod);
+        } catch (CoreException e) {
+            Activator.getDefault().logError(e);
+        } catch (IOException e) {
+            Activator.getDefault().logError(e);
+        }
+    }
+
 }
