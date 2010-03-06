@@ -80,7 +80,7 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
     @Override
     public boolean canFinish() {
 
-        if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.BACK_CALL)
+        if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL)
             return true;
         if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.METHOD_CALL && defaultKind == CallTypeEnum.Add) {
             return chooseMethodCallPage.canFinish();
@@ -125,7 +125,10 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
             CallTypeEnum kind = ((ChooseKindPage) page).getKind();
             if (kind == CallTypeEnum.METHOD_CALL && defaultKind.equals(CallTypeEnum.Add)) {
                 nextPage = chooseMethodCallPage;
-            } else {
+            } else if (chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL){
+            	return null;
+            }
+            else {
                 nextPage = chooseCallPage;
             }
         } else {
