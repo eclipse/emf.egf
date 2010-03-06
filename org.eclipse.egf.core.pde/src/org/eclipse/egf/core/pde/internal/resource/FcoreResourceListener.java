@@ -53,7 +53,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
   // Type of event that should be processed no matter what the real event type is.
   public int _overridenEventType = -1;
 
-  // A list of listeners interested in changes to factory components resources
+  // A list of listeners interested in changes to fcore resources
   private List<IResourceFcoreListener> _listeners;
 
   public FcoreResourceListener() {
@@ -61,8 +61,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
   }
 
   /**
-   * Notify all interested listeners in changes made to the factory components
-   * resource
+   * Notify all interested listeners in changes made to fcore resource
    * 
    * @param delta
    *          the delta of changes
@@ -185,10 +184,10 @@ public class FcoreResourceListener implements IResourceChangeListener {
                         }
                       }
                     }
-                    // Changed resource
+                    // Updated resource
                   } else if (innerDelta.getKind() == IResourceDelta.CHANGED) {
                     if ((innerDelta.getFlags() & IResourceDelta.CONTENT) != 0) {
-                      deltaFcores.storeChangedResourceFcore(uri);
+                      deltaFcores.storeUpdatedResourceFcore(uri);
                     }
                   }
                 }
@@ -305,11 +304,11 @@ public class FcoreResourceListener implements IResourceChangeListener {
   }
 
   private void trace(IResourceFcoreDelta delta) {
-    if (delta.getChangedResourceFcores().length > 0) {
-      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Changed {0} Fcore{1}.", //$NON-NLS-1$ 
-          delta.getChangedResourceFcores().length, delta.getChangedResourceFcores().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+    if (delta.getUpdatedResourceFcores().length > 0) {
+      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Updated {0} Fcore{1}.", //$NON-NLS-1$ 
+          delta.getUpdatedResourceFcores().length, delta.getUpdatedResourceFcores().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
-      trace(delta.getChangedResourceFcores(), null);
+      trace(delta.getUpdatedResourceFcores(), null);
     }
     if (delta.getMovedResourceFcores().length > 0) {
       EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Moved {0} Fcore{1}.", //$NON-NLS-1$ 

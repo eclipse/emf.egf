@@ -43,50 +43,50 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
  */
 public class FcoreListener implements IResourceFcoreListener {
 
-    public static final FcoreListener INSTANCE = new FcoreListener();
+  public static final FcoreListener INSTANCE = new FcoreListener();
 
-    public void fcoreChanged(IResourceFcoreDelta delta) {
-        translate(delta.getChangedResourceFcores());
-    }
+  public void fcoreChanged(IResourceFcoreDelta delta) {
+    translate(delta.getUpdatedResourceFcores());
+  }
 
-    private void translate(final URI[] uris) {
-        if (uris == null || uris.length == 0)
-            return;
-        Job job = new Job(Messages.translation_job_label) {
+  private void translate(final URI[] uris) {
+    if (uris == null || uris.length == 0)
+      return;
+    Job job = new Job(Messages.translation_job_label) {
 
+      @Override
+      protected IStatus run(IProgressMonitor monitor) {
+        try {
+          new WorkspaceModifyOperation() {
             @Override
-            protected IStatus run(IProgressMonitor monitor) {
-                try {
-                    new WorkspaceModifyOperation() {
-                        @Override
-                        protected void execute(IProgressMonitor innerMonitor) throws CoreException, InvocationTargetException, InterruptedException {
-                            Set<Pattern> patterns = new HashSet<Pattern>();
-                            PatternHelper patternCollector = PatternHelper.createCollector();
-                            try {
-                                innerMonitor.beginTask(Messages.translation_job_label, uris.length);
-                                for (URI uri : uris)
-                                    patterns.addAll(patternCollector.getPatterns(uri));
+            protected void execute(IProgressMonitor innerMonitor) throws CoreException, InvocationTargetException, InterruptedException {
+              Set<Pattern> patterns = new HashSet<Pattern>();
+              PatternHelper patternCollector = PatternHelper.createCollector();
+              try {
+                innerMonitor.beginTask(Messages.translation_job_label, uris.length);
+                for (URI uri : uris)
+                  patterns.addAll(patternCollector.getPatterns(uri));
 
-                                new TranslationHelper().translate(patterns);
-                            } catch (Exception e) {
-                                throw new InvocationTargetException(e);
-                            } finally {
-                                patterns.clear();
-                                patternCollector.clear();
-                            }
-                        }
-                    }.run(monitor);
-                } catch (InvocationTargetException e) {
-                    Activator.getDefault().logError(e.getTargetException());
-                } catch (InterruptedException e) {
-                    Activator.getDefault().logError(e);
-                }
-                return Status.OK_STATUS;
+                new TranslationHelper().translate(patterns);
+              } catch (Exception e) {
+                throw new InvocationTargetException(e);
+              } finally {
+                patterns.clear();
+                patternCollector.clear();
+              }
             }
+          }.run(monitor);
+        } catch (InvocationTargetException e) {
+          Activator.getDefault().logError(e.getTargetException());
+        } catch (InterruptedException e) {
+          Activator.getDefault().logError(e);
+        }
+        return Status.OK_STATUS;
+      }
 
-        };
-        job.schedule();
+    };
+    job.schedule();
 
-    }
+  }
 
 }

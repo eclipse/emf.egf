@@ -22,7 +22,7 @@ import org.eclipse.emf.common.util.UniqueEList;
 
 public class ResourceFcoreDelta implements IResourceFcoreDelta {
 
-  private List<URI> _changed = new UniqueEList<URI>();
+  private List<URI> _updated = new UniqueEList<URI>();
 
   private List<URI> _moved = new UniqueEList<URI>();
 
@@ -32,8 +32,8 @@ public class ResourceFcoreDelta implements IResourceFcoreDelta {
     // Nothing to do
   }
 
-  public URI[] getChangedResourceFcores() {
-    return _changed.toArray(new URI[_changed.size()]);
+  public URI[] getUpdatedResourceFcores() {
+    return _updated.toArray(new URI[_updated.size()]);
   }
 
   public URI[] getMovedResourceFcores() {
@@ -45,22 +45,22 @@ public class ResourceFcoreDelta implements IResourceFcoreDelta {
   }
 
   protected boolean isEmpty() {
-    return _changed.size() == 0 && _moved.size() == 0 ? true : false;
+    return _updated.size() == 0 && _moved.size() == 0 ? true : false;
   }
 
-  protected boolean storeChangedResourceFcore(URI resource) {
-    if (resource == null) {
+  protected boolean storeUpdatedResourceFcore(URI uri) {
+    if (uri == null) {
       return false;
     }
-    return _changed.add(resource);
+    return _updated.add(uri);
   }
 
-  protected boolean storeMovedResourceFcore(URI resource, URI from) {
-    if (resource == null || from == null) {
+  protected boolean storeMovedResourceFcore(URI uri, URI from) {
+    if (uri == null || from == null) {
       return false;
     }
-    _movedFrom.put(resource, from);
-    return _moved.add(resource);
+    _movedFrom.put(uri, from);
+    return _moved.add(uri);
   }
 
 }
