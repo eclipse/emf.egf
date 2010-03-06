@@ -308,6 +308,9 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
 
   public boolean handleResourceMoved(Resource resource, URI newURI) {
     resource.unload();
+    // Start Workaround PDE Bug 267954
+    RESOURCE_MANAGER._fcores.remove(resource);
+    // End Workaround PDE Bug 267954
     for (ResourceListener l : RESOURCE_MANAGER._listeners) {
       l.resourceMoved(resource, newURI);
     }
