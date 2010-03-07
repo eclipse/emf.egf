@@ -13,7 +13,8 @@ Require-Bundle:
  org.eclipse.jdt.ui;visibility:=reexport,
  org.eclipse.emf.workspace;visibility:=reexport, 
  org.eclipse.egf.common.ui;visibility:=reexport,
- org.eclipse.egf.core;visibility:=reexport
+ org.eclipse.egf.core;visibility:=reexport,
+ org.eclipse.egf.core.pde;visibility:=reexport
 Export-Package: 
  org.eclipse.egf.core.ui,
  org.eclipse.egf.core.ui.contributor,

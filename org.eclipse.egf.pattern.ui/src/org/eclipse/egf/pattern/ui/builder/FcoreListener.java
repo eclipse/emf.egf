@@ -17,6 +17,7 @@ package org.eclipse.egf.pattern.ui.builder;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.CoreException;
@@ -46,11 +47,11 @@ public class FcoreListener implements IResourceFcoreListener {
   public static final FcoreListener INSTANCE = new FcoreListener();
 
   public void fcoreChanged(IResourceFcoreDelta delta) {
-    translate(delta.getUpdatedResourceFcores());
+    translate(delta.getUpdatedFcores());
   }
 
-  private void translate(final URI[] uris) {
-    if (uris == null || uris.length == 0)
+  private void translate(final List<URI> uris) {
+    if (uris == null || uris.size() == 0)
       return;
     Job job = new Job(Messages.translation_job_label) {
 
@@ -63,7 +64,7 @@ public class FcoreListener implements IResourceFcoreListener {
               Set<Pattern> patterns = new HashSet<Pattern>();
               PatternHelper patternCollector = PatternHelper.createCollector();
               try {
-                innerMonitor.beginTask(Messages.translation_job_label, uris.length);
+                innerMonitor.beginTask(Messages.translation_job_label, uris.size());
                 for (URI uri : uris)
                   patterns.addAll(patternCollector.getPatterns(uri));
 

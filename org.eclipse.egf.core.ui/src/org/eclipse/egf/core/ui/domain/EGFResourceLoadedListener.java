@@ -22,9 +22,11 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.ObjectUndoContext;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
+import org.eclipse.egf.core.fcore.IResourceFcoreListener;
 import org.eclipse.egf.core.helper.ResourceHelper;
+import org.eclipse.egf.core.pde.EGFPDEPlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
-import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
@@ -231,8 +233,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       final List<Resource> deltaRemovedResources = new UniqueEList<Resource>();
 
       // Check if a removed platform fcore is applicable
-      for (IPlatformExtensionPoint extensionPoint : delta.getRemovedPlatformExtensionPoints(IPlatformFcore.class)) {
-        IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
+      for (IPlatformFcore fcore : delta.getRemovedPlatformExtensionPoints(IPlatformFcore.class)) {
         for (Resource resource : RESOURCE_MANAGER._observers.keySet()) {
           if (resource.getURI().equals(fcore.getURI())) {
             deltaRemovedResources.add(resource);
@@ -242,17 +243,17 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       // Check if an added platform fcore is applicable
       // if a removed platform fcore is also detected it means a changed resource
       // eg: changed means target versus workspace fcore
-      for (IPlatformExtensionPoint extensionPoint : delta.getAddedPlatformExtensionPoints(IPlatformFcore.class)) {
-        IPlatformFcore fcore = (IPlatformFcore) extensionPoint;
+      for (IPlatformFcore fcore : delta.getAddedPlatformExtensionPoints(IPlatformFcore.class)) {
         for (Resource resource : RESOURCE_MANAGER._observers.keySet()) {
-          if (resource.getURI().equals(fcore.getURI()) && deltaRemovedResources.remove(resource) == true) {
+          if (resource.getURI().equals(fcore.getURI())) {
             // Start Workaround PDE Bug 267954
             IPlatformFcore innerFcore = RESOURCE_MANAGER._fcores.get(resource);
-            if (innerFcore.equals(fcore) == false) {
-              deltaChangedResources.add(resource); // <- this statement is not a workaround bug
-            } else {
-              RESOURCE_MANAGER._fcores.put(resource, innerFcore);
+            if (deltaRemovedResources.remove(resource) == true) {
+              if (innerFcore.equals(fcore) == false) {
+                deltaChangedResources.add(resource); // <- this statement is not a workaround
+              }
             }
+            RESOURCE_MANAGER._fcores.put(resource, fcore);
             // End Workaround PDE Bug 267954
           }
         }
@@ -261,7 +262,47 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       if (deltaRemovedResources.isEmpty() == false) {
         for (Resource resource : deltaRemovedResources) {
           List<ResourceUser> users = RESOURCE_MANAGER._observers.get(resource);
-          if (users == null) {
+          if (users == null) { // This should not happen, however we are conservative
+            continue;
+          }
+          IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
+          // We filter workspace fcore, they are handled by _fcoreListener
+          if (fcore == null || fcore.getPlatformBundle().isTarget() == false) {
+            continue;
+          }
+          // At this point we only handle target deleted fcore, they are always in read only mode
+          resource.unload();
+          for (ResourceListener l : RESOURCE_MANAGER._listeners) {
+            l.resourceDeleted(resource);
+          }
+          // Start Workaround PDE Bug 267954
+          RESOURCE_MANAGER._fcores.remove(resource);
+          // End Workaround PDE Bug 267954
+        }
+      }
+
+      if (deltaChangedResources.isEmpty() == false) {
+        for (Resource resource : deltaChangedResources) {
+          RESOURCE_MANAGER.reloadResource(resource);
+        }
+      }
+
+    }
+
+  };
+
+  /**
+   * This listens for fcore changes.
+   */
+  protected IResourceFcoreListener _fcoreListener = new IResourceFcoreListener() {
+    public void fcoreChanged(IResourceFcoreDelta delta) {
+      TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+      // Process Deleted Resources
+      for (URI uri : delta.getRemovedFcores()) {
+        Resource resource = editingDomain.getResourceSet().getResource(uri, false);
+        if (resource != null) {
+          List<ResourceUser> users = RESOURCE_MANAGER._observers.get(resource);
+          if (users == null) { // This should not happen, however we are conservative
             continue;
           }
           boolean isDirty = false;
@@ -284,19 +325,22 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
           }
         }
       }
-
-      if (deltaChangedResources.isEmpty() == false) {
-        for (Resource resource : deltaChangedResources) {
-          RESOURCE_MANAGER.reloadResource(resource);
+      // Process Moved Resources
+      Map<URI, URI> movedFcores = delta.getMovedFcores();
+      for (URI uri : movedFcores.keySet()) {
+        Resource resource = editingDomain.getResourceSet().getResource(uri, false);
+        if (resource != null) {
+          for (ResourceListener l : RESOURCE_MANAGER._listeners) {
+            l.resourceMoved(resource, movedFcores.get(uri));
+          }
         }
       }
-
     }
-
   };
 
   public EGFResourceLoadedListener() {
     EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(_platformListener);
+    EGFPDEPlugin.getDefault().addResourceFcoreListener(_fcoreListener);
   }
 
   public boolean handleResourcePersisted(Resource resource) {
@@ -307,12 +351,12 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
   }
 
   public boolean handleResourceMoved(Resource resource, URI newURI) {
-    resource.unload();
-    // Start Workaround PDE Bug 267954
-    RESOURCE_MANAGER._fcores.remove(resource);
-    // End Workaround PDE Bug 267954
-    for (ResourceListener l : RESOURCE_MANAGER._listeners) {
-      l.resourceMoved(resource, newURI);
+    // ignore fcore resources, they are handled by _fcoreListener
+    if (EGFCorePlugin.getPlatformFcore(resource) == null) {
+      resource.unload();
+      for (ResourceListener l : RESOURCE_MANAGER._listeners) {
+        l.resourceMoved(resource, newURI);
+      }
     }
     return true;
   }
@@ -373,6 +417,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
 
   public void dispose() {
     EGFPlatformPlugin.getPlatformManager().removePlatformExtensionPointListener(_platformListener);
+    EGFPDEPlugin.getDefault().removeResourceFcoreListener(_fcoreListener);
   }
 
 }
