@@ -18,6 +18,9 @@ public class attributePattern
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
+  protected final String TEXT_1 = "";
+  protected final String TEXT_2 = NL;
+
 	public attributePattern()
 	{
 	//Here is the constructor
@@ -31,14 +34,12 @@ StringBuffer stringBuffer = new StringBuffer();
   {
     final StringBuffer stringBuffer = new StringBuffer();
     
-    PatternContext ctx = (PatternContext)argument;
+    InternalPatternContext ctx = (InternalPatternContext)argument;
 StringBuilder collector = new StringBuilder(2000);
 Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
     
-
-
 List<Object> parameterList = null;
 //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
@@ -49,25 +50,37 @@ for (Object parameterParameter : parameterList ) {
     collector.append(generate(ctx, parameterParameter));
     
 }
-ctx.getReporter().executionFinished(collector.toString(), ctx);
+((InternalPatternContext)ctx).getReporter().executionFinished(collector.toString(), ctx);
 
+    stringBuffer.append(TEXT_2);
     return stringBuffer.toString();
   }
 public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
-final StringBuffer stringBuffer = new StringBuffer();
-PatternCallReporter callReporter =  new PatternCallReporter(stringBuffer);
+InternalPatternContext ictx = (InternalPatternContext)ctx;
+if (!ictx.hasCallReporter()) {
+    ictx = new ExecutionContext(ctx);
+    ictx.setCallReporter(new PatternCallReporter(new StringBuffer()));
+}
 
 Map<String, Object> parameterValues = new HashMap<String, Object>();
 org.eclipse.emf.ecore.EAttribute parameter = (org.eclipse.emf.ecore.EAttribute)parameterParameter;
 parameterValues.put("parameter", parameterParameter);
 
-    stringBuffer.append("attribute "+parameter.getName());
+    
+method_body(ictx.getCallReporter().getBuffer(), ictx, parameter);
+
     CallHelper.callBack(ctx, parameter);
 
     
-String loop = stringBuffer.toString();
-ctx.getReporter().loopFinished(loop, ctx, parameterValues);
+String loop = ictx.getCallReporter().getBuffer().toString();
+((InternalPatternContext)ctx).getReporter().loopFinished(loop, ictx, parameterValues);
 return loop;
 } 
 
-}
+
+    protected void method_body(StringBuffer stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EAttribute parameter)throws Exception 
+{
+    stringBuffer.append(TEXT_1);
+    stringBuffer.append("attribute "+parameter.getName());
+    }
+    }
