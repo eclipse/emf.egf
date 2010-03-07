@@ -54,7 +54,6 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
         });
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
         if (_activity != null) {
-          // Reset proxies
           ((InternalEObject) _activity).eSetProxyURI(_uri);
           _activity = null;
           _uri = null;

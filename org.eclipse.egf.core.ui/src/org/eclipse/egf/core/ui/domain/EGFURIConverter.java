@@ -11,11 +11,17 @@
 package org.eclipse.egf.core.ui.domain;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
+import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
+import org.eclipse.egf.core.fcore.IResourceFcoreListener;
+import org.eclipse.egf.core.pde.EGFPDEPlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
@@ -31,10 +37,22 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
    */
   protected IPlatformExtensionPointListener _platformListener = new IPlatformExtensionPointListener() {
     public void platformExtensionPointChanged(IPlatformExtensionPointDelta delta) {
-      // Clear the previous URIMap content
-      getURIMap().clear();
-      // Assign a fresh URIMap content
-      getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+      IPlatformFcore[] addedFcores = delta.getAddedPlatformExtensionPoints(IPlatformFcore.class);
+      if (addedFcores != null && addedFcores.length > 0) {
+        loadURIMap();
+      }
+    }
+  };
+
+  /**
+   * This listens for fcore changes.
+   */
+  protected IResourceFcoreListener _fcoreListener = new IResourceFcoreListener() {
+    public void fcoreChanged(IResourceFcoreDelta delta) {
+      List<URI> uris = delta.getRemovedFcores();
+      if (uris != null && uris.size() > 0) {
+        loadURIMap();
+      }
     }
   };
 
@@ -44,6 +62,8 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
   public EGFURIConverter() {
     super();
     EGFPlatformPlugin.getPlatformManager().addInFrontPlatformExtensionPointListener(_platformListener);
+    EGFPDEPlugin.getDefault().addResourceFcoreListener(_fcoreListener);
+    loadURIMap();
   }
 
   /**
@@ -52,6 +72,8 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
   public EGFURIConverter(Collection<URIHandler> uriHandlers, Collection<ContentHandler> contentHandlers) {
     super(uriHandlers, contentHandlers);
     EGFPlatformPlugin.getPlatformManager().addInFrontPlatformExtensionPointListener(_platformListener);
+    EGFPDEPlugin.getDefault().addResourceFcoreListener(_fcoreListener);
+    loadURIMap();
   }
 
   /**
@@ -59,6 +81,15 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
    */
   public void dispose() {
     EGFPlatformPlugin.getPlatformManager().removePlatformExtensionPointListener(_platformListener);
+    EGFPDEPlugin.getDefault().removeResourceFcoreListener(_fcoreListener);
+    loadURIMap();
+  }
+
+  private void loadURIMap() {
+    // Clear the previous URIMap content
+    getURIMap().clear();
+    // Assign a fresh URIMap content
+    getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
   }
 
 }

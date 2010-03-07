@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
+import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.core.context.ContextFactory;
 import org.eclipse.egf.core.context.IContextFactory;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
@@ -28,6 +29,7 @@ import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -123,10 +125,18 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    */
   public static Map<URI, URI> computePlatformPluginToPlatformResourceMap() {
     Map<URI, URI> result = new HashMap<URI, URI>();
+    IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
     for (IPlatformFcore fcore : getWorkspacePlatformFcores()) {
-      URI platformPluginURI = URI.createPlatformPluginURI(fcore.getPlatformBundle().getBundleId() + "/", false); //$NON-NLS-1$
-      URI platformResourceURI = URI.createPlatformResourceURI(fcore.getPlatformBundle().getProject().getName() + "/", true); //$NON-NLS-1$
-      result.put(platformPluginURI, platformResourceURI);
+      String pluginID = fcore.getURI().segment(1);
+      IProject project = root.getProject(pluginID);
+      // Don't ask the project if its exists or opened. while closing a project is still opened
+      // While its according model base is already reset to null
+      IPluginModelBase base = BundleHelper.getPluginModelBase(project);
+      if (base != null) {
+        URI platformPluginURI = URI.createPlatformPluginURI(fcore.getPlatformBundle().getBundleId() + "/", false); //$NON-NLS-1$
+        URI platformResourceURI = URI.createPlatformResourceURI(fcore.getPlatformBundle().getProject().getName() + "/", true); //$NON-NLS-1$
+        result.put(platformPluginURI, platformResourceURI);
+      }
     }
     return result;
   }
@@ -152,8 +162,11 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
       for (IPlatformFcore fcore : fcores) {
         String pluginID = fcore.getURI().segment(1);
         IProject project = root.getProject(pluginID);
-        if (project.exists() && project.isOpen() == false) {
-          result.put(URI.createPlatformResourceURI(pluginID + "/", false), URI.createPlatformPluginURI(pluginID + "/", false)); //$NON-NLS-1$ //$NON-NLS-2$
+        // Don't ask the project if its exists or opened. while closing a project is still opened
+        // While its according model base is already reset to null
+        IPluginModelBase base = BundleHelper.getPluginModelBase(project);
+        if (project.exists() && base == null) {
+          result.put(URI.createPlatformPluginURI(pluginID + "/", false), URI.createPlatformPluginURI(pluginID + "/", false)); //$NON-NLS-1$ //$NON-NLS-2$
         }
       }
     }

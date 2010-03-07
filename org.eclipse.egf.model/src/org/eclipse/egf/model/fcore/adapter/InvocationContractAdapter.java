@@ -63,7 +63,6 @@ public class InvocationContractAdapter extends AdapterImpl {
         });
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
         if (_contract != null) {
-          // Reset proxies
           ((InternalEObject) _contract).eSetProxyURI(_uri);
           _contract = null;
           _uri = null;

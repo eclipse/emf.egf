@@ -532,19 +532,55 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * 
    * @generated NOT
    */
+  public void resourceMoved(Resource movedResource, final URI newURI) {
+    if ((movedResource == getResource())) {
+      resourceHasBeenExternallyChanged = false;
+      resourceHasBeenRemoved = false;
+      userHasSavedResource = false;
+      getSite().getShell().getDisplay().asyncExec(new Runnable() {
+        public void run() {
+          if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
+            setSelection(StructuredSelection.EMPTY);
+          }
+          getOperationHistory().dispose(undoContext, true, true, true);
+          getResource().setURI(newURI);
+          FileEditorInput editorInput = new FileEditorInput(EGFWorkspaceSynchronizer.getFile(getResource()));
+          setInputWithNotify(editorInput);
+          selectionViewer.setInput(getResource());
+          selectionViewer.setSelection(new StructuredSelection(getResource()), true);
+          currentViewerPane.setTitle(getResource());
+          firePropertyChange(IEditorPart.PROP_DIRTY);
+        }
+      });
+      return;
+    }
+    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+      public void run() {
+        firePropertyChange(IEditorPart.PROP_DIRTY);
+      }
+    });
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
   public void resourceDeleted(Resource deletedResource) {
     if ((deletedResource == getResource())) {
       if (isDirty() == false) {
         // just close now without prompt
-        getSite().getShell().getDisplay().syncExec(new Runnable() {
+        getSite().getShell().getDisplay().asyncExec(new Runnable() {
           public void run() {
             getSite().getPage().closeEditor(FcoreEditor.this, false);
           }
         });
-      } else {
-        resourceHasBeenRemoved = true;
+        return;
       }
+      resourceHasBeenRemoved = true;
     }
+    // Check dirty state
     getSite().getShell().getDisplay().asyncExec(new Runnable() {
       public void run() {
         firePropertyChange(IEditorPart.PROP_DIRTY);
@@ -567,7 +603,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       resourceHasBeenExternallyChanged = false;
       resourceHasBeenRemoved = false;
       userHasSavedResource = false;
-      getSite().getShell().getDisplay().syncExec(new Runnable() {
+      getSite().getShell().getDisplay().asyncExec(new Runnable() {
         public void run() {
           if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
             setSelection(StructuredSelection.EMPTY);
@@ -580,7 +616,22 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           updateProblemIndication();
         }
       });
+    } else if (ResourceHelper.hasApplicableProxies(getResource(), reloadedResource.getURI())) {
+      Diagnostic diagnostic = analyzeResourceProblems(reloadedResource, null);
+      if (diagnostic.getSeverity() != Diagnostic.OK) {
+        resourceToDiagnosticMap.put(reloadedResource.getURI(), diagnostic);
+      } else {
+        resourceToDiagnosticMap.remove(reloadedResource.getURI());
+      }
+      if (updateProblemIndication) {
+        getSite().getShell().getDisplay().asyncExec(new Runnable() {
+          public void run() {
+            updateProblemIndication();
+          }
+        });
+      }
     }
+    // Check dirty state
     getSite().getShell().getDisplay().asyncExec(new Runnable() {
       public void run() {
         firePropertyChange(IEditorPart.PROP_DIRTY);
@@ -631,39 +682,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       resourceHasBeenExternallyChanged = false;
       resourceHasBeenRemoved = false;
       userHasSavedResource = false;
-    }
-    getSite().getShell().getDisplay().asyncExec(new Runnable() {
-      public void run() {
-        firePropertyChange(IEditorPart.PROP_DIRTY);
-      }
-    });
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  public void resourceMoved(Resource movedResource, final URI newURI) {
-    if ((movedResource == getResource())) {
-      resourceHasBeenExternallyChanged = false;
-      resourceHasBeenRemoved = false;
-      userHasSavedResource = false;
-      getSite().getShell().getDisplay().syncExec(new Runnable() {
-        public void run() {
-          if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
-            setSelection(StructuredSelection.EMPTY);
-          }
-          getOperationHistory().dispose(undoContext, true, true, true);
-          getResource().setURI(newURI);
-          FileEditorInput editorInput = new FileEditorInput(EGFWorkspaceSynchronizer.getFile(getResource()));
-          setInputWithNotify(editorInput);
-          selectionViewer.setInput(getResource());
-          selectionViewer.setSelection(new StructuredSelection(getResource()), true);
-          currentViewerPane.setTitle(getResource());
-        }
-      });
     }
     getSite().getShell().getDisplay().asyncExec(new Runnable() {
       public void run() {
@@ -733,7 +751,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         }
       }
 
-      getViewer().refresh();
+      if (selectionViewer.isBusy() == false) {
+        selectionViewer.refresh();
+      }
 
     }
   }
@@ -1020,7 +1040,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     try {
       // Load the resource through the editing domain.
       //
-      resource = ResourceHelper.loadResource(editingDomain.getResourceSet(), uri);
+      resource = editingDomain.getResourceSet().getResource(uri, true);
     } catch (Exception e) {
       exception = e;
       EGFModelEditorPlugin.getPlugin().logError(e);
