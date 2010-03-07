@@ -634,22 +634,23 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    */
   public void resourceMoved(Resource movedResource, final URI newURI) {
     if ((movedResource == getResource())) {
-      if (isDirty() == false) {
-        getSite().getShell().getDisplay().syncExec(new Runnable() {
-          public void run() {
-            if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
-              setSelection(StructuredSelection.EMPTY);
-            }
-            getOperationHistory().dispose(undoContext, true, true, true);
-            getResource().setURI(newURI);
-            FileEditorInput editorInput = new FileEditorInput(EGFWorkspaceSynchronizer.getFile(getResource()));
-            setInputWithNotify(editorInput);
-            selectionViewer.setInput(getResource());
-            selectionViewer.setSelection(new StructuredSelection(getResource()), true);
-            currentViewerPane.setTitle(getResource());
+      resourceHasBeenExternallyChanged = false;
+      resourceHasBeenRemoved = false;
+      userHasSavedResource = false;
+      getSite().getShell().getDisplay().syncExec(new Runnable() {
+        public void run() {
+          if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
+            setSelection(StructuredSelection.EMPTY);
           }
-        });
-      }
+          getOperationHistory().dispose(undoContext, true, true, true);
+          getResource().setURI(newURI);
+          FileEditorInput editorInput = new FileEditorInput(EGFWorkspaceSynchronizer.getFile(getResource()));
+          setInputWithNotify(editorInput);
+          selectionViewer.setInput(getResource());
+          selectionViewer.setSelection(new StructuredSelection(getResource()), true);
+          currentViewerPane.setTitle(getResource());
+        }
+      });
     }
   }
 
