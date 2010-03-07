@@ -224,7 +224,7 @@ public class ExtensionPointHelper {
   public static Object createExecutableExtension(String pluginId, String extensionPointId, String attributeId, String attributeValue) throws CoreException {
     IConfigurationElement[] configElements = getConfigurationElements(pluginId, extensionPointId);
     if (configElements.length == 0) {
-      throw new CoreException(EGFCommonPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind("ExtensionPointHelper.createExecutableExtension(..) _ extensionPointId ''{0}'' must exist.", extensionPointId), null)); //$NON-NLS-1$
+      throw new CoreException(EGFCommonPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind("ExtensionPointHelper.createExecutableExtension(..) _ extensionPointId ''{0}'' should exist.", extensionPointId), null)); //$NON-NLS-1$
     }
     boolean isMatchingImperative = false;
     // Test if matching is imperative

@@ -36,7 +36,7 @@ public class URIHelper {
       return null;
     }
     if (uri.isRelative()) {
-      return URI.createPlatformPluginURI(uri.toString(), false);
+      return URI.createPlatformPluginURI(URI.decode(uri.toString()), true);
     } else if (uri.isPlatformResource()) {
       return uri.replacePrefix(PLATFORM_RESOURCE_URI, PLATFORM_PLUGIN_URI);
     }
@@ -48,8 +48,8 @@ public class URIHelper {
       return null;
     }
     if (uri.isRelative()) {
-      return URI.createPlatformResourceURI(uri.toString(), false);
-    } else if (uri.isPlatformResource()) {
+      return URI.createPlatformResourceURI(URI.decode(uri.toString()), true);
+    } else if (uri.isPlatformPlugin()) {
       return uri.replacePrefix(PLATFORM_PLUGIN_URI, PLATFORM_RESOURCE_URI);
     }
     return uri;

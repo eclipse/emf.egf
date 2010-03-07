@@ -72,7 +72,7 @@ public class BundleHelper {
   }
 
   /**
-   * Unique ID based on bundle symbolic name
+   * Unique ID based on ModelEntry
    */
   public static String getBundleId(ModelEntry entry) {
     if (entry == null) {
@@ -110,9 +110,9 @@ public class BundleHelper {
       return null;
     }
     String id = null;
-    IPluginModelBase base = getPluginModelBase(project);
-    if (base != null) {
-      id = base.getPluginBase().getId();
+    IPluginModelBase model = getPluginModelBase(project);
+    if (model != null) {
+      id = model.getPluginBase().getId();
     }
     if (id == null) {
       id = project.getName();

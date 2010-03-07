@@ -492,17 +492,17 @@ public class FileHelper {
   /**
    * Get platform file as an {@link IResource} from its relative path.
    * 
-   * @param fileRelativePath_p
+   * @param fileRelativePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
    * @return
    */
-  public static IFile getPlatformFile(String fileRelativePath_p) {
+  public static IFile getPlatformFile(String fileRelativePath) {
     // Precondition.
-    if (fileRelativePath_p == null) {
+    if (fileRelativePath == null) {
       return null;
     }
-    return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileRelativePath_p));
+    return ResourcesPlugin.getWorkspace().getRoot().getFile(new Path(fileRelativePath));
   }
 
   /**
