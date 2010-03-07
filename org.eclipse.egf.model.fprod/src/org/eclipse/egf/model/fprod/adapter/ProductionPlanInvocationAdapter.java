@@ -84,8 +84,6 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
       case Notification.REMOVING_ADAPTER:
         if (_activity != null) {
           _activity.eAdapters().remove(_activityAdapter);
-          // Reset proxies
-          ((InternalEObject) _activity).eSetProxyURI(EcoreUtil.getURI(_activity));
         }
         break;
       default:
