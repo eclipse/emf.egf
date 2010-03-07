@@ -265,11 +265,12 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
         }
         // Resource who can't open a physical resource raise exception but are loaded
         // in the resource set, its flag is also set to isLoaded
-        // we need to unload to get a chance to load it again
+        // we need to unload it to get a chance to load it again
         if (resource.getContents().size() == 0 && resource.getErrors().isEmpty() == false) {
           resource.unload();
           editingDomain.getResourceSet().getResources().remove(resource);
           RESOURCE_MANAGER._fcores.remove(resource);
+          // Load it in our resource set
           resource = editingDomain.getResourceSet().getResource(fcore.getURI(), true);
           if (resource == null) {
             continue;
@@ -317,9 +318,9 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       for (URI uri : delta.getRemovedFcores()) {
         Resource resource = editingDomain.getResourceSet().getResource(uri, false);
         if (resource != null) {
-          List<ResourceUser> users = RESOURCE_MANAGER._observers.get(resource);
           boolean isDirty = false;
           // Check whether or not we are editing the current resource
+          List<ResourceUser> users = RESOURCE_MANAGER._observers.get(resource);
           if (users != null) {
             for (ResourceUser user : users) {
               // This state is propagated, the first user is enough to check this state
@@ -327,7 +328,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
               break;
             }
           }
-          // Non dirty editors should close themselves while editing a deleted resource
+          // Non dirty editors should close themselves while editing a deleted resource if any
           if (isDirty == false) {
             resource.unload();
             editingDomain.getResourceSet().getResources().remove(resource);
