@@ -179,7 +179,9 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       // Non dirty editors should close themselves while editing a deleted resource if any
       if (isDirty == false) {
         resource.unload();
-        editingDomain.getResourceSet().getResources().remove(resource);
+        if (resource.getResourceSet() != null) {
+          editingDomain.getResourceSet().getResources().remove(resource);
+        }
         // Start Workaround PDE Bug 267954
         RESOURCE_MANAGER._fcores.remove(resource);
         // End Workaround PDE Bug 267954
@@ -267,6 +269,10 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
 
       Map<Resource, IPlatformFcore> deltaRemovedFcores = new HashMap<Resource, IPlatformFcore>();
 
+      // Guard, this will be reset to null in _fcoreListener
+      // This let us know whether or not _platformListener is called before or after _fcoreListener
+      _deletedFcores = new UniqueEList<Resource>();
+
       // Check if a removed platform fcore is applicable
       for (IPlatformFcore fcore : delta.getRemovedPlatformExtensionPoints(IPlatformFcore.class)) {
         Resource resource = editingDomain.getResourceSet().getResource(fcore.getURI(), false);
@@ -326,9 +332,6 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
           IPlatformFcore fcore = deltaRemovedFcores.get(resource);
           // We only process target Fcore at this stage, workspace fcores are processed by _fcoreListener
           if (fcore.getPlatformBundle().isTarget() == false) {
-            if (_deletedFcores == null) {
-              _deletedFcores = new UniqueEList<Resource>();
-            }
             _deletedFcores.add(resource);
             continue;
           }
@@ -376,7 +379,8 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
         }
         RESOURCE_MANAGER.removeResource(editingDomain, resource);
       }
-      // Clean processed deleted fcores.
+      // Guard, this will be reset to en empty list in _platformListener
+      // This let us know whether or not _platformListener is called before or after _fcoreListener
       _deletedFcores = null;
       // Process Moved Resources
       Map<URI, URI> movedFcores = delta.getMovedFcores();
@@ -423,7 +427,9 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
     // ignore fcore resources, they are handled by _fcoreListener
     if (IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(resource.getURI().fileExtension()) == false) {
       resource.unload();
-      resource.getResourceSet().getResources().remove(resource);
+      if (resource.getResourceSet() != null) {
+        resource.getResourceSet().getResources().remove(resource);
+      }
       for (ResourceListener l : RESOURCE_MANAGER._listeners) {
         l.resourceDeleted(resource);
       }
