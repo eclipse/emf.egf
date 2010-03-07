@@ -20,6 +20,10 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
 import org.eclipse.egf.pattern.ui.java.template.JavaTemplateEditor;
@@ -46,6 +50,7 @@ public class JavaTextReconcilingStrategy extends JavaCompositeReconcilingStrateg
 
     private ITextEditor fEditor;
     private JavaReconcilingStrategy fJavaStrategy;
+    private RefreshUIJob job;
 
     /**
      * Creates a new Java reconciling strategy.
@@ -112,7 +117,11 @@ public class JavaTextReconcilingStrategy extends JavaCompositeReconcilingStrateg
      */
     public void reconcile(IRegion partition) {
         if (JavaTextEditor.refreshJob) {
-            JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
+//            JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
+            if (job == null) {
+                job = new RefreshUIJob("RefreshTemplateEditor");
+            }
+            job.start();
             JavaTextEditor.refreshJob = false;
         }
     }
@@ -133,7 +142,7 @@ public class JavaTextReconcilingStrategy extends JavaCompositeReconcilingStrateg
      */
     public void initialReconcile() {
         // internalReconcile();
-//        initialMapping();
+        initialMapping();
     }
 
     private void initialMapping() {
@@ -158,6 +167,35 @@ public class JavaTextReconcilingStrategy extends JavaCompositeReconcilingStrateg
     @Override
     public void aboutToBeReconciled() {
         super.aboutToBeReconciled();
+    }
+    
+    class RefreshUIJob extends Job {
+
+        private long timestamp = -1;
+
+        private boolean lazy = false;
+
+        public RefreshUIJob(String name) {
+            super(name);
+        }
+
+        private void start() {
+            if (!lazy) {
+                schedule(500);
+            } else if (System.currentTimeMillis() - timestamp > 499 && !lazy) {
+                lazy = true;
+            }
+            timestamp = System.currentTimeMillis();
+        }
+
+        protected IStatus run(IProgressMonitor monitor) {
+            JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) fEditor);
+            if (lazy) {
+                schedule();
+                lazy = false;
+            }
+            return Status.OK_STATUS;
+        }
     }
 
 }

@@ -45,9 +45,12 @@ public class PatternMethodEditorInput implements IFileEditorInput {
     private final String fragment;
     private final Resource resource;
 
+    private String path;
+
     public PatternMethodEditorInput(Resource resource, String fragment) {
         this.resource = resource;
         this.fragment = fragment;
+        this.path = getPatternMethod().getPatternFilePath().path();
     }
 
     public boolean exists() {
@@ -110,20 +113,24 @@ public class PatternMethodEditorInput implements IFileEditorInput {
         IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(getResource());
         IProject project = platformFcore.getPlatformBundle().getProject();
         PatternMethod patternMethod = getPatternMethod();
+        IFile file;
         if (patternMethod == null)
-            return null;
-        IFile file = project.getFile(patternMethod.getPatternFilePath().path());
-        if (!file.exists())
-            try {
-                file.create(new ByteArrayInputStream(new byte[0]), true, null);
-            } catch (CoreException e) {
-                /*
-                 * all modifications of the recources that subclipse
-                 * touches do happen outside of eclipse own control.Resources
-                 * are out of synch .
-                 */
-                // Activator.getDefault().logError(e);
-            }
+            return project.getFile(path);
+        file = project.getFile(patternMethod.getPatternFilePath().path());
+        if (file.exists())
+            return file;
+        // this is a new method so we need to create the template file
+        try {
+            file.create(new ByteArrayInputStream(new byte[0]), true, null);
+        } catch (CoreException e) {
+            /*
+             * all modifications of the recources that subclipse
+             * touches do happen outside of eclipse own
+             * control.Resources
+             * are out of synch .
+             */
+            // Activator.getDefault().logError(e);
+        }
         return file;
     }
 

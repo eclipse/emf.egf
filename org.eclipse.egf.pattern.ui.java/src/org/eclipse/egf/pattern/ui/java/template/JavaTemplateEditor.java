@@ -141,7 +141,7 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
     @Override
     public void setFocus() {
         super.setFocus();
-        JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) this.getActiveEditor());
+//        JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) this.getActiveEditor());
     }
 
     @Override

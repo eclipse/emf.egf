@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -38,8 +39,10 @@ import org.eclipse.jdt.ui.text.IJavaPartitions;
 import org.eclipse.jdt.ui.text.JavaSourceViewerConfiguration;
 import org.eclipse.jdt.ui.text.JavaTextTools;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.jface.text.DocumentEvent;
+import org.eclipse.jface.text.IDocument;
+import org.eclipse.jface.text.IDocumentListener;
 import org.eclipse.jface.text.source.ISourceViewer;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
 import org.eclipse.swt.widgets.Composite;
@@ -87,17 +90,6 @@ public class JavaTextEditor extends TextEditor {
         return pattern;
     }
 
-    /*
-     * (non-Javadoc)
-     * 
-     * @see
-     * 
-     * 
-     * 
-     * 
-     * org.eclipse.ui.editors.text.TextEditor#doSetInput(org.eclipse.ui.IEditorInput
-     * )
-     */
     protected void doSetInput(IEditorInput input) throws CoreException {
         super.doSetInput(input);
         IPreferenceStore store = createCombinedPreferenceStore(input);
@@ -124,8 +116,21 @@ public class JavaTextEditor extends TextEditor {
     @Override
     public void createPartControl(Composite parent) {
         super.createPartControl(parent);
-        StyledText textWidget = getSourceViewer().getTextWidget();
-        textWidget.addModifyListener(new JavaModifyListener());
+        ISourceViewer viewer = getViewer();
+        IDocument document = viewer.getDocument();
+        document.addDocumentListener(new IDocumentListener() {
+            public void documentChanged(DocumentEvent event) {
+                if (job == null) {
+                    job = new RefreshUIJob("RefreshTemplateEditor");
+                }
+                job.start();
+            }
+
+            public void documentAboutToBeChanged(DocumentEvent event) {
+            }
+        });
+        // StyledText textWidget = getSourceViewer().getTextWidget();
+        // textWidget.addModifyListener(new JavaModifyListener());
     }
 
     class JavaModifyListener implements ModifyListener {
@@ -211,7 +216,9 @@ public class JavaTextEditor extends TextEditor {
             fActivationListener = null;
         }
 
-        super.dispose();
+        IFile file = ((PatternMethodEditorInput) getEditorInput()).getFile();
+        if (file != null)
+            super.dispose();
 
     }
 

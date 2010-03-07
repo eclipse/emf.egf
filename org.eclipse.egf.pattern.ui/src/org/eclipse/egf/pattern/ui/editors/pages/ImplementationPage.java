@@ -387,7 +387,7 @@ public class ImplementationPage extends PatternEditorPage {
         TableColumn tableColumn = new TableColumn(table, SWT.NONE);
         layout.setColumnData(tableColumn, new ColumnWeightData(200, true));
 
-        methodsTableViewer.setContentProvider(new MethodsTableObservableListContentProvider(methodsTableViewer));
+        methodsTableViewer.setContentProvider(new MethodsTableObservableListContentProvider(methodsTableViewer, 3));
         initMethodsTableEditor();
 
         methodsTableViewer.addDoubleClickListener(new IDoubleClickListener() {

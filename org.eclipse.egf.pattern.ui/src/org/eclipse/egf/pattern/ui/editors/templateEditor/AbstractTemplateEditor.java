@@ -41,7 +41,6 @@ import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
@@ -66,7 +65,6 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.WorkbenchPage;
 import org.eclipse.ui.internal.WorkbenchWindow;
 import org.eclipse.ui.part.MultiPageEditorPart;
-import org.eclipse.ui.texteditor.AbstractTextEditor;
 
 /**
  * @author XiaoRu Chen - Soyatec
@@ -92,9 +90,6 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
         public void notifyChanged(Notification msg) {
             if (FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME.equals(msg.getFeature())) {
                 setPartName((String) msg.getNewValue());
-            } else if (msg.getFeature() == null) {
-                Pattern pattern = getPattern();
-                addPatternChangeAdapter(pattern);
             } else if (msg.getFeature() instanceof EReference) {
                 EReference ref = (EReference) msg.getFeature();
                 if ("methods".equals(ref.getName())) {
@@ -267,9 +262,11 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
         if (pattern != null && pattern.eAdapters().contains(patternAdapter)) {
             pattern.eAdapters().remove(patternAdapter);
         }
-        EList<PatternMethod> methods = pattern.getMethods();
-        for (PatternMethod method : methods) {
-            removeMethodChangeAdapter(method);
+        if (pattern != null) {
+            EList<PatternMethod> methods = pattern.getMethods();
+            for (PatternMethod method : methods) {
+                removeMethodChangeAdapter(method);
+            }
         }
     }
 
@@ -316,7 +313,8 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
             PatternMethod patternMethod = ((PatternMethodEditorInput) editor.getEditorInput()).getPatternMethod();
             if (patternMethod != null) {
                 int index = getIndexOfMethodEditor(editor);
-                setPageText(index, patternMethod.getName());
+                if (index != -1)
+                    setPageText(index, patternMethod.getName());
             }
         }
     }
@@ -328,7 +326,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
             if (editorInput instanceof PatternMethodEditorInput) {
                 PatternMethod patternMethod = ((PatternMethodEditorInput) editorInput).getPatternMethod();
                 if (patternMethod == null) {
-                    this.removePage(i);
+                    removePage(i);
                     removeEditor(currentEditor);
                 }
             }
@@ -352,7 +350,8 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
 
     protected void addEditor(TextEditor editor, PatternMethod method) {
         try {
-            int index = addPage(editor, new PatternMethodEditorInput(method.eResource(), method.getID()));
+            PatternMethodEditorInput input = new PatternMethodEditorInput(method.eResource(), method.getID());
+            int index = addPage(editor, input);
             setPageText(index, method.getName());
             editorMap.put(method.getID(), editor);
             editorList.add(editor);
@@ -371,9 +370,17 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
         int newIndex = getPattern().getMethods().indexOf(moveMethod);
         if (oldValue instanceof Integer) {
             int oldIndex = (Integer) oldValue;
+            String id = moveMethod.getID();
+            TextEditor textEditor = editorMap.get(id);
             removePage(oldIndex);
+            editorMap.remove(id);
+            editorList.remove(textEditor);
             try {
-                addPage(newIndex, createNewEditor(), new PatternMethodEditorInput(moveMethod.eResource(), moveMethod.getID()));
+                TextEditor newEditor = createNewEditor();
+                PatternMethodEditorInput input = new PatternMethodEditorInput(moveMethod.eResource(), id);
+                addPage(newIndex, newEditor, input);
+                editorMap.put(id, newEditor);
+                editorList.add(newIndex, newEditor);
             } catch (PartInitException e) {
                 Activator.getDefault().logError(e);
             }
@@ -400,7 +407,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
     public List<TextEditor> getEditorList() {
         return editorList;
     }
-    
+
     protected abstract TextEditor createNewEditor();
 
     @Override

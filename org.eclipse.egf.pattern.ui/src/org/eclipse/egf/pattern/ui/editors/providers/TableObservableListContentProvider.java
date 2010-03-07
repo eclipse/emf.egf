@@ -56,7 +56,6 @@ public class TableObservableListContentProvider extends ObservableListContentPro
         Object[] elements = super.getElements(inputElement);
         for (int i = 0; i < elements.length; i++) {
             PatternUIHelper.addAdapter(elements[i], refresher);
-
         }
         return elements;
     }

@@ -43,6 +43,7 @@ import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.jdt.internal.ui.text.java.JavaMethodCompletionProposal;
+import org.eclipse.jdt.internal.ui.text.java.ParameterGuessingProposal;
 import org.eclipse.jdt.ui.PreferenceConstants;
 import org.eclipse.jdt.ui.text.java.IJavaCompletionProposal;
 import org.eclipse.jface.text.IDocument;
@@ -251,7 +252,7 @@ public class TemplateEditorUtility {
         }
         List<ICompletionProposal> proposals = new ArrayList<ICompletionProposal>();
         for (ICompletionProposal javaProposal : javaProposals) {
-            if (!(javaProposal instanceof JavaMethodCompletionProposal)) {
+            if (javaProposal instanceof ParameterGuessingProposal || !(javaProposal instanceof JavaMethodCompletionProposal)) {
                 proposals.add(javaProposal);
             }
         }
