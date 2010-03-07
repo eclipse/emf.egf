@@ -37,11 +37,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvocationContractContainer <em>Invocation Contract Container</em>}</li>
- *   <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvokedActivity <em>Invoked Activity</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvocationContractContainer <em>Invocation Contract Container</em>}</li>
+ * <li>{@link org.eclipse.egf.model.fcore.impl.InvocationImpl#getInvokedActivity <em>Invoked Activity</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public abstract class InvocationImpl extends NamedModelElementImpl implements Invocation {
@@ -49,6 +49,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
    * The cached value of the '{@link #getInvocationContractContainer() <em>Invocation Contract Container</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getInvocationContractContainer()
    * @generated
    * @ordered
@@ -59,6 +60,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
    * The cached value of the '{@link #getInvokedActivity() <em>Invoked Activity</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getInvokedActivity()
    * @generated
    * @ordered
@@ -68,6 +70,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected InvocationImpl() {
@@ -77,6 +80,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -87,6 +91,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public InvocationContractContainer getInvocationContractContainer() {
@@ -96,6 +101,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public NotificationChain basicSetInvocationContractContainer(InvocationContractContainer newInvocationContractContainer, NotificationChain msgs) {
@@ -114,6 +120,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setInvocationContractContainer(InvocationContractContainer newInvocationContractContainer) {
@@ -133,6 +140,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Activity getInvokedActivity() {
@@ -150,6 +158,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Activity basicGetInvokedActivity() {
@@ -159,6 +168,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setInvokedActivity(Activity newInvokedActivity) {
@@ -171,6 +181,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public FactoryComponent getFactoryComponent() {
@@ -344,6 +355,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -360,6 +372,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -374,6 +387,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -392,6 +406,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -410,6 +425,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -428,6 +444,7 @@ public abstract class InvocationImpl extends NamedModelElementImpl implements In
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

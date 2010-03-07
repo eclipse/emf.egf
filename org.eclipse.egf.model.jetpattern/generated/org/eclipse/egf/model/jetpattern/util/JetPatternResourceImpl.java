@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.jetpattern.util.JetPatternResourceFactoryImpl
  * @generated
  */
@@ -67,7 +68,9 @@ public class JetPatternResourceImpl extends XMIResourceImpl {
    * Creates an instance of the resource.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param uri the URI of the new resource.
+   * 
+   * @param uri
+   *          the URI of the new resource.
    * @generated
    */
   public JetPatternResourceImpl(URI uri) {
@@ -109,6 +112,7 @@ public class JetPatternResourceImpl extends XMIResourceImpl {
     setEncoding("UTF-8"); //$NON-NLS-1$
     setXMIVersion("2.1"); //$NON-NLS-1$
     // Save Options
+    getDefaultSaveOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, Boolean.TRUE);
     getDefaultSaveOptions().put(XMLResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
     getDefaultSaveOptions().put(XMLResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
     getDefaultSaveOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
@@ -128,8 +132,9 @@ public class JetPatternResourceImpl extends XMIResourceImpl {
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
     // Load Options
-    getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.TRUE);
-    getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.TRUE);
+    getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.FALSE);
+    getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.FALSE);
+    getDefaultLoadOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);

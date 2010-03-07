@@ -27,18 +27,20 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.types.impl.TypeElementImpl#getID <em>ID</em>}</li>
- *   <li>{@link org.eclipse.egf.model.types.impl.TypeElementImpl#getDescription <em>Description</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.TypeElementImpl#getID <em>ID</em>}</li>
+ * <li>{@link org.eclipse.egf.model.types.impl.TypeElementImpl#getDescription <em>Description</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
+
 public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -48,6 +50,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
    * The default value of the '{@link #getID() <em>ID</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getID()
    * @generated
    * @ordered
@@ -58,6 +61,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
    * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDescription()
    * @generated
    * @ordered
@@ -68,6 +72,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
    * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDescription()
    * @generated
    * @ordered
@@ -77,6 +82,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TypeElementImpl() {
@@ -86,6 +92,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -116,6 +123,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getDescription() {
@@ -125,6 +133,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setDescription(String newDescription) {
@@ -137,6 +146,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -153,6 +163,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -168,6 +179,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -183,6 +195,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -199,6 +212,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
