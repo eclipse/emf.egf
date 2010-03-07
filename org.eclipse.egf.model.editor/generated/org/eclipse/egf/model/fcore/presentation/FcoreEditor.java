@@ -697,12 +697,12 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     if (updateProblemIndication) {
       BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "org.eclipse.egf.model.editor", //$NON-NLS-1$
           0, null, new Object[] { getResource() });
-      for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
+      for (URI uri : resourceToDiagnosticMap.keySet()) {
+        Diagnostic childDiagnostic = resourceToDiagnosticMap.get(uri);
         if (childDiagnostic.getSeverity() != Diagnostic.OK) {
           diagnostic.add(childDiagnostic);
         }
       }
-
       int lastEditorPage = getPageCount() - 1;
       if (lastEditorPage >= 0 && getEditor(lastEditorPage) instanceof ProblemEditorPart) {
         ((ProblemEditorPart) getEditor(lastEditorPage)).setDiagnostic(diagnostic);
@@ -722,7 +722,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           EGFModelEditorPlugin.INSTANCE.log(exception);
         }
       }
-
       if (markerHelper.hasMarkers(getResource())) {
         markerHelper.deleteMarkers(getResource());
         if (diagnostic.getSeverity() != Diagnostic.OK) {
@@ -1047,7 +1046,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * @generated NOT
    */
   public Diagnostic analyzeResourceProblems(Resource innerResource, Exception exception) {
-    if (innerResource == getResource() || ResourceHelper.isRelated(getResource(), innerResource.getURI())) {
+    if (innerResource == getResource() || ResourceHelper.hasApplicableProxies(getResource(), innerResource.getURI())) {
       if (innerResource.getErrors().isEmpty() == false || innerResource.getWarnings().isEmpty() == false) {
         BasicDiagnostic basicDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.model.editor", //$NON-NLS-1$
             0, getString("_UI_CreateModelError_message", innerResource.getURI()), //$NON-NLS-1$

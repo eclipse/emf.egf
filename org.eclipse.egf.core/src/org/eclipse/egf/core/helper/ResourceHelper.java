@@ -111,20 +111,55 @@ public class ResourceHelper {
     }
   }
 
-  public static boolean isRelated(Resource resource, URI uri) {
+  public static boolean hasApplicableProxies(Resource resource, URI uri) {
     Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EcoreUtil.ProxyCrossReferencer.find(resource);
     for (EObject reference : proxies.keySet()) {
       if (reference instanceof InternalEObject == false) {
         continue;
       }
-      InternalEObject internalEObject = (InternalEObject) reference;
-      if (internalEObject.eProxyURI() == null) {
+      InternalEObject internalReference = (InternalEObject) reference;
+      if (internalReference.eProxyURI() == null) {
         continue;
       }
-      if (internalEObject.eProxyURI().trimFragment().equals(uri)) {
+      if (internalReference.eProxyURI().trimFragment().equals(uri)) {
         return true;
       }
     }
     return false;
   }
+
+  public static List<EObject> getApplicableProxies(Resource resource, URI uri) {
+    List<EObject> applicable = new UniqueEList<EObject>();
+    Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EcoreUtil.ProxyCrossReferencer.find(resource);
+    for (EObject reference : proxies.keySet()) {
+      if (reference instanceof InternalEObject == false) {
+        continue;
+      }
+      InternalEObject internalReference = (InternalEObject) reference;
+      if (internalReference.eProxyURI() == null) {
+        continue;
+      }
+      if (internalReference.eProxyURI().trimFragment().equals(uri)) {
+        applicable.add(reference);
+      }
+    }
+    return applicable;
+  }
+
+  public static List<EObject> getApplicableProxies(Resource resource) {
+    List<EObject> applicable = new UniqueEList<EObject>();
+    Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EcoreUtil.ProxyCrossReferencer.find(resource);
+    for (EObject reference : proxies.keySet()) {
+      if (reference instanceof InternalEObject == false) {
+        continue;
+      }
+      InternalEObject internalReference = (InternalEObject) reference;
+      if (internalReference.eProxyURI() == null) {
+        continue;
+      }
+      applicable.add(reference);
+    }
+    return applicable;
+  }
+
 }

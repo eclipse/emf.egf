@@ -10,23 +10,17 @@
  */
 package org.eclipse.egf.model.fprod.adapter;
 
-import java.util.Collections;
-
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.model.EGFFprodPlugin;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
-import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
@@ -56,20 +50,9 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
           }
         });
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
-        try {
-          TransactionalCommandStack tcstk = (TransactionalCommandStack) _editingDomain.getCommandStack();
-          tcstk.execute(new RecordingCommand(_editingDomain) {
-            @Override
-            protected void doExecute() {
-              EFactory factory = _activity.eClass().getEPackage().getEFactoryInstance();
-              Activity activity = (Activity) factory.create(_activity.eClass());
-              ((InternalEObject) activity).eSetProxyURI(EcoreUtil.getURI(_activity));
-              _productionPlanInvocation.eSet(_invocationInvokedActivityFeature, activity);
-              _activity = activity;
-            }
-          }, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
-        } catch (Throwable t) {
-          EGFFprodPlugin.getPlugin().logError(t);
+        // Reset proxies
+        if (_activity != null) {
+          ((InternalEObject) _activity).eSetProxyURI(EcoreUtil.getURI(_activity));
         }
       }
     }
@@ -100,6 +83,7 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
       case Notification.REMOVING_ADAPTER:
         if (_activity != null) {
           _activity.eAdapters().remove(_activityAdapter);
+          ((InternalEObject) _activity).eSetProxyURI(EcoreUtil.getURI(_activity));
         }
         break;
       default:
