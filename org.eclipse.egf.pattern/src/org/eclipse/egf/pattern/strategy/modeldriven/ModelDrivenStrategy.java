@@ -40,9 +40,14 @@ public class ModelDrivenStrategy extends AbstractStrategy {
 
         EList<EObject> model = (EList<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS);
 
-        final DomainVisitor visitor = (DomainVisitor)context.getValue(PatternContext.MODEL_DRIVEN_DOMAIN_VISITOR);
+        final DomainVisitor visitor = (DomainVisitor) context.getValue(PatternContext.MODEL_DRIVEN_DOMAIN_VISITOR);
         visitor.setPatterns(result);
-        visitor.visit(context, model);
+        try {
+            visitor.visit(context, model);
+        } finally {
+            visitor.dispose();
+        }
+        System.out.println("ici");
     }
 
 }

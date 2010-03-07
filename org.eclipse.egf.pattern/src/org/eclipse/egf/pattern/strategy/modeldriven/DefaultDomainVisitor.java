@@ -3,6 +3,7 @@ package org.eclipse.egf.pattern.strategy.modeldriven;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,6 +24,7 @@ import org.eclipse.emf.ecore.EObject;
 public abstract class DefaultDomainVisitor implements DomainVisitor {
 
     private final Map<String, List<Pattern>> type2patterns = new HashMap<String, List<Pattern>>(100);
+    private final Set<Object> visited = new HashSet<Object>();
 
     public void setPatterns(Set<Pattern> patterns) throws PatternException {
         for (Pattern p : patterns) {
@@ -52,11 +54,15 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
     }
 
     public void visit(PatternContext context, Object model) throws PatternException {
-        for (Object obj : getChildren(model))
-            doProcess(context, obj);
+        for (Object obj : getChildren(model)) {
+            if (!visited.contains(obj))
+                doProcess(context, obj);
+            visit(context, obj);
+        }
     }
 
     protected void doProcess(PatternContext context, Object model) throws PatternException {
+        visited.add(model);
         List<Pattern> foundPattern = findPatterns(model);
         if (foundPattern == null || foundPattern.isEmpty())
             return;
@@ -76,6 +82,15 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
                 throw new PatternException(e);
             }
         }
+    }
+
+    public void dispose() {
+        visited.clear();
+        for (String key : type2patterns.keySet()) {
+            type2patterns.get(key).clear();
+        }
+        type2patterns.clear();
+
     }
 
 }
