@@ -125,10 +125,9 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
             CallTypeEnum kind = ((ChooseKindPage) page).getKind();
             if (kind == CallTypeEnum.METHOD_CALL && defaultKind.equals(CallTypeEnum.Add)) {
                 nextPage = chooseMethodCallPage;
-            } else if (chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL){
-            	return null;
-            }
-            else {
+            } else if (chooseKindPage.getKind() == CallTypeEnum.BACK_CALL || chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL) {
+                return null;
+            } else {
                 nextPage = chooseCallPage;
             }
         } else {
@@ -143,7 +142,18 @@ public class OrchestrationWizard extends Wizard implements INewWizard {
      * using wizard as execution context.
      */
     public boolean performFinish() {
-        selectCall = chooseCallPage.getChooseCall();
+        if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.BACK_CALL)
+            selectCall = PatternFactory.eINSTANCE.createBackCall();
+        else if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.SUPERPATTERN_CALL)
+            selectCall = PatternFactory.eINSTANCE.createSuperCall();
+        else {
+            if (chooseKindPage != null && chooseKindPage.getKind() == CallTypeEnum.METHOD_CALL) {
+                chooseMethodCallList = chooseMethodCallPage.getChooseMethodCallList();
+                selectCall = chooseMethodCallPage.getChooseCall();
+            } else {
+                selectCall = chooseCallPage.getChooseCall();
+            }
+        }
         return true;
     }
 

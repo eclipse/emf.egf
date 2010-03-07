@@ -29,7 +29,6 @@ import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternVariable;
-import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
@@ -254,9 +253,6 @@ public class ChooseCallPage extends WizardPage {
                 Pattern called = call.getCalled();
                 PatternVariable context = call.getContext();
                 setSelectValue(called, context);
-
-            } else if (selectKind == CallTypeEnum.SUPERPATTERN_CALL && eidtItem instanceof SuperCall) {
-
             }
             setParameterMatchingCall(eidtItem);
         }
