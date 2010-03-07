@@ -97,9 +97,10 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
             }
           }
         }
-        _activity = null;
       } catch (Exception e) {
         // Just ignore, a retrieved activity could have been deleted,
+      } finally {
+        _activity = null;
       }
       return null;
     }
