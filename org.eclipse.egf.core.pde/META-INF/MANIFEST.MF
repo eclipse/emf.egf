@@ -20,8 +20,7 @@ Require-Bundle:
 Export-Package: 
  org.eclipse.egf.core.pde,
  org.eclipse.egf.core.pde.extension,
- org.eclipse.egf.core.pde.manifest,
+ org.eclipse.egf.core.pde.helper,
  org.eclipse.egf.core.pde.plugin,
- org.eclipse.egf.core.pde.tools,
- org.eclipse.egf.core.pde.util
+ org.eclipse.egf.core.pde.tools
 Bundle-ActivationPolicy: lazy

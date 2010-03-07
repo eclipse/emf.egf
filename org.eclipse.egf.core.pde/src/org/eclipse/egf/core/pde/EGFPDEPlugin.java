@@ -31,16 +31,15 @@ import org.eclipse.egf.core.fcore.IResourceFcoreListener;
 import org.eclipse.egf.core.pde.extension.IFcoreExtensionFactory;
 import org.eclipse.egf.core.pde.internal.FcoreGeneratorHelper;
 import org.eclipse.egf.core.pde.internal.extension.FcoreExtensionFactory;
-import org.eclipse.egf.core.pde.internal.plugin.PluginChangesCommandRunner;
 import org.eclipse.egf.core.pde.internal.resource.FcoreResourceListener;
 import org.eclipse.egf.core.pde.l10n.EGFPDEMessages;
-import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
-import org.eclipse.egf.core.pde.plugin.IPluginChangesCommandRunner;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.internal.core.build.WorkspaceBuildModel;
 import org.eclipse.pde.internal.ui.util.PDEModelUtility;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -54,14 +53,26 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
   private static EGFPDEPlugin __plugin;
 
   /**
-   * The unique command runner to perform changes in plug-ins.
-   */
-  private IPluginChangesCommandRunner _pluginChangesCommandRunner;
-
-  /**
    * Fcore Resource listener
    */
   private FcoreResourceListener _fcoreResourceListener;
+
+  /**
+   * Return the display.
+   * 
+   * @return
+   */
+  public static Display getDisplay() {
+    // Get the display.
+    Display display = null;
+    if (PlatformUI.isWorkbenchRunning()) {
+      display = PlatformUI.getWorkbench().getDisplay();
+    } else {
+      // Case of the headless mode.
+      display = Display.getDefault();
+    }
+    return display;
+  }
 
   /**
    * 
@@ -117,10 +128,8 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
             public void run(IProgressMonitor progress) throws CoreException {
               ISavedState savedState = workspace.addSaveParticipant(EGFPDEPlugin.getDefault(), EGFPDEPlugin.this);
               if (savedState != null) {
-                // the event type coming from the saved state is always
-                // POST_BUILD
-                // force it to be POST_CHANGE so that the delta processor can
-                // handle it
+                // the event type coming from the saved state is always POST_BUILD
+                // force it to be POST_CHANGE so that the delta processor can handle it
                 EGFPDEPlugin.this._fcoreResourceListener._overridenEventType = IResourceChangeEvent.POST_CHANGE;
                 savedState.processResourceChangeEvents(EGFPDEPlugin.this._fcoreResourceListener);
               }
@@ -133,7 +142,7 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
       }
     };
     processSavedState.setSystem(true);
-    processSavedState.setPriority(Job.SHORT); // process asap
+    processSavedState.setPriority(Job.SHORT);
     processSavedState.schedule();
   }
 
@@ -246,23 +255,10 @@ public class EGFPDEPlugin extends EGFAbstractUIPlugin implements ISaveParticipan
   }
 
   /**
-   * Get the plug-in changes command runner that is able to execute {@link IPluginChangesCommand} commands.
-   * 
-   * @return a not null object.
-   */
-  public static IPluginChangesCommandRunner getPluginChangesCommandRunner() {
-    // Lazy creation pattern.
-    if (getDefault()._pluginChangesCommandRunner == null) {
-      getDefault()._pluginChangesCommandRunner = new PluginChangesCommandRunner();
-    }
-    return getDefault()._pluginChangesCommandRunner;
-  }
-
-  /**
    * Add an entry with specified entry name in the binary build for given
    * project.
    */
-  public void addEntryInBinaryBuild(IProject project, String entryName) {
+  public void addEntryInBinaryBuild(IProject project, String entryName) throws CoreException {
     // Preconditions.
     if (project == null || entryName == null) {
       return;
