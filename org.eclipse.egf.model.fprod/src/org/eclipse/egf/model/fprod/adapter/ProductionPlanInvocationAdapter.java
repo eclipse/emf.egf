@@ -79,7 +79,7 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
         if (oldValue != null) {
           oldValue.eAdapters().remove(_activityAdapter);
         }
-        if (newValue != null) {
+        if (newValue != null && newValue.eAdapters().contains(_activityAdapter) == false) {
           newValue.eAdapters().add(_activityAdapter);
         }
         _activity = newValue;
