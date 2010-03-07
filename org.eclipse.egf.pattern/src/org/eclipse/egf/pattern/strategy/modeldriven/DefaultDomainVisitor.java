@@ -28,7 +28,7 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
         for (Pattern p : patterns) {
             EList<PatternParameter> parameters = p.getAllParameters();
             if (parameters.size() != 1)
-                throw new PatternException(Messages.strategy_error4);
+                throw new PatternException(Messages.bind(Messages.strategy_error4, p.getName()));
             registerPattern(p, parameters.get(0));
         }
     }
