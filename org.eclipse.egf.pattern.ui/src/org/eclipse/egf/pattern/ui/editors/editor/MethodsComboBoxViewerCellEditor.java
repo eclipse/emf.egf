@@ -327,7 +327,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
             fireCancelEditor();
         } else if (keyEvent.character == '\t') { // tab key
             applyEditorValueAndDeactivate();
-        } else if (keyEvent.keyCode == SWT.DEL) {
+        } else if (keyEvent.keyCode == SWT.DEL) { // DEL key
             performDelete();
         }
     }
@@ -337,7 +337,7 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
         int x = selection.x;
         int y = selection.y;
         String text = comboBox.getText();
-        if ((y - x) >= text.length() || (y - x) == 0) {
+        if ((y - x) > text.length() || (y - x) == 0) {
             return;
         }
         String header = text.substring(0, x);

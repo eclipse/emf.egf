@@ -53,6 +53,12 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jface.text.Position;
+import org.eclipse.pde.core.IBaseModel;
+import org.eclipse.pde.core.plugin.IPluginBase;
+import org.eclipse.pde.core.plugin.IPluginExtension;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
+import org.eclipse.pde.internal.ui.editor.plugin.ManifestEditor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorSite;
@@ -60,6 +66,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.WorkbenchPage;
@@ -83,6 +90,10 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
     protected Map<String, TextEditor> editorMap = new HashMap<String, TextEditor>();
 
     protected List<TextEditor> editorList = new ArrayList<TextEditor>();
+
+    private static final String JET_TRANSFORM_POINT_ID = "org.eclipse.jet.transform";
+
+    private static final String PLUGIN_EDITOR_ID = "org.eclipse.pde.ui.manifestEditor";
 
     // The adapter is for refreshing the editor title while the name of pattern
     // has been changed.
@@ -198,6 +209,8 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
             if (!src.exists()) {
                 src.create(true, false, null);
             }
+            // Filter the template project extensions.
+            filterUselessExtension(templateProject, monitor);
             templateFile = src.getFile(fileExtention);
             if (!templateFile.exists()) {
                 templateFile.create(new ByteArrayInputStream(new byte[0]), true, null);
@@ -403,6 +416,42 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
             }
         }
         return index;
+    }
+
+    public void filterUselessExtension(IProject project, NullProgressMonitor monitor) {
+        IFile plugInFile = project.getFile(ConvertPluginProjectOperation.F_PLUGIN);
+        if (plugInFile.exists()) {
+            IWorkbench workbench = PlatformUI.getWorkbench();
+            IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
+            try {
+                WorkbenchPage templateActivePage = new WorkbenchPage((WorkbenchWindow) activeWorkbenchWindow, null);
+                IEditorPart part = IDE.openEditor(templateActivePage, plugInFile, PLUGIN_EDITOR_ID);
+                if (part instanceof ManifestEditor) {
+                    ManifestEditor editor = (ManifestEditor) part;
+                    IBaseModel base = editor.getAggregateModel();
+                    if (base instanceof IBundlePluginModelBase) {
+                        IBundlePluginModelBase bundlePluginModel = (IBundlePluginModelBase) base;
+                        IPluginBase pluginBase = bundlePluginModel.getPluginBase();
+                        IPluginModelBase pluginModel = pluginBase.getPluginModel();
+                        IPluginExtension[] extensions = pluginModel.getPluginBase().getExtensions();
+                        for (IPluginExtension currentExtension : extensions) {
+                            String point = currentExtension.getPoint();
+                            if (!JET_TRANSFORM_POINT_ID.equals(point)) {
+                                try {
+                                    pluginModel.getPluginBase().remove(currentExtension);
+                                } catch (CoreException e) {
+                                    Activator.getDefault().logError(e);
+                                }
+                            }
+                        }
+                        part.doSave(monitor);
+                        part.dispose();
+                    }
+                }
+            } catch (WorkbenchException e) {
+                Activator.getDefault().logError(e);
+            }
+        }
     }
 
     public Map<String, TextEditor> getEditorMap() {

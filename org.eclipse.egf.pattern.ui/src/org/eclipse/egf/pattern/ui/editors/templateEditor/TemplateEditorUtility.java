@@ -173,7 +173,7 @@ public class TemplateEditorUtility {
                         locationURI = null;
                     }
                     desc.setLocationURI(locationURI);
-                    setProjectNature(desc);
+                    setProjectJET1Nature(desc);
                     project.create(desc, monitor);
                     monitor = null;
                 }
@@ -263,9 +263,11 @@ public class TemplateEditorUtility {
         return (ICompletionProposal[]) proposals.toArray(new IJavaCompletionProposal[proposals.size()]);
     }
 
-    private static void setProjectNature(IProjectDescription desc) {
-        String[] natureIds = new String[1];
-        natureIds[0] = EMF_CODEGEN_JET_NATURE_ID;
-        desc.setNatureIds(natureIds);
+    private static void setProjectJET1Nature(IProjectDescription desc) {
+        if (!desc.hasNature(EMF_CODEGEN_JET_NATURE_ID)) {
+            String[] natureIds = new String[1];
+            natureIds[0] = EMF_CODEGEN_JET_NATURE_ID;
+            desc.setNatureIds(natureIds);
+        }
     }
 }

@@ -48,13 +48,10 @@ import org.eclipse.pde.core.plugin.IPluginLibrary;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.IPluginObject;
 import org.eclipse.pde.core.plugin.PluginRegistry;
-import org.eclipse.pde.internal.core.TargetPlatformHelper;
 import org.eclipse.pde.internal.core.bundle.BundlePluginModel;
 import org.eclipse.pde.internal.core.bundle.WorkspaceBundleModel;
 import org.eclipse.pde.internal.core.ibundle.IBundle;
 import org.eclipse.pde.internal.core.plugin.WorkspaceExtensionsModel;
-import org.eclipse.pde.internal.core.plugin.WorkspacePluginModel;
-import org.eclipse.pde.internal.core.plugin.WorkspacePluginModelBase;
 import org.osgi.framework.Constants;
 
 /**
@@ -100,8 +97,6 @@ public class ConvertPluginProjectOperation extends ConvertProjectOperation {
 
     @Override
     public void execute(IProgressMonitor monitor) throws CoreException, InvocationTargetException, InterruptedException {
-
-//        ensurePluginFile();
         super.execute(monitor);
 
         _hasJetNature = false;
@@ -124,12 +119,11 @@ public class ConvertPluginProjectOperation extends ConvertProjectOperation {
         IPluginImport[] imports = pluginBase.getImports();
         IPluginLibrary[] libraries = pluginBase.getLibraries();
         IProject project = platformBundle.getProject();
-        
-        //it will be fixed later.
+
         IFile pluginFile = project.getFile(F_PLUGIN);
         IFile plugin = _project.getFile(ConvertPluginProjectOperation.F_PLUGIN);
-        if(!plugin.exists()){
-            if(pluginFile.exists()){
+        if (!plugin.exists()) {
+            if (pluginFile.exists()) {
                 pluginFile.copy(plugin.getFullPath(), true, monitor);
             }
         }
@@ -164,25 +158,14 @@ public class ConvertPluginProjectOperation extends ConvertProjectOperation {
             workspaceExtensionModel.setEditable(false);
             workspaceBundleModel.setEditable(false);
         }
-        
+
         addLinkedSource(project, _project, monitor);
     }
 
-    private void ensurePluginFile() throws CoreException {
-        IFile file = _project.getFile(F_PLUGIN);
-        WorkspacePluginModelBase model = new WorkspacePluginModel(file, false);
-        IPluginBase pluginBase = model.getPluginBase(true);
-        try {
-            pluginBase.setSchemaVersion(TargetPlatformHelper.getSchemaVersion());
-        } catch (CoreException e) {
-        }
-        model.save();
-    }
-    
-    protected void fireStructureChanged(IPluginObject child,WorkspaceExtensionsModel workspaceExtensionModel,int changeType) {
+    protected void fireStructureChanged(IPluginObject child, WorkspaceExtensionsModel workspaceExtensionModel, int changeType) {
         IModel model = workspaceExtensionModel;
         if (model.isEditable() && model instanceof IModelChangeProvider) {
-            IModelChangedEvent e = new ModelChangedEvent((IModelChangeProvider) model, changeType, new Object[] {child}, null);
+            IModelChangedEvent e = new ModelChangedEvent((IModelChangeProvider) model, changeType, new Object[] { child }, null);
             if (model.isEditable() && model instanceof IModelChangeProvider) {
                 IModelChangeProvider provider = (IModelChangeProvider) model;
                 provider.fireModelChanged(e);
@@ -191,47 +174,48 @@ public class ConvertPluginProjectOperation extends ConvertProjectOperation {
     }
 
     private void addLinkedSource(IProject userProject, IProject tempProject, IProgressMonitor monitor) throws CoreException {
-        List<IClasspathEntry> entries = new ArrayList<IClasspathEntry>();;
+        List<IClasspathEntry> entries = new ArrayList<IClasspathEntry>();
+        ;
         IJavaProject userJavaProject = JavaCore.create(userProject);
         IJavaProject tempJavaProject = JavaCore.create(tempProject);
         IPackageFragmentRoot[] allPackageFragmentRoots = userJavaProject.getAllPackageFragmentRoots();
-        
-        CPListElement[] existing= CPListElement.createFromExisting(tempJavaProject);
+
+        CPListElement[] existing = CPListElement.createFromExisting(tempJavaProject);
         List<CPListElement> cpListElements = new ArrayList<CPListElement>();
-        for(CPListElement elment:existing){
+        for (CPListElement elment : existing) {
             cpListElements.add(elment);
         }
-        
+
         if (allPackageFragmentRoots != null && allPackageFragmentRoots.length > 0) {
             for (IPackageFragmentRoot packageFragmentRoot : allPackageFragmentRoots) {
                 int kind = packageFragmentRoot.getKind();
                 if (kind == K_SOURCE) {
-                    
+
                     IClasspathEntry rawClasspathEntry = packageFragmentRoot.getRawClasspathEntry();
                     IPath fullPath = packageFragmentRoot.getResource().getLocation();
                     IPath path = rawClasspathEntry.getPath();
-                    IPath removeLastSegments = path.removeLastSegments(path.segmentCount()-1);
-                    IPath pathFolder = path.removeFirstSegments(path.segmentCount()-1);
-                    pathFolder = createFolder(fullPath,pathFolder.toString(),tempProject,monitor);
-                    
-                    CPListElement newEntrie= new CPListElement(tempJavaProject, IClasspathEntry.CPE_SOURCE);
+                    IPath removeLastSegments = path.removeLastSegments(path.segmentCount() - 1);
+                    IPath pathFolder = path.removeFirstSegments(path.segmentCount() - 1);
+                    pathFolder = createFolder(fullPath, pathFolder.toString(), tempProject, monitor);
+
+                    CPListElement newEntrie = new CPListElement(tempJavaProject, IClasspathEntry.CPE_SOURCE);
                     newEntrie.setLinkTarget(fullPath);
                     newEntrie.setPath(pathFolder);
                     newEntrie.setExported(true);
-                    
+
                     cpListElements.add(newEntrie);
                 }
             }
         }
         BuildPathsBlock.flush(cpListElements, tempJavaProject.getOutputLocation(), tempJavaProject, null, monitor);
     }
-    
-    private IPath createFolder(IPath path, String fName, IProject tempProject, IProgressMonitor monitor) throws CoreException{
+
+    private IPath createFolder(IPath path, String fName, IProject tempProject, IProgressMonitor monitor) throws CoreException {
         String folderName = fName;
         IFolder tempFolder = tempProject.getFolder(folderName);
         IPath fullPath = tempFolder.getFullPath();
-        if(tempFolder.exists()){
-            folderName = "temp"+folderName;
+        if (tempFolder.exists()) {
+            folderName = "temp" + folderName;
             fullPath = createFolder(path, folderName, tempProject, monitor);
         }
         return fullPath;
@@ -246,4 +230,5 @@ public class ConvertPluginProjectOperation extends ConvertProjectOperation {
 
         bundle.setHeader(Constants.BUNDLE_SYMBOLICNAME, projectName + ";singleton:=true");
     }
+
 }
