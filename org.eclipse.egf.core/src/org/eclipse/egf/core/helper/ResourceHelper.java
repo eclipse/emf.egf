@@ -14,14 +14,19 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * @author Xavier Maysonnave
@@ -89,6 +94,7 @@ public class ResourceHelper {
     for (Resource resource : resources) {
       resource.unload();
       if (resource.getResourceSet() != null) {
+        resource.getResourceSet().getResources().remove(resource);
         resourceSets.add(resource.getResourceSet());
       }
     }
@@ -105,4 +111,20 @@ public class ResourceHelper {
     }
   }
 
+  public static boolean isRelated(Resource resource, URI uri) {
+    Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EcoreUtil.ProxyCrossReferencer.find(resource);
+    for (EObject reference : proxies.keySet()) {
+      if (reference instanceof InternalEObject == false) {
+        continue;
+      }
+      InternalEObject internalEObject = (InternalEObject) reference;
+      if (internalEObject.eProxyURI() == null) {
+        continue;
+      }
+      if (internalEObject.eProxyURI().trimFragment().equals(uri)) {
+        return true;
+      }
+    }
+    return false;
+  }
 }
