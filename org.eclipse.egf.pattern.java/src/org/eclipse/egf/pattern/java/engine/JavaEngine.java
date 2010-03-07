@@ -164,6 +164,7 @@ public class JavaEngine extends PatternEngine {
 
     @Override
     public void executeWithInjection(PatternContext context, Object... parameters) throws PatternException {
+        setupExecutionReporter(context);
         doExecute(context, parameters);
     }
 
