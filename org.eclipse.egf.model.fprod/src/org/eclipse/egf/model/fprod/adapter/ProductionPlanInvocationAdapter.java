@@ -10,16 +10,23 @@
  */
 package org.eclipse.egf.model.fprod.adapter;
 
+import java.util.Collections;
+
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.model.EGFFprodPlugin;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
@@ -45,11 +52,25 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
         _editingDomain.getCommandStack().execute(new RecordingCommand(_editingDomain) {
           @Override
           protected void doExecute() {
-            _productionPlanInvocation.eNotify(new ENotificationImpl((InternalEObject) _productionPlanInvocation, Notification.SET, _invocationInvokedActivityFeature, null, _productionPlanInvocation.eGet(_invocationInvokedActivityFeature, true)));
+            _productionPlanInvocation.eNotify(new ENotificationImpl((InternalEObject) _productionPlanInvocation, Notification.SET, _invocationInvokedActivityFeature, null, _activity));
           }
         });
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
-        _activity = null;
+        try {
+          TransactionalCommandStack tcstk = (TransactionalCommandStack) _editingDomain.getCommandStack();
+          tcstk.execute(new RecordingCommand(_editingDomain) {
+            @Override
+            protected void doExecute() {
+              EFactory factory = _activity.eClass().getEPackage().getEFactoryInstance();
+              Activity activity = (Activity) factory.create(_activity.eClass());
+              ((InternalEObject) activity).eSetProxyURI(EcoreUtil.getURI(_activity));
+              _productionPlanInvocation.eSet(_invocationInvokedActivityFeature, activity);
+              _activity = activity;
+            }
+          }, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+        } catch (Throwable t) {
+          EGFFprodPlugin.getPlugin().logError(t);
+        }
       }
     }
   };
@@ -66,8 +87,8 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
     if (notification.getFeature() == null || notification.getFeature().equals(_invocationInvokedActivityFeature)) {
       switch (notification.getEventType()) {
       case Notification.RESOLVE:
-        Activity newValue = (Activity) notification.getNewValue();
-        Activity oldValue = (Activity) notification.getOldValue();
+        final Activity newValue = (Activity) notification.getNewValue();
+        final Activity oldValue = (Activity) notification.getOldValue();
         if (oldValue != null) {
           oldValue.eAdapters().remove(_activityAdapter);
         }
@@ -86,5 +107,4 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
       }
     }
   }
-
 }

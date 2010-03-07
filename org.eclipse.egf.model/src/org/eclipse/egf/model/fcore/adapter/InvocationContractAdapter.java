@@ -10,16 +10,23 @@
  */
 package org.eclipse.egf.model.fcore.adapter;
 
+import java.util.Collections;
+
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.EFactory;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.Transaction;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
@@ -58,7 +65,21 @@ public class InvocationContractAdapter extends AdapterImpl {
           }
         });
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
-        _contract = null;
+        try {
+          TransactionalCommandStack tcstk = (TransactionalCommandStack) _editingDomain.getCommandStack();
+          tcstk.execute(new RecordingCommand(_editingDomain) {
+            @Override
+            protected void doExecute() {
+              EFactory factory = _contract.eClass().getEPackage().getEFactoryInstance();
+              Contract contract = (Contract) factory.create(_contract.eClass());
+              ((InternalEObject) contract).eSetProxyURI(EcoreUtil.getURI(_contract));
+              _invocationContract.eSet(_invocationContractInvokedContractFeature, contract);
+              _contract = contract;
+            }
+          }, Collections.singletonMap(Transaction.OPTION_UNPROTECTED, Boolean.TRUE));
+        } catch (Throwable t) {
+          EGFModelPlugin.getPlugin().logError(t);
+        }
       }
     }
   };
