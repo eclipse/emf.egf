@@ -15,11 +15,13 @@
 
 package org.eclipse.egf.core.ui.domain;
 
-import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.egf.core.workspace.EGFWorkspaceSynchronizer;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
+import org.eclipse.emf.workspace.impl.WorkspaceCommandStackImpl;
 
 /**
  * @author Thomas Guiu
@@ -42,15 +44,50 @@ public class EGFEditingDomainFactory extends WorkspaceEditingDomainFactory {
   }
 
   /**
+   * Creates a new editing domain on a default resource set implementation and
+   * the specified operation history.
+   * 
+   * @param history
+   *          the operation history to which I delegate the command stack
+   * 
+   * @return the new editing domain
+   */
+  @Override
+  public synchronized TransactionalEditingDomain createEditingDomain(IOperationHistory history) {
+    WorkspaceCommandStackImpl stack = new WorkspaceCommandStackImpl(history);
+    stack.setResourceUndoContextPolicy(getResourceUndoContextPolicy());
+    TransactionalEditingDomain result = new EGFTransactionalEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack);
+    mapResourceSet(result);
+    return result;
+  }
+
+  /**
+   * Creates a new editing domain on the given resource set and
+   * the specified operation history.
+   * 
+   * @param rset
+   *          the resource set to use
+   * @param history
+   *          the operation history to which I delegate the command stack
+   * 
+   * @return the new editing domain
+   */
+  @Override
+  public synchronized TransactionalEditingDomain createEditingDomain(ResourceSet rset, IOperationHistory history) {
+    WorkspaceCommandStackImpl stack = new WorkspaceCommandStackImpl(history);
+    stack.setResourceUndoContextPolicy(getResourceUndoContextPolicy());
+    TransactionalEditingDomain result = new EGFTransactionalEditingDomain(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE), stack, rset);
+    mapResourceSet(result);
+    return result;
+  }
+
+  /**
    * Configures the specified editing domain for correct functioning in the EGF environment.
    * 
    * @param domain
    *          the new editing domain
    */
   protected void configure(final TransactionalEditingDomain domain) {
-    // Assign a fresh URIConverter
-    domain.getResourceSet().getURIConverter().getURIMap().clear();
-    domain.getResourceSet().getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
     // the listener depends on UI to ask the user to solve conflict
     new EGFWorkspaceSynchronizer(domain, new EGFResourceLoadedListener());
     // configure domain management
