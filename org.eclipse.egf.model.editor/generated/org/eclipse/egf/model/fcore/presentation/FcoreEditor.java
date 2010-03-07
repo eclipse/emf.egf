@@ -460,7 +460,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
     @Override
     public void notifyChanged(Notification notification) {
-      if (notification.getNotifier() instanceof Resource) {
+      if (notification.getNotifier() instanceof Resource && notification.getNotifier() == getResource()) {
         switch (notification.getFeatureID(Resource.class)) {
         case Resource.RESOURCE__IS_LOADED:
         case Resource.RESOURCE__ERRORS:
