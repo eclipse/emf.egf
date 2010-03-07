@@ -47,7 +47,6 @@ public class ModelDrivenStrategy extends AbstractStrategy {
         } finally {
             visitor.dispose();
         }
-        System.out.println("ici");
     }
 
 }
