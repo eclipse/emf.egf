@@ -50,9 +50,10 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
           }
         });
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
-        // Reset proxies
         if (_activity != null) {
+          // Reset proxies
           ((InternalEObject) _activity).eSetProxyURI(EcoreUtil.getURI(_activity));
+          _activity = null;
         }
       }
     }
@@ -83,6 +84,7 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
       case Notification.REMOVING_ADAPTER:
         if (_activity != null) {
           _activity.eAdapters().remove(_activityAdapter);
+          // Reset proxies
           ((InternalEObject) _activity).eSetProxyURI(EcoreUtil.getURI(_activity));
         }
         break;

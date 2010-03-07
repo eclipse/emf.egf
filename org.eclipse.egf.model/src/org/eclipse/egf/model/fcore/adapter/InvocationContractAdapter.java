@@ -59,9 +59,10 @@ public class InvocationContractAdapter extends AdapterImpl {
           }
         });
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
-        // Reset proxies
         if (_contract != null) {
+          // Reset proxies
           ((InternalEObject) _contract).eSetProxyURI(EcoreUtil.getURI(_contract));
+          _contract = null;
         }
       }
     }
@@ -92,6 +93,7 @@ public class InvocationContractAdapter extends AdapterImpl {
       case Notification.REMOVING_ADAPTER:
         if (_contract != null) {
           _contract.eAdapters().remove(_contractAdapter);
+          // Reset proxies
           ((InternalEObject) _contract).eSetProxyURI(EcoreUtil.getURI(_contract));
         }
         break;
