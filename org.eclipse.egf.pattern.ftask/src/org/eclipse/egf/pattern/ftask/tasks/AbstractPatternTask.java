@@ -24,6 +24,7 @@ import org.eclipse.egf.model.pattern.BundleAccessor;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.pattern.engine.PatternHelper;
+import org.eclipse.egf.pattern.execution.ExecutionContext;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -74,7 +75,7 @@ public abstract class AbstractPatternTask implements ITaskProduction {
     }
 
     protected PatternContext createPatternContext(final ITaskProductionContext prodCtx) {
-        return new PatternContext(new BundleAccessor() {
+        return new ExecutionContext(new BundleAccessor() {
             public Bundle getBundle(String id) throws PatternException {
 
                 try {

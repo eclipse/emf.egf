@@ -33,7 +33,7 @@ public class JavaMethodGenerationHelper {
 
     public String getCallStatement(PatternMethod called) {
         StringBuilder builder = new StringBuilder(200);
-        builder.append("method_").append(called.getName()).append("(").append(bufferName).append(", ctx");
+        builder.append("method_").append(called.getName()).append("(ictx.getCallReporter().getBuffer(), ictx");
         Pattern pattern = called.getPattern();
         if (!pattern.getAllParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getAllParameters()) {

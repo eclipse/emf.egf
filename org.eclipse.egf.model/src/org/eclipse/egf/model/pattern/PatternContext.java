@@ -15,11 +15,6 @@
 
 package org.eclipse.egf.model.pattern;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.osgi.framework.Bundle;
-
 /**
  * TODO Ici on ne devrait avoir qu'une pauvre map avec name-valeur. Son
  * initialisation étant à la charge de l'orchestrateur. TODO il faudrait ajouetr
@@ -29,82 +24,37 @@ import org.osgi.framework.Bundle;
  * @author Thomas Guiu
  * 
  */
-public class PatternContext implements BundleAccessor {
+public interface PatternContext extends BundleAccessor {
 
     /**
      * Public Keys to manage the patter execution reporter.
      */
-    public static final String PATTERN_REPORTER = "pattern.execution.reporter"; //$NON-NLS-1$
+    final String PATTERN_REPORTER = "pattern.execution.reporter"; //$NON-NLS-1$
 
-    public static final String PATTERN_ID = "pattern.id"; //$NON-NLS-1$
-    public static final String CALL_BACK_HANDLER = "pattern.call.back.handler";
-    public static final String MODEL_DRIVEN_DOMAIN_VISITOR = "pattern.modeldriven.visitor";
-    public static final String PATTERN_IDS_PARAMETER = "pattern.ids"; //$NON-NLS-1$
+    final String PATTERN_ID = "pattern.id"; //$NON-NLS-1$
+    final String CALL_BACK_HANDLER = "pattern.call.back.handler";
+    final String MODEL_DRIVEN_DOMAIN_VISITOR = "pattern.modeldriven.visitor";
+    final String PATTERN_IDS_PARAMETER = "pattern.ids"; //$NON-NLS-1$
 
-    public static final String DOMAIN_OBJECTS = "domain"; //$NON-NLS-1$
+    final String DOMAIN_OBJECTS = "domain"; //$NON-NLS-1$
 
     /**
      * keys to manage the context injected to a pattern.
      */
-    public static final String INJECTED_CONTEXT = "internal.injected.context"; //$NON-NLS-1$
+    final String INJECTED_CONTEXT = "internal.injected.context"; //$NON-NLS-1$
 
     /**
      * key to manage the object collection to perform queries on.
      */
 
-    private PatternContext parent;
-    private final Map<String, Object> data = new HashMap<String, Object>();
-    private final BundleAccessor accessor;
-    private PatternExecutionReporter reporter;
+    void setValue(String name, Object value);
 
-    public PatternContext(BundleAccessor accessor) {
-        if (accessor == null)
-            throw new IllegalArgumentException();
-        this.accessor = accessor;
-    }
+    Object getValue(String name);
 
-    public PatternContext(PatternContext parent) {
-        this((BundleAccessor) parent);
-        this.parent = parent;
-    }
+    void setReporter(PatternExecutionReporter reporter);
 
-    public void setValue(String name, Object value) {
-        if (name == null)
-            throw new IllegalArgumentException();
-        data.put(name, value);
-        // TODO how to deal with parent ctx ?
+    boolean hasReporter();
 
-    }
-
-    public Object getValue(String name) {
-        if (name == null)
-            throw new IllegalArgumentException();
-        if (data.containsKey(name))
-            return data.get(name);
-        return parent == null ? null : parent.getValue(name);
-    }
-
-    public Bundle getBundle(String id) throws PatternException {
-
-        return accessor.getBundle(id);
-    }
-
-    public void setReporter(PatternExecutionReporter reporter) {
-        this.reporter = reporter;
-    }
-
-    public boolean hasReporter() {
-        return reporter != null;
-    }
-
-    public PatternExecutionReporter getReporter() {
-        if (reporter == null) {
-            // no need for a chain of command
-            // if (parent == null)
-            throw new IllegalStateException();
-            // return parent.getReporter();
-        }
-        return reporter;
-    }
+    PatternExecutionReporter getReporter();
 
 }

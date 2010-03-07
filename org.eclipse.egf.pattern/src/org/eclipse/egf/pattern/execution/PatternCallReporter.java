@@ -31,9 +31,9 @@ public class PatternCallReporter implements PatternExecutionReporter {
         this.buffer = buffer;
     }
 
-    private StringBuffer buffer;
+    private final StringBuffer buffer;
 
-    protected StringBuffer getBuffer() {
+    public StringBuffer getBuffer() {
         return buffer;
     }
 

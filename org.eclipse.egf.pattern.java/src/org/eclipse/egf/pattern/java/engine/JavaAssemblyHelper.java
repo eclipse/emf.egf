@@ -113,7 +113,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
 
     @Override
     protected void beginOrchestration() throws PatternException {
-        content.append("PatternContext ctx = (PatternContext)argument;").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("InternalPatternContext ctx = (InternalPatternContext)argument;").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("StringBuilder collector = new StringBuilder(2000);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("IQuery.ParameterDescription paramDesc = null;").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("Map<String, String> queryCtx = null;").append(EGFCommonConstants.LINE_SEPARATOR);

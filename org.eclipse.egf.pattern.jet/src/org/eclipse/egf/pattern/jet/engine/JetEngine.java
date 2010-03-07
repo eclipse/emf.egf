@@ -189,14 +189,17 @@ public class JetEngine extends PatternEngine {
             }
         }
         builder.append(") throws Exception  {").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("final StringBuffer stringBuffer = new StringBuffer();").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("PatternCallReporter callReporter =  new PatternCallReporter(stringBuffer);").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("if (!ictx.hasCallReporter()) {").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("    ictx = new ExecutionContext(ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("    ictx.setCallReporter(new PatternCallReporter(new StringBuffer()));").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append(content.substring(startIndex + JetAssemblyHelper.START_METHOD_MARKER.length(), endIndex));
 
         builder.append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("String loop = stringBuffer.toString();").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("String loop = ictx.getCallReporter().getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
         if (!getPattern().getAllParameters().isEmpty())
-            builder.append("ctx.getReporter().loopFinished(loop, ctx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("ctx.getReporter().loopFinished(loop, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("").append(EGFCommonConstants.LINE_SEPARATOR);
