@@ -263,8 +263,13 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
             deltaChangedFcores.add(resource); // <- this statement is not a workaround
           }
         }
+        // Resource who can't open a physical resource raise exception but are loaded
+        // in the resource set, its flag is also set to isLoaded
+        // we need to unload to get a chance to load it again
         if (resource.getContents().size() == 0 && resource.getErrors().isEmpty() == false) {
+          resource.unload();
           editingDomain.getResourceSet().getResources().remove(resource);
+          RESOURCE_MANAGER._fcores.remove(resource);
           resource = editingDomain.getResourceSet().getResource(fcore.getURI(), true);
           if (resource == null) {
             continue;
