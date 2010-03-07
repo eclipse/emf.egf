@@ -17,6 +17,7 @@ package org.eclipse.egf.pattern.execution;
 
 import java.util.Map;
 
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
@@ -28,10 +29,12 @@ public class ConsoleReporter implements PatternExecutionReporter {
 
     public void executionFinished(String output, PatternContext context) {
         System.out.println(output);
+        EGFCorePlugin.getDefault().logInfo(output);
     }
 
     public void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues) {
-        System.out.println(output);
+        System.out.println("loop: " + output);
+        EGFCorePlugin.getDefault().logInfo(output);
     }
 
 }
