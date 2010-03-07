@@ -15,14 +15,19 @@
  */
 package org.eclipse.egf.core.fcore;
 
+import java.util.List;
+import java.util.Map;
+
 import org.eclipse.emf.common.util.URI;
 
 public interface IResourceFcoreDelta {
 
-  public URI[] getMovedResourceFcores();
+  public List<URI> getNewFcores();
 
-  public URI getMovedFromResourceFcore(URI uri);
+  public List<URI> getRemovedFcores();
 
-  public URI[] getUpdatedResourceFcores();
+  public Map<URI, URI> getMovedFcores();
+
+  public List<URI> getUpdatedFcores();
 
 }

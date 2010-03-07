@@ -51,7 +51,7 @@ import org.osgi.service.packageadmin.PackageAdmin;
  */
 public class ProjectBundleSession {
 
-  public static String PROJECT_BUNDLE_SESSION = "org.eclipse.egf.core.session.project.bundle.session"; //$NON-NLS-1$
+  public static String PROJECT_BUNDLE_SESSION = "org.eclipse.egf.core.project.bundle.session"; //$NON-NLS-1$
 
   private BundleContext _context;
 
