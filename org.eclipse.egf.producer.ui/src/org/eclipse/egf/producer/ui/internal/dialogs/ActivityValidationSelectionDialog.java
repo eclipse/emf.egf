@@ -139,14 +139,13 @@ public class ActivityValidationSelectionDialog extends AbstractCheckboxSelection
   /**
    * (non-Javadoc)
    * 
-   * @see org.eclipse.egf.core.ui.dialogs.AbstractCheckboxSelectionDialog#
-   *      addCustomFooterControls(org.eclipse.swt.widgets.Composite)
+   * @see org.eclipse.egf.core.ui.dialogs.AbstractCheckboxSelectionDialog# addCustomFooterControls(org.eclipse.swt.widgets.Composite)
    */
   @Override
   protected void addCustomFooterControls(Composite parent) {
     super.addCustomFooterControls(parent);
     _savePreferences = new Button(parent, SWT.CHECK);
-    _savePreferences.setText(ProducerUIMessages.ActivitySelectionDialog_Always_Validate);
+    _savePreferences.setText(ProducerUIMessages.ActivitySelectionDialog_Never_Validate);
     _savePreferences.addSelectionListener(new SelectionAdapter() {
       @Override
       public void widgetSelected(SelectionEvent e) {
@@ -163,7 +162,7 @@ public class ActivityValidationSelectionDialog extends AbstractCheckboxSelection
   @Override
   protected void okPressed() {
     IPreferenceStore store = EGFCoreUIPlugin.getDefault().getPreferenceStore();
-    String val = (_savePreferences.getSelection() ? MessageDialogWithToggle.ALWAYS : MessageDialogWithToggle.PROMPT);
+    String val = (_savePreferences.getSelection() ? MessageDialogWithToggle.NEVER : MessageDialogWithToggle.PROMPT);
     store.setValue(IEGFModelConstants.VALIDATE_MODEL_INSTANCES_BEFORE_LAUNCH, val);
     super.okPressed();
   }
@@ -171,8 +170,7 @@ public class ActivityValidationSelectionDialog extends AbstractCheckboxSelection
   /**
    * (non-Javadoc)
    * 
-   * @see org.eclipse.egf.core.ui.dialogs.AbstractCheckboxSelectionDialog#
-   *      addViewerListeners(org.eclipse.jface.viewers.StructuredViewer)
+   * @see org.eclipse.egf.core.ui.dialogs.AbstractCheckboxSelectionDialog# addViewerListeners(org.eclipse.jface.viewers.StructuredViewer)
    */
   @Override
   protected void addViewerListeners(StructuredViewer viewer) {
