@@ -115,9 +115,12 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
   public ModelElementManager(P element) throws InvocationException {
     Assert.isNotNull(element);
     _element = element;
-    _platformFcore = EGFCorePlugin.getPlatformFcore(element.eResource());
+    if (_element.eResource() == null) {
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_no_resource, getName()), null)));
+    }
+    _platformFcore = EGFCorePlugin.getPlatformFcore(_element.eResource());
     if (_platformFcore == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_activity, getName()), null)));
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_activity, _element.eResource().getURI()), null)));
     }
   }
 

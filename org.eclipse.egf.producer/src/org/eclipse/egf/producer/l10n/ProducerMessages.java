@@ -27,6 +27,7 @@ public class ProducerMessages {
     NLS.initializeMessages(BUNDLE_NAME, ProducerMessages.class);
   }
 
+  public static String ModelElementManager_fcore_no_resource;
   public static String ModelElementManager_fcore_activity;
 
   public static String ActivityManager_mandatory_value;
