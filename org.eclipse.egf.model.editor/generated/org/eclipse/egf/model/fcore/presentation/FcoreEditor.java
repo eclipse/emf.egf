@@ -45,6 +45,7 @@ import org.eclipse.egf.core.ui.contributor.ListenerContributor;
 import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener;
 import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener.ResourceListener;
 import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener.ResourceUser;
+import org.eclipse.egf.core.workspace.EGFWorkspaceSynchronizer;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
@@ -90,7 +91,6 @@ import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelP
 import org.eclipse.emf.workspace.EMFCommandOperation;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.emf.workspace.ResourceUndoContext;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IStatusLineManager;
@@ -415,15 +415,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected boolean resourceHasBeenExternallyChanged;
 
   /**
-   * Whether or not this resource has moved
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  protected URI resourceHasBeenMovedTo;
-
-  /**
    * Whether or not user saved this resource in this editor
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -524,19 +515,13 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       setSelection(getSelection());
     }
     if (resourceHasBeenRemoved) {
-      if (handleDirtyConflict()) {
-        getSite().getPage().closeEditor(FcoreEditor.this, false);
-      }
-    } else if (resourceHasBeenMovedTo != null) {
-      // Generated editor does not have move support
-      if (userHasSavedResource) {
-        getOperationHistory().dispose(undoContext, true, true, true);
-        getResource().setURI(resourceHasBeenMovedTo);
-        // must change my editor input
-        IEditorInput newInput = new FileEditorInput(WorkspaceSynchronizer.getFile(getResource()));
-        setInputWithNotify(newInput);
-        setPartName(newInput.getName());
-      }
+      getSite().getShell().getDisplay().asyncExec(new Runnable() {
+        public void run() {
+          if (isDirty() == false || handleDirtyConflict()) {
+            getSite().getPage().closeEditor(FcoreEditor.this, false);
+          }
+        }
+      });
     } else if (resourceHasBeenExternallyChanged) {
       handleChangedResource();
     }
@@ -647,9 +632,24 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * 
    * @generated NOT
    */
-  public void resourceMoved(Resource movedResource, URI newURI) {
-    if (movedResource == getResource()) {
-      resourceHasBeenMovedTo = newURI;
+  public void resourceMoved(Resource movedResource, final URI newURI) {
+    if ((movedResource == getResource())) {
+      if (isDirty() == false) {
+        getSite().getShell().getDisplay().syncExec(new Runnable() {
+          public void run() {
+            if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
+              setSelection(StructuredSelection.EMPTY);
+            }
+            getOperationHistory().dispose(undoContext, true, true, true);
+            getResource().setURI(newURI);
+            FileEditorInput editorInput = new FileEditorInput(EGFWorkspaceSynchronizer.getFile(getResource()));
+            setInputWithNotify(editorInput);
+            selectionViewer.setInput(getResource());
+            selectionViewer.setSelection(new StructuredSelection(getResource()), true);
+            currentViewerPane.setTitle(getResource());
+          }
+        });
+      }
     }
   }
 

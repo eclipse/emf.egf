@@ -49,7 +49,6 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
-import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -240,62 +239,62 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     // Variables
     final IFile modelFile = getModelFile();
     final Throwable[] throwable = new Throwable[1];
+    final EObject rootObject = createInitialModel();
 
-    // Do the work within an operation.
-    WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+    // Convert and Process current Project
+    WorkspaceModifyOperation convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false) {
+      @Override
+      public List<String> addDependencies() {
+        List<String> dependencies = new ArrayList<String>(1);
+        dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$              
+        return dependencies;
+      }
 
       @Override
-      protected void execute(IProgressMonitor monitor) {
-        SubMonitor subMonitor = SubMonitor.convert(monitor, EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_createActivity"), 200); //$NON-NLS-1$
-        try {
-          // Get Object Model
-          EObject rootObject = createInitialModel();
-          // Initialize Bundle and JavaProject if necessary
-          IRunnableWithProgress convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false) {
-            @Override
-            public List<String> addDependencies() {
-              List<String> dependencies = new ArrayList<String>(1);
-              dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$              
-              return dependencies;
-            }
-
-            @Override
-            public List<String> addSourceFolders() {
-              List<String> sourceFolders = new ArrayList<String>(1);
-              sourceFolders.add("src"); //$NON-NLS-1$
-              return sourceFolders;
-            }
-          };
-          // Synchronous operation
-          getContainer().run(false, true, convertOperation);
-          // Create a resource set
-          ResourceSet resourceSet = new ResourceSetImpl();
-          // Create a resource for this file.
-          Resource resource = ResourceHelper.createResource(resourceSet, modelFile);
-          // Add the initial model object to the contents.
-          if (rootObject != null) {
-            resource.getContents().add(rootObject);
-          }
-          // Save the contents of the resource to the file system.
-          Map<Object, Object> options = new HashMap<Object, Object>();
-          options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
-          resource.save(options);
-        } catch (Throwable t) {
-          throwable[0] = t;
-        } finally {
-          subMonitor.done();
-        }
+      public List<String> addSourceFolders() {
+        List<String> sourceFolders = new ArrayList<String>(1);
+        sourceFolders.add("src"); //$NON-NLS-1$
+        return sourceFolders;
       }
     };
-
     try {
-      getContainer().run(false, true, operation);
+      getContainer().run(false, true, convertOperation);
     } catch (Throwable t) {
       throwable[0] = t;
     }
 
+    // Save resource
+    if (throwable[0] == null) {
+      WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+        @Override
+        protected void execute(IProgressMonitor monitor) {
+          SubMonitor.convert(monitor, EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_createActivity"), 200); //$NON-NLS-1$
+          try {
+            // Create a resource set
+            ResourceSet resourceSet = new ResourceSetImpl();
+            // Create a resource for this file.
+            Resource resource = ResourceHelper.createResource(resourceSet, modelFile);
+            // Add the initial model object to the contents.
+            if (rootObject != null) {
+              resource.getContents().add(rootObject);
+            }
+            // Save the contents of the resource to the file system.
+            Map<Object, Object> options = new HashMap<Object, Object>();
+            options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
+            resource.save(options);
+          } catch (Throwable t) {
+            throwable[0] = t;
+          }
+        }
+      };
+      try {
+        getContainer().run(false, true, operation);
+      } catch (Throwable t) {
+        throwable[0] = t;
+      }
+    }
+
     // Select the new file resource in the current view.
-    //
     if (throwable[0] == null) {
       IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
       IWorkbenchPage page = workbenchWindow.getActivePage();
@@ -309,7 +308,6 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
         });
       }
       // Open an editor on the new file.
-      //
       try {
         page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
       } catch (Throwable t) {
@@ -460,15 +458,12 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
         initialObjectField.add(getLabel(objectName));
       }
 
-      if (initialObjectField.getItemCount() == 1) {
-        initialObjectField.select(0);
-      }
+      initialObjectField.select(0);
       initialObjectField.addModifyListener(validator);
 
       Label encodingLabel = new Label(composite, SWT.LEFT);
       {
         encodingLabel.setText(EGFModelEditorPlugin.INSTANCE.getString("_UI_XMLEncoding")); //$NON-NLS-1$
-
         GridData data = new GridData();
         data.horizontalAlignment = GridData.FILL;
         encodingLabel.setLayoutData(data);
