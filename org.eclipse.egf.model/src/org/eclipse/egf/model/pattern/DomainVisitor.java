@@ -28,4 +28,6 @@ public interface DomainVisitor {
     void setPatterns(Set<Pattern> patterns) throws PatternException;
 
     void visit(PatternContext context, Object model) throws PatternException;
+
+    void dispose();
 }
