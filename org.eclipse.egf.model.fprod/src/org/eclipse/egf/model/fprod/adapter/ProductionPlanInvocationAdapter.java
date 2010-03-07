@@ -16,6 +16,7 @@ import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -35,6 +36,8 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
 
   private Activity _activity;
 
+  private URI _uri;
+
   private EStructuralFeature _nameFeature = FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME;
 
   private EStructuralFeature _invocationInvokedActivityFeature = FcorePackage.Literals.INVOCATION__INVOKED_ACTIVITY;
@@ -52,8 +55,9 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
         if (_activity != null) {
           // Reset proxies
-          ((InternalEObject) _activity).eSetProxyURI(EcoreUtil.getURI(_activity));
+          ((InternalEObject) _activity).eSetProxyURI(_uri);
           _activity = null;
+          _uri = null;
         }
       }
     }
@@ -80,6 +84,7 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
           newValue.eAdapters().add(_activityAdapter);
         }
         _activity = newValue;
+        _uri = EcoreUtil.getURI(_activity);
         break;
       case Notification.REMOVING_ADAPTER:
         if (_activity != null) {
