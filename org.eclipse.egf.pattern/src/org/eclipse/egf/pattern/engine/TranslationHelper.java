@@ -56,7 +56,6 @@ public class TranslationHelper {
             }
         } catch (MissingExtensionException e) {
             throw new PatternException(e);
-
         }
     }
 

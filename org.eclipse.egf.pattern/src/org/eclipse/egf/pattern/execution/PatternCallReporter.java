@@ -33,6 +33,10 @@ public class PatternCallReporter implements PatternExecutionReporter {
 
     private StringBuffer buffer;
 
+    protected StringBuffer getBuffer() {
+        return buffer;
+    }
+
     public void executionFinished(String output, PatternContext context) {
     }
 

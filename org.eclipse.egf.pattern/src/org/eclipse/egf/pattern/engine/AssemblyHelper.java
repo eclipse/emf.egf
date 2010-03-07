@@ -15,25 +15,13 @@
 
 package org.eclipse.egf.pattern.engine;
 
-import java.io.IOException;
-
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.helper.ObjectHolder;
 import org.eclipse.egf.model.pattern.Call;
-import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.model.pattern.PatternInjectedCall;
-import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.model.pattern.SuperCall;
-import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.egf.pattern.Messages;
-import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Thomas Guiu
@@ -44,15 +32,17 @@ public abstract class AssemblyHelper {
     protected final Pattern pattern;
     protected final StringBuilder content = new StringBuilder(1000);
     protected int orchestrationIndex;
+    protected final AssemblyContentHelper contentHelper;
 
-    public AssemblyHelper(Pattern pattern) {
+    public AssemblyHelper(Pattern pattern, AssemblyContentProvider contentProvider) {
         super();
         this.pattern = pattern;
+        this.contentHelper = new AssemblyContentHelper(contentProvider);
     }
 
     public String visit() throws PatternException {
         orchestrationIndex = -1;
-        String read = getMethodContent(pattern.getHeaderMethod());
+        String read = contentHelper.getMethodContent(pattern.getHeaderMethod());
         if (read != null)
             content.append(read).append(EGFCommonConstants.LINE_SEPARATOR);
 
@@ -61,11 +51,11 @@ public abstract class AssemblyHelper {
         if (orchestrationIndex == -1)
             throw new PatternException(Messages.assembly_error6);
 
-        visitOrchestration(pattern);
+        visitOrchestration();
 
         endOrchestration();
 
-        read = getMethodContent(pattern.getFooterMethod());
+        read = contentHelper.getMethodContent(pattern.getFooterMethod());
         if (read != null)
             content.append(read).append(EGFCommonConstants.LINE_SEPARATOR);
 
@@ -110,15 +100,11 @@ public abstract class AssemblyHelper {
 
     protected void visitOrchestration(Pattern pattern) throws PatternException {
         EList<Call> orchestration = pattern.getOrchestration();
-        while (orchestration.isEmpty() && pattern.getSuperPattern() != null) {
-            orchestration = pattern.getSuperPattern().getOrchestration();
-            pattern = pattern.getSuperPattern();
-        }
         if (orchestration.isEmpty())
-            throw new PatternException(Messages.bind(Messages.assembly_error8, pattern.getName()));
+            return;
 
         for (Call element : orchestration) {
-            String read = getContent(element);
+            String read = contentHelper.getContent(element);
             if (read != null)
                 content.append(read);
         }

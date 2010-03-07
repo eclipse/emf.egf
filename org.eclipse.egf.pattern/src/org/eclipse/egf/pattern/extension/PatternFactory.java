@@ -30,6 +30,7 @@ import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.Query;
+import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
@@ -447,9 +448,8 @@ public abstract class PatternFactory {
         initFooter(footerMethod);
 
         // 2 - set up default orchestration
-        MethodCall methodCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createMethodCall();
-        methodCall.setCalled(bodyMethod);
-        pattern.getOrchestration().add(methodCall);
+        SuperCall superCall = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createSuperCall();
+        pattern.getOrchestration().add(superCall);
         return pattern;
     }
 
