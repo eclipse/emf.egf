@@ -12,35 +12,34 @@ package org.eclipse.egf.core.pde.internal.resource;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
 import org.eclipse.core.resources.IResourceDelta;
 import org.eclipse.core.resources.IResourceDeltaVisitor;
+import org.eclipse.core.resources.IResourceRuleFactory;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.core.runtime.jobs.ISchedulingRule;
+import org.eclipse.core.runtime.jobs.MultiRule;
 import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.common.helper.StatusHelper;
 import org.eclipse.egf.common.helper.URIHelper;
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
 import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
 import org.eclipse.egf.core.fcore.IResourceFcoreListener;
 import org.eclipse.egf.core.pde.EGFPDEPlugin;
 import org.eclipse.egf.core.pde.l10n.EGFPDEMessages;
 import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
-import org.eclipse.egf.core.pde.plugin.IPluginChangesCommandRunner;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.osgi.util.NLS;
 
@@ -57,6 +56,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
   private List<IResourceFcoreListener> _listeners;
 
   public FcoreResourceListener() {
+    // ensure that we are listening to the workspace
     ResourcesPlugin.getWorkspace().addResourceChangeListener(this, IResourceChangeEvent.POST_CHANGE);
   }
 
@@ -108,109 +108,70 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
   public void resourceChanged(IResourceChangeEvent event) {
 
-    IResourceDelta delta = event.getDelta();
-
     int eventType = _overridenEventType == -1 ? event.getType() : _overridenEventType;
 
     try {
 
       class ResourceDeltaVisitor implements IResourceDeltaVisitor {
 
-        protected ResourceFcoreDelta deltaFcores = new ResourceFcoreDelta();
+        protected List<IProject> _affectedProjects = new UniqueEList<IProject>();
 
-        protected Collection<IResource> addedFcores = new ArrayList<IResource>();
+        protected List<IResource> _newFcores = new UniqueEList<IResource>();
 
-        protected Collection<IPlatformFcore> removedFcores = new ArrayList<IPlatformFcore>();
+        protected List<IResource> _removedFcores = new UniqueEList<IResource>();
 
-        public boolean visit(IResourceDelta innerDelta) throws CoreException {
+        protected ResourceFcoreDelta _deltaFcores = new ResourceFcoreDelta();
 
-          if (innerDelta.getFlags() == IResourceDelta.MARKERS) {
-            return true;
-          }
-
-          IResource resource = innerDelta.getResource();
-
-          // Analyse projects
-          if (resource.getType() == IResource.PROJECT) {
-            // Ignore Added or Remove projects
-            if (innerDelta.getKind() == IResourceDelta.ADDED || innerDelta.getKind() == IResourceDelta.REMOVED) {
-              return false;
-            } else if (innerDelta.getKind() == IResourceDelta.CHANGED) {
-              // Ignore opened or closed project
-              if ((innerDelta.getFlags() & IResourceDelta.OPEN) != 0) {
-                return false;
-              }
-            }
-            // Deeper projects analysis
-            return true;
-          }
-
-          // Analyse further all other artifacts
-          if (resource.getType() != IResource.FILE) {
-            return true;
-          }
-
-          // Process files
-          if (innerDelta.getKind() == IResourceDelta.REMOVED || innerDelta.getKind() == IResourceDelta.CHANGED || innerDelta.getKind() == IResourceDelta.ADDED) {
-            if (IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(resource.getFileExtension())) {
-              try {
-                // Build a Resource URI
-                URI uri = URIHelper.getPlatformURI(resource);
-                if (uri != null) {
-                  // Removed resource
-                  if (innerDelta.getKind() == IResourceDelta.REMOVED) {
-                    for (IPlatformFcore fc : EGFCorePlugin.getWorkspacePlatformFcores()) {
-                      if (fc.getURI().equals(uri)) {
-                        removedFcores.add(fc);
-                        break;
-                      }
-                    }
-                    // Added resource
-                  } else if (innerDelta.getKind() == IResourceDelta.ADDED) {
-                    boolean found = false;
-                    for (IPlatformFcore fc : EGFCorePlugin.getWorkspacePlatformFcores()) {
-                      if (fc.getURI().equals(uri)) {
-                        found = true;
-                        break;
-                      }
-                    }
-                    if (found == false) {
-                      addedFcores.add(resource);
-                      if ((innerDelta.getFlags() & IResourceDelta.MOVED_FROM) != 0) {
-                        // Build a Resource URI
-                        URI fromURI = URIHelper.getPlatformURI(innerDelta.getMovedFromPath());
-                        if (fromURI != null) {
-                          deltaFcores.storeMovedResourceFcore(uri, fromURI);
-                        }
-                      }
-                    }
-                    // Updated resource
-                  } else if (innerDelta.getKind() == IResourceDelta.CHANGED) {
-                    if ((innerDelta.getFlags() & IResourceDelta.CONTENT) != 0) {
-                      deltaFcores.storeUpdatedResourceFcore(uri);
-                    }
+        public boolean visit(IResourceDelta delta) throws CoreException {
+          try {
+            // only interested with file with an fcore extension
+            if (delta.getResource().getType() == IResource.FILE && IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(delta.getResource().getFileExtension())) {
+              URI uri = URIHelper.getPlatformURI(delta.getResource());
+              // Locate the bundleId, resource should be located in a bundle project
+              String bundleId = BundleHelper.getBundleId(delta.getResource());
+              if (uri != null && bundleId != null) {
+                if (delta.getKind() == IResourceDelta.CHANGED) {
+                  if (delta.getFlags() != IResourceDelta.MARKERS && (delta.getFlags() & IResourceDelta.CONTENT) != 0) {
+                    _deltaFcores.addUpdatedFcore(uri);
+                  }
+                } else if (delta.getKind() == IResourceDelta.ADDED) {
+                  if ((delta.getFlags() & IResourceDelta.MOVED_FROM) == 0) {
+                    _deltaFcores.addNewFcore(uri);
+                    _newFcores.add(delta.getResource());
+                    _affectedProjects.add(delta.getResource().getProject());
+                  }
+                } else if (delta.getKind() == IResourceDelta.REMOVED) {
+                  if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0) {
+                    _deltaFcores.addMovedFcore(uri, URIHelper.getPlatformURI(delta.getMovedToPath()));
+                  } else {
+                    _deltaFcores.addRemovedFcore(uri);
+                    _removedFcores.add(delta.getResource());
+                    _affectedProjects.add(delta.getResource().getProject());
                   }
                 }
-              } catch (Throwable t) {
-                EGFPDEPlugin.getDefault().logError(new String("FcoreResourceListener.resourceChanged(..) _ "), t); //$NON-NLS-1$
               }
             }
+          } catch (Throwable t) {
+            EGFPDEPlugin.getDefault().logError(new String("FcoreResourceListener.resourceChanged(..) _ "), t); //$NON-NLS-1$
           }
-
           return true;
 
         }
 
-        public Collection<IPlatformFcore> getRemovedFcores() {
-          return removedFcores;
-        }
-
-        public Collection<IResource> getAddedFcores() {
-          return addedFcores;
-        }
-
         public ResourceFcoreDelta getFcoresDelta() {
-          return deltaFcores;
+          return _deltaFcores;
+        }
+
+        public List<IResource> getRemovedFcores() {
+          return _removedFcores;
+        }
+
+        public List<IResource> getNewFcores() {
+          return _newFcores;
+        }
+
+        public List<IProject> getAffectedProjects() {
+          return _affectedProjects;
         }
 
       }
@@ -218,26 +179,10 @@ public class FcoreResourceListener implements IResourceChangeListener {
       switch (eventType) {
       case IResourceChangeEvent.POST_CHANGE:
         final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
-        delta.accept(visitor);
+        event.getDelta().accept(visitor);
         // Process added and removed resources
-        if (visitor.getRemovedFcores().isEmpty() == false || visitor.getAddedFcores().isEmpty() == false) {
-          final IStatus[] errorStatus = new IStatus[1];
-          errorStatus[0] = Status.OK_STATUS;
-          final IRunnableWithProgress op = createFcoreOperation(errorStatus, visitor.getRemovedFcores(), visitor.getAddedFcores());
-          WorkspaceJob job = new WorkspaceJob("update") { //$NON-NLS-1$
-            @Override
-            public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
-              try {
-                op.run(monitor);
-              } catch (InvocationTargetException e) {
-                String msg = NLS.bind(EGFPDEMessages.PluginModelUpdate_logTitle, getClass().getName(), e.getTargetException());
-                throw new CoreException(StatusHelper.newStatus(IStatus.ERROR, msg, e.getTargetException()));
-              } catch (InterruptedException e) {
-                return Status.CANCEL_STATUS;
-              }
-              return errorStatus[0];
-            }
-          };
+        if (visitor.getRemovedFcores().isEmpty() == false || visitor.getNewFcores().isEmpty() == false) {
+          WorkspaceJob job = new FcoreSynchJob(visitor.getAffectedProjects(), visitor.getRemovedFcores(), visitor.getNewFcores());
           job.setUser(true);
           job.schedule();
         }
@@ -263,68 +208,127 @@ public class FcoreResourceListener implements IResourceChangeListener {
     _listeners = null;
   }
 
-  final protected IRunnableWithProgress createFcoreOperation(final IStatus[] errorStatus, final Collection<IPlatformFcore> removedFcores, final Collection<IResource> addedFcores) {
+  protected IRunnableWithProgress createFcoreOperation(final IStatus[] errorStatus, final List<IResource> removedFcores, final List<IResource> newFcores) {
     return new IRunnableWithProgress() {
       public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
-        monitor.beginTask("", (removedFcores.size() + addedFcores.size()) * 1000); //$NON-NLS-1$
-        monitor.setTaskName(EGFPDEMessages.PluginModelUpdate_progressMessage);
-        try {
-          // Removed Fcores
-          for (IPlatformFcore fcore : removedFcores) {
-            // Delete an extension point
-            IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(fcore.getURI());
-            IPluginChangesCommandRunner runner = EGFPDEPlugin.getPluginChangesCommandRunner();
-            runner.performChangesOnPlugin(fcore.getPlatformBundle().getBundleId(), Collections.singletonList(unsetCommand));
-            monitor.worked(1000);
-            if (monitor.isCanceled()) {
-              throw new OperationCanceledException();
-            }
-          }
-          // Added Fcores
-          for (IResource resource : addedFcores) {
-            // Create an extension point
-            IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(URI.createURI(resource.getFullPath().removeFirstSegments(1).makeRelative().toString()));
-            IPluginChangesCommandRunner runner = EGFPDEPlugin.getPluginChangesCommandRunner();
-            // Locate the bundleId, resource should be located in a bundle project
-            String bundleId = BundleHelper.getBundleId(resource);
-            if (bundleId != null) {
-              runner.performChangesOnPlugin(bundleId, Collections.singletonList(createCommand));
-            }
-            monitor.worked(1000);
-            if (monitor.isCanceled()) {
-              throw new OperationCanceledException();
-            }
-          }
-          errorStatus[0] = Status.OK_STATUS;
-        } finally {
-          monitor.done();
-        }
+
       }
     };
   }
 
   private void trace(IResourceFcoreDelta delta) {
-    if (delta.getUpdatedResourceFcores().length > 0) {
-      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Updated {0} Fcore{1}.", //$NON-NLS-1$ 
-          delta.getUpdatedResourceFcores().length, delta.getUpdatedResourceFcores().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+    if (delta.getNewFcores().size() > 0) {
+      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener New {0} Fcore{1}.", //$NON-NLS-1$ 
+          delta.getNewFcores().size(), delta.getNewFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
-      trace(delta.getUpdatedResourceFcores(), null);
+      for (URI uri : delta.getNewFcores()) {
+        EGFPDEPlugin.getDefault().logWarning(URI.decode(uri.toString()), 1);
+      }
     }
-    if (delta.getMovedResourceFcores().length > 0) {
-      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Moved {0} Fcore{1}.", //$NON-NLS-1$ 
-          delta.getMovedResourceFcores().length, delta.getMovedResourceFcores().length < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+    if (delta.getRemovedFcores().size() > 0) {
+      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Removed {0} Fcore{1}.", //$NON-NLS-1$ 
+          delta.getRemovedFcores().size(), delta.getRemovedFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
-      trace(delta.getMovedResourceFcores(), delta);
+      for (URI uri : delta.getRemovedFcores()) {
+        EGFPDEPlugin.getDefault().logWarning(URI.decode(uri.toString()), 1);
+      }
+    }
+    if (delta.getUpdatedFcores().size() > 0) {
+      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Updated {0} Fcore{1}.", //$NON-NLS-1$ 
+          delta.getUpdatedFcores().size(), delta.getUpdatedFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+      ));
+      for (URI uri : delta.getUpdatedFcores()) {
+        EGFPDEPlugin.getDefault().logWarning(URI.decode(uri.toString()), 1);
+      }
+    }
+    if (delta.getMovedFcores().size() > 0) {
+      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Moved {0} Fcore{1}.", //$NON-NLS-1$ 
+          delta.getMovedFcores().size(), delta.getMovedFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
+      ));
+      for (URI uri : delta.getMovedFcores().keySet()) {
+        EGFPDEPlugin.getDefault().logWarning(URI.decode(uri.toString()), 1);
+        EGFPDEPlugin.getDefault().logInfo("To: " + URI.decode(delta.getMovedFcores().get(uri).toString()), 2); //$NON-NLS-1$
+      }
     }
   }
 
-  private void trace(URI[] uris, IResourceFcoreDelta delta) {
-    for (URI uri : uris) {
-      EGFPDEPlugin.getDefault().logWarning(uri.toString(), 1);
-      if (delta != null) {
-        EGFPDEPlugin.getDefault().logInfo("From: " + delta.getMovedFromResourceFcore(uri), 2); //$NON-NLS-1$
-      }
+  private static class FcoreSynchJob extends WorkspaceJob {
+
+    private List<IResource> _newFcores;
+
+    private List<IResource> _removedFcores;
+
+    /**
+     * Initializes me with the list of resources changes that I am to
+     * process.
+     * 
+     * @param affectedProjects
+     *          the projects affected by the workspace changes
+     */
+    FcoreSynchJob(List<IProject> affectedProjects, List<IResource> removedFcores, List<IResource> newFcores) {
+      super(EGFPDEMessages.PluginModelUpdate_progressMessage);
+      _removedFcores = removedFcores;
+      _newFcores = newFcores;
+      setRule(getRule(affectedProjects));
     }
+
+    @Override
+    public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
+      try {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, EGFPDEMessages.PluginModelUpdate_progressMessage, (_removedFcores.size() + _newFcores.size()) * 1000);
+        // Removed Fcores
+        for (IResource resource : _removedFcores) {
+          // Ignore non Bundle project
+          if (BundleHelper.getPluginModelBase(resource.getProject()) == null) {
+            continue;
+          }
+          // Delete command
+          IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(resource);
+          unsetCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
+          if (monitor.isCanceled()) {
+            throw new InterruptedException();
+          }
+        }
+        // Added Fcores
+        for (IResource resource : _newFcores) {
+          // Ignore non Bundle project
+          if (BundleHelper.getPluginModelBase(resource.getProject()) == null) {
+            continue;
+          }
+          // Create command
+          IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(resource);
+          createCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
+          if (monitor.isCanceled()) {
+            throw new InterruptedException();
+          }
+        }
+      } catch (InterruptedException e) {
+        return Status.CANCEL_STATUS;
+      } finally {
+        monitor.done();
+      }
+      return Status.OK_STATUS;
+    }
+
+    /**
+     * Obtains a scheduling rule to schedule myself on to give my delegate
+     * access to the specified affected resources.
+     * 
+     * @param affectedResources
+     * @return the appropriate scheduling rule, or <code>null</code> if
+     *         none is required
+     */
+    private ISchedulingRule getRule(List<IProject> affectedProjects) {
+      ISchedulingRule result = null;
+      if (affectedProjects.isEmpty() == false) {
+        IResourceRuleFactory factory = ResourcesPlugin.getWorkspace().getRuleFactory();
+        for (IResource next : affectedProjects) {
+          result = MultiRule.combine(result, factory.modifyRule(next));
+        }
+      }
+      return result;
+    }
+
   }
 
 }

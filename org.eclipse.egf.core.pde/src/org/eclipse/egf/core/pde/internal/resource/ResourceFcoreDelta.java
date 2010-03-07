@@ -1,6 +1,5 @@
 /**
- * 
- * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +7,6 @@
  * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- * 
  */
 package org.eclipse.egf.core.pde.internal.resource;
 
@@ -22,45 +20,69 @@ import org.eclipse.emf.common.util.UniqueEList;
 
 public class ResourceFcoreDelta implements IResourceFcoreDelta {
 
-  private List<URI> _updated = new UniqueEList<URI>();
+  private UniqueEList<URI> _added = new UniqueEList<URI>();
 
-  private List<URI> _moved = new UniqueEList<URI>();
+  private UniqueEList<URI> _updated = new UniqueEList<URI>();
 
-  private Map<URI, URI> _movedFrom = new HashMap<URI, URI>();
+  private UniqueEList<URI> _removed = new UniqueEList<URI>();
+
+  private HashMap<URI, URI> _moved = new HashMap<URI, URI>();
 
   public ResourceFcoreDelta() {
     // Nothing to do
   }
 
-  public URI[] getUpdatedResourceFcores() {
-    return _updated.toArray(new URI[_updated.size()]);
+  @SuppressWarnings("unchecked")
+  public List<URI> getNewFcores() {
+    return (List<URI>) _added.clone();
   }
 
-  public URI[] getMovedResourceFcores() {
-    return _moved.toArray(new URI[_moved.size()]);
+  @SuppressWarnings("unchecked")
+  public List<URI> getUpdatedFcores() {
+    return (List<URI>) _updated.clone();
   }
 
-  public URI getMovedFromResourceFcore(URI resource) {
-    return _movedFrom.get(resource);
+  @SuppressWarnings("unchecked")
+  public List<URI> getRemovedFcores() {
+    return (List<URI>) _removed.clone();
+  }
+
+  @SuppressWarnings("unchecked")
+  public Map<URI, URI> getMovedFcores() {
+    return (Map<URI, URI>) _moved.clone();
   }
 
   protected boolean isEmpty() {
-    return _updated.size() == 0 && _moved.size() == 0 ? true : false;
+    return _added.size() == 0 && _updated.size() == 0 && _removed.size() == 0 && _moved.size() == 0 ? true : false;
   }
 
-  protected boolean storeUpdatedResourceFcore(URI uri) {
+  protected boolean addNewFcore(URI uri) {
+    if (uri == null) {
+      return false;
+    }
+    return _added.add(uri);
+  }
+
+  protected boolean addUpdatedFcore(URI uri) {
     if (uri == null) {
       return false;
     }
     return _updated.add(uri);
   }
 
-  protected boolean storeMovedResourceFcore(URI uri, URI from) {
-    if (uri == null || from == null) {
+  protected boolean addRemovedFcore(URI uri) {
+    if (uri == null) {
       return false;
     }
-    _movedFrom.put(uri, from);
-    return _moved.add(uri);
+    return _removed.add(uri);
+  }
+
+  protected boolean addMovedFcore(URI uri, URI newURI) {
+    if (uri == null || newURI == null) {
+      return false;
+    }
+    _moved.put(uri, newURI);
+    return true;
   }
 
 }
