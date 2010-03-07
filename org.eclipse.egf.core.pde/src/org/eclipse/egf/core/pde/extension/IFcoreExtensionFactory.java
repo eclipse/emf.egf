@@ -10,8 +10,8 @@
  */
 package org.eclipse.egf.core.pde.extension;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
 
 /**
@@ -24,20 +24,20 @@ public interface IFcoreExtensionFactory {
   /**
    * Set an extension matching "fcore" extension-point for given parameters.
    * 
-   * @param resource
+   * @param path
    * @return an {@link IPluginChangesCommand} instance that performs this
    *         change.
    */
-  public IPluginChangesCommand setFcoreExtension(IResource resource) throws CoreException;
+  public IPluginChangesCommand setFcoreExtension(IPath path) throws CoreException;
 
   /**
    * Unset an existing extension matching "fcore" extension-point for given
    * parameters.
    * 
-   * @param resource
+   * @param path
    * @return an {@link IPluginChangesCommand} instance that performs this
    *         change.
    */
-  public IPluginChangesCommand unsetFcoreExtension(IResource resource) throws CoreException;
+  public IPluginChangesCommand unsetFcoreExtension(IPath path) throws CoreException;
 
 }

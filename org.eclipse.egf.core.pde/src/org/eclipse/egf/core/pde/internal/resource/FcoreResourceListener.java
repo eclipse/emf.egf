@@ -12,7 +12,9 @@ package org.eclipse.egf.core.pde.internal.resource;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
@@ -24,6 +26,7 @@ import org.eclipse.core.resources.IResourceRuleFactory;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.resources.WorkspaceJob;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -116,9 +119,11 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
         protected List<IProject> _affectedProjects = new UniqueEList<IProject>();
 
-        protected List<IResource> _newFcores = new UniqueEList<IResource>();
+        protected List<IPath> _newFcores = new UniqueEList<IPath>();
 
-        protected List<IResource> _removedFcores = new UniqueEList<IResource>();
+        protected List<IPath> _removedFcores = new UniqueEList<IPath>();
+
+        protected Map<IPath, IPath> _movedFcores = new HashMap<IPath, IPath>();
 
         protected ResourceFcoreDelta _deltaFcores = new ResourceFcoreDelta();
 
@@ -137,15 +142,16 @@ public class FcoreResourceListener implements IResourceChangeListener {
                 } else if (delta.getKind() == IResourceDelta.ADDED) {
                   if ((delta.getFlags() & IResourceDelta.MOVED_FROM) == 0) {
                     _deltaFcores.addNewFcore(uri);
-                    _newFcores.add(delta.getResource());
+                    _newFcores.add(delta.getResource().getFullPath());
                     _affectedProjects.add(delta.getResource().getProject());
                   }
                 } else if (delta.getKind() == IResourceDelta.REMOVED) {
                   if ((delta.getFlags() & IResourceDelta.MOVED_TO) != 0) {
                     _deltaFcores.addMovedFcore(uri, URIHelper.getPlatformURI(delta.getMovedToPath()));
+                    _movedFcores.put(delta.getResource().getFullPath(), delta.getMovedToPath());
                   } else {
                     _deltaFcores.addRemovedFcore(uri);
-                    _removedFcores.add(delta.getResource());
+                    _removedFcores.add(delta.getResource().getFullPath());
                     _affectedProjects.add(delta.getResource().getProject());
                   }
                 }
@@ -162,11 +168,15 @@ public class FcoreResourceListener implements IResourceChangeListener {
           return _deltaFcores;
         }
 
-        public List<IResource> getRemovedFcores() {
+        public Map<IPath, IPath> getMovedFcores() {
+          return _movedFcores;
+        }
+
+        public List<IPath> getRemovedFcores() {
           return _removedFcores;
         }
 
-        public List<IResource> getNewFcores() {
+        public List<IPath> getNewFcores() {
           return _newFcores;
         }
 
@@ -180,9 +190,9 @@ public class FcoreResourceListener implements IResourceChangeListener {
       case IResourceChangeEvent.POST_CHANGE:
         final ResourceDeltaVisitor visitor = new ResourceDeltaVisitor();
         event.getDelta().accept(visitor);
-        // Process added and removed resources
-        if (visitor.getRemovedFcores().isEmpty() == false || visitor.getNewFcores().isEmpty() == false) {
-          WorkspaceJob job = new FcoreSynchJob(visitor.getAffectedProjects(), visitor.getRemovedFcores(), visitor.getNewFcores());
+        // Process added, moved and removed resources
+        if (visitor.getMovedFcores().isEmpty() == false || visitor.getRemovedFcores().isEmpty() == false || visitor.getNewFcores().isEmpty() == false) {
+          WorkspaceJob job = new FcoreSynchJob(visitor.getAffectedProjects(), visitor.getMovedFcores(), visitor.getRemovedFcores(), visitor.getNewFcores());
           job.setUser(true);
           job.schedule();
         }
@@ -254,9 +264,11 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
   private static class FcoreSynchJob extends WorkspaceJob {
 
-    private List<IResource> _newFcores;
+    private Map<IPath, IPath> _movedFcores;
 
-    private List<IResource> _removedFcores;
+    private List<IPath> _newFcores;
+
+    private List<IPath> _removedFcores;
 
     /**
      * Initializes me with the list of resources changes that I am to
@@ -265,8 +277,9 @@ public class FcoreResourceListener implements IResourceChangeListener {
      * @param affectedProjects
      *          the projects affected by the workspace changes
      */
-    FcoreSynchJob(List<IProject> affectedProjects, List<IResource> removedFcores, List<IResource> newFcores) {
+    FcoreSynchJob(List<IProject> affectedProjects, Map<IPath, IPath> movedFcores, List<IPath> removedFcores, List<IPath> newFcores) {
       super(EGFPDEMessages.PluginModelUpdate_progressMessage);
+      _movedFcores = movedFcores;
       _removedFcores = removedFcores;
       _newFcores = newFcores;
       setRule(getRule(affectedProjects));
@@ -275,28 +288,51 @@ public class FcoreResourceListener implements IResourceChangeListener {
     @Override
     public IStatus runInWorkspace(IProgressMonitor monitor) throws CoreException {
       try {
-        SubMonitor subMonitor = SubMonitor.convert(monitor, EGFPDEMessages.PluginModelUpdate_progressMessage, (_removedFcores.size() + _newFcores.size()) * 1000);
-        // Removed Fcores
-        for (IResource resource : _removedFcores) {
+        SubMonitor subMonitor = SubMonitor.convert(monitor, EGFPDEMessages.PluginModelUpdate_progressMessage, (_movedFcores.size() + _removedFcores.size() + _newFcores.size()) * 1000);
+        // Moved Fcores
+        for (IPath path : _movedFcores.keySet()) {
           // Ignore non Bundle project
-          if (BundleHelper.getPluginModelBase(resource.getProject()) == null) {
+          if (BundleHelper.getPluginModelBase(ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0))) == null) {
             continue;
           }
           // Delete command
-          IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(resource);
+          IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(path);
+          unsetCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
+          if (monitor.isCanceled()) {
+            throw new InterruptedException();
+          }
+          // Ignore non Bundle project
+          if (BundleHelper.getPluginModelBase(ResourcesPlugin.getWorkspace().getRoot().getProject(_movedFcores.get(path).segment(0))) == null) {
+            continue;
+          }
+          // Create command
+          IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(_movedFcores.get(path));
+          createCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
+          if (monitor.isCanceled()) {
+            throw new InterruptedException();
+          }
+        }
+        // Removed Fcores
+        for (IPath path : _removedFcores) {
+          // Ignore non Bundle project
+          if (BundleHelper.getPluginModelBase(ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0))) == null) {
+            continue;
+          }
+          // Delete command
+          IPluginChangesCommand unsetCommand = EGFPDEPlugin.getFcoreExtensionHelper().unsetFcoreExtension(path);
           unsetCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
           if (monitor.isCanceled()) {
             throw new InterruptedException();
           }
         }
         // Added Fcores
-        for (IResource resource : _newFcores) {
+        for (IPath path : _newFcores) {
           // Ignore non Bundle project
-          if (BundleHelper.getPluginModelBase(resource.getProject()) == null) {
+          if (BundleHelper.getPluginModelBase(ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0))) == null) {
             continue;
           }
           // Create command
-          IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(resource);
+          IPluginChangesCommand createCommand = EGFPDEPlugin.getFcoreExtensionHelper().setFcoreExtension(path);
           createCommand.execute(subMonitor.newChild(1000, SubMonitor.SUPPRESS_NONE));
           if (monitor.isCanceled()) {
             throw new InterruptedException();

@@ -10,9 +10,9 @@
  */
 package org.eclipse.egf.core.pde.internal.extension;
 
-import org.eclipse.core.resources.IResource;
-import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.egf.common.helper.ExtensionPointHelper;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
@@ -26,17 +26,16 @@ import org.eclipse.emf.common.util.URI;
  */
 public abstract class AbstractFcoreExtensionCommand extends AbstractExtensionChangesCommand {
 
-  public IResource _resource;
+  public IPath _path;
 
   /**
    * Constructor.
    * 
    * @param uri
    */
-  protected AbstractFcoreExtensionCommand(IResource resource) throws CoreException {
-    super(resource.getProject());
-    Assert.isNotNull(resource);
-    _resource = resource;
+  protected AbstractFcoreExtensionCommand(IPath path) throws CoreException {
+    super(ResourcesPlugin.getWorkspace().getRoot().getProject(path.segment(0)));
+    _path = path;
   }
 
   /**
@@ -79,7 +78,7 @@ public abstract class AbstractFcoreExtensionCommand extends AbstractExtensionCha
 
   @Override
   public String getValue() {
-    return _resource.getFullPath().removeFirstSegments(1).makeRelative().toString();
+    return _path.removeFirstSegments(1).makeRelative().toString();
   }
 
   /**
@@ -88,7 +87,7 @@ public abstract class AbstractFcoreExtensionCommand extends AbstractExtensionCha
    * @return
    */
   protected URI getURI() {
-    return URIHelper.getPlatformURI(_resource.getFullPath());
+    return URIHelper.getPlatformURI(_path);
   }
 
 }

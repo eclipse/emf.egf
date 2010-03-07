@@ -10,8 +10,8 @@
  */
 package org.eclipse.egf.core.pde.internal.extension;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.egf.core.pde.extension.IFcoreExtensionFactory;
 import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
 
@@ -46,12 +46,12 @@ public class FcoreExtensionFactory implements IFcoreExtensionFactory {
     return __instance;
   }
 
-  public IPluginChangesCommand setFcoreExtension(IResource resource) throws CoreException {
-    return new SetFcoreExtensionCommand(resource);
+  public IPluginChangesCommand setFcoreExtension(IPath path) throws CoreException {
+    return new SetFcoreExtensionCommand(path);
   }
 
-  public IPluginChangesCommand unsetFcoreExtension(IResource resource) throws CoreException {
-    return new UnsetFcoreExtensionCommand(resource);
+  public IPluginChangesCommand unsetFcoreExtension(IPath path) throws CoreException {
+    return new UnsetFcoreExtensionCommand(path);
   }
 
 }

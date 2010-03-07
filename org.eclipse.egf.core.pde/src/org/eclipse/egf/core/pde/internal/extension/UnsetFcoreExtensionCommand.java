@@ -10,8 +10,8 @@
  **/
 package org.eclipse.egf.core.pde.internal.extension;
 
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
@@ -26,8 +26,8 @@ public class UnsetFcoreExtensionCommand extends AbstractFcoreExtensionCommand {
    * 
    * @param path
    */
-  public UnsetFcoreExtensionCommand(IResource resource) throws CoreException {
-    super(resource);
+  public UnsetFcoreExtensionCommand(IPath path) throws CoreException {
+    super(path);
   }
 
   /**
