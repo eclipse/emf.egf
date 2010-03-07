@@ -33,7 +33,7 @@ public class ConsoleReporter implements PatternExecutionReporter {
     }
 
     public void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues) {
-        System.out.println("loop: " + output);
+        System.out.println(output);
         EGFCorePlugin.getDefault().logInfo(output);
     }
 
