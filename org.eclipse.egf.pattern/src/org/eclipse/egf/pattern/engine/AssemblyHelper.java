@@ -120,7 +120,7 @@ public abstract class AssemblyHelper {
         for (Call element : orchestration) {
             String read = getContent(element);
             if (read != null)
-                content.append(read).append(EGFCommonConstants.LINE_SEPARATOR);
+                content.append(read);
         }
     }
 
