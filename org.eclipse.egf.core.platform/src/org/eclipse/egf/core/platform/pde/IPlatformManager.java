@@ -39,6 +39,8 @@ public interface IPlatformManager {
 
   public void addPlatformExtensionPointListener(IPlatformExtensionPointListener listener);
 
+  public void addInFrontPlatformExtensionPointListener(IPlatformExtensionPointListener listener);
+
   public void removePlatformExtensionPointListener(IPlatformExtensionPointListener listener);
 
 }

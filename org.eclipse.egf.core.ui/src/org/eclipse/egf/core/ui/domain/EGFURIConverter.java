@@ -43,7 +43,7 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
    */
   public EGFURIConverter() {
     super();
-    EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(_platformListener);
+    EGFPlatformPlugin.getPlatformManager().addInFrontPlatformExtensionPointListener(_platformListener);
   }
 
   /**
@@ -51,7 +51,7 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
    */
   public EGFURIConverter(Collection<URIHandler> uriHandlers, Collection<ContentHandler> contentHandlers) {
     super(uriHandlers, contentHandlers);
-    EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(_platformListener);
+    EGFPlatformPlugin.getPlatformManager().addInFrontPlatformExtensionPointListener(_platformListener);
   }
 
   /**

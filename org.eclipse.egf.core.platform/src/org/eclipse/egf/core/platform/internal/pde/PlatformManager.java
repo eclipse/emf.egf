@@ -325,6 +325,24 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
   }
 
   /**
+   * Add a listener to the platform manager
+   * 
+   * @param listener
+   *          the listener to be added
+   */
+  public void addInFrontPlatformExtensionPointListener(IPlatformExtensionPointListener listener) {
+    // Lock PlatformManager
+    synchronized (_lock) {
+      if (_listeners == null) {
+        _listeners = new ArrayList<IPlatformExtensionPointListener>();
+      }
+      if (_listeners.contains(listener) == false) {
+        _listeners.add(0, listener);
+      }
+    }
+  }
+
+  /**
    * Remove a listener from the platform manager
    * 
    * @param listener
