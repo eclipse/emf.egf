@@ -42,32 +42,32 @@
          point="org.eclipse.ui.popupMenus">
       	<objectContribution
             objectClass="org.eclipse.core.resources.IFile"
-            id="test.contribution1">
+            id="org.eclipse.egf.pattern.open">
         	<action
                label="Open Pattern"
                class="org.eclipse.egf.pattern.ui.editors.actions.OpenPatternDebugAction"
                enablesFor="1"
-               id="test.open.pattern">
+               id="org.eclipse.egf.pattern.open.debug">
          	</action>
 		</objectContribution>
       	<objectContribution
             objectClass="org.eclipse.core.resources.IFile"
-            id="test.contribution1">
+            id="org.eclipse.egf.pattern.open">
         	<action
                label="Open Pattern (read only)"
                class="org.eclipse.egf.pattern.ui.editors.actions.OpenReadOnlyPatternDebugAction"
                enablesFor="1"
-               id="test.open.pattern">
+               id="org.eclipse.egf.pattern.open.debug.read.only">
          	</action>
 		</objectContribution>
        	<objectContribution
             objectClass="org.eclipse.core.resources.IFile"
-            id="test.contribution1">
+            id="org.eclipse.egf.pattern.open">
         	<action
                label="Open Templates"
                class="org.eclipse.egf.pattern.ui.editors.actions.OpenPatternTemplateDebugAction"
                enablesFor="1"
-               id="test.open.pattern.template">
+               id="org.eclipse.egf.pattern.open.debug.template">
          	</action>
 		</objectContribution>
    	</extension>
