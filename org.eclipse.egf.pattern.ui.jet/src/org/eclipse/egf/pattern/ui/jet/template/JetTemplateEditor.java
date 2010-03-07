@@ -75,6 +75,9 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
     protected void initProblems() {
         IEditorPart editorPart = openEditor;
         JETTextEditor jetTextEditor = (JETTextEditor) editorPart;
+        if(jetTextEditor == null){
+            return;
+        }
         IDocumentProvider documentProvider = jetTextEditor.getDocumentProvider();
         IEditorInput editorInput = jetTextEditor.getEditorInput();
         if (documentProvider == null || editorInput == null) {
@@ -142,7 +145,7 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
     @Override
     public void setFocus() {
         super.setFocus();
-        JetEditorHelper.mappingErrorFromTemplateEditor((JetTextEditor) this.getActiveEditor());
+//        JetEditorHelper.mappingErrorFromTemplateEditor((JetTextEditor) this.getActiveEditor());
     }
 
     @Override

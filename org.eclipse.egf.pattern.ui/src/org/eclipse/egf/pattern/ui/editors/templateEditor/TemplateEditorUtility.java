@@ -56,6 +56,9 @@ import org.eclipse.jface.text.contentassist.ICompletionProposal;
  * 
  */
 public class TemplateEditorUtility {
+
+    private static final String EMF_CODEGEN_JET_NATURE_ID = "org.eclipse.emf.codegen.jet.IJETNature"; //$NON-NLS-1$
+
     /**
      * @param startPositions2
      * @return current method's contents start lines in the dummy whole
@@ -170,6 +173,7 @@ public class TemplateEditorUtility {
                         locationURI = null;
                     }
                     desc.setLocationURI(locationURI);
+                    setProjectNature(desc);
                     project.create(desc, monitor);
                     monitor = null;
                 }
@@ -257,5 +261,11 @@ public class TemplateEditorUtility {
             }
         }
         return (ICompletionProposal[]) proposals.toArray(new IJavaCompletionProposal[proposals.size()]);
+    }
+
+    private static void setProjectNature(IProjectDescription desc) {
+        String[] natureIds = new String[1];
+        natureIds[0] = EMF_CODEGEN_JET_NATURE_ID;
+        desc.setNatureIds(natureIds);
     }
 }

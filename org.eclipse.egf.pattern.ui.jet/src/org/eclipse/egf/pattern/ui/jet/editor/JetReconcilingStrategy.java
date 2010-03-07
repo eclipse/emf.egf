@@ -136,7 +136,7 @@ public class JetReconcilingStrategy extends JETReconcilingStrategy {
     }
 
     public void initialReconcile() {
-//        internalReconcile();
+        internalReconcile();
     }
 
     public void reconcile(DirtyRegion dirtyRegion, IRegion subRegion) {

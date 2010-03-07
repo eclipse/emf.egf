@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ProjectScope;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -27,7 +26,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.MethodEditorActivationListener;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.JavaCore;
@@ -215,11 +213,7 @@ public class JavaTextEditor extends TextEditor {
             fActivationListener.dispose();
             fActivationListener = null;
         }
-
-        IFile file = ((PatternMethodEditorInput) getEditorInput()).getFile();
-        if (file != null)
-            super.dispose();
-
+        super.dispose();
     }
 
     class ActivationListener extends MethodEditorActivationListener {

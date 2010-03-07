@@ -47,6 +47,7 @@ import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.TraverseEvent;
 import org.eclipse.swt.events.TraverseListener;
 import org.eclipse.swt.graphics.GC;
+import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -326,7 +327,24 @@ public class MethodsComboBoxViewerCellEditor extends ComboBoxViewerCellEditor {
             fireCancelEditor();
         } else if (keyEvent.character == '\t') { // tab key
             applyEditorValueAndDeactivate();
+        } else if (keyEvent.keyCode == SWT.DEL) {
+            performDelete();
         }
     }
 
+    public void performDelete() {
+        Point selection = comboBox.getSelection();
+        int x = selection.x;
+        int y = selection.y;
+        String text = comboBox.getText();
+        if ((y - x) >= text.length() || (y - x) == 0) {
+            return;
+        }
+        String header = text.substring(0, x);
+        String footer = text.substring(y);
+        String wordAfterDelete = header + footer;
+        comboBox.setText(wordAfterDelete);
+        Point p = new Point(x, x);
+        comboBox.setSelection(p);
+    }
 }

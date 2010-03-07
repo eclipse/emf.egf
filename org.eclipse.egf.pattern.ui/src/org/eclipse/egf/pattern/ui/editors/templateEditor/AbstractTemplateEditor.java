@@ -186,8 +186,11 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
             IProject templateProject = ResourcesPlugin.getWorkspace().getRoot().getProject(tempProjectName);
 
             if (!templateProject.exists()) {
-                IJavaProject javaProject = TemplateEditorUtility.createJavaProject(tempProjectName, monitor);
-                templateProject = javaProject.getProject();
+                // Delete project content in disk.
+                getTemplateProject(templateProject, tempProjectName, monitor);
+                templateProject.delete(true, true, monitor);
+                // Create new template project.
+                getTemplateProject(templateProject, tempProjectName, monitor);
                 ConvertPluginProjectOperation convert = new ConvertPluginProjectOperation(templateProject, platformBundle);
                 convert.execute(monitor);
             }
@@ -212,7 +215,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
             visitMethod(project, footMethod, templateFile, false);
             openEditor = initEditor(templateFile);
         } catch (Exception e) {
-            Activator.getDefault().logError(e);
+            // Ignore
         }
         return templateFile;
     }
@@ -366,12 +369,14 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
     }
 
     protected void executeMethodEditorsReorder(PatternMethod moveMethod, Object oldValue) {
-        this.doSave(null);
         int newIndex = getPattern().getMethods().indexOf(moveMethod);
         if (oldValue instanceof Integer) {
             int oldIndex = (Integer) oldValue;
             String id = moveMethod.getID();
             TextEditor textEditor = editorMap.get(id);
+            if (textEditor.isDirty()) {
+                textEditor.doSave(null);
+            }
             removePage(oldIndex);
             editorMap.remove(id);
             editorList.remove(textEditor);
@@ -409,6 +414,11 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
     }
 
     protected abstract TextEditor createNewEditor();
+
+    private void getTemplateProject(IProject templateProject, String tempProjectName, NullProgressMonitor monitor) {
+        IJavaProject javaProject = TemplateEditorUtility.createJavaProject(tempProjectName, monitor);
+        templateProject = javaProject.getProject();
+    }
 
     @Override
     public void dispose() {

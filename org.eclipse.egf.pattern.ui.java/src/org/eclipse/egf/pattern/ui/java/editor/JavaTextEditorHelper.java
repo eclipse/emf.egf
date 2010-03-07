@@ -290,6 +290,11 @@ public class JavaTextEditorHelper {
         if (multiPageEditorPart == null)
             return;
         IEditorPart templateEditorPart = ((JavaTemplateEditor) multiPageEditorPart).getTemplateFileEditorPart();
+        
+        if(templateEditorPart == null){
+            return;
+        }
+        
         Pattern pattern = editor.getPattern();
         IEditorInput editorInput = templateEditorPart.getEditorInput();
         if (editorInput instanceof IFileEditorInput) {
@@ -383,6 +388,9 @@ public class JavaTextEditorHelper {
     }
 
     public static IAnnotationModel getAnnotationModel(JavaEditor fEditor) {
+        if(fEditor == null){
+            return null;
+        }
         IDocumentProvider p = fEditor.getDocumentProvider();
         if (p == null) {
             p = JavaPlugin.getDefault().getCompilationUnitDocumentProvider();

@@ -83,6 +83,9 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
 
     protected void initProblems() {
         IEditorPart editorPart = openEditor;
+        if(editorPart == null){
+            return;
+        }
         JavaEditor javaEditor = (JavaEditor) editorPart;
         javaAnnotationModel = JavaTextEditorHelper.getAnnotationModel(javaEditor);
     }
