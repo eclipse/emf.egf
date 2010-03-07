@@ -267,6 +267,9 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
           }
           resource.unload();
           resource.getResourceSet().getResources().remove(resource);
+          if (EGFCoreUIPlugin.getDefault().isDebugging()) {
+            EGFPlatformPlugin.getDefault().logInfo(NLS.bind("EGFResourceLoadedListener.platformExtensionPointChanged(...) - discard loaded empty resource with errors ''{0}''", resource.getURI())); //$NON-NLS-1$           
+          }
           RESOURCE_MANAGER._fcores.remove(resource);
           // Load it in our resource set
           resource = editingDomain.getResourceSet().getResource(fcore.getURI(), true);
