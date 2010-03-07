@@ -30,6 +30,7 @@ import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
@@ -39,7 +40,6 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.ui.emf.EMFEditUIHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.ListenerContributor;
 import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener;
@@ -65,7 +65,9 @@ import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -449,6 +451,14 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected PatternBundleAdapter egfAdapter;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  private boolean tabFolderGuard = false;
+
+  /**
    * Adapter used to update the problem indication when resources are demanded
    * loaded.
    * <!-- begin-user-doc -->
@@ -465,21 +475,24 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         case Resource.RESOURCE__ERRORS:
         case Resource.RESOURCE__WARNINGS: {
           // Problem
-          Resource innerResource = (Resource) notification.getNotifier();
-          Diagnostic diagnostic = analyzeResourceProblems(innerResource, null);
-          if (diagnostic.getSeverity() != Diagnostic.OK) {
-            resourceToDiagnosticMap.put(innerResource.getURI(), diagnostic);
-          } else {
-            resourceToDiagnosticMap.remove(innerResource.getURI());
+          final Resource innerResource = (Resource) notification.getNotifier();
+          final List<EObject> proxyOwners = getProxyReferenceOwners(getResource(), innerResource.getURI());
+          if (innerResource == getResource() || proxyOwners.size() > 0) {
+            Diagnostic diagnostic = analyzeResourceProblems(innerResource, null);
+            if (diagnostic.getSeverity() != Diagnostic.OK) {
+              resourceToDiagnosticMap.put(innerResource.getURI(), diagnostic);
+            } else {
+              resourceToDiagnosticMap.remove(innerResource.getURI());
+            }
+            if (updateProblemIndication) {
+              getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                public void run() {
+                  updateProblemIndication(proxyOwners);
+                }
+              });
+            }
+            break;
           }
-          if (updateProblemIndication) {
-            getSite().getShell().getDisplay().asyncExec(new Runnable() {
-              public void run() {
-                updateProblemIndication();
-              }
-            });
-          }
-          break;
         }
         }
       } else {
@@ -554,11 +567,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       });
       return;
     }
-    getSite().getShell().getDisplay().asyncExec(new Runnable() {
-      public void run() {
-        firePropertyChange(IEditorPart.PROP_DIRTY);
-      }
-    });
   }
 
   /**
@@ -580,12 +588,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       }
       resourceHasBeenRemoved = true;
     }
-    // Check dirty state
-    getSite().getShell().getDisplay().asyncExec(new Runnable() {
-      public void run() {
-        firePropertyChange(IEditorPart.PROP_DIRTY);
-      }
-    });
   }
 
   /**
@@ -628,15 +630,14 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           public void run() {
             updateProblemIndication();
           }
-        });
-      }
+          getOperationHistory().dispose(undoContext, true, true, true);
+          selectionViewer.setInput(getResource());
+          selectionViewer.setSelection(new StructuredSelection(getResource()), true);
+          currentViewerPane.setTitle(getResource());
+          updateProblemIndication = true;
+        }
+      });
     }
-    // Check dirty state
-    getSite().getShell().getDisplay().asyncExec(new Runnable() {
-      public void run() {
-        firePropertyChange(IEditorPart.PROP_DIRTY);
-      }
-    });
   }
 
   /**
@@ -711,10 +712,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * 
    * @generated NOT
    */
-  protected void updateProblemIndication() {
+  protected void updateProblemIndication(List<EObject> refresh) {
     if (updateProblemIndication) {
-      BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "org.eclipse.egf.model.editor", //$NON-NLS-1$
-          0, null, new Object[] { getResource() });
+      BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, EGFCorePlugin.FCORE_EDITOR_ID, 0, null, new Object[] { getResource() });
       for (URI uri : resourceToDiagnosticMap.keySet()) {
         Diagnostic childDiagnostic = resourceToDiagnosticMap.get(uri);
         if (childDiagnostic.getSeverity() != Diagnostic.OK) {
@@ -751,11 +751,50 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         }
       }
 
-      if (selectionViewer.isBusy() == false) {
-        selectionViewer.refresh();
+      if (refresh != null && selectionViewer.isBusy() == false) {
+        for (EObject eObject : refresh) {
+          selectionViewer.refresh(eObject, true);
+        }
       }
 
     }
+  }
+
+  /**
+   * return owners of proxies who qualify a resource URI
+   * This method doesn't resolve proxies while analysed
+   */
+  private List<EObject> getProxyReferenceOwners(Resource content, URI uri) {
+    Assert.isNotNull(content);
+    List<EObject> owners = new UniqueEList<EObject>();
+    if (uri == null) {
+      return owners;
+    }
+    // Build proxies list
+    Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EcoreUtil.ProxyCrossReferencer.find(content);
+    for (EObject reference : proxies.keySet()) {
+      URI referenceURI = EcoreUtil.getURI(reference);
+      if (referenceURI == null) {
+        continue;
+      }
+      if (referenceURI.trimFragment().equals(uri) == false) {
+        continue;
+      }
+      // Build holders list
+      for (EStructuralFeature.Setting setting : proxies.get(reference)) {
+        URI holderURI = EcoreUtil.getURI(setting.getEObject());
+        if (holderURI == null) {
+          continue;
+        }
+        // Looking for an holder who match our current resource uri
+        // Since the first one we found we iterate
+        if (content.getURI().equals(holderURI.trimFragment())) {
+          owners.add(setting.getEObject());
+          break;
+        }
+      }
+    }
+    return owners;
   }
 
   /**
@@ -1043,7 +1082,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       resource = editingDomain.getResourceSet().getResource(uri, true);
     } catch (Exception e) {
       exception = e;
-      EGFModelEditorPlugin.getPlugin().logError(e);
       resource = editingDomain.getResourceSet().getResource(uri, false);
     }
     resourceHasBeenExternallyChanged = EGFResourceLoadedListener.RESOURCE_MANAGER.resourceHasBeenExternallyChanged(resource);
@@ -1059,7 +1097,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   /**
    * Returns a diagnostic describing the errors and warnings listed in the
    * resource
-   * and the specified exception (if any).
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
@@ -1161,21 +1198,19 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     // Ensures that this editor will only display the page's tab
     // area if there are more than one page
     getContainer().addControlListener(new ControlAdapter() {
-      boolean guard = false;
-
       @Override
       public void controlResized(ControlEvent event) {
-        if (!guard) {
-          guard = true;
+        if (tabFolderGuard == false) {
+          tabFolderGuard = true;
           hideTabs();
-          guard = false;
+          tabFolderGuard = false;
         }
       }
     });
 
     getSite().getShell().getDisplay().asyncExec(new Runnable() {
       public void run() {
-        updateProblemIndication();
+        updateProblemIndication(null);
       }
     });
 
@@ -1445,7 +1480,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);
     }
     updateProblemIndication = true;
-    updateProblemIndication();
+    updateProblemIndication(null);
   }
 
   /**

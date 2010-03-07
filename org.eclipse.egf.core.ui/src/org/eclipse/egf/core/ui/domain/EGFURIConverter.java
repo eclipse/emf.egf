@@ -14,7 +14,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
 import org.eclipse.egf.core.fcore.IResourceFcoreListener;
 import org.eclipse.egf.core.pde.EGFPDEPlugin;
@@ -37,10 +36,7 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
    */
   protected IPlatformExtensionPointListener _platformListener = new IPlatformExtensionPointListener() {
     public void platformExtensionPointChanged(IPlatformExtensionPointDelta delta) {
-      IPlatformFcore[] addedFcores = delta.getAddedPlatformExtensionPoints(IPlatformFcore.class);
-      if (addedFcores != null && addedFcores.length > 0) {
-        loadURIMap();
-      }
+      loadURIMap();
     }
   };
 
@@ -49,8 +45,10 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
    */
   protected IResourceFcoreListener _fcoreListener = new IResourceFcoreListener() {
     public void fcoreChanged(IResourceFcoreDelta delta) {
-      List<URI> uris = delta.getRemovedFcores();
-      if (uris != null && uris.size() > 0) {
+      // Ignore updated resources
+      List<URI> removed = delta.getRemovedFcores();
+      List<URI> added = delta.getNewFcores();
+      if ((removed != null && removed.size() > 0) || (added != null && added.size() > 0)) {
         loadURIMap();
       }
     }

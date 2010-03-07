@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.emf.common.util.URI;
@@ -111,6 +112,10 @@ public class ResourceHelper {
   }
 
   public static boolean hasApplicableProxies(Resource resource, URI uri) {
+    Assert.isNotNull(resource);
+    if (uri == null) {
+      return false;
+    }
     Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EcoreUtil.ProxyCrossReferencer.find(resource);
     for (EObject reference : proxies.keySet()) {
       if (reference instanceof InternalEObject == false) {
