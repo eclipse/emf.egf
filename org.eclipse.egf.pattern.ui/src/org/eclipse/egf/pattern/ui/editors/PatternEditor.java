@@ -124,7 +124,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
       }
     }
 
-    public void resourceReloaded(Resource reloadedResource) {
+    public void resourceReloaded(Resource reloadedResource, Exception exception) {
       if (reloadedResource == getResource()) {
         resourceHasBeenExternallyChanged = false;
         resourceHasBeenRemoved = false;

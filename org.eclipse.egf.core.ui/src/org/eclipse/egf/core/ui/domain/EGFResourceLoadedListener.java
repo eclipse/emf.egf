@@ -74,7 +74,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
 
     void resourceMoved(Resource resource, URI newURI);
 
-    void resourceReloaded(Resource resource);
+    void resourceReloaded(Resource resource, Exception exception);
 
     void externalUpdate(Resource resource);
 
@@ -163,15 +163,17 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
         throw new IllegalArgumentException();
       }
       FcoreResourceLoadedListener.getDefault().ignore(resource);
+      Exception exception = null;
       try {
         ResourceHelper.reloadResources(Collections.singletonList(resource));
-      } catch (IOException e) {
-        EGFCoreUIPlugin.getDefault().logError(e);
+      } catch (IOException ioe) {
+        exception = ioe;
+        EGFCoreUIPlugin.getDefault().logError(ioe);
       } finally {
         FcoreResourceLoadedListener.getDefault().watch(resource);
       }
       for (ResourceListener resourceListener : _listeners) {
-        resourceListener.resourceReloaded(resource);
+        resourceListener.resourceReloaded(resource, exception);
       }
     }
 
