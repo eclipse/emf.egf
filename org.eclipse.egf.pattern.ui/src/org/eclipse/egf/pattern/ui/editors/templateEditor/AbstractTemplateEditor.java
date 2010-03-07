@@ -66,6 +66,7 @@ import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.WorkbenchPage;
 import org.eclipse.ui.internal.WorkbenchWindow;
 import org.eclipse.ui.part.MultiPageEditorPart;
+import org.eclipse.ui.texteditor.AbstractTextEditor;
 
 /**
  * @author XiaoRu Chen - Soyatec
@@ -207,7 +208,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
             }
             PatternMethod footMethod = null;
             for (PatternMethod method : methods) {
-                if (method.getName().equals(PatternFactory.FOOTER_METHOD_NAME)) {
+                if (method.equals(pattern.getFooterMethod())) {
                     footMethod = method;
                     continue;
                 }
@@ -302,13 +303,12 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
                 executeMethodEditorRemove((PatternMethod) oldValue);
                 break;
             case Notification.MOVE:
-                // TODO
+                executeMethodEditorsReorder((PatternMethod) newValue, oldValue);
                 break;
             default:
                 return;
             }
         }
-        System.out.println();
     }
 
     private void executeMethodEditorRename() {
@@ -357,7 +357,7 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
             editorMap.put(method.getID(), editor);
             editorList.add(editor);
         } catch (PartInitException e) {
-            e.printStackTrace();
+            Activator.getDefault().logError(e);
         }
     }
 
@@ -366,11 +366,22 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
         addMethod.setPatternFilePath(computeFileURI);
     }
 
-    private void executeMethodEditorsReorder(PatternMethod moveMethod) {
-        // TODO
+    protected void executeMethodEditorsReorder(PatternMethod moveMethod, Object oldValue) {
+        this.doSave(null);
+        int newIndex = getPattern().getMethods().indexOf(moveMethod);
+        if (oldValue instanceof Integer) {
+            int oldIndex = (Integer) oldValue;
+            removePage(oldIndex);
+            try {
+                addPage(newIndex, createNewEditor(), new PatternMethodEditorInput(moveMethod.eResource(), moveMethod.getID()));
+            } catch (PartInitException e) {
+                Activator.getDefault().logError(e);
+            }
+            setPageText(newIndex, moveMethod.getName());
+        }
     }
 
-    private int getIndexOfMethodEditor(TextEditor editor) {
+    protected int getIndexOfMethodEditor(TextEditor editor) {
         int index = -1;
         for (int i = 0; i < this.getPageCount(); i++) {
             IEditorPart currentEditor = this.getEditor(i);
@@ -389,6 +400,8 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
     public List<TextEditor> getEditorList() {
         return editorList;
     }
+    
+    protected abstract TextEditor createNewEditor();
 
     @Override
     public void dispose() {

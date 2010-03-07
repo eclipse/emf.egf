@@ -13,7 +13,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.pattern.ui.editors.PatternMethodEditorInput;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.AbstractTemplateEditor;
 import org.eclipse.egf.pattern.ui.jet.Activator;
 import org.eclipse.egf.pattern.ui.jet.editor.JetEditorHelper;
@@ -27,6 +26,7 @@ import org.eclipse.jface.text.IDocument;
 import org.eclipse.jface.text.Position;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.texteditor.IDocumentProvider;
 
 /**
@@ -154,7 +154,6 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
             }
         }
     }
-
     @Override
     protected void executeMethodEditorAdd(PatternMethod addMethod) {
         try {
@@ -173,4 +172,16 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
         }
     }
 
+    protected TextEditor createNewEditor() {
+        JetTextEditor newEditor;
+        try {
+            newEditor = new JetTextEditor(getPattern());
+            return newEditor;
+        } catch (CoreException e) {
+            Activator.getDefault().logError(e);
+        } catch (IOException e) {
+            Activator.getDefault().logError(e);
+        }
+        return null;
+    }
 }

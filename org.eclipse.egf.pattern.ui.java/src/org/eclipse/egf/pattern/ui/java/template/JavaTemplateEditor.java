@@ -36,6 +36,7 @@ import org.eclipse.jface.text.Position;
 import org.eclipse.jface.text.source.Annotation;
 import org.eclipse.jface.text.source.IAnnotationModel;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.editors.text.TextEditor;
 
 /**
  * @author XiaoRu Chen - Soyatec
@@ -169,5 +170,18 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
         } catch (IOException e) {
             Activator.getDefault().logError(e);
         }
+    }
+
+    protected TextEditor createNewEditor() {
+        JavaTextEditor newEditor;
+        try {
+            newEditor = new JavaTextEditor(getPattern());
+            return newEditor;
+        } catch (CoreException e) {
+            Activator.getDefault().logError(e);
+        } catch (IOException e) {
+            Activator.getDefault().logError(e);
+        }
+        return null;
     }
 }
