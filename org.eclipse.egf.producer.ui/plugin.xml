@@ -56,7 +56,7 @@
       <action
         class="org.eclipse.egf.producer.ui.internal.actions.RunActivityAction"
         icon="$nl$/icons/full/elcl16/runactivity.gif"
-        id="org.eclipse.egf.model.producer.ui.activity.contribution.action.run.activity"
+        id="org.eclipse.egf.producer.ui.activity.contribution.action.run.activity"
         label="%RunActivityAction_label"
         enablesFor="1"
         menubarPath="additions"
