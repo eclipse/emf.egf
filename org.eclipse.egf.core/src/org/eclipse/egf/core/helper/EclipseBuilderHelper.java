@@ -72,7 +72,7 @@ public class EclipseBuilderHelper {
   }
 
   public static ICommand getBuilderCommand(IProjectDescription description, String builder, IProgressMonitor monitor) {
-    SubMonitor subMonitor = SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_getBuilder, 100);
+    SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_getBuilder, 100);
     Assert.isNotNull(description);
     Assert.isNotNull(builder);
     Assert.isLegal(builder.trim().length() > 0);
@@ -87,7 +87,7 @@ public class EclipseBuilderHelper {
   }
 
   public static void removeFromBuildSpec(IProjectDescription description, String builder, IProgressMonitor monitor) {
-    SubMonitor subMonitor = SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_removeBuilder, 100);
+    SubMonitor.convert(monitor, EGFCoreMessages.EclipseBuilderHelper_removeBuilder, 100);
     Assert.isNotNull(description);
     Assert.isNotNull(builder);
     Assert.isLegal(builder.trim().length() > 0);
