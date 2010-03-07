@@ -21,7 +21,6 @@ import java.util.Map;
 import org.eclipse.egf.model.pattern.BundleAccessor;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.osgi.framework.Bundle;
 
 /**
@@ -32,7 +31,6 @@ public class DefaultPatternContext implements PatternContext {
     private PatternContext parent;
     private final Map<String, Object> data = new HashMap<String, Object>();
     private final BundleAccessor accessor;
-    private PatternExecutionReporter reporter;
 
     public DefaultPatternContext(BundleAccessor accessor) {
         if (accessor == null)
@@ -64,24 +62,6 @@ public class DefaultPatternContext implements PatternContext {
     public Bundle getBundle(String id) throws PatternException {
 
         return accessor.getBundle(id);
-    }
-
-    public void setReporter(PatternExecutionReporter reporter) {
-        this.reporter = reporter;
-    }
-
-    public boolean hasReporter() {
-        return reporter != null;
-    }
-
-    public PatternExecutionReporter getReporter() {
-        if (reporter == null) {
-            // no need for a chain of command
-            // if (parent == null)
-            throw new IllegalStateException();
-            // return parent.getReporter();
-        }
-        return reporter;
     }
 
 }

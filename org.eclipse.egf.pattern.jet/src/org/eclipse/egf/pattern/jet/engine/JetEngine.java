@@ -36,6 +36,7 @@ import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.execution.ConsoleReporter;
+import org.eclipse.egf.pattern.execution.InternalPatternContext;
 import org.eclipse.egf.pattern.jet.JetPreferences;
 import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
@@ -59,11 +60,11 @@ public class JetEngine extends PatternEngine {
     @Override
     public void execute(PatternContext context) throws PatternException {
 
-        setupExecutionReporter(context);
-        doExecute(context, null);
+        setupExecutionReporter((InternalPatternContext) context);
+        doExecute((InternalPatternContext) context, null);
     }
 
-    private void doExecute(PatternContext context, Object[] executionParameters) throws PatternException {
+    private void doExecute(InternalPatternContext context, Object[] executionParameters) throws PatternException {
         try {
             Class<?> templateClass = loadTemplateClass(context);
             Object template = templateClass.newInstance();
@@ -97,7 +98,7 @@ public class JetEngine extends PatternEngine {
         }
     }
 
-    private void setupExecutionReporter(PatternContext context) throws PatternException {
+    private void setupExecutionReporter(InternalPatternContext context) throws PatternException {
         if (context.hasReporter())
             return;
         PatternExecutionReporter reporter = (PatternExecutionReporter) context.getValue(PatternContext.PATTERN_REPORTER);
@@ -106,7 +107,7 @@ public class JetEngine extends PatternEngine {
         context.setReporter(reporter);
     }
 
-    private Class<?> loadTemplateClass(PatternContext context) throws PatternException, ClassNotFoundException {
+    private Class<?> loadTemplateClass(InternalPatternContext context) throws PatternException, ClassNotFoundException {
         Pattern pattern = getPattern();
         if (pattern == null)
             throw new PatternException(Messages.assembly_error9);
@@ -199,7 +200,7 @@ public class JetEngine extends PatternEngine {
         builder.append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("String loop = ictx.getCallReporter().getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
         if (!getPattern().getAllParameters().isEmpty())
-            builder.append("ctx.getReporter().loopFinished(loop, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("((InternalPatternContext)ctx).getReporter().loopFinished(loop, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("").append(EGFCommonConstants.LINE_SEPARATOR);

@@ -26,6 +26,7 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 public class ExecutionContext extends DefaultPatternContext implements InternalPatternContext {
 
     private PatternCallReporter callReporter;
+    private PatternExecutionReporter reporter;
 
     public ExecutionContext(BundleAccessor accessor) {
         super(accessor);
@@ -64,17 +65,22 @@ public class ExecutionContext extends DefaultPatternContext implements InternalP
         if (reporter instanceof PatternCallReporter)
             setCallReporter((PatternCallReporter) reporter);
         else
-            super.setReporter(reporter);
+            this.reporter = reporter;
     }
 
     public boolean hasReporter() {
-        return super.hasReporter() || hasCallReporter();
+        return reporter != null || hasCallReporter();
     }
 
     public PatternExecutionReporter getReporter() {
         if (callReporter != null)
             return callReporter;
-        return super.getReporter();
+        if (reporter == null) {
+            // no need for a chain of command
+            // if (parent == null)
+            throw new IllegalStateException();
+            // return parent.getReporter();
+        }
+        return reporter;
     }
-
 }

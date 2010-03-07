@@ -15,17 +15,25 @@
 
 package org.eclipse.egf.pattern.execution;
 
+import org.eclipse.egf.model.pattern.BundleAccessor;
 import org.eclipse.egf.model.pattern.PatternContext;
+import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public interface InternalPatternContext extends PatternContext {
+public interface InternalPatternContext extends PatternContext, BundleAccessor {
     void setCallReporter(PatternCallReporter reporter);
 
     boolean hasCallReporter();
 
     PatternCallReporter getCallReporter();
+
+    void setReporter(PatternExecutionReporter reporter);
+
+    boolean hasReporter();
+
+    PatternExecutionReporter getReporter();
 
 }

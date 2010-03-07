@@ -157,7 +157,7 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         for (int i = 0; i < pattern.getAllParameters().size(); i++)
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("ctx.getReporter().executionFinished(collector.toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("((InternalPatternContext)ctx).getReporter().executionFinished(collector.toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("%>");
 
         // 3- Add additional code for parameter names handling

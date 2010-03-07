@@ -34,6 +34,7 @@ import org.eclipse.egf.pattern.engine.AssemblyHelper;
 import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.execution.ConsoleReporter;
+import org.eclipse.egf.pattern.execution.InternalPatternContext;
 import org.eclipse.egf.pattern.java.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
@@ -164,14 +165,14 @@ public class JavaEngine extends PatternEngine {
 
     @Override
     public void executeWithInjection(PatternContext context, Object... parameters) throws PatternException {
-        setupExecutionReporter(context);
+        setupExecutionReporter((InternalPatternContext) context);
         doExecute(context, parameters);
     }
 
     @Override
     public void execute(PatternContext context) throws PatternException {
 
-        setupExecutionReporter(context);
+        setupExecutionReporter((InternalPatternContext) context);
         doExecute(context, null);
     }
 
@@ -209,7 +210,7 @@ public class JavaEngine extends PatternEngine {
         }
     }
 
-    private void setupExecutionReporter(PatternContext context) throws PatternException {
+    private void setupExecutionReporter(InternalPatternContext context) throws PatternException {
         if (context.hasReporter())
             return;
         PatternExecutionReporter reporter = (PatternExecutionReporter) context.getValue(PatternContext.PATTERN_REPORTER);
@@ -225,7 +226,7 @@ public class JavaEngine extends PatternEngine {
         String templateClassName = JavaNatureHelper.getClassName(pattern);
         if (templateClassName == null)
             throw new PatternException(Messages.assembly_error1);
-        Class<?> templateClass = context.getBundle(getBundleId()).loadClass(templateClassName);
+        Class<?> templateClass = ((InternalPatternContext) context).getBundle(getBundleId()).loadClass(templateClassName);
         return templateClass;
     }
 

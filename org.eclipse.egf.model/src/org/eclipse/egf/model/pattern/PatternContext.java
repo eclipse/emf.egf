@@ -24,7 +24,7 @@ package org.eclipse.egf.model.pattern;
  * @author Thomas Guiu
  * 
  */
-public interface PatternContext extends BundleAccessor {
+public interface PatternContext {
 
     /**
      * Public Keys to manage the patter execution reporter.
@@ -50,11 +50,5 @@ public interface PatternContext extends BundleAccessor {
     void setValue(String name, Object value);
 
     Object getValue(String name);
-
-    void setReporter(PatternExecutionReporter reporter);
-
-    boolean hasReporter();
-
-    PatternExecutionReporter getReporter();
 
 }
