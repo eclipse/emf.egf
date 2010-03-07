@@ -16,6 +16,7 @@ import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -34,6 +35,8 @@ public class InvocationContractAdapter extends AdapterImpl {
   private InvocationContract _invocationContract;
 
   private Contract _contract;
+
+  private URI _uri;
 
   private EStructuralFeature _nameFeature = FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME;
 
@@ -61,8 +64,9 @@ public class InvocationContractAdapter extends AdapterImpl {
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
         if (_contract != null) {
           // Reset proxies
-          ((InternalEObject) _contract).eSetProxyURI(EcoreUtil.getURI(_contract));
+          ((InternalEObject) _contract).eSetProxyURI(_uri);
           _contract = null;
+          _uri = null;
         }
       }
     }
@@ -89,6 +93,7 @@ public class InvocationContractAdapter extends AdapterImpl {
           newValue.eAdapters().add(_contractAdapter);
         }
         _contract = newValue;
+        _uri = EcoreUtil.getURI(_contract);
         break;
       case Notification.REMOVING_ADAPTER:
         if (_contract != null) {
