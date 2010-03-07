@@ -10,33 +10,33 @@
  *******************************************************************************/
 package org.eclipse.egf.core.pde.internal.extension;
 
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
 
 /**
  * This command updates or creates an extension matching 'fcore'
  * extension-point.
  * 
- * @author fournier
+ * @author Xavier Maysonnave
  */
 public class SetFcoreExtensionCommand extends AbstractFcoreExtensionCommand {
 
   /**
    * Constructor.
    * 
-   * @param uri_p
+   * @param path
    */
-  public SetFcoreExtensionCommand(URI uri_p) {
-    super(uri_p);
+  public SetFcoreExtensionCommand(IResource resource) throws CoreException {
+    super(resource);
   }
 
   /**
-   * @see org.eclipse.egf.core.pde.plugin.AbstractExtensionChangesCommand#execute()
+   * @see org.eclipse.egf.core.pde.plugin.AbstractChangesCommand#doExecute()
    */
   @Override
-  public void execute() {
-    super.execute();
-    // Create it if it doesn't exist
-    createExtensionElementWithId(getURI(), true);
+  public void doExecute(IProgressMonitor monitor) throws CoreException {
+    createExtensionElement();
   }
 
 }

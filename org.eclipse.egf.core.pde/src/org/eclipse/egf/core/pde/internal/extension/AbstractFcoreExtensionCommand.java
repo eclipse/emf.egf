@@ -1,5 +1,5 @@
-/*******************************************************************************
- * Copyright (c) 2009 Thales Corporate Services S.A.S.
+/**
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,9 +7,14 @@
  * 
  * Contributors:
  * Thales Corporate Services S.A.S - initial API and implementation
- *******************************************************************************/
+ */
 package org.eclipse.egf.core.pde.internal.extension;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.Assert;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.egf.common.helper.ExtensionPointHelper;
+import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
 import org.eclipse.egf.core.pde.plugin.AbstractExtensionChangesCommand;
 import org.eclipse.emf.common.util.URI;
@@ -17,22 +22,21 @@ import org.eclipse.emf.common.util.URI;
 /**
  * Base class to implement commands that deal with 'fcore' extension-point.
  * 
- * @author fournier
+ * @author Xavier Maysonnave
  */
-public class AbstractFcoreExtensionCommand extends AbstractExtensionChangesCommand {
+public abstract class AbstractFcoreExtensionCommand extends AbstractExtensionChangesCommand {
 
-  /**
-   * Fcore URI.
-   */
-  private URI _uri;
+  public IResource _resource;
 
   /**
    * Constructor.
    * 
-   * @param factoryComponentURI_p
+   * @param uri
    */
-  protected AbstractFcoreExtensionCommand(URI uri_p) {
-    _uri = uri_p;
+  protected AbstractFcoreExtensionCommand(IResource resource) throws CoreException {
+    super(resource.getProject());
+    Assert.isNotNull(resource);
+    _resource = resource;
   }
 
   /**
@@ -52,12 +56,39 @@ public class AbstractFcoreExtensionCommand extends AbstractExtensionChangesComma
   }
 
   /**
+   * Get the id attribute of the children for the extension.
+   * 
+   * @return
+   */
+  @Override
+  protected String getExtensionChildAttribute() {
+    return ExtensionPointHelper.ATT_ID;
+  }
+
+  @Override
+  protected boolean matchValue(String value) {
+    if (value == null || value.trim().length() == 0) {
+      return false;
+    }
+    URI uri = URIHelper.getPlatformURI(getBundleId(), value, true);
+    if (uri.equals(getURI())) {
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public String getValue() {
+    return _resource.getFullPath().removeFirstSegments(1).makeRelative().toString();
+  }
+
+  /**
    * Get the Fcore URI.
    * 
    * @return
    */
   protected URI getURI() {
-    return _uri;
+    return URIHelper.getPlatformURI(_resource.getFullPath());
   }
 
 }

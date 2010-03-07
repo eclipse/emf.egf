@@ -10,8 +10,6 @@
  *******************************************************************************/
 package org.eclipse.egf.core.pde.internal;
 
-import java.util.Collections;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IProject;
@@ -19,10 +17,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.helper.ProjectHelper;
-import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.pde.EGFPDEPlugin;
-import org.eclipse.egf.core.pde.manifest.ManifestChangeCommandFactory;
-import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
 import org.eclipse.pde.core.build.IBuild;
 import org.eclipse.pde.core.build.IBuildEntry;
 import org.eclipse.pde.core.build.IBuildModel;
@@ -46,7 +40,7 @@ public class FcoreGeneratorHelper {
    * @param updateBuildProperties
    * @param monitor
    */
-  public static void addFolderIn(String pluginId, String folderName, boolean updateBuildProperties, IProgressMonitor monitor) {
+  public static void addFolderIn(String pluginId, String folderName, boolean updateBuildProperties, IProgressMonitor monitor) throws CoreException {
     IProject project = ProjectHelper.getProject(pluginId);
     IFolder folder = ProjectHelper.createFolder(folderName, project, monitor);
     if (folder != null && updateBuildProperties) {
@@ -62,17 +56,13 @@ public class FcoreGeneratorHelper {
    * 
    * @param buildModel
    */
-  public static void addEntryInBinaryBuild(IBuildModel buildModel, String entryName) {
+  public static void addEntryInBinaryBuild(IBuildModel buildModel, String entry) throws CoreException {
     IBuild build = buildModel.getBuild();
     // Update the bin.includes property
     IBuildEntry binEntry = build.getEntry(IBuildEntry.BIN_INCLUDES);
     if (binEntry != null) {
-      try {
-        if (binEntry.contains(entryName) == false) {
-          binEntry.addToken(entryName);
-        }
-      } catch (CoreException ce) {
-        EGFPDEPlugin.getDefault().logError(new String("FcoreGeneratorHelper.addEntryInBinInclude(..) _ ").toString(), ce); //$NON-NLS-1$
+      if (binEntry.contains(entry) == false) {
+        binEntry.addToken(entry);
       }
     }
   }
@@ -97,24 +87,4 @@ public class FcoreGeneratorHelper {
     return buildModel;
   }
 
-  /**
-   * Add Fcore dependency in given plug-in manifest. See {@link #getEGFCoreDependency()} .
-   * 
-   * @param pluginId
-   * @param optional
-   */
-  public static void addStandardFcoreDependency(String pluginId, boolean optional) {
-    // Add standard Fcore dependency.
-    IPluginChangesCommand commandsOnManifest = ManifestChangeCommandFactory.setRequiredPlugins(getEGFCoreDependency(), optional);
-    EGFPDEPlugin.getPluginChangesCommandRunner().performChangesOnManifest(pluginId, Collections.singletonList(commandsOnManifest));
-  }
-
-  /**
-   * Return the EGF Core dependency for a Fcore.<br>
-   * 
-   * @return
-   */
-  public static String[] getEGFCoreDependency() {
-    return new String[] { EGFCorePlugin.getDefault().getPluginID() };
-  }
 }

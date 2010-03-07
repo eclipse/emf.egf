@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009 Thales Corporate Services S.A.S.
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,14 +10,15 @@
  */
 package org.eclipse.egf.core.pde.internal.extension;
 
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.egf.core.pde.extension.IFcoreExtensionFactory;
 import org.eclipse.egf.core.pde.plugin.IPluginChangesCommand;
-import org.eclipse.emf.common.util.URI;
 
 /**
  * This factory creates commands to deal with "fcore" extension-point.
  * 
- * @author fournier
+ * @author Xavier Maysonnave
  */
 public class FcoreExtensionFactory implements IFcoreExtensionFactory {
 
@@ -45,18 +46,12 @@ public class FcoreExtensionFactory implements IFcoreExtensionFactory {
     return __instance;
   }
 
-  /**
-   * @see org.eclipse.egf.core.pde.extension.IFcoreExtensionFactory#setFcoreExtension(org.eclipse.emf.common.util.URI)
-   */
-  public IPluginChangesCommand setFcoreExtension(URI fcURI_p) {
-    return new SetFcoreExtensionCommand(fcURI_p);
+  public IPluginChangesCommand setFcoreExtension(IResource resource) throws CoreException {
+    return new SetFcoreExtensionCommand(resource);
   }
 
-  /**
-   * @see org.eclipse.egf.core.pde.extension.IFcoreExtensionFactory#unsetFcoreExtension(org.eclipse.emf.common.util.URI)
-   */
-  public IPluginChangesCommand unsetFcoreExtension(URI fcURI_p) {
-    return new UnsetFcoreExtensionCommand(fcURI_p);
+  public IPluginChangesCommand unsetFcoreExtension(IResource resource) throws CoreException {
+    return new UnsetFcoreExtensionCommand(resource);
   }
 
 }
