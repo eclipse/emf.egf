@@ -94,7 +94,6 @@ public class ResourceHelper {
     for (Resource resource : resources) {
       resource.unload();
       if (resource.getResourceSet() != null) {
-        resource.getResourceSet().getResources().remove(resource);
         resourceSets.add(resource.getResourceSet());
       }
     }
