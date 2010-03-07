@@ -99,7 +99,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         }
         _activity = null;
       } catch (Exception e) {
-        EGFModelEditorPlugin.getPlugin().logError(e);
+        // Just ignore, a retrieved activity could have been deleted,
       }
       return null;
     }
