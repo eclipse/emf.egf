@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
@@ -422,14 +424,13 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected boolean userHasSavedResource;
 
   /**
-   * diagnostic associated with a resource.
+   * Map to store the diagnostic associated with a resource.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
    * @generated
    */
-  protected Diagnostic resourceDiagnostic = null;
-
+  protected Map<URI, Diagnostic> resourceToDiagnosticMap = new LinkedHashMap<URI, Diagnostic>();
   /**
    * Controls whether the problem indication should be updated.
    * <!-- begin-user-doc -->
@@ -458,17 +459,18 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
     @Override
     public void notifyChanged(Notification notification) {
-      if (notification.getNotifier() instanceof Resource && notification.getNotifier() == getResource()) {
+      if (notification.getNotifier() instanceof Resource) {
         switch (notification.getFeatureID(Resource.class)) {
         case Resource.RESOURCE__IS_LOADED:
         case Resource.RESOURCE__ERRORS:
         case Resource.RESOURCE__WARNINGS: {
           // Problem
-          Diagnostic diagnostic = analyzeResourceProblems(getResource(), null);
+          Resource innerResource = (Resource) notification.getNotifier();
+          Diagnostic diagnostic = analyzeResourceProblems(innerResource, null);
           if (diagnostic.getSeverity() != Diagnostic.OK) {
-            resourceDiagnostic = diagnostic;
+            resourceToDiagnosticMap.put(innerResource.getURI(), diagnostic);
           } else {
-            resourceDiagnostic = null;
+            resourceToDiagnosticMap.remove(innerResource.getURI());
           }
           if (updateProblemIndication) {
             getSite().getShell().getDisplay().asyncExec(new Runnable() {
@@ -534,7 +536,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     if ((deletedResource == getResource())) {
       if (isDirty() == false) {
         // just close now without prompt
-        getSite().getShell().getDisplay().asyncExec(new Runnable() {
+        getSite().getShell().getDisplay().syncExec(new Runnable() {
           public void run() {
             getSite().getPage().closeEditor(FcoreEditor.this, false);
           }
@@ -543,6 +545,11 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         resourceHasBeenRemoved = true;
       }
     }
+    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+      public void run() {
+        firePropertyChange(IEditorPart.PROP_DIRTY);
+      }
+    });
   }
 
   /**
@@ -554,19 +561,18 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   public void resourceReloaded(Resource reloadedResource, Exception exception) {
     if (reloadedResource == getResource()) {
       if (exception != null) {
-        resourceDiagnostic = analyzeResourceProblems(reloadedResource, exception);
+        resourceToDiagnosticMap.put(reloadedResource.getURI(), analyzeResourceProblems(reloadedResource, exception));
       }
       resource = reloadedResource;
       resourceHasBeenExternallyChanged = false;
       resourceHasBeenRemoved = false;
       userHasSavedResource = false;
-      getSite().getShell().getDisplay().asyncExec(new Runnable() {
+      getSite().getShell().getDisplay().syncExec(new Runnable() {
         public void run() {
           if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
             setSelection(StructuredSelection.EMPTY);
           }
           getOperationHistory().dispose(undoContext, true, true, true);
-          firePropertyChange(IEditorPart.PROP_DIRTY);
           selectionViewer.setInput(getResource());
           selectionViewer.setSelection(new StructuredSelection(getResource()), true);
           currentViewerPane.setTitle(getResource());
@@ -575,6 +581,11 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         }
       });
     }
+    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+      public void run() {
+        firePropertyChange(IEditorPart.PROP_DIRTY);
+      }
+    });
   }
 
   /**
@@ -620,12 +631,12 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       resourceHasBeenExternallyChanged = false;
       resourceHasBeenRemoved = false;
       userHasSavedResource = false;
-      getSite().getShell().getDisplay().asyncExec(new Runnable() {
-        public void run() {
-          firePropertyChange(IEditorPart.PROP_DIRTY);
-        }
-      });
     }
+    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+      public void run() {
+        firePropertyChange(IEditorPart.PROP_DIRTY);
+      }
+    });
   }
 
   /**
@@ -654,6 +665,11 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         }
       });
     }
+    getSite().getShell().getDisplay().asyncExec(new Runnable() {
+      public void run() {
+        firePropertyChange(IEditorPart.PROP_DIRTY);
+      }
+    });
   }
 
   /**
@@ -681,8 +697,10 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     if (updateProblemIndication) {
       BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, "org.eclipse.egf.model.editor", //$NON-NLS-1$
           0, null, new Object[] { getResource() });
-      if (resourceDiagnostic != null && resourceDiagnostic.getSeverity() != Diagnostic.OK) {
-        diagnostic.add(resourceDiagnostic);
+      for (Diagnostic childDiagnostic : resourceToDiagnosticMap.values()) {
+        if (childDiagnostic.getSeverity() != Diagnostic.OK) {
+          diagnostic.add(childDiagnostic);
+        }
       }
 
       int lastEditorPage = getPageCount() - 1;
@@ -715,6 +733,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           }
         }
       }
+
+      getViewer().refresh();
+
     }
   }
 
@@ -1009,7 +1030,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     resourceHasBeenExternallyChanged = EGFResourceLoadedListener.RESOURCE_MANAGER.resourceHasBeenExternallyChanged(resource);
     Diagnostic diagnostic = analyzeResourceProblems(resource, exception);
     if (diagnostic.getSeverity() != Diagnostic.OK) {
-      resourceDiagnostic = diagnostic;
+      resourceToDiagnosticMap.put(resource.getURI(), diagnostic);
     }
     getEditingDomain().getResourceSet().eAdapters().add(problemIndicationAdapter);
     egfAdapter = new PatternBundleAdapter(getSite());
@@ -1025,20 +1046,21 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * 
    * @generated NOT
    */
-  public static Diagnostic analyzeResourceProblems(Resource innerResource, Throwable t) {
-    if (innerResource.getErrors().isEmpty() == false || innerResource.getWarnings().isEmpty() == false) {
-      BasicDiagnostic basicDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.model.editor", //$NON-NLS-1$
-          0, getString("_UI_CreateModelError_message", innerResource.getURI()), //$NON-NLS-1$
-          new Object[] { t == null ? (Object) innerResource : t });
-      basicDiagnostic.merge(EcoreUtil.computeDiagnostic(innerResource, true));
-      return basicDiagnostic;
-    } else if (t != null) {
-      return new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.model.editor", //$NON-NLS-1$
-          0, getString("_UI_CreateModelError_message", innerResource.getURI()), //$NON-NLS-1$
-          new Object[] { t });
-    } else {
-      return Diagnostic.OK_INSTANCE;
+  public Diagnostic analyzeResourceProblems(Resource innerResource, Exception exception) {
+    if (innerResource == getResource() || ResourceHelper.isRelated(getResource(), innerResource.getURI())) {
+      if (innerResource.getErrors().isEmpty() == false || innerResource.getWarnings().isEmpty() == false) {
+        BasicDiagnostic basicDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.model.editor", //$NON-NLS-1$
+            0, getString("_UI_CreateModelError_message", innerResource.getURI()), //$NON-NLS-1$
+            new Object[] { exception == null ? (Object) innerResource : exception });
+        basicDiagnostic.merge(EcoreUtil.computeDiagnostic(innerResource, true));
+        return basicDiagnostic;
+      } else if (exception != null) {
+        return new BasicDiagnostic(Diagnostic.ERROR, "org.eclipse.egf.model.editor", //$NON-NLS-1$
+            0, getString("_UI_CreateModelError_message", innerResource.getURI()), //$NON-NLS-1$
+            new Object[] { exception });
+      }
     }
+    return Diagnostic.OK_INSTANCE;
   }
 
   /**
@@ -1384,8 +1406,8 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
                 if (resourceToSave.getTimeStamp() != timeStamp) {
                   userHasSavedResource = true;
                 }
-              } catch (Throwable t) {
-                resourceDiagnostic = analyzeResourceProblems(resourceToSave, t);
+              } catch (Exception exception) {
+                resourceToDiagnosticMap.put(resource.getURI(), analyzeResourceProblems(resource, exception));
               }
             }
           });
