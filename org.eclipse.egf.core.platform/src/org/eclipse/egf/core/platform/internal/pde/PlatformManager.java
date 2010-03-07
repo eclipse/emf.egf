@@ -344,8 +344,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
    * Process extension delta event This method is called when listeners are
    * initialized.
    * 
-   * @see {@link org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformBundles()}
-   *      for initialization. If someone call dispose() this method is no longer
+   * @see {@link org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformBundles()} for initialization. If someone call dispose() this method is no longer
    *      called. No need to initialize the PlatformManager
    * 
    * @param event
@@ -401,8 +400,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
    * Process model delta event This method is called when listeners are
    * initialized.
    * 
-   * @see {@link org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformBundles()}
-   *      for initialization. If someone call dispose() this method is no longer
+   * @see {@link org.eclipse.egf.core.platform.internal.pde.PlatformManager#getPlatformBundles()} for initialization. If someone call dispose() this method is no longer
    *      called. No need to initialize the PlatformManager
    * 
    * @param event
@@ -708,8 +706,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
 
   private List<IPluginModelBase> getExtensionPointModels(ModelEntry entry) {
     List<IPluginModelBase> plugins = new UniqueEList<IPluginModelBase>();
-    // workspace models are always processed first, pde and jdt default
-    // behaviour
+    // workspace models are always processed first, pde and jdt default behaviour
     LOOP: for (IPluginModelBase model : entry.hasWorkspaceModels() ? entry.getWorkspaceModels() : entry.getExternalModels()) {
       if (model.getExtensions(false) == null || model.getExtensions(false).getExtensions() == null) {
         continue;
@@ -718,8 +715,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
         Class<? extends IPlatformExtensionPoint> clazz = getExtensionPoints().get(extension.getPoint());
         if (clazz != null) {
           plugins.add(model);
-          // Only one known extension points is enough to further analyse such
-          // model
+          // Only one known extension points is enough to further analyse such model
           continue LOOP;
         }
       }
@@ -754,7 +750,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
   private void trace(IPlatformExtensionPoint[] extensionPoints) {
     for (IPlatformExtensionPoint extensionPoint : extensionPoints) {
       EGFPlatformPlugin.getDefault().logInfo(extensionPoint.toString(), 1);
-      EGFPlatformPlugin.getDefault().logInfo("From: " + extensionPoint.getPlatformBundle().toString(), 2); //$NON-NLS-1$
+      EGFPlatformPlugin.getDefault().logInfo(extensionPoint.getPlatformBundle().toString(), 2); //$NON-NLS-1$
     }
   }
 

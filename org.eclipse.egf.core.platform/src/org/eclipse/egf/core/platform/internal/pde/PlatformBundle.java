@@ -291,7 +291,10 @@ public class PlatformBundle implements IPlatformBundle {
   }
 
   public String getBundleLocation() {
-    return getBundleDescription().getLocation();
+    if (getBundleDescription() != null) {
+      return getBundleDescription().getLocation();
+    }
+    return null;
   }
 
   public URL getBundleURL() {
@@ -317,7 +320,7 @@ public class PlatformBundle implements IPlatformBundle {
     String id = getBundleId();
     String previousId = getPreviousBundleId();
     String version = pluginBase.getVersion();
-    StringBuilder text = new StringBuilder("Id: "); //$NON-NLS-1$
+    StringBuilder text = new StringBuilder();
     if (version != null && version.length() > 0) {
       text.append(id).append(" ").append(pluginBase.getVersion()); //$NON-NLS-1$
     } else {
