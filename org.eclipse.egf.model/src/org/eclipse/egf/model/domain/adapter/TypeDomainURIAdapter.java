@@ -69,7 +69,7 @@ public class TypeDomainURIAdapter extends AdapterImpl {
         if (oldValue != null) {
           oldValue.eAdapters().remove(_domainURIAdapter);
         }
-        if (newValue != null) {
+        if (newValue != null && newValue.eAdapters().contains(_domainURIAdapter) == false) {
           newValue.eAdapters().add(_domainURIAdapter);
         }
         break;

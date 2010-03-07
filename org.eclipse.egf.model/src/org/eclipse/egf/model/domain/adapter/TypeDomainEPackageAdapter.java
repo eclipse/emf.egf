@@ -69,7 +69,7 @@ public class TypeDomainEPackageAdapter extends AdapterImpl {
         if (oldValue != null) {
           oldValue.eAdapters().remove(_domainEPackageAdapter);
         }
-        if (newValue != null) {
+        if (newValue != null && newValue.eAdapters().contains(_domainEPackageAdapter) == false) {
           newValue.eAdapters().add(_domainEPackageAdapter);
         }
         break;

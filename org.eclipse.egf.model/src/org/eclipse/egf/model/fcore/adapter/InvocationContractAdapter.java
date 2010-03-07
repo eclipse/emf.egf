@@ -88,7 +88,7 @@ public class InvocationContractAdapter extends AdapterImpl {
         if (oldValue != null) {
           oldValue.eAdapters().remove(_contractAdapter);
         }
-        if (newValue != null) {
+        if (newValue != null && newValue.eAdapters().contains(_contractAdapter) == false) {
           newValue.eAdapters().add(_contractAdapter);
         }
         _contract = newValue;
