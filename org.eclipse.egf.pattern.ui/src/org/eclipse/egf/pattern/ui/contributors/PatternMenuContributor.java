@@ -249,12 +249,7 @@ public class PatternMenuContributor extends MenuContributor {
                 Pattern pattern = getPattern();
                 String editor = TemplateExtensionRegistry.getEditor(pattern);
                 if (editor != null) {
-                    try {
-                        PatternEditorInput input = new PatternEditorInput(pattern.eResource(), pattern.getID());
-                        IDE.openEditor(parent.getPage(), input, editor);
-                    } catch (PartInitException e) {
-                        Activator.getDefault().logError(e);
-                    }
+                    EditHelper.openTemplateEditor(parent.getPage(), pattern, editor);
                 }
             }
         }
@@ -268,7 +263,7 @@ public class PatternMenuContributor extends MenuContributor {
 
         @Override
         public void run() {
-            EditHelper.openEditor(parent.getPage(), getPattern().getID());
+            EditHelper.openPatternEditor(parent.getPage(), getPattern().getID());
         }
     }
 

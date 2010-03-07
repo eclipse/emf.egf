@@ -38,7 +38,7 @@ public class PatternListenerContributor extends ListenerContributor {
                     return;
                 Object firstElement = ((IStructuredSelection) event.getSelection()).getFirstElement();
                 if (firstElement instanceof Pattern) {
-                    EditHelper.openEditor(page, ((Pattern) firstElement).getID());
+                    EditHelper.openPatternEditor(page, ((Pattern) firstElement).getID());
                 }
 
             }

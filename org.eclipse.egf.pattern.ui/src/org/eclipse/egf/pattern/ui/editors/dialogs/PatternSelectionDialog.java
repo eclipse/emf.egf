@@ -57,7 +57,7 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
 
     private Pattern parent;
 
-    private String parentName;
+    private String parentName = "";
 
     private TableViewer tableViewer;
 
@@ -67,10 +67,12 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
 
     private List<Pattern> patternList;
 
-    public PatternSelectionDialog(Shell shell, Pattern parent, String parentName) {
+    public PatternSelectionDialog(Shell shell, Pattern parent) {
         super(shell);
         this.parent = parent;
-        this.parentName = parentName;
+        if (parent != null) {
+            parentName = parent.getName();
+        }
     }
 
     protected Control createDialogArea(Composite parent) {

@@ -87,7 +87,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
      * Whether or not this resource has been removed
      */
     protected boolean resourceHasBeenRemoved;
-
+ 
     private final ResourceListener resourceListener = new ResourceListener() {
 
         public void resourceMoved(Resource movedResource, final URI newURI) {
