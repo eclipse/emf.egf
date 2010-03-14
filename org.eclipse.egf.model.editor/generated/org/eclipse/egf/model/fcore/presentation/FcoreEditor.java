@@ -465,11 +465,11 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * 
    * @generated NOT
    */
-  protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
+  protected EContentAdapter editorResourceAdapter = new EContentAdapter() {
     @Override
     public void notifyChanged(Notification notification) {
       // Process Resource who belongs to a resource set
-      if (notification.getNotifier() instanceof Resource && ((Resource) notification.getNotifier()).getResourceSet() != null) {
+      if (notification.getNotifier() instanceof Resource) {
         switch (notification.getFeatureID(Resource.class)) {
         case Resource.RESOURCE__IS_LOADED:
         case Resource.RESOURCE__ERRORS:
@@ -493,6 +493,14 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             }
             break;
           }
+        }
+        case Resource.RESOURCE__IS_MODIFIED: {
+          getSite().getShell().getDisplay().asyncExec(new Runnable() {
+            public void run() {
+              firePropertyChange(IEditorPart.PROP_DIRTY);
+            }
+          });
+          break;
         }
         }
       } else {
@@ -1091,7 +1099,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     if (diagnostic.getSeverity() != Diagnostic.OK) {
       resourceToDiagnosticMap.put(resource.getURI(), diagnostic);
     }
-    getEditingDomain().getResourceSet().eAdapters().add(problemIndicationAdapter);
+    getEditingDomain().getResourceSet().eAdapters().add(editorResourceAdapter);
     egfAdapter = new PatternBundleAdapter(getSite());
     getEditingDomain().getResourceSet().eAdapters().add(egfAdapter);
   }
@@ -1817,7 +1825,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     getOperationHistory().dispose(getUndoContext(), true, true, true);
 
     // Remove our adapters
-    editingDomain.getResourceSet().eAdapters().remove(problemIndicationAdapter);
+    editingDomain.getResourceSet().eAdapters().remove(editorResourceAdapter);
     editingDomain.getResourceSet().eAdapters().remove(egfAdapter);
 
     // Remove our listeners
