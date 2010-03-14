@@ -25,7 +25,7 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.common.ui.emf.EMFEditUIHelper;
+import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
@@ -194,9 +194,9 @@ public class EGFValidator {
         } else {
           URI uri = EcoreUtil.getURI((EObject) data.get(0));
           try {
-            IEditorPart editorPart = EMFEditUIHelper.openEditor(uri);
+            IEditorPart editorPart = EditorHelper.openEditor(uri);
             if (editorPart != null && editorPart instanceof IEditingDomainProvider) {
-              EMFEditUIHelper.setSelectionToViewer(editorPart, uri);
+              EditorHelper.setSelectionToViewer(editorPart, uri);
             }
           } catch (Throwable t) {
             ThrowableHandler.handleThrowable(EGFCoreUIPlugin.getDefault().getPluginID(), t);

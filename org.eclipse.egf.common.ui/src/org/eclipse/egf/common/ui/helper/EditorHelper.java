@@ -20,6 +20,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.ui.EGFCommonUIPlugin;
+import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -40,7 +41,8 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.osgi.framework.Bundle;
 
 /**
- * Utility class to create status objects.
+ * @author Xavier Maysonnave
+ * 
  */
 public class EditorHelper {
 
@@ -63,8 +65,8 @@ public class EditorHelper {
         Object[] params = new Object[] { Collections.singletonList(eObject) };
         method.invoke(part, params);
       }
-    } catch (Exception e) {
-      EGFCommonUIPlugin.getDefault().logError("EditorHelper.setSelectionToViewer", e); //$NON-NLS-1$
+    } catch (Throwable t) {
+      ThrowableHandler.handleThrowable(EGFCommonUIPlugin.getDefault().getPluginID(), t);
     }
   }
 
@@ -126,6 +128,21 @@ public class EditorHelper {
       return page.openEditor(input, computeEditorId(uri.trimFragment().lastSegment()));
     }
     return null;
+  }
+
+  public static URI getURI(IEditorInput editorInput) {
+    URI result = null;
+    if (EMFPlugin.IS_ECLIPSE_RUNNING) {
+      result = EclipseUtil.getURI(editorInput);
+    }
+    if (result == null) {
+      if (editorInput instanceof URIEditorInput) {
+        result = ((URIEditorInput) editorInput).getURI().trimFragment();
+      } else {
+        result = URI.createURI(editorInput.getName());
+      }
+    }
+    return result;
   }
 
   public static class EclipseUtil {

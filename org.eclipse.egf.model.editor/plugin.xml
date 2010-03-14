@@ -64,7 +64,7 @@
     point="org.eclipse.egf.core.ui.editor.menu.contributor"
   >
     <contribution
-      class="org.eclipse.egf.model.editor.contributor.FcoreMenuContributor"
+      class="org.eclipse.egf.model.editor.contributor.ActivityMenuContributor"
     />
   </extension>  
   

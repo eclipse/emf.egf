@@ -16,10 +16,8 @@
 package org.eclipse.egf.model.editor.contributor;
 
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
-import org.eclipse.egf.common.ui.emf.EMFEditUIHelper;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
-import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Invocation;
@@ -45,7 +43,7 @@ import org.eclipse.ui.PlatformUI;
  * @author Xavier Maysonnave
  * 
  */
-public class FcoreMenuContributor extends MenuContributor {
+public class ActivityMenuContributor extends MenuContributor {
 
   public static final String EDIT_ACTION_ID = "edit-fcore"; //$NON-NLS-1$  
 
@@ -55,7 +53,7 @@ public class FcoreMenuContributor extends MenuContributor {
   public void menuAboutToShow(IMenuManager menuManager) {
     IStructuredSelection selection2 = (IStructuredSelection) selection;
     if (selection2.size() == 1) {
-      if (selection2.getFirstElement() instanceof Invocation || selection2.getFirstElement() instanceof InvocationContract || selection2.getFirstElement() instanceof DomainURI) {
+      if (selection2.getFirstElement() instanceof Invocation || selection2.getFirstElement() instanceof InvocationContract) {
         _editAction.setEnabled(_editAction.isEnabled());
         menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _editAction);
       }
@@ -65,23 +63,23 @@ public class FcoreMenuContributor extends MenuContributor {
   private class EditActivityAction extends Action {
 
     public EditActivityAction() {
-      super(ModelEditorMessages.FcoreMenuContributor_Activity_openAction_label);
+      super(ModelEditorMessages.ActivityMenuContributor_openAction_label);
       setId(EDIT_ACTION_ID);
     }
 
     @Override
     public boolean isEnabled() {
-      Object object = getObject();
-      if (object == null) {
+      EObject eObject = getEObject();
+      if (eObject == null) {
         return false;
       }
-      if (object instanceof InternalEObject) {
-        return ((InternalEObject) object).eIsProxy() == false;
+      if (eObject instanceof InternalEObject) {
+        return ((InternalEObject) eObject).eIsProxy() == false;
       }
-      return true;
+      return false;
     }
 
-    protected Object getObject() {
+    protected EObject getEObject() {
       if (selection == null) {
         return null;
       }
@@ -96,9 +94,6 @@ public class FcoreMenuContributor extends MenuContributor {
       } else if (object instanceof InvocationContract) {
         InvocationContract invocationContract = (InvocationContract) object;
         return invocationContract.getInvokedContract();
-      } else if (object instanceof DomainURI) {
-        DomainURI domainURI = (DomainURI) object;
-        return domainURI.getUri();
       }
       return null;
     }
@@ -106,16 +101,11 @@ public class FcoreMenuContributor extends MenuContributor {
     @Override
     public void run() {
       try {
-        URI uri = null;
-        Object object = getObject();
-        if (object == null) {
+        EObject eObject = getEObject();
+        if (eObject == null) {
           return;
         }
-        if (object instanceof EObject) {
-          uri = EcoreUtil.getURI((EObject) object);
-        } else if (object instanceof URI) {
-          uri = (URI) object;
-        }
+        URI uri = EcoreUtil.getURI(eObject);
         if (uri != null) {
           IEditorPart part = restoreAlreadyOpenedEditor(uri);
           if (part == null) {
@@ -142,7 +132,7 @@ public class FcoreMenuContributor extends MenuContributor {
               try {
                 IEditorInput editorInput = editorReference.getEditorInput();
                 if (editorInput != null) {
-                  URI innerURI = EMFEditUIHelper.getURI(editorInput);
+                  URI innerURI = EditorHelper.getURI(editorInput);
                   if (innerURI != null && innerURI.equals(uri)) {
                     return editorReference.getEditor(true);
                   }

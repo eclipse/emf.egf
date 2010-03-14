@@ -30,6 +30,8 @@ public class ModelEditorMessages {
   public static String _UI_ActivitySelectionDialog_dialogTitle;
   public static String _UI_ActivitySelectionDialog_dialogMessage;
 
-  public static String FcoreMenuContributor_Activity_openAction_label;
+  public static String ActivityMenuContributor_openAction_label;
+
+  public static String URIMenuContributor_openAction_label;
 
 }
