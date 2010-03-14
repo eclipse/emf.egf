@@ -36,7 +36,7 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
 
   private Activity _activity;
 
-  private URI _uri;
+  private URI _previousURI;
 
   private EStructuralFeature _nameFeature = FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME;
 
@@ -55,7 +55,12 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
         if (_activity != null) {
           // Unload this proxy
-          ((InternalEObject) _activity).eSetProxyURI(_uri);
+          URI currentURI = EcoreUtil.getURI(_activity);
+          if (currentURI != null) {
+            ((InternalEObject) _activity).eSetProxyURI(currentURI);
+          } else {
+            ((InternalEObject) _activity).eSetProxyURI(_previousURI);
+          }
           _activity = null;
           _uri = null;
         }
@@ -84,7 +89,7 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
           newValue.eAdapters().add(_activityAdapter);
         }
         _activity = newValue;
-        _uri = EcoreUtil.getURI(_activity);
+        _previousURI = EcoreUtil.getURI(_activity);
         break;
       case Notification.REMOVING_ADAPTER:
         if (_activity != null) {

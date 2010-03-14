@@ -45,7 +45,6 @@ import org.eclipse.egf.core.ui.contributor.ListenerContributor;
 import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener;
 import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener.ResourceListener;
 import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener.ResourceUser;
-import org.eclipse.egf.core.workspace.EGFWorkspaceSynchronizer;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
@@ -469,7 +468,8 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected EContentAdapter problemIndicationAdapter = new EContentAdapter() {
     @Override
     public void notifyChanged(Notification notification) {
-      if (notification.getNotifier() instanceof Resource) {
+      // Process Resource who belongs to a resource set
+      if (notification.getNotifier() instanceof Resource && ((Resource) notification.getNotifier()).getResourceSet() != null) {
         switch (notification.getFeatureID(Resource.class)) {
         case Resource.RESOURCE__IS_LOADED:
         case Resource.RESOURCE__ERRORS:
@@ -561,7 +561,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           setInputWithNotify(editorInput);
           selectionViewer.setInput(getResource());
           selectionViewer.setSelection(new StructuredSelection(getResource()), true);
-          currentViewerPane.setTitle(getResource());
+          if (currentViewerPane != null) {
+            currentViewerPane.setTitle(getResource());
+          }
           firePropertyChange(IEditorPart.PROP_DIRTY);
         }
       });

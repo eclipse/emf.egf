@@ -36,7 +36,7 @@ public class InvocationContractAdapter extends AdapterImpl {
 
   private Contract _contract;
 
-  private URI _uri;
+  private URI _previousURI;
 
   private EStructuralFeature _nameFeature = FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME;
 
@@ -63,7 +63,13 @@ public class InvocationContractAdapter extends AdapterImpl {
         });
       } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
         if (_contract != null) {
-          ((InternalEObject) _contract).eSetProxyURI(_uri);
+          // Unload this proxy
+          URI currentURI = EcoreUtil.getURI(_contract);
+          if (currentURI != null) {
+            ((InternalEObject) _contract).eSetProxyURI(currentURI);
+          } else {
+            ((InternalEObject) _contract).eSetProxyURI(_previousURI);
+          }
           _contract = null;
           _uri = null;
         }
@@ -92,7 +98,7 @@ public class InvocationContractAdapter extends AdapterImpl {
           newValue.eAdapters().add(_contractAdapter);
         }
         _contract = newValue;
-        _uri = EcoreUtil.getURI(_contract);
+        _previousURI = EcoreUtil.getURI(_contract);
         break;
       case Notification.REMOVING_ADAPTER:
         if (_contract != null) {
