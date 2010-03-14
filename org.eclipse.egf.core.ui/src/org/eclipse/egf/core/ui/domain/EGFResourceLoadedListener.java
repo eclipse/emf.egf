@@ -176,6 +176,10 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
           break;
         }
       }
+      // Notify
+      for (ResourceListener l : RESOURCE_MANAGER._listeners) {
+        l.resourceDeleted(resource);
+      }
       // Non dirty editors should close themselves while editing a deleted resource if any
       if (isDirty == false) {
         resource.unload();
@@ -185,9 +189,6 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
         // Start Workaround PDE Bug 267954
         RESOURCE_MANAGER._fcores.remove(resource);
         // End Workaround PDE Bug 267954
-      }
-      for (ResourceListener l : RESOURCE_MANAGER._listeners) {
-        l.resourceDeleted(resource);
       }
     }
 
