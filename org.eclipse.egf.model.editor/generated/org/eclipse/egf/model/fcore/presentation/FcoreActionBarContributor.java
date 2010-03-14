@@ -517,15 +517,17 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
   @Override
   public void menuAboutToShow(IMenuManager menuManager) {
     super.menuAboutToShow(menuManager);
+    menuManager.add(new Separator("settings")); //$NON-NLS-1$
+    menuManager.insertAfter(EGFCommonUIConstants.EDIT_MENU_GROUP, new Separator(EGFCommonUIConstants.OPEN_MENU_GROUP));
     MenuManager submenuManager = null;
 
     submenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFCommonUIConstants.CREATE_CHILD); //$NON-NLS-1$
     populateManager(submenuManager, createChildActions, null);
-    menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
+    menuManager.insertBefore(EGFCommonUIConstants.EDIT_MENU_GROUP, submenuManager);
 
     submenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFCommonUIConstants.CREATE_SIBLING); //$NON-NLS-1$
     populateManager(submenuManager, createSiblingActions, null);
-    menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
+    menuManager.insertBefore(EGFCommonUIConstants.EDIT_MENU_GROUP, submenuManager);
 
     for (MenuContributor vpc : menuContributors) {
       vpc.menuAboutToShow(menuManager);

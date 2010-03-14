@@ -56,4 +56,16 @@
     />
   </extension>
   
+  <!-- ================================================================================= -->
+  <!-- Menu Contributor                                                                  -->
+  <!-- ================================================================================= -->  
+  
+  <extension 
+    point="org.eclipse.egf.core.ui.editor.menu.contributor"
+  >
+    <contribution
+      class="org.eclipse.egf.model.editor.contributor.FcoreMenuContributor"
+    />
+  </extension>  
+  
 </plugin>
