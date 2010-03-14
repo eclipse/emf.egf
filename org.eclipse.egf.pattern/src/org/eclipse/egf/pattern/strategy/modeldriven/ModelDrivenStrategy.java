@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.strategy.modeldriven;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.egf.model.pattern.DomainVisitor;
@@ -25,8 +26,6 @@ import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.strategy.AbstractStrategy;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * @author Thomas Guiu
@@ -38,7 +37,7 @@ public class ModelDrivenStrategy extends AbstractStrategy {
         Set<Pattern> result = new HashSet<Pattern>(100);
         PatternCollector.INSTANCE.collect(patternElements, result);
 
-        EList<EObject> model = (EList<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS);
+        List<Object> model = (List<Object>) context.getValue(PatternContext.DOMAIN_OBJECTS);
 
         final DomainVisitor visitor = (DomainVisitor) context.getValue(PatternContext.MODEL_DRIVEN_DOMAIN_VISITOR);
         visitor.setPatterns(result);
