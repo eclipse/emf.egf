@@ -65,7 +65,7 @@ public class FcoreMenuContributor extends MenuContributor {
   private class EditActivityAction extends Action {
 
     public EditActivityAction() {
-      super(ModelEditorMessages.FcoreMenuContributor_Activity_editAction_label);
+      super(ModelEditorMessages.FcoreMenuContributor_Activity_openAction_label);
       setId(EDIT_ACTION_ID);
     }
 

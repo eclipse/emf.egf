@@ -563,11 +563,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
             setSelection(StructuredSelection.EMPTY);
           }
-          getOperationHistory().dispose(undoContext, true, true, true);
-          getResource().setURI(newURI);
-          FileEditorInput editorInput = new FileEditorInput(EGFWorkspaceSynchronizer.getFile(getResource()));
-          setInputWithNotify(editorInput);
-          selectionViewer.setInput(getResource());
           selectionViewer.setSelection(new StructuredSelection(getResource()), true);
           if (currentViewerPane != null) {
             currentViewerPane.setTitle(getResource());

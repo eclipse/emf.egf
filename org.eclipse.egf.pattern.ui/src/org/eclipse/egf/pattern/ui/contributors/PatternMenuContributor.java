@@ -40,7 +40,6 @@ import org.eclipse.egf.pattern.extension.PatternInitializer;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.ui.Activator;
 import org.eclipse.egf.pattern.ui.Messages;
-import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.TemplateExtensionRegistry;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.command.Command;
@@ -59,8 +58,6 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.ide.IDE;
 
 /**
  * @author Thomas Guiu
@@ -68,203 +65,203 @@ import org.eclipse.ui.ide.IDE;
  */
 public class PatternMenuContributor extends MenuContributor {
 
-    public static final String EDIT_ACTION_ID = "edit-pattern"; //$NON-NLS-1$
+  public static final String EDIT_ACTION_ID = "edit-pattern"; //$NON-NLS-1$
 
-    public static final String EDIT_TEMPLATE_ACTION_ID = "edit-template-pattern"; //$NON-NLS-1$   
+  public static final String EDIT_TEMPLATE_ACTION_ID = "edit-template-pattern"; //$NON-NLS-1$   
 
-    private final EditPatternAction editAction = new EditPatternAction();
+  private final EditPatternAction editAction = new EditPatternAction();
 
-    private final EditTemplatePatternAction editTemplateAction = new EditTemplatePatternAction();
+  private final EditTemplatePatternAction editTemplateAction = new EditTemplatePatternAction();
 
-    private final GeneratePatternAction generateAction = new GeneratePatternAction();
+  private final GeneratePatternAction generateAction = new GeneratePatternAction();
+
+  @Override
+  public void menuAboutToShow(IMenuManager menuManager) {
+    IStructuredSelection selection2 = (IStructuredSelection) selection;
+    if (selection2.size() == 1) {
+      if (selection2.getFirstElement() instanceof PatternLibrary) {
+        IContributionItem item = menuManager.find(EGFCommonUIConstants.CREATE_CHILD);
+        MenuManager createChildMenuManager = null;
+        if (item != null && item instanceof MenuManager) {
+          createChildMenuManager = (MenuManager) item;
+        } else {
+          createChildMenuManager = new MenuManager(Messages.ViewpointContributor_newChildGroup_label);
+          menuManager.insertBefore(EGFCommonUIConstants.CREATE_SIBLING, createChildMenuManager);
+        }
+        Map<String, PatternExtension> extensions = ExtensionHelper.getExtensions();
+        for (String nature : extensions.keySet()) {
+          PatternExtension patternExtension = extensions.get(nature);
+          CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, "myPattern"));
+          CreateChildAction createChildAction = new CreatePatternAction(activeEditorPart, selection, descriptor, (PatternLibrary) selection2.getFirstElement());
+          createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, nature));
+          createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
+          createChildMenuManager.add(createChildAction);
+        }
+        // menuManager.insertBefore("edit", createChildAction);
+      } else if (selection2.getFirstElement() instanceof Pattern) {
+        menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, editAction);
+        menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, editTemplateAction);
+      } else if (selection2.getFirstElement() instanceof PatternViewpoint) {
+        menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, generateAction);
+      }
+    }
+  }
+
+  private final class CreatePatternAction extends CreateChildAction {
+
+    private final PatternLibrary library;
+
+    public CreatePatternAction(IEditorPart editorPart, ISelection selection, Object descriptor, PatternLibrary library) {
+      super(editorPart, selection, descriptor);
+      this.library = library;
+    }
 
     @Override
-    public void menuAboutToShow(IMenuManager menuManager) {
-        IStructuredSelection selection2 = (IStructuredSelection) selection;
-        if (selection2.size() == 1) {
-            if (selection2.getFirstElement() instanceof PatternLibrary) {
-                IContributionItem item = menuManager.find(EGFCommonUIConstants.CREATE_CHILD);
-                MenuManager createChildMenuManager = null;
-                if (item != null && item instanceof MenuManager) {
-                    createChildMenuManager = (MenuManager) item;
-                } else {
-                    createChildMenuManager = new MenuManager(Messages.ViewpointContributor_newChildGroup_label);
-                    menuManager.insertBefore(EGFCommonUIConstants.CREATE_SIBLING, createChildMenuManager);
-                }
-                Map<String, PatternExtension> extensions = ExtensionHelper.getExtensions();
-                for (String nature : extensions.keySet()) {
-                    PatternExtension patternExtension = extensions.get(nature);
-                    CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, "myPattern"));
-                    CreateChildAction createChildAction = new CreatePatternAction(activeEditorPart, selection, descriptor, (PatternLibrary) selection2.getFirstElement());
-                    createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, nature));
-                    createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
-                    createChildMenuManager.add(createChildAction);
-                }
-                // menuManager.insertBefore("edit", createChildAction);
-            } else if (selection2.getFirstElement() instanceof Pattern) {
-                menuManager.insertBefore(EGFCommonUIConstants.EDIT_MENU_GROUP, editAction);
-                menuManager.insertBefore(EGFCommonUIConstants.EDIT_MENU_GROUP, editTemplateAction);
-            } else if (selection2.getFirstElement() instanceof PatternViewpoint) {
-                menuManager.insertBefore(EGFCommonUIConstants.EDIT_MENU_GROUP, generateAction);
+    protected Command createActionCommand(EditingDomain editingDomain, Collection<?> collection) {
+
+      final Command createActionCommand = super.createActionCommand(editingDomain, collection);
+      if (UnexecutableCommand.INSTANCE.equals(createActionCommand))
+        return UnexecutableCommand.INSTANCE;
+      return createActionCommand.chain(new AbstractCommand() {
+
+        @Override
+        protected boolean prepare() {
+          return true;
+        }
+
+        public void execute() {
+          Collection<?> affectedObjects = createActionCommand.getAffectedObjects();
+          Pattern pattern = (Pattern) affectedObjects.iterator().next();
+          // update method file URIs
+          for (PatternMethod m : pattern.getMethods()) {
+            m.setPatternFilePath(PatternHelper.Filename.computeFileURI(m));
+          }
+
+          // create template files
+          IProject project = EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject();
+          try {
+            PatternInitializer initializer = ExtensionHelper.getExtension(pattern.getNature()).createInitializer(project, pattern);
+            initializer.initContent();
+          } catch (PatternException e) {
+            Activator.getDefault().logError(e);
+
+          } catch (MissingExtensionException e) {
+            Activator.getDefault().logError(e);
+
+          }
+        }
+
+        public void undo() {
+          Collection<?> affectedObjects = createActionCommand.getAffectedObjects();
+          Pattern pattern = (Pattern) affectedObjects.iterator().next();
+          IProject project = EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject();
+          IFile currentFile = null;
+          try {
+            for (PatternMethod m : pattern.getMethods()) {
+              currentFile = project.getFile(m.getPatternFilePath().path());
+              currentFile.delete(true, false, null);
             }
+            if (currentFile != null && currentFile.getParent() != null)
+              currentFile.getParent().delete(true, null);
+          } catch (CoreException e) {
+            Activator.getDefault().logError(e);
+          }
+
         }
+
+        public void redo() {
+        }
+      });
+    }
+  }
+
+  private final class GeneratePatternAction extends Action {
+
+    public GeneratePatternAction() {
+      super(Messages.ViewpointContributor_generatePatternAction_label);
+      setId(getText());
     }
 
-    private final class CreatePatternAction extends CreateChildAction {
+    @Override
+    public void run() {
+      if (selection == null)
+        throw new IllegalStateException();
+      IStructuredSelection sselection = (IStructuredSelection) selection;
+      if (sselection.isEmpty() || !(sselection.getFirstElement() instanceof EObject))
+        throw new IllegalStateException();
 
-        private final PatternLibrary library;
+      Resource resource = ((EObject) sselection.getFirstElement()).eResource();
 
-        public CreatePatternAction(IEditorPart editorPart, ISelection selection, Object descriptor, PatternLibrary library) {
-            super(editorPart, selection, descriptor);
-            this.library = library;
-        }
+      Set<Pattern> patterns = new HashSet<Pattern>();
+      PatternHelper patternCollector = PatternHelper.createCollector();
+      try {
+        patterns.addAll(patternCollector.getPatterns(resource.getURI()));
 
-        @Override
-        protected Command createActionCommand(EditingDomain editingDomain, Collection<?> collection) {
+        new TranslationHelper().translate(patterns);
+      } catch (PatternException e) {
+        Activator.getDefault().logError(e);
+      } finally {
+        patterns.clear();
+        patternCollector.clear();
+      }
+    }
+  }
 
-            final Command createActionCommand = super.createActionCommand(editingDomain, collection);
-            if (UnexecutableCommand.INSTANCE.equals(createActionCommand))
-                return UnexecutableCommand.INSTANCE;
-            return createActionCommand.chain(new AbstractCommand() {
+  private abstract class PatternAction extends Action {
 
-                @Override
-                protected boolean prepare() {
-                    return true;
-                }
-
-                public void execute() {
-                    Collection<?> affectedObjects = createActionCommand.getAffectedObjects();
-                    Pattern pattern = (Pattern) affectedObjects.iterator().next();
-                    // update method file URIs
-                    for (PatternMethod m : pattern.getMethods()) {
-                        m.setPatternFilePath(PatternHelper.Filename.computeFileURI(m));
-                    }
-
-                    // create template files
-                    IProject project = EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject();
-                    try {
-                        PatternInitializer initializer = ExtensionHelper.getExtension(pattern.getNature()).createInitializer(project, pattern);
-                        initializer.initContent();
-                    } catch (PatternException e) {
-                        Activator.getDefault().logError(e);
-
-                    } catch (MissingExtensionException e) {
-                        Activator.getDefault().logError(e);
-
-                    }
-                }
-
-                public void undo() {
-                    Collection<?> affectedObjects = createActionCommand.getAffectedObjects();
-                    Pattern pattern = (Pattern) affectedObjects.iterator().next();
-                    IProject project = EGFCorePlugin.getPlatformFcore(library.eResource()).getPlatformBundle().getProject();
-                    IFile currentFile = null;
-                    try {
-                        for (PatternMethod m : pattern.getMethods()) {
-                            currentFile = project.getFile(m.getPatternFilePath().path());
-                            currentFile.delete(true, false, null);
-                        }
-                        if (currentFile != null && currentFile.getParent() != null)
-                            currentFile.getParent().delete(true, null);
-                    } catch (CoreException e) {
-                        Activator.getDefault().logError(e);
-                    }
-
-                }
-
-                public void redo() {
-                }
-            });
-        }
+    public PatternAction(String label, String id) {
+      super(label);
+      setId(id);
     }
 
-    private final class GeneratePatternAction extends Action {
-
-        public GeneratePatternAction() {
-            super(Messages.ViewpointContributor_generatePatternAction_label);
-            setId(getText());
-        }
-
-        @Override
-        public void run() {
-            if (selection == null)
-                throw new IllegalStateException();
-            IStructuredSelection sselection = (IStructuredSelection) selection;
-            if (sselection.isEmpty() || !(sselection.getFirstElement() instanceof EObject))
-                throw new IllegalStateException();
-
-            Resource resource = ((EObject) sselection.getFirstElement()).eResource();
-
-            Set<Pattern> patterns = new HashSet<Pattern>();
-            PatternHelper patternCollector = PatternHelper.createCollector();
-            try {
-                patterns.addAll(patternCollector.getPatterns(resource.getURI()));
-
-                new TranslationHelper().translate(patterns);
-            } catch (PatternException e) {
-                Activator.getDefault().logError(e);
-            } finally {
-                patterns.clear();
-                patternCollector.clear();
-            }
-        }
+    protected Pattern getPattern() {
+      if (selection == null)
+        throw new IllegalStateException();
+      IStructuredSelection sselection = (IStructuredSelection) selection;
+      if (sselection.size() != 1 || !(sselection.getFirstElement() instanceof Pattern))
+        throw new IllegalStateException();
+      return (Pattern) sselection.getFirstElement();
     }
 
-    private abstract class PatternAction extends Action {
+    protected Pattern getPatternInTransactionalEditingDomain() {
+      Pattern pattern = getPattern();
+      return PatternHelper.TRANSACTIONNAL_COLLECTOR.getPattern(pattern.getID());
+    }
+  }
 
-        public PatternAction(String label, String id) {
-            super(label);
-            setId(id);
-        }
+  private final class EditTemplatePatternAction extends PatternAction {
 
-        protected Pattern getPattern() {
-            if (selection == null)
-                throw new IllegalStateException();
-            IStructuredSelection sselection = (IStructuredSelection) selection;
-            if (sselection.size() != 1 || !(sselection.getFirstElement() instanceof Pattern))
-                throw new IllegalStateException();
-            return (Pattern) sselection.getFirstElement();
-        }
-
-        protected Pattern getPatternInTransactionalEditingDomain() {
-            Pattern pattern = getPattern();
-            return PatternHelper.TRANSACTIONNAL_COLLECTOR.getPattern(pattern.getID());
-        }
+    public EditTemplatePatternAction() {
+      super(Messages.ViewpointContributor_openTemplateAction_label, EDIT_TEMPLATE_ACTION_ID);
     }
 
-    private final class EditTemplatePatternAction extends PatternAction {
-
-        public EditTemplatePatternAction() {
-            super(Messages.ViewpointContributor_editTemplateAction_label, EDIT_TEMPLATE_ACTION_ID);
+    @Override
+    public void run() {
+      Pattern patternInTransactionalEditingDomain = getPatternInTransactionalEditingDomain();
+      if (patternInTransactionalEditingDomain == null)
+        MessageDialog.openInformation(parent.getPage().getWorkbenchWindow().getShell(), Messages.ViewpointContributor_missingPattern_title, Messages.ViewpointContributor_missingPattern_message);
+      else {
+        // PatternTemplateEditor.openEditor(parent.getPage(),
+        // patternInTransactionalEditingDomain, null);
+        Pattern pattern = getPattern();
+        String editor = TemplateExtensionRegistry.getEditor(pattern);
+        if (editor != null) {
+          EditHelper.openTemplateEditor(parent.getPage(), pattern, editor);
         }
+      }
+    }
+  }
 
-        @Override
-        public void run() {
-            Pattern patternInTransactionalEditingDomain = getPatternInTransactionalEditingDomain();
-            if (patternInTransactionalEditingDomain == null)
-                MessageDialog.openInformation(parent.getPage().getWorkbenchWindow().getShell(), Messages.ViewpointContributor_missingPattern_title, Messages.ViewpointContributor_missingPattern_message);
-            else {
-                // PatternTemplateEditor.openEditor(parent.getPage(),
-                // patternInTransactionalEditingDomain, null);
-                Pattern pattern = getPattern();
-                String editor = TemplateExtensionRegistry.getEditor(pattern);
-                if (editor != null) {
-                    EditHelper.openTemplateEditor(parent.getPage(), pattern, editor);
-                }
-            }
-        }
+  private final class EditPatternAction extends PatternAction {
+
+    public EditPatternAction() {
+      super(Messages.ViewpointContributor_openAction_label, EDIT_ACTION_ID);
     }
 
-    private final class EditPatternAction extends PatternAction {
-
-        public EditPatternAction() {
-            super(Messages.ViewpointContributor_editAction_label, EDIT_ACTION_ID);
-        }
-
-        @Override
-        public void run() {
-            EditHelper.openPatternEditor(parent.getPage(), getPattern().getID());
-        }
+    @Override
+    public void run() {
+      EditHelper.openPatternEditor(parent.getPage(), getPattern().getID());
     }
+  }
 
 }
