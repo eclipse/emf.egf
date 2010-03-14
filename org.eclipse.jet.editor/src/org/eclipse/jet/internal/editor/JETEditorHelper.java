@@ -10,6 +10,8 @@
  *******************************************************************************/
 package org.eclipse.jet.internal.editor;
 
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,13 +20,16 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.internal.resources.File;
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.jdt.core.ICompilationUnit;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IPackageFragment;
 import org.eclipse.jdt.core.IPackageFragmentRoot;
 import org.eclipse.jdt.core.IProblemRequestor;
+import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.WorkingCopyOwner;
 import org.eclipse.jdt.core.compiler.IProblem;
@@ -236,11 +241,12 @@ public class JETEditorHelper {
         if (packageName == null || className == null)
             return problems;
         Map mappingPositions = new HashMap();
-        String javaSource = jetEditor.compilationHelper().getJavaCode(cu, mappingPositions);
         JETJavaContentProblemRequestor problemRequestor = new JETJavaContentProblemRequestor(problems, mappingPositions, jetDocument);
         try {
             ICompilationUnit compilationUnit = null;
             IJavaProject javaProject = jetEditor.getJavaProject();
+            // Get the java source of generated class
+            String javaSource = getjavaSource(javaProject, packageName, className);
             IPackageFragmentRoot roots[] = javaProject.getPackageFragmentRoots();
             for (int i = 0; i < roots.length; i++) {
                 IPackageFragmentRoot root = roots[i];
@@ -262,6 +268,32 @@ public class JETEditorHelper {
             Activator.log(e);
         }
         return problems;
+    }
+
+    /**
+     * @param javaProject
+     * @param packageName
+     * @param className
+     * @return
+     */
+    private static String getjavaSource(IJavaProject javaProject, String packageName, String className) {
+        String javaSource = "";
+        try {
+            IType generatedClass = javaProject.findType(packageName, className);
+            IResource resource = generatedClass.getResource();
+            if (resource instanceof File) {
+                InputStream contents = ((File) resource).getContents();
+                ByteArrayOutputStream javaSourceStream = new ByteArrayOutputStream();
+                int i = -1;
+                while ((i = contents.read()) != -1) {
+                    javaSourceStream.write(i);
+                }
+                javaSource = javaSourceStream.toString();
+            }
+        } catch (Exception e) {
+            Activator.log(e);
+        }
+        return javaSource;
     }
 
     /**
