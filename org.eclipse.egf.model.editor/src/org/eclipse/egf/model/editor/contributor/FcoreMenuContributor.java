@@ -19,6 +19,7 @@ import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.common.ui.emf.EMFEditUIHelper;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
+import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Invocation;
@@ -26,7 +27,6 @@ import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.action.Action;
@@ -55,7 +55,7 @@ public class FcoreMenuContributor extends MenuContributor {
   public void menuAboutToShow(IMenuManager menuManager) {
     IStructuredSelection selection2 = (IStructuredSelection) selection;
     if (selection2.size() == 1) {
-      if (selection2.getFirstElement() instanceof Invocation || selection2.getFirstElement() instanceof InvocationContract) {
+      if (selection2.getFirstElement() instanceof Invocation || selection2.getFirstElement() instanceof InvocationContract || selection2.getFirstElement() instanceof DomainURI) {
         _editAction.setEnabled(_editAction.isEnabled());
         menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _editAction);
       }
@@ -71,10 +71,17 @@ public class FcoreMenuContributor extends MenuContributor {
 
     @Override
     public boolean isEnabled() {
-      return getEObject() != null && ((InternalEObject) getEObject()).eIsProxy() == false;
+      Object object = getObject();
+      if (object == null) {
+        return false;
+      }
+      if (object instanceof InternalEObject) {
+        return ((InternalEObject) object).eIsProxy() == false;
+      }
+      return true;
     }
 
-    protected EObject getEObject() {
+    protected Object getObject() {
       if (selection == null) {
         return null;
       }
@@ -89,6 +96,9 @@ public class FcoreMenuContributor extends MenuContributor {
       } else if (object instanceof InvocationContract) {
         InvocationContract invocationContract = (InvocationContract) object;
         return invocationContract.getInvokedContract();
+      } else if (object instanceof DomainURI) {
+        DomainURI domainURI = (DomainURI) object;
+        return domainURI.getUri();
       }
       return null;
     }
@@ -96,14 +106,23 @@ public class FcoreMenuContributor extends MenuContributor {
     @Override
     public void run() {
       try {
-        EObject eObject = getEObject();
-        if (eObject != null) {
-          IEditorPart part = restoreAlreadyOpenedEditor(eObject.eResource());
+        URI uri = null;
+        Object object = getObject();
+        if (object == null) {
+          return;
+        }
+        if (object instanceof EObject) {
+          uri = EcoreUtil.getURI((EObject) object);
+        } else if (object instanceof URI) {
+          uri = (URI) object;
+        }
+        if (uri != null) {
+          IEditorPart part = restoreAlreadyOpenedEditor(uri);
           if (part == null) {
-            part = EditorHelper.openEditor(eObject);
+            part = EditorHelper.openEditor(uri);
           }
           if (part != null && part instanceof IEditingDomainProvider) {
-            EditorHelper.setSelectionToViewer(part, EcoreUtil.getURI(eObject));
+            EditorHelper.setSelectionToViewer(part, uri);
           }
         }
       } catch (PartInitException pie) {
@@ -111,8 +130,8 @@ public class FcoreMenuContributor extends MenuContributor {
       }
     }
 
-    private IEditorPart restoreAlreadyOpenedEditor(Resource resource) {
-      if (resource == null) {
+    private IEditorPart restoreAlreadyOpenedEditor(URI uri) {
+      if (uri == null) {
         return null;
       }
       IWorkbench workbench = PlatformUI.getWorkbench();
@@ -123,8 +142,8 @@ public class FcoreMenuContributor extends MenuContributor {
               try {
                 IEditorInput editorInput = editorReference.getEditorInput();
                 if (editorInput != null) {
-                  URI uri = EMFEditUIHelper.getURI(editorInput);
-                  if (uri != null && uri.equals(resource.getURI())) {
+                  URI innerURI = EMFEditUIHelper.getURI(editorInput);
+                  if (innerURI != null && innerURI.equals(uri)) {
                     return editorReference.getEditor(true);
                   }
                 }
