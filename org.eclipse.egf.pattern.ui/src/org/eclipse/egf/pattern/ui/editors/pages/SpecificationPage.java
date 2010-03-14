@@ -877,7 +877,6 @@ public class SpecificationPage extends PatternEditorPage {
         tableViewer.setCellModifier(modifier);
         tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
-            @Override
             public void selectionChanged(SelectionChangedEvent event) {
                 List availableQueries = IQuery.INSTANCE.getAvailableQueries();
                 availableQueries.add(0, ""); //$NON-NLS-1$
