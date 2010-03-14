@@ -23,4 +23,6 @@ public interface EGFCommonUIConstants {
 
   public static final String EDIT_MENU_GROUP = "edit"; //$NON-NLS-1$
 
+  public static final String OPEN_MENU_GROUP = "open"; //$NON-NLS-1$  
+
 }
