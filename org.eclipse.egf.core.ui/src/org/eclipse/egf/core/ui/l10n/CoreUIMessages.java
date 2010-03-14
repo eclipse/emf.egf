@@ -55,11 +55,6 @@ public class CoreUIMessages {
   public static String EGFProductionPreferencePage_Validate_Never;
   public static String EGFProductionPreferencePage_Validate_Prompt;
 
-  public static String EGFEditorsPreferencePage_Title;
-  public static String EGFEditorsPreferencePage_Description;
-  public static String EGFEditorsPreferencePage_Loading;
-  public static String EGFEditorsPreferencePage_Loading_Resources;
-
   public static String AbstractCheckboxSelectionDialog_Select;
   public static String AbstractCheckboxSelectionDialog_Deselect;
 

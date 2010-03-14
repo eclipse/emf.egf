@@ -196,18 +196,40 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       if (resource == null) {
         throw new IllegalArgumentException();
       }
-      FcoreResourceLoadedListener.getDefault().ignore(resource);
       try {
         resource.unload();
         resource.load(Collections.EMPTY_MAP);
       } catch (IOException ioe) {
         // Just Ignore
-        EGFCoreUIPlugin.getDefault().logError(ioe);
-      } finally {
-        FcoreResourceLoadedListener.getDefault().watch(resource);
       }
       for (ResourceListener resourceListener : _listeners) {
         resourceListener.resourceReloaded(resource);
+      }
+    }
+
+    public void movedResource(EditingDomain editingDomain, Resource movedResource, URI newURI) {
+      if (movedResource == null) {
+        throw new IllegalArgumentException();
+      }
+      URI oldURI = movedResource.getURI();
+      Resource resource = movedResource.getResourceSet().getResource(newURI, false);
+      // Resource who can't open a physical resource raise exception but are loaded
+      // in the resource set, its flag is also set to isLoaded
+      // we need to unload otherwise our resource set will be messy (two resources with the same URI)
+      if (resource != null && resource.getContents().size() == 0 && resource.getErrors().isEmpty() == false) {
+        resource.unload();
+        resource.getResourceSet().getResources().remove(resource);
+        if (EGFCoreUIPlugin.getDefault().isDebugging()) {
+          EGFPlatformPlugin.getDefault().logInfo(NLS.bind("EGFResourceLoadedListener.movedResource(...) - discard loaded empty resource with errors ''{0}''", resource.getURI())); //$NON-NLS-1$           
+        }
+        RESOURCE_MANAGER._fcores.remove(resource);
+        // Load it in our resource set, this will force ui to be notified if adapted
+        movedResource = editingDomain.getResourceSet().getResource(newURI, true);
+      }
+      RESOURCE_MANAGER._fcores.remove(movedResource);
+      movedResource.setURI(newURI);
+      for (ResourceListener resourceListener : _listeners) {
+        resourceListener.resourceMoved(movedResource, oldURI);
       }
     }
 
