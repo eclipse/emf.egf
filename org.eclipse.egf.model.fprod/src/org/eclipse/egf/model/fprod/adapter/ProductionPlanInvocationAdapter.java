@@ -20,6 +20,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -44,15 +46,15 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
 
   private AdapterImpl _activityAdapter = new AdapterImpl() {
     @Override
-    public void notifyChanged(Notification msg) {
-      if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_nameFeature)) {
+    public void notifyChanged(Notification notification) {
+      if (notification.getEventType() == Notification.SET && notification.getFeature().equals(_nameFeature)) {
         _editingDomain.getCommandStack().execute(new RecordingCommand(_editingDomain) {
           @Override
           protected void doExecute() {
             _productionPlanInvocation.eNotify(new ENotificationImpl((InternalEObject) _productionPlanInvocation, Notification.SET, _invocationInvokedActivityFeature, null, _activity));
           }
         });
-      } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
+      } else if (notification.getEventType() == Notification.REMOVING_ADAPTER) {
         if (_activity != null) {
           // Unload this proxy
           URI currentURI = EcoreUtil.getURI(_activity);
@@ -63,6 +65,23 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
           }
           _activity = null;
           _uri = null;
+        }
+      }
+    }
+  };
+
+  private AdapterImpl _activityResourceAdapter = new AdapterImpl() {
+    @Override
+    public void notifyChanged(Notification notification) {
+      // URI update while moving a resource
+      if (notification.getEventType() == Notification.SET) {
+        switch (notification.getFeatureID(Resource.class)) {
+        case Resource.RESOURCE__URI: {
+          if (_productionPlanInvocation.eResource() != null) {
+            ((ResourceImpl) _productionPlanInvocation.eResource()).setModified(true);
+          }
+          break;
+        }
         }
       }
     }
@@ -83,10 +102,18 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
         final Activity newValue = (Activity) notification.getNewValue();
         final Activity oldValue = (Activity) notification.getOldValue();
         if (oldValue != null) {
+          if (oldValue.eResource() != null) {
+            oldValue.eResource().eAdapters().remove(_activityResourceAdapter);
+          }
           oldValue.eAdapters().remove(_activityAdapter);
         }
-        if (newValue != null && newValue.eAdapters().contains(_activityAdapter) == false) {
-          newValue.eAdapters().add(_activityAdapter);
+        if (newValue != null) {
+          if (newValue.eResource() != null && newValue.eResource().eAdapters().contains(_activityResourceAdapter) == false) {
+            newValue.eResource().eAdapters().add(_activityResourceAdapter);
+          }
+          if (newValue.eAdapters().contains(_activityAdapter) == false) {
+            newValue.eAdapters().add(_activityAdapter);
+          }
         }
         _activity = newValue;
         _previousURI = EcoreUtil.getURI(_activity);
