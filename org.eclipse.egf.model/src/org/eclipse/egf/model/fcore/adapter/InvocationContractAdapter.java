@@ -16,10 +16,13 @@ import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -77,6 +80,43 @@ public class InvocationContractAdapter extends AdapterImpl {
     }
   };
 
+  private AdapterImpl _contractResourceAdapter = new AdapterImpl() {
+    @Override
+    public void notifyChanged(final Notification notification) {
+      // URI update while moving a resource
+      if (notification.getEventType() == Notification.SET) {
+        switch (notification.getFeatureID(Resource.class)) {
+        case Resource.RESOURCE__URI: {
+          if (_invocationContract.eResource() != null) {
+            final ResourceImpl resource = (ResourceImpl) _invocationContract.eResource();
+            resource.setModified(true);
+            if (resource.eNotificationRequired()) {
+              Notification innerNotification = new NotificationImpl(Notification.SET, notification.getOldValue(), notification.getOldValue()) {
+                @Override
+                public Object getFeature() {
+                  return notification.getNotifier();
+                }
+
+                @Override
+                public Object getNotifier() {
+                  return resource;
+                }
+
+                @Override
+                public int getFeatureID(Class<?> expectedClass) {
+                  return Resource.RESOURCE__URI;
+                }
+              };
+              resource.eNotify(innerNotification);
+            }
+          }
+          break;
+        }
+        }
+      }
+    }
+  };
+
   public InvocationContractAdapter(InvocationContract invocationContract) {
     super();
     _invocationContract = invocationContract;
@@ -92,10 +132,18 @@ public class InvocationContractAdapter extends AdapterImpl {
         Contract newValue = (Contract) notification.getNewValue();
         Contract oldValue = (Contract) notification.getOldValue();
         if (oldValue != null) {
+          if (oldValue.eResource() != null) {
+            oldValue.eResource().eAdapters().remove(_contractResourceAdapter);
+          }
           oldValue.eAdapters().remove(_contractAdapter);
         }
-        if (newValue != null && newValue.eAdapters().contains(_contractAdapter) == false) {
-          newValue.eAdapters().add(_contractAdapter);
+        if (newValue != null) {
+          if (newValue.eResource() != null && newValue.eResource().eAdapters().contains(_contractResourceAdapter) == false) {
+            newValue.eResource().eAdapters().add(_contractResourceAdapter);
+          }
+          if (newValue.eAdapters().contains(_contractAdapter) == false) {
+            newValue.eAdapters().add(_contractAdapter);
+          }
         }
         _contract = newValue;
         _previousURI = EcoreUtil.getURI(_contract);

@@ -494,7 +494,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             break;
           }
         }
-        case Resource.RESOURCE__IS_MODIFIED: {
+        case Resource.RESOURCE__URI: {
           getSite().getShell().getDisplay().asyncExec(new Runnable() {
             public void run() {
               firePropertyChange(IEditorPart.PROP_DIRTY);

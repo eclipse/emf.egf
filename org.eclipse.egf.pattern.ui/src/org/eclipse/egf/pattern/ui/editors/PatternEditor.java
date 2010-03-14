@@ -41,6 +41,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.IWorkspaceCommandStack;
@@ -87,7 +88,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
      * Whether or not this resource has been removed
      */
     protected boolean resourceHasBeenRemoved;
- 
+
     private final ResourceListener resourceListener = new ResourceListener() {
 
         public void resourceMoved(Resource movedResource, final URI newURI) {
@@ -418,7 +419,7 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
         super.dispose();
     }
-
+    editingDomain.getResourceSet().eAdapters().remove(editorResourceAdapter);
     private final IOperationHistoryListener historyListener = new IOperationHistoryListener() {
         public void historyNotification(final OperationHistoryEvent event) {
             Set<Resource> affectedResources = ResourceUndoContext.getAffectedResources(event.getOperation());

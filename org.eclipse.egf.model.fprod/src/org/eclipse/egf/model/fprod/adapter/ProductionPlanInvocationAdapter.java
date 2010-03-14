@@ -16,6 +16,7 @@ import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -72,13 +73,33 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
 
   private AdapterImpl _activityResourceAdapter = new AdapterImpl() {
     @Override
-    public void notifyChanged(Notification notification) {
+    public void notifyChanged(final Notification notification) {
       // URI update while moving a resource
       if (notification.getEventType() == Notification.SET) {
         switch (notification.getFeatureID(Resource.class)) {
         case Resource.RESOURCE__URI: {
           if (_productionPlanInvocation.eResource() != null) {
-            ((ResourceImpl) _productionPlanInvocation.eResource()).setModified(true);
+            final ResourceImpl resource = (ResourceImpl) _productionPlanInvocation.eResource();
+            resource.setModified(true);
+            if (resource.eNotificationRequired()) {
+              Notification innerNotification = new NotificationImpl(Notification.SET, notification.getOldValue(), notification.getOldValue()) {
+                @Override
+                public Object getFeature() {
+                  return notification.getNotifier();
+                }
+
+                @Override
+                public Object getNotifier() {
+                  return resource;
+                }
+
+                @Override
+                public int getFeatureID(Class<?> expectedClass) {
+                  return Resource.RESOURCE__URI;
+                }
+              };
+              resource.eNotify(innerNotification);
+            }
           }
           break;
         }
