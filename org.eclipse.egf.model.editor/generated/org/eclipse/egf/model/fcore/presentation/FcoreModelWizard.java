@@ -219,11 +219,16 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    */
   protected EObject createInitialModel() {
     EClass eClass = (EClass) fcorePackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+    EObject eObject = null;
     if (eClass == null) {
       eClass = (EClass) ftaskPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-      return ftaskFactory.create(eClass);
+      eObject = ftaskFactory.create(eClass);
     }
-    return fcoreFactory.create(eClass);
+    if (eObject == null) {
+      eObject = fcoreFactory.create(eClass);
+    }
+    eObject.eSet(FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME, getModelFile().getFullPath().removeFileExtension().lastSegment().toString());
+    return eObject;
   }
 
   /**
