@@ -75,7 +75,8 @@ public class JetReconcilingStrategy extends JETReconcilingStrategy {
         Map<String, List<Problem>> methodProblems = JetTemplateEditor.getMethodProblems();
         List<Problem> javaContentProblems = new ArrayList<Problem>();
         if (methodProblems != null && !methodProblems.isEmpty()) {
-            javaContentProblems = methodProblems.get(name);
+            if (methodProblems.containsKey(name))
+                javaContentProblems = methodProblems.get(name);
         }
         List<Problem> evaluateProblems = JETEditorHelper.evaluateProblems(jetEditor, sourceViewer.getDocument());
         Iterator<Problem> iter = evaluateProblems.iterator();
