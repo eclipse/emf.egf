@@ -80,7 +80,7 @@ import org.eclipse.ui.actions.ActionFactory;
  */
 public class FcoreActionBarContributor extends EditingDomainActionBarContributor implements ISelectionChangedListener {
 
-  private final List<MenuContributor> viewpointContributors = new ArrayList<MenuContributor>();
+  private final List<MenuContributor> menuContributors = new ArrayList<MenuContributor>();
 
   /**
    * This keeps track of the active editor.
@@ -200,7 +200,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
       try {
         MenuContributor contributor = (MenuContributor) element.createExecutableExtension("class"); //$NON-NLS-1$
         contributor.setParentContributor(this);
-        viewpointContributors.add(contributor);
+        menuContributors.add(contributor);
       } catch (CoreException e) {
         EGFCoreUIPlugin.getDefault().logError(e);
       }
@@ -350,7 +350,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
         selectionChanged(new SelectionChangedEvent(selectionProvider, selectionProvider.getSelection()));
       }
     }
-    for (MenuContributor vpc : viewpointContributors)
+    for (MenuContributor vpc : menuContributors)
       vpc.setActiveEditor(part);
 
   }
@@ -407,7 +407,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
       createSiblingMenuManager.update(true);
     }
 
-    for (MenuContributor vpc : viewpointContributors) {
+    for (MenuContributor vpc : menuContributors) {
       vpc.selectionChanged(event);
     }
 
@@ -527,7 +527,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
     populateManager(submenuManager, createSiblingActions, null);
     menuManager.insertBefore("edit", submenuManager); //$NON-NLS-1$
 
-    for (MenuContributor vpc : viewpointContributors) {
+    for (MenuContributor vpc : menuContributors) {
       vpc.menuAboutToShow(menuManager);
     }
 
