@@ -57,11 +57,10 @@
          <attribute name="id" type="string" use="required">
             <annotation>
                <documentation>
-                  FactoryComponent identifier.
+                  Fcore resource path. 
+It should be a relative path to its container.
+It&apos;s type is string rather than a resource as PDE doesn&apos;t handle move refactoring between Bundle project.
                </documentation>
-               <appInfo>
-                  <meta.attribute kind="resource"/>
-               </appInfo>
             </annotation>
          </attribute>
       </complexType>
