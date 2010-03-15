@@ -47,6 +47,7 @@ import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener.ResourceListener
 import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
+import org.eclipse.egf.model.editor.adapter.TaskJavaBundleAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
@@ -447,7 +448,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * 
    * @generated NOT
    */
-  protected PatternBundleAdapter egfAdapter;
+  protected List<EContentAdapter> egfAdapters = new UniqueEList<EContentAdapter>();
 
   /**
    * <!-- begin-user-doc -->
@@ -1095,8 +1096,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       resourceToDiagnosticMap.put(resource.getURI(), diagnostic);
     }
     getEditingDomain().getResourceSet().eAdapters().add(editorResourceAdapter);
-    egfAdapter = new PatternBundleAdapter(getSite());
-    getEditingDomain().getResourceSet().eAdapters().add(egfAdapter);
+    egfAdapters.add(new PatternBundleAdapter(getSite()));
+    egfAdapters.add(new TaskJavaBundleAdapter(getSite()));
+    getEditingDomain().getResourceSet().eAdapters().addAll(egfAdapters);
   }
 
   /**
@@ -1821,7 +1823,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
 
     // Remove our adapters
     editingDomain.getResourceSet().eAdapters().remove(editorResourceAdapter);
-    editingDomain.getResourceSet().eAdapters().remove(egfAdapter);
+    for (EContentAdapter adapter : egfAdapters) {
+      editingDomain.getResourceSet().eAdapters().remove(adapter);
+    }
 
     // Remove our listeners
     getSite().getPage().removePartListener(partListener);
