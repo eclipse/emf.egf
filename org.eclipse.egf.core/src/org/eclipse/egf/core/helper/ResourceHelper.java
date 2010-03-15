@@ -13,11 +13,13 @@ package org.eclipse.egf.core.helper;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.emf.common.util.URI;
@@ -164,6 +166,62 @@ public class ResourceHelper {
       applicable.add(reference);
     }
     return applicable;
+  }
+
+  /**
+   * is there any unresolved proxy against this resource ?
+   * This method doesn't resolve proxies while analysed
+   */
+  public static boolean hasURIProxyReferences(Resource resource, URI uri) {
+    Assert.isNotNull(resource);
+    if (uri == null) {
+      return false;
+    }
+    Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EMFHelper.URIProxyCrossReferencer.find(resource, uri);
+    return proxies == null || proxies.size() == 0;
+  }
+
+  /**
+   * return unresolved proxies for this resource ?
+   * This method doesn't resolve proxies while analysed
+   */
+  public static Map<EObject, Collection<EStructuralFeature.Setting>> getURIProxyReferences(Resource resource, URI uri) {
+    Assert.isNotNull(resource);
+    Map<EObject, Collection<EStructuralFeature.Setting>> references = new HashMap<EObject, Collection<EStructuralFeature.Setting>>();
+    if (uri == null) {
+      return references;
+    }
+    return EMFHelper.URIProxyCrossReferencer.find(resource, uri);
+  }
+
+  /**
+   * return owners of proxies who qualify a resource URI
+   * This method doesn't resolve proxies while analysed
+   */
+  public static List<EObject> getURIProxyReferenceOwners(Resource resource, URI uri) {
+    Assert.isNotNull(resource);
+    List<EObject> owners = new UniqueEList<EObject>();
+    if (uri == null) {
+      return owners;
+    }
+    // Build proxies list
+    Map<EObject, Collection<EStructuralFeature.Setting>> proxies = getURIProxyReferences(resource, uri);
+    for (EObject reference : proxies.keySet()) {
+      // Build holders list
+      for (EStructuralFeature.Setting setting : proxies.get(reference)) {
+        URI holderURI = EcoreUtil.getURI(setting.getEObject());
+        if (holderURI == null) {
+          continue;
+        }
+        // Looking for an holder who match our current resource uri
+        // Since the first one we found we iterate
+        if (resource.getURI().equals(holderURI.trimFragment())) {
+          owners.add(setting.getEObject());
+          break;
+        }
+      }
+    }
+    return owners;
   }
 
 }
