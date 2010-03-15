@@ -13,6 +13,9 @@
       <fcore
             id="Default_pattern_strategy_task.fcore">
       </fcore>
+      <fcore
+            id="Pattern_task.fcore">
+      </fcore>
    </extension>
 
 </plugin>
