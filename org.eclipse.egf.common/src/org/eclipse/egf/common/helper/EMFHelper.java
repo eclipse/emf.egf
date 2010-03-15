@@ -10,8 +10,11 @@
  */
 package org.eclipse.egf.common.helper;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -21,9 +24,12 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -246,6 +252,89 @@ public class EMFHelper {
       }
     }
     return result;
+  }
+
+  /**
+   * A cross referencer that finds resolved proxies against a particular URI while
+   * ignoring non resolved proxies.
+   */
+  public static class URIProxyCrossReferencer extends CrossReferencer {
+
+    private static final long serialVersionUID = 1L;
+
+    private URI _uri;
+
+    /**
+     * Creates an instance for the given resource.
+     * 
+     * @param resource
+     *          the resource to cross reference.
+     */
+    protected URIProxyCrossReferencer(Resource resource, URI uri) {
+      super(Collections.singleton(resource));
+      _uri = uri;
+    }
+
+    /**
+     * Return true if potential cross references that are proxies should be resolved.
+     * 
+     * @return if the cross referencer should resolve proxies.
+     */
+    @Override
+    protected boolean resolve() {
+      return false;
+    }
+
+    /**
+     * Return true if the specified eReference from eObject to crossReferencedEObject should be
+     * considered a cross reference by this cross referencer.
+     * 
+     * @param eObject
+     *          an object in the cross referencer's content tree.
+     * @param eReference
+     *          a reference from the object.
+     * @param crossReferencedEObject
+     *          the target of the specified reference.
+     * @return if the cross referencer should consider the specified reference a cross reference.
+     */
+    @Override
+    protected boolean crossReference(EObject eObject, EReference eReference, EObject crossReferencedEObject) {
+      if (crossReferencedEObject.eIsProxy() == false) {
+        return false;
+      }
+      URI uri = EcoreUtil.getURI(crossReferencedEObject);
+      if (uri == null) {
+        return false;
+      }
+      uri = uri.trimFragment();
+      if (_uri.equals(uri)) {
+        return true;
+      }
+      return false;
+    }
+
+    /**
+     * Returns the map of proxy references for this cross referencer.
+     * 
+     * @return a map of cross references.
+     */
+    protected Map<EObject, Collection<EStructuralFeature.Setting>> findProxyCrossReferences() {
+      crossReference();
+      done();
+      return this;
+    }
+
+    /**
+     * Returns a map of all proxy references from the specified content tree.
+     * 
+     * @param resource
+     *          a resource whose content tree should be considered.
+     * @return a map of cross references.
+     */
+    public static Map<EObject, Collection<EStructuralFeature.Setting>> find(Resource resource, URI uri) {
+      return new URIProxyCrossReferencer(resource, uri).findProxyCrossReferences();
+    }
+
   }
 
 }
