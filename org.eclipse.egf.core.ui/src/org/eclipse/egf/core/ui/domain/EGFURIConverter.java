@@ -11,16 +11,11 @@
 package org.eclipse.egf.core.ui.domain;
 
 import java.util.Collection;
-import java.util.List;
 
 import org.eclipse.egf.core.EGFCorePlugin;
-import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
-import org.eclipse.egf.core.fcore.IResourceFcoreListener;
-import org.eclipse.egf.core.pde.EGFPDEPlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
@@ -41,26 +36,11 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
   };
 
   /**
-   * This listens for fcore changes.
-   */
-  protected IResourceFcoreListener _fcoreListener = new IResourceFcoreListener() {
-    public void fcoreChanged(IResourceFcoreDelta delta) {
-      // Ignore updated resources
-      List<URI> removed = delta.getRemovedFcores();
-      List<URI> added = delta.getNewFcores();
-      if ((removed != null && removed.size() > 0) || (added != null && added.size() > 0)) {
-        loadURIMap();
-      }
-    }
-  };
-
-  /**
    * Creates an instance.
    */
   public EGFURIConverter() {
     super();
     EGFPlatformPlugin.getPlatformManager().addInFrontPlatformExtensionPointListener(_platformListener);
-    EGFPDEPlugin.getDefault().addResourceFcoreListener(_fcoreListener);
     loadURIMap();
   }
 
@@ -70,7 +50,6 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
   public EGFURIConverter(Collection<URIHandler> uriHandlers, Collection<ContentHandler> contentHandlers) {
     super(uriHandlers, contentHandlers);
     EGFPlatformPlugin.getPlatformManager().addInFrontPlatformExtensionPointListener(_platformListener);
-    EGFPDEPlugin.getDefault().addResourceFcoreListener(_fcoreListener);
     loadURIMap();
   }
 
@@ -79,7 +58,6 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
    */
   public void dispose() {
     EGFPlatformPlugin.getPlatformManager().removePlatformExtensionPointListener(_platformListener);
-    EGFPDEPlugin.getDefault().removeResourceFcoreListener(_fcoreListener);
     loadURIMap();
   }
 

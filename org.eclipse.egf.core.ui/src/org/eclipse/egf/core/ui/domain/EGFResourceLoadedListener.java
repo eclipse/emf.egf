@@ -24,9 +24,6 @@ import org.eclipse.core.commands.operations.ObjectUndoContext;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
-import org.eclipse.egf.core.fcore.IResourceFcoreDelta;
-import org.eclipse.egf.core.fcore.IResourceFcoreListener;
-import org.eclipse.egf.core.pde.EGFPDEPlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
@@ -48,7 +45,7 @@ import org.eclipse.ui.PlatformUI;
  * @author Thomas Guiu
  * 
  */
-public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Delegate {
+public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Delegate {
 
   public static final ResourceEventManager RESOURCE_MANAGER = new ResourceEventManager();
 
@@ -89,6 +86,8 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
     final List<ResourceListener> _listeners = new ArrayList<ResourceListener>();
 
     final Map<Resource, List<ResourceUser>> _observers = new HashMap<Resource, List<ResourceUser>>();
+
+    final List<Resource> _deletedFcores = new UniqueEList<Resource>();
 
     // Due to PDE bug notification we need to handle
     // notification in a weird way
@@ -151,6 +150,9 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       } catch (InterruptedException e) {
         EGFCoreUIPlugin.getDefault().logError(e);
       }
+      // Clear our context
+      _fcores.clear();
+      _deletedFcores.clear();
     }
 
     private boolean noMoreObserver() {
@@ -168,7 +170,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       }
       boolean isDirty = false;
       // Check whether or not we are editing the current resource
-      List<ResourceUser> users = RESOURCE_MANAGER._observers.get(resource);
+      List<ResourceUser> users = _observers.get(resource);
       if (users != null) {
         for (ResourceUser user : users) {
           // This state is propagated, the first user is enough to check this state
@@ -176,9 +178,11 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
           break;
         }
       }
-      // Notify
-      for (ResourceListener l : RESOURCE_MANAGER._listeners) {
-        l.resourceDeleted(resource);
+      // Notify, use an iterator as a closing editor always remove its listener
+      // This we avoid any concurrent modification exception
+      for (Iterator<ResourceListener> iterator = _listeners.iterator(); iterator.hasNext();) {
+        ResourceListener resourceListener = iterator.next();
+        resourceListener.resourceDeleted(resource);
       }
       // Non dirty editors should close themselves while editing a deleted resource if any
       if (isDirty == false) {
@@ -187,7 +191,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
           editingDomain.getResourceSet().getResources().remove(resource);
         }
         // Start Workaround PDE Bug 267954
-        RESOURCE_MANAGER._fcores.remove(resource);
+        _fcores.remove(resource);
         // End Workaround PDE Bug 267954
       }
     }
@@ -202,7 +206,8 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       } catch (IOException ioe) {
         // Just Ignore
       }
-      for (ResourceListener resourceListener : _listeners) {
+      for (Iterator<ResourceListener> iterator = _listeners.iterator(); iterator.hasNext();) {
+        ResourceListener resourceListener = iterator.next();
         resourceListener.resourceReloaded(resource);
       }
     }
@@ -222,13 +227,14 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
         if (EGFCoreUIPlugin.getDefault().isDebugging()) {
           EGFPlatformPlugin.getDefault().logInfo(NLS.bind("EGFResourceLoadedListener.movedResource(...) - discard loaded empty resource with errors ''{0}''", resource.getURI())); //$NON-NLS-1$           
         }
-        RESOURCE_MANAGER._fcores.remove(resource);
-        // Load it in our resource set, this will force ui to be notified if adapted
+        _fcores.remove(resource);
+        // Load it in our resource set
         movedResource = editingDomain.getResourceSet().getResource(newURI, true);
       }
-      RESOURCE_MANAGER._fcores.remove(movedResource);
+      _fcores.remove(movedResource);
       movedResource.setURI(newURI);
-      for (ResourceListener resourceListener : _listeners) {
+      for (Iterator<ResourceListener> iterator = _listeners.iterator(); iterator.hasNext();) {
+        ResourceListener resourceListener = iterator.next();
         resourceListener.resourceMoved(movedResource, oldURI);
       }
     }
@@ -292,10 +298,6 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
 
       Map<Resource, IPlatformFcore> deltaRemovedFcores = new HashMap<Resource, IPlatformFcore>();
 
-      // Guard, this will be reset to null in _fcoreListener
-      // This let us know whether or not _platformListener is called before or after _fcoreListener
-      _deletedFcores = new UniqueEList<Resource>();
-
       // Check if a removed platform fcore is applicable
       for (IPlatformFcore fcore : delta.getRemovedPlatformExtensionPoints(IPlatformFcore.class)) {
         Resource resource = editingDomain.getResourceSet().getResource(fcore.getURI(), false);
@@ -328,7 +330,7 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
             EGFPlatformPlugin.getDefault().logInfo(NLS.bind("EGFResourceLoadedListener.platformExtensionPointChanged(...) - discard loaded empty resource with errors ''{0}''", resource.getURI())); //$NON-NLS-1$           
           }
           RESOURCE_MANAGER._fcores.remove(resource);
-          // Load it in our resource set, this will force ui to be notified if adapted
+          // Load it in our resource set
           resource = editingDomain.getResourceSet().getResource(fcore.getURI(), true);
           if (resource == null) {
             continue;
@@ -353,12 +355,15 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
       if (deltaRemovedFcores.isEmpty() == false) {
         for (Resource resource : deltaRemovedFcores.keySet()) {
           IPlatformFcore fcore = deltaRemovedFcores.get(resource);
-          // We only process target Fcore at this stage, workspace fcores are processed by _fcoreListener
-          if (fcore.getPlatformBundle().isTarget() == false) {
-            _deletedFcores.add(resource);
-            continue;
+          // We process target deleted fcore at this stage and deleted fcore when the main
+          // listener is called before _platformListener
+          if (RESOURCE_MANAGER._deletedFcores.contains(resource) || fcore.getPlatformBundle().isTarget()) {
+            RESOURCE_MANAGER.removeResource(editingDomain, resource);
+            RESOURCE_MANAGER._deletedFcores.remove(resource);
+          } else {
+            // _platformListener has been called first, populate _deletedFcores and let the main listener to process it
+            RESOURCE_MANAGER._deletedFcores.add(resource);
           }
-          RESOURCE_MANAGER.removeResource(editingDomain, resource);
         }
       }
 
@@ -374,138 +379,107 @@ public class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer.Deleg
 
   };
 
-  /**
-   * This listens for fcore changes.
-   */
-  protected IResourceFcoreListener _fcoreListener = new IResourceFcoreListener() {
-    public void fcoreChanged(IResourceFcoreDelta delta) {
-      // Retrieve our current Editing Domain
-      TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-      // Process Deleted Resources
-      for (URI uri : delta.getRemovedFcores()) {
-        // Process removed fcores detected in _platformListener
-        Resource resource = null;
-        if (_deletedFcores != null) {
-          for (Resource deletedFcore : _deletedFcores) {
-            if (uri.equals(deletedFcore.getURI())) {
-              resource = deletedFcore;
-              break;
-            }
-          }
-          // if _platformListener has not been processed, check whether or not this resource is in our resource set
-        } else {
-          resource = editingDomain.getResourceSet().getResource(uri, false);
-        }
-        // Nothing to process
-        if (resource == null) {
-          continue;
-        }
-        RESOURCE_MANAGER.removeResource(editingDomain, resource);
-      }
-      // Guard, this will be reset to en empty list in _platformListener
-      // This let us know whether or not _platformListener is called before or after _fcoreListener
-      _deletedFcores = null;
-      // Process Moved Resources
-      Map<URI, URI> movedFcores = delta.getMovedFcores();
-      for (URI oldURI : movedFcores.keySet()) {
-        URI newURI = movedFcores.get(oldURI);
-        Resource resource = editingDomain.getResourceSet().getResource(oldURI, false);
-        if (resource == null) {
-          resource = editingDomain.getResourceSet().getResource(newURI, false);
-        }
-        if (resource != null) {
-          for (ResourceListener l : RESOURCE_MANAGER._listeners) {
-            l.resourceMoved(resource, movedFcores.get(uri));
-          }
-        }
-      }
-    }
-  };
-
-  private List<Resource> _deletedFcores = null;
+  private TransactionalEditingDomain _editingDomain;
 
   public EGFResourceLoadedListener() {
     EGFPlatformPlugin.getPlatformManager().addPlatformExtensionPointListener(_platformListener);
-    EGFPDEPlugin.getDefault().addResourceFcoreListener(_fcoreListener);
+  }
+
+  public TransactionalEditingDomain getEditingDomain() {
+    if (_editingDomain == null) {
+      _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+    }
+    return _editingDomain;
   }
 
   public boolean handleResourcePersisted(Resource resource) {
-    for (ResourceListener l : RESOURCE_MANAGER._listeners) {
-      l.internalUpdate(resource);
+    for (Iterator<ResourceListener> iterator = RESOURCE_MANAGER._listeners.iterator(); iterator.hasNext();) {
+      ResourceListener resourceListener = iterator.next();
+      resourceListener.internalUpdate(resource);
     }
     return true;
   }
 
-  public boolean handleResourceMoved(Resource resource, URI newURI) {
-    // ignore fcore resources, they are handled by _fcoreListener
-    if (IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(resource.getURI().fileExtension()) == false) {
-      for (ResourceListener l : RESOURCE_MANAGER._listeners) {
-        l.resourceMoved(resource, newURI);
-      }
+  public boolean handleResourceMoved(Resource movedResource, URI newURI) {
+    // Moved resource are always in non dirty editors
+    // when moving a dirty resource the platform request to save the resource
+    // if not saved the resource is not moved
+    Resource resource = getEditingDomain().getResourceSet().getResource(movedResource.getURI(), false);
+    if (resource == null) {
+      resource = getEditingDomain().getResourceSet().getResource(newURI, false);
+    }
+    if (resource != null) {
+      // Notify moved resource
+      RESOURCE_MANAGER.movedResource(getEditingDomain(), resource, newURI);
     }
     return true;
   }
 
-  public boolean handleResourceDeleted(Resource resource) {
-    // ignore fcore resources, they are handled by _fcoreListener
-    if (IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(resource.getURI().fileExtension()) == false) {
-      resource.unload();
-      if (resource.getResourceSet() != null) {
-        resource.getResourceSet().getResources().remove(resource);
-      }
-      for (ResourceListener l : RESOURCE_MANAGER._listeners) {
-        l.resourceDeleted(resource);
-      }
+  public boolean handleResourceDeleted(Resource deletedResource) {
+    // Process Deleted Resources
+    if (RESOURCE_MANAGER._deletedFcores.contains(deletedResource) || IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(deletedResource.getURI().fileExtension()) == false) {
+      // _platformListener has been called first, Process workspace removed fcores detected in _platformListener
+      RESOURCE_MANAGER.removeResource(getEditingDomain(), deletedResource);
+      RESOURCE_MANAGER._deletedFcores.remove(deletedResource);
+    } else {
+      // the main listener has been called first, populate _deletedFcores and let _platformListener process it
+      RESOURCE_MANAGER._deletedFcores.add(deletedResource);
     }
     return true;
   }
 
-  public boolean handleResourceChanged(final Resource resource) {
-    List<ResourceUser> users = RESOURCE_MANAGER._observers.get(resource);
+  public boolean handleResourceChanged(final Resource changedResource) {
+    List<ResourceUser> users = RESOURCE_MANAGER._observers.get(changedResource);
+    // No one edit this resource, process a standard reload
     if (users == null) {
-      RESOURCE_MANAGER.reloadResource(resource);
+      RESOURCE_MANAGER.reloadResource(changedResource);
       return true;
     }
+    // Check the state of this edited resource
     boolean hasSavedResource = false;
     boolean isDirty = false;
     for (ResourceUser user : users) {
-      // We need to deeply analyse users as anyone could have saved this resource if any
+      // We need to deeply analyze users as anyone could have saved this resource if any
       hasSavedResource |= user.userHasSavedResource();
       // This state is propagated, the first user is enough to check this state
       isDirty |= user.isDirty();
     }
+    // Nothing to do, we just reload the resource
     if (hasSavedResource == false && isDirty == false) {
-      RESOURCE_MANAGER.reloadResource(resource);
+      RESOURCE_MANAGER.reloadResource(changedResource);
       return true;
     }
+    // Dirty resource
     if (hasSavedResource == false && isDirty) { // Give a chance to cancel dirty editors while reloading external changed resource
       final Boolean[] reload = new Boolean[] { Boolean.FALSE };
       Display.getDefault().syncExec(new Runnable() {
         public void run() {
           IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
           if (activeWorkbenchWindow != null) {
-            reload[0] = MessageDialog.openQuestion(activeWorkbenchWindow.getShell(), CoreUIMessages.ResourceListener_reloadDialog_title, NLS.bind(CoreUIMessages.ResourceListener_reloadDialog_message, URI.decode(resource.getURI().toString())));
+            reload[0] = MessageDialog.openQuestion(activeWorkbenchWindow.getShell(), CoreUIMessages.ResourceListener_reloadDialog_title, NLS.bind(CoreUIMessages.ResourceListener_reloadDialog_message, URI.decode(changedResource.getURI().toString())));
           }
         }
       });
       if (reload[0]) {
-        RESOURCE_MANAGER.reloadResource(resource);
+        RESOURCE_MANAGER.reloadResource(changedResource);
         return true;
       }
-      for (ResourceListener l : RESOURCE_MANAGER._listeners) {
-        l.externalUpdate(resource);
+      for (Iterator<ResourceListener> iterator = RESOURCE_MANAGER._listeners.iterator(); iterator.hasNext();) {
+        ResourceListener resourceListener = iterator.next();
+        resourceListener.externalUpdate(changedResource);
       }
       return true;
     }
-    for (ResourceListener l : RESOURCE_MANAGER._listeners) {
-      l.internalUpdate(resource);
+    // Non dirty resource
+    for (Iterator<ResourceListener> iterator = RESOURCE_MANAGER._listeners.iterator(); iterator.hasNext();) {
+      ResourceListener resourceListener = iterator.next();
+      resourceListener.internalUpdate(changedResource);
     }
     return true;
   }
 
   public void dispose() {
     EGFPlatformPlugin.getPlatformManager().removePlatformExtensionPointListener(_platformListener);
-    EGFPDEPlugin.getDefault().removeResourceFcoreListener(_fcoreListener);
   }
 
 }
