@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -17,7 +17,7 @@ import org.eclipse.egf.core.producer.InvocationException;
  * @author Xavier Maysonnave
  * 
  */
-public interface ITaskJavaProductionInvocation {
+public interface ITaskProductionInvocation {
 
   public void invoke(final IProgressMonitor monitor) throws InvocationException;
 

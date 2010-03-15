@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -18,7 +18,7 @@ import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.ftask.FtaskPackage;
-import org.eclipse.egf.model.ftask.TaskJava;
+import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.producer.context.ActivityProductionContextProducer;
 import org.eclipse.emf.ecore.EClass;
 
@@ -26,21 +26,21 @@ import org.eclipse.emf.ecore.EClass;
  * @author Xavier Maysonnave
  * 
  */
-public class TaskJavaProductionContextProducer extends ActivityProductionContextProducer<TaskJava> {
+public class TaskProductionContextProducer extends ActivityProductionContextProducer<Task> {
 
-  @Override
-  public EClass getActivity() {
-    return FtaskPackage.Literals.TASK_JAVA;
-  }
+    @Override
+    public EClass getActivity() {
+        return FtaskPackage.Literals.TASK;
+    }
 
-  @Override
-  protected ITaskProductionContext doCreateActivityProductionContext(ProjectBundleSession projectBundleSession, Activity activity) throws InvocationException {
-    return FtaskProducerContextFactory.createContext(projectBundleSession, (TaskJava) activity);
-  }
+    @Override
+    protected ITaskProductionContext doCreateActivityProductionContext(ProjectBundleSession projectBundleSession, Activity activity) throws InvocationException {
+        return FtaskProducerContextFactory.createContext(projectBundleSession, (Task) activity);
+    }
 
-  @Override
-  protected ITaskProductionContext doCreateActivityProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, Activity activity) throws InvocationException {
-    return FtaskProducerContextFactory.createContext(parent, projectBundleSession, (TaskJava) activity);
-  }
+    @Override
+    protected ITaskProductionContext doCreateActivityProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, Activity activity) throws InvocationException {
+        return FtaskProducerContextFactory.createContext(parent, projectBundleSession, (Task) activity);
+    }
 
 }

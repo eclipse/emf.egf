@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -15,21 +15,21 @@ import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
-import org.eclipse.egf.model.ftask.TaskJava;
+import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.producer.internal.context.ActivityProductionContext;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class TaskJavaProductionContext extends ActivityProductionContext<TaskJava> implements ITaskProductionContext {
+public class TaskProductionContext extends ActivityProductionContext<Task> implements ITaskProductionContext {
 
-  public TaskJavaProductionContext(ProjectBundleSession projectBundleSession, TaskJava element, String name) {
-    super(projectBundleSession, element, name);
-  }
+    public TaskProductionContext(ProjectBundleSession projectBundleSession, Task element, String name) {
+        super(projectBundleSession, element, name);
+    }
 
-  public TaskJavaProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, TaskJava element, String name) {
-    super(parent, projectBundleSession, element, name);
-  }
+    public TaskProductionContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, Task element, String name) {
+        super(parent, projectBundleSession, element, name);
+    }
 
 }

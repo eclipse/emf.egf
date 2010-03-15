@@ -33,7 +33,7 @@ import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.fprod.FprodFactory;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
-import org.eclipse.egf.model.ftask.TaskJava;
+import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
@@ -155,7 +155,7 @@ public class CreateFcoreUtil {
         TypeDomainURI type1 = DomainFactory.eINSTANCE.createTypeDomainURI();
         type1.setDomain(ecoreDomainURI);
         invocationContract1.setType(type1);
-        
+
         FactoryComponentContract targetFactoryComponentContract2 = (FactoryComponentContract) emfDocGenHtmlResource.getEObject("_7NKWkApbEd-pyqf4uNW3tw"); //$NON-NLS-1$
         InvocationContract invocationContract2 = FcoreFactory.eINSTANCE.createInvocationContract();
         invocationContractContainer.getInvocationContracts().add(invocationContract2);
@@ -174,7 +174,7 @@ public class CreateFcoreUtil {
     }
 
     private void createTaskInvocation(String targetTaskId, String targetTaskContract, Resource targetActivityResource, ProductionPlan productionPlan, OrchestrationParameter orchestrationParameter) {
-        TaskJava modelTask = (TaskJava) targetActivityResource.getEObject(targetTaskId);
+        Task modelTask = (Task) targetActivityResource.getEObject(targetTaskId);
         ProductionPlanInvocation productionPlanInvocation = FprodFactory.eINSTANCE.createProductionPlanInvocation();
         productionPlan.getInvocations().add(productionPlanInvocation);
         productionPlanInvocation.setInvokedActivity(modelTask);

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * Copyright (c) 2009 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -16,7 +16,7 @@ import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.ftask.FtaskPackage;
-import org.eclipse.egf.model.ftask.TaskJava;
+import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.manager.IModelElementManager;
@@ -27,26 +27,26 @@ import org.osgi.framework.Bundle;
  * @author Xavier Maysonnave
  * 
  */
-public class TaskJavaManagerProducer extends ActivityManagerProducer<TaskJava> {
+public class TaskManagerProducer extends ActivityManagerProducer<Task> {
 
-  @Override
-  public EClass getActivity() {
-    return FtaskPackage.Literals.TASK_JAVA;
-  }
+    @Override
+    public EClass getActivity() {
+        return FtaskPackage.Literals.TASK;
+    }
 
-  @Override
-  protected IActivityManager<TaskJava> doCreateActivityManager(Activity activity) throws InvocationException {
-    return TaskManagerFactory.createProductionManager((TaskJava) activity);
-  }
+    @Override
+    protected IActivityManager<Task> doCreateActivityManager(Activity activity) throws InvocationException {
+        return TaskManagerFactory.createProductionManager((Task) activity);
+    }
 
-  @Override
-  protected IActivityManager<TaskJava> doCreateActivityManager(Bundle bundle, Activity activity) throws InvocationException {
-    return TaskManagerFactory.createProductionManager(bundle, (TaskJava) activity);
-  }
+    @Override
+    protected IActivityManager<Task> doCreateActivityManager(Bundle bundle, Activity activity) throws InvocationException {
+        return TaskManagerFactory.createProductionManager(bundle, (Task) activity);
+    }
 
-  @Override
-  protected <T extends Invocation> IActivityManager<TaskJava> doCreateActivityManager(IModelElementManager<T, InvocationContract> parent, Activity activity) throws InvocationException {
-    return TaskManagerFactory.createProductionManager(parent, (TaskJava) activity);
-  }
+    @Override
+    protected <T extends Invocation> IActivityManager<Task> doCreateActivityManager(IModelElementManager<T, InvocationContract> parent, Activity activity) throws InvocationException {
+        return TaskManagerFactory.createProductionManager(parent, (Task) activity);
+    }
 
 }

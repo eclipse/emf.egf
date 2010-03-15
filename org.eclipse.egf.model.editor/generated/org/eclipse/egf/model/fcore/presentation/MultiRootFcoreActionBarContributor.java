@@ -17,7 +17,7 @@ import org.eclipse.egf.model.fcore.presentation.actions.MultiRootFactoryComponen
 import org.eclipse.egf.model.fcore.presentation.actions.MultiRootFcoreCutAction;
 import org.eclipse.egf.model.fcore.presentation.actions.MultiRootFcoreDeleteAction;
 import org.eclipse.egf.model.fcore.presentation.actions.MultiRootFcorePasteAction;
-import org.eclipse.egf.model.fcore.presentation.actions.MultiRootTaskJavaCreateAction;
+import org.eclipse.egf.model.fcore.presentation.actions.MultiRootTaskCreateAction;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -65,7 +65,7 @@ public class MultiRootFcoreActionBarContributor extends FcoreActionBarContributo
       // Object should be a Resource
       if (object instanceof Resource) {
         actions.add(new MultiRootFactoryComponentCreateAction(activeEditorPart, new StructuredSelection(object)));
-        actions.add(new MultiRootTaskJavaCreateAction(activeEditorPart, new StructuredSelection(object)));
+        actions.add(new MultiRootTaskCreateAction(activeEditorPart, new StructuredSelection(object)));
       }
     }
     return actions;
@@ -86,7 +86,7 @@ public class MultiRootFcoreActionBarContributor extends FcoreActionBarContributo
       EditingDomain domain = ((IEditingDomainProvider) activeEditorPart).getEditingDomain();
       if (domain.getParent(object) instanceof Resource) {
         actions.add(new MultiRootFactoryComponentCreateAction(activeEditorPart, new StructuredSelection(domain.getParent(object))));
-        actions.add(new MultiRootTaskJavaCreateAction(activeEditorPart, new StructuredSelection(domain.getParent(object))));
+        actions.add(new MultiRootTaskCreateAction(activeEditorPart, new StructuredSelection(domain.getParent(object))));
       }
     }
     return actions;
