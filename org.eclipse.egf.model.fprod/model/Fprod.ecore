@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="fprod"
+    nsURI="http://www.eclipse.org/egf/1.0.0/fprod" nsPrefix="fprod">
+  <eClassifiers xsi:type="ecore:EClass" name="ProductionPlan" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Orchestration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="invocations" lowerBound="1"
+        upperBound="-1" eType="#//ProductionPlanInvocation" containment="true" resolveProxies="false"
+        eOpposite="#//ProductionPlanInvocation/productionPlan"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ProductionPlanInvocation" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Invocation">
+    <eOperations name="getFactoryComponent" lowerBound="1" eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//FactoryComponent"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="productionPlan" lowerBound="1"
+        eType="#//ProductionPlan" resolveProxies="false" eOpposite="#//ProductionPlan/invocations"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin> 
+
+  <extension
+    point="org.eclipse.egf.common.logger"
+  >
+    <logger
+      class="org.eclipse.egf.console.internal.EGFLoggerFactory"
+    />
+  </extension>
+
+  <extension
+    point="org.eclipse.ui.themes"
+  >
+  
+    <themeElementCategory 
+      label="%consolePresentation.label" 
+      id="org.eclipse.egf.presentation.themes"
+    />
+    
+    <fontDefinition
+      defaultsTo="org.eclipse.jface.textfont"
+      label="%ConsoleFont.label"
+      categoryId="org.eclipse.egf.presentation.themes"
+      id="org.eclipse.egf.presentation.font"
+    >
+      <description>%ConsoleFont.description</description>
+    </fontDefinition>
+    
+  </extension>
+
+  <extension
+    point="org.eclipse.ui.keywords"
+  >
+    <keyword
+      label="%egf.preferences.keyword.general"
+      id="org.eclipse.egf.general"
+    />  
+  </extension>
+    
+  <extension 
+    point="org.eclipse.core.runtime.preferences"
+  >
+    <initializer 
+      class="org.eclipse.egf.console.internal.ConsolePreferenceInitializer"
+    />
+  </extension>  
+  
+  <extension
+    point="org.eclipse.ui.preferencePages"
+  >
+    <page
+      name="%Console"
+      class="org.eclipse.egf.console.preferences.EGFPreferencePage"
+      category="org.eclipse.egf.preferences"      
+      id="org.eclipse.egf.console.preferences.EGFPreferencePage"
+    >
+      <keywordReference 
+        id="org.eclipse.egf.general"
+      />
+    </page>
+  </extension>  
+  
+  <extension
+    point="org.eclipse.ui.console.consoleFactories"
+  >
+    <consoleFactory
+      label="%EGF"
+      icon="$nl$/icons/eview16/console_view.gif"
+      class="org.eclipse.egf.console.internal.ConsoleFactory"
+    />
+  </extension>
+  
+  <extension
+    point="org.eclipse.ui.console.consolePageParticipants"
+  >
+    <consolePageParticipant
+      class="org.eclipse.egf.console.internal.ConsolePageParticipant"
+      id="org.eclipse.egf.console.internal.ConsolePageParticipant"
+    >
+      <enablement>
+        <instanceof 
+          value="org.eclipse.egf.console.internal.Console"
+        />
+      </enablement>
+    </consolePageParticipant>
+  </extension>
+  
+  <extension
+    point="org.eclipse.ui.console.consolePatternMatchListeners"
+  >
+    <consolePatternMatchListener
+      class="org.eclipse.egf.console.internal.ConsoleLineNotifier"
+      id="org.eclipse.egf.console.internal.ConsoleLineNotifier"
+      qualifier=".+"
+      regex=".+"
+    >
+      <enablement>
+        <test
+          property="org.eclipse.ui.console.consoleTypeTest"
+          value="%EGF"
+        />
+      </enablement>
+    </consolePatternMatchListener>
+  </extension>  
+  
+</plugin>  

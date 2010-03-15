@@ -1,0 +1,26 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.core.pde;singleton:=true
+Bundle-Version: 0.2.2.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.core.pde.EGFPDEPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.egf.common.ui;visibility:=reexport,
+ org.eclipse.egf.core;visibility:=reexport,
+ org.eclipse.jface.text,
+ org.eclipse.pde.ui,
+ org.eclipse.search,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.forms,
+ org.eclipse.ui.ide
+Export-Package: 
+ org.eclipse.egf.core.pde,
+ org.eclipse.egf.core.pde.extension,
+ org.eclipse.egf.core.pde.helper,
+ org.eclipse.egf.core.pde.plugin,
+ org.eclipse.egf.core.pde.tools
+Bundle-ActivationPolicy: lazy

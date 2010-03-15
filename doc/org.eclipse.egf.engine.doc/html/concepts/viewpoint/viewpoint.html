@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="viewpoint, architecture"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>Viewpoint</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+    	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+    	  <h2><font face="Arial,Helvetica"><font color="#ffffff">
+    	  &nbsp;Viewpoint
+    	  </font></font></h2>
+    	</td>
+    </tr>
+	</tbody>
+</table>
+
+<a name="definition"><h2>Definition</h2></a>
+<p class="Para">A viewpoint is a software perspective with all the conventions for constructing and using it.</p>
+  
+<a name="motivation"><h2>Motivation</h2></a>
+<p class="Para">The notion of viewpoint is introduced to decouple the generation concerns from the logic of generation itself realized by a activities (factory components, tasks). For instance, instead of declaring a mapping in code, it is explicitly declared in a mapping viewpoint with a mapping model. A generation can use several complementary viewpoints. Conversely, all the complementary viewpoints must cover all the generation concerns.</p>
+
+<p class="Para">Examples of viewpoints:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Model to model mapping (e.g., eCore-to-ecore, ecore-to-UML mappings)</li>
+    <li CLASS="Item">Generation with patterns</li>
+    <li CLASS="Item">DSL (Domain-Specific Language)</li>
+    <li CLASS="Item">Functional description</li>
+    <li CLASS="Item">Non-functional description (e.g., performance, safety, security)</li>
+    <li CLASS="Item">Architecture decisions</li>
+    <li CLASS="Item">Software product line decisions</li>
+    <li CLASS="Item">Deployment</li>
+    <li CLASS="Item">Licensing</li>
+</ul>
+
+<p class="Para">The structure of a specific viewpoint is presented in its own section. This section develops the generic concept of viewpoint and its relationship with the IEEE 1471-2000 <a href="#[1]">[1]</a> and ISO/IEC WD3 42010 - IEEE P42010/D3 <a href="#[2]">[2]</a> standards. The purpose of a viewpoint is to explicitly describe generation specifications and decisions. A viewpoint actually translates a generation concern and helps a software actor to express or understand a part of the generation description, and this without being polluted by implementation details. Regarding the software architecture description, generation description by viewpoint becomes a sub-part of the software architecture description.</p>
+
+<a name="structure"><h2>Structure</h2></a>
+
+<p class="Para">A viewpoint implements a software perspective with its own rationale, i.e. a purpose, choices and decisions, and practices. Several viewpoints can mutually implement the same perspective. For instance, the generation of a tool infrastructure requires mapping, non-functional (e.g., persistence), deployment viewpoints. A viewpoint is instatiated and stored in a model. The metamodel of this model formalizes a language, typically expressed with a DSL. Then, all the viewpoints jointly formalized the software architecture from the generation consideration.</p>
+
+<p align="center">
+  <img src="./images/viewpointStructure.jpg" alt="Viewpoint structure"/>
+</p>
+<p align="center">
+  <i>Figure 1. Viewpoint Structure</i>
+</p>
+
+<br>
+
+
+<a name="Extensibility"><h2>Extensibility</h2></a>
+<p>The list of viewpoints is variable with the project concerns. This implies that the structure where the viewpoints are described must be extensible and to meet evolution of generation needs.</p>
+
+<br>
+
+<dl>
+  <dt><a name="[1]">[1]</a> IEEE Standard 1471-2000, <i>IEEE Recommended Practice for Architectural Description of Software-Intensive Systems</i>, 21 September, 2000.</dt>
+  <dt><a name="[2]">[2]</a> ISO/IEC WD3 42010, IEEE P42010/D3, <i>Systems and software engineering - Architectural description</i>, 2008-09-14.</dt>
+</dl>
+
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<%
+String result = new String();
+
+for (EAnnotation annotation : ((EModelElement) _element).getEAnnotations()) {
+
+	if (annotation.getSource() == "http://www.eclipse.org/emf/2002/GenModel"
+		|| annotation.getSource() == "http://www.eclipse.org/egf/2010/GenDoc") {
+		for (Entry<String, String> detail : annotation.getDetails().entrySet()) {
+			if (detail.getKey()== "documentation" && detail.getValue() != "") {
+				result = result + detail.getValue();
+			}
+		}
+	}
+}
+%>
+
+<%	if (result.length() > 0) {%>
+	<p><%= result %></p>
+<% } // end if %>

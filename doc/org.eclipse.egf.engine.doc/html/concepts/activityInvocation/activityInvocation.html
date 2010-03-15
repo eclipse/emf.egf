@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="factory invocation, factory"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>Activity Invocation</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+    	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+    	  <h2><font face="Arial,Helvetica"><font color="#ffffff">
+    	  &nbsp;Activity invocation
+    	  </font></font></h2>
+    	</td>
+    </tr>
+	</tbody>
+</table>
+
+<a name="definition"><h2>Definition</h2></a>
+<p class="Para">An activity invocation is a step of an orchestration which invokes either an activity, i.e. a factory component or Java task.</p>
+
+  
+<a name="motivation"><h2>Motivation</h2></a>
+<p class="Para">An activity invocation corresponds to a delegation of work to another activity.</p>
+
+<a name="structure"><h2>Structure</h2></a>
+<p class="Para">A factory component delegates its work to a factory component or to a Java task. This creates a graph of activity dependencies (and not a tree, because an activaty can be used by several factory components). In a production plan, this graph of activity dependencies defines the execution order to execute activity factory components and Java tasks.</p>  
+<p class="Para">A parameter of an activity invocation is linked to an activity contract. The parameter value is either the value of a factory component contract, an orchestration context, or a local value to the activity invocation.</p>
+
+<p align="center">
+  <img src="./images/activityInvocationStructure.jpg" alt="Activity Invocation Structure"/>
+</p>
+<p align="center">
+  <i>Figure 1. Activity Invocation Structure</i>
+</p>
+
+
+</body>
+</html>

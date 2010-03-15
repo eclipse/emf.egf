@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+
+<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." >
+<meta name="author" content="Benoit Langlois" >
+<meta name="keywords" content="pattern, generation pattern"/>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=ISO-8859-1">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+
+<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="ISO-8859-1" TYPE="text/css">
+<title>Generation Pattern</title>
+</HEAD>
+<BODY BGCOLOR="#ffffff">
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+    	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+    	  <h2><font face="Arial,Helvetica"><font color="#ffffff">
+    	  &nbsp;Pattern
+    	  </font></font></h2>
+    	</td>
+    </tr>
+	</tbody>
+</table>
+
+<a name="definition"><h2>Definition</h2></a>
+<p class="Para">A pattern is a solution to a recurrent generation problem. The objective is 1) to produce assets in series (code, frameworks, tools, etc.), 2) to customize a generation in order to fit project needs.</p>
+  
+<a name="motivation"><h2>Motivation</h2></a>
+<p class="Para">The motivation is to produce assets with systematism and with the ability to tailor this generation. The pattern features are the following:</p>
+<ul>
+   <li>A pattern is an autonomous generation unit with <i>parameters and methods</i> which implement the pattern behavior.</li>
+   <li>The pattern <i>inheritance</i> allows the definition of standard behaviors and the ability to <i>customize</i> them afterwards by specialization.</li>
+   <li>The pattern delegation allows the ability to reuse existing patterns. The delegation can be a <i>simple delegation</i> or a delegation with a <i>pattern context injection</i> where the current pattern provides parameter values to the called pattern.</li>
+   <li>A parameter is a resource and can be from <i>any type</i>, e.g. a model, a file directory, a plugin.</li>
+   <li>A method conforms to a <i>language</i> specific to a concern, for instance to apply model-to-text transformations (e.g., with Jet). This language is identified by a <i>pattern nature</i>. A pattern nature is associated to a pattern engine. A pattern engine is able 1) to <i>translate</i> source code into an executable language, and 2) to <i>execute</i> it during an execution phase.</li>
+</ul>
+
+<p align="center">
+  <img src="./images/generationPatternGlobalView.jpg" alt="Generation Pattern GLobal View"/>
+</p>
+<p align="center">
+  <i>Figure 1. Generation Pattern GLobal View</i>
+</p>
+
+
+<a name="structure"><h2>Structure</h2></a>
+
+  <p class="Para">
+  <b>Pattern library</b>. Patterns are organized in pattern libraries. A pattern library allows both classifying and defining pattern execution blocks.
+  </p>
+  <br/>
+  
+<p class="Para">
+  <b>Pattern</b>. A pattern contains an ordered set of parameters, an ordered set of methods, local variables. A pattern can inherit from another pattern (simple inheritance) and can call other patterns.
+</p>
+<p class="Para"><b>Pattern Parameter</b>. A pattern contains a set of parameters. A parameter has a name and type. A parameter type is a model element from an ecore amodel or a Java type.</p>
+<p class="Para">A pattern parameter is associated to a query applied on a input resource.</p>
+<p class="Para">The set of pattern parameters and their queries define a Cartesian product [P1 x P2 x ... x Pn]. At execution time, pattern methods are applied on each tuple of the query results. A pattern without parameter calls the pattern methods just one time.</p>
+
+<p class="Para"><b>Variables</b>. A pattern can work with local variables. The variable type is a model element or a Java type.</p>
+
+<p class="Para"><b>Method</b>. A method contains a description that conforms to a language (e.g., Jet). The most popular type of description is textual but it could be action semantics or an activity graph. A method can overload a method of a super-pattern. A method orchestration defines the order to apply methods and pattern calls at execution.</p>
+
+<p class="Para"><b>Pattern Inheritance</b>. Pattern inheritance serves to inherit of parameter definition and methods. For the Cartesian product, the super-patterns are considered first. A super-pattern can be defined in another a pattern library than the current pattern's library, or in a library from a different Factory Component.</p>
+
+<p class="Para"><b>Pattern Call</b>. A pattern call serves to reuse patterns.</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Case 1. The called pattern has no parameter. It is a simple pattern delegation.</li>
+    <li CLASS="Item">Case 2. The called pattern has parameters. It is a delegation and the called pattern applies queries on each parameter.</li>
+    <li CLASS="Item">Case 3. A pattern call with parameter injection. The parameters of the called pattern are initialized by the pattern caller.</li>
+</ul>
+
+
+<a name="translationAndExecution"><h2>Process of translation and execution</h2></a>
+
+<p class="Para">Patterns are edited first (creation, update, deletion), processed to be executed, and executed.</p>
+
+<p class="Para"><b>Translation</b>.Translation transforms the pattern and its methods toward a target language (e.g., Jet form) understandable by an engine (e.g., the Jet engine). When needed, the translated code is compiled.</p>
+
+<p class="Para"><b>Execution</b>. At this step, the executable result of the translation is executed by an engine (e.g., the Jet model-to-text engine) according an execution strategy (e.g., pattern-oriented, resource-oriented strategies). The result of this execution is transmitted to a reporter.</p>
+<br>
+
+<p align="center">
+  <img src="./images/generationPatternProductionExecution.jpg" alt="Translation and Execution of Pattern"/>
+</p>
+<p align="center">
+  <i>Figure 3. Translation and Execution of Pattern</i>
+</p>
+
+
+</body>
+</html>

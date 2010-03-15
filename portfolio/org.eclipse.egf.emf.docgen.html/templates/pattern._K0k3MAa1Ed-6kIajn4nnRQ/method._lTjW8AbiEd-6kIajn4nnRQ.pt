@@ -1,0 +1,31 @@
+<% EList<EReference> references = ((EClass) _element).getEAllReferences();%>
+
+<% if (references.size() > 0) { %>
+	<h2>References</h2>
+		<table border=1 cellspacing="0" width="100%">
+		<tr>
+			<th align=left>Name</th>
+			<th>Bounds</th>
+			<th>Type</th>
+			<th>Containment</th>
+			<th>Changeable</th>
+			<th>Derived</th>
+			<th>Required</th>
+			<th>Ordered</th>
+			<th>Unique</th>
+		</tr>
+	<% for (EReference _EReference : references) { %>
+		<tr>
+	   		<td align=left><b><%= EmfHtmlDocGen.getName(_EReference) %></b></td>
+   			<td align=center><%= EmfHtmlDocGen.getBounds(_EReference) %></td>
+   			<td align=left><%= EmfHtmlDocGen.getName(_EReference.getEReferenceType()) %></td>
+   			<td align=center><%= _EReference.isContainment() %></td>
+   			<td align=center><%= _EReference.isChangeable() %></td>
+   			<td align=center><%= _EReference.isDerived() %></td>
+   			<td align=center><%= _EReference.isRequired() %></td>
+   			<td align=center><%= _EReference.isOrdered() %></td>
+   			<td align=center><%= _EReference.isUnique() %></td>
+   		</tr>
+	<%} // end for%>
+	</table>
+<% } // end if %>
