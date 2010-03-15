@@ -1097,7 +1097,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     }
     getEditingDomain().getResourceSet().eAdapters().add(editorResourceAdapter);
     egfAdapters.add(new PatternBundleAdapter(getSite()));
-    egfAdapters.add(new TaskJavaBundleAdapter(getSite()));
+    egfAdapters.add(new TaskJavaBundleAdapter(resource, getSite()));
     getEditingDomain().getResourceSet().eAdapters().addAll(egfAdapters);
   }
 

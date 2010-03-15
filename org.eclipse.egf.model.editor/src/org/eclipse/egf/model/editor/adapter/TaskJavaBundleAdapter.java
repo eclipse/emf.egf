@@ -20,6 +20,7 @@ import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.ftask.TaskJava;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -32,14 +33,18 @@ import org.eclipse.ui.IWorkbenchPartSite;
  */
 public class TaskJavaBundleAdapter extends EContentAdapter {
 
+  private Resource _resource;
+
   private Shell _shell;
 
-  public TaskJavaBundleAdapter() {
+  public TaskJavaBundleAdapter(Resource resource) {
     _shell = EGFModelEditorPlugin.getActiveWorkbenchShell();
+    _resource = resource;
   }
 
-  public TaskJavaBundleAdapter(IWorkbenchPartSite site) {
+  public TaskJavaBundleAdapter(Resource resource, IWorkbenchPartSite site) {
     _shell = site != null ? site.getShell() : EGFModelEditorPlugin.getActiveWorkbenchShell();
+    _resource = resource;
   }
 
   @Override
@@ -53,7 +58,11 @@ public class TaskJavaBundleAdapter extends EContentAdapter {
   private void handlePatternNotification(Notification notification) {
     if (notification.getEventType() == Notification.ADD) {
       TaskJava taskJava = (TaskJava) notification.getNewValue();
-      final IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(taskJava.eResource());
+      Resource resource = taskJava.eResource();
+      if (resource != _resource) {
+        return;
+      }
+      final IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_resource);
       if (fcore == null || fcore.getPlatformBundle().getProject() == null) {
         return;
       }
