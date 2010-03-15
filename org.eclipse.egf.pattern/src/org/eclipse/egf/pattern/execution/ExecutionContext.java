@@ -25,62 +25,45 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
  */
 public class ExecutionContext extends DefaultPatternContext implements InternalPatternContext {
 
-    private PatternCallReporter callReporter;
     private PatternExecutionReporter reporter;
+    private final StringBuilder buffer;
 
     public ExecutionContext(BundleAccessor accessor) {
         super(accessor);
-
+        buffer = new StringBuilder(1000);
     }
 
-    public ExecutionContext(PatternContext parent) {
-        super(parent);
-
-    }
-
-    public ExecutionContext(PatternContext parent, PatternCallReporter callReporter) {
-        this(parent);
-        this.callReporter = callReporter;
-    }
-
-    public void setCallReporter(PatternCallReporter reporter) {
-        this.callReporter = reporter;
-    }
-
-    public boolean hasCallReporter() {
-        return callReporter != null;
-    }
-
-    public PatternCallReporter getCallReporter() {
-        if (callReporter == null) {
-            // no need for a chain of command
-            // if (parent == null)
-            throw new IllegalStateException();
-            // return parent.getReporter();
-        }
-        return callReporter;
+    public ExecutionContext(InternalPatternContext parent) {
+        super((PatternContext) parent);
+        buffer = null;
     }
 
     public void setReporter(PatternExecutionReporter reporter) {
-        if (reporter instanceof PatternCallReporter)
-            setCallReporter((PatternCallReporter) reporter);
-        else
-            this.reporter = reporter;
+        this.reporter = reporter;
     }
 
     public boolean hasReporter() {
-        return reporter != null || hasCallReporter();
+        return reporter != null;
+    }
+
+    public boolean useReporter() {
+        return parent == null;
     }
 
     public PatternExecutionReporter getReporter() {
-        if (callReporter != null)
-            return callReporter;
         if (reporter == null) {
             // no need for a chain of command
             // if (parent == null)
             throw new IllegalStateException();
-            // return parent.getReporter();
         }
         return reporter;
+    }
+
+    public StringBuilder getBuffer() {
+        if (parent != null)
+            return ((InternalPatternContext) parent).getBuffer();
+        if (buffer == null)
+            throw new IllegalStateException();
+        return buffer;
     }
 }

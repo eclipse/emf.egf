@@ -28,7 +28,7 @@ import org.osgi.framework.Bundle;
  * 
  */
 public class DefaultPatternContext implements PatternContext {
-    private PatternContext parent;
+    protected PatternContext parent;
     private final Map<String, Object> data = new HashMap<String, Object>();
     private final BundleAccessor accessor;
 

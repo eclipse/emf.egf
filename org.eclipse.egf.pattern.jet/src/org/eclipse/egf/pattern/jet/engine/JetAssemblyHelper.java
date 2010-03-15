@@ -109,8 +109,6 @@ public class JetAssemblyHelper extends AssemblyHelper {
     protected void beginOrchestration() throws PatternException {
         content.append("<%");
         content.append("InternalPatternContext ctx = (InternalPatternContext)argument;").append(EGFCommonConstants.LINE_SEPARATOR);
-        // content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("StringBuilder collector = new StringBuilder(2000);").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("Map<String, String> queryCtx = null;").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("IQuery.ParameterDescription paramDesc = null;").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("%>");
@@ -126,7 +124,9 @@ public class JetAssemblyHelper extends AssemblyHelper {
     protected void endOrchestration() throws PatternException {
         content.append("<%").append(END_METHOD_MARKER).append("%>");
         if (pattern.getAllParameters().isEmpty()) {
-            content.append("<%ctx.getReporter().executionFinished(stringBuffer.toString(), ctx);%>").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("<%if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("    ctx.getBuffer().setLength(0);}%>").append(EGFCommonConstants.LINE_SEPARATOR);
             return;
         }
         // 1 - Add pre block at insertionIndex
@@ -157,8 +157,10 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         for (int i = 0; i < pattern.getAllParameters().size(); i++)
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("((InternalPatternContext)ctx).getReporter().executionFinished(collector.toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("%>");
+        content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("    ctx.getBuffer().setLength(0);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("}%>");
 
         // 3- Add additional code for parameter names handling
         int startIndex = content.indexOf(START_METHOD_MARKER);

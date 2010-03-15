@@ -24,15 +24,14 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
  * 
  */
 public interface InternalPatternContext extends PatternContext, BundleAccessor {
-    void setCallReporter(PatternCallReporter reporter);
 
-    boolean hasCallReporter();
-
-    PatternCallReporter getCallReporter();
+    StringBuilder getBuffer();
 
     void setReporter(PatternExecutionReporter reporter);
 
     boolean hasReporter();
+
+    boolean useReporter();
 
     PatternExecutionReporter getReporter();
 

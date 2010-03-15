@@ -33,7 +33,7 @@ public class JavaMethodGenerationHelper {
 
     public String getCallStatement(PatternMethod called) {
         StringBuilder builder = new StringBuilder(200);
-        builder.append("method_").append(called.getName()).append("(ictx.getCallReporter().getBuffer(), ictx");
+        builder.append("method_").append(called.getName()).append("(ictx.getBuffer(), ictx");
         Pattern pattern = called.getPattern();
         if (!pattern.getAllParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getAllParameters()) {
@@ -46,7 +46,7 @@ public class JavaMethodGenerationHelper {
 
     public String getSignature(PatternMethod called) {
         StringBuilder builder = new StringBuilder(200);
-        builder.append("protected void method_").append(called.getName()).append("(StringBuffer ").append(bufferName).append(", PatternContext ctx");
+        builder.append("protected void method_").append(called.getName()).append("(StringBuilder ").append(bufferName).append(", PatternContext ctx");
         Pattern pattern = called.getPattern();
         if (!pattern.getAllParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getAllParameters()) {
