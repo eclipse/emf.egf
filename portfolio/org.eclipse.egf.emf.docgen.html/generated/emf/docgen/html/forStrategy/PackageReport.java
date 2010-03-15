@@ -130,7 +130,7 @@ method_writeEPackageReference(ictx.getBuffer(), ictx);
     
 method_fileFooter(ictx.getBuffer(), ictx);
 
-    CallHelper.callBack(ctx, element);
+    CallHelper.callBack(new ExecutionContext(ictx), element);
 
     
 String loop = ictx.getBuffer().toString();
