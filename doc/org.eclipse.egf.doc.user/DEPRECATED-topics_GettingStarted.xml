@@ -11,7 +11,13 @@
          Thales Corporate Services S.A.S - initial API and implementation
  -->
 
-<toc label="Getting Started" link_to="toc.xml#gettingstarted"><topic href="html/gettingStarted/mainFeatures/mainFeatures.html" label="Main features">
+<toc label="Getting Started" link_to="toc.xml#gettingstarted">
+   <topic label="EGF by pictures">
+         <topic href="html/gettingStarted/nutshell_fcore/nutshell_fcore.html" label="Basic">
+         </topic>
+         <topic href="html/gettingStarted/nutshell_pattern/nutshell_pattern.html" label="Pattern">
+         </topic>
+      </topic><topic href="html/gettingStarted/mainFeatures/mainFeatures.html" label="Main features">
       </topic><topic href="html/gettingStarted/nutshell_examples/nutshell_examples.html" label="Examples">
       </topic>
 </toc>
