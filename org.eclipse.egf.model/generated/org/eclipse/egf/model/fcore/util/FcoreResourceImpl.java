@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLParserPool;
@@ -97,6 +98,27 @@ public class FcoreResourceImpl extends XMIResourceImpl {
   @Override
   protected boolean useUUIDs() {
     return true;
+  }
+
+  /**
+   * Called when the object is unloaded.
+   * This implementation {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
+   * and clears the {@link #eAdapters adapters}.
+   * https://bugs.eclipse.org/bugs/show_bug.cgi?id=292866
+   * Fix available in HEAD: 2.6.0.I200911020144
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  protected void unloaded(InternalEObject internalEObject) {
+    // Ensure that an unresolved containment proxy's URI isn't reset.
+    //
+    if (!internalEObject.eIsProxy()) {
+      internalEObject.eSetProxyURI(uri.appendFragment(getURIFragment(internalEObject)));
+    }
+    internalEObject.eAdapters().clear();
   }
 
   /**

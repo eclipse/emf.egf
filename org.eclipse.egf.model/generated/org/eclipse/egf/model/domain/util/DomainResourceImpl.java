@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLParserPool;
@@ -35,6 +36,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.domain.util.DomainResourceFactoryImpl
  * @generated
  */
@@ -68,7 +70,9 @@ public class DomainResourceImpl extends XMIResourceImpl {
    * Creates an instance of the resource.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param uri the URI of the new resource.
+   * 
+   * @param uri
+   *          the URI of the new resource.
    * @generated
    */
   public DomainResourceImpl(URI uri) {
@@ -95,6 +99,27 @@ public class DomainResourceImpl extends XMIResourceImpl {
   @Override
   protected boolean useUUIDs() {
     return true;
+  }
+
+  /**
+   * Called when the object is unloaded.
+   * This implementation {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
+   * and clears the {@link #eAdapters adapters}.
+   * https://bugs.eclipse.org/bugs/show_bug.cgi?id=292866
+   * Fix available in HEAD: 2.6.0.I200911020144
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  protected void unloaded(InternalEObject internalEObject) {
+    // Ensure that an unresolved containment proxy's URI isn't reset.
+    //
+    if (!internalEObject.eIsProxy()) {
+      internalEObject.eSetProxyURI(uri.appendFragment(getURIFragment(internalEObject)));
+    }
+    internalEObject.eAdapters().clear();
   }
 
   /**
