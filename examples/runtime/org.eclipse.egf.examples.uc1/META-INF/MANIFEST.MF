@@ -1,0 +1,12 @@
+Bundle-SymbolicName: org.eclipse.egf.examples.uc1;singleton:=true
+Export-Package: org.eclipse.egf.examples.uc1,
+ org.eclipse.egf.examples.uc1.query,
+ org.eclipse.egf.examples.uc1.reporter
+Require-Bundle: org.eclipse.egf.model.ftask;visibility:=reexport,
+ org.eclipse.egf.pattern;bundle-version="0.2.0",
+ org.eclipse.egf.pattern.ftask;bundle-version="0.2.0",
+ org.eclipse.emf.query;bundle-version="1.2.100"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Name: Uc1
+Bundle-Version: 0.1.0.qualifier
+Bundle-ManifestVersion: 2
