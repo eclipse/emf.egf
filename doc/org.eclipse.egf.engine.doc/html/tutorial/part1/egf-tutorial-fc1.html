@@ -33,9 +33,13 @@
 <h2 class="Head">1. Creation of factory component and task</h2>
 
 <h3 class="Head">1.1. Comprehension</h3>
-<p class="Para"><i>Generation activities</i>. A generation can be decomposed into generation stages down to generation leaves that realize a generation task. In EGF, this corresponds to <b>factory components</b> that delegate their generations to other factory components until <b>tasks</b> that realizes a generation task.</p>
+<p class="Para"><i>Generation activities</i>. A generation can be decomposed into generation stages down to the generation leaves that realize the effective generation tasks, such as producing an API. In EGF, this corresponds to <b>factory components</b> that delegate their generations, by an activity invocation, to other factory components until <b>tasks</b> that realizes a generation task. EGF proposes a task implementation in the Java language.</p>
 <p class="Para"><i>Storage</i>. Factory components and tasks are stored in <b>fcore</b> files.</p>
 
+<p align="center">
+  <img src="./images/egf_tut_fc_1_1.png" alt="EGF Activity Relationships"/>
+</p>
+<p align="center"><i>Figure 1. EGF Activity Relationships</i></p>  
 
 
 <h3 class="Head">1.2. Practice</h3>
@@ -43,21 +47,26 @@
 <p class="Para">The sequence of actions to <i>create a factory component</i>:</p>
 <ul CLASS="UnorderedList">
     <li CLASS="Item">First, create a project and a folder where the factory components and tasks will be located</li>
-    <li CLASS="Item">Commands: <i>[File][New][EGF Activity]</i></li>
+    <li CLASS="Item">Creation of a Factory Component - Commands: <i>[File][New][EGF Activity]</i></li>
     <li CLASS="Item">Select a project or a project folder, and set the fcore file name</li>
-    <li CLASS="Item">Next, select <i>Factory Component</i> as model object</li>
+    <li CLASS="Item">Click on Finish or Next, and select <i>Factory Component</i> for model object</li>
     <li CLASS="Item">Click on Finish; the Factory Component is created</li>
-    <li CLASS="Item">Set the factory component name to better identify it later</li>
+    <li CLASS="Item">Set the factory component name in the <i>Properties</i> view to better identify it later</li>
 </ul>
 
 <p class="Para">The sequence of actions is the same for creating a task: select <i>Task</i> as model object instead of <i>Factory Component</i>.</p>
 
 <h3 class="Head">1.3. Application</h3>
+<p class="Para">During this tutorial, a Java class will be implemented. Then, it is better to start with a Java project.</p>
 <p class="Para">Create a Factory component named <i>HelloWorld</i> and a Task named <i>HelloWorldTask</i>.</p>
 
-<p align="left">
-  <img src="./images/egf_uc1_fc_1.png" alt="New Factory Component"/>
+<p align="center">
+  <img src="./images/egf_tut_fc_1_2.png" alt="New EGF Activity"/>
 </p>
+<p align="center"><i>Figure 2. New EGF Activity</i></p>  
+
+<h3 class="Head">1.4. Remark</h3>
+<p class="Para">The fcore file is a resource which can contain several activities, i.e. several factory components or tasks. Then, the factory component and the task can be stored in the same fcore file. Execute the <i>New Sibling</i> command on the model root node.</p>
 
 <br/>
 
@@ -65,8 +74,19 @@
 
 <h3 class="Head">2.1. Comprehension</h3>
 
-<p class="Para"><i>Contracts</i>. In EGF, a task parameter is named <b>Contract</b>. Task contracts are contained in a <i>Task Contract Container</i>. A <i>Contract</i> has a Name, Mode (IN, OUT, IN_OUT), is mandatory or not, has a <b>Type</b>, and possibly a default value.</p>
-<p class="Para"><i>Implementation</i>. It is necessary to differentiate the task declaration, defined in a fcore model, and the task implementation, defined in a Java class. The task implementation is the means to execute any generation tool, or to do more. The Java class implements an <i>ITaskProduction</i> interface. It can implement three methods: preExecute, doExecute, postExecute. The task methods have a context parameter to get and work with the task contracts. The link between the Task and the task Java class is realized at the task level.</p>
+<p class="Para"><i>Contracts</i>. In EGF, an activity parameter is named <b>Contract</b>. Factory component and task contracts are contained in a <i>Contract Container</i>. A <i>Contract</i> has a Name, Mode (IN, OUT, IN_OUT), is mandatory or not, has a <b>Type</b>, and possibly a default value.</p>
+
+<p align="center">
+  <img src="./images/egf_tut_fc_1_3.png" alt="Activity Contracts"/>
+</p>
+<p align="center"><i>Figure 3. Activity Contracts</i></p>  
+
+<p class="Para"><i>Task declaration and implementation</i>. It is necessary to differentiate the task declaration, defined in a fcore model, and the task implementation, defined in a Java class. After its declaration, a task can be invoked by different factory components. The task implementation is the means to execute any generation tool, or to execute one's own Java implementation. The Java class implements an <i>ITaskProduction</i> interface. It can implement three methods: preExecute, doExecute, postExecute. The task methods have a context parameter to get and work with the task contracts. The link between the Task and the task Java class is realized at the task level.</p>
+
+<p align="center">
+  <img src="./images/egf_tut_fc_1_4.png" alt="Java Task and Java Task implementation"/>
+</p>
+<p align="center"><i>Figure 4. Java Task and Java Task implementation</i></p>  
 
 
 <h3 class="Head">2.2. Practice</h3>
@@ -76,15 +96,16 @@
     <li CLASS="Item">Creation of a task contract - Command: on the task contract container, <i>[New Child][Task Contract]</i></li>
     <li CLASS="Item">Set the contract name, mode, and mandatory values</li>
     <li CLASS="Item">Definition of the task contract type - Command: on the task contract, <i>[New Child][String|Integer...]</i></li>
-    <li CLASS="Item">Set the default value on the contract type</li>
+    <li CLASS="Item">Set the default value on the contract type with the <i>Value</i> property</li>
 </ul>
 
 <h3 class="Head">2.3. Application</h3>
-<p class="Para">Create a Task contract 'value' of String contract type with the  (default) value 'World'.</p>
+<p class="Para">Create a Task contract 'value' of String contract type with the  (default) value 'World', as shown in the following figure.</p>
 
-<p align="left">
-  <img src="./images/egf_uc1_fc_2.png" alt="Task creation"/>
+<p align="center">
+  <img src="./images/egf_tut_fc_1_5.png" alt="Java Task Example"/>
 </p>
+<p align="center"><i>Figure 5. Java Task Example</i></p>  
 
 
 <h3 class="Head">2.4. Practice</h3>
@@ -95,13 +116,13 @@
     <li CLASS="Item">Associate the task with the task Java class - Command: on the task, on the value property of the Task production section, select a task java class</li>
 </ul>
 
-<p align="left">
-  <img src="./images/egf_uc1_fc_3.png" alt="Task / Java class association"/>
+<p align="center">
+  <img src="./images/egf_tut_fc_1_6.png" alt="Java Task / Java class association"/>
 </p>
-
+<p align="center"><i>Figure 6. Java Task / Java class association</i></p>  
 
 <h3 class="Head">2.5. Application</h3>
-<p class="Para">Create a task Java class 'HelloWorld' that displays an parameterized Hello message. Example of code:</p>
+<p class="Para">Create a Java class <i>HelloWorld</i> that displays an parameterized Hello message. Example of code:</p>
 				<font color="777777"><pre>
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.EGFCorePlugin;
@@ -113,8 +134,9 @@ import org.eclipse.egf.fprod.producer.invocation.ITaskProduction;
 public class HelloWorld implements ITaskProduction {
 
 	@Override
-	  public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor_p) throws InvocationException {
-		String value  = taskProductionContext.getInputValue("value", String.class);
+	public void doExecute(ITaskProductionContext productionContext,
+			IProgressMonitor monitor) throws InvocationException {
+		String value  = productionContext.getInputValue("value", String.class);
 		String outputMessage = new String ("Hello " + value + "!");
 		// Message on the default console
 		System.out.println(outputMessage);
@@ -137,13 +159,19 @@ public class HelloWorld implements ITaskProduction {
 }
 				</pre></font>
 
+<p class="Para">Associate the <i>HelloWorld</i> class to the <i>HelloWorldTask</i> Java task.</p>
 
 <br/>
 
 <h2 class="Head">3. Task invocation in a factory component</h2>
 
 <h3 class="Head">3.1. Comprehension</h3>
-<p class="Para"><i>Orchestration</i>. >The same task can be invoked by different factory components and several times inside the same factory component. The last point underlies the need of orchestration. EGF proposes a simple orchestration mode named <b>production plan</b>. A production is a sorted list of task invocations. A <b>task invocation</b> calls a task with the values required by the task contracts.</p>
+<p class="Para"><i>Orchestration</i>. The same task can be invoked by different factory components and can invoke different tasks. Invocations to factory components and tasks are defined by an orchestration. EGF proposes a simple orchestration type named <b>production plan</b>. A production plan is a sorted list of activity invocations. A <b>task invocation</b> calls a task with the values required by the task contracts. The following figure details the first figure.</p>
+
+<p align="center">
+  <img src="./images/egf_tut_fc_1_7.png" alt="Factory Component Orchestration"/>
+</p>
+<p align="center"><i>Figure 7. Factory Component Orchestration</i></p>  
 
 
 <h3 class="Head">3.2. Practice</h3>
@@ -155,25 +183,24 @@ public class HelloWorld implements ITaskProduction {
 
 <p class="Para">The sequence of actions to <i>create a task invocation</i> in a production plan:</p>
 <ul CLASS="UnorderedList">
-    <li CLASS="Item">Commands: on a production plan, <i>[New Child][Task Invocation]</i></li>
-    <li CLASS="Item">Set the task Name</li>
-    <li CLASS="Item">In the invoke section of the task invocation, set the Activity property: select the task among the proposed tasks</li>
+    <li CLASS="Item">Commands: on a production plan, <i>[New Child][Production Plan Invocation]</i></li>
+    <li CLASS="Item">Set the Name with semantic meaning</li>
+    <li CLASS="Item">In the Activity section of the production plan invocation, set the <i>Invoked Activity</i> property: select the task among the proposed activities</li>
 </ul>
 
 <p class="Para">The sequence of actions to <i>create task invocation values</i> in a task invocation:</p>
 <ul CLASS="UnorderedList">
-    <li CLASS="Item">First, create an invocation context - Commands: on a task invocation, <i>[New Child][Invocation Context Container]</i></li>
-    <li CLASS="Item">For each task contract to be valued - Commands: on an invocation context container, <i>[New Child][Invocation Context]</i></li>
-    <li CLASS="Item">Set the invocation context Name</li>
-    <li CLASS="Item">On the invocation context, in the Activity Contract property of the invoke section, select the concerned task contract to be valued</li>
-    <li CLASS="Item">Definition of an Invocation Context value - Commands: on an invocation context, <i>[New Child][the activity contract type]</i></li>
+    <li CLASS="Item">First, create an invocation context - Commands: on a task invocation, <i>[New Child][Invocation Contract Container]</i></li>
+    <li CLASS="Item">For each task contract to be valued - Commands: on an invocation context container, <i>[New Child][Invocation Contract]</i></li>
+    <li CLASS="Item">On the invocation contract, in the <i>Invoked Contract</i> property of the <i>Behaviour</i> section, select the concerned task contract to be valued</li>
+    <li CLASS="Item">Definition of an Invocation Contract value - Commands: on an invocation contract, <i>[New Child][the activity contract type, e.g. String]</i></li>
     <li CLASS="Item">Set the value</li>
 </ul>
 
 <p class="Para">The two last steps are necessary when the default value of the task contract must be redefined or is undefined and madatory.</p>
 
 <h3 class="Head">3.3. Application</h3>
-<p class="Para">Create a task invocation without Invocation Context (the default value of the task contract is used) and one with.</p>
+<p class="Para">Create a task invocation without Invocation Contract (the default value of the task contract is used) and one with.</p>
 
 
 <br/>
@@ -181,7 +208,9 @@ public class HelloWorld implements ITaskProduction {
 <h2 class="Head">4. Execution of task and factory component</h2>
 
 <h3 class="Head">4.1. Comprehension</h3>
-<p class="Para"><i>Execution mode</i>. There are two modes to execute a task or factory component: 1) dynamically, directly on the model, 2) in a deployed mode. The dynamic execution is useful to simultaneously develop and test tasks and factory components. Before execution, it is controled that the model is valid. The EGF production settings are accessible via the EGF preferences.</p>
+<p class="Para"><i>Execution during the development phase</i>. During the development phase, there exist two modes to execute a task or factory component. 1) Dynamically, directly on a factory component or on a task, when the model is open. This mode is useful to simultaneously develop and test tasks and factory components. Before execution, it is controled that the model is valid. 2) On the fcore resource. This avoids to open the fcore resource.</p>
+<p class="Para"><i>Execution on the target platform</i>. After deployment in the target platform, the factory components, tasks, and fcore resources can be normally executed.</p>
+<p class="Para"><i>Preferences</i>. The EGF production settings are accessible via the EGF preferences.</p>
 
 
 <h3 class="Head">4.2. Practice</h3>
@@ -191,6 +220,12 @@ public class HelloWorld implements ITaskProduction {
     <li CLASS="Item">Commands: <i>[Right-Click][Run EGF Activity...]: on a task or a factory component</i></li>
 </ul>
 
+
+<p class="Para">The sequence of actions to <i>execute a fcore resource</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Commands: <i>[Right-Click][Run EGF Activity...] on the fcore file</i></li>
+    <li CLASS="Item">If there are several factory components or tasks in the same fcore file, then it is necessary to indicate the activity to be executed</li>
+</ul>
 
 </body>
 </html>

@@ -10,5 +10,5 @@
  -->
 
 <toc label="Factory Component in Action Tutorials" link_to="../org.eclipse.egf.doc.user/toc.xml#egfEngineTutorials">
-   <topic label="Factory Component - Tutorial 1" href="html/tutorial/part1/egf-tutorial-fc1.html" />
+   <topic label="Factory Component - First steps" href="html/tutorial/part1/egf-tutorial-fc1.html" />
 </toc>
