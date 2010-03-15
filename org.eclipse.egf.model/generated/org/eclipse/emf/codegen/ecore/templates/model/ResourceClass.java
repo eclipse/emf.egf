@@ -22,7 +22,7 @@ public class ResourceClass
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL + " * "; //$NON-NLS-1$
   protected final String TEXT_4 = NL;
-  protected final String TEXT_5 = NL + " *" + NL + " *  Copyright (c) 2009 Thales Corporate Services S.A.S." + NL + " *  All rights reserved. This program and the accompanying materials" + NL + " *  are made available under the terms of the Eclipse Public License v1.0" + NL + " *  which accompanies this distribution, and is available at" + NL + " *  http://www.eclipse.org/legal/epl-v10.html" + NL + " * " + NL + " *  Contributors:" + NL + " *      Thales Corporate Services S.A.S - initial API and implementation" + NL + " * " + NL; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
+  protected final String TEXT_5 = NL + " *" + NL + " *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S." + NL + " *  All rights reserved. This program and the accompanying materials" + NL + " *  are made available under the terms of the Eclipse Public License v1.0" + NL + " *  which accompanies this distribution, and is available at" + NL + " *  http://www.eclipse.org/legal/epl-v10.html" + NL + " * " + NL + " *  Contributors:" + NL + " *      Thales Corporate Services S.A.S - initial API and implementation" + NL + " * " + NL; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$ //$NON-NLS-8$ //$NON-NLS-9$ //$NON-NLS-10$
   protected final String TEXT_6 = NL + " */" + NL; //$NON-NLS-1$
   protected final String TEXT_7 = "package "; //$NON-NLS-1$
   protected final String TEXT_8 = ";" + NL + NL; //$NON-NLS-1$
