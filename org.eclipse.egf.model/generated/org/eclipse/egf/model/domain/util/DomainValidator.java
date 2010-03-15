@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.domain.util;
 
+import java.util.Iterator;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
@@ -34,6 +35,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.EObjectValidator;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
@@ -364,7 +366,39 @@ public class DomainValidator extends EObjectValidator {
       result &= validate_EveryMapEntryUnique(typeDomainURI, diagnostics, context);
     if (result || diagnostics != null)
       result &= typesValidator.validateTypeObject_ValidValue(typeDomainURI, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateTypeDomainURI_ValidDomainURI(typeDomainURI, diagnostics, context);
     return result;
+  }
+
+  /**
+   * Validates the ValidDomainURI constraint of '<em>Type Domain URI</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public boolean validateTypeDomainURI_ValidDomainURI(TypeDomainURI typeDomainURI, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (typeDomainURI.eResource() == null || typeDomainURI.getDomain() == null) {
+      return true;
+    }
+    boolean found = false;
+    for (Iterator<EObject> iterator = EcoreUtil.getAllProperContents(typeDomainURI.eResource(), false); iterator.hasNext();) {
+      EObject eObject = iterator.next();
+      if (eObject instanceof DomainURI && eObject == typeDomainURI.getDomain()) {
+        found = true;
+        break;
+      }
+    }
+    if (found == false) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidDomainURI", getObjectLabel(typeDomainURI, context), "Unknown Domain URI in this resource" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { typeDomainURI }, context));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**

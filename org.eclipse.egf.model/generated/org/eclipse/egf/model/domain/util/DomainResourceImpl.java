@@ -35,7 +35,6 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.domain.util.DomainResourceFactoryImpl
  * @generated
  */
@@ -69,9 +68,7 @@ public class DomainResourceImpl extends XMIResourceImpl {
    * Creates an instance of the resource.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param uri
-   *          the URI of the new resource.
+   * @param uri the URI of the new resource.
    * @generated
    */
   public DomainResourceImpl(URI uri) {
@@ -133,9 +130,9 @@ public class DomainResourceImpl extends XMIResourceImpl {
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
     // Load Options
+    getDefaultLoadOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.FALSE);
     getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.FALSE);
-    getDefaultLoadOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);

@@ -399,6 +399,8 @@ public class DomainPackageImpl extends EPackageImpl implements DomainPackage {
     });
     addAnnotation(domainURIEClass, source, new String[] { "constraints", "ValidURI" //$NON-NLS-1$ //$NON-NLS-2$
     });
+    addAnnotation(typeDomainURIEClass, source, new String[] { "constraints", "ValidDomainURI" //$NON-NLS-1$ //$NON-NLS-2$
+    });
   }
 
 } // DomainPackageImpl
