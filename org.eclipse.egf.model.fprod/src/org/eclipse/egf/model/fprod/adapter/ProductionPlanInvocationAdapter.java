@@ -11,19 +11,18 @@
 package org.eclipse.egf.model.fprod.adapter;
 
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
@@ -39,8 +38,6 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
 
   private Activity _activity;
 
-  private URI _previousURI;
-
   private EStructuralFeature _nameFeature = FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME;
 
   private EStructuralFeature _invocationInvokedActivityFeature = FcorePackage.Literals.INVOCATION__INVOKED_ACTIVITY;
@@ -55,19 +52,13 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
             _productionPlanInvocation.eNotify(new ENotificationImpl((InternalEObject) _productionPlanInvocation, Notification.SET, _invocationInvokedActivityFeature, null, _activity));
           }
         });
-      } else if (notification.getEventType() == Notification.REMOVING_ADAPTER) {
-        if (_activity != null) {
-          // Unload this proxy
-          URI currentURI = EcoreUtil.getURI(_activity);
-          if (currentURI != null) {
-            ((InternalEObject) _activity).eSetProxyURI(currentURI);
-          } else {
-            ((InternalEObject) _activity).eSetProxyURI(_previousURI);
-          }
-          _activity = null;
-          _uri = null;
-        }
       }
+      // else if (notification.getEventType() == Notification.REMOVING_ADAPTER) {
+      // if (_activity != null) {
+      // // Unload this proxy
+      // ((InternalEObject) _activity).eSetProxyURI(EcoreUtil.getURI(_activity));
+      // }
+      // }
     }
   };
 
@@ -80,25 +71,29 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
         case Resource.RESOURCE__URI: {
           if (_productionPlanInvocation.eResource() != null) {
             final ResourceImpl resource = (ResourceImpl) _productionPlanInvocation.eResource();
-            resource.setModified(true);
-            if (resource.eNotificationRequired()) {
-              Notification innerNotification = new NotificationImpl(Notification.SET, notification.getOldValue(), notification.getOldValue()) {
-                @Override
-                public Object getFeature() {
-                  return notification.getNotifier();
-                }
+            IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
+            // target fcore can't be modified, give a chance to read only workspace resource to do something
+            if (fcore != null && fcore.getPlatformBundle().isTarget() == false) {
+              resource.setModified(true);
+              if (resource.eNotificationRequired()) {
+                Notification innerNotification = new NotificationImpl(Notification.SET, notification.getOldValue(), notification.getOldValue()) {
+                  @Override
+                  public Object getFeature() {
+                    return notification.getNotifier();
+                  }
 
-                @Override
-                public Object getNotifier() {
-                  return resource;
-                }
+                  @Override
+                  public Object getNotifier() {
+                    return resource;
+                  }
 
-                @Override
-                public int getFeatureID(Class<?> expectedClass) {
-                  return Resource.RESOURCE__URI;
-                }
-              };
-              resource.eNotify(innerNotification);
+                  @Override
+                  public int getFeatureID(Class<?> expectedClass) {
+                    return Resource.RESOURCE__URI;
+                  }
+                };
+                resource.eNotify(innerNotification);
+              }
             }
           }
           break;
@@ -137,7 +132,6 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
           }
         }
         _activity = newValue;
-        _previousURI = EcoreUtil.getURI(_activity);
         break;
       case Notification.REMOVING_ADAPTER:
         if (_activity != null) {

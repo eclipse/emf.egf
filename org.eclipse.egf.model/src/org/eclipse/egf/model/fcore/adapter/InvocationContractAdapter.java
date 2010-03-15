@@ -11,19 +11,18 @@
 package org.eclipse.egf.model.fcore.adapter;
 
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
@@ -38,8 +37,6 @@ public class InvocationContractAdapter extends AdapterImpl {
   private InvocationContract _invocationContract;
 
   private Contract _contract;
-
-  private URI _previousURI;
 
   private EStructuralFeature _nameFeature = FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME;
 
@@ -64,19 +61,13 @@ public class InvocationContractAdapter extends AdapterImpl {
             _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _invocationContract.eGet(_invocationContractInvokedContractFeature, true)));
           }
         });
-      } else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
-        if (_contract != null) {
-          // Unload this proxy
-          URI currentURI = EcoreUtil.getURI(_contract);
-          if (currentURI != null) {
-            ((InternalEObject) _contract).eSetProxyURI(currentURI);
-          } else {
-            ((InternalEObject) _contract).eSetProxyURI(_previousURI);
-          }
-          _contract = null;
-          _uri = null;
-        }
       }
+      // else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
+      // if (_contract != null) {
+      // // Unload this proxy
+      // ((InternalEObject) _contract).eSetProxyURI(EcoreUtil.getURI(_contract));
+      // }
+      // }
     }
   };
 
@@ -89,25 +80,29 @@ public class InvocationContractAdapter extends AdapterImpl {
         case Resource.RESOURCE__URI: {
           if (_invocationContract.eResource() != null) {
             final ResourceImpl resource = (ResourceImpl) _invocationContract.eResource();
-            resource.setModified(true);
-            if (resource.eNotificationRequired()) {
-              Notification innerNotification = new NotificationImpl(Notification.SET, notification.getOldValue(), notification.getOldValue()) {
-                @Override
-                public Object getFeature() {
-                  return notification.getNotifier();
-                }
+            IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(resource);
+            // target fcore can't be modified, give a chance to read only workspace resource to do something
+            if (fcore != null && fcore.getPlatformBundle().isTarget() == false) {
+              resource.setModified(true);
+              if (resource.eNotificationRequired()) {
+                Notification innerNotification = new NotificationImpl(Notification.SET, notification.getOldValue(), notification.getOldValue()) {
+                  @Override
+                  public Object getFeature() {
+                    return notification.getNotifier();
+                  }
 
-                @Override
-                public Object getNotifier() {
-                  return resource;
-                }
+                  @Override
+                  public Object getNotifier() {
+                    return resource;
+                  }
 
-                @Override
-                public int getFeatureID(Class<?> expectedClass) {
-                  return Resource.RESOURCE__URI;
-                }
-              };
-              resource.eNotify(innerNotification);
+                  @Override
+                  public int getFeatureID(Class<?> expectedClass) {
+                    return Resource.RESOURCE__URI;
+                  }
+                };
+                resource.eNotify(innerNotification);
+              }
             }
           }
           break;
@@ -146,7 +141,6 @@ public class InvocationContractAdapter extends AdapterImpl {
           }
         }
         _contract = newValue;
-        _previousURI = EcoreUtil.getURI(_contract);
         break;
       case Notification.REMOVING_ADAPTER:
         if (_contract != null) {

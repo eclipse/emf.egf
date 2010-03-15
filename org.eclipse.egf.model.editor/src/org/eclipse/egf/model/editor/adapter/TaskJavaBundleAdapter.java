@@ -21,6 +21,7 @@ import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.ftask.TaskJava;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -51,15 +52,15 @@ public class TaskJavaBundleAdapter extends EContentAdapter {
   public void notifyChanged(Notification notification) {
     super.notifyChanged(notification);
     if (notification.getNewValue() != null && notification.getNewValue() instanceof TaskJava) {
-      handlePatternNotification(notification);
+      handleNotification(notification);
     }
   }
 
-  private void handlePatternNotification(Notification notification) {
+  private void handleNotification(Notification notification) {
     if (notification.getEventType() == Notification.ADD) {
       TaskJava taskJava = (TaskJava) notification.getNewValue();
       Resource resource = taskJava.eResource();
-      if (resource != _resource) {
+      if (resource != _resource || ((ResourceImpl) resource).isLoading()) {
         return;
       }
       final IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_resource);

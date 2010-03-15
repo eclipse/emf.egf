@@ -73,7 +73,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -152,7 +151,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   protected AdapterFactoryEditingDomain editingDomain;
 
@@ -468,7 +467,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected EContentAdapter editorResourceAdapter = new EContentAdapter() {
     @Override
     public void notifyChanged(Notification notification) {
-      // Process Resource who belongs to a resource set
+      // Process Resource
       if (notification.getNotifier() instanceof Resource) {
         switch (notification.getFeatureID(Resource.class)) {
         case Resource.RESOURCE__IS_LOADED:
@@ -483,6 +482,20 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             } else {
               resourceToDiagnosticMap.remove(innerResource.getURI());
             }
+            // Try to refresh proxies
+            if (innerResource != getResource()) {
+              final List<EObject> owners = ResourceHelper.getURIProxyReferenceOwners(getResource(), innerResource.getURI());
+              getSite().getShell().getDisplay().asyncExec(new Runnable() {
+                public void run() {
+                  for (EObject eObject : owners) {
+                    if (selectionViewer.isBusy() == false) {
+                      selectionViewer.refresh(eObject, true);
+                    }
+                  }
+                }
+              });
+            }
+            // Display any trouble
             if (updateProblemIndication) {
               getSite().getShell().getDisplay().asyncExec(new Runnable() {
                 public void run() {
@@ -601,7 +614,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * 
    * @generated NOT
    */
-  public void resourceReloaded(Resource reloadedResource, Exception exception) {
+  public void resourceReloaded(Resource reloadedResource) {
     if (reloadedResource == getResource()) {
       if (exception != null) {
         resourceToDiagnosticMap.put(reloadedResource.getURI(), analyzeResourceProblems(reloadedResource, exception));
@@ -856,8 +869,8 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * 
    * @generated
    */
-  public EditingDomain getEditingDomain() {
-    return editingDomain;
+  public TransactionalEditingDomain getEditingDomain() {
+    return (TransactionalEditingDomain) editingDomain;
   }
 
   /**
@@ -874,7 +887,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
      * @generated NOT
      */
     public ReverseAdapterFactoryContentProvider(AdapterFactory adapterFactory) {
-      super((TransactionalEditingDomain) getEditingDomain(), adapterFactory);
+      super(getEditingDomain(), adapterFactory);
     }
 
     /**
@@ -1052,7 +1065,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       resourceToDiagnosticMap.put(resource.getURI(), diagnostic);
     }
     editingDomain.getResourceSet().eAdapters().add(editorResourceAdapter);
-    egfAdapters.add(new PatternBundleAdapter(getSite()));
+    egfAdapters.add(new PatternBundleAdapter(resource, getSite()));
     egfAdapters.add(new TaskJavaBundleAdapter(resource, getSite()));
     getEditingDomain().getResourceSet().eAdapters().addAll(egfAdapters);
   }
@@ -1135,8 +1148,8 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       // Create a page for the selection tree view.
       selectionViewer = (TreeViewer) viewerPane.getViewer();
 
-      selectionViewer.setContentProvider(new FcoreContentProvider((TransactionalEditingDomain) getEditingDomain(), adapterFactory));
-      selectionViewer.setLabelProvider(new TransactionalAdapterFactoryLabelProvider((TransactionalEditingDomain) getEditingDomain(), adapterFactory));
+      selectionViewer.setContentProvider(new FcoreContentProvider(getEditingDomain(), adapterFactory));
+      selectionViewer.setLabelProvider(new TransactionalAdapterFactoryLabelProvider(getEditingDomain(), adapterFactory));
 
       selectionViewer.setInput(getResource());
       selectionViewer.setSelection(new StructuredSelection(getResource()), true);
@@ -1273,8 +1286,8 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           contentOutlineViewer.addSelectionChangedListener(this);
 
           // Set up the tree viewer.
-          contentOutlineViewer.setContentProvider(new FcoreContentProvider((TransactionalEditingDomain) getEditingDomain(), adapterFactory));
-          contentOutlineViewer.setLabelProvider(new TransactionalAdapterFactoryLabelProvider((TransactionalEditingDomain) getEditingDomain(), adapterFactory));
+          contentOutlineViewer.setContentProvider(new FcoreContentProvider(getEditingDomain(), adapterFactory));
+          contentOutlineViewer.setLabelProvider(new TransactionalAdapterFactoryLabelProvider(getEditingDomain(), adapterFactory));
           contentOutlineViewer.setInput(getResource());
 
           // Make sure our popups work.
@@ -1345,7 +1358,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           propertySheetPage = null;
         }
       };
-      propertySheetPage.setPropertySourceProvider(new FcoreContentProvider((TransactionalEditingDomain) getEditingDomain(), adapterFactory));
+      propertySheetPage.setPropertySourceProvider(new FcoreContentProvider(getEditingDomain(), adapterFactory));
     }
 
     return propertySheetPage;
@@ -1413,7 +1426,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       @Override
       public void execute(IProgressMonitor monitor) {
         try {
-          ((TransactionalEditingDomain) getEditingDomain()).runExclusive(new Runnable() {
+          getEditingDomain().runExclusive(new Runnable() {
             public void run() {
               Resource resourceToSave = getResource();
               try {
@@ -1514,7 +1527,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     // not affect the abstract state of the model, so we only need exclusive
     // (read) access
     try {
-      ((TransactionalEditingDomain) getEditingDomain()).runExclusive(new Runnable() {
+      getEditingDomain().runExclusive(new Runnable() {
         public void run() {
           getResource().setURI(uri);
           setInputWithNotify(editorInput);
@@ -1545,7 +1558,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         final String uriAttribute = marker.getAttribute(EValidator.URI_ATTRIBUTE, null);
         if (uriAttribute != null) {
           try {
-            ((TransactionalEditingDomain) getEditingDomain()).runExclusive(new Runnable() {
+            getEditingDomain().runExclusive(new Runnable() {
               public void run() {
                 URI uri = URI.createURI(uriAttribute);
                 EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);

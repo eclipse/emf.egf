@@ -25,6 +25,7 @@ package <%=genPackage.getUtilitiesPackageName()%>;
 <%genModel.getImportedName("org.eclipse.emf.ecore.EStructuralFeature");%>
 <%genModel.getImportedName("org.eclipse.emf.ecore.xmi.XMLResource");%>
 <%genModel.getImportedName("org.eclipse.egf.model.uri.ModelSchemeAware");%>
+<%genModel.getImportedName("org.eclipse.emf.ecore.InternalEObject");%>
 <%genModel.markImportLocation(stringBuffer);%>
 
 /**
@@ -520,7 +521,12 @@ public class <%=genPackage.getResourceClassName()%> extends <%=genPackage.getImp
 	 * and clears the {@link #eAdapters adapters}.
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=292866
 	 * Fix available in HEAD: 2.6.0.I200911020144
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated	 
 	 */
+	@Override
 	protected void unloaded(InternalEObject internalEObject) {
 		// Ensure that an unresolved containment proxy's URI isn't reset.
 		//

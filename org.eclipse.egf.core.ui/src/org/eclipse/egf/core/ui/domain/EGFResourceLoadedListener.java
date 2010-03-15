@@ -23,7 +23,6 @@ import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.commands.operations.ObjectUndoContext;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.fcore.IPlatformFcoreConstants;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
@@ -87,8 +86,6 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
 
     final Map<Resource, List<ResourceUser>> _observers = new HashMap<Resource, List<ResourceUser>>();
 
-    final List<Resource> _deletedFcores = new UniqueEList<Resource>();
-
     // Due to PDE bug notification we need to handle
     // notification in a weird way
     // https://bugs.eclipse.org/bugs/show_bug.cgi?id=267954
@@ -120,6 +117,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
       }
       list.remove(resourceUser);
       if (list.isEmpty()) {
+        resource.unload();
         _observers.remove(resource);
         // Start Workaround PDE Bug 267954
         _fcores.remove(resource);
@@ -150,9 +148,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
       } catch (InterruptedException e) {
         EGFCoreUIPlugin.getDefault().logError(e);
       }
-      // Clear our context
       _fcores.clear();
-      _deletedFcores.clear();
     }
 
     private boolean noMoreObserver() {
@@ -187,9 +183,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
       // Non dirty editors should close themselves while editing a deleted resource if any
       if (isDirty == false) {
         resource.unload();
-        if (resource.getResourceSet() != null) {
-          editingDomain.getResourceSet().getResources().remove(resource);
-        }
+        resource.getResourceSet().getResources().remove(resource);
         // Start Workaround PDE Bug 267954
         _fcores.remove(resource);
         // End Workaround PDE Bug 267954
@@ -204,7 +198,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
         resource.unload();
         resource.load(Collections.EMPTY_MAP);
       } catch (IOException ioe) {
-        // Just Ignore
+        EGFCoreUIPlugin.getDefault().logError(ioe);
       }
       for (Iterator<ResourceListener> iterator = _listeners.iterator(); iterator.hasNext();) {
         ResourceListener resourceListener = iterator.next();
@@ -212,7 +206,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
       }
     }
 
-    public void movedResource(EditingDomain editingDomain, Resource movedResource, URI newURI) {
+    public void movedResource(TransactionalEditingDomain editingDomain, Resource movedResource, URI newURI) {
       if (movedResource == null) {
         throw new IllegalArgumentException();
       }
@@ -354,16 +348,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
       // Process Removed Fcores
       if (deltaRemovedFcores.isEmpty() == false) {
         for (Resource resource : deltaRemovedFcores.keySet()) {
-          IPlatformFcore fcore = deltaRemovedFcores.get(resource);
-          // We process target deleted fcore at this stage and deleted fcore when the main
-          // listener is called before _platformListener
-          if (RESOURCE_MANAGER._deletedFcores.contains(resource) || fcore.getPlatformBundle().isTarget()) {
-            RESOURCE_MANAGER.removeResource(editingDomain, resource);
-            RESOURCE_MANAGER._deletedFcores.remove(resource);
-          } else {
-            // _platformListener has been called first, populate _deletedFcores and let the main listener to process it
-            RESOURCE_MANAGER._deletedFcores.add(resource);
-          }
+          RESOURCE_MANAGER.removeResource(editingDomain, resource);
         }
       }
 
@@ -416,14 +401,11 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
   }
 
   public boolean handleResourceDeleted(Resource deletedResource) {
-    // Process Deleted Resources
-    if (RESOURCE_MANAGER._deletedFcores.contains(deletedResource) || IPlatformFcoreConstants.FCORE_FILE_EXTENSION.equals(deletedResource.getURI().fileExtension()) == false) {
+    IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(deletedResource);
+    // Either a non Fcore resource or an already processed deleted fcore from _platformListener
+    if (fcore == null) {
       // _platformListener has been called first, Process workspace removed fcores detected in _platformListener
       RESOURCE_MANAGER.removeResource(getEditingDomain(), deletedResource);
-      RESOURCE_MANAGER._deletedFcores.remove(deletedResource);
-    } else {
-      // the main listener has been called first, populate _deletedFcores and let _platformListener process it
-      RESOURCE_MANAGER._deletedFcores.add(deletedResource);
     }
     return true;
   }
