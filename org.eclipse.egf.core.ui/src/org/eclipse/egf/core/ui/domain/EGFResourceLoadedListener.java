@@ -117,11 +117,18 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
       }
       list.remove(resourceUser);
       if (list.isEmpty()) {
-        resource.unload();
-        _observers.remove(resource);
-        // Start Workaround PDE Bug 267954
-        _fcores.remove(resource);
-        // End Workaround PDE Bug 267954
+        try {
+          resource.unload();
+          _observers.remove(resource);
+          // Start Workaround PDE Bug 267954
+          _fcores.remove(resource);
+          // End Workaround PDE Bug 267954
+          if (noMoreObserver() == false) {
+            resource.load(Collections.EMPTY_MAP);
+          }
+        } catch (IOException ioe) {
+          EGFCoreUIPlugin.getDefault().logError(ioe);
+        }
       }
       _listeners.remove(resourceUser.getListener());
       if (noMoreObserver()) {
@@ -182,11 +189,15 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
       }
       // Non dirty editors should close themselves while editing a deleted resource if any
       if (isDirty == false) {
-        resource.unload();
-        resource.getResourceSet().getResources().remove(resource);
-        // Start Workaround PDE Bug 267954
-        _fcores.remove(resource);
-        // End Workaround PDE Bug 267954
+        try {
+          resource.unload();
+          // Start Workaround PDE Bug 267954
+          _fcores.remove(resource);
+          // End Workaround PDE Bug 267954
+          resource.load(Collections.EMPTY_MAP);
+        } catch (IOException ioe) {
+          EGFCoreUIPlugin.getDefault().logError(ioe);
+        }
       }
     }
 
