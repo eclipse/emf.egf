@@ -65,7 +65,7 @@ parameterValues.put("parameter", parameterParameter);
     
 method_body(ictx.getBuffer(), ictx, parameter);
 
-    CallHelper.callBack(ctx, parameter);
+    CallHelper.callBack(new ExecutionContext(ictx), parameter);
 
     
 String loop = ictx.getBuffer().toString();

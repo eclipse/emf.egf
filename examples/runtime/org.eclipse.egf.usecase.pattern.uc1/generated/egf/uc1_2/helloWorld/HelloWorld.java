@@ -71,8 +71,8 @@ method_SayHello(ictx.getBuffer(), ictx);
 method_body(ictx.getBuffer(), ictx, aClass);
 
     org.eclipse.emf.ecore.EClass element__AfpkEAzyEdsdvrVfWaxAw = aClass;
-ExecutionContext ctx__gwaT0Be1EdDaY2uHNBaQg = new ExecutionContext(ictx);
-CallHelper.executeWithInjection("_7-a0kAzxEd-sdvrVfWaxAw", ctx__gwaT0Be1EdDaY2uHNBaQg, element__AfpkEAzyEdsdvrVfWaxAw);
+ExecutionContext ctx__aEwO8BfHEdq9LwefQPS4A = new ExecutionContext(ictx);
+CallHelper.executeWithInjection("_7-a0kAzxEd-sdvrVfWaxAw", ctx__aEwO8BfHEdq9LwefQPS4A, element__AfpkEAzyEdsdvrVfWaxAw);
     
 method_finish(ictx.getBuffer(), ictx);
 
