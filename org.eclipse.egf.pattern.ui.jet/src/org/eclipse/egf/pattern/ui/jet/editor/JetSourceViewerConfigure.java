@@ -15,18 +15,15 @@
 
 package org.eclipse.egf.pattern.ui.jet.editor;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.pattern.ui.jet.editor.contentassist.JetJavaExpressionAssistProcessor;
 import org.eclipse.egf.pattern.ui.jet.editor.contentassist.JetJavaScriptletAssistProcessor;
 import org.eclipse.jet.internal.editor.JETTextEditor;
-import org.eclipse.jet.internal.editor.configuration.JETReconcilingStrategy;
 import org.eclipse.jet.internal.editor.configuration.JETSourceViewerConfiguration;
 import org.eclipse.jet.internal.editor.contentassist.JETJavaExpressionAssistProcessor;
 import org.eclipse.jet.internal.editor.contentassist.JETJavaScriptletAssistProcessor;
 import org.eclipse.jface.text.contentassist.ContentAssistant;
 import org.eclipse.jface.text.contentassist.IContentAssistant;
 import org.eclipse.jface.text.reconciler.IReconciler;
-import org.eclipse.jface.text.reconciler.MonoReconciler;
 import org.eclipse.jface.text.source.ISourceViewer;
 
 /**
@@ -42,11 +39,16 @@ public class JetSourceViewerConfigure extends JETSourceViewerConfiguration {
     }
 
     public IReconciler getReconciler(ISourceViewer sourceViewer) {
-        JETReconcilingStrategy strategy = new JetReconcilingStrategy(sourceViewer, editor);
-        MonoReconciler reconciler = new MonoReconciler(strategy, false);
-        reconciler.setProgressMonitor(new NullProgressMonitor());
-        reconciler.setDelay(500);
-        return reconciler;
+        // Disable the reconciler since it introduces some problems
+        return null;
+
+        // JETReconcilingStrategy strategy = new
+        // JetReconcilingStrategy(sourceViewer, editor);
+        // MonoReconciler reconciler = new MonoReconciler(strategy, false);
+        // reconciler.setProgressMonitor(new NullProgressMonitor());
+        // reconciler.setDelay(500);
+        // return reconciler;
+
     }
 
     public IContentAssistant getContentAssistant(ISourceViewer sourceViewer) {

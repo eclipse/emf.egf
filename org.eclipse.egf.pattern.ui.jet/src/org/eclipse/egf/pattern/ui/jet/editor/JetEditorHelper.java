@@ -452,6 +452,8 @@ public class JetEditorHelper extends JETEditorHelper {
             return;
         IEditorPart templateEditorPart = ((JetTemplateEditor) multiPageEditorPart).getTemplateFileEditorPart();
         Pattern pattern = editor.getPattern();
+        if(templateEditorPart == null)
+            return;
         IEditorInput editorInput = templateEditorPart.getEditorInput();
         if (editorInput instanceof IFileEditorInput) {
             IFile templateFile = ((IFileEditorInput) editorInput).getFile();

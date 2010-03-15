@@ -83,7 +83,7 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
 
     protected void initProblems() {
         IEditorPart editorPart = openEditor;
-        if(editorPart == null){
+        if (editorPart == null) {
             return;
         }
         JavaEditor javaEditor = (JavaEditor) editorPart;
@@ -142,12 +142,6 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
     }
 
     @Override
-    public void setFocus() {
-        super.setFocus();
-//        JavaTextEditorHelper.mappingErrorFromTemplateEditor((JavaTextEditor) this.getActiveEditor());
-    }
-
-    @Override
     public void setActivePage(String methodId) {
         if (methodId != null && !"".equals(methodId)) {
             JavaTextEditor javaTextEditor = (JavaTextEditor) editorMap.get(methodId);
@@ -186,5 +180,11 @@ public class JavaTemplateEditor extends AbstractTemplateEditor {
             Activator.getDefault().logError(e);
         }
         return null;
+    }
+
+    @Override
+    protected String getDelegateEditorID() {
+
+        return "org.eclipse.jdt.ui.CompilationUnitEditor";
     }
 }

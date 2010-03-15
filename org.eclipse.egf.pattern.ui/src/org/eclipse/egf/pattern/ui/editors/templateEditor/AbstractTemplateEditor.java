@@ -71,6 +71,7 @@ import org.eclipse.ui.editors.text.TextEditor;
 import org.eclipse.ui.ide.IDE;
 import org.eclipse.ui.internal.WorkbenchPage;
 import org.eclipse.ui.internal.WorkbenchWindow;
+import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.part.MultiPageEditorPart;
 
 /**
@@ -176,13 +177,16 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
             templateActivePage = new WorkbenchPage((WorkbenchWindow) activeWorkbenchWindow, null);
             if (templateActivePage == null || templateFile == null)
                 return null;
-            IEditorPart openEditor = IDE.openEditor(templateActivePage, templateFile, false);
-            return openEditor;
+
+            // TO ensure the JetEditor is used instead of the default one.
+            return templateActivePage.openEditor(new FileEditorInput(templateFile), getDelegateEditorID(), false);
         } catch (PartInitException e) {
             Activator.getDefault().logError(e);
         }
         return null;
     }
+
+    protected abstract String getDelegateEditorID();
 
     protected IFile setPublicTemplateEditor(Pattern pattern, EList<PatternMethod> methods, String fileExtention) {
         IFile templateFile = null;

@@ -15,7 +15,6 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.pattern.ui.editors.templateEditor.AbstractTemplateEditor;
 import org.eclipse.egf.pattern.ui.jet.Activator;
-import org.eclipse.egf.pattern.ui.jet.editor.JetEditorHelper;
 import org.eclipse.egf.pattern.ui.jet.editor.JetTextEditor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jet.core.parser.ProblemSeverity;
@@ -75,7 +74,7 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
     protected void initProblems() {
         IEditorPart editorPart = openEditor;
         JETTextEditor jetTextEditor = (JETTextEditor) editorPart;
-        if(jetTextEditor == null){
+        if (jetTextEditor == null) {
             return;
         }
         IDocumentProvider documentProvider = jetTextEditor.getDocumentProvider();
@@ -145,7 +144,8 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
     @Override
     public void setFocus() {
         super.setFocus();
-//        JetEditorHelper.mappingErrorFromTemplateEditor((JetTextEditor) this.getActiveEditor());
+        // JetEditorHelper.mappingErrorFromTemplateEditor((JetTextEditor)
+        // this.getActiveEditor());
     }
 
     @Override
@@ -157,6 +157,7 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
             }
         }
     }
+
     @Override
     protected void executeMethodEditorAdd(PatternMethod addMethod) {
         try {
@@ -186,5 +187,11 @@ public class JetTemplateEditor extends AbstractTemplateEditor {
             Activator.getDefault().logError(e);
         }
         return null;
+    }
+
+    @Override
+    protected String getDelegateEditorID() {
+
+        return "org.eclipse.jet.editor.JETEditor";
     }
 }
