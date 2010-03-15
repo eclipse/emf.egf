@@ -19,7 +19,6 @@ public class packagePattern
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
-  protected final String TEXT_2 = NL;
 
 	public packagePattern()
 	{
@@ -35,7 +34,6 @@ StringBuffer stringBuffer = new StringBuffer();
     final StringBuffer stringBuffer = new StringBuffer();
     
     InternalPatternContext ctx = (InternalPatternContext)argument;
-StringBuilder collector = new StringBuilder(2000);
 Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
@@ -47,40 +45,39 @@ List<Object> parameterList = null;
 for (Object parameterParameter : parameterList ) {
 
 
-    collector.append(generate(ctx, parameterParameter));
+    generate(ctx, parameterParameter);
     
 }
-((InternalPatternContext)ctx).getReporter().executionFinished(collector.toString(), ctx);
-
-    stringBuffer.append(TEXT_2);
+if (ctx.useReporter()){
+    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
+    ctx.getBuffer().setLength(0);
+}
+    stringBuffer.append(TEXT_1);
     return stringBuffer.toString();
   }
 public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
-if (!ictx.hasCallReporter()) {
-    ictx = new ExecutionContext(ctx);
-    ictx.setCallReporter(new PatternCallReporter(new StringBuffer()));
-}
 
 Map<String, Object> parameterValues = new HashMap<String, Object>();
 org.eclipse.emf.ecore.EPackage parameter = (org.eclipse.emf.ecore.EPackage)parameterParameter;
 parameterValues.put("parameter", parameterParameter);
 
     
-method_body(ictx.getCallReporter().getBuffer(), ictx, parameter);
+method_body(ictx.getBuffer(), ictx, parameter);
 
     CallHelper.callBack(ctx, parameter);
 
     
-String loop = ictx.getCallReporter().getBuffer().toString();
-((InternalPatternContext)ctx).getReporter().loopFinished(loop, ictx, parameterValues);
+String loop = ictx.getBuffer().toString();
+if (ictx.useReporter()){
+    ictx.getReporter().loopFinished(loop, ictx, parameterValues);
+ictx.getBuffer().setLength(0);}
 return loop;
 } 
 
 
-    protected void method_body(StringBuffer stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EPackage parameter)throws Exception 
-{
-    stringBuffer.append(TEXT_1);
+    protected void method_body(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EPackage parameter)throws Exception {
+
     stringBuffer.append("package "+parameter.getName());
     }
     }
