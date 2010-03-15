@@ -4,7 +4,7 @@
       label="%featureName"
       version="0.2.2.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.egf.pattern.ui"
+      plugin="org.eclipse.egf.model.editor"
       image="eclipse_update_120.jpg">
 
    <description>
