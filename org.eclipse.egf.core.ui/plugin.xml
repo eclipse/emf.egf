@@ -145,6 +145,31 @@
       id="org.eclipse.egf.ui.actionSet.open.fcore.action.definition"
     />
       
-  </extension>       
+  </extension>   
+  
+  <!-- ================================================================================= -->
+  <!-- Bindings                                                                          -->
+  <!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.ui.bindings"
+  >
+  
+  <!-- ================================================================================= -->
+  <!-- win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-                                        -->
+  <!-- carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL                                     -->  
+  <!-- ================================================================================= -->  
+  
+  <!-- ================================================================================= -->
+  <!-- Key Run                                                                           -->
+  <!-- ================================================================================= -->
+     
+    <key
+      sequence="M2+T"
+      commandId="org.eclipse.egf.ui.actionSet.open.fcore.action.definition"
+      schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+    />
+            
+  </extension>      
       
 </plugin>
