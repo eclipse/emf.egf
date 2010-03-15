@@ -32,6 +32,7 @@ import org.eclipse.egf.core.workspace.EGFWorkspaceSynchronizer;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.xmi.XMIException;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -127,7 +128,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
             resource.load(Collections.EMPTY_MAP);
           }
         } catch (IOException ioe) {
-          EGFCoreUIPlugin.getDefault().logError(ioe);
+          resource.getErrors().add(new XMIException(EGFCorePlugin.EDITING_DOMAIN_ID, ioe));
         }
       }
       _listeners.remove(resourceUser.getListener());
@@ -189,15 +190,10 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
       }
       // Non dirty editors should close themselves while editing a deleted resource if any
       if (isDirty == false) {
-        try {
-          resource.unload();
-          // Start Workaround PDE Bug 267954
-          _fcores.remove(resource);
-          // End Workaround PDE Bug 267954
-          resource.load(Collections.EMPTY_MAP);
-        } catch (IOException ioe) {
-          EGFCoreUIPlugin.getDefault().logError(ioe);
-        }
+        resource.unload();
+        // Start Workaround PDE Bug 267954
+        _fcores.remove(resource);
+        // End Workaround PDE Bug 267954
       }
     }
 
@@ -209,7 +205,7 @@ public final class EGFResourceLoadedListener implements EGFWorkspaceSynchronizer
         resource.unload();
         resource.load(Collections.EMPTY_MAP);
       } catch (IOException ioe) {
-        EGFCoreUIPlugin.getDefault().logError(ioe);
+        resource.getErrors().add(new XMIException(EGFCorePlugin.EDITING_DOMAIN_ID, ioe));
       }
       for (Iterator<ResourceListener> iterator = _listeners.iterator(); iterator.hasNext();) {
         ResourceListener resourceListener = iterator.next();
