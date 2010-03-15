@@ -155,7 +155,7 @@
   <!-- ================================================================================= -->
      
     <key
-      sequence="M2+V"
+      sequence="M1+M3+P"
       commandId="org.eclipse.egf.ui.actionSet.global.run.activity.action.definition"
       schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
     />
