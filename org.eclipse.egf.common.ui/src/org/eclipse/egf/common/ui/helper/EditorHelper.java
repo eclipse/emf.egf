@@ -30,10 +30,12 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.ui.IEditorDescriptor;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IEditorRegistry;
 import org.eclipse.ui.IURIEditorInput;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.editors.text.EditorsUI;
@@ -103,18 +105,21 @@ public class EditorHelper {
     if (uri == null) {
       return null;
     }
-    IEditorInput editorInput = null;
-    if (uri.isPlatformResource()) {
-      String path = uri.toPlatformString(true);
-      IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
-      if (workspaceResource instanceof IFile) {
-        editorInput = EclipseUtil.createFileEditorInput((IFile) workspaceResource);
-        return openEditor(editorInput, uri);
+    IEditorPart part = restoreAlreadyOpenedEditor(uri);
+    if (part == null) {
+      IEditorInput editorInput = null;
+      if (uri.isPlatformResource()) {
+        String path = uri.toPlatformString(true);
+        IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
+        if (workspaceResource instanceof IFile) {
+          editorInput = EclipseUtil.createFileEditorInput((IFile) workspaceResource);
+          return openEditor(editorInput, uri);
+        }
+      } else {
+        return openEditor(new URIEditorInput(uri.trimFragment()), uri);
       }
-    } else {
-      return openEditor(new URIEditorInput(uri.trimFragment()), uri);
     }
-    return null;
+    return part;
   }
 
   private static IEditorPart openEditor(IEditorInput input, URI uri) throws PartInitException {
@@ -122,6 +127,33 @@ public class EditorHelper {
       IWorkbench workbench = PlatformUI.getWorkbench();
       IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
       return page.openEditor(input, computeEditorId(uri.trimFragment().lastSegment()));
+    }
+    return null;
+  }
+
+  private static IEditorPart restoreAlreadyOpenedEditor(URI uri) {
+    if (uri == null) {
+      return null;
+    }
+    IWorkbench workbench = PlatformUI.getWorkbench();
+    if (workbench != null) {
+      for (IWorkbenchWindow workbenchWindow : workbench.getWorkbenchWindows()) {
+        for (IWorkbenchPage workbenchPage : workbenchWindow.getPages()) {
+          for (IEditorReference editorReference : workbenchPage.getEditorReferences()) {
+            try {
+              IEditorInput editorInput = editorReference.getEditorInput();
+              if (editorInput != null) {
+                URI innerURI = EditorHelper.getURI(editorInput);
+                if (innerURI != null && innerURI.equals(uri)) {
+                  return editorReference.getEditor(true);
+                }
+              }
+            } catch (PartInitException pie) {
+              // Just Ignore
+            }
+          }
+        }
+      }
     }
     return null;
   }

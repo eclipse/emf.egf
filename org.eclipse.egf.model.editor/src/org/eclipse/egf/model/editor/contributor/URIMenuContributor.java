@@ -26,14 +26,8 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IEditorReference;
-import org.eclipse.ui.IWorkbench;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 
 /**
  * @author Xavier Maysonnave
@@ -95,43 +89,13 @@ public class URIMenuContributor extends MenuContributor {
         if (uri == null) {
           return;
         }
-        IEditorPart part = restoreAlreadyOpenedEditor(uri);
-        if (part == null) {
-          part = EditorHelper.openEditor(uri);
-        }
+        IEditorPart part = EditorHelper.openEditor(uri);
         if (part != null && part instanceof IEditingDomainProvider) {
           EditorHelper.setSelectionToViewer(part, uri);
         }
       } catch (PartInitException pie) {
         EGFModelEditorPlugin.getPlugin().logError(pie);
       }
-    }
-
-    private IEditorPart restoreAlreadyOpenedEditor(URI uri) {
-      if (uri == null) {
-        return null;
-      }
-      IWorkbench workbench = PlatformUI.getWorkbench();
-      if (workbench != null) {
-        for (IWorkbenchWindow workbenchWindow : workbench.getWorkbenchWindows()) {
-          for (IWorkbenchPage workbenchPage : workbenchWindow.getPages()) {
-            for (IEditorReference editorReference : workbenchPage.getEditorReferences()) {
-              try {
-                IEditorInput editorInput = editorReference.getEditorInput();
-                if (editorInput != null) {
-                  URI innerURI = EditorHelper.getURI(editorInput);
-                  if (innerURI != null && innerURI.equals(uri)) {
-                    return editorReference.getEditor(true);
-                  }
-                }
-              } catch (PartInitException pie) {
-                // Just Ignore
-              }
-            }
-          }
-        }
-      }
-      return null;
     }
 
   }
