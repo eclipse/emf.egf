@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.examples.uc1.reporter;
+package org.eclipse.egf.usecase.pattern.uc1.reporter;
 
 import java.util.Map;
 

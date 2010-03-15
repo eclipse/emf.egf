@@ -1,7 +1,7 @@
 Bundle-SymbolicName: org.eclipse.egf.usecase.pattern.uc1;singleton:=true
-Export-Package: org.eclipse.egf.examples.uc1,
- org.eclipse.egf.examples.uc1.query,
- org.eclipse.egf.examples.uc1.reporter
+Export-Package: org.eclipse.egf.usecase.pattern.uc1,
+ org.eclipse.egf.usecase.pattern.uc1.query,
+ org.eclipse.egf.usecase.pattern.uc1.reporter
 Require-Bundle: org.eclipse.egf.model.ftask;visibility:=reexport,
  org.eclipse.egf.pattern;bundle-version="0.2.0",
  org.eclipse.egf.pattern.ftask;bundle-version="0.2.0",

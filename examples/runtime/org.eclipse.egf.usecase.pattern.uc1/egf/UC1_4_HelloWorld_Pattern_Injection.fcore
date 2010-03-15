@@ -43,7 +43,7 @@
               called="#_RdSzcBViEd-JoY-b5_Vpcw"/>
           <parameters xmi:id="_34yzkBVjEd-JoY-b5_Vpcw" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//ENamedElement">
             <query xmi:type="pattern:BasicQuery" xmi:id="_u33MURVoEd-Ay7SQYKAR7g"
-                extensionId="org.eclipse.egf.examples.uc1.query1"/>
+                extensionId="org.eclipse.egf.usecase.pattern.uc1.query1"/>
           </parameters>
           <nature xmi:type="jetpattern:JetNature" xmi:id="_RdSzcxViEd-JoY-b5_Vpcw"
               name="JET"/>
@@ -62,7 +62,7 @@
         </invocationContracts>
         <invocationContracts xmi:id="_tmYKoBb6Ed-yIvdzb4Km2Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_viNlMBb6Ed-yIvdzb4Km2Q"
-              value="org.eclipse.egf.examples.uc1.reporter.MyReporter"/>
+              value="org.eclipse.egf.usecase.pattern.uc1.reporter.MyReporter"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>

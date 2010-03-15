@@ -42,7 +42,7 @@ IQuery.ParameterDescription paramDesc = null;
     
 paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//ENamedElement");
 queryCtx = new HashMap<String, String>();
-List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.examples.uc1.query1").execute(paramDesc, queryCtx, ctx);
+List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.usecase.pattern.uc1.query1").execute(paramDesc, queryCtx, ctx);
 
 
 for (Object parameterParameter : parameterList ) {

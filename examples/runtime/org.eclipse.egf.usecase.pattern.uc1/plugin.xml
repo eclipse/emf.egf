@@ -34,8 +34,8 @@
    <extension
          point="org.eclipse.egf.query">
       <query
-            class="org.eclipse.egf.examples.uc1.query.ContentQuery"
-            id="org.eclipse.egf.examples.uc1.query1"
+            class="org.eclipse.egf.usecase.pattern.uc1.query.ContentQuery"
+            id="org.eclipse.egf.usecase.pattern.uc1.query1"
             name="ContentQuery">
       </query>
    </extension>

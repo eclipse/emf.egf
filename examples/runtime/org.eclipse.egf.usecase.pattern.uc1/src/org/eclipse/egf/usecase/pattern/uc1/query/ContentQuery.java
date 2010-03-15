@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.examples.uc1.query;
+package org.eclipse.egf.usecase.pattern.uc1.query;
 
 import java.util.ArrayList;
 import java.util.Collection;

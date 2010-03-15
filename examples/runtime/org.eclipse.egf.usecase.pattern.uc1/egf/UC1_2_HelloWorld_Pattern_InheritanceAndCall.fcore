@@ -76,7 +76,7 @@
         </invocationContracts>
         <invocationContracts xmi:id="_DOMzcBZSEd-MevBezRJS_g" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_FHMVYBZSEd-MevBezRJS_g"
-              value="org.eclipse.egf.examples.uc1.reporter.MyReporter"/>
+              value="org.eclipse.egf.usecase.pattern.uc1.reporter.MyReporter"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>
