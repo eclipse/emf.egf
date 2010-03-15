@@ -40,10 +40,6 @@ import org.eclipse.ui.editors.text.EditorsUI;
 import org.eclipse.ui.part.FileEditorInput;
 import org.osgi.framework.Bundle;
 
-/**
- * @author Xavier Maysonnave
- * 
- */
 public class EditorHelper {
 
   public static void setSelectionToViewer(IEditorPart part, URI uri) {
@@ -221,7 +217,7 @@ public class EditorHelper {
       return null;
     }
 
-    public static IEditorInput createFileEditorInput(IFile file) {
+    public static IURIEditorInput createFileEditorInput(IFile file) {
       return new FileEditorInput(file);
     }
   }

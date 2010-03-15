@@ -118,12 +118,13 @@
       id="org.eclipse.egf.ui.fcore.actionSet"
     >
       <action
+        toolbarPath="org.eclipse.search.searchActionSet/Search"
         definitionId="org.eclipse.egf.ui.actionSet.open.fcore.action.definition"
         icon="$nl$/icons/full/obj16/Fcore.gif"
         label="%openFcore.label"
         class="org.eclipse.egf.core.ui.actions.OpenFcoreAction"
         tooltip="%openFcore.description"
-        menubarPath="file/new.ext"
+        menubarPath="navigate/open.ext4"
         id="org.eclipse.egf.ui.actionSet.open.fcore.action"
       />
     </actionSet>  
