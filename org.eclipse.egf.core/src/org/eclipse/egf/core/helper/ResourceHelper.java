@@ -22,6 +22,9 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.helper.URIHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.l10n.EGFCoreMessages;
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
@@ -30,6 +33,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Xavier Maysonnave
@@ -39,6 +43,22 @@ public class ResourceHelper {
 
   private ResourceHelper() {
     // Prevent instantiation
+  }
+
+  /**
+   * Returns a diagnostic describing the errors and warnings listed in the resource
+   * and the specified exception (if any).
+   */
+  public static Diagnostic analyzeResourceProblems(Resource resource, Exception exception, String message) {
+    if (resource.getErrors().isEmpty() == false || resource.getWarnings().isEmpty() == false) {
+      BasicDiagnostic basicDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, message, 0, NLS.bind(EGFCoreMessages._UI_CreateModelError_message, resource.getURI()), new Object[] { exception == null ? (Object) resource : exception });
+      basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
+      return basicDiagnostic;
+    } else if (exception != null) {
+      return new BasicDiagnostic(Diagnostic.ERROR, message, 0, NLS.bind(EGFCoreMessages._UI_CreateModelError_message, resource.getURI()), new Object[] { exception });
+    } else {
+      return Diagnostic.OK_INSTANCE;
+    }
   }
 
   public static Resource createResource(ResourceSet resourceSet, IResource resource) {

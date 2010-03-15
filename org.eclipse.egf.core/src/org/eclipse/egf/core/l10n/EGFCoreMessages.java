@@ -65,4 +65,6 @@ public class EGFCoreMessages {
 
   public static String synchJobName;
 
+  public static String _UI_CreateModelError_message;
+
 }
