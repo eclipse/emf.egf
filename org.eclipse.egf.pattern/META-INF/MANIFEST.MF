@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Bundle-SymbolicName: org.eclipse.egf.pattern;singleton:=true
-Bundle-Version: 0.2.0.qualifier
+Bundle-Version: 0.2.2.qualifier
 Bundle-Activator: org.eclipse.egf.pattern.Activator
 Bundle-Localization: plugin
 Require-Bundle: 
