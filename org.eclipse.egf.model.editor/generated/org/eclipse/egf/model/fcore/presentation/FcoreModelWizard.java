@@ -263,7 +263,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
       }
     };
     try {
-      getContainer().run(false, true, convertOperation);
+      getContainer().run(false, false, convertOperation);
     } catch (Throwable t) {
       throwable[0] = t;
     }

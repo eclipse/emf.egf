@@ -30,7 +30,6 @@ import org.eclipse.core.commands.operations.OperationHistoryEvent;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IPath;
@@ -40,6 +39,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.ListenerContributor;
 import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener;
@@ -67,7 +67,6 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -477,8 +476,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         case Resource.RESOURCE__WARNINGS: {
           // Problem
           final Resource innerResource = (Resource) notification.getNotifier();
-          final List<EObject> proxyOwners = getProxyReferenceOwners(getResource(), innerResource.getURI());
-          if (innerResource == getResource() || proxyOwners.size() > 0) {
+          if (innerResource == getResource() || ResourceHelper.hasURIProxyReferences(getResource(), innerResource.getURI())) {
             Diagnostic diagnostic = analyzeResourceProblems(innerResource, null);
             if (diagnostic.getSeverity() != Diagnostic.OK) {
               resourceToDiagnosticMap.put(innerResource.getURI(), diagnostic);
@@ -488,12 +486,12 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             if (updateProblemIndication) {
               getSite().getShell().getDisplay().asyncExec(new Runnable() {
                 public void run() {
-                  updateProblemIndication(proxyOwners);
+                  updateProblemIndication();
                 }
               });
             }
-            break;
           }
+          break;
         }
         case Resource.RESOURCE__URI: {
           getSite().getShell().getDisplay().asyncExec(new Runnable() {
@@ -518,6 +516,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     protected void unsetTarget(Resource innerTarget) {
       basicUnsetTarget(innerTarget);
     }
+
   };
 
   /**
@@ -718,7 +717,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * 
    * @generated NOT
    */
-  protected void updateProblemIndication(List<EObject> refresh) {
+  protected void updateProblemIndication() {
     if (updateProblemIndication) {
       BasicDiagnostic diagnostic = new BasicDiagnostic(Diagnostic.OK, EGFCorePlugin.FCORE_EDITOR_ID, 0, null, new Object[] { getResource() });
       for (URI uri : resourceToDiagnosticMap.keySet()) {
@@ -757,50 +756,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         }
       }
 
-      if (refresh != null && selectionViewer.isBusy() == false) {
-        for (EObject eObject : refresh) {
-          selectionViewer.refresh(eObject, true);
-        }
-      }
-
     }
-  }
-
-  /**
-   * return owners of proxies who qualify a resource URI
-   * This method doesn't resolve proxies while analysed
-   */
-  private List<EObject> getProxyReferenceOwners(Resource content, URI uri) {
-    Assert.isNotNull(content);
-    List<EObject> owners = new UniqueEList<EObject>();
-    if (uri == null) {
-      return owners;
-    }
-    // Build proxies list
-    Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EcoreUtil.ProxyCrossReferencer.find(content);
-    for (EObject reference : proxies.keySet()) {
-      URI referenceURI = EcoreUtil.getURI(reference);
-      if (referenceURI == null) {
-        continue;
-      }
-      if (referenceURI.trimFragment().equals(uri) == false) {
-        continue;
-      }
-      // Build holders list
-      for (EStructuralFeature.Setting setting : proxies.get(reference)) {
-        URI holderURI = EcoreUtil.getURI(setting.getEObject());
-        if (holderURI == null) {
-          continue;
-        }
-        // Looking for an holder who match our current resource uri
-        // Since the first one we found we iterate
-        if (content.getURI().equals(holderURI.trimFragment())) {
-          owners.add(setting.getEObject());
-          break;
-        }
-      }
-    }
-    return owners;
   }
 
   /**
@@ -1095,7 +1051,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     if (diagnostic.getSeverity() != Diagnostic.OK) {
       resourceToDiagnosticMap.put(resource.getURI(), diagnostic);
     }
-    getEditingDomain().getResourceSet().eAdapters().add(editorResourceAdapter);
+    editingDomain.getResourceSet().eAdapters().add(editorResourceAdapter);
     egfAdapters.add(new PatternBundleAdapter(getSite()));
     egfAdapters.add(new TaskJavaBundleAdapter(resource, getSite()));
     getEditingDomain().getResourceSet().eAdapters().addAll(egfAdapters);
@@ -1217,7 +1173,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
 
     getSite().getShell().getDisplay().asyncExec(new Runnable() {
       public void run() {
-        updateProblemIndication(null);
+        updateProblemIndication();
       }
     });
 
@@ -1487,7 +1443,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);
     }
     updateProblemIndication = true;
-    updateProblemIndication(null);
+    updateProblemIndication();
   }
 
   /**
@@ -1814,9 +1770,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     // No more problem feedback
     updateProblemIndication = false;
 
-    // Remove observer
-    EGFResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
-
     // We have operation history stuff to clean up
     getOperationHistory().removeOperationHistoryListener(historyListener);
     getOperationHistory().dispose(getUndoContext(), true, true, true);
@@ -1841,6 +1794,10 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     if (contentOutlinePage != null) {
       contentOutlinePage.dispose();
     }
+
+    // Remove observer
+    EGFResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
+
     super.dispose();
 
   }

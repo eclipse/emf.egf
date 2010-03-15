@@ -83,7 +83,7 @@ public class TaskJavaBundleAdapter extends EContentAdapter {
       };
       // asynchronous operation
       try {
-        new ProgressMonitorDialog(_shell).run(true, true, operation);
+        new ProgressMonitorDialog(_shell).run(true, false, operation);
       } catch (InterruptedException ie) {
         // Nothing to do
       } catch (Exception e) {
