@@ -1,4 +1,4 @@
-package egf.uc1_2.helloWorld.friends;
+package egf.uc1_5.helloWorld;
 
 import java.util.*;
 import org.eclipse.emf.ecore.*;
@@ -6,22 +6,23 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class HelloFriends 
+public class AttributePattern 
 {
   protected static String nl;
-  public static synchronized HelloFriends create(String lineSeparator)
+  public static synchronized AttributePattern create(String lineSeparator)
   {
     nl = lineSeparator;
-    HelloFriends result = new HelloFriends();
+    AttributePattern result = new AttributePattern();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = ", and all friends of ";
-  protected final String TEXT_2 = NL;
+  protected final String TEXT_1 = "\t[Attribute '";
+  protected final String TEXT_2 = "']" + NL;
+  protected final String TEXT_3 = NL;
 
-	public HelloFriends()
+	public AttributePattern()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();
@@ -39,32 +40,32 @@ Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
     
-List<Object> elementList = null;
+List<Object> parameterList = null;
 //this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 
-for (Object elementParameter : elementList ) {
+for (Object parameterParameter : parameterList ) {
 
 
-    generate(ctx, elementParameter);
+    generate(ctx, parameterParameter);
     
 }
 if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);
 }
-    stringBuffer.append(TEXT_2);
+    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx, Object elementParameter) throws Exception  {
+public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
 Map<String, Object> parameterValues = new HashMap<String, Object>();
-org.eclipse.emf.ecore.EClass element = (org.eclipse.emf.ecore.EClass)elementParameter;
-parameterValues.put("element", elementParameter);
+org.eclipse.emf.ecore.EAttribute parameter = (org.eclipse.emf.ecore.EAttribute)parameterParameter;
+parameterValues.put("parameter", parameterParameter);
 
     
-method_body(ictx.getBuffer(), ictx, element);
+method_body(ictx.getBuffer(), ictx, parameter);
 
     
 String loop = ictx.getBuffer().toString();
@@ -75,9 +76,10 @@ return loop;
 } 
 
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EClass element)throws Exception {
+    protected void method_body(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EAttribute parameter)throws Exception {
 
     stringBuffer.append(TEXT_1);
-    stringBuffer.append( element.getName() );
+    stringBuffer.append(parameter.getName());
+    stringBuffer.append(TEXT_2);
     }
     }

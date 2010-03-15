@@ -30,6 +30,12 @@
       <fcore
             id="egf/UC1_0_HelloWorld_AllTogether.fcore">
       </fcore>
+      <fcore
+            id="egf/UC1_5_HelloWorld_Pattern_Callback.fcore">
+      </fcore>
+      <fcore
+            id="egf/UC1_6_HelloWorld_Pattern_Callback_v2.fcore">
+      </fcore>
    </extension>
    <extension
          point="org.eclipse.egf.query">

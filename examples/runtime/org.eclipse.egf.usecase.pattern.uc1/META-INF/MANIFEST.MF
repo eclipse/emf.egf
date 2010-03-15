@@ -1,5 +1,14 @@
 Bundle-SymbolicName: org.eclipse.egf.usecase.pattern.uc1;singleton:=true
-Export-Package: org.eclipse.egf.usecase.pattern.uc1,
+Export-Package: egf,
+ egf.uc1_2.helloWorld,
+ egf.uc1_2.helloWorld.friends,
+ egf.uc1_2.helloWorld.parent,
+ egf.uc1_3.helloWorld,
+ egf.uc1_3.helloWorld.parent,
+ egf.uc1_4.helloWorld,
+ egf.uc1_4.helloWorld.forInjection,
+ egf.uc1_5.helloWorld,
+ org.eclipse.egf.usecase.pattern.uc1,
  org.eclipse.egf.usecase.pattern.uc1.query,
  org.eclipse.egf.usecase.pattern.uc1.reporter
 Require-Bundle: org.eclipse.egf.model.ftask;visibility:=reexport,
