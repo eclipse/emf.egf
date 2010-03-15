@@ -178,7 +178,7 @@ public class ResourceHelper {
       return false;
     }
     Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EMFHelper.URIProxyCrossReferencer.find(resource, uri);
-    return proxies == null || proxies.size() == 0;
+    return proxies != null && proxies.size() > 0;
   }
 
   /**
