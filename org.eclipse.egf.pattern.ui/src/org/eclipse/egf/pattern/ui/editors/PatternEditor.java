@@ -304,10 +304,6 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         getOperationHistory().addOperationHistoryListener(historyListener);
     }
 
-    public IOperationHistory getOperationHistory() {
-        return ((IWorkspaceCommandStack) editingDomain.getCommandStack()).getOperationHistory();
-    }
-
     public ObjectUndoContext getUndoContext() {
         return undoContext;
     }
@@ -321,35 +317,12 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
         if (!(editorInput instanceof PatternEditorInput))
             throw new PartInitException(Messages.Editor_wrong_input);
 
-        super.init(site, editorInput);
-        initialPatternName = getPattern().getName();
-        site.getPage().addPartListener(partListener);
-        resourceHasBeenExternallyChanged = EGFResourceLoadedListener.RESOURCE_MANAGER.resourceHasBeenExternallyChanged(getResource());
-        EGFResourceLoadedListener.RESOURCE_MANAGER.addObserver(this);
-        // populate operation history if applicable
-        EGFResourceLoadedListener.RESOURCE_MANAGER.populateUndoContext(getOperationHistory(), undoContext, getResource());
-        addPatternChangeAdapter();
-    }
-
-    /**
-     * While the name of the pattern has been changed, refresh the editor title.
-     */
-    private void addPatternChangeAdapter() {
-        Display.getDefault().syncExec(new Runnable() {
-            public void run() {
-                Pattern pattern = getPattern();
-                if (pattern != null) {
-                    pattern.eAdapters().add(refresher);
-                    setPartName(pattern.getName());
-                }
-            }
-        });
-    }
-
-    /**
-     * Remove the Adapter add for refreshing the editor title
-     */
-    private void removePatternChangeAdapter() {
+  /**
+   * While the name of the pattern has been changed, refresh the editor title.
+   */
+  private void addPatternChangeAdapter() {
+    Display.getDefault().syncExec(new Runnable() {
+      public void run() {
         Pattern pattern = getPattern();
         if (pattern != null && pattern.eAdapters().contains(refresher)) {
             pattern.eAdapters().remove(refresher);
@@ -417,38 +390,62 @@ public class PatternEditor extends FormEditor implements ResourceUser, IEditingD
 
         removePatternChangeAdapter();
 
-        super.dispose();
+  /**
+   * The <code>MultiPageEditorExample</code> implementation of this method
+   * checks that the input is an instance of <code>IFileEditorInput</code>.
+   */
+  @Override
+  public void init(IEditorSite site, IEditorInput editorInput) throws PartInitException {
+    if (editorInput instanceof PatternEditorInput == false) {
+      throw new PartInitException(Messages.Editor_wrong_input);
     }
+    super.init(site, editorInput);
+    initialPatternName = getPattern().getName();
+    site.getPage().addPartListener(partListener);
+    resourceHasBeenExternallyChanged = EGFResourceLoadedListener.RESOURCE_MANAGER.resourceHasBeenExternallyChanged(getResource());
+    EGFResourceLoadedListener.RESOURCE_MANAGER.addObserver(this);
+    // populate operation history if applicable
+    EGFResourceLoadedListener.RESOURCE_MANAGER.populateUndoContext(getOperationHistory(), undoContext, getResource());
+    addPatternChangeAdapter();
+  }
+
+  protected void initializeEditingDomain() {
+    editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+    undoContext = new ObjectUndoContext(this, "undoContext label"); //$NON-NLS-1$
+    getOperationHistory().addOperationHistoryListener(historyListener);
+    editingDomain.getResourceSet().eAdapters().add(editorResourceAdapter);
+  }
+
+  @Override
+  public void dispose() {
+    // if init failed, dispose should not called this
+    if (getEditorInput() != null && getEditorInput() instanceof PatternEditorInput) {
+      EGFResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
+      getSite().getPage().removePartListener(partListener);
+      removePatternChangeAdapter();
+    }
+    // Initialized in initializeEditingDomain, if init failed, this must be disposed
+    getOperationHistory().removeOperationHistoryListener(historyListener);
+    getOperationHistory().dispose(undoContext, true, true, true);
     editingDomain.getResourceSet().eAdapters().remove(editorResourceAdapter);
-    private final IOperationHistoryListener historyListener = new IOperationHistoryListener() {
-        public void historyNotification(final OperationHistoryEvent event) {
-            Set<Resource> affectedResources = ResourceUndoContext.getAffectedResources(event.getOperation());
-            switch (event.getEventType()) {
-            case OperationHistoryEvent.DONE:
-                if (affectedResources.contains(getResource())) {
-                    final IUndoableOperation operation = event.getOperation();
-                    // remove the default undo context so that we can have
-                    // independent undo/redo of independent resource changes
-                    operation.removeContext(((IWorkspaceCommandStack) getEditingDomain().getCommandStack()).getDefaultUndoContext());
-                    // add our undo context to populate our undo menu
-                    operation.addContext(undoContext);
-                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
-                        public void run() {
-                            firePropertyChange(IEditorPart.PROP_DIRTY);
-                        }
-                    });
-                }
-                break;
-            case OperationHistoryEvent.UNDONE:
-            case OperationHistoryEvent.REDONE:
-                if (affectedResources.contains(getResource())) {
-                    getSite().getShell().getDisplay().asyncExec(new Runnable() {
-                        public void run() {
-                            firePropertyChange(IEditorPart.PROP_DIRTY);
-                        }
-                    });
-                }
-                break;
+    super.dispose();
+  }
+
+  private final IOperationHistoryListener historyListener = new IOperationHistoryListener() {
+    public void historyNotification(final OperationHistoryEvent event) {
+      Set<Resource> affectedResources = ResourceUndoContext.getAffectedResources(event.getOperation());
+      switch (event.getEventType()) {
+      case OperationHistoryEvent.DONE:
+        if (affectedResources.contains(getResource())) {
+          final IUndoableOperation operation = event.getOperation();
+          // remove the default undo context so that we can have
+          // independent undo/redo of independent resource changes
+          operation.removeContext(((IWorkspaceCommandStack) getEditingDomain().getCommandStack()).getDefaultUndoContext());
+          // add our undo context to populate our undo menu
+          operation.addContext(undoContext);
+          getSite().getShell().getDisplay().asyncExec(new Runnable() {
+            public void run() {
+              firePropertyChange(IEditorPart.PROP_DIRTY);
             }
         }
     };
