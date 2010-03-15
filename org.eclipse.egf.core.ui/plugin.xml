@@ -165,7 +165,7 @@
   <!-- ================================================================================= -->
      
     <key
-      sequence="M2+T"
+      sequence="M1+M3+M"
       commandId="org.eclipse.egf.ui.actionSet.open.fcore.action.definition"
       schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
     />
