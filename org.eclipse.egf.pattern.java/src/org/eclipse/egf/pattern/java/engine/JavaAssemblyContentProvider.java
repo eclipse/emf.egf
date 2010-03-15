@@ -87,7 +87,7 @@ public class JavaAssemblyContentProvider extends AssemblyContentProvider {
 
     @Override
     protected void call(BackCall object) throws PatternException {
-        content.append("CallHelper.callBack(new ExecutionContext(ictx)");
+        content.append("CallHelper.callBack(new CallbackContext(ictx)");
         for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
             content.append(", ").append(parameter.getName());
         }

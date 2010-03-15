@@ -85,7 +85,7 @@ public class JetAssemblyContentProvider extends AssemblyContentProvider {
     protected void call(BackCall object) throws PatternException {
         content.append("<%");
         String ctxName = "ctx_" + PatternHelper.generateID();
-        content.append("CallHelper.callBack(new ExecutionContext(ictx)");
+        content.append("CallHelper.callBack(new CallbackContext(ictx)");
         EList<PatternParameter> allParameters = pattern.getAllParameters();
         for (org.eclipse.egf.model.pattern.PatternParameter parameter : allParameters) {
             content.append(", ").append(parameter.getName());

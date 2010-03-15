@@ -69,7 +69,7 @@ parameterValues.put("parameter", parameterParameter);
     
 method_before(ictx.getBuffer(), ictx, parameter);
 
-    CallHelper.callBack(new ExecutionContext(ictx), parameter);
+    CallHelper.callBack(new CallbackContext(ictx), parameter);
 
     
 method_after(ictx.getBuffer(), ictx, parameter);
