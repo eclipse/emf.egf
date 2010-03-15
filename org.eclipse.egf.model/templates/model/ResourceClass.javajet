@@ -514,6 +514,23 @@ public class <%=genPackage.getResourceClassName()%> extends <%=genPackage.getImp
 <%}%>
 
 	/**
+	 * Called when the object is unloaded.
+	 * This implementation
+	 * {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
+	 * and clears the {@link #eAdapters adapters}.
+	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=292866
+	 * Fix available in HEAD: 2.6.0.I200911020144
+	 */
+	protected void unloaded(InternalEObject internalEObject) {
+		// Ensure that an unresolved containment proxy's URI isn't reset.
+		//
+		if (!internalEObject.eIsProxy()) {
+			internalEObject.eSetProxyURI(uri.appendFragment(getURIFragment(internalEObject)));
+		}
+		internalEObject.eAdapters().clear();
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
