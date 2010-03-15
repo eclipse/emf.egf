@@ -66,6 +66,8 @@ public abstract class AbstractPatternTask implements ITaskProduction {
             String name = contract.getName();
             if (PatternContext.DOMAIN_OBJECTS.equals(name)) {
                 URI uri = (URI) context.getInputValue(name, contract.getType().getType());
+                if (uri == null)
+                    continue ; //Weird behavior: unfilled contracts are available ... 
                 ResourceSetImpl set = new ResourceSetImpl();
                 domainResource = ResourceHelper.loadResource(set, uri);
                 ctx.setValue(PatternContext.DOMAIN_OBJECTS, domainResource.getContents());
