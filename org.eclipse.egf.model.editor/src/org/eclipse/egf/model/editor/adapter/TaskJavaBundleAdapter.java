@@ -61,7 +61,7 @@ public class TaskJavaBundleAdapter extends EContentAdapter {
         @Override
         public List<String> addDependencies() {
           List<String> dependencies = new ArrayList<String>(1);
-          dependencies.add("org.eclipse.egf.pattern.ftask"); //$NON-NLS-1$
+          dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$
           return dependencies;
         }
 
