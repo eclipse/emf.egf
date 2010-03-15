@@ -10,5 +10,5 @@
  -->
 
 <toc label="Pattern Tutorials" link_to="../org.eclipse.egf.doc.user/toc.xml#egfEngineTutorials">
-   <topic label="Pattern - Tutorial 1" href="html/tutorial/part1/egf-tutorial-pattern1.html" />
+   <topic label="Pattern -  First steps" href="html/tutorial/part1/egf-tutorial-pattern1.html" />
 </toc>
