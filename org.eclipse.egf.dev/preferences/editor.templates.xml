@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><templates><template autoinsert="true" context="java" deleted="false" description="Throw an IllegalArgumentException" enabled="true" name="illa">if (${name:var} == null) 
+	throw new IllegalArgumentException();
+${cursor}</template><template autoinsert="true" context="java" deleted="false" description="Throw an IllegalStateException" enabled="true" name="ills">if (${name:var} == null) 
+	throw new IllegalStateException();
+${cursor}</template></templates>

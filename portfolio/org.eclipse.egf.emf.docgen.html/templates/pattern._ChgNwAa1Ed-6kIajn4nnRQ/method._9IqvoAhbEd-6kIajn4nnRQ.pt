@@ -1,0 +1,5 @@
+<% EPackage pOwner = ((EPackage) _element).getESuperPackage(); %>
+
+<% if (pOwner != null) { %>
+	<p><i>back to </i> <a href="<%= EmfHtmlDocGen.getHtmlFileName(pOwner)%>"><%= EmfHtmlDocGen.getName(pOwner) %></a> </p>
+<% } %>

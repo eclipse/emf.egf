@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="Fcore" size="1925,594" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#/" metadata="emf-1.0" initialized="true" scrolledX="573" tag="100" key="32303037303533312D313030206F72672E65636C697073652E6567662E6D6F64656C">
+  <children xsi:type="editmodel:EnumerationEditModel" name="ContractMode" location="50,484" size="153,90" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ContractMode">
+    <children xsi:type="editmodel:CompartmentEditModel" size="57,36">
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="IN" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ContractMode/IN">
+        <model href="Fcore.ecore#//ContractMode/IN"/>
+      </children>
+      <children xsi:type="editmodel:EnumerationLiteralEditModel" name="OUT" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ContractMode/OUT">
+        <model href="Fcore.ecore#//ContractMode/OUT"/>
+      </children>
+    </children>
+    <model href="Fcore.ecore#//ContractMode"/>
+  </children>
+  <children xsi:type="editmodel:PrimitiveTypeEditModel" name="InvocationException" location="253,484" size="181,44" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//InvocationException">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <model href="Fcore.ecore#//InvocationException"/>
+  </children>
+  <children xsi:type="editmodel:PrimitiveTypeEditModel" name="IProductionContext" location="484,484" size="175,44" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//IProductionContext">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <model href="Fcore.ecore#//IProductionContext"/>
+  </children>
+  <children xsi:type="editmodel:PrimitiveTypeEditModel" name="IProgressMonitor" location="709,484" size="159,44" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//IProgressMonitor">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <model href="Fcore.ecore#//IProgressMonitor"/>
+  </children>
+  <children xsi:type="editmodel:PrimitiveTypeEditModel" name="URI" location="918,484" size="86,44" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//URI">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <model href="Fcore.ecore#//URI"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ContractValue" location="50,358" size="155,76" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ContractValue">
+    <children xsi:type="editmodel:CompartmentEditModel" size="132,36">
+      <children xsi:type="editmodel:AttributeEditModel" name="pluginId" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ContractValue/pluginId">
+        <model href="Fcore.ecore#//ContractValue/pluginId"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="value" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ContractValue/value">
+        <model href="Fcore.ecore#//ContractValue/value"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.5" target="//@children.15" targetEnd="//@children.5/@sourceConnections.0/@children.1" sourceEnd="//@children.5/@sourceConnections.0/@children.0" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="129,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="52,30"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//ContractValue"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Viewpoint" location="1126,222" size="121,30" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Viewpoint">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.6" target="//@children.14/@sourceConnections.0" targetEnd="//@children.6/@sourceConnections.0/@children.1" sourceEnd="//@children.6/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="60,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//Viewpoint"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.18/@sourceConnections.0" name="Activity" location="450,222" size="103,86" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Activity">
+    <children xsi:type="editmodel:CompartmentEditModel" size="80,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="steps" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Activity/steps">
+        <model href="Fcore.ecore#//Activity/steps"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="67,18">
+      <children xsi:type="editmodel:MethodEditModel" name="invoke" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Activity/invoke">
+        <model href="Fcore.ecore#//Activity/invoke"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.7" target="//@children.14/@sourceConnections.0" targetEnd="//@children.7/@sourceConnections.0/@children.1" sourceEnd="//@children.7/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="51,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//Activity"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="FactoryComponent" location="675,375" size="191,30" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//FactoryComponent">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.8" target="//@children.18/@sourceConnections.0" targetEnd="//@children.8/@sourceConnections.0/@children.1" sourceEnd="//@children.8/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="95,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:AssociationEditModel" autoLocated="true" source="//@children.8" target="//@children.17" targetEnd="//@children.8/@sourceConnections.1/@children.1" sourceEnd="//@children.8/@sourceConnections.1/@children.0" connectionRouterKind="Manhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" name="factoryComponent" location="139,0" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ViewpointContainer/factoryComponent" attachSource="true" multiplicityLabel="//@children.8/@sourceConnections.1/@children.0/@children.0" roleLabel="//@children.8/@sourceConnections.1/@children.0/@children.1" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="1" location="800,354" size="7,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="factoryComponent" location="821,354" size="104,14" anchorKind="LastPart"/>
+        <model href="Fcore.ecore#//ViewpointContainer/factoryComponent"/>
+      </children>
+      <children xsi:type="editmodel:AssociationEndEditModel" name="viewpointContainer" location="50,30" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//FactoryComponent/viewpointContainer" multiplicityLabel="//@children.8/@sourceConnections.1/@children.1/@children.0" roleLabel="//@children.8/@sourceConnections.1/@children.1/@children.1" aggregationKind="Composition" navigable="true">
+        <children xsi:type="editmodel:LabelEditModel" name="0..1" location="785,259" size="22,14" anchorKind="LastPart"/>
+        <children xsi:type="editmodel:LabelEditModel" name="viewpointContainer" location="821,259" size="108,14" anchorKind="LastPart"/>
+        <model href="Fcore.ecore#//FactoryComponent/viewpointContainer"/>
+      </children>
+    </sourceConnections>
+    <model href="Fcore.ecore#//FactoryComponent"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Orchestration" location="583,222" size="151,86" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Orchestration">
+    <children xsi:type="editmodel:CompartmentEditModel" size="80,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="steps" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Orchestration/steps">
+        <model href="Fcore.ecore#//Orchestration/steps"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="67,18">
+      <children xsi:type="editmodel:MethodEditModel" name="invoke" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Orchestration/invoke">
+        <model href="Fcore.ecore#//Orchestration/invoke"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.9" target="//@children.14/@sourceConnections.0" targetEnd="//@children.9/@sourceConnections.0/@children.1" sourceEnd="//@children.9/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="75,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//Orchestration"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Contract" location="1494,222" size="258,72" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Contract">
+    <children xsi:type="editmodel:CompartmentEditModel" size="137,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="mode" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Contract/mode">
+        <model href="Fcore.ecore#//Contract/mode"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.10" target="//@children.14/@sourceConnections.0" targetEnd="//@children.10/@sourceConnections.0/@children.1" sourceEnd="//@children.10/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="129,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//Contract"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.14/@sourceConnections.0" name="ModelElement" location="881,50" size="154,122" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ModelElement">
+    <children xsi:type="editmodel:CompartmentEditModel" size="131,54">
+      <children xsi:type="editmodel:AttributeEditModel" name="description" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ModelElement/description">
+        <model href="Fcore.ecore#//ModelElement/description"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="iD" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ModelElement/iD">
+        <model href="Fcore.ecore#//ModelElement/iD"/>
+      </children>
+      <children xsi:type="editmodel:AttributeEditModel" name="name" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ModelElement/name">
+        <model href="Fcore.ecore#//ModelElement/name"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="128,18">
+      <children xsi:type="editmodel:MethodEditModel" name="getExternalName" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ModelElement/getExternalName">
+        <model href="Fcore.ecore#//ModelElement/getExternalName"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <model href="Fcore.ecore#//ModelElement"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Context" location="992,222" size="104,30" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Context">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.12" target="//@children.14/@sourceConnections.0" targetEnd="//@children.12/@sourceConnections.0/@children.1" sourceEnd="//@children.12/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="52,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//Context"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ContractContainer" location="1277,222" size="187,30" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ContractContainer">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.13" target="//@children.14/@sourceConnections.0" targetEnd="//@children.13/@sourceConnections.0/@children.1" sourceEnd="//@children.13/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="93,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//ContractContainer"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="ContractConnector" location="50,222" size="193,30" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ContractConnector">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.9/@sourceConnections.0 //@children.17/@sourceConnections.0 //@children.15/@sourceConnections.0 //@children.12/@sourceConnections.0 //@children.6/@sourceConnections.0 //@children.7/@sourceConnections.0 //@children.13/@sourceConnections.0 //@children.10/@sourceConnections.0 //@children.16/@sourceConnections.0" autoLocated="true" source="//@children.14" target="//@children.11" targetEnd="//@children.14/@sourceConnections.0/@children.1" sourceEnd="//@children.14/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="96,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="77,122" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//ContractConnector"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.5/@sourceConnections.0" name="ContextValue" location="273,222" size="147,30" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ContextValue">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.15" target="//@children.14/@sourceConnections.0" targetEnd="//@children.15/@sourceConnections.0/@children.1" sourceEnd="//@children.15/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="73,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//ContextValue"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Invocation" location="1782,222" size="123,86" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Invocation">
+    <children xsi:type="editmodel:CompartmentEditModel" size="80,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="steps" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Invocation/steps">
+        <model href="Fcore.ecore#//Invocation/steps"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="67,18">
+      <children xsi:type="editmodel:MethodEditModel" name="invoke" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Invocation/invoke">
+        <model href="Fcore.ecore#//Invocation/invoke"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.16" target="//@children.14/@sourceConnections.0" targetEnd="//@children.16/@sourceConnections.0/@children.1" sourceEnd="//@children.16/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="61,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//Invocation"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" targetConnections="//@children.8/@sourceConnections.1" name="ViewpointContainer" location="764,222" size="198,30" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//ViewpointContainer">
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" autoLocated="true" source="//@children.17" target="//@children.14/@sourceConnections.0" targetEnd="//@children.17/@sourceConnections.0/@children.1" sourceEnd="//@children.17/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="99,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//ViewpointContainer"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <children xsi:type="editmodel:ClassEditModel" name="Task" location="235,358" size="258,72" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Task">
+    <children xsi:type="editmodel:CompartmentEditModel" size="136,18">
+      <children xsi:type="editmodel:AttributeEditModel" name="taskId" id="platform:/resource/org.eclipse.egf.model/model/Fcore.ecore#//Task/taskId">
+        <model href="Fcore.ecore#//Task/taskId"/>
+      </children>
+    </children>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <children xsi:type="editmodel:CompartmentEditModel" size="0,0"/>
+    <sourceConnections xsi:type="editmodel:GeneralizationEditModel" targetConnections="//@children.8/@sourceConnections.0" autoLocated="true" source="//@children.18" target="//@children.7" targetEnd="//@children.18/@sourceConnections.0/@children.1" sourceEnd="//@children.18/@sourceConnections.0/@children.0" connectionRouterKind="GeneralizationManhattan">
+      <children xsi:type="editmodel:AssociationEndEditModel" location="129,0" anchorKind="FixedAtEdge" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="51,86" anchorKind="FixedAtEdge"/>
+    </sourceConnections>
+    <model href="Fcore.ecore#//Task"/>
+    <classifierPreferences xsi:type="editmodel:EMFClassDiagramClassifierPreference" showStereotype="true" attributeSorter="Natural" methodSorter="Natural"/>
+  </children>
+  <model href="Fcore.ecore#/"/>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" properties="wireOptions=1;Product=eEmf"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:EMFClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showClassStereotype="true" showPackageStereotype="true"/>
+</editmodel:ClassDiagramEditModel>

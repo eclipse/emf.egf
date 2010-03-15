@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+  id="org.eclipse.egf.common"
+  label="%featureName"
+  version="0.2.2.qualifier"
+  provider-name="%providerName"
+  plugin="org.eclipse.egf.common"
+  image="eclipse_update_120.jpg"
+>
+
+  <description>
+    %description
+  </description>
+
+  <copyright>
+      Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+  </copyright>
+
+  <license 
+    url="%licenseURL"
+  >
+    %license
+  </license>
+
+  <url>
+    <update 
+      label="%EMFTUpdateSiteName" 
+      url="http://download.eclipse.org/modeling/emft/updates/"
+    />
+    <discovery 
+      label="%EMFUpdateSiteName" 
+      url="http://download.eclipse.org/modeling/emf/updates/"
+    />
+    <discovery 
+      label="%EMFTUpdateSiteName" 
+      url="http://download.eclipse.org/modeling/emft/updates/"
+    />
+  </url>
+
+  <requires>
+    <import
+      feature="org.eclipse.platform" 
+      version="3.5.1.R35x_v20090910-9gEeG1_FthkNDSP2odXdThaOu9GFDPn83DGB7" 
+      match="compatible"
+    />
+    <import
+      feature="org.eclipse.jdt"
+      version="3.5.1.r351_v20090810-0600-7r88FEoFI0WTo6Az-1qFRHm37ChJ" 
+      match="compatible"
+    />
+    <import
+      feature="org.eclipse.pde"
+      version="3.5.1.R35x_v20090811-7Z7_F9zFDX-aT6Ywvh8_S93" 
+      match="compatible"
+    />
+    <import
+      feature="org.eclipse.emf.codegen" 
+      version="2.5.0.v200906151043" 
+      match="compatible"
+    />
+    <import
+      feature="org.eclipse.emf.edit" 
+      version="2.5.0.v200906151043" 
+      match="compatible"
+    />
+  </requires>
+  
+  <includes
+    id="org.eclipse.egf.common.source"
+    version="0.0.0"
+  />     
+
+  <plugin
+    id="org.eclipse.egf.common"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />
+
+</feature>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ftask:TaskJava xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_h96TwAUUEd-UW6M01HV7DA"
+    name="Model driven pattern strategy task - Doc Gen" value="org.eclipse.egf.pattern.ftask.tasks.ModelDrivenStrategyTask">
+  <contractContainer xmi:id="_sbuWcAUUEd-UW6M01HV7DA">
+    <contracts xmi:id="_tzfaoAUUEd-UW6M01HV7DA" name="pattern.ids" mandatory="true">
+      <type xmi:type="types:TypeString" xmi:id="_v0-xQAUUEd-UW6M01HV7DA"/>
+    </contracts>
+    <contracts xmi:id="_yZyQUAUUEd-UW6M01HV7DA" name="domain" mandatory="true">
+      <type xmi:type="domain:TypeDomainURI" xmi:id="_0G3dMAUUEd-UW6M01HV7DA"/>
+    </contracts>
+    <contracts xmi:id="_1Xn6cAUUEd-UW6M01HV7DA" name="pattern.execution.reporter"
+        mandatory="true">
+      <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_3OiYwAUUEd-UW6M01HV7DA"/>
+    </contracts>
+    <contracts xmi:id="_JXimcAdXOEd-ra8cys1-yIrg" name="pattern.call.back.handler">
+      <type xmi:type="pattern:TypePatternCallBackHandler" xmi:id="_QvrcMQXsPEd-3-vQYulrkBQ" value="org.eclipse.egf.pattern.strategy.modeldriven.ModelDrivenCallBackHandler"/>
+    </contracts>
+    <contracts xmi:id="_zJXimcAXOdEd-ra8cys1-yIrg" name="pattern.modeldriven.visitor">
+      <type xmi:type="pattern:TypePatternDomainVisitor" xmi:id="_zQvrcMQXsPEd-3-vQYulrkBQ" value="org.eclipse.egf.pattern.strategy.modeldriven.EmfModelVisitor"/>
+    </contracts>
+    <contracts xmi:id="_Fi1fAApeEd-pyqf4uNW3tw" name="projectName" mandatory="true">
+      <type xmi:type="types:TypeString" xmi:id="_H9gxsApeEd-pyqf4uNW3tw"/>
+    </contracts>
+    <contracts xmi:id="_K7Wb0ApeEd-pyqf4uNW3tw" name="outputFolder" mandatory="true">
+      <type xmi:type="types:TypeString" xmi:id="_PnKqsApeEd-pyqf4uNW3tw"/>
+    </contracts>
+  </contractContainer>
+</ftask:TaskJava>

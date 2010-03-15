@@ -1,0 +1,31 @@
+<% EList<EAttribute> attributes = ((EClass) _element).getEAllAttributes();%>
+
+<% if (attributes.size() > 0) { %>
+	<h2>Attributes</h2>
+		<table border=1 cellspacing="0" width="100%">
+		<tr>
+			<th align=left>Name</th>
+			<th>Bounds</th>
+			<th>Type</th>
+			<th>Changeable</th>
+			<th>Volatile</th>
+			<th>Transient</th>
+			<th>Derived</th>
+			<th>Ordered</th>
+			<th>Unique</th>
+		</tr>
+	<% for (EAttribute _EAttribute : attributes) { %>
+		<tr>
+   			<td align=left><b><%= EmfHtmlDocGen.getName(_EAttribute) %></b></td>
+   			<td align=center><%= EmfHtmlDocGen.getBounds(_EAttribute) %>  </td>
+   			<td align=left><%= EmfHtmlDocGen.getName(_EAttribute.getEAttributeType()) %></td>
+   			<td align=center><%= _EAttribute.isChangeable() %></td>
+   			<td align=center><%= _EAttribute.isVolatile() %></td>
+   			<td align=center><%= _EAttribute.isTransient() %></td>
+   			<td align=center><%= _EAttribute.isDerived() %></td>
+   			<td align=center><%= _EAttribute.isOrdered() %></td>
+   			<td align=center><%= _EAttribute.isUnique() %></td>
+   		</tr>
+	<%} // end for%>
+	</table>
+<% } // end if %>

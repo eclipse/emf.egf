@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>
+		EGF Tutorial - Pattern. First steps.
+	</title>
+	<link rel="stylesheet" href="../book.css" charset="ISO-8859-1" type="text/css" />
+
+	<meta name="copyright" content="Copyright (c) Thales Corporate Services S.A.S, 2009. This page is made available under license. For full details see the LEGAL in the documentation book that contains this page." />
+	<meta name="author" content="Benoit Langlois" />
+	<meta name="keywords" content="egf,pattern"/>
+</head>
+
+<body xml:lang="EN-US" lang="EN-US">
+
+<table border="0" cellpadding="2" cellspacing="0" width="100%">
+  <tbody>
+    <tr>
+    	<td colspan="2" align="left" bgcolor="#0080c0" valign="top">
+    	  <h2><font face="Arial,Helvetica"><font color="#ffffff">
+    	  &nbsp;EGF Tutorial - Pattern. First steps.
+    	  </font></font></h2>
+    	</td>
+    </tr>
+	</tbody>
+</table>
+
+<p class="Para">This first tutorial explains how to create and execute simple patterns with EGF. A pattern is a solution to a recurrent generation problem. A pattern is based on a language, for instance Jet for model-to-text transformations. The pattern technique allows pattern inheritance, delegation to other patterns in order to elaborate reusable and customizable generation solutions.</p>
+
+<br/>
+
+<h2 class="Head">1. Creation of pattern</h2>
+
+<h3 class="Head">1.1. Comprehension</h3>
+<p class="Para"><i>Pattern organization</i>. Patterns are organized by pattern libraries. A <b>pattern library</b> contains a set of patterns and a set of pattern libraries.</p>
+<p class="Para"><i>Pattern nature</i>. A <b>pattern nature</b> indicates which language the pattern implementation conforms to (e.g. Java, Jet).</p>
+<p class="Para"><i>Pattern views</i>. A pattern is visualized with three different folders: 1) Overview, 2) <b>Specification</b> which represents the external view of a pattern, 3) <b>Implementation</b> which represents the internal view of a pattern and where the pattern is implemented.</p>
+
+
+<h3 class="Head">1.2. Practice</h3>
+
+<p class="Para">The sequence of actions to <i>create a pattern</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Create the <i>viewpoints</i> node - On a factory component, Commands: <i>[New Child][Viewpoints]</i></li>
+    <li CLASS="Item">Create the <i>Pattern Viewpoint</i> node - On the viewpoints node, Commands: <i>[New Child][Pattern Viewpoint]</i></li>
+    <li CLASS="Item">Create a pattern library - On the pattern viewpoint, Commands: <i>[New Child][Library]</i></li>
+    <li CLASS="Item">Next, create a <i>pattern</i> - On the pattern library, Commands: <i>[New Child][JetNature Pattern | JavaNature Pattern]</i></li>
+    <li CLASS="Item">Save the model</li>
+    <li CLASS="Item">Edit the pattern -  On the pattern, Commands: <i>[Double-click]</i> or <i>[Right-Click][Open]</i></li>
+    <li CLASS="Item">Set the pattern name</li>
+</ul>
+
+<h3 class="Head">1.3. Application</h3>
+<p class="Para">Create a pattern with the Jet nature.</p>
+
+<p align="left">
+  <img src="./images/egf_tut_pattern_1_1.png" alt="New pattern"/>
+</p>
+<p align="left"><i>Figure 1. Example of new pattern</i></p>  
+
+<br/>
+
+<h2 class="Head">2. Definition of the pattern specification</h2>
+
+<h3 class="Head">2.1. Comprehension</h3>
+
+<p class="Para"><i>Specification view</i>. This view enables to set 1) the super-pattern of the current pattern when pattern inheritance is needed, 2) the pattern nature already set during the pattern creation, 3) the pattern parameters.</p>
+<p class="Para"><i>Pattern query and parameter</i>. The pattern applies queries over a resource that the pattern consumes, for instance a model. Each query record is successively stored in a parameter. The record process is described in the pattern implementation.</p>
+<p class="Para"><i>Pattern query</i>. EGF proposes a default model query. The query list is extensible.</p>
+<p class="Para"><i>Pattern parameter</i>. The pattern type is either a class defined in an ecore model or a Java type (class or interface).</p>
+
+
+<h3 class="Head">2.2. Practice</h3>
+<p class="Para">The sequence of actions to define <i>pattern parameters and their query</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">In the Specification view, in the Parameters section - Command: <i>[+]</i>, set the parameter name</li>
+    <li CLASS="Item">Set the parameter type - Command: choose the model and a class type</li>
+    <li CLASS="Item">Set the query - Command: choose the query, for instance <i>Basic query</i></li>
+</ul>
+
+<h3 class="Head">2.3. Application</h3>
+<p class="Para">Create an EClass parameter with the <i>Basic query</i> to navigate over the model.</p>
+
+<p align="left">
+  <img src="./images/egf_tut_pattern_1_2.png" alt="Pattern Specification View"/>
+</p>
+<p align="left"><i>Figure 2. Pattern Specification View</i></p>  
+<br/>
+
+
+<h2 class="Head">3. Definition of the pattern implementation</h2>
+
+<h3 class="Head">3.1. Comprehension</h3>
+
+<p class="Para"><i>Implementation view</i>. This view enables to define pattern methods, the method orchestration, and local variables.</p>
+<p class="Para"><i>Pattern methods</i>. Four methods are predefined: header, init, preCondition and footer. Header is used for instance to declare the Jet declaration, init for the initialization of local variables (cf. explanation below), preCondition to filter records onto a query result. The user creates as many as methods he wants to implement the pattern. Each pattern method contents conforms to the pattern nature, for instance Jet-based code.</p>
+<p class="Para"><i>Pattern method orchestration</i>. The method orchestration defines the order to call available methods and patterns: methods local to the current pattern, methods from the super-patterns, pattern call with parameter context passing, pattern call with injection.</p>
+<p class="Para"><i>Pattern variables</i>. The pattern variables are accessible by any method of the current pattern. The type is either a class defined in an ecore model or a Java type (class or interface). Pattern variables can be initialized in the <i>init</i> method, update and used in the pattern methods.</p>
+
+
+<h3 class="Head">3.2. Practice</h3>
+<p class="Para">The sequence of actions to manage the <i>implementation methods</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Use the palette to add/delete/rename/reorder a method.</li>
+    <li CLASS="Item">To edit method, double-click on a method of the <i>Implementation methods</i> list. Next, a pattern templates editor allows to edit any other method.</li>
+</ul>
+
+<p class="Para">The sequence of actions to manage <i>variables</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">In the variables, to add a variable, Command: <i>[+]</i>, set the parameter name</li>
+    <li CLASS="Item">Set the parameter type - Command: click on the type and select the model / Java type</li>
+</ul>
+
+
+<p class="Para">The sequence of actions to manage the <i>method orchestration</i>:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Use the palette to add/delete/rename/reorder methods</li>
+    <li CLASS="Item">Drag and drop a method from the <i>Implementation methods</i> list</li>
+    <li CLASS="Item">For a super-method call, after clicking on <i>+</i>, choose the <i>method call</i> option, and next select the super-method.</li>
+</ul>
+
+
+<h3 class="Head">3.3. Application</h3>
+<p class="Para">Implement the default body method. Add the following Jet code:</p>
+				<font color="777777"><pre>
+Hello &lt;%= aClass.getName() %&gt;!
+				</pre></font>
+
+
+<br/>
+
+<h2 class="Head">4. Configuration of the pattern execution</h2>
+
+<h3 class="Head">4.1. Comprehension - Principle of pattern execution</h3>
+<p class="Para">The following figure depicts how patterns are onto a domain resource.</p>
+
+<p align="left">
+  <img src="./images/egf_tut_pattern_1_3.png" alt="Pattern Execution"/>
+</p>
+<p align="left"><i>Figure 3. Pattern Execution</i></p>  
+
+<p class="Para"><i>Pattern strategies</i>. A pattern strategy indicates how to apply patterns onto a resource. For instance, a pattern-oriented strategy successively applies a set of patterns onto a resource; a model-oriented strategy applies a set of patterns successively onto each model element. The model-driven strategy takes care of the model element order while the pattern-oriented strategy does not.</p>
+<p class="Para"><i>Tasks to execute patterns</i>. A task must put in action all the elements described before to process a pool of patterns. The task must know:
+  <ol CLASS="UnorderedList">
+    <li> The resource applied on the patterns, for instance a model,</li>
+    <li> The selection of pattern(s) or the pattern library(ies),</li>
+    <li> The reporter.</li>
+  </ol>
+</p>
+
+<p class="Para"><i>Domain resource</i>. Patterns are applied onto a resource, such as a domain model.</p>
+
+<p class="Para"><i>Pattern execution engines</i>. Patterns have a nature (e.g., Jet, Java). Then, at execution time, an engine executes a pattern according its nature. On the pattern flow, different pattern execution engines can be activated.</p>
+
+<p class="Para"><i>Reporter</i>. A reporter is typically useful for model-to-text transformation. Each pattern provides an output result that must be consolited in a files or several files. A reporter serves to report the result of the pattern implementation, for instance on the console or in a file.</p>
+<br/>
+
+<h3 class="Head">4.2. Practice</h3>
+<p class="Para">A task is used to put in action pattern execution. This task must know: 1) the pattern or pattern library list, 2) the domain model, 3) the pattern strategy, and 4) the reporter. This tutorial uses the <i>Model-driven pattern strategy</i>. The use of pattern reporter is explained below.</p>
+<p class="Para">The sequence of actions to create a task for pattern execution:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">Create a task</li>
+    <li CLASS="Item">On the Task, in the Activity section / Invoked Activty property, select the <i>Model driven pattern strategy task</i></li>
+    <li CLASS="Item">Create Task Contracts:</li>
+    <ul CLASS="UnorderedList">
+        <li CLASS="Item">Domain identification: 1) for Behaviour/Invoked Contract property, select the <i>domain</i> contract, 2) add the <i>Type Domain URI</i> and for value, select a domain reference</li>
+        <li CLASS="Item">Pattern identification: 1) for Behaviour/Invoked Contract property, select the <i>pattern.ids</i> contract, 2) add the <i>String</i> type, and for value, in the value field, indicate the pattern or pattern library ids - separation with <i>,[space]</i></li>
+    </ul>
+</ul>
+
+<br/>
+
+
+<h3 class="Head">4.3. Application</h3>
+<p class="Para">Apply the pattern library created before. Example of domain: <i>platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore</i>.</p>
+
+<p align="left">
+  <img src="./images/egf_tut_pattern_1_4.png" alt="Pattern Task"/>
+</p>
+<p align="left"><i>Figure 4. Pattern Task</i></p>  
+
+<p class="Para">Finally, execute the factory component.</p>
+
+<br/>
+
+
+<h3 class="Head">4.4. Comprehension - Pattern Reporter</h3>
+<p class="Para"><i>Reporter class</i>. A reporter is a Java class which implements the PatternExecutionReporter class.</p>
+<p class="Para"><i>Collecting the result</i>. There are two methods to collect the result of one pattern execution: 1) the <i>loopFinished</i> method collects the result for one pattern and for one query tuple, 2) the <i>executionFinished</i> method collects the result for one pattern, which is the aggregation of the <i>loopFinished</i> method results.</p>
+<p class="Para"><i>Reporting the result</i>. The result is generally reported in a file.</p>
+
+<p class="Para">For more complex reports, refer to <i>org.eclipse.egf.emf.docgen.html</i> plug-in which examplifies the case of result in a file and a specific folder.</p>
+
+<br/>
+
+<h3 class="Head">4.5. Practice</h3>
+
+<p class="Para">1. Create a reporter Java class like this one:</p>
+				<font color="777777"><pre>
+Package org.eclipse.egf.examples.uc1.reporter;
+
+import java.util.Map;
+
+import org.eclipse.egf.model.pattern.PatternContext;
+import org.eclipse.egf.model.pattern.PatternExecutionReporter;
+
+public class MyReporter implements PatternExecutionReporter{
+
+    @Override
+    public void executionFinished(String output, PatternContext context) {
+    // Message on the default console
+		System.out.println("Result of pattern:\n"+output);
+    // Message on the EGF console
+    EGFCorePlugin.getDefault().logInfo("Result of pattern:\n"+output);
+		
+	}
+
+	@Override
+	public void loopFinished(String output, PatternContext context,
+			Map &lt; String, Object &gt; parameterValues) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}
+				</pre></font>
+
+<p class="Para">2. Complete the task with the reporter parameter:
+    <ul CLASS="UnorderedList">
+        <li CLASS="Item">Add a contract to the task</li>
+        <li CLASS="Item">For Behaviour/Invoked Contract property, select the <i>pattern.execution.reporter</i> contract</li>
+        <li CLASS="Item">Add the <i>Type Pattern Execution Reporter</i> and for value, select the pattern reporter class</li>
+    </ul>
+</p>
+
+<h2 class="Head">5. Pattern translation</h2>
+<p class="Para">The pattern contents is translated into an executable form. This takes into account pattern inheritance and other pattern mechanisms not explained in this tutorial (e.g., pattern call). Next, at execution time, a pattern engine, specific to the pattern nature, executes a pattern.</p>
+<p class="Para">Patterns are translated on the fly. One case requires to manually force pattern rebuild: pattern inheritance. Indeed, children are not notified that a super-pattern in the hierarchy is update. To force this translation:</p>
+
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">On the <i>Pattern viewpoint</i> which contains all the pattern libraries - Command: <i>[Right-Click][Update generated elements]</i> </li>
+</ul>
+
+
+</body>
+</html>
