@@ -4,7 +4,7 @@
   label="%featureName"
   version="0.2.2.qualifier"
   provider-name="%providerName"
-  plugin="org.eclipse.egf.model.editor"
+  plugin="org.eclipse.egf.producer.ui"
   image="eclipse_update_120.jpg"
 >
 
@@ -55,31 +55,7 @@ http://www.eclipse.org/legal/epl-v10.html
     id="org.eclipse.egf.producer.ui.source" 
     version="0.0.0"
   />
-  
-  <plugin
-    id="org.eclipse.egf.model.editor"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />  
-  
-  <plugin
-    id="org.eclipse.egf.pattern.java.ui"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />    
-  
-  <plugin
-    id="org.eclipse.egf.pattern.jet.ui"
-    download-size="0"
-    install-size="0"
-    version="0.0.0"
-    unpack="false"
-  />  
-         
+           
   <plugin
     id="org.eclipse.egf.producer.ui"
     download-size="0"
