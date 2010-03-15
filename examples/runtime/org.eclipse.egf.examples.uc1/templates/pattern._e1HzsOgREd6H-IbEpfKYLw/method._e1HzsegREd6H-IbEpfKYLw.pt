@@ -1,1 +1,0 @@
-<%@ jet package="HelloPatternsLib" class="Hello" imports="java.util.* org.eclipse.emf.ecore.* org.eclipse.egf.model.pattern.* org.eclipse.egf.pattern.execution.* org.eclipse.egf.pattern.query.*" %>
