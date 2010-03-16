@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ftask:Task xmi:version="2.1"
-    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
-    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
-    name="H1" kind="java" description="" value="org.eclipse.egf.example.task.h1.H1">
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
+    description="" name="H1" kind="java" implementation="org.eclipse.egf.example.task.h1.H1">
   <contractContainer xmi:id="_sAEVUbpOEd6O-6ob3O13Lw">
     <contracts xmi:id="_sZPqULpOEd6O-6ob3O13Lw" name="quantity">
       <type xmi:type="types:TypeInteger" xmi:id="_wO9-sLpOEd6O-6ob3O13Lw" value="100"/>
@@ -16,8 +16,7 @@
     <contracts xmi:id="_2vwLILpOEd6O-6ob3O13Lw" name="amount" mode="Out">
       <type xmi:type="types:TypeFloat" xmi:id="_5M9NYLpOEd6O-6ob3O13Lw"/>
     </contracts>
-    <contracts xmi:id="_PFOYwbshEd6hlL3ru-eQtQ" name="generatorAdapterFactory"
-        mode="Out">
+    <contracts xmi:id="_PFOYwbshEd6hlL3ru-eQtQ" name="generatorAdapterFactory" mode="Out">
       <type xmi:type="types:TypeGeneratorAdapterFactory" xmi:id="_PsaUkLshEd6hlL3ru-eQtQ"
           value="org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"/>
     </contracts>
