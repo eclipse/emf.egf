@@ -15,6 +15,8 @@
 
 package org.eclipse.egf.pattern.execution;
 
+import java.util.Map;
+
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
@@ -25,6 +27,7 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 public class CallbackContext extends DefaultPatternContext implements InternalPatternContext {
 
     private final StringBuffer buffer = new StringBuffer(2000);
+    private final CallbackReporter reporter = new CallbackReporter();
 
     public CallbackContext(InternalPatternContext parent) {
         super((PatternContext) parent);
@@ -38,12 +41,11 @@ public class CallbackContext extends DefaultPatternContext implements InternalPa
 
     public PatternExecutionReporter getReporter() {
 
-        return getParent().getReporter();
+        return reporter;
     }
 
     public boolean hasReporter() {
-
-        return getParent().hasReporter();
+        return true;
     }
 
     public void setReporter(PatternExecutionReporter reporter) {
@@ -57,5 +59,17 @@ public class CallbackContext extends DefaultPatternContext implements InternalPa
 
     private InternalPatternContext getParent() {
         return (InternalPatternContext) parent;
+    }
+
+    private class CallbackReporter implements PatternExecutionReporter {
+
+        public void executionFinished(String output, PatternContext context) {
+            throw new UnsupportedOperationException("unexpected");
+        }
+
+        public void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues) {
+            getParent().getBuffer().append(output);
+        }
+
     }
 }
