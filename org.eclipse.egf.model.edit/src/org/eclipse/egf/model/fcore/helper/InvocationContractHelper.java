@@ -35,9 +35,6 @@ public class InvocationContractHelper {
 
   public static Collection<Contract> getAvailableFactoryComponentContract(InvocationContract invocationContract) {
     Collection<Contract> result = new UniqueEList<Contract>();
-    if (result.contains(null) == false) {
-      result.add(null);
-    }
     // Nothing to retrieve
     if (invocationContract.getFactoryComponent() == null || invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
       return result;
@@ -66,6 +63,10 @@ public class InvocationContractHelper {
         }
       }
     }
+    // add a null element for null selection
+    if (result.contains(null) == false) {
+      result.add(null);
+    }
     return result;
   }
 
@@ -91,7 +92,9 @@ public class InvocationContractHelper {
       return result;
     }
     // Retrieve all compatible typed OrchestrationParameter
-    return invocationContract.getFactoryComponent().getOrchestration().getOrchestrationParameters(invocationContract.getInvokedContract().getType());
+    result.addAll(invocationContract.getFactoryComponent().getOrchestration().getOrchestrationParameters(invocationContract.getInvokedContract().getType()));
+    // Return
+    return result;
   }
 
   public static Collection<Contract> getAvailableInvokedContract(InvocationContract invocationContract) {
@@ -126,6 +129,7 @@ public class InvocationContractHelper {
         }
       }
     }
+    // add a null element for null selection
     if (result.contains(null) == false) {
       result.add(null);
     }
@@ -185,6 +189,7 @@ public class InvocationContractHelper {
         }
       }
     }
+    // add a null element for null selection
     if (result.contains(null) == false) {
       result.add(null);
     }
