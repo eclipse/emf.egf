@@ -15,25 +15,29 @@
 
 package org.eclipse.egf.usecase.pattern.uc1.callback;
 
+import java.util.Map;
+
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.pattern.CallBackHandler;
 import org.eclipse.egf.model.pattern.PatternContext;
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.egf.model.pattern.PatternException;
 
 /**
  * @author Thomas Guiu
- *
+ * 
  */
 public class MyCallbackHandler implements CallBackHandler {
 
-	public void handleCall(PatternContext ctx, Object element) {
-		  String message = new String ("Callback on "+ ((EClass)element).getName());
+    public void handleCall(PatternContext ctx, Map<String, Object> parameters) throws PatternException {
+        String message = "Callback on ";
+        for (String name : parameters.keySet())
+            message += (name + " ");
 
-		  // Message on the default console
-		  System.out.println(message); //$NON-NLS-1$
+        // Message on the default console
+        System.out.println(message); //$NON-NLS-1$
 
-		  // Message on the EGF console
-		  EGFCorePlugin.getDefault().logInfo(message);
-	}
+        // Message on the EGF console
+        EGFCorePlugin.getDefault().logInfo(message);
+    }
 
 }

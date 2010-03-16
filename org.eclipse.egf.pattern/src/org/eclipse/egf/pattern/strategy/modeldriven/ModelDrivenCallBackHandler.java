@@ -15,24 +15,25 @@
 
 package org.eclipse.egf.pattern.strategy.modeldriven;
 
+import java.util.Map;
+
 import org.eclipse.egf.model.pattern.CallBackHandler;
 import org.eclipse.egf.model.pattern.DomainVisitor;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.pattern.Activator;
+import org.eclipse.egf.pattern.Messages;
 
 /**
  * @author Thomas Guiu
  * 
  */
 public class ModelDrivenCallBackHandler implements CallBackHandler {
-    public void handleCall(PatternContext ctx, Object model) {
-        try {
-            DomainVisitor visitor = (DomainVisitor) ctx.getValue(PatternContext.MODEL_DRIVEN_DOMAIN_VISITOR);
-            if (visitor != null)
-                visitor.visit(ctx, model);
-        } catch (PatternException e) {
-            Activator.getDefault().logError(e);
-        }
+    public void handleCall(PatternContext ctx, Map<String, Object> parameters) throws PatternException {
+        if (parameters.size() != 1)
+            throw new IllegalStateException(Messages.model_driven_strategy_error1);
+
+        DomainVisitor visitor = (DomainVisitor) ctx.getValue(PatternContext.MODEL_DRIVEN_DOMAIN_VISITOR);
+        if (visitor != null)
+            visitor.visit(ctx, parameters.values().iterator().next());
     }
 }
