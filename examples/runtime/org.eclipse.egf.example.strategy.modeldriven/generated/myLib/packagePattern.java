@@ -18,8 +18,9 @@ public class packagePattern
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "";
+  protected final String TEXT_1 = NL;
   protected final String TEXT_2 = NL;
+  protected final String TEXT_3 = NL;
 
 	public packagePattern()
 	{
@@ -45,8 +46,10 @@ List<Object> parameterList = null;
 
 for (Object parameterParameter : parameterList ) {
 
+this.parameter = (org.eclipse.emf.ecore.EPackage)parameterParameter;
 
-    generate(ctx, parameterParameter);
+
+    orchestration(ctx);
     
 }
 if (ctx.useReporter()){
@@ -54,32 +57,39 @@ if (ctx.useReporter()){
     ctx.getBuffer().setLength(0);
 }
     
-    stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
+    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
+public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
-Map<String, Object> parameterValues = new HashMap<String, Object>();
-org.eclipse.emf.ecore.EPackage parameter = (org.eclipse.emf.ecore.EPackage)parameterParameter;
-parameterValues.put("parameter", parameterParameter);
-
     
-method_body(ictx.getBuffer(), ictx, parameter);
-    CallHelper.callBack(new CallbackContext(ictx), parameter);
+method_body(ictx.getBuffer(), ictx);
+    {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+parameters.put("parameter", this.parameter);
+CallHelper.callBack(new CallbackContext(ictx), parameters);
+}
 
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+    Map<String, Object> parameterValues = new HashMap<String, Object>();
+    parameterValues.put("parameter", this.parameter);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-ictx.getBuffer().setLength(0);}
+    ictx.getBuffer().setLength(0);}
 return loop;
 } 
 
+protected org.eclipse.emf.ecore.EPackage parameter = null;
+public void set_parameter(org.eclipse.emf.ecore.EPackage object) {
+this.parameter = object;
+}
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EPackage parameter)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append("package "+parameter.getName());
+    stringBuffer.append(TEXT_1);
     }
     }
