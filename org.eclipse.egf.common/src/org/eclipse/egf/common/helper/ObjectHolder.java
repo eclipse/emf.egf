@@ -21,6 +21,14 @@ package org.eclipse.egf.common.helper;
  */
 public class ObjectHolder<E> {
 
-  public E object;
+    public E object;
 
+    public ObjectHolder(E object) {
+        super();
+        this.object = object;
+    }
+
+    public String toString() {
+        return object == null ? "null" : object.toString();
+    }
 }

@@ -5,6 +5,8 @@ import org.eclipse.emf.ecore.*;
 import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
+import org.eclipse.egf.common.helper.*;
+
 
 public class CLASS {
 
