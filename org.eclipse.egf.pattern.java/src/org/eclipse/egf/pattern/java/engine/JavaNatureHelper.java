@@ -28,7 +28,7 @@ import org.eclipse.egf.pattern.utils.FileHelper;
  */
 
 public class JavaNatureHelper {
-    private static final java.util.regex.Pattern compile = java.util.regex.Pattern.compile("\\s*package\\s*(\\w*);.*class\\s*(\\w*).*", java.util.regex.Pattern.DOTALL | java.util.regex.Pattern.MULTILINE);
+    private static final java.util.regex.Pattern compile = java.util.regex.Pattern.compile("\\s*package\\s*([\\w\\.]*);.*class\\s*(\\w*).*", java.util.regex.Pattern.DOTALL | java.util.regex.Pattern.MULTILINE);
 
     /**
      * This method parses the template header to know the template class name.
