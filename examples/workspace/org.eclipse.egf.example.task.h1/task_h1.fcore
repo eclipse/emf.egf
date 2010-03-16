@@ -3,7 +3,7 @@
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" 
     xmi:id="1Zvd4LdCEd6AWpPtW_wFiQ"
-    name="H1" description="" kind="java" value="org.eclipse.egf.example.task.h1.H1">
+    name="H1" description="" kind="java" implementation="org.eclipse.egf.example.task.h1.H1">
   <contractContainer xmi:id="_sAEVUbpOEd6O-6ob3O13Lw">
     <contracts xmi:id="_sZPqULpOEd6O-6ob3O13Lw" name="quantity">
       <type xmi:type="types:TypeInteger" xmi:id="_wO9-sLpOEd6O-6ob3O13Lw" value="100"/>

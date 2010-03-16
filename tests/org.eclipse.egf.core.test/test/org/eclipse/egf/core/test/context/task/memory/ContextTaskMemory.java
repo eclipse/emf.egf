@@ -127,6 +127,8 @@ public class ContextTaskMemory extends TestCase {
     generatorAdapterFactoryType.setValue("org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"); //$NON-NLS-1$
     generatorAdapterFactory.eSet(FcorePackage.Literals.CONTRACT__TYPE, generatorAdapterFactoryType);
 
+    // Beware, we use the test plugin bundle here, the manifest should import the bundle who contains the task
+    // Otherwise it will fail to load it
     IActivityManager<Task> manager = TaskManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
 
     GeneratorAdapterFactory defaultValue = null;

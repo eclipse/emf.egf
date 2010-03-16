@@ -47,7 +47,7 @@
         <type xmi:type="types:TypeInteger" xmi:id="_wKWpUMVjEd6ngr_25dSdnQ" value="10"/>
       </orchestrationParameters>
     </orchestrationParameterContainer>
-    <invocations xmi:id="tKWXIabGEd69ANF1SOWYYg" invokedActivity="ftask:TaskJava platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
+    <invocations xmi:id="tKWXIabGEd69ANF1SOWYYg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
       <invocationContractContainer xmi:id="_GuhTgb-2Ed6E7J0w9U7NFQ">
         <invocationContracts xmi:id="_bu7G8MVjEd6ngr_25dSdnQ" orchestrationParameter="#_uNn24MVjEd6ngr_25dSdnQ"
             invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_sZPqULpOEd6O-6ob3O13Lw"/>
