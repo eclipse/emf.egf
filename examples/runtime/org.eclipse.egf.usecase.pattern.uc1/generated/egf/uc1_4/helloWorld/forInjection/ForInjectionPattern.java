@@ -21,6 +21,7 @@ public class ForInjectionPattern
   protected final String TEXT_1 = NL + "    - \"";
   protected final String TEXT_2 = "\" ";
   protected final String TEXT_3 = NL;
+  protected final String TEXT_4 = NL;
 
 	public ForInjectionPattern()
 	{
@@ -55,7 +56,9 @@ if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);
 }
+    
     stringBuffer.append(TEXT_3);
+    stringBuffer.append(TEXT_4);
     return stringBuffer.toString();
   }
 public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
@@ -67,7 +70,6 @@ parameterValues.put("parameter", parameterParameter);
 
     
 method_body(ictx.getBuffer(), ictx, parameter);
-
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -77,7 +79,7 @@ return loop;
 } 
 
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.ENamedElement parameter)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.ENamedElement parameter)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());

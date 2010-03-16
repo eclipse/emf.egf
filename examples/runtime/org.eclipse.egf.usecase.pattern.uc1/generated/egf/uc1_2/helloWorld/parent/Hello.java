@@ -19,8 +19,10 @@ public class Hello
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "//default content";
-  protected final String TEXT_2 = NL;
-  protected final String TEXT_3 = NL;
+  protected final String TEXT_2 = NL + NL + "Hello";
+  protected final String TEXT_3 = "!";
+  protected final String TEXT_4 = NL;
+  protected final String TEXT_5 = NL;
 
 	public Hello()
 	{
@@ -43,8 +45,9 @@ IQuery.ParameterDescription paramDesc = null;
     if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);}
-    stringBuffer.append(TEXT_2);
-    stringBuffer.append(TEXT_3);
+    
+    stringBuffer.append(TEXT_4);
+    stringBuffer.append(TEXT_5);
     return stringBuffer.toString();
   }
 public String generate(PatternContext ctx) throws Exception  {
@@ -52,15 +55,22 @@ InternalPatternContext ictx = (InternalPatternContext)ctx;
 
     
 method_body(ictx.getBuffer(), ictx);
-
     
 String loop = ictx.getBuffer().toString();
 return loop;
 } 
 
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
+    }
+    protected void method_SayHello(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    stringBuffer.append(TEXT_2);
+    }
+    protected void method_finish(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    stringBuffer.append(TEXT_3);
     }
     }

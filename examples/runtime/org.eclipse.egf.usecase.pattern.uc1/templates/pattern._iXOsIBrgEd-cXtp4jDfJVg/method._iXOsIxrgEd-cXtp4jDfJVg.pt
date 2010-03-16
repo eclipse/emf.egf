@@ -1,0 +1,6 @@
+
+	  // Message on the default console
+	  System.out.println("Java: " + aClass.getName()); //$NON-NLS-1$
+
+	  // Message on the EGF console
+	  EGFCorePlugin.getDefault().logInfo("Java: " + aClass.getName());

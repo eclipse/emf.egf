@@ -17,10 +17,9 @@ public class HelloWorld extends egf.uc1_2.helloWorld.parent.Hello {
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = NL + "Hello";
-  protected final String TEXT_2 = " ";
-  protected final String TEXT_3 = "!";
-  protected final String TEXT_4 = NL;
+  protected final String TEXT_1 = " ";
+  protected final String TEXT_2 = NL;
+  protected final String TEXT_3 = NL;
 
 	public HelloWorld()
 	{
@@ -54,7 +53,9 @@ if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);
 }
-    stringBuffer.append(TEXT_4);
+    
+    stringBuffer.append(TEXT_2);
+    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
 public String generate(PatternContext ctx, Object aClassParameter) throws Exception  {
@@ -66,16 +67,13 @@ parameterValues.put("aClass", aClassParameter);
 
     
 method_SayHello(ictx.getBuffer(), ictx);
-
     
 method_body(ictx.getBuffer(), ictx, aClass);
-
     org.eclipse.emf.ecore.EClass element__AfpkEAzyEdsdvrVfWaxAw = aClass;
-ExecutionContext ctx__aEwO8BfHEdq9LwefQPS4A = new ExecutionContext(ictx);
-CallHelper.executeWithInjection("_7-a0kAzxEd-sdvrVfWaxAw", ctx__aEwO8BfHEdq9LwefQPS4A, element__AfpkEAzyEdsdvrVfWaxAw);
+ExecutionContext ctx__aBA_kBsWEd3TL4i1oA3YQ = new ExecutionContext(ictx);
+CallHelper.executeWithInjection("_7-a0kAzxEd-sdvrVfWaxAw", ctx__aBA_kBsWEd3TL4i1oA3YQ, element__AfpkEAzyEdsdvrVfWaxAw);
     
 method_finish(ictx.getBuffer(), ictx);
-
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -86,19 +84,9 @@ return loop;
 
 protected org.eclipse.emf.ecore.EClass currentClass = null;
 
-    protected void method_SayHello(StringBuilder stringBuffer, PatternContext ctx)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass aClass)throws Exception {
 
     stringBuffer.append(TEXT_1);
-    }
-    
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EClass aClass)throws Exception {
-
-    stringBuffer.append(TEXT_2);
     stringBuffer.append( aClass.getName() );
-    }
-    
-    protected void method_finish(StringBuilder stringBuffer, PatternContext ctx)throws Exception {
-
-    stringBuffer.append(TEXT_3);
     }
     }

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_1di_UBe3Ed-DaY2uHNBaQg"
+    name="Pattern - UC1.5 - Callback With Java Class">
+  <viewpointContainer xmi:id="_9txwIBe3Ed-DaY2uHNBaQg">
+    <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_-IxqEBe3Ed-DaY2uHNBaQg">
+      <domains xmi:type="domain:DomainURI" xmi:id="_-qgeIBe3Ed-DaY2uHNBaQg" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
+    </viewpoints>
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="__hODsBe3Ed-DaY2uHNBaQg">
+      <libraries xmi:id="__6QOwBe3Ed-DaY2uHNBaQg" name="egf.uc1_5.pattern">
+        <elements xmi:type="pattern:Pattern" xmi:id="_MTvCABe6Ed-O0P2188kAmA" name="ClassPattern"
+            headerMethod="#_MTvCARe6Ed-O0P2188kAmA" footerMethod="#_MTvCBBe6Ed-O0P2188kAmA"
+            initMethod="#_MTvCAhe6Ed-O0P2188kAmA">
+          <methods xmi:id="_MTvCARe6Ed-O0P2188kAmA" name="header" patternFilePath="templates/pattern._MTvCABe6Ed-O0P2188kAmA/method._MTvCARe6Ed-O0P2188kAmA.pt"/>
+          <methods xmi:id="_MTvCAhe6Ed-O0P2188kAmA" name="init" patternFilePath="templates/pattern._MTvCABe6Ed-O0P2188kAmA/method._MTvCAhe6Ed-O0P2188kAmA.pt"/>
+          <methods xmi:id="_MTvCAxe6Ed-O0P2188kAmA" name="body" patternFilePath="templates/pattern._MTvCABe6Ed-O0P2188kAmA/method._MTvCAxe6Ed-O0P2188kAmA.pt"/>
+          <methods xmi:id="_MTvCBBe6Ed-O0P2188kAmA" name="footer" patternFilePath="templates/pattern._MTvCABe6Ed-O0P2188kAmA/method._MTvCBBe6Ed-O0P2188kAmA.pt"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_PjAaYBe6Ed-O0P2188kAmA"
+              called="#_MTvCAxe6Ed-O0P2188kAmA"/>
+          <orchestration xmi:type="pattern:BackCall" xmi:id="_tdnQIRe-Ed-UBIek6Yqz4A"/>
+          <parameters xmi:id="_NzI_QBe6Ed-O0P2188kAmA" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass">
+            <query xmi:type="pattern:BasicQuery" xmi:id="_OdMo4Be6Ed-O0P2188kAmA"
+                extensionId="org.eclipse.egf.pattern.basic.query"/>
+          </parameters>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_MTvCBhe6Ed-O0P2188kAmA"
+              name="JET"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_DNfhIBe4Ed-DaY2uHNBaQg">
+    <invocations xmi:id="_DrZlIBe4Ed-DaY2uHNBaQg" invokedActivity="ftask:TaskJava platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
+      <invocationContractContainer xmi:id="_GWMFgBe6Ed-O0P2188kAmA">
+        <invocationContracts xmi:id="_G2wb8Be6Ed-O0P2188kAmA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_tsP7UBe5Ed-O0P2188kAmA">
+          <type xmi:type="types:TypeString" xmi:id="_JhFUMBe6Ed-O0P2188kAmA" value="__6QOwBe3Ed-DaY2uHNBaQg"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_z4HVwBe7Ed-O0P2188kAmA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_4ngvABe5Ed-O0P2188kAmA">
+          <type xmi:type="domain:TypeDomainURI" xmi:id="_1B95wBe7Ed-O0P2188kAmA" domain="#_-qgeIBe3Ed-DaY2uHNBaQg"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_mT1mgBe9Ed-d2_ufnco5uw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_-wgGgBe5Ed-O0P2188kAmA">
+          <type xmi:type="pattern:TypePatternCallBackHandler" xmi:id="_nc6HYBe9Ed-d2_ufnco5uw"
+              value="org.eclipse.egf.usecase.pattern.uc1.callback.MyCallbackHandler"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

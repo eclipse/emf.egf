@@ -19,6 +19,7 @@ public class ClassPattern extends egf.uc1_3.helloWorld.parent.ParentPattern {
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = " and me: ";
   protected final String TEXT_2 = NL;
+  protected final String TEXT_3 = NL;
 
 	public ClassPattern()
 	{
@@ -52,7 +53,9 @@ if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);
 }
+    
     stringBuffer.append(TEXT_2);
+    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
 public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
@@ -62,12 +65,11 @@ Map<String, Object> parameterValues = new HashMap<String, Object>();
 org.eclipse.emf.ecore.EClass parameter = (org.eclipse.emf.ecore.EClass)parameterParameter;
 parameterValues.put("parameter", parameterParameter);
 
-    ExecutionContext ctx__aGPcsBfHEdq9LwefQPS4A = new ExecutionContext(ictx);
-super.generate(ctx__aGPcsBfHEdq9LwefQPS4A);
+    ExecutionContext ctx__Y7IVkBsWEd3TL4i1oA3YQ = new ExecutionContext(ictx);
+super.generate(ctx__Y7IVkBsWEd3TL4i1oA3YQ);
 
     
 method_body(ictx.getBuffer(), ictx, parameter);
-
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -77,7 +79,7 @@ return loop;
 } 
 
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EClass parameter)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass parameter)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());
