@@ -14,9 +14,7 @@ import java.io.IOException;
 import java.util.Collections;
 
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IPath;
-import org.eclipse.egf.core.helper.ResourceHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.domain.DomainFactory;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.DomainViewpoint;
@@ -36,25 +34,35 @@ import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 public class CreateFcoreUtil {
 
-  public void createFcoreFile(IFile genModelFile, IPath fcoreFullPath) throws IOException {
-    URI genModelURI = URI.createPlatformResourceURI(genModelFile.getFullPath().toString(), true);
-    IFile fcoreFile = ResourcesPlugin.getWorkspace().getRoot().getFile(fcoreFullPath);
+  public void createFcoreFile(IFile genModelFile, IFile fcore) throws IOException {
 
-    ResourceSetImpl resourceSet = new ResourceSetImpl();
-    Resource fcoreResource = ResourceHelper.createResource(resourceSet, fcoreFile);
+    final IOException[] ioExceptions = new IOException[1];
+
+    // Retrieve our editing domain
+    final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+
+    // Feed our URIConverter
+    URI platformPluginURI = URI.createPlatformPluginURI(fcore.getFullPath().toString(), false);
+    URI platformResourceURI = URI.createPlatformResourceURI(fcore.getFullPath().toString(), true);
+    editingDomain.getResourceSet().getURIConverter().getURIMap().put(platformPluginURI, platformResourceURI);
+
+    URI genModelURI = URI.createPlatformResourceURI(genModelFile.getFullPath().toString(), true);
+    // Create a resource for this file.
+    final Resource fcoreResource = editingDomain.getResourceSet().createResource(platformPluginURI);
 
     // Load target fcores
     URI emfWrapperResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.emf.wrapper/fcs/EMF_Wrapper.fcore", true); //$NON-NLS-1$
-    Resource emfWrapperResource = ResourceHelper.loadResource(resourceSet, emfWrapperResourceURI);
+    Resource emfWrapperResource = editingDomain.getResourceSet().getResource(emfWrapperResourceURI, true);
     URI emfDocGenHtmlResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.emf.docgen.html/egf/EmfDocGenHtml.fcore", true); //$NON-NLS-1$
-    Resource emfDocGenHtmlResource = ResourceHelper.loadResource(resourceSet, emfDocGenHtmlResourceURI);
+    Resource emfDocGenHtmlResource = editingDomain.getResourceSet().getResource(emfDocGenHtmlResourceURI, true);
 
     // Create Factory Component
-    FactoryComponent factoryComponent = FcoreFactory.eINSTANCE.createFactoryComponent();
+    final FactoryComponent factoryComponent = FcoreFactory.eINSTANCE.createFactoryComponent();
     factoryComponent.setName(genModelFile.getName() + " EMF Wrapper"); //$NON-NLS-1$
 
     // Create viewpoint container
@@ -105,9 +113,36 @@ public class CreateFcoreUtil {
     // Create emf doc html generation
     createEmfDocGenHtmlInvocation(emfWrapperResource, emfDocGenHtmlResource, productionPlan, genModelDomainURI);
 
-    // Save created Fcore
-    fcoreResource.getContents().add(factoryComponent);
-    fcoreResource.save(Collections.EMPTY_MAP);
+    // Add factory component to the contents.
+    editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+      @Override
+      protected void doExecute() {
+        fcoreResource.getContents().add(factoryComponent);
+      }
+    });
+
+    // save fcore
+    try {
+      editingDomain.runExclusive(new Runnable() {
+        public void run() {
+          try {
+            fcoreResource.save(Collections.EMPTY_MAP);
+          } catch (IOException ioe) {
+            ioExceptions[0] = ioe;
+          }
+        }
+      });
+    } catch (InterruptedException ie) {
+      return;
+    }
+
+    // Rethrow exception if any
+    if (ioExceptions[0] != null) {
+      throw ioExceptions[0];
+    }
+
+    return;
+
   }
 
   private void createEmfDocGenHtmlInvocation(Resource emfWrapperResource, Resource emfDocGenHtmlResource, ProductionPlan productionPlan, DomainURI genModelDomainURI) {
