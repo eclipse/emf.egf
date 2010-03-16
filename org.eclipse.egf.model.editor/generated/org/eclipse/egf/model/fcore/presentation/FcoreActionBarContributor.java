@@ -29,10 +29,12 @@ import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -57,19 +59,23 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.action.SubContributionItem;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
+import org.eclipse.ui.part.ISetSelectionTarget;
 
 /**
  * This is the action bar contributor for the Fcore model editor.
@@ -208,11 +214,22 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
 
     validateAction = new ValidateAction() {
 
+      private Resource currentResource;
+
       /**
        * This simply execute the command.
        */
       @Override
       protected Diagnostic validate(IProgressMonitor progressMonitor) {
+
+        // Nothing to process
+        if (selectedObjects == null || selectedObjects.size() == 0) {
+          return Diagnostic.OK_INSTANCE;
+        }
+
+        // In our application, only one resource is edited per editor
+        // it is safe to get the resource from the first selectedObject
+        currentResource = selectedObjects.get(0).eResource();
 
         int selectionSize = selectedObjects.size();
         int count = selectionSize;
@@ -258,6 +275,57 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
         }
         return diagnostic;
 
+      }
+
+      @Override
+      protected void handleDiagnostic(Diagnostic diagnostic) {
+
+        int severity = diagnostic.getSeverity();
+        String title = null;
+        String message = null;
+
+        if (severity == Diagnostic.ERROR || severity == Diagnostic.WARNING) {
+          title = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_title"); //$NON-NLS-1$
+          message = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_message"); //$NON-NLS-1$
+        } else {
+          title = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationResults_title"); //$NON-NLS-1$
+          message = EMFEditUIPlugin.INSTANCE.getString(severity == Diagnostic.OK ? "_UI_ValidationOK_message" : "_UI_ValidationResults_message"); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+
+        int result = 0;
+        if (diagnostic.getSeverity() == Diagnostic.OK) {
+          MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message);
+          result = Window.CANCEL;
+        } else {
+          result = DiagnosticDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic);
+        }
+
+        if (currentResource != null) {
+          eclipseResourcesUtil.deleteMarkers(currentResource);
+        }
+
+        if (result == Window.OK) {
+          if (!diagnostic.getChildren().isEmpty()) {
+            List<?> data = (diagnostic.getChildren().get(0)).getData();
+            if (!data.isEmpty() && data.get(0) instanceof EObject) {
+              Object part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
+              if (part instanceof ISetSelectionTarget) {
+                ((ISetSelectionTarget) part).selectReveal(new StructuredSelection(data.get(0)));
+              } else if (part instanceof IViewerProvider) {
+                Viewer viewer = ((IViewerProvider) part).getViewer();
+                if (viewer != null) {
+                  viewer.setSelection(new StructuredSelection(data.get(0)), true);
+                }
+              }
+            }
+          }
+
+          if (currentResource != null) {
+            for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
+              eclipseResourcesUtil.createMarkers(currentResource, childDiagnostic);
+            }
+          }
+        }
       }
 
     };
