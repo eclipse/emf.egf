@@ -27,7 +27,8 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 public class CallbackContext extends DefaultPatternContext implements InternalPatternContext {
 
     private final StringBuffer buffer = new StringBuffer(2000);
-    private final CallbackReporter reporter = new CallbackReporter();
+
+    // private final CallbackReporter reporter = new CallbackReporter();
 
     public CallbackContext(InternalPatternContext parent) {
         super((PatternContext) parent);
@@ -41,7 +42,7 @@ public class CallbackContext extends DefaultPatternContext implements InternalPa
 
     public PatternExecutionReporter getReporter() {
 
-        return reporter;
+        return getParent().getReporter();
     }
 
     public boolean hasReporter() {
