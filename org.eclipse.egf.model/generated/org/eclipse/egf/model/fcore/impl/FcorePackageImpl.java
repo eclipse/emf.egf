@@ -1022,10 +1022,10 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
         "factoryComponentContract", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getInvocationContract_OrchestrationParameter(), this.getOrchestrationParameter(), this.getOrchestrationParameter_InvocationContracts(),
         "orchestrationParameter", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getInvocationContract_SourceInvocationContract(), this.getInvocationContract(), null,
+    initEReference(getInvocationContract_SourceInvocationContract(), this.getInvocationContract(), this.getInvocationContract_TargetInvocationContract(),
         "sourceInvocationContract", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-    initEReference(getInvocationContract_TargetInvocationContract(), this.getInvocationContract(), null,
-        "targetInvocationContract", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getInvocationContract_TargetInvocationContract(), this.getInvocationContract(), this.getInvocationContract_SourceInvocationContract(),
+        "targetInvocationContract", null, 0, -1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getInvocationContract_InvokedContract(), this.getContract(), null, "invokedContract", null, 1, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getInvocationContract_Type(), theTypesPackage.getType(), null, "type", null, 0, 1, InvocationContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 

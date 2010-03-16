@@ -162,27 +162,28 @@ public class ProductionPlanManager extends OrchestrationManager<ProductionPlan> 
   private void populateTargetRuntimeContext(ProductionPlanInvocationManager manager) throws InvocationException {
     for (InvocationContract contract : manager.getElement().getInvocationContracts(ContractMode.OUT)) {
       // Target Contract
-      InvocationContract targetInvocationContract = contract.getTargetInvocationContract();
-      // Nothing to do
-      if (targetInvocationContract == null || targetInvocationContract.getInvocation() == null) {
-        continue;
-      }
-      // Locate target manager
-      ProductionPlanInvocationManager targetManager = getProductionPlanManagers().get(targetInvocationContract.getInvocation());
-      if (targetManager == null) {
-        throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(FprodProducerMessages.ProductionPlanManager_unknown_manager, EMFHelper.getText(targetInvocationContract.getInvocation())), null)));
-      }
-      // Populate value accordingly
-      Type type = contract.getType();
-      if (type == null) {
-        type = contract.getInvokedContract().getType();
-      }
-      Object value = manager.getProductionContext().getOutputValue(contract.getInvokedContract(), type.getType());
-      if (targetInvocationContract.getInvokedMode() == ContractMode.IN) {
-        targetManager.getInternalProductionContext().addInputData(targetInvocationContract, type.getType(), value, false);
-      } else {
-        targetManager.getInternalProductionContext().addInputData(targetInvocationContract, type.getType(), value, false);
-        targetManager.getInternalProductionContext().addOutputData(targetInvocationContract, type.getType(), value, false);
+      for (InvocationContract targetInvocationContract : contract.getTargetInvocationContract()) {
+        // Nothing to do
+        if (targetInvocationContract == null || targetInvocationContract.getInvocation() == null) {
+          continue;
+        }
+        // Locate target manager
+        ProductionPlanInvocationManager targetManager = getProductionPlanManagers().get(targetInvocationContract.getInvocation());
+        if (targetManager == null) {
+          throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(FprodProducerMessages.ProductionPlanManager_unknown_manager, EMFHelper.getText(targetInvocationContract.getInvocation())), null)));
+        }
+        // Populate value accordingly
+        Type type = contract.getType();
+        if (type == null) {
+          type = contract.getInvokedContract().getType();
+        }
+        Object value = manager.getProductionContext().getOutputValue(contract.getInvokedContract(), type.getType());
+        if (targetInvocationContract.getInvokedMode() == ContractMode.IN) {
+          targetManager.getInternalProductionContext().addInputData(targetInvocationContract, type.getType(), value, false);
+        } else {
+          targetManager.getInternalProductionContext().addInputData(targetInvocationContract, type.getType(), value, false);
+          targetManager.getInternalProductionContext().addOutputData(targetInvocationContract, type.getType(), value, false);
+        }
       }
     }
   }

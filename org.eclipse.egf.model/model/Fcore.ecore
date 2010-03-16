@@ -220,9 +220,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="orchestrationParameter"
         eType="#//OrchestrationParameter" resolveProxies="false" eOpposite="#//OrchestrationParameter/invocationContracts"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="sourceInvocationContract"
-        eType="#//InvocationContract" resolveProxies="false"/>
+        eType="#//InvocationContract" resolveProxies="false" eOpposite="#//InvocationContract/targetInvocationContract"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="targetInvocationContract"
-        eType="#//InvocationContract" resolveProxies="false"/>
+        upperBound="-1" eType="#//InvocationContract" resolveProxies="false" eOpposite="#//InvocationContract/sourceInvocationContract"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="invokedContract" lowerBound="1"
         eType="#//Contract"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="type" eType="ecore:EClass Types.ecore#//Type"

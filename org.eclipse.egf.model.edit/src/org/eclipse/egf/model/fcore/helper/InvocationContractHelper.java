@@ -212,9 +212,6 @@ public class InvocationContractHelper {
         }
       }
     }
-    if (result.contains(null) == false) {
-      result.add(null);
-    }
     return result;
   }
 

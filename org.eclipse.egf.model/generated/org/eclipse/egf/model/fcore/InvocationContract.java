@@ -13,6 +13,7 @@
 package org.eclipse.egf.model.fcore;
 
 import org.eclipse.egf.model.types.Type;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * <!-- begin-user-doc -->
@@ -123,6 +124,7 @@ public interface InvocationContract extends ModelElement {
 
   /**
    * Returns the value of the '<em><b>Source Invocation Contract</b></em>' reference.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.InvocationContract#getTargetInvocationContract <em>Target Invocation Contract</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Source Invocation Contract</em>' reference isn't clear,
@@ -132,7 +134,8 @@ public interface InvocationContract extends ModelElement {
    * @return the value of the '<em>Source Invocation Contract</em>' reference.
    * @see #setSourceInvocationContract(InvocationContract)
    * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContract_SourceInvocationContract()
-   * @model resolveProxies="false"
+   * @see org.eclipse.egf.model.fcore.InvocationContract#getTargetInvocationContract
+   * @model opposite="targetInvocationContract" resolveProxies="false"
    * @generated
    */
   InvocationContract getSourceInvocationContract();
@@ -148,30 +151,22 @@ public interface InvocationContract extends ModelElement {
   void setSourceInvocationContract(InvocationContract value);
 
   /**
-   * Returns the value of the '<em><b>Target Invocation Contract</b></em>' reference.
+   * Returns the value of the '<em><b>Target Invocation Contract</b></em>' reference list.
+   * The list contents are of type {@link org.eclipse.egf.model.fcore.InvocationContract}.
+   * It is bidirectional and its opposite is '{@link org.eclipse.egf.model.fcore.InvocationContract#getSourceInvocationContract <em>Source Invocation Contract</em>}'.
    * <!-- begin-user-doc -->
    * <p>
    * If the meaning of the '<em>Target Invocation Contract</em>' reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Target Invocation Contract</em>' reference.
-   * @see #setTargetInvocationContract(InvocationContract)
+   * @return the value of the '<em>Target Invocation Contract</em>' reference list.
    * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocationContract_TargetInvocationContract()
-   * @model resolveProxies="false"
+   * @see org.eclipse.egf.model.fcore.InvocationContract#getSourceInvocationContract
+   * @model opposite="sourceInvocationContract" resolveProxies="false"
    * @generated
    */
-  InvocationContract getTargetInvocationContract();
-
-  /**
-   * Sets the value of the '{@link org.eclipse.egf.model.fcore.InvocationContract#getTargetInvocationContract <em>Target Invocation Contract</em>}' reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Target Invocation Contract</em>' reference.
-   * @see #getTargetInvocationContract()
-   * @generated
-   */
-  void setTargetInvocationContract(InvocationContract value);
+  EList<InvocationContract> getTargetInvocationContract();
 
   /**
    * Returns the value of the '<em><b>Invoked Contract</b></em>' reference.

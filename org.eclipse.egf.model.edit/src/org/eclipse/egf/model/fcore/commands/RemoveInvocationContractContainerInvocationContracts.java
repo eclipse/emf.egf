@@ -86,14 +86,16 @@ public final class RemoveInvocationContractContainerInvocationContracts extends 
       if (removedObject instanceof InvocationContract == false) {
         continue;
       }
-      InvocationContract invocationContract = (InvocationContract) removedObject;
+      InvocationContract contract = (InvocationContract) removedObject;
       // Reset source
-      if (invocationContract.getSourceInvocationContract() != null) {
-        append(new SetCommand(_editingDomain, invocationContract.getSourceInvocationContract(), FcorePackage.Literals.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, null));
+      if (contract.getSourceInvocationContract() != null) {
+        // This will reset the eOpposite accordingly
+        append(new SetCommand(_editingDomain, contract, FcorePackage.Literals.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, null));
       }
       // Reset target
-      if (invocationContract.getTargetInvocationContract() != null) {
-        append(new SetCommand(_editingDomain, invocationContract.getTargetInvocationContract(), FcorePackage.Literals.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, null));
+      if (contract.getTargetInvocationContract() != null) {
+        // This will reset the eOpposite accordingly
+        append(new RemoveCommand(_editingDomain, contract, FcorePackage.Literals.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, contract.getTargetInvocationContract()));
       }
     }
     // Remove InvocationContracts

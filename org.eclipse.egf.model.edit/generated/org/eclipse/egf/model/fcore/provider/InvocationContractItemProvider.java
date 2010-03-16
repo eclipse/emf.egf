@@ -19,8 +19,6 @@ import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
-import org.eclipse.egf.model.fcore.commands.SetInvocationContractSourceInvocationContractCommand;
-import org.eclipse.egf.model.fcore.commands.SetInvocationContractTargetInvocationContractCommand;
 import org.eclipse.egf.model.fcore.helper.InvocationContractHelper;
 import org.eclipse.egf.model.types.TypeBigDecimal;
 import org.eclipse.egf.model.types.TypeBigInteger;
@@ -40,12 +38,9 @@ import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypeShort;
 import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesFactory;
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -428,38 +423,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
       }
     }
 
-  }
-
-  /**
-   * Create a command to proceed a set operation.
-   * 
-   * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
-   * @generated NOT
-   * 
-   */
-  @Override
-  protected Command createSetCommand(EditingDomain editingDomain, EObject modelElement, EStructuralFeature feature, Object value) {
-    // Default Command
-    Command command = super.createSetCommand(editingDomain, modelElement, feature, value);
-    // feature could be null
-    if (feature == null) {
-      return command;
-    }
-    // Get the feature id to switch on the right stuff.
-    int featureId = feature.getFeatureID();
-    switch (featureId) {
-    case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
-      if (value == null || value instanceof InvocationContract) {
-        command = new SetInvocationContractSourceInvocationContractCommand(editingDomain, (InvocationContract) modelElement, (InvocationContract) value);
-      }
-      break;
-    case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-      if (value == null || value instanceof InvocationContract) {
-        command = new SetInvocationContractTargetInvocationContractCommand(editingDomain, (InvocationContract) modelElement, (InvocationContract) value);
-      }
-      break;
-    }
-    return command;
   }
 
 }
