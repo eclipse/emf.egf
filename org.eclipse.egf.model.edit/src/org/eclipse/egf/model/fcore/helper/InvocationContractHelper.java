@@ -40,7 +40,8 @@ public class InvocationContractHelper {
     if (invocationContract.getFactoryComponent() == null || invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
       return result;
     }
-    // If an OrchestrationParameter is already assigned, InvocationContract in In mode are not assignable
+    // If an OrchestrationParameter is already assigned, InvocationContract in In mode are not
+    // assignable
     if (invocationContract.getOrchestrationParameter() != null && invocationContract.getInvokedMode() == ContractMode.IN) {
       return result;
     }
@@ -55,11 +56,12 @@ public class InvocationContractHelper {
         }
       }
     }
-    // If an OrchestrationParameter or a SourceInvocationContract is already assigned, InvocationContract in In_Out mode are only assignable to an Out Mode Contract
+    // If an OrchestrationParameter or a SourceInvocationContract is already assigned,
+    // InvocationContract in In_Out mode are only assignable to an Out Mode Contract
     if ((invocationContract.getOrchestrationParameter() != null || invocationContract.getSourceInvocationContract() != null) && invocationContract.getInvokedMode() == ContractMode.IN_OUT) {
       for (Iterator<Contract> it = result.iterator(); it.hasNext();) {
         Contract contract = it.next();
-        if (contract.getMode() != ContractMode.OUT) {
+        if (contract != null && contract.getMode() != ContractMode.OUT) {
           it.remove();
         }
       }
@@ -89,11 +91,16 @@ public class InvocationContractHelper {
       return result;
     }
     // Retrieve all compatible typed OrchestrationParameter
-    return invocationContract.getFactoryComponent().getOrchestration().getOrchestrationParameters(invocationContract.getInvokedContract().getType());
+    result.addAll(invocationContract.getFactoryComponent().getOrchestration().getOrchestrationParameters(invocationContract.getInvokedContract().getType()));
+    // Return result
+    return result;
   }
 
   public static Collection<Contract> getAvailableInvokedContract(InvocationContract invocationContract) {
     Collection<Contract> result = new UniqueEList<Contract>();
+    if (result.contains(null) == false) {
+      result.add(null);
+    }
     // Nothing to retrieve
     if (invocationContract.getInvocation() == null || invocationContract.getInvocation().getInvokedActivity() == null) {
       return result;
@@ -124,19 +131,20 @@ public class InvocationContractHelper {
         }
       }
     }
-    if (result.contains(null) == false) {
-      result.add(null);
-    }
     return result;
   }
 
   public static Collection<InvocationContract> getAvailableSourceInvocationContract(InvocationContract invocationContract) {
     Collection<InvocationContract> result = new UniqueEList<InvocationContract>();
+    if (result.contains(null) == false) {
+      result.add(null);
+    }
     // Nothing to retrieve
     if (invocationContract.getInvocation() == null || invocationContract.getFactoryComponent() == null || invocationContract.getFactoryComponent().getOrchestration() == null) {
       return result;
     }
-    // To get an assignable source InvocationContract the current invocationContract should have an In or an In_Out Contract Mode.
+    // To get an assignable source InvocationContract the current invocationContract should have an
+    // In or an In_Out Contract Mode.
     if (invocationContract.getInvokedContract() == null || invocationContract.getInvokedMode() == ContractMode.OUT) {
       return result;
     }
@@ -166,26 +174,28 @@ public class InvocationContractHelper {
         }
       }
     }
-    if (result.contains(null) == false) {
-      result.add(null);
-    }
     return result;
   }
 
   public static Collection<InvocationContract> getAvailableTargetInvocationContract(InvocationContract invocationContract) {
     Collection<InvocationContract> result = new UniqueEList<InvocationContract>();
+    if (result.contains(null) == false) {
+      result.add(null);
+    }
     // Nothing to retrieve
     if (invocationContract.getInvocation() == null || invocationContract.getFactoryComponent() == null || invocationContract.getFactoryComponent().getOrchestration() == null) {
       return result;
     }
-    // To assign a target InvocationContract the current invocationContract should have an Out or an In_Out Contract Mode.
+    // To assign a target InvocationContract the current invocationContract should have an Out or an
+    // In_Out Contract Mode.
     if (invocationContract.getInvokedContract() == null || invocationContract.getInvokedMode() == ContractMode.IN) {
       return result;
     }
     // Target should be an In_Out or an In mode contract
     boolean analyse = false;
     for (Invocation invocation : invocationContract.getFactoryComponent().getOrchestration().getInvocations()) {
-      // First we check our current Invocation, all retrieved InvocationContract should be below, ignore current
+      // First we check our current Invocation, all retrieved InvocationContract should be below,
+      // ignore current
       if (invocation == invocationContract.getInvocation()) {
         analyse = true;
         continue;
@@ -211,9 +221,6 @@ public class InvocationContractHelper {
           result.add(innerInvocationContract);
         }
       }
-    }
-    if (result.contains(null) == false) {
-      result.add(null);
     }
     return result;
   }
