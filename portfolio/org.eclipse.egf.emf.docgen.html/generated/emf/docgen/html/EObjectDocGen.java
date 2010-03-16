@@ -42,6 +42,7 @@ IQuery.ParameterDescription paramDesc = null;
     if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);}
+    
     stringBuffer.append(TEXT_2);
     stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
@@ -51,7 +52,6 @@ InternalPatternContext ictx = (InternalPatternContext)ctx;
 
     
 method_body(ictx.getBuffer(), ictx);
-
     
 String loop = ictx.getBuffer().toString();
 return loop;
@@ -59,7 +59,7 @@ return loop;
 
 protected org.eclipse.emf.ecore.EObject _element = null;
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
     }

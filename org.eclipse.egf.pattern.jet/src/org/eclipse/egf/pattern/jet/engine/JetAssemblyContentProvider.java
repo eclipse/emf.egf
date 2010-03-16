@@ -41,10 +41,8 @@ import org.eclipse.emf.common.util.EList;
  */
 public class JetAssemblyContentProvider extends AssemblyContentProvider {
 
-    private static final JavaMethodGenerationHelper JAVA_METHOD_HELPER = new JavaMethodGenerationHelper("stringBuffer");
-
     public JetAssemblyContentProvider(Pattern pattern) {
-        super(pattern);
+        super(pattern, new JavaMethodGenerationHelper("stringBuffer"));
 
     }
 
@@ -127,14 +125,17 @@ public class JetAssemblyContentProvider extends AssemblyContentProvider {
     @Override
     protected void call(MethodCall object) throws PatternException {
         content.append("<%").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append(JAVA_METHOD_HELPER.getCallStatement(object.getCalled())).append("%>").append(EGFCommonConstants.LINE_SEPARATOR);
+        javaMethodHelper.addCallStatement(object.getCalled());
+        content.append("%>").append(EGFCommonConstants.LINE_SEPARATOR);
     }
 
     @Override
     protected void addMethodBodies() throws PatternException {
         content.append("<%").append(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER).append("%>").append(EGFCommonConstants.LINE_SEPARATOR);
         for (PatternMethod method : PatternHelper.getUserMethds(pattern)) {
-            content.append("<%").append(JAVA_METHOD_HELPER.getSignature(method)).append("{").append(EGFCommonConstants.LINE_SEPARATOR).append("%>");
+            content.append("<%");
+            javaMethodHelper.addSignature(method);
+            content.append("{").append(EGFCommonConstants.LINE_SEPARATOR).append("%>");
             content.append(getMethodContent(method));
             content.append("<%}%>").append(EGFCommonConstants.LINE_SEPARATOR);
         }

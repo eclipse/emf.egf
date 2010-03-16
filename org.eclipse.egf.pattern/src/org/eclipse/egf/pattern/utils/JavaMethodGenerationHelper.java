@@ -26,36 +26,36 @@ import org.eclipse.egf.model.pattern.PatternParameter;
 public class JavaMethodGenerationHelper {
 
     private final String bufferName;
+    private StringBuilder content;
 
     public JavaMethodGenerationHelper(String bufferName) {
         this.bufferName = bufferName;
     }
 
-    public String getCallStatement(PatternMethod called) {
-        StringBuilder builder = new StringBuilder(200);
-        builder.append("method_").append(called.getName()).append("(ictx.getBuffer(), ictx");
+    public void addCallStatement(PatternMethod called) {
+        content.append("method_").append(called.getName()).append("(ictx.getBuffer(), ictx");
         Pattern pattern = called.getPattern();
         if (!pattern.getAllParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getAllParameters()) {
-                builder.append(", ").append(parameter.getName());
+                content.append(", ").append(parameter.getName());
             }
         }
-        builder.append(");");
-        return builder.toString();
+        content.append(");");
     }
 
-    public String getSignature(PatternMethod called) {
-        StringBuilder builder = new StringBuilder(200);
-        builder.append("protected void method_").append(called.getName()).append("(StringBuilder ").append(bufferName).append(", PatternContext ctx");
+    public void addSignature(PatternMethod called) {
+        content.append("protected void method_").append(called.getName()).append("(final StringBuffer ").append(bufferName).append(", final PatternContext ctx");
         Pattern pattern = called.getPattern();
         if (!pattern.getAllParameters().isEmpty()) {
             for (PatternParameter parameter : pattern.getAllParameters()) {
                 String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
-                builder.append(", ").append(type).append(" ").append(parameter.getName());
+                content.append(", final ").append(type).append(" ").append(parameter.getName());
             }
         }
-        builder.append(")throws Exception ");
-        return builder.toString();
+        content.append(")throws Exception ");
     }
 
+    public void setContent(StringBuilder content) {
+        this.content = content;
+    }
 }

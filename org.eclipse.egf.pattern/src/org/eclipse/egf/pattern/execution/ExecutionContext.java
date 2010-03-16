@@ -26,11 +26,11 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 public class ExecutionContext extends DefaultPatternContext implements InternalPatternContext {
 
     private PatternExecutionReporter reporter;
-    private final StringBuilder buffer;
+    private final StringBuffer buffer;
 
     public ExecutionContext(BundleAccessor accessor) {
         super(accessor);
-        buffer = new StringBuilder(1000);
+        buffer = new StringBuffer(2000);
     }
 
     public ExecutionContext(InternalPatternContext parent) {
@@ -59,7 +59,7 @@ public class ExecutionContext extends DefaultPatternContext implements InternalP
         return reporter;
     }
 
-    public StringBuilder getBuffer() {
+    public StringBuffer getBuffer() {
         if (parent != null)
             return ((InternalPatternContext) parent).getBuffer();
         if (buffer == null)

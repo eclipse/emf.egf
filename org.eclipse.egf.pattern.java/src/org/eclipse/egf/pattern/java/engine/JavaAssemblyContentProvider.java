@@ -40,16 +40,14 @@ import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
  */
 public class JavaAssemblyContentProvider extends AssemblyContentProvider {
 
-    private static final JavaMethodGenerationHelper JAVA_METHOD_HELPER = new JavaMethodGenerationHelper("out");
-
     public JavaAssemblyContentProvider(Pattern pattern) {
-        super(pattern);
+        super(pattern, new JavaMethodGenerationHelper("out"));
     }
 
     @Override
     protected void call(MethodCall object) throws PatternException {
-        content.append(JAVA_METHOD_HELPER.getCallStatement(object.getCalled())).append(EGFCommonConstants.LINE_SEPARATOR);
-
+        javaMethodHelper.addCallStatement(object.getCalled());
+        content.append(EGFCommonConstants.LINE_SEPARATOR);
     }
 
     @Override
@@ -114,7 +112,8 @@ public class JavaAssemblyContentProvider extends AssemblyContentProvider {
     @Override
     protected void addMethodBodies() throws PatternException {
         for (PatternMethod method : PatternHelper.getUserMethds(pattern)) {
-            content.append(JAVA_METHOD_HELPER.getSignature(method)).append(EGFCommonConstants.LINE_SEPARATOR);
+            javaMethodHelper.addSignature(method);
+            content.append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("{").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append(getMethodContent(method)).append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
