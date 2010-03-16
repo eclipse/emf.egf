@@ -269,4 +269,12 @@ public interface Pattern extends PatternElement {
      */
     EList<PatternMethod> getAllMethods();
 
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @model nameRequired="true"
+     * @generated
+     */
+    PatternParameter getParameter(String name);
+
 } // Pattern
