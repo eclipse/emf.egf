@@ -171,6 +171,10 @@ public class InvocationContractHelper {
         if (innerInvocationContract.getInvokedMode() != ContractMode.IN_OUT && innerInvocationContract.getInvokedMode() != ContractMode.OUT) {
           continue;
         }
+        // Then we check if this innerInvocationContract is already assigned
+        if (innerInvocationContract.getSourceInvocationContract() != null) {
+          continue;
+        }
         // Finally we check if their respective types are compatible
         Type innerType = innerInvocationContract.getType();
         if (innerType == null) {
@@ -228,6 +232,10 @@ public class InvocationContractHelper {
         }
         // Then we check In_Out or Out mode contract
         if (innerInvocationContract.getInvokedMode() != ContractMode.IN_OUT && innerInvocationContract.getInvokedMode() != ContractMode.IN) {
+          continue;
+        }
+        // Then we check if this innerInvocationContract is already assigned
+        if (innerInvocationContract.getSourceInvocationContract() != null) {
           continue;
         }
         // Finally we check if their respective types are compatible
