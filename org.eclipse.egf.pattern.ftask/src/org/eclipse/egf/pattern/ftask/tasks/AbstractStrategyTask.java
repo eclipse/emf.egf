@@ -40,7 +40,6 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
     private final Strategy strategy;
     protected Object parameter;
     protected final List<PatternElement> patterns = new ArrayList<PatternElement>();
-    private StrategyReporter reporter;
 
     protected AbstractStrategyTask(Strategy strategy) {
         this.strategy = strategy;
@@ -51,7 +50,7 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
         PatternExecutionReporter reporter = (PatternExecutionReporter) ctx.getValue(PatternContext.PATTERN_REPORTER);
         if (reporter == null)
             reporter = new ConsoleReporter();
-        ctx.setValue(PatternContext.PATTERN_REPORTER, this.reporter = new StrategyReporter(reporter));
+        ctx.setValue(PatternContext.PATTERN_REPORTER, reporter);
     }
 
     @Override
@@ -84,7 +83,6 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
             strategy.setPatternElements(patterns);
             strategy.execute(ctx, parameter);
             writeContext(context, ctx);
-            reporter.executionFinished(ctx);
         } catch (MissingExtensionException e) {
             throw new InvocationException(e);
         } catch (PatternException e) {
