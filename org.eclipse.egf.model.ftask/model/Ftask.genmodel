@@ -18,9 +18,10 @@
       generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
       extensibleProviderFactory="true" childCreationExtenders="true" contentTypeIdentifier=""
       fileExtensions="ftask" ecorePackage="Ftask.ecore#/">
-    <genClasses image="false" ecoreClass="Ftask.ecore#//Task"/>
-    <genClasses ecoreClass="Ftask.ecore#//TaskJava">
-      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Ftask.ecore#//TaskJava/value"/>
+    <genClasses image="false" ecoreClass="Ftask.ecore#//Task">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Ftask.ecore#//Task/kind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Ftask.ecore#//Task/implementation"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Ftask.ecore#//Task/superTask"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.ftask.FtaskFactory
  * @model kind="package"
  * @generated
@@ -39,7 +38,6 @@ public interface FtaskPackage extends EPackage {
    * The package name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNAME = "ftask"; //$NON-NLS-1$
@@ -48,7 +46,6 @@ public interface FtaskPackage extends EPackage {
    * The package namespace URI.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_URI = "http://www.eclipse.org/egf/1.0.0/ftask"; //$NON-NLS-1$
@@ -57,7 +54,6 @@ public interface FtaskPackage extends EPackage {
    * The package namespace name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_PREFIX = "ftask"; //$NON-NLS-1$
@@ -66,7 +62,6 @@ public interface FtaskPackage extends EPackage {
    * The singleton instance of the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   FtaskPackage eINSTANCE = org.eclipse.egf.model.ftask.impl.FtaskPackageImpl.init();
@@ -75,7 +70,6 @@ public interface FtaskPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.ftask.impl.TaskImpl <em>Task</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.ftask.impl.TaskImpl
    * @see org.eclipse.egf.model.ftask.impl.FtaskPackageImpl#getTask()
    * @generated
@@ -86,7 +80,6 @@ public interface FtaskPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -96,7 +89,6 @@ public interface FtaskPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -106,7 +98,6 @@ public interface FtaskPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -116,7 +107,6 @@ public interface FtaskPackage extends EPackage {
    * The feature id for the '<em><b>Contract Container</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -126,7 +116,6 @@ public interface FtaskPackage extends EPackage {
    * The feature id for the '<em><b>Kind</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -136,7 +125,6 @@ public interface FtaskPackage extends EPackage {
    * The feature id for the '<em><b>Implementation</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -146,7 +134,6 @@ public interface FtaskPackage extends EPackage {
    * The feature id for the '<em><b>Super Task</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -156,7 +143,6 @@ public interface FtaskPackage extends EPackage {
    * The number of structural features of the '<em>Task</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -166,7 +152,6 @@ public interface FtaskPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.ftask.Task <em>Task</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Task</em>'.
    * @see org.eclipse.egf.model.ftask.Task
    * @generated
@@ -177,7 +162,6 @@ public interface FtaskPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.ftask.Task#getKind <em>Kind</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the attribute '<em>Kind</em>'.
    * @see org.eclipse.egf.model.ftask.Task#getKind()
    * @see #getTask()
@@ -189,7 +173,6 @@ public interface FtaskPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.ftask.Task#getImplementation <em>Implementation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the attribute '<em>Implementation</em>'.
    * @see org.eclipse.egf.model.ftask.Task#getImplementation()
    * @see #getTask()
@@ -201,7 +184,6 @@ public interface FtaskPackage extends EPackage {
    * Returns the meta object for the reference '{@link org.eclipse.egf.model.ftask.Task#getSuperTask <em>Super Task</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Super Task</em>'.
    * @see org.eclipse.egf.model.ftask.Task#getSuperTask()
    * @see #getTask()
@@ -213,7 +195,6 @@ public interface FtaskPackage extends EPackage {
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the factory that creates the instances of the model.
    * @generated
    */
@@ -229,7 +210,6 @@ public interface FtaskPackage extends EPackage {
    * <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   interface Literals {
@@ -237,7 +217,6 @@ public interface FtaskPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.ftask.impl.TaskImpl <em>Task</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.ftask.impl.TaskImpl
      * @see org.eclipse.egf.model.ftask.impl.FtaskPackageImpl#getTask()
      * @generated
@@ -249,7 +228,6 @@ public interface FtaskPackage extends EPackage {
      * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -259,7 +237,6 @@ public interface FtaskPackage extends EPackage {
      * The meta object literal for the '<em><b>Implementation</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -269,7 +246,6 @@ public interface FtaskPackage extends EPackage {
      * The meta object literal for the '<em><b>Super Task</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
