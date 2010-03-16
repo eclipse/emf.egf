@@ -48,10 +48,30 @@ public class BasicQueryDelegate implements IQuery {
         if (domain == null)
             throw new IllegalStateException(Messages.query_error8);
 
-        SELECT query = new SELECT(new FROM(domain), new WHERE(new EObjectTypeRelationCondition((EClass) loadClass, TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)));
+        MAINTAIN_ORDER_SELECT query = new MAINTAIN_ORDER_SELECT(new FROM(domain), new WHERE(new EObjectTypeRelationCondition((EClass) loadClass, TypeRelation.SAMETYPE_OR_SUBTYPE_LITERAL)));
         IQueryResult result = query.execute();
         if (result.getException() != null)
             throw new IllegalStateException(result.getException());
-        return new ArrayList<Object>(result.getEObjects());
+        return query.getOrderedObjects();
+    }
+
+    private static class MAINTAIN_ORDER_SELECT extends SELECT {
+        
+        private List<Object> result = new ArrayList<Object>();
+        
+        public MAINTAIN_ORDER_SELECT(FROM from, WHERE where) {
+            super(from, where);
+        }
+
+        @Override
+        protected void addEObject(EObject eObject) {
+            if (!result.contains(eObject))
+                result.add(eObject);
+            super.addEObject(eObject);
+        }
+
+        public List<Object> getOrderedObjects() {
+            return result;
+        }
     }
 }
