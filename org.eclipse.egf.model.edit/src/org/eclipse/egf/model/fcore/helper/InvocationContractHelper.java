@@ -13,12 +13,14 @@ package org.eclipse.egf.model.fcore.helper;
 import java.util.Collection;
 import java.util.Iterator;
 
+import org.eclipse.egf.common.helper.ClassHelper;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.OrchestrationParameter;
+import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.util.UniqueEList;
 
 /**
@@ -137,8 +139,13 @@ public class InvocationContractHelper {
       return result;
     }
     // To get an assignable source InvocationContract the current invocationContract should have an In or an In_Out Contract Mode.
-    if (invocationContract.getInvokedContract() == null || invocationContract.getInvokedMode() == ContractMode.OUT) {
+    if (invocationContract.getInvokedContract() == null || invocationContract.getInvokedMode() == ContractMode.OUT || invocationContract.getInvokedContract().getType() == null) {
       return result;
+    }
+    // Store the current type
+    Type type = invocationContract.getType();
+    if (type == null) {
+      type = invocationContract.getInvokedContract().getType();
     }
     // InvocationContract already assigned to an OrchestrationParameter are not assignable
     if (invocationContract.getOrchestrationParameter() != null) {
@@ -156,12 +163,20 @@ public class InvocationContractHelper {
       }
       // InvocationContract analysis
       for (InvocationContract innerInvocationContract : invocation.getInvocationContracts()) {
-        // InvokedContract should be assigned
-        if (innerInvocationContract.getInvokedContract() == null) {
+        // InvokedContract and its according type should be assigned
+        if (innerInvocationContract.getInvokedContract() == null || innerInvocationContract.getInvokedContract().getType() == null) {
           continue;
         }
         // Then we check In_Out or Out mode contract
-        if (innerInvocationContract.getInvokedMode() == ContractMode.IN_OUT || innerInvocationContract.getInvokedMode() == ContractMode.OUT) {
+        if (innerInvocationContract.getInvokedMode() != ContractMode.IN_OUT && innerInvocationContract.getInvokedMode() != ContractMode.OUT) {
+          continue;
+        }
+        // Finally we check if their respective types are compatible
+        Type innerType = innerInvocationContract.getType();
+        if (innerType == null) {
+          innerType = innerInvocationContract.getInvokedContract().getType();
+        }
+        if (ClassHelper.asSubClass(type.getType(), innerType.getType())) {
           result.add(innerInvocationContract);
         }
       }
@@ -179,8 +194,13 @@ public class InvocationContractHelper {
       return result;
     }
     // To assign a target InvocationContract the current invocationContract should have an Out or an In_Out Contract Mode.
-    if (invocationContract.getInvokedContract() == null || invocationContract.getInvokedMode() == ContractMode.IN) {
+    if (invocationContract.getInvokedContract() == null || invocationContract.getInvokedMode() == ContractMode.IN || invocationContract.getInvokedContract().getType() == null) {
       return result;
+    }
+    // Store the current type
+    Type type = invocationContract.getType();
+    if (type == null) {
+      type = invocationContract.getInvokedContract().getType();
     }
     // Target should be an In_Out or an In mode contract
     boolean analyse = false;
@@ -194,8 +214,8 @@ public class InvocationContractHelper {
         continue;
       }
       for (InvocationContract innerInvocationContract : invocation.getInvocationContracts()) {
-        // InvokedContract should be assigned
-        if (innerInvocationContract.getInvokedContract() == null) {
+        // InvokedContract and its according type should be assigned
+        if (innerInvocationContract.getInvokedContract() == null || innerInvocationContract.getInvokedContract().getType() == null) {
           continue;
         }
         // InvocationContract already assigned to an OrchestrationParameter are not assignable
@@ -207,7 +227,15 @@ public class InvocationContractHelper {
           continue;
         }
         // Then we check In_Out or Out mode contract
-        if (innerInvocationContract.getInvokedMode() == ContractMode.IN_OUT || innerInvocationContract.getInvokedMode() == ContractMode.IN) {
+        if (innerInvocationContract.getInvokedMode() != ContractMode.IN_OUT && innerInvocationContract.getInvokedMode() != ContractMode.IN) {
+          continue;
+        }
+        // Finally we check if their respective types are compatible
+        Type innerType = innerInvocationContract.getType();
+        if (innerType == null) {
+          innerType = innerInvocationContract.getInvokedContract().getType();
+        }
+        if (ClassHelper.asSubClass(type.getType(), innerType.getType())) {
           result.add(innerInvocationContract);
         }
       }
