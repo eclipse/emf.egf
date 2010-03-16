@@ -30,7 +30,7 @@ public class CoreUIMessages {
   public static String ExceptionDialog_seeErrorLogMessage;
 
   public static String _UI_FcoreSelection_label;
-  public static String _UI_SelectRegisteredFcoreURI;
+  public static String _UI_SelectRegisteredFcore;
 
   public static String _UI_TypeSelection_label;
   public static String _UI_SelectType;
@@ -62,11 +62,5 @@ public class CoreUIMessages {
 
   public static String _UI_DiagnosisOfNObject_message;
   public static String _UI_DiagnosisOfNObjects_message;
-
-  // Resource Listener
-  public static String ResourceListener_reloadDialog_title;
-  public static String ResourceListener_reloadDialog_message;
-
-  public static String saveContextLabel;
 
 }
