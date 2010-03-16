@@ -68,6 +68,9 @@
       class="org.eclipse.egf.model.editor.contributor.ActivityMenuContributor"
     />
     <contribution
+      class="org.eclipse.egf.model.editor.contributor.ImportActivityMenuContributor"
+    />    
+    <contribution
       class="org.eclipse.egf.model.editor.contributor.URIMenuContributor"
     />    
   </extension>  
