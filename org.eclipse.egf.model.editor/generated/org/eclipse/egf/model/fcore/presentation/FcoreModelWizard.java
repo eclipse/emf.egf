@@ -16,11 +16,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.MissingResourceException;
-import java.util.StringTokenizer;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
@@ -32,7 +29,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
-import org.eclipse.egf.core.helper.ResourceHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.core.ui.wizard.WizardNewFileCreationPage;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
@@ -42,13 +39,13 @@ import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.ftask.FtaskFactory;
 import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.emf.common.CommonPlugin;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
@@ -79,589 +76,546 @@ import org.eclipse.ui.part.ISetSelectionTarget;
  * @generated
  */
 public class FcoreModelWizard extends Wizard implements INewWizard {
-    /**
-     * The supported extensions for created files.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameExtensions").split("\\s*,\\s*"))); //$NON-NLS-1$ //$NON-NLS-2$
+  /**
+   * The supported extensions for created files.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public static final List<String> FILE_EXTENSIONS = Collections.unmodifiableList(Arrays.asList(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameExtensions").split("\\s*,\\s*"))); //$NON-NLS-1$ //$NON-NLS-2$
 
-    /**
-     * A formatted list of supported file extensions, suitable for display.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    public static final String FORMATTED_FILE_EXTENSIONS = EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+  /**
+   * A formatted list of supported file extensions, suitable for display.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public static final String FORMATTED_FILE_EXTENSIONS = EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
-    /**
-     * This caches an instance of the model package.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    protected FcorePackage fcorePackage = FcorePackage.eINSTANCE;
+  /**
+   * This caches an instance of the model package.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected FcorePackage fcorePackage = FcorePackage.eINSTANCE;
 
-    /**
-     * This caches an instance of the model package.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    protected FtaskPackage ftaskPackage = FtaskPackage.eINSTANCE;
+  /**
+   * This caches an instance of the model package.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected FtaskPackage ftaskPackage = FtaskPackage.eINSTANCE;
 
-    /**
-     * This caches an instance of the model factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    protected FcoreFactory fcoreFactory = fcorePackage.getFcoreFactory();
+  /**
+   * This caches an instance of the model factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected FcoreFactory fcoreFactory = fcorePackage.getFcoreFactory();
 
-    /**
-     * This caches an instance of the model factory.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    protected FtaskFactory ftaskFactory = ftaskPackage.getFtaskFactory();
+  /**
+   * This caches an instance of the model factory.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected FtaskFactory ftaskFactory = ftaskPackage.getFtaskFactory();
 
-    /**
-     * This is the file creation page.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    protected FcoreModelWizardNewFileCreationPage newFileCreationPage;
+  /**
+   * This is the file creation page.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected FcoreModelWizardNewFileCreationPage newFileCreationPage;
 
-    /**
-     * This is the initial object creation page.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    protected FcoreModelWizardInitialObjectCreationPage initialObjectCreationPage;
+  /**
+   * This is the initial object creation page.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected FcoreModelWizardInitialObjectCreationPage initialObjectCreationPage;
 
-    /**
-     * Remember the selection during initialization for populating the default
-     * container.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    protected IStructuredSelection selection;
+  /**
+   * Remember the selection during initialization for populating the default
+   * container.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected IStructuredSelection selection;
 
-    /**
-     * Remember the workbench during initialization.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    protected IWorkbench workbench;
+  /**
+   * Remember the workbench during initialization.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected IWorkbench workbench;
 
-    /**
-     * Caches the names of the types that can be created as the root object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    protected List<String> initialObjectNames;
+  /**
+   * Caches the names of the types that can be created as the root object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected List<String> initialObjectNames;
 
-    /**
-     * This just records the information.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    public void init(IWorkbench innerWorkbench, IStructuredSelection innerSelection) {
-        this.workbench = innerWorkbench;
-        this.selection = innerSelection;
-        setWindowTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
-        setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EGFModelEditorPlugin.INSTANCE.getImage("full/wizban/NewFcore"))); //$NON-NLS-1$
-        setNeedsProgressMonitor(true);
+  /**
+   * This just records the information.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public void init(IWorkbench innerWorkbench, IStructuredSelection innerSelection) {
+    this.workbench = innerWorkbench;
+    this.selection = innerSelection;
+    setWindowTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
+    setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EGFModelEditorPlugin.INSTANCE.getImage("full/wizban/NewFcore"))); //$NON-NLS-1$
+    setNeedsProgressMonitor(true);
+  }
+
+  /**
+   * Returns the names of the types that can be created as the root object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected Collection<String> getInitialObjectNames() {
+    if (initialObjectNames == null) {
+      initialObjectNames = new ArrayList<String>();
+      initialObjectNames.add(fcorePackage.getFactoryComponent().getName());
+      initialObjectNames.add(ftaskPackage.getTask().getName());
+      Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
+    }
+    return initialObjectNames;
+  }
+
+  /**
+   * Create a new model.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected EObject createInitialModel() {
+    EClass eClass = (EClass) fcorePackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+    EObject eObject = null;
+    if (eClass == null) {
+      eClass = (EClass) ftaskPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
+      eObject = ftaskFactory.create(eClass);
+    }
+    if (eObject == null) {
+      eObject = fcoreFactory.create(eClass);
+    }
+    eObject.eSet(FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME, getModelFile().getFullPath().removeFileExtension().lastSegment().toString());
+    return eObject;
+  }
+
+  /**
+   * Do the work after everything is specified.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public boolean performFinish() {
+
+    // Variables
+    final IFile modelFile = getModelFile();
+    final Throwable[] throwable = new Throwable[1];
+    final EObject rootObject = createInitialModel();
+
+    // Convert and Process current Project
+    WorkspaceModifyOperation convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false) {
+      @Override
+      public List<String> addDependencies() {
+        List<String> dependencies = new ArrayList<String>(1);
+        dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$              
+        return dependencies;
+      }
+
+      @Override
+      public List<String> addSourceFolders() {
+        List<String> sourceFolders = new ArrayList<String>(1);
+        sourceFolders.add("src"); //$NON-NLS-1$
+        return sourceFolders;
+      }
+    };
+    try {
+      getContainer().run(false, false, convertOperation);
+    } catch (Throwable t) {
+      throwable[0] = t;
     }
 
-    /**
-     * Returns the names of the types that can be created as the root object.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    protected Collection<String> getInitialObjectNames() {
-        if (initialObjectNames == null) {
-            initialObjectNames = new ArrayList<String>();
-            initialObjectNames.add(fcorePackage.getFactoryComponent().getName());
-            initialObjectNames.add(ftaskPackage.getTask().getName());
-            Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
-        }
-        return initialObjectNames;
-    }
-
-    /**
-     * Create a new model.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    protected EObject createInitialModel() {
-        EClass eClass = (EClass) fcorePackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-        EObject eObject = null;
-        if (eClass == null) {
-            eClass = (EClass) ftaskPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-            eObject = ftaskFactory.create(eClass);
-        }
-        if (eObject == null) {
-            eObject = fcoreFactory.create(eClass);
-        }
-        eObject.eSet(FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME, getModelFile().getFullPath().removeFileExtension().lastSegment().toString());
-        return eObject;
-    }
-
-    /**
-     * Do the work after everything is specified.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated NOT
-     */
-    @Override
-    public boolean performFinish() {
-
-        // Variables
-        final IFile modelFile = getModelFile();
-        final Throwable[] throwable = new Throwable[1];
-        final EObject rootObject = createInitialModel();
-
-        // Convert and Process current Project
-        WorkspaceModifyOperation convertOperation = new ConvertProjectOperation(modelFile.getProject(), rootObject instanceof FactoryComponent == false, false) {
-            @Override
-            public List<String> addDependencies() {
-                List<String> dependencies = new ArrayList<String>(1);
-                dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$              
-                return dependencies;
-            }
-
-            @Override
-            public List<String> addSourceFolders() {
-                List<String> sourceFolders = new ArrayList<String>(1);
-                sourceFolders.add("src"); //$NON-NLS-1$
-                return sourceFolders;
-            }
-        };
-        try {
-            getContainer().run(false, false, convertOperation);
-        } catch (Throwable t) {
-            throwable[0] = t;
-        }
-
-        // Save resource
-        if (throwable[0] == null) {
-            WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+    // Save resource
+    if (throwable[0] == null) {
+      WorkspaceModifyOperation operation = new WorkspaceModifyOperation() {
+        @Override
+        protected void execute(IProgressMonitor monitor) {
+          SubMonitor.convert(monitor, EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_createActivity"), 200); //$NON-NLS-1$
+          // Retrieve our editing domain
+          final TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+          try {
+            // Feed our URIConverter
+            URI platformPluginURI = URI.createPlatformPluginURI(modelFile.getFullPath().toString(), false);
+            URI platformResourceURI = URI.createPlatformResourceURI(modelFile.getFullPath().toString(), true);
+            editingDomain.getResourceSet().getURIConverter().getURIMap().put(platformPluginURI, platformResourceURI);
+            // Create a resource for this file.
+            final Resource resource = editingDomain.getResourceSet().createResource(platformPluginURI);
+            // Add the initial model object to the contents.
+            if (rootObject != null) {
+              editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
                 @Override
-                protected void execute(IProgressMonitor monitor) {
-                    SubMonitor.convert(monitor, EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_createActivity"), 200); //$NON-NLS-1$
-                    try {
-                        // Create a resource set
-                        ResourceSet resourceSet = new ResourceSetImpl();
-                        // Create a resource for this file.
-                        Resource resource = ResourceHelper.createResource(resourceSet, modelFile);
-                        // Add the initial model object to the contents.
-                        if (rootObject != null) {
-                            resource.getContents().add(rootObject);
-                        }
-                        // Save the contents of the resource to the file system.
-                        Map<Object, Object> options = new HashMap<Object, Object>();
-                        options.put(XMLResource.OPTION_ENCODING, initialObjectCreationPage.getEncoding());
-                        resource.save(options);
-                    } catch (Throwable t) {
-                        throwable[0] = t;
-                    }
+                protected void doExecute() {
+                  resource.getContents().add(rootObject);
                 }
-            };
-            try {
-                getContainer().run(false, true, operation);
-            } catch (Throwable t) {
-                throwable[0] = t;
+              });
             }
+            editingDomain.runExclusive(new Runnable() {
+              public void run() {
+                try {
+                  resource.save(Collections.EMPTY_MAP);
+                } catch (Throwable t) {
+                  throwable[0] = t;
+                }
+              }
+            });
+          } catch (InterruptedException ie) {
+            throwable[0] = ie;
+          }
         }
-
-        // Select the new file resource in the current view.
-        if (throwable[0] == null) {
-            IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
-            IWorkbenchPage page = workbenchWindow.getActivePage();
-            final IWorkbenchPart activePart = page.getActivePart();
-            if (activePart instanceof ISetSelectionTarget) {
-                final ISelection targetSelection = new StructuredSelection(modelFile);
-                getShell().getDisplay().asyncExec(new Runnable() {
-                    public void run() {
-                        ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
-                    }
-                });
-            }
-            // Open an editor on the new file.
-            try {
-                page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
-            } catch (Throwable t) {
-                throwable[0] = t;
-            }
-        }
-
-        if (throwable[0] != null && throwable[0] instanceof InterruptedException == false) {
-            ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getBundle().getSymbolicName(), throwable[0]);
-            return false;
-        }
-
-        return true;
+      };
+      try {
+        getContainer().run(false, true, operation);
+      } catch (Throwable t) {
+        throwable[0] = t;
+      }
     }
 
+    // Select the new file resource in the current view.
+    if (throwable[0] == null) {
+      IWorkbenchWindow workbenchWindow = workbench.getActiveWorkbenchWindow();
+      IWorkbenchPage page = workbenchWindow.getActivePage();
+      final IWorkbenchPart activePart = page.getActivePart();
+      if (activePart instanceof ISetSelectionTarget) {
+        final ISelection targetSelection = new StructuredSelection(modelFile);
+        getShell().getDisplay().asyncExec(new Runnable() {
+          public void run() {
+            ((ISetSelectionTarget) activePart).selectReveal(targetSelection);
+          }
+        });
+      }
+      // Open an editor on the new file.
+      try {
+        page.openEditor(new FileEditorInput(modelFile), workbench.getEditorRegistry().getDefaultEditor(modelFile.getFullPath().toString()).getId());
+      } catch (Throwable t) {
+        throwable[0] = t;
+      }
+    }
+
+    if (throwable[0] != null && throwable[0] instanceof InterruptedException == false) {
+      ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getBundle().getSymbolicName(), throwable[0]);
+      return false;
+    }
+
+    return true;
+  }
+
+  /**
+   * This is the one page of the wizard.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public class FcoreModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
     /**
-     * This is the one page of the wizard.
+     * Pass in the selection.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
      * @generated
      */
-    public class FcoreModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
-        /**
-         * Pass in the selection.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        public FcoreModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
-            super(pageId, selection);
-        }
-
-        /**
-         * The framework calls this to see if the file is correct.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        @Override
-        protected boolean validatePage() {
-            if (super.validatePage()) {
-                String extension = new Path(getFileName()).getFileExtension();
-                if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
-                    String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension"; //$NON-NLS-1$ //$NON-NLS-2$
-                    setErrorMessage(EGFModelEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
-                    return false;
-                }
-                return true;
-            }
-            return false;
-        }
-
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        public IFile getModelFile() {
-            return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
-        }
+    public FcoreModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
+      super(pageId, selection);
     }
 
     /**
-     * This is the page where the type of object to create is selected.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * 
-     * @generated
-     */
-    public class FcoreModelWizardInitialObjectCreationPage extends WizardPage {
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        protected Combo initialObjectField;
-
-        /**
-         * @generated
-         *            <!-- begin-user-doc -->
-         *            <!-- end-user-doc -->
-         */
-        protected List<String> encodings;
-
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        protected Combo encodingField;
-
-        /**
-         * Pass in the selection.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        public FcoreModelWizardInitialObjectCreationPage(String pageId) {
-            super(pageId);
-        }
-
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        public void createControl(Composite parent) {
-            Composite composite = new Composite(parent, SWT.NONE);
-            {
-                GridLayout layout = new GridLayout();
-                layout.numColumns = 1;
-                layout.verticalSpacing = 12;
-                composite.setLayout(layout);
-
-                GridData data = new GridData();
-                data.verticalAlignment = GridData.FILL;
-                data.grabExcessVerticalSpace = true;
-                data.horizontalAlignment = GridData.FILL;
-                composite.setLayoutData(data);
-            }
-
-            Label containerLabel = new Label(composite, SWT.LEFT);
-            {
-                containerLabel.setText(EGFModelEditorPlugin.INSTANCE.getString("_UI_ModelObject")); //$NON-NLS-1$
-
-                GridData data = new GridData();
-                data.horizontalAlignment = GridData.FILL;
-                containerLabel.setLayoutData(data);
-            }
-
-            initialObjectField = new Combo(composite, SWT.BORDER);
-            {
-                GridData data = new GridData();
-                data.horizontalAlignment = GridData.FILL;
-                data.grabExcessHorizontalSpace = true;
-                initialObjectField.setLayoutData(data);
-            }
-
-            for (String objectName : getInitialObjectNames()) {
-                initialObjectField.add(getLabel(objectName));
-            }
-
-            initialObjectField.select(0);
-            initialObjectField.addModifyListener(validator);
-
-            Label encodingLabel = new Label(composite, SWT.LEFT);
-            {
-                encodingLabel.setText(EGFModelEditorPlugin.INSTANCE.getString("_UI_XMLEncoding")); //$NON-NLS-1$
-                GridData data = new GridData();
-                data.horizontalAlignment = GridData.FILL;
-                encodingLabel.setLayoutData(data);
-            }
-            encodingField = new Combo(composite, SWT.BORDER);
-            {
-                GridData data = new GridData();
-                data.horizontalAlignment = GridData.FILL;
-                data.grabExcessHorizontalSpace = true;
-                encodingField.setLayoutData(data);
-            }
-
-            for (String encoding : getEncodings()) {
-                encodingField.add(encoding);
-            }
-
-            encodingField.select(0);
-            encodingField.addModifyListener(validator);
-
-            setPageComplete(validatePage());
-            setControl(composite);
-        }
-
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        protected ModifyListener validator = new ModifyListener() {
-            public void modifyText(ModifyEvent e) {
-                setPageComplete(validatePage());
-            }
-        };
-
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        protected boolean validatePage() {
-            return getInitialObjectName() != null && getEncodings().contains(encodingField.getText());
-        }
-
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        @Override
-        public void setVisible(boolean visible) {
-            super.setVisible(visible);
-            if (visible) {
-                if (initialObjectField.getItemCount() == 1) {
-                    initialObjectField.clearSelection();
-                    encodingField.setFocus();
-                } else {
-                    encodingField.clearSelection();
-                    initialObjectField.setFocus();
-                }
-            }
-        }
-
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        public String getInitialObjectName() {
-            String label = initialObjectField.getText();
-
-            for (String name : getInitialObjectNames()) {
-                if (getLabel(name).equals(label)) {
-                    return name;
-                }
-            }
-            return null;
-        }
-
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        public String getEncoding() {
-            return encodingField.getText();
-        }
-
-        /**
-         * Returns the label for the specified type name.
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated NOT
-         */
-        protected String getLabel(String typeName) {
-            try {
-                return EGFModelEditorPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
-            } catch (MissingResourceException mre) {
-                EGFModelEditorPlugin.INSTANCE.log(mre);
-            }
-            return typeName;
-        }
-
-        /**
-         * <!-- begin-user-doc -->
-         * <!-- end-user-doc -->
-         * 
-         * @generated
-         */
-        protected Collection<String> getEncodings() {
-            if (encodings == null) {
-                encodings = new ArrayList<String>();
-                for (StringTokenizer stringTokenizer = new StringTokenizer(EGFModelEditorPlugin.INSTANCE.getString("_UI_XMLEncodingChoices")); stringTokenizer.hasMoreTokens();) //$NON-NLS-1$
-                {
-                    encodings.add(stringTokenizer.nextToken());
-                }
-            }
-            return encodings;
-        }
-    }
-
-    /**
-     * The framework calls this to create the contents of the wizard.
+     * The framework calls this to see if the file is correct.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
      * @generated
      */
     @Override
-    public void addPages() {
-        // Create a page, set the title, and the initial model file name.
-        //
-        newFileCreationPage = new FcoreModelWizardNewFileCreationPage("Whatever", selection); //$NON-NLS-1$
-        newFileCreationPage.setTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_label")); //$NON-NLS-1$
-        newFileCreationPage.setDescription(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_description")); //$NON-NLS-1$
-        newFileCreationPage.setFileName(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0)); //$NON-NLS-1$ //$NON-NLS-2$
-        addPage(newFileCreationPage);
-
-        // Try and get the resource selection to determine a current directory
-        // for the file dialog.
-        //
-        if (selection != null && !selection.isEmpty()) {
-            // Get the resource...
-            //
-            Object selectedElement = selection.iterator().next();
-            if (selectedElement instanceof IResource) {
-                // Get the resource parent, if its a file.
-                //
-                IResource selectedResource = (IResource) selectedElement;
-                if (selectedResource.getType() == IResource.FILE) {
-                    selectedResource = selectedResource.getParent();
-                }
-
-                // This gives us a directory...
-                //
-                if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
-                    // Set this for the container.
-                    //
-                    newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
-
-                    // Make up a unique new name here.
-                    //
-                    String defaultModelBaseFilename = EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameDefaultBase"); //$NON-NLS-1$
-                    String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
-                    String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension; //$NON-NLS-1$
-                    for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
-                        modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension; //$NON-NLS-1$
-                    }
-                    newFileCreationPage.setFileName(modelFilename);
-                }
-            }
+    protected boolean validatePage() {
+      if (super.validatePage()) {
+        String extension = new Path(getFileName()).getFileExtension();
+        if (extension == null || !FILE_EXTENSIONS.contains(extension)) {
+          String key = FILE_EXTENSIONS.size() > 1 ? "_WARN_FilenameExtensions" : "_WARN_FilenameExtension"; //$NON-NLS-1$ //$NON-NLS-2$
+          setErrorMessage(EGFModelEditorPlugin.INSTANCE.getString(key, new Object[] { FORMATTED_FILE_EXTENSIONS }));
+          return false;
         }
-        initialObjectCreationPage = new FcoreModelWizardInitialObjectCreationPage("Whatever2"); //$NON-NLS-1$
-        initialObjectCreationPage.setTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_label")); //$NON-NLS-1$
-        initialObjectCreationPage.setDescription(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description")); //$NON-NLS-1$
-        addPage(initialObjectCreationPage);
+        return true;
+      }
+      return false;
     }
 
     /**
-     * Get the file from the page.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * 
      * @generated
      */
     public IFile getModelFile() {
-        return newFileCreationPage.getModelFile();
+      return ResourcesPlugin.getWorkspace().getRoot().getFile(getContainerFullPath().append(getFileName()));
     }
+  }
+
+  /**
+   * This is the page where the type of object to create is selected.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public class FcoreModelWizardInitialObjectCreationPage extends WizardPage {
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected Combo initialObjectField;
+
+    /**
+     * Pass in the selection.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public FcoreModelWizardInitialObjectCreationPage(String pageId) {
+      super(pageId);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public void createControl(Composite parent) {
+      Composite composite = new Composite(parent, SWT.NONE);
+      {
+        GridLayout layout = new GridLayout();
+        layout.numColumns = 1;
+        layout.verticalSpacing = 12;
+        composite.setLayout(layout);
+
+        GridData data = new GridData();
+        data.verticalAlignment = GridData.FILL;
+        data.grabExcessVerticalSpace = true;
+        data.horizontalAlignment = GridData.FILL;
+        composite.setLayoutData(data);
+      }
+
+      Label containerLabel = new Label(composite, SWT.LEFT);
+      {
+        containerLabel.setText(EGFModelEditorPlugin.INSTANCE.getString("_UI_ModelObject")); //$NON-NLS-1$
+
+        GridData data = new GridData();
+        data.horizontalAlignment = GridData.FILL;
+        containerLabel.setLayoutData(data);
+      }
+
+      initialObjectField = new Combo(composite, SWT.BORDER);
+      {
+        GridData data = new GridData();
+        data.horizontalAlignment = GridData.FILL;
+        data.grabExcessHorizontalSpace = true;
+        initialObjectField.setLayoutData(data);
+      }
+
+      for (String objectName : getInitialObjectNames()) {
+        initialObjectField.add(getLabel(objectName));
+      }
+
+      initialObjectField.select(0);
+      initialObjectField.addModifyListener(validator);
+
+      Label encodingLabel = new Label(composite, SWT.LEFT);
+      {
+        encodingLabel.setText(EGFModelEditorPlugin.INSTANCE.getString("_UI_XMLEncoding")); //$NON-NLS-1$
+        GridData data = new GridData();
+        data.horizontalAlignment = GridData.FILL;
+        encodingLabel.setLayoutData(data);
+      }
+
+      setPageComplete(validatePage());
+      setControl(composite);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected ModifyListener validator = new ModifyListener() {
+      public void modifyText(ModifyEvent e) {
+        setPageComplete(validatePage());
+      }
+    };
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    protected boolean validatePage() {
+      return getInitialObjectName() != null;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    @Override
+    public void setVisible(boolean visible) {
+      super.setVisible(visible);
+      if (visible) {
+        if (initialObjectField.getItemCount() == 1) {
+          initialObjectField.clearSelection();
+        } else {
+          initialObjectField.setFocus();
+        }
+      }
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated
+     */
+    public String getInitialObjectName() {
+      String label = initialObjectField.getText();
+
+      for (String name : getInitialObjectNames()) {
+        if (getLabel(name).equals(label)) {
+          return name;
+        }
+      }
+      return null;
+    }
+
+    /**
+     * Returns the label for the specified type name.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    protected String getLabel(String typeName) {
+      try {
+        return EGFModelEditorPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
+      } catch (MissingResourceException mre) {
+        EGFModelEditorPlugin.INSTANCE.log(mre);
+      }
+      return typeName;
+    }
+
+  }
+
+  /**
+   * The framework calls this to create the contents of the wizard.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  @Override
+  public void addPages() {
+    // Create a page, set the title, and the initial model file name.
+    //
+    newFileCreationPage = new FcoreModelWizardNewFileCreationPage("Whatever", selection); //$NON-NLS-1$
+    newFileCreationPage.setTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_label")); //$NON-NLS-1$
+    newFileCreationPage.setDescription(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_description")); //$NON-NLS-1$
+    newFileCreationPage.setFileName(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameDefaultBase") + "." + FILE_EXTENSIONS.get(0)); //$NON-NLS-1$ //$NON-NLS-2$
+    addPage(newFileCreationPage);
+
+    // Try and get the resource selection to determine a current directory
+    // for the file dialog.
+    //
+    if (selection != null && !selection.isEmpty()) {
+      // Get the resource...
+      //
+      Object selectedElement = selection.iterator().next();
+      if (selectedElement instanceof IResource) {
+        // Get the resource parent, if its a file.
+        //
+        IResource selectedResource = (IResource) selectedElement;
+        if (selectedResource.getType() == IResource.FILE) {
+          selectedResource = selectedResource.getParent();
+        }
+
+        // This gives us a directory...
+        //
+        if (selectedResource instanceof IFolder || selectedResource instanceof IProject) {
+          // Set this for the container.
+          //
+          newFileCreationPage.setContainerFullPath(selectedResource.getFullPath());
+
+          // Make up a unique new name here.
+          //
+          String defaultModelBaseFilename = EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameDefaultBase"); //$NON-NLS-1$
+          String defaultModelFilenameExtension = FILE_EXTENSIONS.get(0);
+          String modelFilename = defaultModelBaseFilename + "." + defaultModelFilenameExtension; //$NON-NLS-1$
+          for (int i = 1; ((IContainer) selectedResource).findMember(modelFilename) != null; ++i) {
+            modelFilename = defaultModelBaseFilename + i + "." + defaultModelFilenameExtension; //$NON-NLS-1$
+          }
+          newFileCreationPage.setFileName(modelFilename);
+        }
+      }
+    }
+    initialObjectCreationPage = new FcoreModelWizardInitialObjectCreationPage("Whatever2"); //$NON-NLS-1$
+    initialObjectCreationPage.setTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreModelWizard_label")); //$NON-NLS-1$
+    initialObjectCreationPage.setDescription(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_initial_object_description")); //$NON-NLS-1$
+    addPage(initialObjectCreationPage);
+  }
+
+  /**
+   * Get the file from the page.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  public IFile getModelFile() {
+    return newFileCreationPage.getModelFile();
+  }
 
 }
