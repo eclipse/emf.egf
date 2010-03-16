@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="_NHi_EBugEd-ffO4YhZA0ZQ" name="FC - UC1.2 - FC with contracts">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_C2OuABulEd-iZpx-nITNvw">
+      <invocations xmi:id="_G-IXgBulEd-iZpx-nITNvw" invokedActivity="#_NTILsRuaEd-ffO4YhZA0ZQ">
+        <invocationContractContainer xmi:id="_J7OawBulEd-iZpx-nITNvw">
+          <invocationContracts xmi:id="_KbkHsBulEd-iZpx-nITNvw" invokedContract="#_b0jmEBugEd-ffO4YhZA0ZQ">
+            <type xmi:type="types:TypeString" xmi:id="_L1RFkBulEd-iZpx-nITNvw" value="Romeo and Juliet"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_NTILsRuaEd-ffO4YhZA0ZQ" name="FC - UC1.2 - FC parameterized">
+    <contractContainer xmi:id="_bSIOcBugEd-ffO4YhZA0ZQ">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_b0jmEBugEd-ffO4YhZA0ZQ"
+          name="who" invocationContracts="#_6UjIMBuhEd-ffO4YhZA0ZQ">
+        <type xmi:type="types:TypeString" xmi:id="_8gwroRuiEd-iZpx-nITNvw" value="undefined"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_PjN_ABuaEd-ffO4YhZA0ZQ">
+      <invocations xmi:id="_Uj7DUBubEd-ffO4YhZA0ZQ" name="Hello for Who Parameter"
+          invokedActivity="ftask:TaskJava platform:/plugin/org.eclipse.egf.usecase.fc.uc1/egf/FC_UC1_1_FCAndTask.fcore#_Q5pmcBuaEd-ffO4YhZA0ZQ">
+        <invocationContractContainer xmi:id="_5p7d4BuhEd-ffO4YhZA0ZQ">
+          <invocationContracts xmi:id="_6UjIMBuhEd-ffO4YhZA0ZQ" description="" factoryComponentContract="#_b0jmEBugEd-ffO4YhZA0ZQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.usecase.fc.uc1/egf/FC_UC1_1_FCAndTask.fcore#_KRvo4BubEd-ffO4YhZA0ZQ"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+</xmi:XMI>
