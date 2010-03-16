@@ -24,14 +24,14 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
  */
 public class CallbackContext extends DefaultPatternContext implements InternalPatternContext {
 
-    private final StringBuilder buffer = new StringBuilder(1000);
+    private final StringBuffer buffer = new StringBuffer(2000);
 
     public CallbackContext(InternalPatternContext parent) {
         super((PatternContext) parent);
 
     }
 
-    public StringBuilder getBuffer() {
+    public StringBuffer getBuffer() {
 
         return buffer;
     }

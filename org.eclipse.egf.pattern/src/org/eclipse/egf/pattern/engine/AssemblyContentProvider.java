@@ -29,6 +29,7 @@ import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
+import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 
@@ -41,11 +42,13 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
     protected static final String OK = "ok";
 
     protected final Pattern pattern;
+    protected final JavaMethodGenerationHelper javaMethodHelper;
     protected StringBuilder content;
 
-    public AssemblyContentProvider(Pattern pattern) {
+    public AssemblyContentProvider(Pattern pattern, JavaMethodGenerationHelper helper) {
         super();
         this.pattern = pattern;
+        this.javaMethodHelper = helper;
 
     }
 
@@ -139,6 +142,7 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
 
     public void setContent(StringBuilder content) {
         this.content = content;
+        javaMethodHelper.setContent(content);
     }
 
     static class WrappedException extends RuntimeException {
