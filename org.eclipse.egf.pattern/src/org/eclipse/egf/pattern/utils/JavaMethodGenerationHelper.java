@@ -15,7 +15,6 @@
 
 package org.eclipse.egf.pattern.utils;
 
-import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 
@@ -33,29 +32,19 @@ public class JavaMethodGenerationHelper {
     }
 
     public void addCallStatement(PatternMethod called) {
-        content.append("method_").append(called.getName()).append("(ictx.getBuffer(), ictx");
-        Pattern pattern = called.getPattern();
-        if (!pattern.getAllParameters().isEmpty()) {
-            for (PatternParameter parameter : pattern.getAllParameters()) {
-                content.append(", ").append(parameter.getName());
-            }
-        }
-        content.append(");");
+        content.append("method_").append(called.getName()).append("(ictx.getBuffer(), ictx);");
     }
 
     public void addSignature(PatternMethod called) {
-        content.append("protected void method_").append(called.getName()).append("(final StringBuffer ").append(bufferName).append(", final PatternContext ctx");
-        Pattern pattern = called.getPattern();
-        if (!pattern.getAllParameters().isEmpty()) {
-            for (PatternParameter parameter : pattern.getAllParameters()) {
-                String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
-                content.append(", final ").append(type).append(" ").append(parameter.getName());
-            }
-        }
-        content.append(")throws Exception ");
+        content.append("protected void method_").append(called.getName()).append("(final StringBuffer ").append(bufferName).append(", final PatternContext ctx)throws Exception ");
     }
 
     public void setContent(StringBuilder content) {
         this.content = content;
+    }
+
+    public static String getSetterMethod(PatternParameter param) {
+        String name = param.getName();
+        return "set_" + name;
     }
 }
