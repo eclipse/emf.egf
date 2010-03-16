@@ -1,2 +1,2 @@
-	[Attribute '<%=parameter.getName()%>']
+	[Attribute '<%=parameter.getName()%>']  <% MyHelper.incCounter (ctx); %>
 

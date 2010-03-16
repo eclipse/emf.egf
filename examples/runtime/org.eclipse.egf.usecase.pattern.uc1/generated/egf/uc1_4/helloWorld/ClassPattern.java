@@ -22,6 +22,7 @@ public class ClassPattern
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = " contains:";
   protected final String TEXT_4 = NL;
+  protected final String TEXT_5 = NL;
 
 	public ClassPattern()
 	{
@@ -55,7 +56,9 @@ if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);
 }
+    
     stringBuffer.append(TEXT_4);
+    stringBuffer.append(TEXT_5);
     return stringBuffer.toString();
   }
 public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
@@ -67,13 +70,11 @@ parameterValues.put("parameter", parameterParameter);
 
     
 method_body(ictx.getBuffer(), ictx, parameter);
-
     
 method_setupVariable(ictx.getBuffer(), ictx, parameter);
-
-    ExecutionContext ctx__9IjDcBrpEdBBaGEtjBhQQ = new ExecutionContext(ictx);
-ctx__9IjDcBrpEdBBaGEtjBhQQ.setValue(PatternContext.INJECTED_CONTEXT, variable);
-CallHelper.execute("_RdSMYBViEd-JoY-b5_Vpcw", ctx__9IjDcBrpEdBBaGEtjBhQQ);
+    ExecutionContext ctx__X4zV4BsWEd3TL4i1oA3YQ = new ExecutionContext(ictx);
+ctx__X4zV4BsWEd3TL4i1oA3YQ.setValue(PatternContext.INJECTED_CONTEXT, variable);
+CallHelper.execute("_RdSMYBViEd-JoY-b5_Vpcw", ctx__X4zV4BsWEd3TL4i1oA3YQ);
 
 
     
@@ -86,15 +87,14 @@ return loop;
 
 protected org.eclipse.emf.ecore.EClass variable = null;
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EClass parameter)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass parameter)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
     stringBuffer.append(parameter.getName());
     stringBuffer.append(TEXT_3);
     }
-    
-    protected void method_setupVariable(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EClass parameter)throws Exception {
+    protected void method_setupVariable(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass parameter)throws Exception {
 
     variable = parameter;
     }

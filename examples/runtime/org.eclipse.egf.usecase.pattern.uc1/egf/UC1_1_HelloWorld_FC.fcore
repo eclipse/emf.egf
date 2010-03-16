@@ -15,7 +15,7 @@
       </invocations>
     </orchestration>
   </fcore:FactoryComponent>
-  <ftask:Task xmi:id="_oXyaUOihEd6Bw4tAfOSnJQ" name="HelloWorldTask - UC1.1" kind="java" value="org.eclipse.egf.usecase.pattern.uc1.HelloWorld">
+  <ftask:Task xmi:id="_oXyaUOihEd6Bw4tAfOSnJQ" name="HelloWorldTask - UC1.1" kind="java" implementation="org.eclipse.egf.usecase.pattern.uc1.HelloWorld">
     <contractContainer xmi:id="_0TLOQOihEd6Bw4tAfOSnJQ">
       <contracts xmi:id="_0tP7IOihEd6Bw4tAfOSnJQ" name="value">
         <type xmi:type="types:TypeString" xmi:id="_23-tUOihEd6Bw4tAfOSnJQ" value="World"/>

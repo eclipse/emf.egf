@@ -34,7 +34,7 @@ import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
 
 /**
- * @author thomas guiu
+ * @author Thomas Guiu
  * 
  */
 

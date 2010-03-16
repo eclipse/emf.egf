@@ -19,6 +19,7 @@ public class ClassPattern
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "";
+  protected final String TEXT_2 = NL;
 
 	public ClassPattern()
 	{
@@ -53,7 +54,9 @@ if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);
 }
+    
     stringBuffer.append(TEXT_1);
+    stringBuffer.append(TEXT_2);
     return stringBuffer.toString();
   }
 public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
@@ -65,7 +68,6 @@ parameterValues.put("parameter", parameterParameter);
 
     
 method_body(ictx.getBuffer(), ictx, parameter);
-
     CallHelper.callBack(new CallbackContext(ictx), parameter);
 
     
@@ -77,7 +79,7 @@ return loop;
 } 
 
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EClass parameter)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass parameter)throws Exception {
 
     stringBuffer.append(parameter.getName());
     }

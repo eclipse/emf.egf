@@ -20,6 +20,7 @@ public class HelloFriends
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = ", and all friends of ";
   protected final String TEXT_2 = NL;
+  protected final String TEXT_3 = NL;
 
 	public HelloFriends()
 	{
@@ -53,7 +54,9 @@ if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);
 }
+    
     stringBuffer.append(TEXT_2);
+    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
 public String generate(PatternContext ctx, Object elementParameter) throws Exception  {
@@ -65,7 +68,6 @@ parameterValues.put("element", elementParameter);
 
     
 method_body(ictx.getBuffer(), ictx, element);
-
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -75,7 +77,7 @@ return loop;
 } 
 
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EClass element)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass element)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append( element.getName() );

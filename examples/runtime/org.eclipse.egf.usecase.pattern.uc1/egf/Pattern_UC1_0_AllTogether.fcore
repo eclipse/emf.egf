@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="_BoElQejCEd6kmtdYyydDtQ"
+    name="UseCase - Pattern - UC1 - Hello - All Together">
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_EomXAOjCEd6kmtdYyydDtQ">
+    <invocations xmi:id="_FYuMYOjCEd6kmtdYyydDtQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_1_ClassPattern.fcore#_0BNZAOTGEd6iCM6xyOQ7FA"/>
+    <invocations xmi:id="_Rf4ygOjCEd6kmtdYyydDtQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_2_Inheritance.fcore#_94fB8RVfEd-JoY-b5_Vpcw"/>
+    <invocations xmi:id="_ZIPH8Bb5Ed-yIvdzb4Km2Q" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_3_InheritanceAndCall.fcore#_Onwn4AzqEd-pgpX7a7GeEA"/>
+    <invocations xmi:id="_bTkXEBb5Ed-yIvdzb4Km2Q" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_4_Callback_StrategyBased.fcore#_oWQD0Be1Ed-DaY2uHNBaQg"/>
+    <invocations xmi:id="_RURJYBfKEd-JToveUSgqRw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_5_Callback_WithJavaClass.fcore#_1di_UBe3Ed-DaY2uHNBaQg"/>
+    <invocations xmi:id="_T_eycBfKEd-JToveUSgqRw" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_6_JetPatternCallsJavaPattern.fcore#_a-kDcBfVEd-JToveUSgqRw"/>
+    <invocations xmi:id="_Uo2k4BsSEd-12t5rED-J2A" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_7_Injection.fcore#_zOU6cBVhEd-JoY-b5_Vpcw"/>
+  </orchestration>
+</fcore:FactoryComponent>

@@ -1,1 +1,1 @@
-<%@ jet package="egf.uc1_4.helloWorld" class="ClassPattern" imports="java.util.* org.eclipse.emf.ecore.* org.eclipse.egf.model.pattern.* org.eclipse.egf.pattern.execution.* org.eclipse.egf.pattern.query.*"  %>
+<%@ jet package="egf.uc1_7.pattern" class="ClassPattern" imports="java.util.* org.eclipse.emf.ecore.* org.eclipse.egf.model.pattern.* org.eclipse.egf.pattern.execution.* org.eclipse.egf.pattern.query.*"  %>

@@ -1,14 +1,7 @@
 Bundle-SymbolicName: org.eclipse.egf.usecase.pattern.uc1;singleton:=true
-Export-Package: egf,
- egf.uc1_2.helloWorld,
- egf.uc1_2.helloWorld.friends,
- egf.uc1_2.helloWorld.parent,
- egf.uc1_3.helloWorld,
- egf.uc1_3.helloWorld.parent,
- egf.uc1_4.helloWorld,
- egf.uc1_4.helloWorld.forInjection,
- egf.uc1_5.helloWorld,
- org.eclipse.egf.usecase.pattern.uc1,
+Export-Package: egf.uc1_1.pattern,
+ org.eclipse.egf.usecase.pattern.uc1.callback,
+ org.eclipse.egf.usecase.pattern.uc1.helper,
  org.eclipse.egf.usecase.pattern.uc1.query,
  org.eclipse.egf.usecase.pattern.uc1.reporter
 Require-Bundle: org.eclipse.egf.model.ftask;visibility:=reexport,
@@ -17,5 +10,5 @@ Require-Bundle: org.eclipse.egf.model.ftask;visibility:=reexport,
  org.eclipse.emf.query;bundle-version="1.2.100"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Name: org.eclipse.egf.usecase.pattern.uc1
-Bundle-Version: 0.2.2.qualifier
+Bundle-Version: 0.1.0.qualifier
 Bundle-ManifestVersion: 2
