@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <fcore:FactoryComponent xmi:id="_rPuYIBvjEd-W6L66jY5sHw" name="FC - UC1.3 - FCPricer">
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_uAJRUBvjEd-W6L66jY5sHw">
+      <invocations xmi:id="_uzs1MBvjEd-W6L66jY5sHw" invokedActivity="#_ni7LsBviEd-W6L66jY5sHw"/>
+      <invocations xmi:id="_zIGpoBvjEd-W6L66jY5sHw" invokedActivity="#_P_2ckBvaEd-W6L66jY5sHw"/>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_ni7LsBviEd-W6L66jY5sHw" name="FC - UC1.3 - FCPricer - Version with Task call">
+    <contractContainer xmi:id="_ECwpYBvjEd-W6L66jY5sHw">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ECwpYRvjEd-W6L66jY5sHw"
+          name="quantity" mandatory="true" invocationContracts="#_Rlhq0BvjEd-W6L66jY5sHw #_ZWwygBvjEd-W6L66jY5sHw">
+        <type xmi:type="types:TypeInteger" xmi:id="_ECwpYhvjEd-W6L66jY5sHw" value="2"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ECwpYxvjEd-W6L66jY5sHw"
+          name="price" mandatory="true" invocationContracts="#_UJSBABvjEd-W6L66jY5sHw #_bCfUgBvjEd-W6L66jY5sHw">
+        <type xmi:type="types:TypeFloat" xmi:id="_ECwpZBvjEd-W6L66jY5sHw" value="4.0"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_ECwpZRvjEd-W6L66jY5sHw"
+          name="amount" mode="Out">
+        <type xmi:type="types:TypeFloat" xmi:id="_ECwpZhvjEd-W6L66jY5sHw" value="0.0"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_ECwpZxvjEd-W6L66jY5sHw">
+      <invocations xmi:id="_ECwpaBvjEd-W6L66jY5sHw" invokedActivity="#_Si3L4BvaEd-W6L66jY5sHw">
+        <invocationContractContainer xmi:id="_RRQrABvjEd-W6L66jY5sHw">
+          <invocationContracts xmi:id="_Rlhq0BvjEd-W6L66jY5sHw" factoryComponentContract="#_ECwpYRvjEd-W6L66jY5sHw"
+              invokedContract="#_bvSfMBvaEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_UJSBABvjEd-W6L66jY5sHw" factoryComponentContract="#_ECwpYxvjEd-W6L66jY5sHw"
+              invokedContract="#_hllkMBvaEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_WSX0cBvjEd-W6L66jY5sHw" targetInvocationContract="#_dQfdIBvjEd-W6L66jY5sHw"
+              invokedContract="#_l5PxwBvaEd-W6L66jY5sHw"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_ECwpbRvjEd-W6L66jY5sHw" invokedActivity="#_DZf4sBvdEd-W6L66jY5sHw">
+        <invocationContractContainer xmi:id="_Y_XmMBvjEd-W6L66jY5sHw">
+          <invocationContracts xmi:id="_ZWwygBvjEd-W6L66jY5sHw" factoryComponentContract="#_ECwpYRvjEd-W6L66jY5sHw"
+              invokedContract="#_PEwl8RvdEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_bCfUgBvjEd-W6L66jY5sHw" factoryComponentContract="#_ECwpYxvjEd-W6L66jY5sHw"
+              invokedContract="#_PEwl8xvdEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_dQfdIBvjEd-W6L66jY5sHw" sourceInvocationContract="#_WSX0cBvjEd-W6L66jY5sHw"
+              invokedContract="#_PEwl9RvdEd-W6L66jY5sHw"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_P_2ckBvaEd-W6L66jY5sHw" name="FC - UC1.3 - FCPricer - Version with FC call">
+    <contractContainer xmi:id="_sRw2MBveEd-W6L66jY5sHw">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sRw2MRveEd-W6L66jY5sHw"
+          name="quantity" mandatory="true" invocationContracts="#_IVHosBveEd-W6L66jY5sHw #_VjUvYBveEd-W6L66jY5sHw">
+        <type xmi:type="types:TypeInteger" xmi:id="_sRw2MhveEd-W6L66jY5sHw" value="3"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sRw2MxveEd-W6L66jY5sHw"
+          name="price" mandatory="true" invocationContracts="#_LivbQBveEd-W6L66jY5sHw #_9gjdcBveEd-W6L66jY5sHw">
+        <type xmi:type="types:TypeFloat" xmi:id="_sRw2NBveEd-W6L66jY5sHw" value="5.0"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sRw2NRveEd-W6L66jY5sHw"
+          name="amount" mode="Out">
+        <type xmi:type="types:TypeFloat" xmi:id="_sRw2NhveEd-W6L66jY5sHw" value="0.0"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_4pQz0BvdEd-W6L66jY5sHw">
+      <invocations xmi:id="_EnJiIBveEd-W6L66jY5sHw" invokedActivity="#_5AJKIBvaEd-W6L66jY5sHw">
+        <invocationContractContainer xmi:id="_H77soBveEd-W6L66jY5sHw">
+          <invocationContracts xmi:id="_IVHosBveEd-W6L66jY5sHw" factoryComponentContract="#_sRw2MRveEd-W6L66jY5sHw"
+              invokedContract="#_SiuzkBvbEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_LivbQBveEd-W6L66jY5sHw" factoryComponentContract="#_sRw2MxveEd-W6L66jY5sHw"
+              invokedContract="#_WrOS8BvbEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_OsWQgBveEd-W6L66jY5sHw" targetInvocationContract="#_Dcq2kBvfEd-W6L66jY5sHw"
+              invokedContract="#_evOloBvbEd-W6L66jY5sHw"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_ScjLsBveEd-W6L66jY5sHw" invokedActivity="#_11YzcBvcEd-W6L66jY5sHw">
+        <invocationContractContainer xmi:id="_VELVQBveEd-W6L66jY5sHw">
+          <invocationContracts xmi:id="_VjUvYBveEd-W6L66jY5sHw" factoryComponentContract="#_sRw2MRveEd-W6L66jY5sHw"
+              invokedContract="#_5360wBvcEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_9gjdcBveEd-W6L66jY5sHw" factoryComponentContract="#_sRw2MxveEd-W6L66jY5sHw"
+              invokedContract="#_5360whvcEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_Dcq2kBvfEd-W6L66jY5sHw" sourceInvocationContract="#_OsWQgBveEd-W6L66jY5sHw"
+              invokedContract="#_5360xBvcEd-W6L66jY5sHw"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_5AJKIBvaEd-W6L66jY5sHw" name="FC - UC1.3 - FCPricer - Computation">
+    <contractContainer xmi:id="_9oNhcBvaEd-W6L66jY5sHw">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_SiuzkBvbEd-W6L66jY5sHw"
+          name="quantity" mandatory="true" invocationContracts="#_qqlkYBvbEd-W6L66jY5sHw">
+        <type xmi:type="types:TypeInteger" xmi:id="_WRvb8BvbEd-W6L66jY5sHw" value="0"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_WrOS8BvbEd-W6L66jY5sHw"
+          name="price" mandatory="true" invocationContracts="#_vWFqMBvbEd-W6L66jY5sHw">
+        <type xmi:type="types:TypeFloat" xmi:id="_eJh3kBvbEd-W6L66jY5sHw" value="0.0"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_evOloBvbEd-W6L66jY5sHw"
+          name="amount" mandatory="true" mode="Out" invocationContracts="#_x7x6EBvbEd-W6L66jY5sHw">
+        <type xmi:type="types:TypeFloat" xmi:id="_iNPkoBvbEd-W6L66jY5sHw" value="0.0"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_m86_0BvbEd-W6L66jY5sHw">
+      <invocations xmi:id="_nmMmUBvbEd-W6L66jY5sHw" invokedActivity="#_Si3L4BvaEd-W6L66jY5sHw">
+        <invocationContractContainer xmi:id="_qWBpoBvbEd-W6L66jY5sHw">
+          <invocationContracts xmi:id="_qqlkYBvbEd-W6L66jY5sHw" factoryComponentContract="#_SiuzkBvbEd-W6L66jY5sHw"
+              invokedContract="#_bvSfMBvaEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_vWFqMBvbEd-W6L66jY5sHw" factoryComponentContract="#_WrOS8BvbEd-W6L66jY5sHw"
+              invokedContract="#_hllkMBvaEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_x7x6EBvbEd-W6L66jY5sHw" factoryComponentContract="#_evOloBvbEd-W6L66jY5sHw"
+              invokedContract="#_l5PxwBvaEd-W6L66jY5sHw"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <fcore:FactoryComponent xmi:id="_11YzcBvcEd-W6L66jY5sHw" name="FC - UC1.3 - FCPricer - Display">
+    <contractContainer xmi:id="_46-EUBvcEd-W6L66jY5sHw">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_5360wBvcEd-W6L66jY5sHw"
+          name="quantity" mandatory="true" invocationContracts="#_UKfJoBvdEd-W6L66jY5sHw">
+        <type xmi:type="types:TypeInteger" xmi:id="_5360wRvcEd-W6L66jY5sHw" value="0"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_5360whvcEd-W6L66jY5sHw"
+          name="price" mandatory="true" invocationContracts="#_Wo4esBvdEd-W6L66jY5sHw">
+        <type xmi:type="types:TypeFloat" xmi:id="_5360wxvcEd-W6L66jY5sHw" value="0.0"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_5360xBvcEd-W6L66jY5sHw"
+          name="amount" mandatory="true" invocationContracts="#_YoSKoBvdEd-W6L66jY5sHw">
+        <type xmi:type="types:TypeFloat" xmi:id="_5360xRvcEd-W6L66jY5sHw" value="0.0"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_8qbYoBvcEd-W6L66jY5sHw">
+      <invocations xmi:id="_9XR3kBvcEd-W6L66jY5sHw" invokedActivity="#_DZf4sBvdEd-W6L66jY5sHw">
+        <invocationContractContainer xmi:id="_Ti2h4BvdEd-W6L66jY5sHw">
+          <invocationContracts xmi:id="_UKfJoBvdEd-W6L66jY5sHw" factoryComponentContract="#_5360wBvcEd-W6L66jY5sHw"
+              invokedContract="#_PEwl8RvdEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_Wo4esBvdEd-W6L66jY5sHw" factoryComponentContract="#_5360whvcEd-W6L66jY5sHw"
+              invokedContract="#_PEwl8xvdEd-W6L66jY5sHw"/>
+          <invocationContracts xmi:id="_YoSKoBvdEd-W6L66jY5sHw" factoryComponentContract="#_5360xBvcEd-W6L66jY5sHw"
+              invokedContract="#_PEwl9RvdEd-W6L66jY5sHw"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <ftask:TaskJava xmi:id="_Si3L4BvaEd-W6L66jY5sHw" name="FC - UC1.3 - PricerComputerTask"
+      value="org.eclipse.egf.usecase.fc.uc1.PricerComputation">
+    <contractContainer xmi:id="_bRMN8BvaEd-W6L66jY5sHw">
+      <contracts xmi:id="_bvSfMBvaEd-W6L66jY5sHw" name="quantity" mandatory="true">
+        <type xmi:type="types:TypeInteger" xmi:id="_hGTAIBvaEd-W6L66jY5sHw"/>
+      </contracts>
+      <contracts xmi:id="_hllkMBvaEd-W6L66jY5sHw" name="price" mandatory="true">
+        <type xmi:type="types:TypeFloat" xmi:id="_kZ430BvaEd-W6L66jY5sHw"/>
+      </contracts>
+      <contracts xmi:id="_l5PxwBvaEd-W6L66jY5sHw" name="amount" mandatory="true" mode="Out">
+        <type xmi:type="types:TypeFloat" xmi:id="_rGkyQBvaEd-W6L66jY5sHw"/>
+      </contracts>
+    </contractContainer>
+  </ftask:TaskJava>
+  <ftask:TaskJava xmi:id="_DZf4sBvdEd-W6L66jY5sHw" name="FC - UC1.3 - PricerDisplayTask"
+      value="org.eclipse.egf.usecase.fc.uc1.PricerDisplay">
+    <contractContainer xmi:id="_PEwl8BvdEd-W6L66jY5sHw">
+      <contracts xmi:id="_PEwl8RvdEd-W6L66jY5sHw" name="quantity" mandatory="true">
+        <type xmi:type="types:TypeInteger" xmi:id="_PEwl8hvdEd-W6L66jY5sHw" value="0"/>
+      </contracts>
+      <contracts xmi:id="_PEwl8xvdEd-W6L66jY5sHw" name="price" mandatory="true">
+        <type xmi:type="types:TypeFloat" xmi:id="_PEwl9BvdEd-W6L66jY5sHw" value="0.0"/>
+      </contracts>
+      <contracts xmi:id="_PEwl9RvdEd-W6L66jY5sHw" name="amount" mandatory="true">
+        <type xmi:type="types:TypeFloat" xmi:id="_PEwl9hvdEd-W6L66jY5sHw" value="0.0"/>
+      </contracts>
+    </contractContainer>
+  </ftask:TaskJava>
+</xmi:XMI>
