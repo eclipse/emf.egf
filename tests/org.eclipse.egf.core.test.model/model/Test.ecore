@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="test"
+    nsURI="http://www.eclipse.org/egf/1.0.0/test" nsPrefix="test">
+  <eClassifiers xsi:type="ecore:EClass" name="Test" abstract="true" interface="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TestSuite" eSuperTypes="#//Test">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="tests" upperBound="-1"
+        eType="#//Test" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TestCase" abstract="true" eSuperTypes="#//Test">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="result" eType="#//TestResult"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TestResult" abstract="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ExceptionTestResult" eSuperTypes="#//TestResult">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exceptionClass" lowerBound="1">
+      <eGenericType eClassifier="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaClass">
+        <eTypeArguments/>
+      </eGenericType>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exceptionMessage" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValidationErrorTestResult" eSuperTypes="#//TestResult">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" lowerBound="1"
+        eType="#//ValidationErrorSeverity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="ValidationErrorSeverity">
+    <eLiterals name="INFO" value="1" literal="INFO"/>
+    <eLiterals name="WARNING" value="2" literal="WARNING"/>
+    <eLiterals name="ERROR" value="4"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConsoleOutputTestResult" eSuperTypes="#//TestResult">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EGFTestCase" eSuperTypes="#//TestCase">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
+        eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Activity"/>
+  </eClassifiers>
+</ecore:EPackage>

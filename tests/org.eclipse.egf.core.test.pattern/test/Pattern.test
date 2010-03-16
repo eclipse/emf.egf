@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<test:TestSuite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:test="http://www.eclipse.org/egf/1.0.0/test" name="Pattern Test Suite">
+  <tests xsi:type="test:TestSuite" name="Inheritance">
+    <tests xsi:type="test:EGFTestCase" name="inheritance_1">
+      <result xsi:type="test:ConsoleOutputTestResult" text="childContent"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/inheritance_1.fcore#_XB1QoBshEd-L7sk1dmRWLg"/>
+    </tests>
+  </tests>
+</test:TestSuite>
