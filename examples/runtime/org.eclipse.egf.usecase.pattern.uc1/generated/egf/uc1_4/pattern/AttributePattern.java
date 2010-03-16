@@ -50,8 +50,10 @@ List<Object> parameterList = null;
 
 for (Object parameterParameter : parameterList ) {
 
+this.parameter = (org.eclipse.emf.ecore.EAttribute)parameterParameter;
 
-    generate(ctx, parameterParameter);
+
+    orchestration(ctx);
     
 }
 if (ctx.useReporter()){
@@ -63,25 +65,27 @@ if (ctx.useReporter()){
     stringBuffer.append(TEXT_5);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
+public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
-Map<String, Object> parameterValues = new HashMap<String, Object>();
-org.eclipse.emf.ecore.EAttribute parameter = (org.eclipse.emf.ecore.EAttribute)parameterParameter;
-parameterValues.put("parameter", parameterParameter);
-
     
-method_body(ictx.getBuffer(), ictx, parameter);
+method_body(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+    Map<String, Object> parameterValues = new HashMap<String, Object>();
+    parameterValues.put("parameter", this.parameter);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-ictx.getBuffer().setLength(0);}
+    ictx.getBuffer().setLength(0);}
 return loop;
 } 
 
+protected org.eclipse.emf.ecore.EAttribute parameter = null;
+public void set_parameter(org.eclipse.emf.ecore.EAttribute object) {
+this.parameter = object;
+}
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EAttribute parameter)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());

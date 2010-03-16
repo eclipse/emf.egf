@@ -41,7 +41,7 @@ StringBuffer stringBuffer = new StringBuffer();
 Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
-    generate(ctx);
+    orchestration(ctx);
     if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);}
@@ -50,7 +50,7 @@ IQuery.ParameterDescription paramDesc = null;
     stringBuffer.append(TEXT_5);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx) throws Exception  {
+public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
     

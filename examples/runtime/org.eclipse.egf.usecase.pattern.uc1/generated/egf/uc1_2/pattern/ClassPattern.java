@@ -45,8 +45,10 @@ List<Object> parameterList = null;
 
 for (Object parameterParameter : parameterList ) {
 
+this.parameter = (org.eclipse.emf.ecore.EClass)parameterParameter;
 
-    generate(ctx, parameterParameter);
+
+    orchestration(ctx);
     
 }
 if (ctx.useReporter()){
@@ -58,28 +60,30 @@ if (ctx.useReporter()){
     stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
+public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
-Map<String, Object> parameterValues = new HashMap<String, Object>();
-org.eclipse.emf.ecore.EClass parameter = (org.eclipse.emf.ecore.EClass)parameterParameter;
-parameterValues.put("parameter", parameterParameter);
-
-    ExecutionContext ctx__kGRcQBuuEdRRsuSenxuag = new ExecutionContext(ictx);
-super.generate(ctx__kGRcQBuuEdRRsuSenxuag);
+    ExecutionContext ctx__8fG8gB1oEdwnbXYpQsM5g = new ExecutionContext(ictx);
+super.orchestration(ctx__8fG8gB1oEdwnbXYpQsM5g);
 
     
-method_body(ictx.getBuffer(), ictx, parameter);
+method_body(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+    Map<String, Object> parameterValues = new HashMap<String, Object>();
+    parameterValues.put("parameter", this.parameter);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-ictx.getBuffer().setLength(0);}
+    ictx.getBuffer().setLength(0);}
 return loop;
 } 
 
+protected org.eclipse.emf.ecore.EClass parameter = null;
+public void set_parameter(org.eclipse.emf.ecore.EClass object) {
+this.parameter = object;
+}
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass parameter)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());

@@ -26,29 +26,29 @@ List<Object> aClassList = null;
 
 for (Object aClassParameter : aClassList ) {
 
-generate((PatternContext)argument, aClassParameter);
+this.aClass = (org.eclipse.emf.ecore.EClass)aClassParameter;
+
+orchestration((PatternContext)argument);
 }
 if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
     ctx.getBuffer().setLength(0);}
 }
 
-public String generate(PatternContext ctx, Object aClassParameter) throws Exception {
+public String orchestration(PatternContext ctx) throws Exception {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
-Map<String, Object> parameterValues = new HashMap<String, Object>();
-org.eclipse.emf.ecore.EClass aClass = (org.eclipse.emf.ecore.EClass)aClassParameter;
-parameterValues.put("aClass", aClassParameter);
-
-method_body(ictx.getBuffer(), ictx, aClass);
+method_body(ictx.getBuffer(), ictx);
 
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+Map<String, Object> parameterValues = new HashMap<String, Object>();
+parameterValues.put("aClass", this.aClass);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
 ictx.getBuffer().setLength(0);}
 return loop;
 }
 
-protected void method_body(final StringBuffer out, final PatternContext ctx, final org.eclipse.emf.ecore.EClass aClass)throws Exception 
+protected void method_body(final StringBuffer out, final PatternContext ctx)throws Exception 
 {
 
 	  // Message on the default console
@@ -57,6 +57,12 @@ protected void method_body(final StringBuffer out, final PatternContext ctx, fin
 	  // Message on the EGF console
 	  EGFCorePlugin.getDefault().logInfo("Java: " + aClass.getName());
 
+}
+
+private org.eclipse.emf.ecore.EClass aClass;
+
+public void set_aClass(org.eclipse.emf.ecore.EClass aClass) {
+	this.aClass = aClass;
 }
 
 }

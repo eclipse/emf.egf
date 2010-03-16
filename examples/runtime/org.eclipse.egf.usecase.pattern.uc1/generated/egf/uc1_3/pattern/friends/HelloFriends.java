@@ -46,8 +46,10 @@ List<Object> elementList = null;
 
 for (Object elementParameter : elementList ) {
 
+this.element = (org.eclipse.emf.ecore.EClass)elementParameter;
 
-    generate(ctx, elementParameter);
+
+    orchestration(ctx);
     
 }
 if (ctx.useReporter()){
@@ -59,25 +61,27 @@ if (ctx.useReporter()){
     stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx, Object elementParameter) throws Exception  {
+public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
-Map<String, Object> parameterValues = new HashMap<String, Object>();
-org.eclipse.emf.ecore.EClass element = (org.eclipse.emf.ecore.EClass)elementParameter;
-parameterValues.put("element", elementParameter);
-
     
-method_body(ictx.getBuffer(), ictx, element);
+method_body(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+    Map<String, Object> parameterValues = new HashMap<String, Object>();
+    parameterValues.put("element", this.element);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-ictx.getBuffer().setLength(0);}
+    ictx.getBuffer().setLength(0);}
 return loop;
 } 
 
+protected org.eclipse.emf.ecore.EClass element = null;
+public void set_element(org.eclipse.emf.ecore.EClass object) {
+this.element = object;
+}
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass element)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append( element.getName() );

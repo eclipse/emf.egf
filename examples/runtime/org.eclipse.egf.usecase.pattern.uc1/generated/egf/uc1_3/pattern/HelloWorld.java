@@ -45,8 +45,10 @@ List<Object> aClassList = null;
 
 for (Object aClassParameter : aClassList ) {
 
+this.aClass = (org.eclipse.emf.ecore.EClass)aClassParameter;
 
-    generate(ctx, aClassParameter);
+
+    orchestration(ctx);
     
 }
 if (ctx.useReporter()){
@@ -58,33 +60,38 @@ if (ctx.useReporter()){
     stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx, Object aClassParameter) throws Exception  {
+public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
-
-Map<String, Object> parameterValues = new HashMap<String, Object>();
-org.eclipse.emf.ecore.EClass aClass = (org.eclipse.emf.ecore.EClass)aClassParameter;
-parameterValues.put("aClass", aClassParameter);
 
     
 method_SayHello(ictx.getBuffer(), ictx);
     
-method_body(ictx.getBuffer(), ictx, aClass);
-    org.eclipse.emf.ecore.EClass element__AfpkEAzyEdsdvrVfWaxAw = aClass;
-ExecutionContext ctx__kDIosBuuEdRRsuSenxuag = new ExecutionContext(ictx);
-CallHelper.executeWithInjection("_7-a0kAzxEd-sdvrVfWaxAw", ctx__kDIosBuuEdRRsuSenxuag, element__AfpkEAzyEdsdvrVfWaxAw);
+method_body(ictx.getBuffer(), ictx);
+    {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+parameters.put("element", this.aClass);
+ExecutionContext ctx__9KolwB1oEdwnbXYpQsM5g = new ExecutionContext(ictx);
+CallHelper.executeWithInjection("_7-a0kAzxEd-sdvrVfWaxAw", ctx__9KolwB1oEdwnbXYpQsM5g, parameters);
+}
+
     
 method_finish(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+    Map<String, Object> parameterValues = new HashMap<String, Object>();
+    parameterValues.put("aClass", this.aClass);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-ictx.getBuffer().setLength(0);}
+    ictx.getBuffer().setLength(0);}
 return loop;
 } 
 
-protected org.eclipse.emf.ecore.EClass currentClass = null;
+protected org.eclipse.emf.ecore.EClass aClass = null;
+public void set_aClass(org.eclipse.emf.ecore.EClass object) {
+this.aClass = object;
+}
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass aClass)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append( aClass.getName() );

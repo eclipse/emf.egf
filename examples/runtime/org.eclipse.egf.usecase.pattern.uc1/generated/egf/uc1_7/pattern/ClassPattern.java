@@ -48,8 +48,10 @@ List<Object> parameterList = null;
 
 for (Object parameterParameter : parameterList ) {
 
+this.parameter = (org.eclipse.emf.ecore.EClass)parameterParameter;
 
-    generate(ctx, parameterParameter);
+
+    orchestration(ctx);
     
 }
 if (ctx.useReporter()){
@@ -61,40 +63,42 @@ if (ctx.useReporter()){
     stringBuffer.append(TEXT_5);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
+public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
-Map<String, Object> parameterValues = new HashMap<String, Object>();
-org.eclipse.emf.ecore.EClass parameter = (org.eclipse.emf.ecore.EClass)parameterParameter;
-parameterValues.put("parameter", parameterParameter);
-
     
-method_body(ictx.getBuffer(), ictx, parameter);
+method_body(ictx.getBuffer(), ictx);
     
-method_setupVariable(ictx.getBuffer(), ictx, parameter);
-    ExecutionContext ctx__kGv9YBuuEdRRsuSenxuag = new ExecutionContext(ictx);
-ctx__kGv9YBuuEdRRsuSenxuag.setValue(PatternContext.INJECTED_CONTEXT, variable);
-CallHelper.execute("_RdSMYBViEd-JoY-b5_Vpcw", ctx__kGv9YBuuEdRRsuSenxuag);
+method_setupVariable(ictx.getBuffer(), ictx);
+    ExecutionContext ctx___7b5cB1oEdwnbXYpQsM5g = new ExecutionContext(ictx);
+ctx___7b5cB1oEdwnbXYpQsM5g.setValue(PatternContext.INJECTED_CONTEXT, variable);
+CallHelper.execute("_RdSMYBViEd-JoY-b5_Vpcw", ctx___7b5cB1oEdwnbXYpQsM5g);
 
 
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+    Map<String, Object> parameterValues = new HashMap<String, Object>();
+    parameterValues.put("parameter", this.parameter);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-ictx.getBuffer().setLength(0);}
+    ictx.getBuffer().setLength(0);}
 return loop;
 } 
 
 protected org.eclipse.emf.ecore.EClass variable = null;
+protected org.eclipse.emf.ecore.EClass parameter = null;
+public void set_parameter(org.eclipse.emf.ecore.EClass object) {
+this.parameter = object;
+}
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass parameter)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(TEXT_2);
     stringBuffer.append(parameter.getName());
     stringBuffer.append(TEXT_3);
     }
-    protected void method_setupVariable(final StringBuffer stringBuffer, final PatternContext ctx, final org.eclipse.emf.ecore.EClass parameter)throws Exception {
+    protected void method_setupVariable(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     variable = parameter;
     }
