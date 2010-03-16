@@ -33,130 +33,130 @@ import org.eclipse.osgi.util.NLS;
 
 public class ContextTaskResource extends TestCase {
 
-    public static Test suite() {
-        return new TestSuite(ContextTaskResource.class);
+  public static Test suite() {
+    return new TestSuite(ContextTaskResource.class);
+  }
+
+  public void testInvokeH1() throws Exception {
+
+    ResourceSet resourceSet = new ResourceSetImpl();
+    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore"); //$NON-NLS-1$
+
+    // Load Resource
+    Resource resource = ResourceHelper.loadResource(resourceSet, uri);
+    assertNotNull(NLS.bind("Unable to load Resource ''{0}''", uri.toString()), resource); //$NON-NLS-1$
+
+    // Fetch Activity
+    EObject eObject = resource.getContents().get(0);
+    assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Activity); //$NON-NLS-1$
+
+    // Invoke Activity
+    Activity activity = (Activity) eObject;
+
+    ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity);
+
+    IActivityManager<Activity> manager = producer.createActivityManager(activity);
+
+    try {
+      manager.initializeContext();
+      manager.invoke(new NullProgressMonitor());
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
+      return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
-    public void testInvokeH1() throws Exception {
+  }
 
-        ResourceSet resourceSet = new ResourceSetImpl();
-        URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore"); //$NON-NLS-1$
+  public void testContractH1() throws Exception {
 
-        // Load Resource
-        Resource resource = ResourceHelper.loadResource(resourceSet, uri);
-        assertNotNull(NLS.bind("Unable to load Resource ''{0}''", uri.toString()), resource); //$NON-NLS-1$
+    ResourceSet resourceSet = new ResourceSetImpl();
+    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore"); //$NON-NLS-1$
 
-        // Fetch Activity
-        EObject eObject = resource.getContents().get(0);
-        assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Activity); //$NON-NLS-1$
+    // Load Resource
+    Resource resource = ResourceHelper.loadResource(resourceSet, uri);
+    assertNotNull(NLS.bind("Unable to load Resource ''{0}''", uri.toString()), resource); //$NON-NLS-1$
 
-        // Invoke Activity
-        Activity activity = (Activity) eObject;
+    // Fetch Task Java
+    EObject eObject = resource.getContents().get(0);
+    assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Task); //$NON-NLS-1$
 
-        ActivityManagerProducer<Activity> producer = EGFProducerPlugin.getActivityManagerProducer(activity);
+    // Invoke Task Java
+    Task task = (Task) eObject;
 
-        IActivityManager<Activity> manager = producer.createActivityManager(activity);
+    IActivityManager<Task> manager = TaskManagerFactory.createProductionManager(task);
 
-        try {
-            manager.initializeContext();
-            manager.invoke(new NullProgressMonitor());
-        } catch (Exception e) {
-            EGFCoreTestPlugin.getDefault().logError(e);
-            fail(e.getMessage());
-            return;
-        } finally {
-            try {
-                manager.dispose();
-            } catch (Exception e) {
-                EGFCoreTestPlugin.getDefault().logError(e);
-                fail(e.getMessage());
-                return;
-            }
-        }
-
+    try {
+      manager.initializeContext();
+      manager.invoke(new NullProgressMonitor());
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
+      return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
-    public void testContractH1() throws Exception {
+    Float amount = manager.getProductionContext().getOutputValue("amount", Float.class); //$NON-NLS-1$
 
-        ResourceSet resourceSet = new ResourceSetImpl();
-        URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore"); //$NON-NLS-1$
+    assertEquals(new Float("1050"), amount); //$NON-NLS-1$
 
-        // Load Resource
-        Resource resource = ResourceHelper.loadResource(resourceSet, uri);
-        assertNotNull(NLS.bind("Unable to load Resource ''{0}''", uri.toString()), resource); //$NON-NLS-1$
+  }
 
-        // Fetch Task Java
-        EObject eObject = resource.getContents().get(0);
-        assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Task); //$NON-NLS-1$
+  public void testOutputContractClassNotTheSameH1() throws Exception {
 
-        // Invoke Task Java
-        Task taskJava = (Task) eObject;
+    ResourceSet resourceSet = new ResourceSetImpl();
+    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore"); //$NON-NLS-1$
 
-        IActivityManager<Task> manager = TaskManagerFactory.createProductionManager(taskJava);
+    // Load Resource
+    Resource resource = ResourceHelper.loadResource(resourceSet, uri);
+    assertNotNull(NLS.bind("Unable to load Resource ''{0}''", uri.toString()), resource); //$NON-NLS-1$
 
-        try {
-            manager.initializeContext();
-            manager.invoke(new NullProgressMonitor());
-        } catch (Exception e) {
-            EGFCoreTestPlugin.getDefault().logError(e);
-            fail(e.getMessage());
-            return;
-        } finally {
-            try {
-                manager.dispose();
-            } catch (Exception e) {
-                EGFCoreTestPlugin.getDefault().logError(e);
-                fail(e.getMessage());
-                return;
-            }
-        }
+    // Fetch Task
+    EObject eObject = resource.getContents().get(0);
+    assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Task); //$NON-NLS-1$
 
-        Float amount = manager.getProductionContext().getOutputValue("amount", Float.class); //$NON-NLS-1$
+    // Invoke Task
+    Task task = (Task) eObject;
 
-        assertEquals(new Float("1050"), amount); //$NON-NLS-1$
+    IActivityManager<Task> manager = TaskManagerFactory.createProductionManager(task);
 
+    GeneratorAdapterFactory defaultValue = null;
+
+    try {
+      manager.initializeContext();
+      defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$
+      manager.invoke(new NullProgressMonitor());
+    } catch (Exception e) {
+      EGFCoreTestPlugin.getDefault().logError(e);
+      fail(e.getMessage());
+      return;
+    } finally {
+      try {
+        manager.dispose();
+      } catch (Exception e) {
+        EGFCoreTestPlugin.getDefault().logError(e);
+        fail(e.getMessage());
+        return;
+      }
     }
 
-    public void testOutputContractClassNotTheSameH1() throws Exception {
+    assertNotSame(manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
 
-        ResourceSet resourceSet = new ResourceSetImpl();
-        URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore"); //$NON-NLS-1$
-
-        // Load Resource
-        Resource resource = ResourceHelper.loadResource(resourceSet, uri);
-        assertNotNull(NLS.bind("Unable to load Resource ''{0}''", uri.toString()), resource); //$NON-NLS-1$
-
-        // Fetch Task
-        EObject eObject = resource.getContents().get(0);
-        assertTrue(NLS.bind("We Expected to find an ''Task'' however we found ''{0}''", eObject.eClass().getName()), eObject instanceof Task); //$NON-NLS-1$
-
-        // Invoke Task
-        Task taskJava = (Task) eObject;
-
-        IActivityManager<Task> manager = TaskManagerFactory.createProductionManager(taskJava);
-
-        GeneratorAdapterFactory defaultValue = null;
-
-        try {
-            manager.initializeContext();
-            defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$
-            manager.invoke(new NullProgressMonitor());
-        } catch (Exception e) {
-            EGFCoreTestPlugin.getDefault().logError(e);
-            fail(e.getMessage());
-            return;
-        } finally {
-            try {
-                manager.dispose();
-            } catch (Exception e) {
-                EGFCoreTestPlugin.getDefault().logError(e);
-                fail(e.getMessage());
-                return;
-            }
-        }
-
-        assertNotSame(manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
-
-    }
+  }
 
 }

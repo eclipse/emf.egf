@@ -28,98 +28,101 @@ import org.eclipse.emf.ecore.util.Diagnostician;
 
 public class FprodContractValidation extends TestCase {
 
-    public static Test suite() {
-        return new TestSuite(FprodContractValidation.class);
-    }
+  public static Test suite() {
+    return new TestSuite(FprodContractValidation.class);
+  }
 
-    public void testInContractName() throws Exception {
+  public void testInContractName() throws Exception {
 
-        Task taskJava = FtaskFactory.eINSTANCE.createTask();
+    Task task = FtaskFactory.eINSTANCE.createTask();
+    task.setKind("java"); //$NON-NLS-1$
 
-        ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
-        taskJava.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
+    ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
+    task.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
 
-        Contract name1 = FcoreFactory.eINSTANCE.createContract();
-        name1.setName("name"); //$NON-NLS-1$
-        name1.setMode(ContractMode.IN);
-        contracts.getContracts().add(name1);
+    Contract name1 = FcoreFactory.eINSTANCE.createContract();
+    name1.setName("name"); //$NON-NLS-1$
+    name1.setMode(ContractMode.IN);
+    contracts.getContracts().add(name1);
 
-        TypeString name1Type = TypesFactory.eINSTANCE.createTypeString();
-        name1.eSet(FcorePackage.Literals.CONTRACT__TYPE, name1Type);
+    TypeString name1Type = TypesFactory.eINSTANCE.createTypeString();
+    name1.eSet(FcorePackage.Literals.CONTRACT__TYPE, name1Type);
 
-        Contract name2 = FcoreFactory.eINSTANCE.createContract();
-        name2.setName("name"); //$NON-NLS-1$
-        name2.setMode(ContractMode.IN);
-        contracts.getContracts().add(name2);
+    Contract name2 = FcoreFactory.eINSTANCE.createContract();
+    name2.setName("name"); //$NON-NLS-1$
+    name2.setMode(ContractMode.IN);
+    contracts.getContracts().add(name2);
 
-        TypeString name2Type = TypesFactory.eINSTANCE.createTypeString();
-        name2.eSet(FcorePackage.Literals.CONTRACT__TYPE, name2Type);
+    TypeString name2Type = TypesFactory.eINSTANCE.createTypeString();
+    name2.eSet(FcorePackage.Literals.CONTRACT__TYPE, name2Type);
 
-        Diagnostician diagnostician = new Diagnostician();
-        Diagnostic diagnostic = diagnostician.validate(contracts);
+    Diagnostician diagnostician = new Diagnostician();
+    Diagnostic diagnostic = diagnostician.validate(contracts);
 
-        assertTrue(diagnostic.getSeverity() == Diagnostic.ERROR);
+    assertTrue(diagnostic.getSeverity() == Diagnostic.ERROR);
 
-    }
+  }
 
-    public void testOutContractName() throws Exception {
+  public void testOutContractName() throws Exception {
 
-        Task taskJava = FtaskFactory.eINSTANCE.createTask();
+    Task task = FtaskFactory.eINSTANCE.createTask();
+    task.setKind("java"); //$NON-NLS-1$
 
-        ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
-        taskJava.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
+    ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
+    task.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
 
-        Contract name1 = FcoreFactory.eINSTANCE.createContract();
-        name1.setName("name"); //$NON-NLS-1$
-        name1.setMode(ContractMode.OUT);
-        contracts.getContracts().add(name1);
+    Contract name1 = FcoreFactory.eINSTANCE.createContract();
+    name1.setName("name"); //$NON-NLS-1$
+    name1.setMode(ContractMode.OUT);
+    contracts.getContracts().add(name1);
 
-        TypeString name1Type = TypesFactory.eINSTANCE.createTypeString();
-        name1.eSet(FcorePackage.Literals.CONTRACT__TYPE, name1Type);
+    TypeString name1Type = TypesFactory.eINSTANCE.createTypeString();
+    name1.eSet(FcorePackage.Literals.CONTRACT__TYPE, name1Type);
 
-        Contract name2 = FcoreFactory.eINSTANCE.createContract();
-        name2.setName("name"); //$NON-NLS-1$
-        name2.setMode(ContractMode.OUT);
-        contracts.getContracts().add(name2);
+    Contract name2 = FcoreFactory.eINSTANCE.createContract();
+    name2.setName("name"); //$NON-NLS-1$
+    name2.setMode(ContractMode.OUT);
+    contracts.getContracts().add(name2);
 
-        TypeString name2Type = TypesFactory.eINSTANCE.createTypeString();
-        name2.eSet(FcorePackage.Literals.CONTRACT__TYPE, name2Type);
+    TypeString name2Type = TypesFactory.eINSTANCE.createTypeString();
+    name2.eSet(FcorePackage.Literals.CONTRACT__TYPE, name2Type);
 
-        Diagnostician diagnostician = new Diagnostician();
-        Diagnostic diagnostic = diagnostician.validate(contracts);
+    Diagnostician diagnostician = new Diagnostician();
+    Diagnostic diagnostic = diagnostician.validate(contracts);
 
-        assertTrue(diagnostic.getSeverity() == Diagnostic.ERROR);
+    assertTrue(diagnostic.getSeverity() == Diagnostic.ERROR);
 
-    }
+  }
 
-    public void testContractName() throws Exception {
+  public void testContractName() throws Exception {
 
-        Task taskJava = FtaskFactory.eINSTANCE.createTask();
+    Task task = FtaskFactory.eINSTANCE.createTask();
+    task.setKind("java"); //$NON-NLS-1$)
 
-        ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
-        taskJava.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
+    ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
+    task.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
 
-        Contract name1 = FcoreFactory.eINSTANCE.createContract();
-        name1.setName("name"); //$NON-NLS-1$
-        name1.setMode(ContractMode.IN);
-        contracts.getContracts().add(name1);
+    Contract name1 = FcoreFactory.eINSTANCE.createContract();
+    name1.setName("name"); //$NON-NLS-1$
+    name1.setMode(ContractMode.IN);
+    contracts.getContracts().add(name1);
 
-        TypeString name1Type = TypesFactory.eINSTANCE.createTypeString();
-        name1.eSet(FcorePackage.Literals.CONTRACT__TYPE, name1Type);
+    TypeString name1Type = TypesFactory.eINSTANCE.createTypeString();
+    name1.eSet(FcorePackage.Literals.CONTRACT__TYPE, name1Type);
 
-        Contract name2 = FcoreFactory.eINSTANCE.createContract();
-        name2.setName("name"); //$NON-NLS-1$
-        name2.setMode(ContractMode.OUT);
-        contracts.getContracts().add(name2);
+    Contract name2 = FcoreFactory.eINSTANCE.createContract();
+    name2.setName("name"); //$NON-NLS-1$
+    name2.setMode(ContractMode.OUT);
+    contracts.getContracts().add(name2);
 
-        TypeString name2Type = TypesFactory.eINSTANCE.createTypeString();
-        name2.eSet(FcorePackage.Literals.CONTRACT__TYPE, name2Type);
+    TypeString name2Type = TypesFactory.eINSTANCE.createTypeString();
+    name2.eSet(FcorePackage.Literals.CONTRACT__TYPE, name2Type);
 
-        Diagnostician diagnostician = new Diagnostician();
-        Diagnostic diagnostic = diagnostician.validate(contracts);
+    Diagnostician diagnostician = new Diagnostician();
+    Diagnostic diagnostic = diagnostician.validate(contracts);
 
-        assertTrue(diagnostic.getSeverity() == Diagnostic.OK);
+    assertTrue(diagnostic.getSeverity() == Diagnostic.OK);
 
-    }
+  }
 
 }
