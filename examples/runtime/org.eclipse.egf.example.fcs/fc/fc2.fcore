@@ -5,6 +5,6 @@
     xmi:id="6yt_IWV8Ed6WjOtbZOwqNA" name="FC2">
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="zwp8wKbGEd69ANF1SOWYYg">
     <invocations xmi:type="fprod:ProductionPlanInvocation" xmi:id="28WcsKbGEd69ANF1SOWYYg"
-        invokedActivity="ftask:TaskJava platform:/plugin/org.eclipse.egf.example.task.h2/task_h2.fcore#9hT-gKbGEd69ANF1SOWYYg"/>
+        invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.example.task.h2/task_h2.fcore#9hT-gKbGEd69ANF1SOWYYg"/>
   </orchestration>
 </fcore:FactoryComponent>
