@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.EGFFtaskProducerPlugin;
 import org.eclipse.egf.ftask.producer.internal.context.TaskProductionContext;
@@ -28,6 +29,7 @@ import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
 /**
@@ -36,75 +38,75 @@ import org.osgi.framework.Bundle;
  */
 public class TaskManager extends ActivityManager<Task> {
 
-    public TaskManager(Task Task) throws InvocationException {
-        super(Task);
-    }
+  public TaskManager(Task Task) throws InvocationException {
+    super(Task);
+  }
 
-    public TaskManager(Bundle bundle, Task Task) throws InvocationException {
-        super(bundle, Task);
-    }
+  public TaskManager(Bundle bundle, Task Task) throws InvocationException {
+    super(bundle, Task);
+  }
 
-    public <T extends Invocation> TaskManager(IModelElementManager<T, InvocationContract> parent, Task task) throws InvocationException {
-        super(parent, task);
-    }
+  public <T extends Invocation> TaskManager(IModelElementManager<T, InvocationContract> parent, Task task) throws InvocationException {
+    super(parent, task);
+  }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public TaskProductionContext getInternalProductionContext() throws InvocationException {
-        if (_productionContext == null) {
-            ActivityProductionContextProducer producer = null;
-            try {
-                producer = EGFProducerPlugin.getActivityProductionContextProducer(getElement());
-            } catch (Throwable t) {
-                throw new InvocationException(t);
-            }
-            if (getParent() != null) {
-                _productionContext = producer.createActivityProductionContext(getParent().getProductionContext(), getProjectBundleSession(), getElement());
-            } else {
-                _productionContext = producer.createActivityProductionContext(getProjectBundleSession(), getElement());
-            }
-        }
-        return (TaskProductionContext) _productionContext;
+  @Override
+  @SuppressWarnings("unchecked")
+  public TaskProductionContext getInternalProductionContext() throws InvocationException {
+    if (_productionContext == null) {
+      ActivityProductionContextProducer producer = null;
+      try {
+        producer = EGFProducerPlugin.getActivityProductionContextProducer(getElement());
+      } catch (Throwable t) {
+        throw new InvocationException(t);
+      }
+      if (getParent() != null) {
+        _productionContext = producer.createActivityProductionContext(getParent().getProductionContext(), getProjectBundleSession(), getElement());
+      } else {
+        _productionContext = producer.createActivityProductionContext(getProjectBundleSession(), getElement());
+      }
     }
+    return (TaskProductionContext) _productionContext;
+  }
 
-    @Override
-    public void dispose() throws InvocationException {
-        super.dispose();
-    }
+  @Override
+  public void dispose() throws InvocationException {
+    super.dispose();
+  }
 
-    @Override
-    protected BasicDiagnostic checkInputElement(boolean runtime) throws InvocationException {
-        BasicDiagnostic diagnostic = super.checkInputElement(runtime);
-        // if (getElement().getValue() == null) {
-        //            diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("Task Java Implementation is mandatory for ''{0}''", EMFHelper.getText(getElement())), //$NON-NLS-1$
-        // new Object[] { getElement() }));
-        // }
-        return diagnostic;
+  @Override
+  protected BasicDiagnostic checkInputElement(boolean runtime) throws InvocationException {
+    BasicDiagnostic diagnostic = super.checkInputElement(runtime);
+    if (getElement().getImplementation() == null) {
+      diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR, EGFProducerPlugin.getDefault().getPluginID(), 0, NLS.bind("Task Implementation is mandatory for ''{0}''", EMFHelper.getText(getElement())), //$NON-NLS-1$
+          new Object[] { getElement() }));
     }
+    return diagnostic;
+  }
 
-    public int getSteps() throws InvocationException {
-        // if (getElement().getValue() != null) {
-        // return 1;
-        // }
-        return 0;
+  public int getSteps() throws InvocationException {
+    if (getElement().getImplementation() != null) {
+      return 1;
     }
+    return 0;
+  }
 
-    public List<Activity> getActivities() throws InvocationException {
-        List<Activity> activities = new UniqueEList<Activity>();
-        activities.add(getElement());
-        return activities;
-    }
+  public List<Activity> getActivities() throws InvocationException {
+    List<Activity> activities = new UniqueEList<Activity>();
+    activities.add(getElement());
+    return activities;
+  }
 
-    public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
-        BasicDiagnostic diagnostic = checkInputElement(true);
-        if (diagnostic.getSeverity() != Diagnostic.ERROR) {
-            EGFFtaskProducerPlugin.getTaskProductionInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement()).invoke(monitor);
-            if (monitor.isCanceled()) {
-                throw new OperationCanceledException();
-            }
-            checkOutputElement(diagnostic);
-        }
-        return diagnostic;
+  public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
+    BasicDiagnostic diagnostic = checkInputElement(true);
+    if (diagnostic.getSeverity() != Diagnostic.ERROR) {
+      EGFFtaskProducerPlugin.getTaskProductionInvocationFactory().createInvocation(getBundle(), getInternalProductionContext(), getElement()).invoke(monitor);
+      if (monitor.isCanceled()) {
+        throw new OperationCanceledException();
+      }
+      checkOutputElement(diagnostic);
     }
+    return diagnostic;
+  }
 
 }
