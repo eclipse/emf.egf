@@ -32,7 +32,7 @@
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_DNfhIBe4Ed-DaY2uHNBaQg">
-    <invocations xmi:id="_DrZlIBe4Ed-DaY2uHNBaQg" invokedActivity="ftask:TaskJava platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
+    <invocations xmi:id="_DrZlIBe4Ed-DaY2uHNBaQg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
       <invocationContractContainer xmi:id="_GWMFgBe6Ed-O0P2188kAmA">
         <invocationContracts xmi:id="_G2wb8Be6Ed-O0P2188kAmA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_tsP7UBe5Ed-O0P2188kAmA">
           <type xmi:type="types:TypeString" xmi:id="_JhFUMBe6Ed-O0P2188kAmA" value="__6QOwBe3Ed-DaY2uHNBaQg"/>

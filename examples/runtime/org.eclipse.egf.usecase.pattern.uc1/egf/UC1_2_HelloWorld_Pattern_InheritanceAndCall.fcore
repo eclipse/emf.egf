@@ -66,7 +66,7 @@
     </viewpoints>
   </viewpointContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_PhmkgAzrEd-pgpX7a7GeEA">
-    <invocations xmi:id="_QOdDcAzrEd-pgpX7a7GeEA" invokedActivity="ftask:TaskJava platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+    <invocations xmi:id="_QOdDcAzrEd-pgpX7a7GeEA" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
       <invocationContractContainer xmi:id="_rySNcBSiEd-7l5bHeOignA">
         <invocationContracts xmi:id="_sHvgEBSiEd-7l5bHeOignA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
           <type xmi:type="domain:TypeDomainURI" xmi:id="_vdbCcBSiEd-7l5bHeOignA" domain="#_d6UL8AzqEd-pgpX7a7GeEA"/>
