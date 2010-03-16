@@ -40,6 +40,7 @@ import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.collector.PatternElementCollector;
 import org.eclipse.egf.pattern.collector.PatternLibraryCollector;
+import org.eclipse.egf.pattern.extension.PatternFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -204,6 +205,18 @@ public class PatternHelper {
 
     public static String localizeName(org.eclipse.egf.model.pattern.PatternParameter parameter) {
         return parameter.getName() + "Parameter";
+    }
+
+    public static List<PatternMethod> getUserMethds(Pattern pattern) {
+        ArrayList<PatternMethod> result = new ArrayList<PatternMethod>();
+        for (PatternMethod m : pattern.getMethods()) {
+            String name = m.getName();
+            if (name.equals(PatternFactory.INIT_METHOD_NAME) || name.equals(PatternFactory.HEADER_METHOD_NAME) || name.equals(PatternFactory.FOOTER_METHOD_NAME) || name.equals(PatternFactory.PRECONDITION_METHOD_NAME))
+                continue;
+            result.add(m);
+
+        }
+        return result;
     }
 
     public void clear() {

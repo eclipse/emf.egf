@@ -131,9 +131,6 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         // end of method generate(PatternContext ctx, ...)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
 
-        // add method declarations
-        content.append(((JavaAssemblyContentProvider) contentHelper.getProvider()).getMethodBodies()).append(EGFCommonConstants.LINE_SEPARATOR);
-
         // add field declarations (for variables)
         for (PatternVariable var : pattern.getVariables()) {
             content.append("protected ").append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);

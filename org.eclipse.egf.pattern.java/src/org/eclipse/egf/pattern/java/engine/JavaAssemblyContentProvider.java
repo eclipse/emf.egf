@@ -24,6 +24,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
+import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.engine.AssemblyContentProvider;
@@ -41,8 +42,6 @@ public class JavaAssemblyContentProvider extends AssemblyContentProvider {
 
     private static final JavaMethodGenerationHelper JAVA_METHOD_HELPER = new JavaMethodGenerationHelper("out");
 
-    private final StringBuilder methodBodies = new StringBuilder(1000);
-
     public JavaAssemblyContentProvider(Pattern pattern) {
         super(pattern);
     }
@@ -51,10 +50,6 @@ public class JavaAssemblyContentProvider extends AssemblyContentProvider {
     protected void call(MethodCall object) throws PatternException {
         content.append(JAVA_METHOD_HELPER.getCallStatement(object.getCalled())).append(EGFCommonConstants.LINE_SEPARATOR);
 
-        methodBodies.append(JAVA_METHOD_HELPER.getSignature(object.getCalled())).append(EGFCommonConstants.LINE_SEPARATOR);
-        methodBodies.append("{").append(EGFCommonConstants.LINE_SEPARATOR);
-        methodBodies.append(getMethodContent(object.getCalled())).append(EGFCommonConstants.LINE_SEPARATOR);
-        methodBodies.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
     }
 
     @Override
@@ -116,8 +111,14 @@ public class JavaAssemblyContentProvider extends AssemblyContentProvider {
         content.append("CallHelper.execute(\"").append(pattern.getID()).append("\", ").append(ctxName).append(");").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
     }
 
-    public String getMethodBodies() {
-        return methodBodies.toString();
+    @Override
+    protected void addMethodBodies() throws PatternException {
+        for (PatternMethod method : PatternHelper.getUserMethds(pattern)) {
+            content.append(JAVA_METHOD_HELPER.getSignature(method)).append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("{").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append(getMethodContent(method)).append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
+        }
     }
 
 }

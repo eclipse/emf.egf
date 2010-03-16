@@ -37,28 +37,37 @@ public abstract class AssemblyHelper {
         super();
         this.pattern = pattern;
         this.contentHelper = new AssemblyContentHelper(contentProvider);
+        contentProvider.setContent(content);
     }
 
     public String visit() throws PatternException {
         orchestrationIndex = -1;
-        String read = contentHelper.getMethodContent(pattern.getHeaderMethod());
-        if (read != null)
-            content.append(read).append(EGFCommonConstants.LINE_SEPARATOR);
-
+        addHeader();
         addVariableInitialization();
         beginOrchestration();
         if (orchestrationIndex == -1)
             throw new PatternException(Messages.assembly_error6);
-
         visitOrchestration();
-
         endOrchestration();
+        addMethodBodies();
+        addFooter();
+        return content.toString();
+    }
 
-        read = contentHelper.getMethodContent(pattern.getFooterMethod());
+    protected void addFooter() throws PatternException {
+        String read = contentHelper.getMethodContent(pattern.getFooterMethod());
         if (read != null)
             content.append(read).append(EGFCommonConstants.LINE_SEPARATOR);
+    }
 
-        return content.toString();
+    protected void addHeader() throws PatternException {
+        String read = contentHelper.getMethodContent(pattern.getHeaderMethod());
+        if (read != null)
+            content.append(read).append(EGFCommonConstants.LINE_SEPARATOR);
+    }
+
+    protected void addMethodBodies() throws PatternException {
+        contentHelper.addMethodBodies();
     }
 
     /**
@@ -81,9 +90,7 @@ public abstract class AssemblyHelper {
             return;
 
         for (Call element : orchestration) {
-            String read = contentHelper.getContent(element);
-            if (read != null)
-                content.append(read);
+            contentHelper.addContent(element);
         }
     }
 

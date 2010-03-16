@@ -161,7 +161,6 @@ public class JetEngine extends PatternEngine {
     private String getContent(String content) {
 
         StringBuilder builder = new StringBuilder(content.length() + 500);
-        StringBuilder methodDeclarations = new StringBuilder(1000);
         int startIndex = content.indexOf(JetAssemblyHelper.START_LOOP_MARKER);
         int endIndex = content.indexOf(JetAssemblyHelper.END_LOOP_MARKER);
         int insertionIndex = content.lastIndexOf('}');
@@ -182,7 +181,14 @@ public class JetEngine extends PatternEngine {
         builder.append(");");
 
         // add end of class code
-        builder.append(content.substring(endIndex + JetAssemblyHelper.END_LOOP_MARKER.length(), insertionIndex));
+        int startMethodIndex = content.indexOf(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER, endIndex);
+        int endMethodIndex = content.indexOf(JetAssemblyHelper.END_METHOD_DECLARATION_MARKER, endIndex);
+
+        if (startMethodIndex != -1 && endMethodIndex != -1) {
+            builder.append(content.substring(endIndex + JetAssemblyHelper.END_LOOP_MARKER.length(), startMethodIndex));
+            builder.append(content.substring(endMethodIndex + JetAssemblyHelper.END_METHOD_DECLARATION_MARKER.length(), insertionIndex));
+        } else
+            builder.append(content.substring(endIndex + JetAssemblyHelper.END_LOOP_MARKER.length(), insertionIndex));
 
         // add pattern reporter stuff
         builder.append("public String generate(PatternContext ctx");
@@ -196,18 +202,7 @@ public class JetEngine extends PatternEngine {
         builder.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
 
         // add orchestration statements
-        int lastIndex = startIndex + JetAssemblyHelper.START_LOOP_MARKER.length();
-        // handle methods declarations
-        int startMethodIndex = content.indexOf(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER, lastIndex);
-        int endMethodIndex = content.indexOf(JetAssemblyHelper.END_METHOD_DECLARATION_MARKER, lastIndex);
-        while (startMethodIndex != -1 && endMethodIndex != -1) {
-            builder.append(content.substring(lastIndex, startMethodIndex));
-            methodDeclarations.append(content.substring(startMethodIndex + JetAssemblyHelper.START_METHOD_DECLARATION_MARKER.length(), endMethodIndex));
-            lastIndex = endMethodIndex + JetAssemblyHelper.END_METHOD_DECLARATION_MARKER.length();
-            startMethodIndex = content.indexOf(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER, lastIndex);
-            endMethodIndex = content.indexOf(JetAssemblyHelper.END_METHOD_DECLARATION_MARKER, lastIndex);
-        }
-        builder.append(content.substring(lastIndex, endIndex));
+        builder.append(content.substring(startIndex + JetAssemblyHelper.START_LOOP_MARKER.length(), endIndex));
 
         builder.append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
@@ -244,7 +239,11 @@ public class JetEngine extends PatternEngine {
             builder.append("protected ").append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
         }
 
-        builder.append(methodDeclarations);
+        // handle methods declarations
+        if (startMethodIndex != -1 && endMethodIndex != -1) {
+            builder.append(content.substring(startMethodIndex + JetAssemblyHelper.START_METHOD_DECLARATION_MARKER.length(), endMethodIndex));
+        }
+
         builder.append(content.substring(insertionIndex));
         return builder.toString();
     }

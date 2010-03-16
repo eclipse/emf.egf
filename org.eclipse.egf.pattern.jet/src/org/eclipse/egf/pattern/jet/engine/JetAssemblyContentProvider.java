@@ -24,6 +24,7 @@ import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
+import org.eclipse.egf.model.pattern.PatternMethod;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.engine.AssemblyContentProvider;
@@ -84,7 +85,6 @@ public class JetAssemblyContentProvider extends AssemblyContentProvider {
     @Override
     protected void call(BackCall object) throws PatternException {
         content.append("<%");
-        String ctxName = "ctx_" + PatternHelper.generateID();
         content.append("CallHelper.callBack(new CallbackContext(ictx)");
         EList<PatternParameter> allParameters = pattern.getAllParameters();
         for (org.eclipse.egf.model.pattern.PatternParameter parameter : allParameters) {
@@ -127,11 +127,17 @@ public class JetAssemblyContentProvider extends AssemblyContentProvider {
     @Override
     protected void call(MethodCall object) throws PatternException {
         content.append("<%").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append(JAVA_METHOD_HELPER.getCallStatement(object.getCalled())).append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER).append("%>").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("<%").append(JAVA_METHOD_HELPER.getSignature(object.getCalled())).append("{").append(EGFCommonConstants.LINE_SEPARATOR).append("%>");
-        content.append(getMethodContent(object.getCalled()));
-        content.append("<%}%>").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append(JAVA_METHOD_HELPER.getCallStatement(object.getCalled())).append("%>").append(EGFCommonConstants.LINE_SEPARATOR);
+    }
+
+    @Override
+    protected void addMethodBodies() throws PatternException {
+        content.append("<%").append(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER).append("%>").append(EGFCommonConstants.LINE_SEPARATOR);
+        for (PatternMethod method : PatternHelper.getUserMethds(pattern)) {
+            content.append("<%").append(JAVA_METHOD_HELPER.getSignature(method)).append("{").append(EGFCommonConstants.LINE_SEPARATOR).append("%>");
+            content.append(getMethodContent(method));
+            content.append("<%}%>").append(EGFCommonConstants.LINE_SEPARATOR);
+        }
         content.append("<%").append(JetAssemblyHelper.END_METHOD_DECLARATION_MARKER).append("%>").append(EGFCommonConstants.LINE_SEPARATOR);
     }
 }
