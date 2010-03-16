@@ -27,8 +27,6 @@ import org.eclipse.egf.model.fcore.FactoryComponentContract;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.InvocationContractContainer;
-import org.eclipse.egf.model.fcore.OrchestrationParameter;
-import org.eclipse.egf.model.fcore.OrchestrationParameterContainer;
 import org.eclipse.egf.model.fcore.ViewpointContainer;
 import org.eclipse.egf.model.fprod.FprodFactory;
 import org.eclipse.egf.model.fprod.ProductionPlan;
@@ -36,7 +34,6 @@ import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesFactory;
-import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -49,13 +46,6 @@ public class CreateFcoreUtil {
 
         ResourceSetImpl resourceSet = new ResourceSetImpl();
         Resource fcoreResource = ResourceHelper.createResource(resourceSet, fcoreFile);
-
-        // Compute ecore values
-        Resource genModelResource = resourceSet.getResource(genModelURI, true);
-        GenModel genModel = (GenModel) genModelResource.getContents().get(0);
-        IPath ecoreFullPath = genModelFile.getFullPath().removeLastSegments(1).append(genModel.getForeignModel().get(0));
-        URI ecoreURI = URI.createPlatformResourceURI(ecoreFullPath.toString(), true);
-        String modelPluginID = genModel.getModelPluginID();
 
         // Load target fcores
         URI emfWrapperResourceURI = URI.createPlatformPluginURI("/org.eclipse.egf.emf.wrapper/fcs/EMF_Wrapper.fcore", true); //$NON-NLS-1$
@@ -80,11 +70,6 @@ public class CreateFcoreUtil {
         genModelDomainURI.setUri(genModelURI);
         domainViewpoint.getDomains().add(genModelDomainURI);
 
-        // Create Ecore domain
-        DomainURI ecoreDomainURI = DomainFactory.eINSTANCE.createDomainURI();
-        ecoreDomainURI.setUri(ecoreURI);
-        domainViewpoint.getDomains().add(ecoreDomainURI);
-
         // Create production plan
         ProductionPlan productionPlan = FprodFactory.eINSTANCE.createProductionPlan();
         factoryComponent.setOrchestration(productionPlan);
@@ -93,24 +78,11 @@ public class CreateFcoreUtil {
         boolean splitted = true;
 
         if (splitted) {
-            // Create Orchestration parameter container
-            OrchestrationParameterContainer orchestrationParameterContainer = FcoreFactory.eINSTANCE.createOrchestrationParameterContainer();
-            productionPlan.setOrchestrationParameterContainer(orchestrationParameterContainer);
-
-            // Create Orchestration parameter
-            OrchestrationParameter orchestrationParameter = FcoreFactory.eINSTANCE.createOrchestrationParameter();
-            orchestrationParameterContainer.getOrchestrationParameters().add(orchestrationParameter);
-
-            // Use domain uri
-            TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
-            typeDomainURI.setDomain(genModelDomainURI);
-            orchestrationParameter.setType(typeDomainURI);
-
             // Create Emf Wrapper tasks invocations
-            createTaskInvocation("_E0utcP-KEd6BleG0RKg98A", "_GjcSAP-KEd6BleG0RKg98A", emfWrapperResource, productionPlan, orchestrationParameter); //$NON-NLS-1$ //$NON-NLS-2$
-            createTaskInvocation("_o5wBQADyEd-IF6GN14qe5g", "_x4zwsAEjEd-sEofCqqFtwA", emfWrapperResource, productionPlan, orchestrationParameter); //$NON-NLS-1$ //$NON-NLS-2$
-            createTaskInvocation("_tWWIYADyEd-IF6GN14qe5g", "_xzsdcQDyEd-IF6GN14qe5g", emfWrapperResource, productionPlan, orchestrationParameter); //$NON-NLS-1$ //$NON-NLS-2$
-            createTaskInvocation("_tv0_YADyEd-IF6GN14qe5g", "_x7JJQQDyEd-IF6GN14qe5g", emfWrapperResource, productionPlan, orchestrationParameter); //$NON-NLS-1$ //$NON-NLS-2$
+            createTaskInvocation("_E0utcP-KEd6BleG0RKg98A", "_GjcSAP-KEd6BleG0RKg98A", emfWrapperResource, productionPlan, genModelDomainURI); //$NON-NLS-1$ //$NON-NLS-2$
+            createTaskInvocation("_o5wBQADyEd-IF6GN14qe5g", "_x4zwsAEjEd-sEofCqqFtwA", emfWrapperResource, productionPlan, genModelDomainURI); //$NON-NLS-1$ //$NON-NLS-2$
+            createTaskInvocation("_tWWIYADyEd-IF6GN14qe5g", "_xzsdcQDyEd-IF6GN14qe5g", emfWrapperResource, productionPlan, genModelDomainURI); //$NON-NLS-1$ //$NON-NLS-2$
+            createTaskInvocation("_tv0_YADyEd-IF6GN14qe5g", "_x7JJQQDyEd-IF6GN14qe5g", emfWrapperResource, productionPlan, genModelDomainURI); //$NON-NLS-1$ //$NON-NLS-2$
         } else {
             FactoryComponent targetFactoryComponent = (FactoryComponent) emfWrapperResource.getEObject("_9LH9AAEkEd-sEofCqqFtwA"); //$NON-NLS-1$
             ProductionPlanInvocation productionPlanInvocation = FprodFactory.eINSTANCE.createProductionPlanInvocation();
@@ -128,52 +100,80 @@ public class CreateFcoreUtil {
             TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
             typeDomainURI.setDomain(genModelDomainURI);
             invocationContract.setType(typeDomainURI);
-
         }
 
         // Create emf doc html generation
-        createEmfDocGenHtmlInvocation(emfWrapperResource, emfDocGenHtmlResource, productionPlan, ecoreDomainURI, modelPluginID);
+        createEmfDocGenHtmlInvocation(emfWrapperResource, emfDocGenHtmlResource, productionPlan, genModelDomainURI);
 
         // Save created Fcore
         fcoreResource.getContents().add(factoryComponent);
         fcoreResource.save(Collections.EMPTY_MAP);
     }
 
-    private void createEmfDocGenHtmlInvocation(Resource emfWrapperResource, Resource emfDocGenHtmlResource, ProductionPlan productionPlan, DomainURI ecoreDomainURI, String modelPluginID) {
-        FactoryComponent targetFactoryComponent = (FactoryComponent) emfDocGenHtmlResource.getEObject("_BxjIkAG0Ed-7fNNmMjB2jQ"); //$NON-NLS-1$
-        ProductionPlanInvocation productionPlanInvocation = FprodFactory.eINSTANCE.createProductionPlanInvocation();
-        productionPlan.getInvocations().add(productionPlanInvocation);
-        productionPlanInvocation.setInvokedActivity(targetFactoryComponent);
+    private void createEmfDocGenHtmlInvocation(Resource emfWrapperResource, Resource emfDocGenHtmlResource, ProductionPlan productionPlan, DomainURI genModelDomainURI) {
+        //Task EmfDocProductionContextFromGenModel
+        Task task = (Task) emfDocGenHtmlResource.getEObject("_yw92cBurEd-jaIqWGhF8eQ"); //$NON-NLS-1$
+        ProductionPlanInvocation taskProductionPlanInvocation = FprodFactory.eINSTANCE.createProductionPlanInvocation();
+        productionPlan.getInvocations().add(taskProductionPlanInvocation);
+        taskProductionPlanInvocation.setInvokedActivity(task);
+        
+        InvocationContractContainer taskInvocationContractContainer = FcoreFactory.eINSTANCE.createInvocationContractContainer();
+        taskProductionPlanInvocation.setInvocationContractContainer(taskInvocationContractContainer);
+        
+        Contract taskContract1 = (Contract) emfDocGenHtmlResource.getEObject("_A4ZrMBusEd-jaIqWGhF8eQ"); //$NON-NLS-1$
+        InvocationContract taskInvocationContract1 = FcoreFactory.eINSTANCE.createInvocationContract();
+        taskInvocationContractContainer.getInvocationContracts().add(taskInvocationContract1);
+        taskInvocationContract1.setInvokedContract(taskContract1);
+        TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
+        typeDomainURI.setDomain(genModelDomainURI);
+        taskInvocationContract1.setType(typeDomainURI);
+        
+        Contract taskContract2 = (Contract) emfDocGenHtmlResource.getEObject("_Do1LcBusEd-jaIqWGhF8eQ"); //$NON-NLS-1$
+        InvocationContract taskInvocationContract2 = FcoreFactory.eINSTANCE.createInvocationContract();
+        taskInvocationContractContainer.getInvocationContracts().add(taskInvocationContract2);
+        taskInvocationContract2.setInvokedContract(taskContract2);
+
+        Contract taskContract3 = (Contract) emfDocGenHtmlResource.getEObject("_EAYIwBusEd-jaIqWGhF8eQ"); //$NON-NLS-1$
+        InvocationContract taskInvocationContract3 = FcoreFactory.eINSTANCE.createInvocationContract();
+        taskInvocationContractContainer.getInvocationContracts().add(taskInvocationContract3);
+        taskInvocationContract3.setInvokedContract(taskContract3);
+        
+        //FC EmfDocGenHtml
+        FactoryComponent fc = (FactoryComponent) emfDocGenHtmlResource.getEObject("_BxjIkAG0Ed-7fNNmMjB2jQ"); //$NON-NLS-1$
+        ProductionPlanInvocation fcProductionPlanInvocation = FprodFactory.eINSTANCE.createProductionPlanInvocation();
+        productionPlan.getInvocations().add(fcProductionPlanInvocation);
+        fcProductionPlanInvocation.setInvokedActivity(fc);
 
         InvocationContractContainer invocationContractContainer = FcoreFactory.eINSTANCE.createInvocationContractContainer();
-        productionPlanInvocation.setInvocationContractContainer(invocationContractContainer);
+        fcProductionPlanInvocation.setInvocationContractContainer(invocationContractContainer);
 
-        FactoryComponentContract targetFactoryComponentContract1 = (FactoryComponentContract) emfDocGenHtmlResource.getEObject("_Yp4VcAprEd-7fqY_JLtg2w"); //$NON-NLS-1$
-        InvocationContract invocationContract1 = FcoreFactory.eINSTANCE.createInvocationContract();
-        invocationContractContainer.getInvocationContracts().add(invocationContract1);
-        invocationContract1.setInvokedContract(targetFactoryComponentContract1);
-        TypeDomainURI type1 = DomainFactory.eINSTANCE.createTypeDomainURI();
-        type1.setDomain(ecoreDomainURI);
-        invocationContract1.setType(type1);
+        FactoryComponentContract fcContract1 = (FactoryComponentContract) emfDocGenHtmlResource.getEObject("_Yp4VcAprEd-7fqY_JLtg2w"); //$NON-NLS-1$
+        InvocationContract fcInvocationContract1 = FcoreFactory.eINSTANCE.createInvocationContract();
+        invocationContractContainer.getInvocationContracts().add(fcInvocationContract1);
+        fcInvocationContract1.setInvokedContract(fcContract1);
 
-        FactoryComponentContract targetFactoryComponentContract2 = (FactoryComponentContract) emfDocGenHtmlResource.getEObject("_7NKWkApbEd-pyqf4uNW3tw"); //$NON-NLS-1$
-        InvocationContract invocationContract2 = FcoreFactory.eINSTANCE.createInvocationContract();
-        invocationContractContainer.getInvocationContracts().add(invocationContract2);
-        invocationContract2.setInvokedContract(targetFactoryComponentContract2);
-        TypeString type2 = TypesFactory.eINSTANCE.createTypeString();
-        type2.setValue(modelPluginID + ".doc"); //$NON-NLS-1$
-        invocationContract2.setType(type2);
+        FactoryComponentContract fcContract2 = (FactoryComponentContract) emfDocGenHtmlResource.getEObject("_7NKWkApbEd-pyqf4uNW3tw"); //$NON-NLS-1$
+        InvocationContract fcInvocationContract2 = FcoreFactory.eINSTANCE.createInvocationContract();
+        invocationContractContainer.getInvocationContracts().add(fcInvocationContract2);
+        fcInvocationContract2.setInvokedContract(fcContract2);
 
-        FactoryComponentContract targetFactoryComponentContract3 = (FactoryComponentContract) emfDocGenHtmlResource.getEObject("_AvXa4ApcEd-pyqf4uNW3tw"); //$NON-NLS-1$
-        InvocationContract invocationContract3 = FcoreFactory.eINSTANCE.createInvocationContract();
-        invocationContractContainer.getInvocationContracts().add(invocationContract3);
-        invocationContract3.setInvokedContract(targetFactoryComponentContract3);
-        TypeString type3 = TypesFactory.eINSTANCE.createTypeString();
-        type3.setValue("html"); //$NON-NLS-1$
-        invocationContract3.setType(type3);
+        FactoryComponentContract fcContract3 = (FactoryComponentContract) emfDocGenHtmlResource.getEObject("_AvXa4ApcEd-pyqf4uNW3tw"); //$NON-NLS-1$
+        InvocationContract fcInvocationContract3 = FcoreFactory.eINSTANCE.createInvocationContract();
+        invocationContractContainer.getInvocationContracts().add(fcInvocationContract3);
+        fcInvocationContract3.setInvokedContract(fcContract3);
+        TypeString typeString = TypesFactory.eINSTANCE.createTypeString();
+        typeString.setValue("html"); //$NON-NLS-1$
+        fcInvocationContract3.setType(typeString);
+
+        //Assign target and source
+        taskInvocationContract2.setTargetInvocationContract(fcInvocationContract1);
+        taskInvocationContract3.setTargetInvocationContract(fcInvocationContract2);
+        fcInvocationContract1.setSourceInvocationContract(taskInvocationContract2);
+        fcInvocationContract2.setSourceInvocationContract(taskInvocationContract3);
+
     }
 
-    private void createTaskInvocation(String targetTaskId, String targetTaskContract, Resource targetActivityResource, ProductionPlan productionPlan, OrchestrationParameter orchestrationParameter) {
+    private void createTaskInvocation(String targetTaskId, String targetTaskContract, Resource targetActivityResource, ProductionPlan productionPlan, DomainURI genModelDomainURI) {
         Task modelTask = (Task) targetActivityResource.getEObject(targetTaskId);
         ProductionPlanInvocation productionPlanInvocation = FprodFactory.eINSTANCE.createProductionPlanInvocation();
         productionPlan.getInvocations().add(productionPlanInvocation);
@@ -186,6 +186,9 @@ public class CreateFcoreUtil {
         InvocationContract invocationContract = FcoreFactory.eINSTANCE.createInvocationContract();
         invocationContractContainer.getInvocationContracts().add(invocationContract);
         invocationContract.setInvokedContract(targetContract);
-        invocationContract.setOrchestrationParameter(orchestrationParameter);
+
+        TypeDomainURI typeDomainURI = DomainFactory.eINSTANCE.createTypeDomainURI();
+        typeDomainURI.setDomain(genModelDomainURI);
+        invocationContract.setType(typeDomainURI);
     }
 }
