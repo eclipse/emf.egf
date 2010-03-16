@@ -39,102 +39,102 @@ import org.eclipse.swt.widgets.Control;
  */
 public class FcorePropertyDescriptor extends PropertyDescriptor {
 
-    public FcorePropertyDescriptor(Object object, IItemPropertyDescriptor itemPropertyDescriptor) {
-        super(object, itemPropertyDescriptor);
+  public FcorePropertyDescriptor(Object object, IItemPropertyDescriptor itemPropertyDescriptor) {
+    super(object, itemPropertyDescriptor);
+  }
+
+  /**
+   * This returns the cell editor that will be used to edit the value of this
+   * property.
+   * This default implementation determines the type of cell editor from the
+   * nature of the
+   * structural feature.
+   */
+  @Override
+  public CellEditor createPropertyEditor(final Composite composite) {
+
+    if (itemPropertyDescriptor.canSetProperty(object) == false) {
+      return null;
     }
 
-    /**
-     * This returns the cell editor that will be used to edit the value of this
-     * property.
-     * This default implementation determines the type of cell editor from the
-     * nature of the
-     * structural feature.
-     */
-    @Override
-    public CellEditor createPropertyEditor(final Composite composite) {
+    CellEditor result = null;
 
-        if (itemPropertyDescriptor.canSetProperty(object) == false) {
-            return null;
+    Object feature = itemPropertyDescriptor.getFeature(object);
+
+    if ((object instanceof TypeAbstractClass && feature.equals(TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE)) || (object instanceof Task && feature.equals(FtaskPackage.Literals.TASK__IMPLEMENTATION))) {
+
+      // Data Holder
+      final Class<?>[] clazzes = new Class<?>[1];
+      final String[] values = new String[1];
+
+      // Switch
+      if (object instanceof TypeAbstractClass) {
+        TypeAbstractClass typeAbstractClass = (TypeAbstractClass) object;
+        // Type should be defined
+        if (typeAbstractClass.getType() == null) {
+          return null;
         }
+        clazzes[0] = typeAbstractClass.getType();
+        values[0] = typeAbstractClass.getValue();
+      } else if (object instanceof Task) {
+        Task task = (Task) object;
+        clazzes[0] = ITaskProduction.class;
+        values[0] = task.getImplementation();
+      } else {
+        return null;
+      }
 
-        CellEditor result = null;
+      // IProject should exist
+      final IProject[] projects = new IProject[1];
+      projects[0] = ResourcesPlugin.getWorkspace().getRoot().getProject(((EObject) object).eResource().getURI().segment(1));
+      if (projects[0] == null) {
+        return null;
+      }
 
-        Object feature = itemPropertyDescriptor.getFeature(object);
-
-        if ((object instanceof TypeAbstractClass && feature.equals(TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE)) || (object instanceof Task && feature.equals(FtaskPackage.Literals.TASK__IMPLEMENTATION))) {
-
-            // Data Holder
-            final Class<?>[] clazzes = new Class<?>[1];
-            final String[] values = new String[1];
-
-            // Switch
-            if (object instanceof TypeAbstractClass) {
-                TypeAbstractClass typeAbstractClass = (TypeAbstractClass) object;
-                // Type should be defined
-                if (typeAbstractClass.getType() == null) {
-                    return null;
-                }
-                clazzes[0] = typeAbstractClass.getType();
-                values[0] = typeAbstractClass.getValue();
-            } else if (object instanceof Task) {
-                Task task = (Task) object;
-                clazzes[0] = ITaskProduction.class;
-                values[0] = task.getImplementation();
-            } else {
-                return null;
-            }
-
-            // IProject should exist
-            final IProject[] projects = new IProject[1];
-            projects[0] = ResourcesPlugin.getWorkspace().getRoot().getProject(((EObject) object).eResource().getURI().segment(1));
-            if (projects[0] == null) {
-                return null;
-            }
-
-            final ILabelProvider editLabelProvider = getEditLabelProvider();
-            result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
-                @Override
-                protected Object openDialogBox(Control cellEditorWindow) {
-                    TypeSelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), projects[0], clazzes[0], values[0], null, false);
-                    dialog.open();
-                    Object[] innerResult = dialog.getResult();
-                    if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
-                        return ((IType) innerResult[0]).getFullyQualifiedName();
-                    }
-                    return values[0];
-                }
-            };
-
-            return result;
-
-        } else if (object instanceof Invocation && feature.equals(FcorePackage.Literals.INVOCATION__INVOKED_ACTIVITY)) {
-
-            // Data Holder
-            final Invocation[] invocations = new Invocation[] { (Invocation) object };
-
-            final ILabelProvider editLabelProvider = getEditLabelProvider();
-            result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
-                @Override
-                protected Object openDialogBox(Control cellEditorWindow) {
-                    ActivitySelectionDialog dialog = new ActivitySelectionDialog(EGFModelEditorPlugin.getActiveWorkbenchShell(), invocations[0].eResource(), invocations[0].getInvokedActivity(), false);
-                    dialog.open();
-                    Object[] innerResult = dialog.getResult();
-                    if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof Activity) {
-                        // Force a load resource on the current ResourceSet
-                        Activity activity = (Activity) innerResult[0];
-                        invocations[0].eResource().getResourceSet().getResource(activity.eResource().getURI(), true);
-                        // Return selected value
-                        return innerResult[0];
-                    }
-                    return invocations[0].getInvokedActivity();
-                }
-            };
-
-            return result;
-
+      final ILabelProvider editLabelProvider = getEditLabelProvider();
+      result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
+        @Override
+        protected Object openDialogBox(Control cellEditorWindow) {
+          TypeSelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), projects[0], clazzes[0], values[0], null, false);
+          dialog.open();
+          Object[] innerResult = dialog.getResult();
+          if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
+            return ((IType) innerResult[0]).getFullyQualifiedName();
+          }
+          return values[0];
         }
+      };
 
-        return super.createPropertyEditor(composite);
+      return result;
+
+    } else if (object instanceof Invocation && feature.equals(FcorePackage.Literals.INVOCATION__INVOKED_ACTIVITY)) {
+
+      // Data Holder
+      final Invocation[] invocations = new Invocation[] { (Invocation) object };
+
+      final ILabelProvider editLabelProvider = getEditLabelProvider();
+      result = new ExtendedDialogCellEditor(composite, editLabelProvider) {
+        @Override
+        protected Object openDialogBox(Control cellEditorWindow) {
+          ActivitySelectionDialog dialog = new ActivitySelectionDialog(EGFModelEditorPlugin.getActiveWorkbenchShell(), invocations[0].eResource(), invocations[0].getInvokedActivity(), false);
+          dialog.open();
+          Object[] innerResult = dialog.getResult();
+          if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof Activity) {
+            // Force a load resource on the current ResourceSet
+            Activity activity = (Activity) innerResult[0];
+            invocations[0].eResource().getResourceSet().getResource(activity.eResource().getURI(), true);
+            // Return selected value
+            return innerResult[0];
+          }
+          return invocations[0].getInvokedActivity();
+        }
+      };
+
+      return result;
 
     }
+
+    return super.createPropertyEditor(composite);
+
+  }
 }
