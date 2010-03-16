@@ -67,4 +67,6 @@ public class EGFCoreMessages {
 
   public static String _UI_CreateModelError_message;
 
+  public static String saveContextLabel;
+
 }
