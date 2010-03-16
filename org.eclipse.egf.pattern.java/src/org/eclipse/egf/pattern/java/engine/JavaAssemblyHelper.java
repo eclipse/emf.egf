@@ -203,8 +203,6 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         // end of method generate(PatternContext ctx, ...)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
 
-        localContent.append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
-
         // create a loop per parameter
         for (PatternParameter parameter : pattern.getAllParameters()) {
             String local = PatternHelper.localizeName(parameter);

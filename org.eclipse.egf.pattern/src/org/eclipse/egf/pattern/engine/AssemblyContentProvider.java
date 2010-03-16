@@ -38,8 +38,10 @@ import org.eclipse.emf.ecore.EObject;
  */
 public abstract class AssemblyContentProvider extends PatternSwitch<String> {
 
+    protected static final String OK = "ok";
+
     protected final Pattern pattern;
-    protected final StringBuilder content = new StringBuilder(1000);
+    protected StringBuilder content;
 
     public AssemblyContentProvider(Pattern pattern) {
         super();
@@ -54,6 +56,8 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
     protected abstract void call(BackCall object) throws PatternException;
 
     protected abstract void call(SuperCall object) throws PatternException;
+
+    protected abstract void addMethodBodies() throws PatternException;
 
     /**
      * This method handles pattern calls.<br>
@@ -70,7 +74,7 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
             // called = pattern.getMethod(called.getName());
             // return getMethodContent(called);
             call(object);
-            return content.toString();
+            return OK;
         } catch (PatternException e) {
             throw new WrappedException(e);
         }
@@ -83,7 +87,7 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
         } catch (PatternException e) {
             throw new WrappedException(e);
         }
-        return content.toString();
+        return OK;
     }
 
     @Override
@@ -93,7 +97,7 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
         } catch (PatternException e) {
             throw new WrappedException(e);
         }
-        return content.toString();
+        return OK;
     }
 
     @Override
@@ -103,7 +107,7 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
         } catch (PatternException e) {
             throw new WrappedException(e);
         }
-        return content.toString();
+        return OK;
     }
 
     @Override
@@ -113,20 +117,13 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
         } catch (PatternException e) {
             throw new WrappedException(e);
         }
-        return content.toString();
+        return OK;
     }
 
     @Override
     public String defaultCase(EObject object) {
 
         throw new IllegalStateException(Messages.bind(Messages.assembly_error1, object.eClass().getName()));
-    }
-
-    @Override
-    public String doSwitch(EObject theEObject) {
-        // wipe the existing content
-        content.setLength(0);
-        return super.doSwitch(theEObject);
     }
 
     protected String getMethodContent(PatternMethod object) throws PatternException {
@@ -138,6 +135,10 @@ public abstract class AssemblyContentProvider extends PatternSwitch<String> {
         } catch (IOException e) {
             throw new PatternException(e);
         }
+    }
+
+    public void setContent(StringBuilder content) {
+        this.content = content;
     }
 
     static class WrappedException extends RuntimeException {

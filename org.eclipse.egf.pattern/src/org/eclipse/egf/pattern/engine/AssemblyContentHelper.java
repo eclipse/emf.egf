@@ -31,15 +31,16 @@ public class AssemblyContentHelper {
         this.provider = provider;
     }
 
-    public String getContent(Call call) throws PatternException {
+    public void addContent(Call call) throws PatternException {
         try {
-            return provider.doSwitch(call);
+            provider.doSwitch(call);
         } catch (AssemblyContentProvider.WrappedException e) {
             Throwable cause = e.getCause();
             if (cause instanceof PatternException)
                 throw (PatternException) cause;
             throw new PatternException(cause);
         }
+
     }
 
     public String getMethodContent(PatternMethod object) throws PatternException {
@@ -48,6 +49,10 @@ public class AssemblyContentHelper {
 
     public AssemblyContentProvider getProvider() {
         return provider;
+    }
+
+    public void addMethodBodies() throws PatternException {
+        provider.addMethodBodies();
     }
 
 }
