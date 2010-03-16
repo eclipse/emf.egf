@@ -35,6 +35,10 @@ public class InvocationContractHelper {
 
   public static Collection<Contract> getAvailableFactoryComponentContract(InvocationContract invocationContract) {
     Collection<Contract> result = new UniqueEList<Contract>();
+    // add a null element for null selection
+    if (result.contains(null) == false) {
+      result.add(null);
+    }
     // Nothing to retrieve
     if (invocationContract.getFactoryComponent() == null || invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
       return result;
@@ -58,20 +62,17 @@ public class InvocationContractHelper {
     if ((invocationContract.getOrchestrationParameter() != null || invocationContract.getSourceInvocationContract() != null) && invocationContract.getInvokedMode() == ContractMode.IN_OUT) {
       for (Iterator<Contract> it = result.iterator(); it.hasNext();) {
         Contract contract = it.next();
-        if (contract.getMode() != ContractMode.OUT) {
+        if (contract != null && contract.getMode() != ContractMode.OUT) {
           it.remove();
         }
       }
-    }
-    // add a null element for null selection
-    if (result.contains(null) == false) {
-      result.add(null);
     }
     return result;
   }
 
   public static Collection<OrchestrationParameter> getAvailableOrchestrationParameter(InvocationContract invocationContract) {
     Collection<OrchestrationParameter> result = new UniqueEList<OrchestrationParameter>();
+    // add a null element for null selection
     if (result.contains(null) == false) {
       result.add(null);
     }
@@ -99,6 +100,10 @@ public class InvocationContractHelper {
 
   public static Collection<Contract> getAvailableInvokedContract(InvocationContract invocationContract) {
     Collection<Contract> result = new UniqueEList<Contract>();
+    // add a null element for null selection
+    if (result.contains(null) == false) {
+      result.add(null);
+    }
     // Nothing to retrieve
     if (invocationContract.getInvocation() == null || invocationContract.getInvocation().getInvokedActivity() == null) {
       return result;
@@ -129,15 +134,15 @@ public class InvocationContractHelper {
         }
       }
     }
-    // add a null element for null selection
-    if (result.contains(null) == false) {
-      result.add(null);
-    }
     return result;
   }
 
   public static Collection<InvocationContract> getAvailableSourceInvocationContract(InvocationContract invocationContract) {
     Collection<InvocationContract> result = new UniqueEList<InvocationContract>();
+    // add a null element for null selection
+    if (result.contains(null) == false) {
+      result.add(null);
+    }
     // Nothing to retrieve
     if (invocationContract.getInvocation() == null || invocationContract.getFactoryComponent() == null || invocationContract.getFactoryComponent().getOrchestration() == null) {
       return result;
@@ -188,10 +193,6 @@ public class InvocationContractHelper {
           result.add(innerInvocationContract);
         }
       }
-    }
-    // add a null element for null selection
-    if (result.contains(null) == false) {
-      result.add(null);
     }
     return result;
   }
