@@ -487,7 +487,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
               getSite().getShell().getDisplay().asyncExec(new Runnable() {
                 public void run() {
                   for (EObject eObject : owners) {
-                    if (selectionViewer.isBusy() == false) {
+                    if (selectionViewer.getControl().isDisposed() == false && selectionViewer.isBusy() == false) {
                       selectionViewer.refresh(eObject, true);
                     }
                   }
@@ -755,6 +755,12 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           showTabs();
         } catch (PartInitException exception) {
           EGFModelEditorPlugin.INSTANCE.log(exception);
+        }
+      }
+      for (URI uri : resourceToDiagnosticMap.keySet()) {
+        Diagnostic childDiagnostic = resourceToDiagnosticMap.get(uri);
+        if (childDiagnostic.getSeverity() != Diagnostic.OK) {
+          diagnostic.add(childDiagnostic);
         }
       }
       if (markerHelper.hasMarkers(getResource())) {
