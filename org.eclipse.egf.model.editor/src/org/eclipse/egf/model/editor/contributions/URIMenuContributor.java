@@ -16,60 +16,30 @@
 package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
-import org.eclipse.egf.common.ui.helper.EditorHelper;
-import org.eclipse.egf.core.ui.contributor.MenuContributor;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.TypeDomainURI;
-import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
-import org.eclipse.jface.action.Action;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PartInitException;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class URIMenuContributor extends MenuContributor {
+public class URIMenuContributor extends EObjectMenuContributor {
 
-  public static final String EDIT_ACTION_ID = "edit-fcore"; //$NON-NLS-1$  
+  public static final String OPEN_URI_ACTION_ID = "open-uri"; //$NON-NLS-1$  
 
-  private final EditURIAction _editAction = new EditURIAction();
-
-  @Override
-  public void menuAboutToShow(IMenuManager menuManager) {
-    IStructuredSelection selection2 = (IStructuredSelection) selection;
-    if (selection2.size() == 1) {
-      if (selection2.getFirstElement() instanceof DomainURI || selection2.getFirstElement() instanceof TypeDomainURI) {
-        _editAction.setEnabled(_editAction.isEnabled());
-        menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _editAction);
-      }
-    }
-  }
-
-  private class EditURIAction extends Action {
-
-    public EditURIAction() {
-      super(ModelEditorMessages.URIMenuContributor_openAction_label);
-      setId(EDIT_ACTION_ID);
-    }
-
+  private final OpenAction _openAction = new OpenAction(ModelEditorMessages.URIMenuContributor_openAction_label, OPEN_URI_ACTION_ID) {
     @Override
     public boolean isEnabled() {
-      URI uri = getURI();
-      if (uri == null) {
-        return false;
-      }
       return true;
     }
 
-    protected URI getURI() {
+    @Override
+    protected EObject getEObject() {
       if (selection == null) {
         return null;
       }
@@ -77,49 +47,37 @@ public class URIMenuContributor extends MenuContributor {
       if (sselection.size() != 1) {
         return null;
       }
-      // Try to locate a URI
-      URI uri = null;
-      Resource resource = null;
       Object object = sselection.getFirstElement();
       if (object instanceof DomainURI) {
-        DomainURI domainURI = (DomainURI) object;
-        uri = domainURI.getUri();
-        resource = domainURI.eResource();
+        return (DomainURI) object;
       } else if (object instanceof TypeDomainURI) {
-        TypeDomainURI typeDomainURI = (TypeDomainURI) object;
-        uri = typeDomainURI.getValue();
-        resource = typeDomainURI.eResource();
+        return (TypeDomainURI) object;
       }
-      // Try to use a URIConverter to normalize such URI
-      // if we have a platform:/plugin/ we need a platform:/resource/ if any
-      // to have a chance to use a FileEditorInput rather than a URIEditorInput
-      if (uri != null && resource != null && resource.getResourceSet() != null) {
-        URIConverter converter = resource.getResourceSet().getURIConverter();
-        if (converter != null) {
-          uri = converter.normalize(uri);
-        }
-      }
-      return uri;
+      return null;
     }
 
     @Override
-    public void run() {
-      try {
-        URI uri = getURI();
-        if (uri == null) {
-          return;
-        }
-        IEditorPart part = EditorHelper.openEditor(uri);
-        if (part != null) {
-          if (part instanceof IEditingDomainProvider) {
-            EditorHelper.setSelectionToViewer(part, uri);
-          }
-        }
-      } catch (PartInitException pie) {
-        EGFModelEditorPlugin.getPlugin().logError(pie);
+    protected URI getURI(EObject eObject) {
+      if (eObject instanceof DomainURI) {
+        DomainURI domainURI = (DomainURI) eObject;
+        return domainURI.getUri();
+      } else if (eObject instanceof TypeDomainURI) {
+        TypeDomainURI typeDomainURI = (TypeDomainURI) eObject;
+        return typeDomainURI.getValue();
+      }
+      return null;
+    }
+  };
+
+  @Override
+  public void menuAboutToShow(IMenuManager menuManager) {
+    IStructuredSelection selection2 = (IStructuredSelection) selection;
+    if (selection2.size() == 1) {
+      if (selection2.getFirstElement() instanceof DomainURI || selection2.getFirstElement() instanceof TypeDomainURI) {
+        _openAction.setEnabled(_openAction.isEnabled());
+        menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _openAction);
       }
     }
-
   }
 
 }

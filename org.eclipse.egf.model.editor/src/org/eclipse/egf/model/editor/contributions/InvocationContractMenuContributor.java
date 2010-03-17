@@ -17,7 +17,7 @@ package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
-import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -26,11 +26,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  * @author Xavier Maysonnave
  * 
  */
-public class ActivityMenuContributor extends EObjectMenuContributor {
+public class InvocationContractMenuContributor extends EObjectMenuContributor {
 
-  public static final String OPEN_ACTIVITY_ACTION_ID = "open-activity"; //$NON-NLS-1$  
+  public static final String OPEN_INVOCATION_CONTRACT_ACTION_ID = "open-invocation-contract"; //$NON-NLS-1$  
 
-  private final OpenAction _openAction = new OpenAction(ModelEditorMessages.ActivityMenuContributor_openAction_label, OPEN_ACTIVITY_ACTION_ID) {
+  private final OpenAction _openAction = new OpenAction(ModelEditorMessages.ContractMenuContributor_openAction_label, OPEN_INVOCATION_CONTRACT_ACTION_ID) {
     @Override
     protected EObject getEObject() {
       if (selection == null) {
@@ -41,9 +41,9 @@ public class ActivityMenuContributor extends EObjectMenuContributor {
         return null;
       }
       Object object = sselection.getFirstElement();
-      if (object instanceof Invocation) {
-        Invocation invocation = (Invocation) object;
-        return invocation.getInvokedActivity();
+      if (object instanceof InvocationContract) {
+        InvocationContract invocationContract = (InvocationContract) object;
+        return invocationContract.getInvokedContract();
       }
       return null;
     }
@@ -53,7 +53,7 @@ public class ActivityMenuContributor extends EObjectMenuContributor {
   public void menuAboutToShow(IMenuManager menuManager) {
     IStructuredSelection selection2 = (IStructuredSelection) selection;
     if (selection2.size() == 1) {
-      if (selection2.getFirstElement() instanceof Invocation) {
+      if (selection2.getFirstElement() instanceof InvocationContract) {
         _openAction.setEnabled(_openAction.isEnabled());
         menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _openAction);
       }

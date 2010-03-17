@@ -33,6 +33,8 @@ public class ModelEditorMessages {
   public static String ActivityMenuContributor_openAction_label;
   public static String ActivityMenuContributor_invokeAction_label;
 
+  public static String ContractMenuContributor_openAction_label;
+
   public static String URIMenuContributor_openAction_label;
 
   public static String InvokeActivityWizard_Activity_title;
