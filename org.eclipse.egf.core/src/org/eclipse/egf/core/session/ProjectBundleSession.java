@@ -121,6 +121,7 @@ public class ProjectBundleSession {
     if (bundle.getState() == Bundle.INSTALLED || bundle.getState() == Bundle.RESOLVED) {
       try {
         bundle.uninstall();
+        refreshPackages(null);
       } catch (Throwable t) {
         throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_UninstallationFailure, bundle.getSymbolicName()), t));
       }
