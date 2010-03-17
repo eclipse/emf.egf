@@ -44,7 +44,7 @@ public class BasicQueryDelegate implements IQuery {
         if (!(loadClass instanceof EClass))
             throw new IllegalStateException(Messages.query_error1);
 
-        Collection<EObject> domain = (Collection<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS);
+        Collection<EObject> domain = getDomain(context);
         if (domain == null)
             throw new IllegalStateException(Messages.query_error8);
 
@@ -55,10 +55,15 @@ public class BasicQueryDelegate implements IQuery {
         return query.getOrderedObjects();
     }
 
-    private static class MAINTAIN_ORDER_SELECT extends SELECT {
-        
+    @SuppressWarnings("unchecked")
+    protected Collection<EObject> getDomain(PatternContext context) {
+        return (Collection<EObject>) context.getValue(PatternContext.DOMAIN_OBJECTS);
+    }
+
+    protected static class MAINTAIN_ORDER_SELECT extends SELECT {
+
         private List<Object> result = new ArrayList<Object>();
-        
+
         public MAINTAIN_ORDER_SELECT(FROM from, WHERE where) {
             super(from, where);
         }
