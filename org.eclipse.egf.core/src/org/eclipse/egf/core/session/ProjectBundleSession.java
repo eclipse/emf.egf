@@ -353,6 +353,8 @@ public final class ProjectBundleSession {
    * @noreference This method is not intended to be referenced by clients.
    */
   public void dispose() throws CoreException {
+    // Reinstall bundle collector
+    final List<Bundle> bundles = new UniqueEList<Bundle>(_uninstalled.size());
     // Uninstall workspace bundle
     if (_projectBundles.isEmpty() == false) {
       for (Bundle bundle : _projectBundles.values()) {
@@ -361,26 +363,9 @@ public final class ProjectBundleSession {
           EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
         }
       }
-      Job processSavedState = new Job("") { //$NON-NLS-1$ // System Job
-        @Override
-        protected IStatus run(IProgressMonitor monitor) {
-          try {
-            // Refresh
-            refreshPackages(_projectBundles.values().toArray(new Bundle[_projectBundles.values().size()]));
-            _projectBundles.clear();
-          } catch (CoreException e) {
-            return e.getStatus();
-          }
-          return Status.OK_STATUS;
-        }
-      };
-      processSavedState.setSystem(true);
-      processSavedState.setPriority(Job.SHORT);
-      processSavedState.schedule(REFRESH_DELAY);
     }
     // Install target bundles
     if (_uninstalled.isEmpty() == false) {
-      final List<Bundle> bundles = new UniqueEList<Bundle>(_uninstalled.size());
       for (String location : _uninstalled) {
         Bundle bundle = installBundle(location);
         bundles.add(bundle);
@@ -388,22 +373,32 @@ public final class ProjectBundleSession {
           EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
         }
       }
-      Job processSavedState = new Job("") { //$NON-NLS-1$ // System Job
+    }
+    // Refresh Packages
+    if (_projectBundles.isEmpty() == false || bundles.isEmpty() == false) {
+      Job refreshPackages = new Job("") { //$NON-NLS-1$ // System Job
         @Override
         protected IStatus run(IProgressMonitor monitor) {
           try {
-            // Refresh
-            refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
-            bundles.clear();
+            // Refresh uninstalled bundles
+            if (_projectBundles.isEmpty() == false) {
+              refreshPackages(_projectBundles.values().toArray(new Bundle[_projectBundles.values().size()]));
+            }
+            // Refresh installed bundles
+            if (bundles.isEmpty() == false) {
+              refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
+            }
+            // Clean
+            _projectBundles.clear();
           } catch (CoreException e) {
             return e.getStatus();
           }
           return Status.OK_STATUS;
         }
       };
-      processSavedState.setSystem(true);
-      processSavedState.setPriority(Job.SHORT);
-      processSavedState.schedule(REFRESH_DELAY);
+      refreshPackages.setSystem(true);
+      refreshPackages.setPriority(Job.SHORT);
+      refreshPackages.schedule(REFRESH_DELAY);
     }
     // Final
     _uninstalled.clear();
