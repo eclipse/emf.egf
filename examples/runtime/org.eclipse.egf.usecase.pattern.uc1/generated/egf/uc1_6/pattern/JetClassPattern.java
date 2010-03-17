@@ -53,8 +53,8 @@ this.aClass = (org.eclipse.emf.ecore.EClass)aClassParameter;
     
 }
 if (ctx.useReporter()){
-    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
-    ctx.getBuffer().setLength(0);
+    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+    ctx.clearLoopBuffers();
 }
     
     stringBuffer.append(TEXT_2);
@@ -63,6 +63,7 @@ if (ctx.useReporter()){
   }
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
+int index = 0;
 
     
     
@@ -70,17 +71,18 @@ method_body(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("aClass", this.aClass);
-ExecutionContext ctx__qeLiwCH_Edkh7gRzU7DOQ = new ExecutionContext(ictx);
-CallHelper.executeWithInjection("_iXOsIBrgEd-cXtp4jDfJVg", ctx__qeLiwCH_Edkh7gRzU7DOQ, parameters);
+ExecutionContext ctx__iCvDYCUTEdQdzPvNxSFg = new ExecutionContext(ictx);
+CallHelper.executeWithInjection("_iXOsIBrgEd-cXtp4jDfJVg", ctx__iCvDYCUTEdQdzPvNxSFg, parameters);
 }
 
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));
     Map<String, Object> parameterValues = new HashMap<String, Object>();
     parameterValues.put("aClass", this.aClass);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-    ictx.getBuffer().setLength(0);}
+    ictx.clearLoopBuffers();}
 return loop;
 } 
 

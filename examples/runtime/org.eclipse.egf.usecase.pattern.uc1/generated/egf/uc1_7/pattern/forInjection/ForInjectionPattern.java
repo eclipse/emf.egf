@@ -43,7 +43,7 @@ IQuery.ParameterDescription paramDesc = null;
     
 paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//ENamedElement");
 queryCtx = new HashMap<String, String>();
-List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.usecase.pattern.uc1.query1").execute(paramDesc, queryCtx, ctx);
+List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
 
 for (Object parameterParameter : parameterList ) {
@@ -55,8 +55,8 @@ this.parameter = (org.eclipse.emf.ecore.ENamedElement)parameterParameter;
     
 }
 if (ctx.useReporter()){
-    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
-    ctx.getBuffer().setLength(0);
+    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+    ctx.clearLoopBuffers();
 }
     
     stringBuffer.append(TEXT_3);
@@ -65,16 +65,18 @@ if (ctx.useReporter()){
   }
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
+int index = 0;
 
     
 method_body(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));
     Map<String, Object> parameterValues = new HashMap<String, Object>();
     parameterValues.put("parameter", this.parameter);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-    ictx.getBuffer().setLength(0);}
+    ictx.clearLoopBuffers();}
 return loop;
 } 
 
