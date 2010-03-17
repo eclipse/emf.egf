@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_KylW0SLHEd-n0OdkUfG5hQ"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_KylW0SLHEd-n0OdkUfG5hQ"
     name="callback_1">
   <viewpointContainer xmi:id="_gY70MCLHEd-n0OdkUfG5hQ">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_gsIdACLHEd-n0OdkUfG5hQ">
@@ -69,8 +69,9 @@
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_orF3oCLHEd-n0OdkUfG5hQ">
     <invocations xmi:id="_piQJICLHEd-n0OdkUfG5hQ" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
       <invocationContractContainer xmi:id="_rCoWwCLHEd-n0OdkUfG5hQ">
-        <invocationContracts xmi:id="_IHBdkCLJEd-n0OdkUfG5hQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_-GBrkP6eEd64XYPo3s6saPg">
-          <type xmi:type="types:TypeString" xmi:id="_PNbfkCLJEd-n0OdkUfG5hQ" value="_hVbRoCLHEd-n0OdkUfG5hQ"/>
+        <invocationContracts xmi:id="_IHBdkCLJEd-n0OdkUfG5hQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_Ni2y8CUgEd-pNvuiR8OoHQ"
+              elements="#_hVbRoCLHEd-n0OdkUfG5hQ"/>
         </invocationContracts>
         <invocationContracts xmi:id="_Qh0foCLJEd-n0OdkUfG5hQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
           <type xmi:type="domain:TypeDomainURI" xmi:id="_R4Yp8CLJEd-n0OdkUfG5hQ" domain="#_mX2psCLHEd-n0OdkUfG5hQ"/>

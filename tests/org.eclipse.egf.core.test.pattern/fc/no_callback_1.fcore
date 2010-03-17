@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_gUlg4CLhEd-F8rS2HRRtPA"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_gUlg4CLhEd-F8rS2HRRtPA"
     name="no_callback_1">
   <viewpointContainer xmi:id="_hBsegCLhEd-F8rS2HRRtPA">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_hhKBsCLhEd-F8rS2HRRtPA">
@@ -63,8 +63,9 @@
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_ZNRqgCLiEd-F8rS2HRRtPA"
               value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter"/>
         </invocationContracts>
-        <invocationContracts xmi:id="_axnyICLiEd-F8rS2HRRtPA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_-GBrkP6eEd64XYPo3s6saPg">
-          <type xmi:type="types:TypeString" xmi:id="_clHJACLiEd-F8rS2HRRtPA" value="_kq4LsCLhEd-F8rS2HRRtPA"/>
+        <invocationContracts xmi:id="_axnyICLiEd-F8rS2HRRtPA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_VCUOICUgEd-pNvuiR8OoHQ"
+              elements="#_kq4LsCLhEd-F8rS2HRRtPA"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>

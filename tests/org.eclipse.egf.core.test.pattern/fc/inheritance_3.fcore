@@ -3,7 +3,7 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_mQLQQCIKEd-l6L0LIketyw"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_mQLQQCIKEd-l6L0LIketyw"
     description=" " name="inheritance_3">
   <viewpointContainer xmi:id="_nF5-YCIKEd-l6L0LIketyw">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_nd4ZgCIKEd-l6L0LIketyw">
@@ -65,11 +65,12 @@
     <invocations xmi:id="_pQXDwCIKEd-l6L0LIketyw" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_XVvo0Be4Ed-DaY2uHNBaQg">
       <invocationContractContainer xmi:id="_WjRG8CIUEd-XdOucj2euiQ">
         <invocationContracts xmi:id="_W00xACIUEd-XdOucj2euiQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_tsP7UBe5Ed-O0P2188kAmA">
-          <type xmi:type="types:TypeString" xmi:id="_eJkxACIUEd-XdOucj2euiQ" value="_-HLLgCITEd-XdOucj2euiQ"/>
+          <type xmi:type="pattern:TypePatternList" xmi:id="_pYAKUCUfEd-pNvuiR8OoHQ"
+              elements="#_-HLLgCITEd-XdOucj2euiQ"/>
         </invocationContracts>
         <invocationContracts xmi:id="_cp9GcCIWEd-XdOucj2euiQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_eOjswCIWEd-XdOucj2euiQ"
-              value="inheritance_3_4.MyReporter"/>
+              value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter"/>
         </invocationContracts>
         <invocationContracts xmi:id="_hOQioCIXEd-XdOucj2euiQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_4ngvABe5Ed-O0P2188kAmA">
           <type xmi:type="domain:TypeDomainURI" xmi:id="_ij4RwCIXEd-XdOucj2euiQ" domain="#_oniSwCIWEd-XdOucj2euiQ"/>

@@ -52,6 +52,10 @@
           <type xmi:type="pattern:TypePatternList" xmi:id="_EdPDkCHxEd-V4KH4GeEy-w"
               elements="#_ZLg58BshEd-L7sk1dmRWLg"/>
         </invocationContracts>
+        <invocationContracts xmi:id="_vnBb4CUgEd-pNvuiR8OoHQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Default_pattern_strategy_task.fcore#_L6JSwAHAEd-4fJMEpleCjxw">
+          <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_wyfwgCUgEd-pNvuiR8OoHQ"
+              value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter"/>
+        </invocationContracts>
       </invocationContractContainer>
     </invocations>
   </orchestration>
