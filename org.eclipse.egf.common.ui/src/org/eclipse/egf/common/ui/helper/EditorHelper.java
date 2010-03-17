@@ -157,6 +157,13 @@ public class EditorHelper {
     return page.openEditor(input, computeEditorId(uri.trimFragment().lastSegment()));
   }
 
+  public static boolean isAlreadyOpenedEditor(URI uri) {
+    if (uri == null) {
+      return false;
+    }
+    return restoreAlreadyOpenedEditor(null, uri) != null ? true : false;
+  }
+
   private static IEditorPart restoreAlreadyOpenedEditor(IEditorInput input, URI uri) {
     if (uri == null) {
       return null;
