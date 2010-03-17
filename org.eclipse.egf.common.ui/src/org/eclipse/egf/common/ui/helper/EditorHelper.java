@@ -128,7 +128,7 @@ public class EditorHelper {
     if (uri == null) {
       return null;
     }
-    IEditorPart part = restoreAlreadyOpenedEditor(null, uri);
+    IEditorPart part = restoreAlreadyOpenedEditor(uri, true);
     if (part != null) {
       return part;
     }
@@ -148,7 +148,7 @@ public class EditorHelper {
     if (input == null || uri == null) {
       return null;
     }
-    IEditorPart part = restoreAlreadyOpenedEditor(input, uri);
+    IEditorPart part = restoreAlreadyOpenedEditor(uri, true);
     if (part != null) {
       return part;
     }
@@ -161,10 +161,10 @@ public class EditorHelper {
     if (uri == null) {
       return false;
     }
-    return restoreAlreadyOpenedEditor(null, uri) != null ? true : false;
+    return restoreAlreadyOpenedEditor(uri, false) != null ? true : false;
   }
 
-  private static IEditorPart restoreAlreadyOpenedEditor(IEditorInput input, URI uri) {
+  private static IEditorPart restoreAlreadyOpenedEditor(URI uri, boolean activate) {
     if (uri == null) {
       return null;
     }
@@ -179,7 +179,10 @@ public class EditorHelper {
                 URI innerURI = EditorHelper.getURI(editorInput);
                 if (innerURI != null && innerURI.equals(uri)) {
                   IEditorPart part = editorReference.getEditor(true);
-                  workbenchPage.activate(part);
+                  if (activate) {
+                    workbenchPage.activate(part);
+                  }
+                  return part;
                 }
               }
             } catch (PartInitException pie) {
