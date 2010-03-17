@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.portfolio.file.resources;singleton:=true
+Bundle-Version: 0.1.0.qualifier
+Bundle-Vendor: %providerName
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.egf.model.ftask;visibility:=reexport
+Export-Package: org.eclipse.egf.portfolio.file.resources
+Bundle-Activator: org.eclipse.egf.portfolio.file.resources.EGFFileResourcesActivator
