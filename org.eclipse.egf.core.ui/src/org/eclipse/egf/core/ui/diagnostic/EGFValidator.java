@@ -174,7 +174,7 @@ public class EGFValidator {
 
     int result = 0;
 
-    DiagnosticDialog dialog = new DiagnosticDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
+    EGFDiagnosticDialog dialog = new EGFDiagnosticDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
 
     if (diagnostic.getSeverity() != Diagnostic.OK) {
       result = dialog.open();

@@ -42,7 +42,7 @@ import org.eclipse.swt.widgets.Shell;
  * @see Diagnostic
  * @since 2.3
  */
-public class DiagnosticDialog extends IconAndMessageDialog {
+public class EGFDiagnosticDialog extends IconAndMessageDialog {
 
   /**
    * Returns whether the given diagnostic object should be displayed.
@@ -128,7 +128,7 @@ public class DiagnosticDialog extends IconAndMessageDialog {
    *          per <code>DiagnosticComposite.severityMatches(Diagnostic, int)</code>
    * @see DiagnosticComposite#severityMatches(Diagnostic, int)
    */
-  public DiagnosticDialog(Shell parentShell, String dialogTitle, String message, Diagnostic diagnostic, int severityMask) {
+  public EGFDiagnosticDialog(Shell parentShell, String dialogTitle, String message, Diagnostic diagnostic, int severityMask) {
     super(parentShell);
     this.title = dialogTitle == null ? JFaceResources.getString("Problem_Occurred") : dialogTitle; //$NON-NLS-1$
     this.message = message == null ? diagnostic.getMessage() : JFaceResources.format("Reason", new Object[] { message, diagnostic.getMessage() }); //$NON-NLS-1$
