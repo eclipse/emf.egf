@@ -4,7 +4,7 @@
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_Sq3-AOWYEd6IuMdAhwYvKg"
-    name="pipo">
+    name="Model driven strategy example">
   <viewpointContainer xmi:id="_TtBXgOWYEd6IuMdAhwYvKg">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_UP7QQOWYEd6IuMdAhwYvKg">
       <domains xmi:type="domain:DomainURI" xmi:id="_YptT8OWYEd6IuMdAhwYvKg" uri="platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/model/mypackage.ecore"/>
