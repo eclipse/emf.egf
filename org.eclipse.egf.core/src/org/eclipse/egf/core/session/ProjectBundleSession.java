@@ -20,11 +20,8 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.JavaHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
@@ -53,8 +50,6 @@ import org.osgi.service.packageadmin.PackageAdmin;
  * 
  */
 public final class ProjectBundleSession {
-
-  private static final long REFRESH_DELAY = 500;
 
   public static String PROJECT_BUNDLE_SESSION = "org.eclipse.egf.core.project.bundle.session"; //$NON-NLS-1$
 
@@ -363,6 +358,7 @@ public final class ProjectBundleSession {
           EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
         }
       }
+      refreshPackages(_projectBundles.values().toArray(new Bundle[_projectBundles.values().size()]));
     }
     // Install target bundles
     if (_uninstalled.isEmpty() == false) {
@@ -373,34 +369,10 @@ public final class ProjectBundleSession {
           EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
         }
       }
-    }
-    // Refresh Packages
-    if (_projectBundles.isEmpty() == false || bundles.isEmpty() == false) {
-      Job refreshPackages = new Job("") { //$NON-NLS-1$ // System Job
-        @Override
-        protected IStatus run(IProgressMonitor monitor) {
-          try {
-            // Refresh uninstalled bundles
-            if (_projectBundles.isEmpty() == false) {
-              refreshPackages(_projectBundles.values().toArray(new Bundle[_projectBundles.values().size()]));
-            }
-            // Refresh installed bundles
-            if (bundles.isEmpty() == false) {
-              refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
-            }
-            // Clean
-            _projectBundles.clear();
-          } catch (CoreException e) {
-            return e.getStatus();
-          }
-          return Status.OK_STATUS;
-        }
-      };
-      refreshPackages.setSystem(true);
-      refreshPackages.setPriority(Job.SHORT);
-      refreshPackages.schedule(REFRESH_DELAY);
+      refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
     }
     // Final
+    _projectBundles.clear();
     _uninstalled.clear();
   }
 
