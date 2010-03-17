@@ -164,7 +164,7 @@ public class EGFValidator {
     }
     // Populate diagnostics per Resource
     for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
-      List<?> data = childDiagnostic.getChildren().get(0).getData();
+      List<?> data = childDiagnostic.getData();
       if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
         EObject eObject = (EObject) data.get(0);
         UniqueEList<Diagnostic> diagnostics = _diagnostics.get(eObject.eResource());
@@ -194,46 +194,35 @@ public class EGFValidator {
   }
 
   public static void handleDiagnostic(String title, String message, Diagnostic diagnostic) {
-
-    int result = 0;
-
-    EGFDiagnosticDialog dialog = new EGFDiagnosticDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
     // Everything is fine
-    if (diagnostic.getSeverity() != Diagnostic.OK) {
-      result = dialog.open();
+    if (diagnostic.getSeverity() == Diagnostic.OK) {
+      return;
     }
+    // Display Dialog
+    int result = 0;
+    EGFDiagnosticDialog dialog = new EGFDiagnosticDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
+    result = dialog.open();
     // Dialog has been canceled
     if (result != Window.OK) {
       return;
     }
     // Nothing to process
-    if (diagnostic.getChildren().isEmpty()) {
+    if (dialog.getSelection() == null || dialog.getSelection().isEmpty()) {
       return;
     }
     // Select and reveal
     Map<Resource, UniqueEList<EObject>> resources = new HashMap<Resource, UniqueEList<EObject>>();
-    // Default selection
-    if (dialog.getSelection() == null) {
-      List<?> data = (diagnostic.getChildren().get(0)).getData();
+    // Try to select and reveal selected Diagnostics
+    for (Diagnostic innerDiagnostic : dialog.getSelection()) {
+      List<?> data = innerDiagnostic.getData();
       if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
         EObject eObject = (EObject) data.get(0);
-        UniqueEList<EObject> eObjects = new UniqueEList<EObject>();
-        eObjects.add(eObject);
-        resources.put(eObject.eResource(), eObjects);
-      }
-    } else {
-      // Try to select and reveal selected Diagnostics
-      for (Diagnostic innerDiagnostic : dialog.getSelection()) {
-        List<?> data = innerDiagnostic.getData();
-        if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
-          EObject eObject = (EObject) data.get(0);
-          UniqueEList<EObject> eObjects = resources.get(eObject.eResource());
-          if (eObjects == null) {
-            eObjects = new UniqueEList<EObject>();
-            resources.put(eObject.eResource(), eObjects);
-          }
-          eObjects.add(eObject);
+        UniqueEList<EObject> eObjects = resources.get(eObject.eResource());
+        if (eObjects == null) {
+          eObjects = new UniqueEList<EObject>();
+          resources.put(eObject.eResource(), eObjects);
         }
+        eObjects.add(eObject);
       }
     }
     // is there something to select

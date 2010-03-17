@@ -71,6 +71,7 @@ import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
@@ -845,25 +846,32 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   public void setSelectionToViewer(Collection<?> collection) {
-    final Collection<?> theSelection = collection;
-    // Make sure it's okay.
-    //
-    if (theSelection != null && !theSelection.isEmpty()) {
-      Runnable runnable = new Runnable() {
-        public void run() {
-          // Try to select the items in the current content viewer of
-          // the editor.
-          //
-          if (currentViewer != null) {
-            currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
-          }
-        }
-      };
-      getSite().getShell().getDisplay().asyncExec(runnable);
+    if (collection == null || collection.isEmpty()) {
+      return;
     }
+    final Collection<EObject> theSelection = new UniqueEList<EObject>(collection.size());
+    // Solve EObject against our resource set
+    for (Object object : collection) {
+      if (object instanceof EObject == false) {
+        continue;
+      }
+      EObject eObject = editingDomain.getResourceSet().getEObject(EcoreUtil.getURI((EObject) object), true);
+      if (eObject != null) {
+        theSelection.add(eObject);
+      }
+    }
+    Runnable runnable = new Runnable() {
+      public void run() {
+        // Try to select the items in the current content viewer of the editor.
+        if (currentViewer != null) {
+          currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+        }
+      }
+    };
+    getSite().getShell().getDisplay().asyncExec(runnable);
   }
 
   /**

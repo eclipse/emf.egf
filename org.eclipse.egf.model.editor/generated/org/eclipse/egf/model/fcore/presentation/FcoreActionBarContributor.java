@@ -14,6 +14,7 @@ package org.eclipse.egf.model.fcore.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +24,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
+import org.eclipse.egf.common.ui.helper.EditorHelper;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
@@ -67,7 +70,6 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
-import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.ui.IActionBars;
@@ -76,7 +78,6 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.ActionFactory;
-import org.eclipse.ui.part.ISetSelectionTarget;
 
 /**
  * This is the action bar contributor for the Fcore model editor.
@@ -280,11 +281,9 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
 
       @Override
       protected void handleDiagnostic(Diagnostic diagnostic) {
-
         int severity = diagnostic.getSeverity();
         String title = null;
         String message = null;
-
         if (severity == Diagnostic.ERROR || severity == Diagnostic.WARNING) {
           title = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_title"); //$NON-NLS-1$
           message = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_message"); //$NON-NLS-1$
@@ -292,61 +291,70 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
           title = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationResults_title"); //$NON-NLS-1$
           message = EMFEditUIPlugin.INSTANCE.getString(severity == Diagnostic.OK ? "_UI_ValidationOK_message" : "_UI_ValidationResults_message"); //$NON-NLS-1$ //$NON-NLS-2$
         }
-
         // Reset existing Markers
         if (currentResource != null) {
           eclipseResourcesUtil.deleteMarkers(currentResource);
         }
-
+        // Display that everything is fine
         if (diagnostic.getSeverity() == Diagnostic.OK) {
           MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message);
           return;
         }
-
+        // Display Dialog
         int result = 0;
-
         EGFDiagnosticDialog dialog = new EGFDiagnosticDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
         result = dialog.open();
-
-        if (result == Window.OK) {
-          // Select and reveal
-          if (diagnostic.getChildren().isEmpty() == false) {
-            List<EObject> innerData = new UniqueEList<EObject>();
-            // Default selection
-            {
-              List<?> data = (diagnostic.getChildren().get(0)).getData();
-              if (data.isEmpty() == false && data.get(0) instanceof EObject) {
-                innerData.add((EObject) data.get(0));
+        // Dialog has been canceled
+        if (result != Window.OK) {
+          return;
+        }
+        // Nothing to process
+        if (diagnostic.getChildren().isEmpty()) {
+          return;
+        }
+        // Select and reveal
+        Map<Resource, UniqueEList<EObject>> resources = new HashMap<Resource, UniqueEList<EObject>>();
+        // Default selection
+        if (dialog.getSelection() == null) {
+          List<?> data = (diagnostic.getChildren().get(0)).getData();
+          if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
+            EObject eObject = (EObject) data.get(0);
+            UniqueEList<EObject> eObjects = new UniqueEList<EObject>();
+            eObjects.add(eObject);
+            resources.put(eObject.eResource(), eObjects);
+          }
+        } else {
+          // Try to select and reveal selected Diagnostics
+          for (Diagnostic innerDiagnostic : dialog.getSelection()) {
+            List<?> data = innerDiagnostic.getData();
+            if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
+              EObject eObject = (EObject) data.get(0);
+              UniqueEList<EObject> eObjects = resources.get(eObject.eResource());
+              if (eObjects == null) {
+                eObjects = new UniqueEList<EObject>();
+                resources.put(eObject.eResource(), eObjects);
               }
-            }
-            // Try to select and reveal selected Diagnostics
-            {
-              if (dialog.getSelection() != null) {
-                for (Diagnostic innerDiagnostic : dialog.getSelection()) {
-                  List<?> data = innerDiagnostic.getData();
-                  if (data.isEmpty() == false && data.get(0) instanceof EObject) {
-                    innerData.add((EObject) data.get(0));
-                  }
-                }
-              }
-            }
-            if (innerData.isEmpty() == false) {
-              Object part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
-              if (part instanceof ISetSelectionTarget) {
-                ((ISetSelectionTarget) part).selectReveal(new StructuredSelection(innerData));
-              } else if (part instanceof IViewerProvider) {
-                Viewer viewer = ((IViewerProvider) part).getViewer();
-                if (viewer != null) {
-                  viewer.setSelection(new StructuredSelection(innerData), true);
-                }
-              }
+              eObjects.add(eObject);
             }
           }
-          // Display markers
-          if (currentResource != null) {
-            for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
-              eclipseResourcesUtil.createMarkers(currentResource, childDiagnostic);
+        }
+        // is there something to select
+        if (resources.isEmpty() == false) {
+          for (Resource resource : resources.keySet()) {
+            try {
+              IEditorPart editorPart = EditorHelper.openEditor(resource.getURI());
+              if (editorPart != null) {
+                EditorHelper.setSelectionToViewer(editorPart, resources.get(resource));
+              }
+            } catch (Throwable t) {
+              ThrowableHandler.handleThrowable(EGFCoreUIPlugin.getDefault().getPluginID(), t);
             }
+          }
+        }
+        // Display markers
+        if (currentResource != null) {
+          for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
+            eclipseResourcesUtil.createMarkers(currentResource, childDiagnostic);
           }
         }
       }
