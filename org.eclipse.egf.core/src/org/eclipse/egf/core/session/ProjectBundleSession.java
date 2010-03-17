@@ -367,6 +367,7 @@ public final class ProjectBundleSession {
           try {
             // Refresh
             refreshPackages(_projectBundles.values().toArray(new Bundle[_projectBundles.values().size()]));
+            _projectBundles.clear();
           } catch (CoreException e) {
             return e.getStatus();
           }
@@ -393,6 +394,7 @@ public final class ProjectBundleSession {
           try {
             // Refresh
             refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
+            bundles.clear();
           } catch (CoreException e) {
             return e.getStatus();
           }
@@ -404,7 +406,6 @@ public final class ProjectBundleSession {
       processSavedState.schedule(REFRESH_DELAY);
     }
     // Final
-    _projectBundles.clear();
     _uninstalled.clear();
   }
 
@@ -413,7 +414,7 @@ public final class ProjectBundleSession {
    * 
    * @param bundle
    *          The bundle that is to be uninstalled.
-   * @throws BundleException
+   * @throws CoreException
    *           Thrown if a lifecycle issue arises.
    */
   private void uninstallBundle(Bundle bundle) throws CoreException {
