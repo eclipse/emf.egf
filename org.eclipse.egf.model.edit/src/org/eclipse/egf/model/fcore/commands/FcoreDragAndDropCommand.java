@@ -98,7 +98,7 @@ public class FcoreDragAndDropCommand extends DragAndDropCommand {
     } else {
       // Just remove the objects and add them.
       //
-      dropCommand = AddCommand.create(domain, parent, null, CopyCommand.create(domain, collection), index);
+      dropCommand = AddCommand.create(domain, parent, null, CopyCommand.create(domain, collection).getResult(), index);
       if (analyzeForNonContainment(dropCommand)) {
         dropCommand.dispose();
         dropCommand = UnexecutableCommand.INSTANCE;
@@ -121,7 +121,7 @@ public class FcoreDragAndDropCommand extends DragAndDropCommand {
       dragCommand = IdentityCommand.INSTANCE;
       dropCommand = UnexecutableCommand.INSTANCE;
     } else {
-      dropCommand = AddCommand.create(domain, owner, null, CopyCommand.create(domain, collection));
+      dropCommand = AddCommand.create(domain, owner, null, CopyCommand.create(domain, collection).getResult());
       if (analyzeForNonContainment(dropCommand)) {
         dropCommand.dispose();
         dropCommand = UnexecutableCommand.INSTANCE;
