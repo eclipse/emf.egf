@@ -131,7 +131,14 @@ public class EGFValidator {
     int selectionSize = _eObjects.size();
     int count = selectionSize;
     for (EObject eObject : _eObjects) {
-      for (Iterator<?> i = eObject.eAllContents(); i.hasNext(); i.next()) {
+      for (Iterator<EObject> i = eObject.eAllContents(); i.hasNext();) {
+        // initialize _diagnostics with existing resource, it will be used to reset markers
+        EObject innerEObject = i.next();
+        if (innerEObject.eResource() != null) {
+          if (_diagnostics.get(innerEObject.eResource()) == null) {
+            _diagnostics.put(innerEObject.eResource(), new UniqueEList<Diagnostic>());
+          }
+        }
         ++count;
       }
     }
@@ -170,6 +177,7 @@ public class EGFValidator {
       if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
         EObject eObject = (EObject) data.get(0);
         UniqueEList<Diagnostic> diagnostics = _diagnostics.get(eObject.eResource());
+        // it shouldn't be null at this stage as we have already initialized the map
         if (diagnostics == null) {
           diagnostics = new UniqueEList<Diagnostic>();
           _diagnostics.put(eObject.eResource(), diagnostics);
