@@ -40,6 +40,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -328,6 +329,13 @@ public class ActivitySelectionWizardPage extends FilteredItemsSelectionWizardPag
     } finally {
       progressMonitor.done();
     }
+  }
+
+  @Override
+  protected void handleDoubleClick() {
+    computeResult();
+    getWizard().performFinish();
+    ((Wizard) getWizard()).getShell().close();
   }
 
   @Override
