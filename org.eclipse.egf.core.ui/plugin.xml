@@ -27,6 +27,7 @@
     name="%egf.editor.listener.contributor" 
     schema="schema/editor.listener.contributor.exsd"
   />
+  <extension-point id="editor.property.contributor" name="editor.property.contributor" schema="schema/editor.property.contributor.exsd"/>
     
   <!-- ================================================================================= -->
   <!-- Keywords                                                                          -->
