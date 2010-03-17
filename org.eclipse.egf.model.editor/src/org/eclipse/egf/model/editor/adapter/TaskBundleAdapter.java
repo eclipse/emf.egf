@@ -34,62 +34,68 @@ import org.eclipse.ui.IWorkbenchPartSite;
  */
 public class TaskBundleAdapter extends EContentAdapter {
 
-    private Resource _resource;
-    private Shell _shell;
+  private Resource _resource;
+  private Shell _shell;
 
-    public TaskBundleAdapter(Resource resource) {
-        _shell = EGFModelEditorPlugin.getActiveWorkbenchShell();
-        _resource = resource;
+  public TaskBundleAdapter(Resource resource) {
+    _shell = EGFModelEditorPlugin.getActiveWorkbenchShell();
+    _resource = resource;
+  }
+
+  public TaskBundleAdapter(Resource resource, IWorkbenchPartSite site) {
+    _shell = site != null ? site.getShell() : EGFModelEditorPlugin.getActiveWorkbenchShell();
+    _resource = resource;
+  }
+
+  @Override
+  public void notifyChanged(Notification notification) {
+    super.notifyChanged(notification);
+    if (notification.getNewValue() != null && notification.getNewValue() instanceof Task) {
+      handleTaskNotification(notification);
     }
+  }
 
-    public TaskBundleAdapter(Resource resource, IWorkbenchPartSite site) {
-        _shell = site != null ? site.getShell() : EGFModelEditorPlugin.getActiveWorkbenchShell();
-        _resource = resource;
-    }
-
-    @Override
-    public void notifyChanged(Notification notification) {
-        super.notifyChanged(notification);
-        if (notification.getNewValue() != null && notification.getNewValue() instanceof Task) {
-            handlePatternNotification(notification);
+  private void handleTaskNotification(Notification notification) {
+    if (notification.getEventType() == Notification.ADD) {
+      Task task = (Task) notification.getNewValue();
+      Resource resource = task.eResource();
+      if (resource != _resource || ((ResourceImpl) resource).isLoading()) {
+        return;
+      }
+      final IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_resource);
+      if (fcore == null || fcore.getPlatformBundle().getProject() == null) {
+        return;
+      }
+      // Prevent excessive convertion
+      for (Object object : _resource.getContents()) {
+        if (object instanceof Task && object != task) {
+          return;
         }
-    }
-
-    private void handlePatternNotification(Notification notification) {
-        if (notification.getEventType() == Notification.ADD) {
-            Task task = (Task) notification.getNewValue();
-            Resource resource = task.eResource();
-            if (resource != _resource || ((ResourceImpl) resource).isLoading()) {
-                return;
-            }
-            final IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_resource);
-            if (fcore == null || fcore.getPlatformBundle().getProject() == null) {
-                return;
-            }
-            IRunnableWithProgress operation = new ConvertProjectOperation(fcore.getPlatformBundle().getProject(), true, true) {
-                @Override
-                public List<String> addDependencies() {
-                    List<String> dependencies = new ArrayList<String>(1);
-                    dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$
-                    return dependencies;
-                }
-
-                @Override
-                public List<String> addSourceFolders() {
-                    List<String> sourceFolders = new ArrayList<String>(1);
-                    sourceFolders.add("src"); //$NON-NLS-1$
-                    return sourceFolders;
-                }
-            };
-            // asynchronous operation
-            try {
-                new ProgressMonitorDialog(_shell).run(true, false, operation);
-            } catch (InterruptedException ie) {
-                // Nothing to do
-            } catch (Exception e) {
-                ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), e);
-            }
+      }
+      IRunnableWithProgress operation = new ConvertProjectOperation(fcore.getPlatformBundle().getProject(), true, true) {
+        @Override
+        public List<String> addDependencies() {
+          List<String> dependencies = new ArrayList<String>(1);
+          dependencies.add("org.eclipse.egf.model.ftask"); //$NON-NLS-1$
+          return dependencies;
         }
+
+        @Override
+        public List<String> addSourceFolders() {
+          List<String> sourceFolders = new ArrayList<String>(1);
+          sourceFolders.add("src"); //$NON-NLS-1$
+          return sourceFolders;
+        }
+      };
+      // asynchronous operation
+      try {
+        new ProgressMonitorDialog(_shell).run(true, false, operation);
+      } catch (InterruptedException ie) {
+        // Nothing to do
+      } catch (Exception e) {
+        ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), e);
+      }
     }
+  }
 
 }

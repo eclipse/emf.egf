@@ -26,8 +26,8 @@ import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
+import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
-import org.eclipse.egf.model.resource.ModelResourceItemProviderAdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -249,7 +249,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     _resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
     // Create an adapter factory that yields item providers.
     _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    _adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
+    _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
@@ -278,7 +278,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     _resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
     // Create an adapter factory that yields item providers.
     _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    _adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
+    _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());

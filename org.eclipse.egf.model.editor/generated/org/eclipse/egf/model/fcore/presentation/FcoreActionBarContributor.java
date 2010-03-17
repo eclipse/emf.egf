@@ -32,6 +32,7 @@ import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
 import org.eclipse.egf.core.ui.diagnostic.EGFDiagnosticDialog;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
+import org.eclipse.egf.model.editor.actions.FcoreResourcePasteAction;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
@@ -307,7 +308,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
               try {
                 // Try to use a URIConverter to normalize such URI
                 // if we have a platform:/plugin/ we need a platform:/resource/ if any
-                // to have a chance to use a FileEditorInput rather than a URIEditorInput
+                // to have a chance to use a FileEditorInput rather than an URIEditorInput
                 URI uri = resource.getURI();
                 if (uri != null && resource.getResourceSet() != null) {
                   URIConverter converter = resource.getResourceSet().getURIConverter();
@@ -561,11 +562,12 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   @Override
   public void init(IActionBars actionBars) {
     super.init(actionBars);
+    // Locate shared images registry
     ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
     // override the superclass implementation of these actions
     undoAction = new UndoActionWrapper();
@@ -574,6 +576,9 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
     redoAction = new RedoActionWrapper();
     redoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
     actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), redoAction);
+    pasteAction = new FcoreResourcePasteAction();
+    pasteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_PASTE));
+    actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(), pasteAction);
   }
 
 }

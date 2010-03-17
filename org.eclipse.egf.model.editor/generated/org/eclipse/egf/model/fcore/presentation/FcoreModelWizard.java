@@ -16,7 +16,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.MissingResourceException;
 
 import org.eclipse.core.resources.IContainer;
@@ -34,10 +36,8 @@ import org.eclipse.egf.core.pde.tools.ConvertProjectOperation;
 import org.eclipse.egf.core.ui.wizard.WizardNewFileCreationPage;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.fcore.FactoryComponent;
-import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
-import org.eclipse.egf.model.ftask.FtaskFactory;
-import org.eclipse.egf.model.ftask.FtaskPackage;
+import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -95,42 +95,6 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
   public static final String FORMATTED_FILE_EXTENSIONS = EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditorFilenameExtensions").replaceAll("\\s*,\\s*", ", "); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
   /**
-   * This caches an instance of the model package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected FcorePackage fcorePackage = FcorePackage.eINSTANCE;
-
-  /**
-   * This caches an instance of the model package.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  protected FtaskPackage ftaskPackage = FtaskPackage.eINSTANCE;
-
-  /**
-   * This caches an instance of the model factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected FcoreFactory fcoreFactory = fcorePackage.getFcoreFactory();
-
-  /**
-   * This caches an instance of the model factory.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
-  protected FtaskFactory ftaskFactory = ftaskPackage.getFtaskFactory();
-
-  /**
    * This is the file creation page.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -177,6 +141,20 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
   protected List<String> initialObjectNames;
 
   /**
+   * Caches the types that can be created as the root object.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated
+   */
+  protected Map<String, EClass> roots = new HashMap<String, EClass>();
+
+  /**
+   * 
+   */
+  protected FcoreResourceItemProviderAdapterFactory factory;
+
+  /**
    * This just records the information.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -189,6 +167,10 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
     setWindowTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_label")); //$NON-NLS-1$
     setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EGFModelEditorPlugin.INSTANCE.getImage("full/wizban/NewFcore"))); //$NON-NLS-1$
     setNeedsProgressMonitor(true);
+    factory = new FcoreResourceItemProviderAdapterFactory();
+    for (EClass eClass : factory.getRoots()) {
+      roots.put(eClass.getName(), eClass);
+    }
   }
 
   /**
@@ -201,8 +183,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
   protected Collection<String> getInitialObjectNames() {
     if (initialObjectNames == null) {
       initialObjectNames = new ArrayList<String>();
-      initialObjectNames.add(fcorePackage.getFactoryComponent().getName());
-      initialObjectNames.add(ftaskPackage.getTask().getName());
+      initialObjectNames.addAll(roots.keySet());
       Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
     }
     return initialObjectNames;
@@ -216,15 +197,8 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * @generated NOT
    */
   protected EObject createInitialModel() {
-    EClass eClass = (EClass) fcorePackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-    EObject eObject = null;
-    if (eClass == null) {
-      eClass = (EClass) ftaskPackage.getEClassifier(initialObjectCreationPage.getInitialObjectName());
-      eObject = ftaskFactory.create(eClass);
-    }
-    if (eObject == null) {
-      eObject = fcoreFactory.create(eClass);
-    }
+    EClass eClass = roots.get(initialObjectCreationPage.getInitialObjectName());
+    EObject eObject = eClass.getEPackage().getEFactoryInstance().create(eClass);
     eObject.eSet(FcorePackage.Literals.NAMED_MODEL_ELEMENT__NAME, getModelFile().getFullPath().removeFileExtension().lastSegment().toString());
     return eObject;
   }
@@ -515,7 +489,6 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
      */
     public String getInitialObjectName() {
       String label = initialObjectField.getText();
-
       for (String name : getInitialObjectNames()) {
         if (getLabel(name).equals(label)) {
           return name;
@@ -533,7 +506,7 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
      */
     protected String getLabel(String typeName) {
       try {
-        return EGFModelEditorPlugin.INSTANCE.getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
+        return factory.getResourceLocator().getString("_UI_" + typeName + "_type"); //$NON-NLS-1$ //$NON-NLS-2$
       } catch (MissingResourceException mre) {
         EGFModelEditorPlugin.INSTANCE.log(mre);
       }

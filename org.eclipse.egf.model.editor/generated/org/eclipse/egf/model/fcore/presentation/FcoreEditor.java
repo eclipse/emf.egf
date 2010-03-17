@@ -50,13 +50,8 @@ import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
 import org.eclipse.egf.model.editor.adapter.TaskBundleAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
 import org.eclipse.egf.model.fcore.provider.FcoreCustomItemProviderAdapterFactory;
-import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
+import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodCustomItemProviderAdapterFactory;
-import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
-import org.eclipse.egf.model.ftask.provider.FtaskItemProviderAdapterFactory;
-import org.eclipse.egf.model.pattern.provider.PatternItemProviderAdapterFactory;
-import org.eclipse.egf.model.resource.ModelResourceItemProviderAdapterFactory;
-import org.eclipse.egf.model.types.provider.TypesItemProviderAdapterFactory;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -70,7 +65,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -517,6 +511,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           }
           break;
         }
+        case Resource.RESOURCE__CONTENTS:
         case Resource.RESOURCE__URI: {
           getSite().getShell().getDisplay().asyncExec(new Runnable() {
             public void run() {
@@ -823,23 +818,13 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected void initializeEditingDomain() {
     // Create an adapter factory that yields item providers.
     adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new FtaskItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new PatternItemProviderAdapterFactory());
+    adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
     // Create an adapter factory that yields item providers for properties.
     propertyAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    propertyAdapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
     propertyAdapterFactory.addAdapterFactory(new FprodCustomItemProviderAdapterFactory());
-    propertyAdapterFactory.addAdapterFactory(new FtaskItemProviderAdapterFactory());
     propertyAdapterFactory.addAdapterFactory(new FcoreCustomItemProviderAdapterFactory());
-    propertyAdapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-    propertyAdapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
-    propertyAdapterFactory.addAdapterFactory(new PatternItemProviderAdapterFactory());
     propertyAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
     // Get the registered TransactionalEditingDomain
     editingDomain = (AdapterFactoryEditingDomain) TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
@@ -1055,7 +1040,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   protected void createContextMenuFor(StructuredViewer viewer) {
     MenuManager contextMenu = new MenuManager("#PopUp"); //$NON-NLS-1$
@@ -1066,7 +1051,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     viewer.getControl().setMenu(menu);
     getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
-    int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
+    int dndOperations = DND.DROP_COPY | DND.DROP_MOVE;
     Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
     viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
     viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(getEditingDomain(), viewer));
