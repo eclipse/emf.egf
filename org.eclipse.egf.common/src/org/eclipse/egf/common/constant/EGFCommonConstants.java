@@ -96,6 +96,12 @@ public interface EGFCommonConstants {
    */
   public static final String LINE_SEPARATOR = System.getProperty("line.separator"); //$NON-NLS-1$
 
+  /** Constant for the string <code>about.html</code> */
+  public final static String ABOUT_HTML_DESCRIPTOR = "about.html"; //$NON-NLS-1$    
+
+  /** Constant for the string <code>plugin.properties</code> */
+  public final static String PLUGIN_PROPERTIES_DESCRIPTOR = "plugin.properties"; //$NON-NLS-1$  
+
   /** Constant for the string <code>META-INF/</code> */
   public final static String BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR = "META-INF/"; //$NON-NLS-1$  
 
