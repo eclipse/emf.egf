@@ -202,10 +202,31 @@ public class FtaskValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= fcoreValidator.validateActivity_ActivityCycle(task, diagnostics, context);
     if (result || diagnostics != null)
+      result &= validateTask_UselessTask(task, diagnostics, context);
+    if (result || diagnostics != null)
       result &= validateTask_LoadableImplementation(task, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTask_ValidImplementation(task, diagnostics, context);
     return result;
+  }
+
+  /**
+   * Validates the UselessTask constraint of '<em>Task</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateTask_UselessTask(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (task.getImplementation() == null || task.getImplementation().trim().length() == 0) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "UselessTask", getObjectLabel(task, context), "This Task has no implementation" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { task }, context));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**

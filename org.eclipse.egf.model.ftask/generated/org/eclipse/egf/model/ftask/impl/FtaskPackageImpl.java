@@ -220,7 +220,7 @@ public class FtaskPackageImpl extends EPackageImpl implements FtaskPackage {
 
     // Initialize classes and features; add operations and parameters
     initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-    initEAttribute(getTask_Kind(), ecorePackage.getEString(), "kind", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getTask_Kind(), ecorePackage.getEString(), "kind", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEAttribute(getTask_Implementation(), ecorePackage.getEString(), "implementation", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
     initEReference(getTask_SuperTask(), this.getTask(), null, "superTask", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
@@ -240,7 +240,7 @@ public class FtaskPackageImpl extends EPackageImpl implements FtaskPackage {
    */
   protected void createEcoreAnnotations() {
     String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-    addAnnotation(taskEClass, source, new String[] { "constraints", "LoadableImplementation ValidImplementation" //$NON-NLS-1$ //$NON-NLS-2$
+    addAnnotation(taskEClass, source, new String[] { "constraints", "UselessTask LoadableImplementation ValidImplementation" //$NON-NLS-1$ //$NON-NLS-2$
     });
   }
 
