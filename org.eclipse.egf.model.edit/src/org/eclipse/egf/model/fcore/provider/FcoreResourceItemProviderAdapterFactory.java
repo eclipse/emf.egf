@@ -47,7 +47,7 @@ public class FcoreResourceItemProviderAdapterFactory extends ResourceItemProvide
   @Override
   public Adapter createAdapter(Notifier target) {
     if (target instanceof FcoreResourceImpl) {
-      return createResourceAdapter();
+      return createFcoreResourceAdapter();
     }
     return createResourceSetAdapter();
   }
@@ -66,10 +66,9 @@ public class FcoreResourceItemProviderAdapterFactory extends ResourceItemProvide
   }
 
   /**
-   * This creates an adapter for a {@link org.eclipse.emf.ecore.resource.Resource}.
+   * This creates an adapter for a {@link org.eclipse.emf.ecore.resource.FcoreResourceImpl}.
    */
-  @Override
-  public Adapter createResourceAdapter() {
+  public Adapter createFcoreResourceAdapter() {
     if (_fcoreResourceItemProvider == null) {
       _fcoreResourceItemProvider = new FcoreResourceItemProvider(this, resourceChildCreationExtenderManager);
     }
@@ -94,7 +93,7 @@ public class FcoreResourceItemProviderAdapterFactory extends ResourceItemProvide
 
   public Collection<EClass> getRoots() {
     if (_fcoreResourceItemProvider == null) {
-      createResourceAdapter();
+      createFcoreResourceAdapter();
     }
     return _fcoreResourceItemProvider.getRoots();
   }
