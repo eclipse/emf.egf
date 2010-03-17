@@ -104,7 +104,7 @@ public class OpenFcoreAction extends Action implements IWorkbenchWindowActionDel
           if (uri != null) {
             // Try to use a URIConverter to normalize such URI
             // if we have a platform:/plugin/ we need a platform:/resource/ if any
-            // to have a chance to use a FileEditorInput rather than a URIEditorInput
+            // to have a chance to use a FileEditorInput rather than an URIEditorInput
             URIConverter converter = resourceSet.getURIConverter();
             if (converter != null) {
               uri = converter.normalize(uri);
