@@ -5,7 +5,7 @@
     nsURI="http://www.eclipse.org/egf/1.0.0/ftask" nsPrefix="ftask">
   <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Activity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="UselessTask LoadableImplementation ValidImplementation"/>
+      <details key="constraints" value="ValidKind UselessTask LoadableImplementation ValidImplementation"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

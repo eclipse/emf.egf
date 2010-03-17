@@ -17,12 +17,14 @@ import java.util.Map;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 import org.eclipse.egf.model.EGFFtaskPlugin;
 import org.eclipse.egf.model.fcore.util.FcoreValidator;
 import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.egf.model.ftask.Task;
-import org.eclipse.egf.model.helper.ValidationHelper;
+import org.eclipse.egf.model.ftask.helper.TaskValidationHelper;
+import org.eclipse.egf.model.ftask.task.TaskHook;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -202,12 +204,36 @@ public class FtaskValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= fcoreValidator.validateActivity_ActivityCycle(task, diagnostics, context);
     if (result || diagnostics != null)
+      result &= validateTask_ValidKind(task, diagnostics, context);
+    if (result || diagnostics != null)
       result &= validateTask_UselessTask(task, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTask_LoadableImplementation(task, diagnostics, context);
     if (result || diagnostics != null)
       result &= validateTask_ValidImplementation(task, diagnostics, context);
     return result;
+  }
+
+  /**
+   * Validates the ValidKind constraint of '<em>Task</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateTask_ValidKind(Task task, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (task.getKind() == null || task.getKind().trim().length() == 0) {
+      return true;
+    }
+    if (TaskValidationHelper.isValidKind(task.getKind()) == false) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidKind", getObjectLabel(task, context), NLS.bind("This Task has an unknown kind ''{0}''", task.getKind().trim()) }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { task }, context));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -240,16 +266,19 @@ public class FtaskValidator extends EObjectValidator {
     if (task.getImplementation() == null || task.getImplementation().trim().length() == 0 || task.getKind() == null || task.getKind().trim().length() == 0) {
       return true;
     }
-    // Loadable Value
-    if ("java".equals(task.getKind().trim())) { //$NON-NLS-1$
-      if (ValidationHelper.isLoadableClass(task, task.getImplementation(), context) == false) {
-        if (diagnostics != null) {
-          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-              new Object[] { "LoadableImplementation", getObjectLabel(task, context), NLS.bind("Unable to load ''{0}''", task.getImplementation()) }, //$NON-NLS-1$ //$NON-NLS-2$
-              new Object[] { task }, context));
-        }
-        return false;
+    TaskHook hook = null;
+    try {
+      hook = TaskHook.HELPER.getHook(task);
+    } catch (InvocationException ie) {
+      return true;
+    }
+    if (hook.isLoadableImplementation(task, context) == false) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "LoadableImplementation", getObjectLabel(task, context), NLS.bind("Unable to load ''{0}''", task.getImplementation()) }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { task }, context));
       }
+      return false;
     }
     return true;
   }
@@ -265,16 +294,20 @@ public class FtaskValidator extends EObjectValidator {
     if (task.getImplementation() == null || task.getImplementation().trim().length() == 0 || task.getKind() == null || task.getKind().trim().length() == 0) {
       return true;
     }
+    TaskHook hook = null;
+    try {
+      hook = TaskHook.HELPER.getHook(task);
+    } catch (InvocationException ie) {
+      return true;
+    }
     // Valid Value
-    if ("java".equals(task.getKind().trim())) { //$NON-NLS-1$
-      if (ValidationHelper.isValidClass(task, ITaskProduction.class, task.getImplementation(), context) == false) {
-        if (diagnostics != null) {
-          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-              new Object[] { "ValidImplementation", getObjectLabel(task, context), NLS.bind("Type mismatch ''{0}'' with ''{1}''", ITaskProduction.class.getName(), task.getImplementation()) }, //$NON-NLS-1$ //$NON-NLS-2$
-              new Object[] { task }, context));
-        }
-        return false;
+    if (hook.isValidImplementation(task, context) == false) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "ValidImplementation", getObjectLabel(task, context), NLS.bind("Type mismatch ''{0}'' with ''{1}''", ITaskProduction.class.getName(), task.getImplementation()) }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { task }, context));
       }
+      return false;
     }
     return true;
   }

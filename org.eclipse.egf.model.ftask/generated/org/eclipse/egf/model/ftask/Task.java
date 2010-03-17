@@ -29,7 +29,7 @@ import org.eclipse.egf.model.fcore.Activity;
  * </p>
  *
  * @see org.eclipse.egf.model.ftask.FtaskPackage#getTask()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UselessTask LoadableImplementation ValidImplementation'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='ValidKind UselessTask LoadableImplementation ValidImplementation'"
  * @generated
  */
 public interface Task extends Activity {

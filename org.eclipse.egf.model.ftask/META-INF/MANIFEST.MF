@@ -14,7 +14,8 @@ Export-Package:
  org.eclipse.egf.model,
  org.eclipse.egf.model.ftask,
  org.eclipse.egf.model.ftask.impl,
- org.eclipse.egf.model.ftask.util
+ org.eclipse.egf.model.ftask.util,
+ org.eclipse.egf.model.ftask.task
 Require-Bundle: 
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

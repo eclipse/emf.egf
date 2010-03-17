@@ -240,7 +240,7 @@ public class FtaskPackageImpl extends EPackageImpl implements FtaskPackage {
    */
   protected void createEcoreAnnotations() {
     String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-    addAnnotation(taskEClass, source, new String[] { "constraints", "UselessTask LoadableImplementation ValidImplementation" //$NON-NLS-1$ //$NON-NLS-2$
+    addAnnotation(taskEClass, source, new String[] { "constraints", "ValidKind UselessTask LoadableImplementation ValidImplementation" //$NON-NLS-1$ //$NON-NLS-2$
     });
   }
 
