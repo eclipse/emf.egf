@@ -17,8 +17,8 @@ import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.dialogs.AbstractCheckboxSelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
+import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
-import org.eclipse.egf.model.resource.ModelResourceItemProviderAdapterFactory;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
 import org.eclipse.egf.producer.ui.l10n.ProducerUIMessages;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -58,7 +58,7 @@ public class ActivityValidationSelectionDialog extends AbstractCheckboxSelection
     setShowSelectAllButtons(true);
     // Create an adapter factory that yields item providers.
     _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    _adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
+    _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
