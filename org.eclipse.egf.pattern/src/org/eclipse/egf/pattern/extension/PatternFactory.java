@@ -492,7 +492,7 @@ public abstract class PatternFactory {
         method.setPatternFilePath(createURI(method));
     }
 
-    private URI createURI(PatternMethod method) {
+    protected URI createURI(PatternMethod method) {
         if (method.getID() == null)
             return null;
         return PatternHelper.Filename.computeFileURI(method);
