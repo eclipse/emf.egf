@@ -1,5 +1,6 @@
-package inheritance_1;
+package inheritance_2;
 
+import org.eclipse.egf.common.helper.*;
 import java.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.egf.model.pattern.*;
