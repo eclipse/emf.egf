@@ -168,6 +168,7 @@ public class EditorHelper {
     if (uri == null) {
       return null;
     }
+    URI uriToCheck = uri.trimFragment();
     IWorkbench workbench = PlatformUI.getWorkbench();
     if (workbench != null) {
       for (IWorkbenchWindow workbenchWindow : workbench.getWorkbenchWindows()) {
@@ -177,7 +178,7 @@ public class EditorHelper {
               IEditorInput editorInput = editorReference.getEditorInput();
               if (editorInput != null) {
                 URI innerURI = EditorHelper.getURI(editorInput);
-                if (innerURI != null && innerURI.equals(uri)) {
+                if (innerURI != null && innerURI.equals(uriToCheck)) {
                   IEditorPart part = editorReference.getEditor(true);
                   if (activate) {
                     workbenchPage.activate(part);
@@ -257,7 +258,7 @@ public class EditorHelper {
       if (FILE_CLASS != null) {
         IFile file = (IFile) editorInput.getAdapter(FILE_CLASS);
         if (file != null) {
-          return URI.createPlatformPluginURI(file.getFullPath().toString(), true);
+          return URI.createPlatformResourceURI(file.getFullPath().toString(), true);
         }
       }
       if (FILE_REVISION_CLASS != null) {
