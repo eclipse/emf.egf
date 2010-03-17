@@ -3,8 +3,8 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_94fB8RVfEd-JoY-b5_Vpcw"
-    name="Pattern - UC1.2 - Inheritance">
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_94fB8RVfEd-JoY-b5_Vpcw"
+    description=" " name="Pattern - UC1.2 - Inheritance">
   <viewpointContainer xmi:id="_CnXy8BVgEd-JoY-b5_Vpcw">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_DBjNgBVgEd-JoY-b5_Vpcw">
       <libraries xmi:id="_QAa3sBVgEd-JoY-b5_Vpcw" name="egf.uc1_2.pattern.parent">
@@ -53,8 +53,9 @@
           <type xmi:type="domain:TypeDomainURI" xmi:id="_m8hnEBVgEd-JoY-b5_Vpcw" description=""
               domain="#_HZMjMBVgEd-JoY-b5_Vpcw"/>
         </invocationContracts>
-        <invocationContracts xmi:id="_sV44cBVgEd-JoY-b5_Vpcw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_-GBrkP6eEd64XYPo3s6saPg">
-          <type xmi:type="types:TypeString" xmi:id="_vPF6MBVgEd-JoY-b5_Vpcw" value="_FRIDcBVgEd-JoY-b5_Vpcw"/>
+        <invocationContracts xmi:id="_sV44cBVgEd-JoY-b5_Vpcw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_ImZJ8CH0Ed-V4KH4GeEy-w"
+              elements="#_FRIDcBVgEd-JoY-b5_Vpcw"/>
         </invocationContracts>
         <invocationContracts xmi:id="_VsLbUBb6Ed-yIvdzb4Km2Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_XFvPQBb6Ed-yIvdzb4Km2Q"

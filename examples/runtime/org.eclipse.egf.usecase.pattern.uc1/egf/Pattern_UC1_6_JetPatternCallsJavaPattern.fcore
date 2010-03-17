@@ -3,9 +3,8 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:javapattern="http://www.eclipse.org/egf/1.0.0/javapattern"
-    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern"
-    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_a-kDcBfVEd-JToveUSgqRw"
-    name="Pattern - UC1.6 - Jet Pattern calls Java Pattern">
+    xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_a-kDcBfVEd-JToveUSgqRw"
+    description=" " name="Pattern - UC1.6 - Jet Pattern calls Java Pattern">
   <viewpointContainer xmi:id="_cJEHsBfVEd-JToveUSgqRw">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_pEVR8BsPEd-zfYPlecBwGw">
       <domains xmi:type="domain:DomainURI" xmi:id="_qZZAYBsPEd-zfYPlecBwGw" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
@@ -57,8 +56,9 @@
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_zniK8BsPEd-zfYPlecBwGw"
               value="org.eclipse.egf.usecase.pattern.uc1.reporter.MyReporter"/>
         </invocationContracts>
-        <invocationContracts xmi:id="_1e_b0BsPEd-zfYPlecBwGw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_-GBrkP6eEd64XYPo3s6saPg">
-          <type xmi:type="types:TypeString" xmi:id="_22IN4BsPEd-zfYPlecBwGw" value="_dH8x0BfVEd-JToveUSgqRw"/>
+        <invocationContracts xmi:id="_1e_b0BsPEd-zfYPlecBwGw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_hwmdsCH2Ed-V4KH4GeEy-w"
+              elements="#_dH8x0BfVEd-JToveUSgqRw"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>

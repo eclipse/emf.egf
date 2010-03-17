@@ -2,7 +2,7 @@
 <fcore:FactoryComponent xmi:version="2.1"
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
     xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="_BoElQejCEd6kmtdYyydDtQ"
-    name="UseCase - Pattern - UC1 - Hello - All Together">
+    description=" " name="UseCase - Pattern - UC1 - Hello - All Together">
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_EomXAOjCEd6kmtdYyydDtQ">
     <invocations xmi:id="_FYuMYOjCEd6kmtdYyydDtQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_1_ClassPattern.fcore#_0BNZAOTGEd6iCM6xyOQ7FA"/>
     <invocations xmi:id="_Rf4ygOjCEd6kmtdYyydDtQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.usecase.pattern.uc1/egf/Pattern_UC1_2_Inheritance.fcore#_94fB8RVfEd-JoY-b5_Vpcw"/>

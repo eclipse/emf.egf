@@ -3,8 +3,8 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_zOU6cBVhEd-JoY-b5_Vpcw"
-    name="Pattern - UC1.7 - Pattern Injection">
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_zOU6cBVhEd-JoY-b5_Vpcw"
+    description=" " name="Pattern - UC1.7 - Pattern Injection">
   <viewpointContainer xmi:id="_3WwIYBVhEd-JoY-b5_Vpcw">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_3wwj0BVhEd-JoY-b5_Vpcw">
       <domains xmi:type="domain:DomainURI" xmi:id="_6_29EBVhEd-JoY-b5_Vpcw" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
@@ -57,8 +57,9 @@
         <invocationContracts xmi:id="_bOUkcBVpEd-Ay7SQYKAR7g" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
           <type xmi:type="domain:TypeDomainURI" xmi:id="_dypiYBVpEd-Ay7SQYKAR7g" domain="#_6_29EBVhEd-JoY-b5_Vpcw"/>
         </invocationContracts>
-        <invocationContracts xmi:id="_giDu8BVpEd-Ay7SQYKAR7g" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_-GBrkP6eEd64XYPo3s6saPg">
-          <type xmi:type="types:TypeString" xmi:id="_ig72cBVpEd-Ay7SQYKAR7g" value="_USCzABViEd-JoY-b5_Vpcw"/>
+        <invocationContracts xmi:id="_giDu8BVpEd-Ay7SQYKAR7g" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_ooBogCH2Ed-V4KH4GeEy-w"
+              elements="#_USCzABViEd-JoY-b5_Vpcw"/>
         </invocationContracts>
         <invocationContracts xmi:id="_tmYKoBb6Ed-yIvdzb4Km2Q" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_viNlMBb6Ed-yIvdzb4Km2Q"

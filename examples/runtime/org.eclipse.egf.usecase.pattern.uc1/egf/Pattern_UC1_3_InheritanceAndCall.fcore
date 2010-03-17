@@ -3,8 +3,8 @@
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_Onwn4AzqEd-pgpX7a7GeEA"
-    name="Pattern - UC1.3 - Pattern Inheritance + Pattern Call">
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_Onwn4AzqEd-pgpX7a7GeEA"
+    description=" " name="Pattern - UC1.3 - Pattern Inheritance + Pattern Call">
   <viewpointContainer xmi:id="_QhWmwAzqEd-pgpX7a7GeEA">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_RBiisAzqEd-pgpX7a7GeEA">
       <domains xmi:type="domain:DomainURI" xmi:id="_d6UL8AzqEd-pgpX7a7GeEA" uri="platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore"/>
@@ -70,8 +70,9 @@
         <invocationContracts xmi:id="_sHvgEBSiEd-7l5bHeOignA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
           <type xmi:type="domain:TypeDomainURI" xmi:id="_vdbCcBSiEd-7l5bHeOignA" domain="#_d6UL8AzqEd-pgpX7a7GeEA"/>
         </invocationContracts>
-        <invocationContracts xmi:id="_y0S3oBSiEd-7l5bHeOignA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_-GBrkP6eEd64XYPo3s6saPg">
-          <type xmi:type="types:TypeString" xmi:id="_1oAVYBSiEd-7l5bHeOignA" value="_u7JPsAzqEd-pgpX7a7GeEA"/>
+        <invocationContracts xmi:id="_y0S3oBSiEd-7l5bHeOignA" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_P2mBICH0Ed-V4KH4GeEy-w"
+              elements="#_u7JPsAzqEd-pgpX7a7GeEA"/>
         </invocationContracts>
         <invocationContracts xmi:id="_DOMzcBZSEd-MevBezRJS_g" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_FHMVYBZSEd-MevBezRJS_g"
