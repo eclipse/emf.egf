@@ -91,6 +91,8 @@
     <contribution 
       class="org.eclipse.egf.model.editor.contributions.InvocationEditorContributor"
     />
+	<contribution 
+    	class="org.eclipse.egf.model.editor.contributions.SuperTaskEditorContributor"/>
   </extension>  
   
 </plugin>
