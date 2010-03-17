@@ -94,8 +94,11 @@ public class URIMenuContributor extends MenuContributor {
           return;
         }
         IEditorPart part = EditorHelper.openEditor(uri);
-        if (part != null && part instanceof IEditingDomainProvider) {
-          EditorHelper.setSelectionToViewer(part, uri);
+        if (part != null) {
+          part.getSite().getPage().activate(part);
+          if (part instanceof IEditingDomainProvider) {
+            EditorHelper.setSelectionToViewer(part, uri);
+          }
         }
       } catch (PartInitException pie) {
         EGFModelEditorPlugin.getPlugin().logError(pie);
