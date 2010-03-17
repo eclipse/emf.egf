@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
 
+import org.eclipse.egf.model.fcore.util.FcoreResourceImpl;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.command.IdentityCommand;
@@ -24,6 +25,7 @@ import org.eclipse.emf.edit.command.CommandParameter;
 import org.eclipse.emf.edit.command.CopyCommand;
 import org.eclipse.emf.edit.command.DragAndDropCommand;
 import org.eclipse.emf.edit.command.MoveCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
 /**
@@ -98,13 +100,21 @@ public class FcoreDragAndDropCommand extends DragAndDropCommand {
     } else {
       // Just remove the objects and add them.
       //
-      dropCommand = AddCommand.create(domain, parent, null, CopyCommand.create(domain, collection).getResult(), index);
+      if (parent instanceof FcoreResourceImpl) {
+        dropCommand = AddCommand.create(domain, parent, null, collection, index);
+      } else {
+        dropCommand = AddCommand.create(domain, parent, null, CopyCommand.create(domain, collection).getResult(), index);
+      }
       if (analyzeForNonContainment(dropCommand)) {
         dropCommand.dispose();
         dropCommand = UnexecutableCommand.INSTANCE;
         dragCommand = IdentityCommand.INSTANCE;
       } else {
-        dragCommand = IdentityCommand.INSTANCE;
+        if (parent instanceof FcoreResourceImpl) {
+          dragCommand = RemoveCommand.create(domain, collection);
+        } else {
+          dragCommand = IdentityCommand.INSTANCE;
+        }
       }
     }
 
@@ -121,13 +131,21 @@ public class FcoreDragAndDropCommand extends DragAndDropCommand {
       dragCommand = IdentityCommand.INSTANCE;
       dropCommand = UnexecutableCommand.INSTANCE;
     } else {
-      dropCommand = AddCommand.create(domain, owner, null, CopyCommand.create(domain, collection).getResult());
+      if (owner instanceof FcoreResourceImpl) {
+        dropCommand = AddCommand.create(domain, owner, null, collection);
+      } else {
+        dropCommand = AddCommand.create(domain, owner, null, CopyCommand.create(domain, collection).getResult());
+      }
       if (analyzeForNonContainment(dropCommand)) {
         dropCommand.dispose();
         dropCommand = UnexecutableCommand.INSTANCE;
         dragCommand = IdentityCommand.INSTANCE;
       } else {
-        dragCommand = IdentityCommand.INSTANCE;
+        if (owner instanceof FcoreResourceImpl) {
+          dragCommand = RemoveCommand.create(domain, collection);
+        } else {
+          dragCommand = IdentityCommand.INSTANCE;
+        }
       }
     }
 
