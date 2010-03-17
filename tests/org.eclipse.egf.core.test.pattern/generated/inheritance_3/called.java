@@ -1,4 +1,4 @@
-package inheritance_2;
+package inheritance_3;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,22 +7,24 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class child extends inheritance_2.parent {
+public class called 
+{
   protected static String nl;
-  public static synchronized child create(String lineSeparator)
+  public static synchronized called create(String lineSeparator)
   {
     nl = lineSeparator;
-    child result = new child();
+    called result = new called();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "fromChild : ";
+  protected final String TEXT_1 = "//called on ";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
+  protected final String TEXT_4 = NL;
 
-	public child()
+	public called()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();
@@ -57,22 +59,16 @@ if (ctx.useReporter()){
     ctx.getBuffer().setLength(0);
 }
     
-    stringBuffer.append(TEXT_2);
     stringBuffer.append(TEXT_3);
+    stringBuffer.append(TEXT_4);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
-    super.orchestration(ictx);
-
     
-method_setToInject(ictx.getBuffer(), ictx);
-    ExecutionContext ctx__EjeaYSIxEd3OtBru3lEDA = new ExecutionContext(ictx);
-ctx__EjeaYSIxEd3OtBru3lEDA.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.execute("_nfk5LCH-Ed-CStHKuCL0dg", ctx__EjeaYSIxEd3OtBru3lEDA);
-
-
+    
+method_body(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -83,7 +79,6 @@ if (ictx.useReporter()){
 return loop;
 } 
 
-protected org.eclipse.emf.ecore.EClass toInject = null;
 protected org.eclipse.emf.ecore.EClass parameter = null;
 public void set_parameter(org.eclipse.emf.ecore.EClass object) {
 this.parameter = object;
@@ -93,13 +88,6 @@ this.parameter = object;
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());
-    }
-    protected void method_setToInject(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
-
-    toInject = parameter;
-    }
-    protected void method_setVariables(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
-
-    targetFile = "/org.eclipse.egf.core.test.pattern/result/" + parameter.getName();
+    stringBuffer.append(TEXT_2);
     }
     }

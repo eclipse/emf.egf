@@ -16,6 +16,15 @@
       <fcore
             id="fc/inheritance_2.fcore">
       </fcore>
+      <fcore
+            id="fc/inheritance_3.fcore">
+      </fcore>
+      <fcore
+            id="fc/inheritance_4.fcore">
+      </fcore>
+      <fcore
+            id="model/mypackage.fcore">
+      </fcore>
    </extension>
 
 </plugin>

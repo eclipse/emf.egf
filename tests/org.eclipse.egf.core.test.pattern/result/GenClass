@@ -1,1 +1,1 @@
-fromChild : GenClass  fromInjected : provider  fromInjected : dynamic  fromInjected : image
+fromChild : GenClass  fromInjected : provider  fromInjected : image  fromInjected : dynamic

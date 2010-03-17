@@ -1,4 +1,4 @@
-package inheritance_2;
+package inheritance_3;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,7 +7,7 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class child extends inheritance_2.parent {
+public class child extends inheritance_3.parent {
   protected static String nl;
   public static synchronized child create(String lineSeparator)
   {
@@ -18,9 +18,11 @@ public class child extends inheritance_2.parent {
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "fromChild : ";
-  protected final String TEXT_2 = NL;
+  protected final String TEXT_1 = "//default content";
+  protected final String TEXT_2 = "// child on ";
   protected final String TEXT_3 = NL;
+  protected final String TEXT_4 = NL;
+  protected final String TEXT_5 = NL;
 
 	public child()
 	{
@@ -40,8 +42,9 @@ Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
     
-List<Object> parameterList = null;
-//this pattern can only be called by another (i.e. it's not an entry point in execution)
+paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
+queryCtx = new HashMap<String, String>();
+List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
 
 
 for (Object parameterParameter : parameterList ) {
@@ -57,8 +60,8 @@ if (ctx.useReporter()){
     ctx.getBuffer().setLength(0);
 }
     
-    stringBuffer.append(TEXT_2);
-    stringBuffer.append(TEXT_3);
+    stringBuffer.append(TEXT_4);
+    stringBuffer.append(TEXT_5);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -67,11 +70,13 @@ InternalPatternContext ictx = (InternalPatternContext)ctx;
     super.orchestration(ictx);
 
     
-method_setToInject(ictx.getBuffer(), ictx);
-    ExecutionContext ctx__EjeaYSIxEd3OtBru3lEDA = new ExecutionContext(ictx);
-ctx__EjeaYSIxEd3OtBru3lEDA.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.execute("_nfk5LCH-Ed-CStHKuCL0dg", ctx__EjeaYSIxEd3OtBru3lEDA);
-
+method_hehe(ictx.getBuffer(), ictx);
+    {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+parameters.put("parameter", this.parameter);
+ExecutionContext ctx__SWeQMCIxEd3OtBru3lEDA = new ExecutionContext(ictx);
+CallHelper.executeWithInjection("_AHSpICIUEd-XdOucj2euiQ", ctx__SWeQMCIxEd3OtBru3lEDA, parameters);
+}
 
     
 String loop = ictx.getBuffer().toString();
@@ -83,23 +88,15 @@ if (ictx.useReporter()){
 return loop;
 } 
 
-protected org.eclipse.emf.ecore.EClass toInject = null;
-protected org.eclipse.emf.ecore.EClass parameter = null;
-public void set_parameter(org.eclipse.emf.ecore.EClass object) {
-this.parameter = object;
-}
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
+    }
+    protected void method_hehe(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    stringBuffer.append(TEXT_2);
     stringBuffer.append(parameter.getName());
-    }
-    protected void method_setToInject(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
-
-    toInject = parameter;
-    }
-    protected void method_setVariables(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
-
-    targetFile = "/org.eclipse.egf.core.test.pattern/result/" + parameter.getName();
+    stringBuffer.append(TEXT_3);
     }
     }

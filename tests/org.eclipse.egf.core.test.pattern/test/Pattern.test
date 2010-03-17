@@ -9,5 +9,13 @@
       <result xsi:type="test:FileOutputTestResult" text="fromChild : GenEnum  fromInjected : typeSafeEnumCompatible" iFilePath="/org.eclipse.egf.core.test.pattern/result/GenEnum"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/inheritance_2.fcore#_mTlnECH-Ed-CStHKuCL0dg"/>
     </tests>
+    <tests xsi:type="test:EGFTestCase" name="inheritance_3">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;//mywork on Employee&#xA;&#xA;loop finished:&#xA;// child on Employee&#xA;//called on Employee&#xA;&#xA;loop finished:&#xA;//mywork on Company&#xA;&#xA;loop finished:&#xA;// child on Company&#xA;//called on Company&#xA;&#xA;loop finished:&#xA;//mywork on Test&#xA;&#xA;loop finished:&#xA;// child on Test&#xA;//called on Test&#xA;&#xA;exec finished:&#xA;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/inheritance_3.fcore#_mQLQQCIKEd-l6L0LIketyw"/>
+    </tests>
+    <tests xsi:type="test:EGFTestCase" name="inheritance_4">
+      <result xsi:type="test:ConsoleOutputTestResult" text="loop finished:&#xA;//additional work on Employee&#xA;&#xA;loop finished:&#xA;//additional work on Company&#xA;&#xA;loop finished:&#xA;//additional work on Test&#xA;&#xA;exec finished:&#xA;//additional work on Employee&#xA;//additional work on Company&#xA;//additional work on Test&#xA;&#xA;"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/inheritance_4.fcore#_8e1X4CIXEd-XdOucj2euiQ"/>
+    </tests>
   </tests>
 </test:TestSuite>
