@@ -42,7 +42,7 @@
   >
     <extender
       uri="org.eclipse.egf.model.fcore.util"
-      class="org.eclipse.egf.model.ftask.provider.FcoreChildCreationExtender"
+      class="org.eclipse.egf.model.ftask.provider.FcoreResourceChildCreationExtender"
     />
   </extension>
 

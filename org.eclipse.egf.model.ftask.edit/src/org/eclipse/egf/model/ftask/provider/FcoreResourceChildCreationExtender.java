@@ -33,7 +33,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 /**
  * A child creation extender for the {@link FcoreResourceImpl}.
  */
-public class FcoreChildCreationExtender implements IResourceChildCreationExtender {
+public class FcoreResourceChildCreationExtender implements IResourceChildCreationExtender {
 
   protected Collection<EClass> _roots;
 
