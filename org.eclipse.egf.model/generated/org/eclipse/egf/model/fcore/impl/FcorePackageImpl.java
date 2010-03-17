@@ -1069,6 +1069,8 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     });
     addAnnotation(orchestrationParameterEClass, source, new String[] { "constraints", "UselessOrchestrationParameter" //$NON-NLS-1$ //$NON-NLS-2$
     });
+    addAnnotation(invocationEClass, source, new String[] { "constraints", "MandatoryInvokedContract" //$NON-NLS-1$ //$NON-NLS-2$
+    });
     addAnnotation(invocationContractEClass, source, new String[] {
         "constraints", "ValidInvokedContract ValidInvokedContractType ValidFactoryComponentContract ValidFactoryComponentContractType ValidOrchestrationParameter ValidOrchestrationParameterType ValidSourceInvocationContract ValidSourceInvocationContractType UselessTypeValue" //$NON-NLS-1$ //$NON-NLS-2$
     });

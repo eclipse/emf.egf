@@ -169,6 +169,9 @@
         containment="true" resolveProxies="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Invocation" abstract="true" eSuperTypes="#//NamedModelElement">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="MandatoryInvokedContract"/>
+    </eAnnotations>
     <eOperations name="getFactoryComponent" lowerBound="1" eType="#//FactoryComponent"/>
     <eOperations name="getInvocationContracts" upperBound="-1" eType="#//InvocationContract"/>
     <eOperations name="getInvocationContracts" upperBound="-1" eType="#//InvocationContract">

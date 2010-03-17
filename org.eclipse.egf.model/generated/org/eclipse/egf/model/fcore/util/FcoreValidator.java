@@ -51,6 +51,7 @@ import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
 import org.eclipse.emf.validation.service.ITraversalStrategy.Recursive;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * <!-- begin-user-doc -->
@@ -582,7 +583,62 @@ public class FcoreValidator extends EObjectValidator {
    * @generated
    */
   public boolean validateInvocation(Invocation invocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return validate_EveryDefaultConstraint(invocation, diagnostics, context);
+    boolean result = validate_EveryMultiplicityConforms(invocation, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryDataValueConforms(invocation, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryReferenceIsContained(invocation, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryProxyResolves(invocation, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_UniqueID(invocation, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryKeyUnique(invocation, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validate_EveryMapEntryUnique(invocation, diagnostics, context);
+    if (result || diagnostics != null)
+      result &= validateInvocation_MandatoryInvokedContract(invocation, diagnostics, context);
+    return result;
+  }
+
+  /**
+   * Validates the MandatoryInvokedContract constraint of '<em>Invocation</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateInvocation_MandatoryInvokedContract(Invocation invocation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (invocation.getInvokedActivity() == null || invocation.getInvokedActivity().getContracts() == null || invocation.getInvokedActivity().getContracts().size() == 0) {
+      return true;
+    }
+    for (Contract contract : invocation.getInvokedActivity().getContracts()) {
+      // Mandatory contract with a default value raise a warning
+      // see validateContract_UselessMandatoryMode
+      // as such this doesn't prevent any execution
+      // only mandatory contract with no default value should be declared at invocation level
+      if (contract.isMandatory() == false || contract.getType() == null || contract.getType().getValue() != null) {
+        continue;
+      }
+      boolean found = false;
+      if (invocation.getInvocationContracts() != null) {
+        for (InvocationContract invocationContract : invocation.getInvocationContracts()) {
+          if (contract.equals(invocationContract.getInvokedContract())) {
+            found = true;
+            break;
+          }
+        }
+      }
+      if (found == false) {
+        if (diagnostics != null) {
+          diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+              new Object[] { "MandatoryInvokedContract", getObjectLabel(invocation, context), NLS.bind("Mandatory Contract ''{0}'' should be invoked", getObjectLabel(contract, context)) }, //$NON-NLS-1$ //$NON-NLS-2$
+              new Object[] { invocation }, context));
+        }
+        return false;
+      }
+    }
+    return true;
   }
 
   /**
