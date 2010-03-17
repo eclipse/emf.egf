@@ -51,6 +51,14 @@ http://www.eclipse.org/legal/epl-v10.html
   /> 
   
   <plugin
+    id="org.eclipse.egf.ftask.ui"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />     
+  
+  <plugin
     id="org.eclipse.egf.pattern.ui"
     download-size="0"
     install-size="0"
