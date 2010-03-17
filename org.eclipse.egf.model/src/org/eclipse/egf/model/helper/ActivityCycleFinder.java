@@ -10,8 +10,7 @@
  */
 package org.eclipse.egf.model.helper;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Stack;
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.egf.model.fcore.Activity;
@@ -26,7 +25,7 @@ import org.eclipse.egf.model.fcore.Orchestration;
  */
 public class ActivityCycleFinder {
 
-  private List<Activity> _activities = new ArrayList<Activity>();
+  private Stack<Activity> _activities = new Stack<Activity>();
 
   private Activity _activity;
 
@@ -45,8 +44,12 @@ public class ActivityCycleFinder {
       return null;
     }
     if (activity instanceof FactoryComponent) {
-      _activities.add(activity);
-      return getFirstRepetition(((FactoryComponent) activity).getOrchestration());
+      _activities.push(activity);
+      ModelElement element = getFirstRepetition(((FactoryComponent) activity).getOrchestration());
+      if (element == null) {
+        _activities.pop();
+      }
+      return element;
     }
     return null;
   }
@@ -79,10 +82,8 @@ public class ActivityCycleFinder {
     if (activity == null) {
       return false;
     }
-    for (Activity innerActivity : _activities) {
-      if (innerActivity.equals(activity)) {
-        return true;
-      }
+    if (_activities.search(activity) != -1) {
+      return true;
     }
     return false;
   }
