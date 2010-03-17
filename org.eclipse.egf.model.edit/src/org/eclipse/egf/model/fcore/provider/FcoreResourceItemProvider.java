@@ -265,10 +265,11 @@ public class FcoreResourceItemProvider extends ResourceItemProvider {
   public void notifyChanged(Notification notification) {
     switch (notification.getFeatureID(Resource.class)) {
     case Resource.RESOURCE__URI:
-    case Resource.RESOURCE__IS_MODIFIED:
-    case Resource.RESOURCE__IS_LOADED:
+      // case Resource.RESOURCE__IS_MODIFIED:
+      // case Resource.RESOURCE__IS_LOADED:
       // case Resource.RESOURCE__IS_TRACKING_MODIFICATION:
-    case Resource.RESOURCE__RESOURCE_SET: {
+      // case Resource.RESOURCE__RESOURCE_SET:
+    {
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }
