@@ -109,9 +109,9 @@ public class OpenFcoreAction extends Action implements IWorkbenchWindowActionDel
             if (converter != null) {
               uri = converter.normalize(uri);
             }
-            IEditorPart part = EditorHelper.openEditor(fcore.getURI());
+            IEditorPart part = EditorHelper.openEditor(uri);
             if (part != null && part instanceof IEditingDomainProvider) {
-              EditorHelper.setSelectionToViewer(part, fcore.getURI());
+              EditorHelper.setSelectionToViewer(part, uri);
             }
           }
         } catch (PartInitException pie) {
