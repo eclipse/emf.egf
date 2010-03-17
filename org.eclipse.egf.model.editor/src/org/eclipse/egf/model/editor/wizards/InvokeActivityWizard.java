@@ -11,6 +11,7 @@
 package org.eclipse.egf.model.editor.wizards;
 
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
+import org.eclipse.egf.model.editor.dialogs.EGFWizardDialog;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fprod.ProductionPlan;
@@ -90,6 +91,14 @@ public class InvokeActivityWizard extends Wizard implements INewWizard {
   public boolean performCancel() {
     _isCanceled = true;
     return true;
+  }
+
+  public void finishWizardDialog() {
+    if (getContainer() instanceof EGFWizardDialog) {
+      ((EGFWizardDialog) getContainer()).finishDialog();
+    }
+    // DO nothing
+    return;
   }
 
   /**

@@ -17,6 +17,7 @@ package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
+import org.eclipse.egf.model.editor.dialogs.EGFWizardDialog;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.editor.wizards.InvokeActivityWizard;
 import org.eclipse.egf.model.fprod.ProductionPlan;
@@ -27,7 +28,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
 
 /**
  * @author Xavier Maysonnave
@@ -100,7 +100,7 @@ public class InvokeActivityMenuContributor extends MenuContributor {
       InvokeActivityWizard wizard = new InvokeActivityWizard();
       wizard.init(activeEditorPart.getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) selection);
       // Instantiates the wizard container with the wizard and opens it
-      WizardDialog dialog = new WizardDialog(activeEditorPart.getSite().getShell(), wizard);
+      EGFWizardDialog dialog = new EGFWizardDialog(activeEditorPart.getSite().getShell(), wizard);
       dialog.create();
       dialog.open();
     }
