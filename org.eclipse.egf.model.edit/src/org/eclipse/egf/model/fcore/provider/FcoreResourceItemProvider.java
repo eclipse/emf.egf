@@ -266,16 +266,13 @@ public class FcoreResourceItemProvider extends ResourceItemProvider {
     switch (notification.getFeatureID(Resource.class)) {
     case Resource.RESOURCE__URI:
       // case Resource.RESOURCE__IS_MODIFIED:
-      // case Resource.RESOURCE__IS_LOADED:
       // case Resource.RESOURCE__IS_TRACKING_MODIFICATION:
       // case Resource.RESOURCE__RESOURCE_SET:
     {
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
       return;
     }
-      // When an object is controlled, the only change will be in the new resource's contents, so it must
-      // refresh the whole viewer to hit the object's label.
-      //
+    case Resource.RESOURCE__IS_LOADED:
     case Resource.RESOURCE__CONTENTS: {
       fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
       return;
