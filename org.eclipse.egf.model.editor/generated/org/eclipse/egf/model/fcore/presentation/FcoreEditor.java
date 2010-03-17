@@ -65,6 +65,8 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentAdapter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -73,12 +75,14 @@ import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider.ViewerRefresh;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
 import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -289,6 +293,14 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected MarkerHelper markerHelper = new EditUIMarkerHelper();
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected ViewerRefresh viewerRefresh;
+
+  /**
    * This listens for when the outline becomes active
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -489,16 +501,19 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             }
             // Try to refresh proxies
             if (innerResource != getResource()) {
-              final List<EObject> owners = ResourceHelper.getURIProxyReferenceOwners(getResource(), innerResource.getURI());
-              getSite().getShell().getDisplay().asyncExec(new Runnable() {
-                public void run() {
-                  for (EObject eObject : owners) {
-                    if (selectionViewer.getControl().isDisposed() == false && selectionViewer.isBusy() == false) {
-                      selectionViewer.refresh(eObject, true);
-                    }
+              if (selectionViewer != null && selectionViewer.getControl() != null && selectionViewer.getControl().isDisposed() == false && selectionViewer.isBusy() == false) {
+                final List<EObject> owners = ResourceHelper.getURIProxyReferenceOwners(getResource(), innerResource.getURI());
+                if (owners != null && owners.isEmpty() == false) {
+                  if (viewerRefresh == null) {
+                    viewerRefresh = new ViewerRefresh(selectionViewer);
                   }
+                  for (EObject eObject : owners) {
+                    Notification ownerNotification = new ENotificationImpl((InternalEObject) eObject, Notification.RESOLVE, null, eObject, eObject);
+                    viewerRefresh.addNotification(new ViewerNotification(ownerNotification, ownerNotification.getNotifier(), true, true));
+                  }
+                  selectionViewer.getControl().getDisplay().asyncExec(viewerRefresh);
                 }
-              });
+              }
             }
             // Display any trouble
             if (updateProblemIndication) {
@@ -1780,6 +1795,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     getOperationHistory().removeOperationHistoryListener(historyListener);
     getOperationHistory().dispose(getUndoContext(), true, true, true);
 
+    // Remove observer
+    EGFResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
+
     // Remove our adapters
     editingDomain.getResourceSet().eAdapters().remove(editorResourceAdapter);
     for (EContentAdapter adapter : egfAdapters) {
@@ -1800,9 +1818,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     if (contentOutlinePage != null) {
       contentOutlinePage.dispose();
     }
-
-    // Remove observer
-    EGFResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
 
     super.dispose();
 
