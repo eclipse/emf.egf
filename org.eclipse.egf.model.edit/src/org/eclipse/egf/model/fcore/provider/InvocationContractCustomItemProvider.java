@@ -13,6 +13,7 @@ package org.eclipse.egf.model.fcore.provider;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 
 /**
@@ -33,7 +34,7 @@ public class InvocationContractCustomItemProvider extends InvocationContractItem
     InvocationContract invocationContract = (InvocationContract) object;
     String invocation = null;
     if (invocationContract.getInvocation() != null) {
-      IItemLabelProvider provider = (IItemLabelProvider) adapterFactory.adapt(invocationContract.getInvocation(), IItemLabelProvider.class);
+      IItemLabelProvider provider = (IItemLabelProvider) (((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory()).adapt(invocationContract.getInvocation(), IItemLabelProvider.class);
       if (provider == null) {
         invocation = EMFHelper.getText(invocationContract.getInvocation());
       } else {

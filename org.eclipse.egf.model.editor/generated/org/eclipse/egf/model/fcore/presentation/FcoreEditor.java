@@ -49,7 +49,9 @@ import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
 import org.eclipse.egf.model.editor.adapter.TaskBundleAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
+import org.eclipse.egf.model.fcore.provider.FcoreCustomItemProviderAdapterFactory;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
+import org.eclipse.egf.model.fprod.provider.FprodCustomItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
 import org.eclipse.egf.model.ftask.provider.FtaskItemProviderAdapterFactory;
 import org.eclipse.egf.model.pattern.provider.PatternItemProviderAdapterFactory;
@@ -179,6 +181,15 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * @generated
    */
   protected ComposedAdapterFactory adapterFactory;
+
+  /**
+   * This is the one adapter factory used for properties.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected ComposedAdapterFactory propertyAdapterFactory;
 
   /**
    * This is the content outline page.
@@ -812,7 +823,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected void initializeEditingDomain() {
     // Create an adapter factory that yields item providers.
     adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
     adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new FtaskItemProviderAdapterFactory());
@@ -821,6 +831,16 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new PatternItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+    // Create an adapter factory that yields item providers for properties.
+    propertyAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+    propertyAdapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new FprodCustomItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new FtaskItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new FcoreCustomItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new PatternItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
     // Get the registered TransactionalEditingDomain
     editingDomain = (AdapterFactoryEditingDomain) TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
     // Create an UndoContext
@@ -1346,7 +1366,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           propertySheetPage = null;
         }
       };
-      propertySheetPage.setPropertySourceProvider(new FcoreContentProvider(getEditingDomain(), adapterFactory));
+      propertySheetPage.setPropertySourceProvider(new FcoreContentProvider(getEditingDomain(), propertyAdapterFactory));
     }
 
     return propertySheetPage;
