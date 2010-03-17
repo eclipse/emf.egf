@@ -15,11 +15,15 @@ package org.eclipse.egf.model.ftask.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.common.helper.StringHelper;
 import org.eclipse.egf.model.fcore.provider.ActivityItemProvider;
 import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.egf.model.ftask.Task;
+import org.eclipse.egf.model.ftask.task.TaskHook;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.edit.command.CreateChildCommand;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -39,6 +43,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.ftask.Task} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TaskItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
@@ -47,6 +52,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TaskItemProvider(AdapterFactory adapterFactory) {
@@ -57,6 +63,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -75,18 +82,29 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This adds a property descriptor for the Kind feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   protected void addKindPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_kind_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Task_kind_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_Task_kind_feature", "_UI_Task_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        FtaskPackage.Literals.TASK__KIND, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+        FtaskPackage.Literals.TASK__KIND, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null) {
+      @Override
+      public Collection<String> getChoiceOfValues(Object innerObject) {
+        Collection<String> result = TaskHook.HELPER.getKinds();
+        if (result.contains(null) == false) {
+          result.add(null);
+        }
+        return result;
+      }
+    });
   }
 
   /**
    * This adds a property descriptor for the Implementation feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addImplementationPropertyDescriptor(Object object) {
@@ -99,6 +117,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This adds a property descriptor for the Super Task feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected void addSuperTaskPropertyDescriptor(Object object) {
@@ -111,13 +130,19 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This returns the label text for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   @Override
   public String getText(Object object) {
-    String label = ((Task) object).getName();
-    return label == null || label.length() == 0 ? "[" + getString("_UI_Task_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        label + " [" + getString("_UI_Task_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    Task task = (Task) object;
+    String label = task.getName();
+    String type = "[" + getString("_UI_Task_type"); //$NON-NLS-1$ //$NON-NLS-2$
+    if (task.getKind() != null && task.getKind().trim().length() > 0) {
+      type = type + " " + StringHelper.toUpperFirst(task.getKind()); //$NON-NLS-1$
+    }
+    type = type + "]"; //$NON-NLS-1$
+    return label == null || label.length() == 0 ? type : label + " " + type; //$NON-NLS-1$
   }
 
   /**
@@ -125,6 +150,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -145,6 +171,7 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -156,11 +183,34 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This returns Task.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
   public Object getImage(Object object) {
     return overlayImage(object, getResourceLocator().getImage("full/obj16/Task")); //$NON-NLS-1$
+  }
+
+  /**
+   * This returns the label for {@link CreateChildCommand}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  public String getCreateChildText(Object owner, Object feature, Object child, Collection<?> selection) {
+    if (owner instanceof Resource) {
+      Task task = (Task) child;
+      String label = task.getName();
+      String type = getString("_UI_Task_type"); //$NON-NLS-1$
+      if (task.getKind() != null && task.getKind().trim().length() > 0) {
+        type = type + " " + StringHelper.toUpperFirst(task.getKind()); //$NON-NLS-1$
+      }
+      return label == null || label.length() == 0 ? type : label + " " + type; //$NON-NLS-1$    }
+    }
+    return super.getCreateChildText(owner, feature, child, selection);
+
   }
 
 }
