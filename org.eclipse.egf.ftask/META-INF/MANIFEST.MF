@@ -2,11 +2,14 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.ftask;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.2.2.qualifier
 Bundle-Activator: org.eclipse.egf.ftask.Activator
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.egf.model.ftask;visibility:=reexport
-Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %providerName
-Export-Package: org.eclipse.egf.ftask.invoker
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.eclipse.egf.model.ftask;visibility:=reexport
+Export-Package: 
+ org.eclipse.egf.ftask.invoker
+Bundle-ActivationPolicy: lazy 
