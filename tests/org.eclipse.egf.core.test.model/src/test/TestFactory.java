@@ -71,6 +71,15 @@ public interface TestFactory extends EFactory {
     EGFTestCase createEGFTestCase();
 
 /**
+     * Returns a new object of class '<em>File Output Test Result</em>'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return a new object of class '<em>File Output Test Result</em>'.
+     * @generated
+     */
+	FileOutputTestResult createFileOutputTestResult();
+
+/**
      * Returns the package supported by this factory.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

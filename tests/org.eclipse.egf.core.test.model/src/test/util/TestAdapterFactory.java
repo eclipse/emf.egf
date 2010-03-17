@@ -110,6 +110,14 @@ public class TestAdapterFactory extends AdapterFactoryImpl {
                 return createEGFTestCaseAdapter();
             }
             @Override
+            public Adapter caseFileOutputTestResult(FileOutputTestResult object) {
+                return createFileOutputTestResultAdapter();
+            }
+            @Override
+            public Adapter caseOutputTestResult(OutputTestResult object) {
+                return createOutputTestResultAdapter();
+            }
+            @Override
             public Adapter defaultCase(EObject object) {
                 return createEObjectAdapter();
             }
@@ -238,6 +246,34 @@ public class TestAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createEGFTestCaseAdapter() {
+        return null;
+    }
+
+/**
+     * Creates a new adapter for an object of class '{@link test.FileOutputTestResult <em>File Output Test Result</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see test.FileOutputTestResult
+     * @generated
+     */
+	public Adapter createFileOutputTestResultAdapter() {
+        return null;
+    }
+
+/**
+     * Creates a new adapter for an object of class '{@link test.OutputTestResult <em>Output Test Result</em>}'.
+     * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see test.OutputTestResult
+     * @generated
+     */
+	public Adapter createOutputTestResultAdapter() {
         return null;
     }
 

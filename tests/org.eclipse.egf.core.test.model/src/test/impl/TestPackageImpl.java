@@ -18,6 +18,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import test.ConsoleOutputTestResult;
 import test.EGFTestCase;
 import test.ExceptionTestResult;
+import test.FileOutputTestResult;
+import test.OutputTestResult;
 import test.Test;
 import test.TestCase;
 import test.TestFactory;
@@ -89,6 +91,20 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
      * @generated
      */
     private EClass egfTestCaseEClass = null;
+
+/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	private EClass fileOutputTestResultEClass = null;
+
+/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	private EClass outputTestResultEClass = null;
 
 /**
      * <!-- begin-user-doc -->
@@ -280,15 +296,6 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
 
   /**
      * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @generated
-     */
-  public EAttribute getConsoleOutputTestResult_Text() {
-        return (EAttribute)consoleOutputTestResultEClass.getEStructuralFeatures().get(0);
-    }
-
-  /**
-     * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
@@ -303,6 +310,42 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
      */
     public EReference getEGFTestCase_Activity() {
         return (EReference)egfTestCaseEClass.getEStructuralFeatures().get(0);
+    }
+
+/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EClass getFileOutputTestResult() {
+        return fileOutputTestResultEClass;
+    }
+
+/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getFileOutputTestResult_IFilePath() {
+        return (EAttribute)fileOutputTestResultEClass.getEStructuralFeatures().get(0);
+    }
+
+/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EClass getOutputTestResult() {
+        return outputTestResultEClass;
+    }
+
+/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public EAttribute getOutputTestResult_Text() {
+        return (EAttribute)outputTestResultEClass.getEStructuralFeatures().get(0);
     }
 
 /**
@@ -361,10 +404,15 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
         createEAttribute(validationErrorTestResultEClass, VALIDATION_ERROR_TEST_RESULT__SEVERITY);
 
         consoleOutputTestResultEClass = createEClass(CONSOLE_OUTPUT_TEST_RESULT);
-        createEAttribute(consoleOutputTestResultEClass, CONSOLE_OUTPUT_TEST_RESULT__TEXT);
 
         egfTestCaseEClass = createEClass(EGF_TEST_CASE);
         createEReference(egfTestCaseEClass, EGF_TEST_CASE__ACTIVITY);
+
+        fileOutputTestResultEClass = createEClass(FILE_OUTPUT_TEST_RESULT);
+        createEAttribute(fileOutputTestResultEClass, FILE_OUTPUT_TEST_RESULT__IFILE_PATH);
+
+        outputTestResultEClass = createEClass(OUTPUT_TEST_RESULT);
+        createEAttribute(outputTestResultEClass, OUTPUT_TEST_RESULT__TEXT);
 
         // Create enums
         validationErrorSeverityEEnum = createEEnum(VALIDATION_ERROR_SEVERITY);
@@ -405,8 +453,10 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
         testCaseEClass.getESuperTypes().add(this.getTest());
         exceptionTestResultEClass.getESuperTypes().add(this.getTestResult());
         validationErrorTestResultEClass.getESuperTypes().add(this.getTestResult());
-        consoleOutputTestResultEClass.getESuperTypes().add(this.getTestResult());
+        consoleOutputTestResultEClass.getESuperTypes().add(this.getOutputTestResult());
         egfTestCaseEClass.getESuperTypes().add(this.getTestCase());
+        fileOutputTestResultEClass.getESuperTypes().add(this.getOutputTestResult());
+        outputTestResultEClass.getESuperTypes().add(this.getTestResult());
 
         // Initialize classes and features; add operations and parameters
         initEClass(testEClass, Test.class, "Test", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -431,10 +481,15 @@ public class TestPackageImpl extends EPackageImpl implements TestPackage {
         initEAttribute(getValidationErrorTestResult_Severity(), this.getValidationErrorSeverity(), "severity", null, 1, 1, ValidationErrorTestResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(consoleOutputTestResultEClass, ConsoleOutputTestResult.class, "ConsoleOutputTestResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-        initEAttribute(getConsoleOutputTestResult_Text(), ecorePackage.getEString(), "text", null, 1, 1, ConsoleOutputTestResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         initEClass(egfTestCaseEClass, EGFTestCase.class, "EGFTestCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
         initEReference(getEGFTestCase_Activity(), theFcorePackage.getActivity(), null, "activity", null, 1, 1, EGFTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(fileOutputTestResultEClass, FileOutputTestResult.class, "FileOutputTestResult", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getFileOutputTestResult_IFilePath(), ecorePackage.getEString(), "iFilePath", null, 1, 1, FileOutputTestResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+        initEClass(outputTestResultEClass, OutputTestResult.class, "OutputTestResult", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+        initEAttribute(getOutputTestResult_Text(), ecorePackage.getEString(), "text", null, 1, 1, OutputTestResult.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
         // Initialize enums and add enum literals
         initEEnum(validationErrorSeverityEEnum, ValidationErrorSeverity.class, "ValidationErrorSeverity");

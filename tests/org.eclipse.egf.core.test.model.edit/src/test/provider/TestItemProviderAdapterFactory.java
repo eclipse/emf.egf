@@ -191,6 +191,29 @@ public class TestItemProviderAdapterFactory extends TestAdapterFactory implement
     }
 
 /**
+     * This keeps track of the one adapter used for all {@link test.FileOutputTestResult} instances.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	protected FileOutputTestResultItemProvider fileOutputTestResultItemProvider;
+
+/**
+     * This creates an adapter for a {@link test.FileOutputTestResult}.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	@Override
+	public Adapter createFileOutputTestResultAdapter() {
+        if (fileOutputTestResultItemProvider == null) {
+            fileOutputTestResultItemProvider = new FileOutputTestResultItemProvider(this);
+        }
+
+        return fileOutputTestResultItemProvider;
+    }
+
+/**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -294,6 +317,7 @@ public class TestItemProviderAdapterFactory extends TestAdapterFactory implement
         if (validationErrorTestResultItemProvider != null) validationErrorTestResultItemProvider.dispose();
         if (consoleOutputTestResultItemProvider != null) consoleOutputTestResultItemProvider.dispose();
         if (egfTestCaseItemProvider != null) egfTestCaseItemProvider.dispose();
+        if (fileOutputTestResultItemProvider != null) fileOutputTestResultItemProvider.dispose();
     }
 
 }

@@ -32,11 +32,16 @@
     <eLiterals name="WARNING" value="2" literal="WARNING"/>
     <eLiterals name="ERROR" value="4"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ConsoleOutputTestResult" eSuperTypes="#//TestResult">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConsoleOutputTestResult" eSuperTypes="#//OutputTestResult"/>
   <eClassifiers xsi:type="ecore:EClass" name="EGFTestCase" eSuperTypes="#//TestCase">
     <eStructuralFeatures xsi:type="ecore:EReference" name="activity" lowerBound="1"
         eType="ecore:EClass ../../org.eclipse.egf.model/model/Fcore.ecore#//Activity"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FileOutputTestResult" eSuperTypes="#//OutputTestResult">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="iFilePath" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputTestResult" abstract="true" eSuperTypes="#//TestResult">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="text" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

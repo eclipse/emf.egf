@@ -72,6 +72,7 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
             case TestPackage.VALIDATION_ERROR_TEST_RESULT: return createValidationErrorTestResult();
             case TestPackage.CONSOLE_OUTPUT_TEST_RESULT: return createConsoleOutputTestResult();
             case TestPackage.EGF_TEST_CASE: return createEGFTestCase();
+            case TestPackage.FILE_OUTPUT_TEST_RESULT: return createFileOutputTestResult();
             default:
                 throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
         }
@@ -155,6 +156,16 @@ public class TestFactoryImpl extends EFactoryImpl implements TestFactory {
     public EGFTestCase createEGFTestCase() {
         EGFTestCaseImpl egfTestCase = new EGFTestCaseImpl();
         return egfTestCase;
+    }
+
+/**
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     */
+	public FileOutputTestResult createFileOutputTestResult() {
+        FileOutputTestResultImpl fileOutputTestResult = new FileOutputTestResultImpl();
+        return fileOutputTestResult;
     }
 
 /**

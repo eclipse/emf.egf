@@ -195,6 +195,11 @@ public class TestCaseItemProvider
             (createChildParameter
                 (TestPackage.Literals.TEST_CASE__RESULT,
                  TestFactory.eINSTANCE.createConsoleOutputTestResult()));
+
+        newChildDescriptors.add
+            (createChildParameter
+                (TestPackage.Literals.TEST_CASE__RESULT,
+                 TestFactory.eINSTANCE.createFileOutputTestResult()));
     }
 
   /**

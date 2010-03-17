@@ -248,6 +248,34 @@ public interface TestPackage extends EPackage {
   int VALIDATION_ERROR_TEST_RESULT_FEATURE_COUNT = TEST_RESULT_FEATURE_COUNT + 1;
 
   /**
+     * The meta object id for the '{@link test.impl.OutputTestResultImpl <em>Output Test Result</em>}' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see test.impl.OutputTestResultImpl
+     * @see test.impl.TestPackageImpl#getOutputTestResult()
+     * @generated
+     */
+	int OUTPUT_TEST_RESULT = 9;
+
+		/**
+     * The feature id for the '<em><b>Text</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int OUTPUT_TEST_RESULT__TEXT = TEST_RESULT_FEATURE_COUNT + 0;
+
+		/**
+     * The number of structural features of the '<em>Output Test Result</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int OUTPUT_TEST_RESULT_FEATURE_COUNT = TEST_RESULT_FEATURE_COUNT + 1;
+
+		/**
      * The meta object id for the '{@link test.impl.ConsoleOutputTestResultImpl <em>Console Output Test Result</em>}' class.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -264,7 +292,7 @@ public interface TestPackage extends EPackage {
      * @generated
      * @ordered
      */
-  int CONSOLE_OUTPUT_TEST_RESULT__TEXT = TEST_RESULT_FEATURE_COUNT + 0;
+  int CONSOLE_OUTPUT_TEST_RESULT__TEXT = OUTPUT_TEST_RESULT__TEXT;
 
   /**
      * The number of structural features of the '<em>Console Output Test Result</em>' class.
@@ -273,7 +301,7 @@ public interface TestPackage extends EPackage {
      * @generated
      * @ordered
      */
-  int CONSOLE_OUTPUT_TEST_RESULT_FEATURE_COUNT = TEST_RESULT_FEATURE_COUNT + 1;
+  int CONSOLE_OUTPUT_TEST_RESULT_FEATURE_COUNT = OUTPUT_TEST_RESULT_FEATURE_COUNT + 0;
 
   /**
      * The meta object id for the '{@link test.impl.EGFTestCaseImpl <em>EGF Test Case</em>}' class.
@@ -322,6 +350,43 @@ public interface TestPackage extends EPackage {
     int EGF_TEST_CASE_FEATURE_COUNT = TEST_CASE_FEATURE_COUNT + 1;
 
 /**
+     * The meta object id for the '{@link test.impl.FileOutputTestResultImpl <em>File Output Test Result</em>}' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @see test.impl.FileOutputTestResultImpl
+     * @see test.impl.TestPackageImpl#getFileOutputTestResult()
+     * @generated
+     */
+	int FILE_OUTPUT_TEST_RESULT = 8;
+
+/**
+     * The feature id for the '<em><b>Text</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int FILE_OUTPUT_TEST_RESULT__TEXT = OUTPUT_TEST_RESULT__TEXT;
+
+/**
+     * The feature id for the '<em><b>IFile Path</b></em>' attribute.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int FILE_OUTPUT_TEST_RESULT__IFILE_PATH = OUTPUT_TEST_RESULT_FEATURE_COUNT + 0;
+
+/**
+     * The number of structural features of the '<em>File Output Test Result</em>' class.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+	int FILE_OUTPUT_TEST_RESULT_FEATURE_COUNT = OUTPUT_TEST_RESULT_FEATURE_COUNT + 1;
+
+/**
      * The meta object id for the '{@link test.ValidationErrorSeverity <em>Validation Error Severity</em>}' enum.
      * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -329,7 +394,7 @@ public interface TestPackage extends EPackage {
      * @see test.impl.TestPackageImpl#getValidationErrorSeverity()
      * @generated
      */
-  int VALIDATION_ERROR_SEVERITY = 8;
+  int VALIDATION_ERROR_SEVERITY = 10;
 
 
   /**
@@ -469,17 +534,6 @@ public interface TestPackage extends EPackage {
   EClass getConsoleOutputTestResult();
 
   /**
-     * Returns the meta object for the attribute '{@link test.ConsoleOutputTestResult#getText <em>Text</em>}'.
-     * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-     * @return the meta object for the attribute '<em>Text</em>'.
-     * @see test.ConsoleOutputTestResult#getText()
-     * @see #getConsoleOutputTestResult()
-     * @generated
-     */
-  EAttribute getConsoleOutputTestResult_Text();
-
-  /**
      * Returns the meta object for class '{@link test.EGFTestCase <em>EGF Test Case</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -499,6 +553,48 @@ public interface TestPackage extends EPackage {
      * @generated
      */
     EReference getEGFTestCase_Activity();
+
+/**
+     * Returns the meta object for class '{@link test.FileOutputTestResult <em>File Output Test Result</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for class '<em>File Output Test Result</em>'.
+     * @see test.FileOutputTestResult
+     * @generated
+     */
+	EClass getFileOutputTestResult();
+
+/**
+     * Returns the meta object for the attribute '{@link test.FileOutputTestResult#getIFilePath <em>IFile Path</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>IFile Path</em>'.
+     * @see test.FileOutputTestResult#getIFilePath()
+     * @see #getFileOutputTestResult()
+     * @generated
+     */
+	EAttribute getFileOutputTestResult_IFilePath();
+
+/**
+     * Returns the meta object for class '{@link test.OutputTestResult <em>Output Test Result</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Output Test Result</em>'.
+     * @see test.OutputTestResult
+     * @generated
+     */
+	EClass getOutputTestResult();
+
+/**
+     * Returns the meta object for the attribute '{@link test.OutputTestResult#getText <em>Text</em>}'.
+     * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+     * @return the meta object for the attribute '<em>Text</em>'.
+     * @see test.OutputTestResult#getText()
+     * @see #getOutputTestResult()
+     * @generated
+     */
+	EAttribute getOutputTestResult_Text();
 
 /**
      * Returns the meta object for enum '{@link test.ValidationErrorSeverity <em>Validation Error Severity</em>}'.
@@ -651,14 +747,6 @@ public interface TestPackage extends EPackage {
     EClass CONSOLE_OUTPUT_TEST_RESULT = eINSTANCE.getConsoleOutputTestResult();
 
     /**
-         * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
-         * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-         * @generated
-         */
-    EAttribute CONSOLE_OUTPUT_TEST_RESULT__TEXT = eINSTANCE.getConsoleOutputTestResult_Text();
-
-    /**
          * The meta object literal for the '{@link test.impl.EGFTestCaseImpl <em>EGF Test Case</em>}' class.
          * <!-- begin-user-doc -->
          * <!-- end-user-doc -->
@@ -677,6 +765,42 @@ public interface TestPackage extends EPackage {
         EReference EGF_TEST_CASE__ACTIVITY = eINSTANCE.getEGFTestCase_Activity();
 
     /**
+         * The meta object literal for the '{@link test.impl.FileOutputTestResultImpl <em>File Output Test Result</em>}' class.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @see test.impl.FileOutputTestResultImpl
+         * @see test.impl.TestPackageImpl#getFileOutputTestResult()
+         * @generated
+         */
+		EClass FILE_OUTPUT_TEST_RESULT = eINSTANCE.getFileOutputTestResult();
+
+				/**
+         * The meta object literal for the '<em><b>IFile Path</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute FILE_OUTPUT_TEST_RESULT__IFILE_PATH = eINSTANCE.getFileOutputTestResult_IFilePath();
+
+				/**
+         * The meta object literal for the '{@link test.impl.OutputTestResultImpl <em>Output Test Result</em>}' class.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @see test.impl.OutputTestResultImpl
+         * @see test.impl.TestPackageImpl#getOutputTestResult()
+         * @generated
+         */
+		EClass OUTPUT_TEST_RESULT = eINSTANCE.getOutputTestResult();
+
+				/**
+         * The meta object literal for the '<em><b>Text</b></em>' attribute feature.
+         * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+         * @generated
+         */
+		EAttribute OUTPUT_TEST_RESULT__TEXT = eINSTANCE.getOutputTestResult_Text();
+
+				/**
          * The meta object literal for the '{@link test.ValidationErrorSeverity <em>Validation Error Severity</em>}' enum.
          * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

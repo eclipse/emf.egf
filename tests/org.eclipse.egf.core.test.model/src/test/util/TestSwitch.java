@@ -138,6 +138,7 @@ public class TestSwitch<T> {
             case TestPackage.CONSOLE_OUTPUT_TEST_RESULT: {
                 ConsoleOutputTestResult consoleOutputTestResult = (ConsoleOutputTestResult)theEObject;
                 T result = caseConsoleOutputTestResult(consoleOutputTestResult);
+                if (result == null) result = caseOutputTestResult(consoleOutputTestResult);
                 if (result == null) result = caseTestResult(consoleOutputTestResult);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
@@ -147,6 +148,21 @@ public class TestSwitch<T> {
                 T result = caseEGFTestCase(egfTestCase);
                 if (result == null) result = caseTestCase(egfTestCase);
                 if (result == null) result = caseTest(egfTestCase);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case TestPackage.FILE_OUTPUT_TEST_RESULT: {
+                FileOutputTestResult fileOutputTestResult = (FileOutputTestResult)theEObject;
+                T result = caseFileOutputTestResult(fileOutputTestResult);
+                if (result == null) result = caseOutputTestResult(fileOutputTestResult);
+                if (result == null) result = caseTestResult(fileOutputTestResult);
+                if (result == null) result = defaultCase(theEObject);
+                return result;
+            }
+            case TestPackage.OUTPUT_TEST_RESULT: {
+                OutputTestResult outputTestResult = (OutputTestResult)theEObject;
+                T result = caseOutputTestResult(outputTestResult);
+                if (result == null) result = caseTestResult(outputTestResult);
                 if (result == null) result = defaultCase(theEObject);
                 return result;
             }
@@ -271,6 +287,36 @@ public class TestSwitch<T> {
      * @generated
      */
     public T caseEGFTestCase(EGFTestCase object) {
+        return null;
+    }
+
+/**
+     * Returns the result of interpreting the object as an instance of '<em>File Output Test Result</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>File Output Test Result</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseFileOutputTestResult(FileOutputTestResult object) {
+        return null;
+    }
+
+/**
+     * Returns the result of interpreting the object as an instance of '<em>Output Test Result</em>'.
+     * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Output Test Result</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+	public T caseOutputTestResult(OutputTestResult object) {
         return null;
     }
 

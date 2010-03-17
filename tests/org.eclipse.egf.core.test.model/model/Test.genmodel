@@ -28,11 +28,15 @@
     <genClasses ecoreClass="Test.ecore#//ValidationErrorTestResult">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test.ecore#//ValidationErrorTestResult/severity"/>
     </genClasses>
-    <genClasses ecoreClass="Test.ecore#//ConsoleOutputTestResult">
-      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute Test.ecore#//ConsoleOutputTestResult/text"/>
-    </genClasses>
+    <genClasses ecoreClass="Test.ecore#//ConsoleOutputTestResult"/>
     <genClasses ecoreClass="Test.ecore#//EGFTestCase">
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference Test.ecore#//EGFTestCase/activity"/>
+    </genClasses>
+    <genClasses ecoreClass="Test.ecore#//FileOutputTestResult">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test.ecore#//FileOutputTestResult/iFilePath"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Test.ecore#//OutputTestResult">
+      <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute Test.ecore#//OutputTestResult/text"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
