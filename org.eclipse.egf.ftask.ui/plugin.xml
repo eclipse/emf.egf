@@ -15,13 +15,26 @@
  -->
 
 <plugin>
-  <extension point="org.eclipse.egf.core.ui.editor.menu.contributor">
-        <contribution class="org.eclipse.egf.ftask.ui.contributions.TaskMenuContributor"/>
-   </extension>
+
+  <!-- ================================================================================= -->
+  <!-- Menu Contributor                                                                  -->
+  <!-- ================================================================================= -->  
+
+  <extension 
+    point="org.eclipse.egf.core.ui.editor.menu.contributor"
+  >
+    <contribution 
+      class="org.eclipse.egf.ftask.ui.contributions.TaskMenuContributor"
+    />
+  </extension>
    
-   <extension point="org.eclipse.egf.core.ui.editor.property.contributor">
-     	<contribution class="org.eclipse.egf.ftask.ui.contributions.JavaTaskEditorContributor"/>
-   </extension>  
+  <extension 
+    point="org.eclipse.egf.core.ui.editor.property.contributor"
+  >
+    <contribution 
+      class="org.eclipse.egf.ftask.ui.contributions.JavaTaskEditorContributor"
+    />
+  </extension>  
    
 </plugin>
   
