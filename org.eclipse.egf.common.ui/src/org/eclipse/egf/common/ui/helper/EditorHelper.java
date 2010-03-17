@@ -26,6 +26,8 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.ui.IEditorDescriptor;
@@ -103,11 +105,21 @@ public class EditorHelper {
     if (resource == null) {
       return null;
     }
-    URI uri = resource.getURI();
-    if (uri == null) {
-      return null;
+    // Try to use a URIConverter to normalize such URI
+    // if we have a platform:/plugin/ we need a platform:/resource/ if any
+    // to have a chance to use a FileEditorInput rather than an URIEditorInput
+    URI uri = EcoreUtil.getURI(eObject);
+    if (uri != null && resource.getResourceSet() != null) {
+      URIConverter converter = resource.getResourceSet().getURIConverter();
+      if (converter != null) {
+        uri = converter.normalize(uri);
+      }
     }
-    return openEditor(uri);
+    IEditorPart part = openEditor(uri);
+    if (part != null && part instanceof IEditingDomainProvider) {
+      EditorHelper.setSelectionToViewer(part, uri);
+    }
+    return part;
   }
 
   public static String computeEditorId(String fileName) {
@@ -135,10 +147,10 @@ public class EditorHelper {
     IEditorInput editorInput = null;
     if (uri.isPlatformResource()) {
       String path = uri.toPlatformString(true);
-      IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
-      if (workspaceResource instanceof IFile) {
-        editorInput = EclipseUtil.createFileEditorInput((IFile) workspaceResource);
-        return openEditor(editorInput, uri);
+      IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
+      if (resource instanceof IFile) {
+        editorInput = EclipseUtil.createFileEditorInput((IFile) resource);
+        return openEditor(editorInput, URI.createPlatformPluginURI(resource.getFullPath().toString(), true));
       }
     }
     return openEditor(new URIEditorInput(uri.trimFragment()), uri);
@@ -177,8 +189,8 @@ public class EditorHelper {
             try {
               IEditorInput editorInput = editorReference.getEditorInput();
               if (editorInput != null) {
-                URI innerURI = EditorHelper.getURI(editorInput);
-                if (innerURI != null && innerURI.equals(uriToCheck)) {
+                URI editorInputURI = EditorHelper.getURI(editorInput);
+                if (editorInputURI != null && editorInputURI.equals(uriToCheck)) {
                   IEditorPart part = editorReference.getEditor(true);
                   if (activate) {
                     workbenchPage.activate(part);
@@ -256,9 +268,9 @@ public class EditorHelper {
 
     public static URI getURI(IEditorInput editorInput) {
       if (FILE_CLASS != null) {
-        IFile file = (IFile) editorInput.getAdapter(FILE_CLASS);
+        IFile file = getIFile(editorInput);
         if (file != null) {
-          return URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+          return URI.createPlatformPluginURI(file.getFullPath().toString(), true);
         }
       }
       if (FILE_REVISION_CLASS != null) {
@@ -276,7 +288,6 @@ public class EditorHelper {
           return URI.createURI(((IURIEditorInput) editorInput).getURI().toString()).trimFragment();
         }
       }
-
       return null;
     }
 
