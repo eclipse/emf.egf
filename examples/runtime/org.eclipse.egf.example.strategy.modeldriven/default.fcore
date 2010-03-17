@@ -3,7 +3,7 @@
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_Sq3-AOWYEd6IuMdAhwYvKg"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_Sq3-AOWYEd6IuMdAhwYvKg"
     name="Model driven strategy example">
   <viewpointContainer xmi:id="_TtBXgOWYEd6IuMdAhwYvKg">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_UP7QQOWYEd6IuMdAhwYvKg">
@@ -62,8 +62,9 @@
         <invocationContracts xmi:id="_j1FsIAHEEd-Y9ZZNa95dIg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg">
           <type xmi:type="domain:TypeDomainURI" xmi:id="_mwKWIAHEEd-Y9ZZNa95dIg" domain="#_YptT8OWYEd6IuMdAhwYvKg"/>
         </invocationContracts>
-        <invocationContracts xmi:id="_n257wAHEEd-Y9ZZNa95dIg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_-GBrkP6eEd64XYPo3s6saPg">
-          <type xmi:type="types:TypeString" xmi:id="_o9nFIAHEEd-Y9ZZNa95dIg" value="_dHixMOWYEd6IuMdAhwYvKg"/>
+        <invocationContracts xmi:id="_n257wAHEEd-Y9ZZNa95dIg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
+          <type xmi:type="pattern:TypePatternList" xmi:id="_WVH1sCHyEd-V4KH4GeEy-w"
+              elements="#_dHixMOWYEd6IuMdAhwYvKg"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>
