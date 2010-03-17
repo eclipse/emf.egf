@@ -163,7 +163,7 @@ public abstract class FilteredItemsSelectionWizardPage extends WizardPage {
 
   private Text pattern;
 
-  private TableViewer list;
+  protected TableViewer list;
 
   private DetailsContentViewer details;
 
