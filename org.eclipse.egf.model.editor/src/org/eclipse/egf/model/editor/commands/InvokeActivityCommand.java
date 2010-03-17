@@ -10,7 +10,7 @@
  * Thales Corporate Services S.A.S - initial API and implementation
  * 
  */
-package org.eclipse.egf.model.editor.wizards;
+package org.eclipse.egf.model.editor.commands;
 
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
@@ -49,11 +49,6 @@ public final class InvokeActivityCommand extends CompoundCommand {
   private ProductionPlan _productionPlan;
 
   /**
-   * Current index
-   */
-  private int _index = -1;
-
-  /**
    * The new Activity
    */
   private Activity _activity;
@@ -82,41 +77,6 @@ public final class InvokeActivityCommand extends CompoundCommand {
     super(label, description);
     _editingDomain = editingDomain;
     _productionPlan = productionPlan;
-    if (_productionPlan.getInvocations() != null && _productionPlan.getInvocations().size() > 0) {
-      _index = 0;
-    }
-    _activity = activity;
-  }
-
-  /**
-   * Constructor.
-   * 
-   * @param editingDomain
-   * @param invocation
-   * @param activity
-   */
-  public InvokeActivityCommand(EditingDomain editingDomain, ProductionPlanInvocation invocation, Activity activity) {
-    this(LABEL, DESCRIPTION, editingDomain, invocation, activity);
-  }
-
-  /**
-   * Constructor.
-   * 
-   * @param label
-   * @param description
-   * @param editingDomain
-   * @param invocation
-   * @param activity
-   */
-  public InvokeActivityCommand(String label, String description, EditingDomain editingDomain, ProductionPlanInvocation invocation, Activity activity) {
-    super(label, description);
-    _editingDomain = editingDomain;
-    if (invocation != null) {
-      _productionPlan = invocation.getProductionPlan();
-      if (_productionPlan.getInvocations() != null) {
-        _index = _productionPlan.getInvocations().indexOf(invocation) + 1;
-      }
-    }
     _activity = activity;
   }
 
@@ -141,11 +101,7 @@ public final class InvokeActivityCommand extends CompoundCommand {
       }
     }
     // Finally add invocation in productionPlan
-    if (_index == -1 || _index > _productionPlan.getInvocations().size()) {
-      append(new AddCommand(_editingDomain, _productionPlan, FprodPackage.Literals.PRODUCTION_PLAN__INVOCATIONS, invocation));
-    } else {
-      append(new AddCommand(_editingDomain, _productionPlan, FprodPackage.Literals.PRODUCTION_PLAN__INVOCATIONS, invocation, _index));
-    }
+    append(new AddCommand(_editingDomain, _productionPlan, FprodPackage.Literals.PRODUCTION_PLAN__INVOCATIONS, invocation));
     return super.prepare();
   }
 

@@ -21,7 +21,6 @@ import org.eclipse.egf.model.editor.dialogs.EGFWizardDialog;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.editor.wizards.InvokeActivityWizard;
 import org.eclipse.egf.model.fprod.ProductionPlan;
-import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -37,15 +36,15 @@ public class InvokeActivityMenuContributor extends MenuContributor {
 
   public static final String INVOKE_ACTIVITY_ACTION_ID = "invoke-activity"; //$NON-NLS-1$  
 
-  private final InvokeActivityAction _invokeActivityContractAction = new InvokeActivityAction();
+  private final InvokeActivityAction _invokeActivityAction = new InvokeActivityAction();
 
   @Override
   public void menuAboutToShow(IMenuManager menuManager) {
     IStructuredSelection selection2 = (IStructuredSelection) selection;
     if (selection2.size() == 1) {
-      if (selection2.getFirstElement() instanceof ProductionPlan || selection2.getFirstElement() instanceof ProductionPlanInvocation) {
-        _invokeActivityContractAction.setEnabled(_invokeActivityContractAction.isEnabled());
-        menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _invokeActivityContractAction);
+      if (selection2.getFirstElement() instanceof ProductionPlan) {
+        _invokeActivityAction.setEnabled(_invokeActivityAction.isEnabled());
+        menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _invokeActivityAction);
       }
     }
   }
@@ -59,7 +58,7 @@ public class InvokeActivityMenuContributor extends MenuContributor {
 
     @Override
     public boolean isEnabled() {
-      EObject eObject = getEObject();
+      EObject eObject = getProductionPlan();
       if (eObject == null) {
         return false;
       }
@@ -73,7 +72,7 @@ public class InvokeActivityMenuContributor extends MenuContributor {
       return true;
     }
 
-    protected EObject getEObject() {
+    protected ProductionPlan getProductionPlan() {
       if (selection == null) {
         return null;
       }
@@ -84,16 +83,14 @@ public class InvokeActivityMenuContributor extends MenuContributor {
       Object object = sselection.getFirstElement();
       if (object instanceof ProductionPlan) {
         return (ProductionPlan) object;
-      } else if (object instanceof ProductionPlanInvocation) {
-        return (ProductionPlanInvocation) object;
       }
       return null;
     }
 
     @Override
     public void run() {
-      EObject eObject = getEObject();
-      if (eObject == null) {
+      ProductionPlan productionPlan = getProductionPlan();
+      if (productionPlan == null) {
         return;
       }
       // Instantiates and initializes the wizard

@@ -11,13 +11,12 @@
 package org.eclipse.egf.model.editor.wizards;
 
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
+import org.eclipse.egf.model.editor.commands.InvokeActivityCommand;
 import org.eclipse.egf.model.editor.dialogs.EGFWizardDialog;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fprod.ProductionPlan;
-import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.common.command.Command;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -57,15 +56,13 @@ public class InvokeActivityWizard extends Wizard implements INewWizard {
 
   public boolean _isCanceled;
 
-  protected EObject getEObject() {
+  protected ProductionPlan getProductionPlan() {
     if (_selection == null || _selection.size() != 1) {
       return null;
     }
     Object object = _selection.getFirstElement();
     if (object instanceof ProductionPlan) {
       return (ProductionPlan) object;
-    } else if (object instanceof ProductionPlanInvocation) {
-      return (ProductionPlanInvocation) object;
     }
     return null;
   }
@@ -133,24 +130,16 @@ public class InvokeActivityWizard extends Wizard implements INewWizard {
     }
     Activity activity = (Activity) result[0];
     // Target
-    EObject target = getEObject();
-    if (getEObject() == null) {
+    ProductionPlan productionPlan = getProductionPlan();
+    if (productionPlan == null) {
       return true;
     }
     // Current Editing Domain
-    EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(target);
+    EditingDomain domain = AdapterFactoryEditingDomain.getEditingDomainFor(productionPlan);
     if (domain == null) {
       return false;
     }
-    final Command[] command = new Command[1];
-    if (target instanceof ProductionPlan) {
-      command[0] = new InvokeActivityCommand(domain, (ProductionPlan) target, (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true));
-    } else if (target instanceof ProductionPlanInvocation) {
-      command[0] = new InvokeActivityCommand(domain, (ProductionPlanInvocation) target, (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true));
-    }
-    if (command[0] == null) {
-      return true;
-    }
+    final Command[] command = new Command[] { new InvokeActivityCommand(domain, productionPlan, (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true)) };
     // Are we facing a TransactionalEditingDomain ?
     if (domain instanceof TransactionalEditingDomain) {
       domain.getCommandStack().execute(new RecordingCommand((TransactionalEditingDomain) domain) {
