@@ -27,38 +27,37 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
  */
 public abstract class AbstractTaskEditorContributor extends AbstractTypeEditorContributor {
 
-  private final String kind;
+    private final String kind;
 
-  protected AbstractTaskEditorContributor(String kind) {
-    super();
-    this.kind = kind;
-    if (kind == null) {
-      throw new IllegalArgumentException();
+    protected AbstractTaskEditorContributor(String kind) {
+        super();
+        this.kind = kind;
+        if (kind == null) {
+            throw new IllegalArgumentException();
+        }
     }
-  }
 
-  @Override
-  public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-    Object feature = descriptor.getFeature(object);
-    if (feature.equals(FtaskPackage.Literals.TASK__IMPLEMENTATION) && object instanceof Task) {
-      Task task = (Task) object;
-      return getKind().equals(task.getKind());
+    @Override
+    public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
+        if (checkFeature(object, descriptor, FtaskPackage.Literals.TASK__IMPLEMENTATION) && object instanceof Task) {
+            Task task = (Task) object;
+            return getKind().equals(task.getKind());
+        }
+        return false;
     }
-    return false;
-  }
 
-  @Override
-  protected String getCurrentClassname(Object object) {
-    return ((Task) object).getImplementation();
-  }
+    @Override
+    protected String getCurrentClassname(Object object) {
+        return ((Task) object).getImplementation();
+    }
 
-  @Override
-  protected Class<?> getType(Object object) {
-    return ITaskProduction.class;
-  }
+    @Override
+    protected Class<?> getType(Object object) {
+        return ITaskProduction.class;
+    }
 
-  protected String getKind() {
-    return kind;
-  }
+    protected String getKind() {
+        return kind;
+    }
 
 }

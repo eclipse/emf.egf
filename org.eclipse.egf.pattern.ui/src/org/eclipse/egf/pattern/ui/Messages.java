@@ -277,6 +277,10 @@ public class Messages extends NLS {
 
     public static String ChooseKindPage_radio_backCall;
 
+    public static String ListBuilderDialog_initialvalue_label;
+    public static String ListBuilderDialog_searchPatternValue_label;
+    public static String ListBuilderDialog_currentValue_label;
+
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.ui.PatternUIMessages";//$NON-NLS-1$
 
     static {

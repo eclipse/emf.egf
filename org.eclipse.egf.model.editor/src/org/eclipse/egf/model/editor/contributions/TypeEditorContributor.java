@@ -25,24 +25,23 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
  */
 public class TypeEditorContributor extends AbstractTypeEditorContributor {
 
-  @Override
-  public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-    Object feature = descriptor.getFeature(object);
-    if (feature.equals(TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE) && object instanceof TypeAbstractClass) {
-      TypeAbstractClass typeAbstractClass = (TypeAbstractClass) object;
-      return typeAbstractClass.getType() != null;
+    @Override
+    public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
+        if (checkFeature(object, descriptor, TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE) && object instanceof TypeAbstractClass) {
+            TypeAbstractClass typeAbstractClass = (TypeAbstractClass) object;
+            return typeAbstractClass.getType() != null;
+        }
+        return false;
     }
-    return false;
-  }
 
-  @Override
-  protected Class<Object> getType(Object object) {
-    return ((TypeAbstractClass) object).getType();
-  }
+    @Override
+    protected Class<Object> getType(Object object) {
+        return ((TypeAbstractClass) object).getType();
+    }
 
-  @Override
-  protected String getCurrentClassname(Object object) {
-    return ((TypeAbstractClass) object).getValue();
-  }
+    @Override
+    protected String getCurrentClassname(Object object) {
+        return ((TypeAbstractClass) object).getValue();
+    }
 
 }

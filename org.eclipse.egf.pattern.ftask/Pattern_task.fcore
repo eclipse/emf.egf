@@ -7,7 +7,7 @@
     kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.PatternTask" >
   <contractContainer xmi:id="_a47bsBe4Ed-DaY2uHNBaQg">
     <contracts xmi:id="_tsP7UBe5Ed-O0P2188kAmA" name="pattern.id" mandatory="true">
-      <type xmi:type="types:TypeString" xmi:id="_u5WAkBe5Ed-O0P2188kAmA"/>
+      <type xmi:type="pattern:TypePatternList" xmi:id="_u5WAkBe5Ed-O0P2188kAmA"/>
     </contracts>
     <contracts xmi:id="_4ngvABe5Ed-O0P2188kAmA" name="domain">
       <type xmi:type="domain:TypeDomainURI" xmi:id="_7GM_ABe5Ed-O0P2188kAmA"/>

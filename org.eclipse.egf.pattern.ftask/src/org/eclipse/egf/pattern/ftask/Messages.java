@@ -25,8 +25,6 @@ public class Messages extends NLS {
 
     public static String translation_job_label;
 
-    public static String Missing_pattern_error1;
-
     public static String taskInvocation_error1;
     public static String taskInvocation_error2;
     public static String taskInvocation_error3;

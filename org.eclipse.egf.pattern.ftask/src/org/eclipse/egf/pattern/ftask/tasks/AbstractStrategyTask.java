@@ -15,10 +15,7 @@
 package org.eclipse.egf.pattern.ftask.tasks;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -27,7 +24,7 @@ import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
-import org.eclipse.egf.pattern.engine.PatternIDHelper;
+import org.eclipse.egf.model.pattern.TypePatternList;
 import org.eclipse.egf.pattern.execution.ConsoleReporter;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 import org.eclipse.egf.pattern.ftask.Messages;
@@ -55,18 +52,9 @@ public abstract class AbstractStrategyTask extends AbstractPatternTask {
 
     @Override
     public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
-        // WORKAROUND how to read an array ?
-        String ids = context.getInputValue(PatternContext.PATTERN_IDS_PARAMETER, String.class);
-        Set<String> idSet = new HashSet<String>();
-        List<String> idList = PatternIDHelper.split(ids);
-        idSet.addAll(idList);
-
-        Map<String, PatternElement> patternElements = helper.getPatternElements(idSet);
-        for (String id : idList) {
-            PatternElement pe = patternElements.get(id);
-            if (pe != null)
-                patterns.add(pe);
-        }
+        TypePatternList patternList = context.getInputValue(PatternContext.PATTERN_IDS_PARAMETER, TypePatternList.class);
+        if (patternList != null)
+            patterns.addAll(patternList.getElements());
     }
 
     @Override

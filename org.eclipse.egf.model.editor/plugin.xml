@@ -77,20 +77,17 @@
       class="org.eclipse.egf.model.editor.contributions.InvokeActivityMenuContributor"
     />    
   </extension>
-  
+
   <!-- ================================================================================= -->
   <!-- Property Contributor                                                              -->
   <!-- ================================================================================= -->    
   
-	<extension 
-	 point="org.eclipse.egf.core.ui.editor.property.contributor"
-  >
-    <contribution 
-      class="org.eclipse.egf.model.editor.contributions.TypeEditorContributor"
-    />
-    <contribution 
-      class="org.eclipse.egf.model.editor.contributions.InvocationEditorContributor"
-    />
-  </extension>  
+	<extension point="org.eclipse.egf.core.ui.editor.property.contributor">
+    	<contribution class="org.eclipse.egf.model.editor.contributions.TypeEditorContributor"/>
+  	</extension>  
+  
+	<extension point="org.eclipse.egf.core.ui.editor.property.contributor">
+    	<contribution class="org.eclipse.egf.model.editor.contributions.InvocationEditorContributor"/>
+  	</extension>  
   
 </plugin>

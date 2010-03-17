@@ -120,6 +120,8 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
             return createTypePatternCallBackHandler();
         case PatternPackage.TYPE_PATTERN_DOMAIN_VISITOR:
             return createTypePatternDomainVisitor();
+        case PatternPackage.TYPE_PATTERN_LIST:
+            return createTypePatternList();
         default:
             throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier"); //$NON-NLS-1$ //$NON-NLS-2$
         }
@@ -342,6 +344,16 @@ public class PatternFactoryImpl extends EFactoryImpl implements PatternFactory {
     public TypePatternDomainVisitor createTypePatternDomainVisitor() {
         TypePatternDomainVisitorImpl typePatternDomainVisitor = new TypePatternDomainVisitorImpl();
         return typePatternDomainVisitor;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public TypePatternList createTypePatternList() {
+        TypePatternListImpl typePatternList = new TypePatternListImpl();
+        return typePatternList;
     }
 
     /**

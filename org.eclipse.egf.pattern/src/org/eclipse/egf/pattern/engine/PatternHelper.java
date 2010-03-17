@@ -82,7 +82,7 @@ public class PatternHelper {
     }
 
     public static String getFactoryConponentName(PatternElement element) {
-        PatternLibrary container = element.getContainer();
+        PatternElement container = element.getContainer() == null ? element : element.getContainer();
         while (container.getContainer() != null)
             container = container.getContainer();
         // TODO: update the model so that the library knows about its viewpoint

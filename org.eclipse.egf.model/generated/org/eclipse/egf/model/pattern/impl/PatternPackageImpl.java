@@ -41,6 +41,7 @@ import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.model.pattern.TypePatternCallBackHandler;
 import org.eclipse.egf.model.pattern.TypePatternDomainVisitor;
 import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
+import org.eclipse.egf.model.pattern.TypePatternList;
 import org.eclipse.egf.model.pattern.util.PatternValidator;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EAttribute;
@@ -216,6 +217,13 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * @generated
      */
     private EClass typePatternDomainVisitorEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass typePatternListEClass = null;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -766,6 +774,24 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getTypePatternList() {
+        return typePatternListEClass;
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EReference getTypePatternList_Elements() {
+        return (EReference) typePatternListEClass.getEStructuralFeatures().get(0);
+    }
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
@@ -898,6 +924,9 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
 
         typePatternDomainVisitorEClass = createEClass(TYPE_PATTERN_DOMAIN_VISITOR);
 
+        typePatternListEClass = createEClass(TYPE_PATTERN_LIST);
+        createEReference(typePatternListEClass, TYPE_PATTERN_LIST__ELEMENTS);
+
         // Create data types
         patternContextEDataType = createEDataType(PATTERN_CONTEXT);
         patternExceptionEDataType = createEDataType(PATTERN_EXCEPTION);
@@ -958,6 +987,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         backCallEClass.getESuperTypes().add(this.getCall());
         typePatternCallBackHandlerEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
         typePatternDomainVisitorEClass.getESuperTypes().add(theTypesPackage.getTypeAbstractClass());
+        typePatternListEClass.getESuperTypes().add(theTypesPackage.getType());
 
         // Initialize classes and features; add operations and parameters
         initEClass(patternEClass, Pattern.class, "Pattern", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
@@ -1067,6 +1097,15 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         initEClass(typePatternDomainVisitorEClass, TypePatternDomainVisitor.class, "TypePatternDomainVisitor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 
         op = addEOperation(typePatternDomainVisitorEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+        g1 = createEGenericType(theEcorePackage.getEJavaClass());
+        g2 = createEGenericType();
+        g1.getETypeArguments().add(g2);
+        initEOperation(op, g1);
+
+        initEClass(typePatternListEClass, TypePatternList.class, "TypePatternList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+        initEReference(getTypePatternList_Elements(), this.getPatternElement(), null, "elements", null, 0, -1, TypePatternList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+
+        op = addEOperation(typePatternListEClass, null, "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
         g1 = createEGenericType(theEcorePackage.getEJavaClass());
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);

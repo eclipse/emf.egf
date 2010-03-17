@@ -449,9 +449,9 @@ public abstract class AbstractTemplateEditor extends MultiPageEditorPart {
                             }
                         }
                         part.doSave(monitor);
-                        part.dispose();
                     }
                 }
+                part.dispose();
             } catch (WorkbenchException e) {
                 Activator.getDefault().logError(e);
             }

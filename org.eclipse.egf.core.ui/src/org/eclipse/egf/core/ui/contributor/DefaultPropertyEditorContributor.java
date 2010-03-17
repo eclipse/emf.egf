@@ -1,20 +1,21 @@
 /**
  * <copyright>
+ *
+ *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ *  All rights reserved. This program and the accompanying materials
+ *  are made available under the terms of the Eclipse Public License v1.0
+ *  which accompanies this distribution, and is available at
+ *  http://www.eclipse.org/legal/epl-v10.html
  * 
- * Copyright (c) 2009 Thales Corporate Services S.A.S.
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- * 
- * Contributors:
- * Thales Corporate Services S.A.S - initial API and implementation
+ *  Contributors:
+ *      Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
 
 package org.eclipse.egf.core.ui.contributor;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
@@ -28,19 +29,23 @@ import org.eclipse.swt.graphics.Image;
  */
 public abstract class DefaultPropertyEditorContributor implements PropertyEditorContributor {
 
-  protected ILabelProvider getLabelProvider(Object object, IItemPropertyDescriptor descriptor) {
-    final IItemLabelProvider itemLabelProvider = descriptor.getLabelProvider(object);
-    return new LabelProvider() {
-      @Override
-      public String getText(Object innerObject) {
-        return itemLabelProvider.getText(innerObject);
-      }
+    protected boolean checkFeature(Object object, IItemPropertyDescriptor descriptor, EStructuralFeature expectedFeature) {
+        Object feature = descriptor.getFeature(object);
+        return feature.equals(expectedFeature);
+    }
 
-      @Override
-      public Image getImage(Object innerObject) {
-        return ExtendedImageRegistry.getInstance().getImage(itemLabelProvider.getImage(innerObject));
-      }
-    };
-  }
+    protected ILabelProvider getLabelProvider(Object object, IItemPropertyDescriptor descriptor) {
+        final IItemLabelProvider itemLabelProvider = descriptor.getLabelProvider(object);
+        return new LabelProvider() {
+            @Override
+            public String getText(Object object) {
+                return itemLabelProvider.getText(object);
+            }
 
+            @Override
+            public Image getImage(Object object) {
+                return ExtendedImageRegistry.getInstance().getImage(itemLabelProvider.getImage(object));
+            }
+        };
+    }
 }
