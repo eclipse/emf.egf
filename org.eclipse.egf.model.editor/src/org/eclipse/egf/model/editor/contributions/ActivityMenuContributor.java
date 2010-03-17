@@ -25,6 +25,8 @@ import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.action.Action;
@@ -100,6 +102,15 @@ public class ActivityMenuContributor extends MenuContributor {
           return;
         }
         URI uri = EcoreUtil.getURI(eObject);
+        Resource resource = eObject.eResource();
+        // Try to use a URIConverter to normalize such URI
+        if (uri != null && resource != null && resource.getResourceSet() != null) {
+          URIConverter converter = resource.getResourceSet().getURIConverter();
+          if (converter != null) {
+            uri = converter.normalize(uri);
+          }
+        }
+        // Try to open it if any
         if (uri != null) {
           IEditorPart part = EditorHelper.openEditor(uri);
           if (part != null && part instanceof IEditingDomainProvider) {

@@ -23,6 +23,8 @@ import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
@@ -77,15 +79,24 @@ public class URIMenuContributor extends MenuContributor {
       }
       // Try to locate a URI
       URI uri = null;
+      Resource resource = null;
       Object object = sselection.getFirstElement();
       if (object instanceof DomainURI) {
         DomainURI domainURI = (DomainURI) object;
         uri = domainURI.getUri();
+        resource = domainURI.eResource();
       } else if (object instanceof TypeDomainURI) {
         TypeDomainURI typeDomainURI = (TypeDomainURI) object;
         uri = typeDomainURI.getValue();
+        resource = typeDomainURI.eResource();
       }
       // Try to use a URIConverter to normalize such URI
+      if (uri != null && resource != null && resource.getResourceSet() != null) {
+        URIConverter converter = resource.getResourceSet().getURIConverter();
+        if (converter != null) {
+          uri = converter.normalize(uri);
+        }
+      }
       return uri;
     }
 
