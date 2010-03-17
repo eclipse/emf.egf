@@ -26,6 +26,13 @@ public class EGFCommonUIMessages {
   }
 
   public static String ThrowableHandler_Title;
+
   public static String Unexpected_Error;
+
+  public static String CopyEObjectQualifiedName_name;
+  public static String CopyEObjectMetaClassQualifiedName_name;
+
+  public static String CopyQualifiedNameAction_ErrorDescription;
+  public static String CopyQualifiedNameAction_ErrorTitle;
 
 }
