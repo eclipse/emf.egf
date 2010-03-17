@@ -20,13 +20,10 @@ Require-Bundle:
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit.ui,
  org.eclipse.emf.ecore.edit,
- org.eclipse.emf.workspace, 
- org.eclipse.emf.workspace.ui, 
+ org.eclipse.emf.workspace,
+ org.eclipse.emf.workspace.ui,
  org.eclipse.emf.transaction.ui,
- org.eclipse.egf.common.ui,
  org.eclipse.egf.core.ui,
- org.eclipse.egf.core.pde,
- org.eclipse.egf.model.edit,
  org.eclipse.egf.model.fprod.edit,
  org.eclipse.egf.model.ftask.edit
 Bundle-ActivationPolicy: lazy
