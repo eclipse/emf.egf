@@ -65,14 +65,18 @@
     point="org.eclipse.egf.core.ui.editor.menu.contributor"
   >
     <contribution
-      class="org.eclipse.egf.model.editor.contributor.ActivityMenuContributor"
+      class="org.eclipse.egf.model.editor.contributions.ActivityMenuContributor"
     />
     <contribution
-      class="org.eclipse.egf.model.editor.contributor.ImportActivityMenuContributor"
+      class="org.eclipse.egf.model.editor.contributions.ImportActivityMenuContributor"
     />    
     <contribution
-      class="org.eclipse.egf.model.editor.contributor.URIMenuContributor"
+      class="org.eclipse.egf.model.editor.contributions.URIMenuContributor"
     />    
-  </extension>  
+  </extension>
+  
+	<extension point="org.eclipse.egf.core.ui.editor.property.contributor">
+    	<contribution class="org.eclipse.egf.model.editor.contributions.TypeEditorContributor"/>
+  	</extension>  
   
 </plugin>

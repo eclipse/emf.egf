@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.model.editor.contributor;
+package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;

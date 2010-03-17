@@ -44,6 +44,9 @@ public interface PropertyEditorContributor {
 
         // TODO returns only the first one ?
         public PropertyEditorContributor selectPropertyEditor(Object object, IItemPropertyDescriptor descriptor) {
+            if (!descriptor.canSetProperty(object))
+                return null;
+
             for (PropertyEditorContributor contributor : contributors) {
                 if (contributor.canApply(object, descriptor))
                     return contributor;

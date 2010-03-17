@@ -13,15 +13,19 @@
  * </copyright>
  */
 
-package org.eclipse.egf.model.editor.contributor;
+package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
-import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
+import org.eclipse.egf.model.fcore.Invocation;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
@@ -33,40 +37,43 @@ import org.eclipse.ui.PartInitException;
  * @author Xavier Maysonnave
  * 
  */
-public class URIMenuContributor extends MenuContributor {
+public class ActivityMenuContributor extends MenuContributor {
 
   public static final String EDIT_ACTION_ID = "edit-fcore"; //$NON-NLS-1$  
 
-  private final EditURIAction _editAction = new EditURIAction();
+  private final EditActivityAction _editAction = new EditActivityAction();
 
   @Override
   public void menuAboutToShow(IMenuManager menuManager) {
     IStructuredSelection selection2 = (IStructuredSelection) selection;
     if (selection2.size() == 1) {
-      if (selection2.getFirstElement() instanceof DomainURI) {
+      if (selection2.getFirstElement() instanceof Invocation || selection2.getFirstElement() instanceof InvocationContract) {
         _editAction.setEnabled(_editAction.isEnabled());
         menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _editAction);
       }
     }
   }
 
-  private class EditURIAction extends Action {
+  private class EditActivityAction extends Action {
 
-    public EditURIAction() {
-      super(ModelEditorMessages.URIMenuContributor_openAction_label);
+    public EditActivityAction() {
+      super(ModelEditorMessages.ActivityMenuContributor_openAction_label);
       setId(EDIT_ACTION_ID);
     }
 
     @Override
     public boolean isEnabled() {
-      URI uri = getURI();
-      if (uri == null) {
+      EObject eObject = getEObject();
+      if (eObject == null) {
         return false;
       }
-      return true;
+      if (eObject instanceof InternalEObject) {
+        return ((InternalEObject) eObject).eIsProxy() == false;
+      }
+      return false;
     }
 
-    protected URI getURI() {
+    protected EObject getEObject() {
       if (selection == null) {
         return null;
       }
@@ -75,9 +82,12 @@ public class URIMenuContributor extends MenuContributor {
         return null;
       }
       Object object = sselection.getFirstElement();
-      if (object instanceof DomainURI) {
-        DomainURI domainURI = (DomainURI) object;
-        return domainURI.getUri();
+      if (object instanceof Invocation) {
+        Invocation invocation = (Invocation) object;
+        return invocation.getInvokedActivity();
+      } else if (object instanceof InvocationContract) {
+        InvocationContract invocationContract = (InvocationContract) object;
+        return invocationContract.getInvokedContract();
       }
       return null;
     }
@@ -85,13 +95,16 @@ public class URIMenuContributor extends MenuContributor {
     @Override
     public void run() {
       try {
-        URI uri = getURI();
-        if (uri == null) {
+        EObject eObject = getEObject();
+        if (eObject == null) {
           return;
         }
-        IEditorPart part = EditorHelper.openEditor(uri);
-        if (part != null && part instanceof IEditingDomainProvider) {
-          EditorHelper.setSelectionToViewer(part, uri);
+        URI uri = EcoreUtil.getURI(eObject);
+        if (uri != null) {
+          IEditorPart part = EditorHelper.openEditor(uri);
+          if (part != null && part instanceof IEditingDomainProvider) {
+            EditorHelper.setSelectionToViewer(part, uri);
+          }
         }
       } catch (PartInitException pie) {
         EGFModelEditorPlugin.getPlugin().logError(pie);
