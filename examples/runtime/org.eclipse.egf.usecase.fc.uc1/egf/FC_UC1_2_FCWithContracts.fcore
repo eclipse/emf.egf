@@ -23,7 +23,7 @@
     </contractContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_PjN_ABuaEd-ffO4YhZA0ZQ">
       <invocations xmi:id="_Uj7DUBubEd-ffO4YhZA0ZQ" name="Hello for Who Parameter"
-          invokedActivity="ftask:TaskJava platform:/plugin/org.eclipse.egf.usecase.fc.uc1/egf/FC_UC1_1_FCAndTask.fcore#_Q5pmcBuaEd-ffO4YhZA0ZQ">
+          invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.usecase.fc.uc1/egf/FC_UC1_1_FCAndTask.fcore#_Q5pmcBuaEd-ffO4YhZA0ZQ">
         <invocationContractContainer xmi:id="_5p7d4BuhEd-ffO4YhZA0ZQ">
           <invocationContracts xmi:id="_6UjIMBuhEd-ffO4YhZA0ZQ" description="" factoryComponentContract="#_b0jmEBugEd-ffO4YhZA0ZQ"
               invokedContract="platform:/plugin/org.eclipse.egf.usecase.fc.uc1/egf/FC_UC1_1_FCAndTask.fcore#_KRvo4BubEd-ffO4YhZA0ZQ"/>
