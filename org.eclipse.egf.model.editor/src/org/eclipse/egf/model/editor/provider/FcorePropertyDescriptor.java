@@ -22,23 +22,24 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class FcorePropertyDescriptor extends PropertyDescriptor {
 
-    public FcorePropertyDescriptor(Object object, IItemPropertyDescriptor itemPropertyDescriptor) {
-        super(object, itemPropertyDescriptor);
-    }
+  public FcorePropertyDescriptor(Object object, IItemPropertyDescriptor itemPropertyDescriptor) {
+    super(object, itemPropertyDescriptor);
+  }
 
-    /**
-     * This returns the cell editor that will be used to edit the value of this
-     * property.
-     * This default implementation determines the type of cell editor from the
-     * nature of the
-     * structural feature.
-     */
-    @Override
-    public CellEditor createPropertyEditor(final Composite composite) {
-
-        PropertyEditorContributor propertyEditorContributor = PropertyEditorContributor.HELPER.selectPropertyEditor(object, itemPropertyDescriptor);
-        if (propertyEditorContributor == null)
-            return super.createPropertyEditor(composite);
-        return propertyEditorContributor.createPropertyEditor(composite, object, itemPropertyDescriptor);
+  /**
+   * This returns the cell editor that will be used to edit the value of this
+   * property.
+   * This default implementation determines the type of cell editor from the
+   * nature of the
+   * structural feature.
+   */
+  @Override
+  public CellEditor createPropertyEditor(final Composite composite) {
+    PropertyEditorContributor propertyEditorContributor = PropertyEditorContributor.HELPER.selectPropertyEditor(object, itemPropertyDescriptor);
+    if (propertyEditorContributor == null) {
+      return super.createPropertyEditor(composite);
     }
+    return propertyEditorContributor.createPropertyEditor(composite, object, itemPropertyDescriptor);
+  }
+
 }
