@@ -7,7 +7,8 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class classPattern extends inheritance_4.base.BasePattern {
+public class classPattern 
+{
   protected static String nl;
   public static synchronized classPattern create(String lineSeparator)
   {
@@ -67,8 +68,7 @@ public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 int index = 0;
 
-    super.orchestration(new SuperOrchestrationContext(ictx));
-
+    
     
 method_work(ictx.getBuffer(), ictx);
     

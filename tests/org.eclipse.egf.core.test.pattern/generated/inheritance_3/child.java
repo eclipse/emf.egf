@@ -68,15 +68,15 @@ public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 int index = 0;
 
-    
-method_hehe(ictx.getBuffer(), ictx);
     super.orchestration(new SuperOrchestrationContext(ictx));
 
+    
+method_hehe(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
-ExecutionContext ctx__hrDjMSUTEdQdzPvNxSFg = new ExecutionContext(ictx);
-CallHelper.executeWithInjection("_AHSpICIUEd-XdOucj2euiQ", ctx__hrDjMSUTEdQdzPvNxSFg, parameters);
+ExecutionContext ctx__AcM8CUcEdotp2L0oKRVg = new ExecutionContext(ictx);
+CallHelper.executeWithInjection("_AHSpICIUEd-XdOucj2euiQ", ctx__AcM8CUcEdotp2L0oKRVg, parameters);
 }
 
     
