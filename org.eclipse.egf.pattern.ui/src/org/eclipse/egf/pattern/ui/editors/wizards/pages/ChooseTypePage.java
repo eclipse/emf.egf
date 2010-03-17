@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreSwitch;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -172,7 +173,29 @@ public class ChooseTypePage extends WizardPage {
 
         ecoreTypeTreeViewer = new TreeViewer(tree);
         ecoreTypeTreeViewer.setLabelProvider(new EcoreLabelProvider());
-        ecoreTypeTreeViewer.setComparator(new ViewerComparator());
+        ecoreTypeTreeViewer.setComparator(new ViewerComparator() {
+            private final EcoreSwitch<Integer> _switch = new EcoreSwitch<Integer>() {
+
+                @Override
+                public Integer caseEClassifier(EClassifier object) {
+
+                    return 2;
+                }
+
+                @Override
+                public Integer caseEPackage(EPackage object) {
+
+                    return 1;
+                }
+            };
+
+            @Override
+            public int category(Object element) {
+                if (element instanceof EObject)
+                    return _switch.doSwitch((EObject) element);
+                return 10;
+            }
+        });
         ecoreTypeTreeViewer.addFilter(new ViewerFilter() {
 
             @Override

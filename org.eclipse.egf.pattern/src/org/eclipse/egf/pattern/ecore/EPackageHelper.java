@@ -51,17 +51,23 @@ public class EPackageHelper {
     public static final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
     private static final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
 
+    private static EPackage getTopEPackage(EPackage ePackage) {
+        if (ePackage.getESuperPackage() != null)
+            return getTopEPackage(ePackage.getESuperPackage());
+        return ePackage;
+    }
+
     public static String getBasePackage(EPackage ePackage) {
         String name = nsuri2basePackage.get(ePackage.getNsURI());
         if (name != null)
             return name;
-        String nsURI = ePackage.getNsURI();
-        URI uri = EcorePlugin.getEPackageNsURIToGenModelLocationMap().get(nsURI);
+        String nsUri = getTopEPackage(ePackage).getNsURI();
+        URI uri = EcorePlugin.getEPackageNsURIToGenModelLocationMap().get(nsUri);
         Resource res = loadResource(uri);
         for (EObject obj : res.getContents()) {
             if (obj instanceof GenModel) {
                 GenModel genModel = (GenModel) obj;
-                for (GenPackage gPack : genModel.getGenPackages()) {
+                for (GenPackage gPack : genModel.getAllGenPackagesWithClassifiers()) {
                     EPackage ecorePackage = gPack.getEcorePackage();
                     if (ePackage.getName().equals(ecorePackage.getName()) && ePackage.getNsPrefix().equals(ecorePackage.getNsPrefix()) && ePackage.getNsURI().equals(ecorePackage.getNsURI())) {
                         nsuri2basePackage.put(ePackage.getNsURI(), gPack.getBasePackage());
