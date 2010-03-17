@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.model.editor.contributions;
 
+import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
@@ -21,6 +22,8 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IMenuManager;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 
@@ -28,12 +31,15 @@ import org.eclipse.ui.PartInitException;
  * @author Xavier Maysonnave
  * 
  */
-public abstract class EObjectMenuContributor extends MenuContributor {
+public abstract class OpenEObjectMenuContributor extends MenuContributor {
+
+  protected abstract OpenAction getOpenAction();
+
+  protected abstract String getText();
 
   protected abstract class OpenAction extends Action {
 
-    public OpenAction(String message, String id) {
-      super(message);
+    public OpenAction(String id) {
       setId(id);
     }
 
@@ -49,10 +55,25 @@ public abstract class EObjectMenuContributor extends MenuContributor {
       return false;
     }
 
+    public boolean isAlreadyOpenedEditor() {
+      return EditorHelper.isAlreadyOpenedEditor(getURI().trimFragment());
+    }
+
     protected abstract EObject getEObject();
 
-    protected URI getURI(EObject eObject) {
+    protected URI getURI() {
+      EObject eObject = getEObject();
+      if (eObject == null) {
+        return null;
+      }
       return EcoreUtil.getURI(eObject);
+    }
+
+    protected URI normalize(URIConverter converter, URI uri) {
+      if (uri == null || converter == null) {
+        return uri;
+      }
+      return converter.normalize(uri);
     }
 
     @Override
@@ -62,16 +83,13 @@ public abstract class EObjectMenuContributor extends MenuContributor {
         if (eObject == null) {
           return;
         }
-        URI uri = getURI(eObject);
+        URI uri = getURI();
         Resource resource = eObject.eResource();
         // Try to use a URIConverter to normalize such URI
         // if we have a platform:/plugin/ we need a platform:/resource/ if any
         // to have a chance to use a FileEditorInput rather than a URIEditorInput
         if (uri != null && resource != null && resource.getResourceSet() != null) {
-          URIConverter converter = resource.getResourceSet().getURIConverter();
-          if (converter != null) {
-            uri = converter.normalize(uri);
-          }
+          uri = normalize(resource.getResourceSet().getURIConverter(), uri);
         }
         // Try to open it if any
         if (uri != null) {
@@ -85,6 +103,16 @@ public abstract class EObjectMenuContributor extends MenuContributor {
       }
     }
 
+  }
+
+  @Override
+  public void menuAboutToShow(IMenuManager menuManager) {
+    IStructuredSelection innerSelection = (IStructuredSelection) selection;
+    if (innerSelection.size() == 1 && getOpenAction().getEObject() != null) {
+      getOpenAction().setText(getText());
+      getOpenAction().setEnabled(getOpenAction().isEnabled());
+      menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, getOpenAction());
+    }
   }
 
 }

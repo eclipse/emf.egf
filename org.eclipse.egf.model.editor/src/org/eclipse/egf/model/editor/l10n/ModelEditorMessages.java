@@ -31,11 +31,14 @@ public class ModelEditorMessages {
   public static String _UI_ActivitySelectionDialog_dialogMessage;
 
   public static String ActivityMenuContributor_openAction_label;
+  public static String ActivityMenuContributor_selectAction_label;
   public static String ActivityMenuContributor_invokeAction_label;
 
   public static String ContractMenuContributor_openAction_label;
+  public static String ContractMenuContributor_selectAction_label;
 
   public static String URIMenuContributor_openAction_label;
+  public static String URIMenuContributor_selectAction_label;
 
   public static String InvokeActivityWizard_Activity_title;
   public static String InvokeActivityWizard_Activity_description;

@@ -15,24 +15,22 @@
 
 package org.eclipse.egf.model.editor.contributions;
 
-import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public class URIMenuContributor extends EObjectMenuContributor {
+public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
 
   public static final String OPEN_URI_ACTION_ID = "open-uri"; //$NON-NLS-1$  
 
-  private final OpenAction _openAction = new OpenAction(ModelEditorMessages.URIMenuContributor_openAction_label, OPEN_URI_ACTION_ID) {
+  private final OpenAction _openAction = new OpenAction(OPEN_URI_ACTION_ID) {
     @Override
     public boolean isEnabled() {
       return true;
@@ -57,27 +55,32 @@ public class URIMenuContributor extends EObjectMenuContributor {
     }
 
     @Override
-    protected URI getURI(EObject eObject) {
-      if (eObject instanceof DomainURI) {
-        DomainURI domainURI = (DomainURI) eObject;
-        return domainURI.getUri();
-      } else if (eObject instanceof TypeDomainURI) {
-        TypeDomainURI typeDomainURI = (TypeDomainURI) eObject;
-        return typeDomainURI.getValue();
+    protected URI getURI() {
+      EObject eObject = getEObject();
+      if (eObject == null) {
+        return null;
       }
-      return null;
+      URI uri = null;
+      if (eObject instanceof DomainURI) {
+        uri = ((DomainURI) eObject).getUri();
+      } else if (eObject instanceof TypeDomainURI) {
+        uri = ((TypeDomainURI) eObject).getValue();
+      }
+      return uri;
     }
   };
 
   @Override
-  public void menuAboutToShow(IMenuManager menuManager) {
-    IStructuredSelection selection2 = (IStructuredSelection) selection;
-    if (selection2.size() == 1) {
-      if (selection2.getFirstElement() instanceof DomainURI || selection2.getFirstElement() instanceof TypeDomainURI) {
-        _openAction.setEnabled(_openAction.isEnabled());
-        menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _openAction);
-      }
+  protected String getText() {
+    if (getOpenAction().isAlreadyOpenedEditor()) {
+      return ModelEditorMessages.URIMenuContributor_selectAction_label;
     }
+    return ModelEditorMessages.URIMenuContributor_openAction_label;
+  }
+
+  @Override
+  protected OpenAction getOpenAction() {
+    return _openAction;
   }
 
 }
