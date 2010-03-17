@@ -11,10 +11,16 @@
 package org.eclipse.egf.core.ui.actions;
 
 import org.eclipse.egf.common.ui.helper.EditorHelper;
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
@@ -86,13 +92,23 @@ public class OpenFcoreAction extends Action implements IWorkbenchWindowActionDel
     dialog.open();
     Object[] objects = dialog.getResult();
     if (objects != null) {
+      EditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+      ResourceSet resourceSet = editingDomain.getResourceSet();
       for (Object object : objects) {
         if (object instanceof IPlatformFcore == false) {
           continue;
         }
         IPlatformFcore fcore = (IPlatformFcore) object;
         try {
-          if (fcore.getURI() != null) {
+          URI uri = fcore.getURI();
+          if (uri != null) {
+            // Try to use a URIConverter to normalize such URI
+            // if we have a platform:/plugin/ we need a platform:/resource/ if any
+            // to have a chance to use a FileEditorInput rather than a URIEditorInput
+            URIConverter converter = resourceSet.getURIConverter();
+            if (converter != null) {
+              uri = converter.normalize(uri);
+            }
             IEditorPart part = EditorHelper.openEditor(fcore.getURI());
             if (part != null && part instanceof IEditingDomainProvider) {
               EditorHelper.setSelectionToViewer(part, fcore.getURI());
