@@ -26,17 +26,17 @@ import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
-public final class ImportActivityCommand extends CompoundCommand {
+public final class InvokeActivityCommand extends CompoundCommand {
 
   /**
    * This caches the label.
    */
-  protected static final String LABEL = ModelEditorMessages._UI_ImportCommand_label;
+  protected static final String LABEL = ModelEditorMessages._UI_InvokeCommand_label;
 
   /**
    * This caches the description.
    */
-  protected static final String DESCRIPTION = ModelEditorMessages._UI_ImportCommand_description;
+  protected static final String DESCRIPTION = ModelEditorMessages._UI_InvokeCommand_description;
 
   /**
    * Current Editing Domain.
@@ -65,7 +65,7 @@ public final class ImportActivityCommand extends CompoundCommand {
    * @param productionPlan
    * @param activity
    */
-  public ImportActivityCommand(EditingDomain editingDomain, ProductionPlan productionPlan, Activity activity) {
+  public InvokeActivityCommand(EditingDomain editingDomain, ProductionPlan productionPlan, Activity activity) {
     this(LABEL, DESCRIPTION, editingDomain, productionPlan, activity);
   }
 
@@ -78,7 +78,7 @@ public final class ImportActivityCommand extends CompoundCommand {
    * @param productionPlan
    * @param activity
    */
-  public ImportActivityCommand(String label, String description, EditingDomain editingDomain, ProductionPlan productionPlan, Activity activity) {
+  public InvokeActivityCommand(String label, String description, EditingDomain editingDomain, ProductionPlan productionPlan, Activity activity) {
     super(label, description);
     _editingDomain = editingDomain;
     _productionPlan = productionPlan;
@@ -95,7 +95,7 @@ public final class ImportActivityCommand extends CompoundCommand {
    * @param invocation
    * @param activity
    */
-  public ImportActivityCommand(EditingDomain editingDomain, ProductionPlanInvocation invocation, Activity activity) {
+  public InvokeActivityCommand(EditingDomain editingDomain, ProductionPlanInvocation invocation, Activity activity) {
     this(LABEL, DESCRIPTION, editingDomain, invocation, activity);
   }
 
@@ -108,7 +108,7 @@ public final class ImportActivityCommand extends CompoundCommand {
    * @param invocation
    * @param activity
    */
-  public ImportActivityCommand(String label, String description, EditingDomain editingDomain, ProductionPlanInvocation invocation, Activity activity) {
+  public InvokeActivityCommand(String label, String description, EditingDomain editingDomain, ProductionPlanInvocation invocation, Activity activity) {
     super(label, description);
     _editingDomain = editingDomain;
     if (invocation != null) {

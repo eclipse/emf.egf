@@ -31,15 +31,15 @@ public class ModelEditorMessages {
   public static String _UI_ActivitySelectionDialog_dialogMessage;
 
   public static String ActivityMenuContributor_openAction_label;
-  public static String ActivityMenuContributor_importAction_label;
+  public static String ActivityMenuContributor_invokeAction_label;
 
   public static String URIMenuContributor_openAction_label;
 
-  public static String ImportActivityWizard_Activity_title;
-  public static String ImportActivityWizard_Activity_description;
+  public static String InvokeActivityWizard_Activity_title;
+  public static String InvokeActivityWizard_Activity_description;
   public static String FilteredItemsSelectionDialog_patternLabel;
 
-  public static String _UI_ImportCommand_label;
-  public static String _UI_ImportCommand_description;
+  public static String _UI_InvokeCommand_label;
+  public static String _UI_InvokeCommand_description;
 
 }

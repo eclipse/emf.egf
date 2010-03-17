@@ -32,7 +32,7 @@ import org.eclipse.ui.IWorkbench;
  * @author Xavier Maysonnave
  * 
  */
-public class ImportActivityWizard extends Wizard implements INewWizard {
+public class InvokeActivityWizard extends Wizard implements INewWizard {
 
   /**
    * Remember the selection during initialization for populating the default
@@ -75,7 +75,7 @@ public class ImportActivityWizard extends Wizard implements INewWizard {
   public void init(IWorkbench workbench, IStructuredSelection selection) {
     _workbench = workbench;
     _selection = selection;
-    setWindowTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_Import_Activity_label")); //$NON-NLS-1$
+    setWindowTitle(EGFModelEditorPlugin.INSTANCE.getString("_UI_Wizard_Invoke_Activity_label")); //$NON-NLS-1$
     setDefaultPageImageDescriptor(ExtendedImageRegistry.INSTANCE.getImageDescriptor(EGFModelEditorPlugin.INSTANCE.getImage("full/wizban/NewFcore"))); //$NON-NLS-1$
     setNeedsProgressMonitor(true);
   }
@@ -107,8 +107,8 @@ public class ImportActivityWizard extends Wizard implements INewWizard {
         return ModelEditorMessages.FilteredItemsSelectionDialog_patternLabel;
       }
     };
-    _activitySelectionWizardPage.setTitle(ModelEditorMessages.ImportActivityWizard_Activity_title);
-    _activitySelectionWizardPage.setDescription(ModelEditorMessages.ImportActivityWizard_Activity_description);
+    _activitySelectionWizardPage.setTitle(ModelEditorMessages.InvokeActivityWizard_Activity_title);
+    _activitySelectionWizardPage.setDescription(ModelEditorMessages.InvokeActivityWizard_Activity_description);
     addPage(_activitySelectionWizardPage);
   }
 
@@ -135,9 +135,9 @@ public class ImportActivityWizard extends Wizard implements INewWizard {
     }
     final Command[] command = new Command[1];
     if (target instanceof ProductionPlan) {
-      command[0] = new ImportActivityCommand(domain, (ProductionPlan) target, (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true));
+      command[0] = new InvokeActivityCommand(domain, (ProductionPlan) target, (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true));
     } else if (target instanceof ProductionPlanInvocation) {
-      command[0] = new ImportActivityCommand(domain, (ProductionPlanInvocation) target, (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true));
+      command[0] = new InvokeActivityCommand(domain, (ProductionPlanInvocation) target, (Activity) domain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true));
     }
     if (command[0] == null) {
       return true;

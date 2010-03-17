@@ -107,7 +107,7 @@ public class ActivitySelectionWizardPage extends FilteredItemsSelectionWizardPag
     @Override
     protected void storeItemToMemento(Object item, IMemento element) {
       // Save
-      if (((ImportActivityWizard) getWizard())._isCanceled == false) {
+      if (((InvokeActivityWizard) getWizard())._isCanceled == false) {
         Object[] items = getHistoryItems();
         for (int i = 0; i < items.length; i++) {
           element.putString(TAG_URI, EcoreUtil.getURI((Activity) items[i]).toString());

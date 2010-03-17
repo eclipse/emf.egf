@@ -18,7 +18,7 @@ package org.eclipse.egf.model.editor.contributions;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
-import org.eclipse.egf.model.editor.wizards.ImportActivityWizard;
+import org.eclipse.egf.model.editor.wizards.InvokeActivityWizard;
 import org.eclipse.egf.model.fprod.ProductionPlan;
 import org.eclipse.egf.model.fprod.ProductionPlanInvocation;
 import org.eclipse.emf.ecore.EObject;
@@ -33,28 +33,28 @@ import org.eclipse.jface.wizard.WizardDialog;
  * @author Xavier Maysonnave
  * 
  */
-public class ImportActivityMenuContributor extends MenuContributor {
+public class InvokeActivityMenuContributor extends MenuContributor {
 
-  public static final String IMPORT_ACTIVITY_ACTION_ID = "import-activity"; //$NON-NLS-1$  
+  public static final String INVOKE_ACTIVITY_ACTION_ID = "invoke-activity"; //$NON-NLS-1$  
 
-  private final ImportActivityAction importActivityContractAction = new ImportActivityAction();
+  private final InvokeActivityAction _invokeActivityContractAction = new InvokeActivityAction();
 
   @Override
   public void menuAboutToShow(IMenuManager menuManager) {
     IStructuredSelection selection2 = (IStructuredSelection) selection;
     if (selection2.size() == 1) {
       if (selection2.getFirstElement() instanceof ProductionPlan || selection2.getFirstElement() instanceof ProductionPlanInvocation) {
-        importActivityContractAction.setEnabled(importActivityContractAction.isEnabled());
-        menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, importActivityContractAction);
+        _invokeActivityContractAction.setEnabled(_invokeActivityContractAction.isEnabled());
+        menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _invokeActivityContractAction);
       }
     }
   }
 
-  private class ImportActivityAction extends Action {
+  private class InvokeActivityAction extends Action {
 
-    public ImportActivityAction() {
-      super(ModelEditorMessages.ActivityMenuContributor_importAction_label);
-      setId(IMPORT_ACTIVITY_ACTION_ID);
+    public InvokeActivityAction() {
+      super(ModelEditorMessages.ActivityMenuContributor_invokeAction_label);
+      setId(INVOKE_ACTIVITY_ACTION_ID);
     }
 
     @Override
@@ -97,7 +97,7 @@ public class ImportActivityMenuContributor extends MenuContributor {
         return;
       }
       // Instantiates and initializes the wizard
-      ImportActivityWizard wizard = new ImportActivityWizard();
+      InvokeActivityWizard wizard = new InvokeActivityWizard();
       wizard.init(activeEditorPart.getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) selection);
       // Instantiates the wizard container with the wizard and opens it
       WizardDialog dialog = new WizardDialog(activeEditorPart.getSite().getShell(), wizard);

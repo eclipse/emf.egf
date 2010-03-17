@@ -68,7 +68,7 @@
       class="org.eclipse.egf.model.editor.contributions.ActivityMenuContributor"
     />
     <contribution
-      class="org.eclipse.egf.model.editor.contributions.ImportActivityMenuContributor"
+      class="org.eclipse.egf.model.editor.contributions.InvokeActivityMenuContributor"
     />    
     <contribution
       class="org.eclipse.egf.model.editor.contributions.URIMenuContributor"
