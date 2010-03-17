@@ -11,50 +11,51 @@
           <elements xmi:type="pattern:Pattern" xmi:id="_nfk5EyH-Ed-CStHKuCL0dg" name="parent"
               headerMethod="#_nfk5FCH-Ed-CStHKuCL0dg" footerMethod="#_nfk5FyH-Ed-CStHKuCL0dg"
               initMethod="#_nfk5FSH-Ed-CStHKuCL0dg">
-            <methods xmi:id="_nfk5FCH-Ed-CStHKuCL0dg" name="header" patternFilePath="templates/pattern._R32xcCH4Ed-TGv7R8gz0bQ/method._R32xcSH4Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5FSH-Ed-CStHKuCL0dg" name="init" patternFilePath="templates/pattern._R32xcCH4Ed-TGv7R8gz0bQ/method._R32xciH4Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5FiH-Ed-CStHKuCL0dg" name="body" patternFilePath="templates/pattern._R32xcCH4Ed-TGv7R8gz0bQ/method._R32xcyH4Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5FyH-Ed-CStHKuCL0dg" name="footer" patternFilePath="templates/pattern._R32xcCH4Ed-TGv7R8gz0bQ/method._R32xdCH4Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5FCH-Ed-CStHKuCL0dg" name="header" patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._R32xcSH4Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5FSH-Ed-CStHKuCL0dg" name="init" patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._R32xciH4Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5FiH-Ed-CStHKuCL0dg" name="body" patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._R32xcyH4Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5FyH-Ed-CStHKuCL0dg" name="footer" patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._R32xdCH4Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_25qJACIgEd-puPzASIa3Rw" name="setVariables" patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._25qJACIgEd-puPzASIa3Rw.pt"/>
+            <methods xmi:id="_Ky8yMCIiEd-puPzASIa3Rw" name="putVariablesInContesxt"
+                patternFilePath="templates/pattern._nfk5EyH-Ed-CStHKuCL0dg/method._Ky8yMCIiEd-puPzASIa3Rw.pt"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_PbLhkCIiEd-puPzASIa3Rw"
+                called="#_25qJACIgEd-puPzASIa3Rw"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_nfk5GCH-Ed-CStHKuCL0dg"
                 called="#_nfk5FiH-Ed-CStHKuCL0dg"/>
+            <orchestration xmi:type="pattern:MethodCall" xmi:id="_PlYmcCIiEd-puPzASIa3Rw"
+                called="#_Ky8yMCIiEd-puPzASIa3Rw"/>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_nfk5GSH-Ed-CStHKuCL0dg"
                 name="JET"/>
+            <variables xmi:id="_fC42QCIiEd-puPzASIa3Rw" name="targetFile" type="java.lang.String"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_nfk5GiH-Ed-CStHKuCL0dg" name="child"
               headerMethod="#_nfk5GyH-Ed-CStHKuCL0dg" footerMethod="#_nfk5HyH-Ed-CStHKuCL0dg"
               superPattern="#_nfk5EyH-Ed-CStHKuCL0dg" initMethod="#_nfk5HCH-Ed-CStHKuCL0dg">
-            <methods xmi:id="_nfk5GyH-Ed-CStHKuCL0dg" name="header" patternFilePath="templates/pattern._SSFPUCH4Ed-TGv7R8gz0bQ/method._SSFPUSH4Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5HCH-Ed-CStHKuCL0dg" name="init" patternFilePath="templates/pattern._SSFPUCH4Ed-TGv7R8gz0bQ/method._SSFPUiH4Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5HSH-Ed-CStHKuCL0dg" name="setVariable" patternFilePath="templates/pattern._SSFPUCH4Ed-TGv7R8gz0bQ/method._ACOsUCH7Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5HiH-Ed-CStHKuCL0dg" name="body" patternFilePath="templates/pattern._SSFPUCH4Ed-TGv7R8gz0bQ/method._SSFPUyH4Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5HyH-Ed-CStHKuCL0dg" name="footer" patternFilePath="templates/pattern._SSFPUCH4Ed-TGv7R8gz0bQ/method._SSFPVCH4Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5ICH-Ed-CStHKuCL0dg" name="setToInject" patternFilePath="templates/pattern._SSFPUCH4Ed-TGv7R8gz0bQ/method.__i-PYCH4Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5ISH-Ed-CStHKuCL0dg" name="putVariableInContext"
-                patternFilePath="templates/pattern._SSFPUCH4Ed-TGv7R8gz0bQ/method._CSxLkCH7Ed-TGv7R8gz0bQ.pt"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_nfk5IiH-Ed-CStHKuCL0dg"
-                called="#_nfk5HSH-Ed-CStHKuCL0dg"/>
+            <methods xmi:id="_nfk5GyH-Ed-CStHKuCL0dg" name="header" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._SSFPUSH4Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5HCH-Ed-CStHKuCL0dg" name="init" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._SSFPUiH4Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5HiH-Ed-CStHKuCL0dg" name="body" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._SSFPUyH4Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5HyH-Ed-CStHKuCL0dg" name="footer" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._SSFPVCH4Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5ICH-Ed-CStHKuCL0dg" name="setToInject" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method.__i-PYCH4Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_an3ccCIiEd-puPzASIa3Rw" name="setVariables" patternFilePath="templates/pattern._nfk5GiH-Ed-CStHKuCL0dg/method._an3ccCIiEd-puPzASIa3Rw.pt"/>
             <orchestration xmi:type="pattern:SuperCall" xmi:id="_nfk5IyH-Ed-CStHKuCL0dg"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_nfk5JCH-Ed-CStHKuCL0dg"
                 called="#_nfk5ICH-Ed-CStHKuCL0dg"/>
             <orchestration xmi:type="pattern:PatternInjectedCall" xmi:id="_nfk5JSH-Ed-CStHKuCL0dg"
                 called="#_nfk5LCH-Ed-CStHKuCL0dg" context="#_nfk5KSH-Ed-CStHKuCL0dg"/>
-            <orchestration xmi:type="pattern:MethodCall" xmi:id="_nfk5JiH-Ed-CStHKuCL0dg"
-                called="#_nfk5ISH-Ed-CStHKuCL0dg"/>
             <parameters xmi:id="_nfk5JyH-Ed-CStHKuCL0dg" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
             <nature xmi:type="jetpattern:JetNature" xmi:id="_nfk5KCH-Ed-CStHKuCL0dg"
                 name="JET"/>
             <variables xmi:id="_nfk5KSH-Ed-CStHKuCL0dg" name="toInject" type="http://www.eclipse.org/emf/2002/Ecore#//EClass"/>
-            <variables xmi:id="_nfk5KiH-Ed-CStHKuCL0dg" name="targetFile" type="java.lang.String"/>
           </elements>
         </libraries>
         <libraries xmi:id="_nfk5KyH-Ed-CStHKuCL0dg" name="inheritance_2_called">
           <elements xmi:type="pattern:Pattern" xmi:id="_nfk5LCH-Ed-CStHKuCL0dg" name="calledByInjection"
               headerMethod="#_nfk5LSH-Ed-CStHKuCL0dg" footerMethod="#_nfk5MCH-Ed-CStHKuCL0dg"
               initMethod="#_nfk5LiH-Ed-CStHKuCL0dg">
-            <methods xmi:id="_nfk5LSH-Ed-CStHKuCL0dg" name="header" patternFilePath="templates/pattern._OaMfICH1Ed-TGv7R8gz0bQ/method._OaMfISH1Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5LiH-Ed-CStHKuCL0dg" name="init" patternFilePath="templates/pattern._OaMfICH1Ed-TGv7R8gz0bQ/method._OaMfIiH1Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5LyH-Ed-CStHKuCL0dg" name="body" patternFilePath="templates/pattern._OaMfICH1Ed-TGv7R8gz0bQ/method._OaMfIyH1Ed-TGv7R8gz0bQ.pt"/>
-            <methods xmi:id="_nfk5MCH-Ed-CStHKuCL0dg" name="footer" patternFilePath="templates/pattern._OaMfICH1Ed-TGv7R8gz0bQ/method._OaMfJCH1Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5LSH-Ed-CStHKuCL0dg" name="header" patternFilePath="templates/pattern._nfk5LCH-Ed-CStHKuCL0dg/method._OaMfISH1Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5LiH-Ed-CStHKuCL0dg" name="init" patternFilePath="templates/pattern._nfk5LCH-Ed-CStHKuCL0dg/method._OaMfIiH1Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5LyH-Ed-CStHKuCL0dg" name="body" patternFilePath="templates/pattern._nfk5LCH-Ed-CStHKuCL0dg/method._OaMfIyH1Ed-TGv7R8gz0bQ.pt"/>
+            <methods xmi:id="_nfk5MCH-Ed-CStHKuCL0dg" name="footer" patternFilePath="templates/pattern._nfk5LCH-Ed-CStHKuCL0dg/method._OaMfJCH1Ed-TGv7R8gz0bQ.pt"/>
             <orchestration xmi:type="pattern:MethodCall" xmi:id="_nfk5MSH-Ed-CStHKuCL0dg"
                 called="#_nfk5LyH-Ed-CStHKuCL0dg"/>
             <parameters xmi:id="_nfk5MiH-Ed-CStHKuCL0dg" name="parameter" type="http://www.eclipse.org/emf/2002/Ecore#//EAttribute">

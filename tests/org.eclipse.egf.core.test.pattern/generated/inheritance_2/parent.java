@@ -53,15 +53,28 @@ public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
     
+method_setVariables(ictx.getBuffer(), ictx);
+    
 method_body(ictx.getBuffer(), ictx);
+    
+method_putVariablesInContesxt(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 return loop;
 } 
 
+protected java.lang.String targetFile = null;
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
+    }
+    protected void method_setVariables(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    targetFile = null;
+    }
+    protected void method_putVariablesInContesxt(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    ctx.setValue("targetFile", targetFile);
     }
     }

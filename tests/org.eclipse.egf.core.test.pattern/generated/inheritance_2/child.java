@@ -64,19 +64,15 @@ if (ctx.useReporter()){
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
-    
-method_setVariable(ictx.getBuffer(), ictx);
     super.orchestration(ictx);
 
     
 method_setToInject(ictx.getBuffer(), ictx);
-    ExecutionContext ctx__laA3wSIfEdpuPzASIa3Rw = new ExecutionContext(ictx);
-ctx__laA3wSIfEdpuPzASIa3Rw.setValue(PatternContext.INJECTED_CONTEXT, toInject);
-CallHelper.execute("_nfk5LCH-Ed-CStHKuCL0dg", ctx__laA3wSIfEdpuPzASIa3Rw);
+    ExecutionContext ctx__Kuf2YCIqEd6Wd7N4aE7lA = new ExecutionContext(ictx);
+ctx__Kuf2YCIqEd6Wd7N4aE7lA.setValue(PatternContext.INJECTED_CONTEXT, toInject);
+CallHelper.execute("_nfk5LCH-Ed-CStHKuCL0dg", ctx__Kuf2YCIqEd6Wd7N4aE7lA);
 
 
-    
-method_putVariableInContext(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -88,16 +84,11 @@ return loop;
 } 
 
 protected org.eclipse.emf.ecore.EClass toInject = null;
-protected java.lang.String targetFile = null;
 protected org.eclipse.emf.ecore.EClass parameter = null;
 public void set_parameter(org.eclipse.emf.ecore.EClass object) {
 this.parameter = object;
 }
 
-    protected void method_setVariable(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
-
-    targetFile = "/org.eclipse.egf.core.test.pattern/result/" + parameter.getName();
-    }
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
@@ -107,8 +98,8 @@ this.parameter = object;
 
     toInject = parameter;
     }
-    protected void method_putVariableInContext(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+    protected void method_setVariables(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
-    ctx.setValue("targetFile", targetFile);
+    targetFile = "/org.eclipse.egf.core.test.pattern/result/" + parameter.getName();
     }
     }
