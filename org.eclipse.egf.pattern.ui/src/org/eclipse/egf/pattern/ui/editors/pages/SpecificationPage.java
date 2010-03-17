@@ -45,7 +45,7 @@ import org.eclipse.egf.pattern.query.QueryKind;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
-import org.eclipse.egf.pattern.ui.contributors.EditHelper;
+import org.eclipse.egf.pattern.ui.contributions.EditHelper;
 import org.eclipse.egf.pattern.ui.editors.PatternEditorInput;
 import org.eclipse.egf.pattern.ui.editors.adapter.LiveValidationContentAdapter;
 import org.eclipse.egf.pattern.ui.editors.dialogs.ParametersEditDialog;

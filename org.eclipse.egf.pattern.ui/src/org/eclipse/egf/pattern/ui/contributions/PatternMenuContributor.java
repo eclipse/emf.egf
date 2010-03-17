@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.ui.contributors;
+package org.eclipse.egf.pattern.ui.contributions;
 
 import java.util.Collection;
 import java.util.HashSet;

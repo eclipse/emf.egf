@@ -13,7 +13,7 @@
  * </copyright>
  */
 
-package org.eclipse.egf.pattern.ui.contributors;
+package org.eclipse.egf.pattern.ui.contributions;
 
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.pattern.engine.PatternHelper;
