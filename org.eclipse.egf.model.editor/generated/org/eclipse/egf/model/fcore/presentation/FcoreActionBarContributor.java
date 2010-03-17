@@ -36,9 +36,11 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -329,7 +331,17 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
           if (resources.isEmpty() == false) {
             for (Resource resource : resources.keySet()) {
               try {
-                IEditorPart editorPart = EditorHelper.openEditor(resource.getURI());
+                // Try to use a URIConverter to normalize such URI
+                // if we have a platform:/plugin/ we need a platform:/resource/ if any
+                // to have a chance to use a FileEditorInput rather than a URIEditorInput
+                URI uri = resource.getURI();
+                if (uri != null && resource.getResourceSet() != null) {
+                  URIConverter converter = resource.getResourceSet().getURIConverter();
+                  if (converter != null) {
+                    uri = converter.normalize(uri);
+                  }
+                }
+                IEditorPart editorPart = EditorHelper.openEditor(uri);
                 if (editorPart != null) {
                   EditorHelper.setSelectionToViewer(editorPart, resources.get(resource));
                 }

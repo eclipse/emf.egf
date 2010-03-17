@@ -104,6 +104,8 @@ public class ActivityMenuContributor extends MenuContributor {
         URI uri = EcoreUtil.getURI(eObject);
         Resource resource = eObject.eResource();
         // Try to use a URIConverter to normalize such URI
+        // if we have a platform:/plugin/ we need a platform:/resource/ if any
+        // to have a chance to use a FileEditorInput rather than a URIEditorInput
         if (uri != null && resource != null && resource.getResourceSet() != null) {
           URIConverter converter = resource.getResourceSet().getURIConverter();
           if (converter != null) {

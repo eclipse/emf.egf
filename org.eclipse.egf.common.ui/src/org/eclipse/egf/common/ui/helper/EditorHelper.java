@@ -168,10 +168,11 @@ public class EditorHelper {
           for (IEditorReference editorReference : workbenchPage.getEditorReferences()) {
             try {
               IEditorInput editorInput = editorReference.getEditorInput();
-              if ((input != null && editorInput != null && input.getClass().equals(editorInput.getClass())) || editorInput != null) {
+              if (editorInput != null) {
                 URI innerURI = EditorHelper.getURI(editorInput);
                 if (innerURI != null && innerURI.equals(uri)) {
-                  return editorReference.getEditor(true);
+                  IEditorPart part = editorReference.getEditor(true);
+                  workbenchPage.activate(part);
                 }
               }
             } catch (PartInitException pie) {

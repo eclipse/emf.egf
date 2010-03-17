@@ -91,6 +91,8 @@ public class URIMenuContributor extends MenuContributor {
         resource = typeDomainURI.eResource();
       }
       // Try to use a URIConverter to normalize such URI
+      // if we have a platform:/plugin/ we need a platform:/resource/ if any
+      // to have a chance to use a FileEditorInput rather than a URIEditorInput
       if (uri != null && resource != null && resource.getResourceSet() != null) {
         URIConverter converter = resource.getResourceSet().getURIConverter();
         if (converter != null) {
@@ -109,7 +111,6 @@ public class URIMenuContributor extends MenuContributor {
         }
         IEditorPart part = EditorHelper.openEditor(uri);
         if (part != null) {
-          part.getSite().getPage().activate(part);
           if (part instanceof IEditingDomainProvider) {
             EditorHelper.setSelectionToViewer(part, uri);
           }
