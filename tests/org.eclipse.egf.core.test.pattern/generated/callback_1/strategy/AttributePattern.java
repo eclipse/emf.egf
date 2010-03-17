@@ -1,4 +1,4 @@
-package inheritance_3;
+package callback_1.strategy;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,24 +7,24 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class called 
+public class AttributePattern 
 {
   protected static String nl;
-  public static synchronized called create(String lineSeparator)
+  public static synchronized AttributePattern create(String lineSeparator)
   {
     nl = lineSeparator;
-    called result = new called();
+    AttributePattern result = new AttributePattern();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "//called on ";
+  protected final String TEXT_1 = "   Attribute ";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
   protected final String TEXT_4 = NL;
 
-	public called()
+	public AttributePattern()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();
@@ -48,7 +48,7 @@ List<Object> parameterList = null;
 
 for (Object parameterParameter : parameterList ) {
 
-this.parameter = (org.eclipse.emf.ecore.EClass)parameterParameter;
+this.parameter = (org.eclipse.emf.ecore.EAttribute)parameterParameter;
 
 
     orchestration(ctx);
@@ -68,7 +68,6 @@ InternalPatternContext ictx = (InternalPatternContext)ctx;
 int index = 0;
 
     
-    
 method_body(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
@@ -81,8 +80,8 @@ if (ictx.useReporter()){
 return loop;
 } 
 
-protected org.eclipse.emf.ecore.EClass parameter = null;
-public void set_parameter(org.eclipse.emf.ecore.EClass object) {
+protected org.eclipse.emf.ecore.EAttribute parameter = null;
+public void set_parameter(org.eclipse.emf.ecore.EAttribute object) {
 this.parameter = object;
 }
 
@@ -91,5 +90,11 @@ this.parameter = object;
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());
     stringBuffer.append(TEXT_2);
+    }
+    protected void method_after(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    }
+    protected void method_before(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
     }
     }

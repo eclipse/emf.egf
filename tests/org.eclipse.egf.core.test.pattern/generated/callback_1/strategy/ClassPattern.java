@@ -1,4 +1,4 @@
-package inheritance_3;
+package callback_1.strategy;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,24 +7,26 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class called 
+public class ClassPattern 
 {
   protected static String nl;
-  public static synchronized called create(String lineSeparator)
+  public static synchronized ClassPattern create(String lineSeparator)
   {
     nl = lineSeparator;
-    called result = new called();
+    ClassPattern result = new ClassPattern();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "//called on ";
-  protected final String TEXT_2 = NL;
-  protected final String TEXT_3 = NL;
-  protected final String TEXT_4 = NL;
+  protected final String TEXT_1 = "//default content";
+  protected final String TEXT_2 = "  [class ";
+  protected final String TEXT_3 = "]" + NL;
+  protected final String TEXT_4 = "  [end class]" + NL;
+  protected final String TEXT_5 = NL;
+  protected final String TEXT_6 = NL;
 
-	public called()
+	public ClassPattern()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();
@@ -59,8 +61,8 @@ if (ctx.useReporter()){
     ctx.clearLoopBuffers();
 }
     
-    stringBuffer.append(TEXT_3);
-    stringBuffer.append(TEXT_4);
+    stringBuffer.append(TEXT_5);
+    stringBuffer.append(TEXT_6);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -68,8 +70,19 @@ InternalPatternContext ictx = (InternalPatternContext)ctx;
 int index = 0;
 
     
+method_before(ictx.getBuffer(), ictx);
+    {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+index = ictx.getBuffer().length();
+ictx.getExecutionBuffer().append(ictx.getBuffer());
+parameters.put("parameter", this.parameter);
+CallbackContext ctx_callback = new CallbackContext(ictx);
+CallHelper.callBack(ctx_callback, parameters);
+ictx.getExecutionBuffer().append(ctx_callback.getBuffer());
+}
+
     
-method_body(ictx.getBuffer(), ictx);
+method_after(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -89,7 +102,15 @@ this.parameter = object;
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
-    stringBuffer.append(parameter.getName());
+    }
+    protected void method_before(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
     stringBuffer.append(TEXT_2);
+    stringBuffer.append(parameter.getName());
+    stringBuffer.append(TEXT_3);
+    }
+    protected void method_after(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    stringBuffer.append(TEXT_4);
     }
     }

@@ -1,11 +1,11 @@
-package inheritance_3_4;
+package org.eclipse.egf.core.test.pattern;
 
 import java.util.Map;
 
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
-public class MyReporter implements PatternExecutionReporter{
+public class JunitConsoleReporter implements PatternExecutionReporter{
 
 	public void executionFinished(String output, PatternContext context) {
 		System.out.println("exec finished:");

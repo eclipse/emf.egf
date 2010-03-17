@@ -14,3 +14,11 @@ Require-Bundle:
  org.eclipse.egf.core.producer,
  org.eclipse.egf.model.ftask
 Bundle-ActivationPolicy: lazy
+Export-Package: callback_1.strategy,
+ inheritance_1,
+ inheritance_2,
+ inheritance_2_called,
+ inheritance_3,
+ inheritance_4.base,
+ inheritance_4.strategy,
+ org.eclipse.egf.core.test.pattern

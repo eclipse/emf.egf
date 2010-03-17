@@ -7,8 +7,7 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class classPattern 
-{
+public class classPattern extends inheritance_4.base.BasePattern {
   protected static String nl;
   public static synchronized classPattern create(String lineSeparator)
   {
@@ -56,8 +55,8 @@ this.parameter = (org.eclipse.emf.ecore.EClass)parameterParameter;
     
 }
 if (ctx.useReporter()){
-    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
-    ctx.getBuffer().setLength(0);
+    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+    ctx.clearLoopBuffers();
 }
     
     stringBuffer.append(TEXT_4);
@@ -66,17 +65,20 @@ if (ctx.useReporter()){
   }
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
+int index = 0;
 
-    
+    super.orchestration(new SuperOrchestrationContext(ictx));
+
     
 method_work(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));
     Map<String, Object> parameterValues = new HashMap<String, Object>();
     parameterValues.put("parameter", this.parameter);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-    ictx.getBuffer().setLength(0);}
+    ictx.clearLoopBuffers();}
 return loop;
 } 
 

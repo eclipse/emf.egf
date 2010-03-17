@@ -25,6 +25,12 @@
       <fcore
             id="model/mypackage.fcore">
       </fcore>
+      <fcore
+            id="fc/callback_1.fcore">
+      </fcore>
+      <fcore
+            id="fc/no_callback_1.fcore">
+      </fcore>
    </extension>
 
 </plugin>

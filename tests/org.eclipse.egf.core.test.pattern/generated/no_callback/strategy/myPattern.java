@@ -1,4 +1,4 @@
-package inheritance_3;
+package no_callback.strategy;
 
 import org.eclipse.egf.common.helper.*;
 import java.util.*;
@@ -7,24 +7,23 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class called 
+public class myPattern 
 {
   protected static String nl;
-  public static synchronized called create(String lineSeparator)
+  public static synchronized myPattern create(String lineSeparator)
   {
     nl = lineSeparator;
-    called result = new called();
+    myPattern result = new myPattern();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "//called on ";
+  protected final String TEXT_1 = "//default content";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
-  protected final String TEXT_4 = NL;
 
-	public called()
+	public myPattern()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();
@@ -59,8 +58,8 @@ if (ctx.useReporter()){
     ctx.clearLoopBuffers();
 }
     
+    stringBuffer.append(TEXT_2);
     stringBuffer.append(TEXT_3);
-    stringBuffer.append(TEXT_4);
     return stringBuffer.toString();
   }
 public String orchestration(PatternContext ctx) throws Exception  {
@@ -68,8 +67,6 @@ InternalPatternContext ictx = (InternalPatternContext)ctx;
 int index = 0;
 
     
-    
-method_body(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -89,7 +86,5 @@ this.parameter = object;
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
-    stringBuffer.append(parameter.getName());
-    stringBuffer.append(TEXT_2);
     }
     }
