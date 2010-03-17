@@ -17,6 +17,7 @@ import org.eclipse.egf.console.internal.Console;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -68,20 +69,24 @@ public class EGFConsolePlugin extends EGFAbstractUIPlugin {
   public void start(BundleContext context) throws Exception {
     super.start(context);
     __plugin = this;
-    try {
-      _console = new Console();
-    } catch (RuntimeException re) {
-      // Don't let the console bring down UI
-      logError("Errors occurred starting the EGF console", re); //$NON-NLS-1$
+    if (PlatformUI.isWorkbenchRunning()) {
+      try {
+        _console = new Console();
+      } catch (RuntimeException re) {
+        // Don't let the console bring down UI
+        logError("Errors occurred starting the EGF console", re); //$NON-NLS-1$
+      }
     }
   }
 
   @Override
   public void stop(BundleContext context) throws Exception {
     try {
-      ColorManager.getDefault().dispose();
-      if (_console != null) {
-        _console.shutdown();
+      if (PlatformUI.isWorkbenchRunning()) {
+        ColorManager.getDefault().dispose();
+        if (_console != null) {
+          _console.shutdown();
+        }
       }
       __plugin = null;
     } finally {
