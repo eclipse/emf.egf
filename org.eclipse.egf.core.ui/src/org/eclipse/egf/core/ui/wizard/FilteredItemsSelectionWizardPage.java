@@ -47,8 +47,10 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.jface.viewers.ContentViewer;
+import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.jface.viewers.IContentProvider;
+import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IFontProvider;
 import org.eclipse.jface.viewers.ILabelDecorator;
 import org.eclipse.jface.viewers.ILabelProvider;
@@ -163,7 +165,7 @@ public abstract class FilteredItemsSelectionWizardPage extends WizardPage {
 
   private Text pattern;
 
-  protected TableViewer list;
+  private TableViewer list;
 
   private DetailsContentViewer details;
 
@@ -2689,6 +2691,12 @@ public abstract class FilteredItemsSelectionWizardPage extends WizardPage {
       }
     });
 
+    list.addDoubleClickListener(new IDoubleClickListener() {
+      public void doubleClick(DoubleClickEvent event) {
+        handleDoubleClick();
+      }
+    });
+
     list.getTable().addKeyListener(new KeyAdapter() {
       public void keyPressed(KeyEvent e) {
 
@@ -2771,6 +2779,16 @@ public abstract class FilteredItemsSelectionWizardPage extends WizardPage {
   protected boolean validatePage() {
     List selectedElements = ((StructuredSelection) list.getSelection()).toList();
     return selectedElements != null && selectedElements.size() > 0;
+  }
+
+  /**
+   * This method is a hook for subclasses to override default dialog behavior.
+   * The <code>handleDoubleClick()</code> method handles double clicks on
+   * the list of filtered elements.
+   * <p>
+   */
+  protected void handleDoubleClick() {
+    // DO nothing
   }
 
   /**
