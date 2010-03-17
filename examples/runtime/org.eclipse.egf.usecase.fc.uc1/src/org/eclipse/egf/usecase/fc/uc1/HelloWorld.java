@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -28,25 +28,23 @@ import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
 
 public class HelloWorld implements ITaskProduction {
 
-	private static final String VALUE_PARAMETER = "value"; 
+  private static final String VALUE_PARAMETER = "value"; //$NON-NLS-1$
 
-	public void preExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
-		// TODO Auto-generated method stub
-	}
-	
-	public void doExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
-		String value = taskProductionContext.getInputValue(VALUE_PARAMETER, String.class);
-		String message = new String ("Hello " + value + "!");
+  public void preExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
+    // TODO Auto-generated method stub
+  }
 
-		// Message on the default console
-		System.out.println(message);
+  public void doExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
+    String value = taskProductionContext.getInputValue(VALUE_PARAMETER, String.class);
+    String message = new String("Hello " + value + "!"); //$NON-NLS-1$ //$NON-NLS-2$
+    // Message on the default console
+    System.out.println(message);
+    // Message on the EGF console
+    EGFCorePlugin.getDefault().logInfo(message);
+  }
 
-		// Message on the EGF console
-		EGFCorePlugin.getDefault().logInfo(message);
-	}
-
-	public void postExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
-		// TODO Auto-generated method stub
-	}
+  public void postExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
+    // TODO Auto-generated method stub
+  }
 
 }

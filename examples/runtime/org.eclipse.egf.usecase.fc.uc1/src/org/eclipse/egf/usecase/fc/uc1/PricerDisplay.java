@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -26,36 +26,38 @@ import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
  * 
  */
 
-public class PricerDisplay  implements ITaskProduction {
+public class PricerDisplay implements ITaskProduction {
 
-	private static final String PRICE_PARAMETER = "price"; 
-	private static final String QUANTITY_PARAMETER = "quantity"; 
-	private static final String AMOUNT_PARAMETER = "amount"; 
+  private static final String PRICE_PARAMETER = "price"; //$NON-NLS-1$
 
-	private Integer quantity; 
-	private Float price; 
-	private Float amount; 
+  private static final String QUANTITY_PARAMETER = "quantity"; //$NON-NLS-1$
 
-	public void preExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
-		// TODO Auto-generated method stub
-	}
+  private static final String AMOUNT_PARAMETER = "amount"; //$NON-NLS-1$
 
-	public void doExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
-		quantity = taskProductionContext.getInputValue(QUANTITY_PARAMETER, Integer.class);
-		price = taskProductionContext.getInputValue(PRICE_PARAMETER, Float.class);
-		amount = taskProductionContext.getInputValue(AMOUNT_PARAMETER, Float.class);
+  private Integer quantity;
+  private Float price;
+  private Float amount;
 
-		String message = new String ("Pricer: " + quantity + " * " + price + " = " + amount);
+  public void preExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
+    // TODO Auto-generated method stub
+  }
 
-		// Message on the default console
-		System.out.println(message);
+  public void doExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
+    quantity = taskProductionContext.getInputValue(QUANTITY_PARAMETER, Integer.class);
+    price = taskProductionContext.getInputValue(PRICE_PARAMETER, Float.class);
+    amount = taskProductionContext.getInputValue(AMOUNT_PARAMETER, Float.class);
 
-		// Message on the EGF console
-		EGFCorePlugin.getDefault().logInfo(message);
-	}
+    String message = new String("Pricer: " + quantity + " * " + price + " = " + amount); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
-	public void postExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
-		// TODO Auto-generated method stub
-	}
+    // Message on the default console
+    System.out.println(message);
+
+    // Message on the EGF console
+    EGFCorePlugin.getDefault().logInfo(message);
+  }
+
+  public void postExecute(ITaskProductionContext taskProductionContext, IProgressMonitor monitor) throws InvocationException {
+    // TODO Auto-generated method stub
+  }
 
 }

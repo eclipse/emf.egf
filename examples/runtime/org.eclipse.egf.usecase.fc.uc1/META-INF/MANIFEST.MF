@@ -1,8 +1,14 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Uc1
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.usecase.fc.uc1;singleton:=true
-Bundle-Version: 0.1.0.qualifier
+Bundle-Version: 0.2.2.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.eclipse.egf.model.ftask;visibility:=reexport
-Export-Package: org.eclipse.egf.usecase.fc.uc1
+Require-Bundle: 
+ org.eclipse.egf.model.ftask;visibility:=reexport
+Export-Package: 
+ org.eclipse.egf.usecase.fc.uc1
+Bundle-ActivationPolicy: lazy 
