@@ -128,33 +128,36 @@ public class EditorHelper {
     if (uri == null) {
       return null;
     }
-    IEditorPart part = restoreAlreadyOpenedEditor(uri);
-    if (part == null) {
-      IEditorInput editorInput = null;
-      if (uri.isPlatformResource()) {
-        String path = uri.toPlatformString(true);
-        IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
-        if (workspaceResource instanceof IFile) {
-          editorInput = EclipseUtil.createFileEditorInput((IFile) workspaceResource);
-          return openEditor(editorInput, uri);
-        }
-      } else {
-        return openEditor(new URIEditorInput(uri.trimFragment()), uri);
+    IEditorPart part = restoreAlreadyOpenedEditor(null, uri);
+    if (part != null) {
+      return part;
+    }
+    IEditorInput editorInput = null;
+    if (uri.isPlatformResource()) {
+      String path = uri.toPlatformString(true);
+      IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
+      if (workspaceResource instanceof IFile) {
+        editorInput = EclipseUtil.createFileEditorInput((IFile) workspaceResource);
+        return openEditor(editorInput, uri);
       }
     }
-    return part;
+    return openEditor(new URIEditorInput(uri.trimFragment()), uri);
   }
 
-  private static IEditorPart openEditor(IEditorInput input, URI uri) throws PartInitException {
-    if (input != null && uri != null) {
-      IWorkbench workbench = PlatformUI.getWorkbench();
-      IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
-      return page.openEditor(input, computeEditorId(uri.trimFragment().lastSegment()));
+  public static IEditorPart openEditor(IEditorInput input, URI uri) throws PartInitException {
+    if (input == null || uri == null) {
+      return null;
     }
-    return null;
+    IEditorPart part = restoreAlreadyOpenedEditor(input, uri);
+    if (part != null) {
+      return part;
+    }
+    IWorkbench workbench = PlatformUI.getWorkbench();
+    IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+    return page.openEditor(input, computeEditorId(uri.trimFragment().lastSegment()));
   }
 
-  private static IEditorPart restoreAlreadyOpenedEditor(URI uri) {
+  private static IEditorPart restoreAlreadyOpenedEditor(IEditorInput input, URI uri) {
     if (uri == null) {
       return null;
     }
@@ -165,7 +168,7 @@ public class EditorHelper {
           for (IEditorReference editorReference : workbenchPage.getEditorReferences()) {
             try {
               IEditorInput editorInput = editorReference.getEditorInput();
-              if (editorInput != null) {
+              if ((input != null && editorInput != null && input.getClass().equals(editorInput.getClass())) || editorInput != null) {
                 URI innerURI = EditorHelper.getURI(editorInput);
                 if (innerURI != null && innerURI.equals(uri)) {
                   return editorReference.getEditor(true);
