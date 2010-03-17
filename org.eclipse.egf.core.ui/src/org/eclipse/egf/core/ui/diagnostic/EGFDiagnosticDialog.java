@@ -25,7 +25,6 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IconAndMessageDialog;
 import org.eclipse.jface.resource.JFaceResources;
-import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -46,16 +45,6 @@ import org.eclipse.swt.widgets.Shell;
  * @since 2.3
  */
 public class EGFDiagnosticDialog extends IconAndMessageDialog {
-
-  private class EGFDiagnosticComposite extends DiagnosticComposite {
-    public EGFDiagnosticComposite(Composite parent, int style) {
-      super(parent, style);
-    }
-
-    public IStructuredSelection getStructuredSelection() {
-      return diagnosticTreeViewer == null ? null : (IStructuredSelection) diagnosticTreeViewer.getSelection();
-    }
-  }
 
   /**
    * Returns whether the given diagnostic object should be displayed.
@@ -97,7 +86,7 @@ public class EGFDiagnosticDialog extends IconAndMessageDialog {
    */
   private EGFDiagnosticComposite diagnosticComposite;
 
-  private DiagnosticComposite.TextProvider textProvider;
+  private EGFDiagnosticComposite.TextProvider textProvider;
 
   /**
    * Filter mask for determining which diagnostic items to display.
@@ -150,14 +139,14 @@ public class EGFDiagnosticDialog extends IconAndMessageDialog {
     setShellStyle(getShellStyle() | SWT.RESIZE);
   }
 
-  public void setTextProvider(DiagnosticComposite.TextProvider textProvider) {
+  public void setTextProvider(EGFDiagnosticComposite.TextProvider textProvider) {
     this.textProvider = textProvider;
     if (diagnosticComposite != null) {
       diagnosticComposite.setTextProvider(getTextProvider());
     }
   }
 
-  public DiagnosticComposite.TextProvider getTextProvider() {
+  public EGFDiagnosticComposite.TextProvider getTextProvider() {
     return textProvider;
   }
 
@@ -307,7 +296,7 @@ public class EGFDiagnosticDialog extends IconAndMessageDialog {
    *          just its children
    */
   @SuppressWarnings("hiding")
-  private void populate(DiagnosticComposite diagnosticComposite, Diagnostic diagnostic, boolean includeDiagnostic) {
+  private void populate(EGFDiagnosticComposite diagnosticComposite, Diagnostic diagnostic, boolean includeDiagnostic) {
     if (DiagnosticComposite.severityMatches(diagnostic, severityMask)) {
       diagnosticComposite.setShowRootDiagnostic(includeDiagnostic);
       diagnosticComposite.setSeverityMask(severityMask);
@@ -342,9 +331,9 @@ public class EGFDiagnosticDialog extends IconAndMessageDialog {
    */
   @Override
   public boolean close() {
-    if (diagnosticComposite != null && diagnosticComposite.getStructuredSelection().isEmpty() == false) {
+    if (diagnosticComposite != null && diagnosticComposite.getSelection().isEmpty() == false) {
       selection = new UniqueEList<Diagnostic>();
-      for (Object object : diagnosticComposite.getStructuredSelection().toList()) {
+      for (Object object : diagnosticComposite.getSelection().toList()) {
         if (object instanceof Diagnostic) {
           selection.add((Diagnostic) object);
         }
