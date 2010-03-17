@@ -56,7 +56,7 @@ public abstract class OpenEObjectMenuContributor extends MenuContributor {
     }
 
     public boolean isAlreadyOpenedEditor() {
-      return EditorHelper.isAlreadyOpenedEditor(getURI().trimFragment());
+      return EditorHelper.isAlreadyOpenedEditor(getURI());
     }
 
     protected abstract EObject getEObject();
@@ -66,7 +66,15 @@ public abstract class OpenEObjectMenuContributor extends MenuContributor {
       if (eObject == null) {
         return null;
       }
-      return EcoreUtil.getURI(eObject);
+      URI uri = EcoreUtil.getURI(eObject);
+      Resource resource = eObject.eResource();
+      // Try to use a URIConverter to normalize such URI
+      // if we have a platform:/plugin/ we need a platform:/resource/ if any
+      // to have a chance to use a FileEditorInput rather than a URIEditorInput
+      if (uri != null && resource != null && resource.getResourceSet() != null) {
+        uri = normalize(resource.getResourceSet().getURIConverter(), uri);
+      }
+      return uri;
     }
 
     protected URI normalize(URIConverter converter, URI uri) {
@@ -79,18 +87,7 @@ public abstract class OpenEObjectMenuContributor extends MenuContributor {
     @Override
     public void run() {
       try {
-        EObject eObject = getEObject();
-        if (eObject == null) {
-          return;
-        }
         URI uri = getURI();
-        Resource resource = eObject.eResource();
-        // Try to use a URIConverter to normalize such URI
-        // if we have a platform:/plugin/ we need a platform:/resource/ if any
-        // to have a chance to use a FileEditorInput rather than a URIEditorInput
-        if (uri != null && resource != null && resource.getResourceSet() != null) {
-          uri = normalize(resource.getResourceSet().getURIConverter(), uri);
-        }
         // Try to open it if any
         if (uri != null) {
           IEditorPart part = EditorHelper.openEditor(uri);

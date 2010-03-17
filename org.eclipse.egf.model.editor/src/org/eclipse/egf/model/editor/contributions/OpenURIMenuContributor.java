@@ -20,6 +20,7 @@ import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
 /**
@@ -65,6 +66,13 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
         uri = ((DomainURI) eObject).getUri();
       } else if (eObject instanceof TypeDomainURI) {
         uri = ((TypeDomainURI) eObject).getValue();
+      }
+      Resource resource = eObject.eResource();
+      // Try to use a URIConverter to normalize such URI
+      // if we have a platform:/plugin/ we need a platform:/resource/ if any
+      // to have a chance to use a FileEditorInput rather than a URIEditorInput
+      if (uri != null && resource != null && resource.getResourceSet() != null) {
+        uri = normalize(resource.getResourceSet().getURIConverter(), uri);
       }
       return uri;
     }
