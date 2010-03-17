@@ -77,6 +77,7 @@
   
 	<extension point="org.eclipse.egf.core.ui.editor.property.contributor">
     	<contribution class="org.eclipse.egf.model.editor.contributions.TypeEditorContributor"/>
+    	<contribution class="org.eclipse.egf.model.editor.contributions.InvocationEditorContributor"/>
   	</extension>  
   
 </plugin>
