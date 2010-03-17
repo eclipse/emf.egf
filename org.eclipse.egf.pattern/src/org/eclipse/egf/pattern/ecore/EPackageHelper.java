@@ -110,14 +110,14 @@ public class EPackageHelper {
             addPackage2registry(ePackage);
 
             // computing basePackage
-            int index = classname.lastIndexOf(ePackage.getName());
+            int index = classname.lastIndexOf(".");
             if (index == -1)
                 throw new IllegalStateException();
             if (index == 0)
                 nsuri2basePackage.put(nsURI, "");
             else
                 // to remove the last dot
-                nsuri2basePackage.put(nsURI, classname.substring(0, index - 1));
+                nsuri2basePackage.put(nsURI, classname.substring(0, index));
         } catch (Exception e) {
             throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
         }
