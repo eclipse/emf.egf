@@ -11,12 +11,6 @@ public class Activator extends EGFAbstractUIPlugin {
 
 	// The shared instance
 	private static Activator plugin;
-	
-	/**
-	 * The constructor
-	 */
-	public Activator() {
-	}
 
 	/*
 	 * (non-Javadoc)
