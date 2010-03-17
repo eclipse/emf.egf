@@ -18,7 +18,6 @@ package org.eclipse.egf.pattern.extension;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -427,24 +426,20 @@ public abstract class PatternFactory {
         PatternMethod headerMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         pattern.getMethods().add(headerMethod);
         pattern.setHeaderMethod(headerMethod);
-        checkId(headerMethod);
         initHeader(headerMethod);
 
         PatternMethod initMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         pattern.getMethods().add(initMethod);
         pattern.setInitMethod(initMethod);
-        checkId(initMethod);
         initIinit(initMethod);
 
         PatternMethod bodyMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         pattern.getMethods().add(bodyMethod);
-        checkId(initMethod);
         initBody(bodyMethod);
 
         PatternMethod footerMethod = org.eclipse.egf.model.pattern.PatternFactory.eINSTANCE.createPatternMethod();
         pattern.getMethods().add(footerMethod);
         pattern.setFooterMethod(footerMethod);
-        checkId(footerMethod);
         initFooter(footerMethod);
 
         // 2 - set up default orchestration
@@ -507,14 +502,5 @@ public abstract class PatternFactory {
      * @param pattern
      */
     protected abstract void addNature(Pattern pattern);
-
-    /**
-     * @param element
-     */
-    private void checkId(ModelElement element) {
-        // ID are set when the element is added to a resource.
-        // if (element.getID() == null || "".equals(element.getID()))
-        // throw new IllegalStateException();
-    }
 
 }
