@@ -19,6 +19,7 @@ import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
 import org.eclipse.egf.model.domain.DomainURI;
+import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.emf.common.util.URI;
@@ -43,7 +44,7 @@ public class URIMenuContributor extends MenuContributor {
   public void menuAboutToShow(IMenuManager menuManager) {
     IStructuredSelection selection2 = (IStructuredSelection) selection;
     if (selection2.size() == 1) {
-      if (selection2.getFirstElement() instanceof DomainURI) {
+      if (selection2.getFirstElement() instanceof DomainURI || selection2.getFirstElement() instanceof TypeDomainURI) {
         _editAction.setEnabled(_editAction.isEnabled());
         menuManager.insertBefore(EGFCommonUIConstants.OPEN_MENU_GROUP, _editAction);
       }
@@ -78,6 +79,9 @@ public class URIMenuContributor extends MenuContributor {
       if (object instanceof DomainURI) {
         DomainURI domainURI = (DomainURI) object;
         return domainURI.getUri();
+      } else if (object instanceof TypeDomainURI) {
+        TypeDomainURI typeDomainURI = (TypeDomainURI) object;
+        return typeDomainURI.getValue();
       }
       return null;
     }
