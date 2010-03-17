@@ -241,7 +241,7 @@ public class EGFValidator {
         try {
           // Try to use a URIConverter to normalize such URI
           // if we have a platform:/plugin/ we need a platform:/resource/ if any
-          // to have a chance to use a FileEditorInput rather than a URIEditorInput
+          // to have a chance to use a FileEditorInput rather than an URIEditorInput
           URI uri = resource.getURI();
           if (uri != null && resource.getResourceSet() != null) {
             URIConverter converter = resource.getResourceSet().getURIConverter();
