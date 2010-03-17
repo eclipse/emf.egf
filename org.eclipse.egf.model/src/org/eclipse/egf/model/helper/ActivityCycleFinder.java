@@ -46,6 +46,7 @@ public class ActivityCycleFinder {
     if (activity instanceof FactoryComponent) {
       _activities.push(activity);
       ModelElement element = getFirstRepetition(((FactoryComponent) activity).getOrchestration());
+      // Everything is fine
       if (element == null) {
         _activities.pop();
       }
@@ -60,10 +61,12 @@ public class ActivityCycleFinder {
     }
     for (Invocation invocation : orchestration.getInvocations()) {
       ModelElement element = getFirstRepetition(invocation);
+      // Activity detected, break immediately
       if (element != null) {
         return element;
       }
     }
+    // Everything is fine
     return null;
   }
 
@@ -71,10 +74,11 @@ public class ActivityCycleFinder {
     if (invocation == null || invocation.getInvokedActivity() == null) {
       return null;
     }
-    // Cycle detection at invocation level
+    // Cycle detection
     if (activityLookup(invocation.getInvokedActivity())) {
       return invocation;
     }
+    // Invoked Activity analysis
     return getFirstRepetition(invocation.getInvokedActivity());
   }
 
