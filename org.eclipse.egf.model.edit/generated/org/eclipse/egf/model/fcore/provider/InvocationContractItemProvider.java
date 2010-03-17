@@ -16,7 +16,6 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.common.helper.ClassHelper;
-import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.helper.InvocationContractHelper;
@@ -246,11 +245,20 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
     InvocationContract invocationContract = (InvocationContract) object;
     String invoked = null;
     if (invocationContract.getInvokedContract() != null) {
-      invoked = EMFHelper.getText(invocationContract.getInvokedContract());
+      invoked = invocationContract.getInvokedContract().getName();
+      String mode = null;
+      if (invocationContract.getInvokedContract().getMode() != null) {
+        mode = "[" + invocationContract.getInvokedContract().getMode().getLiteral() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+      }
+      if ((invoked == null || invoked.length() == 0) && mode != null) {
+        invoked = mode;
+      } else if (mode != null) {
+        invoked = invoked + " " + mode; //$NON-NLS-1$
+      }
     }
     String label = "[" + getString("_UI_InvocationContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     if (invoked != null) {
-      label = label + " -> " + invoked; //$NON-NLS-1$
+      label = invoked + " " + label; //$NON-NLS-1$
     }
     return label;
   }
