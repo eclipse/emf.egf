@@ -308,22 +308,10 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
         if (result != Window.OK) {
           return;
         }
-        // Nothing to process
-        if (diagnostic.getChildren().isEmpty()) {
-          return;
-        }
-        // Select and reveal
-        Map<Resource, UniqueEList<EObject>> resources = new HashMap<Resource, UniqueEList<EObject>>();
-        // Default selection
-        if (dialog.getSelection() == null) {
-          List<?> data = (diagnostic.getChildren().get(0)).getData();
-          if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
-            EObject eObject = (EObject) data.get(0);
-            UniqueEList<EObject> eObjects = new UniqueEList<EObject>();
-            eObjects.add(eObject);
-            resources.put(eObject.eResource(), eObjects);
-          }
-        } else {
+        // Nothing to select
+        if (dialog.getSelection() != null && dialog.getSelection().isEmpty() == false) {
+          // Select and reveal
+          Map<Resource, UniqueEList<EObject>> resources = new HashMap<Resource, UniqueEList<EObject>>();
           // Try to select and reveal selected Diagnostics
           for (Diagnostic innerDiagnostic : dialog.getSelection()) {
             List<?> data = innerDiagnostic.getData();
@@ -337,17 +325,17 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
               eObjects.add(eObject);
             }
           }
-        }
-        // is there something to select
-        if (resources.isEmpty() == false) {
-          for (Resource resource : resources.keySet()) {
-            try {
-              IEditorPart editorPart = EditorHelper.openEditor(resource.getURI());
-              if (editorPart != null) {
-                EditorHelper.setSelectionToViewer(editorPart, resources.get(resource));
+          // is there something to select
+          if (resources.isEmpty() == false) {
+            for (Resource resource : resources.keySet()) {
+              try {
+                IEditorPart editorPart = EditorHelper.openEditor(resource.getURI());
+                if (editorPart != null) {
+                  EditorHelper.setSelectionToViewer(editorPart, resources.get(resource));
+                }
+              } catch (Throwable t) {
+                ThrowableHandler.handleThrowable(EGFCoreUIPlugin.getDefault().getPluginID(), t);
               }
-            } catch (Throwable t) {
-              ThrowableHandler.handleThrowable(EGFCoreUIPlugin.getDefault().getPluginID(), t);
             }
           }
         }
