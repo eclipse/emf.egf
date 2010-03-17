@@ -45,6 +45,7 @@ public class EGFCoreMessages {
   public static String ProjectBundleSession_InstallationFailure;
   public static String ProjectBundleSession_BundleClassInstantiationFailure;
   public static String ProjectBundleSession_UninstallationFailure;
+  public static String ProjectBundleSession_PackageRefreshFailure;
   public static String ProjectBundleSession_LoadFailure;
   public static String ProjectBundleSession_URLFailure;
   public static String ProjectBundleSession_StoppingFailure;
