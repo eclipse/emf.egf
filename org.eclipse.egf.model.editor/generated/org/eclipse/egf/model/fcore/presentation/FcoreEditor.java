@@ -499,7 +499,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             } else {
               resourceToDiagnosticMap.remove(innerResource.getURI());
             }
-            // Try to proxy owners
+            // Try to refresh proxy owners
             if (innerResource != getResource()) {
               if (selectionViewer != null && selectionViewer.getControl() != null && selectionViewer.getControl().isDisposed() == false && selectionViewer.isBusy() == false) {
                 final List<EObject> owners = ResourceHelper.getURIProxyReferenceOwners(getResource(), innerResource.getURI());
