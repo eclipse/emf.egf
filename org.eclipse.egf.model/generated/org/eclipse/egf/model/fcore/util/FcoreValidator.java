@@ -431,8 +431,29 @@ public class FcoreValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validateContract_UselessMandatoryMode(factoryComponentContract, diagnostics, context);
     if (result || diagnostics != null)
+      result &= validateFactoryComponentContract_UselessFactoryComponentContract(factoryComponentContract, diagnostics, context);
+    if (result || diagnostics != null)
       result &= validateFactoryComponentContract_OutModeIsRestricted(factoryComponentContract, diagnostics, context);
     return result;
+  }
+
+  /**
+   * Validates the UselessFactoryComponentContract constraint of '<em>Factory Component Contract</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  public boolean validateFactoryComponentContract_UselessFactoryComponentContract(FactoryComponentContract factoryComponentContract, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    if (factoryComponentContract.getInvocationContracts() == null || factoryComponentContract.getInvocationContracts().size() == 0) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "UselessFactoryComponentContract", getObjectLabel(factoryComponentContract, context), "This FactoryComponentContract is not used" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { factoryComponentContract }, context));
+      }
+      return false;
+    }
+    return true;
   }
 
   /**

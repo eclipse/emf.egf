@@ -907,7 +907,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
 
     initEClass(factoryComponentContractEClass, FactoryComponentContract.class, "FactoryComponentContract", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getFactoryComponentContract_InvocationContracts(), this.getInvocationContract(), this.getInvocationContract_FactoryComponentContract(),
-        "invocationContracts", null, 1, -1, FactoryComponentContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        "invocationContracts", null, 0, -1, FactoryComponentContract.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
     initEClass(viewpointContainerEClass, ViewpointContainer.class, "ViewpointContainer", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
     initEReference(getViewpointContainer_FactoryComponent(), this.getFactoryComponent(), this.getFactoryComponent_ViewpointContainer(),
@@ -1063,7 +1063,7 @@ public class FcorePackageImpl extends EPackageImpl implements FcorePackage {
     });
     addAnnotation(contractContainerEClass, source, new String[] { "constraints", "FactoryComponentContract" //$NON-NLS-1$ //$NON-NLS-2$
     });
-    addAnnotation(factoryComponentContractEClass, source, new String[] { "constraints", "OutModeIsRestricted" //$NON-NLS-1$ //$NON-NLS-2$
+    addAnnotation(factoryComponentContractEClass, source, new String[] { "constraints", "UselessFactoryComponentContract OutModeIsRestricted" //$NON-NLS-1$ //$NON-NLS-2$
     });
     addAnnotation(orchestrationParameterContainerEClass, source, new String[] { "constraints", "UselessOrchestrationParameterContainer" //$NON-NLS-1$ //$NON-NLS-2$
     });
