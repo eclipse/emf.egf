@@ -4,7 +4,7 @@
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_mTlnECH-Ed-CStHKuCL0dg"
-    name="inheritance_2">
+    description=" " name="inheritance_2">
   <viewpointContainer xmi:id="_nfk5ECH-Ed-CStHKuCL0dg">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_nfk5ESH-Ed-CStHKuCL0dg">
       <libraries xmi:id="_nfk5EiH-Ed-CStHKuCL0dg" name="inheritance_2">
@@ -82,7 +82,7 @@
         </invocationContracts>
         <invocationContracts xmi:id="_nfk5PiH-Ed-CStHKuCL0dg" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_nfk5PyH-Ed-CStHKuCL0dg"
-              value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter"/>
+              value="org.eclipse.egf.core.test.pattern.inheritance_2.Inheritance_2_Reporter"/>
         </invocationContracts>
       </invocationContractContainer>
     </invocations>

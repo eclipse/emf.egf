@@ -4,7 +4,7 @@
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_mQLQQCIKEd-l6L0LIketyw"
-    name="inheritance_3">
+    description=" " name="inheritance_3">
   <viewpointContainer xmi:id="_nF5-YCIKEd-l6L0LIketyw">
     <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_nd4ZgCIKEd-l6L0LIketyw">
       <libraries xmi:id="_6caJ8CITEd-XdOucj2euiQ" name="inheritance_3">
@@ -33,9 +33,9 @@
           <methods xmi:id="_-HLLgyITEd-XdOucj2euiQ" name="body" patternFilePath="templates/pattern._-HLLgCITEd-XdOucj2euiQ/method._-HLLgyITEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_-HLLhCITEd-XdOucj2euiQ" name="footer" patternFilePath="templates/pattern._-HLLgCITEd-XdOucj2euiQ/method._-HLLhCITEd-XdOucj2euiQ.pt"/>
           <methods xmi:id="_JBYPQCIUEd-XdOucj2euiQ" name="hehe" patternFilePath="templates/pattern._-HLLgCITEd-XdOucj2euiQ/method._JBYPQCIUEd-XdOucj2euiQ.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_-HLLhSITEd-XdOucj2euiQ"/>
           <orchestration xmi:type="pattern:MethodCall" xmi:id="_JZi3oCIUEd-XdOucj2euiQ"
               called="#_JBYPQCIUEd-XdOucj2euiQ"/>
-          <orchestration xmi:type="pattern:SuperCall" xmi:id="_-HLLhSITEd-XdOucj2euiQ"/>
           <orchestration xmi:type="pattern:PatternCall" xmi:id="_jVCJQCIUEd-XdOucj2euiQ"
               called="#_AHSpICIUEd-XdOucj2euiQ"/>
           <nature xmi:type="jetpattern:JetNature" xmi:id="_-HLLhiITEd-XdOucj2euiQ"
@@ -69,7 +69,7 @@
         </invocationContracts>
         <invocationContracts xmi:id="_cp9GcCIWEd-XdOucj2euiQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_7-xlwBe5Ed-O0P2188kAmA">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_eOjswCIWEd-XdOucj2euiQ"
-              value="org.eclipse.egf.core.test.pattern.JunitConsoleReporter"/>
+              value="inheritance_3_4.MyReporter"/>
         </invocationContracts>
         <invocationContracts xmi:id="_hOQioCIXEd-XdOucj2euiQ" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Pattern_task.fcore#_4ngvABe5Ed-O0P2188kAmA">
           <type xmi:type="domain:TypeDomainURI" xmi:id="_ij4RwCIXEd-XdOucj2euiQ" domain="#_oniSwCIWEd-XdOucj2euiQ"/>
