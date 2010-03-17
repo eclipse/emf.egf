@@ -62,7 +62,7 @@ protected void method_body(final StringBuffer out, final PatternContext ctx)thro
 private org.eclipse.emf.ecore.EClass aClass;
 
 public void set_aClass(org.eclipse.emf.ecore.EClass aClass) {
-	this.aClass = aClass;
+  this.aClass = aClass;
 }
 
 }

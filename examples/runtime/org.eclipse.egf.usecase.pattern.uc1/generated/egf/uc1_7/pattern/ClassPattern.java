@@ -70,9 +70,9 @@ InternalPatternContext ictx = (InternalPatternContext)ctx;
 method_body(ictx.getBuffer(), ictx);
     
 method_setupVariable(ictx.getBuffer(), ictx);
-    ExecutionContext ctx___7b5cB1oEdwnbXYpQsM5g = new ExecutionContext(ictx);
-ctx___7b5cB1oEdwnbXYpQsM5g.setValue(PatternContext.INJECTED_CONTEXT, variable);
-CallHelper.execute("_RdSMYBViEd-JoY-b5_Vpcw", ctx___7b5cB1oEdwnbXYpQsM5g);
+    ExecutionContext ctx__qgQmYCH_Edkh7gRzU7DOQ = new ExecutionContext(ictx);
+ctx__qgQmYCH_Edkh7gRzU7DOQ.setValue(PatternContext.INJECTED_CONTEXT, variable);
+CallHelper.execute("_RdSMYBViEd-JoY-b5_Vpcw", ctx__qgQmYCH_Edkh7gRzU7DOQ);
 
 
     

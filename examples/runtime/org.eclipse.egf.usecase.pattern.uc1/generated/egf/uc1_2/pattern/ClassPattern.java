@@ -63,8 +63,8 @@ if (ctx.useReporter()){
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
-    ExecutionContext ctx__8fG8gB1oEdwnbXYpQsM5g = new ExecutionContext(ictx);
-super.orchestration(ctx__8fG8gB1oEdwnbXYpQsM5g);
+    ExecutionContext ctx__qeedsCH_Edkh7gRzU7DOQ = new ExecutionContext(ictx);
+super.orchestration(ctx__qeedsCH_Edkh7gRzU7DOQ);
 
     
 method_body(ictx.getBuffer(), ictx);
