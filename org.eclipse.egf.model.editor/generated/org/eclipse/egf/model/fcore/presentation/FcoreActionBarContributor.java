@@ -27,12 +27,13 @@ import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
+import org.eclipse.egf.core.ui.diagnostic.EGFDiagnosticDialog;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
-import org.eclipse.emf.common.ui.dialogs.DiagnosticDialog;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
@@ -292,34 +293,56 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
           message = EMFEditUIPlugin.INSTANCE.getString(severity == Diagnostic.OK ? "_UI_ValidationOK_message" : "_UI_ValidationResults_message"); //$NON-NLS-1$ //$NON-NLS-2$
         }
 
-        int result = 0;
-        if (diagnostic.getSeverity() == Diagnostic.OK) {
-          MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message);
-          result = Window.CANCEL;
-        } else {
-          result = DiagnosticDialog.open(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic);
-        }
-
+        // Reset existing Markers
         if (currentResource != null) {
           eclipseResourcesUtil.deleteMarkers(currentResource);
         }
 
+        if (diagnostic.getSeverity() == Diagnostic.OK) {
+          MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message);
+          return;
+        }
+
+        int result = 0;
+
+        EGFDiagnosticDialog dialog = new EGFDiagnosticDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
+        result = dialog.open();
+
         if (result == Window.OK) {
-          if (!diagnostic.getChildren().isEmpty()) {
-            List<?> data = (diagnostic.getChildren().get(0)).getData();
-            if (!data.isEmpty() && data.get(0) instanceof EObject) {
+          // Select and reveal
+          if (diagnostic.getChildren().isEmpty() == false) {
+            List<EObject> innerData = new UniqueEList<EObject>();
+            // Default selection
+            {
+              List<?> data = (diagnostic.getChildren().get(0)).getData();
+              if (data.isEmpty() == false && data.get(0) instanceof EObject) {
+                innerData.add((EObject) data.get(0));
+              }
+            }
+            // Try to select and reveal selected Diagnostics
+            {
+              if (dialog.getSelection() != null) {
+                for (Diagnostic innerDiagnostic : dialog.getSelection()) {
+                  List<?> data = innerDiagnostic.getData();
+                  if (data.isEmpty() == false && data.get(0) instanceof EObject) {
+                    innerData.add((EObject) data.get(0));
+                  }
+                }
+              }
+            }
+            if (innerData.isEmpty() == false) {
               Object part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
               if (part instanceof ISetSelectionTarget) {
-                ((ISetSelectionTarget) part).selectReveal(new StructuredSelection(data.get(0)));
+                ((ISetSelectionTarget) part).selectReveal(new StructuredSelection(innerData));
               } else if (part instanceof IViewerProvider) {
                 Viewer viewer = ((IViewerProvider) part).getViewer();
                 if (viewer != null) {
-                  viewer.setSelection(new StructuredSelection(data.get(0)), true);
+                  viewer.setSelection(new StructuredSelection(innerData), true);
                 }
               }
             }
           }
-
+          // Display markers
           if (currentResource != null) {
             for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
               eclipseResourcesUtil.createMarkers(currentResource, childDiagnostic);

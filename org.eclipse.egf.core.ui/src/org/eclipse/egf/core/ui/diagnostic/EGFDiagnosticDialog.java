@@ -17,12 +17,15 @@
 package org.eclipse.egf.core.ui.diagnostic;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.ui.DiagnosticComposite;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IconAndMessageDialog;
 import org.eclipse.jface.resource.JFaceResources;
+import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Point;
@@ -43,6 +46,16 @@ import org.eclipse.swt.widgets.Shell;
  * @since 2.3
  */
 public class EGFDiagnosticDialog extends IconAndMessageDialog {
+
+  private class EGFDiagnosticComposite extends DiagnosticComposite {
+    public EGFDiagnosticComposite(Composite parent, int style) {
+      super(parent, style);
+    }
+
+    public IStructuredSelection getStructuredSelection() {
+      return diagnosticTreeViewer == null ? null : (IStructuredSelection) diagnosticTreeViewer.getSelection();
+    }
+  }
 
   /**
    * Returns whether the given diagnostic object should be displayed.
@@ -82,7 +95,7 @@ public class EGFDiagnosticDialog extends IconAndMessageDialog {
   /**
    * The diagnostic composite that displays the diagnostic details.
    */
-  private DiagnosticComposite diagnosticComposite;
+  private EGFDiagnosticComposite diagnosticComposite;
 
   private DiagnosticComposite.TextProvider textProvider;
 
@@ -98,7 +111,7 @@ public class EGFDiagnosticDialog extends IconAndMessageDialog {
 
   private boolean shouldIncludeTopLevelDiagnostic = false;
 
-  private Diagnostic selection;
+  private List<Diagnostic> selection;
 
   /**
    * Creates an diagnostic dialog. Note that the dialog will have no visual
@@ -148,7 +161,7 @@ public class EGFDiagnosticDialog extends IconAndMessageDialog {
     return textProvider;
   }
 
-  public Diagnostic getSelection() {
+  public List<Diagnostic> getSelection() {
     return selection;
   }
 
@@ -253,8 +266,8 @@ public class EGFDiagnosticDialog extends IconAndMessageDialog {
    * @return the diagnostic composite
    */
   @SuppressWarnings("hiding")
-  protected DiagnosticComposite createDiagnosticComposite(Composite parent) {
-    DiagnosticComposite diagnosticComposite = new DiagnosticComposite(parent, SWT.NONE);
+  protected EGFDiagnosticComposite createDiagnosticComposite(Composite parent) {
+    EGFDiagnosticComposite diagnosticComposite = new EGFDiagnosticComposite(parent, SWT.NONE);
     GridData data = new GridData(GridData.HORIZONTAL_ALIGN_FILL | GridData.GRAB_HORIZONTAL | GridData.VERTICAL_ALIGN_FILL | GridData.GRAB_VERTICAL);
     data.horizontalSpan = 2;
     data.heightHint = 200;
@@ -263,7 +276,6 @@ public class EGFDiagnosticDialog extends IconAndMessageDialog {
       diagnosticComposite.setTextProvider(getTextProvider());
     }
     diagnosticComposite.initialize(null);
-
     populate(diagnosticComposite, diagnostic, shouldIncludeTopLevelDiagnostic);
     return diagnosticComposite;
   }
@@ -330,7 +342,14 @@ public class EGFDiagnosticDialog extends IconAndMessageDialog {
    */
   @Override
   public boolean close() {
-    selection = diagnosticComposite != null ? diagnosticComposite.getSelection() : null;
+    if (diagnosticComposite != null && diagnosticComposite.getStructuredSelection().isEmpty() == false) {
+      selection = new UniqueEList<Diagnostic>();
+      for (Object object : diagnosticComposite.getStructuredSelection().toList()) {
+        if (object instanceof Diagnostic) {
+          selection.add((Diagnostic) object);
+        }
+      }
+    }
     diagnostic = null;
     diagnosticComposite = null;
     return super.close();

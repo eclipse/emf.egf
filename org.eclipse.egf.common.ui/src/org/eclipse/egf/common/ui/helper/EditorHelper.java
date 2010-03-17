@@ -13,6 +13,7 @@ package org.eclipse.egf.common.ui.helper;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
+import java.util.List;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -44,18 +45,40 @@ import org.osgi.framework.Bundle;
 
 public class EditorHelper {
 
-  public static void setSelectionToViewer(IEditorPart part, URI uri) {
-    if (part == null || part instanceof IEditingDomainProvider == false) {
+  public static void setSelectionToViewer(IEditorPart part, List<EObject> eObjects) {
+    // Do we have something to process
+    if (eObjects == null || eObjects.size() == 0) {
       return;
     }
+    // Select
+    try {
+      Class<?>[] types = new Class[] { Class.forName("java.util.Collection") }; //$NON-NLS-1$              
+      Method method = part.getClass().getMethod("setSelectionToViewer", types); //$NON-NLS-1$
+      if (method != null) {
+        Object[] params = new Object[] { eObjects };
+        method.invoke(part, params);
+      }
+    } catch (Throwable t) {
+      ThrowableHandler.handleThrowable(EGFCommonUIPlugin.getDefault().getPluginID(), t);
+    }
+  }
+
+  public static void setSelectionToViewer(IEditorPart part, URI uri) {
+    // Do we have something to process
     if (uri == null || uri.hasFragment() == false) {
       return;
     }
+    // Whether or not could we have an EditingDomain
+    if (part == null || part instanceof IEditingDomainProvider == false) {
+      return;
+    }
     EditingDomain editingDomain = ((IEditingDomainProvider) part).getEditingDomain();
+    // Process URI
     EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
     if (eObject == null) {
       return;
     }
+    // Select
     try {
       Class<?>[] types = new Class[] { Class.forName("java.util.Collection") }; //$NON-NLS-1$              
       Method method = part.getClass().getMethod("setSelectionToViewer", types); //$NON-NLS-1$
