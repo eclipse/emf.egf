@@ -463,14 +463,6 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
       initialObjectField.select(0);
       initialObjectField.addModifyListener(validator);
 
-      Label encodingLabel = new Label(composite, SWT.LEFT);
-      {
-        encodingLabel.setText(EGFModelEditorPlugin.INSTANCE.getString("_UI_XMLEncoding")); //$NON-NLS-1$
-        GridData data = new GridData();
-        data.horizontalAlignment = GridData.FILL;
-        encodingLabel.setLayoutData(data);
-      }
-
       setPageComplete(validatePage());
       setControl(composite);
     }
