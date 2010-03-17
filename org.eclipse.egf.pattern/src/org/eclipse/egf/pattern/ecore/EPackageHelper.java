@@ -70,8 +70,9 @@ public class EPackageHelper {
                 for (GenPackage gPack : genModel.getAllGenPackagesWithClassifiers()) {
                     EPackage ecorePackage = gPack.getEcorePackage();
                     if (ePackage.getName().equals(ecorePackage.getName()) && ePackage.getNsPrefix().equals(ecorePackage.getNsPrefix()) && ePackage.getNsURI().equals(ecorePackage.getNsURI())) {
-                        nsuri2basePackage.put(ePackage.getNsURI(), gPack.getBasePackage());
-                        return gPack.getBasePackage();
+                        String basePackageName = gPack.getInterfacePackageName();
+                        nsuri2basePackage.put(ePackage.getNsURI(), basePackageName);
+                        return basePackageName;
                     }
                 }
             }
@@ -87,7 +88,7 @@ public class EPackageHelper {
 
             EPackage ePackage = (EPackage) declaredField.get(null);
             String nsURI = ePackage.getNsURI();
-            REGISTRY.remove(nsURI);
+            removePackage2registry(ePackage);
             nsuri2basePackage.remove(nsURI);
         } catch (Exception e) {
             throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
@@ -105,7 +106,8 @@ public class EPackageHelper {
 
             EPackage ePackage = (EPackage) declaredField.get(null);
             String nsURI = ePackage.getNsURI();
-            REGISTRY.put(nsURI, new Descriptor(ePackage));
+
+            addPackage2registry(ePackage);
 
             // computing basePackage
             int index = classname.lastIndexOf(ePackage.getName());
@@ -119,6 +121,20 @@ public class EPackageHelper {
         } catch (Exception e) {
             throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
         }
+    }
+
+    private static void addPackage2registry(EPackage ePackage) {
+        String nsURI = ePackage.getNsURI();
+        REGISTRY.put(nsURI, new Descriptor(ePackage));
+        for (EPackage child : ePackage.getESubpackages())
+            addPackage2registry(child);
+    }
+
+    private static void removePackage2registry(EPackage ePackage) {
+        String nsURI = ePackage.getNsURI();
+        REGISTRY.remove(nsURI);
+        for (EPackage child : ePackage.getESubpackages())
+            removePackage2registry(child);
     }
 
     public static class RegistrationException extends Exception {
