@@ -73,7 +73,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
- * @generated
+ * @generated NOT
  */
 public class FcoreModelWizard extends Wizard implements INewWizard {
   /**

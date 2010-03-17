@@ -55,16 +55,12 @@ import org.eclipse.emf.edit.ui.action.ValidateAction;
 import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
 import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IContributionManager;
-import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.action.SubContributionItem;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
@@ -86,7 +82,7 @@ import org.eclipse.ui.actions.ActionFactory;
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
- * @generated
+ * @generated NOT
  */
 public class FcoreActionBarContributor extends EditingDomainActionBarContributor implements ISelectionChangedListener {
 
@@ -165,17 +161,6 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
   protected Collection<IAction> createChildActions;
 
   /**
-   * This is the menu manager into which menu contribution items should be
-   * added for CreateChild
-   * actions.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected IMenuManager createChildMenuManager;
-
-  /**
    * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding
    * to each descriptor
    * generated for the current selection by the item provider.
@@ -185,17 +170,6 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    * @generated
    */
   protected Collection<IAction> createSiblingActions;
-
-  /**
-   * This is the menu manager into which menu contribution items should be
-   * added for CreateSibling
-   * actions.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected IMenuManager createSiblingMenuManager;
 
   /**
    * This creates an instance of the contributor.
@@ -373,8 +347,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    */
   @Override
   public void contributeToToolBar(IToolBarManager toolBarManager) {
-    toolBarManager.add(new Separator("fcore-settings")); //$NON-NLS-1$
-    toolBarManager.add(new Separator("fcore-additions")); //$NON-NLS-1$
+    // Do nothing
   }
 
   /**
@@ -388,34 +361,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    */
   @Override
   public void contributeToMenu(IMenuManager menuManager) {
-    super.contributeToMenu(menuManager);
-
-    IMenuManager submenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditor_menu"), "org.eclipse.egf.model.fcoreMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
-    menuManager.insertAfter("additions", submenuManager); //$NON-NLS-1$
-    submenuManager.add(new Separator("settings")); //$NON-NLS-1$
-    submenuManager.add(new Separator("actions")); //$NON-NLS-1$
-    submenuManager.add(new Separator("additions")); //$NON-NLS-1$
-    submenuManager.add(new Separator("additions-end")); //$NON-NLS-1$
-
-    // Prepare for CreateChild item addition or removal.
-    //
-    createChildMenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFCommonUIConstants.CREATE_CHILD); //$NON-NLS-1$
-    submenuManager.insertBefore("additions", createChildMenuManager); //$NON-NLS-1$
-
-    // Prepare for CreateSibling item addition or removal.
-    //
-    createSiblingMenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFCommonUIConstants.CREATE_SIBLING); //$NON-NLS-1$
-    submenuManager.insertBefore("additions", createSiblingMenuManager); //$NON-NLS-1$
-
-    // Force an update because Eclipse hides empty menus now.
-    //
-    submenuManager.addMenuListener(new IMenuListener() {
-      public void menuAboutToShow(IMenuManager innerMenuManager) {
-        innerMenuManager.updateAll(true);
-      }
-    });
-
-    addGlobalActions(submenuManager);
+    // Do nothing
   }
 
   /**
@@ -468,43 +414,21 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    */
   public void selectionChanged(SelectionChangedEvent event) {
 
-    // Remove any menu items for old selection.
-    //
-    if (createChildMenuManager != null) {
-      depopulateManager(createChildMenuManager, createChildActions);
-    }
-    if (createSiblingMenuManager != null) {
-      depopulateManager(createSiblingMenuManager, createSiblingActions);
-    }
-
     // Query the new selection for appropriate new child/sibling descriptors
-    //
     Collection<?> newChildDescriptors = null;
     Collection<?> newSiblingDescriptors = null;
 
     ISelection selection = event.getSelection();
     if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1) {
       Object object = ((IStructuredSelection) selection).getFirstElement();
-
       EditingDomain domain = ((IEditingDomainProvider) activeEditorPart).getEditingDomain();
-
       newChildDescriptors = domain.getNewChildDescriptors(object, null);
       newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
     }
 
     // Generate actions for selection; populate and redraw the menus.
-    //
     createChildActions = generateCreateChildActions(newChildDescriptors, selection);
     createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
-
-    if (createChildMenuManager != null) {
-      populateManager(createChildMenuManager, createChildActions, null);
-      createChildMenuManager.update(true);
-    }
-    if (createSiblingMenuManager != null) {
-      populateManager(createSiblingMenuManager, createSiblingActions, null);
-      createSiblingMenuManager.update(true);
-    }
 
     for (MenuContributor vpc : menuContributors) {
       vpc.selectionChanged(event);
@@ -569,38 +493,6 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
           manager.insertBefore(contributionID, action);
         } else {
           manager.add(action);
-        }
-      }
-    }
-  }
-
-  /**
-   * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
-   * based on the {@link org.eclipse.jface.action.IAction}s contained in the
-   * <code>actions</code> collection.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
-    if (actions != null) {
-      IContributionItem[] items = manager.getItems();
-      for (int i = 0; i < items.length; i++) {
-        // Look into SubContributionItems
-        //
-        IContributionItem contributionItem = items[i];
-        while (contributionItem instanceof SubContributionItem) {
-          contributionItem = ((SubContributionItem) contributionItem).getInnerItem();
-        }
-
-        // Delete the ActionContributionItems with matching action.
-        //
-        if (contributionItem instanceof ActionContributionItem) {
-          IAction action = ((ActionContributionItem) contributionItem).getAction();
-          if (actions.contains(action)) {
-            manager.remove(contributionItem);
-          }
         }
       }
     }

@@ -144,7 +144,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
- * @generated
+ * @generated NOT
  */
 public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, ResourceListener, IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
   /**
