@@ -75,15 +75,18 @@ public class URIMenuContributor extends MenuContributor {
       if (sselection.size() != 1) {
         return null;
       }
+      // Try to locate a URI
+      URI uri = null;
       Object object = sselection.getFirstElement();
       if (object instanceof DomainURI) {
         DomainURI domainURI = (DomainURI) object;
-        return domainURI.getUri();
+        uri = domainURI.getUri();
       } else if (object instanceof TypeDomainURI) {
         TypeDomainURI typeDomainURI = (TypeDomainURI) object;
-        return typeDomainURI.getValue();
+        uri = typeDomainURI.getValue();
       }
-      return null;
+      // Try to use a URIConverter to normalize such URI
+      return uri;
     }
 
     @Override
