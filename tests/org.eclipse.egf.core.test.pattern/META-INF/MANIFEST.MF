@@ -2,7 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.core.test.pattern;singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Version: 0.2.2.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.core.test.pattern.EGFTestPatternPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
