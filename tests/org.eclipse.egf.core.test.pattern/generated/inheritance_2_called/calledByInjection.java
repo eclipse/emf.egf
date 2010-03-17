@@ -1,27 +1,29 @@
-package inheritance_1;
+package inheritance_2_called;
 
+import org.eclipse.egf.common.helper.*;
 import java.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class child extends inheritance_1.parent {
+public class calledByInjection 
+{
   protected static String nl;
-  public static synchronized child create(String lineSeparator)
+  public static synchronized calledByInjection create(String lineSeparator)
   {
     nl = lineSeparator;
-    child result = new child();
+    calledByInjection result = new calledByInjection();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "fromChild : ";
+  protected final String TEXT_1 = "  fromInjected : ";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
 
-	public child()
+	public calledByInjection()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();
@@ -39,14 +41,14 @@ Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
     
-paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
+paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EAttribute");
 queryCtx = new HashMap<String, String>();
-List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.query.EObjectInjectedContextQuery").execute(paramDesc, queryCtx, ctx);
 
 
 for (Object parameterParameter : parameterList ) {
 
-this.parameter = (org.eclipse.emf.ecore.EClass)parameterParameter;
+this.parameter = (org.eclipse.emf.ecore.EAttribute)parameterParameter;
 
 
     orchestration(ctx);
@@ -64,8 +66,8 @@ if (ctx.useReporter()){
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
-    super.orchestration(ictx);
-
+    
+method_body(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -76,8 +78,8 @@ if (ictx.useReporter()){
 return loop;
 } 
 
-protected org.eclipse.emf.ecore.EClass parameter = null;
-public void set_parameter(org.eclipse.emf.ecore.EClass object) {
+protected org.eclipse.emf.ecore.EAttribute parameter = null;
+public void set_parameter(org.eclipse.emf.ecore.EAttribute object) {
 this.parameter = object;
 }
 

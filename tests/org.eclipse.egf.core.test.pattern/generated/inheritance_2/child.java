@@ -1,12 +1,13 @@
-package inheritance_1;
+package inheritance_2;
 
+import org.eclipse.egf.common.helper.*;
 import java.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class child extends inheritance_1.parent {
+public class child extends inheritance_2.parent {
   protected static String nl;
   public static synchronized child create(String lineSeparator)
   {
@@ -39,9 +40,8 @@ Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
     
-paramDesc = new IQuery.ParameterDescription("parameter", "http://www.eclipse.org/emf/2002/Ecore#//EClass");
-queryCtx = new HashMap<String, String>();
-List<Object> parameterList = QueryHelper.load(ctx, "org.eclipse.egf.pattern.basic.query").execute(paramDesc, queryCtx, ctx);
+List<Object> parameterList = null;
+//this pattern can only be called by another (i.e. it's not an entry point in execution)
 
 
 for (Object parameterParameter : parameterList ) {
@@ -64,8 +64,19 @@ if (ctx.useReporter()){
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 
+    
+method_setVariable(ictx.getBuffer(), ictx);
     super.orchestration(ictx);
 
+    
+method_setToInject(ictx.getBuffer(), ictx);
+    ExecutionContext ctx__laA3wSIfEdpuPzASIa3Rw = new ExecutionContext(ictx);
+ctx__laA3wSIfEdpuPzASIa3Rw.setValue(PatternContext.INJECTED_CONTEXT, toInject);
+CallHelper.execute("_nfk5LCH-Ed-CStHKuCL0dg", ctx__laA3wSIfEdpuPzASIa3Rw);
+
+
+    
+method_putVariableInContext(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -76,14 +87,28 @@ if (ictx.useReporter()){
 return loop;
 } 
 
+protected org.eclipse.emf.ecore.EClass toInject = null;
+protected java.lang.String targetFile = null;
 protected org.eclipse.emf.ecore.EClass parameter = null;
 public void set_parameter(org.eclipse.emf.ecore.EClass object) {
 this.parameter = object;
 }
 
+    protected void method_setVariable(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    targetFile = "/org.eclipse.egf.core.test.pattern/result/" + parameter.getName();
+    }
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
     stringBuffer.append(parameter.getName());
+    }
+    protected void method_setToInject(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    toInject = parameter;
+    }
+    protected void method_putVariableInContext(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    ctx.setValue("targetFile", targetFile);
     }
     }

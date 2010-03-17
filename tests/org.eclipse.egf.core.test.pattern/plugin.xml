@@ -3,16 +3,19 @@
 <plugin>
 
    <extension
-         point="org.eclipse.egf.core.fcore">
-      <fcore
-            id="fc/inheritance_1.fcore">
-      </fcore>
-   </extension>
-   <extension
          point="org.eclipse.egf.core.test">
       <EGFTestModel
             modelPath="test/Pattern.test">
       </EGFTestModel>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.fcore">
+      <fcore
+            id="fc/inheritance_1.fcore">
+      </fcore>
+      <fcore
+            id="fc/inheritance_2.fcore">
+      </fcore>
    </extension>
 
 </plugin>

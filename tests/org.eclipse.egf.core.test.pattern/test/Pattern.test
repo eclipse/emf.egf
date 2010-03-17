@@ -2,8 +2,12 @@
 <test:TestSuite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:test="http://www.eclipse.org/egf/1.0.0/test" name="Pattern Test Suite">
   <tests xsi:type="test:TestSuite" name="Inheritance">
     <tests xsi:type="test:EGFTestCase" name="inheritance_1">
-      <result xsi:type="test:ConsoleOutputTestResult" text="childContent"/>
+      <result xsi:type="test:ConsoleOutputTestResult" text="fromChild : GenModel&#xD;&#xA;fromChild : GenPackage&#xD;&#xA;fromChild : GenClass&#xD;&#xA;fromChild : GenFeature&#xD;&#xA;fromChild : GenBase&#xD;&#xA;fromChild : GenEnum&#xD;&#xA;fromChild : GenEnumLiteral&#xD;&#xA;fromChild : GenClassifier&#xD;&#xA;fromChild : GenDataType&#xD;&#xA;fromChild : GenOperation&#xD;&#xA;fromChild : GenParameter&#xD;&#xA;fromChild : GenTypedElement&#xD;&#xA;fromChild : GenAnnotation&#xD;&#xA;fromChild : GenTypeParameter&#xD;&#xA;&#xD;&#xA;"/>
       <activity xsi:type="fcore:FactoryComponent" href="../fc/inheritance_1.fcore#_XB1QoBshEd-L7sk1dmRWLg"/>
+    </tests>
+    <tests xsi:type="test:EGFTestCase" name="inheritance_2">
+      <result xsi:type="test:FileOutputTestResult" text="fromChild : GenEnum  fromInjected : typeSafeEnumCompatible" iFilePath="/org.eclipse.egf.core.test.pattern/result/GenEnum"/>
+      <activity xsi:type="fcore:FactoryComponent" href="../fc/inheritance_2.fcore#_mTlnECH-Ed-CStHKuCL0dg"/>
     </tests>
   </tests>
 </test:TestSuite>
