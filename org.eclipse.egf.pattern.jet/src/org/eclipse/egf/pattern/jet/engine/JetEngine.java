@@ -198,8 +198,7 @@ public class JetEngine extends PatternEngine {
         }
         builder.append(") throws Exception  {").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append(content.substring(startIndex + JetAssemblyHelper.START_METHOD_MARKER.length(), endIndex));
-
+        builder.append("int index = 0, executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR);
         // add orchestration statements
         builder.append(content.substring(startIndex + JetAssemblyHelper.START_LOOP_MARKER.length(), endIndex));
 
@@ -208,7 +207,7 @@ public class JetEngine extends PatternEngine {
         if (!getPattern().getAllParameters().isEmpty()) {
             builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
             builder.append("    ictx.getReporter().loopFinished(loop, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("ictx.getBuffer().setLength(0);}").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
         }
         builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);

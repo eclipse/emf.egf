@@ -125,8 +125,8 @@ public class JetAssemblyHelper extends AssemblyHelper {
         content.append("<%").append(END_METHOD_MARKER).append("%>");
         if (pattern.getAllParameters().isEmpty()) {
             content.append("<%if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("    ctx.getBuffer().setLength(0);}%>").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("    ctx.clearBuffer();}%>").append(EGFCommonConstants.LINE_SEPARATOR);
             return;
         }
         // 1 - Add pre block at insertionIndex
@@ -158,8 +158,8 @@ public class JetAssemblyHelper extends AssemblyHelper {
         for (int i = 0; i < pattern.getAllParameters().size(); i++)
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("    ctx.getBuffer().setLength(0);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("    ctx.clearBuffer();").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("}%>");
 
         // 3- Add additional code for parameter names handling
