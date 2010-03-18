@@ -41,8 +41,7 @@ public class CallbackContext extends DefaultPatternContext implements InternalPa
     }
 
     public PatternExecutionReporter getReporter() {
-
-        return getParent().getReporter();
+        return reporter;
     }
 
     public boolean hasReporter() {
@@ -69,7 +68,7 @@ public class CallbackContext extends DefaultPatternContext implements InternalPa
         }
 
         public void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues) {
-            getParent().getBuffer().append(output);
+            getParent().getReporter().loopFinished(output, context, parameterValues);
         }
 
     }
