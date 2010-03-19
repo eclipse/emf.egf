@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
-import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.producer.context.ProductionContext;
@@ -137,7 +136,7 @@ public class ProductionPlanManager extends OrchestrationManager<ProductionPlan> 
       Map<ProductionPlanInvocation, ProductionPlanInvocationManager> managers = getProductionPlanManagers();
       if (managers != null) {
         int steps = getSteps();
-        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), steps * 900);
+        SubMonitor subMonitor = SubMonitor.convert(monitor, null, steps * 900);
         for (Invocation invocation : getElement().getInvocations()) {
           ProductionPlanInvocationManager manager = managers.get(invocation);
           // invoke

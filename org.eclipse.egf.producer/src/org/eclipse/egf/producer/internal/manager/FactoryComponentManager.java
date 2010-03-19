@@ -14,6 +14,8 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.model.fcore.Activity;
@@ -30,6 +32,7 @@ import org.eclipse.egf.producer.manager.OrchestrationManagerProducer;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
 /**
@@ -128,12 +131,13 @@ public class FactoryComponentManager extends ActivityManager<FactoryComponent> {
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
+    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 1);
     BasicDiagnostic diagnostic = checkInputElement(true);
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       IModelElementManager<Orchestration, OrchestrationParameter> orchestrationManager = getOrchestrationManager();
       if (orchestrationManager != null) {
         // Invoke
-        diagnostic.add(orchestrationManager.invoke(monitor));
+        diagnostic.add(orchestrationManager.invoke(subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE)));
         if (monitor.isCanceled()) {
           throw new OperationCanceledException();
         }

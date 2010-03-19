@@ -14,6 +14,8 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
+import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.core.producer.context.IProductionContext;
 import org.eclipse.egf.core.producer.context.ProductionContext;
@@ -31,6 +33,7 @@ import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Xavier Maysonnave
@@ -107,11 +110,12 @@ public class ProductionPlanInvocationManager extends InvocationManager<Productio
   }
 
   public Diagnostic invoke(IProgressMonitor monitor) throws InvocationException {
+    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFCoreMessages.Production_Invoke, getName()), 1);
     BasicDiagnostic diagnostic = checkInputElement(true);
     if (diagnostic.getSeverity() != Diagnostic.ERROR) {
       IActivityManager<Activity> activityManager = getActivityManager();
       if (activityManager != null) {
-        diagnostic.add(activityManager.invoke(monitor));
+        diagnostic.add(activityManager.invoke(subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE)));
         if (monitor.isCanceled()) {
           throw new OperationCanceledException();
         }
