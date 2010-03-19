@@ -31,221 +31,221 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * @generated
  */
 public class FtaskPackageImpl extends EPackageImpl implements FtaskPackage {
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private EClass taskEClass = null;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass taskEClass = null;
 
-    /**
-     * Creates an instance of the model <b>Package</b>, registered with
-     * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
-     * package
-     * package URI value.
-     * <p>
-     * Note: the correct way to create the package is via the static factory
-     * method {@link #init init()}, which also performs initialization of the
-     * package, or returns the registered package, if one already exists. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @see org.eclipse.emf.ecore.EPackage.Registry
-     * @see org.eclipse.egf.model.ftask.FtaskPackage#eNS_URI
-     * @see #init()
-     * @generated
-     */
-    private FtaskPackageImpl() {
-        super(eNS_URI, FtaskFactory.eINSTANCE);
-    }
+  /**
+   * Creates an instance of the model <b>Package</b>, registered with
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+   * package
+   * package URI value.
+   * <p>
+   * Note: the correct way to create the package is via the static factory
+   * method {@link #init init()}, which also performs initialization of the
+   * package, or returns the registered package, if one already exists. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @see org.eclipse.emf.ecore.EPackage.Registry
+   * @see org.eclipse.egf.model.ftask.FtaskPackage#eNS_URI
+   * @see #init()
+   * @generated
+   */
+  private FtaskPackageImpl() {
+    super(eNS_URI, FtaskFactory.eINSTANCE);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private static boolean isInited = false;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private static boolean isInited = false;
 
-    /**
-     * Creates, registers, and initializes the <b>Package</b> for this model,
-     * and for any others upon which it depends.
-     * 
-     * <p>
-     * This method is used to initialize {@link FtaskPackage#eINSTANCE} when
-     * that field is accessed. Clients should not invoke it directly. Instead,
-     * they should simply access that field to obtain the package. <!--
-     * begin-user-doc --> <!-- end-user-doc -->
-     * 
-     * @see #eNS_URI
-     * @see #createPackageContents()
-     * @see #initializePackageContents()
-     * @generated
-     */
-    public static FtaskPackage init() {
-        if (isInited)
-            return (FtaskPackage) EPackage.Registry.INSTANCE.getEPackage(FtaskPackage.eNS_URI);
+  /**
+   * Creates, registers, and initializes the <b>Package</b> for this model,
+   * and for any others upon which it depends.
+   * 
+   * <p>
+   * This method is used to initialize {@link FtaskPackage#eINSTANCE} when
+   * that field is accessed. Clients should not invoke it directly. Instead,
+   * they should simply access that field to obtain the package. <!--
+   * begin-user-doc --> <!-- end-user-doc -->
+   * 
+   * @see #eNS_URI
+   * @see #createPackageContents()
+   * @see #initializePackageContents()
+   * @generated
+   */
+  public static FtaskPackage init() {
+    if (isInited)
+      return (FtaskPackage) EPackage.Registry.INSTANCE.getEPackage(FtaskPackage.eNS_URI);
 
-        // Obtain or create and register package
-        FtaskPackageImpl theFtaskPackage = (FtaskPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FtaskPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FtaskPackageImpl());
+    // Obtain or create and register package
+    FtaskPackageImpl theFtaskPackage = (FtaskPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof FtaskPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new FtaskPackageImpl());
 
-        isInited = true;
+    isInited = true;
 
-        // Initialize simple dependencies
-        FcorePackage.eINSTANCE.eClass();
+    // Initialize simple dependencies
+    FcorePackage.eINSTANCE.eClass();
 
-        // Create package meta-data objects
-        theFtaskPackage.createPackageContents();
+    // Create package meta-data objects
+    theFtaskPackage.createPackageContents();
 
-        // Initialize created meta-data
-        theFtaskPackage.initializePackageContents();
+    // Initialize created meta-data
+    theFtaskPackage.initializePackageContents();
 
-        // Register package validator
-        EValidator.Registry.INSTANCE.put(theFtaskPackage, new EValidator.Descriptor() {
-            public EValidator getEValidator() {
-                return FtaskValidator.INSTANCE;
-            }
-        });
+    // Register package validator
+    EValidator.Registry.INSTANCE.put(theFtaskPackage, new EValidator.Descriptor() {
+      public EValidator getEValidator() {
+        return FtaskValidator.INSTANCE;
+      }
+    });
 
-        // Mark meta-data to indicate it can't be changed
-        theFtaskPackage.freeze();
+    // Mark meta-data to indicate it can't be changed
+    theFtaskPackage.freeze();
 
-        // Update the registry and return the package
-        EPackage.Registry.INSTANCE.put(FtaskPackage.eNS_URI, theFtaskPackage);
-        return theFtaskPackage;
-    }
+    // Update the registry and return the package
+    EPackage.Registry.INSTANCE.put(FtaskPackage.eNS_URI, theFtaskPackage);
+    return theFtaskPackage;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EClass getTask() {
-        return taskEClass;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTask() {
+    return taskEClass;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getTask_Kind() {
-        return (EAttribute) taskEClass.getEStructuralFeatures().get(0);
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTask_Kind() {
+    return (EAttribute) taskEClass.getEStructuralFeatures().get(0);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EAttribute getTask_Implementation() {
-        return (EAttribute) taskEClass.getEStructuralFeatures().get(1);
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTask_Implementation() {
+    return (EAttribute) taskEClass.getEStructuralFeatures().get(1);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public EReference getTask_SuperTask() {
-        return (EReference) taskEClass.getEStructuralFeatures().get(2);
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getTask_SuperTask() {
+    return (EReference) taskEClass.getEStructuralFeatures().get(2);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public FtaskFactory getFtaskFactory() {
-        return (FtaskFactory) getEFactoryInstance();
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public FtaskFactory getFtaskFactory() {
+    return (FtaskFactory) getEFactoryInstance();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private boolean isCreated = false;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private boolean isCreated = false;
 
-    /**
-     * Creates the meta-model objects for the package.  This method is
-     * guarded to have no affect on any invocation but its first.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void createPackageContents() {
-        if (isCreated)
-            return;
-        isCreated = true;
+  /**
+   * Creates the meta-model objects for the package.  This method is
+   * guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void createPackageContents() {
+    if (isCreated)
+      return;
+    isCreated = true;
 
-        // Create classes and their features
-        taskEClass = createEClass(TASK);
-        createEAttribute(taskEClass, TASK__KIND);
-        createEAttribute(taskEClass, TASK__IMPLEMENTATION);
-        createEReference(taskEClass, TASK__SUPER_TASK);
-    }
+    // Create classes and their features
+    taskEClass = createEClass(TASK);
+    createEAttribute(taskEClass, TASK__KIND);
+    createEAttribute(taskEClass, TASK__IMPLEMENTATION);
+    createEReference(taskEClass, TASK__SUPER_TASK);
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    private boolean isInitialized = false;
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private boolean isInitialized = false;
 
-    /**
-     * Complete the initialization of the package and its meta-model.  This
-     * method is guarded to have no affect on any invocation but its first.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    public void initializePackageContents() {
-        if (isInitialized)
-            return;
-        isInitialized = true;
+  /**
+   * Complete the initialization of the package and its meta-model.  This
+   * method is guarded to have no affect on any invocation but its first.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void initializePackageContents() {
+    if (isInitialized)
+      return;
+    isInitialized = true;
 
-        // Initialize package
-        setName(eNAME);
-        setNsPrefix(eNS_PREFIX);
-        setNsURI(eNS_URI);
+    // Initialize package
+    setName(eNAME);
+    setNsPrefix(eNS_PREFIX);
+    setNsURI(eNS_URI);
 
-        // Obtain other dependent packages
-        FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
+    // Obtain other dependent packages
+    FcorePackage theFcorePackage = (FcorePackage) EPackage.Registry.INSTANCE.getEPackage(FcorePackage.eNS_URI);
 
-        // Create type parameters
+    // Create type parameters
 
-        // Set bounds for type parameters
+    // Set bounds for type parameters
 
-        // Add supertypes to classes
-        taskEClass.getESuperTypes().add(theFcorePackage.getActivity());
+    // Add supertypes to classes
+    taskEClass.getESuperTypes().add(theFcorePackage.getActivity());
 
-        // Initialize classes and features; add operations and parameters
-        initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEAttribute(getTask_Kind(), ecorePackage.getEString(), "kind", null, 1, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEAttribute(getTask_Implementation(), ecorePackage.getEString(), "implementation", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-        initEReference(getTask_SuperTask(), this.getTask(), null, "superTask", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    // Initialize classes and features; add operations and parameters
+    initEClass(taskEClass, Task.class, "Task", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+    initEAttribute(getTask_Kind(), ecorePackage.getEString(), "kind", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEAttribute(getTask_Implementation(), ecorePackage.getEString(), "implementation", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+    initEReference(getTask_SuperTask(), this.getTask(), null, "superTask", null, 0, 1, Task.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
-        addEOperation(taskEClass, ecorePackage.getEString(), "getKindValue", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    addEOperation(taskEClass, ecorePackage.getEString(), "getKindValue", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-        addEOperation(taskEClass, ecorePackage.getEString(), "getImplementationValue", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+    addEOperation(taskEClass, ecorePackage.getEString(), "getImplementationValue", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
-        // Create resource
-        createResource(eNS_URI);
+    // Create resource
+    createResource(eNS_URI);
 
-        // Create annotations
-        // http://www.eclipse.org/emf/2002/Ecore
-        createEcoreAnnotations();
-    }
+    // Create annotations
+    // http://www.eclipse.org/emf/2002/Ecore
+    createEcoreAnnotations();
+  }
 
-    /**
-     * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected void createEcoreAnnotations() {
-        String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
-        addAnnotation(taskEClass, source, new String[] { "constraints", "ValidKind UselessTask LoadableImplementation ValidImplementation" //$NON-NLS-1$ //$NON-NLS-2$
-        });
-    }
+  /**
+   * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected void createEcoreAnnotations() {
+    String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$		
+    addAnnotation(taskEClass, source, new String[] { "constraints", "MandatoryKind ValidKind UselessTask LoadableImplementation ValidImplementation" //$NON-NLS-1$ //$NON-NLS-2$
+    });
+  }
 
 } // FtaskPackageImpl
