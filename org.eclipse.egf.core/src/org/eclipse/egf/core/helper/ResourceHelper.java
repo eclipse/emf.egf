@@ -51,11 +51,11 @@ public class ResourceHelper {
    */
   public static Diagnostic analyzeResourceProblems(Resource resource, Exception exception, String message) {
     if (resource.getErrors().isEmpty() == false || resource.getWarnings().isEmpty() == false) {
-      BasicDiagnostic basicDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, message, 0, NLS.bind(EGFCoreMessages._UI_CreateModelError_message, resource.getURI()), new Object[] { exception == null ? (Object) resource : exception });
+      BasicDiagnostic basicDiagnostic = new BasicDiagnostic(Diagnostic.ERROR, message, 0, NLS.bind(EGFCoreMessages.DiagnosticResourceProblems_message, resource.getURI()), new Object[] { exception == null ? (Object) resource : exception });
       basicDiagnostic.merge(EcoreUtil.computeDiagnostic(resource, true));
       return basicDiagnostic;
     } else if (exception != null) {
-      return new BasicDiagnostic(Diagnostic.ERROR, message, 0, NLS.bind(EGFCoreMessages._UI_CreateModelError_message, resource.getURI()), new Object[] { exception });
+      return new BasicDiagnostic(Diagnostic.ERROR, message, 0, NLS.bind(EGFCoreMessages.DiagnosticResourceProblems_message, resource.getURI()), new Object[] { exception });
     } else {
       return Diagnostic.OK_INSTANCE;
     }

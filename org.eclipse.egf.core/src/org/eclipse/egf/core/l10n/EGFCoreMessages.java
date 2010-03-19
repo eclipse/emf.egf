@@ -28,6 +28,7 @@ public class EGFCoreMessages {
   }
 
   public static String Production_Invoke;
+  public static String Production_Invoked;
   public static String Production_Dispose;
   public static String Production_Instantiate;
 
@@ -35,11 +36,6 @@ public class EGFCoreMessages {
   public static String AbstractTask_doExecute;
   public static String AbstractTask_preExecute;
   public static String AbstractTask_errorTaskInstance;
-
-  public static String classloader_errorFindClass;
-  public static String classloader_errorOuptutFolder;
-
-  public static String URLBundleProjectClassLoader_errorClasspath;
 
   public static String ProjectBundleSession_IllegalBundleState;
   public static String ProjectBundleSession_InstallationFailure;
@@ -66,7 +62,7 @@ public class EGFCoreMessages {
 
   public static String synchJobName;
 
-  public static String _UI_CreateModelError_message;
+  public static String DiagnosticResourceProblems_message;
 
   public static String saveContextLabel;
 
