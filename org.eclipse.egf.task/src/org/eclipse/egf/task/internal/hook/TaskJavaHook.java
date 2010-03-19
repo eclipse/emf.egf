@@ -17,10 +17,13 @@ package org.eclipse.egf.task.internal.hook;
 
 import java.util.Map;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.helper.BundleHelper;
+import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -38,56 +41,57 @@ import org.osgi.framework.Bundle;
  */
 public class TaskJavaHook implements TaskHook {
 
-    public void invoke(Bundle bundle, ITaskProductionContext context, Task task, IProgressMonitor monitor) throws InvocationException {
-        ITaskProduction taskImpl = null;
-        if (task == null || task.getImplementationValue() == null) {
-            return;
-        }
-        try {
-            taskImpl = (ITaskProduction) BundleHelper.instantiate(task.getImplementationValue().trim(), bundle);
-        } catch (Exception e) {
-            throw new InvocationException(NLS.bind(EGFTaskMessages.Production_TaskJava_InvocationException, task.getName() != null ? task.getName() : task), e);
-        }
-        SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFTaskMessages.Production_TaskJava_Invoke, task.getName()), 300);
-        taskImpl.preExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-        subMonitor.worked(100);
-        if (subMonitor.isCanceled()) {
-            throw new OperationCanceledException();
-        }
-        taskImpl.doExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-        subMonitor.worked(100);
-        if (subMonitor.isCanceled()) {
-            throw new OperationCanceledException();
-        }
-        taskImpl.postExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
-        subMonitor.worked(100);
-        if (subMonitor.isCanceled()) {
-            throw new OperationCanceledException();
-        }
+  public void invoke(Bundle bundle, ITaskProductionContext context, Task task, IProgressMonitor monitor) throws InvocationException {
+    ITaskProduction taskImpl = null;
+    if (task == null || task.getImplementationValue() == null) {
+      return;
     }
+    String value = task.getImplementationValue().trim();
+    try {
+      taskImpl = (ITaskProduction) BundleHelper.instantiate(value, bundle);
+    } catch (Exception e) {
+      throw new InvocationException(new CoreException(EGFTaskPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_BundleClassInstantiationFailure, value, bundle.getSymbolicName()), e)));
+    }
+    SubMonitor subMonitor = SubMonitor.convert(monitor, NLS.bind(EGFTaskMessages.Production_TaskJava_Invoke, value), 300);
+    taskImpl.preExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+    subMonitor.worked(100);
+    if (subMonitor.isCanceled()) {
+      throw new OperationCanceledException();
+    }
+    taskImpl.doExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+    subMonitor.worked(100);
+    if (subMonitor.isCanceled()) {
+      throw new OperationCanceledException();
+    }
+    taskImpl.postExecute(context, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+    subMonitor.worked(100);
+    if (subMonitor.isCanceled()) {
+      throw new OperationCanceledException();
+    }
+  }
 
-    public String getKind() {
-        return EGFTaskPlugin.KIND_JAVA;
-    }
+  public String getKind() {
+    return EGFTaskPlugin.KIND_JAVA;
+  }
 
-    public boolean isLoadableImplementation(Task task, Map<Object, Object> context) {
-        if (task == null) {
-            return false;
-        }
-        if (ValidationHelper.isLoadableClass(task, task.getImplementationValue(), context)) {
-            return true;
-        }
-        return false;
+  public boolean isLoadableImplementation(Task task, Map<Object, Object> context) {
+    if (task == null) {
+      return false;
     }
+    if (ValidationHelper.isLoadableClass(task, task.getImplementationValue(), context)) {
+      return true;
+    }
+    return false;
+  }
 
-    public boolean isValidImplementation(Task task, Map<Object, Object> context) {
-        if (task == null) {
-            return false;
-        }
-        if (ValidationHelper.isValidClass(task, ITaskProduction.class, task.getImplementationValue(), context)) {
-            return true;
-        }
-        return false;
+  public boolean isValidImplementation(Task task, Map<Object, Object> context) {
+    if (task == null) {
+      return false;
     }
+    if (ValidationHelper.isValidClass(task, ITaskProduction.class, task.getImplementationValue(), context)) {
+      return true;
+    }
+    return false;
+  }
 
 }

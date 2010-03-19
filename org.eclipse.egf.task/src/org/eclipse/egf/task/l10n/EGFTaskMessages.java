@@ -31,6 +31,4 @@ public class EGFTaskMessages extends NLS {
 
   public static String Production_TaskJava_Invoke;
 
-  public static String Production_TaskJava_InvocationException;
-
 }
