@@ -503,6 +503,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       addToken(binIncludesEntry, EGFCommonConstants.ABOUT_HTML_DESCRIPTOR);
     }
     for (String directory : _directories) {
+      // ignore dot directories and output folders
       if (directory.startsWith(EGFCommonConstants.DOT_STRING) == false && _outputFolders.contains(directory) == false) {
         addToken(binIncludesEntry, directory);
       }
@@ -525,12 +526,6 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     // About.html in src includes (eclipse EPL open source project convention)
     if (_project.getFile(EGFCommonConstants.ABOUT_HTML_DESCRIPTOR).exists()) {
       addToken(srcIncludesEntry, EGFCommonConstants.ABOUT_HTML_DESCRIPTOR);
-    }
-    // . directories
-    for (String directory : _directories) {
-      if (directory.startsWith(EGFCommonConstants.DOT_STRING)) {
-        addToken(srcIncludesEntry, directory);
-      }
     }
     // add it to build model
     if (srcIncludesEntry.getTokens().length > 0) {
