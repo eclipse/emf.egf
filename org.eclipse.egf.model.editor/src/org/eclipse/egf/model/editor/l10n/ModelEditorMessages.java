@@ -37,6 +37,9 @@ public class ModelEditorMessages {
   public static String ContractMenuContributor_openAction_label;
   public static String ContractMenuContributor_selectAction_label;
 
+  public static String TaskMenuContributor_openAction_label;
+  public static String TaskMenuContributor_selectAction_label;
+
   public static String URIMenuContributor_openAction_label;
   public static String URIMenuContributor_selectAction_label;
 

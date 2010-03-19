@@ -15,10 +15,8 @@
 
 package org.eclipse.egf.model.editor.contributions;
 
-import org.eclipse.egf.model.domain.DomainURI;
-import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
 
@@ -26,16 +24,11 @@ import org.eclipse.jface.viewers.IStructuredSelection;
  * @author Xavier Maysonnave
  * 
  */
-public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
+public class OpenSuperTaskMenuContributor extends OpenEObjectMenuContributor {
 
-  public static final String OPEN_URI_ACTION_ID = "open-uri"; //$NON-NLS-1$  
+  public static final String OPEN_SUPER_TASK_ACTION_ID = "open-super-task"; //$NON-NLS-1$  
 
-  private final OpenAction _openAction = new OpenAction(OPEN_URI_ACTION_ID) {
-    @Override
-    public boolean isEnabled() {
-      return true;
-    }
-
+  private final OpenAction _openAction = new OpenAction(OPEN_SUPER_TASK_ACTION_ID) {
     @Override
     protected EObject getEObject() {
       if (selection == null) {
@@ -46,36 +39,20 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
         return null;
       }
       Object object = sselection.getFirstElement();
-      if (object instanceof DomainURI) {
-        return (DomainURI) object;
-      } else if (object instanceof TypeDomainURI) {
-        return (TypeDomainURI) object;
+      if (object instanceof Task) {
+        Task task = (Task) object;
+        return task.getSuperTask();
       }
       return null;
-    }
-
-    @Override
-    protected URI getURI() {
-      EObject eObject = getEObject();
-      if (eObject == null) {
-        return null;
-      }
-      URI uri = null;
-      if (eObject instanceof DomainURI) {
-        uri = ((DomainURI) eObject).getUri();
-      } else if (eObject instanceof TypeDomainURI) {
-        uri = ((TypeDomainURI) eObject).getValue();
-      }
-      return uri;
     }
   };
 
   @Override
   protected String getText() {
     if (getOpenAction().isAlreadyOpenedEditor()) {
-      return ModelEditorMessages.URIMenuContributor_selectAction_label;
+      return ModelEditorMessages.TaskMenuContributor_selectAction_label;
     }
-    return ModelEditorMessages.URIMenuContributor_openAction_label;
+    return ModelEditorMessages.TaskMenuContributor_openAction_label;
   }
 
   @Override

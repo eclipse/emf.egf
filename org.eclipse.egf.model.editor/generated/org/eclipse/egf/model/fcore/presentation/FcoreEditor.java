@@ -49,6 +49,7 @@ import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
 import org.eclipse.egf.model.editor.adapter.TaskBundleAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
+import org.eclipse.egf.model.editor.provider.FcorePropertySheetPage;
 import org.eclipse.egf.model.fcore.provider.FcoreCustomItemProviderAdapterFactory;
 import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodCustomItemProviderAdapterFactory;
@@ -84,7 +85,6 @@ import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider.ViewerRefresh;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
@@ -878,9 +878,20 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       if (object instanceof EObject == false) {
         continue;
       }
-      EObject eObject = editingDomain.getResourceSet().getEObject(EcoreUtil.getURI((EObject) object), true);
-      if (eObject != null) {
-        theSelection.add(eObject);
+      URI uri = null;
+      try {
+        uri = EcoreUtil.getURI((EObject) object);
+        EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
+        if (eObject != null) {
+          theSelection.add(eObject);
+        }
+      } catch (Throwable t) {
+        // Got some FileNotFoundException here, a more accurate tracing is needed to track it
+        if (uri != null) {
+          EGFModelEditorPlugin.getPlugin().logError(uri.toString(), t);
+        } else {
+          EGFModelEditorPlugin.getPlugin().logError(object.toString(), t);
+        }
       }
     }
     Runnable runnable = new Runnable() {
@@ -1347,7 +1358,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    */
   public IPropertySheetPage getPropertySheetPage() {
     if (propertySheetPage == null) {
-      propertySheetPage = new ExtendedPropertySheetPage((AdapterFactoryEditingDomain) getEditingDomain()) {
+      propertySheetPage = new FcorePropertySheetPage((AdapterFactoryEditingDomain) getEditingDomain()) {
         @Override
         public void setSelectionToViewer(List<?> selection) {
           FcoreEditor.this.setSelectionToViewer(selection);

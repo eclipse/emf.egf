@@ -17,7 +17,7 @@ package org.eclipse.egf.model.editor.dialogs;
 
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
-import org.eclipse.egf.model.ftask.Task;
+import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Shell;
@@ -26,17 +26,17 @@ import org.eclipse.swt.widgets.Shell;
  * @author Thomas Guiu
  * 
  */
-public class TaskSelectionDialog extends ActivitySelectionDialog {
+public class FactoryComponentSelectionDialog extends ActivitySelectionDialog {
 
-  public TaskSelectionDialog(Shell parentShell, Activity activity, boolean multipleSelection) {
+  public FactoryComponentSelectionDialog(Shell parentShell, Activity activity, boolean multipleSelection) {
     super(parentShell, activity, multipleSelection);
-    setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, Task.class.getSimpleName()));
-    setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, Task.class.getSimpleName()));
+    setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, FactoryComponent.class.getSimpleName()));
+    setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, FactoryComponent.class.getSimpleName()));
   }
 
   @Override
   protected boolean selectElement(EObject eObject) {
-    return eObject instanceof Task;
+    return eObject instanceof FactoryComponent;
   }
 
 }

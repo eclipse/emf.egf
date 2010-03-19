@@ -17,7 +17,6 @@ import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
@@ -66,22 +65,25 @@ public abstract class OpenEObjectMenuContributor extends MenuContributor {
       if (eObject == null) {
         return null;
       }
-      URI uri = EcoreUtil.getURI(eObject);
-      Resource resource = eObject.eResource();
-      // Try to use a URIConverter to normalize such URI
-      // if we have a platform:/plugin/ we need a platform:/resource/ if any
-      // to have a chance to use a FileEditorInput rather than a URIEditorInput
-      if (uri != null && resource != null && resource.getResourceSet() != null) {
-        uri = normalize(resource.getResourceSet().getURIConverter(), uri);
-      }
-      return uri;
+      return EcoreUtil.getURI(eObject);
     }
 
-    protected URI normalize(URIConverter converter, URI uri) {
-      if (uri == null || converter == null) {
+    protected URIConverter getURIConverter() {
+      EObject eObject = getEObject();
+      if (eObject == null) {
+        return null;
+      }
+      if (eObject.eResource() != null && eObject.eResource().getResourceSet() != null && eObject.eResource().getResourceSet().getURIConverter() != null) {
+        return eObject.eResource().getResourceSet().getURIConverter();
+      }
+      return null;
+    }
+
+    protected URI normalize(URI uri) {
+      if (uri == null || getURIConverter() == null) {
         return uri;
       }
-      return converter.normalize(uri);
+      return getURIConverter().normalize(uri);
     }
 
     @Override
@@ -90,7 +92,7 @@ public abstract class OpenEObjectMenuContributor extends MenuContributor {
         URI uri = getURI();
         // Try to open it if any
         if (uri != null) {
-          IEditorPart part = EditorHelper.openEditor(uri);
+          IEditorPart part = EditorHelper.openEditor(normalize(uri));
           if (part != null && part instanceof IEditingDomainProvider) {
             EditorHelper.setSelectionToViewer(part, uri);
           }

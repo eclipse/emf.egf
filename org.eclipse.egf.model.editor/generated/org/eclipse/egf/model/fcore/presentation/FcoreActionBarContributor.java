@@ -25,7 +25,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
-import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
@@ -37,11 +36,9 @@ import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -288,13 +285,13 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
         // Nothing to select
         if (dialog.getSelection() != null && dialog.getSelection().isEmpty() == false) {
           // Select and reveal
-          Map<Resource, UniqueEList<EObject>> resources = new HashMap<Resource, UniqueEList<EObject>>();
+          Map<Resource, List<EObject>> resources = new HashMap<Resource, List<EObject>>();
           // Try to select and reveal selected Diagnostics
           for (Diagnostic innerDiagnostic : dialog.getSelection()) {
             List<?> data = innerDiagnostic.getData();
             if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
               EObject eObject = (EObject) data.get(0);
-              UniqueEList<EObject> eObjects = resources.get(eObject.eResource());
+              List<EObject> eObjects = resources.get(eObject.eResource());
               if (eObjects == null) {
                 eObjects = new UniqueEList<EObject>();
                 resources.put(eObject.eResource(), eObjects);
@@ -302,29 +299,8 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
               eObjects.add(eObject);
             }
           }
-          // is there something to select
-          if (resources.isEmpty() == false) {
-            for (Resource resource : resources.keySet()) {
-              try {
-                // Try to use a URIConverter to normalize such URI
-                // if we have a platform:/plugin/ we need a platform:/resource/ if any
-                // to have a chance to use a FileEditorInput rather than an URIEditorInput
-                URI uri = resource.getURI();
-                if (uri != null && resource.getResourceSet() != null) {
-                  URIConverter converter = resource.getResourceSet().getURIConverter();
-                  if (converter != null) {
-                    uri = converter.normalize(uri);
-                  }
-                }
-                IEditorPart editorPart = EditorHelper.openEditor(uri);
-                if (editorPart != null) {
-                  EditorHelper.setSelectionToViewer(editorPart, resources.get(resource));
-                }
-              } catch (Throwable t) {
-                ThrowableHandler.handleThrowable(EGFCoreUIPlugin.getDefault().getPluginID(), t);
-              }
-            }
-          }
+          // Open and select
+          EditorHelper.openEditorsAndSelect(resources);
         }
         // Display markers
         if (currentResource != null) {

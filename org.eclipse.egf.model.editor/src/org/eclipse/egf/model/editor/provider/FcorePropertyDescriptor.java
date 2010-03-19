@@ -27,19 +27,20 @@ public class FcorePropertyDescriptor extends PropertyDescriptor {
   }
 
   /**
-   * This returns the cell editor that will be used to edit the value of this
-   * property.
-   * This default implementation determines the type of cell editor from the
-   * nature of the
-   * structural feature.
+   * This returns the cell editor that will be used to edit the value of this property.
+   * This default implementation determines the type of cell editor from the nature of the structural feature.
    */
   @Override
-  public CellEditor createPropertyEditor(final Composite composite) {
-    PropertyEditorContributor propertyEditorContributor = PropertyEditorContributor.HELPER.selectPropertyEditor(object, itemPropertyDescriptor);
-    if (propertyEditorContributor == null) {
-      return super.createPropertyEditor(composite);
+  public CellEditor createPropertyEditor(Composite composite) {
+    if (itemPropertyDescriptor.canSetProperty(object) == false) {
+      return null;
     }
-    return propertyEditorContributor.createPropertyEditor(composite, object, itemPropertyDescriptor);
+    // Contribution
+    PropertyEditorContributor propertyEditorContributor = PropertyEditorContributor.HELPER.selectPropertyEditor(object, itemPropertyDescriptor);
+    if (propertyEditorContributor != null) {
+      return propertyEditorContributor.createPropertyEditor(composite, object, itemPropertyDescriptor);
+    }
+    return super.createPropertyEditor(composite);
   }
 
 }
