@@ -134,7 +134,7 @@ public class RunActivityAction implements IObjectActionDelegate {
       }
     }
 
-    // 4 - canInvoke
+    // 4 - PreInvoke Validation
     if (throwable == null) {
       try {
         // Initialize Context
@@ -145,7 +145,7 @@ public class RunActivityAction implements IObjectActionDelegate {
           if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
             EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
               public void run() {
-                EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CantInvokeProblems_title, ProducerUIMessages._UI_CantInvokeProblems_message, preInvokeDiag);
+                EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
               }
             });
           }
@@ -193,11 +193,12 @@ public class RunActivityAction implements IObjectActionDelegate {
               if (subMonitor.isCanceled()) {
                 throw new OperationCanceledException();
               }
+              // Post Invoke Validation
               if (diagnostic != null && diagnostic.getSeverity() != Diagnostic.OK) {
                 if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
                   EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
                     public void run() {
-                      EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CantInvokeProblems_title, ProducerUIMessages._UI_CantInvokeProblems_message, diagnostic);
+                      EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, diagnostic);
                     }
                   });
                 }

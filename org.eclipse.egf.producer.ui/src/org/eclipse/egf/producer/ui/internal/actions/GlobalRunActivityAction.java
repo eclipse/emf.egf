@@ -133,7 +133,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
       }
     }
 
-    // 4 - canInvoke
+    // 4 - PreInvoke Validation
     if (throwable == null) {
       try {
         // Initialize Context
@@ -144,7 +144,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
           if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
             EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
               public void run() {
-                EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CantInvokeProblems_title, ProducerUIMessages._UI_CantInvokeProblems_message, preInvokeDiag);
+                EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
               }
             });
           }
@@ -193,11 +193,12 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
               if (subMonitor.isCanceled()) {
                 throw new OperationCanceledException();
               }
+              // PostInvoke Validation
               if (diagnostic != null && diagnostic.getSeverity() != Diagnostic.OK) {
                 if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
                   EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
                     public void run() {
-                      EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CantInvokeProblems_title, ProducerUIMessages._UI_CantInvokeProblems_message, diagnostic);
+                      EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PostInvokeProblems_message, diagnostic);
                     }
                   });
                 }
