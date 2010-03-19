@@ -13,6 +13,9 @@
     <eOperations name="getAllParameters" upperBound="-1" eType="#//PatternParameter"/>
     <eOperations name="getAllVariables" upperBound="-1" eType="#//PatternVariable"/>
     <eOperations name="getAllMethods" upperBound="-1" eType="#//PatternMethod"/>
+    <eOperations name="getParameter" eType="#//PatternParameter">
+      <eParameters name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="headerMethod" lowerBound="1"
         eType="#//PatternMethod" resolveProxies="false"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="methods" upperBound="-1"
@@ -155,5 +158,17 @@
         <eTypeArguments/>
       </eGenericType>
     </eOperations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypePatternList" eSuperTypes="Types.ecore#//Type">
+    <eOperations name="getType" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return org.eclipse.egf.model.pattern.TypePatternList.class;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
+        eType="#//PatternElement"/>
   </eClassifiers>
 </ecore:EPackage>

@@ -194,7 +194,7 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
     super(parentShell, multipleSelection);
     _fcores = factoryComponents;
     setTitle(CoreUIMessages._UI_FcoreSelection_label);
-    setMessage(CoreUIMessages._UI_SelectRegisteredFcoreURI);
+    setMessage(CoreUIMessages._UI_SelectRegisteredFcore);
     setListLabelProvider(_labelProvider);
     setDetailsLabelProvider(_detailsLabelProvider);
     setSeparatorLabel(CoreUIMessages._UI_FilteredItemsSelectionDialog_platformSeparatorLabel);

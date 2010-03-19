@@ -3,19 +3,25 @@
 <plugin>
    <extension-point id="templateEditor" name="templateEditor" schema="schema/templateEditor.exsd"/>
 
-   <extension 
-         point="org.eclipse.egf.core.ui.editor.menu.contributor">
-         <contribution
-               class="org.eclipse.egf.pattern.ui.contributors.PatternMenuContributor">
-         </contribution>
-   </extension>
+   	<extension 
+    	point="org.eclipse.egf.core.ui.editor.menu.contributor">
+        <contribution
+               class="org.eclipse.egf.pattern.ui.contributions.PatternMenuContributor">
+        </contribution>
+   	</extension>
 
-   <extension
-         point="org.eclipse.egf.core.ui.editor.listener.contributor">
-         <contribution
-               class="org.eclipse.egf.pattern.ui.contributors.PatternListenerContributor">
-         </contribution>
-   </extension>
+   	<extension
+        point="org.eclipse.egf.core.ui.editor.listener.contributor">
+        <contribution
+               class="org.eclipse.egf.pattern.ui.contributions.PatternListenerContributor">
+        </contribution>
+   	</extension>
+
+  	<extension point="org.eclipse.egf.core.ui.editor.property.contributor">
+    	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternPropertyEditorContributor"/>
+  	</extension>  
+
+
 
 	<extension
          point="org.eclipse.ui.editors">

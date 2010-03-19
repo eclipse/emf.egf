@@ -16,11 +16,10 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.common.helper.ClassHelper;
-import org.eclipse.egf.common.helper.EMFHelper;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
-import org.eclipse.egf.model.fcore.commands.SetInvocationContractSourceInvocationContractCommand;
-import org.eclipse.egf.model.fcore.commands.SetInvocationContractTargetInvocationContractCommand;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fcore.helper.InvocationContractHelper;
 import org.eclipse.egf.model.types.TypeBigDecimal;
 import org.eclipse.egf.model.types.TypeBigInteger;
@@ -40,12 +39,9 @@ import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypeShort;
 import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesFactory;
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
@@ -65,6 +61,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.InvocationContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class InvocationContractItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
@@ -73,6 +70,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public InvocationContractItemProvider(AdapterFactory adapterFactory) {
@@ -83,6 +81,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -113,7 +112,11 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        return InvocationContractHelper.getAvailableFactoryComponentContract((InvocationContract) current);
+        InvocationContract contract = (InvocationContract) current;
+        Collection<Contract> available = InvocationContractHelper.getAvailableFactoryComponentContract(contract);
+        available.add(null);
+        available.add(contract.getFactoryComponentContract());
+        return available;
       }
     });
   }
@@ -132,7 +135,11 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        return InvocationContractHelper.getAvailableOrchestrationParameter((InvocationContract) current);
+        InvocationContract contract = (InvocationContract) current;
+        Collection<OrchestrationParameter> available = InvocationContractHelper.getAvailableOrchestrationParameter(contract);
+        available.add(null);
+        available.add(contract.getOrchestrationParameter());
+        return available;
       }
     });
   }
@@ -141,26 +148,42 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This adds a property descriptor for the Source Invocation Contract feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   protected void addSourceInvocationContractPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_sourceInvocationContract_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_sourceInvocationContract_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_InvocationContract_sourceInvocationContract_feature", "_UI_InvocationContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FcorePackage.Literals.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, true, false, true, null, getString("_UI_ConnectorPropertyCategory"), //$NON-NLS-1$
-        null));
+        null) {
+      @Override
+      public Collection<?> getChoiceOfValues(Object current) {
+        InvocationContract contract = (InvocationContract) current;
+        Collection<InvocationContract> available = InvocationContractHelper.getAvailableSourceInvocationContract(contract);
+        available.add(null);
+        available.add(contract.getSourceInvocationContract());
+        return available;
+      }
+    });
   }
 
   /**
    * This adds a property descriptor for the Target Invocation Contract feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   protected void addTargetInvocationContractPropertyDescriptor(Object object) {
-    itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_targetInvocationContract_feature"), //$NON-NLS-1$
+    itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_InvocationContract_targetInvocationContract_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_InvocationContract_targetInvocationContract_feature", "_UI_InvocationContract_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         FcorePackage.Literals.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, true, false, true, null, getString("_UI_ConnectorPropertyCategory"), //$NON-NLS-1$
-        null));
+        null) {
+      @Override
+      public Collection<?> getChoiceOfValues(Object current) {
+        return InvocationContractHelper.getAvailableTargetInvocationContract((InvocationContract) current);
+      }
+    });
   }
 
   /**
@@ -177,17 +200,20 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        return InvocationContractHelper.getAvailableInvokedContract((InvocationContract) current);
+        InvocationContract contract = (InvocationContract) current;
+        Collection<Contract> available = InvocationContractHelper.getAvailableInvokedContract(contract);
+        available.add(null);
+        available.add(contract.getInvokedContract());
+        return available;
       }
     });
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -202,6 +228,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -216,6 +243,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * This returns InvocationContract.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -235,11 +263,20 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
     InvocationContract invocationContract = (InvocationContract) object;
     String invoked = null;
     if (invocationContract.getInvokedContract() != null) {
-      invoked = EMFHelper.getText(invocationContract.getInvokedContract());
+      invoked = invocationContract.getInvokedContract().getName();
+      String mode = null;
+      if (invocationContract.getInvokedContract().getMode() != null) {
+        mode = "[" + invocationContract.getInvokedContract().getMode().getLiteral() + "]"; //$NON-NLS-1$ //$NON-NLS-2$
+      }
+      if ((invoked == null || invoked.length() == 0) && mode != null) {
+        invoked = mode;
+      } else if (mode != null) {
+        invoked = invoked + " " + mode; //$NON-NLS-1$
+      }
     }
     String label = "[" + getString("_UI_InvocationContract_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
     if (invoked != null) {
-      label = label + " -> " + invoked; //$NON-NLS-1$
+      label = invoked + " " + label; //$NON-NLS-1$
     }
     return label;
   }
@@ -249,6 +286,7 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -411,38 +449,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
       }
     }
 
-  }
-
-  /**
-   * Create a command to proceed a set operation.
-   * 
-   * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createSetCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
-   * @generated NOT
-   * 
-   */
-  @Override
-  protected Command createSetCommand(EditingDomain editingDomain, EObject modelElement, EStructuralFeature feature, Object value) {
-    // Default Command
-    Command command = super.createSetCommand(editingDomain, modelElement, feature, value);
-    // feature could be null
-    if (feature == null) {
-      return command;
-    }
-    // Get the feature id to switch on the right stuff.
-    int featureId = feature.getFeatureID();
-    switch (featureId) {
-    case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
-      if (value == null || value instanceof InvocationContract) {
-        command = new SetInvocationContractSourceInvocationContractCommand(editingDomain, (InvocationContract) modelElement, (InvocationContract) value);
-      }
-      break;
-    case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-      if (value == null || value instanceof InvocationContract) {
-        command = new SetInvocationContractTargetInvocationContractCommand(editingDomain, (InvocationContract) modelElement, (InvocationContract) value);
-      }
-      break;
-    }
-    return command;
   }
 
 }

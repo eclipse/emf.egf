@@ -8,7 +8,8 @@
  * Contributors:
  * IBM Corporation - initial API and implementation
  * Code 9 Corporation - ongoing enhancements
- * Les Jones <lesojones@gamil.com> - bug 205361
+ * Les Jones <lesojones@gmaill.com> - bug 205361
+ * Xavier Maysonnave - ongoing enhancements
  */
 package org.eclipse.egf.core.pde.tools;
 
@@ -34,6 +35,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
+import org.eclipse.egf.common.helper.JavaHelper;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.egf.core.helper.EclipseBuilderHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
@@ -86,7 +88,9 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
   private String _library;
 
-  private List<String> _sources;
+  private List<String> _sourceFolders;
+
+  private List<String> _outputFolders;
 
   private List<String> _libraries;
 
@@ -140,7 +144,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     _hasManifestBuilder = false;
     _hasSchemaBuilder = false;
     _hasJavaBuilder = false;
-
+    _outputFolders = new UniqueEList<String>();
     _classpathEntries = new UniqueEList<IClasspathEntry>();
 
     // Do early checks to make sure we can get out fast if we're not setup properly
@@ -160,7 +164,11 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     }
     if (_project.hasNature(JavaCore.NATURE_ID)) {
       _hasJavaNature = true;
-      _classpathEntries.addAll(Arrays.asList(JavaCore.create(_project).getRawClasspath()));
+      IJavaProject javaProject = JavaCore.create(_project);
+      _classpathEntries.addAll(Arrays.asList(javaProject.getRawClasspath()));
+      for (String outputFolder : JavaHelper.getStringOutputFolders(javaProject)) {
+        _outputFolders.add(outputFolder + EGFCommonConstants.SLASH_CHARACTER);
+      }
     }
 
     // Create Project Description if necessary
@@ -284,13 +292,13 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       // Process existing source folder
       if (contentType == IClasspathEntry.CPE_SOURCE) {
         String relativePath = getRelativePath(currentClassPath, _project);
-        if ("".equals(relativePath)) { //$NON-NLS-1$
+        if (EGFCommonConstants.EMPTY_STRING.equals(relativePath)) {
           IPath src = new Path("src"); //$NON-NLS-1$
           IContainer sourceContainer = _project.getFolder(src);
           if (sourceContainer.exists() == false) {
             ((IFolder) sourceContainer).create(false, true, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
           }
-          sources.add(src.toString() + "/"); //$NON-NLS-1$
+          sources.add(src.toString() + EGFCommonConstants.SLASH_CHARACTER);
           IClasspathEntry sourceClasspathEntry = JavaCore.newSourceEntry(sourceContainer.getFullPath());
           for (Iterator<IClasspathEntry> i = _classpathEntries.iterator(); i.hasNext();) {
             IClasspathEntry classpathEntry = i.next();
@@ -301,7 +309,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
           }
           _classpathEntries.add(0, sourceClasspathEntry);
         } else {
-          sources.add(relativePath + "/"); //$NON-NLS-1$
+          sources.add(relativePath + EGFCommonConstants.SLASH_CHARACTER);
         }
         // Process existing library
       } else if (contentType == IClasspathEntry.CPE_LIBRARY) {
@@ -309,7 +317,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
         if (path.length() > 0)
           libraries.add(path);
         else
-          libraries.add("."); //$NON-NLS-1$
+          libraries.add(EGFCommonConstants.DOT_STRING);
       }
     }
     subMonitor.worked(100);
@@ -324,7 +332,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
           ((IFolder) sourceContainer).create(false, true, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
         }
         // Classpath processing
-        sources.add(src.toString() + "/"); //$NON-NLS-1$
+        sources.add(src.toString() + EGFCommonConstants.SLASH_CHARACTER);
         IClasspathEntry sourceClasspathEntry = JavaCore.newSourceEntry(sourceContainer.getFullPath());
         for (Iterator<IClasspathEntry> i = _classpathEntries.iterator(); i.hasNext();) {
           IClasspathEntry classpathEntry = i.next();
@@ -334,7 +342,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
           }
         }
         _classpathEntries.add(0, sourceClasspathEntry);
-        sources.add(sourceFolder + "/"); //$NON-NLS-1$
+        sources.add(sourceFolder + EGFCommonConstants.SLASH_CHARACTER);
       }
     } else {
       subMonitor.worked(100);
@@ -345,13 +353,13 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       if (resource instanceof IContainer == false) {
         continue;
       }
-      String path = resource.getFullPath().removeFirstSegments(1).toString() + "/"; //$NON-NLS-1$
+      String path = resource.getFullPath().removeFirstSegments(1).toString() + EGFCommonConstants.SLASH_CHARACTER;
       if (sources.contains(path) == false) {
         directories.add(path);
       }
     }
 
-    _sources = sources;
+    _sourceFolders = sources;
     _libraries = libraries;
     _directories = directories;
 
@@ -395,15 +403,15 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
   }
 
   private void setupLibraryName() {
-    if (isOldTarget() || (_libraries.size() > 0 && _sources.size() > 0)) {
+    if (isOldTarget() || (_libraries.size() > 0 && _sourceFolders.size() > 0)) {
       String libName = _project.getName();
-      int i = libName.lastIndexOf("."); //$NON-NLS-1$
+      int i = libName.lastIndexOf(EGFCommonConstants.DOT_STRING);
       if (i != -1) {
         libName = libName.substring(i + 1);
       }
       _library = libName + ".jar"; //$NON-NLS-1$
     } else {
-      _library = "."; //$NON-NLS-1$
+      _library = EGFCommonConstants.DOT_STRING;
     }
   }
 
@@ -421,7 +429,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
   }
 
   private String createInitialName(String id) {
-    int loc = id.lastIndexOf('.');
+    int loc = id.lastIndexOf(EGFCommonConstants.DOT_STRING);
     if (loc == -1) {
       return id;
     }
@@ -454,35 +462,74 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
   private void manageBuildFile(IBuildModel model) throws CoreException {
     IBuild build = model.getBuild();
-    IBuildEntry entry = build.getEntry(IBuildEntry.BIN_INCLUDES);
-    if (entry == null) {
-      entry = model.getFactory().createEntry(IBuildEntry.BIN_INCLUDES);
+    // source.
+    if (_sourceFolders.size() > 0) {
+      IBuildEntry sourceEntry = build.getEntry(IBuildEntry.JAR_PREFIX + _library);
+      if (sourceEntry == null) {
+        sourceEntry = model.getFactory().createEntry(IBuildEntry.JAR_PREFIX + _library);
+      }
+      for (String source : _sourceFolders) {
+        addToken(sourceEntry, source);
+      }
+      build.add(sourceEntry);
+    }
+    // output.
+    if (_outputFolders.size() > 0) {
+      IBuildEntry outputEntry = build.getEntry(IBuildEntry.OUTPUT_PREFIX + EGFCommonConstants.DOT_STRING);
+      if (outputEntry == null) {
+        outputEntry = model.getFactory().createEntry(IBuildEntry.OUTPUT_PREFIX + EGFCommonConstants.DOT_STRING);
+      }
+      for (String source : _outputFolders) {
+        addToken(outputEntry, source);
+      }
+      build.add(outputEntry);
+    }
+    // bin.includes
+    IBuildEntry binIncludesEntry = build.getEntry(IBuildEntry.BIN_INCLUDES);
+    if (binIncludesEntry == null) {
+      binIncludesEntry = model.getFactory().createEntry(IBuildEntry.BIN_INCLUDES);
     }
     if (_project.getFile(ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR).exists()) {
-      addToken(entry, ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR);
+      addToken(binIncludesEntry, ICoreConstants.PLUGIN_FILENAME_DESCRIPTOR);
+    }
+    if (_project.getFile(EGFCommonConstants.PLUGIN_PROPERTIES_DESCRIPTOR).exists()) {
+      addToken(binIncludesEntry, EGFCommonConstants.PLUGIN_PROPERTIES_DESCRIPTOR);
     }
     if (_project.getFile(EGFCommonConstants.BUNDLE_FILENAME_DESCRIPTOR).exists()) {
-      addToken(entry, EGFCommonConstants.BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR);
+      addToken(binIncludesEntry, EGFCommonConstants.BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR);
+    }
+    // About.html in bin includes (eclipse EPL open source project convention)
+    if (_project.getFile(EGFCommonConstants.ABOUT_HTML_DESCRIPTOR).exists()) {
+      addToken(binIncludesEntry, EGFCommonConstants.ABOUT_HTML_DESCRIPTOR);
     }
     for (String directory : _directories) {
-      addToken(entry, directory);
+      // ignore dot directories and output folders
+      if (directory.startsWith(EGFCommonConstants.DOT_STRING) == false && _outputFolders.contains(directory) == false) {
+        addToken(binIncludesEntry, directory);
+      }
     }
     for (String library : _libraries) {
-      addToken(entry, library);
+      addToken(binIncludesEntry, library);
     }
-    if (_sources.size() > 0) {
-      addToken(entry, _library);
-      IBuildEntry buildEntry = build.getEntry(IBuildEntry.JAR_PREFIX + _library);
-      if (buildEntry == null) {
-        buildEntry = model.getFactory().createEntry(IBuildEntry.JAR_PREFIX + _library);
-      }
-      for (String source : _sources) {
-        addToken(buildEntry, source);
-      }
-      build.add(buildEntry);
+    if (_sourceFolders.size() > 0) {
+      addToken(binIncludesEntry, _library);
     }
-    if (entry.getTokens().length > 0) {
-      build.add(entry);
+    // add it to build model
+    if (binIncludesEntry.getTokens().length > 0) {
+      build.add(binIncludesEntry);
+    }
+    // src.includes
+    IBuildEntry srcIncludesEntry = build.getEntry(IBuildEntry.SRC_INCLUDES);
+    if (srcIncludesEntry == null) {
+      srcIncludesEntry = model.getFactory().createEntry(IBuildEntry.SRC_INCLUDES);
+    }
+    // About.html in src includes (eclipse EPL open source project convention)
+    if (_project.getFile(EGFCommonConstants.ABOUT_HTML_DESCRIPTOR).exists()) {
+      addToken(srcIncludesEntry, EGFCommonConstants.ABOUT_HTML_DESCRIPTOR);
+    }
+    // add it to build model
+    if (srcIncludesEntry.getTokens().length > 0) {
+      build.add(srcIncludesEntry);
     }
   }
 
@@ -582,7 +629,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     IPluginBase base = model.getPluginBase();
 
     if (missingInfo) {
-      if (_library != null && _library.equals(".") == false) { //$NON-NLS-1$
+      if (_library != null && _library.equals(EGFCommonConstants.DOT_STRING) == false) {
         IPluginLibrary library = factory.createLibrary();
         library.setName(_library);
         library.setExported(true);

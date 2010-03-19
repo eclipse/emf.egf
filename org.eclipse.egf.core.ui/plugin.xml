@@ -28,19 +28,10 @@
     schema="schema/editor.listener.contributor.exsd"
   />
   
-  <!-- ================================================================================= -->
-  <!-- Editing Domain                                                                    -->
-  <!-- ================================================================================= -->  
-  
-  <extension
-    point="org.eclipse.emf.transaction.editingDomains"
-  >
-    <editingDomain
-      factory="org.eclipse.egf.core.ui.domain.EGFEditingDomainFactory"
-      id="org.eclipse.egf.core.editing.domain"
-    />
-  </extension>  
-  
+	<extension-point id="org.eclipse.egf.core.ui.editor.property.contributor" 
+  		name="%editor.property.contributor" 
+  		schema="schema/editor.property.contributor.exsd"/>
+    
   <!-- ================================================================================= -->
   <!-- Keywords                                                                          -->
   <!-- ================================================================================= -->
@@ -102,50 +93,54 @@
     <initializer 
       class="org.eclipse.egf.core.ui.internal.preferences.ModelPreferenceInitializer"
     />
-  </extension>  
+  </extension> 
   
   <!-- ================================================================================= -->
   <!-- ActionSets                                                                        -->
-  <!-- ================================================================================= -->
+  <!-- ================================================================================= -->  
   
   <extension
     point="org.eclipse.ui.actionSets"
   >
+  
     <actionSet
       label="%EGFFcoreActionSet_label"
-      description="%EGFFcoreActionSet_description"      
+      description="%EGFFcoreActionSet_description"
       visible="true"
-      id="org.eclipse.egf.ui.fcore.actionSet"
+      id="org.eclipse.egf.core.ui.fcore.actionSet"
     >
+                        
       <action
         toolbarPath="org.eclipse.search.searchActionSet/Search"
-        definitionId="org.eclipse.egf.ui.actionSet.open.fcore.action.definition"
+        definitionId="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action.definition"
         icon="$nl$/icons/full/obj16/Fcore.gif"
         label="%openFcore.label"
         class="org.eclipse.egf.core.ui.actions.OpenFcoreAction"
         tooltip="%openFcore.description"
-        menubarPath="navigate/open.ext4"
-        id="org.eclipse.egf.ui.actionSet.open.fcore.action"
-      />
-    </actionSet>  
-  </extension> 
-  
+        menubarPath="navigate/open.ext4"        
+        id="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action"
+      />   
+      
+    </actionSet>
+    
+  </extension>
+      
   <!-- ================================================================================= -->
   <!-- Command Run                                                                       -->
   <!-- ================================================================================= -->
   
   <extension
     point="org.eclipse.ui.commands"
-  >    
-    
+  >  
+        
     <command
       name="%ActionDefinition_openFcore_name"
       description="%ActionDefinition_openFcore_description"
       categoryId="org.eclipse.ui.category.file"
-      id="org.eclipse.egf.ui.actionSet.open.fcore.action.definition"
-    />
-      
-  </extension>   
+      id="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action.definition"
+    /> 
+          
+  </extension>  
   
   <!-- ================================================================================= -->
   <!-- Bindings                                                                          -->
@@ -163,13 +158,13 @@
   <!-- ================================================================================= -->
   <!-- Key Run                                                                           -->
   <!-- ================================================================================= -->
-     
+         
     <key
-      sequence="M1+M3+M"
-      commandId="org.eclipse.egf.ui.actionSet.open.fcore.action.definition"
+      sequence="M1+M3+F"
+      commandId="org.eclipse.egf.core.ui.fcore.actionSet.open.fcore.action.definition"
       schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-    />
-            
-  </extension>      
-      
+    /> 
+    
+  </extension>          
+        
 </plugin>

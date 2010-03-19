@@ -15,10 +15,14 @@
 
 package org.eclipse.egf.pattern.execution;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.egf.model.pattern.CallBackHandler;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
+import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.Activator;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.engine.PatternHelper;
@@ -44,28 +48,28 @@ public class CallHelper {
         extension.createEngine(pattern).execute(ctx);
     }
 
-    public static void executeWithInjection(String patternId, PatternContext ctx, Object... parameters) throws MissingExtensionException, PatternException {
+    public static void executeWithInjection(String patternId, PatternContext ctx, Map<String, Object> name2parameterValue) throws MissingExtensionException, PatternException {
         PatternHelper createCollector = PatternHelper.createCollector();
         Pattern pattern = createCollector.getPattern(patternId);
         PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
         String reason = extension.canExecute(pattern);
         if (reason != null)
             throw new PatternException(reason);
+        Map<PatternParameter, Object> parameters = new HashMap<PatternParameter, Object>();
+        for (Map.Entry<String, Object> entry : name2parameterValue.entrySet()) {
+            PatternParameter parameter = pattern.getParameter(entry.getKey());
+            if (parameter == null)
+                throw new PatternException(Messages.bind(Messages.call_execution_error1, entry.getKey(), pattern.getName()));
+            parameters.put(parameter, entry.getValue());
+        }
         extension.createEngine(pattern).executeWithInjection(ctx, parameters);
     }
 
-    public static void callBack(PatternContext ctx, Object model) throws MissingExtensionException, PatternException {
+    public static void callBack(PatternContext ctx, Map<String, Object> parameters) throws MissingExtensionException, PatternException {
         CallBackHandler handler = (CallBackHandler) ctx.getValue(PatternContext.CALL_BACK_HANDLER);
         if (handler == null)
             Activator.getDefault().logWarning(Messages.missing_callback_handler);
-        handler.handleCall(ctx, model);
-    }
-
-    public static void callSuper(PatternContext ctx, Object model) throws MissingExtensionException, PatternException {
-        CallBackHandler handler = (CallBackHandler) ctx.getValue(PatternContext.CALL_BACK_HANDLER);
-        if (handler == null)
-            Activator.getDefault().logWarning(Messages.missing_callback_handler);
-        handler.handleCall(ctx, model);
+        handler.handleCall(ctx, parameters);
     }
 
     private CallHelper() {

@@ -17,112 +17,36 @@ package org.eclipse.egf.pattern.jet.engine;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.IPath;
-import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
-import org.eclipse.egf.pattern.PatternPreferences;
+import org.eclipse.egf.pattern.common.java.AbstractJavaEngine;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
-import org.eclipse.egf.pattern.engine.PatternEngine;
 import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.execution.ConsoleReporter;
-import org.eclipse.egf.pattern.execution.InternalPatternContext;
 import org.eclipse.egf.pattern.jet.JetPreferences;
 import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
+import org.eclipse.egf.pattern.utils.JavaMethodGenerationHelper;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public class JetEngine extends PatternEngine {
+public class JetEngine extends AbstractJavaEngine {
 
     public JetEngine(Pattern pattern) throws PatternException {
         super(pattern);
     }
 
-    @Override
-    public void executeWithInjection(PatternContext context, Object... parameters) throws PatternException {
-        setupExecutionReporter((InternalPatternContext) context);
-        doExecute((InternalPatternContext) context, parameters);
-    }
-
-    @Override
-    public void execute(PatternContext context) throws PatternException {
-
-        setupExecutionReporter((InternalPatternContext) context);
-        doExecute((InternalPatternContext) context, null);
-    }
-
-    private void doExecute(InternalPatternContext context, Object[] executionParameters) throws PatternException {
-        try {
-            Class<?> templateClass = loadTemplateClass(context);
-            Object template = templateClass.newInstance();
-
-            Class<?>[] parameterClasses = null;
-            Object[] parameterValues = null;
-            if (executionParameters == null) {
-                parameterClasses = new Class<?>[] { Object.class };
-                parameterValues = new Object[] { context };
-            } else {
-                int size = executionParameters == null ? 1 : executionParameters.length + 1;
-                parameterClasses = new Class<?>[size];
-                parameterValues = new Object[size];
-
-                parameterClasses[0] = PatternContext.class;
-                parameterValues[0] = context;
-                for (int n = 0; n < executionParameters.length; n++) {
-                    parameterClasses[n + 1] = Object.class;
-                    parameterValues[n + 1] = executionParameters[n];
-                }
-            }
-            Method method = templateClass.getMethod(JetAssemblyHelper.GENERATE_METHOD, parameterClasses);
-            // the pattern is executed but we don't care about the result.
-            method.invoke(template, parameterValues);
-        } catch (InvocationTargetException e) {
-            throw new PatternException(e.getCause());
-        } catch (PatternException e) {
-            throw e;
-        } catch (Exception e) {
-            throw new PatternException(e);
-        }
-    }
-
-    private void setupExecutionReporter(InternalPatternContext context) throws PatternException {
-        if (context.hasReporter())
-            return;
-        PatternExecutionReporter reporter = (PatternExecutionReporter) context.getValue(PatternContext.PATTERN_REPORTER);
-        if (reporter == null)
-            reporter = new ConsoleReporter();
-        context.setReporter(reporter);
-    }
-
-    private Class<?> loadTemplateClass(InternalPatternContext context) throws PatternException, ClassNotFoundException {
-        Pattern pattern = getPattern();
-        if (pattern == null)
-            throw new PatternException(Messages.assembly_error9);
-        String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
-        if (templateClassName == null)
-            throw new PatternException(Messages.assembly_error1);
-        Class<?> templateClass = context.getBundle(getBundleId()).loadClass(templateClassName);
-        return templateClass;
-    }
-
     public void translate() throws PatternException {
         Pattern pattern = getPattern();
-        if (pattern == null)
-            throw new IllegalStateException();
 
         // **************************************************************************
         // 1 - put together all pt files
@@ -161,7 +85,6 @@ public class JetEngine extends PatternEngine {
     private String getContent(String content) {
 
         StringBuilder builder = new StringBuilder(content.length() + 500);
-        StringBuilder methodDeclarations = new StringBuilder(1000);
         int startIndex = content.indexOf(JetAssemblyHelper.START_LOOP_MARKER);
         int endIndex = content.indexOf(JetAssemblyHelper.END_LOOP_MARKER);
         int insertionIndex = content.lastIndexOf('}');
@@ -172,49 +95,41 @@ public class JetEngine extends PatternEngine {
 
         Pattern pattern = getPattern();
         // add new method call
-        builder.append("generate(ctx");
-        if (!getPattern().getAllParameters().isEmpty()) {
-            for (PatternParameter parameter : pattern.getAllParameters()) {
-                String local = PatternHelper.localizeName(parameter);
-                builder.append(", ").append(local);
-            }
-        }
-        builder.append(");");
+        builder.append(AssemblyHelper.ORCHESTRATION_METHOD).append("(ctx);");
 
         // add end of class code
-        builder.append(content.substring(endIndex + JetAssemblyHelper.END_LOOP_MARKER.length(), insertionIndex));
+        int startMethodIndex = content.indexOf(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER, endIndex);
+        int endMethodIndex = content.indexOf(JetAssemblyHelper.END_METHOD_DECLARATION_MARKER, endIndex);
+
+        if (startMethodIndex != -1 && endMethodIndex != -1) {
+            builder.append(content.substring(endIndex + JetAssemblyHelper.END_LOOP_MARKER.length(), startMethodIndex));
+            builder.append(content.substring(endMethodIndex + JetAssemblyHelper.END_METHOD_DECLARATION_MARKER.length(), insertionIndex));
+        } else
+            builder.append(content.substring(endIndex + JetAssemblyHelper.END_LOOP_MARKER.length(), insertionIndex));
 
         // add pattern reporter stuff
-        builder.append("public String generate(PatternContext ctx");
-        if (!getPattern().getAllParameters().isEmpty()) {
-            for (PatternParameter parameter : pattern.getAllParameters()) {
-                String local = PatternHelper.localizeName(parameter);
-                builder.append(", Object ").append(local);
-            }
-        }
-        builder.append(") throws Exception  {").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("public String ").append(AssemblyHelper.ORCHESTRATION_METHOD).append("(PatternContext ctx) throws Exception  {").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
-
+        builder.append("int index = 0, executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR);
         // add orchestration statements
-        int lastIndex = startIndex + JetAssemblyHelper.START_LOOP_MARKER.length();
-        // handle methods declarations
-        int startMethodIndex = content.indexOf(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER, lastIndex);
-        int endMethodIndex = content.indexOf(JetAssemblyHelper.END_METHOD_DECLARATION_MARKER, lastIndex);
-        while (startMethodIndex != -1 && endMethodIndex != -1) {
-            builder.append(content.substring(lastIndex, startMethodIndex));
-            methodDeclarations.append(content.substring(startMethodIndex + JetAssemblyHelper.START_METHOD_DECLARATION_MARKER.length(), endMethodIndex));
-            lastIndex = endMethodIndex + JetAssemblyHelper.END_METHOD_DECLARATION_MARKER.length();
-            startMethodIndex = content.indexOf(JetAssemblyHelper.START_METHOD_DECLARATION_MARKER, lastIndex);
-            endMethodIndex = content.indexOf(JetAssemblyHelper.END_METHOD_DECLARATION_MARKER, lastIndex);
-        }
-        builder.append(content.substring(lastIndex, endIndex));
+        builder.append(content.substring(startIndex + JetAssemblyHelper.START_LOOP_MARKER.length(), endIndex));
 
         builder.append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
         if (!getPattern().getAllParameters().isEmpty()) {
             builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));").append(EGFCommonConstants.LINE_SEPARATOR);
+
+            builder.append("    Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
+            for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
+                String name = parameter.getName();
+                // String type =
+                // ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
+                // builder.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
+                builder.append("    parameterValues.put(\"").append(name).append("\", this.").append(name).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+            }
             builder.append("    ictx.getReporter().loopFinished(loop, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("ictx.getBuffer().setLength(0);}").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
         }
         builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("} ").append(EGFCommonConstants.LINE_SEPARATOR);
@@ -243,20 +158,27 @@ public class JetEngine extends PatternEngine {
         for (PatternVariable var : pattern.getVariables()) {
             builder.append("protected ").append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
         }
+        for (PatternParameter var : pattern.getParameters()) {
+            String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType());
+            builder.append("protected ").append(type).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("public void ").append(JavaMethodGenerationHelper.getSetterMethod(var)).append("(").append(type).append(" object) {").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("this.").append(var.getName()).append(" = object;").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
+        }
 
-        builder.append(methodDeclarations);
+        // handle methods declarations
+        if (startMethodIndex != -1 && endMethodIndex != -1) {
+            builder.append(content.substring(startMethodIndex + JetAssemblyHelper.START_METHOD_DECLARATION_MARKER.length(), endMethodIndex));
+        }
+
         builder.append(content.substring(insertionIndex));
         return builder.toString();
     }
 
-    private IPath computeFilePath(String classname) {
-        IPath result = new Path(PatternPreferences.getGenerationFolderName());
-        String[] names = classname.split("\\.");
-        for (String name : names) {
-            result = result.append(name);
-        }
-        result = result.addFileExtension("java");
-        return result;
+    @Override
+    protected String getPatternClassname() throws PatternException {
+
+        return JetNatureHelper.getTemplateClassName(getPattern());
     }
 
 }

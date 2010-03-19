@@ -13,6 +13,8 @@ package org.eclipse.egf.common.ui.helper;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -25,6 +27,7 @@ import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.ui.IEditorDescriptor;
@@ -44,18 +47,40 @@ import org.osgi.framework.Bundle;
 
 public class EditorHelper {
 
-  public static void setSelectionToViewer(IEditorPart part, URI uri) {
-    if (part == null || part instanceof IEditingDomainProvider == false) {
+  public static void setSelectionToViewer(IEditorPart part, List<EObject> eObjects) {
+    // Do we have something to process
+    if (eObjects == null || eObjects.size() == 0) {
       return;
     }
+    // Select
+    try {
+      Class<?>[] types = new Class[] { Class.forName("java.util.Collection") }; //$NON-NLS-1$              
+      Method method = part.getClass().getMethod("setSelectionToViewer", types); //$NON-NLS-1$
+      if (method != null) {
+        Object[] params = new Object[] { eObjects };
+        method.invoke(part, params);
+      }
+    } catch (Throwable t) {
+      ThrowableHandler.handleThrowable(EGFCommonUIPlugin.getDefault().getPluginID(), t);
+    }
+  }
+
+  public static void setSelectionToViewer(IEditorPart part, URI uri) {
+    // Do we have something to process
     if (uri == null || uri.hasFragment() == false) {
       return;
     }
+    // Whether or not could we have an EditingDomain
+    if (part == null || part instanceof IEditingDomainProvider == false) {
+      return;
+    }
     EditingDomain editingDomain = ((IEditingDomainProvider) part).getEditingDomain();
+    // Process URI
     EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
     if (eObject == null) {
       return;
     }
+    // Select
     try {
       Class<?>[] types = new Class[] { Class.forName("java.util.Collection") }; //$NON-NLS-1$              
       Method method = part.getClass().getMethod("setSelectionToViewer", types); //$NON-NLS-1$
@@ -68,23 +93,31 @@ public class EditorHelper {
     }
   }
 
-  /**
-   * Opens the default editor for the resource that contains the specified
-   * EObject.
-   */
-  public static IEditorPart openEditor(EObject eObject) throws PartInitException {
-    if (eObject == null) {
-      return null;
+  public static void openEditorsAndSelect(Map<Resource, List<EObject>> resources) {
+    // is there something to select
+    if (resources.isEmpty()) {
+      return;
     }
-    Resource resource = eObject.eResource();
-    if (resource == null) {
-      return null;
+    for (Resource resource : resources.keySet()) {
+      try {
+        // Try to use a URIConverter to normalize such URI
+        // if we have a platform:/plugin/ we need a platform:/resource/ if any
+        // to have a chance to use a FileEditorInput rather than an URIEditorInput
+        URI uri = resource.getURI();
+        if (uri != null && resource.getResourceSet() != null) {
+          URIConverter converter = resource.getResourceSet().getURIConverter();
+          if (converter != null) {
+            uri = converter.normalize(uri);
+          }
+        }
+        IEditorPart editorPart = openEditor(uri);
+        if (editorPart != null) {
+          setSelectionToViewer(editorPart, resources.get(resource));
+        }
+      } catch (Throwable t) {
+        ThrowableHandler.handleThrowable(EGFCommonUIPlugin.getDefault().getPluginID(), t);
+      }
     }
-    URI uri = resource.getURI();
-    if (uri == null) {
-      return null;
-    }
-    return openEditor(uri);
   }
 
   public static String computeEditorId(String fileName) {
@@ -105,36 +138,47 @@ public class EditorHelper {
     if (uri == null) {
       return null;
     }
-    IEditorPart part = restoreAlreadyOpenedEditor(uri);
-    if (part == null) {
-      IEditorInput editorInput = null;
-      if (uri.isPlatformResource()) {
-        String path = uri.toPlatformString(true);
-        IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
-        if (workspaceResource instanceof IFile) {
-          editorInput = EclipseUtil.createFileEditorInput((IFile) workspaceResource);
-          return openEditor(editorInput, uri);
-        }
-      } else {
-        return openEditor(new URIEditorInput(uri.trimFragment()), uri);
+    IEditorPart part = restoreAlreadyOpenedEditor(uri, true);
+    if (part != null) {
+      return part;
+    }
+    IEditorInput editorInput = null;
+    if (uri.isPlatformResource()) {
+      String path = uri.toPlatformString(true);
+      IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
+      if (resource instanceof IFile) {
+        editorInput = EclipseUtil.createFileEditorInput((IFile) resource);
+        return openEditor(editorInput, URI.createPlatformPluginURI(resource.getFullPath().toString(), true));
       }
     }
-    return part;
+    return openEditor(new URIEditorInput(uri.trimFragment()), uri);
   }
 
-  private static IEditorPart openEditor(IEditorInput input, URI uri) throws PartInitException {
-    if (input != null && uri != null) {
-      IWorkbench workbench = PlatformUI.getWorkbench();
-      IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
-      return page.openEditor(input, computeEditorId(uri.trimFragment().lastSegment()));
+  public static IEditorPart openEditor(IEditorInput input, URI uri) throws PartInitException {
+    if (input == null || uri == null) {
+      return null;
     }
-    return null;
+    IEditorPart part = restoreAlreadyOpenedEditor(uri, true);
+    if (part != null) {
+      return part;
+    }
+    IWorkbench workbench = PlatformUI.getWorkbench();
+    IWorkbenchPage page = workbench.getActiveWorkbenchWindow().getActivePage();
+    return page.openEditor(input, computeEditorId(uri.trimFragment().lastSegment()));
   }
 
-  private static IEditorPart restoreAlreadyOpenedEditor(URI uri) {
+  public static boolean isAlreadyOpenedEditor(URI uri) {
+    if (uri == null) {
+      return false;
+    }
+    return restoreAlreadyOpenedEditor(uri, false) != null ? true : false;
+  }
+
+  private static IEditorPart restoreAlreadyOpenedEditor(URI uri, boolean activate) {
     if (uri == null) {
       return null;
     }
+    URI uriToCheck = uri.trimFragment();
     IWorkbench workbench = PlatformUI.getWorkbench();
     if (workbench != null) {
       for (IWorkbenchWindow workbenchWindow : workbench.getWorkbenchWindows()) {
@@ -143,9 +187,13 @@ public class EditorHelper {
             try {
               IEditorInput editorInput = editorReference.getEditorInput();
               if (editorInput != null) {
-                URI innerURI = EditorHelper.getURI(editorInput);
-                if (innerURI != null && innerURI.equals(uri)) {
-                  return editorReference.getEditor(true);
+                URI editorInputURI = EditorHelper.getURI(editorInput);
+                if (editorInputURI != null && editorInputURI.equals(uriToCheck)) {
+                  IEditorPart part = editorReference.getEditor(true);
+                  if (activate) {
+                    workbenchPage.activate(part);
+                  }
+                  return part;
                 }
               }
             } catch (PartInitException pie) {
@@ -218,7 +266,7 @@ public class EditorHelper {
 
     public static URI getURI(IEditorInput editorInput) {
       if (FILE_CLASS != null) {
-        IFile file = (IFile) editorInput.getAdapter(FILE_CLASS);
+        IFile file = getIFile(editorInput);
         if (file != null) {
           return URI.createPlatformPluginURI(file.getFullPath().toString(), true);
         }
@@ -238,7 +286,6 @@ public class EditorHelper {
           return URI.createURI(((IURIEditorInput) editorInput).getURI().toString()).trimFragment();
         }
       }
-
       return null;
     }
 

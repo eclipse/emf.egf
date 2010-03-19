@@ -19,9 +19,15 @@ import org.eclipse.egf.model.fcore.ContractContainer;
 import org.eclipse.egf.model.fcore.FactoryComponent;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
+import org.eclipse.egf.model.fcore.commands.ContractContainerAddCommand;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.command.CopyCommand;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemColorProvider;
 import org.eclipse.emf.edit.provider.IItemFontProvider;
@@ -39,6 +45,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.ContractContainer} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ContractContainerItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
@@ -47,6 +54,7 @@ public class ContractContainerItemProvider extends ModelElementItemProvider impl
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public ContractContainerItemProvider(AdapterFactory adapterFactory) {
@@ -57,6 +65,7 @@ public class ContractContainerItemProvider extends ModelElementItemProvider impl
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -69,11 +78,10 @@ public class ContractContainerItemProvider extends ModelElementItemProvider impl
   }
 
   /**
-   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-   * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-   * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+   * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -88,6 +96,7 @@ public class ContractContainerItemProvider extends ModelElementItemProvider impl
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -102,6 +111,7 @@ public class ContractContainerItemProvider extends ModelElementItemProvider impl
    * This returns ContractContainer.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -126,6 +136,7 @@ public class ContractContainerItemProvider extends ModelElementItemProvider impl
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -150,17 +161,40 @@ public class ContractContainerItemProvider extends ModelElementItemProvider impl
    */
   @Override
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
-
     super.collectNewChildDescriptors(newChildDescriptors, object);
-
     ContractContainer contractContainer = (ContractContainer) object;
-
     if (contractContainer.getActivity() == null || contractContainer.getActivity() instanceof FactoryComponent == false) {
       newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT_CONTAINER__CONTRACTS, FcoreFactory.eINSTANCE.createContract()));
     } else {
       newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT_CONTAINER__CONTRACTS, FcoreFactory.eINSTANCE.createFactoryComponentContract()));
     }
+  }
 
+  /**
+   * This creates a primitive {@link org.eclipse.emf.edit.command.AddCommand}.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  @Override
+  protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection, int index) {
+    if (owner.eResource() == null || collection.isEmpty()) {
+      return new ContractContainerAddCommand(domain, owner, feature, collection, index);
+    }
+    // Collection analysis
+    for (Object value : collection) {
+      if (value instanceof EObject == false || ((EObject) value).eResource() == null) {
+        return new ContractContainerAddCommand(domain, owner, feature, collection, index);
+      }
+      EObject eObjectValue = (EObject) value;
+      // if we are in the same resource and in the same hierarchy
+      if (owner.eResource() == eObjectValue.eResource() && EcoreUtil.getRootContainer(owner) == EcoreUtil.getRootContainer(eObjectValue)) {
+        return new ContractContainerAddCommand(domain, owner, feature, collection, index);
+      }
+    }
+    // Copy rather than add
+    return new ContractContainerAddCommand(domain, owner, feature, CopyCommand.create(domain, collection).getResult(), index);
   }
 
 }

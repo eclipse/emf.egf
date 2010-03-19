@@ -25,14 +25,9 @@ import org.osgi.framework.BundleContext;
 /**
  * Common plug-in activator.
  * 
- * @author Guillaume Brocard
+ * @author Xavier Maysonnave
  */
 public class EGFCommonPlugin extends EGFAbstractPlugin {
-
-  /**
-   * Extension point "user_helper" short id.
-   */
-  protected static final String EXTENSION_POINT_SHORT_ID_USER_HELPER = "user_helper"; //$NON-NLS-1$
 
   /**
    * EGF Registered loggers.
@@ -94,7 +89,10 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
           getDefault().logInfo(NLS.bind("Extension-point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           continue;
         }
-        __egfLoggers.add(((IEGFLoggerFactory) object).getLogger());
+        IEGFLogger logger = ((IEGFLoggerFactory) object).getLogger();
+        if (logger != null) {
+          __egfLoggers.add(logger);
+        }
       }
     }
     return __egfLoggers;

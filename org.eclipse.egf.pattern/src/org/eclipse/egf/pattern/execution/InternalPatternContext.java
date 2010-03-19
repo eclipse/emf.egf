@@ -25,7 +25,11 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
  */
 public interface InternalPatternContext extends PatternContext, BundleAccessor {
 
-    StringBuilder getBuffer();
+    StringBuffer getBuffer();
+
+    StringBuffer getExecutionBuffer();
+
+    void clearBuffer();
 
     void setReporter(PatternExecutionReporter reporter);
 

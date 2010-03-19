@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
-import test.TestCase;
+import test.EGFTestCase;
 import test.TestSuite;
 import test.util.TestSwitch;
 
@@ -27,45 +27,45 @@ import test.util.TestSwitch;
  */
 public class ModelTestHelper {
 
-  private static final String MODEL_PATH = "modelPath"; //$NON-NLS-1$
+    private static final String MODEL_PATH = "modelPath"; //$NON-NLS-1$
 
-  private static final String PLATFORM_PLUGIN = "platform:/plugin/"; //$NON-NLS-1$
+    private static final String PLATFORM_PLUGIN = "platform:/plugin/"; //$NON-NLS-1$
 
-  private final static String TEST_EXTENSION_NAME = "org.eclipse.egf.core.test"; //$NON-NLS-1$
+    private final static String TEST_EXTENSION_NAME = "org.eclipse.egf.core.test"; //$NON-NLS-1$
 
-  public void addModelTest(junit.framework.TestSuite junitSuite) {
+    public void addModelTest(junit.framework.TestSuite junitSuite) {
 
-    IConfigurationElement[] configurationElementsFor = Platform.getExtensionRegistry().getConfigurationElementsFor(TEST_EXTENSION_NAME);
-    for (IConfigurationElement iConfigurationElement : configurationElementsFor) {
-      String contributorName = iConfigurationElement.getContributor().getName();
-      String modelPath = iConfigurationElement.getAttribute(MODEL_PATH);
-      Resource resource = getResource(contributorName, modelPath);
-      EObject rootElement = resource.getContents().get(0);
-      junitSuite.addTest(new JUnitSwitch().doSwitch(rootElement));
-    }
-  }
-
-  public static Resource getResource(String contributorName, String modelPath) {
-    URI uri = URI.createURI(PLATFORM_PLUGIN + contributorName + "/" + modelPath); //$NON-NLS-1$
-    Resource resource = new ResourceSetImpl().getResource(uri, true);
-    return resource;
-  }
-
-  private static class JUnitSwitch extends TestSwitch<junit.framework.Test> {
-
-    @Override
-    public junit.framework.TestSuite caseTestSuite(TestSuite object) {
-      junit.framework.TestSuite testSuite = new junit.framework.TestSuite(object.getName());
-      for (EObject eObject : object.eContents())
-        testSuite.addTest(doSwitch(eObject));
-
-      return testSuite;
+        IConfigurationElement[] configurationElementsFor = Platform.getExtensionRegistry().getConfigurationElementsFor(TEST_EXTENSION_NAME);
+        for (IConfigurationElement iConfigurationElement : configurationElementsFor) {
+            String contributorName = iConfigurationElement.getContributor().getName();
+            String modelPath = iConfigurationElement.getAttribute(MODEL_PATH);
+            Resource resource = getResource(contributorName, modelPath);
+            EObject rootElement = resource.getContents().get(0);
+            junitSuite.addTest(new JUnitSwitch().doSwitch(rootElement));
+        }
     }
 
-    @Override
-    public junit.framework.TestCase caseTestCase(TestCase object) {
-      return new ModelTestCase(object);
+    public static Resource getResource(String contributorName, String modelPath) {
+        URI uri = URI.createURI(PLATFORM_PLUGIN + contributorName + "/" + modelPath); //$NON-NLS-1$
+        Resource resource = new ResourceSetImpl().getResource(uri, true);
+        return resource;
     }
 
-  }
+    private static class JUnitSwitch extends TestSwitch<junit.framework.Test> {
+
+        @Override
+        public junit.framework.TestSuite caseTestSuite(TestSuite object) {
+            junit.framework.TestSuite testSuite = new junit.framework.TestSuite(object.getName());
+            for (EObject eObject : object.eContents())
+                testSuite.addTest(doSwitch(eObject));
+
+            return testSuite;
+        }
+
+        @Override
+        public junit.framework.TestCase caseEGFTestCase(EGFTestCase object) {
+            return new ModelTestCase(object);
+        }
+
+    }
 }

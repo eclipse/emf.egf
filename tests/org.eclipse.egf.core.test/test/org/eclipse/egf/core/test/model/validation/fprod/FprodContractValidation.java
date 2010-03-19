@@ -20,7 +20,7 @@ import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.ftask.FtaskFactory;
-import org.eclipse.egf.model.ftask.TaskJava;
+import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -34,10 +34,11 @@ public class FprodContractValidation extends TestCase {
 
   public void testInContractName() throws Exception {
 
-    TaskJava taskJava = FtaskFactory.eINSTANCE.createTaskJava();
+    Task task = FtaskFactory.eINSTANCE.createTask();
+    task.setKind("java"); //$NON-NLS-1$
 
     ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
-    taskJava.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
+    task.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
 
     Contract name1 = FcoreFactory.eINSTANCE.createContract();
     name1.setName("name"); //$NON-NLS-1$
@@ -64,10 +65,11 @@ public class FprodContractValidation extends TestCase {
 
   public void testOutContractName() throws Exception {
 
-    TaskJava taskJava = FtaskFactory.eINSTANCE.createTaskJava();
+    Task task = FtaskFactory.eINSTANCE.createTask();
+    task.setKind("java"); //$NON-NLS-1$
 
     ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
-    taskJava.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
+    task.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
 
     Contract name1 = FcoreFactory.eINSTANCE.createContract();
     name1.setName("name"); //$NON-NLS-1$
@@ -94,10 +96,11 @@ public class FprodContractValidation extends TestCase {
 
   public void testContractName() throws Exception {
 
-    TaskJava taskJava = FtaskFactory.eINSTANCE.createTaskJava();
+    Task task = FtaskFactory.eINSTANCE.createTask();
+    task.setKind("java"); //$NON-NLS-1$)
 
     ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
-    taskJava.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
+    task.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
 
     Contract name1 = FcoreFactory.eINSTANCE.createContract();
     name1.setName("name"); //$NON-NLS-1$

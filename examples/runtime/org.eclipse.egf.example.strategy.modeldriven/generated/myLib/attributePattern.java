@@ -18,7 +18,9 @@ public class attributePattern
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "";
+  protected final String TEXT_1 = NL;
+  protected final String TEXT_2 = NL;
+  protected final String TEXT_3 = NL;
 
 	public attributePattern()
 	{
@@ -44,40 +46,55 @@ List<Object> parameterList = null;
 
 for (Object parameterParameter : parameterList ) {
 
+this.parameter = (org.eclipse.emf.ecore.EAttribute)parameterParameter;
 
-    generate(ctx, parameterParameter);
+
+    orchestration(ctx);
     
 }
 if (ctx.useReporter()){
-    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
-    ctx.getBuffer().setLength(0);
+    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+    ctx.clearBuffer();
 }
-    stringBuffer.append(TEXT_1);
+    
+    stringBuffer.append(TEXT_2);
+    stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx, Object parameterParameter) throws Exception  {
+public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
-
-Map<String, Object> parameterValues = new HashMap<String, Object>();
-org.eclipse.emf.ecore.EAttribute parameter = (org.eclipse.emf.ecore.EAttribute)parameterParameter;
-parameterValues.put("parameter", parameterParameter);
+int index = 0, executionIndex = ictx.getExecutionBuffer().length();
 
     
-method_body(ictx.getBuffer(), ictx, parameter);
-
-    CallHelper.callBack(new ExecutionContext(ictx), parameter);
+method_body(ictx.getBuffer(), ictx);
+    {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+index = ictx.getBuffer().length();
+ictx.getExecutionBuffer().append(ictx.getBuffer());
+parameters.put("parameter", this.parameter);
+CallbackContext ctx_callback = new CallbackContext(ictx);
+CallHelper.callBack(ctx_callback, parameters);
+}
 
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
+    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));
+    Map<String, Object> parameterValues = new HashMap<String, Object>();
+    parameterValues.put("parameter", this.parameter);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-ictx.getBuffer().setLength(0);}
+    ictx.clearBuffer();}
 return loop;
 } 
 
+protected org.eclipse.emf.ecore.EAttribute parameter = null;
+public void set_parameter(org.eclipse.emf.ecore.EAttribute object) {
+this.parameter = object;
+}
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx, org.eclipse.emf.ecore.EAttribute parameter)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append("attribute "+parameter.getName());
+    stringBuffer.append(TEXT_1);
     }
     }

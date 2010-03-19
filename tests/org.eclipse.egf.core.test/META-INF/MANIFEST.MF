@@ -12,5 +12,6 @@ Require-Bundle:
  org.eclipse.core.runtime,
  org.junit,
  org.eclipse.egf.ftask.producer,
- org.eclipse.egf.core.test.model
+ org.eclipse.egf.core.test.model,
+ org.eclipse.egf.example.task.h1
 Bundle-ActivationPolicy: lazy

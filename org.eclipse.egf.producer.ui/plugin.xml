@@ -99,22 +99,22 @@
   >
   
     <actionSet
-      label="%EGFActivityActionSet_label"
-      description="%EGFActivityActionSet_description"
+      label="%EGFRunActionSet_label"
+      description="%EGFRunActionSet_description"
       visible="true"
-      id="org.eclipse.egf.ui.activity.actionSet"
+      id="org.eclipse.egf.producer.ui.run.actionSet"
     >
                   
       <action
-        id="org.eclipse.egf.ui.actionSet.global.run.activity.action"  
+        id="org.eclipse.egf.producer.ui.run.actionSet.global.activity.action"  
         toolbarPath="org.eclipse.debug.ui.launchActionSet/debug"         
         class="org.eclipse.egf.producer.ui.internal.actions.GlobalRunActivityAction"
-        definitionId="org.eclipse.egf.ui.actionSet.global.run.activity.action.definition"
+        definitionId="org.eclipse.egf.producer.ui.run.actionSet.global.activity.action.definition"
         icon="$nl$/icons/full/elcl16/runactivity.gif"
         label="%RunActivityAction_label"
         menubarPath="org.eclipse.ui.run/runGroup"
         tooltip="%RunActivityAction_tooltip"
-      />
+      />      
       
     </actionSet>
     
@@ -132,9 +132,9 @@
       name="%ActionDefinition_runActivity_name"
       description="%ActionDefinition_runActivity_description"
       categoryId="org.eclipse.debug.ui.category.run"
-      id="org.eclipse.egf.ui.actionSet.global.run.activity.action.definition"
+      id="org.eclipse.egf.producer.ui.run.actionSet.global.activity.action.definition"
     />
-      
+              
   </extension>  
   
   <!-- ================================================================================= -->
@@ -155,11 +155,11 @@
   <!-- ================================================================================= -->
      
     <key
-      sequence="M1+M3+P"
-      commandId="org.eclipse.egf.ui.actionSet.global.run.activity.action.definition"
+      sequence="M1+M3+B"
+      commandId="org.eclipse.egf.producer.ui.run.actionSet.global.activity.action.definition"
       schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-    />
-            
-  </extension>
+    /> 
+    
+  </extension>       
 
 </plugin>

@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getInvocation()
  * @model abstract="true"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryInvokedContract'"
  * @generated
  */
 public interface Invocation extends NamedModelElement {

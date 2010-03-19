@@ -24,7 +24,7 @@ import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.ftask.FtaskFactory;
-import org.eclipse.egf.model.ftask.TaskJava;
+import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypeFloat;
 import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
@@ -44,12 +44,13 @@ public class ContextTaskMemory extends TestCase {
 
   public void testContractH1() throws Exception {
 
-    TaskJava taskJava = FtaskFactory.eINSTANCE.createTaskJava();
-    taskJava.setValue("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+    Task task = FtaskFactory.eINSTANCE.createTask();
+    task.setImplementation("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+    task.setKind("java"); //$NON-NLS-1$
 
-    ActivityManagerProducer<TaskJava> producer = EGFProducerPlugin.getActivityManagerProducer(taskJava);
+    ActivityManagerProducer<Task> producer = EGFProducerPlugin.getActivityManagerProducer(task);
 
-    IActivityManager<?> manager = producer.createActivityManager(EGFCoreTestPlugin.getDefault().getBundle(), taskJava);
+    IActivityManager<?> manager = producer.createActivityManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
     try {
       manager.initializeContext();
       manager.invoke(new NullProgressMonitor());
@@ -75,11 +76,12 @@ public class ContextTaskMemory extends TestCase {
 
   public void testOutputContractClassNotTheSameH1() throws Exception {
 
-    TaskJava taskJava = FtaskFactory.eINSTANCE.createTaskJava();
-    taskJava.setValue("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+    Task task = FtaskFactory.eINSTANCE.createTask();
+    task.setImplementation("org.eclipse.egf.example.task.h1.H1"); //$NON-NLS-1$
+    task.setKind("java"); //$NON-NLS-1$
 
     ContractContainer contracts = FcoreFactory.eINSTANCE.createContractContainer();
-    taskJava.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
+    task.eSet(FcorePackage.Literals.ACTIVITY__CONTRACT_CONTAINER, contracts);
 
     Contract quantity = FcoreFactory.eINSTANCE.createContract();
     quantity.setName("quantity"); //$NON-NLS-1$
@@ -125,7 +127,9 @@ public class ContextTaskMemory extends TestCase {
     generatorAdapterFactoryType.setValue("org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"); //$NON-NLS-1$
     generatorAdapterFactory.eSet(FcorePackage.Literals.CONTRACT__TYPE, generatorAdapterFactoryType);
 
-    IActivityManager<TaskJava> manager = TaskManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), taskJava);
+    // Beware, we use the test plugin bundle here, the manifest should import the bundle who contains the task
+    // Otherwise it will fail to load it
+    IActivityManager<Task> manager = TaskManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
 
     GeneratorAdapterFactory defaultValue = null;
 

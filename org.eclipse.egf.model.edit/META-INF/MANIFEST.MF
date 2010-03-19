@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.model.edit;singleton:=true
-Bundle-Version: 0.2.2.qualifier
+Bundle-Version: 0.2.3.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.egf.model.edit.EGFModelEditPlugin$Implementation
 Bundle-Vendor: %providerName
@@ -11,11 +11,11 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
  org.eclipse.egf.model.domain.provider,
  org.eclipse.egf.model.edit,
+ org.eclipse.egf.model.fcore.commands,
  org.eclipse.egf.model.fcore.provider,
  org.eclipse.egf.model.fcore.helper,
  org.eclipse.egf.model.mapping.provider,
  org.eclipse.egf.model.pattern.provider,
- org.eclipse.egf.model.resource,
  org.eclipse.egf.model.types.provider
 Require-Bundle: 
  org.eclipse.core.runtime,

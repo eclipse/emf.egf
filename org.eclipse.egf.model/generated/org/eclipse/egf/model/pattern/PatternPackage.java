@@ -1498,6 +1498,52 @@ public interface PatternPackage extends EPackage {
     int TYPE_PATTERN_DOMAIN_VISITOR_FEATURE_COUNT = TypesPackage.TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternListImpl <em>Type Pattern List</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.impl.TypePatternListImpl
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternList()
+     * @generated
+     */
+    int TYPE_PATTERN_LIST = 25;
+
+    /**
+     * The feature id for the '<em><b>ID</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_LIST__ID = TypesPackage.TYPE__ID;
+
+    /**
+     * The feature id for the '<em><b>Description</b></em>' attribute.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_LIST__DESCRIPTION = TypesPackage.TYPE__DESCRIPTION;
+
+    /**
+     * The feature id for the '<em><b>Elements</b></em>' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_LIST__ELEMENTS = TypesPackage.TYPE_FEATURE_COUNT + 0;
+
+    /**
+     * The number of structural features of the '<em>Type Pattern List</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int TYPE_PATTERN_LIST_FEATURE_COUNT = TypesPackage.TYPE_FEATURE_COUNT + 1;
+
+    /**
      * The meta object id for the '<em>Context</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1505,7 +1551,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
      */
-    int PATTERN_CONTEXT = 25;
+    int PATTERN_CONTEXT = 26;
 
     /**
      * The meta object id for the '<em>Exception</em>' data type.
@@ -1515,7 +1561,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated
      */
-    int PATTERN_EXCEPTION = 26;
+    int PATTERN_EXCEPTION = 27;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -2116,6 +2162,27 @@ public interface PatternPackage extends EPackage {
     EClass getTypePatternDomainVisitor();
 
     /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.TypePatternList <em>Type Pattern List</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Type Pattern List</em>'.
+     * @see org.eclipse.egf.model.pattern.TypePatternList
+     * @generated
+     */
+    EClass getTypePatternList();
+
+    /**
+     * Returns the meta object for the reference list '{@link org.eclipse.egf.model.pattern.TypePatternList#getElements <em>Elements</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for the reference list '<em>Elements</em>'.
+     * @see org.eclipse.egf.model.pattern.TypePatternList#getElements()
+     * @see #getTypePatternList()
+     * @generated
+     */
+    EReference getTypePatternList_Elements();
+
+    /**
      * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -2428,6 +2495,7 @@ public interface PatternPackage extends EPackage {
          * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getSuperCall()
          * @generated
          */
+        @SuppressWarnings("hiding")
         EClass SUPER_CALL = eINSTANCE.getSuperCall();
 
         /**
@@ -2722,6 +2790,24 @@ public interface PatternPackage extends EPackage {
          */
         @SuppressWarnings("hiding")
         EClass TYPE_PATTERN_DOMAIN_VISITOR = eINSTANCE.getTypePatternDomainVisitor();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternListImpl <em>Type Pattern List</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.impl.TypePatternListImpl
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternList()
+         * @generated
+         */
+        EClass TYPE_PATTERN_LIST = eINSTANCE.getTypePatternList();
+
+        /**
+         * The meta object literal for the '<em><b>Elements</b></em>' reference list feature.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @generated
+         */
+        EReference TYPE_PATTERN_LIST__ELEMENTS = eINSTANCE.getTypePatternList_Elements();
 
         /**
          * The meta object literal for the '<em><b>Value</b></em>' reference feature.

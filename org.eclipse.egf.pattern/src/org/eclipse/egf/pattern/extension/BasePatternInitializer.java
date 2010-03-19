@@ -144,4 +144,12 @@ public abstract class BasePatternInitializer implements PatternInitializer {
         return file;
     }
 
+    public IProject getProject() {
+        return project;
+    }
+
+    public Pattern getPattern() {
+        return pattern;
+    }
+
 }

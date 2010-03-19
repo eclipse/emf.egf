@@ -34,19 +34,19 @@ import org.eclipse.emf.query.statements.SELECT;
 import org.eclipse.emf.query.statements.WHERE;
 
 /**
- * @author thomas guiu
+ * @author Thomas Guiu
  * 
  */
 
-public class ContentQuery implements IQuery{
+public class ContentQuery implements IQuery {
 
-	public List<Object> execute(ParameterDescription parameter, Map<String, String> queryCtx, PatternContext context) {
+    public List<Object> execute(ParameterDescription parameter, Map<String, String> queryCtx, PatternContext context) {
         String type = parameter.getType();
         Object loadClass = ParameterTypeHelper.INSTANCE.loadClass(type);
         if (!(loadClass instanceof EClass))
             throw new IllegalStateException(Messages.query_error1);
 
-        Collection<EObject> domain = ((EObject)context.getValue(PatternContext.INJECTED_CONTEXT)).eContents();
+        Collection<EObject> domain = ((EObject) context.getValue(PatternContext.INJECTED_CONTEXT)).eContents();
         if (domain == null)
             throw new IllegalStateException(Messages.query_error8);
 
@@ -55,6 +55,6 @@ public class ContentQuery implements IQuery{
         if (result.getException() != null)
             throw new IllegalStateException(result.getException());
         return new ArrayList<Object>(result.getEObjects());
-	}
+    }
 
 }

@@ -1,2 +1,3 @@
-[End Class '<%=parameter.getName()%>']
+	=> <%= MyHelper.getCounter (ctx) %> attribute(s)
+[End. <%= _separator %><%=parameter.getName()%><%= _separator %>]
 

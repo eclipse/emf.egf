@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.2"?>
+<?eclipse version="3.0"?>
 <!--
      Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
      All rights reserved. This program and the accompanying materials
@@ -10,31 +10,32 @@
      Contributors:
          Thales Corporate Services S.A.S - initial API and implementation
  -->
-
 <plugin>
-
    <extension
          point="org.eclipse.egf.core.fcore">
       <fcore
-            id="egf/UC1_1_HelloWorld_FC.fcore">
+            id="egf/Pattern_UC1_0_AllTogether.fcore">
       </fcore>
       <fcore
-            id="egf/UC1_2_HelloWorld_Pattern_InheritanceAndCall.fcore">
+            id="egf/Pattern_UC1_1_ClassPattern.fcore">
       </fcore>
       <fcore
-            id="egf/UC1_3_HelloWorld_Pattern_Inheritance.fcore">
+            id="egf/Pattern_UC1_2_Inheritance.fcore">
       </fcore>
       <fcore
-            id="egf/UC1_4_HelloWorld_Pattern_Injection.fcore">
+            id="egf/Pattern_UC1_3_InheritanceAndCall.fcore">
       </fcore>
       <fcore
-            id="egf/UC1_0_HelloWorld_AllTogether.fcore">
+            id="egf/Pattern_UC1_4_Callback_StrategyBased.fcore">
       </fcore>
       <fcore
-            id="egf/UC1_5_HelloWorld_Pattern_Callback.fcore">
+            id="egf/Pattern_UC1_5_Callback_WithJavaClass.fcore">
       </fcore>
       <fcore
-            id="egf/UC1_6_HelloWorld_Pattern_Callback_v2.fcore">
+            id="egf/Pattern_UC1_6_JetPatternCallsJavaPattern.fcore">
+      </fcore>
+      <fcore
+            id="egf/Pattern_UC1_7_Injection.fcore">
       </fcore>
    </extension>
    <extension
@@ -44,5 +45,11 @@
             id="org.eclipse.egf.usecase.pattern.uc1.query1"
             name="ContentQuery">
       </query>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.test">
+      <EGFTestModel
+            modelPath="test/Pattern_UC1.test">
+      </EGFTestModel>
    </extension>
 </plugin>

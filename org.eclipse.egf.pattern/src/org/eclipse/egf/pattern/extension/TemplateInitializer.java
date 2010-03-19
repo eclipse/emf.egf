@@ -39,7 +39,7 @@ public abstract class TemplateInitializer extends BasePatternInitializer {
     }
 
     @Override
-    protected final String getDefaultContent(PatternMethod method) throws PatternException {
+    protected String getDefaultContent(PatternMethod method) throws PatternException {
         return runEngine(TemplateEngine.Templates.DEFAULT);
     }
 

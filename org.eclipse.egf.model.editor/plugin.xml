@@ -52,7 +52,8 @@
       icon="$nl$/icons/full/obj16/Fcore.gif"
       extensions="fcore"
       class="org.eclipse.egf.model.fcore.presentation.FcoreEditor"
-      contributorClass="org.eclipse.egf.model.fcore.presentation.MultiRootFcoreActionBarContributor"
+      contributorClass="org.eclipse.egf.model.fcore.presentation.FcoreActionBarContributor"
+      default="true"
     />
   </extension>
   
@@ -64,11 +65,109 @@
     point="org.eclipse.egf.core.ui.editor.menu.contributor"
   >
     <contribution
-      class="org.eclipse.egf.model.editor.contributor.ActivityMenuContributor"
+      class="org.eclipse.egf.model.editor.contributions.OpenActivityMenuContributor"
     />
     <contribution
-      class="org.eclipse.egf.model.editor.contributor.URIMenuContributor"
+      class="org.eclipse.egf.model.editor.contributions.OpenInvocationContractMenuContributor"
     />    
+    <contribution
+      class="org.eclipse.egf.model.editor.contributions.OpenURIMenuContributor"
+    />
+    <contribution
+      class="org.eclipse.egf.model.editor.contributions.OpenSuperTaskMenuContributor"
+    />    
+    <contribution
+      class="org.eclipse.egf.model.editor.contributions.InvokeActivityMenuContributor"
+    />    
+  </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- Property Contributor                                                              -->
+  <!-- ================================================================================= -->    
+  
+	<extension 
+	 point="org.eclipse.egf.core.ui.editor.property.contributor"
+  >
+    <contribution 
+      class="org.eclipse.egf.model.editor.contributions.TypeEditorContributor"
+    />
+    <contribution 
+      class="org.eclipse.egf.model.editor.contributions.InvocationEditorContributor"
+    />
+	<contribution 
+    	class="org.eclipse.egf.model.editor.contributions.SuperTaskEditorContributor"/>
+  </extension>
+    
+  <!-- ================================================================================= -->
+  <!-- ActionSets                                                                        -->
+  <!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.ui.actionSets"
+  >
+  
+    <actionSet
+      label="%EGFActivityActionSet_label"
+      description="%EGFActivityActionSet_description"
+      visible="true"
+      id="org.eclipse.egf.model.editor.activity.actionSet"
+    >
+                        
+      <action
+        toolbarPath="org.eclipse.search.searchActionSet/Search"
+        definitionId="org.eclipse.egf.model.editor.activity.actionSet.open.activity.action.definition"
+        icon="$nl$/icons/full/obj16/Activity.gif"
+        label="%openActivity.label"
+        class="org.eclipse.egf.model.editor.actions.OpenActivityAction"
+        tooltip="%openActivity.description"
+        menubarPath="navigate/open.ext4"        
+        id="org.eclipse.egf.model.editor.activity.actionSet.open.activity.action"
+      />       
+      
+    </actionSet>
+    
+  </extension>
+      
+  <!-- ================================================================================= -->
+  <!-- Command Run                                                                       -->
+  <!-- ================================================================================= -->
+  
+  <extension
+    point="org.eclipse.ui.commands"
+  >  
+            
+    <command
+      name="%ActionDefinition_openActivity_name"
+      description="%ActionDefinition_openActivity_description"
+      categoryId="org.eclipse.ui.category.file"
+      id="org.eclipse.egf.model.editor.activity.actionSet.open.activity.action.definition"
+    />
+      
   </extension>  
   
+  <!-- ================================================================================= -->
+  <!-- Bindings                                                                          -->
+  <!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.ui.bindings"
+  >
+  
+  <!-- ================================================================================= -->
+  <!-- win32:  M1=CTRL,    M2=SHIFT, M3=ALT, M4=-                                        -->
+  <!-- carbon: M1=COMMAND, M2=SHIFT, M3=ALT, M4=CTRL                                     -->  
+  <!-- ================================================================================= -->  
+  
+  <!-- ================================================================================= -->
+  <!-- Key Run                                                                           -->
+  <!-- ================================================================================= -->
+             
+    <key
+      sequence="M1+M3+Q"
+      commandId="org.eclipse.egf.model.editor.activity.actionSet.open.activity.action.definition"
+      schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+    />    
+    
+  </extension>           
+    
 </plugin>

@@ -185,6 +185,15 @@ public interface PatternFactory extends EFactory {
     TypePatternDomainVisitor createTypePatternDomainVisitor();
 
     /**
+     * Returns a new object of class '<em>Type Pattern List</em>'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return a new object of class '<em>Type Pattern List</em>'.
+     * @generated
+     */
+    TypePatternList createTypePatternList();
+
+    /**
      * Returns an instance of data type '<em>Context</em>' corresponding the given literal.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->

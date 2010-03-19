@@ -2,7 +2,7 @@
 <feature
       id="org.eclipse.egf.portfolio"
       label="%featureName"
-      version="0.2.2.qualifier"
+      version="0.2.3.qualifier"
       provider-name="%providerName"
       plugin="org.eclipse.egf.eclipse.resources.mgt"
       image="eclipse_update_120.jpg">
@@ -59,6 +59,27 @@ http://www.eclipse.org/legal/epl-v10.html
          
    <plugin
          id="org.eclipse.egf.emf.wrapper.ui"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+         
+   <plugin
+         id="org.eclipse.egf.portfolio.eclipse.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>                          
+         
+   <plugin
+         id="org.eclipse.egf.portfolio.file.resources"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>         
+         
+   <plugin
+         id="org.eclipse.egf.portfolio.type"
          download-size="0"
          install-size="0"
          version="0.0.0"

@@ -19,8 +19,13 @@ public class ObjectDocGen
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
   protected final String TEXT_1 = "//default content";
-  protected final String TEXT_2 = NL;
-  protected final String TEXT_3 = NL;
+  protected final String TEXT_2 = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">" + NL + "<html>" + NL + "<head>" + NL + "<title>";
+  protected final String TEXT_3 = "</title>" + NL + "</HEAD>" + NL + "" + NL + "<BODY BGCOLOR=\"#ffffff\">" + NL + "" + NL + "<h1 class=\"Head\">";
+  protected final String TEXT_4 = "</h1>";
+  protected final String TEXT_5 = "\t<br/>" + NL + "\t<p><i>";
+  protected final String TEXT_6 = "</i></p>" + NL + "</body>" + NL + "</html>";
+  protected final String TEXT_7 = NL;
+  protected final String TEXT_8 = NL;
 
 	public ObjectDocGen()
 	{
@@ -39,20 +44,21 @@ StringBuffer stringBuffer = new StringBuffer();
 Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
-    generate(ctx);
+    orchestration(ctx);
     if (ctx.useReporter()){
-    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
-    ctx.getBuffer().setLength(0);}
-    stringBuffer.append(TEXT_2);
-    stringBuffer.append(TEXT_3);
+    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+    ctx.clearBuffer();}
+    
+    stringBuffer.append(TEXT_7);
+    stringBuffer.append(TEXT_8);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx) throws Exception  {
+public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
+int index = 0, executionIndex = ictx.getExecutionBuffer().length();
 
     
 method_body(ictx.getBuffer(), ictx);
-
     
 String loop = ictx.getBuffer().toString();
 return loop;
@@ -61,8 +67,28 @@ return loop;
 protected java.lang.String _Title = null;
 protected java.lang.String _copyright = null;
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
+    }
+    protected void method_fileHeader(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    stringBuffer.append(TEXT_2);
+    stringBuffer.append( _Title );
+    stringBuffer.append(TEXT_3);
+    stringBuffer.append( _Title );
+    stringBuffer.append(TEXT_4);
+    }
+    protected void method_fileFooter(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    stringBuffer.append(TEXT_5);
+    stringBuffer.append(_copyright);
+    stringBuffer.append(TEXT_6);
+    }
+    protected void method_setSpecificVariables(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+
+    
+	_copyright = "";
+
     }
     }

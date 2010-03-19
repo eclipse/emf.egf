@@ -2,7 +2,7 @@
 <feature
   id="org.eclipse.egf.model.fprod.edit"
   label="%featureName"
-  version="0.2.2.qualifier"
+  version="0.2.3.qualifier"
   provider-name="%providerName"
   plugin="org.eclipse.egf.model.fprod.edit"
   image="eclipse_update_120.jpg"

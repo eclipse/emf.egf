@@ -2,7 +2,7 @@
 <feature
   id="org.eclipse.egf.model"
   label="%featureName"
-  version="0.2.2.qualifier"
+  version="0.2.3.qualifier"
   provider-name="%providerName"
   plugin="org.eclipse.egf.model"
   image="eclipse_update_120.jpg"
@@ -83,7 +83,7 @@ http://www.eclipse.org/legal/epl-v10.html
     install-size="0"
     version="0.0.0"
     unpack="false"
-  />
+  />   
          
   <plugin
     id="org.eclipse.egf.model.jetpattern"
@@ -91,6 +91,30 @@ http://www.eclipse.org/legal/epl-v10.html
     install-size="0"
     version="0.0.0"
     unpack="false"
-  />                         
+  />
+  
+  <plugin
+    id="org.eclipse.egf.pattern"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />    
+  
+  <plugin
+    id="org.eclipse.egf.pattern.java"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />
+  
+  <plugin
+    id="org.eclipse.egf.pattern.jet"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />                                  
                            
 </feature>

@@ -60,7 +60,7 @@ public class EcoreContentProvider implements ITreeContentProvider {
             return ((List<?>) parentElement).toArray();
         if (parentElement instanceof EPackage) {
             EPackage ePack = (EPackage) parentElement;
-            return ePack.getEClassifiers().toArray();
+            return ePack.eContents().toArray();
         }
         return new Object[0];
     }

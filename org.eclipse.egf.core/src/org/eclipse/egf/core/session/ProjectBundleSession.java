@@ -11,7 +11,6 @@
 package org.eclipse.egf.core.session;
 
 import java.net.URLDecoder;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -27,6 +26,7 @@ import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.helper.JavaHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.osgi.baseadaptor.BaseData;
 import org.eclipse.osgi.framework.internal.core.AbstractBundle;
@@ -49,23 +49,34 @@ import org.osgi.service.packageadmin.PackageAdmin;
  * @author Xavier Maysonnave
  * 
  */
-public class ProjectBundleSession {
+public final class ProjectBundleSession {
 
   public static String PROJECT_BUNDLE_SESSION = "org.eclipse.egf.core.project.bundle.session"; //$NON-NLS-1$
 
   private BundleContext _context;
 
-  private Map<IPluginModelBase, Bundle> _projectBundles = new HashMap<IPluginModelBase, Bundle>();
+  private Map<String, Bundle> _projectBundles = new HashMap<String, Bundle>();
 
-  private List<Bundle> _uninstalled = new ArrayList<Bundle>();
+  private List<String> _uninstalled = new UniqueEList<String>();
+
+  public static String getLocation(IPluginModelBase base) throws CoreException {
+    IResource resource = base.getUnderlyingResource();
+    if (resource == null) {
+      return null;
+    }
+    String location = null;
+    try {
+      location = "reference:" //$NON-NLS-1$
+          + URLDecoder.decode(resource.getProject().getLocationURI().toURL().toExternalForm(), System.getProperty("file.encoding")); //$NON-NLS-1$
+    } catch (Throwable t) {
+      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_URLFailure, resource.getProject().getName()), t));
+    }
+    return location;
+  }
 
   public ProjectBundleSession(BundleContext context) {
     Assert.isNotNull(context);
     _context = context;
-  }
-
-  public BundleContext getBundleContext() {
-    return _context;
   }
 
   /**
@@ -75,81 +86,75 @@ public class ProjectBundleSession {
    *          Model of the bundle to be installed.
    */
   private Bundle installBundle(IPluginModelBase base) throws CoreException {
-    List<Bundle> bundles = new ArrayList<Bundle>();
-    Bundle uninstalled = checkTargetBundle(base);
-    if (uninstalled != null) {
-      bundles.add(uninstalled);
-    }
-    IResource manifest = base.getUnderlyingResource();
-    Bundle bundle = null;
-    String location = null;
-    try {
-      location = "reference:" //$NON-NLS-1$
-          + URLDecoder.decode(manifest.getProject().getLocationURI().toURL().toExternalForm(), System.getProperty("file.encoding")); //$NON-NLS-1$
-      bundle = getBundleFromItsLocation(location);
-    } catch (Throwable t) {
-      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_URLFailure, manifest.getProject().getName()), t));
-    }
-    // Install the bundle if needed
-    if (bundle == null) {
-      checkDependencies(base);
-      bundle = installBundle(location);
-      IProject project = base.getUnderlyingResource().getProject();
-      addOutputFoldersToBundleClasspath(project, bundle);
-      _projectBundles.put(base, bundle);
-      bundles.add(bundle);
-    }
-    refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
-    if (EGFCorePlugin.getDefault().isDebugging()) {
-      EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
-    }
-    return bundle;
-  }
-
-  private Bundle checkTargetBundle(IPluginModelBase base) throws CoreException {
-    Bundle bundle = Platform.getBundle(BundleHelper.getBundleId(base));
-    if (bundle == null) {
+    // In case we face a target bundle, we do nothing
+    if (getLocation(base) == null) {
       return null;
     }
-    if (bundle.getState() == Bundle.ACTIVE || bundle.getState() == Bundle.STARTING) {
-      try {
-        bundle.stop();
-      } catch (Throwable t) {
-        throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_StoppingFailure, bundle.getSymbolicName()), t));
+    // Gather target bundles to uninstall including base
+    List<IPluginModelBase> workspaceModels = getWorkspaceModelDependencies(base);
+    // Uninstall target bundles if any
+    uninstallTargetBundle(workspaceModels);
+    // Install workspace bundle
+    List<Bundle> bundles = new UniqueEList<Bundle>();
+    for (IPluginModelBase workspaceModel : workspaceModels) {
+      // Retrieve base location
+      String location = getLocation(workspaceModel);
+      // Install the bundle
+      Bundle bundle = installBundle(location);
+      // Add output folders if any
+      IProject project = workspaceModel.getUnderlyingResource().getProject();
+      addOutputFoldersToBundleClasspath(project, bundle);
+      // Store
+      bundles.add(bundle);
+      _projectBundles.put(location, bundle);
+      if (EGFCorePlugin.getDefault().isDebugging()) {
+        EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
       }
     }
-    if (bundle.getState() == Bundle.INSTALLED || bundle.getState() == Bundle.RESOLVED) {
-      try {
-        bundle.uninstall();
-      } catch (Throwable t) {
-        throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_UninstallationFailure, bundle.getSymbolicName()), t));
-      }
+    // Refresh installed workspace bundles if any
+    if (bundles.isEmpty() == false) {
+      refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
     }
-    _uninstalled.add(bundle);
-    if (EGFCorePlugin.getDefault().isDebugging()) {
-      EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
-    }
-    return bundle;
+    // Return our base bundle
+    return Platform.getBundle(BundleHelper.getBundleId(base));
   }
 
-  /**
-   * This will check through the dependencies of <code>model</code> and
-   * install
-   * the necessary workspace
-   * plugins if they are either required or imported.
-   * 
-   * @param model
-   *          The model we wish the dependencies checked of.
-   */
-  private void checkDependencies(IPluginModelBase base) throws CoreException {
-    final BundleDescription description = base.getBundleDescription();
+  private void uninstallTargetBundle(List<IPluginModelBase> workspaceModels) throws CoreException {
+    List<Bundle> bundles = new UniqueEList<Bundle>();
+    // Uninstall Target Bundle
+    for (IPluginModelBase workspaceModel : workspaceModels) {
+      Bundle bundle = Platform.getBundle(BundleHelper.getBundleId(workspaceModel));
+      if (bundle == null) {
+        continue;
+      }
+      if (bundle.getState() == Bundle.INSTALLED || bundle.getState() == Bundle.RESOLVED || bundle.getState() == Bundle.STARTING || bundle.getState() == Bundle.STOPPING || bundle.getState() == Bundle.ACTIVE) {
+        uninstallBundle(bundle);
+      }
+      // Store
+      bundles.add(bundle);
+      _uninstalled.add(bundle.getLocation());
+      if (EGFCorePlugin.getDefault().isDebugging()) {
+        EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
+      }
+    }
+    // Refresh uninstalled target bundles if any
+    if (bundles.isEmpty() == false) {
+      refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
+    }
+    return;
+  }
+
+  private List<IPluginModelBase> getWorkspaceModelDependencies(IPluginModelBase base) throws CoreException {
+    List<IPluginModelBase> dependencies = new UniqueEList<IPluginModelBase>();
+    dependencies.add(base);
+    BundleDescription description = base.getBundleDescription();
     if (description == null) {
-      return;
+      return dependencies;
     }
     for (BundleSpecification requiredBundle : description.getRequiredBundles()) {
       for (IPluginModelBase workspaceModel : PluginRegistry.getWorkspaceModels()) {
         if (requiredBundle.isSatisfiedBy(workspaceModel.getBundleDescription())) {
-          installBundle(workspaceModel);
+          dependencies.addAll(getWorkspaceModelDependencies(workspaceModel));
           break;
         }
       }
@@ -158,12 +163,13 @@ public class ProjectBundleSession {
       for (IPluginModelBase workspaceModel : PluginRegistry.getWorkspaceModels()) {
         for (ExportPackageDescription export : workspaceModel.getBundleDescription().getExportPackages()) {
           if (importPackage.isSatisfiedBy(export)) {
-            installBundle(workspaceModel);
+            dependencies.addAll(getWorkspaceModelDependencies(workspaceModel));
             break;
           }
         }
       }
     }
+    return dependencies;
   }
 
   /**
@@ -172,7 +178,7 @@ public class ProjectBundleSession {
    * the location doesn't point
    * to a valid bundle.
    * 
-   * @param pluginLocation
+   * @param location
    *          Location of the bundle to be installed.
    * @return The installed bundle.
    * @throws BundleException
@@ -180,47 +186,22 @@ public class ProjectBundleSession {
    * @throws IllegalStateException
    *           Thrown if the bundle couldn't be installed properly.
    */
-  private Bundle installBundle(String pluginLocation) throws CoreException {
-    Bundle target = null;
+  private Bundle installBundle(String location) throws CoreException {
+    Bundle bundle = null;
     try {
-      target = _context.installBundle(pluginLocation);
+      bundle = _context.installBundle(location);
     } catch (Throwable t) {
-      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_InstallationFailure, pluginLocation), t));
+      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_InstallationFailure, location), t));
     }
     // Not sure if it's needed, anyway we are conservative on that one
-    if (target == null) {
-      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_InstallationFailure, pluginLocation), null));
+    if (bundle == null) {
+      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_InstallationFailure, location), null));
     }
-    int state = target.getState();
+    int state = bundle.getState();
     if (state != Bundle.INSTALLED) {
-      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_IllegalBundleState, target, state), null));
+      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_IllegalBundleState, bundle, state), null));
     }
-    return target;
-  }
-
-  /**
-   * This will install or refresh the given workspace contribution if needed,
-   * then search through it for a
-   * class corresponding to <code>qualifiedName</code>.
-   * 
-   * @param project
-   *          The project that is to be dynamically installed.
-   * @param qualifiedName
-   *          The qualified name of the class to load.
-   * @return An instance of the class <code>qualifiedName</code> if it could
-   *         be
-   *         found <code>null</code> otherwise.
-   */
-  public Class<?> getClass(IProject project, String qualifiedName) throws CoreException {
-    Bundle bundle = getBundle(project);
-    if (bundle != null) {
-      try {
-        return bundle.loadClass(qualifiedName);
-      } catch (ClassNotFoundException cnfe) {
-        throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_LoadFailure, qualifiedName, bundle.getSymbolicName()), cnfe));
-      }
-    }
-    return null;
+    return bundle;
   }
 
   /**
@@ -252,24 +233,6 @@ public class ProjectBundleSession {
   }
 
   /**
-   * Returns the bundle corresponding to the given location if any.
-   * 
-   * @param location
-   *          The location of the bundle we seek.
-   * @return The bundle corresponding to the given location if any,
-   *         <code>null</code> otherwise.
-   */
-  private Bundle getBundleFromItsLocation(String location) {
-    Bundle[] bundles = _context.getBundles();
-    for (int i = 0; i < bundles.length; i++) {
-      if (location.equals(bundles[i].getLocation())) {
-        return bundles[i];
-      }
-    }
-    return null;
-  }
-
-  /**
    * Returns the bundle corresponding to the IProject if any.
    * 
    * @param project
@@ -286,8 +249,12 @@ public class ProjectBundleSession {
     if (model.getUnderlyingResource() == null) {
       return Platform.getBundle(BundleHelper.getBundleId(model));
     }
+    String location = getLocation(model);
+    if (location == null) {
+      return null;
+    }
     // Workspace model
-    Bundle bundle = _projectBundles.get(model);
+    Bundle bundle = _projectBundles.get(location);
     if (bundle == null) {
       return installBundle(model);
     }
@@ -307,7 +274,11 @@ public class ProjectBundleSession {
     if (model == null) {
       return null;
     }
-    Bundle bundle = _projectBundles.get(model);
+    String location = getLocation(model);
+    if (location == null) {
+      return null;
+    }
+    Bundle bundle = _projectBundles.get(location);
     if (bundle == null) {
       return installBundle(model);
     }
@@ -321,7 +292,7 @@ public class ProjectBundleSession {
    * @param bundles
    *          Bundles which exported packages are to be refreshed.
    */
-  public void refreshPackages(Bundle[] bundles) {
+  private void refreshPackages(Bundle[] bundles) throws CoreException {
     ServiceReference packageAdminReference = _context.getServiceReference(PackageAdmin.class.getName());
     PackageAdmin packageAdmin = null;
     if (packageAdminReference != null) {
@@ -329,12 +300,20 @@ public class ProjectBundleSession {
     }
     if (packageAdmin != null) {
       final boolean[] flag = new boolean[] { false };
+      final Throwable[] throwable = new Throwable[1];
       FrameworkListener listener = new FrameworkListener() {
         public void frameworkEvent(FrameworkEvent event) {
-          if (event.getType() == FrameworkEvent.PACKAGES_REFRESHED) {
+          if (event.getType() == FrameworkEvent.PACKAGES_REFRESHED || event.getType() == FrameworkEvent.ERROR) {
+            if (event.getType() == FrameworkEvent.ERROR) {
+              throwable[0] = event.getThrowable();
+            }
             synchronized (flag) {
               flag[0] = true;
               flag.notifyAll();
+            }
+          } else if (event.getType() == FrameworkEvent.WARNING) {
+            if (event.getThrowable() != null) {
+              EGFCorePlugin.getDefault().logWarning(event.getThrowable());
             }
           }
         }
@@ -352,6 +331,10 @@ public class ProjectBundleSession {
       }
       _context.removeFrameworkListener(listener);
       _context.ungetService(packageAdminReference);
+      // Throw a CoreException
+      if (throwable[0] != null) {
+        throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, EGFCoreMessages.ProjectBundleSession_PackageRefreshFailure, throwable[0]));
+      }
     }
   }
 
@@ -365,25 +348,28 @@ public class ProjectBundleSession {
    * @noreference This method is not intended to be referenced by clients.
    */
   public void dispose() throws CoreException {
-    // Clean workspace bundled
-    for (Map.Entry<IPluginModelBase, Bundle> entry : _projectBundles.entrySet()) {
-      Bundle bundle = entry.getValue();
-      try {
+    // Reinstall bundle collector
+    final List<Bundle> bundles = new UniqueEList<Bundle>(_uninstalled.size());
+    // Uninstall workspace bundle
+    if (_projectBundles.isEmpty() == false) {
+      for (Bundle bundle : _projectBundles.values()) {
         uninstallBundle(bundle);
         if (EGFCorePlugin.getDefault().isDebugging()) {
           EGFCorePlugin.getDefault().logInfo(NLS.bind("Workspace Bundle ''{0}'' is uninstalled.", bundle.getSymbolicName())); //$NON-NLS-1$
         }
-      } catch (BundleException be) {
-        throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_UninstallationFailure, bundle.getSymbolicName()), be));
       }
+      refreshPackages(_projectBundles.values().toArray(new Bundle[_projectBundles.values().size()]));
     }
-    // Install uninstalled bundles
-    for (Bundle bundle : _uninstalled) {
-      Bundle installed = installBundle(bundle.getLocation());
-      refreshPackages(new Bundle[] { installed });
-      if (EGFCorePlugin.getDefault().isDebugging()) {
-        EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is installed.", installed.getSymbolicName())); //$NON-NLS-1$
+    // Install target bundles
+    if (_uninstalled.isEmpty() == false) {
+      for (String location : _uninstalled) {
+        Bundle bundle = installBundle(location);
+        bundles.add(bundle);
+        if (EGFCorePlugin.getDefault().isDebugging()) {
+          EGFCorePlugin.getDefault().logInfo(NLS.bind("Target Bundle ''{0}'' is installed.", bundle.getSymbolicName())); //$NON-NLS-1$
+        }
       }
+      refreshPackages(bundles.toArray(new Bundle[bundles.size()]));
     }
     // Final
     _projectBundles.clear();
@@ -395,12 +381,15 @@ public class ProjectBundleSession {
    * 
    * @param bundle
    *          The bundle that is to be uninstalled.
-   * @throws BundleException
+   * @throws CoreException
    *           Thrown if a lifecycle issue arises.
    */
-  private void uninstallBundle(Bundle bundle) throws BundleException {
-    bundle.uninstall();
-    refreshPackages(null);
+  private void uninstallBundle(Bundle bundle) throws CoreException {
+    try {
+      bundle.uninstall();
+    } catch (BundleException be) {
+      throw new CoreException(EGFCorePlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCoreMessages.ProjectBundleSession_UninstallationFailure, bundle.getSymbolicName()), be));
+    }
   }
 
 }

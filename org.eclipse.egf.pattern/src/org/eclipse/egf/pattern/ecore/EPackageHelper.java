@@ -51,21 +51,28 @@ public class EPackageHelper {
     public static final EPackage.Registry REGISTRY = new EPackageRegistryImpl(EPackage.Registry.INSTANCE);
     private static final Map<String, String> nsuri2basePackage = new HashMap<String, String>();
 
+    private static EPackage getTopEPackage(EPackage ePackage) {
+        if (ePackage.getESuperPackage() != null)
+            return getTopEPackage(ePackage.getESuperPackage());
+        return ePackage;
+    }
+
     public static String getBasePackage(EPackage ePackage) {
         String name = nsuri2basePackage.get(ePackage.getNsURI());
         if (name != null)
             return name;
-        String nsURI = ePackage.getNsURI();
-        URI uri = EcorePlugin.getEPackageNsURIToGenModelLocationMap().get(nsURI);
+        String nsUri = getTopEPackage(ePackage).getNsURI();
+        URI uri = EcorePlugin.getEPackageNsURIToGenModelLocationMap().get(nsUri);
         Resource res = loadResource(uri);
         for (EObject obj : res.getContents()) {
             if (obj instanceof GenModel) {
                 GenModel genModel = (GenModel) obj;
-                for (GenPackage gPack : genModel.getGenPackages()) {
+                for (GenPackage gPack : genModel.getAllGenPackagesWithClassifiers()) {
                     EPackage ecorePackage = gPack.getEcorePackage();
                     if (ePackage.getName().equals(ecorePackage.getName()) && ePackage.getNsPrefix().equals(ecorePackage.getNsPrefix()) && ePackage.getNsURI().equals(ecorePackage.getNsURI())) {
-                        nsuri2basePackage.put(ePackage.getNsURI(), gPack.getBasePackage());
-                        return gPack.getBasePackage();
+                        String basePackageName = gPack.getInterfacePackageName();
+                        nsuri2basePackage.put(ePackage.getNsURI(), basePackageName);
+                        return basePackageName;
                     }
                 }
             }
@@ -81,7 +88,7 @@ public class EPackageHelper {
 
             EPackage ePackage = (EPackage) declaredField.get(null);
             String nsURI = ePackage.getNsURI();
-            REGISTRY.remove(nsURI);
+            removePackage2registry(ePackage);
             nsuri2basePackage.remove(nsURI);
         } catch (Exception e) {
             throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
@@ -99,20 +106,35 @@ public class EPackageHelper {
 
             EPackage ePackage = (EPackage) declaredField.get(null);
             String nsURI = ePackage.getNsURI();
-            REGISTRY.put(nsURI, new Descriptor(ePackage));
+
+            addPackage2registry(ePackage);
 
             // computing basePackage
-            int index = classname.lastIndexOf(ePackage.getName());
+            int index = classname.lastIndexOf(".");
             if (index == -1)
                 throw new IllegalStateException();
             if (index == 0)
                 nsuri2basePackage.put(nsURI, "");
             else
                 // to remove the last dot
-                nsuri2basePackage.put(nsURI, classname.substring(0, index - 1));
+                nsuri2basePackage.put(nsURI, classname.substring(0, index));
         } catch (Exception e) {
             throw new RegistrationException(Messages.bind(Messages.registration_error2, classname, project.getName()), e);
         }
+    }
+
+    private static void addPackage2registry(EPackage ePackage) {
+        String nsURI = ePackage.getNsURI();
+        REGISTRY.put(nsURI, new Descriptor(ePackage));
+        for (EPackage child : ePackage.getESubpackages())
+            addPackage2registry(child);
+    }
+
+    private static void removePackage2registry(EPackage ePackage) {
+        String nsURI = ePackage.getNsURI();
+        REGISTRY.remove(nsURI);
+        for (EPackage child : ePackage.getESubpackages())
+            removePackage2registry(child);
     }
 
     public static class RegistrationException extends Exception {

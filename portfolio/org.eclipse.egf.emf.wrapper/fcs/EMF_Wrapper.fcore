@@ -37,32 +37,32 @@
       </invocations>
     </orchestration>
   </fcore:FactoryComponent>
-  <ftask:TaskJava xmi:id="_E0utcP-KEd6BleG0RKg98A" name="EMF Model Wrapper" value="org.eclipse.egf.emf.wrapper.EgfEmfModelTask">
+  <ftask:Task xmi:id="_E0utcP-KEd6BleG0RKg98A" name="EMF Model Wrapper" kind="java" implementation="org.eclipse.egf.emf.wrapper.EgfEmfModelTask">
     <contractContainer xmi:id="_GSdPsP-KEd6BleG0RKg98A">
       <contracts xmi:id="_GjcSAP-KEd6BleG0RKg98A" name="genModelURI" mandatory="true">
         <type xmi:type="domain:TypeDomainURI" xmi:id="_HNTuYP-KEd6BleG0RKg98A"/>
       </contracts>
     </contractContainer>
-  </ftask:TaskJava>
-  <ftask:TaskJava xmi:id="_o5wBQADyEd-IF6GN14qe5g" name="EMF Edit Wrapper" value="org.eclipse.egf.emf.wrapper.EgfEmfEditTask">
+  </ftask:Task>
+  <ftask:Task xmi:id="_o5wBQADyEd-IF6GN14qe5g" name="EMF Edit Wrapper" kind="java" implementation="org.eclipse.egf.emf.wrapper.EgfEmfEditTask">
     <contractContainer xmi:id="_xm7WgAEjEd-sEofCqqFtwA">
       <contracts xmi:id="_x4zwsAEjEd-sEofCqqFtwA" name="genModelURI" mandatory="true">
         <type xmi:type="domain:TypeDomainURI" xmi:id="_z3wwsAEjEd-sEofCqqFtwA"/>
       </contracts>
     </contractContainer>
-  </ftask:TaskJava>
-  <ftask:TaskJava xmi:id="_tWWIYADyEd-IF6GN14qe5g" name="EMF Editor Wrapper" value="org.eclipse.egf.emf.wrapper.EgfEmfEditorTask">
+  </ftask:Task>
+  <ftask:Task xmi:id="_tWWIYADyEd-IF6GN14qe5g" name="EMF Editor Wrapper" kind="java" implementation="org.eclipse.egf.emf.wrapper.EgfEmfEditorTask">
     <contractContainer xmi:id="_xzsdcADyEd-IF6GN14qe5g">
       <contracts xmi:id="_xzsdcQDyEd-IF6GN14qe5g" name="genModelURI" mandatory="true">
         <type xmi:type="domain:TypeDomainURI" xmi:id="_xzsdcgDyEd-IF6GN14qe5g"/>
       </contracts>
     </contractContainer>
-  </ftask:TaskJava>
-  <ftask:TaskJava xmi:id="_tv0_YADyEd-IF6GN14qe5g" name="EMF Test Wrapper" value="org.eclipse.egf.emf.wrapper.EgfEmfTestTask">
+  </ftask:Task>
+  <ftask:Task xmi:id="_tv0_YADyEd-IF6GN14qe5g" name="EMF Test Wrapper" kind="java" implementation="org.eclipse.egf.emf.wrapper.EgfEmfTestTask">
     <contractContainer xmi:id="_x7JJQADyEd-IF6GN14qe5g">
       <contracts xmi:id="_x7JJQQDyEd-IF6GN14qe5g" name="genModelURI" mandatory="true">
         <type xmi:type="domain:TypeDomainURI" xmi:id="_x7JJQgDyEd-IF6GN14qe5g"/>
       </contracts>
     </contractContainer>
-  </ftask:TaskJava>
+  </ftask:Task>
 </xmi:XMI>

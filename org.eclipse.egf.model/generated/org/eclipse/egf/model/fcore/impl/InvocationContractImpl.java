@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.fcore.impl;
 
+import java.util.Collection;
 import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.ContractMode;
 import org.eclipse.egf.model.fcore.FactoryComponent;
@@ -25,10 +26,13 @@ import org.eclipse.egf.model.fcore.adapter.InvocationContractAdapter;
 import org.eclipse.egf.model.types.Type;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -81,14 +85,14 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
   protected InvocationContract sourceInvocationContract;
 
   /**
-   * The cached value of the '{@link #getTargetInvocationContract() <em>Target Invocation Contract</em>}' reference.
+   * The cached value of the '{@link #getTargetInvocationContract() <em>Target Invocation Contract</em>}' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getTargetInvocationContract()
    * @generated
    * @ordered
    */
-  protected InvocationContract targetInvocationContract;
+  protected EList<InvocationContract> targetInvocationContract;
 
   /**
    * The cached value of the '{@link #getInvokedContract() <em>Invoked Contract</em>}' reference.
@@ -279,11 +283,17 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setSourceInvocationContract(InvocationContract newSourceInvocationContract) {
+  public NotificationChain basicSetSourceInvocationContract(InvocationContract newSourceInvocationContract, NotificationChain msgs) {
     InvocationContract oldSourceInvocationContract = sourceInvocationContract;
     sourceInvocationContract = newSourceInvocationContract;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, oldSourceInvocationContract, sourceInvocationContract));
+    if (eNotificationRequired()) {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, oldSourceInvocationContract, newSourceInvocationContract);
+      if (msgs == null)
+        msgs = notification;
+      else
+        msgs.add(notification);
+    }
+    return msgs;
   }
 
   /**
@@ -291,20 +301,30 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
    * <!-- end-user-doc -->
    * @generated
    */
-  public InvocationContract getTargetInvocationContract() {
+  public void setSourceInvocationContract(InvocationContract newSourceInvocationContract) {
+    if (newSourceInvocationContract != sourceInvocationContract) {
+      NotificationChain msgs = null;
+      if (sourceInvocationContract != null)
+        msgs = ((InternalEObject) sourceInvocationContract).eInverseRemove(this, FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, InvocationContract.class, msgs);
+      if (newSourceInvocationContract != null)
+        msgs = ((InternalEObject) newSourceInvocationContract).eInverseAdd(this, FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, InvocationContract.class, msgs);
+      msgs = basicSetSourceInvocationContract(newSourceInvocationContract, msgs);
+      if (msgs != null)
+        msgs.dispatch();
+    } else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, newSourceInvocationContract, newSourceInvocationContract));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EList<InvocationContract> getTargetInvocationContract() {
+    if (targetInvocationContract == null) {
+      targetInvocationContract = new EObjectWithInverseEList<InvocationContract>(InvocationContract.class, this, FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT);
+    }
     return targetInvocationContract;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setTargetInvocationContract(InvocationContract newTargetInvocationContract) {
-    InvocationContract oldTargetInvocationContract = targetInvocationContract;
-    targetInvocationContract = newTargetInvocationContract;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, oldTargetInvocationContract, targetInvocationContract));
   }
 
   /**
@@ -435,6 +455,7 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
     switch (featureID) {
@@ -450,6 +471,12 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
       if (orchestrationParameter != null)
         msgs = ((InternalEObject) orchestrationParameter).eInverseRemove(this, FcorePackage.ORCHESTRATION_PARAMETER__INVOCATION_CONTRACTS, OrchestrationParameter.class, msgs);
       return basicSetOrchestrationParameter((OrchestrationParameter) otherEnd, msgs);
+    case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+      if (sourceInvocationContract != null)
+        msgs = ((InternalEObject) sourceInvocationContract).eInverseRemove(this, FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, InvocationContract.class, msgs);
+      return basicSetSourceInvocationContract((InvocationContract) otherEnd, msgs);
+    case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
+      return ((InternalEList<InternalEObject>) (InternalEList<?>) getTargetInvocationContract()).basicAdd(otherEnd, msgs);
     }
     return super.eInverseAdd(otherEnd, featureID, msgs);
   }
@@ -468,6 +495,10 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
       return basicSetFactoryComponentContract(null, msgs);
     case FcorePackage.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER:
       return basicSetOrchestrationParameter(null, msgs);
+    case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
+      return basicSetSourceInvocationContract(null, msgs);
+    case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
+      return ((InternalEList<?>) getTargetInvocationContract()).basicRemove(otherEnd, msgs);
     case FcorePackage.INVOCATION_CONTRACT__TYPE:
       return basicSetType(null, msgs);
     }
@@ -521,6 +552,7 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue) {
     switch (featureID) {
@@ -537,7 +569,8 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
       setSourceInvocationContract((InvocationContract) newValue);
       return;
     case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-      setTargetInvocationContract((InvocationContract) newValue);
+      getTargetInvocationContract().clear();
+      getTargetInvocationContract().addAll((Collection<? extends InvocationContract>) newValue);
       return;
     case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
       setInvokedContract((Contract) newValue);
@@ -570,7 +603,7 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
       setSourceInvocationContract((InvocationContract) null);
       return;
     case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-      setTargetInvocationContract((InvocationContract) null);
+      getTargetInvocationContract().clear();
       return;
     case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
       setInvokedContract((Contract) null);
@@ -599,7 +632,7 @@ public class InvocationContractImpl extends ModelElementImpl implements Invocati
     case FcorePackage.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT:
       return sourceInvocationContract != null;
     case FcorePackage.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT:
-      return targetInvocationContract != null;
+      return targetInvocationContract != null && !targetInvocationContract.isEmpty();
     case FcorePackage.INVOCATION_CONTRACT__INVOKED_CONTRACT:
       return invokedContract != null;
     case FcorePackage.INVOCATION_CONTRACT__TYPE:

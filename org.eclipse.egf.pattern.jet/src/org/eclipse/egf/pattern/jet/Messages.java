@@ -11,7 +11,6 @@ public class Messages extends NLS {
     public static String assembly_error4;
     public static String assembly_error5;
     public static String assembly_error6;
-    public static String assembly_error7;
     public static String assembly_error8;
     public static String assembly_error9;
 

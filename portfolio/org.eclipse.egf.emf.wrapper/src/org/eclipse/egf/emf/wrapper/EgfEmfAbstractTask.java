@@ -14,7 +14,6 @@ import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.SubProgressMonitor;
-import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -29,8 +28,6 @@ import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 
 public abstract class EgfEmfAbstractTask implements ITaskProduction {
 
-  private ResourceSetImpl _resourceSet;
-
   private Resource _resource;
 
   private GenModel _genModel;
@@ -40,9 +37,7 @@ public abstract class EgfEmfAbstractTask implements ITaskProduction {
   }
 
   public void preExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
-    _resourceSet = new ResourceSetImpl();
-    URI genModelUri = productionContext.getInputValue("genModelURI", URI.class); //$NON-NLS-1$
-    _resource = ResourceHelper.loadResource(_resourceSet, genModelUri);
+    _resource = new ResourceSetImpl().getResource(productionContext.getInputValue("genModelURI", URI.class), true); //$NON-NLS-1$
   }
 
   public void doExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
@@ -63,7 +58,6 @@ public abstract class EgfEmfAbstractTask implements ITaskProduction {
 
   public void postExecute(ITaskProductionContext productionContext, IProgressMonitor monitor) throws InvocationException {
     _resource.unload();
-    _resourceSet = null;
   }
 
   protected abstract ArrayList<String> getProjectTypeList();

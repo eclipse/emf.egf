@@ -15,9 +15,12 @@
 
 package org.eclipse.egf.pattern.engine;
 
+import java.util.Map;
+
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
+import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.pattern.Messages;
 
 /**
@@ -30,13 +33,16 @@ public abstract class PatternEngine {
     private final String bundleId;
 
     public PatternEngine(Pattern pattern) throws PatternException {
+        if (pattern == null)
+            throw new PatternException(Messages.engine_error1);
         this.pattern = pattern;
         bundleId = PatternHelper.getPlatformFcore(pattern).getPlatformBundle().getBundleId();
         if (bundleId == null)
             throw new PatternException(Messages.classloader_error4);
     }
 
-    public abstract void executeWithInjection(PatternContext context, Object... parameters) throws PatternException;
+    public abstract void executeWithInjection(PatternContext context, Map<PatternParameter, Object> parameters) throws PatternException;
+
     public abstract void execute(PatternContext context) throws PatternException;
 
     public abstract void translate() throws PatternException;

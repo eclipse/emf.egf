@@ -26,17 +26,17 @@ import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.l10n.ModelEditorMessages;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
+import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
 import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
-import org.eclipse.egf.model.resource.ModelResourceItemProviderAdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
@@ -56,11 +56,9 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
   private static final String DIALOG_SETTINGS = "org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog"; //$NON-NLS-1$
 
-  private Resource _context;
-
   private Activity _activity;
 
-  private ResourceSet _resourceSet;
+  private EditingDomain _editingDomain;
 
   private ComposedAdapterFactory _adapterFactory;
 
@@ -87,7 +85,7 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         return null;
       }
       try {
-        _activity = (Activity) _resourceSet.getEObject(URI.createURI(tag), true);
+        _activity = (Activity) _editingDomain.getResourceSet().getEObject(URI.createURI(tag), true);
         // Check whether or not this activity belongs to our fcores
         IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_activity.eResource());
         if (fcore != null) {
@@ -243,16 +241,15 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
   public ActivitySelectionDialog(Shell parentShell, boolean multipleSelection) {
     super(parentShell, multipleSelection);
-    // Create and init a resourceSet
-    _resourceSet = new ResourceSetImpl();
-    // Assign a fresh platform aware URIConverter
-    _resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    // Retrieve our EditingDomain
+    _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
     // Create an adapter factory that yields item providers.
     _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    _adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
+    _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+    setTitle(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogTitle, Activity.class.getSimpleName()));
     setMessage(NLS.bind(ModelEditorMessages._UI_ActivitySelectionDialog_dialogMessage, Activity.class.getSimpleName()));
     setListLabelProvider(getLabelProvider());
     setDetailsLabelProvider(getDetailsLabelProvider());
@@ -261,24 +258,23 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
   }
 
   public ActivitySelectionDialog(Shell parentShell, IPlatformFcore fcore, boolean multipleSelection) {
-    this(parentShell, null, null, multipleSelection);
+    this(parentShell, multipleSelection);
     if (fcore != null) {
       _fcores = new IPlatformFcore[] { fcore };
       setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, fcore.getPlatformBundle().getBundleId()));
     }
   }
 
-  public ActivitySelectionDialog(Shell parentShell, Resource context, Activity activity, boolean multipleSelection) {
+  public ActivitySelectionDialog(Shell parentShell, Activity activity, boolean multipleSelection) {
     super(parentShell, multipleSelection);
-    _context = context;
-    _activity = activity;
-    // Create and init a resourceSet
-    _resourceSet = new ResourceSetImpl();
-    // Assign a fresh platform aware URIConverter
-    _resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    // Retrieve our EditingDomain
+    _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+    if (activity != null) {
+      _activity = (Activity) _editingDomain.getResourceSet().getEObject(EcoreUtil.getURI(activity), true);
+    }
     // Create an adapter factory that yields item providers.
     _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-    _adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
+    _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
     _adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
@@ -327,18 +323,15 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
         // Load Fcore
         Resource resource = null;
         try {
-          // Analyse existing in memory resource if applicable
-          if (_context != null && _context.getResourceSet() != null) {
-            resource = _context.getResourceSet().getResource(fc.getURI(), false);
-          }
-          // If no memory resource are found
-          if (resource == null) {
-            resource = _resourceSet.getResource(fc.getURI(), true);
-          }
+          // Retrieve the in-memory resource if any or load it from disk
+          resource = _editingDomain.getResourceSet().getResource(fc.getURI(), true);
         } catch (OperationCanceledException e) {
           return;
         } catch (Exception e) {
           EGFModelEditorPlugin.getPlugin().logError(e);
+          continue;
+        }
+        if (resource == null) {
           continue;
         }
         // Analyse top contents for Activities
@@ -349,7 +342,9 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
           }
           // Process
           try {
-            contentProvider.add(eObject, itemsFilter);
+            if (selectElement(eObject)) {
+              contentProvider.add(eObject, itemsFilter);
+            }
           } catch (OperationCanceledException e) {
             return;
           } catch (ClassCastException cce) {
@@ -364,6 +359,10 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
     } finally {
       progressMonitor.done();
     }
+  }
+
+  protected boolean selectElement(EObject eObject) {
+    return true;
   }
 
   @Override

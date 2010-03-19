@@ -14,6 +14,7 @@ package org.eclipse.egf.model.fcore.presentation;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -23,16 +24,21 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
+import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
+import org.eclipse.egf.core.ui.diagnostic.EGFDiagnosticDialog;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
+import org.eclipse.egf.model.editor.actions.FcoreResourcePasteAction;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
@@ -47,16 +53,13 @@ import org.eclipse.emf.edit.ui.action.ValidateAction;
 import org.eclipse.emf.workspace.ui.actions.RedoActionWrapper;
 import org.eclipse.emf.workspace.ui.actions.UndoActionWrapper;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.ActionContributionItem;
 import org.eclipse.jface.action.IAction;
-import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IContributionManager;
-import org.eclipse.jface.action.IMenuListener;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
-import org.eclipse.jface.action.SubContributionItem;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -64,6 +67,7 @@ import org.eclipse.jface.viewers.ISelectionProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.window.Window;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISharedImages;
@@ -76,7 +80,7 @@ import org.eclipse.ui.actions.ActionFactory;
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
- * @generated
+ * @generated NOT
  */
 public class FcoreActionBarContributor extends EditingDomainActionBarContributor implements ISelectionChangedListener {
 
@@ -155,17 +159,6 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
   protected Collection<IAction> createChildActions;
 
   /**
-   * This is the menu manager into which menu contribution items should be
-   * added for CreateChild
-   * actions.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected IMenuManager createChildMenuManager;
-
-  /**
    * This will contain one {@link org.eclipse.emf.edit.ui.action.CreateSiblingAction} corresponding
    * to each descriptor
    * generated for the current selection by the item provider.
@@ -175,17 +168,6 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    * @generated
    */
   protected Collection<IAction> createSiblingActions;
-
-  /**
-   * This is the menu manager into which menu contribution items should be
-   * added for CreateSibling
-   * actions.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected IMenuManager createSiblingMenuManager;
 
   /**
    * This creates an instance of the contributor.
@@ -208,11 +190,22 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
 
     validateAction = new ValidateAction() {
 
+      private Resource currentResource;
+
       /**
        * This simply execute the command.
        */
       @Override
       protected Diagnostic validate(IProgressMonitor progressMonitor) {
+
+        // Nothing to process
+        if (selectedObjects == null || selectedObjects.size() == 0) {
+          return Diagnostic.OK_INSTANCE;
+        }
+
+        // In our application, only one resource is edited per editor
+        // it is safe to get the resource from the first selectedObject
+        currentResource = selectedObjects.get(0).eResource();
 
         int selectionSize = selectedObjects.size();
         int count = selectionSize;
@@ -260,6 +253,63 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
 
       }
 
+      @Override
+      protected void handleDiagnostic(Diagnostic diagnostic) {
+        int severity = diagnostic.getSeverity();
+        String title = null;
+        String message = null;
+        if (severity == Diagnostic.ERROR || severity == Diagnostic.WARNING) {
+          title = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_title"); //$NON-NLS-1$
+          message = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_message"); //$NON-NLS-1$
+        } else {
+          title = EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationResults_title"); //$NON-NLS-1$
+          message = EMFEditUIPlugin.INSTANCE.getString(severity == Diagnostic.OK ? "_UI_ValidationOK_message" : "_UI_ValidationResults_message"); //$NON-NLS-1$ //$NON-NLS-2$
+        }
+        // Reset existing Markers
+        if (currentResource != null) {
+          eclipseResourcesUtil.deleteMarkers(currentResource);
+        }
+        // Display that everything is fine
+        if (diagnostic.getSeverity() == Diagnostic.OK) {
+          MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message);
+          return;
+        }
+        // Display Dialog
+        int result = 0;
+        EGFDiagnosticDialog dialog = new EGFDiagnosticDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
+        result = dialog.open();
+        // Dialog has been canceled
+        if (result != Window.OK) {
+          return;
+        }
+        // Nothing to select
+        if (dialog.getSelection() != null && dialog.getSelection().isEmpty() == false) {
+          // Select and reveal
+          Map<Resource, List<EObject>> resources = new HashMap<Resource, List<EObject>>();
+          // Try to select and reveal selected Diagnostics
+          for (Diagnostic innerDiagnostic : dialog.getSelection()) {
+            List<?> data = innerDiagnostic.getData();
+            if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
+              EObject eObject = (EObject) data.get(0);
+              List<EObject> eObjects = resources.get(eObject.eResource());
+              if (eObjects == null) {
+                eObjects = new UniqueEList<EObject>();
+                resources.put(eObject.eResource(), eObjects);
+              }
+              eObjects.add(eObject);
+            }
+          }
+          // Open and select
+          EditorHelper.openEditorsAndSelect(resources);
+        }
+        // Display markers
+        if (currentResource != null) {
+          for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
+            eclipseResourcesUtil.createMarkers(currentResource, childDiagnostic);
+          }
+        }
+      }
+
     };
 
     controlAction = new ControlAction();
@@ -274,8 +324,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    */
   @Override
   public void contributeToToolBar(IToolBarManager toolBarManager) {
-    toolBarManager.add(new Separator("fcore-settings")); //$NON-NLS-1$
-    toolBarManager.add(new Separator("fcore-additions")); //$NON-NLS-1$
+    // Do nothing
   }
 
   /**
@@ -289,34 +338,7 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    */
   @Override
   public void contributeToMenu(IMenuManager menuManager) {
-    super.contributeToMenu(menuManager);
-
-    IMenuManager submenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_FcoreEditor_menu"), "org.eclipse.egf.model.fcoreMenuID"); //$NON-NLS-1$ //$NON-NLS-2$
-    menuManager.insertAfter("additions", submenuManager); //$NON-NLS-1$
-    submenuManager.add(new Separator("settings")); //$NON-NLS-1$
-    submenuManager.add(new Separator("actions")); //$NON-NLS-1$
-    submenuManager.add(new Separator("additions")); //$NON-NLS-1$
-    submenuManager.add(new Separator("additions-end")); //$NON-NLS-1$
-
-    // Prepare for CreateChild item addition or removal.
-    //
-    createChildMenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_CreateChild_menu_item"), EGFCommonUIConstants.CREATE_CHILD); //$NON-NLS-1$
-    submenuManager.insertBefore("additions", createChildMenuManager); //$NON-NLS-1$
-
-    // Prepare for CreateSibling item addition or removal.
-    //
-    createSiblingMenuManager = new MenuManager(EGFModelEditorPlugin.INSTANCE.getString("_UI_CreateSibling_menu_item"), EGFCommonUIConstants.CREATE_SIBLING); //$NON-NLS-1$
-    submenuManager.insertBefore("additions", createSiblingMenuManager); //$NON-NLS-1$
-
-    // Force an update because Eclipse hides empty menus now.
-    //
-    submenuManager.addMenuListener(new IMenuListener() {
-      public void menuAboutToShow(IMenuManager innerMenuManager) {
-        innerMenuManager.updateAll(true);
-      }
-    });
-
-    addGlobalActions(submenuManager);
+    // Do nothing
   }
 
   /**
@@ -369,43 +391,21 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    */
   public void selectionChanged(SelectionChangedEvent event) {
 
-    // Remove any menu items for old selection.
-    //
-    if (createChildMenuManager != null) {
-      depopulateManager(createChildMenuManager, createChildActions);
-    }
-    if (createSiblingMenuManager != null) {
-      depopulateManager(createSiblingMenuManager, createSiblingActions);
-    }
-
     // Query the new selection for appropriate new child/sibling descriptors
-    //
     Collection<?> newChildDescriptors = null;
     Collection<?> newSiblingDescriptors = null;
 
     ISelection selection = event.getSelection();
     if (selection instanceof IStructuredSelection && ((IStructuredSelection) selection).size() == 1) {
       Object object = ((IStructuredSelection) selection).getFirstElement();
-
       EditingDomain domain = ((IEditingDomainProvider) activeEditorPart).getEditingDomain();
-
       newChildDescriptors = domain.getNewChildDescriptors(object, null);
       newSiblingDescriptors = domain.getNewChildDescriptors(null, object);
     }
 
     // Generate actions for selection; populate and redraw the menus.
-    //
     createChildActions = generateCreateChildActions(newChildDescriptors, selection);
     createSiblingActions = generateCreateSiblingActions(newSiblingDescriptors, selection);
-
-    if (createChildMenuManager != null) {
-      populateManager(createChildMenuManager, createChildActions, null);
-      createChildMenuManager.update(true);
-    }
-    if (createSiblingMenuManager != null) {
-      populateManager(createSiblingMenuManager, createSiblingActions, null);
-      createSiblingMenuManager.update(true);
-    }
 
     for (MenuContributor vpc : menuContributors) {
       vpc.selectionChanged(event);
@@ -476,38 +476,6 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
   }
 
   /**
-   * This removes from the specified <code>manager</code> all {@link org.eclipse.jface.action.ActionContributionItem}s
-   * based on the {@link org.eclipse.jface.action.IAction}s contained in the
-   * <code>actions</code> collection.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  protected void depopulateManager(IContributionManager manager, Collection<? extends IAction> actions) {
-    if (actions != null) {
-      IContributionItem[] items = manager.getItems();
-      for (int i = 0; i < items.length; i++) {
-        // Look into SubContributionItems
-        //
-        IContributionItem contributionItem = items[i];
-        while (contributionItem instanceof SubContributionItem) {
-          contributionItem = ((SubContributionItem) contributionItem).getInnerItem();
-        }
-
-        // Delete the ActionContributionItems with matching action.
-        //
-        if (contributionItem instanceof ActionContributionItem) {
-          IAction action = ((ActionContributionItem) contributionItem).getAction();
-          if (actions.contains(action)) {
-            manager.remove(contributionItem);
-          }
-        }
-      }
-    }
-  }
-
-  /**
    * This populates the pop-up menu before it appears.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -570,11 +538,12 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   @Override
   public void init(IActionBars actionBars) {
     super.init(actionBars);
+    // Locate shared images registry
     ISharedImages sharedImages = PlatformUI.getWorkbench().getSharedImages();
     // override the superclass implementation of these actions
     undoAction = new UndoActionWrapper();
@@ -583,6 +552,9 @@ public class FcoreActionBarContributor extends EditingDomainActionBarContributor
     redoAction = new RedoActionWrapper();
     redoAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_REDO));
     actionBars.setGlobalActionHandler(ActionFactory.REDO.getId(), redoAction);
+    pasteAction = new FcoreResourcePasteAction();
+    pasteAction.setImageDescriptor(sharedImages.getImageDescriptor(ISharedImages.IMG_TOOL_PASTE));
+    actionBars.setGlobalActionHandler(ActionFactory.PASTE.getId(), pasteAction);
   }
 
 }

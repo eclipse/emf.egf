@@ -48,7 +48,7 @@ public class ParameterTypeHelper {
 
         if ("".equals(basePackage))
             return ePackage.getName() + "." + getClassName(type, index);
-        return basePackage + "." + ePackage.getName() + "." + getClassName(type, index);
+        return basePackage + "." + getClassName(type, index);
     }
 
     /**

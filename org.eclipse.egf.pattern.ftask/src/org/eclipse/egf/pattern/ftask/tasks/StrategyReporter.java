@@ -19,6 +19,7 @@ import java.util.Map;
 
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
+import org.eclipse.egf.pattern.execution.InternalPatternContext;
 
 /**
  * @author Thomas Guiu
@@ -35,7 +36,7 @@ class StrategyReporter implements PatternExecutionReporter {
     }
 
     public void executionFinished(PatternContext context) {
-        delegate.executionFinished(buffer.toString(), context);
+        delegate.executionFinished(((InternalPatternContext) context).getExecutionBuffer().toString(), context);
     }
 
     public void executionFinished(String output, PatternContext context) {

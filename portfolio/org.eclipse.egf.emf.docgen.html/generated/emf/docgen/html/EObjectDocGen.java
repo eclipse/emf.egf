@@ -38,20 +38,21 @@ StringBuffer stringBuffer = new StringBuffer();
 Map<String, String> queryCtx = null;
 IQuery.ParameterDescription paramDesc = null;
 
-    generate(ctx);
+    orchestration(ctx);
     if (ctx.useReporter()){
-    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);
-    ctx.getBuffer().setLength(0);}
+    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
+    ctx.clearBuffer();}
+    
     stringBuffer.append(TEXT_2);
     stringBuffer.append(TEXT_3);
     return stringBuffer.toString();
   }
-public String generate(PatternContext ctx) throws Exception  {
+public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
+int index = 0, executionIndex = ictx.getExecutionBuffer().length();
 
     
 method_body(ictx.getBuffer(), ictx);
-
     
 String loop = ictx.getBuffer().toString();
 return loop;
@@ -59,7 +60,7 @@ return loop;
 
 protected org.eclipse.emf.ecore.EObject _element = null;
 
-    protected void method_body(StringBuilder stringBuffer, PatternContext ctx)throws Exception {
+    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     stringBuffer.append(TEXT_1);
     }

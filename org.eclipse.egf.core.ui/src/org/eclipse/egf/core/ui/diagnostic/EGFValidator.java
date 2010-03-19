@@ -18,6 +18,7 @@ package org.eclipse.egf.core.ui.diagnostic;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -26,36 +27,34 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
-import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
-import org.eclipse.emf.common.ui.viewer.IViewerProvider;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
+import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.jface.viewers.StructuredSelection;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.WorkspaceModifyDelegatingOperation;
-import org.eclipse.ui.part.ISetSelectionTarget;
 
 public class EGFValidator {
+
+  private static EclipseResourcesUtil __eclipseResourcesUtil = new EclipseResourcesUtil();
+
+  private Map<Resource, UniqueEList<Diagnostic>> _diagnostics;
 
   private List<? extends EObject> _eObjects = new ArrayList<EObject>();
 
@@ -69,22 +68,34 @@ public class EGFValidator {
     if (_eObjects == null || _eObjects.size() == 0) {
       return Diagnostic.OK_INSTANCE;
     }
-
+    _diagnostics = new HashMap<Resource, UniqueEList<Diagnostic>>();
     final Diagnostic[] diagnostic = new Diagnostic[1];
     final Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 
     IRunnableWithProgress runnableWithProgress = new IRunnableWithProgress() {
       public void run(final IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
         try {
+          // Validate
           diagnostic[0] = validate(monitor);
           shell.getDisplay().asyncExec(new Runnable() {
             public void run() {
               if (monitor.isCanceled()) {
                 return;
               }
+              // Reset Markers
+              for (Resource resource : _diagnostics.keySet()) {
+                __eclipseResourcesUtil.deleteMarkers(resource);
+              }
+              // Handle Diagnostic if applicable
               int severity = diagnostic[0].getSeverity();
               if (severity == Diagnostic.ERROR || severity == Diagnostic.WARNING) {
                 handleDiagnostic(EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_title"), EMFEditUIPlugin.INSTANCE.getString("_UI_ValidationProblems_message"), diagnostic[0]); //$NON-NLS-1$ //$NON-NLS-2$
+              }
+              // Put Markers
+              for (Resource resource : _diagnostics.keySet()) {
+                for (Diagnostic childDiagnostic : _diagnostics.get(resource)) {
+                  __eclipseResourcesUtil.createMarkers(resource, childDiagnostic);
+                }
               }
             }
           });
@@ -116,15 +127,19 @@ public class EGFValidator {
     int selectionSize = _eObjects.size();
     int count = selectionSize;
     for (EObject eObject : _eObjects) {
-      for (Iterator<?> i = eObject.eAllContents(); i.hasNext(); i.next()) {
+      for (Iterator<EObject> i = eObject.eAllContents(); i.hasNext();) {
+        // initialize _diagnostics with existing resource, it will be used to reset markers
+        EObject innerEObject = i.next();
+        if (innerEObject.eResource() != null) {
+          if (_diagnostics.get(innerEObject.eResource()) == null) {
+            _diagnostics.put(innerEObject.eResource(), new UniqueEList<Diagnostic>());
+          }
+        }
         ++count;
       }
     }
-
     monitor.beginTask("", count); //$NON-NLS-1$
-
     Diagnostician diagnostician = createDiagnostician(monitor);
-
     String message = NLS.bind(CoreUIMessages._UI_DiagnosisOfNObjects_message, Integer.toString(selectionSize));
     if (_eObjects.size() == 1) {
       message = NLS.bind(CoreUIMessages._UI_DiagnosisOfNObject_message, EMFHelper.getText(_eObjects.get(0)));
@@ -152,6 +167,20 @@ public class EGFValidator {
     } catch (CoreException ce) {
       EGFCoreUIPlugin.getDefault().logError(ce);
     }
+    // Populate diagnostics per Resource
+    for (Diagnostic childDiagnostic : diagnostic.getChildren()) {
+      List<?> data = childDiagnostic.getData();
+      if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
+        EObject eObject = (EObject) data.get(0);
+        UniqueEList<Diagnostic> diagnostics = _diagnostics.get(eObject.eResource());
+        // it shouldn't be null at this stage as we have already initialized the map
+        if (diagnostics == null) {
+          diagnostics = new UniqueEList<Diagnostic>();
+          _diagnostics.put(eObject.eResource(), diagnostics);
+        }
+        diagnostics.add(childDiagnostic);
+      }
+    }
     return diagnostic;
   }
 
@@ -171,40 +200,39 @@ public class EGFValidator {
   }
 
   public static void handleDiagnostic(String title, String message, Diagnostic diagnostic) {
-
+    // Everything is fine
+    if (diagnostic.getSeverity() == Diagnostic.OK) {
+      return;
+    }
+    // Display Dialog
     int result = 0;
-
-    DiagnosticDialog dialog = new DiagnosticDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
-
-    if (diagnostic.getSeverity() != Diagnostic.OK) {
-      result = dialog.open();
+    EGFDiagnosticDialog dialog = new EGFDiagnosticDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), title, message, diagnostic, Diagnostic.OK | Diagnostic.INFO | Diagnostic.WARNING | Diagnostic.ERROR);
+    result = dialog.open();
+    // Dialog has been canceled
+    if (result != Window.OK) {
+      return;
     }
-
-    if (result == Window.OK && dialog.getSelection() != null) {
-      List<?> data = dialog.getSelection().getData();
-      if (data.isEmpty() == false && data.get(0) instanceof EObject) {
-        Object part = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart();
-        if (part instanceof ISetSelectionTarget) {
-          ((ISetSelectionTarget) part).selectReveal(new StructuredSelection(data.get(0)));
-        } else if (part instanceof IViewerProvider) {
-          Viewer viewer = ((IViewerProvider) part).getViewer();
-          if (viewer != null) {
-            viewer.setSelection(new StructuredSelection(data.get(0)), true);
-          }
-        } else {
-          URI uri = EcoreUtil.getURI((EObject) data.get(0));
-          try {
-            IEditorPart editorPart = EditorHelper.openEditor(uri);
-            if (editorPart != null && editorPart instanceof IEditingDomainProvider) {
-              EditorHelper.setSelectionToViewer(editorPart, uri);
-            }
-          } catch (Throwable t) {
-            ThrowableHandler.handleThrowable(EGFCoreUIPlugin.getDefault().getPluginID(), t);
-          }
+    // Nothing to process
+    if (dialog.getSelection() == null || dialog.getSelection().isEmpty()) {
+      return;
+    }
+    // Select and reveal
+    Map<Resource, List<EObject>> resources = new HashMap<Resource, List<EObject>>();
+    // Process selected Diagnostics
+    for (Diagnostic innerDiagnostic : dialog.getSelection()) {
+      List<?> data = innerDiagnostic.getData();
+      if (data.isEmpty() == false && data.get(0) instanceof EObject && ((EObject) data.get(0)).eResource() != null) {
+        EObject eObject = (EObject) data.get(0);
+        List<EObject> eObjects = resources.get(eObject.eResource());
+        if (eObjects == null) {
+          eObjects = new UniqueEList<EObject>();
+          resources.put(eObject.eResource(), eObjects);
         }
+        eObjects.add(eObject);
       }
-
     }
+    // Open and select
+    EditorHelper.openEditorsAndSelect(resources);
   }
 
 }

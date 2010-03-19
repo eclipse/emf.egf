@@ -60,7 +60,22 @@
          org.eclipse.emf.edit.provider.IItemColorProvider
          org.eclipse.emf.edit.provider.IItemFontProvider"
       />
-  </extension>  
+  </extension>
+  
+  <extension
+    point="org.eclipse.emf.edit.itemProviderAdapterFactories"
+  >
+    <factory
+      uri="org.eclipse.egf.model.fcore.util"
+      class="org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory"
+      supportedTypes=
+        "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+         org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+         org.eclipse.emf.edit.provider.ITreeItemContentProvider
+         org.eclipse.emf.edit.provider.IItemLabelProvider
+         org.eclipse.emf.edit.provider.IItemPropertySource" 
+    />
+  </extension>      
   
   <!-- ================================================================================= -->
   <!-- Domain Model                                                                      -->

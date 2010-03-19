@@ -10,13 +10,13 @@
  */
 package org.eclipse.egf.ftask.producer.context;
 
-import org.eclipse.egf.model.ftask.TaskJava;
+import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.producer.context.IActivityProductionContext;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
-public interface ITaskProductionContext extends IActivityProductionContext<TaskJava> {
-  // Nothing to do
+public interface ITaskProductionContext extends IActivityProductionContext<Task> {
+    // Nothing to do
 }

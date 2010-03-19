@@ -11,6 +11,11 @@
 	        name="Basic query"
             class="org.eclipse.egf.pattern.query.BasicQueryDelegate">
       </query>
+      <query
+            class="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"
+            id="org.eclipse.egf.pattern.query.EObjectInjectedContextQuery"
+            name="Injection query">
+      </query>
    </extension>
 
   <extension

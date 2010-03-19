@@ -50,6 +50,19 @@
         class="org.eclipse.egf.core.internal.natures.FcoreProject"
       />
     </runtime>
-  </extension>  
+  </extension> 
+  
+  <!-- ================================================================================= -->
+  <!-- Editing Domain                                                                    -->
+  <!-- ================================================================================= -->  
+  
+  <extension
+    point="org.eclipse.emf.transaction.editingDomains"
+  >
+    <editingDomain
+      factory="org.eclipse.egf.core.domain.EGFEditingDomainFactory"
+      id="org.eclipse.egf.core.editing.domain"
+    />
+  </extension>     
 
 </plugin>

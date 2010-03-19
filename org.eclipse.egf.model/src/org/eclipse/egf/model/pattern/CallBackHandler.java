@@ -15,11 +15,12 @@
 
 package org.eclipse.egf.model.pattern;
 
+import java.util.Map;
 
 /**
  * @author Thomas Guiu
  * 
  */
 public interface CallBackHandler {
-    void handleCall(PatternContext ctx, Object model);
+    void handleCall(PatternContext ctx, Map<String, Object> parameters) throws PatternException;
 }

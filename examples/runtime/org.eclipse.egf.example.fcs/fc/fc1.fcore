@@ -24,7 +24,7 @@
   </contractContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="4w2VoabFEd692t-PG4ogiQ">
     <invocations xmi:type="fprod:ProductionPlanInvocation" xmi:id="tKWXIabGEd69ANF1SOWYYg"
-        invokedActivity="ftask:TaskJava platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
+        invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
       <invocationContractContainer xmi:id="_GuhTgb-2Ed6E7J0w9U7NFQ">
         <invocationContracts xmi:id="_bu7G8MVjEd6ngr_25dSdnQ" invokedContract="fcore:Contract platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_sZPqULpOEd6O-6ob3O13Lw">
           <type xmi:type="types:TypeInteger" xmi:id="_wKWpUMVjEd6ngr_25dSdnQ" value="10"/>

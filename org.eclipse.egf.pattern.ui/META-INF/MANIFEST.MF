@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.pattern.ui;singleton:=true
-Bundle-Version: 0.2.2.qualifier
+Bundle-Version: 0.2.3.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.egf.pattern.ui.Activator
 Bundle-Vendor: %providerName
@@ -32,7 +32,8 @@ Require-Bundle:
  org.eclipse.egf.core.ui,
  org.eclipse.jface.text,
  org.eclipse.search,
- org.eclipse.pde.ui
+ org.eclipse.pde.ui,
+ org.eclipse.egf.model.edit
 Bundle-ActivationPolicy: lazy
 Export-Package: 
  org.eclipse.egf.pattern.ui.editors,

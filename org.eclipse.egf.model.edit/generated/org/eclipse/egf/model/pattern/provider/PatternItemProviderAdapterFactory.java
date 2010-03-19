@@ -28,6 +28,7 @@ import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.TypePatternCallBackHandler;
 import org.eclipse.egf.model.pattern.TypePatternDomainVisitor;
 import org.eclipse.egf.model.pattern.TypePatternExecutionReporter;
+import org.eclipse.egf.model.pattern.TypePatternList;
 import org.eclipse.egf.model.pattern.util.PatternAdapterFactory;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
@@ -568,6 +569,29 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
     }
 
     /**
+     * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.pattern.TypePatternList} instances.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected TypePatternListItemProvider typePatternListItemProvider;
+
+    /**
+     * This creates an adapter for a {@link org.eclipse.egf.model.pattern.TypePatternList}.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Adapter createTypePatternListAdapter() {
+        if (typePatternListItemProvider == null) {
+            typePatternListItemProvider = new TypePatternListItemProvider(this);
+        }
+
+        return typePatternListItemProvider;
+    }
+
+    /**
      * This returns the root adapter factory that contains this factory.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -706,6 +730,8 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
             typePatternCallBackHandlerItemProvider.dispose();
         if (typePatternDomainVisitorItemProvider != null)
             typePatternDomainVisitorItemProvider.dispose();
+        if (typePatternListItemProvider != null)
+            typePatternListItemProvider.dispose();
     }
 
     /**
@@ -762,6 +788,8 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
 
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, PatternFactory.eINSTANCE.createTypePatternDomainVisitor()));
 
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.CONTRACT__TYPE, PatternFactory.eINSTANCE.createTypePatternList()));
+
                 return null;
             }
 
@@ -790,6 +818,8 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
 
                 newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, PatternFactory.eINSTANCE.createTypePatternDomainVisitor()));
 
+                newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, PatternFactory.eINSTANCE.createTypePatternList()));
+
                 return null;
             }
 
@@ -808,6 +838,12 @@ public class PatternItemProviderAdapterFactory extends PatternAdapterFactory imp
 
                 {
                     TypePatternExecutionReporter type = PatternFactory.eINSTANCE.createTypePatternExecutionReporter();
+                    if (ClassHelper.asSubClass(type.getType(), object.getInvokedContract().getType().getType())) {
+                        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
+                    }
+                }
+                {
+                    TypePatternList type = PatternFactory.eINSTANCE.createTypePatternList();
                     if (ClassHelper.asSubClass(type.getType(), object.getInvokedContract().getType().getType())) {
                         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
                     }

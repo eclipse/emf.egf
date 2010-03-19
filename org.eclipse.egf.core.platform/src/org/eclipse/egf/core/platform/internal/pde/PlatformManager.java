@@ -768,7 +768,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
   private void trace(IPlatformExtensionPoint[] extensionPoints) {
     for (IPlatformExtensionPoint extensionPoint : extensionPoints) {
       EGFPlatformPlugin.getDefault().logInfo(extensionPoint.toString(), 1);
-      EGFPlatformPlugin.getDefault().logInfo(extensionPoint.getPlatformBundle().toString(), 2); //$NON-NLS-1$
+      EGFPlatformPlugin.getDefault().logInfo(extensionPoint.getPlatformBundle().toString(), 2);
     }
   }
 

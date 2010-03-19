@@ -2,9 +2,9 @@
 <feature
       id="org.eclipse.egf.model.ui"
       label="%featureName"
-      version="0.2.2.qualifier"
+      version="0.2.3.qualifier"
       provider-name="%providerName"
-      plugin="org.eclipse.egf.pattern.ui"
+      plugin="org.eclipse.egf.model.editor"
       image="eclipse_update_120.jpg">
 
    <description>
@@ -41,12 +41,53 @@ http://www.eclipse.org/legal/epl-v10.html
       <import feature="org.eclipse.emf.databinding" version="1.1.0.v200906151043" match="compatible"/>
       <import feature="org.eclipse.emf.databinding.edit" version="1.1.0.v200906151043" match="compatible"/>
    </requires>
-
-   <plugin
-         id="org.eclipse.egf.pattern.ui"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
+   
+  <plugin
+    id="org.eclipse.egf.model.editor"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  /> 
+  
+  <plugin
+    id="org.eclipse.egf.task.ui"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />     
+  
+  <plugin
+    id="org.eclipse.egf.pattern.ui"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />   
+  
+  <plugin
+    id="org.eclipse.egf.pattern.ui.java"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />    
+  
+  <plugin
+    id="org.eclipse.egf.pattern.ui.jet"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />     
+         
+  <plugin
+    id="org.eclipse.jet.editor"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />         
 
 </feature>

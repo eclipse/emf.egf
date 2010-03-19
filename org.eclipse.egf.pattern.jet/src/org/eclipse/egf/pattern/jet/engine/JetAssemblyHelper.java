@@ -52,8 +52,8 @@ public class JetAssemblyHelper extends AssemblyHelper {
 
         if (pattern.getAllParameters().isEmpty()) {
             content.append("<%if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("    ctx.getBuffer().setLength(0);}%>").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("    ctx.clearBuffer();}%>").append(EGFCommonConstants.LINE_SEPARATOR);
             return;
         }
         // 1 - Add pre block at insertionIndex
@@ -71,6 +71,12 @@ public class JetAssemblyHelper extends AssemblyHelper {
             String local = PatternHelper.localizeName(parameter);
             localContent.append("for (Object ").append(local).append(" : ").append(getParameterListName(parameter)).append(" ) {").append(EGFCommonConstants.LINE_SEPARATOR);
         }
+        localContent.append(EGFCommonConstants.LINE_SEPARATOR);
+        for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
+            String local = PatternHelper.localizeName(parameter);
+            String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
+            localContent.append("this.").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
+        }
 
         localContent.append(EGFCommonConstants.LINE_SEPARATOR).append("%>");
 
@@ -82,8 +88,8 @@ public class JetAssemblyHelper extends AssemblyHelper {
         for (int i = 0; i < pattern.getAllParameters().size(); i++)
             content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("    ctx.getBuffer().setLength(0);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("    ctx.clearBuffer();").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("}%>");
 
         // 3- Add additional code for parameter names handling
@@ -91,16 +97,19 @@ public class JetAssemblyHelper extends AssemblyHelper {
         if (startIndex == -1)
             throw new PatternException(Messages.assembly_error2);
 
-        localContent.setLength(0);
-        localContent.append(EGFCommonConstants.LINE_SEPARATOR);
-        localContent.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
-        for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
-            String local = PatternHelper.localizeName(parameter);
-            String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
-            localContent.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
-            localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
-        }
-        content.insert(startIndex + START_LOOP_MARKER.length(), localContent);
+        // localContent.setLength(0);
+        // localContent.append(EGFCommonConstants.LINE_SEPARATOR);
+        // localContent.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
+        // for (org.eclipse.egf.model.pattern.PatternParameter parameter :
+        // pattern.getAllParameters()) {
+        // String local = PatternHelper.localizeName(parameter);
+        // String type =
+        // ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
+        // localContent.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
+        // localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+        // }
+        // content.insert(startIndex + START_LOOP_MARKER.length(),
+        // localContent);
     }
 
     private String getParameterListName(PatternParameter parameter) {
@@ -135,7 +144,6 @@ public class JetAssemblyHelper extends AssemblyHelper {
         content.append("<%").append(END_INIT_VARIABLE_MARKER).append("%>");
     }
 
-    public static final String GENERATE_METHOD = "generate";
     public static final String START_METHOD_DECLARATION_MARKER = "//Start of methods";
     public static final String END_METHOD_DECLARATION_MARKER = "//End of methods";
 

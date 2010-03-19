@@ -18,6 +18,7 @@ import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.edit.EMFEditPlugin;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 
@@ -90,12 +91,12 @@ public final class SetInvocationInvokedActivityCommand extends CompoundCommand {
           append(new SetCommand(_editingDomain, contract, FcorePackage.Literals.INVOCATION_CONTRACT__ORCHESTRATION_PARAMETER, null));
         }
         if (contract.getSourceInvocationContract() != null) {
-          append(new SetCommand(_editingDomain, contract.getSourceInvocationContract(), FcorePackage.Literals.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, null));
+          // This will reset the eOpposite accordingly
           append(new SetCommand(_editingDomain, contract, FcorePackage.Literals.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, null));
         }
         if (contract.getTargetInvocationContract() != null) {
-          append(new SetCommand(_editingDomain, contract.getTargetInvocationContract(), FcorePackage.Literals.INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT, null));
-          append(new SetCommand(_editingDomain, contract, FcorePackage.Literals.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, null));
+          // This will reset the eOpposite accordingly
+          append(new RemoveCommand(_editingDomain, contract, FcorePackage.Literals.INVOCATION_CONTRACT__TARGET_INVOCATION_CONTRACT, contract.getTargetInvocationContract()));
         }
       }
     }

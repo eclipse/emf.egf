@@ -14,4 +14,4 @@
 # java.util.Properties file (ISO-8859-1 with "\" escapes)
 # This file does not need to be translated.
 
-0=@buildId@
+0=@build@

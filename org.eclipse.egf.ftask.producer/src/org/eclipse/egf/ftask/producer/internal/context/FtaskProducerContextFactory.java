@@ -16,7 +16,7 @@ import org.eclipse.egf.core.session.ProjectBundleSession;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.model.fcore.Invocation;
 import org.eclipse.egf.model.fcore.InvocationContract;
-import org.eclipse.egf.model.ftask.TaskJava;
+import org.eclipse.egf.model.ftask.Task;
 
 /**
  * @author Xavier Maysonnave
@@ -24,18 +24,18 @@ import org.eclipse.egf.model.ftask.TaskJava;
  */
 public class FtaskProducerContextFactory {
 
-  private FtaskProducerContextFactory() {
-    // Prevent Instantiation
-  }
+    private FtaskProducerContextFactory() {
+        // Prevent Instantiation
+    }
 
-  // Task
+    // Task
 
-  public static ITaskProductionContext createContext(ProjectBundleSession projectBundleSession, TaskJava element) {
-    return new TaskJavaProductionContext(projectBundleSession, element, EMFHelper.getText(element));
-  }
+    public static ITaskProductionContext createContext(ProjectBundleSession projectBundleSession, Task element) {
+        return new TaskProductionContext(projectBundleSession, element, EMFHelper.getText(element));
+    }
 
-  public static ITaskProductionContext createContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, TaskJava element) {
-    return new TaskJavaProductionContext(parent, projectBundleSession, element, EMFHelper.getText(element));
-  }
+    public static ITaskProductionContext createContext(IProductionContext<Invocation, InvocationContract> parent, ProjectBundleSession projectBundleSession, Task element) {
+        return new TaskProductionContext(parent, projectBundleSession, element, EMFHelper.getText(element));
+    }
 
 }

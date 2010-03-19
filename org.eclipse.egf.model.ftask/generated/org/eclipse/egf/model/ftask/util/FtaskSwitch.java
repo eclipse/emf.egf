@@ -19,15 +19,14 @@ import org.eclipse.egf.model.fcore.ModelElement;
 import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.ftask.FtaskPackage;
 import org.eclipse.egf.model.ftask.Task;
-import org.eclipse.egf.model.ftask.TaskJava;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the
- * <code>caseXXX</code> method for each class of the model,
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke
+ * the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object
  * and proceeding up the inheritance hierarchy
  * until a non-null result is returned,
@@ -113,21 +112,6 @@ public class FtaskSwitch<T> {
         result = defaultCase(theEObject);
       return result;
     }
-    case FtaskPackage.TASK_JAVA: {
-      TaskJava taskJava = (TaskJava) theEObject;
-      T result = caseTaskJava(taskJava);
-      if (result == null)
-        result = caseTask(taskJava);
-      if (result == null)
-        result = caseActivity(taskJava);
-      if (result == null)
-        result = caseNamedModelElement(taskJava);
-      if (result == null)
-        result = caseModelElement(taskJava);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
     default:
       return defaultCase(theEObject);
     }
@@ -147,23 +131,6 @@ public class FtaskSwitch<T> {
    * @generated
    */
   public T caseTask(Task object) {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Task Java</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * 
-   * @param object
-   *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Task Java</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseTaskJava(TaskJava object) {
     return null;
   }
 
@@ -222,7 +189,8 @@ public class FtaskSwitch<T> {
    * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
-   * returning a non-null result will terminate the switch, but this is the last case anyway.
+   * returning a non-null result will terminate the switch, but this is the
+   * last case anyway.
    * <!-- end-user-doc -->
    * 
    * @param object

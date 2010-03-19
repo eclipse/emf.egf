@@ -3,11 +3,14 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="ftask"
     nsURI="http://www.eclipse.org/egf/1.0.0/ftask" nsPrefix="ftask">
-  <eClassifiers xsi:type="ecore:EClass" name="Task" abstract="true" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Activity"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TaskJava" eSuperTypes="#//Task">
+  <eClassifiers xsi:type="ecore:EClass" name="Task" eSuperTypes="../../org.eclipse.egf.model/model/Fcore.ecore#//Activity">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="LoadableValue ValidValue"/>
+      <details key="constraints" value="ValidKind UselessTask LoadableImplementation ValidImplementation"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" lowerBound="1" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eOperations name="getKindValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eOperations name="getImplementationValue" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="implementation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="superTask" eType="#//Task"/>
   </eClassifiers>
 </ecore:EPackage>

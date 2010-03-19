@@ -16,26 +16,22 @@
 package org.eclipse.egf.pattern.execution;
 
 import org.eclipse.egf.model.pattern.BundleAccessor;
-import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
 /**
  * @author Thomas Guiu
  * 
  */
-public class ExecutionContext extends DefaultPatternContext implements InternalPatternContext {
+public class ExecutionContext extends DefaultInternalPatternContext {
 
     private PatternExecutionReporter reporter;
-    private final StringBuilder buffer;
 
     public ExecutionContext(BundleAccessor accessor) {
         super(accessor);
-        buffer = new StringBuilder(1000);
     }
 
     public ExecutionContext(InternalPatternContext parent) {
-        super((PatternContext) parent);
-        buffer = null;
+        super((InternalPatternContext) parent);
     }
 
     public void setReporter(PatternExecutionReporter reporter) {
@@ -59,11 +55,4 @@ public class ExecutionContext extends DefaultPatternContext implements InternalP
         return reporter;
     }
 
-    public StringBuilder getBuffer() {
-        if (parent != null)
-            return ((InternalPatternContext) parent).getBuffer();
-        if (buffer == null)
-            throw new IllegalStateException();
-        return buffer;
-    }
 }

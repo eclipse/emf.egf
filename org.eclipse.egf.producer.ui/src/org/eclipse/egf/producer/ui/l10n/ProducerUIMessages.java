@@ -32,14 +32,11 @@ public class ProducerUIMessages {
   public static String GlobalRunActivityAction_label;
   public static String GlobalRunActivityAction_dialogTitle;
 
-  public static String ActivitySelectionDialog_Title;
-  public static String ActivitySelectionDialog_Select;
-  public static String ActivitySelectionDialog_Never_Validate;
+  public static String ActivityValidationSelectionDialog_Title;
+  public static String ActivityValidationSelectionDialog_Select;
+  public static String ActivityValidationSelectionDialog_Never_Validate;
 
-  public static String _UI_CantInvokeProblems_title;
-  public static String _UI_CantInvokeProblems_message;
-
-  public static String Activity_Invocation;
-  public static String Activity_Invocations;
+  public static String _UI_PreInvokeProblems_message;
+  public static String _UI_PostInvokeProblems_message;
 
 }

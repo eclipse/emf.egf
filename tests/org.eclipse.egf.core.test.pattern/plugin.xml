@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.egf.core.test">
+      <EGFTestModel
+            modelPath="test/Pattern.test">
+      </EGFTestModel>
+   </extension>
+   <extension
+         point="org.eclipse.egf.core.fcore">
+      <fcore
+            id="fc/inheritance_1.fcore">
+      </fcore>
+      <fcore
+            id="fc/inheritance_2.fcore">
+      </fcore>
+      <fcore
+            id="fc/inheritance_3.fcore">
+      </fcore>
+      <fcore
+            id="fc/inheritance_4.fcore">
+      </fcore>
+      <fcore
+            id="model/mypackage.fcore">
+      </fcore>
+      <fcore
+            id="fc/callback_1.fcore">
+      </fcore>
+      <fcore
+            id="fc/no_callback_1.fcore">
+      </fcore>
+   </extension>
+
+</plugin>

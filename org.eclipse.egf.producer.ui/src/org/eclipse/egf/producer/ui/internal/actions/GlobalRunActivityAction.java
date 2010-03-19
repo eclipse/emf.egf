@@ -34,6 +34,7 @@ import org.eclipse.egf.core.ui.diagnostic.EGFValidator;
 import org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.producer.EGFProducerPlugin;
+import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
@@ -123,7 +124,8 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
         if (_validates != null && _validates.size() != 0) {
           EGFValidator validator = new EGFValidator(_validates);
           Diagnostic validationDiag = validator.validate();
-          if (validationDiag.getSeverity() != Diagnostic.OK) {
+          // Stop when an error is found
+          if (validationDiag.getSeverity() == Diagnostic.ERROR) {
             return;
           }
         }
@@ -132,7 +134,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
       }
     }
 
-    // 4 - canInvoke
+    // 4 - PreInvoke Validation
     if (throwable == null) {
       try {
         // Initialize Context
@@ -143,7 +145,7 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
           if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
             EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
               public void run() {
-                EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CantInvokeProblems_title, ProducerUIMessages._UI_CantInvokeProblems_message, preInvokeDiag);
+                EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PreInvokeProblems_message, preInvokeDiag);
               }
             });
           }
@@ -183,20 +185,21 @@ public class GlobalRunActivityAction extends Action implements IWorkbenchWindowA
             try {
               if (EGFProducerUIPlugin.getDefault().isDebugging()) {
                 if (ticks[0] == 1) {
-                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerUIMessages.Activity_Invocation, EMFHelper.getText(activity[0])));
+                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocation, EMFHelper.getText(activity[0])));
                 } else {
-                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerUIMessages.Activity_Invocations, EMFHelper.getText(activity[0]), ticks[0]));
+                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocations, EMFHelper.getText(activity[0]), ticks[0]));
                 }
               }
               final Diagnostic diagnostic = activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
               if (subMonitor.isCanceled()) {
                 throw new OperationCanceledException();
               }
+              // PostInvoke Validation
               if (diagnostic != null && diagnostic.getSeverity() != Diagnostic.OK) {
                 if (EGFProducerUIPlugin.getWorkbenchDisplay() != null) {
                   EGFProducerUIPlugin.getWorkbenchDisplay().asyncExec(new Runnable() {
                     public void run() {
-                      EGFValidator.handleDiagnostic(ProducerUIMessages._UI_CantInvokeProblems_title, ProducerUIMessages._UI_CantInvokeProblems_message, diagnostic);
+                      EGFValidator.handleDiagnostic(ProducerUIMessages.ActivityValidationSelectionDialog_Title, ProducerUIMessages._UI_PostInvokeProblems_message, diagnostic);
                     }
                   });
                 }

@@ -27,7 +27,7 @@ import org.eclipse.emf.common.util.EList;
  * </p>
  *
  * @see org.eclipse.egf.model.fcore.FcorePackage#getFactoryComponentContract()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='OutModeIsRestricted'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='UselessFactoryComponentContract OutModeIsRestricted'"
  * @generated
  */
 public interface FactoryComponentContract extends Contract {
@@ -44,7 +44,7 @@ public interface FactoryComponentContract extends Contract {
    * @return the value of the '<em>Invocation Contracts</em>' reference list.
    * @see org.eclipse.egf.model.fcore.FcorePackage#getFactoryComponentContract_InvocationContracts()
    * @see org.eclipse.egf.model.fcore.InvocationContract#getFactoryComponentContract
-   * @model opposite="factoryComponentContract" resolveProxies="false" required="true"
+   * @model opposite="factoryComponentContract" resolveProxies="false"
    * @generated
    */
   EList<InvocationContract> getInvocationContracts();

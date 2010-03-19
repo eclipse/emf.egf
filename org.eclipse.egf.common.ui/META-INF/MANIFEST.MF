@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.egf.common.ui; singleton:=true
-Bundle-Version: 0.2.2.qualifier
+Bundle-Version: 0.2.3.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.eclipse.egf.common.ui.EGFCommonUIPlugin
 Bundle-Vendor: %providerName
@@ -19,5 +19,6 @@ Export-Package:
  org.eclipse.egf.common.ui.activator,
  org.eclipse.egf.common.ui.constant,
  org.eclipse.egf.common.ui.fields,
- org.eclipse.egf.common.ui.helper 
+ org.eclipse.egf.common.ui.helper,
+ org.eclipse.egf.common.ui.utils
 Bundle-ActivationPolicy: lazy

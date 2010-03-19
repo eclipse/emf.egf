@@ -70,9 +70,11 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
         executeWithInjection(foundPattern, context, model);
     }
 
-    protected void executeWithInjection(Collection<Pattern> patterns, PatternContext context, Object... parameters) throws PatternException {
+    protected void executeWithInjection(Collection<Pattern> patterns, PatternContext context, Object model) throws PatternException {
         for (Pattern pattern : patterns) {
             try {
+                Map<PatternParameter, Object> parameters = new HashMap<PatternParameter, Object>();
+                parameters.put(pattern.getAllParameters().get(0), model);
                 PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
                 String canExecute = extension.canExecute(pattern);
                 if (canExecute != null)

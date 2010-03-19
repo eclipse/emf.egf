@@ -39,22 +39,20 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
+import org.eclipse.egf.core.domain.EGFResourceLoadedListener;
+import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceListener;
+import org.eclipse.egf.core.domain.EGFResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.core.helper.ResourceHelper;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.contributor.ListenerContributor;
-import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener;
-import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener.ResourceListener;
-import org.eclipse.egf.core.ui.domain.EGFResourceLoadedListener.ResourceUser;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
-import org.eclipse.egf.model.editor.adapter.TaskJavaBundleAdapter;
+import org.eclipse.egf.model.editor.adapter.TaskBundleAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
-import org.eclipse.egf.model.fcore.provider.FcoreItemProviderAdapterFactory;
-import org.eclipse.egf.model.fprod.provider.FprodItemProviderAdapterFactory;
-import org.eclipse.egf.model.ftask.provider.FtaskItemProviderAdapterFactory;
-import org.eclipse.egf.model.pattern.provider.PatternItemProviderAdapterFactory;
-import org.eclipse.egf.model.resource.ModelResourceItemProviderAdapterFactory;
-import org.eclipse.egf.model.types.provider.TypesItemProviderAdapterFactory;
+import org.eclipse.egf.model.editor.provider.FcorePropertySheetPage;
+import org.eclipse.egf.model.fcore.provider.FcoreCustomItemProviderAdapterFactory;
+import org.eclipse.egf.model.fcore.provider.FcoreResourceItemProviderAdapterFactory;
+import org.eclipse.egf.model.fprod.provider.FprodCustomItemProviderAdapterFactory;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -68,22 +66,25 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
-import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
+import org.eclipse.emf.ecore.InternalEObject;
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EContentAdapter;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.eclipse.emf.edit.ui.action.EditingDomainActionBarContributor;
 import org.eclipse.emf.edit.ui.celleditor.AdapterFactoryTreeEditor;
 import org.eclipse.emf.edit.ui.dnd.EditingDomainViewerDropAdapter;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.edit.ui.dnd.ViewerDragAdapter;
 import org.eclipse.emf.edit.ui.provider.UnwrappingSelectionProvider;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider.ViewerRefresh;
 import org.eclipse.emf.edit.ui.util.EditUIMarkerHelper;
-import org.eclipse.emf.edit.ui.view.ExtendedPropertySheetPage;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
@@ -141,7 +142,7 @@ import org.eclipse.ui.views.properties.PropertySheetPage;
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
- * @generated
+ * @generated NOT
  */
 public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, ResourceListener, IEditingDomainProvider, ISelectionProvider, IMenuListener, IViewerProvider, IGotoMarker {
   /**
@@ -178,6 +179,15 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * @generated
    */
   protected ComposedAdapterFactory adapterFactory;
+
+  /**
+   * This is the one adapter factory used for properties.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected ComposedAdapterFactory propertyAdapterFactory;
 
   /**
    * This is the content outline page.
@@ -281,6 +291,14 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * @generated
    */
   protected MarkerHelper markerHelper = new EditUIMarkerHelper();
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
+  protected ViewerRefresh viewerRefresh;
 
   /**
    * This listens for when the outline becomes active
@@ -481,18 +499,21 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
             } else {
               resourceToDiagnosticMap.remove(innerResource.getURI());
             }
-            // Try to refresh proxies
+            // Try to refresh proxy owners
             if (innerResource != getResource()) {
-              final List<EObject> owners = ResourceHelper.getURIProxyReferenceOwners(getResource(), innerResource.getURI());
-              getSite().getShell().getDisplay().asyncExec(new Runnable() {
-                public void run() {
-                  for (EObject eObject : owners) {
-                    if (selectionViewer.isBusy() == false) {
-                      selectionViewer.refresh(eObject, true);
-                    }
+              if (selectionViewer != null && selectionViewer.getControl() != null && selectionViewer.getControl().isDisposed() == false && selectionViewer.isBusy() == false) {
+                final List<EObject> owners = ResourceHelper.getURIProxyReferenceOwners(getResource(), innerResource.getURI());
+                if (owners != null && owners.isEmpty() == false) {
+                  if (viewerRefresh == null) {
+                    viewerRefresh = new ViewerRefresh(selectionViewer);
                   }
+                  for (EObject eObject : owners) {
+                    Notification ownerNotification = new ENotificationImpl((InternalEObject) eObject, Notification.RESOLVE, null, eObject, eObject);
+                    viewerRefresh.addNotification(new ViewerNotification(ownerNotification, ownerNotification.getNotifier(), true, true));
+                  }
+                  selectionViewer.getControl().getDisplay().asyncExec(viewerRefresh);
                 }
-              });
+              }
             }
             // Display any trouble
             if (updateProblemIndication) {
@@ -505,6 +526,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           }
           break;
         }
+        case Resource.RESOURCE__CONTENTS:
         case Resource.RESOURCE__URI: {
           getSite().getShell().getDisplay().asyncExec(new Runnable() {
             public void run() {
@@ -742,6 +764,12 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           EGFModelEditorPlugin.INSTANCE.log(exception);
         }
       }
+      for (URI uri : resourceToDiagnosticMap.keySet()) {
+        Diagnostic childDiagnostic = resourceToDiagnosticMap.get(uri);
+        if (childDiagnostic.getSeverity() != Diagnostic.OK) {
+          diagnostic.add(childDiagnostic);
+        }
+      }
       if (markerHelper.hasMarkers(getResource())) {
         markerHelper.deleteMarkers(getResource());
         if (diagnostic.getSeverity() != Diagnostic.OK) {
@@ -790,15 +818,14 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
   protected void initializeEditingDomain() {
     // Create an adapter factory that yields item providers.
     adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
-
-    adapterFactory.addAdapterFactory(new ModelResourceItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new FprodItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new FtaskItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new FcoreItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new EcoreItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new TypesItemProviderAdapterFactory());
-    adapterFactory.addAdapterFactory(new PatternItemProviderAdapterFactory());
+    adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
     adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
+    // Create an adapter factory that yields item providers for properties.
+    propertyAdapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+    propertyAdapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new FprodCustomItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new FcoreCustomItemProviderAdapterFactory());
+    propertyAdapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
     // Get the registered TransactionalEditingDomain
     editingDomain = (AdapterFactoryEditingDomain) TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
     // Create an UndoContext
@@ -824,25 +851,43 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   public void setSelectionToViewer(Collection<?> collection) {
-    final Collection<?> theSelection = collection;
-    // Make sure it's okay.
-    //
-    if (theSelection != null && !theSelection.isEmpty()) {
-      Runnable runnable = new Runnable() {
-        public void run() {
-          // Try to select the items in the current content viewer of
-          // the editor.
-          //
-          if (currentViewer != null) {
-            currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
-          }
-        }
-      };
-      getSite().getShell().getDisplay().asyncExec(runnable);
+    if (collection == null || collection.isEmpty()) {
+      return;
     }
+    final Collection<EObject> theSelection = new UniqueEList<EObject>(collection.size());
+    // Solve EObject against our resource set
+    for (Object object : collection) {
+      if (object instanceof EObject == false) {
+        continue;
+      }
+      URI uri = null;
+      try {
+        uri = EcoreUtil.getURI((EObject) object);
+        EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
+        if (eObject != null) {
+          theSelection.add(eObject);
+        }
+      } catch (Throwable t) {
+        // Got some FileNotFoundException here, a more accurate tracing is needed to track it
+        if (uri != null) {
+          EGFModelEditorPlugin.getPlugin().logError(uri.toString(), t);
+        } else {
+          EGFModelEditorPlugin.getPlugin().logError(object.toString(), t);
+        }
+      }
+    }
+    Runnable runnable = new Runnable() {
+      public void run() {
+        // Try to select the items in the current content viewer of the editor.
+        if (currentViewer != null) {
+          currentViewer.setSelection(new StructuredSelection(theSelection.toArray()), true);
+        }
+      }
+    };
+    getSite().getShell().getDisplay().asyncExec(runnable);
   }
 
   /**
@@ -1006,7 +1051,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   protected void createContextMenuFor(StructuredViewer viewer) {
     MenuManager contextMenu = new MenuManager("#PopUp"); //$NON-NLS-1$
@@ -1017,7 +1062,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     viewer.getControl().setMenu(menu);
     getSite().registerContextMenu(contextMenu, new UnwrappingSelectionProvider(viewer));
 
-    int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
+    int dndOperations = DND.DROP_COPY | DND.DROP_MOVE;
     Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
     viewer.addDragSupport(dndOperations, transfers, new ViewerDragAdapter(viewer));
     viewer.addDropSupport(dndOperations, transfers, new EditingDomainViewerDropAdapter(getEditingDomain(), viewer));
@@ -1050,7 +1095,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     }
     editingDomain.getResourceSet().eAdapters().add(editorResourceAdapter);
     egfAdapters.add(new PatternBundleAdapter(resource, getSite()));
-    egfAdapters.add(new TaskJavaBundleAdapter(resource, getSite()));
+    egfAdapters.add(new TaskBundleAdapter(resource, getSite()));
     getEditingDomain().getResourceSet().eAdapters().addAll(egfAdapters);
   }
 
@@ -1298,7 +1343,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    */
   public IPropertySheetPage getPropertySheetPage() {
     if (propertySheetPage == null) {
-      propertySheetPage = new ExtendedPropertySheetPage((AdapterFactoryEditingDomain) getEditingDomain()) {
+      propertySheetPage = new FcorePropertySheetPage((AdapterFactoryEditingDomain) getEditingDomain()) {
         @Override
         public void setSelectionToViewer(List<?> selection) {
           FcoreEditor.this.setSelectionToViewer(selection);
@@ -1317,7 +1362,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           propertySheetPage = null;
         }
       };
-      propertySheetPage.setPropertySourceProvider(new FcoreContentProvider(getEditingDomain(), adapterFactory));
+      propertySheetPage.setPropertySourceProvider(new FcoreContentProvider(getEditingDomain(), propertyAdapterFactory));
     }
 
     return propertySheetPage;
@@ -1746,6 +1791,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     getOperationHistory().removeOperationHistoryListener(historyListener);
     getOperationHistory().dispose(getUndoContext(), true, true, true);
 
+    // Remove observer
+    EGFResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
+
     // Remove our adapters
     editingDomain.getResourceSet().eAdapters().remove(editorResourceAdapter);
     for (EContentAdapter adapter : egfAdapters) {
@@ -1766,9 +1814,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     if (contentOutlinePage != null) {
       contentOutlinePage.dispose();
     }
-
-    // Remove observer
-    EGFResourceLoadedListener.RESOURCE_MANAGER.removeObserver(this);
 
     super.dispose();
 

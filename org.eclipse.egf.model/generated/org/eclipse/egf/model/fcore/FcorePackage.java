@@ -973,7 +973,7 @@ public interface FcorePackage extends EPackage {
   int INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT = MODEL_ELEMENT_FEATURE_COUNT + 3;
 
   /**
-   * The feature id for the '<em><b>Target Invocation Contract</b></em>' reference.
+   * The feature id for the '<em><b>Target Invocation Contract</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1510,10 +1510,10 @@ public interface FcorePackage extends EPackage {
   EReference getInvocationContract_SourceInvocationContract();
 
   /**
-   * Returns the meta object for the reference '{@link org.eclipse.egf.model.fcore.InvocationContract#getTargetInvocationContract <em>Target Invocation Contract</em>}'.
+   * Returns the meta object for the reference list '{@link org.eclipse.egf.model.fcore.InvocationContract#getTargetInvocationContract <em>Target Invocation Contract</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the reference '<em>Target Invocation Contract</em>'.
+   * @return the meta object for the reference list '<em>Target Invocation Contract</em>'.
    * @see org.eclipse.egf.model.fcore.InvocationContract#getTargetInvocationContract()
    * @see #getInvocationContract()
    * @generated
@@ -2019,7 +2019,7 @@ public interface FcorePackage extends EPackage {
     EReference INVOCATION_CONTRACT__SOURCE_INVOCATION_CONTRACT = eINSTANCE.getInvocationContract_SourceInvocationContract();
 
     /**
-     * The meta object literal for the '<em><b>Target Invocation Contract</b></em>' reference feature.
+     * The meta object literal for the '<em><b>Target Invocation Contract</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

@@ -67,51 +67,33 @@ public class JavaAssemblyHelper extends AssemblyHelper {
                 String local = PatternHelper.localizeName(parameter);
                 content.append("for (Object ").append(local).append(" : ").append(getParameterListName(parameter)).append(" ) {").append(EGFCommonConstants.LINE_SEPARATOR);
             }
+            content.append(EGFCommonConstants.LINE_SEPARATOR);
+            for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
+                String local = PatternHelper.localizeName(parameter);
+                String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
+                content.append("this.").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
+            }
 
             content.append(EGFCommonConstants.LINE_SEPARATOR);
 
-            content.append("generate((PatternContext)argument");
-            for (PatternParameter parameter : pattern.getAllParameters()) {
-                String local = PatternHelper.localizeName(parameter);
-                content.append(", ").append(local);
-            }
-            content.append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR);
 
             // 2 - Add post block at current index
             for (int i = 0; i < pattern.getAllParameters().size(); i++)
                 content.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
         } else
-            content.append("generate((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append(AssemblyHelper.ORCHESTRATION_METHOD).append("((PatternContext)argument);").append(EGFCommonConstants.LINE_SEPARATOR);
 
         content.append("if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("    ctx.getReporter().executionFinished(ctx.getBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("    ctx.getBuffer().setLength(0);}").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("    ctx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
         // end of method generate (Object argument)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
 
         // add new method body
-        content.append("public String generate(PatternContext ctx");
-        if (!pattern.getAllParameters().isEmpty()) {
-            for (PatternParameter parameter : pattern.getAllParameters()) {
-                String local = PatternHelper.localizeName(parameter);
-                content.append(", Object ").append(local);
-            }
-        }
-        content.append(") throws Exception {").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("public String ").append(AssemblyHelper.ORCHESTRATION_METHOD).append("(PatternContext ctx) throws Exception {").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
-
-        if (!pattern.getAllParameters().isEmpty()) {
-            // Add additional code for parameter names handling
-            content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
-            for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
-                String local = PatternHelper.localizeName(parameter);
-                String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
-                content.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
-                content.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
-            }
-        }
-        content.append(EGFCommonConstants.LINE_SEPARATOR);
-
+        content.append("int index = 0, executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR);
     }
 
     /**
@@ -124,15 +106,17 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
         if (!pattern.getAllParameters().isEmpty()) {
             content.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
+            for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
+                content.append("parameterValues.put(\"").append(parameter.getName()).append("\", this.").append(parameter.getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+            }
             content.append("    ictx.getReporter().loopFinished(loop, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
-            content.append("ictx.getBuffer().setLength(0);}").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
         }
         content.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         // end of method generate(PatternContext ctx, ...)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
-
-        // add method declarations
-        content.append(((JavaAssemblyContentProvider) contentHelper.getProvider()).getMethodBodies()).append(EGFCommonConstants.LINE_SEPARATOR);
 
         // add field declarations (for variables)
         for (PatternVariable var : pattern.getVariables()) {

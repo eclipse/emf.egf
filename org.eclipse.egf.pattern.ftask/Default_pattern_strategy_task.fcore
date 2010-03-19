@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ftask:TaskJava xmi:version="2.1"
+<ftask:Task xmi:version="2.1"
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" 
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_8FZ3of6eeEd64XYPo3s6sPg"
-    name="Default pattern strategy task" value="org.eclipse.egf.pattern.ftask.tasks.DefaultStrategyTask">
+    name="Default pattern strategy task" kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.DefaultStrategyTask">
   <contractContainer xmi:id="_9xfmAP6eEd64XeYPo3s6sPg">
     <contracts xmi:id="_-GBrkP6eEd64XeYPo3s6sPg" name="pattern.ids" mandatory="true">
-      <type xmi:type="types:TypeString" xmi:id="__ATigP6eeEd64XYPo3s6sPg"/>
+      <type xmi:type="pattern:TypePatternList" xmi:id="__ATigP6eeEd64XYPo3s6sPg"/>
     </contracts>
     <contracts xmi:id="_DgB2IP6fEd64XYPo3s6esPg" name="domain" mandatory="true">
       <type xmi:type="domain:TypeDomainURI" xmi:id="_D_W2cP6feEd64XYPo3s6sPg"/>
@@ -14,4 +14,4 @@
       <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_NlkSewAHAEd-4fJMEplCjxw"/>
     </contracts>
   </contractContainer>
-</ftask:TaskJava>
+</ftask:Task>
