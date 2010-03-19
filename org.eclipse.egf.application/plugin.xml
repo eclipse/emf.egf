@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?><!--
+     Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+     All rights reserved. This program and the accompanying materials
+     are made available under the terms of the Eclipse Public License v1.0
+     which accompanies this distribution, and is available at
+     http://www.eclipse.org/legal/epl-v10.html
+    
+     Contributors:
+         Thales Corporate Services S.A.S - initial API and implementation
+ -->
+
+<plugin>
+
+  <!-- ================================================================================= -->
+  <!-- Applications                                                                      -->
+  <!-- ================================================================================= -->
+
+  <extension
+    id="org.eclipse.egf.application.activity"
+    point="org.eclipse.core.runtime.applications"
+  >
+    <application>
+      <run
+        class="org.eclipse.egf.application.activity.ActivityApplication"
+      />
+    </application>
+  </extension>
+  
+  <!-- ================================================================================= -->
+  <!-- Launch Configuration Types                                                        -->
+  <!-- ================================================================================= -->
+  
+  <!--
+  <extension
+    point="org.eclipse.debug.core.launchConfigurationTypes"
+  >
+    <launchConfigurationType
+      name="%Launch.label"
+      delegateDescription="%TaskLaunchDelegate.description"
+      delegateName="%TaskLaunchDelegate.name"
+      delegate="org.eclipse.egf.task.launch.TaskLaunchConfigurationDelegate"
+      modes="run, debug"
+      id="org.eclipse.egf.task.launch.configuration"
+      sourceLocatorId="org.eclipse.pde.ui.launcher.PDESourceLookupDirector"
+      sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer"
+    />  
+  </extension>
+  -->
+  
+</plugin>
