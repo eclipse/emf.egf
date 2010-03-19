@@ -62,6 +62,27 @@ http://www.eclipse.org/legal/epl-v10.html
          download-size="0"
          install-size="0"
          version="0.0.0"
+         unpack="false"/>
+         
+   <plugin
+         id="org.eclipse.egf.portfolio.eclipse.util"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>                          
+         
+   <plugin
+         id="org.eclipse.egf.portfolio.file.resources"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>         
+         
+   <plugin
+         id="org.eclipse.egf.portfolio.type"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
          unpack="false"/>         
 
 </feature>
