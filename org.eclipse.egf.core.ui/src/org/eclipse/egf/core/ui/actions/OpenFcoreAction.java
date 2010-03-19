@@ -10,24 +10,26 @@
  */
 package org.eclipse.egf.core.ui.actions;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.eclipse.egf.common.ui.helper.EditorHelper;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.dialogs.FcoreSelectionDialog;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.ui.IEditorPart;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.ui.PartInitException;
 
 /**
  * Standard action for opening an editor on EGF Fcores.
@@ -37,7 +39,7 @@ import org.eclipse.ui.PartInitException;
  */
 public class OpenFcoreAction extends Action implements IWorkbenchWindowActionDelegate {
 
-  private IWorkbenchWindow _window;
+  private Shell _shell;
 
   /**
    * Creates a new action for opening an EGF Fcore
@@ -52,7 +54,7 @@ public class OpenFcoreAction extends Action implements IWorkbenchWindowActionDel
    * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
    */
   public void dispose() {
-    _window = null;
+    _shell = null;
   }
 
   /**
@@ -61,7 +63,7 @@ public class OpenFcoreAction extends Action implements IWorkbenchWindowActionDel
    * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#init(org.eclipse.ui.IWorkbenchWindow)
    */
   public void init(IWorkbenchWindow window) {
-    this._window = window;
+    _shell = window.getShell();
   }
 
   /**
@@ -88,36 +90,37 @@ public class OpenFcoreAction extends Action implements IWorkbenchWindowActionDel
    */
   @Override
   public void run() {
-    FcoreSelectionDialog dialog = new FcoreSelectionDialog(_window.getShell(), true);
-    dialog.open();
+    FcoreSelectionDialog dialog = new FcoreSelectionDialog(_shell, true);
+    int result = dialog.open();
+    if (result != IDialogConstants.OK_ID) {
+      return;
+    }
     Object[] objects = dialog.getResult();
-    if (objects != null) {
-      EditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-      ResourceSet resourceSet = editingDomain.getResourceSet();
-      for (Object object : objects) {
-        if (object instanceof IPlatformFcore == false) {
-          continue;
-        }
-        IPlatformFcore fcore = (IPlatformFcore) object;
-        try {
-          URI uri = fcore.getURI();
-          if (uri != null) {
-            // Try to use a URIConverter to normalize such URI
-            // if we have a platform:/plugin/ we need a platform:/resource/ if any
-            // to have a chance to use a FileEditorInput rather than an URIEditorInput
-            URIConverter converter = resourceSet.getURIConverter();
-            if (converter != null) {
-              uri = converter.normalize(uri);
-            }
-            IEditorPart part = EditorHelper.openEditor(uri);
-            if (part != null && part instanceof IEditingDomainProvider) {
-              EditorHelper.setSelectionToViewer(part, uri);
-            }
-          }
-        } catch (PartInitException pie) {
-          EGFCoreUIPlugin.getDefault().logError(pie);
-        }
+    if (objects == null) {
+      return;
+    }
+    // Process selected Fcores
+    EditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+    Map<Resource, List<EObject>> resources = new HashMap<Resource, List<EObject>>();
+    for (Object object : objects) {
+      if (object instanceof IPlatformFcore == false) {
+        continue;
+      }
+      IPlatformFcore fcore = (IPlatformFcore) object;
+      Resource resource = editingDomain.getResourceSet().getResource(fcore.getURI(), true);
+      if (resource == null) {
+        continue;
+      }
+      List<EObject> eObjects = resources.get(resource);
+      if (eObjects == null) {
+        eObjects = new ArrayList<EObject>();
+        resources.put(resource, eObjects);
+      }
+      if (resource.getContents().isEmpty() == false) {
+        eObjects.add(resource.getContents().get(0));
       }
     }
+    // Open and select
+    EditorHelper.openEditorsAndSelect(resources);
   }
 }
