@@ -42,11 +42,10 @@
 
 <p class="Para">The sequence of actions to <i>create a pattern</i>:</p>
 <ul CLASS="UnorderedList">
-    <li CLASS="Item">Create the <i>viewpoints</i> node - On a factory component, Commands: <i>[New Child][Viewpoints]</i></li>
-    <li CLASS="Item">Create the <i>Pattern Viewpoint</i> node - On the viewpoints node, Commands: <i>[New Child][Pattern Viewpoint]</i></li>
+    <li CLASS="Item">Create the <i>viewpoints</i> node - On a factory component, Commands: <i>[New Child][Viewpoint Container]</i></li>
+    <li CLASS="Item">Create the <i>Pattern Viewpoint</i> node - On the <i>Viewpoint Container</i> node, Commands: <i>[New Child][Pattern Viewpoint]</i></li>
     <li CLASS="Item">Create a pattern library - On the pattern viewpoint, Commands: <i>[New Child][Library]</i></li>
     <li CLASS="Item">Next, create a <i>pattern</i> - On the pattern library, Commands: <i>[New Child][JetNature Pattern | JavaNature Pattern]</i></li>
-    <li CLASS="Item">Save the model</li>
     <li CLASS="Item">Edit the pattern -  On the pattern, Commands: <i>[Double-click]</i> or <i>[Right-Click][Open]</i></li>
     <li CLASS="Item">Set the pattern name</li>
 </ul>
@@ -94,7 +93,7 @@
 <h3 class="Head">3.1. Comprehension</h3>
 
 <p class="Para"><i>Implementation view</i>. This view enables to define pattern methods, the method orchestration, and local variables.</p>
-<p class="Para"><i>Pattern methods</i>. Four methods are predefined: header, init, preCondition and footer. Header is used for instance to declare the Jet declaration, init for the initialization of local variables (cf. explanation below), preCondition to filter records onto a query result. The user creates as many as methods he wants to implement the pattern. Each pattern method contents conforms to the pattern nature, for instance Jet-based code.</p>
+<p class="Para"><i>Pattern methods</i>. Four methods are predefined: header, init, preCondition and footer. Header is used for instance to declare the Jet declaration, init for the initialization of local variables (cf. explanation below), preCondition to filter records onto a query result. The user creates as many as methods s/he wants to implement the pattern. Each pattern method contents is supposed to conform to the pattern nature, for instance Jet-based code.</p>
 <p class="Para"><i>Pattern method orchestration</i>. The method orchestration defines the order to call available methods and patterns: methods local to the current pattern, methods from the super-patterns, pattern call with parameter context passing, pattern call with injection.</p>
 <p class="Para"><i>Pattern variables</i>. The pattern variables are accessible by any method of the current pattern. The type is either a class defined in an ecore model or a Java type (class or interface). Pattern variables can be initialized in the <i>init</i> method, update and used in the pattern methods.</p>
 
@@ -103,7 +102,7 @@
 <p class="Para">The sequence of actions to manage the <i>implementation methods</i>:</p>
 <ul CLASS="UnorderedList">
     <li CLASS="Item">Use the palette to add/delete/rename/reorder a method.</li>
-    <li CLASS="Item">To edit method, double-click on a method of the <i>Implementation methods</i> list. Next, a pattern templates editor allows to edit any other method.</li>
+    <li CLASS="Item">To edit method, double-click on a method of the <i>Implementation methods</i> list. Next, a pattern templates editor allows editing any other method.</li>
 </ul>
 
 <p class="Para">The sequence of actions to manage <i>variables</i>:</p>
@@ -124,8 +123,9 @@
 <h3 class="Head">3.3. Application</h3>
 <p class="Para">Implement the default body method. Add the following Jet code:</p>
 				<font color="777777"><pre>
-Hello &lt;%= aClass.getName() %&gt;!
+Hello &lt;%= parameter.getName() %&gt;!
 				</pre></font>
+<p class="Para">Drag and drop the method in the pattern orchestration part.</p>
 
 
 <br/>
@@ -133,7 +133,7 @@ Hello &lt;%= aClass.getName() %&gt;!
 <h2 class="Head">4. Configuration of the pattern execution</h2>
 
 <h3 class="Head">4.1. Comprehension - Principle of pattern execution</h3>
-<p class="Para">The following figure depicts how patterns are onto a domain resource.</p>
+<p class="Para">The following figure depicts how patterns are applied onto a domain resource.</p>
 
 <p align="left">
   <img src="./images/egf_tut_pattern_1_3.png" alt="Pattern Execution"/>
@@ -141,11 +141,11 @@ Hello &lt;%= aClass.getName() %&gt;!
 <p align="left"><i>Figure 3. Pattern Execution</i></p>  
 
 <p class="Para"><i>Pattern strategies</i>. A pattern strategy indicates how to apply patterns onto a resource. For instance, a pattern-oriented strategy successively applies a set of patterns onto a resource; a model-oriented strategy applies a set of patterns successively onto each model element. The model-driven strategy takes care of the model element order while the pattern-oriented strategy does not.</p>
-<p class="Para"><i>Tasks to execute patterns</i>. A task must put in action all the elements described before to process a pool of patterns. The task must know:
+<p class="Para"><i>Tasks to execute patterns</i>. A task must be introduced in order to put in action all the elements described. This task must know:
   <ol CLASS="UnorderedList">
     <li> The resource applied on the patterns, for instance a model,</li>
     <li> The selection of pattern(s) or the pattern library(ies),</li>
-    <li> The reporter.</li>
+    <li> The reporter (see below).</li>
   </ol>
 </p>
 
@@ -153,19 +153,33 @@ Hello &lt;%= aClass.getName() %&gt;!
 
 <p class="Para"><i>Pattern execution engines</i>. Patterns have a nature (e.g., Jet, Java). Then, at execution time, an engine executes a pattern according its nature. On the pattern flow, different pattern execution engines can be activated.</p>
 
-<p class="Para"><i>Reporter</i>. A reporter is typically useful for model-to-text transformation. Each pattern provides an output result that must be consolited in a files or several files. A reporter serves to report the result of the pattern implementation, for instance on the console or in a file.</p>
+<p class="Para"><i>Reporter</i>. A reporter is typically useful for model-to-text transformation. Each pattern provides an output result that must be consolidated in one or several files. A reporter serves to report the result of the pattern implementation, for instance on the console or in a file.</p>
 <br/>
 
 <h3 class="Head">4.2. Practice</h3>
-<p class="Para">A task is used to put in action pattern execution. This task must know: 1) the pattern or pattern library list, 2) the domain model, 3) the pattern strategy, and 4) the reporter. This tutorial uses the <i>Model-driven pattern strategy</i>. The use of pattern reporter is explained below.</p>
+<p class="Para">A task is used to execute a pattern or a set of patterns. This task must know: 1) the domain model, 2) the pattern or pattern library list, 3) the pattern strategy, and 4) the reporter. This tutorial uses the <i>Model-driven pattern strategy</i>. The use of pattern reporter is explained below.</p>
 <p class="Para">The sequence of actions to create a task for pattern execution:</p>
 <ul CLASS="UnorderedList">
-    <li CLASS="Item">Create a task</li>
-    <li CLASS="Item">On the Task, in the Activity section / Invoked Activty property, select the <i>Model driven pattern strategy task</i></li>
-    <li CLASS="Item">Create Task Contracts:</li>
+    <li CLASS="Item"><i>Domain creation</i>. This step can be reused independently of the pattern usage.</li>
     <ul CLASS="UnorderedList">
-        <li CLASS="Item">Domain identification: 1) for Behaviour/Invoked Contract property, select the <i>domain</i> contract, 2) add the <i>Type Domain URI</i> and for value, select a domain reference</li>
-        <li CLASS="Item">Pattern identification: 1) for Behaviour/Invoked Contract property, select the <i>pattern.ids</i> contract, 2) add the <i>String</i> type, and for value, in the value field, indicate the pattern or pattern library ids - separation with <i>,[space]</i></li>
+        <li CLASS="Item">Step 1. Creation of the domain reference</li>
+        <ul CLASS="UnorderedList">
+            <li CLASS="Item">Creation of the domain viewpoint where domains are declared - On the Viewpoint Container, Command: [New Child][Domain Viewpoint]</li>
+            <li CLASS="Item">Creation of a domain reference - On the Domain Viewpoint, Command: [New Child][URI]. Next, in the Uri property, providing a Uri like <i>platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore</i></li>
+        </ul>
+        <li CLASS="Item">Step 2. Creation of a domain parameter</li>
+        <ul CLASS="UnorderedList">
+            <li CLASS="Item">Creation of a domain reference as a production plan parameter - On the production plan, Command: [New Child][Orchestration Parameter Container]</li>
+            <li CLASS="Item">Creation of a parameter - On the Orchestration Parameter Container, Commands: [New Child][Orchestration Parameter]; Set the parameter name; Set the Domain property to the Uri created just before</li>
+        </ul>
+    </ul>
+    <br/>
+    <li CLASS="Item"><i>Configuration of the pattern call</i>.</li>
+    <ul CLASS="UnorderedList">
+        <li CLASS="Item">Creation of the pattern execution task - On the Production Plan node, Command: [Right-Click][Invoke Activity], and choose the <i>Model driven pattern strategy task [Task Java]</i></li>
+        <li CLASS="Item">Remove the <i>pattern.execution.reporter</i>, <i>pattern.call.back.handler</i> and <i>pattern.modeldriven.visitor</i> contracts</li>
+        <li CLASS="Item">Set the domain identification - On the new Activity / Invocation Contract Container / domain Invocation Contract, Command: 1) Set the Orchestration Parameter to the Orchestration Parameter newly created</li>
+        <li CLASS="Item">Set the pattern library - On the new Activity / Invocation Contract Container / pattern.ids Invocation Contract, Command: [New Child][Type Pattern List]; Next, [Click on the Elements Property], select the pattern library newly created</li>
     </ul>
 </ul>
 
@@ -173,28 +187,32 @@ Hello &lt;%= aClass.getName() %&gt;!
 
 
 <h3 class="Head">4.3. Application</h3>
-<p class="Para">Apply the pattern library created before. Example of domain: <i>platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore</i>.</p>
+<p class="Para">Create a pattern task invocation as described above. Example of domain: <i>platform:/plugin/org.eclipse.egf.model/model/Fcore.ecore</i>.</p>
 
-<p align="left">
-  <img src="./images/egf_tut_pattern_1_4.png" alt="Pattern Task"/>
-</p>
-<p align="left"><i>Figure 4. Pattern Task</i></p>  
-
-<p class="Para">Finally, execute the factory component.</p>
+<p class="Para">Finally, execute the factory component. The output is displayed on the console.</p>
 
 <br/>
 
 
-<h3 class="Head">4.4. Comprehension - Pattern Reporter</h3>
+<h3 class="Head">4.4. Fixing pattern method errors</h3>
+<p class="Para">Patterns to be compiled are compiled when a pattern is saved. Errors may be raised and, as a consequence, the pattern execution would fail. Then:</p>
+<ul CLASS="UnorderedList">
+    <li CLASS="Item">At anytime, in order to regenerate pattern classes and methods: 1) delete the packages under the project <i>generated</i> folder, 2) right-click on the Pattern viewpoint, and apply the [Update generated elements] command on the Pattern viewpoint.</li>
+    <li CLASS="Item">Fixing the errors. Locate the errors in the generated methods, update the pattern methods accordingly, and save the pattern methods.</li>
+</ul>
+
+<br/>
+
+<h3 class="Head">4.5. Comprehension - Pattern Reporter</h3>
 <p class="Para"><i>Reporter class</i>. A reporter is a Java class which implements the PatternExecutionReporter class.</p>
-<p class="Para"><i>Collecting the result</i>. There are two methods to collect the result of one pattern execution: 1) the <i>loopFinished</i> method collects the result for one pattern and for one query tuple, 2) the <i>executionFinished</i> method collects the result for one pattern, which is the aggregation of the <i>loopFinished</i> method results.</p>
-<p class="Para"><i>Reporting the result</i>. The result is generally reported in a file.</p>
+<p class="Para"><i>Collecting the result</i>. There are two methods to collect the execution result of one pattern: 1) the <i>loopFinished</i> method collects the result for one pattern and for one query tuple, 2) the <i>executionFinished</i> method collects the result for one pattern, which is the aggregation of the <i>loopFinished</i> method results.</p>
+<p class="Para"><i>Reporting the result</i>. The result is generally reported in with the selected media, e.g. a file.</p>
 
-<p class="Para">For more complex reports, refer to <i>org.eclipse.egf.emf.docgen.html</i> plug-in which examplifies the case of result in a file and a specific folder.</p>
+<p class="Para">For more complex reports, refer to the <i>org.eclipse.egf.emf.docgen.html</i> plug-in which examplifies the case of result in a file and a specific folder.</p>
 
 <br/>
 
-<h3 class="Head">4.5. Practice</h3>
+<h3 class="Head">4.6. Practice</h3>
 
 <p class="Para">1. Create a reporter Java class like this one:</p>
 				<font color="777777"><pre>
@@ -202,25 +220,24 @@ Package org.eclipse.egf.examples.uc1.reporter;
 
 import java.util.Map;
 
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 
 public class MyReporter implements PatternExecutionReporter{
 
-    @Override
-    public void executionFinished(String output, PatternContext context) {
-    // Message on the default console
+	@Override
+	public void executionFinished(String output, PatternContext context) {
+		// Message on the default console
 		System.out.println("Result of pattern:\n"+output);
-    // Message on the EGF console
-    EGFCorePlugin.getDefault().logInfo("Result of pattern:\n"+output);
-		
+		// Message on the EGF console
+		EGFCorePlugin.getDefault().logInfo("Result of pattern:\n"+output);
 	}
 
 	@Override
 	public void loopFinished(String output, PatternContext context,
-			Map &lt; String, Object &gt; parameterValues) {
+			Map&lt;String, Object&gt; parameterValues) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }
@@ -228,8 +245,8 @@ public class MyReporter implements PatternExecutionReporter{
 
 <p class="Para">2. Complete the task with the reporter parameter:
     <ul CLASS="UnorderedList">
-        <li CLASS="Item">Add a contract to the task</li>
-        <li CLASS="Item">For Behaviour/Invoked Contract property, select the <i>pattern.execution.reporter</i> contract</li>
+        <li CLASS="Item">Add a contract to the task created before</li>
+        <li CLASS="Item">For Behaviour/Invoked Contract property, select the <i>pattern.execution.reporter</i> contract (removed before!)</li>
         <li CLASS="Item">Add the <i>Type Pattern Execution Reporter</i> and for value, select the pattern reporter class</li>
     </ul>
 </p>
