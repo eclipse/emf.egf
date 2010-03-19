@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+  id="org.eclipse.egf.model"
+  label="%featureName"
+  version="0.2.3.qualifier"
+  provider-name="%providerName"
+  plugin="org.eclipse.egf.model"
+  image="eclipse_update_120.jpg"
+>
+
+  <description>
+    %description
+  </description>
+
+  <copyright>
+      Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+  </copyright>
+
+  <license 
+    url="%licenseURL"
+  >
+    %license
+  </license>
+
+  <url>
+    <update 
+      label="%EMFTUpdateSiteName" 
+      url="http://download.eclipse.org/modeling/emft/updates/"
+    />
+    <discovery 
+      label="%EMFUpdateSiteName" 
+      url="http://download.eclipse.org/modeling/emf/updates/"
+    />
+    <discovery 
+      label="%EMFTUpdateSiteName" 
+      url="http://download.eclipse.org/modeling/emft/updates/"
+    />
+  </url>
+
+  <includes 
+    id="org.eclipse.egf.core" 
+    version="0.0.0"
+  />
+  
+  <includes 
+    id="org.eclipse.egf.model.source" 
+    version="0.0.0"
+  />
+
+  <requires>
+    <import 
+      feature="org.eclipse.emf.ecore" 
+      version="2.5.0.v200906151043" 
+      match="compatible"
+    />
+    <import 
+      feature="org.eclipse.emf.validation" 
+      version="1.3.0.v200902052232-478-9oB55W58BQ8QBB" 
+      match="compatible"
+    />
+    <import 
+      plugin="org.eclipse.emf.transaction" 
+      version="1.3.0.v200902010221" 
+      match="compatible"
+    />    
+  </requires>
+
+  <plugin
+    id="org.eclipse.egf.model"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />
+           
+  <plugin
+    id="org.eclipse.egf.model.javapattern"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />   
+         
+  <plugin
+    id="org.eclipse.egf.model.jetpattern"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />
+  
+  <plugin
+    id="org.eclipse.egf.pattern"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />    
+  
+  <plugin
+    id="org.eclipse.egf.pattern.java"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />
+  
+  <plugin
+    id="org.eclipse.egf.pattern.jet"
+    download-size="0"
+    install-size="0"
+    version="0.0.0"
+    unpack="false"
+  />                                  
+                           
+</feature>

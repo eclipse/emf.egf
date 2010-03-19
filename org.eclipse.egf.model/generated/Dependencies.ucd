@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<editmodel:ClassDiagramEditModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:editmodel="editmodel.xmi" xmlns:options="options.xmi" name="Dependencies" size="1613,957" id="." metadata="uml2-1.0" initialized="true" scrolledY="137" tag="100" key="32303037303533312D313030206F72672E65636C697073652E6567662E6D6F64656C">
+  <children xsi:type="editmodel:PackageEditModel" name="org.eclipse.egf.model.fcore" location="751,296" size="253,31" id="org.eclipse.egf.model.fcore">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="org.eclipse.egf.model.fcore-Soyatec::Import->org.eclipse.egf.core.production.context" source="//@children.0" target="//@children.4" targetEnd="//@children.0/@sourceConnections.0/@children.2" label="//@children.0/@sourceConnections.0/@children.0" sourceEnd="//@children.0/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="51,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="62,31" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="287,0"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" targetConnections="//@children.3/@sourceConnections.0" name="org.eclipse.egf.core" location="659,906" size="194,31" id="org.eclipse.egf.core"/>
+  <children xsi:type="editmodel:PackageEditModel" targetConnections="//@children.5/@sourceConnections.2" name="org.eclipse.egf.core.production.task" location="50,380" size="323,31" id="org.eclipse.egf.core.production.task"/>
+  <children xsi:type="editmodel:PackageEditModel" name="org.eclipse.egf.model.fcore.util" location="582,678" size="282,31" id="org.eclipse.egf.model.fcore.util">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="org.eclipse.egf.model.fcore.util-Standard::Call->org.eclipse.egf.core" source="//@children.3" target="//@children.1" targetEnd="//@children.3/@sourceConnections.0/@children.2" label="//@children.3/@sourceConnections.0/@children.0" sourceEnd="//@children.3/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call»" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="173,31" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="96,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="org.eclipse.egf.model.fcore.util-Soyatec::Import->org.eclipse.egf.core.production.context" source="//@children.3" target="//@children.4" targetEnd="//@children.3/@sourceConnections.1/@children.2" label="//@children.3/@sourceConnections.1/@children.0" sourceEnd="//@children.3/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="51,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="140,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="196,31"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" targetConnections="//@children.3/@sourceConnections.1 //@children.5/@sourceConnections.0 //@children.0/@sourceConnections.0" name="org.eclipse.egf.core.production.context" location="526,428" size="350,31" id="org.eclipse.egf.core.production.context"/>
+  <children xsi:type="editmodel:PackageEditModel" name="org.eclipse.egf.model.fcore.impl" location="293,303" size="290,31" id="org.eclipse.egf.model.fcore.impl">
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="org.eclipse.egf.model.fcore.impl-Soyatec::Import->org.eclipse.egf.core.production.context" source="//@children.5" target="//@children.4" targetEnd="//@children.5/@sourceConnections.0/@children.2" label="//@children.5/@sourceConnections.0/@children.0" sourceEnd="//@children.5/@sourceConnections.0/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Import»" size="51,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="261,31" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="28,0"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="org.eclipse.egf.model.fcore.impl-Standard::Call->org.eclipse.egf.core.production" source="//@children.5" target="//@children.6" targetEnd="//@children.5/@sourceConnections.1/@children.2" label="//@children.5/@sourceConnections.1/@children.0" sourceEnd="//@children.5/@sourceConnections.1/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call»" size="35,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="93,0" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="191,31"/>
+    </sourceConnections>
+    <sourceConnections xsi:type="editmodel:DependencyEditModel" autoLocated="true" id="org.eclipse.egf.model.fcore.impl-Standard::Call->org.eclipse.egf.core.production.task" source="//@children.5" target="//@children.2" targetEnd="//@children.5/@sourceConnections.2/@children.2" label="//@children.5/@sourceConnections.2/@children.0" sourceEnd="//@children.5/@sourceConnections.2/@children.1" connectionRouterKind="Manual">
+      <children xsi:type="editmodel:WireLabelEditModel" name="«Call»" size="0,14" anchorKind="MiddlePart"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="39,31" attachSource="true"/>
+      <children xsi:type="editmodel:AssociationEndEditModel" location="282,0"/>
+    </sourceConnections>
+  </children>
+  <children xsi:type="editmodel:PackageEditModel" targetConnections="//@children.5/@sourceConnections.1" name="org.eclipse.egf.core.production" location="195,165" size="285,31" id="org.eclipse.egf.core.production"/>
+  <diagramOptions xsi:type="options:ClassDiagramOptions" interactive="false" properties="projectFilter=org.eclipse.egf.core.production;libraryFilter=org.eclipse.egf.core.production,;ModelFrozen=true;ComputedContent=true;displayOptions=1;open=org.eclipse.egf.model.fcore,org.eclipse.egf.model.fcore.impl,org.eclipse.egf.core.production.task,org.eclipse.egf.core,org.eclipse.egf.model.fcore.util,org.eclipse.egf.core.production.context,org.eclipse.egf.core.production;Product=eDepend;link=org.eclipse.egf.model.fcore.util-Standard::Call->org.eclipse.egf.core,org.eclipse.egf.model.fcore.util-Soyatec::Import->org.eclipse.egf.core.production.context,org.eclipse.egf.model.fcore.impl-Soyatec::Import->org.eclipse.egf.core.production.context,org.eclipse.egf.model.fcore.impl-Standard::Call->org.eclipse.egf.core.production,org.eclipse.egf.model.fcore.impl-Standard::Call->org.eclipse.egf.core.production.task,org.eclipse.egf.model.fcore-Soyatec::Import->org.eclipse.egf.core.production.context;shadowedElements=org.eclipse.egf.core.production.task,org.eclipse.egf.core,org.eclipse.egf.core.production.context,org.eclipse.egf.core.production;wireOptions=4"/>
+  <boardSetting snapToGeometry="true" gridEnabled="true" gridSpacing="15,15" gridOrigin="0,0" rulerUnit="pixel" gridVisibility="false">
+    <leftRuler/>
+    <topRuler/>
+  </boardSetting>
+  <classDiagramPreferences xsi:type="editmodel:UMLClassDiagramPreference" showPopupBars="true" showConnectionHandles="true" attributeSorter="Natural" methodSorter="Natural" showDependencyStereotype="true" showEnumerationStereotype="false" innerClassSorter="Natural" showPublicInnerClasses="true" showPackageInnerClasses="true" showStaticInnerClasses="true" packageIndication="3"/>
+</editmodel:ClassDiagramEditModel>

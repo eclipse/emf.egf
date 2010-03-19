@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Strategy
+Bundle-SymbolicName: org.eclipse.egf.example.strategy.modeldriven;singleton:=true
+Bundle-Version: 0.2.2.qualifier
+Bundle-Activator: strategy.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.egf.pattern;visibility:=reexport,
+ org.eclipse.egf.pattern.ftask,
+ org.eclipse.egf.model.ftask;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Export-Package: myLib,
+ strategy

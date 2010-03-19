@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+	<meta name="copyright" content="Copyright (c) THALES, 2007. All rights reserved." >
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <link rel="stylesheet" href="../../book.css" charset="ISO-8859-1" type="text/css">
+    <title>Pattern Editor Production Page</title>
+</head>
+
+<body>
+	<h1>Production Page</h1>	
+	<p>
+		The production page defines the production parameters applicable to pattern production.<br/>
+		<h2>Production options section</h2>
+		<p>
+			This section provides with specific production behaviors.<br/>
+			To modify default or inherited values, check the <i>Override production behavior</i> option.
+			<table border="1" cellspacing="0" cellpadding="5">
+				<tr>
+					<th>Field</th>
+					<th>Description</th>
+					<th>Values and meanings</th>
+					<th>Default value</th>
+				</tr>
+				<tr>
+					<td align="left" valign="top">Compilation step</td>
+					<td align="left" valign="top">Decide whether the pattern should be compiled as a Java class, or left as a JET file.</td>
+					<td align="left" valign="top">
+						<b>Compile</b> to transform the result in a Java class
+						, <b>Skip</b> to leave it as a JET file.
+						If the pattern is not compiled as a Java class, the Pattern Runner factory component won't be able to execute it.
+					</td>
+					<td>Compile</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">Buffer modification</td>
+					<td align="left" valign="top">Decide whether the default JET buffer management should be used (for compatibility), or modified by the pattern implementation as needed.</td>
+					<td align="left" valign="top">
+						<b>Enabled</b> to let the pattern production use buffers as needed. This is mandatory for the use of a Reporter at runtime with Pattern Runner.
+						<b>Disabled</b> to remain compatible with default JET buffer usage. Needed in the case of expected JET files content, as in EMF.
+					</td>
+					<td align="left" valign="top">Enabled</td>
+				</tr>
+				<tr>
+					<td align="left" valign="top">Destination path</td>
+					<td align="left" valign="top">Give the produced JET template file a specific path, relative to <i>templates</i> one in current factory component.</td>
+					<td align="left" valign="top">
+						<b>Empty</b>, the framework decides by itself the name, and the location of the resulting template file.
+						<b>A relative path, file name and extension included</b>, the framework sticks to given path. Needed in the case of expected JET files structure, as in EMF.
+					</td>
+					<td align="left" valign="top">Empty</td>
+				</tr>
+			</table>
+			<br/>
+			As mentionned earlier, those values are automatically inherited from the closest parent, if any.
+		</p>
+	</p>
+	<p>
+		<img border="0" src="../../../../org.eclipse.egf.engine.doc/html/images/ngrelr.png" alt="Related Reference">
+	</p>
+	<a href="../editor.html">Pattern editor</a>
+</body>
+</html>

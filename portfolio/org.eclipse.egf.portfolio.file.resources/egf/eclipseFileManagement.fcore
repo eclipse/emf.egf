@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
+  <ftask:Task xmi:id="_as2OcCHzEd-tJpgH4Pk1Xw" description="This task aims at writing specified contents in a file"
+      name="eclipse.file.write.task" kind="java" implementation="org.eclipse.egf.portfolio.file.resources.WriteFileTask">
+    <contractContainer xmi:id="_UKdDASH0Ed-c_qcjB49Qng">
+      <contracts xmi:id="_lOB0kCH7Ed-c_qcjB49Qng" description="Contents to be written"
+          name="contents">
+        <type xmi:type="types:TypeString" xmi:id="_5XSB0CH7Ed-c_qcjB49Qng"/>
+      </contracts>
+      <contracts xmi:id="_ErxN0CH8Ed-c_qcjB49Qng" description="Eclipse project name"
+          name="projectName">
+        <type xmi:type="types:TypeString" xmi:id="_ErxN0SH8Ed-c_qcjB49Qng" description=""
+            value="myproject"/>
+      </contracts>
+      <contracts xmi:id="_L2STwCH8Ed-c_qcjB49Qng" description="Folder in the project name. The folder contains either the '.', '/' or '\' separators for sub-folders"
+          name="folder">
+        <type xmi:type="types:TypeString" xmi:id="_L2STwSH8Ed-c_qcjB49Qng"/>
+      </contracts>
+      <contracts xmi:id="_MHHlECH8Ed-c_qcjB49Qng" description="File name" name="fileName">
+        <type xmi:type="types:TypeString" xmi:id="_MHHlESH8Ed-c_qcjB49Qng" value="undefined"/>
+      </contracts>
+      <contracts xmi:id="_oKaQsCH8Ed-c_qcjB49Qng" description="true means append mode else creation mode"
+          name="appendMode">
+        <type xmi:type="types:TypeBoolean" xmi:id="_zGdukCH8Ed-c_qcjB49Qng" value="false"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <fcore:FactoryComponent xmi:id="_gYv1wCH9Ed-c_qcjB49Qng" name="eclipse.file.write.fc">
+    <contractContainer xmi:id="_IQet4CIAEd-c_qcjB49Qng">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_JqxnACITEd-c_qcjB49Qng"
+          description="Eclipse project name" name="projectName" invocationContracts="#_jWvQ4yH9Ed-c_qcjB49Qng #_SWkVoiIXEd-yj8XsBx2_pg">
+        <type xmi:type="types:TypeString" xmi:id="_MPSLICITEd-c_qcjB49Qng" value="myproject"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_PXjjoCITEd-c_qcjB49Qng"
+          description="Folder in the project name. The folder contains either the '.', '/' or '\' separators for sub-folders"
+          name="folder" invocationContracts="#_jWvQ5CH9Ed-c_qcjB49Qng">
+        <type xmi:type="types:TypeString" xmi:id="_UYYZMCITEd-c_qcjB49Qng" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_XPODcCITEd-c_qcjB49Qng"
+          description="File name" name="fileName" invocationContracts="#_jWvQ5SH9Ed-c_qcjB49Qng">
+        <type xmi:type="types:TypeString" xmi:id="_Y5BS0CITEd-c_qcjB49Qng" value="undefined"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_af_QoCITEd-c_qcjB49Qng"
+          description="true means append mode else creation mode" name="appendMode"
+          invocationContracts="#_jWvQ5iH9Ed-c_qcjB49Qng">
+        <type xmi:type="types:TypeBoolean" xmi:id="_eUNwMCITEd-c_qcjB49Qng" value="false"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_0rJLYCISEd-c_qcjB49Qng"
+          description="Contents to be written" name="contents" invocationContracts="#_jWvQ4iH9Ed-c_qcjB49Qng">
+        <type xmi:type="types:TypeString" xmi:id="_91W4MCISEd-c_qcjB49Qng" value=""/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_hSaosCH9Ed-c_qcjB49Qng">
+      <invocations xmi:id="_SWkVoCIXEd-yj8XsBx2_pg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.eclipse.resources.mgt/fcs/Resources.fcore#_d5v1IAqCEd-JA8Js2pdQ0g">
+        <invocationContractContainer xmi:id="_SWkVoSIXEd-yj8XsBx2_pg">
+          <invocationContracts xmi:id="_SWkVoiIXEd-yj8XsBx2_pg" factoryComponentContract="#_JqxnACITEd-c_qcjB49Qng"
+              invokedContract="platform:/plugin/org.eclipse.egf.eclipse.resources.mgt/fcs/Resources.fcore#_1_fQoAqDEd-JA8Js2pdQ0g"/>
+          <invocationContracts xmi:id="_SWkVoyIXEd-yj8XsBx2_pg" invokedContract="platform:/plugin/org.eclipse.egf.eclipse.resources.mgt/fcs/Resources.fcore#_1YyAgAqEEd-JA8Js2pdQ0g"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_jWvQ4CH9Ed-c_qcjB49Qng" invokedActivity="#_as2OcCHzEd-tJpgH4Pk1Xw">
+        <invocationContractContainer xmi:id="_jWvQ4SH9Ed-c_qcjB49Qng">
+          <invocationContracts xmi:id="_jWvQ4iH9Ed-c_qcjB49Qng" factoryComponentContract="#_0rJLYCISEd-c_qcjB49Qng"
+              invokedContract="#_lOB0kCH7Ed-c_qcjB49Qng"/>
+          <invocationContracts xmi:id="_jWvQ4yH9Ed-c_qcjB49Qng" factoryComponentContract="#_JqxnACITEd-c_qcjB49Qng"
+              invokedContract="#_ErxN0CH8Ed-c_qcjB49Qng"/>
+          <invocationContracts xmi:id="_jWvQ5CH9Ed-c_qcjB49Qng" factoryComponentContract="#_PXjjoCITEd-c_qcjB49Qng"
+              invokedContract="#_L2STwCH8Ed-c_qcjB49Qng"/>
+          <invocationContracts xmi:id="_jWvQ5SH9Ed-c_qcjB49Qng" factoryComponentContract="#_XPODcCITEd-c_qcjB49Qng"
+              invokedContract="#_MHHlECH8Ed-c_qcjB49Qng"/>
+          <invocationContracts xmi:id="_jWvQ5iH9Ed-c_qcjB49Qng" factoryComponentContract="#_af_QoCITEd-c_qcjB49Qng"
+              invokedContract="#_oKaQsCH8Ed-c_qcjB49Qng"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <ftask:Task xmi:id="_4N3NwCIeEd-yj8XsBx2_pg" description="This task aims at reading file contents"
+      name="eclipse.file.read.task" kind="java" implementation="org.eclipse.egf.portfolio.file.resources.ReadFileTask">
+    <contractContainer xmi:id="_IxEr8CIgEd-yj8XsBx2_pg">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_IxEr8yIgEd-yj8XsBx2_pg"
+          description="Eclipse project name" name="projectName">
+        <type xmi:type="types:TypeString" xmi:id="_IxEr9CIgEd-yj8XsBx2_pg" value="myproject"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_IxEr9SIgEd-yj8XsBx2_pg"
+          description="Folder in the project name. The folder contains either the '.', '/' or '\' separators for sub-folders"
+          name="folder">
+        <type xmi:type="types:TypeString" xmi:id="_IxEr9iIgEd-yj8XsBx2_pg" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_IxEr9yIgEd-yj8XsBx2_pg"
+          description="File name" name="fileName">
+        <type xmi:type="types:TypeString" xmi:id="_IxEr-CIgEd-yj8XsBx2_pg" value="undefined"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_IxEr8SIgEd-yj8XsBx2_pg"
+          description="Contents to read" name="contents" mode="Out">
+        <type xmi:type="types:TypeString" xmi:id="_IxEr8iIgEd-yj8XsBx2_pg" value=""/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_yen8kSIqEd-1iJf80lotFg" description="This task aims at deleting file"
+      name="eclipse.file.delete.task" kind="java" implementation="org.eclipse.egf.portfolio.file.resources.DeleteFileTask">
+    <contractContainer xmi:id="_7gygoCIqEd-1iJf80lotFg">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_7gygoSIqEd-1iJf80lotFg"
+          description="Eclipse project name" name="projectName">
+        <type xmi:type="types:TypeString" xmi:id="_7gygoiIqEd-1iJf80lotFg" value="myproject"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_7gygoyIqEd-1iJf80lotFg"
+          description="Folder in the project name. The folder contains either the '.', '/' or '\' separators for sub-folders"
+          name="folder">
+        <type xmi:type="types:TypeString" xmi:id="_7gygpCIqEd-1iJf80lotFg" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_7gygpSIqEd-1iJf80lotFg"
+          description="File name" name="fileName">
+        <type xmi:type="types:TypeString" xmi:id="_7gygpiIqEd-1iJf80lotFg" value="undefined"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_HtWVYCIxEd-1iJf80lotFg" description="This task aims at renaming a file"
+      name="eclipse.file.rename.task" kind="java" implementation="org.eclipse.egf.portfolio.file.resources.RenameFileTask">
+    <contractContainer xmi:id="_Oun_wCIxEd-1iJf80lotFg">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Oun_wSIxEd-1iJf80lotFg"
+          description="Eclipse project name" name="projectName">
+        <type xmi:type="types:TypeString" xmi:id="_Oun_wiIxEd-1iJf80lotFg" value="myproject"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Oun_wyIxEd-1iJf80lotFg"
+          description="Folder in the project name. The folder contains either the '.', '/' or '\' separators for sub-folders"
+          name="folder">
+        <type xmi:type="types:TypeString" xmi:id="_Oun_xCIxEd-1iJf80lotFg" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Oun_xSIxEd-1iJf80lotFg"
+          description="File name" name="fileName">
+        <type xmi:type="types:TypeString" xmi:id="_Oun_xiIxEd-1iJf80lotFg" value="undefined"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_zOhrUCIxEd-1iJf80lotFg"
+          description="New folder" name="newFolder">
+        <type xmi:type="types:TypeString" xmi:id="_zOhrUSIxEd-1iJf80lotFg" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_QwRHYCIxEd-1iJf80lotFg"
+          description="New file name" name="newFileName">
+        <type xmi:type="types:TypeString" xmi:id="_QwRHYSIxEd-1iJf80lotFg" value="newUndefined"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <fcore:FactoryComponent xmi:id="_qIpEECJhEd-QbLE3s54hPw" name="eclipse.file.copy.fc">
+    <contractContainer xmi:id="_wnMb4CJhEd-QbLE3s54hPw">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_wnMb4SJhEd-QbLE3s54hPw"
+          description="Source project of the reference file" name="sourceProjectName"
+          mandatory="true" invocationContracts="#_wnMb8CJhEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_wnMb4iJhEd-QbLE3s54hPw" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_wnMb4yJhEd-QbLE3s54hPw"
+          description="Source folder of the reference file" name="sourceFolderName"
+          invocationContracts="#_wnMb8SJhEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_wnMb5CJhEd-QbLE3s54hPw" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_wnMb5SJhEd-QbLE3s54hPw"
+          description="Source file name" name="sourceFileName" mandatory="true" invocationContracts="#_wnMb8iJhEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_wnMb5iJhEd-QbLE3s54hPw" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_wnMb5yJhEd-QbLE3s54hPw"
+          description="Project where the file is copied" name="targetProjetName" mandatory="true"
+          invocationContracts="#_wnMb9yJhEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_wnMb6CJhEd-QbLE3s54hPw" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_wnMb6SJhEd-QbLE3s54hPw"
+          description="Folder where the file is generated" name="targetFolderName"
+          invocationContracts="#_wnMb-CJhEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_wnMb6iJhEd-QbLE3s54hPw" value=""/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_wnMb6yJhEd-QbLE3s54hPw"
+          description="Target file name" name="targetFileName" mandatory="true" invocationContracts="#_wnMb-SJhEd-QbLE3s54hPw">
+        <type xmi:type="types:TypeString" xmi:id="_wnMb7CJhEd-QbLE3s54hPw" value=""/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_wnMb7SJhEd-QbLE3s54hPw">
+      <invocations xmi:id="_wnMb7iJhEd-QbLE3s54hPw" invokedActivity="#_4N3NwCIeEd-yj8XsBx2_pg">
+        <invocationContractContainer xmi:id="_wnMb7yJhEd-QbLE3s54hPw">
+          <invocationContracts xmi:id="_wnMb8CJhEd-QbLE3s54hPw" factoryComponentContract="#_wnMb4SJhEd-QbLE3s54hPw"
+              invokedContract="#_IxEr8yIgEd-yj8XsBx2_pg"/>
+          <invocationContracts xmi:id="_wnMb8SJhEd-QbLE3s54hPw" factoryComponentContract="#_wnMb4yJhEd-QbLE3s54hPw"
+              invokedContract="#_IxEr9SIgEd-yj8XsBx2_pg"/>
+          <invocationContracts xmi:id="_wnMb8iJhEd-QbLE3s54hPw" factoryComponentContract="#_wnMb5SJhEd-QbLE3s54hPw"
+              invokedContract="#_IxEr9yIgEd-yj8XsBx2_pg"/>
+          <invocationContracts xmi:id="_wnMb8yJhEd-QbLE3s54hPw" targetInvocationContract="#_wnMb-iJhEd-QbLE3s54hPw"
+              invokedContract="#_IxEr8SIgEd-yj8XsBx2_pg">
+            <type xmi:type="types:TypeString" xmi:id="_wnMb9CJhEd-QbLE3s54hPw"/>
+          </invocationContracts>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_wnMb9SJhEd-QbLE3s54hPw" invokedActivity="#_gYv1wCH9Ed-c_qcjB49Qng">
+        <invocationContractContainer xmi:id="_wnMb9iJhEd-QbLE3s54hPw">
+          <invocationContracts xmi:id="_wnMb9yJhEd-QbLE3s54hPw" factoryComponentContract="#_wnMb5yJhEd-QbLE3s54hPw"
+              invokedContract="#_JqxnACITEd-c_qcjB49Qng"/>
+          <invocationContracts xmi:id="_wnMb-CJhEd-QbLE3s54hPw" factoryComponentContract="#_wnMb6SJhEd-QbLE3s54hPw"
+              invokedContract="#_PXjjoCITEd-c_qcjB49Qng"/>
+          <invocationContracts xmi:id="_wnMb-SJhEd-QbLE3s54hPw" factoryComponentContract="#_wnMb6yJhEd-QbLE3s54hPw"
+              invokedContract="#_XPODcCITEd-c_qcjB49Qng"/>
+          <invocationContracts xmi:id="_wnMb-iJhEd-QbLE3s54hPw" sourceInvocationContract="#_wnMb8yJhEd-QbLE3s54hPw"
+              invokedContract="#_0rJLYCISEd-c_qcjB49Qng"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+</xmi:XMI>

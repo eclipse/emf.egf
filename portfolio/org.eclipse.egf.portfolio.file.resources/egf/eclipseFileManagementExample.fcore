@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask"
+    xmlns:types="http://www.eclipse.org/egf/1.0.0/types" xmi:id="_fYQfwSIWEd-yj8XsBx2_pg"
+    name="eclipse.file.example">
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_g7yvECIWEd-yj8XsBx2_pg">
+    <invocations xmi:id="_654dMCIgEd-yj8XsBx2_pg" name="Read about.html" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_4N3NwCIeEd-yj8XsBx2_pg">
+      <invocationContractContainer xmi:id="_654dMSIgEd-yj8XsBx2_pg">
+        <invocationContracts xmi:id="_654dMiIgEd-yj8XsBx2_pg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_IxEr8yIgEd-yj8XsBx2_pg">
+          <type xmi:type="types:TypeString" xmi:id="_H0mnMCIhEd-yj8XsBx2_pg" value="org.eclipse.egf.portfolio.eclipse.util"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_654dMyIgEd-yj8XsBx2_pg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_IxEr9SIgEd-yj8XsBx2_pg">
+          <type xmi:type="types:TypeString" xmi:id="_LaOqECIhEd-yj8XsBx2_pg" value="templates"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_654dNCIgEd-yj8XsBx2_pg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_IxEr9yIgEd-yj8XsBx2_pg">
+          <type xmi:type="types:TypeString" xmi:id="_MUpD4CIhEd-yj8XsBx2_pg" value="about.html"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_654dNSIgEd-yj8XsBx2_pg" targetInvocationContract="#_icgT4iIWEd-yj8XsBx2_pg"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_IxEr8SIgEd-yj8XsBx2_pg">
+          <type xmi:type="types:TypeString" xmi:id="_O_jyACIhEd-yj8XsBx2_pg"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_icgT4CIWEd-yj8XsBx2_pg" name="Write about.html in test.project/tmp"
+        invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_gYv1wCH9Ed-c_qcjB49Qng">
+      <invocationContractContainer xmi:id="_icgT4SIWEd-yj8XsBx2_pg">
+        <invocationContracts xmi:id="_icgT4iIWEd-yj8XsBx2_pg" sourceInvocationContract="#_654dNSIgEd-yj8XsBx2_pg"
+            invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_0rJLYCISEd-c_qcjB49Qng"/>
+        <invocationContracts xmi:id="_icgT4yIWEd-yj8XsBx2_pg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_JqxnACITEd-c_qcjB49Qng">
+          <type xmi:type="types:TypeString" xmi:id="_oZYiACIWEd-yj8XsBx2_pg" value="test.project"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_icgT5CIWEd-yj8XsBx2_pg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_PXjjoCITEd-c_qcjB49Qng">
+          <type xmi:type="types:TypeString" xmi:id="_qgrlsCIWEd-yj8XsBx2_pg" value="tmp"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_icgT5SIWEd-yj8XsBx2_pg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_XPODcCITEd-c_qcjB49Qng">
+          <type xmi:type="types:TypeString" xmi:id="_sC4YQCIWEd-yj8XsBx2_pg" value="about_fileWrite.html"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_icgT5iIWEd-yj8XsBx2_pg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_af_QoCITEd-c_qcjB49Qng">
+          <type xmi:type="types:TypeBoolean" xmi:id="_uRou0CIWEd-yj8XsBx2_pg" value="false"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_RCGtACIrEd-1iJf80lotFg" name="Delete dummy file" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_yen8kSIqEd-1iJf80lotFg">
+      <invocationContractContainer xmi:id="_RCGtASIrEd-1iJf80lotFg">
+        <invocationContracts xmi:id="_RCGtAiIrEd-1iJf80lotFg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_7gygoSIqEd-1iJf80lotFg">
+          <type xmi:type="types:TypeString" xmi:id="_VAUPACIrEd-1iJf80lotFg" value="test.project"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_RCGtAyIrEd-1iJf80lotFg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_7gygoyIqEd-1iJf80lotFg">
+          <type xmi:type="types:TypeString" xmi:id="_YISskCIrEd-1iJf80lotFg" value="tmp"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_RCGtBCIrEd-1iJf80lotFg" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_7gygpSIqEd-1iJf80lotFg">
+          <type xmi:type="types:TypeString" xmi:id="_ZpTMUCIrEd-1iJf80lotFg" value="dummy.txt"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+    <invocations xmi:id="_R8VW0CK-Ed-QbLE3s54hPw" name="Write about.html in test.project"
+        invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_qIpEECJhEd-QbLE3s54hPw">
+      <invocationContractContainer xmi:id="_R8VW0SK-Ed-QbLE3s54hPw">
+        <invocationContracts xmi:id="_R8VW0iK-Ed-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb4SJhEd-QbLE3s54hPw">
+          <type xmi:type="types:TypeString" xmi:id="_UsBQMCK-Ed-QbLE3s54hPw" value="org.eclipse.egf.portfolio.eclipse.util"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_R8VW0yK-Ed-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb4yJhEd-QbLE3s54hPw">
+          <type xmi:type="types:TypeString" xmi:id="_B3I_cCK_Ed-QbLE3s54hPw" value="templates"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_R8VW1CK-Ed-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb5SJhEd-QbLE3s54hPw">
+          <type xmi:type="types:TypeString" xmi:id="_EbgZoCK_Ed-QbLE3s54hPw" value="about.html"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_R8VW1SK-Ed-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb5yJhEd-QbLE3s54hPw">
+          <type xmi:type="types:TypeString" xmi:id="_G3hJECK_Ed-QbLE3s54hPw" value="test.project"/>
+        </invocationContracts>
+        <invocationContracts xmi:id="_R8VW1iK-Ed-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb6SJhEd-QbLE3s54hPw"/>
+        <invocationContracts xmi:id="_R8VW1yK-Ed-QbLE3s54hPw" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.portfolio.file.resources/egf/eclipseFileManagement.fcore#_wnMb6yJhEd-QbLE3s54hPw">
+          <type xmi:type="types:TypeString" xmi:id="_Ju8pMCK_Ed-QbLE3s54hPw" value="about_fileCopy.html"/>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

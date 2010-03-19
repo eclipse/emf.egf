@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.model.editor;singleton:=true
+Bundle-Version: 0.2.3.qualifier
+Bundle-ClassPath: .
+Bundle-Activator: org.eclipse.egf.model.editor.EGFModelEditorPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ org.eclipse.egf.model.editor,
+ org.eclipse.egf.model.editor.contributions,
+ org.eclipse.egf.model.editor.dialogs,
+ org.eclipse.egf.model.editor.provider,
+ org.eclipse.egf.model.fcore.presentation
+Require-Bundle: 
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.views,
+ org.eclipse.emf.ecore.xmi,
+ org.eclipse.emf.edit.ui,
+ org.eclipse.emf.ecore.edit,
+ org.eclipse.emf.workspace,
+ org.eclipse.emf.workspace.ui,
+ org.eclipse.emf.transaction.ui,
+ org.eclipse.egf.core.ui,
+ org.eclipse.egf.model.fprod.edit,
+ org.eclipse.egf.model.ftask.edit
+Bundle-ActivationPolicy: lazy

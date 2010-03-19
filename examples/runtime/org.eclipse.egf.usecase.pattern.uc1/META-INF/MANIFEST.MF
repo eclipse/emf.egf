@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.eclipse.egf.usecase.pattern.uc1;singleton:=true
+Bundle-Version: 0.2.3.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: 
+ egf.uc1_1.pattern,
+ org.eclipse.egf.usecase.pattern.uc1.callback,
+ org.eclipse.egf.usecase.pattern.uc1.helper,
+ org.eclipse.egf.usecase.pattern.uc1.query,
+ org.eclipse.egf.usecase.pattern.uc1.reporter
+Require-Bundle: 
+ org.eclipse.egf.model.ftask;visibility:=reexport,
+ org.eclipse.egf.pattern;visibility:=reexport,
+ org.eclipse.egf.pattern.ftask;visibility:=reexport,
+ org.eclipse.emf.query
+Bundle-ActivationPolicy: lazy

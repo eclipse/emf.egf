@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin>
+  <extension point="org.eclipse.ui.popupMenus">
+    <objectContribution id="generateFcoreFileContribution" objectClass="org.eclipse.core.resources.IFile" nameFilter="*.genmodel">
+      <action
+            class="org.eclipse.egf.emf.wrapper.ui.CreateFcoreAction"
+            enablesFor="1"
+            id="generateFcoreFile"
+            label="%_UI_GenerateFcoreFile_label"
+            menubarPath="additions">
+      </action>
+    </objectContribution>
+  </extension>
+</plugin>

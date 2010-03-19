@@ -1,0 +1,7 @@
+<%
+	// Set Object variables
+	_Title = element.getName() + " Package";
+
+	// Set EObject variables
+	_element = element;
+%>

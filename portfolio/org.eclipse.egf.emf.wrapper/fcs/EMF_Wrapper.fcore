@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.1"
+    xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
+    xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
+    xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask">
+  <fcore:FactoryComponent xmi:id="_9LH9AAEkEd-sEofCqqFtwA" description="" name="EMF Wrapper">
+    <contractContainer xmi:id="_0uayAAQ7Ed-C2pVDwEnEWQ">
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_1Cin4AQ7Ed-C2pVDwEnEWQ"
+          name="genModelURI" mandatory="true" invocationContracts="#_BjtG0AElEd-sEofCqqFtwA #_MELb8gElEd-sEofCqqFtwA #_MUtyUgElEd-sEofCqqFtwA #_0Hs_QgElEd-sEofCqqFtwA">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_4_aGEAQ7Ed-C2pVDwEnEWQ"/>
+      </contracts>
+    </contractContainer>
+    <orchestration xmi:type="fprod:ProductionPlan" xmi:id="__u4TMAEkEd-sEofCqqFtwA">
+      <invocations xmi:id="_AbloMAElEd-sEofCqqFtwA" invokedActivity="#_E0utcP-KEd6BleG0RKg98A">
+        <invocationContractContainer xmi:id="_A5-0YAElEd-sEofCqqFtwA">
+          <invocationContracts xmi:id="_BjtG0AElEd-sEofCqqFtwA" factoryComponentContract="#_1Cin4AQ7Ed-C2pVDwEnEWQ"
+              invokedContract="#_GjcSAP-KEd6BleG0RKg98A"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_MELb8AElEd-sEofCqqFtwA" invokedActivity="#_o5wBQADyEd-IF6GN14qe5g">
+        <invocationContractContainer xmi:id="_MELb8QElEd-sEofCqqFtwA">
+          <invocationContracts xmi:id="_MELb8gElEd-sEofCqqFtwA" factoryComponentContract="#_1Cin4AQ7Ed-C2pVDwEnEWQ"
+              invokedContract="#_x4zwsAEjEd-sEofCqqFtwA"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_MUtyUAElEd-sEofCqqFtwA" invokedActivity="#_tWWIYADyEd-IF6GN14qe5g">
+        <invocationContractContainer xmi:id="_MUtyUQElEd-sEofCqqFtwA">
+          <invocationContracts xmi:id="_MUtyUgElEd-sEofCqqFtwA" factoryComponentContract="#_1Cin4AQ7Ed-C2pVDwEnEWQ"
+              invokedContract="#_xzsdcQDyEd-IF6GN14qe5g"/>
+        </invocationContractContainer>
+      </invocations>
+      <invocations xmi:id="_0Hs_QAElEd-sEofCqqFtwA" invokedActivity="#_tv0_YADyEd-IF6GN14qe5g">
+        <invocationContractContainer xmi:id="_0Hs_QQElEd-sEofCqqFtwA">
+          <invocationContracts xmi:id="_0Hs_QgElEd-sEofCqqFtwA" factoryComponentContract="#_1Cin4AQ7Ed-C2pVDwEnEWQ"
+              invokedContract="#_x7JJQQDyEd-IF6GN14qe5g"/>
+        </invocationContractContainer>
+      </invocations>
+    </orchestration>
+  </fcore:FactoryComponent>
+  <ftask:Task xmi:id="_E0utcP-KEd6BleG0RKg98A" name="EMF Model Wrapper" kind="java" implementation="org.eclipse.egf.emf.wrapper.EgfEmfModelTask">
+    <contractContainer xmi:id="_GSdPsP-KEd6BleG0RKg98A">
+      <contracts xmi:id="_GjcSAP-KEd6BleG0RKg98A" name="genModelURI" mandatory="true">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_HNTuYP-KEd6BleG0RKg98A"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_o5wBQADyEd-IF6GN14qe5g" name="EMF Edit Wrapper" kind="java" implementation="org.eclipse.egf.emf.wrapper.EgfEmfEditTask">
+    <contractContainer xmi:id="_xm7WgAEjEd-sEofCqqFtwA">
+      <contracts xmi:id="_x4zwsAEjEd-sEofCqqFtwA" name="genModelURI" mandatory="true">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_z3wwsAEjEd-sEofCqqFtwA"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_tWWIYADyEd-IF6GN14qe5g" name="EMF Editor Wrapper" kind="java" implementation="org.eclipse.egf.emf.wrapper.EgfEmfEditorTask">
+    <contractContainer xmi:id="_xzsdcADyEd-IF6GN14qe5g">
+      <contracts xmi:id="_xzsdcQDyEd-IF6GN14qe5g" name="genModelURI" mandatory="true">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_xzsdcgDyEd-IF6GN14qe5g"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+  <ftask:Task xmi:id="_tv0_YADyEd-IF6GN14qe5g" name="EMF Test Wrapper" kind="java" implementation="org.eclipse.egf.emf.wrapper.EgfEmfTestTask">
+    <contractContainer xmi:id="_x7JJQADyEd-IF6GN14qe5g">
+      <contracts xmi:id="_x7JJQQDyEd-IF6GN14qe5g" name="genModelURI" mandatory="true">
+        <type xmi:type="domain:TypeDomainURI" xmi:id="_x7JJQgDyEd-IF6GN14qe5g"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
+</xmi:XMI>

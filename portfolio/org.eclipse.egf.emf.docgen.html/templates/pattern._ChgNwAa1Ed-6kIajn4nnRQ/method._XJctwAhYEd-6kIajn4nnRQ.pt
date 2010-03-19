@@ -1,0 +1,12 @@
+<% EList<EPackage> packages = ((EPackage) _element).getESubpackages();%>
+
+<% if (packages.size() > 0) { %>
+	<h2>SubPackages</h2>
+	<ul>
+	<% for (EPackage _package : packages) { %>
+		<li>
+			<a href="<%= EmfHtmlDocGen.getHtmlFileName(_package)%>"><%= EmfHtmlDocGen.getName(_package)%></a>
+		</li>
+	<%} // end for%>
+	</ul>
+<% } // end if %>

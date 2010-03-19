@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.eclipse.egf.model/generated"
+    editDirectory="/org.eclipse.egf.model.edit/generated" editorDirectory="/org.eclipse.egf.model.editor/generated"
+    modelPluginID="org.eclipse.egf.model" templateDirectory="/org.eclipse.egf.model/templates"
+    dynamicTemplates="true" modelName="Types" modelPluginClass="org.eclipse.egf.model.EGFModelPlugin"
+    editPluginClass="org.eclipse.egf.model.edit.EGFModelEditPlugin" editorPluginClass="org.eclipse.egf.model.editor.EGFModelEditorPlugin"
+    nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container"
+    codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
+    booleanFlagsField="eFlags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    copyrightFields="false" optimizedHasChildren="true" tableProviders="true" colorProviders="true"
+    fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore">
+  <foreignModel>Types.ecore</foreignModel>
+  <templatePluginVariables>org.eclipse.egf.model</templatePluginVariables>
+  <genPackages prefix="Types" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
+      generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
+      extensibleProviderFactory="true" contentTypeIdentifier="" ecorePackage="Types.ecore#/">
+    <genDataTypes ecoreDataType="Types.ecore#//EGeneratorAdapterFactory"/>
+    <genDataTypes ecoreDataType="Types.ecore#//Set">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//Set/E"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="Types.ecore#//List">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//List/E"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="Types.ecore#//Collection">
+      <genTypeParameters ecoreTypeParameter="Types.ecore#//Collection/E"/>
+    </genDataTypes>
+    <genDataTypes ecoreDataType="Types.ecore#//URI"/>
+    <genClasses image="false" ecoreClass="Types.ecore#//TypeElement">
+      <genFeatures property="Readonly" notify="false" createChild="false" propertyCategory="Identifier"
+          ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/iD"/>
+      <genFeatures createChild="false" propertyCategory="Documentation" ecoreFeature="ecore:EAttribute Types.ecore#//TypeElement/description"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Types.ecore#//Type">
+      <genOperations ecoreOperation="Types.ecore#//Type/getType">
+        <genTypeParameters ecoreTypeParameter="Types.ecore#//Type/getType/T"/>
+      </genOperations>
+      <genOperations ecoreOperation="Types.ecore#//Type/getValue"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Types.ecore#//TypeObject">
+      <genOperations ecoreOperation="Types.ecore#//TypeObject/getType">
+        <genTypeParameters ecoreTypeParameter="Types.ecore#//TypeObject/getType/T"/>
+      </genOperations>
+    </genClasses>
+    <genClasses image="false" ecoreClass="Types.ecore#//TypeAbstractClass">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeAbstractClass/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeCollection" labelFeature="#//types/TypeElement/iD">
+      <genOperations ecoreOperation="Types.ecore#//TypeCollection/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeList" labelFeature="#//types/TypeElement/iD">
+      <genOperations ecoreOperation="Types.ecore#//TypeList/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeSet" labelFeature="#//types/TypeElement/iD">
+      <genOperations ecoreOperation="Types.ecore#//TypeSet/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeGeneratorAdapterFactory" labelFeature="#//types/TypeElement/iD">
+      <genOperations ecoreOperation="Types.ecore#//TypeGeneratorAdapterFactory/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeMap" labelFeature="#//types/TypeElement/iD">
+      <genOperations ecoreOperation="Types.ecore#//TypeMap/getType"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeBigDecimal" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeBigDecimal/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeBigInteger" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeBigInteger/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeBoolean" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeBoolean/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeByte" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeByte/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeCharacter" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeCharacter/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeDate" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeDate/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeDouble" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeDouble/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeFloat" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeFloat/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeInteger" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeInteger/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeLong" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeLong/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeShort" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeShort/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeString" labelFeature="#//types/TypeElement/iD">
+      <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeString/value"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

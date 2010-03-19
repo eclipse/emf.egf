@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+
+<!--
+ 
+   Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
+  
+   Contributors:
+       Thales Corporate Services S.A.S - initial API and implementation
+ 
+ -->
+
+<plugin>
+
+  <!-- ================================================================================= -->
+  <!-- Extension Points Definition                                                       -->
+  <!-- ================================================================================= -->
+
+  <extension-point 
+    id="org.eclipse.egf.model.ftask.task" 
+    name="%TaskExtensionPoint" 
+    schema="schema/org.eclipse.egf.model.ftask.task.exsd"
+  />
+
+  <!-- ================================================================================= -->
+  <!-- Factory Task Model                                                                -->
+  <!-- ================================================================================= --> 
+  
+  <extension 
+    point="org.eclipse.emf.ecore.generated_package"
+  >
+    <package
+      uri="http://www.eclipse.org/egf/1.0.0/ftask"
+      class="org.eclipse.egf.model.ftask.FtaskPackage"
+      genModel="model/Ftask.genmodel"
+    />
+  </extension>  
+  
+  <extension 
+    point="org.eclipse.emf.ecore.extension_parser"
+  >
+    <parser
+      type="ftask"
+      class="org.eclipse.egf.model.ftask.util.FtaskResourceFactoryImpl"
+    />
+  </extension>
+
+</plugin>
