@@ -16,6 +16,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.model.domain.DomainPackage;
+import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.TypeDomainURI;
 import org.eclipse.egf.model.edit.EGFModelEditPlugin;
 import org.eclipse.egf.model.fcore.helper.TypeDomainURIHelper;
@@ -81,16 +82,20 @@ public class TypeDomainURIItemProvider extends TypeObjectItemProvider implements
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
-  protected void addDomainPropertyDescriptor(final Object object) {
+  protected void addDomainPropertyDescriptor(Object object) {
     itemPropertyDescriptors.add(new ItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_TypeDomainURI_domain_feature"), //$NON-NLS-1$
         getString("_UI_PropertyDescriptor_description", "_UI_TypeDomainURI_domain_feature", "_UI_TypeDomainURI_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
         DomainPackage.Literals.TYPE_DOMAIN_URI__DOMAIN, true, false, true, null, getString("_UI_DomainPropertyCategory"), //$NON-NLS-1$
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        return TypeDomainURIHelper.getAvailableDomainURI((TypeDomainURI) object);
+        TypeDomainURI domain = (TypeDomainURI) current;
+        Collection<DomainURI> available = TypeDomainURIHelper.getAvailableDomainURI(domain);
+        available.add(null);
+        available.add(domain.getDomain());
+        return available;
       }
     });
   }

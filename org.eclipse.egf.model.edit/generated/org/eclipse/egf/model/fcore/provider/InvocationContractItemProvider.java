@@ -16,8 +16,10 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.egf.common.helper.ClassHelper;
+import org.eclipse.egf.model.fcore.Contract;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
+import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fcore.helper.InvocationContractHelper;
 import org.eclipse.egf.model.types.TypeBigDecimal;
 import org.eclipse.egf.model.types.TypeBigInteger;
@@ -110,7 +112,11 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        return InvocationContractHelper.getAvailableFactoryComponentContract((InvocationContract) current);
+        InvocationContract contract = (InvocationContract) current;
+        Collection<Contract> available = InvocationContractHelper.getAvailableFactoryComponentContract(contract);
+        available.add(null);
+        available.add(contract.getFactoryComponentContract());
+        return available;
       }
     });
   }
@@ -129,7 +135,11 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        return InvocationContractHelper.getAvailableOrchestrationParameter((InvocationContract) current);
+        InvocationContract contract = (InvocationContract) current;
+        Collection<OrchestrationParameter> available = InvocationContractHelper.getAvailableOrchestrationParameter(contract);
+        available.add(null);
+        available.add(contract.getOrchestrationParameter());
+        return available;
       }
     });
   }
@@ -148,7 +158,11 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        return InvocationContractHelper.getAvailableSourceInvocationContract((InvocationContract) current);
+        InvocationContract contract = (InvocationContract) current;
+        Collection<InvocationContract> available = InvocationContractHelper.getAvailableSourceInvocationContract(contract);
+        available.add(null);
+        available.add(contract.getSourceInvocationContract());
+        return available;
       }
     });
   }
@@ -186,7 +200,11 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
         null) {
       @Override
       public Collection<?> getChoiceOfValues(Object current) {
-        return InvocationContractHelper.getAvailableInvokedContract((InvocationContract) current);
+        InvocationContract contract = (InvocationContract) current;
+        Collection<Contract> available = InvocationContractHelper.getAvailableInvokedContract(contract);
+        available.add(null);
+        available.add(contract.getInvokedContract());
+        return available;
       }
     });
   }

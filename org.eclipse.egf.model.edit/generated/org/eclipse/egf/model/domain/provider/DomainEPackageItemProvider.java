@@ -86,16 +86,14 @@ public class DomainEPackageItemProvider extends DomainItemProvider implements IE
         DomainPackage.Literals.DOMAIN_EPACKAGE__EPACKAGE, true, false, true, null, getString("_UI_DataPropertyCategory"), //$NON-NLS-1$
         null) {
       @Override
-      public Collection<EPackage> getChoiceOfValues(Object innerObject) {
+      public Collection<EPackage> getChoiceOfValues(Object current) {
+        DomainEPackage domainEPackage = (DomainEPackage) current;
         Collection<EPackage> result = new UniqueEList<EPackage>();
         for (Object ePackage : EPackage.Registry.INSTANCE.values()) {
-          if (ePackage instanceof EPackage) {
-            result.add((EPackage) ePackage);
-          }
+          result.add((EPackage) ePackage);
         }
-        if (result.contains(null) == false) {
-          result.add(null);
-        }
+        result.add(null);
+        result.add(domainEPackage.getEPackage());
         return result;
       }
     });

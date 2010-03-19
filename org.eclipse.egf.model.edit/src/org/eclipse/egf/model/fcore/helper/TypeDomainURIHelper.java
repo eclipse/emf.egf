@@ -31,9 +31,7 @@ public class TypeDomainURIHelper {
 
   public static Collection<DomainURI> getAvailableDomainURI(TypeDomainURI typeDomainURI) {
     Collection<DomainURI> result = new UniqueEList<DomainURI>();
-    if (result.contains(null) == false) {
-      result.add(null);
-    }
+    // Resource analysis
     if (typeDomainURI.eResource() == null) {
       return result;
     }

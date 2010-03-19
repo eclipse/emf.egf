@@ -35,10 +35,6 @@ public class InvocationContractHelper {
 
   public static Collection<Contract> getAvailableFactoryComponentContract(InvocationContract invocationContract) {
     Collection<Contract> result = new UniqueEList<Contract>();
-    // add a null element for null selection
-    if (result.contains(null) == false) {
-      result.add(null);
-    }
     // Nothing to retrieve
     if (invocationContract.getFactoryComponent() == null || invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
       return result;
@@ -72,10 +68,6 @@ public class InvocationContractHelper {
 
   public static Collection<OrchestrationParameter> getAvailableOrchestrationParameter(InvocationContract invocationContract) {
     Collection<OrchestrationParameter> result = new UniqueEList<OrchestrationParameter>();
-    // add a null element for null selection
-    if (result.contains(null) == false) {
-      result.add(null);
-    }
     // Nothing to retrieve
     if (invocationContract.getFactoryComponent() == null || invocationContract.getFactoryComponent().getOrchestration() == null || invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
       return result;
@@ -100,10 +92,6 @@ public class InvocationContractHelper {
 
   public static Collection<Contract> getAvailableInvokedContract(InvocationContract invocationContract) {
     Collection<Contract> result = new UniqueEList<Contract>();
-    // add a null element for null selection
-    if (result.contains(null) == false) {
-      result.add(null);
-    }
     // Nothing to retrieve
     if (invocationContract.getInvocation() == null || invocationContract.getInvocation().getInvokedActivity() == null) {
       return result;
@@ -139,10 +127,6 @@ public class InvocationContractHelper {
 
   public static Collection<InvocationContract> getAvailableSourceInvocationContract(InvocationContract invocationContract) {
     Collection<InvocationContract> result = new UniqueEList<InvocationContract>();
-    // add a null element for null selection
-    if (result.contains(null) == false) {
-      result.add(null);
-    }
     // Nothing to retrieve
     if (invocationContract.getInvocation() == null || invocationContract.getFactoryComponent() == null || invocationContract.getFactoryComponent().getOrchestration() == null) {
       return result;
