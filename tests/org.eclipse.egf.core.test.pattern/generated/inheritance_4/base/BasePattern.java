@@ -44,7 +44,7 @@ IQuery.ParameterDescription paramDesc = null;
     orchestration(ctx);
     if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-    ctx.clearLoopBuffers();}
+    ctx.clearBuffer();}
     
     stringBuffer.append(TEXT_3);
     stringBuffer.append(TEXT_4);
@@ -52,7 +52,7 @@ IQuery.ParameterDescription paramDesc = null;
   }
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
-int index = 0;
+int index = 0, executionIndex = ictx.getExecutionBuffer().length();
 
     
     

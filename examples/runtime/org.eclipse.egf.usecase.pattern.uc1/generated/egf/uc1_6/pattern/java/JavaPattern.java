@@ -32,12 +32,12 @@ orchestration((PatternContext)argument);
 }
 if (ctx.useReporter()){
     ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);
-    ctx.clearLoopBuffers();}
+    ctx.clearBuffer();}
 }
 
 public String orchestration(PatternContext ctx) throws Exception {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
-int index = 0;
+int index = 0, executionIndex = ictx.getExecutionBuffer().length();
 method_body(ictx.getBuffer(), ictx);
 
 String loop = ictx.getBuffer().toString();
@@ -46,7 +46,7 @@ if (ictx.useReporter()){
 Map<String, Object> parameterValues = new HashMap<String, Object>();
 parameterValues.put("aClass", this.aClass);
     ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-ictx.clearLoopBuffers();}
+ictx.clearBuffer();}
 return loop;
 }
 
@@ -64,7 +64,7 @@ protected void method_body(final StringBuffer out, final PatternContext ctx)thro
 private org.eclipse.emf.ecore.EClass aClass;
 
 public void set_aClass(org.eclipse.emf.ecore.EClass aClass) {
-	this.aClass = aClass;
+    this.aClass = aClass;
 }
 
 }
