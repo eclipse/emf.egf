@@ -14,6 +14,7 @@ package org.eclipse.egf.common.ui.helper;
 import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
@@ -27,7 +28,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.domain.IEditingDomainProvider;
 import org.eclipse.ui.IEditorDescriptor;
@@ -93,33 +93,31 @@ public class EditorHelper {
     }
   }
 
-  /**
-   * Opens the default editor for the resource that contains the specified
-   * EObject.
-   */
-  public static IEditorPart openEditor(EObject eObject) throws PartInitException {
-    if (eObject == null) {
-      return null;
+  public static void openEditorsAndSelect(Map<Resource, List<EObject>> resources) {
+    // is there something to select
+    if (resources.isEmpty()) {
+      return;
     }
-    Resource resource = eObject.eResource();
-    if (resource == null) {
-      return null;
-    }
-    // Try to use a URIConverter to normalize such URI
-    // if we have a platform:/plugin/ we need a platform:/resource/ if any
-    // to have a chance to use a FileEditorInput rather than an URIEditorInput
-    URI uri = EcoreUtil.getURI(eObject);
-    if (uri != null && resource.getResourceSet() != null) {
-      URIConverter converter = resource.getResourceSet().getURIConverter();
-      if (converter != null) {
-        uri = converter.normalize(uri);
+    for (Resource resource : resources.keySet()) {
+      try {
+        // Try to use a URIConverter to normalize such URI
+        // if we have a platform:/plugin/ we need a platform:/resource/ if any
+        // to have a chance to use a FileEditorInput rather than an URIEditorInput
+        URI uri = resource.getURI();
+        if (uri != null && resource.getResourceSet() != null) {
+          URIConverter converter = resource.getResourceSet().getURIConverter();
+          if (converter != null) {
+            uri = converter.normalize(uri);
+          }
+        }
+        IEditorPart editorPart = openEditor(uri);
+        if (editorPart != null) {
+          setSelectionToViewer(editorPart, resources.get(resource));
+        }
+      } catch (Throwable t) {
+        ThrowableHandler.handleThrowable(EGFCommonUIPlugin.getDefault().getPluginID(), t);
       }
     }
-    IEditorPart part = openEditor(uri);
-    if (part != null && part instanceof IEditingDomainProvider) {
-      EditorHelper.setSelectionToViewer(part, uri);
-    }
-    return part;
   }
 
   public static String computeEditorId(String fileName) {
