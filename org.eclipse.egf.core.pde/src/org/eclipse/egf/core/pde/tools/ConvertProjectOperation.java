@@ -8,7 +8,8 @@
  * Contributors:
  * IBM Corporation - initial API and implementation
  * Code 9 Corporation - ongoing enhancements
- * Les Jones <lesojones@gamil.com> - bug 205361
+ * Les Jones <lesojones@gmaill.com> - bug 205361
+ * Xavier Maysonnave - ongoing enhancements
  */
 package org.eclipse.egf.core.pde.tools;
 
@@ -497,6 +498,10 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     if (_project.getFile(EGFCommonConstants.BUNDLE_FILENAME_DESCRIPTOR).exists()) {
       addToken(binIncludesEntry, EGFCommonConstants.BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR);
     }
+    // About.html in bin includes (eclipse EPL open source project convention)
+    if (_project.getFile(EGFCommonConstants.ABOUT_HTML_DESCRIPTOR).exists()) {
+      addToken(binIncludesEntry, EGFCommonConstants.ABOUT_HTML_DESCRIPTOR);
+    }
     for (String directory : _directories) {
       if (directory.startsWith(EGFCommonConstants.DOT_STRING) == false && _outputFolders.contains(directory) == false) {
         addToken(binIncludesEntry, directory);
@@ -517,7 +522,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     if (srcIncludesEntry == null) {
       srcIncludesEntry = model.getFactory().createEntry(IBuildEntry.SRC_INCLUDES);
     }
-    // About.html
+    // About.html in src includes (eclipse EPL open source project convention)
     if (_project.getFile(EGFCommonConstants.ABOUT_HTML_DESCRIPTOR).exists()) {
       addToken(srcIncludesEntry, EGFCommonConstants.ABOUT_HTML_DESCRIPTOR);
     }
