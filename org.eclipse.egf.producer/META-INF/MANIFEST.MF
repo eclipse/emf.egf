@@ -16,5 +16,6 @@ Export-Package:
  org.eclipse.egf.producer.context, 
  org.eclipse.egf.producer.internal.context;x-friends:="org.eclipse.egf.fprod.producer,org.eclipse.egf.ftask.producer", 
  org.eclipse.egf.producer.internal.manager;x-friends:="org.eclipse.egf.fprod.producer,org.eclipse.egf.ftask.producer",
- org.eclipse.egf.producer.manager
+ org.eclipse.egf.producer.manager,
+ org.eclipse.egf.producer.l10n
 Bundle-ActivationPolicy: lazy

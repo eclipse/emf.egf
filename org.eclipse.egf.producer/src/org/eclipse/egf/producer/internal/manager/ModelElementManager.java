@@ -48,17 +48,17 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
       NamedModelElement namedElement = (NamedModelElement) element;
       if (namedElement.getName() != null && namedElement.getName().trim().length() != 0) {
         if (runtime) {
-          message = NLS.bind(ProducerMessages._UI_RuntimeCanInvoke_Diagnosis_message, namedElement.getName());
+          message = NLS.bind(ProducerMessages.RuntimeCanInvoke_Diagnosis_message, namedElement.getName());
         } else {
-          message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, namedElement.getName());
+          message = NLS.bind(ProducerMessages.CanInvoke_Diagnosis_message, namedElement.getName());
         }
       }
     }
     if (message == null) {
       if (runtime) {
-        message = NLS.bind(ProducerMessages._UI_RuntimeCanInvoke_Diagnosis_message, element.eClass().getName());
+        message = NLS.bind(ProducerMessages.RuntimeCanInvoke_Diagnosis_message, element.eClass().getName());
       } else {
-        message = NLS.bind(ProducerMessages._UI_CanInvoke_Diagnosis_message, element.eClass().getName());
+        message = NLS.bind(ProducerMessages.CanInvoke_Diagnosis_message, element.eClass().getName());
       }
     }
     return new BasicDiagnostic(EGFProducerPlugin.getDefault().getPluginID(), 0, message, new Object[] { element });

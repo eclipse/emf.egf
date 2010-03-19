@@ -37,6 +37,7 @@ import org.eclipse.egf.core.ui.diagnostic.EGFValidator;
 import org.eclipse.egf.model.editor.dialogs.ActivitySelectionDialog;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.egf.producer.EGFProducerPlugin;
+import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
 import org.eclipse.egf.producer.ui.EGFProducerUIPlugin;
@@ -184,9 +185,9 @@ public class RunActivityAction implements IObjectActionDelegate {
             try {
               if (EGFProducerUIPlugin.getDefault().isDebugging()) {
                 if (ticks[0] == 1) {
-                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerUIMessages.Activity_Invocation, EMFHelper.getText(_activity)));
+                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocation, EMFHelper.getText(_activity)));
                 } else {
-                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerUIMessages.Activity_Invocations, EMFHelper.getText(_activity), ticks[0]));
+                  EGFProducerUIPlugin.getDefault().logInfo(NLS.bind(ProducerMessages.Activity_Invocations, EMFHelper.getText(_activity), ticks[0]));
                 }
               }
               final Diagnostic diagnostic = activityManager[0].invoke(subMonitor.newChild(1000 * ticks[0], SubMonitor.SUPPRESS_NONE));
