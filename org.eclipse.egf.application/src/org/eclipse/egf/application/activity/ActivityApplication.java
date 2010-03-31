@@ -10,6 +10,8 @@
  */
 package org.eclipse.egf.application.activity;
 
+import java.util.List;
+
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRunnable;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -23,6 +25,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.fcore.Activity;
 import org.eclipse.emf.codegen.util.CodeGenUtil;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.equinox.app.IApplication;
@@ -36,38 +39,54 @@ public class ActivityApplication implements IApplication {
    */
   public Object run(Object object) throws Exception {
     // Usual tests
-    if (object == null || object instanceof String[] == false || ((String[]) object).length == 0 || ((String[]) object)[0] == null) {
+    if (object == null || object instanceof String[] == false || ((String[]) object).length < 2 || IApplicationConfigurationConstants.ACTIVITIES_PROGRAM_ARGUMENTS.equals(((String[]) object)[0]) == false) {
       System.err.println(ApplicationMessages.ActivityApplication_Arguments_Usage);
       return IApplicationConfigurationConstants.EXIT_ERROR;
     }
-    String activity = ((String[]) object)[0];
     // Retrieve our Editing Domain
     TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
-    URI uri = null;
-    try {
-      // Build a uri
-      uri = URI.createURI(activity);
-    } catch (Throwable t) {
-      throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_Invalid_URI_Argument, activity), t));
+    // Build a list of activities if any
+    List<Activity> activities = new UniqueEList<Activity>();
+    for (int i = 1; i < ((String[]) object).length; i++) {
+      String activity = ((String[]) object)[i];
+      // Ignore null parameters
+      if (activity == null) {
+        continue;
+      }
+      URI uri = null;
+      try {
+        // Build a uri
+        uri = URI.createURI(activity);
+      } catch (Throwable t) {
+        EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_Invalid_URI_Argument, i, activity), t)));
+        continue;
+      }
+      EObject eObject = null;
+      // Load it in our Editing Domain
+      try {
+        eObject = editingDomain.getResourceSet().getEObject(uri, true);
+      } catch (Throwable t) {
+        EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_EObject_Loading_Error, i, uri.toString()), t)));
+        continue;
+      }
+      // Verify if we face an Activity
+      if (eObject == null || eObject instanceof Activity == false) {
+        EGFApplicationPlugin.getDefault().logError(new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_Invalid_Activity_Argument, i, uri.toString()), null)));
+        continue;
+      }
+      // to be runned activities
+      activities.add((Activity) eObject);
     }
-    EObject eObject = null;
-    // Load it in our Editing Domain
-    try {
-      eObject = editingDomain.getResourceSet().getEObject(uri, true);
-    } catch (Throwable t) {
-      throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_EObject_Loading_Error, uri.toString()), t));
+    if (activities.isEmpty()) {
+      return IApplication.EXIT_OK;
     }
-    // Verify if we face an Activity
-    if (eObject instanceof Activity == false) {
-      throw new CoreException(EGFApplicationPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ApplicationMessages.ActivityApplication_Invalid_Activity_Argument, uri.toString()), null));
-    }
-    return runHelper((Activity) eObject);
+    return runHelper(activities);
   }
 
   public Object start(IApplicationContext context) throws Exception {
     String[] args = (String[]) context.getArguments().get(IApplicationContext.APPLICATION_ARGS);
     // Usual tests
-    if (args == null || args.length == 0 || args[0] == null) {
+    if (args == null || args.length < 2 || IApplicationConfigurationConstants.ACTIVITIES_PROGRAM_ARGUMENTS.equals(args[0]) == false) {
       System.err.println(ApplicationMessages.ActivityApplication_Arguments_Usage);
       return IApplicationConfigurationConstants.EXIT_ERROR;
     }
@@ -78,13 +97,13 @@ public class ActivityApplication implements IApplication {
     // Subclasses may override
   }
 
-  public static Object runHelper(final Activity activity) throws Exception {
+  public static Object runHelper(final List<Activity> activities) throws Exception {
     try {
       final IWorkspace workspace = ResourcesPlugin.getWorkspace();
       IWorkspaceRunnable runnable = new IWorkspaceRunnable() {
         public void run(IProgressMonitor monitor) throws CoreException {
           try {
-            ActivityRunner runner = new ActivityRunner(activity);
+            ActivityRunner runner = new ActivityRunner(activities);
             runner.run(monitor);
           } finally {
             monitor.done();
