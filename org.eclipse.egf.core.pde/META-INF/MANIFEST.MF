@@ -11,6 +11,7 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
  org.eclipse.egf.common.ui;visibility:=reexport,
  org.eclipse.egf.core;visibility:=reexport,
+ org.eclipse.equinox.frameworkadmin;visibility:=reexport,
  org.eclipse.jface.text,
  org.eclipse.pde.ui,
  org.eclipse.search,
