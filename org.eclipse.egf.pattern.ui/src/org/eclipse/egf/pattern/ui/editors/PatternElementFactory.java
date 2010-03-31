@@ -29,19 +29,21 @@ import org.eclipse.ui.IMemento;
  */
 public class PatternElementFactory implements IElementFactory {
 
-  public IAdaptable createElement(IMemento memento) {
-    final String patternId = memento.getString(PatternEditorInput.PATTERN_ID);
-    final String patternMethodId = memento.getString(PatternMethodEditorInput.PATTERN_METHOD_ID);
-    final String resourceURI = memento.getString(PatternEditorInput.RESSOURCE_URI);
-    URI uri = URI.createURI(resourceURI);
-    TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
+    public IAdaptable createElement(IMemento memento) {
+        final String patternId = memento.getString(PatternEditorInput.PATTERN_ID);
+        final String patternMethodId = memento.getString(PatternMethodEditorInput.PATTERN_METHOD_ID);
+        final String resourceURI = memento.getString(PatternEditorInput.RESSOURCE_URI);
+        if (patternId == null && patternMethodId == null && resourceURI == null)
+            return null;
+        URI uri = URI.createURI(resourceURI);
+        TransactionalEditingDomain editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
 
-    Resource res = editingDomain.getResourceSet().getResource(uri, true);
-    if (patternId != null)
-      return new PatternEditorInput(res, patternId);
-    if (patternMethodId != null)
-      return new PatternMethodEditorInput(res, patternMethodId);
-    throw new IllegalStateException();
-  }
+        Resource res = editingDomain.getResourceSet().getResource(uri, true);
+        if (patternId != null)
+            return new PatternEditorInput(res, patternId);
+        if (patternMethodId != null)
+            return new PatternMethodEditorInput(res, patternMethodId);
+        throw new IllegalStateException();
+    }
 
 }
