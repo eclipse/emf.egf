@@ -1540,8 +1540,7 @@ public class ImplementationPage extends PatternEditorPage {
             EList<Call> orchestration = pattern.getOrchestration();
             for (Call call : orchestration) {
                 if (call instanceof PatternInjectedCall) {
-                    PatternVariable currentVariable = ((PatternInjectedCall) call).getContext();
-                    if (deleteItem.equals(currentVariable)) {
+                    if (deleteItem.equals(((PatternInjectedCall) call).getContext())) {
                         return true;
                     }
                 }

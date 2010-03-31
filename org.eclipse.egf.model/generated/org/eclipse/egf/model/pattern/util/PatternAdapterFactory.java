@@ -238,6 +238,11 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
         }
 
         @Override
+        public Adapter caseInjectedContext(InjectedContext object) {
+            return createInjectedContextAdapter();
+        }
+
+        @Override
         public Adapter caseModelElement(ModelElement object) {
             return createModelElementAdapter();
         }
@@ -697,6 +702,20 @@ public class PatternAdapterFactory extends AdapterFactoryImpl {
      * @generated
      */
     public Adapter createTypePatternListAdapter() {
+        return null;
+    }
+
+    /**
+     * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.pattern.InjectedContext <em>Injected Context</em>}'.
+     * <!-- begin-user-doc -->
+     * This default implementation returns null so that we can easily ignore cases;
+     * it's useful to ignore a case when inheritance will catch all the cases anyway.
+     * <!-- end-user-doc -->
+     * @return the new adapter.
+     * @see org.eclipse.egf.model.pattern.InjectedContext
+     * @generated
+     */
+    public Adapter createInjectedContextAdapter() {
         return null;
     }
 

@@ -22,13 +22,13 @@ import java.util.Locale;
 import java.util.Set;
 
 import org.eclipse.egf.model.pattern.Call;
+import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.engine.PatternHelper;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.PatternUIHelper;
@@ -37,7 +37,6 @@ import org.eclipse.egf.pattern.ui.editors.providers.CommonListContentProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.MethodLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.providers.PatternSelectionLabelProvider;
 import org.eclipse.egf.pattern.ui.editors.wizards.OrchestrationWizard;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
@@ -251,7 +250,7 @@ public class ChooseCallPage extends WizardPage {
             } else if (selectKind == CallTypeEnum.PATTERNINJECTED_CALL && eidtItem instanceof PatternInjectedCall) {
                 PatternInjectedCall call = (PatternInjectedCall) eidtItem;
                 Pattern called = call.getCalled();
-                PatternVariable context = call.getContext();
+                InjectedContext context = call.getContext();
                 setSelectValue(called, context);
             }
             setParameterMatchingCall(eidtItem);
@@ -354,7 +353,7 @@ public class ChooseCallPage extends WizardPage {
 
         if (kind == CallTypeEnum.PATTERNINJECTED_CALL) {
             if (kind != oldKind) {
-                updateTableInput(getPatterns(), getVariables(pattern), true, true);
+                updateTableInput(getPatterns(), getContextForInjection(), true, true);
             }
             title.setText(Messages.ChooseCallPage_patternCall_title);
         }
@@ -463,9 +462,11 @@ public class ChooseCallPage extends WizardPage {
         return parentMethods;
     }
 
-    private List<PatternVariable> getVariables(Pattern pattern) {
-        EList<PatternVariable> allVariables = pattern.getAllVariables();
-        return allVariables;
+    private List<InjectedContext> getContextForInjection() {
+        List<InjectedContext> result = new ArrayList<InjectedContext>();
+        result.addAll(pattern.getAllVariables());
+        result.addAll(pattern.getAllParameters());
+        return result;
     }
 
     private void checkListAreaExist(String name) {
@@ -544,9 +545,9 @@ public class ChooseCallPage extends WizardPage {
                 // Get the select PatternVariable.
                 int selectChildTableIndex = childTableViewer.getTable().getSelectionIndex();
                 Object selectChildItem = childTableViewer.getElementAt(selectChildTableIndex);
-                if (selectChildItem instanceof PatternVariable) {
-                    PatternVariable patternVariable = (PatternVariable) selectChildItem;
-                    patternInjectedCall.setContext(patternVariable);
+                if (selectChildItem instanceof InjectedContext) {
+                    InjectedContext ctx = (InjectedContext) selectChildItem;
+                    patternInjectedCall.setContext(ctx);
                 }
                 selectCall = patternInjectedCall;
                 return;

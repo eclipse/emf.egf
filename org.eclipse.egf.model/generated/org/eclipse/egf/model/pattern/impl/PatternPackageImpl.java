@@ -20,6 +20,7 @@ import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.BasicQuery;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.CustomQuery;
+import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
@@ -224,6 +225,13 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
      * @generated
      */
     private EClass typePatternListEClass = null;
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    private EClass injectedContextEClass = null;
 
     /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -792,6 +800,15 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
     }
 
     /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EClass getInjectedContext() {
+        return injectedContextEClass;
+    }
+
+    /**
      * <!-- begin-user-doc --> <!-- end-user-doc -->
      * @generated
      */
@@ -927,6 +944,8 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         typePatternListEClass = createEClass(TYPE_PATTERN_LIST);
         createEReference(typePatternListEClass, TYPE_PATTERN_LIST__ELEMENTS);
 
+        injectedContextEClass = createEClass(INJECTED_CONTEXT);
+
         // Create data types
         patternContextEDataType = createEDataType(PATTERN_CONTEXT);
         patternExceptionEDataType = createEDataType(PATTERN_EXCEPTION);
@@ -968,6 +987,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         patternEClass.getESuperTypes().add(this.getPatternElement());
         patternMethodEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
         patternParameterEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
+        patternParameterEClass.getESuperTypes().add(this.getInjectedContext());
         patternLibraryEClass.getESuperTypes().add(this.getPatternElement());
         patternElementEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
         patternViewpointEClass.getESuperTypes().add(theFcorePackage.getViewpoint());
@@ -977,6 +997,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         callEClass.getESuperTypes().add(theFcorePackage.getModelElement());
         methodCallEClass.getESuperTypes().add(this.getCall());
         patternVariableEClass.getESuperTypes().add(theFcorePackage.getNamedModelElement());
+        patternVariableEClass.getESuperTypes().add(this.getInjectedContext());
         abstractPatternCallEClass.getESuperTypes().add(this.getCall());
         patternInjectedCallEClass.getESuperTypes().add(this.getAbstractPatternCall());
         queryEClass.getESuperTypes().add(theFcorePackage.getModelElement());
@@ -1055,7 +1076,7 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         initEReference(getAbstractPatternCall_Called(), this.getPattern(), null, "called", null, 1, 1, AbstractPatternCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(patternInjectedCallEClass, PatternInjectedCall.class, "PatternInjectedCall", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-        initEReference(getPatternInjectedCall_Context(), this.getPatternVariable(), null, "context", null, 1, 1, PatternInjectedCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+        initEReference(getPatternInjectedCall_Context(), this.getInjectedContext(), null, "context", null, 1, 1, PatternInjectedCall.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 
         initEClass(queryEClass, Query.class, "Query", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
         initEReference(getQuery_Parameter(), this.getPatternParameter(), this.getPatternParameter_Query(), "parameter", null, 1, 1, Query.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
@@ -1110,6 +1131,14 @@ public class PatternPackageImpl extends EPackageImpl implements PatternPackage {
         g2 = createEGenericType();
         g1.getETypeArguments().add(g2);
         initEOperation(op, g1);
+
+        initEClass(injectedContextEClass, InjectedContext.class, "InjectedContext", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+
+        addEOperation(injectedContextEClass, theEcorePackage.getEString(), "getType", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        addEOperation(injectedContextEClass, ecorePackage.getEString(), "getName", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
+
+        addEOperation(injectedContextEClass, this.getPattern(), "getPattern", 1, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 
         // Initialize data types
         initEDataType(patternContextEDataType, PatternContext.class, "PatternContext", IS_SERIALIZABLE, !IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$

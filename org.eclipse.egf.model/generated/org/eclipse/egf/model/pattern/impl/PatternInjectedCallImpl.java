@@ -12,6 +12,7 @@
  */
 package org.eclipse.egf.model.pattern.impl;
 
+import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternVariable;
@@ -41,7 +42,7 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
      * @generated
      * @ordered
      */
-    protected PatternVariable context;
+    protected InjectedContext context;
 
     /**
      * <!-- begin-user-doc -->
@@ -67,7 +68,7 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
      * <!-- end-user-doc -->
      * @generated
      */
-    public PatternVariable getContext() {
+    public InjectedContext getContext() {
         return context;
     }
 
@@ -76,8 +77,8 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
      * <!-- end-user-doc -->
      * @generated
      */
-    public void setContext(PatternVariable newContext) {
-        PatternVariable oldContext = context;
+    public void setContext(InjectedContext newContext) {
+        InjectedContext oldContext = context;
         context = newContext;
         if (eNotificationRequired())
             eNotify(new ENotificationImpl(this, Notification.SET, PatternPackage.PATTERN_INJECTED_CALL__CONTEXT, oldContext, context));
@@ -106,7 +107,7 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
     public void eSet(int featureID, Object newValue) {
         switch (featureID) {
         case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
-            setContext((PatternVariable) newValue);
+            setContext((InjectedContext) newValue);
             return;
         }
         super.eSet(featureID, newValue);
@@ -121,7 +122,7 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
     public void eUnset(int featureID) {
         switch (featureID) {
         case PatternPackage.PATTERN_INJECTED_CALL__CONTEXT:
-            setContext((PatternVariable) null);
+            setContext((InjectedContext) null);
             return;
         }
         super.eUnset(featureID);

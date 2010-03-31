@@ -16,12 +16,12 @@
 
 package org.eclipse.egf.pattern.ui.editors.providers;
 
+import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.model.pattern.SuperCall;
 import org.eclipse.egf.pattern.ui.ImageShop;
 import org.eclipse.egf.pattern.ui.Messages;
@@ -60,8 +60,8 @@ public class OrchestrationTableLabelProvider extends LabelProvider implements IT
         } else if (element instanceof PatternInjectedCall) {
             PatternInjectedCall patternInjectedCall = (PatternInjectedCall) element;
             Pattern pattern = patternInjectedCall.getCalled();
-            PatternVariable patternVariable = patternInjectedCall.getContext();
-            return (pattern == null ? "" : pattern.getName() + " -> " + patternVariable.getName()) + Messages.OrchestrationTableLabelProvider_PatternInjectedCall; //$NON-NLS-1$
+            InjectedContext injectCtx = patternInjectedCall.getContext();
+            return (pattern == null ? "" : pattern.getName() + " -> " + injectCtx.getName()) + Messages.OrchestrationTableLabelProvider_PatternInjectedCall; //$NON-NLS-1$
         } else if (element instanceof SuperCall) {
             return Messages.OrchestrationTableLabelProvider_SuperPatternCall; //$NON-NLS-1$
         }

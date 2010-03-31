@@ -150,6 +150,8 @@ public class PatternSwitch<T> {
             if (result == null)
                 result = caseNamedModelElement(patternParameter);
             if (result == null)
+                result = caseInjectedContext(patternParameter);
+            if (result == null)
                 result = caseModelElement(patternParameter);
             if (result == null)
                 result = defaultCase(theEObject);
@@ -258,6 +260,8 @@ public class PatternSwitch<T> {
             T result = casePatternVariable(patternVariable);
             if (result == null)
                 result = caseNamedModelElement(patternVariable);
+            if (result == null)
+                result = caseInjectedContext(patternVariable);
             if (result == null)
                 result = caseModelElement(patternVariable);
             if (result == null)
@@ -403,6 +407,13 @@ public class PatternSwitch<T> {
                 result = caseType(typePatternList);
             if (result == null)
                 result = caseTypeElement(typePatternList);
+            if (result == null)
+                result = defaultCase(theEObject);
+            return result;
+        }
+        case PatternPackage.INJECTED_CONTEXT: {
+            InjectedContext injectedContext = (InjectedContext) theEObject;
+            T result = caseInjectedContext(injectedContext);
             if (result == null)
                 result = defaultCase(theEObject);
             return result;
@@ -799,6 +810,21 @@ public class PatternSwitch<T> {
      * @generated
      */
     public T caseTypePatternList(TypePatternList object) {
+        return null;
+    }
+
+    /**
+     * Returns the result of interpreting the object as an instance of '<em>Injected Context</em>'.
+     * <!-- begin-user-doc -->
+     * This implementation returns null;
+     * returning a non-null result will terminate the switch.
+     * <!-- end-user-doc -->
+     * @param object the target of the switch.
+     * @return the result of interpreting the object as an instance of '<em>Injected Context</em>'.
+     * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+     * @generated
+     */
+    public T caseInjectedContext(InjectedContext object) {
         return null;
     }
 

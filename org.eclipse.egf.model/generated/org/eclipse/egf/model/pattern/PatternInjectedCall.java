@@ -38,12 +38,12 @@ public interface PatternInjectedCall extends AbstractPatternCall {
      * </p>
      * <!-- end-user-doc -->
      * @return the value of the '<em>Context</em>' reference.
-     * @see #setContext(PatternVariable)
+     * @see #setContext(InjectedContext)
      * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternInjectedCall_Context()
      * @model resolveProxies="false" required="true"
      * @generated
      */
-    PatternVariable getContext();
+    InjectedContext getContext();
 
     /**
      * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternInjectedCall#getContext <em>Context</em>}' reference.
@@ -53,6 +53,6 @@ public interface PatternInjectedCall extends AbstractPatternCall {
      * @see #getContext()
      * @generated
      */
-    void setContext(PatternVariable value);
+    void setContext(InjectedContext value);
 
 } // PatternInjectedCall

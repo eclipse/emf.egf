@@ -227,6 +227,8 @@ public class PatternValidator extends EObjectValidator {
             return validateTypePatternDomainVisitor((TypePatternDomainVisitor) value, diagnostics, context);
         case PatternPackage.TYPE_PATTERN_LIST:
             return validateTypePatternList((TypePatternList) value, diagnostics, context);
+        case PatternPackage.INJECTED_CONTEXT:
+            return validateInjectedContext((InjectedContext) value, diagnostics, context);
         case PatternPackage.PATTERN_CONTEXT:
             return validatePatternContext((PatternContext) value, diagnostics, context);
         case PatternPackage.PATTERN_EXCEPTION:
@@ -741,6 +743,15 @@ public class PatternValidator extends EObjectValidator {
      */
     public boolean validateTypePatternList(TypePatternList typePatternList, DiagnosticChain diagnostics, Map<Object, Object> context) {
         return validate_EveryDefaultConstraint(typePatternList, diagnostics, context);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public boolean validateInjectedContext(InjectedContext injectedContext, DiagnosticChain diagnostics, Map<Object, Object> context) {
+        return validate_EveryDefaultConstraint(injectedContext, diagnostics, context);
     }
 
     /**

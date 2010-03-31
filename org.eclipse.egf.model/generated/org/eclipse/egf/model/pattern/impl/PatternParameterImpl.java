@@ -13,6 +13,7 @@
 package org.eclipse.egf.model.pattern.impl;
 
 import org.eclipse.egf.model.fcore.impl.NamedModelElementImpl;
+import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
@@ -29,18 +30,22 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl#getQuery <em>Query</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl#getType
+ * <em>Type</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl#getQuery
+ * <em>Query</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class PatternParameterImpl extends NamedModelElementImpl implements PatternParameter {
     /**
-     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * A set of bit flags representing the values of boolean attributes and
+     * whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      * @ordered
      */
@@ -50,6 +55,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
      * The default value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getType()
      * @generated
      * @ordered
@@ -60,6 +66,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
      * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getType()
      * @generated
      * @ordered
@@ -67,9 +74,11 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     protected String type = TYPE_EDEFAULT;
 
     /**
-     * The cached value of the '{@link #getQuery() <em>Query</em>}' containment reference.
+     * The cached value of the '{@link #getQuery() <em>Query</em>}' containment
+     * reference.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getQuery()
      * @generated
      * @ordered
@@ -79,6 +88,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected PatternParameterImpl() {
@@ -88,6 +98,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -98,6 +109,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public String getType() {
@@ -107,6 +119,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setType(String newType) {
@@ -119,6 +132,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public Query getQuery() {
@@ -128,6 +142,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public NotificationChain basicSetQuery(Query newQuery, NotificationChain msgs) {
@@ -146,6 +161,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setQuery(Query newQuery) {
@@ -165,6 +181,17 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    public Pattern getPattern() {
+        return (Pattern) eContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -181,6 +208,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -195,6 +223,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -211,6 +240,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -229,6 +259,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -247,6 +278,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -263,6 +295,7 @@ public class PatternParameterImpl extends NamedModelElementImpl implements Patte
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override

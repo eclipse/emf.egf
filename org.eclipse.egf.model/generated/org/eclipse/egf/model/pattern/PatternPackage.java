@@ -1544,6 +1544,25 @@ public interface PatternPackage extends EPackage {
     int TYPE_PATTERN_LIST_FEATURE_COUNT = TypesPackage.TYPE_FEATURE_COUNT + 1;
 
     /**
+     * The meta object id for the '{@link org.eclipse.egf.model.pattern.InjectedContext <em>Injected Context</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.eclipse.egf.model.pattern.InjectedContext
+     * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getInjectedContext()
+     * @generated
+     */
+    int INJECTED_CONTEXT = 26;
+
+    /**
+     * The number of structural features of the '<em>Injected Context</em>' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    int INJECTED_CONTEXT_FEATURE_COUNT = 0;
+
+    /**
      * The meta object id for the '<em>Context</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -1551,7 +1570,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
      */
-    int PATTERN_CONTEXT = 26;
+    int PATTERN_CONTEXT = 27;
 
     /**
      * The meta object id for the '<em>Exception</em>' data type.
@@ -1561,7 +1580,7 @@ public interface PatternPackage extends EPackage {
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated
      */
-    int PATTERN_EXCEPTION = 27;
+    int PATTERN_EXCEPTION = 28;
 
     /**
      * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
@@ -2181,6 +2200,16 @@ public interface PatternPackage extends EPackage {
      * @generated
      */
     EReference getTypePatternList_Elements();
+
+    /**
+     * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.InjectedContext <em>Injected Context</em>}'.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @return the meta object for class '<em>Injected Context</em>'.
+     * @see org.eclipse.egf.model.pattern.InjectedContext
+     * @generated
+     */
+    EClass getInjectedContext();
 
     /**
      * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
@@ -2808,6 +2837,16 @@ public interface PatternPackage extends EPackage {
          * @generated
          */
         EReference TYPE_PATTERN_LIST__ELEMENTS = eINSTANCE.getTypePatternList_Elements();
+
+        /**
+         * The meta object literal for the '{@link org.eclipse.egf.model.pattern.InjectedContext <em>Injected Context</em>}' class.
+         * <!-- begin-user-doc -->
+         * <!-- end-user-doc -->
+         * @see org.eclipse.egf.model.pattern.InjectedContext
+         * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getInjectedContext()
+         * @generated
+         */
+        EClass INJECTED_CONTEXT = eINSTANCE.getInjectedContext();
 
         /**
          * The meta object literal for the '<em><b>Value</b></em>' reference feature.

@@ -30,7 +30,7 @@ import org.eclipse.egf.model.fcore.NamedModelElement;
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryName'"
  * @generated
  */
-public interface PatternVariable extends NamedModelElement {
+public interface PatternVariable extends NamedModelElement, InjectedContext {
 
     /**
      * Returns the value of the '<em><b>Type</b></em>' attribute.

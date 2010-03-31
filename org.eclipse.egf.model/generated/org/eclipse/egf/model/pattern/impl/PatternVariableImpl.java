@@ -13,6 +13,7 @@
 package org.eclipse.egf.model.pattern.impl;
 
 import org.eclipse.egf.model.fcore.impl.NamedModelElementImpl;
+import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternPackage;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.emf.common.notify.Notification;
@@ -26,17 +27,20 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternVariableImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.eclipse.egf.model.pattern.impl.PatternVariableImpl#getType
+ * <em>Type</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class PatternVariableImpl extends NamedModelElementImpl implements PatternVariable {
     /**
-     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * A set of bit flags representing the values of boolean attributes and
+     * whether unsettable features have been set.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      * @ordered
      */
@@ -46,6 +50,7 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
      * The default value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getType()
      * @generated
      * @ordered
@@ -55,6 +60,7 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
      * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @see #getType()
      * @generated
      * @ordered
@@ -64,6 +70,7 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     protected PatternVariableImpl() {
@@ -73,6 +80,7 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -83,6 +91,7 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public String getType() {
@@ -92,6 +101,7 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     public void setType(String newType) {
@@ -104,6 +114,17 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
+     * @generated NOT
+     */
+    public Pattern getPattern() {
+        return (Pattern) eContainer();
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -118,6 +139,7 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -133,6 +155,7 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -148,6 +171,7 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
@@ -162,6 +186,7 @@ public class PatternVariableImpl extends NamedModelElementImpl implements Patter
     /**
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * 
      * @generated
      */
     @Override
