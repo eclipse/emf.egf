@@ -45,8 +45,9 @@ if (ictx.useReporter()){
     ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));
 Map<String, Object> parameterValues = new HashMap<String, Object>();
 parameterValues.put("aClass", this.aClass);
-    ictx.getReporter().loopFinished(loop, ictx, parameterValues);
-ictx.clearBuffer();}
+    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
+    ictx.clearBuffer();}
 return loop;
 }
 
@@ -64,7 +65,7 @@ protected void method_body(final StringBuffer out, final PatternContext ctx)thro
 private org.eclipse.emf.ecore.EClass aClass;
 
 public void set_aClass(org.eclipse.emf.ecore.EClass aClass) {
-    this.aClass = aClass;
+	this.aClass = aClass;
 }
 
 }

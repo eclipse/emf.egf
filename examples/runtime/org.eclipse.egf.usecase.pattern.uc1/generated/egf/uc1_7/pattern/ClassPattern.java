@@ -71,9 +71,9 @@ int index = 0, executionIndex = ictx.getExecutionBuffer().length();
 method_body(ictx.getBuffer(), ictx);
     
 method_setupVariable(ictx.getBuffer(), ictx);
-    ExecutionContext ctx__0EWMoCheEdIK9TtNUJzqw = new ExecutionContext(ictx);
-ctx__0EWMoCheEdIK9TtNUJzqw.setValue(PatternContext.INJECTED_CONTEXT, variable);
-CallHelper.execute("_RdSMYBViEd-JoY-b5_Vpcw", ctx__0EWMoCheEdIK9TtNUJzqw);
+    ExecutionContext ctx__wgKW8C2EdCRPSkD_BdCg = new ExecutionContext(ictx);
+ctx__wgKW8C2EdCRPSkD_BdCg.setValue(PatternContext.INJECTED_CONTEXT, variable);
+CallHelper.execute("_RdSMYBViEd-JoY-b5_Vpcw", ctx__wgKW8C2EdCRPSkD_BdCg);
 
 
     
@@ -82,7 +82,8 @@ if (ictx.useReporter()){
     ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));
     Map<String, Object> parameterValues = new HashMap<String, Object>();
     parameterValues.put("parameter", this.parameter);
-    ictx.getReporter().loopFinished(loop, ictx, parameterValues);
+    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
     ictx.clearBuffer();}
 return loop;
 } 
