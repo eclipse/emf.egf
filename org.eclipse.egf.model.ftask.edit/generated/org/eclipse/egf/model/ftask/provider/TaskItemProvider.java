@@ -204,8 +204,8 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
       Task task = (Task) child;
       String label = task.getName();
       String type = getString("_UI_Task_type"); //$NON-NLS-1$
-      if (task.getKind() != null && task.getKind().trim().length() > 0) {
-        type = type + " " + StringHelper.toUpperFirst(task.getKind()); //$NON-NLS-1$
+      if (task.getKindValue() != null && task.getKindValue().trim().length() > 0) {
+        type = type + " " + StringHelper.toUpperFirst(task.getKindValue()); //$NON-NLS-1$
       }
       return label == null || label.length() == 0 ? type : label + " " + type; //$NON-NLS-1$    }
     }
