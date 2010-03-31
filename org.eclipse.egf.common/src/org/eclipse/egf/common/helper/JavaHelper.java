@@ -15,22 +15,29 @@ package org.eclipse.egf.common.helper;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IFolder;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.common.EGFCommonPlugin;
+import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.common.l10n.EGFCommonMessages;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.jdt.core.IClasspathContainer;
 import org.eclipse.jdt.core.IClasspathEntry;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.osgi.util.NLS;
 
 public class JavaHelper {
@@ -87,7 +94,71 @@ public class JavaHelper {
   }
 
   public static ClassLoader getProjectClassLoader(IJavaProject project) throws CoreException {
-    return new URLClassLoader(getURLOutputFolders(project), ProjectHelper.class.getClassLoader());
+    List<URL> urls = getProjectURLs(project, new HashSet<IJavaProject>());
+    return new URLClassLoader(urls.toArray(new URL[urls.size()]), JavaHelper.class.getClassLoader());
+  }
+
+  public static List<URL> getProjectURLs(IJavaProject javaProject, Set<IJavaProject> visited) throws CoreException {
+    List<URL> urls = new UniqueEList<URL>();
+    // Do we need to process this IJavaProject
+    if (visited.contains(javaProject)) {
+      return urls;
+    }
+    // Process current IJavaProject
+    visited.add(javaProject);
+    try {
+      // Default Output Location
+      IFolder folder = findFolder(javaProject.getOutputLocation());
+      if (folder != null) {
+        urls.add(new URL("file://" + folder.getLocation().toOSString() + EGFCommonConstants.SLASH_CHARACTER)); //$NON-NLS-1$
+      }
+      // Classpath Lookup
+      for (IClasspathEntry entry : javaProject.getResolvedClasspath(true)) {
+        if (entry.getEntryKind() == IClasspathEntry.CPE_SOURCE) {
+          folder = findFolder(entry.getOutputLocation());
+          if (folder != null) {
+            urls.add(new URL("file://" + folder.getLocation().toOSString() + EGFCommonConstants.SLASH_CHARACTER)); //$NON-NLS-1$
+          }
+        } else if (entry.getEntryKind() == IClasspathEntry.CPE_PROJECT) {
+          IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(entry.getPath().toString());
+          IJavaProject innerJavaProject = JavaCore.create(project);
+          if (project.exists()) {
+            urls.addAll(getProjectURLs(innerJavaProject, visited));
+          }
+        } else if (entry.getEntryKind() == IClasspathEntry.CPE_LIBRARY || entry.getEntryKind() == IClasspathEntry.CPE_VARIABLE) {
+          urls.add(getURL(entry.getPath()));
+        } else if (entry.getEntryKind() == IClasspathEntry.CPE_CONTAINER) {
+          IClasspathContainer classpathContainer = JavaCore.getClasspathContainer(entry.getPath(), javaProject);
+          if (classpathContainer != null) {
+            for (IClasspathEntry classpathEntry : classpathContainer.getClasspathEntries()) {
+              urls.add(getURL(classpathEntry.getPath()));
+            }
+          }
+        }
+      }
+    } catch (Throwable t) {
+      throw new CoreException(EGFCommonPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCommonMessages.JavaHelper_AnalysingFailure, javaProject.getProject().getName()), t));
+    }
+    return urls;
+  }
+
+  private static URL getURL(IPath entry) throws MalformedURLException {
+    String path = null;
+    IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
+    // workspace relative path
+    IPath location = root.getFile(entry).getLocation();
+    if (location != null) {
+      path = location.toOSString();
+    }
+    // absolute path
+    if (path == null) {
+      path = entry.toOSString();
+    }
+    // Check whether or not we face a folder or a file
+    if (entry.toFile() != null && entry.toFile().isDirectory() == false) {
+      return new URL("file://" + path); //$NON-NLS-1$
+    }
+    return new URL("file://" + path + EGFCommonConstants.SLASH_CHARACTER); //$NON-NLS-1$    
   }
 
   /**
@@ -125,7 +196,7 @@ public class JavaHelper {
    * For example, if a project has a source folder "src" with its output folder
    * set as "bin" and a source
    * folder "src-gen" with its output folder set as "bin-gen", this will return
-   * a LinkedHashSet containing
+   * a List containing
    * both "bin" and "bin-gen".
    * </p>
    * 
@@ -134,29 +205,15 @@ public class JavaHelper {
    * @return The set of output folders name for the given (java) project.
    */
   public static List<String> getStringOutputFolders(IJavaProject project) throws CoreException {
-    List<String> folders = new UniqueEList<String>();
+    List<String> outputFoldersAsString = new UniqueEList<String>();
     if (project.exists() == false) {
-      return folders;
+      return outputFoldersAsString;
     }
-    List<IFolder> innerFolders = getOutputFolders(project);
-    for (IFolder folder : innerFolders) {
-      folders.add(folder.getFullPath().removeFirstSegments(1).toString());
+    List<IFolder> outputFolders = getOutputFolders(project);
+    for (IFolder outputFolder : outputFolders) {
+      outputFoldersAsString.add(outputFolder.getFullPath().removeFirstSegments(1).toString());
     }
-    folders.add(project.getOutputLocation().removeFirstSegments(1).toString());
-    return folders;
-  }
-
-  private static URL[] getURLOutputFolders(IJavaProject project) throws CoreException {
-    List<String> outputFolders = getStringOutputFolders(project);
-    List<URL> urls = new UniqueEList<URL>(outputFolders.size());
-    for (String outputFolder : outputFolders) {
-      try {
-        urls.add(new URL("file", null, outputFolder)); //$NON-NLS-1$
-      } catch (MalformedURLException mue) {
-        throw new CoreException(EGFCommonPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFCommonMessages.JavaHelper_AnalysingFailure, project.getProject().getName()), mue));
-      }
-    }
-    return urls.toArray(new URL[urls.size()]);
+    return outputFoldersAsString;
   }
 
   /**

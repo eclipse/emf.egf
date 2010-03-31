@@ -16,6 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.common.EGFCommonPlugin;
@@ -28,11 +29,14 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.EcoreUtil.CrossReferencer;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
+import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaCore;
 import org.eclipse.osgi.util.NLS;
 
 /**
@@ -55,9 +59,33 @@ public class EMFHelper {
       return null;
     }
     URI uri = resource.getURI();
+    if (uri != null && resource.getResourceSet() != null) {
+      URIConverter converter = resource.getResourceSet().getURIConverter();
+      if (converter != null) {
+        uri = converter.normalize(uri);
+      }
+    }
     if (uri.isPlatformResource()) {
-      String platformString = uri.toPlatformString(true);
-      return ResourcesPlugin.getWorkspace().getRoot().findMember(platformString);
+      return ResourcesPlugin.getWorkspace().getRoot().findMember(uri.toPlatformString(true));
+    }
+    return null;
+  }
+
+  public static IProject getProject(Resource resource) {
+    IResource iResource = getWorkspaceResource(resource);
+    if (iResource != null) {
+      return iResource.getProject();
+    }
+    return null;
+  }
+
+  public static IJavaProject getJavaProject(Resource resource) {
+    IProject project = getProject(resource);
+    if (project != null) {
+      IJavaProject javaProject = JavaCore.create(project);
+      if (javaProject.exists()) {
+        return javaProject;
+      }
     }
     return null;
   }
