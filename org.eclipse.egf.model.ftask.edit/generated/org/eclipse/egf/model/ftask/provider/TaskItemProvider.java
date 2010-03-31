@@ -46,8 +46,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * 
  * @generated
  */
-public class TaskItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
-    IItemFontProvider {
+public class TaskItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
@@ -204,8 +203,8 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
       Task task = (Task) child;
       String label = task.getName();
       String type = getString("_UI_Task_type"); //$NON-NLS-1$
-      if (task.getKind() != null && task.getKind().trim().length() > 0) {
-        type = type + " " + StringHelper.toUpperFirst(task.getKind()); //$NON-NLS-1$
+      if (task.getKindValue() != null && task.getKindValue().trim().length() > 0) {
+        type = type + " " + StringHelper.toUpperFirst(task.getKindValue()); //$NON-NLS-1$
       }
       return label == null || label.length() == 0 ? type : label + " " + type; //$NON-NLS-1$    }
     }
