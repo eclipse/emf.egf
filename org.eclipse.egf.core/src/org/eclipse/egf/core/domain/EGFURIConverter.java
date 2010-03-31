@@ -12,10 +12,15 @@ package org.eclipse.egf.core.domain;
 
 import java.util.Collection;
 
+import org.eclipse.core.runtime.IExtensionDelta;
+import org.eclipse.core.runtime.IRegistryChangeEvent;
+import org.eclipse.core.runtime.IRegistryChangeListener;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointDelta;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointListener;
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.eclipse.emf.ecore.resource.ContentHandler;
 import org.eclipse.emf.ecore.resource.URIHandler;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
@@ -25,6 +30,19 @@ import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
  * 
  */
 public class EGFURIConverter extends ExtensibleURIConverterImpl {
+
+  public static String QUALIFIED_EXTENSION_POINT_GENERATED_PACKAGE = EcorePlugin.getPlugin().getBundle().getSymbolicName() + "." + EcorePlugin.GENERATED_PACKAGE_PPID; //$NON-NLS-1$
+
+  protected IRegistryChangeListener _registryChangeListener = new IRegistryChangeListener() {
+    public void registryChanged(IRegistryChangeEvent event) {
+      IExtensionDelta[] deltas = event.getExtensionDeltas();
+      for (IExtensionDelta delta : deltas) {
+        if (delta.getExtensionPoint().isValid()) {
+          loadURIMap();
+        }
+      }
+    }
+  };
 
   /**
    * This listens for platform changes.
@@ -41,6 +59,7 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
   public EGFURIConverter() {
     super();
     EGFPlatformPlugin.getPlatformManager().addInFrontPlatformExtensionPointListener(_platformListener);
+    Platform.getExtensionRegistry().addRegistryChangeListener(_registryChangeListener, QUALIFIED_EXTENSION_POINT_GENERATED_PACKAGE);
     loadURIMap();
   }
 
@@ -50,6 +69,7 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
   public EGFURIConverter(Collection<URIHandler> uriHandlers, Collection<ContentHandler> contentHandlers) {
     super(uriHandlers, contentHandlers);
     EGFPlatformPlugin.getPlatformManager().addInFrontPlatformExtensionPointListener(_platformListener);
+    Platform.getExtensionRegistry().addRegistryChangeListener(_registryChangeListener, QUALIFIED_EXTENSION_POINT_GENERATED_PACKAGE);
     loadURIMap();
   }
 
@@ -58,7 +78,7 @@ public class EGFURIConverter extends ExtensibleURIConverterImpl {
    */
   public void dispose() {
     EGFPlatformPlugin.getPlatformManager().removePlatformExtensionPointListener(_platformListener);
-    loadURIMap();
+    Platform.getExtensionRegistry().removeRegistryChangeListener(_registryChangeListener);
   }
 
   private void loadURIMap() {
