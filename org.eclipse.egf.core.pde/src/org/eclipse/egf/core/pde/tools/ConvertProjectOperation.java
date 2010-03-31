@@ -167,7 +167,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       IJavaProject javaProject = JavaCore.create(_project);
       _classpathEntries.addAll(Arrays.asList(javaProject.getRawClasspath()));
       for (String outputFolder : JavaHelper.getStringOutputFolders(javaProject)) {
-        _outputFolders.add(outputFolder + EGFCommonConstants.SLASH_CHARACTER);
+        _outputFolders.add(outputFolder + +EGFCommonConstants.SLASH_CHARACTER);
       }
     }
 
