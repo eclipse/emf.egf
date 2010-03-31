@@ -19,14 +19,18 @@
   <!-- ================================================================================= -->
   <!-- Menu Contributor                                                                  -->
   <!-- ================================================================================= -->  
-
+  
   <extension 
     point="org.eclipse.egf.core.ui.editor.menu.contributor"
   >
-    <contribution 
-      class="org.eclipse.egf.task.ui.contributions.TaskMenuContributor"
-    />
+    <contribution
+      class="org.eclipse.egf.task.ui.contributions.OpenTaskImplementationMenuContributor"
+    />    
   </extension>
+
+  <!-- ================================================================================= -->
+  <!-- Property Contributor                                                              -->
+  <!-- ================================================================================= -->  
    
   <extension 
     point="org.eclipse.egf.core.ui.editor.property.contributor"

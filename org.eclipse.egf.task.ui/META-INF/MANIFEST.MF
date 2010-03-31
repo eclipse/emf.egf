@@ -10,6 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
  org.eclipse.core.runtime,
+ org.eclipse.core.filesystem,
  org.eclipse.egf.core.ui,
  org.eclipse.egf.model.ftask,
  org.eclipse.egf.model.editor,

@@ -23,12 +23,17 @@ import org.eclipse.osgi.util.NLS;
  */
 public class EGFTaskUIMessages extends NLS {
 
-  public static String missing_invoker_message;
-
   private static final String BUNDLE_NAME = "org.eclipse.egf.task.ui.l10n.messages";//$NON-NLS-1$
 
   static {
     NLS.initializeMessages(BUNDLE_NAME, EGFTaskUIMessages.class);
   }
+
+  public static String missing_invoker_message;
+
+  public static String TaskImplementationMenuContributor_openAction_label;
+
+  public static String OpenTaskImplementationMenuContributor_error_title;
+  public static String OpenTaskImplementationMenuContributor_error_message;
 
 }
