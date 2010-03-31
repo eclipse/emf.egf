@@ -70,7 +70,7 @@ public class PatternBundleAdapter extends EContentAdapter {
       IRunnableWithProgress operation = new ConvertProjectOperation(fcore.getPlatformBundle().getProject(), true, true) {
         @Override
         public List<String> addDependencies() {
-          List<String> dependencies = new ArrayList<String>(1);
+          List<String> dependencies = new ArrayList<String>(2);
           dependencies.add("org.eclipse.egf.pattern"); //$NON-NLS-1$
           dependencies.add("org.eclipse.egf.pattern.ftask"); //$NON-NLS-1$
           return dependencies;
