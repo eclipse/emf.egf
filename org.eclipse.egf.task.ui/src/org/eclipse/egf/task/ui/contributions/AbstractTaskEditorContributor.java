@@ -37,7 +37,6 @@ public abstract class AbstractTaskEditorContributor extends AbstractTypeEditorCo
     }
   }
 
-  @Override
   public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
     if (checkFeature(object, descriptor, FtaskPackage.Literals.TASK__IMPLEMENTATION) && object instanceof Task) {
       Task task = (Task) object;
@@ -47,7 +46,7 @@ public abstract class AbstractTaskEditorContributor extends AbstractTypeEditorCo
   }
 
   @Override
-  protected String getCurrentClassname(Object object) {
+  protected String getValue(Object object) {
     return ((Task) object).getImplementation();
   }
 
