@@ -42,8 +42,8 @@ class StrategyReporter implements PatternExecutionReporter {
         throw new IllegalStateException();
     }
 
-    public void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues) {
-        delegate.loopFinished(output, context, parameterValues);
+    public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
+        delegate.loopFinished(output, outputWithCallBack, context, parameterValues);
         buffer.append(output);
     }
 

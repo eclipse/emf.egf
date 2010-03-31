@@ -206,7 +206,8 @@ public class JetEngine extends PatternEngine {
         builder.append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
         if (!getPattern().getAllParameters().isEmpty()) {
             builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
-            builder.append("    ictx.getReporter().loopFinished(loop, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
             builder.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
         }
         builder.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);

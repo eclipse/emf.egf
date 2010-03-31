@@ -38,7 +38,7 @@ public class MyReporter implements PatternExecutionReporter {
         EGFCorePlugin.getDefault().logInfo(message);
     }
 
-    public void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues) {
+    public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
         // TODO Auto-generated method stub
     }
 

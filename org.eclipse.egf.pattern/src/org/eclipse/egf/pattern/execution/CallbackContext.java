@@ -67,8 +67,8 @@ public class CallbackContext extends DefaultPatternContext implements InternalPa
             throw new UnsupportedOperationException("unexpected");
         }
 
-        public void loopFinished(String output, PatternContext context, Map<String, Object> parameterValues) {
-            getParent().getReporter().loopFinished(output, context, parameterValues);
+        public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
+            getParent().getReporter().loopFinished(output, outputWithCallBack, context, parameterValues);
         }
 
     }
