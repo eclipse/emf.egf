@@ -84,6 +84,6 @@ public abstract class EGFTask extends Task {
    * 
    * @throws Exception
    */
-  abstract protected void doExecute() throws Exception;
+  protected abstract void doExecute() throws Exception;
 
 }
