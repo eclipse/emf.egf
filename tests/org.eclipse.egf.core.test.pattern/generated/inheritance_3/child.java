@@ -75,8 +75,8 @@ method_hehe(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
-ExecutionContext ctx__r9b9oChjEdbINzmyJi3Kg = new ExecutionContext(ictx);
-CallHelper.executeWithInjection("_AHSpICIUEd-XdOucj2euiQ", ctx__r9b9oChjEdbINzmyJi3Kg, parameters);
+ExecutionContext ctx__wK54oC2EdCRPSkD_BdCg = new ExecutionContext(ictx);
+CallHelper.executeWithInjection("_AHSpICIUEd-XdOucj2euiQ", ctx__wK54oC2EdCRPSkD_BdCg, parameters);
 }
 
     
@@ -85,7 +85,8 @@ if (ictx.useReporter()){
     ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));
     Map<String, Object> parameterValues = new HashMap<String, Object>();
     parameterValues.put("parameter", this.parameter);
-    ictx.getReporter().loopFinished(loop, ictx, parameterValues);
+    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
+    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);
     ictx.clearBuffer();}
 return loop;
 } 
