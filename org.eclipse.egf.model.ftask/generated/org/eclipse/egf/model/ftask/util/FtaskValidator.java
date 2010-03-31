@@ -249,7 +249,7 @@ public class FtaskValidator extends EObjectValidator {
     if (TaskValidationHelper.isValidKind(task.getKindValue()) == false) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "ValidKind", getObjectLabel(task, context), NLS.bind("This Task has an unknown kind ''{0}''", task.getKind().trim()) }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { "ValidKind", getObjectLabel(task, context), NLS.bind("This Task has an unknown kind ''{0}''", task.getKindValue().trim()) }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { task }, context));
       }
       return false;
