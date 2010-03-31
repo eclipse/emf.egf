@@ -28,24 +28,30 @@
   </extension>
   
   <!-- ================================================================================= -->
-  <!-- Launch Configuration Types                                                        -->
-  <!-- ================================================================================= -->
+  <!-- Ant ExtraClasspathEntries                                                         -->
+  <!-- ================================================================================= -->  
   
-  <!--
-  <extension
-    point="org.eclipse.debug.core.launchConfigurationTypes"
+  <extension 
+    point="org.eclipse.ant.core.extraClasspathEntries"
   >
-    <launchConfigurationType
-      name="%Launch.label"
-      delegateDescription="%TaskLaunchDelegate.description"
-      delegateName="%TaskLaunchDelegate.name"
-      delegate="org.eclipse.egf.task.launch.TaskLaunchConfigurationDelegate"
-      modes="run, debug"
-      id="org.eclipse.egf.task.launch.configuration"
-      sourceLocatorId="org.eclipse.pde.ui.launcher.PDESourceLookupDirector"
-      sourcePathComputerId="org.eclipse.jdt.launching.sourceLookup.javaSourcePathComputer"
-    />  
+    <extraClasspathEntry 
+      library="ant_tasks/egf.ant.tasks.jar" 
+    />
   </extension>
-  -->
+  
+  <!-- ================================================================================= -->
+  <!-- Ant Taks                                                                          -->
+  <!-- ================================================================================= -->  
+
+  <extension 
+    point="org.eclipse.ant.core.antTasks"
+  >
+    <antTask 
+      library="ant_tasks/egf.ant.tasks.jar" 
+      name="egf.activities" 
+      headless="true" 
+      class="org.eclipse.egf.ant.taskdefs.activity.ActivityTask" 
+    />
+  </extension>
   
 </plugin>

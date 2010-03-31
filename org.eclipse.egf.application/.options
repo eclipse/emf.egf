@@ -1,2 +1,2 @@
 # Prints debug information
-org.eclipse.egf.task.launch/debug=true
+org.eclipse.egf.application/debug=true

@@ -39,4 +39,8 @@ public class ApplicationMessages {
 
   public static String EGFTaskLaunchConfigurationDelegate_error_no_socket;
 
+  public static String NestedActivity_Invalid_URI_Attribute;
+  public static String NestedActivity_EObject_Loading_Error;
+  public static String NestedActivity_Invalid_Activity_Argument;
+
 }

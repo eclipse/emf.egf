@@ -10,6 +10,8 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: 
  org.eclipse.debug.core,
+ org.apache.ant,
+ org.eclipse.ant.core,
  org.eclipse.egf.producer
 Export-Package: 
  org.eclipse.egf.application.activity
