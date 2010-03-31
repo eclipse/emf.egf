@@ -30,8 +30,7 @@ import org.eclipse.swt.graphics.Image;
 public abstract class DefaultPropertyEditorContributor implements PropertyEditorContributor {
 
   protected boolean checkFeature(Object object, IItemPropertyDescriptor descriptor, EStructuralFeature expectedFeature) {
-    Object feature = descriptor.getFeature(object);
-    return feature.equals(expectedFeature);
+    return descriptor.getFeature(object).equals(expectedFeature);
   }
 
   protected ILabelProvider getLabelProvider(Object object, IItemPropertyDescriptor descriptor) {
