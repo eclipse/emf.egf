@@ -44,8 +44,9 @@
 					<include name="org.eclipse.egf.producer/bin"/>
           <include name="org.eclipse.egf.model/bin"/>					
 					<include name="org.eclipse.egf.application/bin"/>
+          <include name="org.eclipse.emf.common/bin"/>					
           <include name="org.eclipse.emf.ecore/bin"/>					
-          <include name="org.eclipse.emf.common/bin"/>
+					<include name="org.eclipse.emf.codegen/bin"/>
           <include name="org.eclipse.emf.edit/bin"/>					
           <include name="org.eclipse.emf.transaction/bin"/>
 				</dirset>
@@ -60,9 +61,10 @@
 					<include name="plugins/org.eclipse.egf.producer*.jar"/>
           <include name="plugins/org.eclipse.egf.application*.jar"/>
           <include name="plugins/org.eclipse.egf.model*.jar"/>
-          <include name="plugins/org.eclipse.emf.ecore*.jar"/>
-          <include name="plugins/org.eclipse.emf.edit*.jar"/>					
-          <include name="plugins/org.eclipse.emf.common*.jar"/>		
+          <include name="plugins/org.eclipse.emf.common*.jar"/>					
+          <include name="plugins/org.eclipse.emf.ecore*.jar"/>					
+          <include name="plugins/org.eclipse.emf.codegen*.jar"/>					
+          <include name="plugins/org.eclipse.emf.edit*.jar"/>							
           <include name="plugins/org.eclipse.emf.transaction*.jar"/>					
 				</fileset>
 			</classpath>

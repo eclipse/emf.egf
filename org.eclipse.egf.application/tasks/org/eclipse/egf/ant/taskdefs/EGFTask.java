@@ -20,7 +20,7 @@ import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.Task;
 import org.eclipse.ant.core.AntCorePlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.codegen.util.CodeGenUtil;
 
 /**
  * Base class for the tasks that are defined in this plugin. Provides common behavior
@@ -54,7 +54,7 @@ public abstract class EGFTask extends Task {
     } catch (Exception e) {
       // Ignore
     }
-    return new NullProgressMonitor();
+    return new CodeGenUtil.EclipseUtil.StreamProgressMonitor(System.out);
   }
 
   @Override
