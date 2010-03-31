@@ -32,12 +32,12 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getKind <em>Kind</em>}</li>
- *   <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getImplementation <em>Implementation</em>}</li>
- *   <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getSuperTask <em>Super Task</em>}</li>
+ * <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getKind <em>Kind</em>}</li>
+ * <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getImplementation <em>Implementation</em>}</li>
+ * <li>{@link org.eclipse.egf.model.ftask.impl.TaskImpl#getSuperTask <em>Super Task</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TaskImpl extends ActivityImpl implements Task {
@@ -45,6 +45,7 @@ public class TaskImpl extends ActivityImpl implements Task {
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -54,6 +55,7 @@ public class TaskImpl extends ActivityImpl implements Task {
    * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getKind()
    * @generated
    * @ordered
@@ -63,6 +65,7 @@ public class TaskImpl extends ActivityImpl implements Task {
    * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getKind()
    * @generated
    * @ordered
@@ -72,6 +75,7 @@ public class TaskImpl extends ActivityImpl implements Task {
    * The default value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getImplementation()
    * @generated
    * @ordered
@@ -81,6 +85,7 @@ public class TaskImpl extends ActivityImpl implements Task {
    * The cached value of the '{@link #getImplementation() <em>Implementation</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getImplementation()
    * @generated
    * @ordered
@@ -90,6 +95,7 @@ public class TaskImpl extends ActivityImpl implements Task {
    * The cached value of the '{@link #getSuperTask() <em>Super Task</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getSuperTask()
    * @generated
    * @ordered
@@ -99,6 +105,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   protected TaskImpl() {
@@ -180,6 +187,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -190,6 +198,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getKind() {
@@ -199,6 +208,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setKind(String newKind) {
@@ -211,6 +221,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public String getImplementation() {
@@ -220,6 +231,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setImplementation(String newImplementation) {
@@ -232,6 +244,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Task getSuperTask() {
@@ -249,6 +262,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public Task basicGetSuperTask() {
@@ -258,6 +272,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public void setSuperTask(Task newSuperTask) {
@@ -270,28 +285,33 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   public String getKindValue() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    if (getKind() == null && getSuperTask() != null) {
+      return getSuperTask().getKindValue();
+    }
+    return getKind();
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   public String getImplementationValue() {
-    // TODO: implement this method
-    // Ensure that you remove @generated or mark it @generated NOT
-    throw new UnsupportedOperationException();
+    if (getImplementation() == null && getSuperTask() != null) {
+      return getSuperTask().getImplementationValue();
+    }
+    return getImplementation();
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -312,6 +332,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -333,6 +354,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -354,6 +376,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -372,6 +395,7 @@ public class TaskImpl extends ActivityImpl implements Task {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
