@@ -56,7 +56,7 @@ public abstract class BasePatternInitializer implements PatternInitializer {
     public void updateContent() throws PatternException {
         for (PatternMethod method : pattern.getMethods()) {
             String methodName = method.getName();
-            if (PatternFactory.HEADER_METHOD_NAME.equals(methodName) || PatternFactory.FOOTER_METHOD_NAME.equals(methodName)) {
+            if (PatternFactory.HEADER_METHOD_NAME.equals(methodName) || PatternFactory.INIT_METHOD_NAME.equals(methodName) || PatternFactory.FOOTER_METHOD_NAME.equals(methodName)) {
                 IFile outputFile = getFile(method);
                 if (outputFile.exists()) {
                     copeyToHistoryFolder(outputFile);
