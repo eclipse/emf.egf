@@ -48,6 +48,7 @@ import org.eclipse.egf.core.ui.contributor.ListenerContributor;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.editor.adapter.PatternBundleAdapter;
 import org.eclipse.egf.model.editor.adapter.TaskBundleAdapter;
+import org.eclipse.egf.model.editor.adapter.TypeClassBundleAdapter;
 import org.eclipse.egf.model.editor.provider.FcoreContentProvider;
 import org.eclipse.egf.model.editor.provider.FcorePropertySheetPage;
 import org.eclipse.egf.model.fcore.provider.FcoreCustomItemProviderAdapterFactory;
@@ -1111,6 +1112,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
     editingDomain.getResourceSet().eAdapters().add(editorResourceAdapter);
     egfAdapters.add(new PatternBundleAdapter(resource, getSite()));
     egfAdapters.add(new TaskBundleAdapter(resource, getSite()));
+    egfAdapters.add(new TypeClassBundleAdapter(resource, getSite()));
     getEditingDomain().getResourceSet().eAdapters().addAll(egfAdapters);
   }
 

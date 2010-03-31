@@ -91,6 +91,9 @@
     <contribution 
       class="org.eclipse.egf.model.editor.contributions.TypeEditorContributor"
     />
+    <contribution
+      class="org.eclipse.egf.model.editor.contributions.TypeClassEditorContributor"
+    />    
     <contribution 
       class="org.eclipse.egf.model.editor.contributions.InvocationEditorContributor"
     />

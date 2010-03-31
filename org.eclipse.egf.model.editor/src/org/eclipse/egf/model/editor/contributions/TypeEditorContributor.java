@@ -15,7 +15,10 @@
 
 package org.eclipse.egf.model.editor.contributions;
 
+import org.eclipse.egf.model.fcore.Contract;
+import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.types.TypeAbstractClass;
+import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
@@ -25,22 +28,37 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
  */
 public class TypeEditorContributor extends AbstractTypeEditorContributor {
 
-  @Override
   public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
     if (checkFeature(object, descriptor, TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE) && object instanceof TypeAbstractClass) {
-      TypeAbstractClass typeAbstractClass = (TypeAbstractClass) object;
-      return typeAbstractClass.getType() != null;
+      // TypeClass has its own contributor see TypeClassEditorContributor
+      if (object instanceof TypeClass && ((TypeClass) object).eContainer() instanceof Contract) {
+        return false;
+      }
+      // TypeAbstractClass bound to an InvocationContract
+      if (((TypeAbstractClass) object).eContainer() instanceof InvocationContract) {
+        InvocationContract contract = (InvocationContract) ((TypeAbstractClass) object).eContainer();
+        if (contract.getInvokedContract() == null || contract.getInvokedContract().getType() == null || contract.getInvokedContract().getType().getType() == null) {
+          return false;
+        }
+      }
+      // TypeAbstractContract bound to a Contract
+      return (((TypeAbstractClass) object)).getType() != null;
     }
     return false;
   }
 
   @Override
   protected Class<Object> getType(Object object) {
-    return ((TypeAbstractClass) object).getType();
+    // TypeAbstractClass bound to an InvocationContract
+    if (((TypeAbstractClass) object).eContainer() instanceof InvocationContract) {
+      return ((InvocationContract) ((TypeAbstractClass) object).eContainer()).getType().getType();
+    }
+    // TypeAbstractContract bound to a Contract
+    return (((TypeAbstractClass) object)).getType();
   }
 
   @Override
-  protected String getCurrentClassname(Object object) {
+  protected String getValue(Object object) {
     return ((TypeAbstractClass) object).getValue();
   }
 

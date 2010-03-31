@@ -18,11 +18,12 @@ package org.eclipse.egf.model.editor.contributions;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.core.ui.contributor.DefaultPropertyEditorContributor;
-import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
+import org.eclipse.egf.core.ui.dialogs.FilteredTypeSelectionDialog;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -33,11 +34,9 @@ import org.eclipse.swt.widgets.Control;
  */
 public abstract class AbstractTypeEditorContributor extends DefaultPropertyEditorContributor {
 
-  public abstract boolean canApply(Object object, IItemPropertyDescriptor descriptor);
-
   public CellEditor createPropertyEditor(final Composite composite, Object object, IItemPropertyDescriptor descriptor) {
 
-    final String value = getCurrentClassname(object);
+    final String value = getValue(object);
     final Class<?> type = getType(object);
 
     final IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(((EObject) object).eResource().getURI().segment(1));
@@ -47,8 +46,10 @@ public abstract class AbstractTypeEditorContributor extends DefaultPropertyEdito
     return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
       @Override
       protected Object openDialogBox(Control cellEditorWindow) {
-        TypeSelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), project, type, value, null, false);
-        dialog.open();
+        FilteredTypeSelectionDialog dialog = new FilteredTypeSelectionDialog(composite.getShell(), project, type, value, null, false);
+        if (dialog.open() != IDialogConstants.OK_ID) {
+          return null;
+        }
         Object[] innerResult = dialog.getResult();
         if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
           return ((IType) innerResult[0]).getFullyQualifiedName();
@@ -60,6 +61,6 @@ public abstract class AbstractTypeEditorContributor extends DefaultPropertyEdito
 
   protected abstract Class<?> getType(Object object);
 
-  protected abstract String getCurrentClassname(Object object);
+  protected abstract String getValue(Object object);
 
 }
