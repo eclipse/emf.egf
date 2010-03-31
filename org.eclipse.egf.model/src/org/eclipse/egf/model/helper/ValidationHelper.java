@@ -65,15 +65,13 @@ public class ValidationHelper {
       }
     } catch (Throwable t) {
       EGFModelPlugin.getPlugin().logError(t);
+      return false;
     }
     return true;
   }
 
   public static boolean isValidClass(EObject eObject, Class<?> type, String value, Map<Object, Object> context) {
-    if (context != null && context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
-      return true;
-    }
-    if (eObject.eResource() == null || type == null || value == null || value.trim().length() == 0) {
+    if (eObject == null || context == null || type == null || value == null || value.trim().length() == 0) {
       return true;
     }
     IPlatformFcore platformFcore = EGFCorePlugin.getPlatformFcore(eObject.eResource());
@@ -106,6 +104,7 @@ public class ValidationHelper {
       }
     } catch (Throwable t) {
       EGFModelPlugin.getPlugin().logError(t);
+      return false;
     }
     return true;
   }

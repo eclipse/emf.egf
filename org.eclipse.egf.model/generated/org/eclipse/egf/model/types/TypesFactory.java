@@ -63,13 +63,13 @@ public interface TypesFactory extends EFactory {
   TypeSet createTypeSet();
 
   /**
-   * Returns a new object of class '<em>Type Generator Adapter Factory</em>'.
+   * Returns a new object of class '<em>Type Class</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Type Generator Adapter Factory</em>'.
+   * @return a new object of class '<em>Type Class</em>'.
    * @generated
    */
-  TypeGeneratorAdapterFactory createTypeGeneratorAdapterFactory();
+  TypeClass createTypeClass();
 
   /**
    * Returns a new object of class '<em>Type Map</em>'.

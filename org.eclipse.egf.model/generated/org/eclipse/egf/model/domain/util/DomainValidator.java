@@ -376,7 +376,7 @@ public class DomainValidator extends EObjectValidator {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
   public boolean validateTypeDomainURI_ValidDomainURI(TypeDomainURI typeDomainURI, DiagnosticChain diagnostics, Map<Object, Object> context) {
     if (typeDomainURI.eResource() == null || typeDomainURI.getDomain() == null) {

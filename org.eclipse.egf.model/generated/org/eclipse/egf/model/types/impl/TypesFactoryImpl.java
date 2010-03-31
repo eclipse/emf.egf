@@ -21,11 +21,11 @@ import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypeBoolean;
 import org.eclipse.egf.model.types.TypeByte;
 import org.eclipse.egf.model.types.TypeCharacter;
+import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypeDate;
 import org.eclipse.egf.model.types.TypeDouble;
 import org.eclipse.egf.model.types.TypeFloat;
-import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
 import org.eclipse.egf.model.types.TypeInteger;
 import org.eclipse.egf.model.types.TypeList;
 import org.eclipse.egf.model.types.TypeLong;
@@ -90,14 +90,14 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
   @Override
   public EObject create(EClass eClass) {
     switch (eClass.getClassifierID()) {
+    case TypesPackage.TYPE_CLASS:
+      return createTypeClass();
     case TypesPackage.TYPE_COLLECTION:
       return createTypeCollection();
     case TypesPackage.TYPE_LIST:
       return createTypeList();
     case TypesPackage.TYPE_SET:
       return createTypeSet();
-    case TypesPackage.TYPE_GENERATOR_ADAPTER_FACTORY:
-      return createTypeGeneratorAdapterFactory();
     case TypesPackage.TYPE_MAP:
       return createTypeMap();
     case TypesPackage.TYPE_BIG_DECIMAL:
@@ -212,9 +212,9 @@ public class TypesFactoryImpl extends EFactoryImpl implements TypesFactory {
    * 
    * @generated
    */
-  public TypeGeneratorAdapterFactory createTypeGeneratorAdapterFactory() {
-    TypeGeneratorAdapterFactoryImpl typeGeneratorAdapterFactory = new TypeGeneratorAdapterFactoryImpl();
-    return typeGeneratorAdapterFactory;
+  public TypeClass createTypeClass() {
+    TypeClassImpl typeClass = new TypeClassImpl();
+    return typeClass;
   }
 
   /**

@@ -16,7 +16,6 @@
   <genPackages prefix="Types" basePackage="org.eclipse.egf.model" resource="XMI" disposableProviderFactory="true"
       generateExampleClass="false" dataTypeConverters="true" multipleEditorPages="false"
       extensibleProviderFactory="true" contentTypeIdentifier="" ecorePackage="Types.ecore#/">
-    <genDataTypes ecoreDataType="Types.ecore#//EGeneratorAdapterFactory"/>
     <genDataTypes ecoreDataType="Types.ecore#//Set">
       <genTypeParameters ecoreTypeParameter="Types.ecore#//Set/E"/>
     </genDataTypes>
@@ -46,6 +45,9 @@
     <genClasses image="false" ecoreClass="Types.ecore#//TypeAbstractClass">
       <genFeatures createChild="false" propertyCategory="Data" ecoreFeature="ecore:EAttribute Types.ecore#//TypeAbstractClass/value"/>
     </genClasses>
+    <genClasses ecoreClass="Types.ecore#//TypeClass">
+      <genOperations ecoreOperation="Types.ecore#//TypeClass/getType"/>
+    </genClasses>
     <genClasses ecoreClass="Types.ecore#//TypeCollection" labelFeature="#//types/TypeElement/iD">
       <genOperations ecoreOperation="Types.ecore#//TypeCollection/getType"/>
     </genClasses>
@@ -54,9 +56,6 @@
     </genClasses>
     <genClasses ecoreClass="Types.ecore#//TypeSet" labelFeature="#//types/TypeElement/iD">
       <genOperations ecoreOperation="Types.ecore#//TypeSet/getType"/>
-    </genClasses>
-    <genClasses ecoreClass="Types.ecore#//TypeGeneratorAdapterFactory" labelFeature="#//types/TypeElement/iD">
-      <genOperations ecoreOperation="Types.ecore#//TypeGeneratorAdapterFactory/getType"/>
     </genClasses>
     <genClasses ecoreClass="Types.ecore#//TypeMap" labelFeature="#//types/TypeElement/iD">
       <genOperations ecoreOperation="Types.ecore#//TypeMap/getType"/>

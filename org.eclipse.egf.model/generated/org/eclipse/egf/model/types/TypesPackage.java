@@ -230,7 +230,73 @@ public interface TypesPackage extends EPackage {
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeCollection()
    * @generated
    */
-  int TYPE_COLLECTION = 4;
+  int TYPE_COLLECTION = 5;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeListImpl <em>Type List</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.types.impl.TypeListImpl
+   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeList()
+   * @generated
+   */
+  int TYPE_LIST = 6;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeSetImpl <em>Type Set</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.types.impl.TypeSetImpl
+   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeSet()
+   * @generated
+   */
+  int TYPE_SET = 7;
+
+  /**
+   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeClassImpl <em>Type Class</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.eclipse.egf.model.types.impl.TypeClassImpl
+   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeClass()
+   * @generated
+   */
+  int TYPE_CLASS = 4;
+
+  /**
+   * The feature id for the '<em><b>ID</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_CLASS__ID = TYPE_ABSTRACT_CLASS__ID;
+
+  /**
+   * The feature id for the '<em><b>Description</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_CLASS__DESCRIPTION = TYPE_ABSTRACT_CLASS__DESCRIPTION;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_CLASS__VALUE = TYPE_ABSTRACT_CLASS__VALUE;
+
+  /**
+   * The number of structural features of the '<em>Type Class</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TYPE_CLASS_FEATURE_COUNT = TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
 
   /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
@@ -269,16 +335,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_COLLECTION_FEATURE_COUNT = TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeListImpl <em>Type List</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.types.impl.TypeListImpl
-   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeList()
-   * @generated
-   */
-  int TYPE_LIST = 5;
-
-  /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -315,16 +371,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_LIST_FEATURE_COUNT = TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
 
   /**
-   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeSetImpl <em>Type Set</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.types.impl.TypeSetImpl
-   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeSet()
-   * @generated
-   */
-  int TYPE_SET = 6;
-
-  /**
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -359,52 +405,6 @@ public interface TypesPackage extends EPackage {
    * @ordered
    */
   int TYPE_SET_FEATURE_COUNT = TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
-
-  /**
-   * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeGeneratorAdapterFactoryImpl <em>Type Generator Adapter Factory</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.egf.model.types.impl.TypeGeneratorAdapterFactoryImpl
-   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeGeneratorAdapterFactory()
-   * @generated
-   */
-  int TYPE_GENERATOR_ADAPTER_FACTORY = 7;
-
-  /**
-   * The feature id for the '<em><b>ID</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_GENERATOR_ADAPTER_FACTORY__ID = TYPE_ABSTRACT_CLASS__ID;
-
-  /**
-   * The feature id for the '<em><b>Description</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_GENERATOR_ADAPTER_FACTORY__DESCRIPTION = TYPE_ABSTRACT_CLASS__DESCRIPTION;
-
-  /**
-   * The feature id for the '<em><b>Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_GENERATOR_ADAPTER_FACTORY__VALUE = TYPE_ABSTRACT_CLASS__VALUE;
-
-  /**
-   * The number of structural features of the '<em>Type Generator Adapter Factory</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int TYPE_GENERATOR_ADAPTER_FACTORY_FEATURE_COUNT = TYPE_ABSTRACT_CLASS_FEATURE_COUNT + 0;
 
   /**
    * The meta object id for the '{@link org.eclipse.egf.model.types.impl.TypeMapImpl <em>Type Map</em>}' class.
@@ -1005,16 +1005,6 @@ public interface TypesPackage extends EPackage {
   int TYPE_STRING_FEATURE_COUNT = TYPE_OBJECT_FEATURE_COUNT + 1;
 
   /**
-   * The meta object id for the '<em>EGenerator Adapter Factory</em>' data type.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory
-   * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getEGeneratorAdapterFactory()
-   * @generated
-   */
-  int EGENERATOR_ADAPTER_FACTORY = 21;
-
-  /**
    * The meta object id for the '<em>URI</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1022,7 +1012,7 @@ public interface TypesPackage extends EPackage {
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getURI()
    * @generated
    */
-  int URI = 25;
+  int URI = 24;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeElement <em>Type Element</em>}'.
@@ -1074,7 +1064,7 @@ public interface TypesPackage extends EPackage {
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getCollection()
    * @generated
    */
-  int COLLECTION = 24;
+  int COLLECTION = 23;
 
   /**
    * The meta object id for the '<em>List</em>' data type.
@@ -1084,7 +1074,7 @@ public interface TypesPackage extends EPackage {
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getList()
    * @generated
    */
-  int LIST = 23;
+  int LIST = 22;
 
   /**
    * The meta object id for the '<em>Set</em>' data type.
@@ -1094,7 +1084,7 @@ public interface TypesPackage extends EPackage {
    * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getSet()
    * @generated
    */
-  int SET = 22;
+  int SET = 21;
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeObject <em>Type Object</em>}'.
@@ -1158,14 +1148,14 @@ public interface TypesPackage extends EPackage {
   EClass getTypeSet();
 
   /**
-   * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeGeneratorAdapterFactory <em>Type Generator Adapter Factory</em>}'.
+   * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeClass <em>Type Class</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Type Generator Adapter Factory</em>'.
-   * @see org.eclipse.egf.model.types.TypeGeneratorAdapterFactory
+   * @return the meta object for class '<em>Type Class</em>'.
+   * @see org.eclipse.egf.model.types.TypeClass
    * @generated
    */
-  EClass getTypeGeneratorAdapterFactory();
+  EClass getTypeClass();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.egf.model.types.TypeMap <em>Type Map</em>}'.
@@ -1430,17 +1420,6 @@ public interface TypesPackage extends EPackage {
   EAttribute getTypeString_Value();
 
   /**
-   * Returns the meta object for data type '{@link org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory <em>EGenerator Adapter Factory</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for data type '<em>EGenerator Adapter Factory</em>'.
-   * @see org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory
-   * @model instanceClass="org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory" serializeable="false"
-   * @generated
-   */
-  EDataType getEGeneratorAdapterFactory();
-
-  /**
    * Returns the meta object for data type '{@link org.eclipse.emf.common.util.URI <em>URI</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1611,15 +1590,15 @@ public interface TypesPackage extends EPackage {
     EClass TYPE_SET = eINSTANCE.getTypeSet();
 
     /**
-     * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeGeneratorAdapterFactoryImpl <em>Type Generator Adapter Factory</em>}' class.
+     * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeClassImpl <em>Type Class</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.eclipse.egf.model.types.impl.TypeGeneratorAdapterFactoryImpl
-     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeGeneratorAdapterFactory()
+     * @see org.eclipse.egf.model.types.impl.TypeClassImpl
+     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getTypeClass()
      * @generated
      */
     @SuppressWarnings("hiding")
-    EClass TYPE_GENERATOR_ADAPTER_FACTORY = eINSTANCE.getTypeGeneratorAdapterFactory();
+    EClass TYPE_CLASS = eINSTANCE.getTypeClass();
 
     /**
      * The meta object literal for the '{@link org.eclipse.egf.model.types.impl.TypeMapImpl <em>Type Map</em>}' class.
@@ -1871,17 +1850,6 @@ public interface TypesPackage extends EPackage {
      */
     @SuppressWarnings("hiding")
     EAttribute TYPE_STRING__VALUE = eINSTANCE.getTypeString_Value();
-
-    /**
-     * The meta object literal for the '<em>EGenerator Adapter Factory</em>' data type.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory
-     * @see org.eclipse.egf.model.types.impl.TypesPackageImpl#getEGeneratorAdapterFactory()
-     * @generated
-     */
-    @SuppressWarnings("hiding")
-    EDataType EGENERATOR_ADAPTER_FACTORY = eINSTANCE.getEGeneratorAdapterFactory();
 
     /**
      * The meta object literal for the '<em>URI</em>' data type.

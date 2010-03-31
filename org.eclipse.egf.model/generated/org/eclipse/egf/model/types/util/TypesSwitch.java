@@ -21,12 +21,12 @@ import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypeBoolean;
 import org.eclipse.egf.model.types.TypeByte;
 import org.eclipse.egf.model.types.TypeCharacter;
+import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypeDate;
 import org.eclipse.egf.model.types.TypeDouble;
 import org.eclipse.egf.model.types.TypeElement;
 import org.eclipse.egf.model.types.TypeFloat;
-import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
 import org.eclipse.egf.model.types.TypeInteger;
 import org.eclipse.egf.model.types.TypeList;
 import org.eclipse.egf.model.types.TypeLong;
@@ -154,6 +154,19 @@ public class TypesSwitch<T> {
         result = defaultCase(theEObject);
       return result;
     }
+    case TypesPackage.TYPE_CLASS: {
+      TypeClass typeClass = (TypeClass) theEObject;
+      T result = caseTypeClass(typeClass);
+      if (result == null)
+        result = caseTypeAbstractClass(typeClass);
+      if (result == null)
+        result = caseType(typeClass);
+      if (result == null)
+        result = caseTypeElement(typeClass);
+      if (result == null)
+        result = defaultCase(theEObject);
+      return result;
+    }
     case TypesPackage.TYPE_COLLECTION: {
       TypeCollection typeCollection = (TypeCollection) theEObject;
       T result = caseTypeCollection(typeCollection);
@@ -189,19 +202,6 @@ public class TypesSwitch<T> {
         result = caseType(typeSet);
       if (result == null)
         result = caseTypeElement(typeSet);
-      if (result == null)
-        result = defaultCase(theEObject);
-      return result;
-    }
-    case TypesPackage.TYPE_GENERATOR_ADAPTER_FACTORY: {
-      TypeGeneratorAdapterFactory typeGeneratorAdapterFactory = (TypeGeneratorAdapterFactory) theEObject;
-      T result = caseTypeGeneratorAdapterFactory(typeGeneratorAdapterFactory);
-      if (result == null)
-        result = caseTypeAbstractClass(typeGeneratorAdapterFactory);
-      if (result == null)
-        result = caseType(typeGeneratorAdapterFactory);
-      if (result == null)
-        result = caseTypeElement(typeGeneratorAdapterFactory);
       if (result == null)
         result = defaultCase(theEObject);
       return result;
@@ -500,7 +500,7 @@ public class TypesSwitch<T> {
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Type Generator Adapter Factory</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Type Class</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
@@ -508,11 +508,11 @@ public class TypesSwitch<T> {
    * 
    * @param object
    *          the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Type Generator Adapter Factory</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Type Class</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseTypeGeneratorAdapterFactory(TypeGeneratorAdapterFactory object) {
+  public T caseTypeClass(TypeClass object) {
     return null;
   }
 

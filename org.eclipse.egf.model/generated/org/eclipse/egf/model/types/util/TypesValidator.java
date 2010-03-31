@@ -20,6 +20,7 @@ import java.util.Set;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.model.EGFModelPlugin;
 import org.eclipse.egf.model.helper.ValidationHelper;
 import org.eclipse.egf.model.types.Type;
@@ -29,12 +30,12 @@ import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypeBoolean;
 import org.eclipse.egf.model.types.TypeByte;
 import org.eclipse.egf.model.types.TypeCharacter;
+import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypeDate;
 import org.eclipse.egf.model.types.TypeDouble;
 import org.eclipse.egf.model.types.TypeElement;
 import org.eclipse.egf.model.types.TypeFloat;
-import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
 import org.eclipse.egf.model.types.TypeInteger;
 import org.eclipse.egf.model.types.TypeList;
 import org.eclipse.egf.model.types.TypeLong;
@@ -44,7 +45,6 @@ import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.egf.model.types.TypeShort;
 import org.eclipse.egf.model.types.TypeString;
 import org.eclipse.egf.model.types.TypesPackage;
-import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
@@ -191,14 +191,14 @@ public class TypesValidator extends EObjectValidator {
       return validateTypeObject((TypeObject) value, diagnostics, context);
     case TypesPackage.TYPE_ABSTRACT_CLASS:
       return validateTypeAbstractClass((TypeAbstractClass) value, diagnostics, context);
+    case TypesPackage.TYPE_CLASS:
+      return validateTypeClass((TypeClass) value, diagnostics, context);
     case TypesPackage.TYPE_COLLECTION:
       return validateTypeCollection((TypeCollection) value, diagnostics, context);
     case TypesPackage.TYPE_LIST:
       return validateTypeList((TypeList) value, diagnostics, context);
     case TypesPackage.TYPE_SET:
       return validateTypeSet((TypeSet) value, diagnostics, context);
-    case TypesPackage.TYPE_GENERATOR_ADAPTER_FACTORY:
-      return validateTypeGeneratorAdapterFactory((TypeGeneratorAdapterFactory) value, diagnostics, context);
     case TypesPackage.TYPE_MAP:
       return validateTypeMap((TypeMap) value, diagnostics, context);
     case TypesPackage.TYPE_BIG_DECIMAL:
@@ -225,8 +225,6 @@ public class TypesValidator extends EObjectValidator {
       return validateTypeShort((TypeShort) value, diagnostics, context);
     case TypesPackage.TYPE_STRING:
       return validateTypeString((TypeString) value, diagnostics, context);
-    case TypesPackage.EGENERATOR_ADAPTER_FACTORY:
-      return validateEGeneratorAdapterFactory((GeneratorAdapterFactory) value, diagnostics, context);
     case TypesPackage.SET:
       return validateSet((Set<?>) value, diagnostics, context);
     case TypesPackage.LIST:
@@ -293,7 +291,7 @@ public class TypesValidator extends EObjectValidator {
    * @generated NOT
    */
   public boolean validateTypeObject_ValidValue(TypeObject typeObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (typeObject.getValue() == null) {
+    if (typeObject.getValue() == null || context == null || context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
       return true;
     }
     // Valid Value
@@ -366,7 +364,10 @@ public class TypesValidator extends EObjectValidator {
    * @generated NOT
    */
   public boolean validateTypeAbstractClass_ValidValue(TypeAbstractClass typeAbstractClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (typeAbstractClass.getValue() == null) {
+    if (typeAbstractClass.getValue() == null || context == null || context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
+      return true;
+    }
+    if (typeAbstractClass instanceof TypeClass) {
       return true;
     }
     // Valid Value
@@ -468,24 +469,24 @@ public class TypesValidator extends EObjectValidator {
    * 
    * @generated
    */
-  public boolean validateTypeGeneratorAdapterFactory(TypeGeneratorAdapterFactory typeGeneratorAdapterFactory, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    boolean result = validate_EveryMultiplicityConforms(typeGeneratorAdapterFactory, diagnostics, context);
+  public boolean validateTypeClass(TypeClass typeClass, DiagnosticChain diagnostics, Map<Object, Object> context) {
+    boolean result = validate_EveryMultiplicityConforms(typeClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryDataValueConforms(typeGeneratorAdapterFactory, diagnostics, context);
+      result &= validate_EveryDataValueConforms(typeClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryReferenceIsContained(typeGeneratorAdapterFactory, diagnostics, context);
+      result &= validate_EveryReferenceIsContained(typeClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryProxyResolves(typeGeneratorAdapterFactory, diagnostics, context);
+      result &= validate_EveryProxyResolves(typeClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_UniqueID(typeGeneratorAdapterFactory, diagnostics, context);
+      result &= validate_UniqueID(typeClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryKeyUnique(typeGeneratorAdapterFactory, diagnostics, context);
+      result &= validate_EveryKeyUnique(typeClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validate_EveryMapEntryUnique(typeGeneratorAdapterFactory, diagnostics, context);
+      result &= validate_EveryMapEntryUnique(typeClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeAbstractClass_LoadableType(typeGeneratorAdapterFactory, diagnostics, context);
+      result &= validateTypeAbstractClass_LoadableType(typeClass, diagnostics, context);
     if (result || diagnostics != null)
-      result &= validateTypeAbstractClass_ValidValue(typeGeneratorAdapterFactory, diagnostics, context);
+      result &= validateTypeAbstractClass_ValidValue(typeClass, diagnostics, context);
     return result;
   }
 
@@ -814,16 +815,6 @@ public class TypesValidator extends EObjectValidator {
     if (result || diagnostics != null)
       result &= validateTypeObject_ValidValue(typeString, diagnostics, context);
     return result;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated
-   */
-  public boolean validateEGeneratorAdapterFactory(GeneratorAdapterFactory eGeneratorAdapterFactory, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    return true;
   }
 
   /**

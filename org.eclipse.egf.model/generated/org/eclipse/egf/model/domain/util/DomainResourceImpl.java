@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.domain.util.DomainResourceFactoryImpl
  * @generated
  */
@@ -70,9 +69,7 @@ public class DomainResourceImpl extends XMIResourceImpl {
    * Creates an instance of the resource.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param uri
-   *          the URI of the new resource.
+   * @param uri the URI of the new resource.
    * @generated
    */
   public DomainResourceImpl(URI uri) {
@@ -103,14 +100,15 @@ public class DomainResourceImpl extends XMIResourceImpl {
 
   /**
    * Called when the object is unloaded.
-   * This implementation {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
+   * This implementation
+   * {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
    * and clears the {@link #eAdapters adapters}.
    * https://bugs.eclipse.org/bugs/show_bug.cgi?id=292866
    * Fix available in HEAD: 2.6.0.I200911020144
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated	 
    */
   @Override
   protected void unloaded(InternalEObject internalEObject) {

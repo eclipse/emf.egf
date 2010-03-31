@@ -19,12 +19,12 @@ import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypeBoolean;
 import org.eclipse.egf.model.types.TypeByte;
 import org.eclipse.egf.model.types.TypeCharacter;
+import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypeDate;
 import org.eclipse.egf.model.types.TypeDouble;
 import org.eclipse.egf.model.types.TypeElement;
 import org.eclipse.egf.model.types.TypeFloat;
-import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
 import org.eclipse.egf.model.types.TypeInteger;
 import org.eclipse.egf.model.types.TypeList;
 import org.eclipse.egf.model.types.TypeLong;
@@ -122,6 +122,11 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
     }
 
     @Override
+    public Adapter caseTypeClass(TypeClass object) {
+      return createTypeClassAdapter();
+    }
+
+    @Override
     public Adapter caseTypeCollection(TypeCollection object) {
       return createTypeCollectionAdapter();
     }
@@ -134,11 +139,6 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
     @Override
     public Adapter caseTypeSet(TypeSet object) {
       return createTypeSetAdapter();
-    }
-
-    @Override
-    public Adapter caseTypeGeneratorAdapterFactory(TypeGeneratorAdapterFactory object) {
-      return createTypeGeneratorAdapterFactoryAdapter();
     }
 
     @Override
@@ -333,17 +333,17 @@ public class TypesAdapterFactory extends AdapterFactoryImpl {
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeGeneratorAdapterFactory <em>Type Generator Adapter Factory</em>}'.
+   * Creates a new adapter for an object of class '{@link org.eclipse.egf.model.types.TypeClass <em>Type Class</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * 
    * @return the new adapter.
-   * @see org.eclipse.egf.model.types.TypeGeneratorAdapterFactory
+   * @see org.eclipse.egf.model.types.TypeClass
    * @generated
    */
-  public Adapter createTypeGeneratorAdapterFactoryAdapter() {
+  public Adapter createTypeClassAdapter() {
     return null;
   }
 
