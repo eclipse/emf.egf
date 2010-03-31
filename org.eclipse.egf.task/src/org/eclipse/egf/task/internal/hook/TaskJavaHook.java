@@ -24,6 +24,7 @@ import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
+import org.eclipse.egf.core.preferences.IEGFModelConstants;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
@@ -87,6 +88,9 @@ public class TaskJavaHook implements TaskHook {
   public boolean isValidImplementation(Task task, Map<Object, Object> context) {
     if (task == null) {
       return false;
+    }
+    if (context == null || context.get(IEGFModelConstants.VALIDATE_TYPES) == Boolean.FALSE) {
+      return true;
     }
     if (ValidationHelper.isValidClass(task, ITaskProduction.class, task.getImplementationValue(), context)) {
       return true;
