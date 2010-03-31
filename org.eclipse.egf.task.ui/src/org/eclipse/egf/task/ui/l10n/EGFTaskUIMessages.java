@@ -35,5 +35,7 @@ public class EGFTaskUIMessages extends NLS {
 
   public static String OpenTaskImplementationMenuContributor_error_title;
   public static String OpenTaskImplementationMenuContributor_error_message;
+  public static String OpenTaskImplementationMenuContributor_unable_to_find_platform_fcore;
+  public static String OpenTaskImplementationMenuContributor_unable_to_load_class;
 
 }

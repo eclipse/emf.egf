@@ -10,26 +10,23 @@
  */
 package org.eclipse.egf.task.ui.contributions;
 
-import java.net.URL;
-import java.util.Enumeration;
+import java.lang.reflect.InvocationTargetException;
 
-import org.eclipse.core.filesystem.EFS;
-import org.eclipse.core.filesystem.IFileStore;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
-import org.eclipse.egf.core.pde.helper.PluginHelper;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.task.EGFTaskPlugin;
+import org.eclipse.egf.task.ui.EGFTaskUIPlugin;
 import org.eclipse.egf.task.ui.l10n.EGFTaskUIMessages;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -37,15 +34,22 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.WorkingCopyOwner;
+import org.eclipse.jdt.core.search.IJavaSearchConstants;
+import org.eclipse.jdt.core.search.SearchEngine;
+import org.eclipse.jdt.core.search.SearchPattern;
+import org.eclipse.jdt.core.search.TypeNameMatch;
+import org.eclipse.jdt.core.search.TypeNameMatchRequestor;
 import org.eclipse.jdt.ui.JavaUI;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.pde.internal.core.target.provisional.IResolvedBundle;
-import org.eclipse.pde.internal.core.target.provisional.ITargetDefinition;
-import org.eclipse.ui.ide.IDE;
+import org.eclipse.pde.core.plugin.IPluginModelBase;
+import org.eclipse.pde.internal.core.PDECore;
+import org.eclipse.ui.PlatformUI;
 import org.osgi.framework.Bundle;
 
 /**
@@ -54,7 +58,99 @@ import org.osgi.framework.Bundle;
  */
 public class OpenTaskImplementationMenuContributor extends MenuContributor {
 
-  public static final String OPEN_TASK_IMPLEMENTATION_ACTION_ID = "open-task-implementation"; //$NON-NLS-1$  
+  public static final String OPEN_TASK_IMPLEMENTATION_ACTION_ID = "open-task-implementation"; //$NON-NLS-1$
+
+  public class FindOperation implements IRunnableWithProgress {
+
+    private String _fqn;
+
+    private Resource _resource;
+
+    private IType _type;
+
+    public FindOperation(Resource resource, String fqn) {
+      _resource = resource;
+      _fqn = fqn;
+    }
+
+    public IType getType() {
+      return _type;
+    }
+
+    public URI getURI() {
+      Resource resource = _resource;
+      if (resource == null) {
+        return null;
+      }
+      URI uri = resource.getURI();
+      if (uri != null && resource.getResourceSet() != null) {
+        URIConverter converter = resource.getResourceSet().getURIConverter();
+        if (converter != null) {
+          uri = converter.normalize(uri);
+        }
+      }
+      return uri;
+    }
+
+    public void run(IProgressMonitor monitor) throws InvocationTargetException {
+      try {
+        URI uri = getURI();
+        // Workspace
+        if (uri.isPlatformResource()) {
+          String path = uri.toPlatformString(true);
+          IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
+          IJavaProject project = JavaCore.create(resource.getProject());
+          _type = project.findType(_fqn, monitor);
+        } else {
+          // Target
+          IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(_resource);
+          Bundle fcoreBundle = fcore.getPlatformBundle().getBundle();
+          if (fcoreBundle == null) {
+            throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_unable_to_find_platform_fcore, _resource.getURI()), null)));
+          }
+          // Class
+          Class<?> clazz = fcoreBundle.loadClass(_fqn);
+          if (clazz == null) {
+            throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_unable_to_load_class, _fqn), null)));
+          }
+          // Is the current bundle part of Java Search
+          String id = fcore.getPlatformBundle().getPluginBase().getId();
+          if (PDECore.getDefault().getSearchablePluginsManager().isInJavaSearch(id) == false) {
+            PDECore.getDefault().getSearchablePluginsManager().addToJavaSearch(new IPluginModelBase[] { fcore.getPlatformBundle().getPluginModelBase() });
+          }
+          // Java Search
+          TypeSearchRequestor requestor = new TypeSearchRequestor();
+          SearchEngine engine = new SearchEngine((WorkingCopyOwner) null);
+          engine.searchAllTypeNames(clazz.getPackage().getName().toCharArray(), SearchPattern.R_EXACT_MATCH, clazz.getSimpleName().toCharArray(), SearchPattern.R_EXACT_MATCH, IJavaSearchConstants.CLASS_AND_INTERFACE, SearchEngine.createWorkspaceScope(), requestor,
+              IJavaSearchConstants.WAIT_UNTIL_READY_TO_SEARCH, monitor);
+          _type = requestor.getMatched();
+        }
+      } catch (Throwable t) {
+        throw new InvocationTargetException(new CoreException(EGFTaskUIPlugin.getDefault().newStatus(IStatus.ERROR, EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, t)));
+      } finally {
+        monitor.done();
+      }
+    }
+  }
+
+  private static class TypeSearchRequestor extends TypeNameMatchRequestor {
+
+    private IType _matched;
+
+    public TypeSearchRequestor() {
+      super();
+    }
+
+    @Override
+    public void acceptTypeNameMatch(TypeNameMatch match) {
+      _matched = match.getType();
+    }
+
+    public IType getMatched() {
+      return _matched;
+    }
+
+  }
 
   private class OpenTaskImplementationAction extends Action {
 
@@ -118,108 +214,28 @@ public class OpenTaskImplementationMenuContributor extends MenuContributor {
       if (getKind() == null) {
         return false;
       }
-      if (getImplementation() == null) {
+      if (getImplementation() == null || getImplementation().length() == 0) {
         return false;
       }
       return true;
     }
 
-    public URI getResourceURI() {
-      Resource resource = getResource();
-      if (resource == null) {
-        return null;
-      }
-      URI uri = resource.getURI();
-      if (uri != null && resource.getResourceSet() != null) {
-        URIConverter converter = resource.getResourceSet().getURIConverter();
-        if (converter != null) {
-          uri = converter.normalize(uri);
-        }
-      }
-      return uri;
-    }
-
     @Override
-    @SuppressWarnings("unchecked")
     public void run() {
-      URI uri = getResourceURI();
-      // Workspace
+      // Find a suitable IType
+      FindOperation operation = new FindOperation(getResource(), getImplementation());
       try {
-        if (uri.isPlatformResource()) {
-          String path = uri.toPlatformString(true);
-          IResource resource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
-          IJavaProject project = JavaCore.create(resource.getProject());
-          IType type = project.findType(getImplementation());
-          if (type != null) {
-            JavaUI.openInEditor(type);
-          } else {
-            MessageDialog.openError(_activeEditorPart.getSite().getShell(), EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_title, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, getImplementation()));
-          }
+        PlatformUI.getWorkbench().getProgressService().busyCursorWhile(operation);
+        if (operation.getType() != null) {
+          JavaUI.openInEditor(operation.getType());
         } else {
-          // Fcore
-          IPlatformFcore fcore = EGFCorePlugin.getPlatformFcore(getResource());
-          Bundle fcoreBundle = fcore.getPlatformBundle().getBundle();
-          if (fcoreBundle == null) {
-            MessageDialog.openError(_activeEditorPart.getSite().getShell(), EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_title, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, getImplementation()));
-            return;
-          }
-          // Class
-          Class<?> clazz = fcoreBundle.loadClass(getImplementation());
-          if (clazz == null) {
-            MessageDialog.openError(_activeEditorPart.getSite().getShell(), EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_title, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, getImplementation()));
-          }
-          // Host Bundle
-          Bundle hostBundle = BundleHelper.getBundle(clazz);
-          if (hostBundle == null) {
-            MessageDialog.openError(_activeEditorPart.getSite().getShell(), EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_title, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, getImplementation()));
-            return;
-          }
-          // If source exists in the current bundle
-          URL implementation = null;
-          Enumeration<URL> urls = hostBundle.findEntries("/", clazz.getSimpleName() + ".java", true); //$NON-NLS-1$ //$NON-NLS-2$
-          if (urls != null && urls.hasMoreElements()) {
-            implementation = urls.nextElement();
-          }
-          // Looking for a source bundle
-          if (implementation == null) {
-            // Locate a source bundle if any
-            String sourceBundle = null;
-            // Try to locate a source bundle
-            ITargetDefinition definition = PluginHelper.getWorkspaceTargetHandle();
-            if (definition.isResolved() == false) {
-              definition.resolve(null);
-            }
-            // Locate source bundle if any
-            for (IResolvedBundle bundle : definition.getAllBundles()) {
-              if (bundle.isSourceBundle() && bundle.getSourceTarget() != null) {
-                if (bundle.getSourceTarget().getBundleId() == hostBundle.getBundleId()) {
-                  sourceBundle = bundle.getSourceTarget().getSymbolicName();
-                  break;
-                }
-              }
-            }
-            // retrieve bundle if any
-            if (sourceBundle != null) {
-              Bundle bundle = Platform.getBundle(sourceBundle);
-              if (bundle != null) {
-                urls = hostBundle.findEntries("/", clazz.getSimpleName() + ".java", true); //$NON-NLS-1$ //$NON-NLS-2$
-                if (urls != null && urls.hasMoreElements()) {
-                  implementation = urls.nextElement();
-                }
-              }
-            }
-          }
-          if (implementation != null) {
-            implementation = FileLocator.resolve(implementation);
-            IFileStore fileStore = EFS.getLocalFileSystem().getStore(implementation.toURI());
-            IDE.openEditorOnFileStore(_activeEditorPart.getSite().getPage(), fileStore);
-          } else {
-            // Fail to source lookup
-            MessageDialog.openError(_activeEditorPart.getSite().getShell(), EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_title, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, getImplementation()));
-          }
+          MessageDialog.openError(_activeEditorPart.getSite().getShell(), EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_title, NLS.bind(EGFTaskUIMessages.OpenTaskImplementationMenuContributor_error_message, getImplementation()));
         }
+      } catch (InterruptedException e) {
+        return;
       } catch (Throwable t) {
         ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);
+        return;
       }
     }
   }
