@@ -18,6 +18,7 @@ import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.ModelEntry;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * This helper provides high-level services to deal with class loading.
@@ -173,6 +174,20 @@ public class BundleHelper {
       return null;
     }
     return PluginRegistry.findModel(project);
+  }
+
+  /**
+   * Get a Bundle from a bundled loaded Class<?>
+   * 
+   * @param project
+   * @return an {@link IPluginModelBase} instance or null if the project is not
+   *         a plug-in.
+   */
+  public static Bundle getBundle(Class<?> clazz) {
+    if (clazz == null) {
+      return null;
+    }
+    return FrameworkUtil.getBundle(clazz);
   }
 
 }

@@ -23,6 +23,7 @@ import org.eclipse.core.resources.IFolder;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.egf.common.EGFCommonPlugin;
@@ -47,6 +48,42 @@ public class JavaHelper {
       return null;
     }
     return (IFolder) resource;
+  }
+
+  public static String getFileName(Class<?> clazz) {
+    if (clazz == null) {
+      return null;
+    }
+    return "/" + clazz.getName().replaceAll("[.]", "/") + ".class"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$
+  }
+
+  public static URL getResourceURL(Class<?> clazz) {
+    try {
+      String name = getFileName(clazz);
+      if (name == null) {
+        return null;
+      }
+      return clazz.getResource(name);
+    } catch (Throwable t) {
+      // Nothing to do
+    }
+    return null;
+  }
+
+  public static URL getFileURL(Class<?> clazz) {
+    try {
+      String name = getFileName(clazz);
+      if (name == null) {
+        return null;
+      }
+      URL url = clazz.getResource(name);
+      if (url != null) {
+        return FileLocator.resolve(url);
+      }
+    } catch (Throwable t) {
+      // Nothing to do
+    }
+    return null;
   }
 
   public static ClassLoader getProjectClassLoader(IJavaProject project) throws CoreException {
