@@ -38,10 +38,10 @@ public class OpenURIMenuContributor extends OpenEObjectMenuContributor {
 
     @Override
     protected EObject getEObject() {
-      if (selection == null) {
+      if (_selection == null) {
         return null;
       }
-      IStructuredSelection sselection = (IStructuredSelection) selection;
+      IStructuredSelection sselection = (IStructuredSelection) _selection;
       if (sselection.size() != 1) {
         return null;
       }

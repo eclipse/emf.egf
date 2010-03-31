@@ -40,7 +40,7 @@ public class InvokeActivityMenuContributor extends MenuContributor {
 
   @Override
   public void menuAboutToShow(IMenuManager menuManager) {
-    IStructuredSelection selection2 = (IStructuredSelection) selection;
+    IStructuredSelection selection2 = (IStructuredSelection) _selection;
     if (selection2.size() == 1) {
       if (selection2.getFirstElement() instanceof ProductionPlan) {
         _invokeActivityAction.setEnabled(_invokeActivityAction.isEnabled());
@@ -73,10 +73,10 @@ public class InvokeActivityMenuContributor extends MenuContributor {
     }
 
     protected ProductionPlan getProductionPlan() {
-      if (selection == null) {
+      if (_selection == null) {
         return null;
       }
-      IStructuredSelection sselection = (IStructuredSelection) selection;
+      IStructuredSelection sselection = (IStructuredSelection) _selection;
       if (sselection.size() != 1) {
         return null;
       }
@@ -95,9 +95,9 @@ public class InvokeActivityMenuContributor extends MenuContributor {
       }
       // Instantiates and initializes the wizard
       InvokeActivityWizard wizard = new InvokeActivityWizard();
-      wizard.init(activeEditorPart.getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) selection);
+      wizard.init(_activeEditorPart.getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) _selection);
       // Instantiates the wizard container with the wizard and opens it
-      EGFWizardDialog dialog = new EGFWizardDialog(activeEditorPart.getSite().getShell(), wizard);
+      EGFWizardDialog dialog = new EGFWizardDialog(_activeEditorPart.getSite().getShell(), wizard);
       dialog.create();
       dialog.open();
     }

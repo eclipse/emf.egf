@@ -78,7 +78,7 @@ public class PatternMenuContributor extends MenuContributor {
 
     @Override
     public void menuAboutToShow(IMenuManager menuManager) {
-        IStructuredSelection selection2 = (IStructuredSelection) selection;
+        IStructuredSelection selection2 = (IStructuredSelection) _selection;
         if (selection2.size() == 1) {
             if (selection2.getFirstElement() instanceof PatternLibrary) {
                 IContributionItem item = menuManager.find(EGFCommonUIConstants.CREATE_CHILD);
@@ -93,7 +93,7 @@ public class PatternMenuContributor extends MenuContributor {
                 for (String nature : extensions.keySet()) {
                     PatternExtension patternExtension = extensions.get(nature);
                     CommandParameter descriptor = new CommandParameter(null, PatternPackage.Literals.PATTERN_LIBRARY__ELEMENTS, patternExtension.getFactory().createPattern(null, "myPattern"));
-                    CreateChildAction createChildAction = new CreatePatternAction(activeEditorPart, selection, descriptor, (PatternLibrary) selection2.getFirstElement());
+                    CreateChildAction createChildAction = new CreatePatternAction(_activeEditorPart, _selection, descriptor, (PatternLibrary) selection2.getFirstElement());
                     createChildAction.setText(Messages.bind(Messages.ViewpointContributor_newPattern_label, nature));
                     createChildAction.setImageDescriptor(ImageDescriptor.createFromURL(patternExtension.getImageURL()));
                     createChildMenuManager.add(createChildAction);
@@ -185,9 +185,9 @@ public class PatternMenuContributor extends MenuContributor {
 
         @Override
         public void run() {
-            if (selection == null)
+            if (_selection == null)
                 throw new IllegalStateException();
-            IStructuredSelection sselection = (IStructuredSelection) selection;
+            IStructuredSelection sselection = (IStructuredSelection) _selection;
             if (sselection.isEmpty() || !(sselection.getFirstElement() instanceof EObject))
                 throw new IllegalStateException();
 
@@ -216,9 +216,9 @@ public class PatternMenuContributor extends MenuContributor {
         }
 
         protected Pattern getPattern() {
-            if (selection == null)
+            if (_selection == null)
                 throw new IllegalStateException();
-            IStructuredSelection sselection = (IStructuredSelection) selection;
+            IStructuredSelection sselection = (IStructuredSelection) _selection;
             if (sselection.size() != 1 || !(sselection.getFirstElement() instanceof Pattern))
                 throw new IllegalStateException();
             return (Pattern) sselection.getFirstElement();
@@ -240,14 +240,14 @@ public class PatternMenuContributor extends MenuContributor {
         public void run() {
             Pattern patternInTransactionalEditingDomain = getPatternInTransactionalEditingDomain();
             if (patternInTransactionalEditingDomain == null)
-                MessageDialog.openInformation(parent.getPage().getWorkbenchWindow().getShell(), Messages.ViewpointContributor_missingPattern_title, Messages.ViewpointContributor_missingPattern_message);
+                MessageDialog.openInformation(_parent.getPage().getWorkbenchWindow().getShell(), Messages.ViewpointContributor_missingPattern_title, Messages.ViewpointContributor_missingPattern_message);
             else {
                 // PatternTemplateEditor.openEditor(parent.getPage(),
                 // patternInTransactionalEditingDomain, null);
                 Pattern pattern = getPattern();
                 String editor = TemplateExtensionRegistry.getEditor(pattern);
                 if (editor != null) {
-                    EditHelper.openTemplateEditor(parent.getPage(), pattern, editor);
+                    EditHelper.openTemplateEditor(_parent.getPage(), pattern, editor);
                 }
             }
         }
@@ -261,7 +261,7 @@ public class PatternMenuContributor extends MenuContributor {
 
         @Override
         public void run() {
-            EditHelper.openPatternEditor(parent.getPage(), getPattern().getID());
+            EditHelper.openPatternEditor(_parent.getPage(), getPattern().getID());
         }
     }
 

@@ -31,10 +31,10 @@ public class OpenSuperTaskMenuContributor extends OpenEObjectMenuContributor {
   private final OpenAction _openAction = new OpenAction(OPEN_SUPER_TASK_ACTION_ID) {
     @Override
     protected EObject getEObject() {
-      if (selection == null) {
+      if (_selection == null) {
         return null;
       }
-      IStructuredSelection sselection = (IStructuredSelection) selection;
+      IStructuredSelection sselection = (IStructuredSelection) _selection;
       if (sselection.size() != 1) {
         return null;
       }

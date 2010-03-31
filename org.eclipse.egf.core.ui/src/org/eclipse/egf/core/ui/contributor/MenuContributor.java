@@ -19,7 +19,6 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.part.EditorActionBarContributor;
 
 /**
@@ -28,23 +27,26 @@ import org.eclipse.ui.part.EditorActionBarContributor;
  */
 public abstract class MenuContributor {
 
-    public static final String EXTENSION_ID = "org.eclipse.egf.core.ui.editor.menu.contributor"; //$NON-NLS-1$
-    protected ISelection selection;
-    protected IWorkbenchPage page;
-    protected EditorActionBarContributor parent;
-    protected IEditorPart activeEditorPart;
+  public static final String EXTENSION_ID = "org.eclipse.egf.core.ui.editor.menu.contributor"; //$NON-NLS-1$
 
-    public void setParentContributor(EditorActionBarContributor parent) {
-        this.parent = parent;
-    }
+  protected ISelection _selection;
 
-    public abstract void menuAboutToShow(IMenuManager menuManager);
+  protected EditorActionBarContributor _parent;
 
-    public void setActiveEditor(IEditorPart part) {
-        activeEditorPart = part;
-    }
+  protected IEditorPart _activeEditorPart;
 
-    public void selectionChanged(SelectionChangedEvent event) {
-        selection = event.getSelection();
-    }
+  public void setParentContributor(EditorActionBarContributor parent) {
+    _parent = parent;
+  }
+
+  public abstract void menuAboutToShow(IMenuManager menuManager);
+
+  public void setActiveEditor(IEditorPart part) {
+    _activeEditorPart = part;
+  }
+
+  public void selectionChanged(SelectionChangedEvent event) {
+    _selection = event.getSelection();
+  }
+
 }

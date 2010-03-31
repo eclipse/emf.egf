@@ -12,6 +12,7 @@ package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.egf.common.ui.constant.EGFCommonUIConstants;
 import org.eclipse.egf.common.ui.helper.EditorHelper;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.ui.contributor.MenuContributor;
 import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.emf.common.util.URI;
@@ -98,7 +99,7 @@ public abstract class OpenEObjectMenuContributor extends MenuContributor {
           }
         }
       } catch (PartInitException pie) {
-        EGFModelEditorPlugin.getPlugin().logError(pie);
+        ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), pie);
       }
     }
 
@@ -106,7 +107,7 @@ public abstract class OpenEObjectMenuContributor extends MenuContributor {
 
   @Override
   public void menuAboutToShow(IMenuManager menuManager) {
-    IStructuredSelection innerSelection = (IStructuredSelection) selection;
+    IStructuredSelection innerSelection = (IStructuredSelection) _selection;
     if (innerSelection.size() == 1 && getOpenAction().getEObject() != null) {
       getOpenAction().setText(getText());
       getOpenAction().setEnabled(getOpenAction().isEnabled());
