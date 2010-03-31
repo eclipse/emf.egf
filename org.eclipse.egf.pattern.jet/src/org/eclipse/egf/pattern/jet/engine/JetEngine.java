@@ -148,7 +148,7 @@ public class JetEngine extends PatternEngine {
             IProject project = platformFcore.getPlatformBundle().getProject();
             if (project == null)
                 throw new PatternException(Messages.bind(Messages.assembly_error5, pattern.getName(), pattern.getID()));
-            FileHelper.setContent(project.getFile(outputPath), getContent(new String(outStream.toByteArray())));
+            FileHelper.setContent(project.getFile(outputPath), getContent(new String(outStream.toByteArray())), false);
 
         } catch (PatternException e) {
             throw e;

@@ -75,7 +75,7 @@ public class JavaEngine extends PatternEngine {
             // TODO
             String classname = JavaNatureHelper.getClassName(pattern);
             IPath outputPath = computeFilePath(classname);
-            FileHelper.setContent(project.getFile(outputPath), getContent(templatecontent));
+            FileHelper.setContent(project.getFile(outputPath), templatecontent, false);
         } catch (PatternException e) {
             throw e;
         } catch (Exception e) {

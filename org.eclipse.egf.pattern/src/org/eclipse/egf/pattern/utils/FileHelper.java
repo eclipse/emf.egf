@@ -39,97 +39,101 @@ import org.osgi.framework.Bundle;
  */
 public class FileHelper {
 
-  public static void setContent(IFile file, String source) throws CoreException {
-    setContent(file, new ByteArrayInputStream(source.getBytes()));
-  }
-
-  private static void setContent(IFile file, InputStream source) throws CoreException {
-    if (file.exists())
-      file.setContents(source, true, true, null);
-    else {
-      createParentfolders(file.getProject(), file.getProjectRelativePath().removeLastSegments(1));
-      file.create(source, true, null);
-    }
-  }
-
-  private static void createParentfolders(IProject project, IPath folderPath) throws CoreException {
-    if (folderPath.isEmpty())
-      return;
-    IFolder folder = project.getFolder(folderPath);
-    if (folder == null)
-      throw new IllegalStateException();
-    if (!folder.exists()) {
-      createParentfolders(project, folderPath.removeLastSegments(1));
-      folder.create(true, true, null);
-    }
-  }
-
-  /**
-   * This method tries to read a file from the project and then from the
-   * plugins.
-   * 
-   */
-  public static String getContent(String pluginId, IProject project, IPath templatePath) throws CoreException, IOException {
-    IFile file = project.getFile(templatePath);
-    if (file == null)
-      throw new IllegalStateException();
-    if (file.exists())
-      return getFileContent(file);
-
-    Bundle bundle = Platform.getBundle(pluginId);
-    if (bundle == null)
-      throw new IllegalArgumentException(Messages.bind(Messages.fileHelper_error1, pluginId));
-
-    URL entry = bundle.getEntry(templatePath.toPortableString());
-    if (entry == null)
-      throw new IllegalStateException(Messages.bind(Messages.fileHelper_error2, templatePath.toPortableString(), pluginId));
-
-    return getContent(entry.openStream());
-  }
-
-  /**
-   * Reads a file from a plugin who lives in the workspace or RT. If the file
-   * doesn't exist an empty string is returned.
-   * 
-   */
-  public static String getContent(IPlatformFcore component, URI uri) throws CoreException, IOException {
-    if (component == null)
-      throw new IllegalArgumentException(Messages.fileHelper_error3);
-    IProject project = component.getPlatformBundle().getProject();
-    if (project != null) {
-      IFile file = project.getFile(uri.path());
-      if (file == null)
-        throw new IllegalStateException();
-      if (!file.exists())
-        return EGFCommonConstants.EMPTY_STRING;
-      return getFileContent(file);
+    public static void setContent(IFile file, String source) throws CoreException {
+        setContent(file, source, true);
     }
 
-    Bundle bundle = component.getPlatformBundle().getBundle();
-    if (bundle == null)
-      throw new IllegalArgumentException(Messages.bind(Messages.fileHelper_error1, component.getPlatformBundle().getBundleId()));
-    URL entry = bundle.getEntry(uri.path());
-    if (entry == null)
-      throw new IllegalStateException(Messages.bind(Messages.fileHelper_error2, uri.toString(), component.getPlatformBundle().getBundleId()));
-
-    return getContent(entry.openStream());
-
-  }
-
-  public static String getFileContent(IFile file) throws CoreException, IOException {
-    return getContent(file.getContents());
-  }
-
-  private static String getContent(InputStream contents) throws CoreException, IOException {
-    byte[] buf = null;
-    try {
-      buf = new byte[contents.available()];
-      contents.read(buf);
-    } finally {
-      if (contents != null)
-        contents.close();
+    public static void setContent(IFile file, String source, boolean keepHistory) throws CoreException {
+        setContent(file, new ByteArrayInputStream(source.getBytes()), keepHistory);
     }
-    return new String(buf);
-  }
+
+    private static void setContent(IFile file, InputStream source, boolean keepHistory) throws CoreException {
+        if (file.exists())
+            file.setContents(source, true, keepHistory, null);
+        else {
+            createParentfolders(file.getProject(), file.getProjectRelativePath().removeLastSegments(1));
+            file.create(source, true, null);
+        }
+    }
+
+    private static void createParentfolders(IProject project, IPath folderPath) throws CoreException {
+        if (folderPath.isEmpty())
+            return;
+        IFolder folder = project.getFolder(folderPath);
+        if (folder == null)
+            throw new IllegalStateException();
+        if (!folder.exists()) {
+            createParentfolders(project, folderPath.removeLastSegments(1));
+            folder.create(true, true, null);
+        }
+    }
+
+    /**
+     * This method tries to read a file from the project and then from the
+     * plugins.
+     * 
+     */
+    public static String getContent(String pluginId, IProject project, IPath templatePath) throws CoreException, IOException {
+        IFile file = project.getFile(templatePath);
+        if (file == null)
+            throw new IllegalStateException();
+        if (file.exists())
+            return getFileContent(file);
+
+        Bundle bundle = Platform.getBundle(pluginId);
+        if (bundle == null)
+            throw new IllegalArgumentException(Messages.bind(Messages.fileHelper_error1, pluginId));
+
+        URL entry = bundle.getEntry(templatePath.toPortableString());
+        if (entry == null)
+            throw new IllegalStateException(Messages.bind(Messages.fileHelper_error2, templatePath.toPortableString(), pluginId));
+
+        return getContent(entry.openStream());
+    }
+
+    /**
+     * Reads a file from a plugin who lives in the workspace or RT. If the file
+     * doesn't exist an empty string is returned.
+     * 
+     */
+    public static String getContent(IPlatformFcore component, URI uri) throws CoreException, IOException {
+        if (component == null)
+            throw new IllegalArgumentException(Messages.fileHelper_error3);
+        IProject project = component.getPlatformBundle().getProject();
+        if (project != null) {
+            IFile file = project.getFile(uri.path());
+            if (file == null)
+                throw new IllegalStateException();
+            if (!file.exists())
+                return EGFCommonConstants.EMPTY_STRING;
+            return getFileContent(file);
+        }
+
+        Bundle bundle = component.getPlatformBundle().getBundle();
+        if (bundle == null)
+            throw new IllegalArgumentException(Messages.bind(Messages.fileHelper_error1, component.getPlatformBundle().getBundleId()));
+        URL entry = bundle.getEntry(uri.path());
+        if (entry == null)
+            throw new IllegalStateException(Messages.bind(Messages.fileHelper_error2, uri.toString(), component.getPlatformBundle().getBundleId()));
+
+        return getContent(entry.openStream());
+
+    }
+
+    public static String getFileContent(IFile file) throws CoreException, IOException {
+        return getContent(file.getContents());
+    }
+
+    private static String getContent(InputStream contents) throws CoreException, IOException {
+        byte[] buf = null;
+        try {
+            buf = new byte[contents.available()];
+            contents.read(buf);
+        } finally {
+            if (contents != null)
+                contents.close();
+        }
+        return new String(buf);
+    }
 
 }

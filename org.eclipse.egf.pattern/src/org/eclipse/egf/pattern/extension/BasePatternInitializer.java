@@ -77,7 +77,7 @@ public abstract class BasePatternInitializer implements PatternInitializer {
         else
             content = getDefaultContent(method);
         try {
-            FileHelper.setContent(outputFile, content == null ? "" : content);
+            FileHelper.setContent(outputFile, content == null ? "" : content, false);
         } catch (CoreException e) {
             throw new PatternException(e);
 
