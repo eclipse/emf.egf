@@ -50,7 +50,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.ModelElement} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ModelElementItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
@@ -59,7 +58,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements IEd
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public ModelElementItemProvider(AdapterFactory adapterFactory) {
@@ -70,7 +68,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements IEd
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -88,7 +85,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements IEd
    * This adds a property descriptor for the ID feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addIDPropertyDescriptor(Object object) {
@@ -102,7 +98,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements IEd
    * This adds a property descriptor for the Description feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addDescriptionPropertyDescriptor(Object object) {
@@ -115,7 +110,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements IEd
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -140,7 +134,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements IEd
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -160,7 +153,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements IEd
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -172,7 +164,6 @@ public class ModelElementItemProvider extends ItemProviderAdapter implements IEd
    * Return the resource locator for this item provider's resources.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

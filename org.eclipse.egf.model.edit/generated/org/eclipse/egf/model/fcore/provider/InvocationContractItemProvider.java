@@ -21,6 +21,7 @@ import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.fcore.InvocationContract;
 import org.eclipse.egf.model.fcore.OrchestrationParameter;
 import org.eclipse.egf.model.fcore.helper.InvocationContractHelper;
+import org.eclipse.egf.model.types.TypeAbstractClass;
 import org.eclipse.egf.model.types.TypeBigDecimal;
 import org.eclipse.egf.model.types.TypeBigInteger;
 import org.eclipse.egf.model.types.TypeBoolean;
@@ -30,7 +31,6 @@ import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypeDate;
 import org.eclipse.egf.model.types.TypeDouble;
 import org.eclipse.egf.model.types.TypeFloat;
-import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
 import org.eclipse.egf.model.types.TypeInteger;
 import org.eclipse.egf.model.types.TypeList;
 import org.eclipse.egf.model.types.TypeLong;
@@ -331,6 +331,12 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
     }
 
     {
+      if (invocationContract.getInvokedContract().getType() instanceof TypeAbstractClass) {
+        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, TypesFactory.eINSTANCE.createTypeClass()));
+      }
+    }
+
+    {
       TypeCollection type = TypesFactory.eINSTANCE.createTypeCollection();
       if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
@@ -437,13 +443,6 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
 
     {
       TypeString type = TypesFactory.eINSTANCE.createTypeString();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
-        newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
-      }
-    }
-
-    {
-      TypeGeneratorAdapterFactory type = TypesFactory.eINSTANCE.createTypeGeneratorAdapterFactory();
       if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }

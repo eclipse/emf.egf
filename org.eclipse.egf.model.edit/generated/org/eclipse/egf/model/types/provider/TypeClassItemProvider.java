@@ -15,6 +15,7 @@ package org.eclipse.egf.model.types.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -30,22 +31,20 @@ import org.eclipse.emf.edit.provider.ITableItemLabelProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
 /**
- * This is the item provider adapter for a
- * {@link org.eclipse.egf.model.types.TypeGeneratorAdapterFactory} object.
+ * This is the item provider adapter for a {@link org.eclipse.egf.model.types.TypeClass} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class TypeGeneratorAdapterFactoryItemProvider extends TypeAbstractClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class TypeClassItemProvider extends TypeAbstractClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+    IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
-  public TypeGeneratorAdapterFactoryItemProvider(AdapterFactory adapterFactory) {
+  public TypeClassItemProvider(AdapterFactory adapterFactory) {
     super(adapterFactory);
   }
 
@@ -53,7 +52,6 @@ public class TypeGeneratorAdapterFactoryItemProvider extends TypeAbstractClassIt
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -66,15 +64,14 @@ public class TypeGeneratorAdapterFactoryItemProvider extends TypeAbstractClassIt
   }
 
   /**
-   * This returns TypeGeneratorAdapterFactory.gif.
+   * This returns TypeClass.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
   public Object getImage(Object object) {
-    return overlayImage(object, getResourceLocator().getImage("full/obj16/TypeGeneratorAdapterFactory")); //$NON-NLS-1$
+    return overlayImage(object, getResourceLocator().getImage("full/obj16/TypeClass")); //$NON-NLS-1$
   }
 
   /**
@@ -86,7 +83,9 @@ public class TypeGeneratorAdapterFactoryItemProvider extends TypeAbstractClassIt
    */
   @Override
   public String getText(Object object) {
-    return "[" + getString("_UI_TypeGeneratorAdapterFactory_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    Class<?> clazz = ((TypeClass) object).getType();
+    return clazz == null ? "[" + getString("_UI_TypeClass_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        clazz.getSimpleName() + " [" + getString("_UI_TypeClass_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -94,7 +93,6 @@ public class TypeGeneratorAdapterFactoryItemProvider extends TypeAbstractClassIt
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -108,7 +106,6 @@ public class TypeGeneratorAdapterFactoryItemProvider extends TypeAbstractClassIt
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

@@ -177,13 +177,13 @@ public class OrchestrationParameterItemProvider extends NamedModelElementItemPro
   protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
+    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, TypesFactory.eINSTANCE.createTypeClass()));
+
     newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, TypesFactory.eINSTANCE.createTypeCollection()));
 
     newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, TypesFactory.eINSTANCE.createTypeList()));
 
     newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, TypesFactory.eINSTANCE.createTypeSet()));
-
-    newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, TypesFactory.eINSTANCE.createTypeGeneratorAdapterFactory()));
 
     newChildDescriptors.add(createChildParameter(FcorePackage.Literals.ORCHESTRATION_PARAMETER__TYPE, TypesFactory.eINSTANCE.createTypeMap()));
 

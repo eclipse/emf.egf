@@ -174,26 +174,26 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
   }
 
   /**
-   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.TypeGeneratorAdapterFactory} instances.
+   * This keeps track of the one adapter used for all {@link org.eclipse.egf.model.types.TypeClass} instances.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected TypeGeneratorAdapterFactoryItemProvider typeGeneratorAdapterFactoryItemProvider;
+  protected TypeClassItemProvider typeClassItemProvider;
 
   /**
-   * This creates an adapter for a {@link org.eclipse.egf.model.types.TypeGeneratorAdapterFactory}.
+   * This creates an adapter for a {@link org.eclipse.egf.model.types.TypeClass}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
   @Override
-  public Adapter createTypeGeneratorAdapterFactoryAdapter() {
-    if (typeGeneratorAdapterFactoryItemProvider == null) {
-      typeGeneratorAdapterFactoryItemProvider = new TypeGeneratorAdapterFactoryItemProvider(this);
+  public Adapter createTypeClassAdapter() {
+    if (typeClassItemProvider == null) {
+      typeClassItemProvider = new TypeClassItemProvider(this);
     }
 
-    return typeGeneratorAdapterFactoryItemProvider;
+    return typeClassItemProvider;
   }
 
   /**
@@ -621,14 +621,14 @@ public class TypesItemProviderAdapterFactory extends TypesAdapterFactory impleme
    * @generated
    */
   public void dispose() {
+    if (typeClassItemProvider != null)
+      typeClassItemProvider.dispose();
     if (typeCollectionItemProvider != null)
       typeCollectionItemProvider.dispose();
     if (typeListItemProvider != null)
       typeListItemProvider.dispose();
     if (typeSetItemProvider != null)
       typeSetItemProvider.dispose();
-    if (typeGeneratorAdapterFactoryItemProvider != null)
-      typeGeneratorAdapterFactoryItemProvider.dispose();
     if (typeMapItemProvider != null)
       typeMapItemProvider.dispose();
     if (typeBigDecimalItemProvider != null)

@@ -41,7 +41,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.fcore.FactoryComponentContract} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FactoryComponentContractItemProvider extends ContractItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
@@ -50,7 +49,6 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public FactoryComponentContractItemProvider(AdapterFactory adapterFactory) {
@@ -61,7 +59,6 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -145,7 +142,6 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -165,7 +161,6 @@ public class FactoryComponentContractItemProvider extends ContractItemProvider i
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

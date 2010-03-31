@@ -15,6 +15,7 @@ package org.eclipse.egf.model.types.provider;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.egf.model.types.TypeSet;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -33,15 +34,14 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.types.TypeSet} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class TypeSetItemProvider extends TypeAbstractClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider, IItemFontProvider {
+public class TypeSetItemProvider extends TypeAbstractClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
+    IItemColorProvider, IItemFontProvider {
   /**
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypeSetItemProvider(AdapterFactory adapterFactory) {
@@ -52,7 +52,6 @@ public class TypeSetItemProvider extends TypeAbstractClassItemProvider implement
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -68,7 +67,6 @@ public class TypeSetItemProvider extends TypeAbstractClassItemProvider implement
    * This returns TypeSet.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -93,7 +91,6 @@ public class TypeSetItemProvider extends TypeAbstractClassItemProvider implement
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -107,7 +104,6 @@ public class TypeSetItemProvider extends TypeAbstractClassItemProvider implement
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
