@@ -64,17 +64,9 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
    * 
    * @generated NOT
    */
-  protected TypeDomainEPackageAdapter typeDomainEPackageAdapter = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
   protected TypeDomainEPackageImpl() {
     super();
-    typeDomainEPackageAdapter = new TypeDomainEPackageAdapter(this);
+    new TypeDomainEPackageAdapter(this);
   }
 
   /**
@@ -102,18 +94,13 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   public void setDomain(DomainEPackage newDomain) {
     DomainEPackage oldDomain = domain;
     domain = newDomain;
-    if (eNotificationRequired()) {
+    if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.TYPE_DOMAIN_EPACKAGE__DOMAIN, oldDomain, domain));
-    } else {
-      // The XMLResource.OPTION_DISABLE_NOTIFY option prevent notification to be delivered while loading
-      // as a consequence this adapter will not be initialized properly
-      typeDomainEPackageAdapter.notifyChanged(new ENotificationImpl(this, Notification.SET, DomainPackage.TYPE_DOMAIN_EPACKAGE__DOMAIN, oldDomain, domain));
-    }
   }
 
   /**

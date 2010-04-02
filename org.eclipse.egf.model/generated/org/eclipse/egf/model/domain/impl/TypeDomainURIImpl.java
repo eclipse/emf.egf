@@ -75,17 +75,9 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
    * 
    * @generated NOT
    */
-  protected TypeDomainURIAdapter typeDomainURIAdapter = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * 
-   * @generated NOT
-   */
   protected TypeDomainURIImpl() {
     super();
-    typeDomainURIAdapter = new TypeDomainURIAdapter(this);
+    new TypeDomainURIAdapter(this);
   }
 
   /**
@@ -113,18 +105,13 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated NOT
+   * @generated
    */
   public void setDomain(DomainURI newDomain) {
     DomainURI oldDomain = domain;
     domain = newDomain;
-    if (eNotificationRequired()) {
+    if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.TYPE_DOMAIN_URI__DOMAIN, oldDomain, domain));
-    } else {
-      // The XMLResource.OPTION_DISABLE_NOTIFY option prevent notification to be delivered while loading
-      // as a consequence this adapter will not be initialized properly
-      typeDomainURIAdapter.notifyChanged(new ENotificationImpl(this, Notification.SET, DomainPackage.TYPE_DOMAIN_URI__DOMAIN, oldDomain, domain));
-    }
   }
 
   /**

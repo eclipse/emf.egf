@@ -36,6 +36,7 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
+ * 
  * @see org.eclipse.egf.model.fcore.util.FcoreResourceFactoryImpl
  * @generated
  */
@@ -68,7 +69,9 @@ public class FcoreResourceImpl extends XMIResourceImpl {
    * Creates an instance of the resource.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param uri the URI of the new resource.
+   * 
+   * @param uri
+   *          the URI of the new resource.
    * @generated
    */
   public FcoreResourceImpl(URI uri) {
@@ -99,15 +102,14 @@ public class FcoreResourceImpl extends XMIResourceImpl {
 
   /**
    * Called when the object is unloaded.
-   * This implementation
-   * {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
+   * This implementation {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
    * and clears the {@link #eAdapters adapters}.
    * https://bugs.eclipse.org/bugs/show_bug.cgi?id=292866
    * Fix available in HEAD: 2.6.0.I200911020144
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated	 
+   * @generated
    */
   @Override
   protected void unloaded(InternalEObject internalEObject) {
@@ -132,7 +134,6 @@ public class FcoreResourceImpl extends XMIResourceImpl {
     setEncoding("UTF-8"); //$NON-NLS-1$
     setXMIVersion("2.1"); //$NON-NLS-1$
     // Save Options
-    getDefaultSaveOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, Boolean.TRUE);
     getDefaultSaveOptions().put(XMLResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
     getDefaultSaveOptions().put(XMLResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
     getDefaultSaveOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
@@ -152,7 +153,6 @@ public class FcoreResourceImpl extends XMIResourceImpl {
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
     // Load Options
-    getDefaultLoadOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.FALSE);
     getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.FALSE);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);

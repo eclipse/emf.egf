@@ -550,8 +550,7 @@ public class <%=genPackage.getResourceClassName()%> extends <%=genPackage.getImp
 <%if (genPackage.getResource() == GenResourceKind.XMI_LITERAL) {%>
 		setXMIVersion("2.1");<%=genModel.getNonNLS()%>
 <%}%>
-		// Save Options
-    getDefaultSaveOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, Boolean.TRUE);		
+		// Save Options		
 		getDefaultSaveOptions().put(XMLResource.OPTION_CONFIGURATION_CACHE, Boolean.TRUE);
 		getDefaultSaveOptions().put(XMLResource.OPTION_USE_CACHED_LOOKUP_TABLE, lookupTable);
 		getDefaultSaveOptions().put(XMLResource.OPTION_USE_ENCODED_ATTRIBUTE_STYLE, Boolean.TRUE);
@@ -569,8 +568,7 @@ public class <%=genPackage.getResourceClassName()%> extends <%=genPackage.getImp
 		getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new ModelSchemeAware());
 		getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
 		getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-		// Load Options
-    getDefaultLoadOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, Boolean.TRUE);		
+		// Load Options		
 		getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.FALSE);
 		getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.FALSE);
 		getDefaultLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
