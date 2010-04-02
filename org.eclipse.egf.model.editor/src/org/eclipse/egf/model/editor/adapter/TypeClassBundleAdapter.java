@@ -10,6 +10,9 @@
  */
 package org.eclipse.egf.model.editor.adapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
@@ -71,7 +74,14 @@ public class TypeClassBundleAdapter extends EContentAdapter {
       if (javaProject.exists()) {
         return;
       }
-      IRunnableWithProgress operation = new ConvertProjectOperation(javaProject.getProject(), true, true);
+      IRunnableWithProgress operation = new ConvertProjectOperation(javaProject.getProject(), true, true) {
+        @Override
+        public List<String> addSourceFolders() {
+          List<String> sourceFolders = new ArrayList<String>(1);
+          sourceFolders.add("src"); //$NON-NLS-1$
+          return sourceFolders;
+        }
+      };
       // asynchronous operation
       try {
         new ProgressMonitorDialog(_shell).run(true, false, operation);
