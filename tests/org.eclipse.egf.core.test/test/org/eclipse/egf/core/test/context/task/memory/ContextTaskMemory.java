@@ -25,16 +25,15 @@ import org.eclipse.egf.model.fcore.FcoreFactory;
 import org.eclipse.egf.model.fcore.FcorePackage;
 import org.eclipse.egf.model.ftask.FtaskFactory;
 import org.eclipse.egf.model.ftask.Task;
+import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypeCollection;
 import org.eclipse.egf.model.types.TypeFloat;
-import org.eclipse.egf.model.types.TypeGeneratorAdapterFactory;
 import org.eclipse.egf.model.types.TypeInteger;
 import org.eclipse.egf.model.types.TypesFactory;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
-import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
-import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
+import org.eclipse.emf.codegen.merge.java.JMerger;
 
 public class ContextTaskMemory extends TestCase {
 
@@ -118,24 +117,24 @@ public class ContextTaskMemory extends TestCase {
     TypeFloat amountType = TypesFactory.eINSTANCE.createTypeFloat();
     amount.eSet(FcorePackage.Literals.CONTRACT__TYPE, amountType);
 
-    Contract generatorAdapterFactory = FcoreFactory.eINSTANCE.createContract();
-    generatorAdapterFactory.setName("generatorAdapterFactory"); //$NON-NLS-1$
-    generatorAdapterFactory.setMode(ContractMode.OUT);
-    contracts.getContracts().add(generatorAdapterFactory);
+    Contract jmerger = FcoreFactory.eINSTANCE.createContract();
+    jmerger.setName("jmerger"); //$NON-NLS-1$
+    jmerger.setMode(ContractMode.OUT);
+    contracts.getContracts().add(jmerger);
 
-    TypeGeneratorAdapterFactory generatorAdapterFactoryType = TypesFactory.eINSTANCE.createTypeGeneratorAdapterFactory();
-    generatorAdapterFactoryType.setValue("org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory"); //$NON-NLS-1$
-    generatorAdapterFactory.eSet(FcorePackage.Literals.CONTRACT__TYPE, generatorAdapterFactoryType);
+    TypeClass jmergerType = TypesFactory.eINSTANCE.createTypeClass();
+    jmergerType.setValue("org.eclipse.emf.codegen.merge.java.JMerger"); //$NON-NLS-1$
+    jmerger.eSet(FcorePackage.Literals.CONTRACT__TYPE, jmergerType);
 
     // Beware, we use the test plugin bundle here, the manifest should import the bundle who contains the task
     // Otherwise it will fail to load it
     IActivityManager<Task> manager = TaskManagerFactory.createProductionManager(EGFCoreTestPlugin.getDefault().getBundle(), task);
 
-    GeneratorAdapterFactory defaultValue = null;
+    JMerger defaultValue = null;
 
     try {
       manager.initializeContext();
-      defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$      
+      defaultValue = manager.getProductionContext().getOutputValue("jmerger", JMerger.class); //$NON-NLS-1$      
       manager.invoke(new NullProgressMonitor());
     } catch (Exception e) {
       EGFCoreTestPlugin.getDefault().logError(e);
@@ -151,7 +150,7 @@ public class ContextTaskMemory extends TestCase {
       }
     }
 
-    assertNotSame(manager.getProductionContext().getOutputValue("generatorAdapterFactory", GenModelGeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
+    assertNotSame(manager.getProductionContext().getOutputValue("jmerger", JMerger.class), defaultValue); //$NON-NLS-1$
 
   }
 }

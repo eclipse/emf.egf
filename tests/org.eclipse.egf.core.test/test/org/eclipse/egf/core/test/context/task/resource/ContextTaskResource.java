@@ -23,7 +23,7 @@ import org.eclipse.egf.model.ftask.Task;
 import org.eclipse.egf.producer.EGFProducerPlugin;
 import org.eclipse.egf.producer.manager.ActivityManagerProducer;
 import org.eclipse.egf.producer.manager.IActivityManager;
-import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
+import org.eclipse.emf.codegen.merge.java.JMerger;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -40,7 +40,7 @@ public class ContextTaskResource extends TestCase {
   public void testInvokeH1() throws Exception {
 
     ResourceSet resourceSet = new ResourceSetImpl();
-    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore"); //$NON-NLS-1$
+    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore"); //$NON-NLS-1$
 
     // Load Resource
     Resource resource = ResourceHelper.loadResource(resourceSet, uri);
@@ -79,7 +79,7 @@ public class ContextTaskResource extends TestCase {
   public void testContractH1() throws Exception {
 
     ResourceSet resourceSet = new ResourceSetImpl();
-    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore"); //$NON-NLS-1$
+    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore"); //$NON-NLS-1$
 
     // Load Resource
     Resource resource = ResourceHelper.loadResource(resourceSet, uri);
@@ -120,7 +120,7 @@ public class ContextTaskResource extends TestCase {
   public void testOutputContractClassNotTheSameH1() throws Exception {
 
     ResourceSet resourceSet = new ResourceSetImpl();
-    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore"); //$NON-NLS-1$
+    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore"); //$NON-NLS-1$
 
     // Load Resource
     Resource resource = ResourceHelper.loadResource(resourceSet, uri);
@@ -135,11 +135,11 @@ public class ContextTaskResource extends TestCase {
 
     IActivityManager<Task> manager = TaskManagerFactory.createProductionManager(task);
 
-    GeneratorAdapterFactory defaultValue = null;
+    JMerger defaultValue = null;
 
     try {
       manager.initializeContext();
-      defaultValue = manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$
+      defaultValue = manager.getProductionContext().getOutputValue("jmerger", JMerger.class); //$NON-NLS-1$
       manager.invoke(new NullProgressMonitor());
     } catch (Exception e) {
       EGFCoreTestPlugin.getDefault().logError(e);
@@ -155,7 +155,7 @@ public class ContextTaskResource extends TestCase {
       }
     }
 
-    assertNotSame(manager.getProductionContext().getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class), defaultValue); //$NON-NLS-1$
+    assertNotSame(manager.getProductionContext().getOutputValue("jmerger", JMerger.class), defaultValue); //$NON-NLS-1$
 
   }
 

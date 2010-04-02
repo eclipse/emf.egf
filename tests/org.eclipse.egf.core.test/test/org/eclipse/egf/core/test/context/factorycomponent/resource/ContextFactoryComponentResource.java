@@ -41,7 +41,7 @@ public class ContextFactoryComponentResource extends TestCase {
   public void testInvokeFC1() throws Exception {
 
     ResourceSet resourceSet = new ResourceSetImpl();
-    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.fcs/fc/fc1.fcore"); //$NON-NLS-1$
+    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.fcs/egf/fc1.fcore"); //$NON-NLS-1$
 
     // Load Resource
     Resource resource = ResourceHelper.loadResource(resourceSet, uri);
@@ -80,7 +80,7 @@ public class ContextFactoryComponentResource extends TestCase {
   public void testContractFC1() throws Exception {
 
     ResourceSet resourceSet = new ResourceSetImpl();
-    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.fcs/fc/fc1.fcore"); //$NON-NLS-1$
+    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.fcs/egf/fc1.fcore"); //$NON-NLS-1$
 
     // Load Resource
     Resource resource = ResourceHelper.loadResource(resourceSet, uri);
@@ -121,7 +121,7 @@ public class ContextFactoryComponentResource extends TestCase {
   public void testContractList() throws Exception {
 
     ResourceSet resourceSet = new ResourceSetImpl();
-    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.fcs/fc/fc1.fcore"); //$NON-NLS-1$
+    URI uri = URI.createURI("platform:/plugin/org.eclipse.egf.example.fcs/egf/fc1.fcore"); //$NON-NLS-1$
 
     // Load Resource
     Resource resource = ResourceHelper.loadResource(resourceSet, uri);
