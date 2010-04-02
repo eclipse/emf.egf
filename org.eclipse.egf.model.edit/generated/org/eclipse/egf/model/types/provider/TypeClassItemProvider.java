@@ -34,6 +34,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.types.TypeClass} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class TypeClassItemProvider extends TypeAbstractClassItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider,
@@ -42,6 +43,7 @@ public class TypeClassItemProvider extends TypeAbstractClassItemProvider impleme
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public TypeClassItemProvider(AdapterFactory adapterFactory) {
@@ -52,6 +54,7 @@ public class TypeClassItemProvider extends TypeAbstractClassItemProvider impleme
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -67,6 +70,7 @@ public class TypeClassItemProvider extends TypeAbstractClassItemProvider impleme
    * This returns TypeClass.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -83,9 +87,12 @@ public class TypeClassItemProvider extends TypeAbstractClassItemProvider impleme
    */
   @Override
   public String getText(Object object) {
-    Class<?> clazz = ((TypeClass) object).getType();
-    return clazz == null ? "[" + getString("_UI_TypeClass_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
-        clazz.getSimpleName() + " [" + getString("_UI_TypeClass_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    String simpleName = ((TypeClass) object).getValue();
+    if (simpleName != null && simpleName.trim().length() > 0) {
+      simpleName = simpleName.trim().substring(simpleName.trim().lastIndexOf(".") + 1); //$NON-NLS-1$
+    }
+    return simpleName == null ? "[" + getString("_UI_TypeClass_type") + "]" : //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+        simpleName + " [" + getString("_UI_TypeClass_type") + "]"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
   }
 
   /**
@@ -93,6 +100,7 @@ public class TypeClassItemProvider extends TypeAbstractClassItemProvider impleme
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -106,6 +114,7 @@ public class TypeClassItemProvider extends TypeAbstractClassItemProvider impleme
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
