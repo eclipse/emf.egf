@@ -198,7 +198,7 @@ public class JetEngine extends PatternEngine {
         }
         builder.append(") throws Exception  {").append(EGFCommonConstants.LINE_SEPARATOR);
         builder.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
-        builder.append("int index = 0, executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("int executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR);
         // add orchestration statements
         builder.append(content.substring(startIndex + JetAssemblyHelper.START_LOOP_MARKER.length(), endIndex));
 
@@ -206,6 +206,16 @@ public class JetEngine extends PatternEngine {
         builder.append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
         if (!getPattern().getAllParameters().isEmpty()) {
             builder.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR);
+
+            builder.append("    Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
+            for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
+                String name = parameter.getName();
+                // String type =
+                // ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
+                // builder.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
+                builder.append("    parameterValues.put(\"").append(name).append("\", this.").append(name).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+            }
             builder.append("    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);").append(EGFCommonConstants.LINE_SEPARATOR);
             builder.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
             builder.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
@@ -233,9 +243,32 @@ public class JetEngine extends PatternEngine {
             }
         }
 
+        // handle variable declarations and setters
         for (PatternVariable var : pattern.getVariables()) {
-            builder.append("protected ").append(ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType())).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
+            String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType());
+            builder.append("protected ").append(type).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("public void ").append(JavaMethodGenerationHelper.getSetterMethod(var)).append("(").append(type).append(" object) {").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("this.").append(var.getName()).append(" = object;").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
         }
+
+        // handle parameter declarations and setters
+        for (PatternParameter var : pattern.getParameters()) {
+            String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(var.getType());
+            builder.append("protected ").append(type).append(" ").append(var.getName()).append(" = null;").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("public void ").append(JavaMethodGenerationHelper.getSetterMethod(var)).append("(").append(type).append(" object) {").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("this.").append(var.getName()).append(" = object;").append(EGFCommonConstants.LINE_SEPARATOR);
+            builder.append("}").append(EGFCommonConstants.LINE_SEPARATOR);
+        }
+
+        // handle getParameter() method declaration
+        builder.append("public Map<String, Object> getParameters() {").append(EGFCommonConstants.LINE_SEPARATOR);
+        builder.append("final Map<String, Object> parameters = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
+        for (PatternParameter parameter : pattern.getAllParameters()) {
+            String name = parameter.getName();
+            builder.append("parameters.put(\"").append(name).append("\", this.").append(name).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+        }
+        builder.append("return parameters; }").append(EGFCommonConstants.LINE_SEPARATOR);
 
         // handle methods declarations
         if (startMethodIndex != -1 && endMethodIndex != -1) {

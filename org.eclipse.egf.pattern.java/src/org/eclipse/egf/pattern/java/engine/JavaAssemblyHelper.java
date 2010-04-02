@@ -163,7 +163,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         }
         content.append(") throws Exception {").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("InternalPatternContext ictx = (InternalPatternContext)ctx;").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("int index = 0, executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR);
+        content.append("int executionIndex = ictx.getExecutionBuffer().length();").append(EGFCommonConstants.LINE_SEPARATOR);
     }
 
     /**
@@ -184,6 +184,11 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         content.append(EGFCommonConstants.LINE_SEPARATOR).append("String loop = ictx.getBuffer().toString();").append(EGFCommonConstants.LINE_SEPARATOR);
         if (!pattern.getAllParameters().isEmpty()) {
             content.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
+            for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
+                content.append("parameterValues.put(\"").append(parameter.getName()).append("\", this.").append(parameter.getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+            }
             content.append("    String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("    ictx.getReporter().loopFinished(loop, outputWithCallBack, ictx, parameterValues);").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("    ictx.clearBuffer();}").append(EGFCommonConstants.LINE_SEPARATOR);
@@ -191,12 +196,6 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         content.append("return loop;").append(EGFCommonConstants.LINE_SEPARATOR);
         // end of method generate(PatternContext ctx, ...)
         content.append("}").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
-
-        // create a loop per parameter
-        for (PatternParameter parameter : pattern.getAllParameters()) {
-            String local = PatternHelper.localizeName(parameter);
-            localContent.append("for (Object ").append(local).append(" : ").append(getParameterListName(parameter)).append(" ) {").append(EGFCommonConstants.LINE_SEPARATOR);
-        }
 
         localContent.append(EGFCommonConstants.LINE_SEPARATOR);
 

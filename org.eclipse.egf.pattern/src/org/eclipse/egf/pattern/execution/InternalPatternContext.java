@@ -29,6 +29,10 @@ public interface InternalPatternContext extends PatternContext, BundleAccessor {
 
     StringBuffer getExecutionBuffer();
 
+    int getExecutionCurrentIndex();
+
+    void setExecutionCurrentIndex(int index);
+
     void clearBuffer();
 
     void setReporter(PatternExecutionReporter reporter);

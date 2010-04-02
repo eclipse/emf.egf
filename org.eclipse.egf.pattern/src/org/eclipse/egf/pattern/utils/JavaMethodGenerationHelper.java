@@ -15,8 +15,8 @@
 
 package org.eclipse.egf.pattern.utils;
 
+import org.eclipse.egf.model.fcore.NamedModelElement;
 import org.eclipse.egf.model.pattern.PatternMethod;
-import org.eclipse.egf.model.pattern.PatternParameter;
 
 /**
  * @author Thomas Guiu
@@ -43,8 +43,8 @@ public class JavaMethodGenerationHelper {
         this.content = content;
     }
 
-    public static String getSetterMethod(PatternParameter param) {
-        String name = param.getName();
+    public static String getSetterMethod(NamedModelElement paramOrVariable) {
+        String name = paramOrVariable.getName();
         return "set_" + name;
     }
 }

@@ -26,8 +26,6 @@ import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.model.pattern.PatternExecutionReporter;
-import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.PatternVariable;
 import org.eclipse.egf.pattern.PatternPreferences;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
@@ -37,11 +35,6 @@ import org.eclipse.egf.pattern.execution.ConsoleReporter;
 import org.eclipse.egf.pattern.execution.InternalPatternContext;
 import org.eclipse.egf.pattern.java.Messages;
 import org.eclipse.egf.pattern.utils.FileHelper;
-import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
-import org.eclipse.jdt.core.jdom.DOMFactory;
-import org.eclipse.jdt.core.jdom.IDOMCompilationUnit;
-import org.eclipse.jdt.core.jdom.IDOMNode;
-import org.eclipse.jdt.core.jdom.IDOMType;
 
 /**
  * @author Thomas Guiu
@@ -63,7 +56,11 @@ public class JavaEngine extends PatternEngine {
         AssemblyHelper helper = new JavaAssemblyHelper(pattern);
         String templatecontent = helper.visit();
 
-        // 2 - put the result in the right file
+        // 2 - add additional code to the class
+        JavaTranslationEnhancer enhancer = new JavaTranslationEnhancer(pattern);
+        templatecontent = enhancer.enhance(templatecontent);
+
+        // 3 - put the result in the right file
         try {
 
             IPlatformFcore platformFactoryComponent = PatternHelper.getPlatformFcore(pattern);
