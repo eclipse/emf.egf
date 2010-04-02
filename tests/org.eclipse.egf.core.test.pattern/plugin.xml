@@ -13,5 +13,31 @@
       <fcore
             id="fc/callback_reporter_3.fcore">
       </fcore>
+      <fcore
+            id="fc/callback_1.fcore">
+      </fcore>
+      <fcore
+            id="fc/no_callback_1.fcore">
+      </fcore>
+      <fcore
+            id="fc/inheritance_1.fcore">
+      </fcore>
+      <fcore
+            id="fc/inheritance_2.fcore">
+      </fcore>
+      <fcore
+            id="fc/inheritance_3.fcore">
+      </fcore>
+      <fcore
+            id="fc/inheritance_4.fcore">
+      </fcore>
    </extension>
+   
+   <extension
+         point="org.eclipse.egf.core.test">
+      <EGFTestModel
+            modelPath="test/Pattern.test">
+      </EGFTestModel>
+   </extension>
+   
 </plugin>
