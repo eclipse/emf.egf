@@ -780,12 +780,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           EGFModelEditorPlugin.INSTANCE.log(exception);
         }
       }
-      for (URI uri : resourceToDiagnosticMap.keySet()) {
-        Diagnostic childDiagnostic = resourceToDiagnosticMap.get(uri);
-        if (childDiagnostic.getSeverity() != Diagnostic.OK) {
-          diagnostic.add(childDiagnostic);
-        }
-      }
       if (markerHelper.hasMarkers(getResource())) {
         markerHelper.deleteMarkers(getResource());
         if (diagnostic.getSeverity() != Diagnostic.OK) {
