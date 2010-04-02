@@ -321,14 +321,14 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
 
     super.collectNewChildDescriptors(newChildDescriptors, object);
 
-    if (object instanceof InvocationContract == false) {
-      return;
-    }
     InvocationContract invocationContract = (InvocationContract) object;
 
     if (invocationContract.getInvokedContract() == null || invocationContract.getInvokedContract().getType() == null) {
       return;
     }
+
+    // This is done once to avoid multiple classloader to be invoked when type is TypeClass
+    Class<?> invokedContractType = invocationContract.getInvokedContract().getType().getType();
 
     {
       if (invocationContract.getInvokedContract().getType() instanceof TypeAbstractClass) {
@@ -338,112 +338,112 @@ public class InvocationContractItemProvider extends ModelElementItemProvider imp
 
     {
       TypeCollection type = TypesFactory.eINSTANCE.createTypeCollection();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeList type = TypesFactory.eINSTANCE.createTypeList();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeSet type = TypesFactory.eINSTANCE.createTypeSet();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeMap type = TypesFactory.eINSTANCE.createTypeMap();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeBigDecimal type = TypesFactory.eINSTANCE.createTypeBigDecimal();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeBigInteger type = TypesFactory.eINSTANCE.createTypeBigInteger();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeBoolean type = TypesFactory.eINSTANCE.createTypeBoolean();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeByte type = TypesFactory.eINSTANCE.createTypeByte();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeCharacter type = TypesFactory.eINSTANCE.createTypeCharacter();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeDate type = TypesFactory.eINSTANCE.createTypeDate();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeDouble type = TypesFactory.eINSTANCE.createTypeDouble();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeFloat type = TypesFactory.eINSTANCE.createTypeFloat();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeInteger type = TypesFactory.eINSTANCE.createTypeInteger();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeLong type = TypesFactory.eINSTANCE.createTypeLong();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeShort type = TypesFactory.eINSTANCE.createTypeShort();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
 
     {
       TypeString type = TypesFactory.eINSTANCE.createTypeString();
-      if (ClassHelper.asSubClass(type.getType(), invocationContract.getInvokedContract().getType().getType())) {
+      if (ClassHelper.asSubClass(type.getType(), invokedContractType)) {
         newChildDescriptors.add(createChildParameter(FcorePackage.Literals.INVOCATION_CONTRACT__TYPE, type));
       }
     }
