@@ -38,7 +38,12 @@ public abstract class AbstractTaskEditorContributor extends AbstractTypeEditorCo
   }
 
   public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-    if (checkFeature(object, descriptor, FtaskPackage.Literals.TASK__IMPLEMENTATION) && object instanceof Task) {
+    // It should be a Task in a non null resource
+    if (object instanceof Task == false || ((Task) object).eResource() == null) {
+      return false;
+    }
+    // Check Current Feature
+    if (checkFeature(object, descriptor, FtaskPackage.Literals.TASK__IMPLEMENTATION)) {
       Task task = (Task) object;
       return getKind().equals(task.getKindValue());
     }
@@ -51,8 +56,8 @@ public abstract class AbstractTaskEditorContributor extends AbstractTypeEditorCo
   }
 
   @Override
-  protected Class<?> getType(Object object) {
-    return ITaskProduction.class;
+  protected String getFilteredType(Object object) {
+    return ITaskProduction.class.getName();
   }
 
   protected String getKind() {
