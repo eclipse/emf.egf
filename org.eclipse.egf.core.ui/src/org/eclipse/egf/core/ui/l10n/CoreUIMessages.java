@@ -33,13 +33,9 @@ public class CoreUIMessages {
   public static String _UI_SelectRegisteredFcore;
 
   public static String _UI_TypeSelection_label;
-  public static String _UI_SelectType;
   public static String _UI_SelectTypeSubClass;
-  public static String _UI_FilteredTypesSelectionDialog_library_name_format;
-  public static String _UI_FilteredTypesSelectionDialog_dialogMessage;
   public static String _UI_FilteredItemsSelectionDialog_separatorLabel;
   public static String _UI_FilteredItemsSelectionDialog_platformSeparatorLabel;
-  public static String _UI_Reset_Label;
 
   public static String EGFGeneralPreferencePage_Title;
   public static String EGFGeneralPreferencePage_Description;
@@ -58,9 +54,6 @@ public class CoreUIMessages {
 
   public static String AbstractCheckboxSelectionDialog_Select;
   public static String AbstractCheckboxSelectionDialog_Deselect;
-
-  public static String FilteredTypeSelectionDialog_findType;
-  public static String FilteredTypeSelectionDialog_findTypeHierarchy;
 
   public static String _UI_DiagnosisOfNObject_message;
   public static String _UI_DiagnosisOfNObjects_message;
