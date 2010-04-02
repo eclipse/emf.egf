@@ -1,0 +1,5 @@
+<%
+importManager = new ImportManager(packageName);
+importManager.addMasterImport(packageName, className);
+genModel.setImportManager(importManager);
+%>

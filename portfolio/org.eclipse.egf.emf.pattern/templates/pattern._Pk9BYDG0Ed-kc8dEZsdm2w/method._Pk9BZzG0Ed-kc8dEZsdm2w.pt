@@ -1,0 +1,9 @@
+<%
+GenModel genModel = parameter;
+targetPathName = genModel.getEditorProjectDirectory() + "/META-INF/MANIFEST.MF";
+arguments = null;
+overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(genModel).exists(new CodegenGeneratorAdapter(genModel).toURI(genModel.getEditorProjectDirectory()).appendSegment("plugin.xml"));
+encoding = "UTF-8";
+canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
+canGenerate = canGenerate && (genModel.isBundleManifest());
+%>

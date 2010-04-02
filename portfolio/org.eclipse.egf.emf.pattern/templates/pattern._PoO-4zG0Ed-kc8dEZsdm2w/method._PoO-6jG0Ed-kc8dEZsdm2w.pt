@@ -1,0 +1,9 @@
+<%
+GenModel genModel = parameter;
+targetPathName = genModel.getTestsProjectDirectory() + "/plugin.xml";
+arguments = null;
+overwrite = false;
+encoding = "UTF-8";
+canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
+canGenerate = canGenerate && (!(genModel.isBundleManifest())) && (!genModel.sameModelTestsProject());
+%>

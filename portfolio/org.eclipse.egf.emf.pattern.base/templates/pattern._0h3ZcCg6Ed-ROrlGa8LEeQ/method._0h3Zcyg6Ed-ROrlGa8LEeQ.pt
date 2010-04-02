@@ -1,0 +1,5 @@
+<%
+ctx.setValue("targetPathName", targetPathName);
+ctx.setValue("overwrite", overwrite);
+ctx.setValue("encoding", encoding);
+%>

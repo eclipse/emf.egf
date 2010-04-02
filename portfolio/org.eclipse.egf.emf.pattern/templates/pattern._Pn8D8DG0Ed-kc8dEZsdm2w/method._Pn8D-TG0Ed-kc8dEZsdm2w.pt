@@ -1,0 +1,11 @@
+<%
+if (!canGenerate)
+    return;
+new CodegenGeneratorAdapter(genModel).ensureProjectExists(genModel.getEditorDirectory(), genModel, GenBaseGeneratorAdapter.EDITOR_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+GenPackage genPackage = parameter;
+if (genPackage.hasConcreteClasses()) {
+new CodegenGeneratorAdapter(genModel).generateGIF(parameter, "editor/ModelFile.gif", genPackage.getModelIconFileName(), genPackage.getPrefix(), null, false);
+}
+ else {
+}
+%>
