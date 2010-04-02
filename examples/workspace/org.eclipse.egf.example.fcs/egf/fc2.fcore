@@ -4,7 +4,6 @@
     xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmi:id="_jOwhodBQEd6dz4A7_XVBtQ"
     name="FC2">
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_kzMI0NBQEd6dz4A7_XVBtQ">
-    <invocations xmi:type="fprod:ProductionPlanInvocation" xmi:id="_ldNWMNBQEd6dz4A7_XVBtQ"
-        invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.example.fcs/fc/fc1.fcore#Ko39UWVuEd64TpQQ4RciWw"/>
+    <invocations xmi:id="_ldNWMNBQEd6dz4A7_XVBtQ" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.example.fcs/egf/fc1.fcore#Ko39UWVuEd64TpQQ4RciWw"/>
   </orchestration>
 </fcore:FactoryComponent>
