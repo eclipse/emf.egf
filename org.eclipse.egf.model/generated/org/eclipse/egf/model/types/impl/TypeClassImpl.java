@@ -19,6 +19,7 @@ import org.eclipse.egf.model.types.TypeClass;
 import org.eclipse.egf.model.types.TypesPackage;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jdt.core.IJavaProject;
+import org.eclipse.jdt.core.JavaModelException;
 
 /**
  * <!-- begin-user-doc -->
@@ -67,11 +68,18 @@ public class TypeClassImpl extends TypeAbstractClassImpl implements TypeClass {
         IJavaProject javaProject = EMFHelper.getJavaProject(eResource());
         if (javaProject == null) {
           EGFModelPlugin.getPlugin().logError(t);
+          return null;
         }
         try {
-          return JavaHelper.getProjectClassLoader(javaProject).loadClass(getValue().trim());
+          JavaHelper.getProjectClassLoader(javaProject).loadClass(getValue().trim());
         } catch (Throwable w) {
           EGFModelPlugin.getPlugin().logError(w);
+        } finally {
+          try {
+            javaProject.close();
+          } catch (JavaModelException jme) {
+            EGFModelPlugin.getPlugin().logError(jme);
+          }
         }
       }
     }
