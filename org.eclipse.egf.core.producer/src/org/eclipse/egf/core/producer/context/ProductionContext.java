@@ -36,6 +36,10 @@ import org.osgi.framework.Bundle;
  */
 public abstract class ProductionContext<P extends Object, T extends Object> implements IProductionContext<P, T> {
 
+  public static final String __inputMode = "Input"; //$NON-NLS-1$
+
+  public static final String __outputMode = "Output"; //$NON-NLS-1$
+
   protected class Data {
 
     private T _key;
@@ -44,20 +48,23 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
 
     private Object _value;
 
-    public Data(T key, Class<?> clazz, Object value) throws InvocationException {
+    private String _mode;
+
+    public Data(T key, Class<?> clazz, Object value, String mode) throws InvocationException {
       if (key == null) {
-        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
+        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, getName()));
       }
       _key = key;
       if (clazz == null) {
-        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_class, getName()));
+        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_class, new Object[] { mode, EMFHelper.getText(_key), getName() }));
       }
       _clazz = clazz;
       // null value is a valid value
       if (value != null && _clazz.isInstance(value) == false) {
-        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { _clazz.getName(), EMFHelper.getText(_key), value.getClass().getName(), getName() }));
+        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { _clazz.getName(), mode, EMFHelper.getText(_key), value.getClass().getName(), getName() }));
       }
       _value = value;
+      _mode = mode;
     }
 
     public Class<?> getType() {
@@ -71,7 +78,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     public void setValue(Object value) throws InvocationException {
       // null value is a valid value
       if (value != null && _clazz.isInstance(value) == false) {
-        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { _clazz.getName(), EMFHelper.getText(_key), value.getClass().getName(), getName() }));
+        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { _clazz.getName(), _mode, EMFHelper.getText(_key), value.getClass().getName(), getName() }));
       }
       _value = value;
     }
@@ -153,7 +160,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
   public boolean isSetAtRuntime(Object key) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, __inputMode, getName()));
     }
     // Looking for Parent
     if (getParent() != null) {
@@ -163,17 +170,17 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
   }
 
   public void addInputData(T key, Class<?> clazz, Object object, boolean check) throws InvocationException {
-    if (_inputDatas.put(key, new Data(key, clazz, object)) != null) {
+    if (_inputDatas.put(key, new Data(key, clazz, object, __inputMode)) != null) {
       if (check) {
-        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EMFHelper.getText(key), getName()));
+        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, new Object[] { __inputMode, EMFHelper.getText(key), getName() }));
       }
     }
   }
 
   public void addOutputData(T key, Class<?> clazz, Object object, boolean check) throws InvocationException {
-    if (_outputDatas.put(key, new Data(key, clazz, object)) != null) {
+    if (_outputDatas.put(key, new Data(key, clazz, object, __outputMode)) != null) {
       if (check) {
-        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, EMFHelper.getText(key), getName()));
+        throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_non_unique_key, new Object[] { __outputMode, EMFHelper.getText(key), getName() }));
       }
     }
   }
@@ -181,7 +188,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
   public void setOutputValue(Object key, Object value) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, __outputMode, getName()));
     }
     // Propagate Value to parent if necessary
     if (getParent() != null) {
@@ -190,11 +197,11 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     // Fetch available output data
     Data outputData = _outputDatas.get(key);
     if (outputData == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, new Object[] { __outputMode, EMFHelper.getText(key), getName() }));
     }
     // null value is a valid value
     if (value != null && (ClassHelper.asSubClass(value.getClass(), outputData.getType()) == false || outputData.getType().isInstance(value) == false)) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { outputData.getType().getName(), EMFHelper.getText(key), value.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { outputData.getType().getName(), __outputMode, EMFHelper.getText(key), value.getClass().getName(), getName() }));
     }
     // Set output value
     outputData.setValue(value);
@@ -208,7 +215,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
   public Class<?> getInputValueType(Object key) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, __inputMode, getName()));
     }
     // Looking for Parent Value Type if available
     Class<?> valueType = null;
@@ -228,7 +235,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
   public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, __inputMode, getName()));
     }
     // Looking for Parent Value if available
     R value = null;
@@ -239,7 +246,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     if (value == null) {
       Data inputData = _inputDatas.get(key);
       if (inputData != null) {
-        value = getValue(key, clazz, inputData);
+        value = getValue(key, clazz, inputData, __inputMode);
       }
     }
     return value;
@@ -252,7 +259,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
   public Class<?> getOutputValueType(Object key) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, __outputMode, getName()));
     }
     // Looking for Parent Value Type if available
     Class<?> valueType = null;
@@ -272,7 +279,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
   public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, __outputMode, getName()));
     }
     // Looking for Parent Value if available
     R value = null;
@@ -283,7 +290,7 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     if (value == null) {
       Data outputData = _outputDatas.get(key);
       if (outputData != null) {
-        value = getValue(key, clazz, outputData);
+        value = getValue(key, clazz, outputData, __outputMode);
       }
     }
     return value;
@@ -293,12 +300,12 @@ public abstract class ProductionContext<P extends Object, T extends Object> impl
     return _outputDatas.keySet();
   }
 
-  protected <R> R getValue(Object key, Class<R> clazz, Data data) throws InvocationException {
+  protected <R> R getValue(Object key, Class<R> clazz, Data data, String mode) throws InvocationException {
     if (data == null || data.getValue() == null) {
       return null;
     }
     if (ClassHelper.asSubClass(data.getValue().getClass(), clazz) == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), EMFHelper.getText(key), clazz.getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { data.getType().getName(), mode, EMFHelper.getText(key), clazz.getName(), getName() }));
     }
     try {
       return clazz.cast(data.getValue());

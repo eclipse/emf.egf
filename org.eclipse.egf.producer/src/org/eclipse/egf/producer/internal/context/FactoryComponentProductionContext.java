@@ -47,11 +47,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.isSetAtRuntime(key);
     }
     // Locate a Contract
-    Contract contract = getContract(key, getInputValueKeys());
-    // Contract should be known at this stage
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
-    }
+    Contract contract = getContract(key, getInputValueKeys(), __inputMode);
     // Looking for a Parent Input Contract set at runtime
     if (getParent() != null) {
       return getParent().isSetAtRuntime(contract);
@@ -66,11 +62,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getInputValueType(key);
     }
     // Locate a Contract
-    Contract contract = getContract(key, getInputValueKeys());
-    // Contract should be known at this stage
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
-    }
+    Contract contract = getContract(key, getInputValueKeys(), __inputMode);
     Class<?> valueType = null;
     // Looking for Parent Value Type if available
     if (getParent() != null) {
@@ -93,11 +85,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getInputValue(key, clazz);
     }
     // Locate an Contract
-    Contract contract = getContract(key, getInputValueKeys());
-    // Contract should be known at this stage
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
-    }
+    Contract contract = getContract(key, getInputValueKeys(), __inputMode);
     R value = null;
     // Looking for Parent Value if available
     if (getParent() != null) {
@@ -107,7 +95,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     if (value == null) {
       Data inputData = _inputDatas.get(contract);
       if (inputData != null) {
-        value = getValue(contract, clazz, inputData);
+        value = getValue(contract, clazz, inputData, __inputMode);
       }
     }
     return value;
@@ -120,11 +108,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getOutputValueType(key);
     }
     // Locate an Contract
-    Contract contract = getContract(key, getOutputValueKeys());
-    // Contract should be known at this stage
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
-    }
+    Contract contract = getContract(key, getOutputValueKeys(), __outputMode);
     Class<?> valueType = null;
     // Looking for Parent Value Type if available
     if (getParent() != null) {
@@ -147,11 +131,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getOutputValue(key, clazz);
     }
     // Locate an Contract
-    Contract contract = getContract(key, getOutputValueKeys());
-    // Contract should be known at this stage
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
-    }
+    Contract contract = getContract(key, getOutputValueKeys(), __outputMode);
     R value = null;
     // Looking for Parent Value if available
     if (getParent() != null) {
@@ -161,7 +141,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     if (value == null) {
       Data outputData = _outputDatas.get(contract);
       if (outputData != null) {
-        value = getValue(contract, clazz, outputData);
+        value = getValue(contract, clazz, outputData, __outputMode);
       }
     }
     return value;
@@ -174,11 +154,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       super.setOutputValue(key, value);
     }
     // Locate an Contract
-    Contract contract = getContract(key, getOutputValueKeys());
-    // Contract should be known at this stage
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
-    }
+    Contract contract = getContract(key, getOutputValueKeys(), __outputMode);
     // Propagate Value to parent if necessary
     if (getParent() != null) {
       getParent().setOutputValue(contract, value);
@@ -186,11 +162,11 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     // Fetch available output data
     Data outputData = _outputDatas.get(contract);
     if (outputData == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, EMFHelper.getText(key), getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, new Object[] { __outputMode, EMFHelper.getText(key), getName() }));
     }
     // null value is a valid value
     if (value != null && (ClassHelper.asSubClass(value.getClass(), outputData.getType()) == false || outputData.getType().isInstance(value) == false)) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { outputData.getType().getName(), EMFHelper.getText(key), value.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { outputData.getType().getName(), __outputMode, EMFHelper.getText(key), value.getClass().getName(), getName() }));
     }
     // Set ouptut value
     outputData.setValue(value);
@@ -201,13 +177,13 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     }
   }
 
-  private Contract getContract(Object key, Collection<Contract> keys) throws InvocationException {
+  private Contract getContract(Object key, Collection<Contract> keys, String mode) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, getName()));
     }
     if (key instanceof InvocationContract == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContract.class.getName(), EMFHelper.getText(key), key.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContract.class.getName(), mode, EMFHelper.getText(key), key.getClass().getName(), getName() }));
     }
     // Locate Contract
     Contract contract = null;
@@ -219,6 +195,10 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
         contract = innerContract;
         break;
       }
+    }
+    // Contract should be known at this stage
+    if (contract == null) {
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, new Object[] { mode, EMFHelper.getText(key), getName() }));
     }
     // Return
     return contract;

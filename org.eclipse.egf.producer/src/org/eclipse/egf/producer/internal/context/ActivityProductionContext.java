@@ -41,102 +41,63 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
 
   @Override
   public boolean isSetAtRuntime(Object key) throws InvocationException {
-    // Looking for a Contract
-    Contract contract = getContract(key, getInputValueKeys());
-    // Unknown Contract
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
-    }
     // Looking for a Parent Input Contract set at runtime
     if (getParent() != null) {
-      return getParent().isSetAtRuntime(contract);
+      return getParent().isSetAtRuntime(getContract(key, getInputValueKeys(), __inputMode));
     }
     return false;
   }
 
   @Override
   public Class<?> getInputValueType(Object key) throws InvocationException {
-    // Looking for a Contract
-    Contract contract = getContract(key, getInputValueKeys());
-    // Unknown Contract
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
-    }
     // Looking for an Input Contract type
-    return super.getInputValueType(contract);
+    return super.getInputValueType(getContract(key, getInputValueKeys(), __inputMode));
   }
 
   @Override
   public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
-    // Looking for a Contract
-    Contract contract = getContract(key, getInputValueKeys());
-    // Unknown Contract
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
-    }
     // Looking for an Input Contract value
-    return super.getInputValue(contract, clazz);
+    return super.getInputValue(getContract(key, getInputValueKeys(), __inputMode), clazz);
   }
 
   @Override
   public Class<?> getOutputValueType(Object key) throws InvocationException {
-    // Looking for a Contract
-    Contract contract = getContract(key, getOutputValueKeys());
-    // Unknown Contract
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
-    }
     // Looking for an Output Contract type
-    return super.getOutputValueType(contract);
+    return super.getOutputValueType(getContract(key, getOutputValueKeys(), __outputMode));
   }
 
   @Override
   public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
-    // Looking for a Contract
-    Contract contract = getContract(key, getOutputValueKeys());
-    // Unknown Contract
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
-    }
     // Looking for an Output Contract value
-    return super.getOutputValue(contract, clazz);
+    return super.getOutputValue(getContract(key, getOutputValueKeys(), __outputMode), clazz);
   }
 
   @Override
   public void setOutputValue(Object key, Object value) throws InvocationException {
-    // Looking for a Contract
-    Contract contract = getContract(key, getOutputValueKeys());
-    // Unknown Contract
-    if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, ((String) key).trim(), getName()));
-    }
     // Set Contract Value
-    super.setOutputValue(contract, value);
+    super.setOutputValue(getContract(key, getOutputValueKeys(), __outputMode), value);
   }
 
-  private Contract getContract(Object key, Collection<Contract> keys) throws InvocationException {
+  private Contract getContract(Object key, Collection<Contract> keys, String mode) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_name, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, getName()));
     }
     if (key instanceof String == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { String.class.getName(), EMFHelper.getText(key), key.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { String.class.getName(), mode, EMFHelper.getText(key), key.getClass().getName(), getName() }));
     }
     String innerName = ((String) key).trim();
-    if (innerName.length() == 0) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_emtpy_name, getName()));
-    }
     // Looking for a Contract
     Contract contract = null;
     for (Contract innerContract : keys) {
-      if (innerName.equals(innerContract.getName())) {
+      if (innerName.equals(innerContract.getName().trim())) {
         contract = innerContract;
         break;
       }
     }
     // Unknown Contract
     if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_name, innerName, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, new Object[] { mode, innerName, getName() }));
     }
     // Return
     return contract;
