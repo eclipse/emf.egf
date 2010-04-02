@@ -10,7 +10,6 @@
  */
 package org.eclipse.egf.model.domain.adapter;
 
-import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.model.domain.DomainPackage;
 import org.eclipse.egf.model.domain.DomainURI;
 import org.eclipse.egf.model.domain.TypeDomainURI;
@@ -19,16 +18,12 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
 public class TypeDomainURIAdapter extends AdapterImpl {
-
-  private TransactionalEditingDomain _editingDomain;
 
   private TypeDomainURI _typeDomainURI;
 
@@ -44,10 +39,10 @@ public class TypeDomainURIAdapter extends AdapterImpl {
     @Override
     public void notifyChanged(Notification msg) {
       if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_domainURIFeature)) {
-        _editingDomain.getCommandStack().execute(new RecordingCommand(_editingDomain) {
+        _typeDomainURI.eNotify(new ENotificationImpl((InternalEObject) _typeDomainURI, -1, _typeDomainURIFeature, null, null) {
           @Override
-          protected void doExecute() {
-            _typeDomainURI.eNotify(new ENotificationImpl((InternalEObject) _typeDomainURI, Notification.SET, _typeDomainURIFeature, null, _typeDomainURI.eGet(_typeDomainURIFeature, true)));
+          public boolean isTouch() {
+            return true;
           }
         });
       }
@@ -58,7 +53,6 @@ public class TypeDomainURIAdapter extends AdapterImpl {
     super();
     _typeDomainURI = typeDomainURI;
     _typeDomainURI.eAdapters().add(this);
-    _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
   }
 
   @Override

@@ -29,7 +29,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -133,59 +132,49 @@ public class ResourceHelper {
     }
   }
 
-  public static boolean hasApplicableProxies(Resource resource, URI uri) {
+  /**
+   * is there any unresolved proxy against this resource ?
+   * This method doesn't resolve proxies while analysed
+   */
+  public static boolean hasProxyReferences(Resource resource, URI uri) {
     Assert.isNotNull(resource);
     if (uri == null) {
       return false;
     }
     Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EcoreUtil.ProxyCrossReferencer.find(resource);
     for (EObject reference : proxies.keySet()) {
-      if (reference instanceof InternalEObject == false) {
+      URI innerURI = EcoreUtil.getURI(reference);
+      if (innerURI == null) {
         continue;
       }
-      InternalEObject internalReference = (InternalEObject) reference;
-      if (internalReference.eProxyURI() == null) {
-        continue;
-      }
-      if (internalReference.eProxyURI().trimFragment().equals(uri)) {
+      if (innerURI.trimFragment().equals(uri)) {
         return true;
       }
     }
     return false;
   }
 
-  public static List<EObject> getApplicableProxies(Resource resource, URI uri) {
-    List<EObject> applicable = new UniqueEList<EObject>();
+  /**
+   * return unresolved proxies for this resource ?
+   * This method doesn't resolve proxies while analysed
+   */
+  public static List<EObject> getProxyReferences(Resource resource, URI uri) {
+    Assert.isNotNull(resource);
+    List<EObject> references = new UniqueEList<EObject>();
+    if (uri == null) {
+      return references;
+    }
     Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EcoreUtil.ProxyCrossReferencer.find(resource);
     for (EObject reference : proxies.keySet()) {
-      if (reference instanceof InternalEObject == false) {
+      URI innerURI = EcoreUtil.getURI(reference);
+      if (innerURI == null) {
         continue;
       }
-      InternalEObject internalReference = (InternalEObject) reference;
-      if (internalReference.eProxyURI() == null) {
-        continue;
-      }
-      if (internalReference.eProxyURI().trimFragment().equals(uri)) {
-        applicable.add(reference);
+      if (innerURI.trimFragment().equals(uri)) {
+        references.add(reference);
       }
     }
-    return applicable;
-  }
-
-  public static List<EObject> getApplicableProxies(Resource resource) {
-    List<EObject> applicable = new UniqueEList<EObject>();
-    Map<EObject, Collection<EStructuralFeature.Setting>> proxies = EcoreUtil.ProxyCrossReferencer.find(resource);
-    for (EObject reference : proxies.keySet()) {
-      if (reference instanceof InternalEObject == false) {
-        continue;
-      }
-      InternalEObject internalReference = (InternalEObject) reference;
-      if (internalReference.eProxyURI() == null) {
-        continue;
-      }
-      applicable.add(reference);
-    }
-    return applicable;
+    return references;
   }
 
   /**

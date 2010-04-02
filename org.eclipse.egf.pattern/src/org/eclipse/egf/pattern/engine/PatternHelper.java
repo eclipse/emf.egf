@@ -45,6 +45,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
@@ -194,6 +195,10 @@ public class PatternHelper {
         return EcoreUtil.generateUUID().replaceAll("\\W", "");
     }
 
+    public static String dropNonWordCharacter(String value) {
+        return value.replaceAll("\\W", "");
+    }
+
     public static String uniqueName(NamedModelElement parameter) {
         return parameter.getName().replaceAll("\\W", "") + "_" + parameter.getID().replaceAll("\\W", "");
     }
@@ -202,7 +207,7 @@ public class PatternHelper {
         return parameter.getName() + "Parameter";
     }
 
-    public static List<PatternMethod> getUserMethds(Pattern pattern) {
+    public static List<PatternMethod> getUserMethods(Pattern pattern) {
         ArrayList<PatternMethod> result = new ArrayList<PatternMethod>();
         for (PatternMethod m : pattern.getMethods()) {
             String name = m.getName();
@@ -230,7 +235,12 @@ public class PatternHelper {
 
     public static final PatternHelper TRANSACTIONNAL_COLLECTOR = new PatternHelper(TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID));
 
-  public static final PatternHelper TRANSACTIONNAL_COLLECTOR = new PatternHelper(TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(PatternConstants.EDITING_DOMAIN_ID));
+    public static final PatternHelper createCollector() {
+        ResourceSetImpl set = new ResourceSetImpl();
+        // Clear the previous URIConverter content
+        set.getURIConverter().getURIMap().clear();
+        // Assign a fresh platform aware URIConverter
+        set.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
 
         return new PatternHelper(set);
     }
@@ -261,9 +271,9 @@ public class PatternHelper {
             return URI.createFileURI(PatternPreferences.getTemplatesFolderName() + EGFCommonConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + EGFCommonConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + EGFCommonConstants.DOT_CHARACTER + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
         }
 
-    public static URI computeFileURI(PatternMethod method) {
-      return URI.createFileURI(PatternPreferences.getTemplatesFolderName() + EGFCommonConstants.SLASH_CHARACTER + PATTERN_TOKEN + method.getPattern().getID() + EGFCommonConstants.SLASH_CHARACTER + METHOD_TOKEN + method.getID() + EGFCommonConstants.DOT_CHARACTER + PatternConstants.PATTERN_UNIT_FILE_EXTENSION);
-    }
+        public static String extractPatternId(IPath patternMethodPath) throws FilenameFormatException {
+            if (patternMethodPath == null)
+                throw new FilenameFormatException(Messages.PatternFilename_error1);
 
             int segmentCount = patternMethodPath.segmentCount();
             if (segmentCount < 3)

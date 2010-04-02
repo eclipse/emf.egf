@@ -272,7 +272,7 @@ public class Messages extends NLS {
     public static String ViewpointContributor_missingPattern_title;
     public static String ViewpointContributor_missingPattern_message;
     public static String ViewpointContributor_newPattern_label;
-    
+
     public static String ViewpointContributor_generatePatternAction_label;
 
     public static String ChooseKindPage_radio_backCall;

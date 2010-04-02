@@ -18,6 +18,7 @@ package org.eclipse.egf.pattern.ui.editors.wizards.pages;
 
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -42,6 +43,8 @@ public class ChooseKindPage extends WizardPage {
     private Button patternInjectedCall;
 
     private Button superPatternCall;
+
+    private Button strategyCall;
 
     private Label label;
 
@@ -113,7 +116,27 @@ public class ChooseKindPage extends WizardPage {
             }
         });
 
+        strategyCall = new Button(container, SWT.RADIO);
+        strategyCall.setText(Messages.ChooseKindPage_radio_backCall);
+        strategyCall.addSelectionListener(new SelectionListener() {
+
+            public void widgetSelected(SelectionEvent e) {
+                selectedKind = CallTypeEnum.BACK_CALL;
+                getContainer().updateButtons();
+                // setPageComplete(true);
+            }
+
+            public void widgetDefaultSelected(SelectionEvent e) {
+            }
+        });
+
         setControl(container);
+    }
+
+    public IWizardPage getNextPage() {
+        // if (isPageComplete())
+        // return null;
+        return super.getNextPage();
     }
 
     public CallTypeEnum getKind() {

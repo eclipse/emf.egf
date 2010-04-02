@@ -23,16 +23,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
 public class ProductionPlanInvocationAdapter extends AdapterImpl {
-
-  private TransactionalEditingDomain _editingDomain;
 
   private ProductionPlanInvocation _productionPlanInvocation;
 
@@ -46,10 +42,10 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
     @Override
     public void notifyChanged(Notification notification) {
       if (notification.getEventType() == Notification.SET && notification.getFeature().equals(_nameFeature)) {
-        _editingDomain.getCommandStack().execute(new RecordingCommand(_editingDomain) {
+        _productionPlanInvocation.eNotify(new ENotificationImpl((InternalEObject) _productionPlanInvocation, -1, _invocationInvokedActivityFeature, null, null) {
           @Override
-          protected void doExecute() {
-            _productionPlanInvocation.eNotify(new ENotificationImpl((InternalEObject) _productionPlanInvocation, Notification.SET, _invocationInvokedActivityFeature, null, _activity));
+          public boolean isTouch() {
+            return true;
           }
         });
       }
@@ -101,7 +97,6 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
     super();
     _productionPlanInvocation = productionPlanInvocation;
     _productionPlanInvocation.eAdapters().add(this);
-    _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
   }
 
   @Override

@@ -21,6 +21,7 @@ import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternCall;
+import org.eclipse.egf.model.pattern.PatternFactory;
 import org.eclipse.egf.pattern.ui.Messages;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.CallTypeEnum;
 import org.eclipse.egf.pattern.ui.editors.wizards.pages.ChooseCallPage;

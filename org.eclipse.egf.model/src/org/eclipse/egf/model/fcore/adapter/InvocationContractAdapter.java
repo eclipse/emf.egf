@@ -23,16 +23,12 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 
 /**
  * @author Xavier Maysonnave
  * 
  */
 public class InvocationContractAdapter extends AdapterImpl {
-
-  private TransactionalEditingDomain _editingDomain;
 
   private InvocationContract _invocationContract;
 
@@ -48,17 +44,17 @@ public class InvocationContractAdapter extends AdapterImpl {
     @Override
     public void notifyChanged(Notification msg) {
       if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_contractModeFeature)) {
-        _editingDomain.getCommandStack().execute(new RecordingCommand(_editingDomain) {
+        _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, -1, _invocationContractInvokedContractFeature, null, null) {
           @Override
-          protected void doExecute() {
-            _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _invocationContract.eGet(_invocationContractInvokedContractFeature, true)));
+          public boolean isTouch() {
+            return true;
           }
         });
       } else if (msg.getEventType() == Notification.SET && msg.getFeature().equals(_nameFeature)) {
-        _editingDomain.getCommandStack().execute(new RecordingCommand(_editingDomain) {
+        _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, -1, _invocationContractInvokedContractFeature, null, null) {
           @Override
-          protected void doExecute() {
-            _invocationContract.eNotify(new ENotificationImpl((InternalEObject) _invocationContract, Notification.SET, _invocationContractInvokedContractFeature, null, _invocationContract.eGet(_invocationContractInvokedContractFeature, true)));
+          public boolean isTouch() {
+            return true;
           }
         });
       }
@@ -110,7 +106,6 @@ public class InvocationContractAdapter extends AdapterImpl {
     super();
     _invocationContract = invocationContract;
     _invocationContract.eAdapters().add(this);
-    _editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(EGFCorePlugin.EDITING_DOMAIN_ID);
   }
 
   @Override

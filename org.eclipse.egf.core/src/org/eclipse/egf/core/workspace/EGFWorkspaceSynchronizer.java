@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IResourceChangeEvent;
 import org.eclipse.core.resources.IResourceChangeListener;
@@ -46,6 +47,7 @@ import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.l10n.EGFCoreMessages;
 import org.eclipse.emf.common.archive.ArchiveURLConnection;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.URIConverter;
@@ -192,7 +194,7 @@ public final class EGFWorkspaceSynchronizer {
    * @param affectedFiles
    *          accumulates the files affected by the deltas
    */
-  void processDelta(IResourceDelta delta, List<EGFSynchRequest> synchRequests, List<IFile> affectedFiles) {
+  void processDelta(IResourceDelta delta, List<EGFSynchRequest> synchRequests, List<IProject> affectedProjects) {
     String fullPath = delta.getFullPath().toString();
     URI uri = URI.createPlatformResourceURI(fullPath, false);
     ResourceSet rset = getEditingDomain().getResourceSet();
@@ -209,13 +211,14 @@ public final class EGFWorkspaceSynchronizer {
     }
 
     if ((resource != null) && resource.isLoaded()) {
+      IProject project = ((IFile) delta.getResource()).getProject();
       switch (delta.getKind()) {
       case IResourceDelta.ADDED:
         if ((delta.getFlags() & IResourceDelta.MOVED_FROM) != 0) {
-          affectedFiles.add((IFile) delta.getResource());
+          affectedProjects.add(project);
         } else {
           synchRequests.add(new EGFPersistedSynchRequest(this, resource));
-          affectedFiles.add((IFile) delta.getResource());
+          affectedProjects.add(project);
         }
         break;
       case IResourceDelta.REMOVED:
@@ -241,7 +244,7 @@ public final class EGFWorkspaceSynchronizer {
         // This prevent excessive notifications
         if ((delta.getFlags() & IResourceDelta.CONTENT) != 0) {
           synchRequests.add(new EGFChangedSynchRequest(this, resource));
-          affectedFiles.add((IFile) delta.getResource());
+          affectedProjects.add(project);
         }
         break;
       }
@@ -504,7 +507,7 @@ public final class EGFWorkspaceSynchronizer {
 
         final List<EGFSynchRequest> synchRequests = new ArrayList<EGFSynchRequest>();
 
-        final List<IFile> affectedFiles = new ArrayList<IFile>();
+        final List<IProject> affectedProjects = new UniqueEList<IProject>();
 
         delta.accept(new IResourceDeltaVisitor() {
           public boolean visit(IResourceDelta innerDelta) {
@@ -516,7 +519,7 @@ public final class EGFWorkspaceSynchronizer {
                 }
               case IResourceDelta.ADDED:
               case IResourceDelta.REMOVED:
-                processDelta(innerDelta, synchRequests, affectedFiles);
+                processDelta(innerDelta, synchRequests, affectedProjects);
                 break;
               }
             }
@@ -526,7 +529,7 @@ public final class EGFWorkspaceSynchronizer {
         });
 
         if (synchRequests.isEmpty() == false) {
-          new ResourceSynchJob(synchRequests, affectedFiles).schedule();
+          new ResourceSynchJob(synchRequests, affectedProjects).schedule();
         }
 
       } catch (CoreException e) {
@@ -545,9 +548,9 @@ public final class EGFWorkspaceSynchronizer {
      * @param affectedFiles
      *          accumulates files affected by the deltas
      */
-    private void processDelta(IResourceDelta delta, List<EGFSynchRequest> synchRequests, List<IFile> affectedFiles) {
+    private void processDelta(IResourceDelta delta, List<EGFSynchRequest> synchRequests, List<IProject> affectedProjects) {
       for (EGFWorkspaceSynchronizer next : getSynchronizers()) {
-        next.processDelta(delta, synchRequests, affectedFiles);
+        next.processDelta(delta, synchRequests, affectedProjects);
       }
     }
   }
@@ -610,10 +613,10 @@ public final class EGFWorkspaceSynchronizer {
      * @param affectedResources
      *          the resources affected by the workspace changes
      */
-    ResourceSynchJob(List<EGFSynchRequest> synchRequests, List<? extends IResource> affectedResources) {
+    ResourceSynchJob(List<EGFSynchRequest> synchRequests, List<IProject> affectedProjects) {
       super(EGFCoreMessages.synchJobName);
       this.synchRequests = synchRequests;
-      setRule(getRule(affectedResources));
+      setRule(getRule(affectedProjects));
     }
 
     /**
@@ -642,17 +645,17 @@ public final class EGFWorkspaceSynchronizer {
 
     /**
      * Obtains a scheduling rule to schedule myself on to give my delegate
-     * access to the specified affected resources.
+     * access to the specified affected projects.
      * 
-     * @param affectedResources
+     * @param affectedProjects
      * @return the appropriate scheduling rule, or <code>null</code> if
      *         none is required
      */
-    private ISchedulingRule getRule(List<? extends IResource> affectedResources) {
+    private ISchedulingRule getRule(List<IProject> affectedProjects) {
       ISchedulingRule result = null;
-      if (affectedResources.isEmpty() == false) {
+      if (affectedProjects.isEmpty() == false) {
         IResourceRuleFactory factory = ResourcesPlugin.getWorkspace().getRuleFactory();
-        for (IResource next : affectedResources) {
+        for (IResource next : affectedProjects) {
           result = MultiRule.combine(result, factory.modifyRule(next));
         }
       }

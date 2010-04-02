@@ -588,8 +588,8 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * 
    * @generated NOT
    */
-  public void resourceMoved(Resource movedResource, final URI newURI) {
-    if ((movedResource == getResource())) {
+  public void resourceMoved(Resource movedResource, final URI oldURI) {
+    if (movedResource == getResource()) {
       resourceHasBeenExternallyChanged = false;
       resourceHasBeenRemoved = false;
       userHasSavedResource = false;
@@ -602,10 +602,9 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           if (currentViewerPane != null) {
             currentViewerPane.setTitle(getResource());
           }
-          firePropertyChange(IEditorPart.PROP_DIRTY);
+          setTitleToolTip(getResource().toString());
         }
       });
-      return;
     }
   }
 
@@ -616,7 +615,8 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    * @generated NOT
    */
   public void resourceDeleted(Resource deletedResource) {
-    if ((deletedResource == getResource())) {
+    // Handle current resource
+    if (deletedResource == getResource()) {
       if (isDirty() == false) {
         // just close now without prompt
         getSite().getShell().getDisplay().asyncExec(new Runnable() {
@@ -626,6 +626,7 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         });
         return;
       }
+      // Dirty editor with a deleted resource
       resourceHasBeenRemoved = true;
     }
   }
@@ -638,10 +639,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
    */
   public void resourceReloaded(Resource reloadedResource) {
     if (reloadedResource == getResource()) {
-      if (exception != null) {
-        resourceToDiagnosticMap.put(reloadedResource.getURI(), analyzeResourceProblems(reloadedResource, exception));
-      }
-      resource = reloadedResource;
       resourceHasBeenExternallyChanged = false;
       resourceHasBeenRemoved = false;
       userHasSavedResource = false;
@@ -649,26 +646,6 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         public void run() {
           if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
             setSelection(StructuredSelection.EMPTY);
-          }
-          getOperationHistory().dispose(undoContext, true, true, true);
-          selectionViewer.setInput(getResource());
-          selectionViewer.setSelection(new StructuredSelection(getResource()), true);
-          currentViewerPane.setTitle(getResource());
-          updateProblemIndication = true;
-          updateProblemIndication();
-        }
-      });
-    } else if (ResourceHelper.hasApplicableProxies(getResource(), reloadedResource.getURI())) {
-      Diagnostic diagnostic = analyzeResourceProblems(reloadedResource, null);
-      if (diagnostic.getSeverity() != Diagnostic.OK) {
-        resourceToDiagnosticMap.put(reloadedResource.getURI(), diagnostic);
-      } else {
-        resourceToDiagnosticMap.remove(reloadedResource.getURI());
-      }
-      if (updateProblemIndication) {
-        getSite().getShell().getDisplay().asyncExec(new Runnable() {
-          public void run() {
-            updateProblemIndication();
           }
           getOperationHistory().dispose(undoContext, true, true, true);
           selectionViewer.setInput(getResource());
@@ -766,6 +743,14 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
         ((ProblemEditorPart) getEditor(lastEditorPage)).setDiagnostic(diagnostic);
         if (diagnostic.getSeverity() != Diagnostic.OK) {
           setActivePage(lastEditorPage);
+        } else {
+          removePage(lastEditorPage);
+          setActivePage(0);
+          if (tabFolderGuard == false) {
+            tabFolderGuard = true;
+            hideTabs();
+            tabFolderGuard = false;
+          }
         }
       } else if (diagnostic.getSeverity() != Diagnostic.OK) {
         ProblemEditorPart problemEditorPart = new ProblemEditorPart();

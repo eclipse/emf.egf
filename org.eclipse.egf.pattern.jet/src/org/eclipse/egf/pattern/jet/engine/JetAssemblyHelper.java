@@ -15,22 +15,15 @@
 
 package org.eclipse.egf.pattern.jet.engine;
 
-import java.util.Map.Entry;
-
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternCall;
 import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.model.pattern.PatternInjectedCall;
 import org.eclipse.egf.model.pattern.PatternParameter;
 import org.eclipse.egf.model.pattern.Query;
-import org.eclipse.egf.model.pattern.SuperCall;
+import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.engine.AssemblyHelper;
-import org.eclipse.egf.pattern.engine.ParameterMatcher;
 import org.eclipse.egf.pattern.engine.PatternHelper;
-import org.eclipse.egf.pattern.jet.Messages;
 import org.eclipse.egf.pattern.utils.ParameterTypeHelper;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
  * @author Thomas Guiu
@@ -38,71 +31,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
  */
 public class JetAssemblyHelper extends AssemblyHelper {
 
-    public static final String GENERATE_METHOD = "generate";
-    public static final String START_METHOD_MARKER = "//Start of work";
-    public static final String END_METHOD_MARKER = "//End of work";
-
-    public static final String START_INIT_VARIABLE_MARKER = "//Start of init";
-    public static final String END_INIT_VARIABLE_MARKER = "//End of init";
-
-    public static final String CONSTRUCTOR_MARKER = "//Here is the constructor";
-
-    public JetAssemblyHelper(Pattern pattern) {
-        super(pattern);
-    }
-
-    @Override
-    protected void call(PatternInjectedCall call) throws PatternException {
-        Pattern pattern = call.getCalled();
-        String templateClassName = JetNatureHelper.getTemplateClassName(pattern);
-        if (templateClassName == null)
-            throw new PatternException(Messages.assembly_error1);
-
-        content.append("<%");
-        String ctxName = "ctx_" + EcoreUtil.generateUUID();
-        content.append("PatternContext ").append(ctxName).append(" = new PatternContext(ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append(ctxName).append(".setReporter(callReporter);").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append(ctxName).append(".setValue(").append("PatternContext.INJECTED_CONTEXT, ").append(call.getContext().getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("EngineHelper.execute(\"").append(pattern.getID()).append("\", ").append(ctxName).append(");").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append("%>");
-
-    }
-
-    @Override
-    protected void call(PatternCall call) throws PatternException {
-        Pattern pattern = call.getCalled();
-
-        content.append("<%");
-        if (call.getParameterMatching().isEmpty()) {
-            // TODO add support for inherited parameters
-            // try to match parameters
-            ParameterMatcher matcher = ParameterMatcher.create(call.getPattern(), pattern);
-            if (!matcher.matches())
-                throw new PatternException(Messages.bind(Messages.assembly_error7, call.getPattern().getName()));
-            for (PatternParameter key : matcher.getMatching().keySet()) {
-                String called = PatternHelper.uniqueName(key);
-                content.append(ParameterTypeHelper.INSTANCE.getTypeLiteral(key.getType())).append(" ").append(called).append(" = ").append(matcher.getMatching().get(key).getName()).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
-            }
-        } else {
-            // TODO add support for inherited parameters
-            for (Entry<PatternParameter, PatternParameter> binding : call.getParameterMatching()) {
-                String called = PatternHelper.uniqueName(binding.getKey());
-                content.append(ParameterTypeHelper.INSTANCE.getTypeLiteral(binding.getKey().getType())).append(" ").append(called).append(" = ").append(binding.getValue().getName()).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
-            }
-        }
-        String ctxName = "ctx_" + EcoreUtil.generateUUID();
-        content.append("PatternContext ").append(ctxName).append(" = new PatternContext(ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
-        content.append(ctxName).append(".setReporter(callReporter);").append(EGFCommonConstants.LINE_SEPARATOR);
-
-        content.append(ctxName).append(".setValue(\"key\", \"value\");").append(EGFCommonConstants.LINE_SEPARATOR);
-
-        content.append("EngineHelper.executeWithInjection(\"").append(pattern.getID()).append("\", ").append(ctxName);
-        // content.append(" new ").append(templateClassName).append("().").append(GENERATE_METHOD).append("(stringBuffer, ").append(ctxName);
-        for (PatternParameter parameter : pattern.getAllParameters())
-            content.append(", ").append(PatternHelper.uniqueName(parameter));
-
-        content.append(");");
-        content.append("%>");
+    public JetAssemblyHelper(Pattern pattern, JetAssemblyContentProvider contentProvider) {
+        super(pattern, contentProvider);
     }
 
     @Override
@@ -113,16 +43,13 @@ public class JetAssemblyHelper extends AssemblyHelper {
         content.append("IQuery.ParameterDescription paramDesc = null;").append(EGFCommonConstants.LINE_SEPARATOR);
         content.append("%>");
         super.beginOrchestration();
-        content.append("<%").append(START_METHOD_MARKER).append("%>");
+        content.append("<%").append(START_LOOP_MARKER).append("%>");
     }
 
-    /**
-     * TODO quick work to validate the whole process, needs a plugable way to
-     * add this stuff.
-     */
     @Override
     protected void endOrchestration() throws PatternException {
-        content.append("<%").append(END_METHOD_MARKER).append("%>");
+        content.append("<%").append(END_LOOP_MARKER).append("%>");
+
         if (pattern.getAllParameters().isEmpty()) {
             content.append("<%if (ctx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("    ctx.getReporter().executionFinished(ctx.getExecutionBuffer().toString(), ctx);").append(EGFCommonConstants.LINE_SEPARATOR);
@@ -132,7 +59,6 @@ public class JetAssemblyHelper extends AssemblyHelper {
         // 1 - Add pre block at insertionIndex
         StringBuilder localContent = new StringBuilder(300);
         localContent.append("<%").append(EGFCommonConstants.LINE_SEPARATOR);
-        localContent.append("").append(EGFCommonConstants.LINE_SEPARATOR).append(EGFCommonConstants.LINE_SEPARATOR);
 
         for (PatternParameter parameter : pattern.getAllParameters()) {
             appendQueryCode(localContent, parameter);
@@ -144,8 +70,12 @@ public class JetAssemblyHelper extends AssemblyHelper {
         for (PatternParameter parameter : pattern.getAllParameters()) {
             String local = PatternHelper.localizeName(parameter);
             localContent.append("for (Object ").append(local).append(" : ").append(getParameterListName(parameter)).append(" ) {").append(EGFCommonConstants.LINE_SEPARATOR);
-            // localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
-
+        }
+        localContent.append(EGFCommonConstants.LINE_SEPARATOR);
+        for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
+            String local = PatternHelper.localizeName(parameter);
+            String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
+            localContent.append("this.").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
         }
 
         localContent.append(EGFCommonConstants.LINE_SEPARATOR).append("%>");
@@ -163,20 +93,23 @@ public class JetAssemblyHelper extends AssemblyHelper {
         content.append("}%>");
 
         // 3- Add additional code for parameter names handling
-        int startIndex = content.indexOf(START_METHOD_MARKER);
+        int startIndex = content.indexOf(START_LOOP_MARKER);
         if (startIndex == -1)
             throw new PatternException(Messages.assembly_error2);
 
-        localContent.setLength(0);
-        localContent.append(EGFCommonConstants.LINE_SEPARATOR);
-        localContent.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
-        for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
-            String local = PatternHelper.localizeName(parameter);
-            String type = ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
-            localContent.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
-            localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
-        }
-        content.insert(startIndex + START_METHOD_MARKER.length(), localContent);
+        // localContent.setLength(0);
+        // localContent.append(EGFCommonConstants.LINE_SEPARATOR);
+        // localContent.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
+        // for (org.eclipse.egf.model.pattern.PatternParameter parameter :
+        // pattern.getAllParameters()) {
+        // String local = PatternHelper.localizeName(parameter);
+        // String type =
+        // ParameterTypeHelper.INSTANCE.getTypeLiteral(parameter.getType());
+        // localContent.append(type).append(" ").append(parameter.getName()).append(" = (").append(type).append(")").append(local).append(";").append(EGFCommonConstants.LINE_SEPARATOR);
+        // localContent.append("parameterValues.put(\"").append(parameter.getName()).append("\", ").append(local).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
+        // }
+        // content.insert(startIndex + START_LOOP_MARKER.length(),
+        // localContent);
     }
 
     private String getParameterListName(PatternParameter parameter) {
@@ -207,8 +140,19 @@ public class JetAssemblyHelper extends AssemblyHelper {
     @Override
     protected void addVariableInitialization() throws PatternException {
         content.append("<%").append(START_INIT_VARIABLE_MARKER).append("%>");
-        content.append(getMethodContent(pattern.getInitMethod()));
+        content.append(contentHelper.getMethodContent(pattern.getInitMethod()));
         content.append("<%").append(END_INIT_VARIABLE_MARKER).append("%>");
     }
+
+    public static final String START_METHOD_DECLARATION_MARKER = "//Start of methods";
+    public static final String END_METHOD_DECLARATION_MARKER = "//End of methods";
+
+    public static final String START_LOOP_MARKER = "//Start of work";
+    public static final String END_LOOP_MARKER = "//End of work";
+
+    public static final String START_INIT_VARIABLE_MARKER = "//Start of init";
+    public static final String END_INIT_VARIABLE_MARKER = "//End of init";
+
+    public static final String CONSTRUCTOR_MARKER = "//Here is the constructor";
 
 }

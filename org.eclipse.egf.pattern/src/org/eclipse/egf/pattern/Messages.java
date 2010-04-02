@@ -58,6 +58,7 @@ public class Messages extends NLS {
     public static String assembly_error7;
     public static String assembly_error8;
     public static String assembly_error9;
+    public static String assembly_error10;
 
     // builder
     public static String PatternBuilding_Failed;
@@ -92,6 +93,10 @@ public class Messages extends NLS {
     public static String collect_error2;
 
     public static String missing_callback_handler;
+
+    public static String engine_error1;
+    public static String call_execution_error1;
+    public static String model_driven_strategy_error1;
 
     private static final String BUNDLE_NAME = "org.eclipse.egf.pattern.PatternMessages";//$NON-NLS-1$
     static {

@@ -23,5 +23,5 @@ package org.eclipse.egf.pattern.ui.editors.wizards.pages;
  * 
  */
 public enum CallTypeEnum {
-    METHOD_CALL, PATTERN_CALL, PATTERNINJECTED_CALL, SUPERPATTERN_CALL, Add
+    METHOD_CALL, PATTERN_CALL, PATTERNINJECTED_CALL, SUPERPATTERN_CALL, BACK_CALL, Add
 }

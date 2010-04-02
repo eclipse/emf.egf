@@ -30,7 +30,7 @@ import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionExcepti
  * @author Thomas Guiu
  * 
  */
-public class DefaultStrategy extends AbstractStrategy {
+public class DefaultStrategy extends AbstractPatternStrategy {
 
     public void execute(PatternContext context, Object parameter) throws PatternException, MissingExtensionException {
         LinkedHashSet<Pattern> result = new LinkedHashSet<Pattern>();

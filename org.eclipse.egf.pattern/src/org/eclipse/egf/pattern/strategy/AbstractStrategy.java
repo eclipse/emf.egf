@@ -15,19 +15,11 @@
 
 package org.eclipse.egf.pattern.strategy;
 
-import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.egf.model.pattern.Pattern;
-import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternElement;
-import org.eclipse.egf.model.pattern.PatternException;
-import org.eclipse.egf.pattern.extension.ExtensionHelper;
-import org.eclipse.egf.pattern.extension.PatternExtension;
-import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
 
 /**
- * 
  * @author Thomas Guiu
  * 
  */
@@ -38,15 +30,4 @@ public abstract class AbstractStrategy implements Strategy {
     public void setPatternElements(List<PatternElement> patterns) {
         this.patternElements = (PatternElement[]) patterns.toArray(new PatternElement[patterns.size()]);
     }
-
-    protected void doExecute(Collection<Pattern> patterns, PatternContext context) throws MissingExtensionException, PatternException {
-        for (Pattern pattern : patterns) {
-            PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());
-            String canExecute = extension.canExecute(pattern);
-            if (canExecute != null)
-                throw new PatternException(canExecute);
-            extension.createEngine(pattern).execute(context);
-        }
-    }
-
 }

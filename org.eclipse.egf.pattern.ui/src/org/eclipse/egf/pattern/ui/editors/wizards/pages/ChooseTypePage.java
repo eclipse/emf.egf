@@ -249,8 +249,9 @@ public class ChooseTypePage extends WizardPage {
             nsURI = ((EPackage) selectItem).getNsURI();
             typeName = ((EPackage) selectItem).eClass().getName();
         } else if (selectItem instanceof EClassifier) {
-            nsURI = getEPackageNsURI((EClassifier) selectItem);
-            typeName = ((EClassifier) selectItem).getName();
+            EClassifier selectItem2 = (EClassifier) selectItem;
+            nsURI = getEPackageNsURI(selectItem2);
+            typeName = selectItem2.getName();
         }
         if (!("".equals(nsURI) && "".equals(typeName))) { //$NON-NLS-1$ //$NON-NLS-2$
             chooseType = nsURI + "#//" + typeName; //$NON-NLS-1$

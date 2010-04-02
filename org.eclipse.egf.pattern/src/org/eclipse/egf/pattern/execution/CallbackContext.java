@@ -24,19 +24,18 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
  * @author Thomas Guiu
  * 
  */
-public class CallbackContext extends DefaultPatternContext implements InternalPatternContext {
+public class CallbackContext extends DefaultInternalPatternContext {
 
+    private final CallbackReporter reporter = new CallbackReporter();
     private final StringBuffer buffer = new StringBuffer(2000);
 
-    // private final CallbackReporter reporter = new CallbackReporter();
-
     public CallbackContext(InternalPatternContext parent) {
-        super((PatternContext) parent);
+        super((InternalPatternContext) parent);
 
     }
 
+    @Override
     public StringBuffer getBuffer() {
-
         return buffer;
     }
 

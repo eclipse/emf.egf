@@ -16,6 +16,7 @@
 
 package org.eclipse.egf.pattern.ui.editors.providers;
 
+import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.InjectedContext;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -45,6 +46,8 @@ public class OrchestrationTableLabelProvider extends LabelProvider implements IT
             return ImageShop.get(ImageShop.IMG_KIND_PATTERNINJECTEDCALL);
         else if (element instanceof SuperCall)
             return ImageShop.get(ImageShop.IMG_KIND_SUPERPATTERNCALL);
+        else if (element instanceof BackCall)
+            return ImageShop.get(ImageShop.IMG_KIND_BACKCALL);
         return null;
     }
 
@@ -64,6 +67,8 @@ public class OrchestrationTableLabelProvider extends LabelProvider implements IT
             return (pattern == null ? "" : pattern.getName() + " -> " + injectCtx.getName()) + Messages.OrchestrationTableLabelProvider_PatternInjectedCall; //$NON-NLS-1$
         } else if (element instanceof SuperCall) {
             return Messages.OrchestrationTableLabelProvider_SuperPatternCall; //$NON-NLS-1$
+        } else if (element instanceof BackCall) {
+            return Messages.OrchestrationTableLabelProvider_BackCall; //$NON-NLS-1$
         }
         return ""; //$NON-NLS-1$
     }

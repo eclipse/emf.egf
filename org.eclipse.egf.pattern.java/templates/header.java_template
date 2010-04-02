@@ -14,5 +14,4 @@ public class CLASS {
 		//Here is the constructor
 	}
 
-	public void generate (Object argument) throws Exception {
 

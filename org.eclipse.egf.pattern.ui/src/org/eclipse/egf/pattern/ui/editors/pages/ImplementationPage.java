@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.databinding.observable.list.IObservableList;
+import org.eclipse.egf.model.pattern.BackCall;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.MethodCall;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -1072,6 +1073,10 @@ public class ImplementationPage extends PatternEditorPage {
             kind = CallTypeEnum.PATTERNINJECTED_CALL;
         } else if (selectItem instanceof SuperCall) {
             kind = CallTypeEnum.SUPERPATTERN_CALL;
+            // Prevent the wizard from pops up from BackCall objects.
+            return;
+        } else if (selectItem instanceof BackCall) {
+            kind = CallTypeEnum.BACK_CALL;
             // Prevent the wizard from pops up from BackCall objects.
             return;
         }

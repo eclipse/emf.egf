@@ -16,7 +16,6 @@
 package org.eclipse.egf.pattern.engine;
 
 import org.eclipse.egf.common.constant.EGFCommonConstants;
-import org.eclipse.egf.common.helper.ObjectHolder;
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternException;
@@ -85,29 +84,7 @@ public abstract class AssemblyHelper {
 
     protected abstract void addVariableInitialization() throws PatternException;
 
-    protected final void handleParameters(int insertionIndex) throws PatternException {
-    }
-
-    /**
-     * This method handles pattern calls.<br>
-     * We must provide the expected parameters or throw an exception if we
-     * can't.
-     */
-    protected abstract void call(PatternCall object) throws PatternException;
-
-    protected abstract void call(SuperCall object) throws PatternException;
-
-    /**
-     * This method handles pattern calls.<br>
-     * We must provide a context so the called pattern can perform a query to
-     * fill its paremeters.
-     */
-    protected abstract void call(PatternInjectedCall call) throws PatternException;
-
-    // TODO mark this method abstract as its implementation depends on the
-    // nature of pattern.
-
-    protected void visitOrchestration(Pattern pattern) throws PatternException {
+    protected void visitOrchestration() throws PatternException {
         EList<Call> orchestration = pattern.getOrchestration();
         if (orchestration.isEmpty())
             return;
@@ -117,65 +94,7 @@ public abstract class AssemblyHelper {
         }
     }
 
-    private String getContent(Call unit) throws PatternException {
-        final ObjectHolder<PatternException> holder = new ObjectHolder<PatternException>();
-        String result = new PatternSwitch<String>() {
-
-            @Override
-            public String caseMethodCall(MethodCall object) {
-                try {
-                    PatternMethod called = object.getCalled();
-                    // this statement is used to look up for overridden methods.
-                    called = pattern.getMethod(called.getName());
-                    return getMethodContent(called);
-                } catch (PatternException e) {
-                    holder.object = e;
-                }
-                return EGFCommonConstants.EMPTY_STRING;
-            }
-
-            @Override
-            public String casePatternInjectedCall(PatternInjectedCall object) {
-                try {
-                    call(object);
-                } catch (PatternException e) {
-                    holder.object = e;
-                }
-                return EGFCommonConstants.EMPTY_STRING;
-            }
-
-            @Override
-            public String casePatternCall(PatternCall object) {
-                try {
-                    call(object);
-                } catch (PatternException e) {
-                    holder.object = e;
-                }
-                return EGFCommonConstants.EMPTY_STRING;
-            }
-
-            @Override
-            public String defaultCase(EObject object) {
-
-                throw new IllegalStateException(Messages.bind(Messages.assembly_error1, object.eClass().getName()));
-            }
-
-        }.doSwitch(unit);
-
-        if (holder.object != null)
-            throw holder.object;
-        return result;
-    }
-
-    protected String getMethodContent(PatternMethod object) throws PatternException {
-        URI uri = object.getPatternFilePath();
-        try {
-            return FileHelper.getContent(PatternHelper.getPlatformFcore(object.getPattern()), uri);
-        } catch (CoreException e) {
-            throw new PatternException(e);
-        } catch (IOException e) {
-            throw new PatternException(e);
-        }
-    }
+    public static final String GENERATE_METHOD = "generate";
+    public static final String ORCHESTRATION_METHOD = "orchestration";
 
 }

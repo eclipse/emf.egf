@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * 
  */
 
-public class FilterStrategy extends AbstractStrategy {
+public class FilterStrategy extends AbstractPatternStrategy {
 
     private static final String OK = "ok";
 
