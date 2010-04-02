@@ -43,7 +43,7 @@ public abstract class InvocationProductionContext<P extends Invocation, T extend
   @Override
   public boolean isSetAtRuntime(Object key) throws InvocationException {
     // Locate an InvocationContract
-    InvocationContract invocationContract = getInvocationContract(key, getInputValueKeys(), __inputMode);
+    InvocationContract invocationContract = getInvocationContract(key, getInputValueKeys(), getName(), __inputMode);
     // Unknown InvocationContract
     if (invocationContract == null) {
       return false;
@@ -64,7 +64,7 @@ public abstract class InvocationProductionContext<P extends Invocation, T extend
   @Override
   public Class<?> getInputValueType(Object key) throws InvocationException {
     // Locate an InvocationContract
-    InvocationContract invocationContract = getInvocationContract(key, getInputValueKeys(), __inputMode);
+    InvocationContract invocationContract = getInvocationContract(key, getInputValueKeys(), getName(), __inputMode);
     // Unknown InvocationContract
     if (invocationContract == null) {
       return null;
@@ -90,7 +90,7 @@ public abstract class InvocationProductionContext<P extends Invocation, T extend
   @Override
   public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
     // Locate an InvocationContract
-    InvocationContract invocationContract = getInvocationContract(key, getInputValueKeys(), __inputMode);
+    InvocationContract invocationContract = getInvocationContract(key, getInputValueKeys(), getName(), __inputMode);
     // Unknown InvocationContract
     if (invocationContract == null) {
       return null;
@@ -115,7 +115,7 @@ public abstract class InvocationProductionContext<P extends Invocation, T extend
   @Override
   public Class<?> getOutputValueType(Object key) throws InvocationException {
     // Locate an InvocationContract
-    InvocationContract invocationContract = getInvocationContract(key, getOutputValueKeys(), __outputMode);
+    InvocationContract invocationContract = getInvocationContract(key, getOutputValueKeys(), getName(), __outputMode);
     // Unknown InvocationContract
     if (invocationContract == null) {
       return null;
@@ -140,7 +140,7 @@ public abstract class InvocationProductionContext<P extends Invocation, T extend
   @Override
   public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
     // Locate an InvocationContract
-    InvocationContract invocationContract = getInvocationContract(key, getOutputValueKeys(), __outputMode);
+    InvocationContract invocationContract = getInvocationContract(key, getOutputValueKeys(), getName(), __outputMode);
     // Unknown InvocationContract
     if (invocationContract == null) {
       return null;
@@ -165,7 +165,7 @@ public abstract class InvocationProductionContext<P extends Invocation, T extend
   @Override
   public void setOutputValue(Object key, Object value) throws InvocationException {
     // Locate an InvocationContract
-    InvocationContract invocationContract = getInvocationContract(key, getOutputValueKeys(), __outputMode);
+    InvocationContract invocationContract = getInvocationContract(key, getOutputValueKeys(), getName(), __outputMode);
     // Unknown InvocationContract
     if (invocationContract == null) {
       return;
@@ -195,13 +195,13 @@ public abstract class InvocationProductionContext<P extends Invocation, T extend
     }
   }
 
-  private InvocationContract getInvocationContract(Object key, Collection<InvocationContract> keys, String mode) throws InvocationException {
+  private static InvocationContract getInvocationContract(Object key, Collection<InvocationContract> keys, String name, String mode) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, name));
     }
     if (key instanceof Contract == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { Contract.class.getName(), mode, EMFHelper.getText(key), key.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { Contract.class.getName(), mode, EMFHelper.getText(key), key.getClass().getName(), name }));
     }
     // Locate InvocationContract
     InvocationContract invocationContract = null;

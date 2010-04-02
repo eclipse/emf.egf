@@ -43,7 +43,7 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
   public boolean isSetAtRuntime(Object key) throws InvocationException {
     // Looking for a Parent Input Contract set at runtime
     if (getParent() != null) {
-      return getParent().isSetAtRuntime(getContract(key, getInputValueKeys(), __inputMode));
+      return getParent().isSetAtRuntime(getContract(key, getInputValueKeys(), getName(), __inputMode));
     }
     return false;
   }
@@ -51,40 +51,40 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
   @Override
   public Class<?> getInputValueType(Object key) throws InvocationException {
     // Looking for an Input Contract type
-    return super.getInputValueType(getContract(key, getInputValueKeys(), __inputMode));
+    return super.getInputValueType(getContract(key, getInputValueKeys(), getName(), __inputMode));
   }
 
   @Override
   public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
     // Looking for an Input Contract value
-    return super.getInputValue(getContract(key, getInputValueKeys(), __inputMode), clazz);
+    return super.getInputValue(getContract(key, getInputValueKeys(), getName(), __inputMode), clazz);
   }
 
   @Override
   public Class<?> getOutputValueType(Object key) throws InvocationException {
     // Looking for an Output Contract type
-    return super.getOutputValueType(getContract(key, getOutputValueKeys(), __outputMode));
+    return super.getOutputValueType(getContract(key, getOutputValueKeys(), getName(), __outputMode));
   }
 
   @Override
   public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
     // Looking for an Output Contract value
-    return super.getOutputValue(getContract(key, getOutputValueKeys(), __outputMode), clazz);
+    return super.getOutputValue(getContract(key, getOutputValueKeys(), getName(), __outputMode), clazz);
   }
 
   @Override
   public void setOutputValue(Object key, Object value) throws InvocationException {
     // Set Contract Value
-    super.setOutputValue(getContract(key, getOutputValueKeys(), __outputMode), value);
+    super.setOutputValue(getContract(key, getOutputValueKeys(), getName(), __outputMode), value);
   }
 
-  private Contract getContract(Object key, Collection<Contract> keys, String mode) throws InvocationException {
+  private static Contract getContract(Object key, Collection<Contract> keys, String name, String mode) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, name));
     }
     if (key instanceof String == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { String.class.getName(), mode, EMFHelper.getText(key), key.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { String.class.getName(), mode, EMFHelper.getText(key), key.getClass().getName(), name }));
     }
     String innerName = ((String) key).trim();
     // Looking for a Contract
@@ -97,7 +97,7 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
     }
     // Contract should be known at this stage
     if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, new Object[] { mode, innerName, getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, new Object[] { mode, innerName, name }));
     }
     // Return
     return contract;

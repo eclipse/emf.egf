@@ -47,7 +47,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.isSetAtRuntime(key);
     }
     // Locate a Contract
-    Contract contract = getContract(key, getInputValueKeys(), __inputMode);
+    Contract contract = getContract(key, getInputValueKeys(), getName(), __inputMode);
     // Looking for a Parent Input Contract set at runtime
     if (getParent() != null) {
       return getParent().isSetAtRuntime(contract);
@@ -62,7 +62,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getInputValueType(key);
     }
     // Locate a Contract
-    Contract contract = getContract(key, getInputValueKeys(), __inputMode);
+    Contract contract = getContract(key, getInputValueKeys(), getName(), __inputMode);
     Class<?> valueType = null;
     // Looking for Parent Value Type if available
     if (getParent() != null) {
@@ -85,7 +85,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getInputValue(key, clazz);
     }
     // Locate an Contract
-    Contract contract = getContract(key, getInputValueKeys(), __inputMode);
+    Contract contract = getContract(key, getInputValueKeys(), getName(), __inputMode);
     R value = null;
     // Looking for Parent Value if available
     if (getParent() != null) {
@@ -108,7 +108,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getOutputValueType(key);
     }
     // Locate an Contract
-    Contract contract = getContract(key, getOutputValueKeys(), __outputMode);
+    Contract contract = getContract(key, getOutputValueKeys(), getName(), __outputMode);
     Class<?> valueType = null;
     // Looking for Parent Value Type if available
     if (getParent() != null) {
@@ -131,7 +131,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       return super.getOutputValue(key, clazz);
     }
     // Locate an Contract
-    Contract contract = getContract(key, getOutputValueKeys(), __outputMode);
+    Contract contract = getContract(key, getOutputValueKeys(), getName(), __outputMode);
     R value = null;
     // Looking for Parent Value if available
     if (getParent() != null) {
@@ -154,7 +154,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
       super.setOutputValue(key, value);
     }
     // Locate an Contract
-    Contract contract = getContract(key, getOutputValueKeys(), __outputMode);
+    Contract contract = getContract(key, getOutputValueKeys(), getName(), __outputMode);
     // Propagate Value to parent if necessary
     if (getParent() != null) {
       getParent().setOutputValue(contract, value);
@@ -177,13 +177,13 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     }
   }
 
-  private Contract getContract(Object key, Collection<Contract> keys, String mode) throws InvocationException {
+  private static Contract getContract(Object key, Collection<Contract> keys, String name, String mode) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, name));
     }
     if (key instanceof InvocationContract == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContract.class.getName(), mode, EMFHelper.getText(key), key.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContract.class.getName(), mode, EMFHelper.getText(key), key.getClass().getName(), name }));
     }
     // Locate Contract
     Contract contract = null;
@@ -198,7 +198,7 @@ public class FactoryComponentProductionContext extends ActivityProductionContext
     }
     // Contract should be known at this stage
     if (contract == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, new Object[] { mode, EMFHelper.getText(key), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, new Object[] { mode, EMFHelper.getText(key), name }));
     }
     // Return
     return contract;

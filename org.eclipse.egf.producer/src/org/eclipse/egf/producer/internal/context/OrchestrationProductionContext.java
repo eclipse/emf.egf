@@ -43,7 +43,7 @@ public abstract class OrchestrationProductionContext<P extends Orchestration> ex
   @Override
   public boolean isSetAtRuntime(Object key) throws InvocationException {
     // Locate an OrchestrationParameter, just do it for key type checking
-    getOrchestrationParameter(key, getInputValueKeys(), __inputMode);
+    getOrchestrationParameter(key, getInputValueKeys(), getName(), __inputMode);
     InvocationContract invocationContract = (InvocationContract) key;
     // Always propagate, An InvocationContract shouldn't be in an OrchestrationParameter
     // and in an FactoryComponentContract
@@ -58,7 +58,7 @@ public abstract class OrchestrationProductionContext<P extends Orchestration> ex
   @Override
   public Class<?> getInputValueType(Object key) throws InvocationException {
     // Locate an OrchestrationParameter, it could be null, just do it for key type checking
-    OrchestrationParameter orchestrationParameter = getOrchestrationParameter(key, getInputValueKeys(), __inputMode);
+    OrchestrationParameter orchestrationParameter = getOrchestrationParameter(key, getInputValueKeys(), getName(), __inputMode);
     InvocationContract invocationContract = (InvocationContract) key;
     Class<?> valueType = null;
     // Always propagate, An InvocationContract shouldn't be in an OrchestrationParameter
@@ -84,7 +84,7 @@ public abstract class OrchestrationProductionContext<P extends Orchestration> ex
   @Override
   public <R> R getInputValue(Object key, Class<R> clazz) throws InvocationException {
     // Locate an OrchestrationParameter, it could be null, just do it for key type checking
-    OrchestrationParameter orchestrationParameter = getOrchestrationParameter(key, getInputValueKeys(), __inputMode);
+    OrchestrationParameter orchestrationParameter = getOrchestrationParameter(key, getInputValueKeys(), getName(), __inputMode);
     InvocationContract invocationContract = (InvocationContract) key;
     R value = null;
     // Always propagate, An InvocationContract shouldn't be in an OrchestrationParameter
@@ -110,7 +110,7 @@ public abstract class OrchestrationProductionContext<P extends Orchestration> ex
   @Override
   public Class<?> getOutputValueType(Object key) throws InvocationException {
     // Locate an OrchestrationParameter, it should be null, just do it for key type checking
-    getOrchestrationParameter(key, getOutputValueKeys(), __outputMode);
+    getOrchestrationParameter(key, getOutputValueKeys(), getName(), __outputMode);
     InvocationContract invocationContract = (InvocationContract) key;
     Class<?> valueType = null;
     // Always propagate, OrchestrationParameter doesn't hold Output Values
@@ -125,7 +125,7 @@ public abstract class OrchestrationProductionContext<P extends Orchestration> ex
   @Override
   public <R> R getOutputValue(Object key, Class<R> clazz) throws InvocationException {
     // Locate an OrchestrationParameter, it should be null, just do it for key type checking
-    getOrchestrationParameter(key, getOutputValueKeys(), __outputMode);
+    getOrchestrationParameter(key, getOutputValueKeys(), getName(), __outputMode);
     InvocationContract invocationContract = (InvocationContract) key;
     R value = null;
     // Always propagate, OrchestrationParameter doesn't hold Output Values
@@ -140,7 +140,7 @@ public abstract class OrchestrationProductionContext<P extends Orchestration> ex
   @Override
   public void setOutputValue(Object key, Object value) throws InvocationException {
     // Locate an OrchestrationParameter, it should be null, just do it for key type checking
-    getOrchestrationParameter(key, getOutputValueKeys(), __outputMode);
+    getOrchestrationParameter(key, getOutputValueKeys(), getName(), __outputMode);
     InvocationContract invocationContract = (InvocationContract) key;
     // Always propagate, OrchestrationParameter doesn't hold Output Values
     if (invocationContract.getFactoryComponentContract() != null) {
@@ -150,13 +150,13 @@ public abstract class OrchestrationProductionContext<P extends Orchestration> ex
     }
   }
 
-  private OrchestrationParameter getOrchestrationParameter(Object key, Collection<OrchestrationParameter> keys, String mode) throws InvocationException {
+  private static OrchestrationParameter getOrchestrationParameter(Object key, Collection<OrchestrationParameter> keys, String name, String mode) throws InvocationException {
     // Usual Tests
     if (key == null) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, getName()));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_null_key, mode, name));
     }
     if (key instanceof InvocationContract == false) {
-      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContract.class.getName(), mode, EMFHelper.getText(key), key.getClass().getName(), getName() }));
+      throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_wrong_type, new Object[] { InvocationContract.class.getName(), mode, EMFHelper.getText(key), key.getClass().getName(), name }));
     }
     // Locate OrchestrationParameter
     OrchestrationParameter orchestrationParameter = null;
