@@ -32,8 +32,8 @@ public class CoreUIMessages {
   public static String _UI_FcoreSelection_label;
   public static String _UI_SelectRegisteredFcore;
 
-  public static String _UI_TypeSelection_label;
-  public static String _UI_SelectTypeSubClass;
+  public static String _UI_SelectType;
+  public static String _UI_SelectTypes;
   public static String _UI_FilteredItemsSelectionDialog_separatorLabel;
   public static String _UI_FilteredItemsSelectionDialog_platformSeparatorLabel;
 

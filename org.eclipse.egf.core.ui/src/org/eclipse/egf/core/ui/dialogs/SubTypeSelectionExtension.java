@@ -10,19 +10,13 @@
  */
 package org.eclipse.egf.core.ui.dialogs;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
-import org.eclipse.jdt.core.Flags;
 import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
 import org.eclipse.jdt.core.JavaModelException;
-import org.eclipse.jdt.internal.corext.util.TypeFilter;
 import org.eclipse.jdt.ui.dialogs.ITypeInfoFilterExtension;
 import org.eclipse.jdt.ui.dialogs.ITypeInfoRequestor;
 import org.eclipse.jdt.ui.dialogs.TypeSelectionExtension;
@@ -35,15 +29,15 @@ public class SubTypeSelectionExtension extends TypeSelectionExtension {
 
   private IJavaProject _javaProject;
 
-  private List<IType> _subTypes = Collections.emptyList();
+  private IType _type;
+
+  private IType[] _subTypes;
 
   public SubTypeSelectionExtension(IType type) throws CoreException {
     try {
       _javaProject = type.getJavaProject();
-      IType[] subTypes = type.newTypeHierarchy(_javaProject, new NullProgressMonitor()).getAllSubtypes(type);
-      if (subTypes != null) {
-        _subTypes = Arrays.asList(subTypes);
-      }
+      _type = type;
+      _subTypes = type.newTypeHierarchy(_javaProject, new NullProgressMonitor()).getAllSubtypes(type);
     } catch (Throwable t) {
       throw new CoreException(EGFCoreUIPlugin.getDefault().newStatus(IStatus.ERROR, t.getMessage(), t));
     }
@@ -59,10 +53,6 @@ public class SubTypeSelectionExtension extends TypeSelectionExtension {
   public ITypeInfoFilterExtension getFilterExtension() {
     return new ITypeInfoFilterExtension() {
       public boolean select(ITypeInfoRequestor typeInfoRequestor) {
-        // Ignore non public, interface and abstract classes
-        if (Flags.isPublic(typeInfoRequestor.getModifiers()) == false || Flags.isInterface(typeInfoRequestor.getModifiers()) || Flags.isAbstract(typeInfoRequestor.getModifiers())) {
-          return false;
-        }
         // Retrieve IType
         IType type = null;
         try {
@@ -73,12 +63,19 @@ public class SubTypeSelectionExtension extends TypeSelectionExtension {
         if (type == null) {
           return false;
         }
-        // Check if this type is filtered
-        if (TypeFilter.isFiltered(type)) {
-          return false;
+        // Always return myself
+        if (type.equals(_type)) {
+          return true;
         }
-        // Check whether or not we are a subtypes of type
-        return _subTypes.contains(type);
+        // Check whether or not we are a subtype
+        if (_subTypes != null) {
+          for (IType subType : _subTypes) {
+            if (subType.equals(type)) {
+              return true;
+            }
+          }
+        }
+        return false;
       }
     };
   }

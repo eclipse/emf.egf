@@ -91,8 +91,7 @@ public abstract class AbstractTypeEditorContributor extends DefaultPropertyEdito
         // Dialog
         try {
           SelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), false, PlatformUI.getWorkbench().getProgressService(), javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE, new SubTypeSelectionExtension(type));
-          dialog.setTitle(CoreUIMessages._UI_TypeSelection_label);
-          dialog.setMessage(NLS.bind(CoreUIMessages._UI_SelectTypeSubClass, filteredType));
+          dialog.setTitle(NLS.bind(CoreUIMessages._UI_SelectType, filteredType));
           if (dialog.open() != IDialogConstants.OK_ID) {
             return value;
           }

@@ -85,7 +85,6 @@ public class TypeClassEditorContributor extends DefaultPropertyEditorContributor
         // Dialog
         try {
           SelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), false, PlatformUI.getWorkbench().getProgressService(), javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE);
-          ((TypeSelectionDialog) dialog).addToSelectionHistory(typeClass.getValue());
           if (dialog.open() != IDialogConstants.OK_ID) {
             return null;
           }

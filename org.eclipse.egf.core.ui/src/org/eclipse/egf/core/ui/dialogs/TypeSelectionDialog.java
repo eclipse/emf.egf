@@ -15,11 +15,7 @@ import org.eclipse.egf.core.ui.EGFCoreUIPlugin;
 import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
 import org.eclipse.jdt.core.IJavaElement;
 import org.eclipse.jdt.core.IJavaProject;
-import org.eclipse.jdt.core.IType;
-import org.eclipse.jdt.core.JavaModelException;
 import org.eclipse.jdt.core.search.SearchEngine;
-import org.eclipse.jdt.core.search.TypeNameMatch;
-import org.eclipse.jdt.internal.core.search.JavaSearchTypeNameMatch;
 import org.eclipse.jdt.internal.ui.dialogs.FilteredTypesSelectionDialog;
 import org.eclipse.jdt.ui.dialogs.TypeSelectionExtension;
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -35,11 +31,8 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
 
   private static final String DIALOG_SETTINGS = "org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog"; //$NON-NLS-1$ 
 
-  private IJavaProject _javaProject;
-
   public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, IJavaProject javaProject, int elementKinds) {
     super(parent, multi, context, SearchEngine.createJavaSearchScope(new IJavaElement[] { javaProject }), elementKinds, null);
-    _javaProject = javaProject;
     setTitle(CoreUIMessages.TypeSelection_dialogTitle);
     setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
     setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, BundleHelper.getBundleId(javaProject.getProject())));
@@ -47,7 +40,6 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
 
   public TypeSelectionDialog(Shell parent, boolean multi, IRunnableContext context, IJavaProject javaProject, int elementKinds, TypeSelectionExtension extension) {
     super(parent, multi, context, SearchEngine.createJavaSearchScope(new IJavaElement[] { javaProject }), elementKinds, extension);
-    _javaProject = javaProject;
     setTitle(CoreUIMessages.TypeSelection_dialogTitle);
     setMessage(CoreUIMessages.TypeSelectionDialog_dialogMessage);
     setSeparatorLabel(NLS.bind(CoreUIMessages._UI_FilteredItemsSelectionDialog_separatorLabel, BundleHelper.getBundleId(javaProject.getProject())));
@@ -67,19 +59,4 @@ public class TypeSelectionDialog extends FilteredTypesSelectionDialog {
     return settings;
   }
 
-  public void addToSelectionHistory(String current) {
-    if (current == null || current.trim().length() == 0) {
-      return;
-    }
-    try {
-      IType type = _javaProject.findType(current.trim());
-      if (type != null) {
-        SelectionHistory history = getSelectionHistory();
-        TypeNameMatch match = new JavaSearchTypeNameMatch(type, type.getFlags());
-        history.accessed(match);
-      }
-    } catch (JavaModelException jme) {
-      EGFCoreUIPlugin.getDefault().logError(jme);
-    }
-  }
 }
