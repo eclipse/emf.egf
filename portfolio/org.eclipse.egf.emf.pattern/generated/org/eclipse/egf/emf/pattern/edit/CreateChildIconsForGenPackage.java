@@ -104,7 +104,7 @@ return loop;
     protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
 
     }
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
@@ -112,7 +112,7 @@ canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(genModel).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 GenPackage genPackage = parameter;
 GenModel genModel=genPackage.getGenModel();
 if (genModel.isCreationCommands() && genModel.isCreationIcons() && genPackage.isChildCreationExtenders()) {
@@ -123,7 +123,7 @@ if (genModel.isCreationCommands() && genModel.isCreationIcons() && genPackage.is
         if (childCreationData.createClassifier instanceof GenClass && (childCreationData.delegatedFeature == null || classEntry.getKey().getAllGenFeatures().contains(childCreationData.delegatedFeature))) {
           GenClass childClass=(GenClass)childCreationData.createClassifier;
           GenFeature feature=childCreationData.createFeature;
-new CodegenGeneratorAdapter(genModel).generateGIF(parameter, "edit/CreateChild.gif", genClass.getCreateChildIconFileName(genModel,feature,childClass), genClass.getName(), childClass.getName(), false);
+new CodegenGeneratorAdapter(parameter).generateGIF("edit/CreateChild.gif", genClass.getCreateChildIconFileName(genModel,feature,childClass), genClass.getName(), childClass.getName(), false);
         }
       }
     }

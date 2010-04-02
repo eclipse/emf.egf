@@ -11,5 +11,7 @@ Export-Package:
  org.eclipse.egf.emf.pattern.base
 Require-Bundle: 
  org.eclipse.egf.common,
- org.eclipse.egf.pattern
+ org.eclipse.egf.pattern,
+ org.eclipse.egf.model.ftask,
+ org.eclipse.egf.pattern.ftask
 Bundle-ActivationPolicy: lazy

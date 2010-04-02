@@ -41,7 +41,7 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
   protected final String TEXT_14 = NL + " ";
   protected final String TEXT_15 = ";visibility:=reexport";
   protected final String TEXT_16 = NL + "Eclipse-LazyStart: true";
-  protected final String TEXT_17 = NL + "Bundle-ActivationPolicy: lazy" + NL + NL;
+  protected final String TEXT_17 = NL + "Bundle-ActivationPolicy: lazy" + NL;
   protected final String TEXT_18 = NL;
   protected final String TEXT_19 = NL;
 
@@ -126,7 +126,7 @@ targetPathName = genModel.getTestsProjectDirectory() + "/META-INF/MANIFEST.MF";
 arguments = null;
 overwrite = false;
 encoding = "UTF-8";
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
 canGenerate = canGenerate && (genModel.isBundleManifest()) && (!genModel.sameModelTestsProject());
 
     }
@@ -135,7 +135,7 @@ canGenerate = canGenerate && (genModel.isBundleManifest()) && (!genModel.sameMod
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(genModel).ensureProjectExists(genModel.getTestsDirectory(), genModel, GenBaseGeneratorAdapter.TESTS_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getTestsDirectory(), genModel, GenBaseGeneratorAdapter.TESTS_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];

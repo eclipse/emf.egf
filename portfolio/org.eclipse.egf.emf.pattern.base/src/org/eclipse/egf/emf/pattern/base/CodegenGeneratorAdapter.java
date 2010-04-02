@@ -18,7 +18,7 @@ package org.eclipse.egf.emf.pattern.base;
 import org.eclipse.emf.codegen.ecore.generator.Generator;
 import org.eclipse.emf.codegen.ecore.genmodel.GenBase;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
-import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapter;
+import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
 import org.eclipse.emf.codegen.util.GIFEmitter;
 import org.eclipse.emf.common.util.BasicMonitor;
@@ -29,15 +29,15 @@ import org.eclipse.emf.common.util.URI;
  * @author Matthieu Helleboid
  * 
  */
-public class CodegenGeneratorAdapter extends GenModelGeneratorAdapter {
+public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
 
     protected Generator generator;
-
     protected GenModel genModel;
 
-    public CodegenGeneratorAdapter(GenModel genModel) {
+    public CodegenGeneratorAdapter(GenBase generatingObject) {
         super(null);
-        this.genModel = genModel;
+        this.generatingObject = generatingObject;
+        genModel = generatingObject.getGenModel();
     }
 
     @Override
@@ -48,9 +48,8 @@ public class CodegenGeneratorAdapter extends GenModelGeneratorAdapter {
         return generator;
     }
 
-    @Override
-    public boolean canGenerate(Object object, Object projectType) {
-        return super.canGenerate(object, projectType);
+    public boolean canGenerate(Object projectType) {
+        return super.canGenerate(generatingObject, projectType);
     }
 
     @Override
@@ -66,11 +65,6 @@ public class CodegenGeneratorAdapter extends GenModelGeneratorAdapter {
     @Override
     public void ensureProjectExists(String workspacePath, Object object, Object projectType, boolean force, Monitor monitor) {
         super.ensureProjectExists(workspacePath, object, projectType, force, monitor);
-    }
-
-    @Override
-    public void ensureContainerExists(URI workspacePath, Monitor monitor) {
-        super.ensureContainerExists(workspacePath, monitor);
     }
 
     public void generateJava(String targetPath, String packageName, String className, String output) {
@@ -91,20 +85,9 @@ public class CodegenGeneratorAdapter extends GenModelGeneratorAdapter {
         super.generateProperties(targetPathName, stringJETEmitter, null, monitor);
     }
 
-    @Override
-    public GIFEmitter createGIFEmitter(String inputPathName) {
-        return super.createGIFEmitter(inputPathName);
-    }
-
-    public void generateGIF(String targetPathName, GIFEmitter gifEmitter, String parentKey, String childKey, boolean overwrite, Monitor monitor) {
-        super.generateGIF(targetPathName, gifEmitter, parentKey, childKey, overwrite, monitor);
-    }
-
-    public void generateGIF(GenBase parameter, String inputPathName, String targetPathName, String parentKey, String childKey, boolean overwrite) {
-        this.generatingObject = parameter;
+    public void generateGIF(String inputPathName, String targetPathName, String parentKey, String childKey, boolean overwrite) {
         GIFEmitter gifEmitter = createGIFEmitter(inputPathName);
         BasicMonitor monitor = new BasicMonitor();
         generateGIF(targetPathName, gifEmitter, parentKey, childKey, overwrite, monitor);
-        this.generatingObject = null;
     }
 }

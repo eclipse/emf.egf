@@ -2,6 +2,6 @@
 GenModel genModel = parameter;
 targetPathName = genModel.getModelProjectDirectory() + "/plugin.properties";
 arguments = null;
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 canGenerate = canGenerate && (genModel.hasPluginSupport());
 %>

@@ -131,7 +131,7 @@ targetPath = genModel.getModelDirectory();
 packageName = genModel.getModelPluginPackageName();
 className = genModel.getModelPluginClassName();
 arguments = null;
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 canGenerate = canGenerate && (genModel.hasModelPluginClass());
 
     }
@@ -140,7 +140,7 @@ canGenerate = canGenerate && (genModel.hasModelPluginClass());
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(genModel).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];

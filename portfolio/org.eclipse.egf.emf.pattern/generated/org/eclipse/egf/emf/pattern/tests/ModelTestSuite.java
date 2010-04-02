@@ -129,7 +129,7 @@ targetPath = genModel.getTestsDirectory();
 packageName = genModel.getTestSuitePackageName();
 className = genModel.getTestSuiteClassName();
 arguments = null;
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.TestsProject");
 canGenerate = canGenerate && (genModel.hasTestSuiteClass());
 
     }
@@ -138,7 +138,7 @@ canGenerate = canGenerate && (genModel.hasTestSuiteClass());
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(genModel).ensureProjectExists(genModel.getTestsDirectory(), genModel, GenBaseGeneratorAdapter.TESTS_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getTestsDirectory(), genModel, GenBaseGeneratorAdapter.TESTS_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];

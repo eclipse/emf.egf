@@ -1,8 +1,0 @@
-<%
-// TODO remove me and move
-genModel.reconcile();
-genModel.setCanGenerate(true);
-genModel.setValidateModel(true);
-genModel.diagnose();
-genModel.validate();
-%>

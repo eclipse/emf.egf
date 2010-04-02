@@ -1,7 +1,7 @@
 <%
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(genModel).ensureProjectExists(genModel.getEditorDirectory(), genModel, GenBaseGeneratorAdapter.EDITOR_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditorDirectory(), genModel, GenBaseGeneratorAdapter.EDITOR_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];
@@ -49,5 +49,4 @@ Require-Bundle: <%=pluginID%><%if (!pluginID.startsWith("org.eclipse.core.runtim
 Eclipse-LazyStart: true
 <%}%>
 Bundle-ActivationPolicy: lazy
-
 

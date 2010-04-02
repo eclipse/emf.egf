@@ -4,6 +4,6 @@ targetPath = genPackage.getGenModel().getEditorDirectory();
 packageName = genPackage.getPresentationPackageName();
 className = genPackage.getEditorClassName();
 arguments = null;
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
 canGenerate = canGenerate && (genPackage.hasConcreteClasses());
 %>

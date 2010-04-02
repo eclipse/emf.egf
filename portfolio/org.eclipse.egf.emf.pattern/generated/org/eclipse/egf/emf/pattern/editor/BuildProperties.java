@@ -116,9 +116,9 @@ return loop;
 GenModel genModel = parameter;
 targetPathName = genModel.getEditorProjectDirectory() + "/build.properties";
 arguments = null;
-overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(genModel).exists(new CodegenGeneratorAdapter(genModel).toURI(genModel.getEditorProjectDirectory()).appendSegment("plugin.xml"));
+overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(genModel.getEditorProjectDirectory()).appendSegment("plugin.xml"));
 encoding = "ISO-8859-1";
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditorProject");
 canGenerate = canGenerate && true;
 
     }
@@ -127,7 +127,7 @@ canGenerate = canGenerate && true;
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(genModel).ensureProjectExists(genModel.getEditorDirectory(), genModel, GenBaseGeneratorAdapter.EDITOR_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditorDirectory(), genModel, GenBaseGeneratorAdapter.EDITOR_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];

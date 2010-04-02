@@ -4,6 +4,6 @@ targetPath = genPackage.getGenModel().getModelDirectory();
 packageName = genPackage.getUtilitiesPackageName();
 className = genPackage.getXMLProcessorClassName();
 arguments = null;
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 canGenerate = canGenerate && (genPackage.hasClassifiers() && genPackage.getResource().getValue() == GenResourceKind.XML);
 %>

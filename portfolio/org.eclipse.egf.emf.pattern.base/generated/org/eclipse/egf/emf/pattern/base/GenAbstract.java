@@ -59,8 +59,6 @@ public class GenAbstract {
 
         method_setChildVariables(ictx.getBuffer(), ictx);
 
-        method_configureGenModel(ictx.getBuffer(), ictx);
-
         method_setReporterVariables(ictx.getBuffer(), ictx);
 
         method_putReporterVariablesInContext(ictx.getBuffer(), ictx);
@@ -88,17 +86,6 @@ public class GenAbstract {
     }
 
     protected void method_setChildVariables(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-    }
-
-    protected void method_configureGenModel(final StringBuffer stringBuffer, final PatternContext ctx) throws Exception {
-
-        // TODO remove me and move
-        genModel.reconcile();
-        genModel.setCanGenerate(true);
-        genModel.setValidateModel(true);
-        genModel.diagnose();
-        genModel.validate();
 
     }
 

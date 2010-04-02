@@ -42,7 +42,7 @@ public class ManifestMF extends org.eclipse.egf.emf.pattern.base.GenModelText {
   protected final String TEXT_15 = NL + " ";
   protected final String TEXT_16 = ";visibility:=reexport";
   protected final String TEXT_17 = NL + "Eclipse-LazyStart: true";
-  protected final String TEXT_18 = NL + "Bundle-ActivationPolicy: lazy" + NL + NL;
+  protected final String TEXT_18 = NL + "Bundle-ActivationPolicy: lazy" + NL;
   protected final String TEXT_19 = NL;
   protected final String TEXT_20 = NL;
 
@@ -125,9 +125,9 @@ return loop;
 GenModel genModel = parameter;
 targetPathName = genModel.getEditProjectDirectory() + "/META-INF/MANIFEST.MF";
 arguments = null;
-overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(genModel).exists(new CodegenGeneratorAdapter(genModel).toURI(genModel.getEditProjectDirectory()).appendSegment("plugin.xml"));
+overwrite = genModel.isUpdateClasspath() && !new CodegenGeneratorAdapter(parameter).exists(new CodegenGeneratorAdapter(parameter).toURI(genModel.getEditProjectDirectory()).appendSegment("plugin.xml"));
 encoding = "UTF-8";
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
 canGenerate = canGenerate && (genModel.isBundleManifest()) && (!genModel.sameEditEditorProject());
 
     }
@@ -136,7 +136,7 @@ canGenerate = canGenerate && (genModel.isBundleManifest()) && (!genModel.sameEdi
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(genModel).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];

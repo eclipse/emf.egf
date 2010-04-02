@@ -1674,7 +1674,7 @@ targetPath = genModel.getModelDirectory();
 packageName = genPackage.getClassPackageName();
 className = genClass.getClassName();
 arguments = new Object[]{new Object[]{genClass,genModel.isSuppressInterfaces() ? Boolean.TRUE : Boolean.FALSE,Boolean.TRUE}};
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.ModelProject");
 canGenerate = canGenerate && (!genClass.isInterface());
 
     }
@@ -1683,7 +1683,7 @@ canGenerate = canGenerate && (!genClass.isInterface());
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(genModel).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getModelDirectory(), genModel, GenBaseGeneratorAdapter.MODEL_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 Object argument = parameter;
 if (arguments != null)
     argument = ((Object[]) arguments)[0];

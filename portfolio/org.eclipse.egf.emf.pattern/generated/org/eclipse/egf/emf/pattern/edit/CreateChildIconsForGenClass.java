@@ -104,7 +104,7 @@ return loop;
     protected void method_setReporterVariables(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
     
-canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
+canGenerate = new CodegenGeneratorAdapter(parameter).canGenerate("org.eclipse.emf.codegen.ecore.genmodel.generator.EditProject");
 
     }
     protected void method_doGenerate(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
@@ -112,13 +112,13 @@ canGenerate = new CodegenGeneratorAdapter(genModel).canGenerate(parameter, "org.
     
 if (!canGenerate)
     return;
-new CodegenGeneratorAdapter(genModel).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
+new CodegenGeneratorAdapter(parameter).ensureProjectExists(genModel.getEditDirectory(), genModel, GenBaseGeneratorAdapter.EDIT_PROJECT_TYPE, genModel.isUpdateClasspath(), new BasicMonitor());
 GenClass genClass = parameter;
 GenModel genModel=genClass.getGenModel();
 if (genModel.isCreationCommands() && genModel.isCreationIcons()) {
   for (  GenFeature feature : genClass.getCreateChildFeaturesIncludingDelegation()) {
     for (    GenClass childClass : genClass.getChildrenClasses(feature)) {
-new CodegenGeneratorAdapter(genModel).generateGIF(parameter, "edit/CreateChild.gif", genClass.getCreateChildIconFileName(feature,childClass), genClass.getName(), childClass.getName(), false);
+new CodegenGeneratorAdapter(parameter).generateGIF("edit/CreateChild.gif", genClass.getCreateChildIconFileName(feature,childClass), genClass.getName(), childClass.getName(), false);
     }
   }
 }
