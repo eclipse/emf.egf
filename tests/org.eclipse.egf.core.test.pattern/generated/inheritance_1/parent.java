@@ -59,6 +59,9 @@ String loop = ictx.getBuffer().toString();
 return loop;
 } 
 
+public Map<String, Object> getParameters() {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+return parameters; }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
