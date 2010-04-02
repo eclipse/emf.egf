@@ -882,17 +882,14 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
       URI uri = null;
       try {
         uri = EcoreUtil.getURI((EObject) object);
-        EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
-        if (eObject != null) {
-          theSelection.add(eObject);
+        if (uri != null && uri.isEmpty() == false) {
+          EObject eObject = editingDomain.getResourceSet().getEObject(uri, true);
+          if (eObject != null) {
+            theSelection.add(eObject);
+          }
         }
       } catch (Throwable t) {
-        // Got some FileNotFoundException here, a more accurate tracing is needed to track it
-        if (uri != null) {
-          EGFModelEditorPlugin.getPlugin().logError(uri.toString(), t);
-        } else {
-          EGFModelEditorPlugin.getPlugin().logError(object.toString(), t);
-        }
+        EGFModelEditorPlugin.getPlugin().logError(object.toString(), t);
       }
     }
     Runnable runnable = new Runnable() {
