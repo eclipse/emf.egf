@@ -33,22 +33,11 @@
 		<javac target="1.5" source="1.5" destdir="${destdir}" failonerror="true" verbose="false" debug="on">
 			<classpath>
 				<dirset dir="${basedir}/..">
-					<include name="org.eclipse.core.runtime/bin"/>
-          <include name="org.eclipse.core.resources/bin"/>					
-					<include name="org.eclipse.equinox.common/bin"/>
-					<include name="org.eclipse.core.variables/bin"/>
-					<include name="org.eclipse.osgi/bin"/>
-					<include name="org.eclipse.ant.core/bin"/>
 	        <include name="org.eclipse.egf.common/bin"/>					
 	        <include name="org.eclipse.egf.core/bin"/>					
 					<include name="org.eclipse.egf.producer/bin"/>
           <include name="org.eclipse.egf.model/bin"/>					
 					<include name="org.eclipse.egf.application/bin"/>
-          <include name="org.eclipse.emf.common/bin"/>					
-          <include name="org.eclipse.emf.ecore/bin"/>					
-					<include name="org.eclipse.emf.codegen/bin"/>
-          <include name="org.eclipse.emf.edit/bin"/>					
-          <include name="org.eclipse.emf.transaction/bin"/>
 				</dirset>
 				<fileset dir="${eclipse.home}">
 					<include name="plugins/org.eclipse.core.runtime*.jar"/>
@@ -57,11 +46,6 @@
 					<include name="plugins/org.eclipse.core.variables*.jar"/>
 					<include name="plugins/org.eclipse.osgi*.jar"/>
 	        <include name="plugins/org.eclipse.ant.core*.jar"/>					
-	        <include name="plugins/org.eclipse.egf.common*.jar"/>					
-          <include name="plugins/org.eclipse.egf.core*.jar"/>					
-					<include name="plugins/org.eclipse.egf.producer*.jar"/>
-          <include name="plugins/org.eclipse.egf.application*.jar"/>
-          <include name="plugins/org.eclipse.egf.model*.jar"/>
           <include name="plugins/org.eclipse.emf.common*.jar"/>					
           <include name="plugins/org.eclipse.emf.ecore*.jar"/>					
           <include name="plugins/org.eclipse.emf.codegen*.jar"/>					
