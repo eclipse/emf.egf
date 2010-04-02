@@ -15,12 +15,12 @@
     </contracts>
   </contractContainer>
   <orchestration xmi:type="fprod:ProductionPlan" xmi:id="zwp8wKbGEd69ANF1SOWYYg">
-    <invocations xmi:id="28WcsKbGEd69ANF1SOWYYg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.example.task.h2/task_h2.fcore#9hT-gKbGEd69ANF1SOWYYg">
+    <invocations xmi:id="28WcsKbGEd69ANF1SOWYYg" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.example.task.h2/egf/task_h2.fcore#9hT-gKbGEd69ANF1SOWYYg">
       <invocationContractContainer xmi:id="_xBK84BvkEd-WcvfvJ8d8ag">
         <invocationContracts xmi:id="_xOlt0BvkEd-WcvfvJ8d8ag" factoryComponentContract="#_2Nw9kBvkEd-WcvfvJ8d8ag"
-            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h2/task_h2.fcore#_rEAa4BvkEd-WcvfvJ8d8ag"/>
+            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h2/egf/task_h2.fcore#_rEAa4BvkEd-WcvfvJ8d8ag"/>
         <invocationContracts xmi:id="_yVg5oBvkEd-WcvfvJ8d8ag" factoryComponentContract="#_6H9iQBvkEd-WcvfvJ8d8ag"
-            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h2/task_h2.fcore#_tEcooBvkEd-WcvfvJ8d8ag"/>
+            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h2/egf/task_h2.fcore#_tEcooBvkEd-WcvfvJ8d8ag"/>
       </invocationContractContainer>
     </invocations>
   </orchestration>

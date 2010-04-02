@@ -38,22 +38,22 @@
         <type xmi:type="types:TypeInteger" xmi:id="_sp_YgBuoEd-Z3--RgNYIJA" value="10"/>
       </orchestrationParameters>
     </orchestrationParameterContainer>
-    <invocations xmi:id="tKWXIabGEd69ANF1SOWYYg" name="h1" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
+    <invocations xmi:id="tKWXIabGEd69ANF1SOWYYg" name="h1" invokedActivity="ftask:Task platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#1Zvd4LdCEd6AWpPtW_wFiQ">
       <invocationContractContainer xmi:id="_GuhTgb-2Ed6E7J0w9U7NFQ">
         <invocationContracts xmi:id="_bu7G8MVjEd6ngr_25dSdnQ" orchestrationParameter="#_qJNd0BuoEd-Z3--RgNYIJA"
-            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_sZPqULpOEd6O-6ob3O13Lw"/>
+            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_sZPqULpOEd6O-6ob3O13Lw"/>
         <invocationContracts xmi:id="_YeTqwMVjEd6ngr_25dSdnQ" factoryComponentContract="#_ljAQIMVjEd6ngr_25dSdnQ"
-            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_5TrVYMBtEd60u-W6Ywx4cQ"/>
+            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_5TrVYMBtEd60u-W6Ywx4cQ"/>
         <invocationContracts xmi:id="_GpyuQb_nEd6gHIEE-OJ_Mw" targetInvocationContract="#_CO0UoBvlEd-WcvfvJ8d8ag"
-            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_xfSXELpOEd6O-6ob3O13Lw"/>
+            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_xfSXELpOEd6O-6ob3O13Lw"/>
         <invocationContracts xmi:id="_IDAaML-2Ed6E7J0w9U7NFQ" factoryComponentContract="#_S7e_oL-2Ed6E7J0w9U7NFQ"
-            targetInvocationContract="#_BOmNwBvlEd-WcvfvJ8d8ag" invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"/>
+            targetInvocationContract="#_BOmNwBvlEd-WcvfvJ8d8ag" invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_2vwLILpOEd6O-6ob3O13Lw"/>
         <invocationContracts xmi:id="_HzSEYciDEd6oON34eIZwow" factoryComponentContract="#_5siVYMnxEd62uJjVIIL53A"
-            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_f5cpETA_Ed-3jtwMRJbhpQ">
+            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_f5cpETA_Ed-3jtwMRJbhpQ">
           <type xmi:type="types:TypeClass" xmi:id="_bF848TJwEd-Cy9RNBjKxgQ" value="org.eclipse.emf.codegen.merge.java.JMerger"/>
         </invocationContracts>
         <invocationContracts xmi:id="_OHww8NW6Ed6dzvinGX1cMA" factoryComponentContract="#_aZgPYNW6Ed6dzvinGX1cMA"
-            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/task_h1.fcore#_l2A5kdT3Ed6Pk6ruhJpBtQ"/>
+            invokedContract="platform:/plugin/org.eclipse.egf.example.task.h1/egf/task_h1.fcore#_l2A5kdT3Ed6Pk6ruhJpBtQ"/>
       </invocationContractContainer>
     </invocations>
     <invocations xmi:id="ID2loKbGEd692t-PG4ogiQ" name="fc2" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.example.fcs/egf/fc2.fcore#6yt_IWV8Ed6WjOtbZOwqNA">
