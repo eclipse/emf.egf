@@ -29,11 +29,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainURIImpl#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainURIImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainURIImpl#getDomain <em>Domain</em>}</li>
+ * <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainURIImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
@@ -41,6 +41,7 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -50,6 +51,7 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDomain()
    * @generated
    * @ordered
@@ -60,6 +62,7 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getValue()
    * @generated
    * @ordered
@@ -72,14 +75,23 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
    * 
    * @generated NOT
    */
+  protected TypeDomainURIAdapter typeDomainURIAdapter = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
   protected TypeDomainURIImpl() {
     super();
-    new TypeDomainURIAdapter(this);
+    typeDomainURIAdapter = new TypeDomainURIAdapter(this);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -90,6 +102,7 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainURI getDomain() {
@@ -99,13 +112,19 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   public void setDomain(DomainURI newDomain) {
     DomainURI oldDomain = domain;
     domain = newDomain;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.TYPE_DOMAIN_URI__DOMAIN, oldDomain, domain));
+    } else {
+      // The XMLResource.OPTION_DISABLE_NOTIFY option prevent notification to be delivered while loading
+      // as a consequence this adapter will not be initialized properly
+      typeDomainURIAdapter.notifyChanged(new ENotificationImpl(this, Notification.SET, DomainPackage.TYPE_DOMAIN_URI__DOMAIN, oldDomain, domain));
+    }
   }
 
   /**
@@ -125,6 +144,7 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -141,6 +161,7 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -156,6 +177,7 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -171,6 +193,7 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override

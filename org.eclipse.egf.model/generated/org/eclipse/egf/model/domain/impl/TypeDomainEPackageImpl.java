@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl#getDomain <em>Domain</em>}</li>
- *   <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl#getDomain <em>Domain</em>}</li>
+ * <li>{@link org.eclipse.egf.model.domain.impl.TypeDomainEPackageImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomainEPackage {
@@ -42,6 +42,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
    * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    * @ordered
    */
@@ -50,6 +51,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @see #getDomain()
    * @generated
    * @ordered
@@ -62,14 +64,23 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
    * 
    * @generated NOT
    */
+  protected TypeDomainEPackageAdapter typeDomainEPackageAdapter = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * 
+   * @generated NOT
+   */
   protected TypeDomainEPackageImpl() {
     super();
-    new TypeDomainEPackageAdapter(this);
+    typeDomainEPackageAdapter = new TypeDomainEPackageAdapter(this);
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -80,6 +91,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   public DomainEPackage getDomain() {
@@ -89,18 +101,25 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * 
+   * @generated NOT
    */
   public void setDomain(DomainEPackage newDomain) {
     DomainEPackage oldDomain = domain;
     domain = newDomain;
-    if (eNotificationRequired())
+    if (eNotificationRequired()) {
       eNotify(new ENotificationImpl(this, Notification.SET, DomainPackage.TYPE_DOMAIN_EPACKAGE__DOMAIN, oldDomain, domain));
+    } else {
+      // The XMLResource.OPTION_DISABLE_NOTIFY option prevent notification to be delivered while loading
+      // as a consequence this adapter will not be initialized properly
+      typeDomainEPackageAdapter.notifyChanged(new ENotificationImpl(this, Notification.SET, DomainPackage.TYPE_DOMAIN_EPACKAGE__DOMAIN, oldDomain, domain));
+    }
   }
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -125,6 +144,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -143,6 +163,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -158,6 +179,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
@@ -173,6 +195,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
+   * 
    * @generated
    */
   @Override
