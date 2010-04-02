@@ -7,8 +7,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
-import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
-import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
+import org.eclipse.emf.codegen.merge.java.JMerger;
 
 public class H1 implements ITaskProduction {
 
@@ -25,7 +24,7 @@ public class H1 implements ITaskProduction {
     _quantity = context.getInputValue("quantity", Integer.class); //$NON-NLS-1$
     _price = context.getInputValue("price", Float.class); //$NON-NLS-1$
     _parameters = context.getInputValue("parameters", Collection.class); //$NON-NLS-1$
-    context.getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$
+    context.getOutputValue("jmerger", JMerger.class); //$NON-NLS-1$
   }
 
   public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
@@ -34,7 +33,7 @@ public class H1 implements ITaskProduction {
 
   public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
     context.setOutputValue("amount", _amount); //$NON-NLS-1$  		  
-    context.setOutputValue("generatorAdapterFactory", new GenModelGeneratorAdapterFactory()); //$NON-NLS-1$
+    context.setOutputValue("jmerger", new JMerger()); //$NON-NLS-1$
     _parameters = new ArrayList<String>();
     _parameters.add("param1"); //$NON-NLS-1$
     _parameters.add("param2"); //$NON-NLS-1$
