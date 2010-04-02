@@ -5,10 +5,10 @@
    <extension
          point="org.eclipse.egf.core.fcore">
       <fcore
-            id="fc/fc1.fcore">
+            id="egf/fc2.fcore">
       </fcore>
       <fcore
-            id="fc/fc2.fcore">
+            id="egf/fc1.fcore">
       </fcore>
    </extension>  
       

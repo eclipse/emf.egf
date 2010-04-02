@@ -6,8 +6,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
 import org.eclipse.egf.ftask.producer.context.ITaskProductionContext;
 import org.eclipse.egf.ftask.producer.invocation.ITaskProduction;
-import org.eclipse.emf.codegen.ecore.generator.GeneratorAdapterFactory;
-import org.eclipse.emf.codegen.ecore.genmodel.generator.GenModelGeneratorAdapterFactory;
+import org.eclipse.emf.codegen.merge.java.JMerger;
 
 public class H1 implements ITaskProduction {
 
@@ -17,14 +16,11 @@ public class H1 implements ITaskProduction {
 
   private Float amount;
 
-  private Collection<String> parameters;
-
-  @SuppressWarnings("unchecked")
   public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
     quantity = context.getInputValue("quantity", Integer.class); //$NON-NLS-1$
     price = context.getInputValue("price", Float.class); //$NON-NLS-1$
-    parameters = context.getInputValue("parameters", Collection.class); //$NON-NLS-1$
-    context.getOutputValue("generatorAdapterFactory", GeneratorAdapterFactory.class); //$NON-NLS-1$       
+    context.getInputValue("parameters", Collection.class); //$NON-NLS-1$
+    context.getOutputValue("jmerger", JMerger.class); //$NON-NLS-1$       
   }
 
   public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
@@ -33,7 +29,10 @@ public class H1 implements ITaskProduction {
 
   public void postExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
     context.setOutputValue("amount", amount); //$NON-NLS-1$       
-    context.setOutputValue("generatorAdapterFactory", new GenModelGeneratorAdapterFactory()); //$NON-NLS-1$
+    context.setOutputValue("jmerger", new JMerger()); //$NON-NLS-1$
+    Activator.getDefault().logInfo("Quantity : " + quantity); //$NON-NLS-1$
+    Activator.getDefault().logInfo("Price : " + price); //$NON-NLS-1$
+    Activator.getDefault().logInfo("Amount : " + amount); //$NON-NLS-1$
   }
 
 }
