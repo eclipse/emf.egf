@@ -29,7 +29,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 public class TypeEditorContributor extends AbstractTypeEditorContributor {
 
   public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-    if (checkFeature(object, descriptor, TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE) && object instanceof TypeAbstractClass) {
+    // It should be a TypeAbstractClass in a non null resource
+    if (object instanceof TypeAbstractClass == false || ((TypeAbstractClass) object).eResource() == null) {
+      return false;
+    }
+    // Check Current Feature
+    if (checkFeature(object, descriptor, TypesPackage.Literals.TYPE_ABSTRACT_CLASS__VALUE)) {
       // TypeClass has its own contributor see TypeClassEditorContributor
       if (object instanceof TypeClass && ((TypeClass) object).eContainer() instanceof Contract) {
         return false;
@@ -37,9 +42,16 @@ public class TypeEditorContributor extends AbstractTypeEditorContributor {
       // TypeAbstractClass bound to an InvocationContract
       if (((TypeAbstractClass) object).eContainer() instanceof InvocationContract) {
         InvocationContract contract = (InvocationContract) ((TypeAbstractClass) object).eContainer();
-        if (contract.getInvokedContract() == null || contract.getInvokedContract().getType() == null || contract.getInvokedContract().getType().getType() == null) {
+        if (contract.getInvokedContract() == null || contract.getInvokedContract().getType() == null || contract.getInvokedContract().getType() instanceof TypeAbstractClass == false) {
           return false;
         }
+        TypeAbstractClass invokedContractType = (TypeAbstractClass) contract.getInvokedContract().getType();
+        if (invokedContractType instanceof TypeClass && invokedContractType.getValue() == null || invokedContractType.getValue().trim().length() == 0) {
+          return false;
+        } else if (invokedContractType.getType() == null) {
+          return false;
+        }
+        return true;
       }
       // TypeAbstractContract bound to a Contract
       return (((TypeAbstractClass) object)).getType() != null;
@@ -48,13 +60,17 @@ public class TypeEditorContributor extends AbstractTypeEditorContributor {
   }
 
   @Override
-  protected Class<Object> getType(Object object) {
+  protected String getFilteredType(Object object) {
     // TypeAbstractClass bound to an InvocationContract
     if (((TypeAbstractClass) object).eContainer() instanceof InvocationContract) {
-      return ((InvocationContract) ((TypeAbstractClass) object).eContainer()).getType().getType();
+      TypeAbstractClass invokedContractType = (TypeAbstractClass) ((InvocationContract) ((TypeAbstractClass) object).eContainer()).getInvokedContract().getType();
+      if (invokedContractType instanceof TypeClass) {
+        return invokedContractType.getValue();
+      }
+      return invokedContractType.getType().getName();
     }
     // TypeAbstractContract bound to a Contract
-    return (((TypeAbstractClass) object)).getType();
+    return (((TypeAbstractClass) object)).getType().getName();
   }
 
   @Override

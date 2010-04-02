@@ -17,16 +17,30 @@ package org.eclipse.egf.model.editor.contributions;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.egf.common.ui.helper.ThrowableHandler;
 import org.eclipse.egf.core.ui.contributor.DefaultPropertyEditorContributor;
-import org.eclipse.egf.core.ui.dialogs.FilteredTypeSelectionDialog;
+import org.eclipse.egf.core.ui.dialogs.SubTypeSelectionExtension;
+import org.eclipse.egf.core.ui.dialogs.TypeSelectionDialog;
+import org.eclipse.egf.core.ui.l10n.CoreUIMessages;
+import org.eclipse.egf.model.editor.EGFModelEditorPlugin;
 import org.eclipse.emf.common.ui.celleditor.ExtendedDialogCellEditor;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.jdt.core.IJavaProject;
 import org.eclipse.jdt.core.IType;
+import org.eclipse.jdt.core.JavaCore;
+import org.eclipse.jdt.core.JavaModelException;
+import org.eclipse.jdt.core.search.IJavaSearchConstants;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.viewers.CellEditor;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.SelectionDialog;
 
 /**
  * @author Thomas Guiu
@@ -37,29 +51,70 @@ public abstract class AbstractTypeEditorContributor extends DefaultPropertyEdito
   public CellEditor createPropertyEditor(final Composite composite, Object object, IItemPropertyDescriptor descriptor) {
 
     final String value = getValue(object);
-    final Class<?> type = getType(object);
 
-    final IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(((EObject) object).eResource().getURI().segment(1));
-    if (project == null)
-      throw new IllegalStateException();
+    final String filteredType = getFilteredType(object);
+
+    final Resource resource = ((EObject) object).eResource();
 
     return new ExtendedDialogCellEditor(composite, getLabelProvider(object, descriptor)) {
       @Override
       protected Object openDialogBox(Control cellEditorWindow) {
-        FilteredTypeSelectionDialog dialog = new FilteredTypeSelectionDialog(composite.getShell(), project, type, value, null, false);
-        if (dialog.open() != IDialogConstants.OK_ID) {
-          return null;
+        // IProject lookup
+        IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(resource.getURI().segment(1));
+        if (project == null) {
+          return value;
         }
-        Object[] innerResult = dialog.getResult();
-        if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
-          return ((IType) innerResult[0]).getFullyQualifiedName();
+        // IJavaProject lookup
+        IJavaProject javaProject = null;
+        try {
+          if (project.isAccessible() && project.hasNature(JavaCore.NATURE_ID)) {
+            javaProject = JavaCore.create(project);
+          }
+        } catch (CoreException ce) {
+          ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), ce);
+          return value;
+        }
+        if (javaProject == null) {
+          return value;
+        }
+        // IType Lookup
+        IType type = null;
+        try {
+          type = javaProject.findType(filteredType, new NullProgressMonitor());
+        } catch (CoreException ce) {
+          ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), ce);
+          return value;
+        }
+        if (type == null) {
+          return value;
+        }
+        // Dialog
+        try {
+          SelectionDialog dialog = new TypeSelectionDialog(composite.getShell(), false, PlatformUI.getWorkbench().getProgressService(), javaProject, IJavaSearchConstants.CLASS_AND_INTERFACE, new SubTypeSelectionExtension(type));
+          dialog.setTitle(CoreUIMessages._UI_TypeSelection_label);
+          dialog.setMessage(NLS.bind(CoreUIMessages._UI_SelectTypeSubClass, filteredType));
+          if (dialog.open() != IDialogConstants.OK_ID) {
+            return value;
+          }
+          Object[] innerResult = dialog.getResult();
+          if (innerResult != null && innerResult.length > 0 && innerResult[0] instanceof IType) {
+            return ((IType) innerResult[0]).getFullyQualifiedName();
+          }
+        } catch (Throwable t) {
+          ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), t);
+        } finally {
+          try {
+            javaProject.close();
+          } catch (JavaModelException jme) {
+            ThrowableHandler.handleThrowable(EGFModelEditorPlugin.getPlugin().getSymbolicName(), jme);
+          }
         }
         return value;
       }
     };
   }
 
-  protected abstract Class<?> getType(Object object);
+  protected abstract String getFilteredType(Object object);
 
   protected abstract String getValue(Object object);
 
