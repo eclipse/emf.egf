@@ -28,7 +28,7 @@
     <contracts xmi:id="_TwNMsNqHEd6xR_hM8cx7GA" name="reference">
       <type xmi:type="domain:TypeDomainURI" xmi:id="_rF3uwNqLEd6V9pdModnIUQ"/>
     </contracts>
-    <contracts xmi:id="_yEOccTJ5Ed-JWMmof-srJA" name="jmerger">
+    <contracts xmi:id="_yEOccTJ5Ed-JWMmof-srJA" name="jmerger" mode="In_Out">
       <type xmi:type="types:TypeClass" xmi:id="_yab9ADJ5Ed-JWMmof-srJA" value="org.eclipse.emf.codegen.merge.java.JMerger"/>
     </contracts>
   </contractContainer>

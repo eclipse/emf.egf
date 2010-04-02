@@ -29,7 +29,7 @@
           name="fc1"/>
     </contracts>
     <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_NjOPkTJ3Ed-j_vZT1LHkyw"
-        name="jmerger" invocationContracts="#_1tu5wDJ5Ed-JWMmof-srJA">
+        name="jmerger" mode="In_Out" invocationContracts="#_1tu5wDJ5Ed-JWMmof-srJA">
       <type xmi:type="types:TypeClass" xmi:id="_PGTy8DJ3Ed-j_vZT1LHkyw" value="org.eclipse.emf.codegen.merge.java.JMerger"/>
     </contracts>
   </contractContainer>
