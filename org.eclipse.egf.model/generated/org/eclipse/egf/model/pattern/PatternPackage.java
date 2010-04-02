@@ -31,7 +31,6 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.pattern.PatternFactory
  * @model kind="package"
  * @generated
@@ -41,7 +40,6 @@ public interface PatternPackage extends EPackage {
    * The package name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNAME = "pattern"; //$NON-NLS-1$
@@ -50,7 +48,6 @@ public interface PatternPackage extends EPackage {
    * The package namespace URI.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_URI = "http://www.eclipse.org/egf/1.0.0/pattern"; //$NON-NLS-1$
@@ -59,7 +56,6 @@ public interface PatternPackage extends EPackage {
    * The package namespace name.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   String eNS_PREFIX = "pattern"; //$NON-NLS-1$
@@ -68,7 +64,6 @@ public interface PatternPackage extends EPackage {
    * The singleton instance of the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   PatternPackage eINSTANCE = org.eclipse.egf.model.pattern.impl.PatternPackageImpl.init();
@@ -77,7 +72,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternElementImpl <em>Element</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.PatternElementImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternElement()
    * @generated
@@ -88,7 +82,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -98,7 +91,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -108,7 +100,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -118,7 +109,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Container</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -128,7 +118,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Element</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -138,7 +127,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternImpl <em>Pattern</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.PatternImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPattern()
    * @generated
@@ -149,7 +137,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -159,7 +146,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -169,7 +155,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -179,7 +164,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Container</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -189,7 +173,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Header Method</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -199,7 +182,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Methods</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -209,7 +191,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Footer Method</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -219,7 +200,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Super Pattern</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -229,7 +209,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Orchestration</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -239,7 +218,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -249,7 +227,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Nature</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -259,7 +236,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Variables</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -269,7 +245,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Init Method</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -279,7 +254,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Pattern</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -289,7 +263,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternMethodImpl <em>Method</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.PatternMethodImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternMethod()
    * @generated
@@ -300,7 +273,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -310,7 +282,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -320,7 +291,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -330,7 +300,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -340,7 +309,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Pattern File Path</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -350,7 +318,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Method</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -360,7 +327,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl <em>Parameter</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.PatternParameterImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternParameter()
    * @generated
@@ -371,7 +337,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -381,7 +346,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -391,7 +355,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -401,7 +364,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -411,7 +373,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Query</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -421,7 +382,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Parameter</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -431,7 +391,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl <em>Library</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.PatternLibraryImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternLibrary()
    * @generated
@@ -442,7 +401,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -452,7 +410,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -462,7 +419,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -472,7 +428,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Container</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -482,7 +437,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Elements</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -492,7 +446,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Filters</b></em>' map.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -502,7 +455,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Library</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -512,7 +464,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternViewpointImpl <em>Viewpoint</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.PatternViewpointImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternViewpoint()
    * @generated
@@ -523,7 +474,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -533,7 +483,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -543,7 +492,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Viewpoint Container</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -553,7 +501,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Libraries</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -563,7 +510,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Viewpoint</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -573,7 +519,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternNatureImpl <em>Nature</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.PatternNatureImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternNature()
    * @generated
@@ -584,7 +529,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -594,7 +538,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -604,7 +547,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -614,7 +556,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Nature</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -624,7 +565,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.CallImpl <em>Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.CallImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getCall()
    * @generated
@@ -635,7 +575,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -645,7 +584,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -655,7 +593,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -665,7 +602,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Call</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -675,7 +611,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl <em>Abstract Pattern Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getAbstractPatternCall()
    * @generated
@@ -686,7 +621,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -696,7 +630,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -706,7 +639,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -716,7 +648,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Called</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -726,7 +657,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Abstract Pattern Call</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -736,7 +666,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternCallImpl <em>Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.PatternCallImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternCall()
    * @generated
@@ -747,7 +676,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -757,7 +685,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -767,7 +694,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -777,7 +703,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Called</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -787,7 +712,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Parameter Matching</b></em>' map.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -797,7 +721,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Call</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -807,7 +730,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.SuperCallImpl <em>Super Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.SuperCallImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getSuperCall()
    * @generated
@@ -818,7 +740,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -828,7 +749,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -838,7 +758,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -848,7 +767,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Super Call</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -858,7 +776,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl <em>Paramerter2 Parameter Map</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getParamerter2ParameterMap()
    * @generated
@@ -869,7 +786,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -879,7 +795,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Key</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -889,7 +804,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Paramerter2 Parameter Map</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -899,7 +813,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.MethodCallImpl <em>Method Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.MethodCallImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getMethodCall()
    * @generated
@@ -910,7 +823,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -920,7 +832,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -930,7 +841,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -940,7 +850,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Called</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -950,7 +859,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Method Call</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -960,7 +868,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternVariableImpl <em>Variable</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.PatternVariableImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternVariable()
    * @generated
@@ -971,7 +878,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -981,7 +887,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -991,7 +896,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Name</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1001,7 +905,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Type</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1011,7 +914,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Variable</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1021,7 +923,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl <em>Injected Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternInjectedCall()
    * @generated
@@ -1032,7 +933,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1042,7 +942,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1052,7 +951,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1062,7 +960,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Called</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1072,7 +969,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Context</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1082,7 +978,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Injected Call</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1092,7 +987,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.QueryImpl <em>Query</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.QueryImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getQuery()
    * @generated
@@ -1103,7 +997,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1113,7 +1006,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1123,7 +1015,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Parameter</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1133,7 +1024,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Extension Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1143,7 +1033,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Query Context</b></em>' map.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1153,7 +1042,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Query</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1163,7 +1051,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.BasicQueryImpl <em>Basic Query</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.BasicQueryImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getBasicQuery()
    * @generated
@@ -1174,7 +1061,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1184,7 +1070,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1194,7 +1079,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Parameter</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1204,7 +1088,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Extension Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1214,7 +1097,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Query Context</b></em>' map.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1224,7 +1106,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Basic Query</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1234,7 +1115,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.StringQueryImpl <em>String Query</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.StringQueryImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getStringQuery()
    * @generated
@@ -1245,7 +1125,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1255,7 +1134,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1265,7 +1143,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Parameter</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1275,7 +1152,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Extension Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1285,7 +1161,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Query Context</b></em>' map.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1295,7 +1170,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>String Query</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1305,7 +1179,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.CustomQueryImpl <em>Custom Query</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.CustomQueryImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getCustomQuery()
    * @generated
@@ -1316,7 +1189,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1326,7 +1198,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1336,7 +1207,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Parameter</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1346,7 +1216,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Extension Id</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1356,7 +1225,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Query Context</b></em>' map.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1366,7 +1234,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Custom Query</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1376,7 +1243,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.String2PatternListImpl <em>String2 Pattern List</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.String2PatternListImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getString2PatternList()
    * @generated
@@ -1387,7 +1253,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Key</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1397,7 +1262,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1407,7 +1271,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>String2 Pattern List</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1417,7 +1280,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.String2StringImpl <em>String2 String</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.String2StringImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getString2String()
    * @generated
@@ -1428,7 +1290,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Key</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1438,7 +1299,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1448,7 +1308,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>String2 String</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1458,7 +1317,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternExecutionReporterImpl <em>Type Pattern Execution Reporter</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.TypePatternExecutionReporterImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternExecutionReporter()
    * @generated
@@ -1469,7 +1327,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1479,7 +1336,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1489,7 +1345,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1499,7 +1354,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Type Pattern Execution Reporter</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1509,7 +1363,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.BackCallImpl <em>Back Call</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.BackCallImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getBackCall()
    * @generated
@@ -1520,7 +1373,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1530,7 +1382,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1540,7 +1391,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Pattern</b></em>' container reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1550,7 +1400,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Back Call</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1560,7 +1409,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternCallBackHandlerImpl <em>Type Pattern Call Back Handler</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.TypePatternCallBackHandlerImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternCallBackHandler()
    * @generated
@@ -1571,7 +1419,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1581,7 +1428,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1591,7 +1437,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1601,7 +1446,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Type Pattern Call Back Handler</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1611,7 +1455,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternDomainVisitorImpl <em>Type Pattern Domain Visitor</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.TypePatternDomainVisitorImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternDomainVisitor()
    * @generated
@@ -1622,7 +1465,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1632,7 +1474,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1642,7 +1483,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1652,7 +1492,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Type Pattern Domain Visitor</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1662,7 +1501,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternListImpl <em>Type Pattern List</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.impl.TypePatternListImpl
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternList()
    * @generated
@@ -1673,7 +1511,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>ID</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1683,7 +1520,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Description</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1693,7 +1529,6 @@ public interface PatternPackage extends EPackage {
    * The feature id for the '<em><b>Elements</b></em>' reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1703,7 +1538,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Type Pattern List</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1713,7 +1547,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '{@link org.eclipse.egf.model.pattern.InjectedContext <em>Injected Context</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.InjectedContext
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getInjectedContext()
    * @generated
@@ -1724,7 +1557,6 @@ public interface PatternPackage extends EPackage {
    * The number of structural features of the '<em>Injected Context</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    * @ordered
    */
@@ -1734,7 +1566,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '<em>Context</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.PatternContext
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
    * @generated
@@ -1745,7 +1576,6 @@ public interface PatternPackage extends EPackage {
    * The meta object id for the '<em>Exception</em>' data type.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.egf.model.pattern.PatternException
    * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
    * @generated
@@ -1756,7 +1586,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Pattern <em>Pattern</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Pattern</em>'.
    * @see org.eclipse.egf.model.pattern.Pattern
    * @generated
@@ -1767,7 +1596,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.Pattern#getHeaderMethod <em>Header Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Header Method</em>'.
    * @see org.eclipse.egf.model.pattern.Pattern#getHeaderMethod()
    * @see #getPattern()
@@ -1779,7 +1607,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.pattern.Pattern#getMethods <em>Methods</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the containment reference list '<em>Methods</em>'.
    * @see org.eclipse.egf.model.pattern.Pattern#getMethods()
    * @see #getPattern()
@@ -1791,7 +1618,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.Pattern#getSuperPattern <em>Super Pattern</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Super Pattern</em>'.
    * @see org.eclipse.egf.model.pattern.Pattern#getSuperPattern()
    * @see #getPattern()
@@ -1803,7 +1629,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.Pattern#getFooterMethod <em>Footer Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Footer Method</em>'.
    * @see org.eclipse.egf.model.pattern.Pattern#getFooterMethod()
    * @see #getPattern()
@@ -1815,7 +1640,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.pattern.Pattern#getOrchestration <em>Orchestration</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the containment reference list '<em>Orchestration</em>'.
    * @see org.eclipse.egf.model.pattern.Pattern#getOrchestration()
    * @see #getPattern()
@@ -1827,7 +1651,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.pattern.Pattern#getParameters <em>Parameters</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the containment reference list '<em>Parameters</em>'.
    * @see org.eclipse.egf.model.pattern.Pattern#getParameters()
    * @see #getPattern()
@@ -1839,7 +1662,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.pattern.Pattern#getNature <em>Nature</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the containment reference '<em>Nature</em>'.
    * @see org.eclipse.egf.model.pattern.Pattern#getNature()
    * @see #getPattern()
@@ -1851,7 +1673,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.pattern.Pattern#getVariables <em>Variables</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the containment reference list '<em>Variables</em>'.
    * @see org.eclipse.egf.model.pattern.Pattern#getVariables()
    * @see #getPattern()
@@ -1863,7 +1684,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.Pattern#getInitMethod <em>Init Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Init Method</em>'.
    * @see org.eclipse.egf.model.pattern.Pattern#getInitMethod()
    * @see #getPattern()
@@ -1875,7 +1695,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternMethod <em>Method</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Method</em>'.
    * @see org.eclipse.egf.model.pattern.PatternMethod
    * @generated
@@ -1886,7 +1705,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the container reference '{@link org.eclipse.egf.model.pattern.PatternMethod#getPattern <em>Pattern</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the container reference '<em>Pattern</em>'.
    * @see org.eclipse.egf.model.pattern.PatternMethod#getPattern()
    * @see #getPatternMethod()
@@ -1898,7 +1716,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.pattern.PatternMethod#getPatternFilePath <em>Pattern File Path</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the attribute '<em>Pattern File Path</em>'.
    * @see org.eclipse.egf.model.pattern.PatternMethod#getPatternFilePath()
    * @see #getPatternMethod()
@@ -1910,7 +1727,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternParameter <em>Parameter</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Parameter</em>'.
    * @see org.eclipse.egf.model.pattern.PatternParameter
    * @generated
@@ -1921,7 +1737,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.pattern.PatternParameter#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the attribute '<em>Type</em>'.
    * @see org.eclipse.egf.model.pattern.PatternParameter#getType()
    * @see #getPatternParameter()
@@ -1933,7 +1748,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the containment reference '{@link org.eclipse.egf.model.pattern.PatternParameter#getQuery <em>Query</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the containment reference '<em>Query</em>'.
    * @see org.eclipse.egf.model.pattern.PatternParameter#getQuery()
    * @see #getPatternParameter()
@@ -1945,7 +1759,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternLibrary <em>Library</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Library</em>'.
    * @see org.eclipse.egf.model.pattern.PatternLibrary
    * @generated
@@ -1956,7 +1769,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.pattern.PatternLibrary#getElements <em>Elements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the containment reference list '<em>Elements</em>'.
    * @see org.eclipse.egf.model.pattern.PatternLibrary#getElements()
    * @see #getPatternLibrary()
@@ -1968,7 +1780,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the map '{@link org.eclipse.egf.model.pattern.PatternLibrary#getFilters <em>Filters</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the map '<em>Filters</em>'.
    * @see org.eclipse.egf.model.pattern.PatternLibrary#getFilters()
    * @see #getPatternLibrary()
@@ -1980,7 +1791,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternElement <em>Element</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Element</em>'.
    * @see org.eclipse.egf.model.pattern.PatternElement
    * @generated
@@ -1991,7 +1801,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the container reference '{@link org.eclipse.egf.model.pattern.PatternElement#getContainer <em>Container</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the container reference '<em>Container</em>'.
    * @see org.eclipse.egf.model.pattern.PatternElement#getContainer()
    * @see #getPatternElement()
@@ -2003,7 +1812,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternViewpoint <em>Viewpoint</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Viewpoint</em>'.
    * @see org.eclipse.egf.model.pattern.PatternViewpoint
    * @generated
@@ -2014,7 +1822,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the containment reference list '{@link org.eclipse.egf.model.pattern.PatternViewpoint#getLibraries <em>Libraries</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the containment reference list '<em>Libraries</em>'.
    * @see org.eclipse.egf.model.pattern.PatternViewpoint#getLibraries()
    * @see #getPatternViewpoint()
@@ -2026,7 +1833,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternNature <em>Nature</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Nature</em>'.
    * @see org.eclipse.egf.model.pattern.PatternNature
    * @generated
@@ -2037,7 +1843,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternCall <em>Call</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Call</em>'.
    * @see org.eclipse.egf.model.pattern.PatternCall
    * @generated
@@ -2048,7 +1853,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the map '{@link org.eclipse.egf.model.pattern.PatternCall#getParameterMatching <em>Parameter Matching</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the map '<em>Parameter Matching</em>'.
    * @see org.eclipse.egf.model.pattern.PatternCall#getParameterMatching()
    * @see #getPatternCall()
@@ -2060,7 +1864,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.SuperCall <em>Super Call</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Super Call</em>'.
    * @see org.eclipse.egf.model.pattern.SuperCall
    * @generated
@@ -2071,10 +1874,9 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link java.util.Map.Entry <em>Paramerter2 Parameter Map</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Paramerter2 Parameter Map</em>'.
    * @see java.util.Map.Entry
-   * @model features="value key"
+   * @model features="value key" 
    *        valueType="org.eclipse.egf.model.pattern.PatternParameter"
    *        keyType="org.eclipse.egf.model.pattern.PatternParameter" keyResolveProxies="false"
    * @generated
@@ -2085,7 +1887,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Key</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Key</em>'.
    * @see java.util.Map.Entry
    * @see #getParamerter2ParameterMap()
@@ -2097,7 +1898,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Call <em>Call</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Call</em>'.
    * @see org.eclipse.egf.model.pattern.Call
    * @generated
@@ -2108,7 +1908,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the container reference '{@link org.eclipse.egf.model.pattern.Call#getPattern <em>Pattern</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the container reference '<em>Pattern</em>'.
    * @see org.eclipse.egf.model.pattern.Call#getPattern()
    * @see #getCall()
@@ -2120,7 +1919,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.MethodCall <em>Method Call</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Method Call</em>'.
    * @see org.eclipse.egf.model.pattern.MethodCall
    * @generated
@@ -2131,7 +1929,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.MethodCall#getCalled <em>Called</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Called</em>'.
    * @see org.eclipse.egf.model.pattern.MethodCall#getCalled()
    * @see #getMethodCall()
@@ -2143,7 +1940,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternVariable <em>Variable</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Variable</em>'.
    * @see org.eclipse.egf.model.pattern.PatternVariable
    * @generated
@@ -2154,7 +1950,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.pattern.PatternVariable#getType <em>Type</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the attribute '<em>Type</em>'.
    * @see org.eclipse.egf.model.pattern.PatternVariable#getType()
    * @see #getPatternVariable()
@@ -2166,7 +1961,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.AbstractPatternCall <em>Abstract Pattern Call</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Abstract Pattern Call</em>'.
    * @see org.eclipse.egf.model.pattern.AbstractPatternCall
    * @generated
@@ -2177,7 +1971,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.AbstractPatternCall#getCalled <em>Called</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Called</em>'.
    * @see org.eclipse.egf.model.pattern.AbstractPatternCall#getCalled()
    * @see #getAbstractPatternCall()
@@ -2189,7 +1982,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.PatternInjectedCall <em>Injected Call</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Injected Call</em>'.
    * @see org.eclipse.egf.model.pattern.PatternInjectedCall
    * @generated
@@ -2200,7 +1992,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference '{@link org.eclipse.egf.model.pattern.PatternInjectedCall#getContext <em>Context</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Context</em>'.
    * @see org.eclipse.egf.model.pattern.PatternInjectedCall#getContext()
    * @see #getPatternInjectedCall()
@@ -2212,7 +2003,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.Query <em>Query</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Query</em>'.
    * @see org.eclipse.egf.model.pattern.Query
    * @generated
@@ -2223,7 +2013,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the container reference '{@link org.eclipse.egf.model.pattern.Query#getParameter <em>Parameter</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the container reference '<em>Parameter</em>'.
    * @see org.eclipse.egf.model.pattern.Query#getParameter()
    * @see #getQuery()
@@ -2235,7 +2024,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the attribute '{@link org.eclipse.egf.model.pattern.Query#getExtensionId <em>Extension Id</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the attribute '<em>Extension Id</em>'.
    * @see org.eclipse.egf.model.pattern.Query#getExtensionId()
    * @see #getQuery()
@@ -2247,7 +2035,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the map '{@link org.eclipse.egf.model.pattern.Query#getQueryContext <em>Query Context</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the map '<em>Query Context</em>'.
    * @see org.eclipse.egf.model.pattern.Query#getQueryContext()
    * @see #getQuery()
@@ -2259,7 +2046,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.BasicQuery <em>Basic Query</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Basic Query</em>'.
    * @see org.eclipse.egf.model.pattern.BasicQuery
    * @generated
@@ -2270,7 +2056,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.StringQuery <em>String Query</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>String Query</em>'.
    * @see org.eclipse.egf.model.pattern.StringQuery
    * @generated
@@ -2281,7 +2066,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.CustomQuery <em>Custom Query</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Custom Query</em>'.
    * @see org.eclipse.egf.model.pattern.CustomQuery
    * @generated
@@ -2292,7 +2076,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link java.util.Map.Entry <em>String2 Pattern List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>String2 Pattern List</em>'.
    * @see java.util.Map.Entry
    * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
@@ -2305,7 +2088,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the attribute '<em>Key</em>'.
    * @see java.util.Map.Entry
    * @see #getString2PatternList()
@@ -2317,7 +2099,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference list '{@link java.util.Map.Entry <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference list '<em>Value</em>'.
    * @see java.util.Map.Entry
    * @see #getString2PatternList()
@@ -2329,7 +2110,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link java.util.Map.Entry <em>String2 String</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>String2 String</em>'.
    * @see java.util.Map.Entry
    * @model keyDataType="org.eclipse.emf.ecore.EString" keyRequired="true"
@@ -2342,7 +2122,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Key</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the attribute '<em>Key</em>'.
    * @see java.util.Map.Entry
    * @see #getString2String()
@@ -2354,7 +2133,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the attribute '{@link java.util.Map.Entry <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the attribute '<em>Value</em>'.
    * @see java.util.Map.Entry
    * @see #getString2String()
@@ -2366,7 +2144,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.TypePatternExecutionReporter <em>Type Pattern Execution Reporter</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Type Pattern Execution Reporter</em>'.
    * @see org.eclipse.egf.model.pattern.TypePatternExecutionReporter
    * @generated
@@ -2377,7 +2154,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.BackCall <em>Back Call</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Back Call</em>'.
    * @see org.eclipse.egf.model.pattern.BackCall
    * @generated
@@ -2388,7 +2164,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.TypePatternCallBackHandler <em>Type Pattern Call Back Handler</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Type Pattern Call Back Handler</em>'.
    * @see org.eclipse.egf.model.pattern.TypePatternCallBackHandler
    * @generated
@@ -2399,7 +2174,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.TypePatternDomainVisitor <em>Type Pattern Domain Visitor</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Type Pattern Domain Visitor</em>'.
    * @see org.eclipse.egf.model.pattern.TypePatternDomainVisitor
    * @generated
@@ -2410,7 +2184,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.TypePatternList <em>Type Pattern List</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Type Pattern List</em>'.
    * @see org.eclipse.egf.model.pattern.TypePatternList
    * @generated
@@ -2421,7 +2194,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference list '{@link org.eclipse.egf.model.pattern.TypePatternList#getElements <em>Elements</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference list '<em>Elements</em>'.
    * @see org.eclipse.egf.model.pattern.TypePatternList#getElements()
    * @see #getTypePatternList()
@@ -2433,7 +2205,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for class '{@link org.eclipse.egf.model.pattern.InjectedContext <em>Injected Context</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for class '<em>Injected Context</em>'.
    * @see org.eclipse.egf.model.pattern.InjectedContext
    * @generated
@@ -2444,7 +2215,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for the reference '{@link java.util.Map.Entry <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for the reference '<em>Value</em>'.
    * @see java.util.Map.Entry
    * @see #getParamerter2ParameterMap()
@@ -2456,7 +2226,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for data type '{@link org.eclipse.egf.model.pattern.PatternContext <em>Context</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for data type '<em>Context</em>'.
    * @see org.eclipse.egf.model.pattern.PatternContext
    * @model instanceClass="org.eclipse.egf.model.pattern.PatternContext"
@@ -2468,7 +2237,6 @@ public interface PatternPackage extends EPackage {
    * Returns the meta object for data type '{@link org.eclipse.egf.model.pattern.PatternException <em>Exception</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the meta object for data type '<em>Exception</em>'.
    * @see org.eclipse.egf.model.pattern.PatternException
    * @model instanceClass="org.eclipse.egf.model.pattern.PatternException"
@@ -2480,7 +2248,6 @@ public interface PatternPackage extends EPackage {
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @return the factory that creates the instances of the model.
    * @generated
    */
@@ -2496,7 +2263,6 @@ public interface PatternPackage extends EPackage {
    * <li>and each data type</li>
    * </ul>
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   interface Literals {
@@ -2504,7 +2270,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternImpl <em>Pattern</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.PatternImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPattern()
      * @generated
@@ -2516,7 +2281,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Header Method</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2526,7 +2290,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Methods</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2536,7 +2299,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Super Pattern</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2546,7 +2308,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Footer Method</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2556,7 +2317,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Orchestration</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2566,7 +2326,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2576,7 +2335,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Nature</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2586,7 +2344,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Variables</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2596,7 +2353,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Init Method</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2606,7 +2362,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternMethodImpl <em>Method</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.PatternMethodImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternMethod()
      * @generated
@@ -2618,7 +2373,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Pattern</b></em>' container reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2628,7 +2382,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Pattern File Path</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2638,7 +2391,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternParameterImpl <em>Parameter</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.PatternParameterImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternParameter()
      * @generated
@@ -2650,7 +2402,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2660,7 +2411,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Query</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2670,7 +2420,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternLibraryImpl <em>Library</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.PatternLibraryImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternLibrary()
      * @generated
@@ -2682,7 +2431,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Elements</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2692,7 +2440,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Filters</b></em>' map feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2702,7 +2449,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternElementImpl <em>Element</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.PatternElementImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternElement()
      * @generated
@@ -2714,7 +2460,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Container</b></em>' container reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2724,7 +2469,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternViewpointImpl <em>Viewpoint</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.PatternViewpointImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternViewpoint()
      * @generated
@@ -2736,7 +2480,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Libraries</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2746,7 +2489,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternNatureImpl <em>Nature</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.PatternNatureImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternNature()
      * @generated
@@ -2758,7 +2500,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternCallImpl <em>Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.PatternCallImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternCall()
      * @generated
@@ -2770,7 +2511,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Parameter Matching</b></em>' map feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2780,7 +2520,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.SuperCallImpl <em>Super Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.SuperCallImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getSuperCall()
      * @generated
@@ -2792,7 +2531,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl <em>Paramerter2 Parameter Map</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.Paramerter2ParameterMapImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getParamerter2ParameterMap()
      * @generated
@@ -2804,7 +2542,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Key</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2814,7 +2551,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.CallImpl <em>Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.CallImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getCall()
      * @generated
@@ -2826,7 +2562,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Pattern</b></em>' container reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2836,7 +2571,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.MethodCallImpl <em>Method Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.MethodCallImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getMethodCall()
      * @generated
@@ -2848,7 +2582,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Called</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2858,7 +2591,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternVariableImpl <em>Variable</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.PatternVariableImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternVariable()
      * @generated
@@ -2870,7 +2602,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2880,7 +2611,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl <em>Abstract Pattern Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.AbstractPatternCallImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getAbstractPatternCall()
      * @generated
@@ -2892,7 +2622,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Called</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2902,7 +2631,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl <em>Injected Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternInjectedCall()
      * @generated
@@ -2914,7 +2642,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Context</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2924,7 +2651,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.QueryImpl <em>Query</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.QueryImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getQuery()
      * @generated
@@ -2936,7 +2662,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Parameter</b></em>' container reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2946,7 +2671,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Extension Id</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2956,7 +2680,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Query Context</b></em>' map feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -2966,7 +2689,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.BasicQueryImpl <em>Basic Query</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.BasicQueryImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getBasicQuery()
      * @generated
@@ -2978,7 +2700,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.StringQueryImpl <em>String Query</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.StringQueryImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getStringQuery()
      * @generated
@@ -2990,7 +2711,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.CustomQueryImpl <em>Custom Query</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.CustomQueryImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getCustomQuery()
      * @generated
@@ -3002,7 +2722,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.String2PatternListImpl <em>String2 Pattern List</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.String2PatternListImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getString2PatternList()
      * @generated
@@ -3014,7 +2733,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -3024,7 +2742,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -3034,7 +2751,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.String2StringImpl <em>String2 String</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.String2StringImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getString2String()
      * @generated
@@ -3046,7 +2762,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Key</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -3056,7 +2771,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -3066,7 +2780,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternExecutionReporterImpl <em>Type Pattern Execution Reporter</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.TypePatternExecutionReporterImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternExecutionReporter()
      * @generated
@@ -3078,7 +2791,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.BackCallImpl <em>Back Call</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.BackCallImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getBackCall()
      * @generated
@@ -3090,7 +2802,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternCallBackHandlerImpl <em>Type Pattern Call Back Handler</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.TypePatternCallBackHandlerImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternCallBackHandler()
      * @generated
@@ -3102,7 +2813,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternDomainVisitorImpl <em>Type Pattern Domain Visitor</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.TypePatternDomainVisitorImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternDomainVisitor()
      * @generated
@@ -3114,7 +2824,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.impl.TypePatternListImpl <em>Type Pattern List</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.impl.TypePatternListImpl
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getTypePatternList()
      * @generated
@@ -3126,7 +2835,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Elements</b></em>' reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -3136,7 +2844,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '{@link org.eclipse.egf.model.pattern.InjectedContext <em>Injected Context</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.InjectedContext
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getInjectedContext()
      * @generated
@@ -3148,7 +2855,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em><b>Value</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @generated
      */
     @SuppressWarnings("hiding")
@@ -3158,7 +2864,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em>Context</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.PatternContext
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternContext()
      * @generated
@@ -3170,7 +2875,6 @@ public interface PatternPackage extends EPackage {
      * The meta object literal for the '<em>Exception</em>' data type.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * 
      * @see org.eclipse.egf.model.pattern.PatternException
      * @see org.eclipse.egf.model.pattern.impl.PatternPackageImpl#getPatternException()
      * @generated

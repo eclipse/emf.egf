@@ -46,7 +46,7 @@ public class ProductionPlanInvocationImpl extends InvocationImpl implements Prod
    * @generated
    * @ordered
    */
-  protected int eFlags = 0;
+  protected int flags = 0;
 
   /**
    * <!-- begin-user-doc -->

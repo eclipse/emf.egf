@@ -188,7 +188,7 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
    * @generated
    */
   public boolean isMandatory() {
-    return (eFlags & MANDATORY_EFLAG) != 0;
+    return (flags & MANDATORY_EFLAG) != 0;
   }
 
   /**
@@ -197,11 +197,11 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
    * @generated
    */
   public void setMandatory(boolean newMandatory) {
-    boolean oldMandatory = (eFlags & MANDATORY_EFLAG) != 0;
+    boolean oldMandatory = (flags & MANDATORY_EFLAG) != 0;
     if (newMandatory)
-      eFlags |= MANDATORY_EFLAG;
+      flags |= MANDATORY_EFLAG;
     else
-      eFlags &= ~MANDATORY_EFLAG;
+      flags &= ~MANDATORY_EFLAG;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT__MANDATORY, oldMandatory, newMandatory));
   }
@@ -212,7 +212,7 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
    * @generated
    */
   public ContractMode getMode() {
-    return MODE_EFLAG_VALUES[(eFlags & MODE_EFLAG) >>> MODE_EFLAG_OFFSET];
+    return MODE_EFLAG_VALUES[(flags & MODE_EFLAG) >>> MODE_EFLAG_OFFSET];
   }
 
   /**
@@ -221,10 +221,10 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
    * @generated
    */
   public void setMode(ContractMode newMode) {
-    ContractMode oldMode = MODE_EFLAG_VALUES[(eFlags & MODE_EFLAG) >>> MODE_EFLAG_OFFSET];
+    ContractMode oldMode = MODE_EFLAG_VALUES[(flags & MODE_EFLAG) >>> MODE_EFLAG_OFFSET];
     if (newMode == null)
       newMode = MODE_EDEFAULT;
-    eFlags = eFlags & ~MODE_EFLAG | newMode.ordinal() << MODE_EFLAG_OFFSET;
+    flags = flags & ~MODE_EFLAG | newMode.ordinal() << MODE_EFLAG_OFFSET;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, FcorePackage.CONTRACT__MODE, oldMode, newMode));
   }
@@ -469,9 +469,9 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
     case FcorePackage.CONTRACT__CONTRACT_CONTAINER:
       return getContractContainer() != null;
     case FcorePackage.CONTRACT__MANDATORY:
-      return ((eFlags & MANDATORY_EFLAG) != 0) != MANDATORY_EDEFAULT;
+      return ((flags & MANDATORY_EFLAG) != 0) != MANDATORY_EDEFAULT;
     case FcorePackage.CONTRACT__MODE:
-      return (eFlags & MODE_EFLAG) != MODE_EFLAG_DEFAULT;
+      return (flags & MODE_EFLAG) != MODE_EFLAG_DEFAULT;
     case FcorePackage.CONTRACT__TYPE:
       return type != null;
     }
@@ -490,9 +490,9 @@ public class ContractImpl extends NamedModelElementImpl implements Contract {
 
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (mandatory: "); //$NON-NLS-1$
-    result.append((eFlags & MANDATORY_EFLAG) != 0);
+    result.append((flags & MANDATORY_EFLAG) != 0);
     result.append(", mode: "); //$NON-NLS-1$
-    result.append(MODE_EFLAG_VALUES[(eFlags & MODE_EFLAG) >>> MODE_EFLAG_OFFSET]);
+    result.append(MODE_EFLAG_VALUES[(flags & MODE_EFLAG) >>> MODE_EFLAG_OFFSET]);
     result.append(')');
     return result.toString();
   }

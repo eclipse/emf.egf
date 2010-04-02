@@ -26,10 +26,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl#getContext <em>Context</em>}</li>
+ *   <li>{@link org.eclipse.egf.model.pattern.impl.PatternInjectedCallImpl#getContext <em>Context</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements PatternInjectedCall {
@@ -37,7 +37,6 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
    * The cached value of the '{@link #getContext() <em>Context</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #getContext()
    * @generated
    * @ordered
@@ -47,7 +46,6 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected PatternInjectedCallImpl() {
@@ -57,7 +55,6 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -68,7 +65,6 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public InjectedContext getContext() {
@@ -78,7 +74,6 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void setContext(InjectedContext newContext) {
@@ -91,7 +86,6 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -106,7 +100,6 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -122,7 +115,6 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -138,7 +130,6 @@ public class PatternInjectedCallImpl extends AbstractPatternCallImpl implements 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

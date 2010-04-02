@@ -27,43 +27,43 @@ import org.eclipse.emf.ecore.EClass;
  * @generated
  */
 public class TypePatternCallBackHandlerImpl extends TypeAbstractClassImpl implements TypePatternCallBackHandler {
-    /**
-     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     * @ordered
-     */
-    protected int eFlags = 0;
+  /**
+   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  protected int flags = 0;
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    protected TypePatternCallBackHandlerImpl() {
-        super();
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  protected TypePatternCallBackHandlerImpl() {
+    super();
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    protected EClass eStaticClass() {
-        return PatternPackage.Literals.TYPE_PATTERN_CALL_BACK_HANDLER;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  protected EClass eStaticClass() {
+    return PatternPackage.Literals.TYPE_PATTERN_CALL_BACK_HANDLER;
+  }
 
-    /**
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    @Override
-    @SuppressWarnings("unchecked")
-    public Class<?> getType() {
-        return org.eclipse.egf.model.pattern.CallBackHandler.class;
-    }
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  @SuppressWarnings("unchecked")
+  public Class<?> getType() {
+    return org.eclipse.egf.model.pattern.CallBackHandler.class;
+  }
 
 } // TypePatternCallBackHandlerImpl

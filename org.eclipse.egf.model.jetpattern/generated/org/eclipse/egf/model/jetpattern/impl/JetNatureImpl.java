@@ -34,7 +34,7 @@ public class JetNatureImpl extends PatternNatureImpl implements JetNature {
    * @generated
    * @ordered
    */
-  protected int eFlags = 0;
+  protected int flags = 0;
 
   /**
    * <!-- begin-user-doc -->

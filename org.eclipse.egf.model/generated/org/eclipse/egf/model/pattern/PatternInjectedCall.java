@@ -29,30 +29,30 @@ package org.eclipse.egf.model.pattern;
  * @generated
  */
 public interface PatternInjectedCall extends AbstractPatternCall {
-    /**
-     * Returns the value of the '<em><b>Context</b></em>' reference.
-     * <!-- begin-user-doc -->
-     * <p>
-     * If the meaning of the '<em>Context</em>' reference isn't clear, there
-     * really should be more of a description here...
-     * </p>
-     * <!-- end-user-doc -->
-     * @return the value of the '<em>Context</em>' reference.
-     * @see #setContext(InjectedContext)
-     * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternInjectedCall_Context()
-     * @model resolveProxies="false" required="true"
-     * @generated
-     */
-    InjectedContext getContext();
+  /**
+   * Returns the value of the '<em><b>Context</b></em>' reference.
+   * <!-- begin-user-doc -->
+   * <p>
+   * If the meaning of the '<em>Context</em>' reference isn't clear, there
+   * really should be more of a description here...
+   * </p>
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Context</em>' reference.
+   * @see #setContext(InjectedContext)
+   * @see org.eclipse.egf.model.pattern.PatternPackage#getPatternInjectedCall_Context()
+   * @model resolveProxies="false" required="true"
+   * @generated
+   */
+  InjectedContext getContext();
 
-    /**
-     * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternInjectedCall#getContext <em>Context</em>}' reference.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @param value the new value of the '<em>Context</em>' reference.
-     * @see #getContext()
-     * @generated
-     */
-    void setContext(InjectedContext value);
+  /**
+   * Sets the value of the '{@link org.eclipse.egf.model.pattern.PatternInjectedCall#getContext <em>Context</em>}' reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Context</em>' reference.
+   * @see #getContext()
+   * @generated
+   */
+  void setContext(InjectedContext value);
 
 } // PatternInjectedCall

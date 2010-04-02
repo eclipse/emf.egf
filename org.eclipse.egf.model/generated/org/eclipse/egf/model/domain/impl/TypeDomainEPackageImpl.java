@@ -45,8 +45,7 @@ public class TypeDomainEPackageImpl extends TypeObjectImpl implements TypeDomain
    * @generated
    * @ordered
    */
-  protected int eFlags = 0;
-
+  protected int flags = 0;
   /**
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.
    * <!-- begin-user-doc -->

@@ -34,7 +34,7 @@ public class JavaNatureImpl extends PatternNatureImpl implements JavaNature {
    * @generated
    * @ordered
    */
-  protected int eFlags = 0;
+  protected int flags = 0;
 
   /**
    * <!-- begin-user-doc -->

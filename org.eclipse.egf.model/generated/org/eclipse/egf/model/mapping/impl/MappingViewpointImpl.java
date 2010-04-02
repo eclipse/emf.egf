@@ -46,8 +46,7 @@ public class MappingViewpointImpl extends ViewpointImpl implements MappingViewpo
    * @generated
    * @ordered
    */
-  protected int eFlags = 0;
-
+  protected int flags = 0;
   /**
    * The cached value of the '{@link #getMappings() <em>Mappings</em>}' containment reference list.
    * <!-- begin-user-doc -->

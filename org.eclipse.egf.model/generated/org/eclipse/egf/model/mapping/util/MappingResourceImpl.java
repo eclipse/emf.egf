@@ -36,7 +36,6 @@ import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * 
  * @see org.eclipse.egf.model.mapping.util.MappingResourceFactoryImpl
  * @generated
  */
@@ -70,9 +69,7 @@ public class MappingResourceImpl extends XMIResourceImpl {
    * Creates an instance of the resource.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
-   * @param uri
-   *          the URI of the new resource.
+   * @param uri the URI of the new resource.
    * @generated
    */
   public MappingResourceImpl(URI uri) {
@@ -103,14 +100,15 @@ public class MappingResourceImpl extends XMIResourceImpl {
 
   /**
    * Called when the object is unloaded.
-   * This implementation {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
+   * This implementation
+   * {@link InternalEObject#eSetProxyURI sets} the object to be a proxy
    * and clears the {@link #eAdapters adapters}.
    * https://bugs.eclipse.org/bugs/show_bug.cgi?id=292866
    * Fix available in HEAD: 2.6.0.I200911020144
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated	 
    */
   @Override
   protected void unloaded(InternalEObject internalEObject) {
@@ -155,9 +153,9 @@ public class MappingResourceImpl extends XMIResourceImpl {
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
     getDefaultSaveOptions().put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
     // Load Options
+    getDefaultLoadOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, Boolean.FALSE);
     getDefaultLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, Boolean.FALSE);
-    getDefaultLoadOptions().put(XMLResource.OPTION_DISABLE_NOTIFY, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_DEPRECATED_METHODS, Boolean.TRUE);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_PARSER_POOL, parserPool);
     getDefaultLoadOptions().put(XMLResource.OPTION_USE_XML_NAME_TO_FEATURE_MAP, nameToFeatureMap);

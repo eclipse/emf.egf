@@ -8,7 +8,7 @@
     editPluginClass="org.eclipse.egf.model.edit.EGFModelEditPlugin" editorPluginClass="org.eclipse.egf.model.editor.EGFModelEditorPlugin"
     nonNLSMarkers="true" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl.Container"
     codeFormatting="true" testsDirectory="/org.eclipse.egf.model.tests/generated"
-    booleanFlagsField="eFlags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
+    booleanFlagsField="flags" importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0"
     copyrightFields="false" optimizedHasChildren="true" tableProviders="true" colorProviders="true"
     fontProviders="true" packedEnums="true" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore Fcore.genmodel#//fcore Types.genmodel#//types">
   <foreignModel>Pattern.ecore</foreignModel>

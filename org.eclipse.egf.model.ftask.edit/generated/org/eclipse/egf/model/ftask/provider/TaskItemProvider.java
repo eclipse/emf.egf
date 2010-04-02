@@ -43,7 +43,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
  * This is the item provider adapter for a {@link org.eclipse.egf.model.ftask.Task} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TaskItemProvider extends ActivityItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, ITableItemLabelProvider, ITableItemColorProvider, ITableItemFontProvider, IItemColorProvider,
@@ -52,7 +51,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This constructs an instance from a factory and a notifier.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TaskItemProvider(AdapterFactory adapterFactory) {
@@ -63,7 +61,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This returns the property descriptors for the adapted class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -104,7 +101,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This adds a property descriptor for the Implementation feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addImplementationPropertyDescriptor(Object object) {
@@ -117,7 +113,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This adds a property descriptor for the Super Task feature.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void addSuperTaskPropertyDescriptor(Object object) {
@@ -150,7 +145,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -171,7 +165,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * that can be created under this object.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override
@@ -183,7 +176,6 @@ public class TaskItemProvider extends ActivityItemProvider implements IEditingDo
    * This returns Task.gif.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

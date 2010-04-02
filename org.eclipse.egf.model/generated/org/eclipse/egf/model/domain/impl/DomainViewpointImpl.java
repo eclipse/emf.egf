@@ -46,8 +46,7 @@ public class DomainViewpointImpl extends ViewpointImpl implements DomainViewpoin
    * @generated
    * @ordered
    */
-  protected int eFlags = 0;
-
+  protected int flags = 0;
   /**
    * The cached value of the '{@link #getDomains() <em>Domains</em>}' containment reference list.
    * <!-- begin-user-doc -->

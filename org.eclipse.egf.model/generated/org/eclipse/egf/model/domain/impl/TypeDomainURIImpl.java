@@ -44,7 +44,7 @@ public class TypeDomainURIImpl extends TypeObjectImpl implements TypeDomainURI {
    * @generated
    * @ordered
    */
-  protected int eFlags = 0;
+  protected int flags = 0;
 
   /**
    * The cached value of the '{@link #getDomain() <em>Domain</em>}' reference.

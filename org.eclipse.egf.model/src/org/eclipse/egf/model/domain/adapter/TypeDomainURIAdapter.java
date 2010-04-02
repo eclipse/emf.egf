@@ -32,6 +32,8 @@ public class TypeDomainURIAdapter extends AdapterImpl {
 
   private TypeDomainURI _typeDomainURI;
 
+  private DomainURI _domainURI;
+
   private EStructuralFeature _domainURIFeature = DomainPackage.Literals.DOMAIN_URI__URI;
 
   private EStructuralFeature _typeDomainURIFeature = DomainPackage.Literals.TYPE_DOMAIN_URI__VALUE;
@@ -71,6 +73,12 @@ public class TypeDomainURIAdapter extends AdapterImpl {
         }
         if (newValue != null && newValue.eAdapters().contains(_domainURIAdapter) == false) {
           newValue.eAdapters().add(_domainURIAdapter);
+        }
+        _domainURI = newValue;
+        break;
+      case Notification.REMOVING_ADAPTER:
+        if (_domainURI != null) {
+          _domainURI.eAdapters().remove(_domainURIAdapter);
         }
         break;
       default:

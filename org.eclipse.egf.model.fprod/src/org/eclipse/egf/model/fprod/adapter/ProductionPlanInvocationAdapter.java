@@ -53,12 +53,6 @@ public class ProductionPlanInvocationAdapter extends AdapterImpl {
           }
         });
       }
-      // else if (notification.getEventType() == Notification.REMOVING_ADAPTER) {
-      // if (_activity != null) {
-      // // Unload this proxy
-      // ((InternalEObject) _activity).eSetProxyURI(EcoreUtil.getURI(_activity));
-      // }
-      // }
     }
   };
 

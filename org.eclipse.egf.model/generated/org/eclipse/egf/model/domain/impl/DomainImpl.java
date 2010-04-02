@@ -34,7 +34,7 @@ public abstract class DomainImpl extends ModelElementImpl implements Domain {
    * @generated
    * @ordered
    */
-  protected int eFlags = 0;
+  protected int flags = 0;
 
   /**
    * <!-- begin-user-doc -->

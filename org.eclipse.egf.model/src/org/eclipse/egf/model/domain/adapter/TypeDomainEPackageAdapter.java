@@ -32,6 +32,8 @@ public class TypeDomainEPackageAdapter extends AdapterImpl {
 
   private TypeDomainEPackage _typeDomainEPackage;
 
+  private DomainEPackage _domainEPackage;
+
   private EStructuralFeature _domainEPackageFeature = DomainPackage.Literals.DOMAIN_EPACKAGE__EPACKAGE;
 
   private EStructuralFeature _typeDomainEPackageFeature = DomainPackage.Literals.TYPE_DOMAIN_EPACKAGE__VALUE;
@@ -71,6 +73,12 @@ public class TypeDomainEPackageAdapter extends AdapterImpl {
         }
         if (newValue != null && newValue.eAdapters().contains(_domainEPackageAdapter) == false) {
           newValue.eAdapters().add(_domainEPackageAdapter);
+        }
+        _domainEPackage = newValue;
+        break;
+      case Notification.REMOVING_ADAPTER:
+        if (_domainEPackage != null) {
+          _domainEPackage.eAdapters().remove(_domainEPackageAdapter);
         }
         break;
       default:

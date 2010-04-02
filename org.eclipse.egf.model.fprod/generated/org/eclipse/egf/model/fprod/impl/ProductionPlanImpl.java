@@ -46,7 +46,7 @@ public class ProductionPlanImpl extends OrchestrationImpl implements ProductionP
    * @generated
    * @ordered
    */
-  protected int eFlags = 0;
+  protected int flags = 0;
 
   /**
    * The cached value of the '{@link #getInvocations() <em>Invocations</em>}' containment reference list.

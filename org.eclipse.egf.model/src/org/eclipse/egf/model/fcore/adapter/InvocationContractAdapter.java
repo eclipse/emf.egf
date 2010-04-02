@@ -62,12 +62,6 @@ public class InvocationContractAdapter extends AdapterImpl {
           }
         });
       }
-      // else if (msg.getEventType() == Notification.REMOVING_ADAPTER) {
-      // if (_contract != null) {
-      // // Unload this proxy
-      // ((InternalEObject) _contract).eSetProxyURI(EcoreUtil.getURI(_contract));
-      // }
-      // }
     }
   };
 

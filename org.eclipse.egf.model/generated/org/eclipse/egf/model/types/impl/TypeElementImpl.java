@@ -43,7 +43,7 @@ public abstract class TypeElementImpl extends Container implements TypeElement {
    * @generated
    * @ordered
    */
-  protected int eFlags = 0;
+  protected int flags = 0;
 
   /**
    * The default value of the '{@link #getID() <em>ID</em>}' attribute.
