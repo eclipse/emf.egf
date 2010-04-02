@@ -503,7 +503,7 @@ public class TypesValidator extends EObjectValidator {
     if (typeClass.getValue() == null || typeClass.getValue().trim().length() == 0) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "MandatoryName", getObjectLabel(typeClass, context), "The attribute value is mandatory" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { "MandatoryValue", getObjectLabel(typeClass, context), "The attribute value is mandatory" }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { typeClass }, context));
       }
       return false;
