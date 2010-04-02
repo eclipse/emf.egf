@@ -95,7 +95,7 @@ public abstract class ActivityProductionContext<P extends Activity> extends Prod
         break;
       }
     }
-    // Unknown Contract
+    // Contract should be known at this stage
     if (contract == null) {
       throw new InvocationException(NLS.bind(CoreProducerMessages.ProductionContext_unknown_key, new Object[] { mode, innerName, getName() }));
     }
