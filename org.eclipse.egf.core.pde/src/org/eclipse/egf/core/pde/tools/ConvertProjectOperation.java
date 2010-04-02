@@ -1,15 +1,12 @@
 /**
- * Copyright (c) 2007, 2009 IBM Corporation and others.
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- * IBM Corporation - initial API and implementation
- * Code 9 Corporation - ongoing enhancements
- * Les Jones <lesojones@gmaill.com> - bug 205361
- * Xavier Maysonnave - ongoing enhancements
+ * Thales Corporate Services S.A.S - initial API and implementation
  */
 package org.eclipse.egf.core.pde.tools;
 
@@ -58,7 +55,6 @@ import org.eclipse.pde.core.plugin.IPluginImport;
 import org.eclipse.pde.core.plugin.IPluginLibrary;
 import org.eclipse.pde.core.plugin.IPluginModelFactory;
 import org.eclipse.pde.internal.core.ICoreConstants;
-import org.eclipse.pde.internal.core.TargetPlatformHelper;
 import org.eclipse.pde.internal.core.build.WorkspaceBuildModel;
 import org.eclipse.pde.internal.core.bundle.WorkspaceBundlePluginModel;
 import org.eclipse.pde.internal.core.ibundle.IBundle;
@@ -74,19 +70,17 @@ import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.osgi.framework.Constants;
 
 /**
- * Operation to convert a normal workspace project into a plug-in project. This
- * code has, in the main, been refactored (copied with little or no amendment)
- * from org.eclipse.pde.internal.ui.wizards.tool.ConvertedProjectsPage.
+ * Operation to convert a simple project or a bundle into an EGF java bundle project if necessary
  */
 public class ConvertProjectOperation extends WorkspaceModifyOperation {
+
+  private static final String __defaultLibrary = EGFCommonConstants.DOT_STRING;
 
   private IProject _project;
 
   private boolean _createJavaProject;
 
   private boolean _createEGFNature;
-
-  private String _library;
 
   private List<String> _sourceFolders;
 
@@ -259,7 +253,6 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     _project.setDescription(projectDescription, subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
 
     setupEntries(monitor);
-    setupLibraryName();
 
     // Manifest
     if (_hasPluginNature && _project.getFile(PDEModelUtility.F_MANIFEST_FP).exists()) {
@@ -293,6 +286,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       // Process existing source folder
       if (contentType == IClasspathEntry.CPE_SOURCE) {
         String relativePath = getRelativePath(currentClassPath, _project);
+        // Create a src source folder if none
         if (EGFCommonConstants.EMPTY_STRING.equals(relativePath)) {
           IPath src = new Path("src"); //$NON-NLS-1$
           IContainer sourceContainer = _project.getFolder(src);
@@ -403,19 +397,6 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     return path.removeFirstSegments(1).toString();
   }
 
-  private void setupLibraryName() {
-    if (isOldTarget() || (_libraries.size() > 0 && _sourceFolders.size() > 0)) {
-      String libName = _project.getName();
-      int i = libName.lastIndexOf(EGFCommonConstants.DOT_STRING);
-      if (i != -1) {
-        libName = libName.substring(i + 1);
-      }
-      _library = libName + ".jar"; //$NON-NLS-1$
-    } else {
-      _library = EGFCommonConstants.DOT_STRING;
-    }
-  }
-
   private void organizeExports(IProgressMonitor monitor) {
     PDEModelUtility.modifyModel(new ModelModification(_project.getFile(PDEModelUtility.F_MANIFEST_FP)) {
       @Override
@@ -463,28 +444,60 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
   private void manageBuildFile(IBuildModel model) throws CoreException {
     IBuild build = model.getBuild();
-    // source.
+    // source
     if (_sourceFolders.size() > 0) {
-      IBuildEntry sourceEntry = build.getEntry(IBuildEntry.JAR_PREFIX + _library);
-      // Create if necessary
-      if (sourceEntry == null) {
-        sourceEntry = model.getFactory().createEntry(IBuildEntry.JAR_PREFIX + _library);
-        build.add(sourceEntry);
+      List<String> defaultSourceFolders = new UniqueEList<String>(_sourceFolders);
+      // Filter already assigned source folders if any
+      for (IBuildEntry entry : build.getBuildEntries()) {
+        // Ignore non jar prefix or default
+        if (entry.getName().startsWith(IBuildEntry.JAR_PREFIX) == false || entry.getName().equals(IBuildEntry.JAR_PREFIX + __defaultLibrary)) {
+          continue;
+        }
+        // Filter tokens
+        for (String token : entry.getTokens()) {
+          defaultSourceFolders.remove(token);
+        }
       }
-      for (String source : _sourceFolders) {
-        addToken(sourceEntry, source);
+      // Process remaining source folders
+      if (defaultSourceFolders.size() > 0) {
+        // Build a source entry if necessary
+        IBuildEntry sourceEntry = build.getEntry(IBuildEntry.JAR_PREFIX + __defaultLibrary);
+        // Create if necessary
+        if (sourceEntry == null) {
+          sourceEntry = model.getFactory().createEntry(IBuildEntry.JAR_PREFIX + __defaultLibrary);
+          build.add(sourceEntry);
+        }
+        // Filter source folders
+        for (String source : defaultSourceFolders) {
+          addToken(sourceEntry, source);
+        }
       }
     }
-    // output.
+    // output
     if (_outputFolders.size() > 0) {
-      IBuildEntry outputEntry = build.getEntry(IBuildEntry.OUTPUT_PREFIX + EGFCommonConstants.DOT_STRING);
-      // Create if necessary
-      if (outputEntry == null) {
-        outputEntry = model.getFactory().createEntry(IBuildEntry.OUTPUT_PREFIX + EGFCommonConstants.DOT_STRING);
-        build.add(outputEntry);
+      List<String> defaultOutputFolders = new UniqueEList<String>(_outputFolders);
+      // Filter already assigned output folders if any
+      for (IBuildEntry entry : build.getBuildEntries()) {
+        // Ignore non jar prefix or default
+        if (entry.getName().startsWith(IBuildEntry.OUTPUT_PREFIX) == false || entry.getName().equals(IBuildEntry.OUTPUT_PREFIX + __defaultLibrary)) {
+          continue;
+        }
+        // Filter tokens
+        for (String token : entry.getTokens()) {
+          defaultOutputFolders.remove(token);
+        }
       }
-      for (String outputFolder : _outputFolders) {
-        addToken(outputEntry, outputFolder);
+      // Process remaining output folders
+      if (defaultOutputFolders.size() > 0) {
+        IBuildEntry outputEntry = build.getEntry(IBuildEntry.OUTPUT_PREFIX + EGFCommonConstants.DOT_STRING);
+        // Create if necessary
+        if (outputEntry == null) {
+          outputEntry = model.getFactory().createEntry(IBuildEntry.OUTPUT_PREFIX + EGFCommonConstants.DOT_STRING);
+          build.add(outputEntry);
+        }
+        for (String outputFolder : defaultOutputFolders) {
+          addToken(outputEntry, outputFolder);
+        }
       }
     }
     // bin.includes
@@ -515,7 +528,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       addToken(binIncludesEntry, library);
     }
     if (_sourceFolders.size() > 0) {
-      addToken(binIncludesEntry, _library);
+      addToken(binIncludesEntry, __defaultLibrary);
     }
     if (newBinIncludesEntry && binIncludesEntry.getTokens().length > 0) {
       // add it to build model if necessary
@@ -641,21 +654,13 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     IPluginBase base = model.getPluginBase();
 
     if (missingInfo) {
-      if (_library != null && _library.equals(EGFCommonConstants.DOT_STRING) == false) {
-        IPluginLibrary library = factory.createLibrary();
-        library.setName(_library);
-        library.setExported(true);
-        base.add(library);
-      }
       for (String library : _libraries) {
         IPluginLibrary pluginLibrary = factory.createLibrary();
         pluginLibrary.setName(library);
         pluginLibrary.setExported(true);
         base.add(pluginLibrary);
       }
-      if (TargetPlatformHelper.getTargetVersion() >= 3.1) {
-        bundle.setHeader(Constants.BUNDLE_MANIFESTVERSION, "2"); //$NON-NLS-1$
-      }
+      bundle.setHeader(Constants.BUNDLE_MANIFESTVERSION, "2"); //$NON-NLS-1$
     }
 
     // Add Dependencies
@@ -677,10 +682,6 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       }
     }
 
-  }
-
-  private boolean isOldTarget() {
-    return TargetPlatformHelper.getTargetVersion() < 3.1;
   }
 
   public List<String> addDependencies() {
