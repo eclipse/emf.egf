@@ -19,7 +19,7 @@ package org.eclipse.egf.model.types;
  *
  *
  * @see org.eclipse.egf.model.types.TypesPackage#getTypeClass()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='MandatoryValue'"
  * @generated
  */
 public interface TypeClass extends TypeAbstractClass {

@@ -27,14 +27,13 @@ import org.eclipse.jdt.core.JavaModelException;
  * <!-- end-user-doc -->
  * <p>
  * </p>
- * 
+ *
  * @generated
  */
 public class TypeClassImpl extends TypeAbstractClassImpl implements TypeClass {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected TypeClassImpl() {
@@ -44,7 +43,6 @@ public class TypeClassImpl extends TypeAbstractClassImpl implements TypeClass {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   @Override

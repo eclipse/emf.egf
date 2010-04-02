@@ -55,14 +55,12 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeElementEClass = null;
@@ -70,7 +68,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeEClass = null;
@@ -78,7 +75,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeObjectEClass = null;
@@ -86,7 +82,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeAbstractClassEClass = null;
@@ -94,7 +89,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeCollectionEClass = null;
@@ -102,7 +96,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeListEClass = null;
@@ -110,7 +103,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeSetEClass = null;
@@ -118,7 +110,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeClassEClass = null;
@@ -126,7 +117,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeMapEClass = null;
@@ -134,7 +124,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeBigDecimalEClass = null;
@@ -142,7 +131,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeBigIntegerEClass = null;
@@ -150,7 +138,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeBooleanEClass = null;
@@ -158,7 +145,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeByteEClass = null;
@@ -166,7 +152,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeCharacterEClass = null;
@@ -174,7 +159,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeDateEClass = null;
@@ -182,7 +166,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeDoubleEClass = null;
@@ -190,7 +173,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeFloatEClass = null;
@@ -198,7 +180,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeIntegerEClass = null;
@@ -206,7 +187,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeLongEClass = null;
@@ -214,7 +194,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeShortEClass = null;
@@ -222,7 +201,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EClass typeStringEClass = null;
@@ -230,7 +208,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EDataType uriEDataType = null;
@@ -238,7 +215,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EDataType collectionEDataType = null;
@@ -246,7 +222,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EDataType listEDataType = null;
@@ -254,13 +229,13 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private EDataType setEDataType = null;
 
   /**
-   * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+   * Creates an instance of the model <b>Package</b>, registered with
+   * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
    * <p>Note: the correct way to create the package is via the static
    * factory method {@link #init init()}, which also performs
@@ -268,7 +243,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * if one already exists.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see org.eclipse.emf.ecore.EPackage.Registry
    * @see org.eclipse.egf.model.types.TypesPackage#eNS_URI
    * @see #init()
@@ -281,7 +255,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private static boolean isInited = false;
@@ -293,7 +266,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @see #eNS_URI
    * @see #createPackageContents()
    * @see #initializePackageContents()
@@ -335,7 +307,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeElement() {
@@ -345,7 +316,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeElement_ID() {
@@ -355,7 +325,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeElement_Description() {
@@ -365,7 +334,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getType() {
@@ -375,7 +343,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeObject() {
@@ -385,7 +352,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeAbstractClass() {
@@ -395,7 +361,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeAbstractClass_Value() {
@@ -405,7 +370,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeCollection() {
@@ -415,7 +379,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeList() {
@@ -425,7 +388,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeSet() {
@@ -435,7 +397,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeClass() {
@@ -445,7 +406,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeMap() {
@@ -455,7 +415,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeBigDecimal() {
@@ -465,7 +424,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeBigDecimal_Value() {
@@ -475,7 +433,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeBigInteger() {
@@ -485,7 +442,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeBigInteger_Value() {
@@ -495,7 +451,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeBoolean() {
@@ -505,7 +460,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeBoolean_Value() {
@@ -515,7 +469,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeByte() {
@@ -525,7 +478,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeByte_Value() {
@@ -535,7 +487,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeCharacter() {
@@ -545,7 +496,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeCharacter_Value() {
@@ -555,7 +505,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeDate() {
@@ -565,7 +514,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeDate_Value() {
@@ -575,7 +523,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeDouble() {
@@ -585,7 +532,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeDouble_Value() {
@@ -595,7 +541,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeFloat() {
@@ -605,7 +550,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeFloat_Value() {
@@ -615,7 +559,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeInteger() {
@@ -625,7 +568,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeInteger_Value() {
@@ -635,7 +577,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeLong() {
@@ -645,7 +586,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeLong_Value() {
@@ -655,7 +595,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeShort() {
@@ -665,7 +604,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeShort_Value() {
@@ -675,7 +613,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EClass getTypeString() {
@@ -685,7 +622,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EAttribute getTypeString_Value() {
@@ -695,7 +631,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EDataType getURI() {
@@ -705,7 +640,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EDataType getCollection() {
@@ -715,7 +649,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EDataType getList() {
@@ -725,7 +658,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public EDataType getSet() {
@@ -735,7 +667,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public TypesFactory getTypesFactory() {
@@ -745,17 +676,15 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private boolean isCreated = false;
 
   /**
-   * Creates the meta-model objects for the package. This method is
+   * Creates the meta-model objects for the package.  This method is
    * guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void createPackageContents() {
@@ -831,17 +760,15 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   private boolean isInitialized = false;
 
   /**
-   * Complete the initialization of the package and its meta-model. This
+   * Complete the initialization of the package and its meta-model.  This
    * method is guarded to have no affect on any invocation but its first.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   public void initializePackageContents() {
@@ -1012,7 +939,6 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
    * Initializes the annotations for <b>http://www.eclipse.org/emf/2002/Ecore</b>.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * 
    * @generated
    */
   protected void createEcoreAnnotations() {
@@ -1020,6 +946,8 @@ public class TypesPackageImpl extends EPackageImpl implements TypesPackage {
     addAnnotation(typeObjectEClass, source, new String[] { "constraints", "ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
     });
     addAnnotation(typeAbstractClassEClass, source, new String[] { "constraints", "LoadableType ValidValue" //$NON-NLS-1$ //$NON-NLS-2$
+    });
+    addAnnotation(typeClassEClass, source, new String[] { "constraints", "MandatoryValue" //$NON-NLS-1$ //$NON-NLS-2$
     });
   }
 
