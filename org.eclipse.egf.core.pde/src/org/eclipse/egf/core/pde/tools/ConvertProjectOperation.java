@@ -442,64 +442,51 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     }, monitor);
   }
 
+  private void processFolders(IBuildModel model, String prefix, List<String> folders) throws CoreException {
+    IBuild build = model.getBuild();
+    List<String> defaultFolders = new UniqueEList<String>(folders);
+    // Filter already assigned folders if any
+    for (IBuildEntry entry : build.getBuildEntries()) {
+      // Ignore non jar prefix or default library if any
+      if (entry.getName().startsWith(prefix) == false || entry.getName().equals(prefix + __defaultLibrary)) {
+        continue;
+      }
+      // detect empty folders
+      boolean hasFolders = false;
+      // Filter tokens
+      for (String token : entry.getTokens()) {
+        hasFolders = defaultFolders.remove(token);
+      }
+      // Remove useless entry
+      if (hasFolders == false) {
+        build.remove(entry);
+      }
+    }
+    // Retrieve default
+    IBuildEntry entry = build.getEntry(prefix + __defaultLibrary);
+    // Process remaining folders in default library
+    if (defaultFolders.size() > 0) {
+      // Create if necessary
+      if (entry == null) {
+        entry = model.getFactory().createEntry(prefix + __defaultLibrary);
+        build.add(entry);
+      }
+      // Add remaining folders
+      for (String folder : defaultFolders) {
+        addToken(entry, folder);
+      }
+    } else if (entry != null) {
+      // Remove useless entry
+      build.remove(entry);
+    }
+  }
+
   private void manageBuildFile(IBuildModel model) throws CoreException {
     IBuild build = model.getBuild();
     // source
-    if (_sourceFolders.size() > 0) {
-      List<String> defaultSourceFolders = new UniqueEList<String>(_sourceFolders);
-      // Filter already assigned source folders if any
-      for (IBuildEntry entry : build.getBuildEntries()) {
-        // Ignore non jar prefix or default
-        if (entry.getName().startsWith(IBuildEntry.JAR_PREFIX) == false || entry.getName().equals(IBuildEntry.JAR_PREFIX + __defaultLibrary)) {
-          continue;
-        }
-        // Filter tokens
-        for (String token : entry.getTokens()) {
-          defaultSourceFolders.remove(token);
-        }
-      }
-      // Process remaining source folders
-      if (defaultSourceFolders.size() > 0) {
-        // Build a source entry if necessary
-        IBuildEntry sourceEntry = build.getEntry(IBuildEntry.JAR_PREFIX + __defaultLibrary);
-        // Create if necessary
-        if (sourceEntry == null) {
-          sourceEntry = model.getFactory().createEntry(IBuildEntry.JAR_PREFIX + __defaultLibrary);
-          build.add(sourceEntry);
-        }
-        // Filter source folders
-        for (String source : defaultSourceFolders) {
-          addToken(sourceEntry, source);
-        }
-      }
-    }
+    processFolders(model, IBuildEntry.JAR_PREFIX, _sourceFolders);
     // output
-    if (_outputFolders.size() > 0) {
-      List<String> defaultOutputFolders = new UniqueEList<String>(_outputFolders);
-      // Filter already assigned output folders if any
-      for (IBuildEntry entry : build.getBuildEntries()) {
-        // Ignore non jar prefix or default
-        if (entry.getName().startsWith(IBuildEntry.OUTPUT_PREFIX) == false || entry.getName().equals(IBuildEntry.OUTPUT_PREFIX + __defaultLibrary)) {
-          continue;
-        }
-        // Filter tokens
-        for (String token : entry.getTokens()) {
-          defaultOutputFolders.remove(token);
-        }
-      }
-      // Process remaining output folders
-      if (defaultOutputFolders.size() > 0) {
-        IBuildEntry outputEntry = build.getEntry(IBuildEntry.OUTPUT_PREFIX + EGFCommonConstants.DOT_STRING);
-        // Create if necessary
-        if (outputEntry == null) {
-          outputEntry = model.getFactory().createEntry(IBuildEntry.OUTPUT_PREFIX + EGFCommonConstants.DOT_STRING);
-          build.add(outputEntry);
-        }
-        for (String outputFolder : defaultOutputFolders) {
-          addToken(outputEntry, outputFolder);
-        }
-      }
-    }
+    processFolders(model, IBuildEntry.OUTPUT_PREFIX, _outputFolders);
     // bin.includes
     IBuildEntry binIncludesEntry = build.getEntry(IBuildEntry.BIN_INCLUDES);
     boolean newBinIncludesEntry = false;
