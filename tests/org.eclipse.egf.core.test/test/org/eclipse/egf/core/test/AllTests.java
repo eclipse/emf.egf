@@ -25,10 +25,13 @@ public class AllTests {
 
   public static Test suite() {
     TestSuite suite = new TestSuite("EGF Core Test Suite"); //$NON-NLS-1$
+
+    new ModelTestHelper().addModelTest(suite);
+
     suite.addTest(ModelValidation.suite());
     suite.addTest(ContextFactoryComponent.suite());
     suite.addTest(ContextTask.suite());
+
     return suite;
   }
-
 }
