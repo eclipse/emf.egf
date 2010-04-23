@@ -63,7 +63,7 @@ if (ctx.useReporter()){
   }
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
-int index = 0, executionIndex = ictx.getExecutionBuffer().length();
+int executionIndex = ictx.getExecutionBuffer().length();
 
     
 method_setVariable(ictx.getBuffer(), ictx);
@@ -78,7 +78,8 @@ method_fileFooter(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
-    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));
+    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+    ictx.setExecutionCurrentIndex(0);
     Map<String, Object> parameterValues = new HashMap<String, Object>();
     parameterValues.put("element", this.element);
     String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
@@ -91,6 +92,10 @@ protected org.eclipse.emf.ecore.EDataType element = null;
 public void set_element(org.eclipse.emf.ecore.EDataType object) {
 this.element = object;
 }
+public Map<String, Object> getParameters() {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+parameters.put("element", this.element);
+return parameters; }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 

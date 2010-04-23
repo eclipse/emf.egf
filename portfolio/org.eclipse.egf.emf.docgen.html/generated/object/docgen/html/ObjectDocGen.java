@@ -55,7 +55,7 @@ IQuery.ParameterDescription paramDesc = null;
   }
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
-int index = 0, executionIndex = ictx.getExecutionBuffer().length();
+int executionIndex = ictx.getExecutionBuffer().length();
 
     
 method_body(ictx.getBuffer(), ictx);
@@ -65,7 +65,16 @@ return loop;
 } 
 
 protected java.lang.String _Title = null;
+public void set__Title(java.lang.String object) {
+this._Title = object;
+}
 protected java.lang.String _copyright = null;
+public void set__copyright(java.lang.String object) {
+this._copyright = object;
+}
+public Map<String, Object> getParameters() {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+return parameters; }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 

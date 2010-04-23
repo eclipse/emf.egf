@@ -62,7 +62,7 @@ if (ctx.useReporter()){
   }
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
-int index = 0, executionIndex = ictx.getExecutionBuffer().length();
+int executionIndex = ictx.getExecutionBuffer().length();
 
     
 method_SayHello(ictx.getBuffer(), ictx);
@@ -71,8 +71,8 @@ method_body(ictx.getBuffer(), ictx);
     {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("element", this.aClass);
-ExecutionContext ctx__whOt8C2EdCRPSkD_BdCg = new ExecutionContext(ictx);
-CallHelper.executeWithInjection("_7-a0kAzxEd-sdvrVfWaxAw", ctx__whOt8C2EdCRPSkD_BdCg, parameters);
+ExecutionContext ctx__eQVZkEPwEdPqL2cWqhi6Q = new ExecutionContext(ictx);
+CallHelper.executeWithInjection("_7-a0kAzxEd-sdvrVfWaxAw", ctx__eQVZkEPwEdPqL2cWqhi6Q, parameters);
 }
 
     
@@ -80,7 +80,8 @@ method_finish(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
-    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(index));
+    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));
+    ictx.setExecutionCurrentIndex(0);
     Map<String, Object> parameterValues = new HashMap<String, Object>();
     parameterValues.put("aClass", this.aClass);
     String outputWithCallBack = ictx.getExecutionBuffer().substring(executionIndex);
@@ -93,6 +94,10 @@ protected org.eclipse.emf.ecore.EClass aClass = null;
 public void set_aClass(org.eclipse.emf.ecore.EClass object) {
 this.aClass = object;
 }
+public Map<String, Object> getParameters() {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+parameters.put("aClass", this.aClass);
+return parameters; }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 

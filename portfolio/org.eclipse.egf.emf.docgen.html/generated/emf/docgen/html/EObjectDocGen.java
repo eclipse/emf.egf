@@ -49,7 +49,7 @@ IQuery.ParameterDescription paramDesc = null;
   }
 public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
-int index = 0, executionIndex = ictx.getExecutionBuffer().length();
+int executionIndex = ictx.getExecutionBuffer().length();
 
     
 method_body(ictx.getBuffer(), ictx);
@@ -59,6 +59,12 @@ return loop;
 } 
 
 protected org.eclipse.emf.ecore.EObject _element = null;
+public void set__element(org.eclipse.emf.ecore.EObject object) {
+this._element = object;
+}
+public Map<String, Object> getParameters() {
+final Map<String, Object> parameters = new HashMap<String, Object>();
+return parameters; }
 
     protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
