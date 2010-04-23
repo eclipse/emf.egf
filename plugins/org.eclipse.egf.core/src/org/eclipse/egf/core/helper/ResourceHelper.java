@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -214,10 +215,9 @@ public class ResourceHelper {
       return owners;
     }
     // Build proxies list
-    Map<EObject, Collection<EStructuralFeature.Setting>> proxies = getURIProxyReferences(resource, uri);
-    for (EObject reference : proxies.keySet()) {
+    for (Iterator<Map.Entry<EObject, Collection<EStructuralFeature.Setting>>> it = getURIProxyReferences(resource, uri).entrySet().iterator(); it.hasNext();) {
       // Build holders list
-      for (EStructuralFeature.Setting setting : proxies.get(reference)) {
+      for (EStructuralFeature.Setting setting : it.next().getValue()) {
         URI holderURI = EcoreUtil.getURI(setting.getEObject());
         if (holderURI == null) {
           continue;
@@ -232,5 +232,4 @@ public class ResourceHelper {
     }
     return owners;
   }
-
 }
