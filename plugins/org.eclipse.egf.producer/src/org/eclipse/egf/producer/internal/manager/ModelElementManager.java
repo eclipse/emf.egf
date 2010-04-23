@@ -138,7 +138,7 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
     _element = element;
     _platformFcore = EGFCorePlugin.getPlatformFcore(element.eResource());
     if (_platformFcore == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_activity, getName()), null)));
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_activity, element.eResource().getURI()), null)));
     }
   }
 
