@@ -51,10 +51,10 @@ public class CreateFcoreFileWizard extends FcoreModelWizard {
     }
 
     final Throwable[] throwable = new Throwable[1];
-    final IFile fcore = getFcore();
+    final IFile fcore = getModelFile();
 
     // Convert and Process current Project
-    WorkspaceModifyOperation convertOperation = new ConvertProjectOperation(_genModel.getProject(), false, false) {
+    WorkspaceModifyOperation convertOperation = new ConvertProjectOperation(fcore.getProject(), false, false) {
       @Override
       public List<String> addDependencies() {
         return Collections.emptyList();
@@ -129,7 +129,4 @@ public class CreateFcoreFileWizard extends FcoreModelWizard {
     return _genModel.getFullPath().removeFileExtension().addFileExtension(FILE_EXTENSIONS.get(0)).lastSegment();
   }
 
-  private IFile getFcore() {
-    return _genModel.getProject().getFile(newFileCreationPage.getContainerFullPath().removeFirstSegments(1).append(newFileCreationPage.getFileName()));
-  }
 }
