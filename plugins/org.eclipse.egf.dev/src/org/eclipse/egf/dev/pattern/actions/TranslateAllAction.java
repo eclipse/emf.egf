@@ -16,8 +16,7 @@
 package org.eclipse.egf.dev.pattern.actions;
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
@@ -46,7 +45,7 @@ public class TranslateAllAction implements IWorkbenchWindowActionDelegate {
     }
 
     public void run(IAction action) {
-        Set<Pattern> result = new HashSet<Pattern>(200);
+        List<Pattern> result = new ArrayList<Pattern>(200);
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
         ResourceSet resourceSet = new ResourceSetImpl();
         try {
@@ -55,7 +54,7 @@ public class TranslateAllAction implements IWorkbenchWindowActionDelegate {
                 Resource res = resourceSet.getResource(uri, true);
                 PatternCollector.INSTANCE.collect(res.getContents(), result, PatternCollector.EMPTY_ID_SET);
             }
-            new TranslationHelper().translate(new ArrayList<Pattern>(result));
+            new TranslationHelper().translate(result);
         } catch (Exception e) {
             MessageDialog.openError(window.getShell(), "Error", e.getMessage()); //$NON-NLS-1$
             Activator.getDefault().logError(e);

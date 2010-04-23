@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.collector;
 
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.egf.model.pattern.Pattern;
@@ -28,10 +29,10 @@ public class PatternCollector extends Collector<Pattern> {
     public static final PatternCollector INSTANCE = new PatternCollector();
 
     @Override
-    protected void casePattern(Pattern source, Set<Pattern> result, Set<String> ids) {
+    protected void casePattern(Pattern source, List<Pattern> result, Set<String> ids) {
         final Pattern pattern = (Pattern) source;
         final String id = pattern.getID();
-        if (ids == null || ids.isEmpty() || (id != null && ids.contains(id)))
+        if (!result.contains(pattern) && (ids == null || ids.isEmpty() || (id != null && ids.contains(id))))
             result.add(pattern);
     }
 

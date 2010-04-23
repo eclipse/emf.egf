@@ -18,7 +18,6 @@ package org.eclipse.egf.pattern.ui.editors.dialogs;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -73,7 +72,6 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
     }
 
     protected Control createDialogArea(Composite parent) {
-        containerLibrarys = getContainerLibraryList();
         checkContainerExist(librayName);
 
         Composite dialogArea = (Composite) super.createDialogArea(parent);
@@ -146,12 +144,7 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
      * Get all the library containers.
      */
     private List<PatternLibrary> getContainerLibraryList() {
-        containerLibrarys = new ArrayList<PatternLibrary>();
-        Set<PatternLibrary> allLibrarys = PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllLibraries();
-        for (PatternLibrary library : allLibrarys) {
-            containerLibrarys.add(library);
-        }
-        return containerLibrarys;
+        return PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllLibraries();
     }
 
     private void checkContainerExist(String name) {
@@ -166,7 +159,7 @@ public class ContainerLibrarySelectionDialog extends PatternElementSelectionDial
 
     private List<PatternLibrary> getListAreaDisplay(String name) {
         List<PatternLibrary> containerLibrarysNew = new ArrayList<PatternLibrary>();
-        for (PatternLibrary containerLibrary : containerLibrarys) {
+        for (PatternLibrary containerLibrary : getContainerLibraryList()) {
             if (searchContainer(containerLibrary.getName(), name)) {
                 containerLibrarysNew.add(containerLibrary);
             }

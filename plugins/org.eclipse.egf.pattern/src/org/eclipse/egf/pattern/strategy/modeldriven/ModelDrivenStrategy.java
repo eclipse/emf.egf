@@ -15,9 +15,8 @@
 
 package org.eclipse.egf.pattern.strategy.modeldriven;
 
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.egf.model.pattern.DomainVisitor;
 import org.eclipse.egf.model.pattern.Pattern;
@@ -34,7 +33,7 @@ import org.eclipse.egf.pattern.strategy.AbstractStrategy;
 public class ModelDrivenStrategy extends AbstractStrategy {
 
     public void execute(PatternContext context, Object parameter) throws PatternException, MissingExtensionException {
-        Set<Pattern> result = new LinkedHashSet<Pattern>(100);
+        List<Pattern> result = new ArrayList<Pattern>(100);
         PatternCollector.INSTANCE.collect(patternElements, result);
 
         List<Object> model = (List<Object>) context.getValue(PatternContext.DOMAIN_OBJECTS);

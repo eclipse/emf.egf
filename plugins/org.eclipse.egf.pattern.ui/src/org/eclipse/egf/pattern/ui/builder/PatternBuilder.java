@@ -16,6 +16,7 @@
 package org.eclipse.egf.pattern.ui.builder;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -63,7 +64,7 @@ public class PatternBuilder extends IncrementalProjectBuilder {
         checkCancellation(monitor);
 
         PatternHelper helper = PatternHelper.createCollector();
-        Set<Pattern> patterns = helper.getPatterns(getProject(), patternIds);
+        List<Pattern> patterns = helper.getPatterns(getProject(), patternIds);
         // if (patternIds != null && patterns.size() != patternIds.size())
         // Activator.getDefault().logWarning(Messages.PatternBuilding_warning);
         try {

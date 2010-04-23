@@ -19,7 +19,6 @@ import java.text.Collator;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import org.eclipse.egf.model.pattern.Call;
 import org.eclipse.egf.model.pattern.InjectedContext;
@@ -456,10 +455,7 @@ public class ChooseCallPage extends WizardPage {
     }
 
     private List<Pattern> getPatterns() {
-        Set<Pattern> patterns = PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllPatterns();
-        List<Pattern> parentMethods = new ArrayList<Pattern>();
-        parentMethods.addAll(patterns);
-        return parentMethods;
+        return PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllPatterns();
     }
 
     private List<InjectedContext> getContextForInjection() {

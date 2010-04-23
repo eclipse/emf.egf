@@ -18,7 +18,6 @@ package org.eclipse.egf.pattern.ui.editors.dialogs;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -65,8 +64,6 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
 
     private Text statusLine;
 
-    private List<Pattern> patternList;
-
     public PatternSelectionDialog(Shell shell, Pattern parent) {
         super(shell);
         this.parent = parent;
@@ -76,7 +73,6 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
     }
 
     protected Control createDialogArea(Composite parent) {
-        patternList = getPatternsList();
         checkPatternExist(parentName);
 
         Composite dialogArea = (Composite) super.createDialogArea(parent);
@@ -161,17 +157,12 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
     }
 
     private List<Pattern> getPatternsList() {
-        patternList = new ArrayList<Pattern>();
-        Set<Pattern> patterns = PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllPatterns();
-        for (Pattern pattern : patterns) {
-            patternList.add(pattern);
-        }
-        return patternList;
+        return PatternHelper.TRANSACTIONNAL_COLLECTOR.getAllPatterns();
     }
 
     private List<Pattern> getListAreaDisplay(String name) {
         List<Pattern> patternsListNew = new ArrayList<Pattern>();
-        for (Object patternEntry : patternList) {
+        for (Object patternEntry : getPatternsList()) {
             if (patternEntry instanceof Pattern) {
                 Pattern pattern = (Pattern) patternEntry;
                 String content = pattern.getName();

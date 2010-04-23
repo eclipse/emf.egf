@@ -14,7 +14,8 @@
  */
 package org.eclipse.egf.pattern.ftask.tasks;
 
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.egf.core.producer.InvocationException;
@@ -34,7 +35,7 @@ import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionExcepti
  */
 public class PatternTask extends AbstractPatternTask {
 
-    private final LinkedHashSet<Pattern> patterns = new LinkedHashSet<Pattern>();
+    private final List<Pattern> patterns = new ArrayList<Pattern>();
 
     @Override
     public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {

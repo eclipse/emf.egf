@@ -111,14 +111,14 @@ public class PatternHelper {
         return null;
     }
 
-    public Set<Pattern> getPatterns(URI uri) {
-        Set<Pattern> result = new HashSet<Pattern>();
+    public List<Pattern> getPatterns(URI uri) {
+        List<Pattern> result = new ArrayList<Pattern>();
         collectPatterns(uri, PatternCollector.EMPTY_ID_SET, result);
         return result;
     }
 
     public Map<String, PatternElement> getPatternElements(Set<String> ids) {
-        Set<PatternElement> result = new HashSet<PatternElement>(200);
+        List<PatternElement> result = new ArrayList<PatternElement>(200);
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
         for (IPlatformFcore platformFcore : platformFcores) {
             URI uri = platformFcore.getURI();
@@ -140,10 +140,10 @@ public class PatternHelper {
      * Reads FC models from the given project and return the patterns with the
      * given ids if any. If the ids set is null all patterns are returned.
      */
-    public Set<Pattern> getPatterns(IProject project, Set<String> ids) {
+    public List<Pattern> getPatterns(IProject project, Set<String> ids) {
         if (ids == null)
             ids = new HashSet<String>();
-        Set<Pattern> result = new HashSet<Pattern>();
+        List<Pattern> result = new ArrayList<Pattern>();
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores(project);
         for (IPlatformFcore platformFcore : platformFcores) {
             collectPatterns(platformFcore.getURI(), ids, result);
@@ -154,8 +154,8 @@ public class PatternHelper {
     /**
      * Reads all FC models and return the patterns.
      */
-    public Set<Pattern> getAllPatterns() {
-        Set<Pattern> result = new HashSet<Pattern>(200);
+    public List<Pattern> getAllPatterns() {
+        List<Pattern> result = new ArrayList<Pattern>(200);
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
         for (IPlatformFcore platformFcore : platformFcores) {
             URI uri = platformFcore.getURI();
@@ -171,8 +171,8 @@ public class PatternHelper {
     /**
      * Reads all FC models and return the pattern libraries.
      */
-    public Set<PatternLibrary> getAllLibraries() {
-        Set<PatternLibrary> result = new HashSet<PatternLibrary>(200);
+    public List<PatternLibrary> getAllLibraries() {
+        List<PatternLibrary> result = new ArrayList<PatternLibrary>(200);
         IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
         for (IPlatformFcore platformFcore : platformFcores) {
             URI uri = platformFcore.getURI();
@@ -186,7 +186,7 @@ public class PatternHelper {
         return result;
     }
 
-    private void collectPatterns(URI uri, Set<String> ids, Set<Pattern> collector) {
+    private void collectPatterns(URI uri, Set<String> ids, List<Pattern> collector) {
         Resource res = resourceSet.getResource(uri, true);
         PatternCollector.INSTANCE.collect(res.getContents(), collector, ids);
     }

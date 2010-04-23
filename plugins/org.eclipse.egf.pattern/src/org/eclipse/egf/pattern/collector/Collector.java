@@ -21,7 +21,7 @@ public abstract class Collector<E extends PatternElement> {
         super();
     }
 
-    protected final void doCollect(EObject source, final Set<E> result, final Set<String> ids) {
+    protected final void doCollect(EObject source, final List<E> result, final Set<String> ids) {
         if (FcorePackage.eINSTANCE.equals(source.eClass().getEPackage())) {
             switch (source.eClass().getClassifierID()) {
             case FcorePackage.FACTORY_COMPONENT:
@@ -47,25 +47,25 @@ public abstract class Collector<E extends PatternElement> {
         }
     }
 
-    protected void casePattern(Pattern source, final Set<E> result, final Set<String> ids) {
+    protected void casePattern(Pattern source, final List<E> result, final Set<String> ids) {
     }
 
-    protected void casePatternLibrary(PatternLibrary source, final Set<E> result, final Set<String> ids) {
+    protected void casePatternLibrary(PatternLibrary source, final List<E> result, final Set<String> ids) {
         for (PatternElement elem : ((PatternLibrary) source).getElements())
             doCollect(elem, result, ids);
     }
 
-    protected void casePatternViewpoint(PatternViewpoint source, final Set<E> result, final Set<String> ids) {
+    protected void casePatternViewpoint(PatternViewpoint source, final List<E> result, final Set<String> ids) {
         for (PatternLibrary lib : source.getLibraries())
             doCollect(lib, result, ids);
         return;
     }
 
-    public void collect(EObject source, final Set<E> result) {
+    public void collect(EObject source, final List<E> result) {
         collect(source, result, EMPTY_ID_SET);
     }
 
-    public void collect(EObject source, final Set<E> result, final Set<String> ids) {
+    public void collect(EObject source, final List<E> result, final Set<String> ids) {
         if (ids == null)
             throw new IllegalArgumentException();
         if (result == null)
@@ -75,11 +75,11 @@ public abstract class Collector<E extends PatternElement> {
         doCollect(source, result, ids);
     }
 
-    public void collect(List<EObject> source, final Set<E> result) {
+    public void collect(List<EObject> source, final List<E> result) {
         collect(source, result, EMPTY_ID_SET);
     }
 
-    public void collect(List<EObject> source, final Set<E> result, final Set<String> ids) {
+    public void collect(List<EObject> source, final List<E> result, final Set<String> ids) {
         if (ids == null)
             throw new IllegalArgumentException();
         if (result == null)
@@ -90,11 +90,11 @@ public abstract class Collector<E extends PatternElement> {
             collect(obj, result, ids);
     }
 
-    public void collect(EObject[] source, final Set<E> result) {
+    public void collect(EObject[] source, final List<E> result) {
         collect(source, result, EMPTY_ID_SET);
     }
 
-    public void collect(EObject[] source, final Set<E> result, final Set<String> ids) {
+    public void collect(EObject[] source, final List<E> result, final Set<String> ids) {
         if (ids == null)
             throw new IllegalArgumentException();
         if (result == null)

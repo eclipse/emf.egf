@@ -15,7 +15,8 @@
 
 package org.eclipse.egf.pattern.strategy;
 
-import java.util.LinkedHashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
@@ -33,7 +34,7 @@ import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionExcepti
 public class DefaultStrategy extends AbstractPatternStrategy {
 
     public void execute(PatternContext context, Object parameter) throws PatternException, MissingExtensionException {
-        LinkedHashSet<Pattern> result = new LinkedHashSet<Pattern>();
+        List<Pattern> result = new ArrayList<Pattern>();
         // to replace libraries by their contents
         PatternCollector.INSTANCE.collect(patternElements, result);
         doExecute(result, context);

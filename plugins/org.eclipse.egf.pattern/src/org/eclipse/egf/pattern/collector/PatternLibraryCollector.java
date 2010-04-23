@@ -15,6 +15,7 @@
 
 package org.eclipse.egf.pattern.collector;
 
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.egf.model.pattern.PatternLibrary;
@@ -28,9 +29,9 @@ public class PatternLibraryCollector extends Collector<PatternLibrary> {
     public static final PatternLibraryCollector INSTANCE = new PatternLibraryCollector();
 
     @Override
-    protected void casePatternLibrary(PatternLibrary lib, Set<PatternLibrary> result, Set<String> ids) {
+    protected void casePatternLibrary(PatternLibrary lib, List<PatternLibrary> result, Set<String> ids) {
         final String id = lib.getID();
-        if (ids == null || ids.isEmpty() || (id != null && ids.contains(id)))
+        if (!result.contains(lib) && (ids == null || ids.isEmpty() || (id != null && ids.contains(id))))
             result.add(lib);
         super.casePatternLibrary(lib, result, ids);
     }

@@ -26,7 +26,7 @@ public abstract class DefaultDomainVisitor implements DomainVisitor {
     private final Map<String, List<Pattern>> type2patterns = new HashMap<String, List<Pattern>>(100);
     private final Set<Object> visited = new HashSet<Object>();
 
-    public void setPatterns(Set<Pattern> patterns) throws PatternException {
+    public void setPatterns(List<Pattern> patterns) throws PatternException {
         for (Pattern p : patterns) {
             EList<PatternParameter> parameters = p.getAllParameters();
             if (parameters.size() != 1)

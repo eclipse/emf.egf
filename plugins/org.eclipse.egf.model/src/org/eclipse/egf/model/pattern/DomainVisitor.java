@@ -16,7 +16,6 @@
 package org.eclipse.egf.model.pattern;
 
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Thomas Guiu
@@ -25,7 +24,7 @@ import java.util.Set;
 public interface DomainVisitor {
     List<?> getChildren(Object model);
 
-    void setPatterns(Set<Pattern> patterns) throws PatternException;
+    void setPatterns(List<Pattern> patterns) throws PatternException;
 
     void visit(PatternContext context, Object model) throws PatternException;
 
