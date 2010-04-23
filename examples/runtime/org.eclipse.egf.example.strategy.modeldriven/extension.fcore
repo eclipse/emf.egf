@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fcore:FactoryComponent xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
+    xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_2DeqQUMiEd-ps_ZddESRow"
+    name="extension">
+  <viewpointContainer xmi:id="_8wq7AEMiEd-ps_ZddESRow">
+    <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_9WCR4EMiEd-ps_ZddESRow">
+      <libraries xmi:id="_9uOvcEMiEd-ps_ZddESRow" name="extention">
+        <elements xmi:type="pattern:Pattern" xmi:id="_QXb_oEO6Ed-eQLst0bhiHw" name="myClassPattern"
+            headerMethod="#_QXb_oUO6Ed-eQLst0bhiHw" footerMethod="#_QXb_pEO6Ed-eQLst0bhiHw"
+            superPattern="platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/default.fcore#_RzMnwPuUEd6-V5xjQsdIkw"
+            initMethod="#_QXb_okO6Ed-eQLst0bhiHw">
+          <methods xmi:id="_QXb_oUO6Ed-eQLst0bhiHw" name="header" patternFilePath="templates/pattern._QXb_oEO6Ed-eQLst0bhiHw/method._QXb_oUO6Ed-eQLst0bhiHw.pt"/>
+          <methods xmi:id="_QXb_okO6Ed-eQLst0bhiHw" name="init" patternFilePath="templates/pattern._QXb_oEO6Ed-eQLst0bhiHw/method._QXb_okO6Ed-eQLst0bhiHw.pt"/>
+          <methods xmi:id="_QXb_o0O6Ed-eQLst0bhiHw" name="body1" patternFilePath="templates/pattern._QXb_oEO6Ed-eQLst0bhiHw/method._QXb_o0O6Ed-eQLst0bhiHw.pt"/>
+          <methods xmi:id="_QXb_pEO6Ed-eQLst0bhiHw" name="footer" patternFilePath="templates/pattern._QXb_oEO6Ed-eQLst0bhiHw/method._QXb_pEO6Ed-eQLst0bhiHw.pt"/>
+          <orchestration xmi:type="pattern:SuperCall" xmi:id="_QXb_pUO6Ed-eQLst0bhiHw"/>
+          <orchestration xmi:type="pattern:MethodCall" xmi:id="_NtRccUPbEd-mKPwasigGsA"
+              called="#_QXb_o0O6Ed-eQLst0bhiHw"/>
+          <nature xmi:type="jetpattern:JetNature" xmi:id="_QXb_pkO6Ed-eQLst0bhiHw"
+              name="JET"/>
+        </elements>
+      </libraries>
+    </viewpoints>
+  </viewpointContainer>
+  <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Nf4qUEMjEd-ps_ZddESRow">
+    <invocations xmi:id="_OT_n0EMjEd-ps_ZddESRow" invokedActivity="fcore:FactoryComponent platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/default.fcore#_Sq3-AOWYEd6IuMdAhwYvKg">
+      <invocationContractContainer xmi:id="_UFZlwEMjEd-ps_ZddESRow">
+        <invocationContracts xmi:id="_UWn4oEMjEd-ps_ZddESRow" invokedContract="fcore:FactoryComponentContract platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/default.fcore#_qOHbQEMhEd-NaeKfyTTTsQ">
+          <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_WSiywEMjEd-ps_ZddESRow">
+            <substitutions xmi:id="_vBgY4UO9Ed-qgs4e_5yqgQ" outcoming="platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/default.fcore#_RzMnwPuUEd6-V5xjQsdIkw"
+                incoming="#_QXb_oEO6Ed-eQLst0bhiHw"/>
+          </type>
+        </invocationContracts>
+      </invocationContractContainer>
+    </invocations>
+  </orchestration>
+</fcore:FactoryComponent>

@@ -1,28 +1,28 @@
-package myLib;
+package extention;
 
+import org.eclipse.egf.common.helper.*;
 import java.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class attributePattern 
-{
+public class myClassPattern extends myLib.classPattern {
   protected static String nl;
-  public static synchronized attributePattern create(String lineSeparator)
+  public static synchronized myClassPattern create(String lineSeparator)
   {
     nl = lineSeparator;
-    attributePattern result = new attributePattern();
+    myClassPattern result = new myClassPattern();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = NL;
+  protected final String TEXT_1 = "[extension]";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
 
-	public attributePattern()
+	public myClassPattern()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();
@@ -46,7 +46,7 @@ List<Object> parameterList = null;
 
 for (Object parameterParameter : parameterList ) {
 
-this.parameter = (org.eclipse.emf.ecore.EAttribute)parameterParameter;
+this.parameter = (org.eclipse.emf.ecore.EClass)parameterParameter;
 
 
     orchestration(ctx);
@@ -65,16 +65,10 @@ public String orchestration(PatternContext ctx) throws Exception  {
 InternalPatternContext ictx = (InternalPatternContext)ctx;
 int executionIndex = ictx.getExecutionBuffer().length();
 
-    
-method_body(ictx.getBuffer(), ictx);
-    {
-ictx.setExecutionCurrentIndex(ictx.getBuffer().length());
-ictx.getExecutionBuffer().append(ictx.getBuffer());
-final Map<String, Object> parameters = getParameters();
-CallbackContext ctx_callback = new CallbackContext(ictx);
-CallHelper.callBack(ctx_callback, parameters);
-}
+    super.orchestration(new SuperOrchestrationContext(ictx));
 
+    
+method_body1(ictx.getBuffer(), ictx);
     
 String loop = ictx.getBuffer().toString();
 if (ictx.useReporter()){
@@ -88,18 +82,13 @@ if (ictx.useReporter()){
 return loop;
 } 
 
-protected org.eclipse.emf.ecore.EAttribute parameter = null;
-public void set_parameter(org.eclipse.emf.ecore.EAttribute object) {
-this.parameter = object;
-}
 public Map<String, Object> getParameters() {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 parameters.put("parameter", this.parameter);
 return parameters; }
 
-    protected void method_body(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
+    protected void method_body1(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
 
-    stringBuffer.append("attribute "+parameter.getName());
     stringBuffer.append(TEXT_1);
     }
     }

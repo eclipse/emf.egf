@@ -7,6 +7,12 @@
       <fcore
             id="default.fcore">
       </fcore>
+      <fcore
+            id="model/mypackage.fcore">
+      </fcore>
+      <fcore
+            id="extension.fcore">
+      </fcore>
    </extension>
 
 </plugin>

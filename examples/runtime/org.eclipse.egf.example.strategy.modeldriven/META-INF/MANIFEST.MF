@@ -8,7 +8,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.egf.pattern;visibility:=reexport,
  org.eclipse.egf.pattern.ftask,
- org.eclipse.egf.model.ftask;visibility:=reexport
+ org.eclipse.egf.model.ftask;visibility:=reexport,
+ org.eclipse.egf.emf.pattern;visibility:=reexport,
+ org.eclipse.egf.emf.pattern.base;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: myLib,

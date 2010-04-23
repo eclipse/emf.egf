@@ -5,6 +5,12 @@
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
     xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_Sq3-AOWYEd6IuMdAhwYvKg"
     name="Model driven strategy example">
+  <contractContainer xmi:id="_p3Lh8UMhEd-NaeKfyTTTsQ">
+    <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_qOHbQEMhEd-NaeKfyTTTsQ"
+        invocationContracts="#_xSKFwEMhEd-NaeKfyTTTsQ">
+      <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_yJiZsEMhEd-NaeKfyTTTsQ"/>
+    </contracts>
+  </contractContainer>
   <viewpointContainer xmi:id="_TtBXgOWYEd6IuMdAhwYvKg">
     <viewpoints xmi:type="domain:DomainViewpoint" xmi:id="_UP7QQOWYEd6IuMdAhwYvKg">
       <domains xmi:type="domain:DomainURI" xmi:id="_YptT8OWYEd6IuMdAhwYvKg" uri="platform:/plugin/org.eclipse.egf.example.strategy.modeldriven/model/mypackage.ecore"/>
@@ -66,6 +72,8 @@
           <type xmi:type="pattern:TypePatternList" xmi:id="_WVH1sCHyEd-V4KH4GeEy-w"
               elements="#_dHixMOWYEd6IuMdAhwYvKg"/>
         </invocationContracts>
+        <invocationContracts xmi:id="_xSKFwEMhEd-NaeKfyTTTsQ" factoryComponentContract="#_qOHbQEMhEd-NaeKfyTTTsQ"
+            invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
       </invocationContractContainer>
     </invocations>
   </orchestration>
