@@ -120,7 +120,7 @@ public class TypePatternSubstitutionImpl extends TypeImpl implements TypePattern
         for (Substitution sub : getSubstitutions()) {
             if (pattern == null && sub.getOutcoming() == null)
                 return sub.getIncoming();
-            else if (pattern != null && pattern.equals(sub.getOutcoming()))
+            else if (pattern != null && sub.getOutcoming() != null && pattern.getID().equals(sub.getOutcoming().getID()))
                 return sub.getIncoming();
         }
         return null;
