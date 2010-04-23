@@ -135,7 +135,7 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
 
   private static class FcoreSearchComparator implements Comparator<IPlatformFcore>, Serializable {
 
-    public static final long serialVersionUID = -1;
+    public static final long serialVersionUID = 1L;
 
     public int compare(IPlatformFcore fc1, IPlatformFcore fc2) {
       if (fc1.getName() == null) {

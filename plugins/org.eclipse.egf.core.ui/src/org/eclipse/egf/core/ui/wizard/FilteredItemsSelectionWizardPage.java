@@ -1921,7 +1921,7 @@ public abstract class FilteredItemsSelectionWizardPage extends WizardPage {
 
       historyList = Collections.synchronizedList(new LinkedList() {
 
-        private static final long serialVersionUID = 0L;
+        private static final long serialVersionUID = 1L;
 
         /*
          * (non-Javadoc)
