@@ -68,6 +68,7 @@ import org.eclipse.pde.internal.ui.util.PDEModelUtility;
 import org.eclipse.pde.internal.ui.wizards.tools.OrganizeManifest;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.osgi.framework.Constants;
+import org.osgi.framework.Version;
 
 /**
  * Operation to convert a simple project or a bundle into an EGF java bundle project if necessary
@@ -158,12 +159,18 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     }
     if (_project.hasNature(JavaCore.NATURE_ID)) {
       _hasJavaNature = true;
-      IJavaProject javaProject = JavaCore.create(_project);
-      _classpathEntries.addAll(Arrays.asList(javaProject.getRawClasspath()));
-      for (String outputFolder : JavaHelper.getStringOutputFolders(javaProject)) {
-        _outputFolders.add(outputFolder + EGFCommonConstants.SLASH_CHARACTER);
+      IJavaProject javaProject = null;
+      try {
+        javaProject = JavaCore.create(_project);
+        _classpathEntries.addAll(Arrays.asList(javaProject.getRawClasspath()));
+        for (String outputFolder : JavaHelper.getStringOutputFolders(javaProject)) {
+          _outputFolders.add(outputFolder + EGFCommonConstants.SLASH_CHARACTER);
+        }
+      } finally {
+        if (javaProject != null) {
+          javaProject.close();
+        }
       }
-      javaProject.close();
     }
 
     // Create Project Description if necessary
@@ -276,6 +283,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
     // Current variables
     boolean isInitiallyEmpty = _classpathEntries.isEmpty();
+    boolean hasRequiredPluginsContainer = false;
     List<String> sources = new UniqueEList<String>();
     List<String> libraries = new UniqueEList<String>();
     List<String> directories = new UniqueEList<String>();
@@ -309,10 +317,15 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
         // Process existing library
       } else if (contentType == IClasspathEntry.CPE_LIBRARY) {
         String path = getRelativePath(currentClassPath, _project);
-        if (path.length() > 0)
+        if (path.length() > 0) {
           libraries.add(path);
-        else
+        } else {
           libraries.add(EGFCommonConstants.DOT_STRING);
+        }
+      } else if (contentType == IClasspathEntry.CPE_CONTAINER) {
+        if (EGFCommonConstants.REQUIRED_PLUGINS_CLASSPATH_CONTAINER.equals(currentClassPath.getPath().toString())) {
+          hasRequiredPluginsContainer = true;
+        }
       }
     }
     subMonitor.worked(100);
@@ -361,6 +374,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     // Finally setup classpath if necessary
     if (_hasJavaNature || _createJavaProject) {
       try {
+        // Process JRE if necessary
         if (isInitiallyEmpty) {
           IClasspathEntry jreClasspathEntry = JavaCore.newVariableEntry(new Path(JavaRuntime.JRELIB_VARIABLE), new Path(JavaRuntime.JRESRC_VARIABLE), new Path(JavaRuntime.JRESRCROOT_VARIABLE));
           for (Iterator<IClasspathEntry> i = _classpathEntries.iterator(); i.hasNext();) {
@@ -380,9 +394,20 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
           }
           _classpathEntries.add(JavaCore.newContainerEntry(new Path(jreContainer)));
         }
-        _classpathEntries.add(JavaCore.newContainerEntry(new Path("org.eclipse.pde.core.requiredPlugins"))); //$NON-NLS-1$          
-        IJavaProject javaProject = JavaCore.create(_project);
-        javaProject.setRawClasspath(_classpathEntries.toArray(new IClasspathEntry[_classpathEntries.size()]), subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+        // Process Required Plugins Container if necessary
+        if (hasRequiredPluginsContainer == false) {
+          _classpathEntries.add(JavaCore.newContainerEntry(new Path(EGFCommonConstants.REQUIRED_PLUGINS_CLASSPATH_CONTAINER)));
+        }
+        // Classpath setup
+        IJavaProject javaProject = null;
+        try {
+          javaProject = JavaCore.create(_project);
+          javaProject.setRawClasspath(_classpathEntries.toArray(new IClasspathEntry[_classpathEntries.size()]), subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
+        } finally {
+          if (javaProject != null) {
+            javaProject.close();
+          }
+        }
       } catch (JavaModelException jme) {
         throw new CoreException(EGFPDEPlugin.getDefault().newStatus(IStatus.ERROR, EGFCommonMessages.Exception_unexpectedException, jme));
       }
@@ -392,9 +417,8 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
   }
 
-  private String getRelativePath(IClasspathEntry cpe, IProject project) {
-    IPath path = project.getFile(cpe.getPath()).getProjectRelativePath();
-    return path.removeFirstSegments(1).toString();
+  private String getRelativePath(IClasspathEntry classpathEntry, IProject project) {
+    return project.getFile(classpathEntry.getPath()).getProjectRelativePath().removeFirstSegments(1).toString();
   }
 
   private void organizeExports(IProgressMonitor monitor) {
@@ -599,17 +623,13 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     }
     // At this point, the plug-in ID is not null
 
-    // If no version number exists, create one
-    if (pluginVersion == null) {
-      pluginVersion = "0.1.0.qualifier"; //$NON-NLS-1$
-    }
+    // Process Version
+    processManifestVersion(model);
 
     // If no name exists, create one using the non-null pluginID
     if (pluginName == null) {
       pluginName = createInitialName(pluginId);
     }
-
-    bundle.setHeader(Constants.BUNDLE_VERSION, pluginVersion);
     bundle.setHeader(Constants.BUNDLE_NAME, pluginName);
 
     // Symbolic Name
@@ -669,6 +689,25 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
       }
     }
 
+  }
+
+  private void processManifestVersion(IBundlePluginModelBase model) {
+    // Locate Bundle
+    IBundle bundle = model.getBundleModel().getBundle();
+    // Locate Version
+    String pluginVersion = bundle.getHeader(Constants.BUNDLE_VERSION);
+    // Process Version
+    if (pluginVersion == null) {
+      pluginVersion = "0.1.0.qualifier"; //$NON-NLS-1$
+    } else {
+      Version version = Version.parseVersion(pluginVersion);
+      String major = version.getMajor() != 0 ? Integer.toString(version.getMajor()) : "0"; //$NON-NLS-1$
+      String micro = version.getMicro() != 0 ? Integer.toString(version.getMicro()) : "1"; //$NON-NLS-1$      
+      String minor = version.getMinor() != 0 ? Integer.toString(version.getMinor()) : "0"; //$NON-NLS-1$
+      String qualifier = version.getQualifier() != null && version.getQualifier().trim().length() != 0 ? version.getQualifier() : "qualifier"; //$NON-NLS-1$
+      pluginVersion = major + "." + micro + "." + minor + "." + qualifier; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+    }
+    bundle.setHeader(Constants.BUNDLE_VERSION, pluginVersion);
   }
 
   public List<String> addDependencies() {
