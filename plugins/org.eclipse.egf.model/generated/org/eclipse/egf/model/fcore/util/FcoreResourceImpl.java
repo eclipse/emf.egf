@@ -147,7 +147,7 @@ public class FcoreResourceImpl extends XMIResourceImpl {
         return objectType != featureType && objectType != XMLTypePackage.Literals.ANY_TYPE;
       }
     });
-    getDefaultSaveOptions().put(XMLResource.OPTION_LINE_WIDTH, new Integer(80));
+    getDefaultSaveOptions().put(XMLResource.OPTION_LINE_WIDTH, Integer.valueOf(80));
     // Avoid relative paths from workspace resources to plugin resources.
     getDefaultSaveOptions().put(XMLResource.OPTION_URI_HANDLER, new ModelSchemeAware());
     getDefaultSaveOptions().put(XMLResource.OPTION_EXTENDED_META_DATA, Boolean.TRUE);
