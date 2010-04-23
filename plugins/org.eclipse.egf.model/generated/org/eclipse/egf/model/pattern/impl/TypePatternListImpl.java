@@ -36,130 +36,130 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
  * @generated
  */
 public class TypePatternListImpl extends TypeImpl implements TypePatternList {
-  /**
-   * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  protected int flags = 0;
+    /**
+     * A set of bit flags representing the values of boolean attributes and whether unsettable features have been set.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     * @ordered
+     */
+    protected int flags = 0;
 
-  /**
-   * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getElements()
-   * @generated
-   * @ordered
-   */
-  protected EList<PatternElement> elements;
+    /**
+     * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see #getElements()
+     * @generated
+     * @ordered
+     */
+    protected EList<PatternElement> elements;
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected TypePatternListImpl() {
-    super();
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass() {
-    return PatternPackage.Literals.TYPE_PATTERN_LIST;
-  }
-
-  @Override
-  public Object getValue() {
-    return this;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EList<PatternElement> getElements() {
-    if (elements == null) {
-      elements = new EObjectResolvingEList<PatternElement>(PatternElement.class, this, PatternPackage.TYPE_PATTERN_LIST__ELEMENTS);
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    protected TypePatternListImpl() {
+        super();
     }
-    return elements;
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  @SuppressWarnings("unchecked")
-  public Class<?> getType() {
-    return org.eclipse.egf.model.pattern.TypePatternList.class;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Object eGet(int featureID, boolean resolve, boolean coreType) {
-    switch (featureID) {
-    case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
-      return getElements();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    protected EClass eStaticClass() {
+        return PatternPackage.Literals.TYPE_PATTERN_LIST;
     }
-    return super.eGet(featureID, resolve, coreType);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @SuppressWarnings("unchecked")
-  @Override
-  public void eSet(int featureID, Object newValue) {
-    switch (featureID) {
-    case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
-      getElements().clear();
-      getElements().addAll((Collection<? extends PatternElement>) newValue);
-      return;
+    @Override
+    public Object getValue() {
+        return this;
     }
-    super.eSet(featureID, newValue);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void eUnset(int featureID) {
-    switch (featureID) {
-    case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
-      getElements().clear();
-      return;
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    public EList<PatternElement> getElements() {
+        if (elements == null) {
+            elements = new EObjectResolvingEList<PatternElement>(PatternElement.class, this, PatternPackage.TYPE_PATTERN_LIST__ELEMENTS);
+        }
+        return elements;
     }
-    super.eUnset(featureID);
-  }
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public boolean eIsSet(int featureID) {
-    switch (featureID) {
-    case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
-      return elements != null && !elements.isEmpty();
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    @SuppressWarnings("unchecked")
+    public Class<?> getType() {
+        return org.eclipse.egf.model.pattern.TypePatternList.class;
     }
-    return super.eIsSet(featureID);
-  }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public Object eGet(int featureID, boolean resolve, boolean coreType) {
+        switch (featureID) {
+        case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
+            return getElements();
+        }
+        return super.eGet(featureID, resolve, coreType);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @SuppressWarnings("unchecked")
+    @Override
+    public void eSet(int featureID, Object newValue) {
+        switch (featureID) {
+        case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
+            getElements().clear();
+            getElements().addAll((Collection<? extends PatternElement>) newValue);
+            return;
+        }
+        super.eSet(featureID, newValue);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public void eUnset(int featureID) {
+        switch (featureID) {
+        case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
+            getElements().clear();
+            return;
+        }
+        super.eUnset(featureID);
+    }
+
+    /**
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    @Override
+    public boolean eIsSet(int featureID) {
+        switch (featureID) {
+        case PatternPackage.TYPE_PATTERN_LIST__ELEMENTS:
+            return elements != null && !elements.isEmpty();
+        }
+        return super.eIsSet(featureID);
+    }
 
 } // TypePatternListImpl

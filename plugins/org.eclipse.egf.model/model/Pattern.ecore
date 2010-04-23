@@ -176,4 +176,24 @@
     <eOperations name="getName" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eOperations name="getPattern" lowerBound="1" eType="#//Pattern"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TypePatternSubstitution" eSuperTypes="Types.ecore#//Type">
+    <eOperations name="getType" lowerBound="1">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="body" value="return org.eclipse.egf.model.pattern.TypePatternSubstitution.class;"/>
+      </eAnnotations>
+      <eGenericType eClassifier="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EJavaClass">
+        <eTypeArguments/>
+      </eGenericType>
+    </eOperations>
+    <eOperations name="getSubstitutions" upperBound="-1" eType="#//Pattern">
+      <eParameters name="pattern" lowerBound="1" eType="#//Pattern"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="substitutions" upperBound="-1"
+        eType="#//Substitution" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Substitution">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outcoming" eType="#//Pattern"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="incoming" upperBound="-1"
+        eType="#//Pattern"/>
+  </eClassifiers>
 </ecore:EPackage>
