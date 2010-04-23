@@ -598,11 +598,13 @@ public class FcoreEditor extends MultiPageEditorPart implements ResourceUser, Re
           if (AdapterFactoryEditingDomain.isStale(editorSelection)) {
             setSelection(StructuredSelection.EMPTY);
           }
-          selectionViewer.setSelection(new StructuredSelection(getResource()), true);
+          Resource innerResource = getResource();
+          selectionViewer.setSelection(new StructuredSelection(innerResource), true);
           if (currentViewerPane != null) {
-            currentViewerPane.setTitle(getResource());
+            currentViewerPane.setTitle(innerResource);
           }
-          setTitleToolTip(getResource().toString());
+          setPartName(innerResource.getURI().lastSegment());
+          setTitleToolTip(innerResource.toString());
         }
       });
     }
