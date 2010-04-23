@@ -21,7 +21,7 @@ public interface IApplicationConfigurationConstants {
   /**
    * Exit object indicating normal termination
    */
-  public static final Integer EXIT_ERROR = new Integer(-1);
+  public static final Integer EXIT_ERROR = Integer.valueOf(-1);
 
   /**
    * Launch configuration attribute key. The value is a name of
