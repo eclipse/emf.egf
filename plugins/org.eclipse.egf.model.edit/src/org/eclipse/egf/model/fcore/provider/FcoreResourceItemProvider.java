@@ -212,17 +212,19 @@ public class FcoreResourceItemProvider extends ResourceItemProvider {
   protected Command createAddCommand(EditingDomain domain, FcoreResourceImpl resource, Collection<?> collection, int index) {
     boolean isValid = true;
     Collection<EClass> roots = getRoots();
-    for (Object object : collection) {
-      if (object instanceof EObject) {
-        EObject eObject = (EObject) object;
-        if (roots.contains(EMFHelper.solveAgainstStaticPackage(eObject.eClass())) == false) {
-          isValid = false;
-          break;
+    if (collection != null) {
+      for (Object object : collection) {
+        if (object instanceof EObject) {
+          EObject eObject = (EObject) object;
+          if (roots.contains(EMFHelper.solveAgainstStaticPackage(eObject.eClass())) == false) {
+            isValid = false;
+            break;
+          }
         }
       }
-    }
-    if (isValid) {
-      return new ResourceAddCommand(domain, resource, collection, index);
+      if (isValid) {
+        return new ResourceAddCommand(domain, resource, collection, index);
+      }
     }
     return UnexecutableCommand.INSTANCE;
   }
