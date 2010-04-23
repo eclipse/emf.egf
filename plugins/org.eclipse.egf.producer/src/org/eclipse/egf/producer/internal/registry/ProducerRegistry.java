@@ -81,7 +81,7 @@ public class ProducerRegistry {
   public static Map<EClass, ActivityManagerProducer<?>> getActivityManagerProducers() {
     // Lazy loading. Search for the implementation.
     if (__activityManagerProducers == null) {
-      __activityManagerProducers = new HashMap<EClass, ActivityManagerProducer<?>>();
+      Map<EClass, ActivityManagerProducer<?>> activityManagerProducers = new HashMap<EClass, ActivityManagerProducer<?>>();
       // Get ActivityProducer extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFProducerPlugin.getDefault().getPluginID(), EXTENSION_POINT_SHORT_ID_ACTIVITY_MANAGER_PRODUCER)) {
         Object object = null;
@@ -101,8 +101,9 @@ public class ProducerRegistry {
           EGFProducerPlugin.getDefault().logInfo(NLS.bind("Extension-point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           continue;
         }
-        __activityManagerProducers.put(((ActivityManagerProducer<?>) object).getActivity(), (ActivityManagerProducer<?>) object);
+        activityManagerProducers.put(((ActivityManagerProducer<?>) object).getActivity(), (ActivityManagerProducer<?>) object);
       }
+      __activityManagerProducers = activityManagerProducers;
     }
     return __activityManagerProducers;
   }
@@ -115,7 +116,7 @@ public class ProducerRegistry {
   public static Map<EClass, ActivityProductionContextProducer<?>> getActivityProductionContextProducers() {
     // Lazy loading. Search for the implementation.
     if (__activityProductionContextProducers == null) {
-      __activityProductionContextProducers = new HashMap<EClass, ActivityProductionContextProducer<?>>();
+      Map<EClass, ActivityProductionContextProducer<?>> activityProductionContextProducers = new HashMap<EClass, ActivityProductionContextProducer<?>>();
       // Get ActivityProductionContextProducer extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFProducerPlugin.getDefault().getPluginID(), EXTENSION_POINT_SHORT_ID_ACTIVITY_PRODUCTION_CONTEXT_PRODUCER)) {
         Object object = null;
@@ -135,8 +136,9 @@ public class ProducerRegistry {
           EGFProducerPlugin.getDefault().logInfo(NLS.bind("Extension-point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           continue;
         }
-        __activityProductionContextProducers.put(((ActivityProductionContextProducer<?>) object).getActivity(), (ActivityProductionContextProducer<?>) object);
+        activityProductionContextProducers.put(((ActivityProductionContextProducer<?>) object).getActivity(), (ActivityProductionContextProducer<?>) object);
       }
+      __activityProductionContextProducers = activityProductionContextProducers;
     }
     return __activityProductionContextProducers;
   }
@@ -149,7 +151,7 @@ public class ProducerRegistry {
   public static Map<EClass, OrchestrationManagerProducer<?>> getOrchestrationManagerProducers() {
     // Lazy loading. Search for the implementation.
     if (__orchestrationManagerProducers == null) {
-      __orchestrationManagerProducers = new HashMap<EClass, OrchestrationManagerProducer<?>>();
+      Map<EClass, OrchestrationManagerProducer<?>> orchestrationManagerProducers = new HashMap<EClass, OrchestrationManagerProducer<?>>();
       // Get ActivityProducer extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFProducerPlugin.getDefault().getPluginID(), EXTENSION_POINT_SHORT_ID_ORCHESTRATION_MANAGER_PRODUCER)) {
         Object object = null;
@@ -169,8 +171,9 @@ public class ProducerRegistry {
           EGFProducerPlugin.getDefault().logInfo(NLS.bind("Extension-point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           continue;
         }
-        __orchestrationManagerProducers.put(((OrchestrationManagerProducer<?>) object).getOrchestration(), (OrchestrationManagerProducer<?>) object);
+        orchestrationManagerProducers.put(((OrchestrationManagerProducer<?>) object).getOrchestration(), (OrchestrationManagerProducer<?>) object);
       }
+      __orchestrationManagerProducers = orchestrationManagerProducers;
     }
     return __orchestrationManagerProducers;
   }
