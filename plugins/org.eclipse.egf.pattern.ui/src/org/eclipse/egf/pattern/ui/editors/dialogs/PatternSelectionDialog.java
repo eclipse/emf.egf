@@ -54,9 +54,9 @@ import org.eclipse.swt.widgets.Text;
  */
 public class PatternSelectionDialog extends PatternElementSelectionDialog {
 
-    private Pattern parent;
+    private Pattern currentPattern;
 
-    private String parentName = "";
+    private String currentPatternName = "";
 
     private TableViewer tableViewer;
 
@@ -66,14 +66,14 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
 
     public PatternSelectionDialog(Shell shell, Pattern parent) {
         super(shell);
-        this.parent = parent;
+        this.currentPattern = parent;
         if (parent != null) {
-            parentName = parent.getName();
+            currentPatternName = parent.getName();
         }
     }
 
     protected Control createDialogArea(Composite parent) {
-        checkPatternExist(parentName);
+        checkPatternExist(currentPatternName);
 
         Composite dialogArea = (Composite) super.createDialogArea(parent);
         Composite container = new Composite(dialogArea, SWT.NONE);
@@ -91,13 +91,13 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
         gd = new GridData(GridData.FILL_HORIZONTAL);
         gd.widthHint = 550;
         text.setLayoutData(gd);
-        text.setText(parentName);
+        text.setText(currentPatternName);
         text.addModifyListener(new ModifyListener() {
 
             public void modifyText(ModifyEvent e) {
                 List<Pattern> listAreaDisplay = getListAreaDisplay(text.getText());
                 tableViewer.setInput(listAreaDisplay);
-                parentName = text.getText();
+                currentPatternName = text.getText();
                 checkPatternExist(text.getText());
                 getSelectDefault(listAreaDisplay);
             }
@@ -112,7 +112,7 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
     }
 
     private void createStatusLine(Composite container) {
-        String statusContent = PatternHelper.getPlatformFcore(parent).getName();
+        String statusContent = PatternHelper.getPlatformFcore(currentPattern).getName();
         statusLine = new Text(container, SWT.BORDER);
         GridData gd = new GridData(GridData.FILL_HORIZONTAL);
         statusLine.setText(statusContent);
@@ -131,7 +131,7 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
 
         tableViewer.setLabelProvider(new PatternSelectionLabelProvider());
         tableViewer.setContentProvider(new CommonListContentProvider());
-        List<Pattern> listAreaDisplay = getListAreaDisplay(parentName);
+        List<Pattern> listAreaDisplay = getListAreaDisplay(currentPatternName);
         tableViewer.setInput(listAreaDisplay);
         getSelectDefault(listAreaDisplay);
 
@@ -139,9 +139,9 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
             public void selectionChanged(SelectionChangedEvent event) {
                 IStructuredSelection selection = (IStructuredSelection) event.getSelection();
                 if (selection.getFirstElement() instanceof Pattern) {
-                    parent = (Pattern) selection.getFirstElement();
-                    parentName = parent.getName();
-                    String statusContent = PatternHelper.getPlatformFcore(parent).getName();
+                    currentPattern = (Pattern) selection.getFirstElement();
+                    currentPatternName = currentPattern.getName();
+                    String statusContent = PatternHelper.getPlatformFcore(currentPattern).getName();
                     statusLine.setText(statusContent);
                 }
             }
@@ -187,16 +187,16 @@ public class PatternSelectionDialog extends PatternElementSelectionDialog {
     private void getSelectDefault(List<Pattern> model) {
         Object selectEntry = selectDefault(model, tableViewer);
         if (selectEntry instanceof Pattern) {
-            parent = (Pattern) selectEntry;
-            parentName = parent.getName();
+            currentPattern = (Pattern) selectEntry;
+            currentPatternName = currentPattern.getName();
         }
     }
 
-    public Pattern getParent() {
-        return parent;
+    public Pattern getCurrentPattern() {
+        return currentPattern;
     }
 
-    public String getParentName() {
-        return parentName;
+    public String getCurrentPatternName() {
+        return currentPatternName;
     }
 }

@@ -307,7 +307,7 @@ public class SpecificationPage extends PatternEditorPage {
                 PatternSelectionDialog dialog = new PatternSelectionDialog(new Shell(), getParentPattern());
                 dialog.setTitle(Messages.SpecificationPage_browse_dialog_title);
                 if (dialog.open() == Window.OK) {
-                    final Pattern parent = dialog.getParent();
+                    final Pattern parent = dialog.getCurrentPattern();
                     TransactionalEditingDomain editingDomain = getEditingDomain();
                     RecordingCommand cmd = new RecordingCommand(editingDomain) {
                         protected void doExecute() {
