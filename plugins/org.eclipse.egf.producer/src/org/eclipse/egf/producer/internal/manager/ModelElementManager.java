@@ -33,6 +33,7 @@ import org.eclipse.egf.producer.l10n.ProducerMessages;
 import org.eclipse.egf.producer.manager.IModelElementManager;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.osgi.util.NLS;
 import org.osgi.framework.Bundle;
 
@@ -116,11 +117,25 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
     Assert.isNotNull(element);
     _element = element;
     if (_element.eResource() == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_no_resource, getName()), null)));
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_no_resource, EcoreUtil.getURI(_element)), null)));
     }
     _platformFcore = EGFCorePlugin.getPlatformFcore(_element.eResource());
     if (_platformFcore == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_activity, _element.eResource().getURI()), null)));
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_no_fcore, EcoreUtil.getURI(_element).trimFragment()), null)));
+    }
+  }
+
+  public ModelElementManager(IModelElementManager<?, ?> parent, P element) throws InvocationException {
+    Assert.isNotNull(parent);
+    Assert.isNotNull(element);
+    _parent = parent;
+    _element = element;
+    if (_element.eResource() == null) {
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_no_resource, EcoreUtil.getURI(_element)), null)));
+    }
+    _platformFcore = EGFCorePlugin.getPlatformFcore(_element.eResource());
+    if (_platformFcore == null) {
+      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_no_fcore, EcoreUtil.getURI(_element).trimFragment()), null)));
     }
   }
 
@@ -129,17 +144,6 @@ public abstract class ModelElementManager<P extends ModelElement, T extends Mode
     Assert.isNotNull(element);
     _bundle = bundle;
     _element = element;
-  }
-
-  public ModelElementManager(IModelElementManager<?, ?> parent, P element) throws InvocationException {
-    Assert.isNotNull(parent);
-    Assert.isNotNull(element);
-    _parent = parent;
-    _element = element;
-    _platformFcore = EGFCorePlugin.getPlatformFcore(element.eResource());
-    if (_platformFcore == null) {
-      throw new InvocationException(new CoreException(EGFProducerPlugin.getDefault().newStatus(IStatus.ERROR, NLS.bind(ProducerMessages.ModelElementManager_fcore_activity, element.eResource().getURI()), null)));
-    }
   }
 
   public P getElement() {
