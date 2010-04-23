@@ -28,7 +28,7 @@ public class ProducerMessages {
   }
 
   public static String ModelElementManager_fcore_no_resource;
-  public static String ModelElementManager_fcore_activity;
+  public static String ModelElementManager_no_fcore;
 
   public static String ActivityManager_mandatory_value;
 
