@@ -106,6 +106,7 @@ public class JavaAssemblyHelper extends AssemblyHelper {
         if (!pattern.getAllParameters().isEmpty()) {
             content.append("if (ictx.useReporter()){").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("    ictx.getExecutionBuffer().append(ictx.getBuffer().substring(ictx.getExecutionCurrentIndex()));").append(EGFCommonConstants.LINE_SEPARATOR);
+            content.append("    ictx.setExecutionCurrentIndex(0);").append(EGFCommonConstants.LINE_SEPARATOR);
             content.append("Map<String, Object> parameterValues = new HashMap<String, Object>();").append(EGFCommonConstants.LINE_SEPARATOR);
             for (org.eclipse.egf.model.pattern.PatternParameter parameter : pattern.getAllParameters()) {
                 content.append("parameterValues.put(\"").append(parameter.getName()).append("\", this.").append(parameter.getName()).append(");").append(EGFCommonConstants.LINE_SEPARATOR);
