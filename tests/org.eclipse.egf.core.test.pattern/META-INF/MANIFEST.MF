@@ -14,7 +14,8 @@ Require-Bundle:
  org.eclipse.egf.core.producer,
  org.eclipse.egf.model.ftask
 Bundle-ActivationPolicy: lazy
-Export-Package: callbackAndReporter,
+Export-Package: base,
+ callbackAndReporter,
  callbackAndReporter2,
  callbackAndReporter3,
  callback_1.strategy,

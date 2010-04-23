@@ -77,7 +77,7 @@
         </invocationContracts>
         <invocationContracts xmi:id="_RXQPIC3HEd-K6fN6ULU38A" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_nz1HkSCaEd-Sse0r9LJWbA">
           <type xmi:type="pattern:TypePatternList" xmi:id="_SRxWoC3HEd-K6fN6ULU38A"
-              elements="#_qQ8FgC3HEd-K6fN6ULU38A #_xQU5gC3HEd-K6fN6ULU38A #_jd32QC3HEd-K6fN6ULU38A"/>
+              elements="#_qQ8FgC3HEd-K6fN6ULU38A #_jd32QC3HEd-K6fN6ULU38A #_xQU5gC3HEd-K6fN6ULU38A"/>
         </invocationContracts>
         <invocationContracts xmi:id="_c_e2gC3HEd-K6fN6ULU38A" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
           <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_eDIr4C3HEd-K6fN6ULU38A"

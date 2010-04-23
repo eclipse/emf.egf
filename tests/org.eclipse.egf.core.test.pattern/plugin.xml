@@ -31,6 +31,12 @@
       <fcore
             id="fc/inheritance_4.fcore">
       </fcore>
+      <fcore
+            id="fc/substitution_base.fcore">
+      </fcore>
+      <fcore
+            id="fc/callback_reporter_4.fcore">
+      </fcore>
    </extension>
    
    <extension
