@@ -40,7 +40,7 @@ public class ThrowableHandler {
       if (throwable.getCause() != null) {
         throwable = throwable.getCause();
       }
-      status = StatusHelper.newStatus(pluginID, IStatus.ERROR, throwable.getClass().getSimpleName(), t);
+      status = StatusHelper.newStatus(pluginID, IStatus.ERROR, t.getClass().getSimpleName(), throwable);
     }
     StatusManager.getManager().handle(status, StatusManager.LOG | StatusManager.SHOW);
   }
