@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.model.editor.dialogs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -164,7 +165,9 @@ public class ActivitySelectionDialog extends FilteredItemsSelectionDialog {
 
   }
 
-  private class ActivitySearchComparator implements Comparator<Activity> {
+  private static class ActivitySearchComparator implements Comparator<Activity>, Serializable {
+    public static final long serialVersionUID = 1L;
+
     public int compare(Activity a1, Activity a2) {
       if (a1.getName() == null && a2.getName() == null) {
         return 0;

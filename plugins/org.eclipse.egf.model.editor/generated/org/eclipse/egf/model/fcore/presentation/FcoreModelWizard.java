@@ -319,9 +319,9 @@ public class FcoreModelWizard extends Wizard implements INewWizard {
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * 
-   * @generated
+   * @generated NOT
    */
-  public class FcoreModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
+  public static class FcoreModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
     /**
      * Pass in the selection.
      * <!-- begin-user-doc -->
