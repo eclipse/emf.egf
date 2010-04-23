@@ -49,16 +49,16 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
   }
 
   @Override
-  public void start(BundleContext context_p) throws Exception {
-    super.start(context_p);
+  public void start(BundleContext context) throws Exception {
+    super.start(context);
     __plugin = this;
   }
 
   @Override
-  public void stop(BundleContext context_p) throws Exception {
-    __egfLoggers = null;
+  public void stop(BundleContext context) throws Exception {
     __plugin = null;
-    super.stop(context_p);
+    __egfLoggers = null;
+    super.stop(context);
   }
 
   /**
@@ -69,7 +69,8 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
   public static List<IEGFLogger> getEGFLoggers() {
     // Lazy loading. Search for the implementation.
     if (__egfLoggers == null) {
-      __egfLoggers = new ArrayList<IEGFLogger>();
+      // Build loggers list
+      List<IEGFLogger> egfLoggers = new ArrayList<IEGFLogger>();
       // Get EGF logger extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(EGFCommonPlugin.getDefault().getPluginID(), EXTENSION_POINT_SHORT_ID_LOGGER)) {
         Object object = null;
@@ -91,9 +92,11 @@ public class EGFCommonPlugin extends EGFAbstractPlugin {
         }
         IEGFLogger logger = ((IEGFLoggerFactory) object).getLogger();
         if (logger != null) {
-          __egfLoggers.add(logger);
+          egfLoggers.add(logger);
         }
       }
+      // Set builded loggers list
+      __egfLoggers = egfLoggers;
     }
     return __egfLoggers;
   }
