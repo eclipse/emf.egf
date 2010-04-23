@@ -55,17 +55,17 @@ import org.eclipse.ui.dialogs.PatternFilter;
  * @author Thomas Guiu
  * 
  */
-public class ListBuilderDialog<E> extends Dialog {
+public class ListBuilderDialog<E, S> extends Dialog {
     protected final IBaseLabelProvider labelProvider;
     protected final IStructuredContentProvider contentProvider;
     protected String displayName;
     protected EList<E> result;
     protected boolean multiLine;
 
-    private List<?> possibleValues;
+    private List<S> possibleValues;
     private final List<E> currentValues = new ArrayList<E>();
 
-    public ListBuilderDialog(Shell parent, IStructuredContentProvider contentProvider, IBaseLabelProvider labelProvider, List<E> possibleValues, List<E> initialValues) {
+    public ListBuilderDialog(Shell parent, IStructuredContentProvider contentProvider, IBaseLabelProvider labelProvider, List<S> possibleValues, List<E> initialValues) {
         super(parent);
         this.contentProvider = contentProvider;
         this.labelProvider = labelProvider;
