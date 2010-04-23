@@ -22,13 +22,6 @@ public class Activator extends EGFAbstractUIPlugin {
   private static Activator _plugin;
 
   /**
-   * The constructor
-   */
-  public Activator() {
-    // Nothing to do
-  }
-
-  /**
    * (non-Javadoc)
    * 
    * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)

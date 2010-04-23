@@ -18,45 +18,38 @@ import org.osgi.framework.BundleContext;
  */
 public class Activator extends EGFAbstractUIPlugin {
 
-    // The shared instance
-    private static Activator _plugin;
+  // The shared instance
+  private static Activator _plugin;
 
-    /**
-     * The constructor
-     */
-    public Activator() {
-        // Nothing to do
-    }
+  /**
+   * (non-Javadoc)
+   * 
+   * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+   */
+  @Override
+  public void start(BundleContext context) throws Exception {
+    super.start(context);
+    _plugin = this;
+  }
 
-    /**
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-     */
-    @Override
-    public void start(BundleContext context) throws Exception {
-        super.start(context);
-        _plugin = this;
-    }
+  /**
+   * (non-Javadoc)
+   * 
+   * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+   */
+  @Override
+  public void stop(BundleContext context) throws Exception {
+    _plugin = null;
+    super.stop(context);
+  }
 
-    /**
-     * (non-Javadoc)
-     * 
-     * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-     */
-    @Override
-    public void stop(BundleContext context) throws Exception {
-        _plugin = null;
-        super.stop(context);
-    }
-
-    /**
-     * Returns the shared instance
-     * 
-     * @return the shared instance
-     */
-    public static Activator getDefault() {
-        return _plugin;
-    }
+  /**
+   * Returns the shared instance
+   * 
+   * @return the shared instance
+   */
+  public static Activator getDefault() {
+    return _plugin;
+  }
 
 }
