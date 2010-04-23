@@ -31,11 +31,12 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.egf.common.EGFCommonPlugin;
 import org.eclipse.egf.common.constant.EGFCommonConstants;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 
 /**
- * @author brocard
+ * @author fournier
  */
 public class FileHelper {
 
@@ -46,7 +47,7 @@ public class FileHelper {
   /**
    * Get file full url from relative one.
    * 
-   * @param fileRelativePath_p
+   * @param fileRelativePath
    *          File path relative to workspace.<br>
    *          It <b>must</b> start with <i>pluginId</i>. It is also recommended
    *          that both plug-in id and plug-in project names are the same.<br>
@@ -62,27 +63,25 @@ public class FileHelper {
    *          is absolute in the file system.
    * @return
    */
-  public static URL getFileFullUrl(String fileRelativePath_p) {
+  public static URL getFileFullUrl(String fileRelativePath) {
     // Get the URI for given relative path.
-    return getFileFullUrl(getFileFullUri(fileRelativePath_p));
+    return getFileFullUrl(getFileFullUri(fileRelativePath));
   }
 
   /**
    * Get file full url from its full uri.<br>
    * See {@link #getFileFullUri(String)} method.
    * 
-   * @param fileFullUri_p
+   * @param fileFullUri
    * @return
    */
-  public static URL getFileFullUrl(URI fileFullUri_p) {
+  public static URL getFileFullUrl(URI fileFullUri) {
     URL result = null;
     // Resolve url from returned uri.
     try {
-      result = FileLocator.resolve(new URL(fileFullUri_p.toString()));
+      result = FileLocator.resolve(new URL(fileFullUri.toString()));
     } catch (Exception e) {
-      StringBuilder msg = new StringBuilder("FileHelper.getFileFullPath(..) _ "); //$NON-NLS-1$
-      msg.append("Unable to resolve the url for ").append(fileFullUri_p.toString()); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().logError(msg.toString(), e);
+      EGFCommonPlugin.getDefault().logError(NLS.bind("FileHelper.getFileFullPath(..) _ Unable to resolve the url for ''{0}''", fileFullUri.toString()), e); //$NON-NLS-1$
     }
     return result;
   }
@@ -93,7 +92,7 @@ public class FileHelper {
    * The returned uri starts with either 'platform:/plug-in/' or
    * 'platform:/resource/'.
    * 
-   * @param fileRelativePath_p
+   * @param fileRelativePath
    *          File path relative to workspace.<br>
    *          It <b>must</b> start with <i>pluginId</i>. It is also recommended
    *          that both plug-in id and plug-in project names are the same.<br>
@@ -105,21 +104,21 @@ public class FileHelper {
    *          <i>model/example.ecore</i> file in its project.
    * @return an {@link URI} not resolved against the eclipse platform.<br>
    */
-  public static URI getFileFullUri(String fileRelativePath_p) {
+  public static URI getFileFullUri(String fileRelativePath) {
     URI fileUri = null;
     // Precondition.
-    if (fileRelativePath_p == null) {
+    if (fileRelativePath == null) {
       return fileUri;
     }
     // Find plug-in model base from relative first segment.
-    IPath path = new Path(fileRelativePath_p);
+    IPath path = new Path(fileRelativePath);
     IPluginModelBase modelBase = PluginRegistry.findModel(path.segment(0));
     // Get underlying resource.
     IResource resource = modelBase != null ? modelBase.getUnderlyingResource() : null;
     if (resource != null) { // Resource found, the file is in the workspace.
-      fileUri = URI.createPlatformResourceURI(fileRelativePath_p, true);
+      fileUri = URI.createPlatformResourceURI(fileRelativePath, true);
     } else { // Resource not found, the file is deployed elsewhere.
-      fileUri = URI.createPlatformPluginURI(fileRelativePath_p, true);
+      fileUri = URI.createPlatformPluginURI(fileRelativePath, true);
     }
     return fileUri;
   }
@@ -127,36 +126,32 @@ public class FileHelper {
   /**
    * Convert package name to a correct java folder path.
    * 
-   * @param packageName_p
+   * @param packageName
    * @return
    */
-  public static String convertPackageNameToFolderPath(String packageName_p) {
-    return packageName_p != null ? packageName_p.replace(EGFCommonConstants.DOT_CHARACTER, EGFCommonConstants.SLASH_CHARACTER) : null;
+  public static String convertPackageNameToFolderPath(String packageName) {
+    return packageName != null ? packageName.replace(EGFCommonConstants.DOT_CHARACTER, EGFCommonConstants.SLASH_CHARACTER) : null;
   }
 
   /**
    * Read given input stream as an array of bytes.
    * 
-   * @param inputStream_p
+   * @param inputStream
    * @return a not null array.
    */
-  public static byte[] readFile(InputStream inputStream_p) {
+  public static byte[] readFile(InputStream inputStream) {
     byte[] data = null;
     try {
-      data = new byte[inputStream_p.available()];
-      inputStream_p.read(data);
+      data = new byte[inputStream.available()];
+      inputStream.read(data);
     } catch (Exception e) {
-      StringBuilder msg = new StringBuilder("FileHelper.readFile(..) _ "); //$NON-NLS-1$
-      msg.append("Failed to read the input stream ! "); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().logError(msg.toString(), e);
+      EGFCommonPlugin.getDefault().logError("FileHelper.readFile(..) _ Failed to read the input stream !", e); //$NON-NLS-1$
     } finally {
-      if (inputStream_p != null) {
+      if (inputStream != null) {
         try {
-          inputStream_p.close();
+          inputStream.close();
         } catch (IOException ioe) {
-          StringBuilder msg = new StringBuilder("FileHelper.readFile(..) _ "); //$NON-NLS-1$
-          msg.append("Failed to close input stream ! "); //$NON-NLS-1$
-          EGFCommonPlugin.getDefault().logError(msg.toString(), ioe);
+          EGFCommonPlugin.getDefault().logError("FileHelper.readFile(..) _ Failed to close input stream !", ioe); //$NON-NLS-1$
         }
       }
     }
@@ -167,35 +162,33 @@ public class FileHelper {
   /**
    * Read file as a string.
    * 
-   * @param filePath_p
+   * @param filePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
    * @return If an error occurred {@link EGFCommonConstants#EMPTY_STRING} is
    *         returned.
    */
-  public static String readFile(String filePath_p) {
-    byte[] rawContent = readRawFile(filePath_p);
+  public static String readFile(String filePath) {
+    byte[] rawContent = readRawFile(filePath);
     return rawContent.length == 0 ? EGFCommonConstants.EMPTY_STRING : new String(rawContent);
   }
 
   /**
    * Get file as a stream.
    * 
-   * @param filePath_p
+   * @param filePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
    * @return If an error occurred null is returned.
    */
-  public static InputStream readFileAsStream(String filePath_p) {
+  public static InputStream readFileAsStream(String filePath) {
     InputStream result = null;
     // Get input stream and copy its content to resulting string.
-    URL fileURL = getFileFullUrl(filePath_p);
+    URL fileURL = getFileFullUrl(filePath);
     try {
       result = fileURL.openStream();
     } catch (Exception e) {
-      StringBuilder msg = new StringBuilder("FileHelper.readFileAsStream(..) _ "); //$NON-NLS-1$
-      msg.append("Failed to load ").append(filePath_p); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().logError(msg.toString(), e);
+      EGFCommonPlugin.getDefault().logError(NLS.bind("FileHelper.readFileAsStream(..) _ Failed to load ''{0}''", filePath), e); //$NON-NLS-1$
     }
     return result;
   }
@@ -203,15 +196,15 @@ public class FileHelper {
   /**
    * Read file as an array of bytes.
    * 
-   * @param filePath_p
+   * @param filePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
    * @return a not null array.
    */
-  public static byte[] readRawFile(String filePath_p) {
+  public static byte[] readRawFile(String filePath) {
     byte[] result = null;
     // Get stream from file.
-    InputStream inputStream = readFileAsStream(filePath_p);
+    InputStream inputStream = readFileAsStream(filePath);
     // Ensure the input stream got from the file path is not null.
     if (inputStream != null) {
       result = readFile(inputStream);
@@ -222,63 +215,60 @@ public class FileHelper {
   /**
    * Copy given source file content in given target file.
    * 
-   * @param sourceFileRelativePath_p
+   * @param sourceFileRelativePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @param targetFileRelativePath_p
+   * @param targetFileRelativePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
    */
-  public static void copyFile(String sourceFileRelativePath_p, String targetFileRelativePath_p) {
-    writeFile(targetFileRelativePath_p, true, readRawFile(sourceFileRelativePath_p));
+  public static void copyFile(String sourceFileRelativePath, String targetFileRelativePath) {
+    writeFile(targetFileRelativePath, true, readRawFile(sourceFileRelativePath));
   }
 
   /**
    * Write given string contents at specified path.
    * 
-   * @param filePath_p
+   * @param filePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @param ensureFolders_p
+   * @param ensureFolders
    *          Make sure all parent folders exist by creating all necessary ones.
-   * @param contents_p
+   * @param contents
    *          Contents that should be written to pointed file.
    * @return
    */
-  public static boolean writeFile(String filePath_p, boolean ensureFolders_p, String contents_p) {
-    return writeFile(filePath_p, ensureFolders_p, contents_p.getBytes());
+  public static boolean writeFile(String filePath, boolean ensureFolders, String contents) {
+    return writeFile(filePath, ensureFolders, contents.getBytes());
   }
 
   /**
    * Write given contents of bytes at specified path.
    * 
-   * @param filePath_p
+   * @param filePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @param ensureFolders_p
+   * @param ensureFolders
    *          Make sure all parent folders exist by creating all necessary ones.
-   * @param contents_p
+   * @param contents
    *          Contents that should be written to pointed file.
    * @return
    */
-  public static boolean writeFile(String filePath_p, boolean ensureFolders_p, byte[] contents_p) {
+  public static boolean writeFile(String filePath, boolean ensureFolders, byte[] contents) {
     FileChannel channel = null;
     try {
       // Get file full path from its relative one.
-      String fileFullPath = getFileFullUrl(filePath_p).getFile();
+      String fileFullPath = getFileFullUrl(filePath).getFile();
       // Should path be enforced ?
-      if (ensureFolders_p) {
+      if (ensureFolders) {
         ensurePathAvailability(fileFullPath);
       }
       // Try and open the resulting file.
       channel = new FileOutputStream(fileFullPath).getChannel();
       // Write contents.
-      channel.write(ByteBuffer.wrap(contents_p));
+      channel.write(ByteBuffer.wrap(contents));
     } catch (Exception e) {
-      StringBuilder msg = new StringBuilder("FileHelper.writeFile(..) _ "); //$NON-NLS-1$
-      msg.append("Failed to open channel in write mode for "); //$NON-NLS-1$
-      msg.append(filePath_p).append(" !"); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().logError(msg.toString(), e);
+      EGFCommonPlugin.getDefault().logError(NLS.bind("FileHelper.writeFile(..) _ Failed to open channel in write mode for ''{0}'' !", filePath), e); //$NON-NLS-1$
       return false;
     } finally {
       if (channel != null && channel.isOpen()) {
@@ -286,10 +276,7 @@ public class FileHelper {
           // Close the channel.
           channel.close();
         } catch (IOException e) {
-          StringBuilder msg = new StringBuilder("FileHelper.writeFile(..) _ "); //$NON-NLS-1$
-          msg.append("Failed to close opened channel in write mode ! "); //$NON-NLS-1$
-          msg.append(filePath_p).append(" may no longer be usable."); //$NON-NLS-1$
-          EGFCommonPlugin.getDefault().logError(msg.toString(), e);
+          EGFCommonPlugin.getDefault().logError(NLS.bind("FileHelper.writeFile(..) _ Failed to close opened channel in write mode ! ''{0}'' may no longer be usable.", filePath), e); //$NON-NLS-1$
         }
       }
     }
@@ -299,21 +286,21 @@ public class FileHelper {
   /**
    * Rename file from source file relative path to destination relative path.
    * 
-   * @param sourceFileRelativePath_p
+   * @param sourceFileRelativePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @param destinationFileRelativePath_p
+   * @param destinationFileRelativePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
    * @return
    */
-  public static boolean renameFile(String sourceFileRelativePath_p, String destinationFileRelativePath_p) {
+  public static boolean renameFile(String sourceFileRelativePath, String destinationFileRelativePath) {
     // Preconditions.
-    if (sourceFileRelativePath_p == null || destinationFileRelativePath_p == null) {
+    if (sourceFileRelativePath == null || destinationFileRelativePath == null) {
       return false;
     }
-    IFile sourceFile = getPlatformFile(sourceFileRelativePath_p);
-    IPath destinationPath = getPlatformFile(destinationFileRelativePath_p).getFullPath();
+    IFile sourceFile = getPlatformFile(sourceFileRelativePath);
+    IPath destinationPath = getPlatformFile(destinationFileRelativePath).getFullPath();
     return moveResource(sourceFile, destinationPath);
   }
 
@@ -321,41 +308,38 @@ public class FileHelper {
    * Rename folder from source folder relative path to destination relative
    * path.
    * 
-   * @param sourceFolderRelativePath_p
+   * @param sourceFolderRelativePath
    *          Folder path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
-   * @param destinationFolderRelativePath_p
+   * @param destinationFolderRelativePath
    *          Folder path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
    * @return
    */
-  public static boolean renameFolder(String sourceFolderRelativePath_p, String destinationFolderRelativePath_p) {
+  public static boolean renameFolder(String sourceFolderRelativePath, String destinationFolderRelativePath) {
     // Preconditions.
-    if (sourceFolderRelativePath_p == null || destinationFolderRelativePath_p == null) {
+    if (sourceFolderRelativePath == null || destinationFolderRelativePath == null) {
       return false;
     }
-    IFolder sourceFolder = getPlatformFolder(sourceFolderRelativePath_p);
-    IPath destinationPath = getPlatformFolder(destinationFolderRelativePath_p).getFullPath();
+    IFolder sourceFolder = getPlatformFolder(sourceFolderRelativePath);
+    IPath destinationPath = getPlatformFolder(destinationFolderRelativePath).getFullPath();
     return moveResource(sourceFolder, destinationPath);
   }
 
   /**
    * Move resource to given destination path.
    * 
-   * @param resource_p
-   * @param destinationPath_p
+   * @param resource
+   * @param destinationPath
    * @return true if move occurred with no exception, false otherwise.
    */
-  public static boolean moveResource(IResource resource_p, IPath destinationPath_p) {
+  public static boolean moveResource(IResource resource, IPath destinationPath) {
     boolean result = false;
     try {
-      resource_p.move(destinationPath_p, true, new NullProgressMonitor());
+      resource.move(destinationPath, true, new NullProgressMonitor());
       result = true;
     } catch (Exception e) {
-      StringBuilder msg = new StringBuilder("FileHelper.moveResource(..) _ "); //$NON-NLS-1$
-      msg.append("Could not move ").append(resource_p.getFullPath()); //$NON-NLS-1$
-      msg.append(" to ").append(destinationPath_p); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().logError(msg.toString(), e);
+      EGFCommonPlugin.getDefault().logError(NLS.bind("FileHelper.moveResource(..) _ Could not move ''{0}'' to ''{1}''", resource.getFullPath(), destinationPath), e); //$NON-NLS-1$
     }
     return result;
   }
@@ -363,13 +347,13 @@ public class FileHelper {
   /**
    * Is given file relative path pointing to an existing file ?
    * 
-   * @param fileRelativePath_p
+   * @param fileRelativePath
    *          File path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
    * @return
    */
-  public static boolean exists(String fileRelativePath_p) {
-    IFile file = getPlatformFile(fileRelativePath_p);
+  public static boolean exists(String fileRelativePath) {
+    IFile file = getPlatformFile(fileRelativePath);
     return file != null ? file.exists() : false;
   }
 
@@ -377,18 +361,19 @@ public class FileHelper {
    * Make sure that given path is safe to use, ie ensure that all parent folders
    * exist.
    * 
-   * @param fileFullPath_p
+   * @param fileFullPath
    */
-  public static void ensurePathAvailability(String fileFullPath_p) {
+  public static boolean ensurePathAvailability(String fileFullPath) {
     // Get rid of file extension and file name, for this has no meaning in the
     // parent folders chain.
-    IPath parentFolderPath = new Path(fileFullPath_p).removeFileExtension().removeLastSegments(1);
+    IPath parentFolderPath = new Path(fileFullPath).removeFileExtension().removeLastSegments(1);
     // If it still makes sense to create a folder, go for it.
     if (parentFolderPath.isEmpty() == false) {
       File parentFolder = parentFolderPath.toFile();
       // Create the chain of parent folders.
-      parentFolder.mkdirs();
+      return parentFolder.mkdirs();
     }
+    return true;
   }
 
   /**
@@ -398,18 +383,18 @@ public class FileHelper {
    * @param javaProject_p
    * @param resourcePath_p
    */
-  public static boolean deleteResource(IFolder root_p, IResource resource_p, boolean deleteParent_p) {
-    if (resource_p == null) {
+  public static boolean deleteResource(IFolder root, IResource resource, boolean deleteParent) {
+    if (resource == null) {
       return false;
     }
     // Delete found resource member
-    if (FileHelper.deleteResource(resource_p) == false) {
+    if (FileHelper.deleteResource(resource) == false) {
       return false;
     }
     // Delete children container if they are empty
-    if (root_p != null && deleteParent_p) {
-      IContainer container = resource_p.getParent();
-      while (container.equals(root_p) == false) {
+    if (root != null && deleteParent) {
+      IContainer container = resource.getParent();
+      while (container.equals(root) == false) {
         try {
           IResource[] members = container.members();
           if (members == null || members.length == 0) {
@@ -432,13 +417,13 @@ public class FileHelper {
   /**
    * Delete given relative resource in the workspace.
    * 
-   * @param fileRelativePath_p
+   * @param fileRelativePath
    */
-  public static boolean deleteFile(String fileRelativePath_p) {
-    if (fileRelativePath_p == null || fileRelativePath_p.trim().length() == 0) {
+  public static boolean deleteFile(String fileRelativePath) {
+    if (fileRelativePath == null || fileRelativePath.trim().length() == 0) {
       return false;
     }
-    return deleteResource(getPlatformFile(fileRelativePath_p));
+    return deleteResource(getPlatformFile(fileRelativePath));
   }
 
   /**
@@ -447,29 +432,27 @@ public class FileHelper {
    * @param workspaceRelativePath_p
    * @return true if successfully deleted, false otherwise.
    */
-  public static boolean deleteFolder(String folderRelativePath_p) {
-    if (folderRelativePath_p == null || folderRelativePath_p.trim().length() == 0) {
+  public static boolean deleteFolder(String folderRelativePath) {
+    if (folderRelativePath == null || folderRelativePath.trim().length() == 0) {
       return false;
     }
-    return deleteResource(getPlatformFolder(folderRelativePath_p));
+    return deleteResource(getPlatformFolder(folderRelativePath));
   }
 
   /**
    * Delete given relative resource in the workspace.
    * 
-   * @param resource_p
+   * @param resource
    */
-  public static boolean deleteResource(IResource resource_p) {
-    if (resource_p == null || resource_p.exists() == false) {
+  public static boolean deleteResource(IResource resource) {
+    if (resource == null || resource.exists() == false) {
       return false;
     }
     try {
-      resource_p.delete(true, new NullProgressMonitor());
+      resource.delete(true, new NullProgressMonitor());
       return true;
     } catch (CoreException ce) {
-      StringBuilder msg = new StringBuilder("FileHelper.deleteFile(..) _ "); //$NON-NLS-1$
-      msg.append("Unable to delete file:").append(resource_p.getFullPath()); //$NON-NLS-1$
-      EGFCommonPlugin.getDefault().logError(msg.toString(), ce);
+      EGFCommonPlugin.getDefault().logError(NLS.bind("FileHelper.deleteFile(..) _ Unable to delete file ''{0}''", resource.getFullPath()), ce); //$NON-NLS-1$
     }
     return false;
   }
@@ -477,16 +460,16 @@ public class FileHelper {
   /**
    * Get platform IResource as an {@link IResource} from its relative IPath.
    * 
-   * @param path_p
+   * @param path
    *          IPath relative to workspace.<br>
    * @return
    */
-  public static IResource getPlatformResource(IPath path_p) {
+  public static IResource getPlatformResource(IPath path) {
     // Precondition.
-    if (path_p == null) {
+    if (path == null) {
       return null;
     }
-    return ResourcesPlugin.getWorkspace().getRoot().findMember(path_p);
+    return ResourcesPlugin.getWorkspace().getRoot().findMember(path);
   }
 
   /**
@@ -508,17 +491,17 @@ public class FileHelper {
   /**
    * Get platform folder as an {@link IResource} from its relative path.
    * 
-   * @param folderRelativePath_p
+   * @param folderRelativePath
    *          Folder path relative to the plug-in, plug-in id included.<br>
    *          See {@link #getFileFullUrl(String)} documentation.
    * @return
    */
-  public static IFolder getPlatformFolder(String folderRelativePath_p) {
+  public static IFolder getPlatformFolder(String folderRelativePath) {
     // Precondition.
-    if (folderRelativePath_p == null) {
+    if (folderRelativePath == null) {
       return null;
     }
-    return ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(folderRelativePath_p));
+    return ResourcesPlugin.getWorkspace().getRoot().getFolder(new Path(folderRelativePath));
   }
 
   /**
@@ -532,15 +515,15 @@ public class FileHelper {
    * the file extension portion is the empty string.<br>
    * </p>
    * 
-   * @param filePath_p
+   * @param filePath
    * @return the file extension or <code>null</code>
    */
-  public static String getFileExtension(String filePath_p) {
+  public static String getFileExtension(String filePath) {
     // Precondition.
-    if (filePath_p == null) {
+    if (filePath == null) {
       return null;
     }
-    return new Path(filePath_p).getFileExtension();
+    return new Path(filePath).getFileExtension();
   }
 
 }

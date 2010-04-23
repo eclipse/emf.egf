@@ -65,7 +65,7 @@ public class EMFHelper {
         uri = converter.normalize(uri);
       }
     }
-    if (uri.isPlatformResource()) {
+    if (uri != null && uri.isPlatformResource()) {
       return ResourcesPlugin.getWorkspace().getRoot().findMember(uri.toPlatformString(true));
     }
     return null;

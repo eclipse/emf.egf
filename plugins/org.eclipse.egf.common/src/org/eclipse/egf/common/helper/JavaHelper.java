@@ -15,6 +15,8 @@ package org.eclipse.egf.common.helper;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.security.AccessController;
+import java.security.PrivilegedAction;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -94,8 +96,26 @@ public class JavaHelper {
   }
 
   public static ClassLoader getProjectClassLoader(IJavaProject project) throws CoreException {
-    List<URL> urls = getProjectURLs(project, new HashSet<IJavaProject>());
-    return new URLClassLoader(urls.toArray(new URL[urls.size()]), JavaHelper.class.getClassLoader());
+    final List<URL> urls = getProjectURLs(project, new HashSet<IJavaProject>());
+    return AccessController.doPrivileged(new PrivilegedAction<URLClassLoader>() {
+      public URLClassLoader run() {
+        return new URLClassLoader(urls.toArray(new URL[urls.size()]), JavaHelper.class.getClassLoader()) {
+          @Override
+          public final synchronized Class<?> loadClass(String name, boolean resolve) throws ClassNotFoundException {
+            // First check if we have permission to access the package. This
+            // should go away once we've added support for exported packages.
+            SecurityManager sm = System.getSecurityManager();
+            if (sm != null) {
+              int i = name.lastIndexOf('.');
+              if (i != -1) {
+                sm.checkPackageAccess(name.substring(0, i));
+              }
+            }
+            return super.loadClass(name, resolve);
+          }
+        };
+      }
+    });
   }
 
   public static List<URL> getProjectURLs(IJavaProject javaProject, Set<IJavaProject> visited) throws CoreException {
