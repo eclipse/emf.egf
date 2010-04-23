@@ -125,8 +125,8 @@ public abstract class CopyQualifiedNameAction extends Action implements IObjectA
         clipboard.dispose();
       }
 
-    } catch (Exception e) {
-      EGFCommonUIPlugin.getDefault().logError(new String("CopyQualifiedNameAction.run(..) _"), e); //$NON-NLS-1$
+    } catch (Throwable t) {
+      EGFCommonUIPlugin.getDefault().logError("CopyQualifiedNameAction.run(..) _", t); //$NON-NLS-1$
     }
 
   }

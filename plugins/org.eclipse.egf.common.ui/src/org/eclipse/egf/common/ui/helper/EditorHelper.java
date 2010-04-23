@@ -13,6 +13,7 @@ package org.eclipse.egf.common.ui.helper;
 
 import java.lang.reflect.Method;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -98,11 +99,13 @@ public class EditorHelper {
     if (resources.isEmpty()) {
       return;
     }
-    for (Resource resource : resources.keySet()) {
+    for (Iterator<Map.Entry<Resource, List<EObject>>> it = resources.entrySet().iterator(); it.hasNext();) {
       try {
+        Map.Entry<Resource, List<EObject>> entry = it.next();
         // Try to use a URIConverter to normalize such URI
         // if we have a platform:/plugin/ we need a platform:/resource/ if any
         // to have a chance to use a FileEditorInput rather than an URIEditorInput
+        Resource resource = entry.getKey();
         URI uri = resource.getURI();
         if (uri != null && resource.getResourceSet() != null) {
           URIConverter converter = resource.getResourceSet().getURIConverter();
@@ -112,7 +115,7 @@ public class EditorHelper {
         }
         IEditorPart editorPart = openEditor(uri);
         if (editorPart != null) {
-          setSelectionToViewer(editorPart, resources.get(resource));
+          setSelectionToViewer(editorPart, entry.getValue());
         }
       } catch (Throwable t) {
         ThrowableHandler.handleThrowable(EGFCommonUIPlugin.getDefault().getPluginID(), t);
