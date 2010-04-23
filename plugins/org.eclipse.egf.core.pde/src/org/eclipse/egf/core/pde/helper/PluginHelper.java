@@ -10,11 +10,6 @@
  */
 package org.eclipse.egf.core.pde.helper;
 
-import java.io.File;
-import java.net.URL;
-import java.util.HashSet;
-import java.util.Set;
-
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
@@ -32,11 +27,6 @@ import org.eclipse.pde.internal.core.build.WorkspaceBuildModel;
 import org.eclipse.pde.internal.core.plugin.WorkspaceFragmentModel;
 import org.eclipse.pde.internal.core.plugin.WorkspacePluginModel;
 import org.eclipse.pde.internal.core.plugin.WorkspacePluginModelBase;
-import org.eclipse.pde.internal.core.target.provisional.IResolvedBundle;
-import org.eclipse.pde.internal.core.target.provisional.ITargetDefinition;
-import org.eclipse.pde.internal.core.target.provisional.ITargetHandle;
-import org.eclipse.pde.internal.core.target.provisional.ITargetPlatformService;
-import org.osgi.framework.ServiceReference;
 
 /**
  * Implement a plug-in changes command runner.
@@ -58,64 +48,6 @@ public class PluginHelper {
    * 3.2 level compliance of plugin.xml
    */
   private static final String PLUGIN_VERSION_3_2 = "3.2"; //$NON-NLS-1$
-
-  /**
-   * Returns the target platform service or <code>null</code> if none
-   * 
-   * @return target platform service
-   */
-  public static ITargetPlatformService getTargetService() throws CoreException {
-    ServiceReference reference = EGFPDEPlugin.getDefault().getBundle().getBundleContext().getServiceReference(ITargetPlatformService.class.getName());
-    if (reference == null) {
-      throw new CoreException(EGFPDEPlugin.getDefault().newStatus(IStatus.ERROR, "PluginHelper.getTargetService(..).", null)); //$NON-NLS-1$
-    }
-    return (ITargetPlatformService) EGFPDEPlugin.getDefault().getBundle().getBundleContext().getService(reference);
-  }
-
-  public static ITargetHandle[] getTargetHandles() throws CoreException {
-    ITargetPlatformService service = getTargetService();
-    if (service != null) {
-      return service.getTargets(null);
-    }
-    return null;
-  }
-
-  /**
-   * Returns a handle to the target definition that corresponds to the active target platform
-   * or <code>null</code> if none.
-   * 
-   * @return handle to workspace target platform or <code>null</code> if none
-   * @exception CoreException
-   *              if an error occurs generating the handle
-   */
-  public static ITargetDefinition getWorkspaceTargetHandle() throws CoreException {
-    ITargetPlatformService service = getTargetService();
-    ITargetHandle handle = service.getWorkspaceTargetHandle();
-    if (handle != null) {
-      return handle.getTargetDefinition();
-    }
-    return null;
-  }
-
-  /**
-   * Retrieves all bundles (source and code) in the given target definition
-   * returning them as a set of URLs.
-   * 
-   * @param target
-   *          target definition
-   * @return all bundle URLs
-   */
-  public static Set<URL> getAllBundleURLs(ITargetDefinition target) throws Exception {
-    if (target.isResolved() == false) {
-      target.resolve(null);
-    }
-    IResolvedBundle[] bundles = target.getBundles();
-    Set<URL> urls = new HashSet<URL>(bundles.length);
-    for (int i = 0; i < bundles.length; i++) {
-      urls.add(new File(bundles[i].getBundleInfo().getLocation()).toURI().toURL());
-    }
-    return urls;
-  }
 
   /**
    * Update the build.properties file to add the plugin.xml file in

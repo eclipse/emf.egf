@@ -35,7 +35,7 @@ import org.osgi.framework.BundleContext;
  */
 public class EGFPlatformPlugin extends EGFAbstractPlugin {
 
-  private static EGFPlatformPlugin _plugin;
+  private static EGFPlatformPlugin __plugin;
 
   public static IPlatformManager getPlatformManager() {
     return PlatformManager.getInstance();
@@ -48,12 +48,6 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
   private static Map<String, IConfigurationElement> __managers;
 
   /**
-   * EGF Registered Interface.
-   * 
-   */
-  private static Map<String, Object> __interfaces;
-
-  /**
    * Get Platforms.
    * 
    * @return an empty map if none could be found.
@@ -61,8 +55,9 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
   public Map<String, IConfigurationElement> getPlatform() {
     // Lazy loading.
     if (__managers == null) {
-      __managers = new HashMap<String, IConfigurationElement>();
-      __interfaces = new HashMap<String, Object>();
+      // Build managers map
+      Map<String, IConfigurationElement> managers = new HashMap<String, IConfigurationElement>();
+      Map<String, Class<? extends IPlatformExtensionPoint>> interfaces = new HashMap<String, Class<? extends IPlatformExtensionPoint>>();
       // Get EGF Platform extension points.
       for (IConfigurationElement configurationElement : ExtensionPointHelper.getConfigurationElements(getDefault().getBundle().getSymbolicName(), IManagerConstants.MANAGER_EXTENSION_POINT_ID)) {
         // Extension retrieval
@@ -73,24 +68,24 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
         }
         extension = extension.trim();
         // Check
-        if (__managers.containsKey(extension)) {
+        if (managers.containsKey(extension)) {
           getDefault().logError(NLS.bind("Duplicate Extension {0}", extension)); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
           continue;
         }
         // Check factory
-        Object object = null;
+        Object factory = null;
         try {
-          object = ExtensionPointHelper.createInstance(configurationElement, IManagerConstants.MANAGER_ATT_CLASS);
+          factory = ExtensionPointHelper.createInstance(configurationElement, IManagerConstants.MANAGER_ATT_CLASS);
         } catch (CoreException ce) {
           getDefault().logError(ce);
         }
-        if (object == null) {
+        if (factory == null) {
           continue;
         }
-        if (object instanceof IPlatformExtensionPointFactory<?> == false) {
-          getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$
+        if (factory instanceof IPlatformExtensionPointFactory<?> == false) {
+          getDefault().logError(NLS.bind("Wrong Class {0}", factory.getClass().getName())); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Class should be an implementation of ''{0}''.", IPlatformExtensionPointFactory.class.getName()), 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
@@ -98,24 +93,26 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
           continue;
         }
         // Fetch Returned Types from Class
-        Class<?> key = fetchReturnedTypeFromFactory(object.getClass());
-        if (key == null) {
-          getDefault().logError(NLS.bind("Wrong Class {0}", object.getClass().getName())); //$NON-NLS-1$          
+        Class<? extends IPlatformExtensionPoint> clazz = fetchReturnedTypeFromFactory(factory.getClass());
+        if (clazz == null) {
+          getDefault().logError(NLS.bind("Wrong Class {0}", factory.getClass().getName())); //$NON-NLS-1$          
           getDefault().logInfo("Unable to find ''createExtensionPoint(IPlatformBundle platformBundle, IPluginElement pluginElement)'' method."); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
           continue;
         }
-        if (__interfaces.get(key) != null) {
-          getDefault().logError(NLS.bind("Duplicate Interface {0}", key.getClass().getName())); //$NON-NLS-1$
+        if (interfaces.get(factory.getClass().getName()) != null) {
+          getDefault().logError(NLS.bind("Duplicate Factory {0}", factory.getClass().getName())); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Extension-Point ''{0}''", configurationElement.getName()), 1); //$NON-NLS-1$
           getDefault().logInfo(NLS.bind("Bundle ''{0}''", ExtensionPointHelper.getNamespace(configurationElement)), 1); //$NON-NLS-1$
           continue;
         }
         // Register
-        __managers.put(extension, configurationElement);
-        __interfaces.put(object.getClass().getName(), key);
+        managers.put(extension, configurationElement);
+        interfaces.put(factory.getClass().getName(), clazz);
       }
+      // Assign static map
+      __managers = managers;
     }
     return __managers;
   }
@@ -162,7 +159,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
   @Override
   public void start(BundleContext context) throws Exception {
     super.start(context);
-    _plugin = this;
+    __plugin = this;
   }
 
   /**
@@ -171,12 +168,9 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
    */
   @Override
   public void stop(BundleContext context) throws Exception {
-    // Dispose PlatformManager
     PlatformManager.getInstance().dispose();
-    // Final steps
-    _plugin = null;
+    __plugin = null;
     __managers = null;
-    __interfaces = null;
     super.stop(context);
   }
 
@@ -186,7 +180,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
    * @return the shared instance
    */
   public static EGFPlatformPlugin getDefault() {
-    return _plugin;
+    return __plugin;
   }
 
 }

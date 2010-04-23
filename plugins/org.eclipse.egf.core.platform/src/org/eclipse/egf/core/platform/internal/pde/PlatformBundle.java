@@ -41,12 +41,12 @@ import org.osgi.framework.Bundle;
 
 public class PlatformBundle implements IPlatformBundle {
 
-  private static Map<Class<? extends IPlatformExtensionPoint>, IPlatformExtensionPointFactory<? extends IPlatformExtensionPoint>> _extensionPointFactories;
+  private static Map<Class<? extends IPlatformExtensionPoint>, IPlatformExtensionPointFactory<? extends IPlatformExtensionPoint>> __extensionPointFactories;
 
   @SuppressWarnings("unchecked")
   private static Map<Class<? extends IPlatformExtensionPoint>, IPlatformExtensionPointFactory<? extends IPlatformExtensionPoint>> getExtensionPointFactories() {
-    if (_extensionPointFactories == null) {
-      _extensionPointFactories = new HashMap<Class<? extends IPlatformExtensionPoint>, IPlatformExtensionPointFactory<? extends IPlatformExtensionPoint>>();
+    if (__extensionPointFactories == null) {
+      Map<Class<? extends IPlatformExtensionPoint>, IPlatformExtensionPointFactory<? extends IPlatformExtensionPoint>> extensionPointFactories = new HashMap<Class<? extends IPlatformExtensionPoint>, IPlatformExtensionPointFactory<? extends IPlatformExtensionPoint>>();
       for (String extensionPoint : EGFPlatformPlugin.getDefault().getPlatform().keySet()) {
         // Factory
         IPlatformExtensionPointFactory<?> clazz = null;
@@ -61,10 +61,11 @@ public class PlatformBundle implements IPlatformBundle {
         // Fetch Returned Types from Factory
         Class<?> key = EGFPlatformPlugin.fetchReturnedTypeFromFactory(((IPlatformExtensionPointFactory<?>) clazz).getClass());
         // Store it
-        _extensionPointFactories.put((Class<? extends IPlatformExtensionPoint>) key, (IPlatformExtensionPointFactory<?>) clazz);
+        extensionPointFactories.put((Class<? extends IPlatformExtensionPoint>) key, (IPlatformExtensionPointFactory<?>) clazz);
       }
+      __extensionPointFactories = extensionPointFactories;
     }
-    return _extensionPointFactories;
+    return __extensionPointFactories;
   }
 
   public static Set<Class<? extends IPlatformExtensionPoint>> getExtensionPointFactoriesKeys() {
@@ -88,6 +89,20 @@ public class PlatformBundle implements IPlatformBundle {
     Assert.isNotNull(BundleHelper.getBundleId(base));
     _base = base;
     _previousBundleId = BundleHelper.getBundleId(base);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#hashCode()
+   */
+  @Override
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((_base == null) ? 0 : _base.hashCode());
+    result = prime * result + ((_previousBundleId == null) ? 0 : _previousBundleId.hashCode());
+    return result;
   }
 
   @Override
@@ -212,7 +227,7 @@ public class PlatformBundle implements IPlatformBundle {
         return null;
       }
     } catch (Exception e) {
-      EGFPlatformPlugin.getDefault().logError(new String("PlatformPlugin.addPlatformExtensionPoint(..)"), e); //$NON-NLS-1$
+      EGFPlatformPlugin.getDefault().logError("PlatformPlugin.addPlatformExtensionPoint(..)", e); //$NON-NLS-1$
       return null;
     }
     return clazz.cast(extensionPoint);
@@ -231,7 +246,7 @@ public class PlatformBundle implements IPlatformBundle {
     if (clazz != null && getExtensionPointFactoriesKeys().contains(clazz)) {
       Map<String, Object> extensions = _extensions.get(clazz);
       if (extensions != null) {
-        extensionPoints.addAll(_extensions.get(clazz).values());
+        extensionPoints.addAll(extensions.values());
       }
     }
     return CollectionHelper.toArray(extensionPoints, clazz);

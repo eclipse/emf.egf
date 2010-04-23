@@ -158,7 +158,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
               }
             }
           } catch (Throwable t) {
-            EGFPDEPlugin.getDefault().logError(new String("FcoreResourceListener.resourceChanged(..) _ "), t); //$NON-NLS-1$
+            EGFPDEPlugin.getDefault().logError("FcoreResourceListener.resourceChanged(..) _ ", t); //$NON-NLS-1$
           }
           return true;
 
@@ -208,7 +208,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
       }
 
     } catch (CoreException ce) {
-      EGFPDEPlugin.getDefault().logError(new String("FcoreResourceListener.resourceChanged(..) _"), ce); //$NON-NLS-1$
+      EGFPDEPlugin.getDefault().logError("FcoreResourceListener.resourceChanged(..) _", ce); //$NON-NLS-1$
     }
 
   }

@@ -53,12 +53,12 @@ import org.eclipse.pde.internal.core.PluginModelDelta;
  */
 public final class PlatformManager implements IPlatformManager, IPluginModelListener, IExtensionDeltaListener {
 
-  private static Map<String, Class<? extends IPlatformExtensionPoint>> _extensionPoints;
+  private static volatile Map<String, Class<? extends IPlatformExtensionPoint>> __extensionPoints;
 
   @SuppressWarnings("unchecked")
   private static Map<String, Class<? extends IPlatformExtensionPoint>> getExtensionPoints() {
-    if (_extensionPoints == null) {
-      _extensionPoints = new HashMap<String, Class<? extends IPlatformExtensionPoint>>();
+    if (__extensionPoints == null) {
+      Map<String, Class<? extends IPlatformExtensionPoint>> extensionPoints = new HashMap<String, Class<? extends IPlatformExtensionPoint>>();
       for (String extensionPoint : EGFPlatformPlugin.getDefault().getPlatform().keySet()) {
         // Factory
         IPlatformExtensionPointFactory<?> clazz = null;
@@ -73,10 +73,11 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
         // Fetch Returned Types from Factory
         Class<?> key = EGFPlatformPlugin.fetchReturnedTypeFromFactory(((IPlatformExtensionPointFactory<?>) clazz).getClass());
         // Store it
-        _extensionPoints.put(extensionPoint, (Class<? extends IPlatformExtensionPoint>) key);
+        extensionPoints.put(extensionPoint, (Class<? extends IPlatformExtensionPoint>) key);
       }
+      __extensionPoints = extensionPoints;
     }
-    return _extensionPoints;
+    return __extensionPoints;
   }
 
   public static Collection<Class<? extends IPlatformExtensionPoint>> getExtensionPointsValues() {
