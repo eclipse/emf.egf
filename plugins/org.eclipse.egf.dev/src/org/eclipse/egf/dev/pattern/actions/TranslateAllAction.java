@@ -39,58 +39,59 @@ import org.eclipse.ui.IWorkbenchWindowActionDelegate;
  */
 public class TranslateAllAction implements IWorkbenchWindowActionDelegate {
 
-    private IWorkbenchWindow window;
+  private IWorkbenchWindow _window;
 
-    public TranslateAllAction() {
+  public TranslateAllAction() {
+  }
+
+  public void run(IAction action) {
+    List<Pattern> result = new ArrayList<Pattern>(200);
+    IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
+    ResourceSet resourceSet = new ResourceSetImpl();
+    try {
+      for (IPlatformFcore platformFcore : platformFcores) {
+        URI uri = platformFcore.getURI();
+        Resource res = resourceSet.getResource(uri, true);
+        PatternCollector.INSTANCE.collect(res.getContents(), result, PatternCollector.EMPTY_ID_SET);
+      }
+      new TranslationHelper().translate(result);
+    } catch (Exception e) {
+      MessageDialog.openError(_window.getShell(), "Error", e.getMessage()); //$NON-NLS-1$
+      Activator.getDefault().logError(e);
     }
 
-    public void run(IAction action) {
-        List<Pattern> result = new ArrayList<Pattern>(200);
-        IPlatformFcore[] platformFcores = EGFCorePlugin.getPlatformFcores();
-        ResourceSet resourceSet = new ResourceSetImpl();
-        try {
-            for (IPlatformFcore platformFcore : platformFcores) {
-                URI uri = platformFcore.getURI();
-                Resource res = resourceSet.getResource(uri, true);
-                PatternCollector.INSTANCE.collect(res.getContents(), result, PatternCollector.EMPTY_ID_SET);
-            }
-            new TranslationHelper().translate(result);
-        } catch (Exception e) {
-            MessageDialog.openError(window.getShell(), "Error", e.getMessage()); //$NON-NLS-1$
-            Activator.getDefault().logError(e);
-        }
+  }
 
-    }
+  /**
+   * Selection in the workbench has been changed. We
+   * can change the state of the 'real' action here
+   * if we want, but this can only happen after
+   * the delegate has been created.
+   * 
+   * @see IWorkbenchWindowActionDelegate#selectionChanged
+   */
+  public void selectionChanged(IAction action, ISelection selection) {
+    // Nothing to do
+  }
 
-    /**
-     * Selection in the workbench has been changed. We
-     * can change the state of the 'real' action here
-     * if we want, but this can only happen after
-     * the delegate has been created.
-     * 
-     * @see IWorkbenchWindowActionDelegate#selectionChanged
-     */
-    public void selectionChanged(IAction action, ISelection selection) {
-        // Nothing to do
-    }
+  /**
+   * We can use this method to dispose of any system
+   * resources we previously allocated.
+   * 
+   * @see IWorkbenchWindowActionDelegate#dispose
+   */
+  public void dispose() {
+    // Nothing to do
+  }
 
-    /**
-     * We can use this method to dispose of any system
-     * resources we previously allocated.
-     * 
-     * @see IWorkbenchWindowActionDelegate#dispose
-     */
-    public void dispose() {
-        // Nothing to do
-    }
+  /**
+   * We will cache window object in order to
+   * be able to provide parent shell for the message dialog.
+   * 
+   * @see IWorkbenchWindowActionDelegate#init
+   */
+  public void init(IWorkbenchWindow window) {
+    _window = window;
+  }
 
-    /**
-     * We will cache window object in order to
-     * be able to provide parent shell for the message dialog.
-     * 
-     * @see IWorkbenchWindowActionDelegate#init
-     */
-    public void init(IWorkbenchWindow window) {
-        window = window;
-    }
 }
