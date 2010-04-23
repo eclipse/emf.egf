@@ -20,6 +20,8 @@
   	<extension point="org.eclipse.egf.core.ui.editor.property.contributor">
     	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternListPropertyEditorContributor"/>
     	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternSubstitutionPropertyEditorContributor"/>
+    	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternSubstitutionIncommingPropertyEditorContributor"/>
+    	<contribution class="org.eclipse.egf.pattern.ui.contributions.PatternSubstitutionOutcommingPropertyEditorContributor"/>
   	</extension>  
 
 
