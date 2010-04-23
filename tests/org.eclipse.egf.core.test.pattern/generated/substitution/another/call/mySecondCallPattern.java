@@ -7,22 +7,22 @@ import org.eclipse.egf.model.pattern.*;
 import org.eclipse.egf.pattern.execution.*;
 import org.eclipse.egf.pattern.query.*;
 
-public class myPattern extends substitution.another.call.CalledPattern {
+public class mySecondCallPattern extends substitution.another.call.CalledPattern {
   protected static String nl;
-  public static synchronized myPattern create(String lineSeparator)
+  public static synchronized mySecondCallPattern create(String lineSeparator)
   {
     nl = lineSeparator;
-    myPattern result = new myPattern();
+    mySecondCallPattern result = new mySecondCallPattern();
     nl = null;
     return result;
   }
 
   public final String NL = nl == null ? (System.getProperties().getProperty("line.separator")) : nl;
-  protected final String TEXT_1 = "//default content";
+  protected final String TEXT_1 = " - another kind of details - ";
   protected final String TEXT_2 = NL;
   protected final String TEXT_3 = NL;
 
-	public myPattern()
+	public mySecondCallPattern()
 	{
 	//Here is the constructor
 StringBuffer stringBuffer = new StringBuffer();
