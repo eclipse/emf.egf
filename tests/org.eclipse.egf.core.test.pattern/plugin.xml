@@ -37,6 +37,15 @@
       <fcore
             id="fc/callback_reporter_4.fcore">
       </fcore>
+      <fcore
+            id="fc/substitution_extension_1.fcore">
+      </fcore>
+      <fcore
+            id="fc/substitution_another_base.fcore">
+      </fcore>
+      <fcore
+            id="fc/substitution_extension_2.fcore">
+      </fcore>
    </extension>
    
    <extension

@@ -1,29 +1,32 @@
-Manifest-Version: 1.0
+Require-Bundle: org.eclipse.egf.pattern;visibility:=reexport,
+ org.eclipse.egf.pattern.ftask;visibility:=reexport
 Bundle-ManifestVersion: 2
-Bundle-Name: %pluginName
+Bundle-Name: Pattern
 Bundle-SymbolicName: org.eclipse.egf.core.test.pattern;singleton:=true
-Bundle-Version: 0.2.2.qualifier
-Bundle-ClassPath: .
-Bundle-Vendor: %providerName
-Bundle-Localization: plugin
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: 
- org.eclipse.core.runtime,
- org.eclipse.egf.pattern;visibility:=reexport,
- org.eclipse.egf.pattern.ftask;visibility:=reexport,
- org.eclipse.egf.core.producer,
- org.eclipse.egf.model.ftask
-Bundle-ActivationPolicy: lazy
 Export-Package: base,
+ base.substitution,
  callbackAndReporter,
  callbackAndReporter2,
  callbackAndReporter3,
+ callbackAndReporter4,
+ callback_1,
  callback_1.strategy,
  inheritance_1,
  inheritance_2,
  inheritance_2_called,
  inheritance_3,
+ inheritance_4,
  inheritance_4.base,
  inheritance_4.strategy,
+ no_callback,
  no_callback.strategy,
- org.eclipse.egf.core.test.pattern
+ org,
+ org.eclipse,
+ org.eclipse.egf,
+ org.eclipse.egf.core,
+ org.eclipse.egf.core.test,
+ org.eclipse.egf.core.test.pattern,
+ substitution.another.base,
+ substitution.another.call
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Version: 0.1.0.qualifier
