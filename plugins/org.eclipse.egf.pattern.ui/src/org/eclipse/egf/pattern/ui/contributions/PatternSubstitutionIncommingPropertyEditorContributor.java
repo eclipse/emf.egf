@@ -1,7 +1,7 @@
 /**
  * <copyright>
  *
- *  Copyright (c) 2009 Thales Corporate Services S.A.S.
+ *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -15,9 +15,9 @@
 
 package org.eclipse.egf.pattern.ui.contributions;
 
-import org.eclipse.egf.model.pattern.PatternElement;
+import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternPackage;
-import org.eclipse.egf.model.pattern.TypePatternList;
+import org.eclipse.egf.model.pattern.Substitution;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 
@@ -25,16 +25,16 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
  * @author Thomas Guiu
  * 
  */
-public class PatternListPropertyEditorContributor extends AbstractPatternListPropertyEditorContributor<PatternElement> {
+public class PatternSubstitutionIncommingPropertyEditorContributor extends AbstractPatternListPropertyEditorContributor<Pattern> {
 
     public boolean canApply(Object object, IItemPropertyDescriptor descriptor) {
-        return checkFeature(object, descriptor, PatternPackage.Literals.TYPE_PATTERN_LIST__ELEMENTS) && object instanceof TypePatternList;
+        return checkFeature(object, descriptor, PatternPackage.Literals.SUBSTITUTION__INCOMING) && object instanceof Substitution;
     }
 
     @Override
-    protected EList<PatternElement> getElements(Object object) {
-        final TypePatternList value = (TypePatternList) object;
+    protected EList<Pattern> getElements(Object object) {
+        final Substitution value = (Substitution) object;
 
-        return value.getElements();
+        return value.getIncoming();
     }
 }
