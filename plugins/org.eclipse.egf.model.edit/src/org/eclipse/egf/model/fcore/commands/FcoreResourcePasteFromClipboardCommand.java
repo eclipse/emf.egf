@@ -94,7 +94,7 @@ public class FcoreResourcePasteFromClipboardCommand extends PasteFromClipboardCo
    */
   public FcoreResourcePasteFromClipboardCommand(EditingDomain domain, Object owner, Object feature, int index, boolean optimize) {
     super(domain, owner, feature, index, optimize);
-    owner = unwrap(owner);
+    this.owner = unwrap(owner);
     factory = new FcoreResourceItemProviderAdapterFactory();
   }
 
