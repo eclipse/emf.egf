@@ -60,7 +60,7 @@ public class OpenTaskImplementationMenuContributor extends MenuContributor {
 
   public static final String OPEN_TASK_IMPLEMENTATION_ACTION_ID = "open-task-implementation"; //$NON-NLS-1$
 
-  public class FindOperation implements IRunnableWithProgress {
+  public static class FindOperation implements IRunnableWithProgress {
 
     private String _fqn;
 
