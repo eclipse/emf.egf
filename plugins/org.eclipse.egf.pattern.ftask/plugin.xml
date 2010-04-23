@@ -16,6 +16,9 @@
       <fcore
             id="Pattern_task.fcore">
       </fcore>
+      <fcore
+            id="merge_substitutions.fcore">
+      </fcore>
    </extension>
 
 </plugin>
