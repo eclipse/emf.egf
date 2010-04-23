@@ -118,7 +118,7 @@
       <genOperations ecoreOperation="Pattern.ecore#//InjectedContext/getPattern"/>
     </genClasses>
     <genClasses ecoreClass="Pattern.ecore#//TypePatternSubstitution">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternSubstitution/substitutions"/>
+      <genFeatures property="Readonly" children="true" createChild="true" ecoreFeature="ecore:EReference Pattern.ecore#//TypePatternSubstitution/substitutions"/>
       <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getType"/>
       <genOperations ecoreOperation="Pattern.ecore#//TypePatternSubstitution/getSubstitutions">
         <genParameters ecoreParameter="Pattern.ecore#//TypePatternSubstitution/getSubstitutions/pattern"/>
