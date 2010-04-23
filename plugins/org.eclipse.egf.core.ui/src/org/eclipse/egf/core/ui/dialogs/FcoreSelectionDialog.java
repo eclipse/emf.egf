@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.core.ui.dialogs;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -132,7 +133,10 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
 
   }
 
-  private class FcoreSearchComparator implements Comparator<IPlatformFcore> {
+  private static class FcoreSearchComparator implements Comparator<IPlatformFcore>, Serializable {
+
+    public static final long serialVersionUID = -1;
+
     public int compare(IPlatformFcore fc1, IPlatformFcore fc2) {
       if (fc1.getName() == null) {
         return -1;
@@ -142,6 +146,7 @@ public class FcoreSelectionDialog extends FilteredItemsSelectionDialog {
       }
       return fc1.getName().compareTo(fc2.getName());
     }
+
   }
 
   private IPlatformFcore[] _fcores;

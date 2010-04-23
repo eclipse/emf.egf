@@ -871,7 +871,7 @@ public abstract class FilteredItemsSelectionWizardPage extends WizardPage {
    * DetailsContentViewer provides means to change label's image and text when
    * the attached LabelProvider is updated.
    */
-  private class DetailsContentViewer extends ContentViewer {
+  private static class DetailsContentViewer extends ContentViewer {
 
     private CLabel label;
 
@@ -1506,7 +1506,7 @@ public abstract class FilteredItemsSelectionWizardPage extends WizardPage {
   /**
    * A content provider that does nothing.
    */
-  private class NullContentProvider implements IContentProvider {
+  private static class NullContentProvider implements IContentProvider {
 
     /*
      * (non-Javadoc)
@@ -1531,7 +1531,7 @@ public abstract class FilteredItemsSelectionWizardPage extends WizardPage {
    * Used in ItemsListContentProvider, separates history and non-history
    * items.
    */
-  private class ItemsListSeparator {
+  private static class ItemsListSeparator {
 
     private String name;
 
@@ -1714,7 +1714,7 @@ public abstract class FilteredItemsSelectionWizardPage extends WizardPage {
       if (totalWork == 0)
         return message;
 
-      return NLS.bind(WorkbenchMessages.FilteredItemsSelectionDialog_taskProgressMessage, new Object[] { message, new Integer((int) ((worked * 100) / totalWork)) });
+      return NLS.bind(WorkbenchMessages.FilteredItemsSelectionDialog_taskProgressMessage, new Object[] { message, Integer.valueOf((int) ((worked * 100) / totalWork)) });
 
     }
 
@@ -2806,7 +2806,7 @@ public abstract class FilteredItemsSelectionWizardPage extends WizardPage {
       details.setInput(selection.getFirstElement());
       break;
     default:
-      details.setInput(NLS.bind(WorkbenchMessages.FilteredItemsSelectionDialog_nItemsSelected, new Integer(selection.size())));
+      details.setInput(NLS.bind(WorkbenchMessages.FilteredItemsSelectionDialog_nItemsSelected, Integer.valueOf(selection.size())));
       break;
     }
 
