@@ -129,13 +129,11 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
     for (IPlatformFcore fcore : getWorkspacePlatformFcores()) {
       String pluginID = fcore.getURI().segment(1);
       IProject project = root.getProject(pluginID);
-      // Don't ask the project if its exists or opened. while closing a project is still opened
-      // While its according model base is already reset to null
+      // Don't ask the project if it exists or is opened. While closing, a project is still opened
+      // and its according model base is already reset to null
       IPluginModelBase base = BundleHelper.getPluginModelBase(project);
       if (base != null) {
-        URI platformPluginURI = URI.createPlatformPluginURI(fcore.getPlatformBundle().getBundleId() + "/", false); //$NON-NLS-1$
-        URI platformResourceURI = URI.createPlatformResourceURI(fcore.getPlatformBundle().getProject().getName() + "/", true); //$NON-NLS-1$
-        result.put(platformPluginURI, platformResourceURI);
+        result.put(URI.createPlatformPluginURI(fcore.getPlatformBundle().getBundleId() + "/", false), URI.createPlatformResourceURI(fcore.getPlatformBundle().getProject().getName() + "/", true)); //$NON-NLS-1$ //$NON-NLS-2$
       }
     }
     return result;
@@ -162,11 +160,11 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
       for (IPlatformFcore fcore : fcores) {
         String pluginID = fcore.getURI().segment(1);
         IProject project = root.getProject(pluginID);
-        // Don't ask the project if its exists or opened. while closing a project is still opened
-        // While its according model base is already reset to null
+        // Don't ask the project if it is opened. while closing, a project is still opened
+        // and its according model base is already reset to null
         IPluginModelBase base = BundleHelper.getPluginModelBase(project);
-        if (project.exists() && base == null) {
-          result.put(URI.createPlatformPluginURI(pluginID + "/", false), URI.createPlatformPluginURI(pluginID + "/", false)); //$NON-NLS-1$ //$NON-NLS-2$
+        if (project.exists() == false || base == null) {
+          result.put(URI.createPlatformResourceURI(pluginID + "/", false), URI.createPlatformPluginURI(pluginID + "/", false)); //$NON-NLS-1$ //$NON-NLS-2$
         }
       }
     }
