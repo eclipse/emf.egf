@@ -525,7 +525,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     if (_project.getFile(EGFCommonConstants.PLUGIN_PROPERTIES_DESCRIPTOR).exists()) {
       addToken(binIncludesEntry, EGFCommonConstants.PLUGIN_PROPERTIES_DESCRIPTOR);
     }
-    if (_project.getFile(EGFCommonConstants.BUNDLE_FILENAME_DESCRIPTOR).exists()) {
+    if (_project.getFile(PDEModelUtility.F_MANIFEST_FP).exists()) {
       addToken(binIncludesEntry, EGFCommonConstants.BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR);
     }
     // About.html in bin includes (eclipse EPL open source project convention)

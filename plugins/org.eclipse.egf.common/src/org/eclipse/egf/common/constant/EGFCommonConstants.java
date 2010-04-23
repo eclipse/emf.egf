@@ -105,9 +105,6 @@ public interface EGFCommonConstants {
   /** Constant for the string <code>META-INF/</code> */
   public final static String BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR = "META-INF/"; //$NON-NLS-1$  
 
-  /** Constant for the string <code>META-INF/MANIFEST.MF</code> */
-  public final static String BUNDLE_FILENAME_DESCRIPTOR = BUNDLE_FILENAME_DIRECTORY_DESCRIPTOR + "MANIFEST.MF"; //$NON-NLS-1$
-
   /** Constant for the string <code>org.eclipse.pde.core.requiredPlugins</code> */
   public final static String REQUIRED_PLUGINS_CLASSPATH_CONTAINER = "org.eclipse.pde.core.requiredPlugins"; //$NON-NLS-1$
 
