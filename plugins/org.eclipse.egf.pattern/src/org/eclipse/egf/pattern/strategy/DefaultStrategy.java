@@ -21,8 +21,10 @@ import java.util.List;
 import org.eclipse.egf.model.pattern.Pattern;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternException;
+import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
+import org.eclipse.egf.pattern.utils.SubstitutionHelper;
 
 /**
  * Pattern are executed in the given order. Pattern libraries are substituted by
@@ -37,6 +39,10 @@ public class DefaultStrategy extends AbstractPatternStrategy {
         List<Pattern> result = new ArrayList<Pattern>();
         // to replace libraries by their contents
         PatternCollector.INSTANCE.collect(patternElements, result);
+
+        TypePatternSubstitution substitutions = (TypePatternSubstitution) context.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
+        SubstitutionHelper.apply(result, substitutions);
+
         doExecute(result, context);
     }
 }

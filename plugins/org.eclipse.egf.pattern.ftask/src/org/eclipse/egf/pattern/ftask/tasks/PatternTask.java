@@ -25,10 +25,12 @@ import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.TypePatternList;
+import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.pattern.collector.PatternCollector;
 import org.eclipse.egf.pattern.extension.ExtensionHelper;
 import org.eclipse.egf.pattern.extension.PatternExtension;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
+import org.eclipse.egf.pattern.utils.SubstitutionHelper;
 
 /**
  * @author Thomas Guiu
@@ -38,16 +40,15 @@ public class PatternTask extends AbstractPatternTask {
     private final List<Pattern> patterns = new ArrayList<Pattern>();
 
     @Override
-    public void preExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
-        TypePatternList patternList = context.getInputValue(PatternContext.PATTERN_ID, TypePatternList.class);
-        PatternCollector.INSTANCE.collect(patternList.getElements().toArray(new PatternElement[patternList.getElements().size()]), patterns);
-    }
-
-    @Override
     public void doExecute(final ITaskProductionContext context, final IProgressMonitor monitor) throws InvocationException {
         try {
             PatternContext ctx = createPatternContext(context);
             readContext(context, ctx);
+
+            TypePatternList patternList = context.getInputValue(PatternContext.PATTERN_ID, TypePatternList.class);
+            PatternCollector.INSTANCE.collect(patternList.getElements().toArray(new PatternElement[patternList.getElements().size()]), patterns);
+            TypePatternSubstitution substitutions = (TypePatternSubstitution) ctx.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
+            SubstitutionHelper.apply(patterns, substitutions);
 
             for (Pattern pattern : patterns) {
                 PatternExtension extension = ExtensionHelper.getExtension(pattern.getNature());

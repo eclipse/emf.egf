@@ -10,6 +10,7 @@ import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternElement;
 import org.eclipse.egf.model.pattern.PatternException;
 import org.eclipse.egf.model.pattern.PatternLibrary;
+import org.eclipse.egf.model.pattern.TypePatternSubstitution;
 import org.eclipse.egf.model.pattern.util.PatternSwitch;
 import org.eclipse.egf.pattern.Messages;
 import org.eclipse.egf.pattern.extension.ExtensionHelper.MissingExtensionException;
@@ -33,10 +34,12 @@ public class FilterStrategy extends AbstractPatternStrategy {
     private final class FilterSwitch extends PatternSwitch<String> {
         private final String filter;
         private final Set<Pattern> result;
+        private final TypePatternSubstitution substitutions;
 
-        private FilterSwitch(String filter, Set<Pattern> result) {
+        private FilterSwitch(String filter, Set<Pattern> result, TypePatternSubstitution substitutions) {
             this.filter = filter;
             this.result = result;
+            this.substitutions = substitutions;
         }
 
         @Override
@@ -70,7 +73,10 @@ public class FilterStrategy extends AbstractPatternStrategy {
             throw new PatternException(Messages.bind(Messages.strategy_error2, "String", parameter.getClass().getName()));
 
         String filter = (String) parameter;
-        List<Pattern> patterns = getPatterns(filter);
+        TypePatternSubstitution substitutions = (TypePatternSubstitution) context.getValue(PatternContext.PATTERN_SUBSTITUTIONS);
+
+        List<Pattern> patterns = getPatterns(filter, substitutions);
+
         doExecute(patterns, context);
     }
 
@@ -78,11 +84,14 @@ public class FilterStrategy extends AbstractPatternStrategy {
      * This methods returns a list of the elements from patternElements field.
      * The order is computed by using registered scheduling rules. If the rule
      * can't be found the natural ordering is used.
+     * 
+     * @param substitutions
      */
-    protected List<Pattern> getPatterns(final String filter) throws PatternException {
-        final Set<Pattern> result = new LinkedHashSet<Pattern>(patternElements.length * 2);
-        PatternSwitch<String> switch_ = new FilterSwitch(filter, result);
-        for (PatternElement elem : patternElements) {
+    protected List<Pattern> getPatterns(final String filter, TypePatternSubstitution substitutions) throws PatternException {
+        PatternElement[] elements = patternElements;
+        final Set<Pattern> result = new LinkedHashSet<Pattern>(elements.length * 2);
+        PatternSwitch<String> switch_ = new FilterSwitch(filter, result, substitutions);
+        for (PatternElement elem : elements) {
             String error = switch_.doSwitch(elem);
             if (error != null && !OK.equals(error))
                 throw new PatternException(error);

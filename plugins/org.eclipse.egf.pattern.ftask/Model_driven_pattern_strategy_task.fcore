@@ -21,5 +21,8 @@
     <contracts xmi:id="_nz1HkSCaEd-Sse0r9LJWbA" name="pattern.ids" mandatory="true">
       <type xmi:type="pattern:TypePatternList" xmi:id="_pNtroCCaEd-Sse0r9LJWbA"/>
     </contracts>
+    <contracts xmi:id="_NFhJ4UMgEd-Ixul1H5ANhg" name="pattern.substitutions">
+      <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_xGePoUMgEd-ZrqjxvMjKvA"/>
+    </contracts>
   </contractContainer>
 </ftask:Task>
