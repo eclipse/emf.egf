@@ -16,6 +16,7 @@ import java.util.Map;
 import org.eclipse.egf.common.helper.BundleHelper;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.impl.ExtensibleURIConverterImpl;
+import org.eclipse.emf.ecore.resource.impl.URIMappingRegistryImpl;
 import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.eclipse.pde.core.plugin.PluginRegistry;
 import org.eclipse.pde.internal.core.IPluginModelListener;
@@ -117,6 +118,21 @@ public class PlatformURIConverter extends ExtensibleURIConverterImpl implements 
     result.putAll(pluginToResource);
     result.putAll(resourceToPlugin);
     return result;
+  }
+
+  /**
+   * Returns the internal version of the URI map.
+   * 
+   * @return the internal version of the URI map.
+   */
+  @Override
+  protected URIMap getInternalURIMap() {
+    if (uriMap == null) {
+      URIMappingRegistryImpl mappingRegistryImpl = new URIMappingRegistryImpl();
+      uriMap = (URIMap) mappingRegistryImpl.map();
+    }
+
+    return uriMap;
   }
 
 }
