@@ -62,7 +62,6 @@ import org.eclipse.pde.internal.core.ibundle.IBundlePluginModelBase;
 import org.eclipse.pde.internal.core.ibundle.IManifestHeader;
 import org.eclipse.pde.internal.core.natures.PDE;
 import org.eclipse.pde.internal.core.text.bundle.BundleSymbolicNameHeader;
-import org.eclipse.pde.internal.core.util.IdUtil;
 import org.eclipse.pde.internal.ui.util.ModelModification;
 import org.eclipse.pde.internal.ui.util.PDEModelUtility;
 import org.eclipse.pde.internal.ui.wizards.tools.OrganizeManifest;
@@ -118,6 +117,15 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     _project = project;
     _createJavaProject = createJavaProject;
     _createEGFNature = createEGFNature;
+  }
+
+  public static String getValidId(String projectName) {
+    String name = projectName.replaceAll("[^a-zA-Z0-9\\._]", "_"); //$NON-NLS-1$ //$NON-NLS-2$
+    // . is illegal as a first character
+    if (name != null && name.startsWith(".")) { //$NON-NLS-1$
+      return name.substring(1, name.length());
+    }
+    return name;
   }
 
   /**
@@ -434,7 +442,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     }, monitor);
   }
 
-  private String createInitialName(String id) {
+  protected String createInitialName(String id) {
     int loc = id.lastIndexOf(EGFCommonConstants.DOT_STRING);
     if (loc == -1) {
       return id;
@@ -466,7 +474,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     }, monitor);
   }
 
-  private void processFolders(IBuildModel model, String prefix, List<String> folders) throws CoreException {
+  protected void processFolders(IBuildModel model, String prefix, List<String> folders) throws CoreException {
     IBuild build = model.getBuild();
     List<String> defaultFolders = new UniqueEList<String>(folders);
     // Filter already assigned folders if any
@@ -505,7 +513,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     }
   }
 
-  private void manageBuildFile(IBuildModel model) throws CoreException {
+  protected void manageBuildFile(IBuildModel model) throws CoreException {
     IBuild build = model.getBuild();
     // source
     processFolders(model, IBuildEntry.JAR_PREFIX, _sourceFolders);
@@ -569,7 +577,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     }
   }
 
-  private void addToken(IBuildEntry entry, String descriptor) throws CoreException {
+  protected void addToken(IBuildEntry entry, String descriptor) throws CoreException {
     boolean found = false;
     for (String token : entry.getTokens()) {
       if (token.equals(descriptor)) {
@@ -588,6 +596,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     model.load();
     manageManifestFile(model);
     model.save();
+    subMonitor.worked(100);
     organizeExports(subMonitor.newChild(100, SubMonitor.SUPPRESS_NONE));
   }
 
@@ -606,7 +615,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     }, monitor);
   }
 
-  private void manageManifestFile(IBundlePluginModelBase model) throws CoreException {
+  protected void manageManifestFile(IBundlePluginModelBase model) throws CoreException {
 
     IBundle bundle = model.getBundleModel().getBundle();
 
@@ -619,7 +628,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
     // If no ID exists, create one
     if (pluginId == null) {
-      pluginId = IdUtil.getValidId(_project.getName());
+      pluginId = getValidId(_project.getName());
     }
     // At this point, the plug-in ID is not null
 
@@ -630,9 +639,10 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
     if (pluginName == null) {
       pluginName = createInitialName(pluginId);
     }
+    // Bundle Name
     bundle.setHeader(Constants.BUNDLE_NAME, pluginName);
 
-    // Symbolic Name
+    // Bundle Symbolic Name
     IManifestHeader header = bundle.getManifestHeader(Constants.BUNDLE_SYMBOLICNAME);
     if (header != null && header instanceof BundleSymbolicNameHeader) {
       BundleSymbolicNameHeader symbolic = (BundleSymbolicNameHeader) header;
@@ -691,7 +701,7 @@ public class ConvertProjectOperation extends WorkspaceModifyOperation {
 
   }
 
-  private void processManifestVersion(IBundlePluginModelBase model) {
+  protected void processManifestVersion(IBundlePluginModelBase model) {
     // Locate Bundle
     IBundle bundle = model.getBundleModel().getBundle();
     // Locate Version
