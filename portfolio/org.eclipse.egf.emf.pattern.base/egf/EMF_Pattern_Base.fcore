@@ -68,7 +68,6 @@
             <variables xmi:id="_vflAwCg5Ed-ROrlGa8LEeQ" name="packageName" type="java.lang.String"/>
             <variables xmi:id="_xXrK0Cg5Ed-ROrlGa8LEeQ" name="className" type="java.lang.String"/>
             <variables xmi:id="_UK4ZICg8Ed-ROrlGa8LEeQ" name="importManager" type="org.eclipse.emf.codegen.util.ImportManager"/>
-            <variables xmi:id="_EeAsIVN0Ed-f1e0ekLzQSg" name="mergeRulesURI" type="java.lang.String"/>
           </elements>
           <elements xmi:type="pattern:Pattern" xmi:id="_F0In8Cg6Ed-ROrlGa8LEeQ" name="GenModelJava"
               headerMethod="#_F0In8Sg6Ed-ROrlGa8LEeQ" footerMethod="#_F0In9Cg6Ed-ROrlGa8LEeQ"

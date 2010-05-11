@@ -77,10 +77,6 @@ protected org.eclipse.emf.codegen.util.ImportManager importManager = null;
 public void set_importManager(org.eclipse.emf.codegen.util.ImportManager object) {
 this.importManager = object;
 }
-protected java.lang.String mergeRulesURI = null;
-public void set_mergeRulesURI(java.lang.String object) {
-this.mergeRulesURI = object;
-}
 public Map<String, Object> getParameters() {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 return parameters; }
