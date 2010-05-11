@@ -274,6 +274,6 @@
     </viewpointContainer>
   </fcore:FactoryComponent>
   <ftask:Task xmi:id="_jT-SgD1hEd-m5uHrCQ1Jew" description="Reconcile the genModel before execution"
-      name="Model driven pattern strategy task for genModel" kind="java" implementation="org.eclipse.egf.emf.pattern.base.ModelDrivenStrategyTaskForGenModel"
+      name="EMF GenModel Pattern Strategy Task" kind="java" implementation="org.eclipse.egf.emf.pattern.base.ModelDrivenStrategyTaskForGenModel"
       superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg"/>
 </xmi:XMI>
