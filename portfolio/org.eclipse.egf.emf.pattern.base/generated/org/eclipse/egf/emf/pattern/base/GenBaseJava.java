@@ -87,8 +87,6 @@ return parameters; }
 ctx.setValue("targetPath", targetPath);
 ctx.setValue("packageName", packageName);
 ctx.setValue("className", className);
-//TODO: Shouldn't be done, inherited value are not present ????
-ctx.setValue("mergeRulesURI", (String) ctx.getValue("mergeRulesURI"));
 
     }
     protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {
