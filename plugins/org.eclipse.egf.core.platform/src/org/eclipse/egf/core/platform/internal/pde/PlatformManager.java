@@ -88,11 +88,11 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
 
   // Use a lock object, this will prevent us against
   // a lock against the PlatformManager instance
-  private static Object _lock = new Object();
+  private static Object __lock = new Object();
 
   public static PlatformManager getInstance() {
     if (__platformManager == null) {
-      synchronized (_lock) {
+      synchronized (__lock) {
         if (__platformManager == null) {
           __platformManager = new PlatformManager();
         }
@@ -128,7 +128,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
 
   public IPlatformBundle getPlatformBundle(String id) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       if (id == null) {
         return null;
       }
@@ -141,7 +141,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
 
   public IPlatformBundle getPlatformBundle(IPluginModelBase base) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       if (base == null) {
         return null;
       }
@@ -155,7 +155,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
 
   public IPlatformBundle getPlatformBundle(IProject project) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       if (project == null) {
         return null;
       }
@@ -173,7 +173,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
 
   public IPlatformBundle[] getPlatformBundles() {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       if (_platformBundles == null) {
         initializePlatformManager();
       }
@@ -184,7 +184,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
 
   public <T extends IPlatformExtensionPoint> T[] getWorkspacePlatformExtensionPoints(Class<T> clazz) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       List<Object> extensionPoints = new ArrayList<Object>();
       if (clazz != null && getExtensionPointsValues().contains(clazz)) {
         if (_platformBundles == null) {
@@ -200,7 +200,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
 
   public <T extends IPlatformExtensionPoint> T[] getTargetPlatformExtensionPoints(Class<T> clazz) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       List<Object> extensionPoints = new ArrayList<Object>();
       if (clazz != null && getExtensionPointsValues().contains(clazz)) {
         if (_platformBundles == null) {
@@ -217,7 +217,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
   @SuppressWarnings("unchecked")
   public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(Class<T> clazz) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       if (clazz == null || getExtensionPointsValues().contains(clazz) == false) {
         return null;
       }
@@ -237,7 +237,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
 
   public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(IProject project, Class<T> clazz) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       if (project != null && clazz != null && getExtensionPointsValues().contains(clazz)) {
         if (_platformBundles == null) {
           initializePlatformManager();
@@ -253,7 +253,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
 
   public <T extends IPlatformExtensionPoint> T[] getPlatformExtensionPoints(String id, Class<T> clazz) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       if (id != null && clazz != null && getExtensionPointsValues().contains(clazz)) {
         if (_platformBundles == null) {
           initializePlatformManager();
@@ -315,7 +315,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
    */
   public void addPlatformExtensionPointListener(IPlatformExtensionPointListener listener) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       if (_listeners == null) {
         _listeners = new ArrayList<IPlatformExtensionPointListener>();
       }
@@ -333,7 +333,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
    */
   public void addInFrontPlatformExtensionPointListener(IPlatformExtensionPointListener listener) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       if (_listeners == null) {
         _listeners = new ArrayList<IPlatformExtensionPointListener>();
       }
@@ -351,7 +351,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
    */
   public void removePlatformExtensionPointListener(IPlatformExtensionPointListener listener) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       if (_listeners == null) {
         return;
       }
@@ -371,7 +371,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
    */
   public void extensionsChanged(IExtensionDeltaEvent event) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       // Initialize a delta
       PlatformExtensionPointDelta delta = new PlatformExtensionPointDelta();
       // Process Removed Entries
@@ -427,7 +427,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
    */
   public void modelsChanged(PluginModelDelta event) {
     // Lock PlatformManager
-    synchronized (_lock) {
+    synchronized (__lock) {
       // Initialize a delta
       PlatformExtensionPointDelta delta = new PlatformExtensionPointDelta();
       // Process Removed Entries
