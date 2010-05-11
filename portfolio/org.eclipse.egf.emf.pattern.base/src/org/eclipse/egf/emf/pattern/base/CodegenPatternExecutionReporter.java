@@ -15,21 +15,28 @@
 
 package org.eclipse.egf.emf.pattern.base;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Map;
 
+import org.eclipse.egf.common.helper.EMFHelper;
 import org.eclipse.egf.model.pattern.PatternContext;
 import org.eclipse.egf.model.pattern.PatternExecutionReporter;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
+import org.eclipse.osgi.util.NLS;
 
 /**
  * @author Matthieu Helleboid
  * 
  */
 public abstract class CodegenPatternExecutionReporter implements PatternExecutionReporter {
+
   protected GenModel genModel;
+
   protected Boolean canGenerate;
 
   public void executionFinished(String output, PatternContext context) {
+    // Nothing to do
   }
 
   public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
@@ -69,8 +76,7 @@ public abstract class CodegenPatternExecutionReporter implements PatternExecutio
   protected void generateJava(String output, PatternContext context) {
     String targetPath = (String) context.getValue("targetPath"); //$NON-NLS-1$
     String packageName = (String) context.getValue("packageName"); //$NON-NLS-1$
-    String className = (String) context.getValue("className"); //$NON-NLS-1$
-    String mergeRulesURI = (String) context.getValue("mergeRulesURI"); //$NON-NLS-1$
+    String className = (String) context.getValue("className"); //$NON-NLS-1$ 
 
     if (targetPath == null)
       throw new IllegalStateException("Variable targetPath must be set."); //$NON-NLS-1$
@@ -80,11 +86,30 @@ public abstract class CodegenPatternExecutionReporter implements PatternExecutio
       throw new IllegalStateException("Variable className must be set."); //$NON-NLS-1$
 
     CodegenGeneratorAdapter generator = new CodegenGeneratorAdapter(genModel);
-    generator.setMergeRulesURI(mergeRulesURI);
+    generator.setMergeRulesURI(getBundleURI((String) context.getValue("mergeRulesURI"))); //$NON-NLS-1$
     generator.generateJava(targetPath, packageName, className, output);
   }
 
-  protected void generateGIF(String output, PatternContext context) {
-    // do nothing (done in patterns)
+  /*
+   * Computes the bundle uri
+   */
+  protected String getBundleURI(String uri) {
+    if (uri == null || uri.trim().length() == 0) {
+      return null;
+    }
+    // TODO: We should handle relative path to its fcore resource
+    try {
+      InputStream inputStream = EMFHelper.openStream(uri);
+      inputStream.close();
+    } catch (IOException ioe) {
+      Activator.getDefault().logError(NLS.bind("Unable to locate mergeRulesURI ''{0}''", uri), ioe); //$NON-NLS-1$
+      return null;
+    }
+    return uri;
   }
+
+  protected void generateGIF(String output, PatternContext context) {
+    // Nothing to do (done in patterns)
+  }
+
 }
