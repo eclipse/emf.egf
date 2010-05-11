@@ -27,14 +27,18 @@ import org.eclipse.egf.model.pattern.PatternExecutionReporter;
  */
 public class ConsoleReporter implements PatternExecutionReporter {
 
-    public void executionFinished(String output, PatternContext context) {
-        System.out.println(output);
-        EGFCorePlugin.getDefault().logInfo(output);
+  public void executionFinished(String output, PatternContext context) {
+    if (output != null && output.trim().length() != 0) {
+      System.out.println(output);
+      EGFCorePlugin.getDefault().logInfo(output);
     }
+  }
 
-    public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
-        System.out.println(output);
-        EGFCorePlugin.getDefault().logInfo(output);
+  public void loopFinished(String output, String outputWithCallBack, PatternContext context, Map<String, Object> parameterValues) {
+    if (output != null && output.trim().length() != 0) {
+      System.out.println(output);
+      EGFCorePlugin.getDefault().logInfo(output);
     }
+  }
 
 }
