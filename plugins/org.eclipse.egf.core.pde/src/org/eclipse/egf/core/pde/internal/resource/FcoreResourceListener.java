@@ -228,11 +228,11 @@ public class FcoreResourceListener implements IResourceChangeListener {
 
   private void trace(IResourceFcoreDelta delta) {
     if (delta.getNewFcores().size() > 0) {
-      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener New {0} Fcore{1}.", //$NON-NLS-1$ 
+      EGFPDEPlugin.getDefault().logInfo(NLS.bind("FcoreResourceListener Added {0} Fcore{1}.", //$NON-NLS-1$ 
           delta.getNewFcores().size(), delta.getNewFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
       for (URI uri : delta.getNewFcores()) {
-        EGFPDEPlugin.getDefault().logWarning(URI.decode(uri.toString()), 1);
+        EGFPDEPlugin.getDefault().logInfo(URI.decode(uri.toString()), 1);
       }
     }
     if (delta.getRemovedFcores().size() > 0) {
@@ -240,7 +240,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
           delta.getRemovedFcores().size(), delta.getRemovedFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
       for (URI uri : delta.getRemovedFcores()) {
-        EGFPDEPlugin.getDefault().logWarning(URI.decode(uri.toString()), 1);
+        EGFPDEPlugin.getDefault().logInfo(URI.decode(uri.toString()), 1);
       }
     }
     if (delta.getUpdatedFcores().size() > 0) {
@@ -248,7 +248,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
           delta.getUpdatedFcores().size(), delta.getUpdatedFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
       for (URI uri : delta.getUpdatedFcores()) {
-        EGFPDEPlugin.getDefault().logWarning(URI.decode(uri.toString()), 1);
+        EGFPDEPlugin.getDefault().logInfo(URI.decode(uri.toString()), 1);
       }
     }
     if (delta.getMovedFcores().size() > 0) {
@@ -256,7 +256,7 @@ public class FcoreResourceListener implements IResourceChangeListener {
           delta.getMovedFcores().size(), delta.getMovedFcores().size() < 2 ? "" : "s" //$NON-NLS-1$  //$NON-NLS-2$
       ));
       for (URI uri : delta.getMovedFcores().keySet()) {
-        EGFPDEPlugin.getDefault().logWarning(URI.decode(uri.toString()), 1);
+        EGFPDEPlugin.getDefault().logInfo(URI.decode(uri.toString()), 1);
         EGFPDEPlugin.getDefault().logInfo("To: " + URI.decode(delta.getMovedFcores().get(uri).toString()), 2); //$NON-NLS-1$
       }
     }
