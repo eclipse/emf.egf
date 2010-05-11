@@ -956,21 +956,29 @@ public class FcoreValidator extends EObjectValidator {
       return true;
     }
     if ((invocationContract.getInvokedMode() == ContractMode.IN || invocationContract.getInvokedMode() == ContractMode.IN_OUT)) {
-      if (invocationContract.getOrchestrationParameter() != null) {
+      if (invocationContract.getOrchestrationParameter() != null && invocationContract.getOrchestrationParameter().getType() != null && invocationContract.getOrchestrationParameter().getType().getValue() != null) {
         if (diagnostics != null) {
           diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-              new Object[] { "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in an OrchestrationParameter. OrchestrationParameter Type Value will supersede InvocationContract Type Value" }, //$NON-NLS-1$ //$NON-NLS-2$
+              new Object[] { "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in an OrchestrationParameter. Default OrchestrationParameter Type Value will supersede InvocationContract Type Value" }, //$NON-NLS-1$ //$NON-NLS-2$
               new Object[] { invocationContract }, context));
           return false;
         }
       }
-      if (invocationContract.getFactoryComponentContract() != null && invocationContract.getFactoryComponentContract().isMandatory()
-          && (invocationContract.getFactoryComponentContract().getMode() == ContractMode.IN || invocationContract.getFactoryComponentContract().getMode() == ContractMode.IN_OUT)) {
-        if (diagnostics != null) {
-          diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-              new Object[] { "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in a mandatory FactoryComponentContract. FactoryComponentContract Type Value will supersede InvocationContract Type Value" }, //$NON-NLS-1$ //$NON-NLS-2$
-              new Object[] { invocationContract }, context));
-          return false;
+      if (invocationContract.getFactoryComponentContract() != null && (invocationContract.getFactoryComponentContract().getMode() == ContractMode.IN || invocationContract.getFactoryComponentContract().getMode() == ContractMode.IN_OUT)) {
+        if (invocationContract.getFactoryComponentContract().isMandatory()) {
+          if (diagnostics != null) {
+            diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+                new Object[] { "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in a mandatory FactoryComponentContract. FactoryComponentContract Type Value will supersede InvocationContract Type Value" }, //$NON-NLS-1$ //$NON-NLS-2$
+                new Object[] { invocationContract }, context));
+            return false;
+          }
+        } else if (invocationContract.getFactoryComponentContract().getType() != null && invocationContract.getFactoryComponentContract().getType().getValue() != null) {
+          if (diagnostics != null) {
+            diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+                new Object[] { "UselessTypeValue", getObjectLabel(invocationContract, context), "InvocationContract is used in a FactoryComponentContract. Default FactoryComponentContract Type Value will supersede InvocationContract Type Value" }, //$NON-NLS-1$ //$NON-NLS-2$
+                new Object[] { invocationContract }, context));
+            return false;
+          }
         }
       }
     }
