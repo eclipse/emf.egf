@@ -94,7 +94,7 @@ public class TaskManager extends ActivityManager<Task> {
   }
 
   public List<Activity> getActivities() throws InvocationException {
-    List<Activity> activities = new UniqueEList<Activity>();
+    List<Activity> activities = new UniqueEList<Activity>(1);
     activities.add(getElement());
     return activities;
   }
