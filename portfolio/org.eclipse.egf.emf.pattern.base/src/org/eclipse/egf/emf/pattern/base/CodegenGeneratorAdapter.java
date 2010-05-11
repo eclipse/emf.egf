@@ -34,7 +34,7 @@ public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
 
   protected GenModel _genModel;
 
-  private String _mergeRulesURI;
+  protected String _mergeRulesURI;
 
   public CodegenGeneratorAdapter(GenBase generatingObject) {
     super(null);
