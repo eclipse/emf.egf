@@ -86,14 +86,14 @@ public abstract class CodegenPatternExecutionReporter implements PatternExecutio
       throw new IllegalStateException("Variable className must be set."); //$NON-NLS-1$
 
     CodegenGeneratorAdapter generator = new CodegenGeneratorAdapter(genModel);
-    generator.setMergeRulesURI(getBundleURI((String) context.getValue("mergeRulesURI"))); //$NON-NLS-1$
+    generator.setMergeRulesURI(normalizeAndCheckURI((String) context.getValue("mergeRulesURI"))); //$NON-NLS-1$
     generator.generateJava(targetPath, packageName, className, output);
   }
 
   /*
    * Computes the bundle uri
    */
-  protected String getBundleURI(String uri) {
+  protected String normalizeAndCheckURI(String uri) {
     if (uri == null || uri.trim().length() == 0) {
       return null;
     }
@@ -102,7 +102,7 @@ public abstract class CodegenPatternExecutionReporter implements PatternExecutio
       InputStream inputStream = EMFHelper.openStream(uri);
       inputStream.close();
     } catch (IOException ioe) {
-      Activator.getDefault().logError(NLS.bind("Unable to locate mergeRulesURI ''{0}''", uri), ioe); //$NON-NLS-1$
+      Activator.getDefault().logError(NLS.bind("Unable to locate uri ''{0}''", uri), ioe); //$NON-NLS-1$
       return null;
     }
     return uri;
