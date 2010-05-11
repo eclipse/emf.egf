@@ -14,6 +14,10 @@
           name="pattern.substitutions" invocationContracts="#_Fy-LgVHVEd-dr9AWwNwIMQ">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_P0nPkFHVEd-dr9AWwNwIMQ"/>
       </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_WRxYEFIIEd-eGOdO3WtsxA"
+          name="pattern.execution.reporter" invocationContracts="#_1lJR5D1jEd-7UeUeP-vIzw">
+        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_Z57xkFIIEd-eGOdO3WtsxA"/>
+      </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_Pcm9sTG0Ed-kc8dEZsdm2w">
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_Pcm9sjG0Ed-kc8dEZsdm2w">
@@ -404,7 +408,8 @@
         <invocationContractContainer xmi:id="_ob_qUj1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1lJR4D1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prg8ZTG0Ed-kc8dEZsdm2w"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_1lJR5D1jEd-7UeUeP-vIzw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
+          <invocationContracts xmi:id="_1lJR5D1jEd-7UeUeP-vIzw" factoryComponentContract="#_WRxYEFIIEd-eGOdO3WtsxA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_1lJR5T1jEd-7UeUeP-vIzw"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
@@ -427,6 +432,10 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_UCnhEFHVEd-dr9AWwNwIMQ"
           name="pattern.substitutions" invocationContracts="#_S4Hc0FHVEd-dr9AWwNwIMQ">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_VF0qgFHVEd-dr9AWwNwIMQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_jzYi8FIIEd-eGOdO3WtsxA"
+          name="pattern.execution.reporter" invocationContracts="#_1vlARD1jEd-7UeUeP-vIzw">
+        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_mlTQ8FIIEd-eGOdO3WtsxA"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PiIW4TG0Ed-kc8dEZsdm2w">
@@ -650,7 +659,8 @@
         <invocationContractContainer xmi:id="_1lJR6j1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlAQD1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prg8cDG0Ed-kc8dEZsdm2w"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_1vlARD1jEd-7UeUeP-vIzw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
+          <invocationContracts xmi:id="_1vlARD1jEd-7UeUeP-vIzw" factoryComponentContract="#_jzYi8FIIEd-eGOdO3WtsxA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_1vlART1jEd-7UeUeP-vIzw"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
@@ -673,6 +683,10 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Y3EukFHVEd-dr9AWwNwIMQ"
           name="pattern.substitutions" invocationContracts="#_XkOmoFHVEd-dr9AWwNwIMQ">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_aE2wUFHVEd-dr9AWwNwIMQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_pCqEMFIIEd-eGOdO3WtsxA"
+          name="pattern.execution.reporter" invocationContracts="#_1vlATz1jEd-7UeUeP-vIzw">
+        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_qL-csFIIEd-eGOdO3WtsxA"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PkqGcTG0Ed-kc8dEZsdm2w">
@@ -917,7 +931,8 @@
         <invocationContractContainer xmi:id="_1vlASj1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlASz1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prg8ezG0Ed-kc8dEZsdm2w"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_1vlATz1jEd-7UeUeP-vIzw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
+          <invocationContracts xmi:id="_1vlATz1jEd-7UeUeP-vIzw" factoryComponentContract="#_pCqEMFIIEd-eGOdO3WtsxA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_1vlAUD1jEd-7UeUeP-vIzw"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
@@ -940,6 +955,10 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_eYFgEFHVEd-dr9AWwNwIMQ"
           name="pattern.substitutions" invocationContracts="#_dYwKAFHVEd-dr9AWwNwIMQ">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_fKTAIFHVEd-dr9AWwNwIMQ"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_tvg04FIIEd-eGOdO3WtsxA"
+          name="pattern.execution.reporter" invocationContracts="#_1vlAWj1jEd-7UeUeP-vIzw">
+        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_u6xHEFIIEd-eGOdO3WtsxA"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PoO-4DG0Ed-kc8dEZsdm2w">
@@ -1121,7 +1140,8 @@
         <invocationContractContainer xmi:id="_1vlAVT1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlAVj1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prg8hjG0Ed-kc8dEZsdm2w"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_DgB2IP6fEd64XaYPo3s6sPg"/>
-          <invocationContracts xmi:id="_1vlAWj1jEd-7UeUeP-vIzw" invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
+          <invocationContracts xmi:id="_1vlAWj1jEd-7UeUeP-vIzw" factoryComponentContract="#_tvg04FIIEd-eGOdO3WtsxA"
+              invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_L6JSwAHAEd-4faJMEplCjxw">
             <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_1vlAWz1jEd-7UeUeP-vIzw"
                 value="org.eclipse.egf.emf.pattern.base.ContentTypePatternExecutionReporter"/>
           </invocationContracts>
@@ -1157,12 +1177,18 @@
           name="test.pattern.substitutions" invocationContracts="#_FfL3YFHWEd-dr9AWwNwIMQ">
         <type xmi:type="pattern:TypePatternSubstitution" xmi:id="_NTHGsFHWEd-dr9AWwNwIMQ"/>
       </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_yqrHUFIIEd-eGOdO3WtsxA"
+          name="pattern.execution.reporter" invocationContracts="#_6woh0FIIEd-eGOdO3WtsxA #_5UZNUFIIEd-eGOdO3WtsxA #_2Y8I0FIIEd-eGOdO3WtsxA #_1Bd_kFIIEd-eGOdO3WtsxA">
+        <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_0EOUMFIIEd-eGOdO3WtsxA"/>
+      </contracts>
     </contractContainer>
     <orchestration xmi:type="fprod:ProductionPlan" xmi:id="_Prz3VDG0Ed-kc8dEZsdm2w">
       <invocations xmi:id="_1vlAYz1jEd-7UeUeP-vIzw" name="EMF Model Pattern" invokedActivity="#_Pcm9sDG0Ed-kc8dEZsdm2w">
         <invocationContractContainer xmi:id="_1vlAZD1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlAZT1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8ZTG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_1Bd_kFIIEd-eGOdO3WtsxA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
+              invokedContract="#_WRxYEFIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_CvDSEFHWEd-dr9AWwNwIMQ" factoryComponentContract="#_G1BB4FHWEd-dr9AWwNwIMQ"
               invokedContract="#_OVsagFHVEd-dr9AWwNwIMQ"/>
         </invocationContractContainer>
@@ -1171,6 +1197,8 @@
         <invocationContractContainer xmi:id="_1vlAZz1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlAaD1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8cDG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_2Y8I0FIIEd-eGOdO3WtsxA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
+              invokedContract="#_jzYi8FIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_DxXDoFHWEd-dr9AWwNwIMQ" factoryComponentContract="#_HI-fsFHWEd-dr9AWwNwIMQ"
               invokedContract="#_UCnhEFHVEd-dr9AWwNwIMQ"/>
         </invocationContractContainer>
@@ -1179,6 +1207,8 @@
         <invocationContractContainer xmi:id="_1vlAaj1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlAaz1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8ezG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_5UZNUFIIEd-eGOdO3WtsxA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
+              invokedContract="#_pCqEMFIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_EpPG0FHWEd-dr9AWwNwIMQ" factoryComponentContract="#_HYLZUFHWEd-dr9AWwNwIMQ"
               invokedContract="#_Y3EukFHVEd-dr9AWwNwIMQ"/>
         </invocationContractContainer>
@@ -1187,6 +1217,8 @@
         <invocationContractContainer xmi:id="_1vlAbT1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlAbj1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8hjG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_6woh0FIIEd-eGOdO3WtsxA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
+              invokedContract="#_tvg04FIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_FfL3YFHWEd-dr9AWwNwIMQ" factoryComponentContract="#_Hq9LYFHWEd-dr9AWwNwIMQ"
               invokedContract="#_eYFgEFHVEd-dr9AWwNwIMQ"/>
         </invocationContractContainer>
