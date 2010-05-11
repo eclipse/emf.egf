@@ -2,7 +2,7 @@
 <xmi:XMI xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern">
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
   <fcore:FactoryComponent xmi:id="_Fo1MUCg5Ed-ROrlGa8LEeQ" description="" name="EMF Base Pattern">
     <viewpointContainer xmi:id="_OYDmQCg5Ed-ROrlGa8LEeQ">
       <viewpoints xmi:type="pattern:PatternViewpoint" xmi:id="_Qk4DICg5Ed-ROrlGa8LEeQ">
@@ -275,5 +275,12 @@
   </fcore:FactoryComponent>
   <ftask:Task xmi:id="_jT-SgD1hEd-m5uHrCQ1Jew" description="Reconcile the genModel before execution"
       name="EMF GenModel Pattern Strategy Task" kind="java" implementation="org.eclipse.egf.emf.pattern.base.ModelDrivenStrategyTaskForGenModel"
-      superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg"/>
+      superTask="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_8FZ3aof6eEd64XYPo3s6sPg">
+    <contractContainer xmi:id="_vNsDAFLMEd-ZSLMRjxSbVQ">
+      <contracts xmi:id="_vtlEAFLMEd-ZSLMRjxSbVQ" description="The URI of the JMerge rules file."
+          name="mergeRulesURI">
+        <type xmi:type="types:TypeString" xmi:id="_wb6wsFLMEd-ZSLMRjxSbVQ"/>
+      </contracts>
+    </contractContainer>
+  </ftask:Task>
 </xmi:XMI>

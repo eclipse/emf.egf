@@ -3,12 +3,16 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:fcore="http://www.eclipse.org/egf/1.0.0/fcore" xmlns:fprod="http://www.eclipse.org/egf/1.0.0/fprod"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:jetpattern="http://www.eclipse.org/egf/1.0.0/jetpattern"
-    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern">
+    xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmlns:types="http://www.eclipse.org/egf/1.0.0/types">
   <fcore:FactoryComponent xmi:id="_Pcm9sDG0Ed-kc8dEZsdm2w" name="EMF Model Pattern">
     <contractContainer xmi:id="_Prg8ZDG0Ed-kc8dEZsdm2w">
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prg8ZTG0Ed-kc8dEZsdm2w"
           description="EMF Model Pattern" name="genModelURI" mandatory="true" invocationContracts="#_1lJR4D1jEd-7UeUeP-vIzw">
         <type xmi:type="domain:TypeDomainURI" xmi:id="_1lJR4z1jEd-7UeUeP-vIzw"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_sluXsVLLEd-ZSLMRjxSbVQ"
+          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_3W8CEFLMEd-ZSLMRjxSbVQ">
+        <type xmi:type="types:TypeString" xmi:id="_-9uCsFLLEd-ZSLMRjxSbVQ"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_OVsagFHVEd-dr9AWwNwIMQ"
           name="pattern.substitutions" invocationContracts="#_Fy-LgVHVEd-dr9AWwNwIMQ">
@@ -419,6 +423,8 @@
           </invocationContracts>
           <invocationContracts xmi:id="_Fy-LgVHVEd-dr9AWwNwIMQ" factoryComponentContract="#_OVsagFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
+          <invocationContracts xmi:id="_3W8CEFLMEd-ZSLMRjxSbVQ" factoryComponentContract="#_sluXsVLLEd-ZSLMRjxSbVQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
     </orchestration>
@@ -436,6 +442,10 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_jzYi8FIIEd-eGOdO3WtsxA"
           name="pattern.execution.reporter" invocationContracts="#_1vlARD1jEd-7UeUeP-vIzw">
         <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_mlTQ8FIIEd-eGOdO3WtsxA"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_9wHxsFLMEd-ZSLMRjxSbVQ"
+          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_8zLBQFLMEd-ZSLMRjxSbVQ">
+        <type xmi:type="types:TypeString" xmi:id="_BWfbcFLNEd-ZSLMRjxSbVQ"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PiIW4TG0Ed-kc8dEZsdm2w">
@@ -670,6 +680,8 @@
           </invocationContracts>
           <invocationContracts xmi:id="_S4Hc0FHVEd-dr9AWwNwIMQ" factoryComponentContract="#_UCnhEFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
+          <invocationContracts xmi:id="_8zLBQFLMEd-ZSLMRjxSbVQ" factoryComponentContract="#_9wHxsFLMEd-ZSLMRjxSbVQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
     </orchestration>
@@ -687,6 +699,10 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_pCqEMFIIEd-eGOdO3WtsxA"
           name="pattern.execution.reporter" invocationContracts="#_1vlATz1jEd-7UeUeP-vIzw">
         <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_qL-csFIIEd-eGOdO3WtsxA"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_FqdyEFLNEd-ZSLMRjxSbVQ"
+          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_ISjOoFLNEd-ZSLMRjxSbVQ">
+        <type xmi:type="types:TypeString" xmi:id="_HmlggFLNEd-ZSLMRjxSbVQ"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PkqGcTG0Ed-kc8dEZsdm2w">
@@ -942,6 +958,8 @@
           </invocationContracts>
           <invocationContracts xmi:id="_XkOmoFHVEd-dr9AWwNwIMQ" factoryComponentContract="#_Y3EukFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
+          <invocationContracts xmi:id="_ISjOoFLNEd-ZSLMRjxSbVQ" factoryComponentContract="#_FqdyEFLNEd-ZSLMRjxSbVQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
     </orchestration>
@@ -959,6 +977,10 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_tvg04FIIEd-eGOdO3WtsxA"
           name="pattern.execution.reporter" invocationContracts="#_1vlAWj1jEd-7UeUeP-vIzw">
         <type xmi:type="pattern:TypePatternExecutionReporter" xmi:id="_u6xHEFIIEd-eGOdO3WtsxA"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_LnCeMFLNEd-ZSLMRjxSbVQ"
+          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_OI3hwFLNEd-ZSLMRjxSbVQ">
+        <type xmi:type="types:TypeString" xmi:id="_NfcKQFLNEd-ZSLMRjxSbVQ"/>
       </contracts>
     </contractContainer>
     <viewpointContainer xmi:id="_PoO-4DG0Ed-kc8dEZsdm2w">
@@ -1151,6 +1173,8 @@
           </invocationContracts>
           <invocationContracts xmi:id="_dYwKAFHVEd-dr9AWwNwIMQ" factoryComponentContract="#_eYFgEFHVEd-dr9AWwNwIMQ"
               invokedContract="platform:/plugin/org.eclipse.egf.pattern.ftask/Model_driven_pattern_strategy_task.fcore#_NFhJ4UMgEd-Ixul1H5ANhg"/>
+          <invocationContracts xmi:id="_OI3hwFLNEd-ZSLMRjxSbVQ" factoryComponentContract="#_LnCeMFLNEd-ZSLMRjxSbVQ"
+              invokedContract="platform:/plugin/org.eclipse.egf.emf.pattern.base/egf/EMF_Pattern_Base.fcore#_vtlEAFLMEd-ZSLMRjxSbVQ"/>
         </invocationContractContainer>
       </invocations>
     </orchestration>
@@ -1160,6 +1184,10 @@
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_Prz3UjG0Ed-kc8dEZsdm2w"
           description="EMF Pattern" name="genModelURI" mandatory="true" invocationContracts="#_1vlAZT1jEd-7UeUeP-vIzw #_1vlAaD1jEd-7UeUeP-vIzw #_1vlAaz1jEd-7UeUeP-vIzw #_1vlAbj1jEd-7UeUeP-vIzw">
         <type xmi:type="domain:TypeDomainURI" xmi:id="_1vlAYT1jEd-7UeUeP-vIzw"/>
+      </contracts>
+      <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_TK4DEFLNEd-ZSLMRjxSbVQ"
+          description="The URI of the JMerge rules file." name="mergeRulesURI" invocationContracts="#_V50VkFLNEd-ZSLMRjxSbVQ #_ZX17oFLNEd-ZSLMRjxSbVQ #_bcxAwFLNEd-ZSLMRjxSbVQ #_dUkP4FLNEd-ZSLMRjxSbVQ">
+        <type xmi:type="types:TypeString" xmi:id="_VVA_YFLNEd-ZSLMRjxSbVQ"/>
       </contracts>
       <contracts xmi:type="fcore:FactoryComponentContract" xmi:id="_G1BB4FHWEd-dr9AWwNwIMQ"
           name="model.pattern.substitutions" invocationContracts="#_CvDSEFHWEd-dr9AWwNwIMQ">
@@ -1187,6 +1215,8 @@
         <invocationContractContainer xmi:id="_1vlAZD1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlAZT1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8ZTG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_V50VkFLNEd-ZSLMRjxSbVQ" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
+              invokedContract="#_sluXsVLLEd-ZSLMRjxSbVQ"/>
           <invocationContracts xmi:id="_1Bd_kFIIEd-eGOdO3WtsxA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
               invokedContract="#_WRxYEFIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_CvDSEFHWEd-dr9AWwNwIMQ" factoryComponentContract="#_G1BB4FHWEd-dr9AWwNwIMQ"
@@ -1197,6 +1227,8 @@
         <invocationContractContainer xmi:id="_1vlAZz1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlAaD1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8cDG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_ZX17oFLNEd-ZSLMRjxSbVQ" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
+              invokedContract="#_9wHxsFLMEd-ZSLMRjxSbVQ"/>
           <invocationContracts xmi:id="_2Y8I0FIIEd-eGOdO3WtsxA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
               invokedContract="#_jzYi8FIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_DxXDoFHWEd-dr9AWwNwIMQ" factoryComponentContract="#_HI-fsFHWEd-dr9AWwNwIMQ"
@@ -1207,6 +1239,8 @@
         <invocationContractContainer xmi:id="_1vlAaj1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlAaz1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8ezG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_bcxAwFLNEd-ZSLMRjxSbVQ" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
+              invokedContract="#_FqdyEFLNEd-ZSLMRjxSbVQ"/>
           <invocationContracts xmi:id="_5UZNUFIIEd-eGOdO3WtsxA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
               invokedContract="#_pCqEMFIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_EpPG0FHWEd-dr9AWwNwIMQ" factoryComponentContract="#_HYLZUFHWEd-dr9AWwNwIMQ"
@@ -1217,6 +1251,8 @@
         <invocationContractContainer xmi:id="_1vlAbT1jEd-7UeUeP-vIzw">
           <invocationContracts xmi:id="_1vlAbj1jEd-7UeUeP-vIzw" factoryComponentContract="#_Prz3UjG0Ed-kc8dEZsdm2w"
               invokedContract="#_Prg8hjG0Ed-kc8dEZsdm2w"/>
+          <invocationContracts xmi:id="_dUkP4FLNEd-ZSLMRjxSbVQ" factoryComponentContract="#_TK4DEFLNEd-ZSLMRjxSbVQ"
+              invokedContract="#_LnCeMFLNEd-ZSLMRjxSbVQ"/>
           <invocationContracts xmi:id="_6woh0FIIEd-eGOdO3WtsxA" factoryComponentContract="#_yqrHUFIIEd-eGOdO3WtsxA"
               invokedContract="#_tvg04FIIEd-eGOdO3WtsxA"/>
           <invocationContracts xmi:id="_FfL3YFHWEd-dr9AWwNwIMQ" factoryComponentContract="#_Hq9LYFHWEd-dr9AWwNwIMQ"
