@@ -10,6 +10,11 @@
  */
 package org.eclipse.egf.common.helper;
 
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -20,6 +25,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.egf.common.EGFCommonPlugin;
+import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClassifier;
@@ -52,6 +58,20 @@ public class EMFHelper {
 
   private EMFHelper() {
     // Prevent instantiation
+  }
+
+  // Method copied from org.eclipse.emf.codegen.jet.JETCompiler.openStream(java.lang.String)
+  public static InputStream openStream(String locationURI) throws IOException {
+    URI uri = URI.createURI(locationURI);
+    URL url;
+    try {
+      uri = CommonPlugin.resolve(uri);
+      url = new URL(uri.toString());
+    } catch (MalformedURLException exception) {
+      url = new URL("file:" + locationURI); //$NON-NLS-1$
+    }
+    BufferedInputStream bufferedInputStream = new BufferedInputStream(url.openStream());
+    return bufferedInputStream;
   }
 
   public static IResource getWorkspaceResource(Resource resource) {
