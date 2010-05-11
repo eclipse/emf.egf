@@ -1,12 +1,18 @@
 /**
- * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * <copyright>
+ * 
+ * Copyright (c) 2006-2008 IBM Corporation and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- * Thales Corporate Services S.A.S - initial API and implementation
+ * IBM - Initial API and implementation
+ * 
+ * </copyright>
+ * 
+ * $Id: JMerger.java,v 1.27 2008/12/22 14:25:30 emerks Exp $
  */
 package org.eclipse.egf.common.generator;
 
