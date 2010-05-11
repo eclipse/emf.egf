@@ -10,6 +10,7 @@
  */
 package org.eclipse.egf.core.domain;
 
+import org.eclipse.egf.core.EGFCorePlugin;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
@@ -21,8 +22,6 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
  * 
  */
 public class EGFTransactionalEditingDomain extends TransactionalEditingDomainImpl {
-
-  private EGFURIConverter _uriConverter;
 
   /**
    * Initializes me with my adapter factory, command stack, and resource set.
@@ -83,14 +82,7 @@ public class EGFTransactionalEditingDomain extends TransactionalEditingDomainImp
    * Initializes my state.
    */
   private void initialize() {
-    _uriConverter = new EGFURIConverter();
-    getResourceSet().setURIConverter(_uriConverter);
-  }
-
-  @Override
-  public void dispose() {
-    super.dispose();
-    _uriConverter.dispose();
+    getResourceSet().setURIConverter(EGFCorePlugin.getPlatformURIConverter());
   }
 
 }

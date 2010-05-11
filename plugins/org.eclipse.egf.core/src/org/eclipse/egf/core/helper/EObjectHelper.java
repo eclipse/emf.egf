@@ -37,10 +37,8 @@ public class EObjectHelper {
     if (resourceSet == null || uri == null) {
       return null;
     }
-    // Clear the previous URIConverter content
-    resourceSet.getURIConverter().getURIMap().clear();
-    // Assign a fresh platform aware URIConverter
-    resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    // Assign a platform aware URIConverter
+    resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
     // Load
     return resourceSet.getEObject(uri, true);
   }

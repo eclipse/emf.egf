@@ -10,26 +10,15 @@
  */
 package org.eclipse.egf.core;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IWorkspaceRoot;
-import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.IJobManager;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.egf.common.activator.EGFAbstractPlugin;
-import org.eclipse.egf.common.helper.BundleHelper;
-import org.eclipse.egf.core.context.ContextFactory;
-import org.eclipse.egf.core.context.IContextFactory;
 import org.eclipse.egf.core.fcore.IPlatformFcore;
 import org.eclipse.egf.core.platform.EGFPlatformPlugin;
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.egf.core.platform.pde.PlatformURIConverter;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.pde.core.plugin.IPluginModelBase;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -47,11 +36,6 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
    * Plug-in unique instance.
    */
   private static EGFCorePlugin __plugin;
-
-  /**
-   * IContextFactory singleton.
-   */
-  private static final IContextFactory __contextFactory = new ContextFactory();
 
   /**
    * Constant identifying the job family identifier for a background build job.
@@ -75,100 +59,12 @@ public class EGFCorePlugin extends EGFAbstractPlugin {
   }
 
   /**
-   * Returns the singleton instance of the IContextFactory.
+   * Returns a snapshot of known IPlatformFcore
    * 
-   * @return the singleton production context factory.
+   * @return an array of IPlatformFcore
    */
-  public static IContextFactory getContextFactory() {
-    return __contextFactory;
-  }
-
-  /**
-   * Computes a map so that plugins in the workspace will override those in
-   * the environment and so that plugins with Ecore and GenModels will look
-   * like projects in the workspace. It's implemented like this:
-   * 
-   * <pre>
-   * Map result = new HashMap();
-   * result.putAll(computePlatformPluginToPlatformResourceMap());
-   * result.putAll(computePlatformResourceToPlatformPluginMap(new
-   * HashSet(EcorePlugin.getEPackageNsURIToGenModelLocationMap().values())));
-   * return result;
-   *</pre>
-   * 
-   * @return computes a map so that plugins in the workspace will override
-   *         those in the environment and so that plugins with Ecore and
-   *         GenModels will look like projects in the workspace.
-   * @see org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
-   * @see URI
-   * @see #computePlatformPluginToPlatformResourceMap()
-   * @see #computePlatformResourceToPlatformPluginMap(Collection)
-   */
-  public static Map<URI, URI> computePlatformURIMap() {
-    Map<URI, URI> result = new HashMap<URI, URI>();
-    result.putAll(EcorePlugin.computePlatformURIMap());
-    result.putAll(computePlatformPluginToPlatformResourceMap());
-    result.putAll(computePlatformResourceToTargetPluginMap(getTargetPlatformFcores()));
-    return result;
-  }
-
-  /**
-   * Computes a map from <code>platform:/plugin/&lt;plugin-id>/</code> {@link URI} to
-   * <code>platform:/resource/&lt;plugin-location>/</code> URI
-   * for each plugin project in the workspace. This allows each plugin from
-   * the runtime to be {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
-   * redirected} to its active version in the workspace.
-   * 
-   * @return a map from plugin URIs to resource URIs.
-   * @see org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
-   * @see URI
-   */
-  public static Map<URI, URI> computePlatformPluginToPlatformResourceMap() {
-    Map<URI, URI> result = new HashMap<URI, URI>();
-    IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-    for (IPlatformFcore fcore : getWorkspacePlatformFcores()) {
-      String pluginID = fcore.getURI().segment(1);
-      IProject project = root.getProject(pluginID);
-      // Don't ask the project if it exists or is opened. While closing, a project is still opened
-      // and its according model base is already reset to null
-      IPluginModelBase base = BundleHelper.getPluginModelBase(project);
-      if (base != null) {
-        result.put(URI.createPlatformPluginURI(fcore.getPlatformBundle().getBundleId() + "/", false), URI.createPlatformResourceURI(fcore.getPlatformBundle().getProject().getName() + "/", true)); //$NON-NLS-1$ //$NON-NLS-2$
-      }
-    }
-    return result;
-  }
-
-  /**
-   * Computes a map from <code>platform:/resource/&lt;plugin-location>/</code> {@link URI} to
-   * <code>platform:/plugin/&lt;plugin-id>/</code> URI for each
-   * URI in the collection of the form
-   * <code>platform:/plugin/&lt;plugin-id>/...</code>. This allows each plugin
-   * to be {@link org.eclipse.emf.ecore.resource.URIConverter#getURIMap()
-   * treated} as if it were a project in the workspace. If the workspace
-   * already contains a project for the plugin location, no mapping is
-   * produced.
-   * 
-   * @param fcores
-   *          a collections of {@link IPlatformFcore}s.
-   * @return a map from platform resource URI to platform plugin URI.
-   */
-  public static Map<URI, URI> computePlatformResourceToTargetPluginMap(IPlatformFcore[] fcores) {
-    Map<URI, URI> result = new HashMap<URI, URI>();
-    IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
-    if (root != null) {
-      for (IPlatformFcore fcore : fcores) {
-        String pluginID = fcore.getURI().segment(1);
-        IProject project = root.getProject(pluginID);
-        // Don't ask the project if it is opened. while closing, a project is still opened
-        // and its according model base is already reset to null
-        IPluginModelBase base = BundleHelper.getPluginModelBase(project);
-        if (project.exists() == false || base == null) {
-          result.put(URI.createPlatformResourceURI(pluginID + "/", false), URI.createPlatformPluginURI(pluginID + "/", false)); //$NON-NLS-1$ //$NON-NLS-2$
-        }
-      }
-    }
-    return result;
+  public static PlatformURIConverter getPlatformURIConverter() {
+    return EGFPlatformPlugin.getPlatformURIConverter();
   }
 
   /**

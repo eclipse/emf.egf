@@ -25,6 +25,7 @@ import org.eclipse.egf.core.platform.pde.IPlatformBundle;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPoint;
 import org.eclipse.egf.core.platform.pde.IPlatformExtensionPointFactory;
 import org.eclipse.egf.core.platform.pde.IPlatformManager;
+import org.eclipse.egf.core.platform.pde.PlatformURIConverter;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.pde.core.plugin.IPluginElement;
 import org.osgi.framework.BundleContext;
@@ -36,6 +37,10 @@ import org.osgi.framework.BundleContext;
 public class EGFPlatformPlugin extends EGFAbstractPlugin {
 
   private static EGFPlatformPlugin __plugin;
+
+  public static PlatformURIConverter getPlatformURIConverter() {
+    return PlatformURIConverter.getInstance();
+  }
 
   public static IPlatformManager getPlatformManager() {
     return PlatformManager.getInstance();
@@ -160,6 +165,9 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
   public void start(BundleContext context) throws Exception {
     super.start(context);
     __plugin = this;
+    // The platform URI Converter should be initialized after the platform manager
+    PlatformManager.getInstance();
+    PlatformURIConverter.getInstance();
   }
 
   /**
@@ -169,6 +177,7 @@ public class EGFPlatformPlugin extends EGFAbstractPlugin {
   @Override
   public void stop(BundleContext context) throws Exception {
     PlatformManager.getInstance().dispose();
+    PlatformURIConverter.getInstance().dispose();
     __plugin = null;
     __managers = null;
     super.stop(context);

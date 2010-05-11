@@ -114,7 +114,7 @@ public final class PlatformManager implements IPlatformManager, IPluginModelList
   private List<IPlatformExtensionPointListener> _listeners;
 
   private PlatformManager() {
-    // Nothing to do
+    // Prevent Instantiation
   }
 
   public void dispose() {

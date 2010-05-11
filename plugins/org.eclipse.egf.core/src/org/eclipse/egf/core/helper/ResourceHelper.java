@@ -69,10 +69,8 @@ public class ResourceHelper {
     if (resourceSet == null || uri == null) {
       return null;
     }
-    // Clear the previous URIConverter content
-    resourceSet.getURIConverter().getURIMap().clear();
-    // Assign a fresh platform aware URIConverter
-    resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    // Assign a platform aware URIConverter
+    resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
     // Create
     return resourceSet.createResource(uri);
   }
@@ -85,10 +83,8 @@ public class ResourceHelper {
     if (resourceSet == null || uri == null) {
       return null;
     }
-    // Clear the previous URIConverter content
-    resourceSet.getURIConverter().getURIMap().clear();
-    // Assign a fresh platform aware URIConverter
-    resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    // Assign a platform aware URIConverter
+    resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
     // Load or create
     return resourceSet.getResource(uri, true);
   }
@@ -98,10 +94,8 @@ public class ResourceHelper {
       return;
     }
     if (resource.getResourceSet() != null) {
-      // Clear the previous URIConverter content
-      resource.getResourceSet().getURIConverter().getURIMap().clear();
-      // Assign a fresh platform aware URIConverter
-      resource.getResourceSet().getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+      // Assign a platform aware URIConverter
+      resource.getResourceSet().setURIConverter(EGFCorePlugin.getPlatformURIConverter());
     }
     // Load
     resource.load(Collections.EMPTY_MAP);
@@ -122,10 +116,8 @@ public class ResourceHelper {
     }
     // Update URI Converter
     for (ResourceSet resourceSet : resourceSets) {
-      // Clear the previous URIConverter content
-      resourceSet.getURIConverter().getURIMap().clear();
-      // Assign a fresh platform aware URIConverter
-      resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+      // Assign a platform aware URIConverter
+      resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
     }
     // Load Resource
     for (Resource resource : resources) {

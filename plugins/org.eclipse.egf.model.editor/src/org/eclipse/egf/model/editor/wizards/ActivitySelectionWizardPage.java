@@ -247,8 +247,8 @@ public class ActivitySelectionWizardPage extends FilteredItemsSelectionWizardPag
     super(PAGE_ID, false);
     // Create and init a resourceSet
     _resourceSet = new ResourceSetImpl();
-    // Assign a fresh platform aware URIConverter
-    _resourceSet.getURIConverter().getURIMap().putAll(EGFCorePlugin.computePlatformURIMap());
+    // Assign a platform aware URIConverter
+    _resourceSet.setURIConverter(EGFCorePlugin.getPlatformURIConverter());
     // Create an adapter factory that yields item providers.
     _adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
     _adapterFactory.addAdapterFactory(new FcoreResourceItemProviderAdapterFactory());
