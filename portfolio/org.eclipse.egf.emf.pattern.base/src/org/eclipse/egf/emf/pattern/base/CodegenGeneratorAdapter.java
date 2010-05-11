@@ -1,14 +1,14 @@
 /**
  * <copyright>
- *
- *  Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
- *  All rights reserved. This program and the accompanying materials
- *  are made available under the terms of the Eclipse Public License v1.0
- *  which accompanies this distribution, and is available at
- *  http://www.eclipse.org/legal/epl-v10.html
  * 
- *  Contributors:
- *      Thales Corporate Services S.A.S - initial API and implementation
+ * Copyright (c) 2009-2010 Thales Corporate Services S.A.S.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * Thales Corporate Services S.A.S - initial API and implementation
  * 
  * </copyright>
  */
@@ -20,7 +20,6 @@ import org.eclipse.emf.codegen.ecore.genmodel.GenBase;
 import org.eclipse.emf.codegen.ecore.genmodel.GenModel;
 import org.eclipse.emf.codegen.ecore.genmodel.generator.GenBaseGeneratorAdapter;
 import org.eclipse.emf.codegen.ecore.genmodel.util.GenModelUtil;
-import org.eclipse.emf.codegen.util.GIFEmitter;
 import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
@@ -31,63 +30,66 @@ import org.eclipse.emf.common.util.URI;
  */
 public class CodegenGeneratorAdapter extends GenBaseGeneratorAdapter {
 
-    protected Generator generator;
-    protected GenModel genModel;
+  protected Generator _generator;
 
-    public CodegenGeneratorAdapter(GenBase generatingObject) {
-        super(null);
-        this.generatingObject = generatingObject;
-        genModel = generatingObject.getGenModel();
-    }
+  protected GenModel _genModel;
 
-    @Override
-    public Generator getGenerator() {
-        if (generator == null) {
-            generator = GenModelUtil.createGenerator(genModel);
-        }
-        return generator;
-    }
+  private String _mergeRulesURI;
 
-    public boolean canGenerate(Object projectType) {
-        return super.canGenerate(generatingObject, projectType);
-    }
+  public CodegenGeneratorAdapter(GenBase generatingObject) {
+    super(null);
+    this.generatingObject = generatingObject;
+    _genModel = generatingObject.getGenModel();
+  }
 
-    @Override
-    public URI toURI(String pathName) {
-        return super.toURI(pathName);
-    }
+  public void setMergeRulesURI(String mergeRulesURI) {
+    _mergeRulesURI = mergeRulesURI;
+  }
 
-    @Override
-    public boolean exists(URI workspacePath) {
-        return super.exists(workspacePath);
+  @Override
+  public Generator getGenerator() {
+    if (_generator == null) {
+      _generator = GenModelUtil.createGenerator(_genModel);
     }
+    if (_mergeRulesURI != null) {
+      _generator.getOptions().mergeRulesURI = _mergeRulesURI;
+    }
+    return _generator;
+  }
 
-    @Override
-    public void ensureProjectExists(String workspacePath, Object object, Object projectType, boolean force, Monitor monitor) {
-        super.ensureProjectExists(workspacePath, object, projectType, force, monitor);
-    }
+  public boolean canGenerate(Object projectType) {
+    return super.canGenerate(generatingObject, projectType);
+  }
 
-    public void generateJava(String targetPath, String packageName, String className, String output) {
-        StringJETEmitter stringJETEmitter = new StringJETEmitter(output);
-        BasicMonitor monitor = new BasicMonitor();
-        super.generateJava(targetPath, packageName, className, stringJETEmitter, null, monitor);
-    }
+  @Override
+  public URI toURI(String pathName) {
+    return super.toURI(pathName);
+  }
 
-    public void generateText(String targetPathName, boolean overwrite, String encoding, String output) {
-        StringJETEmitter stringJETEmitter = new StringJETEmitter(output);
-        BasicMonitor monitor = new BasicMonitor();
-        super.generateText(targetPathName, stringJETEmitter, null, overwrite, encoding, monitor);
-    }
+  @Override
+  public boolean exists(URI workspacePath) {
+    return super.exists(workspacePath);
+  }
 
-    public void generateProperties(String targetPathName, String output) {
-        StringJETEmitter stringJETEmitter = new StringJETEmitter(output);
-        BasicMonitor monitor = new BasicMonitor();
-        super.generateProperties(targetPathName, stringJETEmitter, null, monitor);
-    }
+  @Override
+  public void ensureProjectExists(String workspacePath, Object object, Object projectType, boolean force, Monitor monitor) {
+    super.ensureProjectExists(workspacePath, object, projectType, force, monitor);
+  }
 
-    public void generateGIF(String inputPathName, String targetPathName, String parentKey, String childKey, boolean overwrite) {
-        GIFEmitter gifEmitter = createGIFEmitter(inputPathName);
-        BasicMonitor monitor = new BasicMonitor();
-        generateGIF(targetPathName, gifEmitter, parentKey, childKey, overwrite, monitor);
-    }
+  public void generateJava(String targetPath, String packageName, String className, String output) {
+    generateJava(targetPath, packageName, className, new StringJETEmitter(output), (Object[]) null, new BasicMonitor());
+  }
+
+  public void generateText(String targetPathName, boolean overwrite, String encoding, String output) {
+    generateText(targetPathName, new StringJETEmitter(output), (Object[]) null, overwrite, encoding, new BasicMonitor());
+  }
+
+  public void generateProperties(String targetPathName, String output) {
+    generateProperties(targetPathName, new StringJETEmitter(output), (Object[]) null, new BasicMonitor());
+  }
+
+  public void generateGIF(String inputPathName, String targetPathName, String parentKey, String childKey, boolean overwrite) {
+    generateGIF(targetPathName, createGIFEmitter(inputPathName), parentKey, childKey, overwrite, new BasicMonitor());
+  }
+
 }
