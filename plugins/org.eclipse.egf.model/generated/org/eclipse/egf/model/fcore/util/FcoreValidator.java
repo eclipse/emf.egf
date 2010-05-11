@@ -545,10 +545,21 @@ public class FcoreValidator extends EObjectValidator {
    * @generated NOT
    */
   public boolean validateOrchestrationParameter_UselessOrchestrationParameter(OrchestrationParameter orchestrationParameter, DiagnosticChain diagnostics, Map<Object, Object> context) {
-    if (orchestrationParameter.getInvocationContracts() == null || orchestrationParameter.getInvocationContracts().size() < 2) {
+    if (orchestrationParameter.getType() == null) {
+      return true;
+    }
+    if (orchestrationParameter.getInvocationContracts() == null || orchestrationParameter.getInvocationContracts().size() == 0) {
       if (diagnostics != null) {
         diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
-            new Object[] { "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter, context), "This OrchestrationParameter should be defined in an InvocationContract" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter, context), "This OrchestrationParameter is unused" }, //$NON-NLS-1$ //$NON-NLS-2$
+            new Object[] { orchestrationParameter }, context));
+      }
+      return false;
+    }
+    if (orchestrationParameter.getInvocationContracts().size() < 2) {
+      if (diagnostics != null) {
+        diagnostics.add(createDiagnostic(Diagnostic.WARNING, DIAGNOSTIC_SOURCE, 0, "_UI_EGFConstraint_diagnostic", //$NON-NLS-1$
+            new Object[] { "UselessOrchestrationParameter", getObjectLabel(orchestrationParameter, context), "This OrchestrationParameter could be defined in its related InvocationContract" }, //$NON-NLS-1$ //$NON-NLS-2$
             new Object[] { orchestrationParameter }, context));
       }
       return false;
