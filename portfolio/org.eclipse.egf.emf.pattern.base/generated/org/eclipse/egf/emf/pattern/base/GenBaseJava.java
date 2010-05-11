@@ -77,6 +77,10 @@ protected org.eclipse.emf.codegen.util.ImportManager importManager = null;
 public void set_importManager(org.eclipse.emf.codegen.util.ImportManager object) {
 this.importManager = object;
 }
+protected java.lang.String mergeRulesURI = null;
+public void set_mergeRulesURI(java.lang.String object) {
+this.mergeRulesURI = object;
+}
 public Map<String, Object> getParameters() {
 final Map<String, Object> parameters = new HashMap<String, Object>();
 return parameters; }
@@ -87,6 +91,7 @@ return parameters; }
 ctx.setValue("targetPath", targetPath);
 ctx.setValue("packageName", packageName);
 ctx.setValue("className", className);
+ctx.setValue("mergeRulesURI", mergeRulesURI);
 
     }
     protected void method_putContentTypeInContext(final StringBuffer stringBuffer, final PatternContext ctx)throws Exception {

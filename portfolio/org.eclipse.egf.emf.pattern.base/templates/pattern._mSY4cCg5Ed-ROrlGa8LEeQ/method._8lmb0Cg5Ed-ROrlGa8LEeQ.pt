@@ -2,4 +2,5 @@
 ctx.setValue("targetPath", targetPath);
 ctx.setValue("packageName", packageName);
 ctx.setValue("className", className);
+ctx.setValue("mergeRulesURI", mergeRulesURI);
 %>
