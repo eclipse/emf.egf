@@ -2,7 +2,7 @@
 <ftask:Task xmi:version="2.1"
     xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:domain="http://www.eclipse.org/egf/1.0.0/domain"
     xmlns:ftask="http://www.eclipse.org/egf/1.0.0/ftask" xmlns:pattern="http://www.eclipse.org/egf/1.0.0/pattern" xmi:id="_8FZ3aof6eEd64XYPo3s6sPg"
-    name="Model driven pattern strategy task" kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.ModelDrivenStrategyTask">
+    name="Model Driven Pattern Strategy Task" kind="java" implementation="org.eclipse.egf.pattern.ftask.tasks.ModelDrivenStrategyTask">
   <contractContainer xmi:id="_9xfmAP6eEd64XYPo3as6sPg">
     <contracts xmi:id="_DgB2IP6fEd64XaYPo3s6sPg" name="domain" mandatory="true">
       <type xmi:type="domain:TypeDomainURI" xmi:id="_D_W2cPa6fEd64XYPo3s6sPg"/>
