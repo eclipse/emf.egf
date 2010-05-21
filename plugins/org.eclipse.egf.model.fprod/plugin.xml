@@ -30,13 +30,4 @@
     />
   </extension>  
   
-  <extension 
-    point="org.eclipse.emf.ecore.extension_parser"
-  >
-    <parser
-      type="fprod"
-      class="org.eclipse.egf.model.fprod.util.FprodResourceFactoryImpl"
-    />
-  </extension>
-
 </plugin>
